@@ -7,7 +7,7 @@ import Notification from 'models/notification';
 export function formatMessage(item: Notification, compact: boolean = false) {
   const replacements = {
     content: item.details.content,
-    title: item.details.title,
+    title: item.title,
     username: item.details.username,
   };
 

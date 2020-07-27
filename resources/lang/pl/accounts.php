@@ -55,7 +55,7 @@ return [
         'topic_auto_subscribe' => 'automatycznie włączaj powiadomienia dla twoich wątków na forum',
 
         'options' => [
-            '_' => 'opcje dostarczania',
+            '_' => 'opcje wysyłania',
             'beatmapset:modding' => 'dyskusje beatmap',
             'forum_topic_reply' => 'odpowiedzi do wątków',
             'mail' => 'e-mail',

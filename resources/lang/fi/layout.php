@@ -96,6 +96,7 @@ return [
             'country' => 'maa',
             'index' => 'suorituskyky',
             'kudosu' => 'kudosu',
+            'multiplayer' => '',
             'score' => 'pisteet',
         ],
         'store' => [

@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => 'Online nu',
         'missingtext' => 'Du har formentlig lavet en stavefejl! (eller også er brugeren blevet bannet)',
         'origin_country' => 'Fra :country',
-        'page_description' => 'osu! - Alt hvad du nogensinde kunne have brug for at vide om :username!',
         'previous_usernames' => 'tidligere kendt som',
         'plays_with' => 'Spiller med :devices',
         'title' => ":username´s profil",

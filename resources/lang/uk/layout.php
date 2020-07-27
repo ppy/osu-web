@@ -96,6 +96,7 @@ return [
             'country' => 'країна',
             'index' => 'по продуктивності',
             'kudosu' => 'кудосу',
+            'multiplayer' => '',
             'score' => 'рахунок',
         ],
         'store' => [

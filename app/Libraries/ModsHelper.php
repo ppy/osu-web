@@ -32,6 +32,8 @@ class ModsHelper
         [18, '7K'],
         [19, '8K'],
         [24, '9K'],
+
+        [29, 'V2'],
     ];
 
     public static function toArray($bitset)

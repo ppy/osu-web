@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => 'Online just nu',
         'missingtext' => 'Du kanske har stavat fel! (eller så är användaren bannlyst)',
         'origin_country' => 'Från :country',
-        'page_description' => 'osu! - Allting du någonsin hade velat veta om :username!',
         'previous_usernames' => 'tidigare känd som',
         'plays_with' => 'Spelar med :devices',
         'title' => ":username's profil",

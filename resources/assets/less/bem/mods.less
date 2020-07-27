@@ -17,19 +17,24 @@
 
   display: flex;
   justify-content: space-around;
+  --image-width: @mod-width-normal;
 
   &--profile-page {
     width: auto;
     padding: 0;
     flex-wrap: wrap;
     justify-content: flex-start;
+    font-size: @mod-height-normal;
+    --image-width: auto;
   }
 
   &--scoreboard {
     width: auto;
-    height: @mod-height-small;
-    padding: 0px;
+    padding: 0;
     justify-content: flex-start;
+    align-items: center;
+    font-size: @mod-height-small;
+    --image-width: auto;
   }
 
   &--small {
@@ -73,11 +78,7 @@
   }
 
   &__mod-image {
-    min-width: @mod-width-normal;
-
-    .@{top}--scoreboard & {
-      min-width: 25px;
-    }
+    min-width: var(--image-width);
 
     .@{top}--small & {
       min-width: @mod-width-small;

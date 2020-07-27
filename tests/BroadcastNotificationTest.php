@@ -8,6 +8,7 @@ namespace Tests;
 use App\Events\NewPrivateNotificationEvent;
 use App\Jobs\Notifications\BeatmapsetDiscussionPostNew;
 use App\Jobs\Notifications\BroadcastNotificationBase;
+use App\Libraries\Chat;
 use App\Mail\UserNotificationDigest;
 use App\Models\Beatmapset;
 use App\Models\Notification;
@@ -22,6 +23,19 @@ use Symfony\Component\Finder\Finder;
 class BroadcastNotificationTest extends TestCase
 {
     protected $sender;
+
+    public function testNoNotificationForBotUser()
+    {
+        $bot = $this->createUserWithGroup('bot', ['user_allow_pm' => true]);
+        $this->sender->markSessionVerified();
+        $notificationsCount = Notification::count();
+
+        Chat::sendPrivateMessage($this->sender, $bot, 'hello', false);
+        $this->runFakeQueue();
+
+        $this->assertSame($notificationsCount, Notification::count());
+        Event::assertNotDispatched(NewPrivateNotificationEvent::class);
+    }
 
     /**
      * @dataProvider notificationNamesDataProvider

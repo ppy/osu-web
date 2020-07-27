@@ -93,7 +93,7 @@ return [
 
         'beta' => [
             'main' => 'وصول البيتا مقيد حالياََ للمستخدمين ذوي الاِمتيازات فقط.',
-            'small' => '(سوف يحصل عليه مؤيدو!osu قريبا)',
+            'small' => '(سوف يحصل عليه osu!supporters قريبا)',
         ],
     ],
 
@@ -139,13 +139,12 @@ return [
         'change_avatar' => 'غير صورتك!',
         'first_members' => 'هنا منذ البداية',
         'is_developer' => 'مطور!osu',
-        'is_supporter' => 'مؤيد!osu',
+        'is_supporter' => 'osu!supporter',
         'joined_at' => 'انضم في :date',
         'lastvisit' => 'اخر ظهور :date',
         'lastvisit_online' => 'متصل حالياً',
         'missingtext' => 'لقد ادخلت معلومات خاطئة! (او قد يكون المستخدم مقيد)',
         'origin_country' => 'من :country',
-        'page_description' => 'osu! - كل ما تريد معرفته عن :username!',
         'previous_usernames' => 'سابقاََ',
         'plays_with' => 'يستخدم :devices',
         'title' => "صفحة:username الشخصية",
@@ -165,7 +164,7 @@ return [
 
                     'restriction_info' => [
                         '_' => 'الرفع متاح لـ :link فقط',
-                        'link' => 'مؤيدو!osu',
+                        'link' => 'osu!supporters',
                     ],
                 ],
             ],
@@ -372,7 +371,7 @@ return [
 
             'restriction_info' => [
                 '_' => 'تحتاج ان تكون :link لفتح هذه الميزة.',
-                'link' => 'مؤيد!osu',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [

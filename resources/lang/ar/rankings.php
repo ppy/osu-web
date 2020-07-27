@@ -5,22 +5,24 @@
 
 return [
     'countries' => [
-        'all' => '',
+        'all' => 'الكل',
+        'title' => '',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'عرض',
 
         'variant' => [
-            'title' => '',
+            'title' => 'النوع',
         ],
     ],
 
     'type' => [
-        'performance' => 'الأداء',
         'charts' => 'منطقة ألأضواء',
-        'score' => 'النقاط',
         'country' => 'الدولة',
+        'multiplayer' => '',
+        'performance' => 'الأداء',
+        'score' => 'النقاط',
     ],
 
     'spotlight' => [

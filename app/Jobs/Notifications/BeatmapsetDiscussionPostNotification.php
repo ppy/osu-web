@@ -36,6 +36,7 @@ abstract class BeatmapsetDiscussionPostNotification extends BroadcastNotificatio
         return [
             'content' => truncate($this->beatmapsetDiscussionPost->message, static::CONTENT_TRUNCATE),
             'title' => $beatmapset->title,
+            'title_unicode' => $beatmapset->title_unicode,
             'post_id' => $this->beatmapsetDiscussionPost->getKey(),
             'discussion_id' => $discussion->getKey(),
             'beatmap_id' => $discussion->beatmap_id,

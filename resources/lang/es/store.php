@@ -128,7 +128,7 @@ return [
     ],
 
     'username_change' => [
-        'check' => '¡Escribe un nombre de usuario para revisar disponibilidad!',
+        'check' => '¡Escriba un nombre de usuario para revisar su disponibilidad!',
         'checking' => 'Revisando la disponibilidad de :username...',
         'require_login' => [
             '_' => '¡Tienes que :link para cambiar tu nombre de usuario!',

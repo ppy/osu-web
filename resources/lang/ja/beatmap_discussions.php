@@ -67,8 +67,8 @@ return [
         'go_to_parent' => 'レビュー投稿を表示',
         'go_to_child' => 'ディスカッションを表示',
         'validation' => [
-            'block_too_large' => '',
-            'external_references' => '',
+            'block_too_large' => '各ブロックは :limit 文字までしか含めることができません',
+            'external_references' => 'レビューには、このレビューに属していない問題への参照が含まれています',
             'invalid_block_type' => '無効なブロックタイプ',
             'invalid_document' => '無効なレビュー',
             'minimum_issues' => 'レビューには最低:count件の問題が含まれている必要があります',
