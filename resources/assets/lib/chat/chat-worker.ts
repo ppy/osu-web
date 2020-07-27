@@ -85,7 +85,9 @@ export default class ChatWorker implements DispatchListener {
           });
 
           dispatch(new UserSilenceAction(silencedUserIds));
-          this.rootDataStore.channelStore.lastHistoryId = newHistoryId;
+          if (newHistoryId != null) {
+            this.rootDataStore.channelStore.lastHistoryId = newHistoryId;
+          }
 
           dispatch(new ChatPresenceUpdateAction(updateJson.presence));
         });
