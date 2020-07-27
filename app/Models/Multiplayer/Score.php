@@ -151,15 +151,13 @@ class Score extends Model
             return;
         }
 
-        return with_db_fallback('mysql-readonly', function ($connection) {
-            $query = PlaylistItemUserHighScore::on($connection)
-                ->where('playlist_item_id', $this->playlist_item_id)
-                ->cursorWhere([
-                    ['column' => 'total_score', 'order' => 'ASC', 'value' => $this->total_score],
-                    ['column' => 'score_id', 'order' => 'DESC', 'value' => $this->getKey()],
-                ]);
+        $query = PlaylistItemUserHighScore
+            ::where('playlist_item_id', $this->playlist_item_id)
+            ->cursorWhere([
+                ['column' => 'total_score', 'order' => 'ASC', 'value' => $this->total_score],
+                ['column' => 'score_id', 'order' => 'DESC', 'value' => $this->getKey()],
+            ]);
 
-            return 1 + $query->count();
-        });
+        return 1 + $query->count();
     }
 }
