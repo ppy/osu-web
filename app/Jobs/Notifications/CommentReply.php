@@ -37,9 +37,14 @@ class CommentReply extends BroadcastNotificationBase
 
     public function getListeningUserIds(): array
     {
-        $userId = $this->comment->parent->user_id ?? null;
+        $parent = $this->comment->parent;
+        if (!$parent->trashed()
+            && $parent->user_id !== $this->comment->user_id) {
+            return [$parent->user_id];
+        }
 
-        return $userId !== null && $userId !== $this->comment->user_id ? [$userId] : [];
+        return [];
+
     }
 
     public function getNotifiable()
