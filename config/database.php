@@ -6,7 +6,7 @@
  * https://stackoverflow.com/a/22499259 .
  */
 if (!function_exists('mysqli_get_client_stats')) {
-    die('Required mysqlnd driver is missing.');
+    exit('Required mysqlnd driver is missing.');
 }
 
 $mysqlDefaults = [
