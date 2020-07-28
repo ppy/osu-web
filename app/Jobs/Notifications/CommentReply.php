@@ -5,36 +5,8 @@
 
 namespace App\Jobs\Notifications;
 
-use App\Exceptions\InvalidNotificationException;
-use App\Models\Comment;
-use App\Models\Follow;
-use App\Models\User;
-
-class CommentReply extends BroadcastNotificationBase
+class CommentReply extends CommentBase
 {
-    protected $comment;
-
-    public function __construct(Comment $comment, User $source)
-    {
-        parent::__construct($source);
-
-        $this->comment = $comment;
-
-        if ($this->comment->commentable === null) {
-            throw new InvalidNotificationException("comment_reply: comment #{$this->comment->getKey()} missing commentable");
-        }
-    }
-
-    public function getDetails(): array
-    {
-        return [
-            'comment_id' => $this->comment->getKey(),
-            'title' => $this->comment->commentable->commentableTitle(),
-            'content' => truncate($this->comment->message, static::CONTENT_TRUNCATE),
-            'cover_url' => $this->comment->commentable->notificationCover(),
-        ];
-    }
-
     public function getListeningUserIds(): array
     {
         $parent = $this->comment->parent;
@@ -44,11 +16,5 @@ class CommentReply extends BroadcastNotificationBase
         }
 
         return [];
-
-    }
-
-    public function getNotifiable()
-    {
-        return $this->comment->commentable;
     }
 }
