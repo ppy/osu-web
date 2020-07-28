@@ -12,7 +12,7 @@ import HeaderV4 from 'header-v4'
 import { PlaymodeTabs } from 'playmode-tabs'
 import * as React from 'react'
 import { a, div, h1, h2, p } from 'react-dom-factories'
-import { getTitle } from 'utils/beatmap-helper'
+import { getArtist, getTitle } from 'utils/beatmap-helper'
 el = React.createElement
 
 export class Header extends React.PureComponent
@@ -96,7 +96,7 @@ export class Header extends React.PureComponent
             getTitle(@props.beatmapset)
           h2
             className: "#{bn}__title #{bn}__title--artist"
-            @props.beatmapset.artist
+            getArtist(@props.beatmapset)
 
         div
           className: "#{bn}__filters"
