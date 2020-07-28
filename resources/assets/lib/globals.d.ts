@@ -45,7 +45,7 @@ interface BeatmapDiscussionHelperClass {
   messageType: DiscussionMessageType;
   TIMESTAMP_REGEX: RegExp;
   format(text: string, options?: any): string;
-  formatTimestamp(value: number): string;
+  formatTimestamp(value: number | null): string | undefined;
   parseTimestamp(value: string): number | null;
   previewMessage(value: string): string;
   url(options: any, useCurrent?: boolean): string;
