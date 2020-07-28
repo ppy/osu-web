@@ -5,12 +5,12 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\Passport\ApproveAuthorizationController;
 use App\Http\Controllers\Passport\AuthorizationController;
 use App\Models\OAuth\Client;
 use App\Models\OAuth\Token;
 use Carbon\Carbon;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Laravel\Passport\Http\Controllers\ApproveAuthorizationController;
 use Laravel\Passport\Http\Controllers\DenyAuthorizationController;
 use Laravel\Passport\Passport;
 use Route;
