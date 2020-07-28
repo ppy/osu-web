@@ -96,7 +96,7 @@ return [
             'country' => 'по странам',
             'index' => 'по производительности',
             'kudosu' => 'по кудосу',
-            'multiplayer' => '',
+            'multiplayer' => 'мультиплеер',
             'score' => 'по очкам',
         ],
         'store' => [

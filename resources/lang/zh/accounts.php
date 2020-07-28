@@ -78,6 +78,8 @@ return [
             'no_video' => '不包含视频',
             'direct' => '在 osu!direct中查看',
         ],
+
+        'beatmapset_title_show_original' => '',
     ],
 
     'playstyles' => [

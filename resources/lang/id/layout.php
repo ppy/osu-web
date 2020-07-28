@@ -96,7 +96,7 @@ return [
             'country' => 'negara',
             'index' => 'performa',
             'kudosu' => 'kudosu',
-            'multiplayer' => '',
+            'multiplayer' => 'multiplayer',
             'score' => 'skor',
         ],
         'store' => [

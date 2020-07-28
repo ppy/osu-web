@@ -6,7 +6,7 @@
 return [
     'countries' => [
         'all' => 'Hepsi',
-        'title' => '',
+        'title' => 'Ülke',
     ],
 
     'filter' => [
@@ -20,7 +20,7 @@ return [
     'type' => [
         'charts' => 'Öne Çıkanlar',
         'country' => 'Ülke',
-        'multiplayer' => '',
+        'multiplayer' => 'Çok Oyunculu',
         'performance' => 'Performans',
         'score' => 'Skor',
     ],

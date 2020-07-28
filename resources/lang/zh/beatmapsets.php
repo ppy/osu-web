@@ -115,7 +115,7 @@ return [
                 'rank' => '排名',
                 'score_total' => '得分',
                 'score' => '得分',
-                'time' => '',
+                'time' => '达成时间',
             ],
 
             'no_scores' => [
