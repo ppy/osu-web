@@ -153,7 +153,7 @@ class TopicsController extends Controller
 
         $type = 'moderate_pin';
         $state = get_int(Request::input('pin'));
-        DB::transaction(function () use ($topic, $type, $state) {
+        DB::transaction(function () use ($topic, $state) {
             $topic->pin($state);
 
             $this->logModerate(
