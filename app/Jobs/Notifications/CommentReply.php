@@ -5,8 +5,12 @@
 
 namespace App\Jobs\Notifications;
 
+use App\Models\UserNotificationOption;
+
 class CommentReply extends CommentBase
 {
+    const NOTIFICATION_OPTION_NAME = UserNotificationOption::COMMENT_REPLY;
+
     public function getListeningUserIds(): array
     {
         $parent = $this->comment->parent;
