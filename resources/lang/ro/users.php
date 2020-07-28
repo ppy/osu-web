@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => 'Momentat online',
         'missingtext' => 'S-ar putea să fi făcut o greșeală de scriere! (sau este posibil ca utilizatorul să fi fost restricționat)',
         'origin_country' => 'Din :country',
-        'page_description' => 'osu! - Tot ce ai dorit vreodată să știi despre :username!',
         'previous_usernames' => 'cunoscut anterior ca',
         'plays_with' => 'Joacă cu :devices',
         'title' => "Profilul lui :username",
@@ -307,7 +306,7 @@ return [
                 'empty' => 'Nicio performanță uimitoare nu a fost înregistrată încă. :(',
                 'not_ranked' => 'Numai beatmaps clasate acordă pp.',
                 'pp_weight' => 'ponderat :percentage',
-                'view_details' => '',
+                'view_details' => 'Vezi detalii',
                 'title' => 'Clasamente',
 
                 'best' => [
@@ -419,7 +418,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '',
+        'brick' => 'Vedere brick',
         'card' => 'Vedere card',
         'list' => 'Vedere listă',
     ],

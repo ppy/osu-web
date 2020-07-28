@@ -126,6 +126,11 @@ return [
             '_' => 'vidensbase',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
         '_' => 'osu!butik',
     ],

@@ -5,22 +5,24 @@
 
 return [
     'countries' => [
-        'all' => '',
+        'all' => '全て',
+        'title' => '',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => '表示',
 
         'variant' => [
-            'title' => '',
+            'title' => 'バリエーション',
         ],
     ],
 
     'type' => [
-        'performance' => 'パフォーマンス',
         'charts' => 'スポットライト',
-        'score' => 'スコア',
         'country' => '国別',
+        'multiplayer' => '',
+        'performance' => 'パフォーマンス',
+        'score' => 'スコア',
     ],
 
     'spotlight' => [

@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => 'Momentálně aktivní',
         'missingtext' => 'Možná jste se přepsal! (nebo byl uživatel zabanován)',
         'origin_country' => 'Z :country',
-        'page_description' => 'osu! - Všechno co jste kdy chtěli vědět o :username!',
         'previous_usernames' => 'dříve znám jako',
         'plays_with' => 'Hraje s :devices',
         'title' => "profil uživatele :username",

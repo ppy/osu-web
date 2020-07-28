@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => 'В момента онлайн',
         'missingtext' => 'Вероятно сте допуснали правописна грешка! (или потребителят е бил баннат)',
         'origin_country' => 'От :country',
-        'page_description' => 'osu! - Всичко, което би желал да знаеш за :username!',
         'previous_usernames' => 'някога известен като',
         'plays_with' => 'Играе с :devices',
         'title' => "профила на :username",

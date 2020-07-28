@@ -100,7 +100,7 @@ class ScoresController extends BaseController
      *
      * Get a Score
      *
-     * Returns detail of specified score.
+     * Returns detail of specified score and the surrounding scores.
      *
      * ---
      *
@@ -123,7 +123,39 @@ class ScoresController extends BaseController
         return json_item(
             $score,
             'Multiplayer\Score',
-            ['position', 'scores_around', ...ScoreTransformer::BASE_INCLUDES]
+            array_merge(['position', 'scores_around'], ScoreTransformer::BASE_INCLUDES)
+        );
+    }
+
+    /**
+     * @group Multiplayer
+     *
+     * Get User High Score
+     *
+     * Returns detail of highest score of specified user and the surrounding scores.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [MultiplayerScore](#multiplayerscore) object.
+     *
+     * @authenticated
+     *
+     * @urlParam room required Id of the room.
+     * @urlParam playlist required Id of the playlist item.
+     * @urlParam user required User id.
+     */
+    public function showUser($roomId, $playlistId, $userId)
+    {
+        $room = Room::find($roomId) ?? abort(404, 'Invalid room id');
+        $playlistItem = $room->playlist()->find($playlistId) ?? abort(404, 'Invalid playlist id');
+        $score = $playlistItem->highScores()->where('user_id', $userId)->firstOrFail()->score ?? abort(404);
+
+        return json_item(
+            $score,
+            'Multiplayer\Score',
+            array_merge(['position', 'scores_around'], ScoreTransformer::BASE_INCLUDES)
         );
     }
 
@@ -162,7 +194,7 @@ class ScoresController extends BaseController
             return json_item(
                 $score,
                 'Multiplayer\Score',
-                ['position', 'scores_around', ...ScoreTransformer::BASE_INCLUDES]
+                array_merge(['position', 'scores_around'], ScoreTransformer::BASE_INCLUDES)
             );
         } catch (InvariantException $e) {
             return error_popup($e->getMessage(), $e->getStatusCode());

@@ -6,6 +6,7 @@
 return [
     'countries' => [
         'all' => '',
+        'title' => '',
     ],
 
     'filter' => [
@@ -17,10 +18,11 @@ return [
     ],
 
     'type' => [
-        'performance' => 'Prestasjon',
         'charts' => 'Rampelyset',
-        'score' => 'Poengsum',
         'country' => 'Land',
+        'multiplayer' => '',
+        'performance' => 'Prestasjon',
+        'score' => 'Poengsum',
     ],
 
     'spotlight' => [

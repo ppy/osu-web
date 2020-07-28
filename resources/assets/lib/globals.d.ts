@@ -12,15 +12,13 @@ interface ProcessEnv {
 
 declare var process: Process;
 
-declare var window: Window;
-
 // TODO: Turbolinks 5.3 is Typescript, so this should be updated then.
 declare var Turbolinks: TurbolinksStatic;
 
 // our helpers
 declare var tooltipDefault: TooltipDefault;
 declare var osu: OsuCommon;
-declare var currentUser: any;
+declare var currentUser: import('interfaces/current-user').default;
 declare var reactTurbolinks: any;
 declare var userVerification: any;
 

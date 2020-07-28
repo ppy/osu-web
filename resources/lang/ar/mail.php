@@ -63,10 +63,10 @@ return [
     'supporter_gift' => [
         'anonymous_gift' => 'قد يفضل الشخص الذي وَهَبَك الهدية ان يبقى مُتخفِياََ, لذلك لم يذكروا في هذا الاِشعار.',
         'anonymous_gift_maybe_not' => 'ولكِنَك غالِباََ تَعرِفُه ;).',
-        'duration' => 'بفضلِهِم, لديك وصول الى osu!direct و فوائِد مؤيد!osu الأخرى لمدة :duration.',
+        'duration' => 'بفضلِهِم, لديك وصول الى osu!direct و فوائِد osu!supporter الأخرى لمدة :duration.',
         'features' => 'يمكنك معرفة مزيد من التفاصيل عن هذهِ المميزات هنا:',
-        'gifted' => 'قام احدُهٌم بهِبتِكَ شارة مؤيد!osu للتو!',
-        'subject' => 'لقد حصلت على شارة مؤيد!osu كهدية!',
+        'gifted' => 'قام احدُهٌم بهِبتِكَ شارة osu!supporter للتو!',
+        'subject' => 'لقد حصلت على شارة osu!supporter كهدية!',
     ],
 
     'user_email_updated' => [

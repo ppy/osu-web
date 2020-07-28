@@ -37,6 +37,7 @@ class UsersController extends Controller
             'checkUsernameAvailability',
             'checkUsernameExists',
             'report',
+            'me',
             'updatePage',
         ]]);
 

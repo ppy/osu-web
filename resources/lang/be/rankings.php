@@ -5,22 +5,24 @@
 
 return [
     'countries' => [
-        'all' => '',
+        'all' => 'Усе',
+        'title' => '',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Паказаць',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Варыянт',
         ],
     ],
 
     'type' => [
-        'performance' => 'Прадукцыйнасць',
         'charts' => 'Чартам',
-        'score' => 'Ачкі',
         'country' => 'Краіна',
+        'multiplayer' => '',
+        'performance' => 'Прадукцыйнасць',
+        'score' => 'Ачкі',
     ],
 
     'spotlight' => [

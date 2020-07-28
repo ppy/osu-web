@@ -35,10 +35,14 @@ export default class ConversationListItem extends React.Component<any, {}> {
 
     return (
       <div className={className}>
+        {conversation.isUnread
+          ? <div className={`${baseClassName}__unread-indicator`} />
+          : null}
+
         <button className={`${baseClassName}__close-button`} onClick={this.part}>
           <i className='fas fa-times' />
         </button>
-        <div className={`${baseClassName}__unread-indicator`} />
+
         <button className={`${baseClassName}__tile`} onClick={this.switch}>
           <img className={`${baseClassName}__avatar`} src={conversation.icon} />
           <div className={`${baseClassName}__name`}>{conversation.name}</div>

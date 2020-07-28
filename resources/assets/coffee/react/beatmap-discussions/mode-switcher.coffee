@@ -24,7 +24,7 @@ export class ModeSwitcher extends React.PureComponent
         key: 'page-extra-tabs'
         ref: @props.innerRef
 
-        div className: 'osu-page',
+        div className: 'osu-page osu-page--small',
           ul className: 'page-mode page-mode--page-extra-tabs',
             for mode in modes
               li

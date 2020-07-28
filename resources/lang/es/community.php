@@ -12,11 +12,11 @@ return [
             'instructions' => 'clic al botón del corazón para proceder a la osu!store',
         ],
         'why-support' => [
-            'title' => '¿Por qué debo apoyar osu!? ¿Dónde va el dinero?',
+            'title' => '¿Por qué debería apoyar osu!? ¿A dónde va el dinero?',
 
             'team' => [
                 'title' => 'Apoyar al equipo',
-                'description' => 'Un pequeño equipo desarrolla y ejecuta osu!. Tu apoyo les ayuda, tú sabes... en vivo.',
+                'description' => 'Un pequeño equipo desarrolla y mantiene osu!. Su apoyo les ayuda a, ya sabe... vivir.',
             ],
             'infra' => [
                 'title' => 'Infraestructura del servidor',
@@ -29,7 +29,7 @@ return [
             ],
             'ads' => [
                 'title' => 'Mantener osu! autosuficiente',
-                'description' => 'Tus contribuciones ayudan a mantener el juego independiente y completamente libre de anuncios y patrocinadores externos.',
+                'description' => 'Sus contribuciones ayudan a mantener el juego independiente y completamente libre de anuncios y patrocinadores externos.',
             ],
             'tournaments' => [
                 'title' => 'Torneos oficiales',
@@ -51,17 +51,17 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Clasificación entre Amigos',
-                'description' => "Observa cómo te enfrentas a tus amigos en la tabla de clasificación de un mapa, tanto dentro del juego como en el sitio web.",
+                'description' => "Vea cómo se compara con sus amigos en la tabla de clasificación de un mapa, tanto dentro del juego como en el sitio web.",
             ],
 
             'country_ranking' => [
                 'title' => 'Clasificación Nacional',
-                'description' => 'Conquista tu país antes de conquistar el mundo.',
+                'description' => 'Conquiste su país antes de conquistar el mundo.',
             ],
 
             'mod_filtering' => [
                 'title' => 'Filtrar por Mods',
-                'description' => '¿Asociarse sólo con personas que juegan con HDHR? ¡No hay problema!',
+                'description' => '¿Asociarse sólo con personas que juegan con mods HDHR? ¡No hay problema!',
             ],
 
             'auto_downloads' => [
@@ -86,7 +86,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => 'Filtros de Mapas',
-                'description' => 'Filtra las búsquedas de los mapas por mapas jugados, no jugados, y por puntuación obtenida.',
+                'description' => 'Filtre las búsquedas de mapas por mapas jugados y no jugados, o por rango obtenido.',
             ],
 
             'yellow_fellow' => [
@@ -138,11 +138,11 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => '¡Gracias por tu apoyo hasta ahora! ¡Has contribuido con :dollars con la compra de :tags tag(s)!',
-            'gifted' => "Has regalado :giftedTags de tus compras (eso es un valor de :giftedDollars), ¡qué generoso!",
+            'contribution' => '¡Gracias por su apoyo hasta ahora! ¡Ha contribuido con :dollars con la compra de :tags tag(s)!',
+            'gifted' => "Ha regalado :giftedTags de sus compras (por valor de :giftedDollars), ¡qué generoso!",
             'not_yet' => "Nunca has tenido un tag de osu!supporter :(",
-            'valid_until' => '¡Tu tag de osu!supporter actual es válida hasta el :date!',
-            'was_valid_until' => 'Tu tag de osu!supporter fue válida hasta el :date.',
+            'valid_until' => '¡Su tag de osu!supporter actual es válido hasta el :date!',
+            'was_valid_until' => 'Su tag de osu!supporter fue válido hasta el :date.',
         ],
     ],
 ];

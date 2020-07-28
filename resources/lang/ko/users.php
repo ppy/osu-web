@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => '현재 온라인',
         'missingtext' => '오타가 있는 것 같은데요! (또는 차단된 사용자일 수 있습니다)',
         'origin_country' => ':country에 거주',
-        'page_description' => 'osu! - :username님에 대해 궁금했던 모든 것!',
         'previous_usernames' => '이전 사용자명',
         'plays_with' => '플레이 장비: :devices',
         'title' => ":username님의 프로필",

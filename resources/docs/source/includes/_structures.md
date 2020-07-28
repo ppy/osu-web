@@ -582,6 +582,37 @@ Field        | Type                      | Description
 `total`      | `number?`                 | Index only. Total scores of the specified playlist item.
 `user_score` | `MultiplayerScore?`       | Index only. Score of the accessing user if exists.
 
+To fetch the next page, make request to [scores index](#get-scores) with relevant `room` and `playlist`,
+with parameters which consists of:
+
+- everything in `params`
+- everything in `cursor` as sub field of `cursor`
+
+For example, given a response which `params` contains
+
+Key     | Value
+--------| -----------
+`sort`  | `score_asc`
+`limit` | `10`
+
+and `cursor` of
+
+Key           | Value
+--------------|------
+`score_id`    | `1`
+`total_score` | `10`
+
+then the parameters would be
+
+Field                 | Value
+----------------------|------------
+`sort`                | `score_asc`
+`limit`               | `10`
+`cursor[score_id]`    | `1`
+`cursor[total_score]` | `10`
+
+and thus the query string is `sort=score_asc&limit=10&cursor[score_id]=1&cursor[total_score]=10`.
+
 ## MultiplayerScoresAround
 
 Field    | Type                | Description
@@ -595,17 +626,17 @@ An object which contains pointer for fetching further results of a request. It d
 
 Field         | Type     | Description
 --------------|----------|---------------------------------------------------------------------------
-`score_id`    | `number` | Last score id of current result (`scores_asc`, `scores_desc`).
-`total_score` | `number` | Last score's total score of current result (`scores_asc`, `scores_desc`).
+`score_id`    | `number` | Last score id of current result (`score_asc`, `score_desc`).
+`total_score` | `number` | Last score's total score of current result (`score_asc`, `score_desc`).
 
 ## MultiplayerScoresSort
 
 Sort option for multiplayer scores index.
 
-Name          | Descriprion
-------------- | ----------------------------
-`scores_asc`  | Sort by scores, ascending.
-`scores_desc` | Sort by scores, descending.
+Name         | Descriprion
+------------ | ----------------------------
+`score_asc`  | Sort by scores, ascending.
+`score_desc` | Sort by scores, descending.
 
 ## Ranking Response
 ```json

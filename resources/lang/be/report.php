@@ -5,8 +5,8 @@
 
 return [
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Паскардзіцца',
+        'title' => 'Паскардзіцца на допіс :username?',
     ],
 
     'comment' => [
@@ -20,7 +20,7 @@ return [
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Паскардзіцца',
+        'title' => 'Паскардзіцца на :username?',
     ],
 ];

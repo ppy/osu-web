@@ -10,7 +10,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'listare',
     ],
 
     'voting' => [
@@ -53,7 +53,7 @@ return [
     ],
     'dates' => [
         'ended' => 'S-a terminat pe :date',
-        'ended_no_date' => '',
+        'ended_no_date' => 'Încheiat',
 
         'starts' => [
             '_' => 'Începe pe :date',

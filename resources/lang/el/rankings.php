@@ -6,6 +6,7 @@
 return [
     'countries' => [
         'all' => '',
+        'title' => '',
     ],
 
     'filter' => [
@@ -17,10 +18,11 @@ return [
     ],
 
     'type' => [
-        'performance' => 'Επίδοσης',
         'charts' => 'Spotlights',
-        'score' => 'Σκορ',
         'country' => 'Χώρας',
+        'multiplayer' => '',
+        'performance' => 'Επίδοσης',
+        'score' => 'Σκορ',
     ],
 
     'spotlight' => [

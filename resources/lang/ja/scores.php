@@ -5,14 +5,14 @@
 
 return [
     'show' => [
-        'title' => ':title [:version] の :username',
+        'title' => ':title[:version]の:username',
 
         'beatmap' => [
             'by' => 'by :artist',
         ],
 
         'player' => [
-            'by' => 'プレイ ',
+            'by' => 'プレイ',
             'submitted_on' => '投稿日',
 
             'rank' => [
