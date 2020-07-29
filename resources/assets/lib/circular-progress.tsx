@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
+import { classWithModifiers } from './utils/css';
 
 interface Props {
   current: number;
@@ -17,30 +18,20 @@ export class CircularProgress extends React.PureComponent<Props, any> {
   render() {
     const bn = this.bn;
     const percentage = Math.min(1, this.props.current / this.props.max);
-    const mods = [];
     const warnThreshold = 0.75;
 
     if (this.props.onlyShowAsWarning && percentage < warnThreshold) {
       return null;
     }
 
-    if (percentage > 0.5) {
-      mods.push('over50');
-    }
-
-    if (percentage === 1) {
-      mods.push('over');
-    } else if (percentage >= warnThreshold) {
-      mods.push('warn');
-    }
-
-    if (this.props.theme) {
-      mods.push(this.props.theme);
-    }
-
     return (
       <div
-        className={osu.classWithModifiers(bn, mods)}
+        className={classWithModifiers(bn, {
+          over: percentage === 1,
+          over50: percentage > 0.5,
+          warn: percentage >= warnThreshold && percentage < 1,
+          [this.props.theme ?? '']: !!this.props.theme,
+        })}
         title={this.props.tooltip || `${this.props.current} / ${this.props.max}`}
       >
         <div className={`${bn}__label`}>{this.props.max - this.props.current}</div>
