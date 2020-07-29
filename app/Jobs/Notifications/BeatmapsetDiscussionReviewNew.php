@@ -30,6 +30,7 @@ class BeatmapsetDiscussionReviewNew extends BroadcastNotificationBase
 
         return [
             'title' => $beatmapset->title,
+            'title_unicode' => $beatmapset->title_unicode,
             'post_id' => $this->beatmapsetDiscussion->startingPost->getKey(),
             'discussion_id' => $this->beatmapsetDiscussion->getKey(),
             'beatmap_id' => $this->beatmapsetDiscussion->beatmap_id,

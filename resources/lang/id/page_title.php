@@ -126,6 +126,11 @@ return [
             '_' => 'basis pengetahuan',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => 'peringkat',
+        ],
+    ],
     'store' => [
         '_' => 'osu!store',
     ],

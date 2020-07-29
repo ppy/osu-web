@@ -128,6 +128,21 @@ return [
         'count_miss' => 'Erros',
     ],
 
+    'scoreboard_time' => [
+        'd' => '',
+        'dd' => '',
+        'h' => '',
+        'hh' => '',
+        'M' => '',
+        'm' => '',
+        'MM' => '',
+        'mm' => '',
+        'past' => '%s',
+        's' => '',
+        'y' => '',
+        'yy' => '',
+    ],
+
     'time' => [
         'days_ago' => ':count dia atrás|:count dias atrás',
         'hours_ago' => ':count hora atrás|:count horas atrás',

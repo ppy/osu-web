@@ -16,11 +16,13 @@ export default class OsuUrlHelper {
     'help',
     'home',
     'legal',
+    'multiplayer',
     'oauth',
     'rankings',
     'session',
     'store',
     'users',
+    'wiki',
   ].join('|');
 
   static beatmapDownloadDirect(id: string | number): string {

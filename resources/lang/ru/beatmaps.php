@@ -207,7 +207,7 @@ return [
 
     'listing' => [
         'search' => [
-            'prompt' => 'начните вводить ключевые слова ...',
+            'prompt' => 'введите ключевые слова...',
             'login_required' => 'Войдите, чтобы искать.',
             'options' => 'Больше настроек поиска',
             'supporter_filter' => 'Фильтрация по :filters требует наличия osu!supporter',
@@ -304,6 +304,7 @@ return [
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
         'TD' => 'Touch Device',
+        'V2' => '',
     ],
     'language' => [
         'any' => 'Все',

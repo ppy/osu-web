@@ -13,7 +13,7 @@ return [
     ],
 
     'scopes' => [
-        'identify' => 'Vous identifie et lis votre profil public.',
+        'identify' => 'Vous identifier et lire votre profil public.',
 
         'friends' => [
             'read' => 'Voir qui vous suivez.',

@@ -3,21 +3,26 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Score;
+use App\Models\User;
 
 $factory->define(Score::class, function (Faker\Generator $faker) {
     return  [
         'playlist_item_id' => function () {
-            return factory(App\Models\Multiplayer\PlaylistItem::class)->create()->getKey();
+            return factory(PlaylistItem::class)->create()->getKey();
         },
         'beatmap_id' => function (array $self) {
-            return App\Models\Multiplayer\PlaylistItem::find($self['playlist_item_id'])->beatmap_id;
+            return PlaylistItem::find($self['playlist_item_id'])->beatmap_id;
         },
-        'room_id' => function () {
-            return factory(App\Models\Multiplayer\Room::class)->create()->getKey();
+        'room_id' => function (array $self) {
+            return PlaylistItem::find($self['playlist_item_id'])->room_id;
+        },
+        'user_id' => function () {
+            return factory(User::class)->create()->getKey();
         },
         'total_score' => 1,
-        'started_at' => Carbon\Carbon::now()->subMinutes(5),
+        'started_at' => now()->subMinutes(5),
         'accuracy' => 0.5,
         'pp' => 1,
     ];
@@ -25,7 +30,7 @@ $factory->define(Score::class, function (Faker\Generator $faker) {
 
 $factory->state(Score::class, 'completed', function (Faker\Generator $faker) {
     return [
-        'ended_at' => Carbon\Carbon::now(),
+        'ended_at' => now(),
     ];
 });
 

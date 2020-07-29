@@ -178,7 +178,7 @@ class AfterCommitTest extends TestCase
             $model->save();
 
             $this->assertSame(0, $model->afterCommitCount);
-            DB::transaction(function () use ($model) {
+            DB::transaction(function () {
                 DB::rollBack(); // this breaks the tests at the end when running on Travis
             });
         });

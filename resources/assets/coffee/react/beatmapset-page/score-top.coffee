@@ -6,6 +6,7 @@ import { route } from 'laroute'
 import { Mods } from 'mods'
 import * as React from 'react'
 import { div, a } from 'react-dom-factories'
+import ScoreboardTime from 'scoreboard-time'
 import { classWithModifiers } from 'utils/css'
 
 el = React.createElement
@@ -53,7 +54,7 @@ export ScoreTop = (props) ->
               country: props.score.user.country_code
               type: 'performance'
             el FlagCountry,
-              country: props.countries[props.score.user.country_code]
+              country: props.score.user.country
               modifiers: ['scoreboard', 'small-box']
 
       div className: "#{bn}__wrapping-container #{bn}__wrapping-container--right",
@@ -100,7 +101,14 @@ export ScoreTop = (props) ->
               _.round props.score.pp
 
           div className: "#{bn}__stat",
+            div className: "#{bn}__stat-header",
+              osu.trans 'beatmapsets.show.scoreboard.headers.time'
+            div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
+              el ScoreboardTime,
+                dateTime: props.score.created_at
+
+          div className: "#{bn}__stat",
             div className: "#{bn}__stat-header #{bn}__stat-header--mods",
               osu.trans 'beatmapsets.show.scoreboard.headers.mods'
             div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
-              el Mods, modifiers: ['scoreboard'], mods: props.score.mods
+              el Mods, modModifiers: ['dynamic'], modifiers: ['scoreboard'], mods: props.score.mods

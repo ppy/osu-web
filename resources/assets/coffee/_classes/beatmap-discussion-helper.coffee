@@ -87,7 +87,7 @@ class @BeatmapDiscussionHelper
 
     ms = value % 1000
     s = Math.floor(value / 1000) % 60
-    # remaning duration goes here even if it's over an hour
+    # remaining duration goes here even if it's over an hour
     m = Math.floor(value / 1000 / 60)
 
     "#{_.padStart m, 2, 0}:#{_.padStart s, 2, 0}.#{_.padStart ms, 3, 0}"

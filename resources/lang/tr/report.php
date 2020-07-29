@@ -21,6 +21,6 @@ return [
 
     'user' => [
         'button' => 'Rapor Et',
-        'title' => ':username adlı kişi rapor edilsim mi?',
+        'title' => ':username adlı kişi rapor edilsin mi?',
     ],
 ];

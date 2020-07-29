@@ -12,15 +12,13 @@ interface ProcessEnv {
 
 declare var process: Process;
 
-declare var window: Window;
-
 // TODO: Turbolinks 5.3 is Typescript, so this should be updated then.
 declare var Turbolinks: TurbolinksStatic;
 
 // our helpers
 declare var tooltipDefault: TooltipDefault;
 declare var osu: OsuCommon;
-declare var currentUser: any;
+declare var currentUser: import('interfaces/current-user').default;
 declare var reactTurbolinks: any;
 declare var userVerification: any;
 
@@ -47,7 +45,7 @@ interface BeatmapDiscussionHelperClass {
   messageType: DiscussionMessageType;
   TIMESTAMP_REGEX: RegExp;
   format(text: string, options?: any): string;
-  formatTimestamp(value: number): string;
+  formatTimestamp(value: number | null): string | undefined;
   parseTimestamp(value: string): number | null;
   previewMessage(value: string): string;
   url(options: any, useCurrent?: boolean): string;

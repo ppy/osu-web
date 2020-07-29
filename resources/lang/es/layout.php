@@ -96,6 +96,7 @@ return [
             'country' => 'país',
             'index' => 'rendimiento',
             'kudosu' => 'kudosu',
+            'multiplayer' => 'multijugador',
             'score' => 'puntuación',
         ],
         'store' => [
@@ -110,25 +111,25 @@ return [
         'general' => [
             '_' => 'General',
             'home' => 'Inicio',
-            'changelog-index' => 'Lista de Cambios',
-            'beatmaps' => 'Lista de Mapas',
+            'changelog-index' => 'Lista de cambios',
+            'beatmaps' => 'Lista de mapas',
             'download' => 'Descargar osu!',
         ],
         'help' => [
-            '_' => 'Ayuda y Comunidad',
-            'faq' => 'Preguntas Frecuentes',
-            'forum' => 'Foros de la Comunidad',
+            '_' => 'Ayuda y comunidad',
+            'faq' => 'Preguntas frecuentes',
+            'forum' => 'Foros de la comunidad',
             'livestreams' => 'Transmisiones en vivo',
-            'report' => 'Reportar un Error',
+            'report' => 'Reportar un error',
             'wiki' => 'Wiki',
         ],
         'legal' => [
-            '_' => 'Estatus Legal',
+            '_' => 'Legal y Estado',
             'copyright' => 'Derechos de autor (DMCA)',
             'privacy' => 'Privacidad',
-            'server_status' => 'Estado del Servidor',
-            'source_code' => 'Código Fuente',
-            'terms' => 'Términos de Servicio',
+            'server_status' => 'Estado del servidor',
+            'source_code' => 'Código fuente',
+            'terms' => 'Términos',
         ],
     ],
 
@@ -207,7 +208,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => '¡Escribe para buscar!',
+        'initial' => '¡Escriba para buscar!',
         'retry' => 'Búsqueda fallida. Haz clic aquí para reintentar.',
     ],
 ];

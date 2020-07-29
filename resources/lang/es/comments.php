@@ -40,8 +40,8 @@ return [
 
     'placeholder' => [
         'edit' => 'Editar el comentario aquí',
-        'new' => 'Escribe un nuevo comentario aquí',
-        'reply' => 'Escribe tu respuesta aquí',
+        'new' => 'Escriba un nuevo comentario aquí',
+        'reply' => 'Escriba su respuesta aquí',
     ],
 
     'show' => [

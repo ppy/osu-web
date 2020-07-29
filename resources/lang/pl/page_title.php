@@ -126,6 +126,11 @@ return [
             '_' => 'baza wiedzy',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => 'ranking',
+        ],
+    ],
     'store' => [
         '_' => 'sklep osu!',
     ],

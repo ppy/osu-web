@@ -56,7 +56,7 @@ return [
         'questions' => "Se hai dubbi, non esitare a contattarci rispondendo a questa email.",
         'shipping' => 'Spedizione',
         'subject' => 'Abbiamo ricevuto il tuo ordine su osu!store!',
-        'thank_you' => 'Grazie per il tuo ordine sul osu!store!',
+        'thank_you' => 'Grazie per il tuo ordine sull\'osu!store!',
         'total' => 'Totale',
     ],
 

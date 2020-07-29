@@ -9,7 +9,7 @@ return [
             'title' => 'أنا مقتنع! D:',
             'support' => 'اِدعم osu!',
             'gift' => 'او قدم الشارة للاعب اخر',
-            'instructions' => 'انقر زر القلب لتذهب إلى متجر !osu',
+            'instructions' => 'انقر زر القلب للمضي قدما الى osu!store',
         ],
         'why-support' => [
             'title' => 'لماذا يجب ان أقوم بدعم !osu؟ إلى أين يذهب المال ؟
@@ -46,8 +46,8 @@ return [
         'perks' => [
             'title' => 'أوه؟ على ماذا احصُل؟!',
             'osu_direct' => [
-                'title' => 'مباشر!osu',
-                'description' => 'الوصول السريع والسهل للبحث عن الخرائط دون ترك اللعبة.',
+                'title' => 'osu!direct',
+                'description' => 'الوصول السريع والسهل للبحث عن الأغاني دون ترك اللعبة.',
             ],
 
             'friend_ranking' => [
@@ -97,7 +97,7 @@ return [
 
             'speedy_downloads' => [
                 'title' => 'تنزيل سريع',
-                'description' => 'قيود تحميل أكثر تساهلاََ، خاصة عند استخدام مباشر!osu.',
+                'description' => 'قيود تحميل أكثر تساهلاََ، خاصة عند استخدام osu!direct.',
             ],
 
             'change_username' => [
@@ -141,9 +141,9 @@ return [
         'supporter_status' => [
             'contribution' => 'شكراََ لك للدعم الذي قدمتهُ حتى الان! لقد ساهمت بجموع :dollars لـ :tags اِشارات اشتريتها!',
             'gifted' => ":giftedTags من اِشاراتك التي اشتريتها قد قدمت كهدية (كمجموع :giftedDollars من الهداية التي قدمتها), كم انت كريم!",
-            'not_yet' => "ليس لديك اِشارة داعم!osu حتى الان :(",
-            'valid_until' => 'شارة مؤيد!osu خاصتك نافذة لغاية :date!',
-            'was_valid_until' => 'شارة مؤيد!osu خاصتك كانت نافذة لغاية :date.',
+            'not_yet' => "ليس لديك شارة osu!supporter حتى الان :(",
+            'valid_until' => 'شارة osu!supporter خاصتك نافذة لغاية :date!',
+            'was_valid_until' => 'شارة osu!supporter خاصتك كانت نافذة لغاية :date.',
         ],
     ],
 ];

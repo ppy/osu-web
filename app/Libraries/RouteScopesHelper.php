@@ -85,10 +85,11 @@ class RouteScopesHelper
             app()->instance('request', $request); // set current request so is_api_request can work.
 
             $uri = $route->uri;
-            $middlewares = array_filter($route->gatherMiddleware(), function ($middleware) {
+            // TODO: switch to Route::gatherRouteMiddleware($route) to resolve groups and filter out the ones we don't care about.
+            $middlewares = array_values(array_filter($route->gatherMiddleware(), function ($middleware) {
                 // only consider the named middleware.
-                return is_string($middleware);
-            });
+                return is_string($middleware) && $middleware !== 'api';
+            }));
             $controller = $route->action['controller'] ?? null;
             $scopes = [];
 

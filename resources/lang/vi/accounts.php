@@ -78,6 +78,8 @@ return [
             'no_video' => '',
             'direct' => '',
         ],
+
+        'beatmapset_title_show_original' => '',
     ],
 
     'playstyles' => [

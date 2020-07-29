@@ -11,12 +11,12 @@ return [
 
     'filters' => [
         '_' => 'semua notifikasi',
-        'user' => 'semua notifikasi profil',
-        'beatmapset' => 'semua notifikasi beatmap',
-        'forum_topic' => 'semua notifikasi forum',
-        'news_post' => 'semua notifikasi berita',
-        'build' => 'semua notifikasi build',
-        'channel' => 'semua notifikasi chat',
+        'user' => 'profil',
+        'beatmapset' => 'beatmap',
+        'forum_topic' => 'forum',
+        'news_post' => 'berita',
+        'build' => 'build',
+        'channel' => 'chat',
     ],
 
     'item' => [
@@ -46,17 +46,17 @@ return [
             ],
 
             'beatmapset_state' => [
-                '_' => 'Status beatmap diganti',
+                '_' => 'Perubahan status beatmap',
                 'beatmapset_disqualify' => 'Beatmap ":title" telah didiskualifikasi oleh :username.',
                 'beatmapset_disqualify_compact' => 'Beatmap telah didiskualifikasi',
                 'beatmapset_love' => 'Beatmap ":title" telah diberikan status loved oleh :username.',
                 'beatmapset_love_compact' => 'Status beatmap dipromosikan menjadi loved',
-                'beatmapset_nominate' => 'Beatmap ":title" telah dinominasikan oleh :username.',
-                'beatmapset_nominate_compact' => 'Beatmap telah dinominasi',
+                'beatmapset_nominate' => '":title" telah mendapatkan nominasi',
+                'beatmapset_nominate_compact' => 'Beatmap telah mendapatkan nominasi',
                 'beatmapset_qualify' => 'Beatmap ":title" telah memperoleh jumlah nominasi yang diperlukan untuk proses ranking.',
                 'beatmapset_qualify_compact' => 'Beatmap telah memasuki antrean status ranking',
                 'beatmapset_rank' => '":title" telah berstatus ranked',
-                'beatmapset_rank_compact' => 'Beatmap sekarang berstatus ranked',
+                'beatmapset_rank_compact' => 'Beatmap telah berstatus ranked',
                 'beatmapset_reset_nominations' => 'Masalah yang dikemukakan oleh :username menganulir nominasi sebelumnya pada beatmap ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Proses nominasi diulang',
             ],

@@ -118,6 +118,7 @@ export default class Worker {
   }
 
   @action destroy = () => {
+    this.userId = null;
     this.active = false;
     this.hasData = false;
     this.store.flushStore();

@@ -23,6 +23,19 @@ use App\Models\Model;
  */
 class PlaylistItemUserHighScore extends Model
 {
+    const SORTS = [
+        'score_desc' => [
+            ['column' => 'total_score', 'order' => 'DESC'],
+            ['column' => 'score_id', 'order' => 'ASC'],
+        ],
+        'score_asc' => [
+            ['column' => 'total_score', 'order' => 'ASC'],
+            ['column' => 'score_id', 'order' => 'DESC'],
+        ],
+    ];
+
+    const DEFAULT_SORT = 'score_desc';
+
     protected $table = 'multiplayer_scores_high';
 
     public function score()

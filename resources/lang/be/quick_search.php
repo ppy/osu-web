@@ -5,17 +5,17 @@
 
 return [
     'mode' => [
-        'beatmapset' => '',
-        'forum_post' => '',
-        'other' => '',
-        'user' => '',
-        'wiki_page' => '',
+        'beatmapset' => 'Карта',
+        'forum_post' => 'Форум',
+        'other' => 'Iншае',
+        'user' => 'Гулец',
+        'wiki_page' => 'Вікі',
     ],
 
     'result' => [
-        'empty' => '',
-        'empty_for' => '',
-        'more' => '',
-        'title' => '',
+        'empty' => 'Няма вынікаў',
+        'empty_for' => 'Няма вынікаў па :modes',
+        'more' => 'Больш вынікаў пошуку па :mode',
+        'title' => 'Вынікі пошуку па :mode',
     ],
 ];

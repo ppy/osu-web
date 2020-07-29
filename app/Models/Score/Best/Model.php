@@ -97,31 +97,24 @@ abstract class Model extends BaseModel
             return;
         }
 
-        return with_db_fallback('mysql-readonly', function ($connection) use ($options) {
-            $query = static::on($connection)
-                ->where('beatmap_id', '=', $this->beatmap_id)
-                ->where(function ($query) {
-                    $query
-                        ->where('score', '>', $this->score)
-                        ->orWhere(function ($query2) {
-                            $query2
-                                ->where('score', '=', $this->score)
-                                ->where('score_id', '<', $this->getKey());
-                        });
-                });
+        $query = static
+            ::where('beatmap_id', '=', $this->beatmap_id)
+            ->cursorWhere([
+                ['column' => 'score', 'order' => 'ASC', 'value' => $this->score],
+                ['column' => 'score_id', 'order' => 'DESC', 'value' => $this->getKey()],
+            ]);
 
-            if (isset($options['type'])) {
-                $query->withType($options['type'], ['user' => $this->user]);
-            }
+        if (isset($options['type'])) {
+            $query->withType($options['type'], ['user' => $this->user]);
+        }
 
-            if (isset($options['mods'])) {
-                $query->withMods($options['mods']);
-            }
+        if (isset($options['mods'])) {
+            $query->withMods($options['mods']);
+        }
 
-            $countQuery = DB::raw('DISTINCT user_id');
+        $countQuery = DB::raw('DISTINCT user_id');
 
-            return 1 + $query->visibleUsers()->default()->count($countQuery);
-        });
+        return 1 + $query->visibleUsers()->default()->count($countQuery);
     }
 
     public function macroUserBest()

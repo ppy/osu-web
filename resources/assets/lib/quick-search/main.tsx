@@ -107,7 +107,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
   }
 
   private renderBeatmapsets() {
-    if (this.props.worker.searchResult == null) {
+    if (this.props.worker.searchResult === null) {
       return null;
     }
 

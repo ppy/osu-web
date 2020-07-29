@@ -24,6 +24,7 @@ export type BeatmapsetStatus =
 // TODO: incomplete
 export interface BeatmapsetJson {
   artist: string;
+  artist_unicode: string | null;
   beatmaps?: BeatmapJson[];
   covers: BeatmapsetCovers;
   creator: string;
@@ -33,5 +34,6 @@ export interface BeatmapsetJson {
   nominations?: BeatmapsetNominations;
   status: BeatmapsetStatus;
   title: string;
+  title_unicode: string | null;
   user_id: number;
 }

@@ -5,7 +5,6 @@
 
 namespace App\Models;
 
-use App\Libraries\CommentBundleParams;
 use App\Libraries\ProfileCover;
 
 /**
@@ -135,14 +134,28 @@ class UserProfileCustomization extends Model
         $this->setOption('beatmapset_download', $value);
     }
 
+    public function getBeatmapsetTitleShowOriginalAttribute()
+    {
+        return $this->options['beatmapset_title_show_original'] ?? false;
+    }
+
+    public function setBeatmapsetTitleShowOriginalAttribute($value)
+    {
+        if (!is_bool($value)) {
+            $value = null;
+        }
+
+        $this->setOption('beatmapset_title_show_original', $value);
+    }
+
     public function getCommentsSortAttribute()
     {
-        return $this->options['comments_sort'] ?? CommentBundleParams::DEFAULT_SORT;
+        return $this->options['comments_sort'] ?? Comment::DEFAULT_SORT;
     }
 
     public function setCommentsSortAttribute($value)
     {
-        if ($value !== null && !in_array($value, array_keys(CommentBundleParams::SORTS), true)) {
+        if ($value !== null && !array_key_exists($value, Comment::SORTS)) {
             $value = null;
         }
 

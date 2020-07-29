@@ -78,6 +78,8 @@ return [
             'no_video' => 'video olmadan',
             'direct' => 'osu!direkt\'de aç',
         ],
+
+        'beatmapset_title_show_original' => '',
     ],
 
     'playstyles' => [

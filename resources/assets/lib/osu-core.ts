@@ -4,6 +4,7 @@
 import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controller';
 import ChatOrchestrator from 'chat/chat-orchestrator';
 import ChatWorker from 'chat/chat-worker';
+import CurrentUser from 'interfaces/current-user';
 import UserJSON from 'interfaces/user-json';
 import RootDataStore from 'stores/root-data-store';
 import UserLoginObserver from 'user-login-observer';
@@ -11,7 +12,7 @@ import WindowFocusObserver from './window-focus-observer';
 
 declare global {
   interface Window {
-    currentUser: UserJSON;
+    currentUser: CurrentUser;
   }
 }
 
@@ -49,7 +50,8 @@ export default class OsuCore {
   }
 
   get currentUser() {
-    return window.currentUser;
+    // FIXME: id is  not nullable but guest user does not have id.
+    return window.currentUser.id != null ? window.currentUser : null;
   }
 
   private setUser = (event: JQuery.Event, user: UserJSON) => {

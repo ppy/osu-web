@@ -94,7 +94,6 @@ export class Scoreboard extends React.PureComponent
             el ScoreboardTable,
               beatmap: @props.beatmap
               scores: @props.scores
-              countries: @props.countries
               hitTypeMapping: @hitTypeMapping()
               scoreboardType: @props.type
 
@@ -125,6 +124,5 @@ export class Scoreboard extends React.PureComponent
       score: score
       position: rank
       beatmap: @props.beatmap
-      countries: @props.countries
       modifiers: modifiers
       hitTypeMapping: @hitTypeMapping()
