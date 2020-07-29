@@ -140,6 +140,7 @@
 
   &__main {
     display: flex;
+    position: relative;
 
     &--deleted {
       opacity: 0.5;
@@ -152,6 +153,7 @@
     .@{_top}__main--clip & {
       height: calc(var(--line-height) * var(--clip-lines));
       overflow: hidden;
+      position: relative;
 
       &::after {
         display: block;

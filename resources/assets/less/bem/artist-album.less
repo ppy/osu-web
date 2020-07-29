@@ -11,16 +11,23 @@
     margin-bottom: 10px;
   }
 
+  &__badge {
+    position: relative;
+    margin-left: auto;
+  }
+
   &__cover {
     width: 64px;
     height: 64px;
     .default-box-shadow();
+    position: relative;
   }
 
   &__header {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    position: relative;
   }
 
   &__header-overlay {
@@ -43,14 +50,11 @@
     }
   }
 
-  &__spacer {
-    flex-grow: 1;
-  }
-
   &__title {
     padding: 10px;
     font-size: 2em;
     color: white;
     .default-text-shadow();
+    position: relative;
   }
 }

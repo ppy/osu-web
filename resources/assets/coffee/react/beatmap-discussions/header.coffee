@@ -120,7 +120,7 @@ export class Header extends React.PureComponent
               className: "#{bn}__stats"
               @stats()
 
-        div null,
+        div className:'u-relative',
           div ref: 'chartArea', className: "#{bn}__chart"
 
           div className: "#{bn}__beatmap-stats",
