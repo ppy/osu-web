@@ -9,6 +9,7 @@ use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
 use App\Libraries\DbCursorHelper;
 use App\Libraries\Multiplayer\Mod;
+use App\Models\Build;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Room;
@@ -163,6 +164,12 @@ class ScoresController extends BaseController
     {
         $room = Room::findOrFail($roomId);
         $playlistItem = $room->playlist()->where('id', $playlistId)->firstOrFail();
+
+        $clientHash = presence(request('version_hash'));
+        abort_if($clientHash === null, 422, 'missing client version');
+        $client = Build::where('hash', hex2bin($clientHash))->firstOrFail();
+        abort_if(!$client->allow_ranking, 403, 'invalid client version');
+
         $score = $room->startPlay(auth()->user(), $playlistItem);
 
         return json_item(
