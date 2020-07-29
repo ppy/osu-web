@@ -168,10 +168,10 @@ class Mod
             'adjust_pitch' => 'bool',
         ],
         self::OSU_GROW => [
-            'start_scale' => 'float'
+            'start_scale' => 'float',
         ],
         self::OSU_DEFLATE => [
-            'start_scale' => 'float'
+            'start_scale' => 'float',
         ],
     ];
 
