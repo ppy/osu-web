@@ -167,8 +167,10 @@ class ScoresController extends BaseController
 
         $clientHash = presence(request('version_hash'));
         abort_if($clientHash === null, 422, 'missing client version');
-        $client = Build::where('hash', hex2bin($clientHash))->firstOrFail();
-        abort_if(!$client->allow_ranking, 403, 'invalid client version');
+        Build::where([
+            'hash' => hex2bin($clientHash),
+            'allow_ranking' => true
+        ])->firstOrFail();
 
         $score = $room->startPlay(auth()->user(), $playlistItem);
 
