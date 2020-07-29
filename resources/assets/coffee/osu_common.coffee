@@ -244,7 +244,7 @@
     # Wrapping the string with quotes and escaping the used quotes inside
     # is sufficient. Use double quote as it's easy to figure out with
     # encodeURI (it doesn't escape single quote).
-    if osu.present(url) then "url(\"#{String(url).replaceAll('"', '%22')}\")" else null
+    if osu.present(url) then "url(\"#{String(url).replace(/"/g, '%22')}\")" else null
 
 
   navigate: (url, keepScroll, {action = 'advance'} = {}) ->
