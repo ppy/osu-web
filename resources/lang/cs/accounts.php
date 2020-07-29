@@ -78,6 +78,8 @@ return [
             'no_video' => 'bez videa',
             'direct' => 'otevřít v osu!direct',
         ],
+
+        'beatmapset_title_show_original' => '',
     ],
 
     'playstyles' => [

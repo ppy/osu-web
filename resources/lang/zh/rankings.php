@@ -6,7 +6,7 @@
 return [
     'countries' => [
         'all' => '全部',
-        'title' => '',
+        'title' => '国家或地区',
     ],
 
     'filter' => [
@@ -20,7 +20,7 @@ return [
     'type' => [
         'charts' => '月赛',
         'country' => '国家和地区',
-        'multiplayer' => '',
+        'multiplayer' => '多人游戏',
         'performance' => '表现',
         'score' => '总分',
     ],

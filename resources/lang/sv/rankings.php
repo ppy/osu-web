@@ -6,7 +6,7 @@
 return [
     'countries' => [
         'all' => 'Alla',
-        'title' => '',
+        'title' => 'Land',
     ],
 
     'filter' => [
@@ -20,7 +20,7 @@ return [
     'type' => [
         'charts' => 'I rampljuset',
         'country' => 'Land',
-        'multiplayer' => '',
+        'multiplayer' => 'flerspelarläge',
         'performance' => 'Prestanda',
         'score' => 'Poäng',
     ],

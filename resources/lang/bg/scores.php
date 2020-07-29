@@ -5,19 +5,19 @@
 
 return [
     'show' => [
-        'title' => '',
+        'title' => ':username на :title [:version]',
 
         'beatmap' => [
-            'by' => '',
+            'by' => 'по :artist',
         ],
 
         'player' => [
-            'by' => '',
-            'submitted_on' => '',
+            'by' => 'Изигран от',
+            'submitted_on' => 'Публикуван на',
 
             'rank' => [
-                'country' => '',
-                'global' => '',
+                'country' => 'Класиране в страната',
+                'global' => 'Глобално класиране',
             ],
         ],
     ],

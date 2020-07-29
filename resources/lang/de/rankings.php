@@ -6,7 +6,7 @@
 return [
     'countries' => [
         'all' => 'Alle',
-        'title' => '',
+        'title' => 'Land',
     ],
 
     'filter' => [

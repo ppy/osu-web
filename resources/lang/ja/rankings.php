@@ -6,7 +6,7 @@
 return [
     'countries' => [
         'all' => '全て',
-        'title' => '',
+        'title' => '国別',
     ],
 
     'filter' => [
@@ -20,7 +20,7 @@ return [
     'type' => [
         'charts' => 'スポットライト',
         'country' => '国別',
-        'multiplayer' => '',
+        'multiplayer' => 'マルチプレイ',
         'performance' => 'パフォーマンス',
         'score' => 'スコア',
     ],

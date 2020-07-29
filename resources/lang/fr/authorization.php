@@ -17,18 +17,18 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Vous avez atteint la limite quotidienne de nominations, veuillez réessayer demain.',
-            'full_bn_required' => 'Vous devez être un candidat à part entière pour effectuer cette nomination qualificative.',
-            'full_bn_required_hybrid' => 'Vous devez être un candidat à part entière pour nominer des ensembles de beatmap avec plus d\'un mode de jeu.',
+            'full_bn_required' => 'Vous devez être un Beatmap Nominator avec toutes les autorisations pour effectuer cette qualification.',
+            'full_bn_required_hybrid' => 'Vous devez être un Beatmap Nominator avec toutes les autorisations pour ajouter une nomination sur des beatmapsets avec plusieurs modes de jeu.',
             'incorrect_state' => 'Une erreur est survenue lors de l’exécution de cette action, essayez d’actualiser la page.',
             'owner' => "Vous ne pouvez pas nominer votre propre beatmap.",
-            'set_metadata' => 'Vous devez définir le genre et la langue avant de proposer une candidature.',
+            'set_metadata' => 'Veuillez définir le genre et la langue de cette musique avant de nominer cette beatmap.',
         ],
         'resolve' => [
             'not_owner' => 'Seuls l\'auteur du post d\'origine de la discussion et le créateur de la beatmap peuvent voir ce sujet.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Seul le propriétaire de la beatmap ou un membre du groupe nominateur/QAT peut poster des notes de mappeur.',
+            'mapper_note_wrong_user' => 'Seul le propriétaire de la beatmap ou un membre du groupe BN/QAT peut poster des notes sur cette beatmap.',
         ],
 
         'vote' => [
@@ -40,7 +40,7 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => 'Vous ne pouvez uniquement supprimer vos propres messages.',
+            'not_owner' => 'Vous pouvez uniquement supprimer vos propres messages.',
             'resolved' => 'Vous ne pouvez pas supprimer un message d\'une discussion résolue.',
             'system_generated' => 'Les messages automatiquement générés ne peuvent être supprimés.',
         ],
@@ -52,7 +52,7 @@ return [
         ],
 
         'store' => [
-            'beatmapset_locked' => 'Cette beatmap est verrouillée pour la discussion.',
+            'beatmapset_locked' => 'La discussion de cette beatmap a été bloquée.',
         ],
     ],
 
@@ -124,7 +124,7 @@ return [
             'store' => [
                 'no_forum_access' => 'L\'accès au forum demandé est requis.',
                 'no_permission' => 'Vous n\'êtes pas autorisé à créer un sujet.',
-                'forum_closed' => 'Ce forum est fermé et vous ne pouvez pas poster.',
+                'forum_closed' => 'Ce forum est fermé et il n\'est pas possible de poster.',
             ],
 
             'vote' => [

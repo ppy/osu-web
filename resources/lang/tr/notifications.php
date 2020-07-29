@@ -12,7 +12,7 @@ return [
     'filters' => [
         '_' => 'hepsi',
         'user' => 'profil',
-        'beatmapset' => 'beatmaplar',
+        'beatmapset' => 'beatmapler',
         'forum_topic' => 'forum',
         'news_post' => 'haberler',
         'build' => 'sürümler',

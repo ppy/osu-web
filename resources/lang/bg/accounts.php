@@ -10,8 +10,8 @@ return [
 
         'avatar' => [
             'title' => 'Аватар',
-            'rules' => '',
-            'rules_link' => 'правилата на общността',
+            'rules' => 'Моля, уверете се, че вашият аватар се придържда към :link.<br/>Това означава, че задължително трябва да бъде <strong>подходящ за всички възрасти</strong>. т.е. няма голота, ругатни или внушаващо съдържание.',
+            'rules_link' => 'обществените правила',
         ],
 
         'email' => [
@@ -49,17 +49,17 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => '',
-        'beatmapset_disqualify' => '',
+        'beatmapset_discussion_qualified_problem' => 'получаване на известия за нови проблеми на квалифицирани бийтмапове от следните ремижи на игра',
+        'beatmapset_disqualify' => 'получаване на известия, когато бийтмапове от следните режими на игра са дисквалифицирани',
         'title' => 'Известия',
-        'topic_auto_subscribe' => '',
+        'topic_auto_subscribe' => 'автоматично включване на известията при създаването на нови форумни теми',
 
         'options' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
-            'mail' => '',
-            'push' => '',
+            '_' => 'опции за доставка',
+            'beatmapset:modding' => 'бийтмап modding',
+            'forum_topic_reply' => 'отговор на темата',
+            'mail' => 'поща',
+            'push' => 'push',
         ],
     ],
 
@@ -70,14 +70,16 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Hастройки',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'тип на теглене на бийтмапове по подразбиране',
+            'all' => 'с видео при наличност',
+            'no_video' => 'без видео',
+            'direct' => 'отвори в osu!direct',
         ],
+
+        'beatmapset_title_show_original' => '',
     ],
 
     'playstyles' => [
@@ -117,6 +119,6 @@ return [
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Невалиден или изтекъл линк за потвърждение',
     ],
 ];
