@@ -17,7 +17,6 @@ export class CircularProgress extends React.PureComponent<Props, any> {
   render() {
     const bn = this.bn;
     const percentage = Math.min(1, this.props.current / this.props.max);
-    const rotation = `${360 * percentage}deg`;
     const mods = [];
     const warnThreshold = 0.75;
 
@@ -47,12 +46,12 @@ export class CircularProgress extends React.PureComponent<Props, any> {
         <div className={`${bn}__label`}>{this.props.max - this.props.current}</div>
         <div className={`${bn}__slice`}>
           <div
-            className={`${bn}__bar`}
+            className={`${bn}__circle`}
             style={{
-              transform: `rotate(${rotation})`,
+              transform: `rotate(${percentage}turn)`,
             }}
           />
-          <div className={`${bn}__fill`} />
+          <div className={`${bn}__circle ${bn}__circle--fill`} />
         </div>
       </div>
     );
