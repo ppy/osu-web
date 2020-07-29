@@ -79,7 +79,7 @@ return [
             'direct' => 'open in osu!direct',
         ],
 
-        'beatmapset_title_show_original' => 'show beatmap titles in original language',
+        'beatmapset_title_show_original' => 'show beatmap metadata in original language',
     ],
 
     'playstyles' => [

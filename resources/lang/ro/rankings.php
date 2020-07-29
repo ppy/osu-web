@@ -6,7 +6,7 @@
 return [
     'countries' => [
         'all' => 'Tot',
-        'title' => '',
+        'title' => 'Țară',
     ],
 
     'filter' => [
@@ -20,7 +20,7 @@ return [
     'type' => [
         'charts' => 'În lumina reflectoarelor',
         'country' => 'pe țară',
-        'multiplayer' => '',
+        'multiplayer' => 'multiplayer',
         'performance' => 'performanță',
         'score' => 'scor',
     ],
