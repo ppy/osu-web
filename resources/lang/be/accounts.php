@@ -50,16 +50,16 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'атрымліваць апавяшчэнні аб новых праблемах кваліфікаваных мап наступных рэжымаў',
-        'beatmapset_disqualify' => '',
+        'beatmapset_disqualify' => 'атрымліваць апавяшчэння, калі карты для наступных рэжымаў будуць діскваліфікаваны',
         'title' => 'Апавяшчэнні',
         'topic_auto_subscribe' => 'аўтаматычна ўключаць апавяшчэнні для вашых тэм з форума',
 
         'options' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
-            'mail' => '',
-            'push' => '',
+            '_' => 'спосабы дастаўкі',
+            'beatmapset:modding' => 'модынг бітмап',
+            'forum_topic_reply' => 'адказы да тэмы',
+            'mail' => 'пошта',
+            'push' => 'push',
         ],
     ],
 
@@ -78,6 +78,8 @@ return [
             'no_video' => 'без відэа',
             'direct' => 'адкрыць у osu!direct',
         ],
+
+        'beatmapset_title_show_original' => '',
     ],
 
     'playstyles' => [

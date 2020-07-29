@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => 'Tällä hetkellä paikalla',
         'missingtext' => 'Taisit tehdä kirjoitusvirheen! (tai käyttäjällä on porttikielto)',
         'origin_country' => 'Maasta :country',
-        'page_description' => 'osu! - Kaikki mitä olet koskaan halunnut tietää :username:sta!',
         'previous_usernames' => 'tunnettiin aiemmin nimellä',
         'plays_with' => 'Pelityylinä :devices',
         'title' => ":username:n profiili",

@@ -144,4 +144,20 @@ class Score extends Model
 
         $this->save();
     }
+
+    public function userRank()
+    {
+        if ($this->total_score === null || $this->getKey() === null) {
+            return;
+        }
+
+        $query = PlaylistItemUserHighScore
+            ::where('playlist_item_id', $this->playlist_item_id)
+            ->cursorWhere([
+                ['column' => 'total_score', 'order' => 'ASC', 'value' => $this->total_score],
+                ['column' => 'score_id', 'order' => 'DESC', 'value' => $this->getKey()],
+            ]);
+
+        return 1 + $query->count();
+    }
 }

@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => 'Hiện đang trực tuyến',
         'missingtext' => 'Có thể bạn đã thực hiện một lỗi đánh máy! (hoặc người dùng này có thể đã bị ban)',
         'origin_country' => 'Từ :country',
-        'page_description' => 'osu! - Tất cả những bì bạn muốn biết về :username!',
         'previous_usernames' => 'được biết đến trước đây với',
         'plays_with' => 'Chơi bằng :devices',
         'title' => "Trang cá nhân của :username",

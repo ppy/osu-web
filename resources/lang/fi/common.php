@@ -128,6 +128,21 @@ return [
         'count_miss' => 'Ohi',
     ],
 
+    'scoreboard_time' => [
+        'd' => '',
+        'dd' => '',
+        'h' => '',
+        'hh' => '',
+        'M' => '',
+        'm' => '',
+        'MM' => '',
+        'mm' => '',
+        'past' => '',
+        's' => '',
+        'y' => '',
+        'yy' => '',
+    ],
+
     'time' => [
         'days_ago' => 'eilen |:count_delimited päivää sitten',
         'hours_ago' => ':count_delimited tunti sitten |:count_delimited tuntia sitten',

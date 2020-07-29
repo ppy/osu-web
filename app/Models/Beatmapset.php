@@ -1088,6 +1088,26 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         return new BBCodeFromDB($description, $post->bbcode_uid, $options);
     }
 
+    public function getDisplayArtist(?User $user)
+    {
+        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization;
+        if ($profileCustomization->beatmapset_title_show_original) {
+            return presence($this->artist_unicode) ?? $this->artist;
+        }
+
+        return $this->artist;
+    }
+
+    public function getDisplayTitle(?User $user)
+    {
+        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization;
+        if ($profileCustomization->beatmapset_title_show_original) {
+            return presence($this->title_unicode) ?? $this->title;
+        }
+
+        return $this->title;
+    }
+
     public function getPost()
     {
         $topic = Forum\Topic::find($this->thread_id);

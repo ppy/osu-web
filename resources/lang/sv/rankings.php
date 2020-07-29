@@ -6,6 +6,7 @@
 return [
     'countries' => [
         'all' => 'Alla',
+        'title' => 'Land',
     ],
 
     'filter' => [
@@ -17,10 +18,11 @@ return [
     ],
 
     'type' => [
-        'performance' => 'Prestanda',
         'charts' => 'I rampljuset',
-        'score' => 'Poäng',
         'country' => 'Land',
+        'multiplayer' => 'flerspelarläge',
+        'performance' => 'Prestanda',
+        'score' => 'Poäng',
     ],
 
     'spotlight' => [

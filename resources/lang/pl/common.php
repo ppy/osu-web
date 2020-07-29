@@ -128,6 +128,21 @@ return [
         'count_miss' => 'Pudło',
     ],
 
+    'scoreboard_time' => [
+        'd' => '',
+        'dd' => '',
+        'h' => '',
+        'hh' => '',
+        'M' => '',
+        'm' => '',
+        'MM' => '',
+        'mm' => '',
+        'past' => '',
+        's' => '',
+        'y' => '',
+        'yy' => '',
+    ],
+
     'time' => [
         'days_ago' => ':count_delimited dzień temu|:count_delimited dni temu|:count_delimited dni temu',
         'hours_ago' => ':count_delimited godzinę temu|:count_delimited godziny temu|:count_delimited godzin temu',

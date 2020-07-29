@@ -13,7 +13,7 @@ return [
     'beatmapset_upload' => '<strong><em>:user</em></strong> ha enviado un nuevo mapa ":beatmapset"',
     'empty' => "¡Este usuario no ha hecho nada notable recientemente!",
     'rank' => '<strong><em>:user</em></strong> logró el puesto #:rank en <em>:beatmap</em> (:mode)',
-    'rank_lost' => '<strong><em>:user</em></strong> ha perdido el primer lugar en <em>:beatmap</em> (:mode)',
+    'rank_lost' => '<strong><em>:user</em></strong> ha perdido el primer puesto en <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> ha elegido apoyar osu! una vez más - ¡gracias por tu generosidad!',
     'user_support_first' => '<strong>:user</strong> se ha convertido en un osu!supporter - ¡gracias por tu generosidad!',
     'user_support_gift' => '¡<strong>:user</strong> ha recibido el regalo de osu!supporter!',

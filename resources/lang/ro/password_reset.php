@@ -36,8 +36,8 @@ return [
         'username' => 'Introduceți adresa de e-mail sau numele de utilizator',
 
         'support' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Aveți nevoie de asistență suplimentară? Contactați-ne prin intermediul :button.',
+            'button' => 'sistem de ajutor',
         ],
     ],
 ];

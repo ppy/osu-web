@@ -126,6 +126,11 @@ return [
             '_' => 'knowledge base',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => 'ranking',
+        ],
+    ],
     'store' => [
         '_' => 'osu!store',
     ],

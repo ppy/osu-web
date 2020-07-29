@@ -96,6 +96,7 @@ return [
             'country' => 'krajowy',
             'index' => 'globalny',
             'kudosu' => 'kudosu',
+            'multiplayer' => 'wieloosobowy',
             'score' => 'punktowy',
         ],
         'store' => [

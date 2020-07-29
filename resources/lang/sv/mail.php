@@ -84,7 +84,7 @@ return [
     ],
 
     'user_password_updated' => [
-        'confirmation' => 'Detta är bara en bekräftelse på att ditt osu! lösenordet har ändrats.',
+        'confirmation' => 'Detta är bara en bekräftelse på att ditt osu! lösenord har ändrats.',
         'subject' => 'bekräfta ändrat osu! lösenord',
     ],
 

@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Пусни следващата песен автоматично',
     ],
 
     'defaults' => [
@@ -14,49 +14,49 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
+            'beatmapset' => 'бийтмап сет',
+            'beatmapset_covers' => 'бийтмап сет корици',
+            'contest' => 'конкурс',
+            'contests' => 'конкурси',
+            'root' => 'конзола',
+            'store_orders' => 'админ на магазина',
         ],
 
         'artists' => [
-            'index' => '',
+            'index' => 'списък',
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'списък',
         ],
 
         'help' => [
-            'index' => '',
-            'sitemap' => '',
+            'index' => 'индекс',
+            'sitemap' => 'Карта на сайта',
         ],
 
         'store' => [
-            'cart' => '',
-            'orders' => '',
-            'products' => '',
+            'cart' => 'количка',
+            'orders' => 'история на поръчките',
+            'products' => 'продукти',
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'списък',
         ],
 
         'users' => [
-            'modding' => '',
-            'show' => '',
+            'modding' => 'modding',
+            'show' => 'инфо',
         ],
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => 'Затвори (Esc)',
+        'fullscreen' => 'Превключване на цял екран',
+        'zoom' => 'Приближаване/отдалечаване',
+        'previous' => 'Предишно (лява стрелка)',
+        'next' => 'Следващо (дясна стрелка)',
     ],
 
     'menu' => [
@@ -96,6 +96,7 @@ return [
             'country' => 'държава',
             'index' => 'изпълнение',
             'kudosu' => 'kudosu',
+            'multiplayer' => 'мултиплейър',
             'score' => 'резултат',
         ],
         'store' => [
@@ -120,7 +121,7 @@ return [
             'forum' => 'Обществени форуми',
             'livestreams' => 'Живи Потоци',
             'report' => 'Подайте сигнал за проблем',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Легалности и статус',
@@ -134,7 +135,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Невалиден параметър на заявка',
             'description' => '',
         ],
         '404' => [
@@ -154,7 +155,7 @@ return [
             'description' => "Извиняваме се, но страницата която търсите не е тук!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Невалиден параметър на заявка',
             'description' => '',
         ],
         '500' => [
@@ -182,7 +183,7 @@ return [
             'forgot' => "Забравих си данните",
             'password' => 'парола',
             'title' => 'Влезте, за да продължите',
-            'username' => '',
+            'username' => 'потребителско име',
 
             'error' => [
                 'email' => "Потребителското име или имейл адресът не съществуват",
@@ -191,7 +192,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'Изтегли',
             'info' => 'Трябва ди акаунт, господине. Защо все още нямате един?',
             'title' => "Нямате акаунт?",
         ],

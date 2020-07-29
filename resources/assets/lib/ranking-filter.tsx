@@ -101,10 +101,13 @@ export default class RankingFilter extends React.PureComponent<Props> {
 
         {currentUser.id != null && (
           <div className='ranking-filter__item'>
+            <div className='ranking-filter__item--title'>
+              {osu.trans('rankings.filter.title')}
+            </div>
             <Sort
               currentValue={this.filterMode ?? 'all'}
               onChange={this.handleFilterChange}
-              title={osu.trans('rankings.filter.title')}
+              showTitle={false}
               values={['all', 'friends']}
             />
           </div>
@@ -112,6 +115,9 @@ export default class RankingFilter extends React.PureComponent<Props> {
 
         {this.props.variants != null && (
           <div className='ranking-filter__item'>
+            <div className='ranking-filter__item--title'>
+              {osu.trans('rankings.filter.variant.title')}
+            </div>
             {this.renderVariants()}
           </div>
         )}
@@ -123,13 +129,18 @@ export default class RankingFilter extends React.PureComponent<Props> {
     if (this.props.type !== 'performance') return null;
 
     return (
-      <SelectOptions
-        bn='ranking-select-options'
-        onChange={this.handleCountryChange}
-        options={[...this.options.values()]} // TODO: change to iterable
-        renderOption={this.renderOption}
-        selected={this.selectedOption}
-      />
+      <>
+        <div className='ranking-filter__item--title'>
+          {osu.trans('rankings.countries.title')}
+        </div>
+        <SelectOptions
+          bn='ranking-select-options'
+          onChange={this.handleCountryChange}
+          options={[...this.options.values()]} // TODO: change to iterable
+          renderOption={this.renderOption}
+          selected={this.selectedOption}
+        />
+      </>
     );
   }
 
@@ -152,7 +163,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
       <Sort
         currentValue={this.currentVariant ?? 'all'}
         onChange={this.handleVariantChange}
-        title={osu.trans('rankings.filter.variant.title')}
+        showTitle={false}
         transPrefix={`beatmaps.variant.${this.props.gameMode}.`}
         values={this.props.variants}
       />

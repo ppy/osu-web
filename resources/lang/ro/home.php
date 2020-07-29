@@ -27,7 +27,7 @@ return [
         'title' => 'Caută',
 
         'beatmapset' => [
-            'login_required' => '',
+            'login_required' => 'Conectați-vă pentru a căuta beatmaps',
             'more' => ':count mai multe rezultate de căutare pentru acest beatmap',
             'more_simple' => 'Vezi mai multe rezultate de căutare pentru acest beatmap',
             'title' => 'Beatmaps',
@@ -36,7 +36,7 @@ return [
         'forum_post' => [
             'all' => 'Toate forumurile',
             'link' => 'Caută pe forum',
-            'login_required' => '',
+            'login_required' => 'Conectați-vă pentru a căuta forumul',
             'more_simple' => 'Vezi mai multe rezultate de căutare pe forum',
             'title' => 'Forum',
 
@@ -57,7 +57,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => '',
+            'login_required' => 'Conectați-vă pentru a căuta utilizatori',
             'more' => ':count mai multe rezultate de căutare pentru acest jucător',
             'more_simple' => 'Vezi mai multe rezultate de căutare pentru acest jucător',
             'more_hidden' => 'Căutarea jucătorului este limitată la :max jucători. Încearcă să îți redefinești căutarea.',

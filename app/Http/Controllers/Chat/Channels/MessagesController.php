@@ -90,6 +90,10 @@ class MessagesController extends BaseController
             'hidden' => false,
         ])->firstOrFail();
 
+        if ($userChannel->channel === null) {
+            abort(404);
+        }
+
         if ($userChannel->channel->isPM()) {
             // restricted users should be treated as if they do not exist
             if (optional($userChannel->channel->pmTargetFor(Auth::user()))->isRestricted()) {

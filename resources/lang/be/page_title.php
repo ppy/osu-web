@@ -110,7 +110,7 @@ return [
             '_' => 'рэйтынг',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'прадукцыйнасць',
         ],
         'store_controller' => [
             '_' => 'osu!store',
@@ -124,6 +124,11 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'база ведаў',
+        ],
+    ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => '',
         ],
     ],
     'store' => [

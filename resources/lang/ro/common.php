@@ -20,13 +20,13 @@ return [
 
     'buttons' => [
         'admin' => 'Admin',
-        'authorise' => '',
-        'authorising' => '',
+        'authorise' => 'Autorizează',
+        'authorising' => 'Se autorizează...',
         'back_to_previous' => 'Revino la poziția anterioară',
         'back_to_top' => 'Înapoi sus',
         'cancel' => 'Anulează',
         'change' => 'modifică',
-        'clear' => '',
+        'clear' => 'Curăță',
         'click_to_copy' => 'faceți clic pentru a copia în clipboard',
         'click_to_copy_copied' => 'copiat în clipboard!',
         'close' => 'Închide',
@@ -36,9 +36,9 @@ return [
         'expand' => 'extinde',
         'hide' => 'ascunde',
         'permalink' => 'link permanent',
-        'pin' => '',
+        'pin' => 'fixează',
         'post' => 'Postează',
-        'read_more' => '',
+        'read_more' => 'citește mai mult',
         'reply' => 'Răspunde',
         'reply_reopen' => 'Răspundeți și deschideți din nou',
         'reply_resolve' => 'Răspunde și rezolvă',
@@ -50,10 +50,10 @@ return [
         'see_more' => 'vezi mai mult',
         'show' => 'arată',
         'show_deleted' => 'Arată șterse',
-        'show_less' => '',
+        'show_less' => 'arată mai puțin',
         'show_more' => 'arată mai mult',
         'show_more_options' => 'arată mai multe opţiuni',
-        'unpin' => '',
+        'unpin' => 'nu mai fixa',
         'update' => 'Actualizează',
         'upload_image' => 'încarcă imaginea',
 
@@ -72,7 +72,7 @@ return [
         'minute_short_unit' => 'minut|minute',
         'minutes' => ':count minut|:count minute',
         'months' => ':count lună|:count luni',
-        'notifications' => '',
+        'notifications' => ':count_delimited notificare|:count_delimited notificări',
         'plus_others' => '+ :count_delimited altul!|+ :count_delimited alții!',
         'post' => ':count_delimited postare|:count_delimited postări',
         'second_short_unit' => 'secundă|secunde',
@@ -128,6 +128,21 @@ return [
         'count_miss' => 'Miss',
     ],
 
+    'scoreboard_time' => [
+        'd' => '%d d',
+        'dd' => '%d d',
+        'h' => '%d ore',
+        'hh' => '%d ore',
+        'M' => '%d luni',
+        'm' => '%d minut',
+        'MM' => '%d luni',
+        'mm' => '%d minut',
+        'past' => '%s',
+        's' => '%d sec',
+        'y' => '%d an',
+        'yy' => '%d an',
+    ],
+
     'time' => [
         'days_ago' => ':count zi în urmă|:count zile în urmă',
         'hours_ago' => ':count oră în urmă|:count ore în urmă',
@@ -140,7 +155,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => '',
-        'logout_link' => '',
+        '_' => 'Ești conectat ca :user. :logout_link.',
+        'logout_link' => 'Fă click aici pentru a te conecta ca alt utilizator',
     ],
 ];

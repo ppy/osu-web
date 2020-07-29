@@ -22,8 +22,8 @@
                   title="{{ $cleared ? trans('beatmappacks.show.item.cleared') : trans('beatmappacks.show.item.not_cleared') }}"
             ></span>
             <a href="{{ route('beatmapsets.show', ['beatmapset' => $set->getKey()]) }}" class="beatmap-pack-items__link">
-                <span class="beatmap-pack-items__artist">{{ $set->artist }}</span>
-                <span class="beatmap-pack-items__title"> - {{ $set->title }}</span>
+                <span class="beatmap-pack-items__artist">{{ $set->getDisplayArtist(auth()->user()) }}</span>
+                <span class="beatmap-pack-items__title"> - {{ $set->getDisplayTitle(auth()->user()) }}</span>
             </a>
     @endforeach
 </ul>

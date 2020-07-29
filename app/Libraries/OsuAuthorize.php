@@ -502,7 +502,7 @@ class OsuAuthorize
      */
     public function checkBeatmapsetAdvancedSearch(?User $user): string
     {
-        if (!config('osu.beatmapset.guest_advanced_search')) {
+        if (oauth_token() === null && !config('osu.beatmapset.guest_advanced_search')) {
             $this->ensureLoggedIn($user);
         }
 
@@ -1515,7 +1515,8 @@ class OsuAuthorize
 
     public function checkIsNotOAuth(?User $user): string
     {
-        if (optional($user)->token() === null) {
+        // TODO: add test that asserts oauth_token is always set if user()->token() exists.
+        if (oauth_token() === null) {
             return 'ok';
         }
 

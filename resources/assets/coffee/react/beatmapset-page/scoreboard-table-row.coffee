@@ -8,6 +8,7 @@ import { PlayDetailMenu } from 'play-detail-menu'
 import * as React from 'react'
 import { a, div, tr, td } from 'react-dom-factories'
 import { hasMenu } from 'score-helper'
+import ScoreboardTime from 'scoreboard-time'
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
@@ -71,8 +72,12 @@ export class ScoreboardTableRow extends React.PureComponent
 
       td className: cell, _.round score.pp
 
+      td className: osu.classWithModifiers(cell, ['time']),
+        el ScoreboardTime,
+          dateTime: score.created_at
+
       td className: osu.classWithModifiers(cell, ['mods']),
-        el Mods, modifiers: ['scoreboard'], mods: score.mods
+        el Mods, modModifiers: ['dynamic'], modifiers: ['scoreboard'], mods: score.mods
 
       td className: "#{bn}__popup-menu",
         if hasMenu(score)

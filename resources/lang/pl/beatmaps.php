@@ -277,8 +277,8 @@ return [
         'electronic' => 'Muzyka elektroniczna',
         'metal' => 'Metal',
         'classical' => 'Muzyka klasyczna',
-        'folk' => 'Muzyka folk',
-        'jazz' => 'Dżez',
+        'folk' => 'Muzyka folkowa',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '4K',
@@ -304,6 +304,7 @@ return [
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
         'TD' => 'Urządzenie dotykowe',
+        'V2' => '',
     ],
     'language' => [
         'any' => 'Jakikolwiek',

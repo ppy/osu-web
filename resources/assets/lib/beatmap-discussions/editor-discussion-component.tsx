@@ -26,10 +26,16 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   componentDidMount = () => {
     // reset timestamp to null on clone
-    Transforms.setNodes(this.context, {timestamp: null}, {at: this.path()});
+    if (this.editable()) {
+      Transforms.setNodes(this.context, {timestamp: null}, {at: this.path()});
+    }
   }
 
   componentDidUpdate = () => {
+    if (!this.editable()) {
+      return;
+    }
+
     const path = this.path();
 
     if (this.props.element.beatmapId) {
@@ -80,6 +86,19 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         </button>
       );
 
+    const unsavedIndicator =
+      this.props.editMode && canEdit ?
+        (
+          <div
+            className={`${bn}__unsaved-indicator`}
+            contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+            title={osu.trans('beatmaps.discussions.review.embed.unsaved')}
+          >
+            <i className='fas fa-pencil-alt'/>
+          </div>
+        )
+      : null;
+
     return (
       <div
         className='beatmap-discussion beatmap-discussion--preview'
@@ -87,40 +106,32 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         suppressContentEditableWarning={true}
         {...this.props.attributes}
       >
-        <div className='beatmap-discussion__discussion'>
-          <div className={osu.classWithModifiers(bn, classMods)}>
-            <div className={`${bn}__content`}>
+        <div className={osu.classWithModifiers(bn, classMods)}>
+          <div className={`${bn}__content`}>
+            <div
+              className={`${bn}__selectors`}
+              contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+            >
+              <EditorBeatmapSelector {...this.props} disabled={this.props.readOnly || !canEdit}/>
+              <EditorIssueTypeSelector {...this.props} disabled={this.props.readOnly || !canEdit}/>
               <div
-                className={`${bn}__selectors`}
+                className={`${bn}__timestamp`}
                 contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
               >
-                <EditorBeatmapSelector {...this.props} disabled={this.props.readOnly || !canEdit}/>
-                <EditorIssueTypeSelector {...this.props} disabled={this.props.readOnly || !canEdit}/>
-                <div
-                  className={`${bn}__timestamp`}
-                  contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
-                  title={canEdit ? timestampTooltip : ''}
-                >
+                <span title={canEdit ? timestampTooltip : ''}>
                   {this.props.element.timestamp || osu.trans('beatmap_discussions.timestamp_display.general')}
-                </div>
-                <div
-                  contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
-                  className={`${bn}__stripe`}
-                />
+                </span>
               </div>
-              <div className={`${bn}__message-container`}>
-                <div className='beatmapset-discussion-message'>{this.props.children}</div>
-              </div>
-              {this.props.editMode && canEdit &&
-                <div
-                  className={`${bn}__unsaved-indicator`}
-                  contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
-                  title={osu.trans('beatmaps.discussions.review.embed.unsaved')}
-                >
-                  <i className='fas fa-pencil-alt'/>
-                </div>
-              }
+              {unsavedIndicator}
             </div>
+            <div
+              contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+              className={`${bn}__stripe`}
+            />
+            <div className={`${bn}__message-container`}>
+              <div className='beatmapset-discussion-message'>{this.props.children}</div>
+            </div>
+            {unsavedIndicator}
           </div>
         </div>
         {deleteButton}
