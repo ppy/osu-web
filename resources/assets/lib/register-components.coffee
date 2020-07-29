@@ -12,6 +12,7 @@ import { CountdownTimer } from 'countdown-timer'
 import { FriendButton } from 'friend-button'
 import { LandingNews } from 'landing-news'
 import { keyBy } from 'lodash'
+import MultiplayerSelectOptions from 'multiplayer-select-options'
 import NotificationIcon from 'notification-icon'
 import NotificationWidget from 'notification-widget/main'
 import NotificationWorker from 'notifications/worker'
@@ -65,6 +66,9 @@ reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
 
 reactTurbolinks.register 'spotlight-select-options', SpotlightSelectOptions, ->
   osu.parseJson 'json-spotlight-select-options'
+
+reactTurbolinks.registerPersistent 'multiplayer-select-options', MultiplayerSelectOptions, true, ->
+  osu.parseJson 'json-multiplayer-select-options'
 
 reactTurbolinks.register 'comments', CommentsManager, (el) ->
   props = JSON.parse(el.dataset.props)

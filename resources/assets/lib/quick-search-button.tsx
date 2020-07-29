@@ -32,7 +32,7 @@ interface State {
   }
 
   render() {
-    let className = 'nav2__menu-link-main nav2__menu-link-main--search js-login-required--click';
+    let className = 'nav2__menu-link-main nav2__menu-link-main--search';
 
     if (this.state.open || document.location.pathname === route('search', null, false)) {
       className += ' u-section--bg-normal';
@@ -65,12 +65,12 @@ interface State {
   }
 
   private toggle = (event?: React.SyntheticEvent<HTMLElement>) => {
-    if (event != null) {
-      event.preventDefault();
-    }
-
     if (currentUser.id == null) {
       return;
+    }
+
+    if (event != null) {
+      event.preventDefault();
     }
 
     if (this.isSearchPage) {

@@ -6,6 +6,7 @@
 return [
     'countries' => [
         'all' => '',
+        'title' => '',
     ],
 
     'filter' => [
@@ -17,10 +18,11 @@ return [
     ],
 
     'type' => [
-        'performance' => 'Suorituskyky',
         'charts' => 'Valokeilassa',
-        'score' => 'Piste',
         'country' => 'Maa',
+        'multiplayer' => '',
+        'performance' => 'Suorituskyky',
+        'score' => 'Piste',
     ],
 
     'spotlight' => [

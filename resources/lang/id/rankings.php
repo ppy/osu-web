@@ -6,6 +6,7 @@
 return [
     'countries' => [
         'all' => 'Semua',
+        'title' => 'Negara',
     ],
 
     'filter' => [
@@ -17,10 +18,11 @@ return [
     ],
 
     'type' => [
-        'performance' => 'Performa',
         'charts' => 'Spotlights',
-        'score' => 'Skor',
         'country' => 'Negara',
+        'multiplayer' => 'multiplayer',
+        'performance' => 'Performa',
+        'score' => 'Skor',
     ],
 
     'spotlight' => [

@@ -93,8 +93,8 @@ return [
             'beatmaps' => [
                 'title' => 'hol\' dir beatmaps',
                 'description' => [
-                    '_' => ':browse durch die enorme Bibliothek an von Nutzern erstellten Beatmaps und fang an zu spielen!',
-                    'browse' => 'stöbern',
+                    '_' => ':browse durch die enorme bibliothek an von nutzern erstellten beatmaps und fang an zu spielen!',
+                    'browse' => 'stöbere',
                 ],
             ],
         ],

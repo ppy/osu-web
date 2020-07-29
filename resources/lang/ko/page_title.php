@@ -126,6 +126,11 @@ return [
             '_' => '지식 창고',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => '순위',
+        ],
+    ],
     'store' => [
         '_' => 'osu!store',
     ],

@@ -6,6 +6,7 @@
 namespace App\Transformers;
 
 use App\Models\Beatmap;
+use App\Models\DeletedUser;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Score\Model as ScoreModel;
 
@@ -49,6 +50,7 @@ class ScoreTransformer extends TransformerAbstract
         if ($score instanceof ScoreModel) {
             $ret['mode'] = $score->getMode();
             $ret['mode_int'] = Beatmap::modeInt($score->getMode());
+            $ret['replay'] = $score->best->replay ?? false;
         }
 
         if ($score instanceof ScoreBest) {
@@ -112,6 +114,8 @@ class ScoreTransformer extends TransformerAbstract
 
     public function includeUser($score)
     {
-        return $this->item($score->user, new UserCompactTransformer);
+        $user = $score->user ?? new DeletedUser(['user_id' => $score->user_id]);
+
+        return $this->item($user, new UserCompactTransformer);
     }
 }

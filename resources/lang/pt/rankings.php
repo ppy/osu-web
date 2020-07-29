@@ -7,6 +7,7 @@ return [
     'countries' => [
         'all' => 'Todos
 ',
+        'title' => 'País',
     ],
 
     'filter' => [
@@ -18,10 +19,11 @@ return [
     ],
 
     'type' => [
-        'performance' => 'Desempenho',
         'charts' => 'Em destaque',
-        'score' => 'Pontuação',
         'country' => 'País',
+        'multiplayer' => 'multijogador',
+        'performance' => 'Desempenho',
+        'score' => 'Pontuação',
     ],
 
     'spotlight' => [

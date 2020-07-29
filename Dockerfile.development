@@ -1,0 +1,39 @@
+FROM ubuntu:20.04
+
+RUN apt-get update
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    curl \
+    composer \
+    gosu \
+    jhead \
+    libglib2.0-0 \
+    libnss3 \
+    mysql-client \
+    netcat-openbsd \
+    php-fpm \
+    php-common \
+    php-curl \
+    php-gd \
+    php-intl \
+    php-json \
+    php-mbstring \
+    php-mysql \
+    php-redis \
+    php-sqlite3 \
+    php-tokenizer \
+    php-xml \
+    php-zip \
+    yarnpkg \
+    zip
+
+RUN curl -LO https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y ./google-chrome-stable_current_amd64.deb && \
+    rm google-chrome-stable_current_amd64.deb
+
+WORKDIR /app
+
+RUN groupadd osuweb && useradd -g osuweb osuweb
+
+ENTRYPOINT ["/app/docker/development/entrypoint.sh"]
+CMD ["serve"]

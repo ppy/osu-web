@@ -126,6 +126,11 @@ return [
             '_' => 'bilgi bankası',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => 'sıralama',
+        ],
+    ],
     'store' => [
         '_' => 'osu!store',
     ],

@@ -128,6 +128,21 @@ return [
         'count_miss' => 'Raté',
     ],
 
+    'scoreboard_time' => [
+        'd' => '',
+        'dd' => '',
+        'h' => '',
+        'hh' => '',
+        'M' => '',
+        'm' => '',
+        'MM' => '',
+        'mm' => '',
+        'past' => '',
+        's' => '',
+        'y' => '',
+        'yy' => '',
+    ],
+
     'time' => [
         'days_ago' => 'il y a :count jour|il y a :count jours',
         'hours_ago' => 'il y a :count heure|il y a :count heures',

@@ -61,13 +61,13 @@ return [
         ],
 
         'hype' => [
-            'action' => '이 맵을 즐기셨다면 Hype를 통해 이 맵이 <strong>Ranked</strong> 상태가 될 수 있도록 도와주세요.',
+            'action' => '이 맵이 마음에 드신다면 <strong>Ranked</strong> 상태가 될 수 있도록 도움을 주게 Hype 해주세요.',
 
             'current' => [
                 '_' => '이 맵은 현재 :status 상태입니다.',
 
                 'status' => [
-                    'pending' => 'pending',
+                    'pending' => '보류',
                     'qualified' => 'qualified',
                     'wip' => '제작 중',
                 ],
@@ -78,7 +78,7 @@ return [
             ],
 
             'report' => [
-                '_' => '이 비트맵에서 문제를 찾으셨다면 :link에서 저희에게 신고해 주세요.',
+                '_' => '이 비트맵에 문제가 있다면 :link에서 저희에게 신고해 주세요.',
                 'button' => '문제 보고',
                 'link' => '여기',
             ],
@@ -115,6 +115,7 @@ return [
                 'rank' => '순위',
                 'score_total' => '총 점수',
                 'score' => '점수',
+                'time' => '시간',
             ],
 
             'no_scores' => [
@@ -143,7 +144,7 @@ return [
             'count_sliders' => 'Slider Count',
             'user-rating' => '유저 평점',
             'rating-spread' => '평점 분포도',
-            'nominations' => '지명',
+            'nominations' => '추천',
             'playcount' => '플레이 횟수',
         ],
 
@@ -152,7 +153,7 @@ return [
             'approved' => 'Approved',
             'loved' => 'Loved',
             'qualified' => 'Qualified',
-            'wip' => '작업중',
+            'wip' => '제작 중',
             'pending' => 'Pending',
             'graveyard' => '무덤에 감',
         ],

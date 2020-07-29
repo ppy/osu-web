@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => '上線中',
         'missingtext' => '未找到的使用者！（或者該使用者已經被封鎖）',
         'origin_country' => '來自 :country',
-        'page_description' => 'osu! - 您想知道關於 :username 的資訊!',
         'previous_usernames' => '前一個的使用者名稱',
         'plays_with' => '慣用 :devices',
         'title' => ":username 的個人簡介",

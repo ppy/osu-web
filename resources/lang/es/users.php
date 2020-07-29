@@ -107,7 +107,7 @@ return [
         'username' => 'Invitado',
         'error' => 'Necesitas haber iniciado sesión para hacer esto.',
     ],
-    'logout_confirm' => '¿Estás seguro de que quieres cerrar la sesión? :(',
+    'logout_confirm' => '¿Seguro que desea cerrar la sesión? :(',
     'report' => [
         'button_text' => 'Reportar',
         'comments' => 'Comentarios Adicionales',
@@ -141,11 +141,10 @@ return [
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Se unió en :date',
-        'lastvisit' => 'Última conexión :date',
+        'lastvisit' => 'Visto :date',
         'lastvisit_online' => 'Actualmente en línea',
         'missingtext' => '¡Es posible que hayas cometido un error tipográfico! (o el usuario puede haber sido baneado)',
         'origin_country' => 'De :country',
-        'page_description' => 'osu! - ¡Todo lo que siempre quisiste saber acerca de :username!',
         'previous_usernames' => 'antes conocido como',
         'plays_with' => 'Juega con :devices',
         'title' => "Perfil de :username",
@@ -226,11 +225,11 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'veces jugadas',
-                    'title' => 'Mapas Más Jugados',
+                    'title' => 'Mapas más jugados',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisión: :percentage',
-                    'title' => 'Jugadas Recientes (24h)',
+                    'title' => 'Jugadas recientes (24 h)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Historial de repeticiones vistas',
@@ -248,41 +247,41 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Recibido :amount de revocación de negación de kudosu de la publicación de modding de :post',
+                            'give' => 'Recibió :amount de revocación de negación de kudosu por la publicación de modding :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Denegado :amount de la publicación de modding de :post',
+                            'reset' => 'Se le negó :amount por la publicación de modding :post',
                         ],
 
                         'delete' => [
-                            'reset' => 'Perdido :amount por eliminación de la publicación de modding de :post',
+                            'reset' => 'Perdió :amount por la eliminación de la publicación de modding de :post',
                         ],
 
                         'restore' => [
-                            'give' => 'Recibido :amount por la restauración de la publicación de modding de :post',
+                            'give' => 'Recibió :amount por la restauración de la publicación de modding de :post',
                         ],
 
                         'vote' => [
-                            'give' => 'Recibido :amount por obtención de votos en la publicación de modding de :post',
-                            'reset' => 'Perdido :amount por perder votos en la publicación de modding de :post',
+                            'give' => 'Recibió :amount por obtención de votos en la publicación de modding de :post',
+                            'reset' => 'Perdió :amount por perder votos en la publicación de modding de :post',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Recibido :amount por recálculo de votos en la publicación de modding de :post',
-                            'reset' => 'Perdido :amount por recálculo de votos en la publicación de modding de :post',
+                            'give' => 'Recibió :amount por recálculo de votos en la publicación de modding de :post',
+                            'reset' => 'Perdió :amount por recálculo de votos en la publicación de modding de :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'Recibido :amount de :giver por una publicación en :post',
+                        'give' => 'Recibió :amount de :giver por una publicación en :post',
                         'reset' => 'Kudosu reiniciado por :giver por la publicación :post',
-                        'revoke' => 'Kudosu denegado por :giver por la publicación :post',
+                        'revoke' => 'Se le negó kudosu por :giver por la publicación :post',
                     ],
                 ],
 
                 'total_info' => [
-                    '_' => 'Basado en qué tanto ha colaborado el usuario a la moderación de mapas. Vea :link para más información.',
+                    '_' => 'Según la contribución que el usuario ha hecho al modding de mapas. Vea :link para más información.',
                     'link' => 'esta página',
                 ],
             ],
@@ -303,7 +302,7 @@ return [
                 'title' => 'Reciente',
             ],
             'top_ranks' => [
-                'download_replay' => 'Descargar Repetición',
+                'download_replay' => 'Descargar repetición',
                 'empty' => 'Aún no hay registros de rendimiento impresionantes. :(',
                 'not_ranked' => 'Sólo los mapas clasificados dan pp.',
                 'pp_weight' => 'valorado :percentage',
@@ -311,10 +310,10 @@ return [
                 'title' => 'Rangos',
 
                 'best' => [
-                    'title' => 'Mejores Rendimientos',
+                    'title' => 'Mejor rendimiento',
                 ],
                 'first' => [
-                    'title' => 'Primeros Lugares',
+                    'title' => 'Primeros lugares',
                 ],
             ],
             'votes' => [
@@ -377,7 +376,7 @@ return [
         ],
         'post_count' => [
             '_' => 'Contribuyó con :link',
-            'count' => ':count publicación en el foro|:count publicaciones en el foro',
+            'count' => ':count_delimited publicación en el foro|:count_delimited publicaciones en el foro',
         ],
         'rank' => [
             'country' => 'Rank nacional para :mode',

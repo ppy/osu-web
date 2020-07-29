@@ -133,7 +133,7 @@ return [
             ],
             'friend_filtering' => [
                 'title' => 'Classifiche con Amici',
-                'description' => 'Competi con i tuoi amici e guarda come ti classifichi rispetto a loro!*<br/><br/><small>* non ancora disponibile sul nuovo sito, comingsoon(tm)</small>',
+                'description' => 'Competi con i tuoi amici e guarda come ti classifichi rispetto a loro!',
             ],
 
         ],

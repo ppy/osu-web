@@ -81,9 +81,9 @@ export class BeatmapsetPanel extends React.PureComponent
 
           div className: 'beatmapset-panel__title-artist-box',
             div className: 'u-ellipsis-overflow beatmapset-panel__header-text beatmapset-panel__header-text--title',
-              beatmapset.title
+              BeatmapHelper.getTitle(beatmapset)
             div className: 'beatmapset-panel__header-text',
-              beatmapset.artist
+              BeatmapHelper.getArtist(beatmapset)
 
           div className: 'beatmapset-panel__counts-box',
             if showHypeCounts

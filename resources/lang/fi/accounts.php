@@ -78,6 +78,8 @@ return [
             'no_video' => 'ilman videota',
             'direct' => 'avaa osu!directissä',
         ],
+
+        'beatmapset_title_show_original' => '',
     ],
 
     'playstyles' => [

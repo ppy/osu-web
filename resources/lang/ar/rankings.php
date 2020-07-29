@@ -5,27 +5,29 @@
 
 return [
     'countries' => [
-        'all' => '',
+        'all' => 'الكل',
+        'title' => 'الدولة',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'عرض',
 
         'variant' => [
-            'title' => '',
+            'title' => 'النوع',
         ],
     ],
 
     'type' => [
-        'performance' => 'الأداء',
         'charts' => 'منطقة ألأضواء',
-        'score' => 'النقاط',
         'country' => 'الدولة',
+        'multiplayer' => 'متعدد اللاعبين',
+        'performance' => 'الأداء',
+        'score' => 'النقاط',
     ],
 
     'spotlight' => [
         'end_date' => 'تاريخ الانتهاء',
-        'map_count' => 'عدد الخريطة',
+        'map_count' => 'تعداد الخريطة',
         'participants' => 'المشاركون',
         'start_date' => 'تاريخ البداية',
     ],

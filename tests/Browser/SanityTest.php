@@ -6,6 +6,7 @@
 namespace Tests\Browser;
 
 use App\Models\Country;
+use App\Models\Multiplayer\Room;
 use DB;
 use Route;
 use Tests\Browser;
@@ -145,6 +146,8 @@ class SanityTest extends DuskTestCase
 
             // score factory
             self::$scaffolding['score'] = factory(\App\Models\Score\Best\Osu::class)->states('with_replay')->create();
+
+            self::$scaffolding['room'] = factory(Room::class)->create(['category' => 'spotlight']);
         }
     }
 

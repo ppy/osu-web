@@ -128,6 +128,21 @@ return [
         'count_miss' => 'Miss',
     ],
 
+    'scoreboard_time' => [
+        'd' => '',
+        'dd' => '',
+        'h' => '',
+        'hh' => '',
+        'M' => '',
+        'm' => '%d dk',
+        'MM' => '',
+        'mm' => '',
+        'past' => '',
+        's' => '%d sn',
+        'y' => '',
+        'yy' => '',
+    ],
+
     'time' => [
         'days_ago' => ':count gün önce|:count gün önce',
         'hours_ago' => ':count saat önce|:count saat önce',

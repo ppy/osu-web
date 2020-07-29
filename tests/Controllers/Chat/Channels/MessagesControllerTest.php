@@ -72,7 +72,7 @@ class MessagesControllerTest extends TestCase
         $this->json('PUT', route('api.chat.channels.join', [
             'channel' => $this->tourneyChannel->channel_id,
             'user' => $this->user->user_id,
-        ]));
+        ]))->assertSuccessful();
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->tourneyChannel->channel_id]))

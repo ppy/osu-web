@@ -47,13 +47,13 @@ return [
             '_' => 'beatmapdiskussioner',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'beatmap samlingar',
+            '_' => 'beatmapsamlingar',
         ],
         'beatmapset_discussion_votes_controller' => [
             '_' => 'beatmapdiskussionsröster',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'beatmap historik',
+            '_' => 'beatmaphistorik',
         ],
         'beatmapset_watches_controller' => [
             'index' => 'kontrollpanel',
@@ -61,7 +61,7 @@ return [
         'beatmapsets_controller' => [
             'discussion' => 'beatmapdiskussioner',
             'index' => 'beatmap listningar',
-            'show' => 'beatmap info',
+            'show' => 'beatmapinfo',
         ],
         'changelog_controller' => [
             '_' => 'ändringslogg',
@@ -124,6 +124,11 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'kunskapsbas',
+        ],
+    ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => 'rankning',
         ],
     ],
     'store' => [

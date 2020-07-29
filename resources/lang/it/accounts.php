@@ -56,8 +56,8 @@ return [
 
         'options' => [
             '_' => 'opzioni di notifica',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
+            'beatmapset:modding' => 'modding delle beatmap',
+            'forum_topic_reply' => 'risposta al topic',
             'mail' => 'mail',
             'push' => 'push',
         ],
@@ -78,6 +78,8 @@ return [
             'no_video' => 'senza video',
             'direct' => 'apri in osu!direct',
         ],
+
+        'beatmapset_title_show_original' => '',
     ],
 
     'playstyles' => [

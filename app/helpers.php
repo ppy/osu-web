@@ -171,10 +171,21 @@ function class_with_modifiers(string $className, ?array $modifiers = null)
 
 function cleanup_cookies()
 {
-    $host = request()->getHttpHost();
-    $domains = [$host, ''];
+    $host = request()->getHost();
+
+    // don't do anything for ip address access
+    if (filter_var($host, FILTER_VALIDATE_IP) !== false) {
+        return;
+    }
 
     $hostParts = explode('.', $host);
+
+    // don't do anything for single word domain
+    if (count($hostParts) === 1) {
+        return;
+    }
+
+    $domains = [$host, ''];
 
     while (count($hostParts) > 1) {
         array_shift($hostParts);
@@ -478,6 +489,11 @@ function mysql_escape_like($string)
     return addcslashes($string, '%_\\');
 }
 
+function oauth_token(): ?App\Models\OAuth\Token
+{
+    return request()->attributes->get(App\Http\Middleware\AuthApi::REQUEST_OAUTH_TOKEN_KEY);
+}
+
 function osu_url($key)
 {
     $url = config("osu.urls.{$key}");
@@ -494,9 +510,9 @@ function pack_str($str)
     return pack('ccH*', 0x0b, strlen($str), bin2hex($str));
 }
 
-function pagination($params)
+function pagination($params, $defaults = null)
 {
-    $limit = clamp(get_int($params['limit'] ?? null) ?? 20, 5, 50);
+    $limit = clamp(get_int($params['limit'] ?? null) ?? $defaults['limit'] ?? 20, 5, 50);
     $page = max(get_int($params['page'] ?? null) ?? 1, 1);
 
     $offset = max_offset($page, $limit);
@@ -630,27 +646,6 @@ function trans_exists($key, $locale)
     $translated = app('translator')->get($key, [], $locale, false);
 
     return present($translated) && $translated !== $key;
-}
-
-function with_db_fallback($connection, callable $callable)
-{
-    try {
-        return $callable($connection);
-    } catch (Illuminate\Database\QueryException $ex) {
-        // string after the error code can change depending on actual state of the server.
-        static $errorCodes = ['SQLSTATE[HY000] [2002]', 'SQLSTATE[HY000] [2003]'];
-        if (starts_with($ex->getMessage(), $errorCodes)) {
-            Datadog::increment(
-                config('datadog-helper.prefix_web').'.db_fallback',
-                1,
-                compact('connection')
-            );
-
-            return $callable(config('database.default'));
-        }
-
-        throw $ex;
-    }
 }
 
 function obscure_email($email)
@@ -966,6 +961,7 @@ function nav_links()
         'charts' => route('rankings', ['mode' => $defaultMode, 'type' => 'charts']),
         'score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
         'country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
+        'multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
         'kudosu' => osu_url('rankings.kudosu'),
     ];
     $links['community'] = [
@@ -1227,7 +1223,7 @@ function get_bool($string)
  */
 function get_float($string)
 {
-    if (is_scalar($string)) {
+    if (present($string) && is_scalar($string)) {
         return (float) $string;
     }
 }
@@ -1238,7 +1234,7 @@ function get_float($string)
  */
 function get_int($string)
 {
-    if (is_scalar($string)) {
+    if (present($string) && is_scalar($string)) {
         return (int) $string;
     }
 }

@@ -115,6 +115,7 @@ return [
                 'rank' => 'Sıralama',
                 'score_total' => 'Toplam Skor',
                 'score' => 'Skor',
+                'time' => 'Zaman',
             ],
 
             'no_scores' => [

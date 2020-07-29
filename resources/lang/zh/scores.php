@@ -8,12 +8,12 @@ return [
         'title' => ':username在:title [:version]上的成绩',
 
         'beatmap' => [
-            'by' => '由 :artist',
+            'by' => '作者：:artist',
         ],
 
         'player' => [
             'by' => '玩家',
-            'submitted_on' => '提交于',
+            'submitted_on' => '达成时间',
 
             'rank' => [
                 'country' => '国内/区内排名',

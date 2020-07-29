@@ -45,6 +45,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     {
         return [
             'artist' => $beatmapset->artist,
+            'artist_unicode' => $beatmapset->artist_unicode,
             'covers' => $beatmapset->allCoverURLs(),
             'creator' => $beatmapset->creator,
             'favourite_count' => $beatmapset->favourite_count,
@@ -54,6 +55,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             'source' => $beatmapset->source,
             'status' => $beatmapset->status(),
             'title' => $beatmapset->title,
+            'title_unicode' => $beatmapset->title_unicode,
             'user_id' => $beatmapset->user_id,
             'video' => $beatmapset->video,
         ];
