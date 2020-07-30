@@ -27,7 +27,7 @@ export default class InputBox extends React.Component<any, any> implements Dispa
 
   private inputBoxRef = React.createRef<HTMLInputElement>();
 
-  buttonClicked = (e: React.MouseEvent<HTMLElement>) => {
+  buttonClicked = () => {
     this.sendMessage(this.currentChannel?.inputText);
     this.currentChannel?.setInputText('');
   }
