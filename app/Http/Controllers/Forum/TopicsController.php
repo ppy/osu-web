@@ -207,7 +207,7 @@ class TopicsController extends Controller
         $postEndId = $params['end'] ?? null;
         $nthPost = $params['n'] ?? null;
         $skipLayout = $params['skip_layout'] ?? false;
-        $showDeleted = $params['with_deleted'] ?? true;
+        $showDeleted = $params['with_deleted'] ?? null;
         $jumpTo = null;
 
         $topic = Topic
@@ -228,9 +228,15 @@ class TopicsController extends Controller
             abort(404);
         }
 
+        if ($userCanModerate) {
+            $showDeleted = $showDeleted ?? auth()->user()->profileCustomization()->forum_posts_show_deleted;
+        } else {
+            $showDeleted = false;
+        }
+
         priv_check('ForumView', $topic->forum)->ensureCan();
 
-        $posts = $topic->posts()->showDeleted($showDeleted && $userCanModerate);
+        $posts = $topic->posts()->showDeleted($showDeleted);
 
         if ($postStartId === 'unread') {
             $postStartId = Post::lastUnreadByUser($topic, Auth::user());
