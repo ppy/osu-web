@@ -14,18 +14,10 @@ import Message from 'models/chat/message';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
 
-interface State {
-  messages: { [key: string]: string };
-}
-
 @inject('dataStore')
 @observer
 @dispatchListener
-export default class InputBox extends React.Component<any, State> implements DispatchListener {
-
-  state: State = {
-    messages: {},
-  };
+export default class InputBox extends React.Component<any, any> implements DispatchListener {
 
   @computed
   get currentChannel() {
@@ -35,15 +27,15 @@ export default class InputBox extends React.Component<any, State> implements Dis
 
   private inputBoxRef = React.createRef<HTMLInputElement>();
 
-  buttonClicked = () => {
-    this.sendMessage(this.getMessage());
-    this.setMessage('');
+  buttonClicked = (e: React.MouseEvent<HTMLElement>) => {
+    this.sendMessage(this.currentChannel?.inputText);
+    this.currentChannel?.setInputText('');
   }
 
   checkIfEnterPressed = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
-      this.sendMessage(this.getMessage());
-      this.setMessage('');
+      this.sendMessage(this.currentChannel?.inputText);
+      this.currentChannel?.setInputText('');
     }
   }
 
@@ -57,14 +49,9 @@ export default class InputBox extends React.Component<any, State> implements Dis
     }
   }
 
-  getMessage = () => {
-    const key = `message-channel--${this.currentChannel?.channelId}`;
-    return this.state.messages[key] ?? '';
-  }
-
   handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const message = e.target.value;
-    this.setMessage(message);
+    this.currentChannel?.setInputText(message);
   }
 
   handleDispatchAction(action: DispatcherAction) {
@@ -92,7 +79,7 @@ export default class InputBox extends React.Component<any, State> implements Dis
           autoComplete='off'
           ref={this.inputBoxRef}
           onChange={this.handleChange}
-          value={this.getMessage()}
+          value={channel?.inputText}
         />
 
         <BigButton
@@ -142,11 +129,5 @@ export default class InputBox extends React.Component<any, State> implements Dis
     }
 
     dispatch(new ChatMessageSendAction(message));
-  }
-
-  setMessage = (message: string) => {
-    const key = `message-channel--${this.currentChannel?.channelId}`;
-    const messages = {...this.state.messages, [key]: message};
-    this.setState({ messages });
   }
 }
