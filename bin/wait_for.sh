@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Source: https://github.com/eficode/wait-for/blob/master/wait-for
-# Commit: f71f8199a0dd95953752fb5d3f76f79ced16d47d
+# Commit: 8d9b4446df0b71275ad1a1c68db0cc2bb6978228
 
 TIMEOUT=15
 QUIET=0
@@ -25,7 +25,7 @@ USAGE
 wait_for() {
   for i in `seq $TIMEOUT` ; do
     nc -z "$HOST" "$PORT" > /dev/null 2>&1
-    
+
     result=$?
     if [ $result -eq 0 ] ; then
       if [ $# -gt 0 ] ; then
