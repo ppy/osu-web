@@ -66,7 +66,7 @@ class Client extends PassportClient
 
         $redirect = trim($this->redirect);
         // TODO: this url validation is not very good.
-        if (present($redirect) && !filter_var(trim($redirect), FILTER_VALIDATE_URL)) {
+        if (present($redirect) && !filter_var($redirect, FILTER_VALIDATE_URL)) {
             $this->validationErrors()->add('redirect', '.url');
         }
 
