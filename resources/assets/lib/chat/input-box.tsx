@@ -9,30 +9,58 @@ import { BigButton } from 'big-button';
 import DispatchListener from 'dispatch-listener';
 import * as _ from 'lodash';
 import { inject, observer } from 'mobx-react';
+import { computed } from 'mobx';
 import Message from 'models/chat/message';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
 
+interface State {
+  messages: { [key: string]: string };
+}
+
 @inject('dataStore')
 @observer
 @dispatchListener
-export default class InputBox extends React.Component<any, any> implements DispatchListener {
+export default class InputBox extends React.Component<any, State> implements DispatchListener {
+
+  state: State = {
+    messages: {}
+  }
+
+  @computed
+  get currentChannel() {
+    const dataStore: RootDataStore = this.props.dataStore;
+    return dataStore.channelStore.get(dataStore.uiState.chat.selected);
+  }
+
   private inputBoxRef = React.createRef<HTMLInputElement>();
 
-  buttonClicked = (e: React.MouseEvent<HTMLElement>) => {
-    const target = $(e.currentTarget).parent().children('input')[0] as HTMLInputElement;
-    const message = target.value || '';
-    this.sendMessage(message);
-    target.value = '';
+  buttonClicked = () => {
+    this.sendMessage(this.getMessage());
+    this.setMessage('');
   }
 
   checkIfEnterPressed = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
-      const target = $(e.currentTarget)[0] as HTMLInputElement;
-      const message = target.value || '';
-      this.sendMessage(message);
-      target.value = '';
+      this.sendMessage(this.getMessage());
+      this.setMessage('');
     }
+  }
+
+  handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const message = e.target.value;
+    this.setMessage(message);
+  }
+
+  setMessage = (message: string) => {
+    const key = `message-channel--${this.currentChannel?.channelId}`;
+    const messages = {...this.state.messages, [key]: message};
+    this.setState({ messages });
+  }
+
+  getMessage = () => {
+    const key = `message-channel--${this.currentChannel?.channelId}`;
+    return this.state.messages[key] ?? '';
   }
 
   componentDidMount() {
@@ -56,8 +84,7 @@ export default class InputBox extends React.Component<any, any> implements Dispa
   }
 
   render(): React.ReactNode {
-    const dataStore: RootDataStore = this.props.dataStore;
-    const channel = dataStore.channelStore.get(dataStore.uiState.chat.selected);
+    const channel = this.currentChannel;
     const disableInput = !channel || channel.moderated;
 
     return (
@@ -70,6 +97,8 @@ export default class InputBox extends React.Component<any, any> implements Dispa
           disabled={disableInput}
           autoComplete='off'
           ref={this.inputBoxRef}
+          onChange={this.handleChange}
+          value={this.getMessage()}
         />
 
         <BigButton
