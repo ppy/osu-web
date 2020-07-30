@@ -78,6 +78,8 @@ return [
             'no_video' => 'без відэа',
             'direct' => 'адкрыць у osu!direct',
         ],
+
+        'beatmapset_title_show_original' => '',
     ],
 
     'playstyles' => [

@@ -43,7 +43,7 @@ return [
         'register' => 'Registro de aplicación',
         'terms_of_use' => [
             '_' => 'Al usar la API, usted acepta los :link.',
-            'link' => 'Términos de Uso',
+            'link' => 'términos de uso',
         ],
     ],
 

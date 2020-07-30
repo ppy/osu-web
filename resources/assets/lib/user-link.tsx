@@ -5,6 +5,7 @@ import { route } from 'laroute';
 import * as React from 'react';
 
 interface Props {
+  className?: string;
   user: {
     id: number;
     username: string;
@@ -13,9 +14,14 @@ interface Props {
 
 export class UserLink extends React.PureComponent<Props> {
   render() {
+    let className = 'js-usercard';
+    if (this.props.className != null) {
+      className += ` ${this.props.className}`;
+    }
+
     return (
       <a
-        className='js-usercard'
+        className={className}
         data-user-id={this.props.user.id}
         href={route('users.show', { user: this.props.user.id })}
       >

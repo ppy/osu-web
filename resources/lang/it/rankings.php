@@ -6,7 +6,7 @@
 return [
     'countries' => [
         'all' => 'Tutti',
-        'title' => '',
+        'title' => 'Paese',
     ],
 
     'filter' => [
@@ -20,7 +20,7 @@ return [
     'type' => [
         'charts' => 'Spotlight',
         'country' => 'Paese',
-        'multiplayer' => '',
+        'multiplayer' => 'multigiocatore',
         'performance' => 'Performance',
         'score' => 'Punteggio',
     ],

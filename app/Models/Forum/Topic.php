@@ -128,7 +128,7 @@ class Topic extends Model implements AfterCommit
         ]);
         $topic->forum()->associate($forum);
 
-        $topic->getConnection()->transaction(function () use ($forum, $topic, $params, $poll) {
+        $topic->getConnection()->transaction(function () use ($topic, $params, $poll) {
             $topic->saveOrExplode();
             $topic->addPostOrExplode($params['user'], $params['body'], false);
 
