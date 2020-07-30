@@ -8,8 +8,8 @@ import { dispatch, dispatchListener } from 'app-dispatcher';
 import { BigButton } from 'big-button';
 import DispatchListener from 'dispatch-listener';
 import * as _ from 'lodash';
-import { inject, observer } from 'mobx-react';
 import { computed } from 'mobx';
+import { inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
@@ -24,8 +24,8 @@ interface State {
 export default class InputBox extends React.Component<any, State> implements DispatchListener {
 
   state: State = {
-    messages: {}
-  }
+    messages: {},
+  };
 
   @computed
   get currentChannel() {
@@ -47,22 +47,6 @@ export default class InputBox extends React.Component<any, State> implements Dis
     }
   }
 
-  handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const message = e.target.value;
-    this.setMessage(message);
-  }
-
-  setMessage = (message: string) => {
-    const key = `message-channel--${this.currentChannel?.channelId}`;
-    const messages = {...this.state.messages, [key]: message};
-    this.setState({ messages });
-  }
-
-  getMessage = () => {
-    const key = `message-channel--${this.currentChannel?.channelId}`;
-    return this.state.messages[key] ?? '';
-  }
-
   componentDidMount() {
     this.focusInput();
   }
@@ -71,6 +55,16 @@ export default class InputBox extends React.Component<any, State> implements Dis
     if (this.inputBoxRef.current) {
       this.inputBoxRef.current.focus();
     }
+  }
+
+  getMessage = () => {
+    const key = `message-channel--${this.currentChannel?.channelId}`;
+    return this.state.messages[key] ?? '';
+  }
+
+  handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const message = e.target.value;
+    this.setMessage(message);
   }
 
   handleDispatchAction(action: DispatcherAction) {
@@ -148,5 +142,11 @@ export default class InputBox extends React.Component<any, State> implements Dis
     }
 
     dispatch(new ChatMessageSendAction(message));
+  }
+
+  setMessage = (message: string) => {
+    const key = `message-channel--${this.currentChannel?.channelId}`;
+    const messages = {...this.state.messages, [key]: message};
+    this.setState({ messages });
   }
 }
