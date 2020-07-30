@@ -148,7 +148,7 @@ class ChatController extends Controller
         $lastHistoryId = get_int($params['history_since'] ?? null);
 
         if ($lastHistoryId === null) {
-            $previousMessage = Message::find($since);
+            $previousMessage = Message::where('message_id', '<=', $since)->last();
 
             if ($previousMessage === null) {
                 $silenceQuery->none();
