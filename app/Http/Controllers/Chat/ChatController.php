@@ -145,7 +145,7 @@ class ChatController extends Controller
         $messages = $messages->get()->reverse();
 
         $silenceQuery = UserAccountHistory::bans()->limit(100);
-        $lastHistoryId = get_int($params['since_history'] ?? null);
+        $lastHistoryId = get_int($params['history_since'] ?? null);
 
         if ($lastHistoryId === null) {
             $previousMessage = Message::find($since);

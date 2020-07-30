@@ -18,7 +18,7 @@ export default class ChatAPI {
 
   getUpdates(since: number, lastHistoryId?: number | null): Promise<ApiResponses.GetUpdatesJSON> {
     return new Promise((resolve, reject) => {
-      $.get(route('chat.updates'), { since, since_history: lastHistoryId })
+      $.get(route('chat.updates'), { since, history_since: lastHistoryId })
       .done((response) => {
         resolve(response as ApiResponses.GetUpdatesJSON);
       }).fail((error) => {
