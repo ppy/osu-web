@@ -122,7 +122,8 @@ export default class Channel {
     this.messages = _(this.messages).sortBy('timestamp').uniqBy('messageId').value();
   }
 
-  @action setInputText(message: string) {
+  @action
+  setInputText(message: string) {
     this.inputText = message;
   }
 
