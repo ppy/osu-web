@@ -53,6 +53,7 @@ class Kernel extends ConsoleKernel
         Commands\FixForumDisplayOrder::class,
 
         Commands\MigrateFreshAllCommand::class,
+        Commands\MigrateFreshOrRunCommand::class,
 
         Commands\NotificationsSendMail::class,
 

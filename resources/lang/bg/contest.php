@@ -10,7 +10,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'списък',
     ],
 
     'voting' => [
@@ -52,8 +52,8 @@ return [
         'points' => ':count точка|:count точки',
     ],
     'dates' => [
-        'ended' => 'Завърши на :date',
-        'ended_no_date' => '',
+        'ended' => 'Приключи на :date',
+        'ended_no_date' => 'Приключи',
 
         'starts' => [
             '_' => 'Започва на :date',

@@ -78,6 +78,8 @@ return [
             'no_video' => 'fără video',
             'direct' => 'deschis în osu!direct',
         ],
+
+        'beatmapset_title_show_original' => '',
     ],
 
     'playstyles' => [

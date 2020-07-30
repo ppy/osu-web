@@ -6,7 +6,7 @@
 return [
     'countries' => [
         'all' => '모두',
-        'title' => '',
+        'title' => '국가별',
     ],
 
     'filter' => [
@@ -20,7 +20,7 @@ return [
     'type' => [
         'charts' => '스포트라이트',
         'country' => '국가별',
-        'multiplayer' => '',
+        'multiplayer' => '멀티플레이어',
         'performance' => '퍼포먼스',
         'score' => '점수',
     ],

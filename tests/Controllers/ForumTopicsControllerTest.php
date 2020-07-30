@@ -113,6 +113,7 @@ class ForumTopicsControllerTest extends TestCase
 
         $initialPostCount = Forum\Post::count();
         $initialTopicCount = Forum\Topic::count();
+        $initialTopicTrackCount = Forum\TopicTrack::count();
 
         // fail because no plays =)
         $this
@@ -125,6 +126,7 @@ class ForumTopicsControllerTest extends TestCase
 
         $this->assertSame($initialPostCount, Forum\Post::count());
         $this->assertSame($initialTopicCount, Forum\Topic::count());
+        $this->assertSame($initialTopicTrackCount, Forum\TopicTrack::count());
 
         // add some plays so it passes
         $this->addPlaycount($user);
@@ -144,6 +146,7 @@ class ForumTopicsControllerTest extends TestCase
 
         $this->assertSame($initialPostCount + 1, Forum\Post::count());
         $this->assertSame($initialTopicCount + 1, Forum\Topic::count());
+        $this->assertSame($initialTopicTrackCount + 1, Forum\TopicTrack::count());
     }
 
     public function testUpdateTitle()
