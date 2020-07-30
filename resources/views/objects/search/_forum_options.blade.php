@@ -45,7 +45,7 @@ if (isset($fields)) {
             <input
                 name="{{ $fields['topicId'] }}"
                 value="{{ request($fields['topicId']) }}"
-                class="search-forum-options__input search-forum-options__input--text"
+                class="form-text"
             >
         </label>
     @elseif ($fields['forumId'] !== null)
