@@ -126,6 +126,13 @@ return [
 
         'cluster' => false,
 
+        'cache' => [
+            'host' => presence(env('CACHE_REDIS_HOST')) ?? presence(env('REDIS_HOST')) ?? '127.0.0.1',
+            'port' => get_int(env('CACHE_REDIS_PORT')) ?? get_int(env('REDIS_PORT')) ?? 6379,
+            'database' => get_int(env('CACHE_REDIS_DB')) ?? 0,
+            'persistent' => true,
+        ],
+
         'default' => [
             'host' => presence(env('REDIS_HOST')) ?? '127.0.0.1',
             'port' => get_int(env('REDIS_PORT')) ?? 6379,
