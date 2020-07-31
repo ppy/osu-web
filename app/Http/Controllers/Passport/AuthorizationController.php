@@ -34,14 +34,14 @@ class AuthorizationController extends PassportAuthorizationController
                               ClientRepository $clients,
                               TokenRepository $tokens)
     {
-        if (!auth()->check()) {
-            $cancelUrl = presence(request('redirect_uri'));
+        $redirectUri = presence(trim($request['redirect_uri']));
 
-            if ($cancelUrl !== null) {
-                // Breaks when url contains hash ("#").
-                $separator = strpos($cancelUrl, '?') === false ? '?' : '&';
-                $cancelUrl .= "{$separator}error=access_denied";
-            }
+        abort_if($redirectUri === null, 400, trans('model_validation.required', ['attribute' => 'redirect_uri']));
+
+        if (!auth()->check()) {
+            // Breaks when url contains hash ("#").
+            $separator = strpos($redirectUri, '?') === false ? '?' : '&';
+            $cancelUrl = "{$redirectUri}{$separator}error=access_denied";
 
             return ext_view('sessions.create', [
                 'cancelUrl' => $cancelUrl,
