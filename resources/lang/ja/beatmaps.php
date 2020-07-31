@@ -304,6 +304,7 @@ return [
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
         'TD' => '液晶タブレット',
+        'V2' => '',
     ],
     'language' => [
         'any' => '全て',

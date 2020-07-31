@@ -304,6 +304,7 @@ return [
         'SD' => 'Muerte Súbita',
         'SO' => 'Spun Out',
         'TD' => 'Dispositivo touch',
+        'V2' => '',
     ],
     'language' => [
         'any' => 'Cualquiera',
@@ -323,7 +324,7 @@ return [
         'unspecified' => 'no especificado',
     ],
     'played' => [
-        'any' => 'Cualquiera',
+        'any' => 'Cualquier',
         'played' => 'Ya jugado',
         'unplayed' => 'No jugado',
     ],

@@ -78,6 +78,8 @@ return [
             'no_video' => '영상이 없는 비트맵으로 받기',
             'direct' => 'osu!direct에서 열기',
         ],
+
+        'beatmapset_title_show_original' => '',
     ],
 
     'playstyles' => [

@@ -5,22 +5,22 @@
 
 return [
     'countries' => [
-        'all' => '',
-        'title' => '',
+        'all' => 'Всички',
+        'title' => 'Държава',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Покажи',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Вариант',
         ],
     ],
 
     'type' => [
         'charts' => 'В светлината на прожектора',
         'country' => 'Държава',
-        'multiplayer' => '',
+        'multiplayer' => 'мултиплейър',
         'performance' => 'Изпълнение',
         'score' => 'Резултат',
     ],

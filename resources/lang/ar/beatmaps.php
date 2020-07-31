@@ -174,8 +174,8 @@ return [
 
     'nominations' => [
         'delete' => 'حذف',
-        'delete_own_confirm' => 'هل انت متأكد؟ سوف تمسح الخريطة وسوف يتم ارجاعك الى ملفك الشخصي.',
-        'delete_other_confirm' => 'هل انت متأكد؟ سوف تمسح الخريطة وسوف يتم ارجاعك الى ملف المستخدم الشخصي.',
+        'delete_own_confirm' => 'هل انت متأكد؟ سوف تمسح الخريطة وسيتم ارجاعك الى ملفك الشخصي.',
+        'delete_other_confirm' => 'هل انت متأكد؟ سوف تمسح الخريطة وسيتم ارجاعك الى ملف المستخدم الشخصي.',
         'disqualification_prompt' => 'سبب رفض التأهيل؟',
         'disqualified_at' => 'رفض تأهيلها في :time_ago (:reason).',
         'disqualified_no_reason' => 'لم يتم كتابة سبب معين',
@@ -304,6 +304,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
+        'V2' => '',
     ],
     'language' => [
         'any' => '',

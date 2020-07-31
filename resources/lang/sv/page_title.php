@@ -128,7 +128,7 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => '',
+            '_' => 'rankning',
         ],
     ],
     'store' => [

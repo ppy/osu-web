@@ -96,7 +96,7 @@ return [
             'country' => 'țară',
             'index' => 'performanță',
             'kudosu' => 'kudosu',
-            'multiplayer' => '',
+            'multiplayer' => 'multiplayer',
             'score' => 'scor',
         ],
         'store' => [

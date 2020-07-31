@@ -1,0 +1,61 @@
+FROM ubuntu:20.04
+
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    composer \
+    jhead \
+    nginx \
+    php-common \
+    php-curl \
+    php-fpm \
+    php-gd \
+    php-intl \
+    php-json \
+    php-mbstring \
+    php-mysql \
+    php-redis \
+    php-sqlite3 \
+    php-tokenizer \
+    php-xml \
+    php-zip \
+    yarnpkg \
+    zip
+
+WORKDIR /app
+
+COPY composer.json composer.lock ./
+RUN composer install --no-autoloader --no-dev
+
+COPY package.json yarn.lock ./
+RUN yarnpkg
+
+RUN rm -f /var/log/nginx/access.log /var/log/nginx/error.log && \
+    ln -s /dev/stdout /var/log/nginx/access.log && \
+    ln -s /dev/stderr /var/log/nginx/error.log
+
+COPY . .
+RUN mkdir -p bootstrap/cache storage/framework/views
+RUN composer dump-autoload
+
+ARG APP_URL
+ARG DOCS_URL
+ARG PAYMENT_SANDBOX
+ARG SHOPIFY_DOMAIN
+ARG SHOPIFY_STOREFRONT_TOKEN
+RUN yarnpkg production
+
+RUN rm -rf node_modules
+
+ARG GIT_SHA
+RUN printf "%s" "$GIT_SHA" > version
+
+RUN useradd -m osuweb
+RUN chown -R osuweb bootstrap/cache storage /var/lib/nginx
+USER osuweb
+ENV LOG_CHANNEL stderr
+
+EXPOSE 8000
+EXPOSE 9000
+
+ENTRYPOINT ["/app/docker/deployment/entrypoint.sh"]
+CMD ["php"]
