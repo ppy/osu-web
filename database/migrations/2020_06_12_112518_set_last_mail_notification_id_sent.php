@@ -19,7 +19,7 @@ class SetLastMailNotificationIdSent extends Migration
         $userNotification = UserNotification::where('is_read', false)->hasMailDelivery()->first();
         if ($userNotification) {
             $last = Count::lastMailNotificationIdSent();
-            $last->count = $userNotification->getKey();
+            $last->count = $userNotification->notification_id;
             $last->save();
         }
     }
