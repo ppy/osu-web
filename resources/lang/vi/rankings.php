@@ -6,6 +6,7 @@
 return [
     'countries' => [
         'all' => '',
+        'title' => '',
     ],
 
     'filter' => [
@@ -17,10 +18,11 @@ return [
     ],
 
     'type' => [
-        'performance' => 'Performance',
         'charts' => 'Tiêu điểm',
-        'score' => 'Điểm',
         'country' => 'Quốc Gia',
+        'multiplayer' => '',
+        'performance' => 'Performance',
+        'score' => 'Điểm',
     ],
 
     'spotlight' => [

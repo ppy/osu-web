@@ -17,7 +17,7 @@ return [
     ],
 
     'status' => [
-        'read' => 'Leer',
-        'unread' => 'No leer',
+        'read' => 'Leído',
+        'unread' => 'No leído',
     ],
 ];

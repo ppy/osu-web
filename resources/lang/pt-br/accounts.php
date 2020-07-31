@@ -78,6 +78,8 @@ return [
             'no_video' => 'sem vídeo',
             'direct' => 'abrir no osu!direct',
         ],
+
+        'beatmapset_title_show_original' => '',
     ],
 
     'playstyles' => [

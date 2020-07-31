@@ -275,10 +275,11 @@ return [
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Elektronisk',
-        'metal' => '',
-        'classical' => '',
-        'folk' => '',
-        'jazz' => '',
+        'metal' => 'Metal',
+        'classical' => 'Klassisk
+',
+        'folk' => 'Folkemusik',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '4K',
@@ -304,6 +305,7 @@ return [
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
         'TD' => 'Touch Device',
+        'V2' => '',
     ],
     'language' => [
         'any' => 'Vilkårlig',
@@ -316,11 +318,11 @@ return [
         'korean' => 'Koreansk',
         'spanish' => 'Spansk',
         'swedish' => 'Svensk',
-        'russian' => '',
-        'polish' => '',
+        'russian' => 'Russisk',
+        'polish' => 'Polsk',
         'instrumental' => 'Instrumentalt',
         'other' => 'Andet',
-        'unspecified' => '',
+        'unspecified' => 'Uspecificeret',
     ],
     'played' => [
         'any' => 'Vilkårlig',

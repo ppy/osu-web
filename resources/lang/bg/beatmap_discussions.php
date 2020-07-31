@@ -8,7 +8,7 @@ return [
         'update' => [
             'null_user' => 'Влезте в профила си, за да редактирате.',
             'system_generated' => 'Системно-генерираният пост не може да бъде редактиран.',
-            'wrong_user' => 'Трябва да сте собственик на този пост да редактирате.',
+            'wrong_user' => 'Трябва да сте собственик на тази публикация да редактирате.',
         ],
     ],
 
@@ -18,23 +18,23 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'изтрито',
-        'none_found' => '',
+        'none_found' => 'Няма открити дискусии, които отговарят на критерия за търсене.',
         'title' => 'Бийтмап Дискусии',
 
         'form' => [
             '_' => 'Търсене',
             'deleted' => 'Включете изтрити дискусии',
-            'only_unresolved' => '',
+            'only_unresolved' => 'Покажи само нерешените дискусии',
             'types' => 'Тип съобщения',
             'username' => 'Потребителско име',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => 'Бийтмап статус',
+                'all' => 'Всички',
+                'disqualified' => 'Дисквалифициран',
+                'never_qualified' => 'Никога квалифициран',
+                'qualified' => 'Квалифициран',
+                'ranked' => 'Класиран',
             ],
 
             'user' => [
@@ -64,16 +64,16 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_parent' => 'Виж ревюто',
+        'go_to_child' => 'Виж дискусията',
         'validation' => [
-            'block_too_large' => '',
-            'external_references' => '',
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'block_too_large' => 'всеки блок може да има до :limit знака',
+            'external_references' => 'ревюто съдържа препратки до проблеми, които не принадлежат на това ревю',
+            'invalid_block_type' => 'невалиден тип блок',
+            'invalid_document' => 'невалидно ревю',
+            'minimum_issues' => 'ревюто трябва да съдържа минимум :count проблем|ревюто трябва да съдържа минимум :count проблема',
+            'missing_text' => 'липсва текст в блока',
+            'too_many_blocks' => 'ревютата може да съдържат само :count параграфа/проблема|ревютата може да съдържат до :count параграфа/проблема ',
         ],
     ],
 
@@ -85,8 +85,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'общо',
+        'general_all' => 'общо (всички)',
     ],
 
     'user_filter' => [

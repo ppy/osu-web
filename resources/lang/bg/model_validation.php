@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => 'Зададен е невалиден :attribute.',
     'not_negative' => ':attribute не може да бъде отрицателно.',
     'required' => ':attribute е задължително.',
     'too_long' => ':attribute превишена максимална дължина - може да бъде само до :limit символа.',
@@ -19,12 +19,12 @@ return [
         'locked' => 'Дискусията е заключена.',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => 'Вид на съобщението',
+            'timestamp' => 'Времева отметка',
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Този бийтмап е в момента заключен за дискусии и не може да бъде надъхван",
             'guest' => 'Трябва да влезете в профила си за да надъхате.',
             'hyped' => 'Вие вече сте надъхали този бийтмап.',
             'limit_exceeded' => 'Използвахте си цялото надъхване.',
@@ -43,21 +43,21 @@ return [
         'first_post' => 'Не можете да изтриете началната публикация.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Съобщението',
         ],
     ],
 
     'comment' => [
         'deleted_parent' => 'Не е позволено отговарянето на изтрит коментар.',
-        'top_only' => '',
+        'top_only' => 'Прикрепянето на отговора на коментара не е позволено.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Съобщението',
         ],
     ],
 
     'follow' => [
-        'invalid' => '',
+        'invalid' => 'Зададен е невалиден :attribute.',
     ],
 
     'forum' => [
@@ -76,13 +76,13 @@ return [
             'only_quote' => 'Вашият отговор съдържа само цитат.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Съдържание на публикацията',
             ],
         ],
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Заглавие на темата',
             ],
         ],
 
@@ -96,7 +96,7 @@ return [
             'too_many_options' => 'Достигнат е максимум брой позволени опции.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Име на анкетата',
             ],
         ],
 
@@ -108,12 +108,12 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
-            'url' => '',
+            'too_many' => 'Достигнат е максимум брой позволени OAuth приложения.',
+            'url' => 'Въведете валиден URL.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Име на приложението',
+                'redirect' => 'Callback URL на приложението',
             ],
         ],
     ],
@@ -124,7 +124,7 @@ return [
         'invalid_country' => 'Страната не е в базата данни.',
         'invalid_discord' => 'Потребителското име за Discord е невалидно.',
         'invalid_email' => "Това не изглежда да е валиден имейл адрес.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Невалидно Twitter потребителско име.',
         'too_short' => 'Новата парола е твърде къса.',
         'unknown_duplicate' => 'Потребителското име или имейл адресът вече се използват.',
         'username_available_in' => 'Това потребителско име ще стане достъпно за употреба след :duration.',
@@ -144,13 +144,13 @@ return [
         'too_long' => 'Превишена максимална дължина - може да бъде само до :limit символа.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Потребителско име',
+            'user_email' => 'Имейл адрес',
+            'password' => 'Парола',
         ],
 
         'change_username' => [
-            'restricted' => '',
+            'restricted' => 'Смяната на потребителското си име е невъзможно, докато сте с ограничен статут.',
             'supporter_required' => [
                 '_' => 'Трябва да сте :link , за да промените името си!',
                 'link_text' => 'подкрепили osu!',
@@ -160,15 +160,15 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason е невалидна причина за този тип докладване.',
         'self' => "Не може да докладвате себе си!",
     ],
 
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Количество',
+                'cost' => 'Цена',
             ],
         ],
     ],

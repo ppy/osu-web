@@ -96,6 +96,7 @@ return [
             'country' => 'ประเทศ',
             'index' => 'ประสิทธิภาพ',
             'kudosu' => 'kudosu',
+            'multiplayer' => '',
             'score' => 'คะแนน',
         ],
         'store' => [

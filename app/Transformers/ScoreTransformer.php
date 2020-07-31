@@ -50,6 +50,7 @@ class ScoreTransformer extends TransformerAbstract
         if ($score instanceof ScoreModel) {
             $ret['mode'] = $score->getMode();
             $ret['mode_int'] = Beatmap::modeInt($score->getMode());
+            $ret['replay'] = $score->best->replay ?? false;
         }
 
         if ($score instanceof ScoreBest) {

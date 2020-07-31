@@ -126,6 +126,11 @@ return [
             '_' => 'kennisbank',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => 'ranglijst',
+        ],
+    ],
     'store' => [
         '_' => 'osu!store',
     ],

@@ -4,7 +4,7 @@
 --}}
 @extends('master', [
     'titlePrepend' => trans('beatmaps.discussions.show.title', [
-        'title' => $beatmapset->title,
+        'title' => $beatmapset->getDisplayTitle(auth()->user()),
         'mapper' => $beatmapset->user->username ?? '?',
     ]),
 ])

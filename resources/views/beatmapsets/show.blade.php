@@ -11,7 +11,7 @@
 @endif
 @extends('master', [
     'pageDescription' => $beatmapset->toMetaDescription(),
-    'titlePrepend' => "{$beatmapset->artist} - {$beatmapset->title}",
+    'titlePrepend' => "{$beatmapset->getDisplayArtist(auth()->user())} - {$beatmapset->getDisplayTitle(auth()->user())}",
     'extraFooterLinks' => $extraFooterLinks ?? [],
 ])
 

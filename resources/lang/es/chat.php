@@ -9,8 +9,8 @@ return [
     'title_compact' => 'chat',
 
     'cannot_send' => [
-        'channel' => 'No puedes enviar mensajes a este canal en este momento. Esto puede ser debido a cualquiera de las siguientes razones:',
-        'user' => 'No puedes enviar mensajes a este canal en este momento. Esto puede ser debido a cualquiera de las siguientes razones:',
+        'channel' => 'No puede enviar un mensaje a este canal en este momento. Esto puede deberse a cualquiera de las siguientes razones:',
+        'user' => 'No puede enviar un mensaje a este usuario en este momento. Esto puede deberse a cualquiera de las siguientes razones:',
         'reasons' => [
             'blocked' => 'Usted fue bloqueado por el destinatario',
             'channel_moderated' => 'El canal ha sido moderado',
@@ -25,8 +25,8 @@ return [
         'send' => 'Enviar',
     ],
     'no-conversations' => [
-        'howto' => "Inicia conversaciones desde el perfil de un usuario o con un usercard popup.",
-        'lazer' => 'Los canales a los que te unas por medio de <a href=":link">osu!lazer</a> aparecerán aquí.',
-        'title' => 'sin conversaciones',
+        'howto' => "Inicie conversaciones desde el perfil de un usuario o desde una tarjeta de usuario emergente.",
+        'lazer' => 'Los canales públicos a los que se una a través de <a href=":link">osu!lazer</a> también serán visibles aquí.',
+        'title' => 'aún no hay conversaciones',
     ],
 ];

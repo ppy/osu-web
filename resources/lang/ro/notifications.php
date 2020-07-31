@@ -5,18 +5,18 @@
 
 return [
     'all_read' => 'Toate notificările citite!',
-    'mark_read' => '',
-    'none' => '',
-    'see_all' => '',
+    'mark_read' => 'Curăță :type',
+    'none' => 'Nicio notificare',
+    'see_all' => 'vedeți toate notificările',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'build' => '',
-        'channel' => '',
+        '_' => 'tot',
+        'user' => 'profil',
+        'beatmapset' => 'beatmaps',
+        'forum_topic' => 'forum',
+        'news_post' => 'ştiri',
+        'build' => 'construcții',
+        'channel' => 'chat',
     ],
 
     'item' => [
@@ -28,25 +28,25 @@ return [
                 'beatmapset_discussion_lock' => 'Discuția pe ":title" a fost închisă',
                 'beatmapset_discussion_lock_compact' => 'Discuția a fost închisă',
                 'beatmapset_discussion_post_new' => 'Postare nouă pe ":title" de :username',
-                'beatmapset_discussion_post_new_empty' => '',
+                'beatmapset_discussion_post_new_empty' => 'Postare nouă pe ":title" de :username',
                 'beatmapset_discussion_post_new_compact' => 'Postare nouă de :username',
-                'beatmapset_discussion_post_new_compact_empty' => '',
-                'beatmapset_discussion_review_new' => '',
-                'beatmapset_discussion_review_new_compact' => '',
+                'beatmapset_discussion_post_new_compact_empty' => 'Postare nouă de :username',
+                'beatmapset_discussion_review_new' => 'Noua recenzie ":title" de :username care conține probleme: :problems, sugestii: :suggestions, laude: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Noua recenzie de :username care conține probleme: :problems, sugestii: :suggestions, laude: :praises',
                 'beatmapset_discussion_unlock' => 'Discuția pe ":title" a fost redeschisă',
                 'beatmapset_discussion_unlock_compact' => 'Discuția a fost redeschisă',
             ],
 
             'beatmapset_problem' => [
-                '_' => '',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_empty' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
-                'beatmapset_discussion_qualified_problem_compact_empty' => '',
+                '_' => 'Problemă de beatmap calificat',
+                'beatmapset_discussion_qualified_problem' => 'Raportat de :username on ":title": ":content"',
+                'beatmapset_discussion_qualified_problem_empty' => 'Raportat de :username pe ":title"',
+                'beatmapset_discussion_qualified_problem_compact' => 'Raportat de :username: ":content"',
+                'beatmapset_discussion_qualified_problem_compact_empty' => 'Raportat de :username',
             ],
 
             'beatmapset_state' => [
-                '_' => '',
+                '_' => 'Starea Beatmap-ului s-a schimbat',
                 'beatmapset_disqualify' => ':title a fost descalificat',
                 'beatmapset_disqualify_compact' => 'Beatmap-ul a fost descalificat',
                 'beatmapset_love' => ':title a fost promovat la loved',
@@ -55,10 +55,10 @@ return [
                 'beatmapset_nominate_compact' => 'Beatmap-ul a fost nominat',
                 'beatmapset_qualify' => ':title a starns destule nominații si a intrat în ranking queue',
                 'beatmapset_qualify_compact' => 'Beatmap-ul a intrat în ranking queue',
-                'beatmapset_rank' => '',
-                'beatmapset_rank_compact' => '',
-                'beatmapset_reset_nominations' => '',
-                'beatmapset_reset_nominations_compact' => '',
+                'beatmapset_rank' => ':title a fost premiat',
+                'beatmapset_rank_compact' => 'Beatmap-ul a fost premiat',
+                'beatmapset_reset_nominations' => 'Nominația ":title" a fost resetată',
+                'beatmapset_reset_nominations_compact' => 'Nominația a fost resetată',
             ],
 
             'comment' => [
@@ -108,14 +108,14 @@ return [
             '_' => 'Subiect forum',
 
             'forum_topic_reply' => [
-                '_' => '',
+                '_' => 'Un nou răspuns pe forum',
                 'forum_topic_reply' => ':username a răspuns la ":title"',
                 'forum_topic_reply_compact' => ':username a răspuns',
             ],
         ],
 
         'legacy_pm' => [
-            '_' => '',
+            '_' => 'PM vechi forum',
 
             'legacy_pm' => [
                 '_' => '',
@@ -129,7 +129,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Medalie nouă',
                 'user_achievement_unlock' => 'Deblocat ":title"!',
-                'user_achievement_unlock_compact' => '',
+                'user_achievement_unlock_compact' => 'Deblocat ":title"!',
             ],
         ],
     ],

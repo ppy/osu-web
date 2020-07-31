@@ -6,6 +6,7 @@
 return [
     'countries' => [
         'all' => '',
+        'title' => '國家',
     ],
 
     'filter' => [
@@ -17,10 +18,11 @@ return [
     ],
 
     'type' => [
-        'performance' => '成績',
         'charts' => '月賽',
-        'score' => '總分',
         'country' => '國家',
+        'multiplayer' => '多人遊戲',
+        'performance' => '成績',
+        'score' => '總分',
     ],
 
     'spotlight' => [

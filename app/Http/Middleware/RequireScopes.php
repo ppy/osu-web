@@ -15,6 +15,7 @@ class RequireScopes
     const NO_TOKEN_REQUIRED = [
         'api/v2/changelog/',
         'api/v2/comments/',
+        'api/v2/news/',
         'api/v2/seasonal-backgrounds/',
         'api/v2/wiki/',
     ];
@@ -44,12 +45,12 @@ class RequireScopes
             throw new AuthenticationException();
         }
 
-        if ($token->isClientCredentials() && $token->scopes === ['*']) {
-            throw new MissingScopeException(['*'], '* is not allowed with Client Credentials');
-        }
-
         if (empty($token->scopes)) {
             throw new MissingScopeException([], 'Tokens without scopes are not valid.');
+        }
+
+        if ($token->isClientCredentials() && in_array('*', $token->scopes, true)) {
+            throw new MissingScopeException(['*'], '* is not allowed with Client Credentials');
         }
 
         if (!$this->requestHasScopedMiddleware(request())) {

@@ -5,22 +5,24 @@
 
 return [
     'countries' => [
-        'all' => '',
+        'all' => 'Tot',
+        'title' => 'Țară',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Arată',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Variantă',
         ],
     ],
 
     'type' => [
-        'performance' => 'performanță',
         'charts' => 'În lumina reflectoarelor',
-        'score' => 'scor',
         'country' => 'pe țară',
+        'multiplayer' => 'multiplayer',
+        'performance' => 'performanță',
+        'score' => 'scor',
     ],
 
     'spotlight' => [

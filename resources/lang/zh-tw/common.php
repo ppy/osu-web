@@ -128,6 +128,21 @@ return [
         'count_miss' => 'Miss',
     ],
 
+    'scoreboard_time' => [
+        'd' => '%d 天',
+        'dd' => '%d 天',
+        'h' => '%d 小時',
+        'hh' => '%d 小時',
+        'M' => '%d 月',
+        'm' => '%d 分鐘',
+        'MM' => '%d 月',
+        'mm' => '%d 分鐘',
+        'past' => '%s',
+        's' => '%d 秒',
+        'y' => '%d 年',
+        'yy' => '%d 年',
+    ],
+
     'time' => [
         'days_ago' => ':count 天前',
         'hours_ago' => ':count 小時前',

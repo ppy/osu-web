@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => 'Saat ini online',
         'missingtext' => 'Mungkin Anda salah ketik! (atau pengguna mungkin telah diblokir)',
         'origin_country' => 'Dari :country',
-        'page_description' => 'osu! - Segala sesuatu yang ingin Anda ketahui tentang :username!',
         'previous_usernames' => 'dulu dikenal sebagai',
         'plays_with' => 'Bermain menggunakan :devices',
         'title' => "profil :username",

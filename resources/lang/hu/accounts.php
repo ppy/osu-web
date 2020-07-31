@@ -78,6 +78,8 @@ return [
             'no_video' => 'Videó nélkül',
             'direct' => 'Megnyitás osu!direct-ben',
         ],
+
+        'beatmapset_title_show_original' => '',
     ],
 
     'playstyles' => [

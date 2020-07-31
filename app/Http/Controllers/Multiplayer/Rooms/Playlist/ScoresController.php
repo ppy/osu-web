@@ -9,6 +9,7 @@ use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
 use App\Libraries\DbCursorHelper;
 use App\Libraries\Multiplayer\Mod;
+use App\Models\Build;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Room;
@@ -100,7 +101,7 @@ class ScoresController extends BaseController
      *
      * Get a Score
      *
-     * Returns detail of specified score.
+     * Returns detail of specified score and the surrounding scores.
      *
      * ---
      *
@@ -127,10 +128,50 @@ class ScoresController extends BaseController
         );
     }
 
+    /**
+     * @group Multiplayer
+     *
+     * Get User High Score
+     *
+     * Returns detail of highest score of specified user and the surrounding scores.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [MultiplayerScore](#multiplayerscore) object.
+     *
+     * @authenticated
+     *
+     * @urlParam room required Id of the room.
+     * @urlParam playlist required Id of the playlist item.
+     * @urlParam user required User id.
+     */
+    public function showUser($roomId, $playlistId, $userId)
+    {
+        $room = Room::find($roomId) ?? abort(404, 'Invalid room id');
+        $playlistItem = $room->playlist()->find($playlistId) ?? abort(404, 'Invalid playlist id');
+        $score = $playlistItem->highScores()->where('user_id', $userId)->firstOrFail()->score ?? abort(404);
+
+        return json_item(
+            $score,
+            'Multiplayer\Score',
+            array_merge(['position', 'scores_around'], ScoreTransformer::BASE_INCLUDES)
+        );
+    }
+
     public function store($roomId, $playlistId)
     {
         $room = Room::findOrFail($roomId);
         $playlistItem = $room->playlist()->where('id', $playlistId)->firstOrFail();
+
+        $clientHash = presence(request('version_hash'));
+        abort_if($clientHash === null, 422, 'missing client version');
+        Build::where([
+            'hash' => hex2bin($clientHash),
+            'allow_ranking' => true,
+        ])->firstOrFail();
+
         $score = $room->startPlay(auth()->user(), $playlistItem);
 
         return json_item(

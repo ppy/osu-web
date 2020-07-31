@@ -5,19 +5,19 @@
 
 return [
     'show' => [
-        'title' => '',
+        'title' => ':username pe :title [:version]',
 
         'beatmap' => [
-            'by' => '',
+            'by' => 'de :artist',
         ],
 
         'player' => [
-            'by' => '',
-            'submitted_on' => '',
+            'by' => 'Jucat de',
+            'submitted_on' => 'Trimis pe',
 
             'rank' => [
-                'country' => '',
-                'global' => '',
+                'country' => 'Clasament pe țară',
+                'global' => 'Clasament Global',
             ],
         ],
     ],

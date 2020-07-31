@@ -115,6 +115,7 @@ return [
                 'rank' => 'Κατάταξη',
                 'score_total' => 'Συνολικό Σκορ',
                 'score' => 'Σκορ',
+                'time' => '',
             ],
 
             'no_scores' => [

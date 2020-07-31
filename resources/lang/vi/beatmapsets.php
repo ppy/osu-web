@@ -115,6 +115,7 @@ return [
                 'rank' => 'Xếp Hạng',
                 'score_total' => 'Tổng Điểm',
                 'score' => 'Điểm',
+                'time' => '',
             ],
 
             'no_scores' => [

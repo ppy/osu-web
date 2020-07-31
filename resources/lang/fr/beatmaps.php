@@ -32,7 +32,7 @@ return [
         'title' => 'Discussions',
 
         'collapse' => [
-            'all-collapse' => 'Tout replier',
+            'all-collapse' => 'Tout réduire',
             'all-expand' => 'Tout déplier',
         ],
 
@@ -49,13 +49,13 @@ return [
 
             'prompt' => [
                 'lock' => 'Raison du verrouillage',
-                'unlock' => 'Êtes-vous sûr de vouloir déverrouiller ?',
+                'unlock' => 'Êtes-vous sûr de vouloir déverrouiller cette discussion?',
             ],
         ],
 
         'message_hint' => [
-            'in_general' => 'Ce post va aller dans la discussion générale du beatmapset. Pour modder cette beatmap, précisez le temps (ex. 00:12:345).',
-            'in_timeline' => 'Pour modder plusieurs temps, faites plusieurs posts (un post par temps).',
+            'in_general' => 'Ce post sera déplacé vers la discussion générale du beatmapset. Pour modder cette beatmap, indiquez le timestamp (ex. 00:12:345).',
+            'in_timeline' => 'Pour modder plusieurs sections de cette beatmap, faites plusieurs posts (un post pour chaque section).',
         ],
 
         'message_placeholder' => [
@@ -70,15 +70,15 @@ return [
             'hype' => 'Hype!',
             'mapper_note' => 'Note',
             'nomination_reset' => 'Réinitialiser la nomination',
-            'praise' => 'Hommage',
+            'praise' => 'Compliments',
             'problem' => 'Problème',
-            'review' => 'Revue',
+            'review' => 'Vérification',
             'suggestion' => 'Suggestion',
         ],
 
         'mode' => [
             'events' => 'Historique',
-            'general' => 'General :scope',
+            'general' => 'Général :scope',
             'reviews' => 'Avis',
             'timeline' => 'Chronologie',
             'scopes' => [
@@ -89,10 +89,10 @@ return [
 
         'new' => [
             'pin' => 'Épingler',
-            'timestamp' => 'Horodatage',
+            'timestamp' => 'Timestamp',
             'timestamp_missing' => 'ctrl-c en mode édition et collez votre message pour ajouter un horodatage !',
             'title' => 'Nouvelle Discussion',
-            'unpin' => 'Ne plus épingler',
+            'unpin' => 'Désépingler',
         ],
 
         'review' => [
@@ -304,6 +304,7 @@ return [
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
         'TD' => 'Appareil tactile',
+        'V2' => '',
     ],
     'language' => [
         'any' => 'Tous',

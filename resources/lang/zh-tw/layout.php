@@ -96,6 +96,7 @@ return [
             'country' => '國家',
             'index' => '成績',
             'kudosu' => 'kudosu',
+            'multiplayer' => '多人遊戲',
             'score' => '總分',
         ],
         'store' => [

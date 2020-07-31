@@ -6,6 +6,7 @@
 return [
     'countries' => [
         'all' => 'Alles',
+        'title' => 'Land',
     ],
 
     'filter' => [
@@ -17,10 +18,11 @@ return [
     ],
 
     'type' => [
-        'performance' => 'Prestatie',
         'charts' => 'In de schijnwerpers',
-        'score' => 'Score',
         'country' => 'Landelijk',
+        'multiplayer' => 'multiplayer',
+        'performance' => 'Prestatie',
+        'score' => 'Score',
     ],
 
     'spotlight' => [

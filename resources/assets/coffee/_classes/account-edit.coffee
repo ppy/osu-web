@@ -8,6 +8,7 @@ class @AccountEdit
     $(document).on 'ajax:error', '.js-account-edit', @ajaxError
     $(document).on 'ajax:send', '.js-account-edit', @ajaxSaving
     $(document).on 'ajax:success', '.js-account-edit', @ajaxSaved
+    $(document).on 'ajax:success', '.js-user-preferences-update', @ajaxUserPreferencesUpdate
 
 
   initializeUpdate: (e) =>
@@ -31,6 +32,10 @@ class @AccountEdit
 
   ajaxSaved: (e) =>
     @saved e.currentTarget
+
+
+  ajaxUserPreferencesUpdate: (_e, user) ->
+    $.publish 'user:update', user
 
 
   clearState: (el) =>
@@ -107,9 +112,9 @@ class @AccountEdit
       method: 'PUT'
       data: data
 
-    .done =>
+    .done (data) =>
       @saved form
-      $(form).trigger 'ajax:success'
+      $(form).trigger 'ajax:success', data
 
     .fail (xhr, status) =>
       return if status == 'abort'

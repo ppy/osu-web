@@ -26,10 +26,16 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   componentDidMount = () => {
     // reset timestamp to null on clone
-    Transforms.setNodes(this.context, {timestamp: null}, {at: this.path()});
+    if (this.editable()) {
+      Transforms.setNodes(this.context, {timestamp: null}, {at: this.path()});
+    }
   }
 
   componentDidUpdate = () => {
+    if (!this.editable()) {
+      return;
+    }
+
     const path = this.path();
 
     if (this.props.element.beatmapId) {
@@ -49,7 +55,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   }
 
   delete = () => {
-    Transforms.delete(this.context, { at: this.path() });
+    // Timeout is used to let Slate handle the click event before the node is removed - otherwise a "Cannot find a descendant at path" error gets thrown.
+    Timeout.set(0, () => Transforms.delete(this.context, {at: this.path()}));
   }
 
   editable = () => {
