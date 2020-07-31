@@ -9,13 +9,16 @@ use App\Events\NewPrivateNotificationEvent;
 use App\Jobs\Notifications\BeatmapsetDiscussionPostNew;
 use App\Jobs\Notifications\BroadcastNotificationBase;
 use App\Libraries\Chat;
+use App\Mail\UserNotificationDigest;
 use App\Models\Beatmapset;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotificationOption;
 use Event;
+use Mail;
 use Queue;
 use ReflectionClass;
+use Symfony\Component\Finder\Finder;
 
 class BroadcastNotificationTest extends TestCase
 {
@@ -43,14 +46,25 @@ class BroadcastNotificationTest extends TestCase
     }
 
     /**
-     * @dataProvider sendNotificationDataProvider
+     * @dataProvider notificationJobClassesDataProvider
      */
-    public function testSendNotificationIfPushNotification($enabled)
+    public function testNotificationOptionNameHasDeliveryModes($class)
+    {
+        $predicate = $class::NOTIFICATION_OPTION_NAME === null
+        || in_array($class::NOTIFICATION_OPTION_NAME, UserNotificationOption::HAS_DELIVERY_MODES, true);
+
+        $this->assertTrue($predicate, "NOTIFICATION_OPTION_NAME for {$class} must be null or in UserNotificationOption::HAS_DELIVERY_MODES");
+    }
+
+    /**
+     * @dataProvider userNotificationDetailsDataProvider
+     */
+    public function testSendNotificationWithOptions($details)
     {
         $user = factory(User::class)->create();
         $user->notificationOptions()->create([
             'name' => UserNotificationOption::BEATMAPSET_MODDING,
-            'details' => ['push' => $enabled],
+            'details' => $details,
         ]);
 
         $beatmapset = factory(Beatmapset::class)->states('with_discussion')->create([
@@ -58,31 +72,44 @@ class BroadcastNotificationTest extends TestCase
         ]);
         $beatmapset->watches()->create(['user_id' => $user->getKey()]);
 
-        $this->beatmapDiscussion = $beatmapset->beatmapDiscussions()->first();
-
-        $params = [
-            'beatmapset_id' => $beatmapset->getKey(),
-            'beatmap_discussion' => [
-                'message_type' => 'praise',
-            ],
-            'beatmap_discussion_post' => [
-                'message' => 'Hello',
-            ],
-        ];
-
         $this
             ->actingAsVerified($this->sender)
-            ->post(route('beatmap-discussion-posts.store'), $params)
+            ->post(route('beatmap-discussion-posts.store'), $this->makeBeatmapsetDiscussionPostParams($beatmapset, 'praise'))
             ->assertStatus(200);
 
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
         $this->runFakeQueue();
 
-        if ($enabled) {
+        if ($details['push'] ?? true) {
             Event::assertDispatched(NewPrivateNotificationEvent::class);
         } else {
             Event::assertNotDispatched(NewPrivateNotificationEvent::class);
         }
+
+        // make sure the mailer we want to check wasn't done by something else...
+        Mail::assertNotSent(UserNotificationDigest::class);
+        $this->artisan('notifications:send-mail');
+        $this->runFakeQueue();
+
+        if ($details['mail'] ?? true) {
+            Mail::assertSent(UserNotificationDigest::class);
+        } else {
+            Mail::assertNotSent(UserNotificationDigest::class);
+        }
+    }
+
+    public function notificationJobClassesDataProvider()
+    {
+        $this->refreshApplication();
+
+        $path = app()->path('Jobs/Notifications');
+        $files = Finder::create()->files()->in($path)->sortByName();
+        foreach ($files as $file) {
+            $baseName = $file->getBasename(".{$file->getExtension()}");
+            $classes[] = ["\\App\\Jobs\\Notifications\\{$baseName}"];
+        }
+
+        return $classes;
     }
 
     public function notificationNamesDataProvider()
@@ -97,11 +124,13 @@ class BroadcastNotificationTest extends TestCase
         });
     }
 
-    public function sendNotificationDataProvider()
+    public function userNotificationDetailsDataProvider()
     {
         return [
-            [true],
-            [false],
+            [null], // for testing defaults to true.
+            [['mail' => false, 'push' => false]],
+            [['mail' => false, 'push' => true]],
+            [['mail' => true, 'push' => true]],
         ];
     }
 
@@ -112,6 +141,7 @@ class BroadcastNotificationTest extends TestCase
         // mocking the queue so we can run the job manually to get the created notification.
         Queue::fake();
         Event::fake();
+        Mail::fake();
 
         $this->sender = factory(User::class)->create();
     }

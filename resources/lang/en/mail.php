@@ -83,6 +83,11 @@ return [
         'subject' => 'osu! Account Reactivation Required',
     ],
 
+    'user_notification_digest' => [
+        'new' => 'Just letting you know that there have been new updates on items you are watching.',
+        'subject' => 'New osu! notifications',
+    ],
+
     'user_password_updated' => [
         'confirmation' => 'This is just a confirmation that your osu! password has been changed.',
         'subject' => 'osu! password change confirmation',
