@@ -6,7 +6,6 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\BeatmapsetDelete;
-use App\Jobs\NotifyBeatmapsetUpdate;
 use App\Libraries\CommentBundle;
 use App\Libraries\Search\BeatmapsetSearchCached;
 use App\Libraries\Search\BeatmapsetSearchRequestParams;
@@ -195,10 +194,6 @@ class BeatmapsetsController extends Controller
         }
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
-        (new NotifyBeatmapsetUpdate([
-            'user' => Auth::user(),
-            'beatmapset' => $beatmapset,
-        ]))->delayedDispatch();
 
         return $beatmapset->defaultDiscussionJson();
     }
@@ -215,10 +210,6 @@ class BeatmapsetsController extends Controller
         }
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
-        (new NotifyBeatmapsetUpdate([
-            'user' => Auth::user(),
-            'beatmapset' => $beatmapset,
-        ]))->delayedDispatch();
 
         return $beatmapset->defaultDiscussionJson();
     }

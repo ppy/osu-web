@@ -302,7 +302,7 @@ return [
                 'title' => 'Reciente',
             ],
             'top_ranks' => [
-                'download_replay' => 'Descargar Repetición',
+                'download_replay' => 'Descargar repetición',
                 'empty' => 'Aún no hay registros de rendimiento impresionantes. :(',
                 'not_ranked' => 'Sólo los mapas clasificados dan pp.',
                 'pp_weight' => 'valorado :percentage',

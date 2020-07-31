@@ -68,7 +68,7 @@ jobs:
   fast_finish: true
   include:
     - name: phpunit
-      script: ./bin/phpunit
+      script: ./bin/phpunit.sh
 
     - name: browser tests
       addons:
@@ -85,7 +85,7 @@ jobs:
       script:
         - yarn
         - yarn lint
-        - ./bin/update-licence -nf
+        - ./bin/update_licence.sh -nf
 
     - name: karma
       env:

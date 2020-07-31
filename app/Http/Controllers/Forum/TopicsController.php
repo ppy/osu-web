@@ -153,7 +153,7 @@ class TopicsController extends Controller
 
         $type = 'moderate_pin';
         $state = get_int(Request::input('pin'));
-        DB::transaction(function () use ($topic, $type, $state) {
+        DB::transaction(function () use ($topic, $state) {
             $topic->pin($state);
 
             $this->logModerate(
@@ -195,11 +195,19 @@ class TopicsController extends Controller
 
     public function show($id)
     {
-        $postStartId = Request::input('start');
-        $postEndId = get_int(Request::input('end'));
-        $nthPost = get_int(Request::input('n'));
-        $skipLayout = get_bool(Request::input('skip_layout')) ?? false;
-        $showDeleted = get_bool(Request::input('with_deleted')) ?? true;
+        $params = get_params(request()->all(), null, [
+            'start',
+            'end:int',
+            'n:int',
+            'skip_layout:bool',
+            'with_deleted:bool',
+        ]);
+
+        $postStartId = $params['start'] ?? null;
+        $postEndId = $params['end'] ?? null;
+        $nthPost = $params['n'] ?? null;
+        $skipLayout = $params['skip_layout'] ?? false;
+        $showDeleted = $params['with_deleted'] ?? null;
         $jumpTo = null;
 
         $topic = Topic
@@ -220,9 +228,15 @@ class TopicsController extends Controller
             abort(404);
         }
 
+        if ($userCanModerate) {
+            $showDeleted = $showDeleted ?? auth()->user()->profileCustomization()->forum_posts_show_deleted;
+        } else {
+            $showDeleted = false;
+        }
+
         priv_check('ForumView', $topic->forum)->ensureCan();
 
-        $posts = $topic->posts()->showDeleted($showDeleted && $userCanModerate);
+        $posts = $topic->posts()->showDeleted($showDeleted);
 
         if ($postStartId === 'unread') {
             $postStartId = Post::lastUnreadByUser($topic, Auth::user());
@@ -333,6 +347,7 @@ class TopicsController extends Controller
     public function store(HttpRequest $request)
     {
         $forum = Forum::findOrFail($request->get('forum_id'));
+        $user = auth()->user();
 
         priv_check('ForumTopicStore', $forum)->ensureCan();
 
@@ -346,9 +361,9 @@ class TopicsController extends Controller
 
         $params = [
             'title' => $request->get('title'),
-            'user' => Auth::user(),
+            'user' => $user,
             'body' => $request->get('body'),
-            'cover' => TopicCover::findForUse(presence($request->input('cover_id')), Auth::user()),
+            'cover' => TopicCover::findForUse(presence($request->input('cover_id')), $user),
         ];
 
         try {
@@ -357,15 +372,13 @@ class TopicsController extends Controller
             return error_popup($e->getMessage());
         }
 
-        if (Auth::user()->user_notify || $forum->isHelpForum()) {
-            TopicWatch::setState($topic, Auth::user(), 'watching_mail');
+        if ($user->user_notify || $forum->isHelpForum()) {
+            TopicWatch::setState($topic, $user, 'watching_mail');
         }
 
-        ForumUpdateNotifier::onNew([
-            'topic' => $topic,
-            'post' => $topic->posts->last(),
-            'user' => Auth::user(),
-        ]);
+        $post = $topic->posts->last();
+        $post->markRead($user);
+        ForumUpdateNotifier::onNew(['topic' => $topic, 'post' => $post, 'user' => $user]);
 
         return ujs_redirect(route('forum.topics.show', $topic));
     }

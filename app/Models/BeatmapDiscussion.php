@@ -294,7 +294,7 @@ class BeatmapDiscussion extends Model
             $event = 'recalculate';
         }
 
-        DB::transaction(function () use ($change, $event, $eventExtraData, $currentVotes) {
+        DB::transaction(function () use ($change, $event, $eventExtraData) {
             if ($event === 'vote') {
                 if ($change > 0) {
                     $beatmapsetEventType = BeatmapsetEvent::KUDOSU_GAIN;

@@ -6,7 +6,7 @@
  * https://stackoverflow.com/a/22499259 .
  */
 if (!function_exists('mysqli_get_client_stats')) {
-    die('Required mysqlnd driver is missing.');
+    exit('Required mysqlnd driver is missing.');
 }
 
 $mysqlDefaults = [
@@ -75,12 +75,6 @@ return [
             'database' => env('DB_DATABASE', 'osu'),
         ]),
 
-        // slave copy of 'mysql'
-        'mysql-readonly' => array_merge($mysqlDefaults, [
-            'host' => env('DB_HOST_READONLY', env('DB_HOST', 'localhost')),
-            'database' => env('DB_DATABASE_READONLY', env('DB_DATABASE', 'osu')),
-        ]),
-
         'mysql-mp' => array_merge($mysqlDefaults, [
             'database' => env('DB_DATABASE_MP', 'osu_mp'),
         ]),
@@ -131,6 +125,13 @@ return [
         'client' => 'phpredis',
 
         'cluster' => false,
+
+        'cache' => [
+            'host' => presence(env('CACHE_REDIS_HOST')) ?? presence(env('REDIS_HOST')) ?? '127.0.0.1',
+            'port' => get_int(env('CACHE_REDIS_PORT')) ?? get_int(env('REDIS_PORT')) ?? 6379,
+            'database' => get_int(env('CACHE_REDIS_DB')) ?? 0,
+            'persistent' => true,
+        ],
 
         'default' => [
             'host' => presence(env('REDIS_HOST')) ?? '127.0.0.1',

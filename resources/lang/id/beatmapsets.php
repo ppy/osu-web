@@ -109,13 +109,13 @@ return [
                 'accuracy' => 'Akurasi',
                 'combo' => 'Kombo Maks',
                 'miss' => 'Miss',
-                'mods' => 'Mods',
-                'player' => 'Pengguna',
+                'mods' => 'Mod',
+                'player' => 'Pemain',
                 'pp' => 'pp',
                 'rank' => 'Peringkat',
                 'score_total' => 'Jumlah Skor',
                 'score' => 'Skor',
-                'time' => '',
+                'time' => 'Waktu',
             ],
 
             'no_scores' => [

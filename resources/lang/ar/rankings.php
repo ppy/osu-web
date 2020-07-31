@@ -6,7 +6,7 @@
 return [
     'countries' => [
         'all' => 'الكل',
-        'title' => '',
+        'title' => 'الدولة',
     ],
 
     'filter' => [
@@ -20,14 +20,14 @@ return [
     'type' => [
         'charts' => 'منطقة ألأضواء',
         'country' => 'الدولة',
-        'multiplayer' => '',
+        'multiplayer' => 'متعدد اللاعبين',
         'performance' => 'الأداء',
         'score' => 'النقاط',
     ],
 
     'spotlight' => [
         'end_date' => 'تاريخ الانتهاء',
-        'map_count' => 'عدد الخريطة',
+        'map_count' => 'تعداد الخريطة',
         'participants' => 'المشاركون',
         'start_date' => 'تاريخ البداية',
     ],

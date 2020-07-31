@@ -5,20 +5,20 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => '',
+        'new' => 'Doar vă las să știți că a fost un update nou în beatmap-ul ”:title” de la vizita ta trecută.',
         'subject' => 'Actualizare nouă pentru beatmapul ":title"',
-        'unwatch' => '',
-        'visit' => '',
+        'unwatch' => 'Dacă nu mai dorești să urmărești acest beatmap, puteți fie să dați click pe link-ul "Unwatch" găsit în pagina de mai sus, fie din pagina de vizualizare de modare:',
+        'visit' => 'Vizitați pagina de discuție aici:',
     ],
 
     'common' => [
-        'closing' => '',
-        'hello' => '',
-        'report' => '',
+        'closing' => 'Cu stimă,',
+        'hello' => 'Bună :user,',
+        'report' => 'Vă rugăm să răspundeți la acest e-mail IMEDIAT dacă nu ați solicitat această modificare.',
     ],
 
     'donation_thanks' => [
-        'benefit_more' => '',
+        'benefit_more' => 'Mai multe beneficii de sprinjinitor vor apărea pe timp ce trece!',
         'feedback' => "",
         'keep_free' => '',
         'keep_running' => '',

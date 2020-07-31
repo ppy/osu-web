@@ -122,7 +122,7 @@ return [
         'buttons' => [
             'download' => 'حَمِل osu!',
             'support' => 'اِدعم osu!',
-            'store' => 'متجر!osu',
+            'store' => 'osu!store',
         ],
     ],
 

@@ -17,10 +17,10 @@ return [
 
     'panel' => [
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'изтегли',
+            'video' => 'изтегли с видео',
+            'no_video' => 'изтегли без видео',
+            'direct' => 'отвори в osu!direct',
         ],
     ],
 
@@ -48,12 +48,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'одобрен :timeago',
+            'loved' => 'обичан :timeago',
+            'qualified' => 'квалифициран :timeago',
+            'ranked' => 'класиран :timeago',
+            'submitted' => 'публикуван :timeago',
+            'updated' => 'последно актуализиран :timeago',
         ],
 
         'favourites' => [
@@ -69,18 +69,18 @@ return [
                 'status' => [
                     'pending' => 'изчакващ',
                     'qualified' => 'квалифициран',
-                    'wip' => 'работа в процес',
+                    'wip' => 'в процес на разработка',
                 ],
             ],
 
             'disqualify' => [
-                '_' => '',
+                '_' => 'Ако откриете проблем с този бийтмап, моля дисквалифицирайте го :link.',
             ],
 
             'report' => [
-                '_' => '',
-                'button' => '',
-                'link' => '',
+                '_' => 'Ако откриете проблем с този бийтмап, моля докладвайте го :link, за да уведомите отбора ни.',
+                'button' => 'Докладвай проблем',
+                'link' => 'тук',
             ],
         ],
 
@@ -98,7 +98,7 @@ return [
 
         'scoreboard' => [
             'achieved' => 'постигнато на :when',
-            'country' => 'Държавно класиране',
+            'country' => 'Класиране в страната',
             'friend' => 'Приятелско класиране',
             'global' => 'Глобално класиране',
             'supporter-link' => 'Щракнете <a href=":link">тук</a>, за да видите всички хубави екстри, които получаваш!',
@@ -115,7 +115,7 @@ return [
                 'rank' => 'Ранг',
                 'score_total' => 'Общ брой точки',
                 'score' => 'Точки',
-                'time' => '',
+                'time' => 'Време',
             ],
 
             'no_scores' => [
@@ -149,13 +149,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'wip' => '',
-            'pending' => '',
-            'graveyard' => '',
+            'ranked' => 'Класиран',
+            'approved' => 'Одобрени',
+            'loved' => 'Обичан',
+            'qualified' => 'Квалифициран',
+            'wip' => 'WIP',
+            'pending' => 'Предстоящ',
+            'graveyard' => 'Гробище',
         ],
     ],
 ];

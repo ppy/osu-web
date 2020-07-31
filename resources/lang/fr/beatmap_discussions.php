@@ -68,12 +68,12 @@ return [
         'go_to_child' => 'Voir la discussion',
         'validation' => [
             'block_too_large' => 'chaque bloc peut contenir jusqu\'à :limit caractères',
-            'external_references' => 'la revue contient des références à des problèmes qui n\'appartiennent pas à cette revue',
+            'external_references' => 'l\'avis contient des références à des problèmes qui n\'appartiennent pas à cet avis',
             'invalid_block_type' => 'type de bloc invalide',
-            'invalid_document' => 'revue invalide',
-            'minimum_issues' => 'la revue doit contenir un minimum de :count problèmes|la revue doit contenir un minimum de :count problèmes',
+            'invalid_document' => 'avis invalide',
+            'minimum_issues' => 'l\'avis doit contenir un minimum de :count problèmes|l\'avis doit contenir un minimum de :count problèmes',
             'missing_text' => 'le bloc manque du texte',
-            'too_many_blocks' => 'les revues ne doivent contenir que :count paragraphes/problème|les revues doivent contenir jusqu\'à :count paragraphes/problèmes',
+            'too_many_blocks' => 'les avis ne doivent contenir que :count paragraphes/problème|les revues doivent contenir jusqu\'à :count paragraphes/problèmes',
         ],
     ],
 
