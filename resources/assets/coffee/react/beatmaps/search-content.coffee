@@ -17,7 +17,7 @@ el = React.createElement
 beatmapsetStore = core.dataStore.beatmapsetStore
 controller = core.beatmapsetSearchController
 
-ITEM_HEIGHT = 205 # needs to be known in advance to calculate size of virtual scrolling area.
+ITEM_HEIGHT = 225 # needs to be known in advance to calculate size of virtual scrolling area.
 
 ListRender = ({ virtual, itemHeight }) ->
   style = _.extend {}, virtual.style
