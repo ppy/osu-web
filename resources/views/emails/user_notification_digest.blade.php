@@ -12,4 +12,7 @@
 
 @endforeach
 
+{!! trans('mail.user_notification_digest.settings') !!}
+{!! route('account.edit') !!}#notifications
+
 @include('emails._signature')

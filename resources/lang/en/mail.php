@@ -85,6 +85,7 @@ return [
 
     'user_notification_digest' => [
         'new' => 'Just letting you know that there have been new updates on items you are watching.',
+        'settings' => 'Change email notification preferences:',
         'subject' => 'New osu! notifications',
     ],
 
