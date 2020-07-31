@@ -202,7 +202,7 @@ class @Forum
           forum_posts_show_deleted: +!@showDeleted()
     .done (user) =>
       $.publish 'user:update', user
-      Turbolinks.visit osu.updateQueryString @postUrlN(@currentPostPosition)
+      Turbolinks.visit @postUrlN(@currentPostPosition)
 
 
   initialScrollTo: =>
