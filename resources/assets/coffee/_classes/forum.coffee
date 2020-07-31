@@ -199,7 +199,7 @@ class @Forum
       method: 'PUT'
       data:
         user_profile_customization:
-          forum_posts_show_deleted: +!@showDeleted()
+          forum_posts_show_deleted: !@showDeleted()
     .done (user) =>
       $.publish 'user:update', user
       Turbolinks.visit @postUrlN(@currentPostPosition)
