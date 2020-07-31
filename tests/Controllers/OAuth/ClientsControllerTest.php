@@ -125,9 +125,6 @@ class ClientsControllerTest extends TestCase
     public function emptyStringsTestDataProvider()
     {
         return [
-            ['name', null],
-            ['name', ''],
-            ['name', ' '],
             [null, 'https://nowhere.local'],
             ['', 'https://nowhere.local'],
             [' ', 'https://nowhere.local'],
