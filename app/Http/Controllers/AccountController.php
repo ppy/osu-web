@@ -206,6 +206,7 @@ class AccountController extends Controller
             'beatmapset_title_show_original:bool',
             'comments_sort:string',
             'extras_order:string[]',
+            'forum_posts_show_deleted:bool',
             'ranking_expanded:bool',
             'user_list_filter:string',
             'user_list_sort:string',
