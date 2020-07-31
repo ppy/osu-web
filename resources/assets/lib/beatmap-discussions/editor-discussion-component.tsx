@@ -33,6 +33,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   static contextType = SlateContext;
 
   cache: Cache = {};
+  tooltipContent = React.createRef<HTMLDivElement>();
 
   componentDidMount = () => {
     // reset timestamp to null on clone
@@ -131,11 +132,10 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     if (nearbyDiscussions.length > 0) {
       const timestamps =
         nearbyDiscussions.map((discussion) => {
-          return BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp);
-          // return osu.link(BeatmapDiscussionHelper.url({discussion}),
-          //   BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp),
-          //   {classNames: ['js-beatmap-discussion--jump', `${bn}__notice-link`]}
-          // );
+          return osu.link(BeatmapDiscussionHelper.url({discussion}),
+            BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp),
+            {classNames: ['js-beatmap-discussion--jump', `${bn}__notice-link`]},
+          );
         });
 
       const timestampsString = osu.transArray(timestamps);
@@ -151,8 +151,18 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
             <div
               className={`${bn}__indicator`}
               contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
-              title={nearbyText}
+              onMouseOver={this.renderNearbyTooltip}
+              onTouchStart={this.renderNearbyTooltip}
             >
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: nearbyText,
+                }}
+                ref={this.tooltipContent}
+                style={{
+                  display: 'none',
+                }}
+              />
               <i className='fas fa-exclamation-triangle' style={{color: 'hsl(var(--hsl-orange-3))'}} />
             </div>
           );
@@ -199,6 +209,37 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         {deleteButton}
       </div>
     );
+  }
+
+  renderNearbyTooltip = (event) => {
+    const target = event.currentTarget;
+
+    // TODO: expire tooltip on timestamp/etc change
+    if (target._tooltip) {
+      return;
+    }
+
+    target._tooltip = true;
+
+    $(target).qtip({
+      content: {
+        text: () => this.tooltipContent.current?.innerHTML,
+      },
+      hide: {
+        fixed: true,
+      },
+      position: {
+        at: 'top center',
+        my: 'bottom center',
+        viewport: $(window),
+      },
+      show: {
+        ready: true,
+      },
+      style: {
+        classes: 'tooltip-default tooltip-default--interactable',
+      },
+    });
   }
 
   timestamp = () => BeatmapDiscussionHelper.parseTimestamp(this.props.element.timestamp);
