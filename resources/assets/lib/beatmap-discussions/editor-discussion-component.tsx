@@ -11,6 +11,14 @@ import EditorBeatmapSelector from './editor-beatmap-selector';
 import EditorIssueTypeSelector from './editor-issue-type-selector';
 import { SlateContext } from './slate-context';
 
+interface Cache {
+  nearbyDiscussions?: {
+    beatmap: BeatmapJsonExtended;
+    discussions: BeatmapDiscussion[];
+    timestamp: number;
+  };
+}
+
 interface Props extends RenderElementProps {
   beatmaps: BeatmapJsonExtended[];
   beatmapset: BeatmapsetJson;
@@ -23,6 +31,8 @@ interface Props extends RenderElementProps {
 
 export default class EditorDiscussionComponent extends React.Component<Props> {
   static contextType = SlateContext;
+
+  cache: Cache = {};
 
   componentDidMount = () => {
     // reset timestamp to null on clone
@@ -62,6 +72,23 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     return !(this.props.editMode && this.props.element.discussionId);
   }
 
+  nearbyDiscussions = () => {
+    const timestamp = this.timestamp();
+    if (!timestamp) {
+      return [];
+    }
+
+    if (!this.cache.nearbyDiscussions || (this.cache.nearbyDiscussions.beatmap !== this.props.currentBeatmap || this.cache.nearbyDiscussions.timestamp !== timestamp)) {
+      this.cache.nearbyDiscussions = {
+        beatmap: this.props.currentBeatmap,
+        discussions: BeatmapDiscussionHelper.nearbyDiscussions(this.props.currentDiscussions, timestamp),
+        timestamp,
+      };
+    }
+
+    return this.cache.nearbyDiscussions.discussions;
+  }
+
   path = (): Path => ReactEditor.findPath(this.context, this.props.element);
 
   render(): React.ReactNode {
@@ -90,7 +117,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
       this.props.editMode && canEdit ?
         (
           <div
-            className={`${bn}__unsaved-indicator`}
+            className={`${bn}__indicator`}
             contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
             title={osu.trans('beatmaps.discussions.review.embed.unsaved')}
           >
@@ -98,6 +125,39 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
           </div>
         )
       : null;
+
+    let nearbyIndicator = null;
+    const nearbyDiscussions = this.nearbyDiscussions();
+    if (nearbyDiscussions.length > 0) {
+      const timestamps =
+        nearbyDiscussions.map((discussion) => {
+          return BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp);
+          // return osu.link(BeatmapDiscussionHelper.url({discussion}),
+          //   BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp),
+          //   {classNames: ['js-beatmap-discussion--jump', `${bn}__notice-link`]}
+          // );
+        });
+
+      const timestampsString = osu.transArray(timestamps);
+
+      const nearbyText = osu.trans('beatmap_discussions.nearby_posts.notice', {
+        timestamp: this.props.element.timestamp,
+        existing_timestamps: timestampsString,
+      });
+
+      if (this.editable()) {
+        nearbyIndicator =
+          (
+            <div
+              className={`${bn}__indicator`}
+              contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+              title={nearbyText}
+            >
+              <i className='fas fa-exclamation-triangle' style={{color: 'hsl(var(--hsl-orange-3))'}} />
+            </div>
+          );
+      }
+    }
 
     return (
       <div
@@ -123,6 +183,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
                 </span>
               </div>
               {unsavedIndicator}
+              {nearbyIndicator}
             </div>
             <div
               contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
@@ -132,10 +193,13 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
               <div className='beatmapset-discussion-message'>{this.props.children}</div>
             </div>
             {unsavedIndicator}
+            {nearbyIndicator}
           </div>
         </div>
         {deleteButton}
       </div>
     );
   }
+
+  timestamp = () => BeatmapDiscussionHelper.parseTimestamp(this.props.element.timestamp);
 }

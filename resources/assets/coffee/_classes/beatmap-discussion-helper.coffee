@@ -117,6 +117,35 @@ class @BeatmapDiscussionHelper
       suggestion: ['far', '&#xf111;']
 
 
+  @nearbyDiscussions: (currentDiscussions, timestamp) =>
+    return [] if !timestamp?
+
+    discussions = {}
+
+    for discussion in currentDiscussions.timelineAllUsers
+      continue if discussion.message_type not in ['suggestion', 'problem']
+
+      distance = Math.abs(discussion.timestamp - timestamp)
+
+      continue if distance > 5000
+
+      if discussion.user_id == currentUser.id
+        continue if moment(discussion.updated_at).diff(moment(), 'hour') > -24
+
+      category = switch
+        when distance == 0 then 'd0'
+        when distance < 100 then 'd100'
+        when distance < 1000 then 'd1000'
+        else 'other'
+
+      discussions[category] ?= []
+      discussions[category].push discussion
+
+    shownDiscussions = discussions.d0 ? discussions.d100 ? discussions.d1000 ? discussions.other ? []
+
+    _.sortBy shownDiscussions, 'timestamp'
+
+
   @previewMessage = (message) =>
     if message.length > @MAX_MESSAGE_PREVIEW_LENGTH
       _.chain(message)
@@ -137,6 +166,8 @@ class @BeatmapDiscussionHelper
 
 
   @parseTimestamp: (message) =>
+    return null if !message?
+
     timestampRe = message.match @TIMESTAMP_REGEX
 
     if timestampRe?

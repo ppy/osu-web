@@ -46,6 +46,7 @@ interface BeatmapDiscussionHelperClass {
   TIMESTAMP_REGEX: RegExp;
   format(text: string, options?: any): string;
   formatTimestamp(value: number | null): string | undefined;
+  nearbyDiscussions(currentDiscussions: BeatmapDiscussion[], timestamp: number): BeatmapDiscussion[];
   parseTimestamp(value: string): number | null;
   previewMessage(value: string): string;
   url(options: any, useCurrent?: boolean): string;
