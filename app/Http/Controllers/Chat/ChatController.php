@@ -156,7 +156,7 @@ class ChatController extends Controller
                 $silenceQuery->where('timestamp', '>', $previousMessage->timestamp);
             }
         } else {
-            $silenceQuery->where('ban_id', '>', $lastHistoryId);
+            $silenceQuery->where('ban_id', '>', $lastHistoryId)->reorderBy('ban_id', 'DESC');
         }
 
         $silences = $silenceQuery->get();
