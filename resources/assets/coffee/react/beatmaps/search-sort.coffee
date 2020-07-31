@@ -46,7 +46,7 @@ export class SearchSort extends React.PureComponent
     if @props.filters.status in ['graveyard', 'pending']
       fields.updated = true
       fields.nominations = true
-    else if @props.filters.status == 'mine'
+    else if @props.filters.status in ['any', 'favourites', 'mine']
       fields.updated = true
       fields.ranked = true
     else

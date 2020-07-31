@@ -10,6 +10,8 @@ use App\Models\OAuth\Client;
 use App\Models\OAuth\Token;
 use Carbon\Carbon;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Laravel\Passport\Http\Controllers\ApproveAuthorizationController;
+use Laravel\Passport\Http\Controllers\DenyAuthorizationController;
 use Laravel\Passport\Passport;
 use Route;
 
@@ -37,10 +39,6 @@ class AuthServiceProvider extends ServiceProvider
             Passport::keyPath($path);
         }
 
-        Passport::routes(function ($router) {
-            $router->forAuthorization();
-        });
-
         // Override/selectively pick routes.
         // RouteServiceProvider current runs before our provider, so Passport's default routes will override
         // those set in routes/web.php.
@@ -49,6 +47,12 @@ class AuthServiceProvider extends ServiceProvider
             Route::get('authorize', AuthorizationController::class.'@authorize')
                 ->middleware(['web', 'verify-user'])
                 ->name('authorizations.authorize');
+
+            Route::post('authorize', ApproveAuthorizationController::class.'@approve')
+                ->middleware(['web', 'auth']);
+
+            Route::delete('authorize', DenyAuthorizationController::class.'@deny')
+                ->middleware(['web', 'auth']);
         });
 
         Passport::tokensCan([

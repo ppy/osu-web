@@ -8,6 +8,7 @@ import { dispatch, dispatchListener } from 'app-dispatcher';
 import { BigButton } from 'big-button';
 import DispatchListener from 'dispatch-listener';
 import * as _ from 'lodash';
+import { computed } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as React from 'react';
@@ -17,21 +18,24 @@ import RootDataStore from 'stores/root-data-store';
 @observer
 @dispatchListener
 export default class InputBox extends React.Component<any, any> implements DispatchListener {
+
+  @computed
+  get currentChannel() {
+    const dataStore: RootDataStore = this.props.dataStore;
+    return dataStore.channelStore.get(dataStore.uiState.chat.selected);
+  }
+
   private inputBoxRef = React.createRef<HTMLInputElement>();
 
-  buttonClicked = (e: React.MouseEvent<HTMLElement>) => {
-    const target = $(e.currentTarget).parent().children('input')[0] as HTMLInputElement;
-    const message = target.value || '';
-    this.sendMessage(message);
-    target.value = '';
+  buttonClicked = () => {
+    this.sendMessage(this.currentChannel?.inputText);
+    this.currentChannel?.setInputText('');
   }
 
   checkIfEnterPressed = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
-      const target = $(e.currentTarget)[0] as HTMLInputElement;
-      const message = target.value || '';
-      this.sendMessage(message);
-      target.value = '';
+      this.sendMessage(this.currentChannel?.inputText);
+      this.currentChannel?.setInputText('');
     }
   }
 
@@ -45,6 +49,11 @@ export default class InputBox extends React.Component<any, any> implements Dispa
     }
   }
 
+  handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const message = e.target.value;
+    this.currentChannel?.setInputText(message);
+  }
+
   handleDispatchAction(action: DispatcherAction) {
     if (action instanceof WindowFocusAction) {
       this.focusInput();
@@ -56,8 +65,7 @@ export default class InputBox extends React.Component<any, any> implements Dispa
   }
 
   render(): React.ReactNode {
-    const dataStore: RootDataStore = this.props.dataStore;
-    const channel = dataStore.channelStore.get(dataStore.uiState.chat.selected);
+    const channel = this.currentChannel;
     const disableInput = !channel || channel.moderated;
 
     return (
@@ -70,6 +78,8 @@ export default class InputBox extends React.Component<any, any> implements Dispa
           disabled={disableInput}
           autoComplete='off'
           ref={this.inputBoxRef}
+          onChange={this.handleChange}
+          value={channel?.inputText}
         />
 
         <BigButton
