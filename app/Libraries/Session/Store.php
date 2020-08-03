@@ -244,9 +244,8 @@ class Store extends \Illuminate\Session\Store
     public function save()
     {
         $isGuest = $this->isGuestSession();
-        $isRedis = static::isUsingRedis();
 
-        if ($isGuest && $isRedis) {
+        if ($isGuest && $this->handler instanceof CacheBasedSessionHandler) {
             $this->handler->setMinutes(120);
         }
 
