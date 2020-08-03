@@ -35,8 +35,6 @@
     "laravel/tinker": "*",
     "laravelcollective/html": "*",
     "league/commonmark": ">=0.16.0",
-    "league/commonmark-ext-autolink": "^1.0",
-    "league/commonmark-ext-table": "*",
     "league/flysystem-aws-s3-v3": "*",
     "league/fractal": "*",
     "league/html-to-markdown": "*",
