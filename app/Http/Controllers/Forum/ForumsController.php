@@ -93,13 +93,15 @@ class ForumsController extends Controller
 
         $allTopics = array_merge($pinnedTopics->all(), $topics->all());
         $topicReadStatus = TopicTrack::readStatus($user, $allTopics);
-        $topicReplyStatus = Post
-            ::where('poster_id', $user->getKey())
-            ->whereIn('topic_id', array_pluck($allTopics, 'topic_id'))
-            ->distinct('topic_id')
-            ->select('topic_id')
-            ->get()
-            ->keyBy('topic_id');
+        $topicReplyStatus = $user === null
+            ? []
+            : Post
+                ::where('poster_id', $user->getKey())
+                ->whereIn('topic_id', array_pluck($allTopics, 'topic_id'))
+                ->distinct('topic_id')
+                ->select('topic_id')
+                ->get()
+                ->keyBy('topic_id');
 
         return ext_view('forum.forums.show', compact(
             'cover',
