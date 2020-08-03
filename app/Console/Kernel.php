@@ -93,7 +93,7 @@ class Kernel extends ConsoleKernel
             ->cron('14 1 * * *');
 
         $schedule->command('notifications:send-mail')
-            ->everyTenMinutes()
+            ->hourly()
             ->withoutOverlapping();
     }
 
