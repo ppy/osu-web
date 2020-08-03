@@ -6,6 +6,7 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Models\Forum\Forum;
+use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicTrack;
 use App\Transformers\Forum\ForumCoverTransformer;
@@ -92,6 +93,13 @@ class ForumsController extends Controller
 
         $allTopics = array_merge($pinnedTopics->all(), $topics->all());
         $topicReadStatus = TopicTrack::readStatus($user, $allTopics);
+        $topicReplyStatus = Post
+            ::where('poster_id', $user->getKey())
+            ->whereIn('topic_id', array_pluck($allTopics, 'topic_id'))
+            ->distinct('topic_id')
+            ->select('topic_id')
+            ->get()
+            ->keyBy('topic_id');
 
         return ext_view('forum.forums.show', compact(
             'cover',
@@ -100,6 +108,7 @@ class ForumsController extends Controller
             'pinnedTopics',
             'sort',
             'topicReadStatus',
+            'topicReplyStatus',
             'topics'
         ));
     }

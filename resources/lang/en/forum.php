@@ -187,6 +187,7 @@ return [
 
         'index' => [
             'feature_votes' => 'star priority',
+            'has_replied' => 'You have replied to this topic',
             'replies' => 'replies',
             'views' => 'views',
         ],
