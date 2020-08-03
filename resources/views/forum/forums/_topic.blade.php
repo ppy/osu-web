@@ -19,7 +19,7 @@
 
     <div class="forum-topic-entry__col forum-topic-entry__col--icon">
         @if (isset($topicReplyStatus[$topic->getKey()]))
-            <span class="forum-topic-entry__replied" title="{{ trans('forum.topics.index.has_replied') }}"></span>
+            <span class="forum-topic-entry__replied" title="{{ trans('forum.topic.has_replied') }}"></span>
         @endif
 
         <a
