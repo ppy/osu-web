@@ -73,6 +73,8 @@ class UserNotificationDigest extends Mailable
         $groups = array_values($this->groups);
         $user = $this->user;
 
-        return $this->text('emails.user_notification_digest', compact('groups', 'user'));
+        return $this
+            ->text('emails.user_notification_digest', compact('groups', 'user'))
+            ->subject(trans('mail.user_notification_digest.subject'));
     }
 }
