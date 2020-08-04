@@ -56,6 +56,11 @@ class BeatmapsetWatch extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function scopeForUser($query, User $user)
+    {
+        return $query->where('user_id', $user->getKey());
+    }
+
     public function scopeRead($query)
     {
         $query->where(function ($query) {
