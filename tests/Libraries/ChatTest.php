@@ -32,9 +32,12 @@ class ChatTest extends TestCase
         $this->assertSame($initialMessagesCount + 1, Message::count());
     }
 
-    public function testSendPMFriendsOnlyFailed()
+    /**
+     * @dataProvider groupsDataProvider
+     */
+    public function testSendPMFriendsOnly($groupIdentifier, $successful)
     {
-        $sender = factory(User::class)->create();
+        $sender = $this->createUserWithGroup($groupIdentifier);
         $sender->markSessionVerified();
         $target = factory(User::class)->create(['pm_friends_only' => true]);
 
@@ -47,13 +50,18 @@ class ChatTest extends TestCase
             $savedException = $e;
         }
 
-        $this->assertNull(Channel::findPM($sender, $target));
-        $this->assertSame($initialChannelsCount, Channel::count());
-        $this->assertSame($initialMessagesCount, Message::count());
-        $this->assertSame(
-            'User is blocking messages from people not on their friends list.',
-            $savedException->getMessage()
-        );
+        if ($successful) {
+            $this->assertSame($initialChannelsCount + 1, Channel::count());
+            $this->assertSame($initialMessagesCount + 1, Message::count());
+        } else {
+            $this->assertNull(Channel::findPM($sender, $target));
+            $this->assertSame($initialChannelsCount, Channel::count());
+            $this->assertSame($initialMessagesCount, Message::count());
+            $this->assertSame(
+                'User is blocking messages from people not on their friends list.',
+                $savedException->getMessage()
+            );
+        }
     }
 
     public function testSendPMTooLongNotCreatingNewChannel()
@@ -96,5 +104,16 @@ class ChatTest extends TestCase
 
         $this->assertSame($initialChannelsCount, Channel::count());
         $this->assertSame($initialMessagesCount + 1, Message::count());
+    }
+
+    public function groupsDataProvider()
+    {
+        return [
+            ['admin', true],
+            ['bng', false],
+            ['gmt', true],
+            ['nat', true],
+            [[], false]
+        ];
     }
 }
