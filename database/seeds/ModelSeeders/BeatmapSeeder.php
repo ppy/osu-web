@@ -121,7 +121,6 @@ class BeatmapSeeder extends Seeder
             'total_length' => $json->total_length,
             'hit_length' => $json->hit_length,
             'bpm' => $json->bpm,
-            'countTotal' => $json->max_combo !== null ? $json->max_combo : 1500,
             'countNormal' => round(intval($json->max_combo) - (0.2 * intval($json->max_combo))),
             'countSlider' => round(intval($json->max_combo) - (0.8 * intval($json->max_combo))),
             'countSpinner' => 1,
