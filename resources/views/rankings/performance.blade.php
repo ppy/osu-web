@@ -38,7 +38,15 @@
                     </td>
                     <td class="ranking-page-table__column">
                         <div class="ranking-page-table__user-link">
-                            <a href="{{ route('rankings', ['mode' => $mode, 'type' => 'performance', 'country' => $score->user->country->acronym, 'variant' => $variant]) }}">
+                            <a
+                                class="ranking-page-table__country-link"
+                                href="{{ route('rankings', [
+                                    'mode' => $mode,
+                                    'type' => 'performance',
+                                    'country' => $score->user->country->acronym,
+                                    'variant' => $variant,
+                                ]) }}"
+                            >
                                 @include('objects._country_flag', [
                                     'country_name' => $score->user->country->name,
                                     'country_code' => $score->user->country->acronym,
