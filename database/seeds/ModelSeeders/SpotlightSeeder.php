@@ -104,7 +104,7 @@ class SpotlightSeeder extends Seeder
                     $possible_ranks = ['A', 'S', 'B', 'SH', 'XH', 'X'];
 
                     foreach ($beatmaps as $beatmap) {
-                        $maxcombo = rand(1, $beatmap->countTotal);
+                        $maxcombo = rand(1, $beatmap->countNormal);
                         $score = new $scoresClass([
                             'user_id' => $user->user_id,
                             'beatmap_id' => $beatmap->beatmap_id,
