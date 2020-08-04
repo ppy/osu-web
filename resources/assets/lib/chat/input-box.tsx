@@ -12,6 +12,7 @@ import { computed } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as React from 'react';
+import TextareaAutosize from 'react-autosize-textarea';
 import RootDataStore from 'stores/root-data-store';
 
 @inject('dataStore')
@@ -25,14 +26,14 @@ export default class InputBox extends React.Component<any, any> implements Dispa
     return dataStore.channelStore.get(dataStore.uiState.chat.selected);
   }
 
-  private inputBoxRef = React.createRef<HTMLInputElement>();
+  private inputBoxRef = React.createRef<HTMLTextAreaElement>();
 
   buttonClicked = () => {
     this.sendMessage(this.currentChannel?.inputText);
     this.currentChannel?.setInputText('');
   }
 
-  checkIfEnterPressed = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  checkIfEnterPressed = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.keyCode === 13) {
       this.sendMessage(this.currentChannel?.inputText);
       this.currentChannel?.setInputText('');
@@ -49,7 +50,7 @@ export default class InputBox extends React.Component<any, any> implements Dispa
     }
   }
 
-  handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const message = e.target.value;
     this.currentChannel?.setInputText(message);
   }
@@ -70,7 +71,7 @@ export default class InputBox extends React.Component<any, any> implements Dispa
 
     return (
       <div className='chat-input'>
-        <input
+        <TextareaAutosize
           className={`chat-input__box${disableInput ? ' chat-input__box--disabled' : ''}`}
           name='textbox'
           placeholder={disableInput ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
@@ -80,6 +81,7 @@ export default class InputBox extends React.Component<any, any> implements Dispa
           ref={this.inputBoxRef}
           onChange={this.handleChange}
           value={channel?.inputText}
+          maxRows={3}
         />
 
         <BigButton
