@@ -119,6 +119,7 @@ class ChangelogEntry extends Model
             'created_at' => Carbon::parse($data['pull_request']['merged_at']),
             'github_pull_request_id' => $data['pull_request']['number'],
             'message' => $data['pull_request']['body'],
+            'private' => static::isPrivate($data),
             'title' => $data['pull_request']['title'],
             'type' => static::guessType($data),
         ]);
@@ -137,6 +138,23 @@ class ChangelogEntry extends Model
         }
 
         return $entry;
+    }
+
+    public static function isPrivate($data)
+    {
+        static $privateCategories = [
+            'dependencies',
+        ];
+
+        foreach ($data['pull_request']['labels'] as $label) {
+            $name = $label['name'];
+
+            if (in_array(strtolower($name), $privateCategories, true)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static function placeholder()
