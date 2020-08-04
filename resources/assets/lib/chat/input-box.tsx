@@ -35,6 +35,7 @@ export default class InputBox extends React.Component<any, any> implements Dispa
 
   checkIfEnterPressed = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.keyCode === 13) {
+      e.preventDefault();
       this.sendMessage(this.currentChannel?.inputText);
       this.currentChannel?.setInputText('');
     }
@@ -68,6 +69,8 @@ export default class InputBox extends React.Component<any, any> implements Dispa
   render(): React.ReactNode {
     const channel = this.currentChannel;
     const disableInput = !channel || channel.moderated;
+
+    console.log(channel?.inputText);
 
     return (
       <div className='chat-input'>
