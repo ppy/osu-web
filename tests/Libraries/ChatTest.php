@@ -113,7 +113,7 @@ class ChatTest extends TestCase
             ['bng', false],
             ['gmt', true],
             ['nat', true],
-            [[], false]
+            [[], false],
         ];
     }
 }
