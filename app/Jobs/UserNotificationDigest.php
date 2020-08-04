@@ -6,6 +6,7 @@
 namespace App\Jobs;
 
 use App\Mail\UserNotificationDigest as UserNotificationDigestMail;
+use App\Models\Forum\Topic;
 use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
@@ -22,11 +23,16 @@ class UserNotificationDigest implements ShouldQueue
     private $toId;
     private $user;
 
+    private $beatmapsetWatches;
+    private $topicWatches;
+    private $now;
+
     public function __construct(User $user, int $fromId, int $toId)
     {
         $this->user = $user;
         $this->fromId = $fromId;
         $this->toId = $toId;
+        $this->now = now();
     }
 
     public function handle()
@@ -56,6 +62,20 @@ class UserNotificationDigest implements ShouldQueue
 
     private function filterNotifications(Collection $notifications)
     {
+        $this->beatmapsetWatches = $this->user->beatmapsetWatches()
+            ->whereIn('beatmapset_id', $notifications->where('notifiable_type', '=', 'beatmapset')->pluck('notifiable_id'))
+            ->where('last_read', '<', $this->now)
+            ->read()
+            ->get()
+            ->keyBy('beatmapset_id');
+
+        $this->topicWatches = $this->user->topicWatches()
+            ->whereIn('topic_id', $notifications->where('notifiable_type', '=', 'forum_topic')->pluck('notifiable_id'))
+            ->where('mail', true)
+            ->where('notify_status', false)
+            ->get()
+            ->keyBy('topic_id');
+
         $filtered = [];
 
         foreach ($notifications as $notification) {
@@ -66,31 +86,26 @@ class UserNotificationDigest implements ShouldQueue
             $filtered[] = $notification;
         }
 
+        $this->user->beatmapsetWatches()->whereIn('beatmapset_id', $this->beatmapsetWatches->keys()->all())->update(['last_notified' => $this->now]);
+        $this->user->topicWatches()->whereIn('topic_id', $this->topicWatches->keys()->all())->update(['notify_status' => true]);
+
         return $filtered;
     }
 
     private function shouldSend(Notification $notification)
     {
         if ($notification->notifiable_type === 'beatmapset') {
-            $watch = $notification->notifiable->watches()->forUser($this->user)->first();
-            if ($watch === null) { // watch has been removed since...
+            $watch = $this->beatmapsetWatches[$notification->notifiable_id] ?? null;
+            if ($watch === null) { // watch might have been removed between now and when notification was created.
                 return false;
             }
 
             // don't add to digest if this particular type has already been notified and user hasn't caught up yet.
-            return $watch->isRead()
-                && $watch->last_read < now(); // should have already been marked as read, though?
+            return $watch->last_notified < $this->now;
         } else if ($notification->notifiable_type === 'forum_topic') {
-            $watch = $notification->notifiable
-                ->watches()
-                ->forUser($this->user)
-                ->where('mail', true)
-                ->where('notify_status', false)
-                ->first();
+            $watch = $this->topicWatches[$notification->notifiable_id] ?? null;
 
-            if ($watch === null) { // watch has been removed since...
-                return false;
-            }
+            return $watch !== null;
         }
 
         return true;

@@ -11,6 +11,7 @@ use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
 use App\Libraries\UsernameValidation;
+use App\Models\Forum\TopicWatch;
 use App\Models\OAuth\Client;
 use App\Traits\UserAvatar;
 use App\Traits\Validatable;
@@ -1117,6 +1118,11 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         $relation = 'scoresBest'.studly_case($mode);
 
         return $returnQuery ? $this->$relation() : $this->$relation;
+    }
+
+    public function topicWatches()
+    {
+        return $this->hasMany(TopicWatch::class);
     }
 
     public function userProfileCustomization()

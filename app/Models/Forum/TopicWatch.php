@@ -111,11 +111,6 @@ class TopicWatch extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function scopeForUser($query, User $user)
-    {
-        return $query->where('user_id', $user->getKey());
-    }
-
     public function scopeLookupQuery($query, $topic, $user)
     {
         if ($user instanceof User) {
