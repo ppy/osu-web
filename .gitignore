@@ -28,6 +28,7 @@ desktop.ini
 /public/mix-manifest.json
 
 # Compiled/copied assets
+/public/docs
 /public/fonts/vendor
 /public/js
 /public/css
