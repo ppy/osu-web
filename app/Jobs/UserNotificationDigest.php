@@ -5,6 +5,8 @@
 
 namespace App\Jobs;
 
+use App\Exceptions\InvalidNotificationException;
+use App\Jobs\Notifications\BroadcastNotificationBase;
 use App\Mail\UserNotificationDigest as UserNotificationDigestMail;
 use App\Models\Forum\Topic;
 use App\Models\Notification;
@@ -86,26 +88,40 @@ class UserNotificationDigest implements ShouldQueue
             $filtered[] = $notification;
         }
 
-        $this->user->beatmapsetWatches()->whereIn('beatmapset_id', $this->beatmapsetWatches->keys()->all())->update(['last_notified' => $this->now]);
-        $this->user->topicWatches()->whereIn('topic_id', $this->topicWatches->keys()->all())->update(['notify_status' => true]);
-
         return $filtered;
     }
 
-    private function shouldSend(Notification $notification)
+    private function shouldSend(Notification $notification): bool
     {
-        if ($notification->notifiable_type === 'beatmapset') {
-            $watch = $this->beatmapsetWatches[$notification->notifiable_id] ?? null;
-            if ($watch === null) { // watch might have been removed between now and when notification was created.
-                return false;
+        try {
+            $class = BroadcastNotificationBase::getNotificationClassFromNotification($notification);
+            $key = $class::getBaseKey($notification);
+
+            // skip the more 'generic notifications if they've already been sent and not known to be 'read'.
+            if (in_array($key, ['beatmapset.beatmapset_state', 'forum_topic.forum_topic_reply'], true)) {
+                switch ($notification->notifiable_type) {
+                    case 'beatmapset':
+                        $watch = $this->beatmapsetWatches[$notification->notifiable_id] ?? null;
+                        if ($watch !== null) {
+                            $watch->update(['last_notified' => $this->now]);
+                        }
+
+                        break;
+                    case 'forum_topic':
+                        $watch = $this->topicWatches[$notification->notifiable_id] ?? null;
+                        if ($watch !== null) {
+                            $watch->update(['notify_status' => true]);
+                        }
+
+                        break;
+                }
+
+                return isset($watch);
             }
+        } catch (InvalidNotificationException $e) {
+            log_error($e);
 
-            // don't add to digest if this particular type has already been notified and user hasn't caught up yet.
-            return $watch->last_notified < $this->now;
-        } else if ($notification->notifiable_type === 'forum_topic') {
-            $watch = $this->topicWatches[$notification->notifiable_id] ?? null;
-
-            return $watch !== null;
+            return false;
         }
 
         return true;
