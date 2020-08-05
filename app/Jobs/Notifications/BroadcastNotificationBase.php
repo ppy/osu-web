@@ -9,9 +9,9 @@ use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\InvalidNotificationException;
 use App\Models\Notification;
 use App\Models\User;
+use App\Models\UserNotification;
 use App\Models\UserNotificationOption;
 use App\Traits\NotificationQueue;
-use DB;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
@@ -27,6 +27,22 @@ abstract class BroadcastNotificationBase implements ShouldQueue
     protected $name;
     protected $source;
 
+    public static function getBaseKey(Notification $notification): string
+    {
+        $category = Notification::nameToCategory($notification->name);
+
+        return "{$notification->notifiable_type}.{$category}";
+    }
+
+    public static function getMailGroupingKey(Notification $notification): string
+    {
+        $base = static::getBaseKey($notification);
+
+        return "{$base}-{$notification->notifiable_type}-{$notification->notifiable_id}";
+    }
+
+    abstract public static function getMailLink(Notification $notification): string;
+
     public static function getNotificationClass(string $name)
     {
         $class = get_class_namespace(static::class).'\\'.studly_case($name);
@@ -36,6 +52,43 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         }
 
         return $class;
+    }
+
+    public static function getNotificationClassFromNotification(Notification $notification)
+    {
+        return static::getNotificationClass($notification->name);
+    }
+
+    private static function applyDeliverySettings(array $userIds)
+    {
+        static $defaults = ['mail' => true, 'push' => true];
+
+        if (static::NOTIFICATION_OPTION_NAME !== null) {
+            // FIXME: filtering all the ids could get quite large?
+            $notificationOptions = UserNotificationOption
+                ::whereIn('user_id', $userIds)
+                ->where(['name' => static::NOTIFICATION_OPTION_NAME])
+                ->whereNotNull('details')
+                ->get()
+                ->keyBy('user_id');
+        } else {
+            $notificationOptions = [];
+        }
+
+        $deliverySettings = [];
+        foreach ($userIds as $userId) {
+            $details = $notificationOptions[$userId]->details ?? $defaults;
+            $delivery = 0;
+            foreach (UserNotification::DELIVERY_OFFSETS as $type => $_offset) {
+                if ($details[$type] ?? $defaults[$type]) {
+                    $delivery |= UserNotification::deliveryMask($type);
+                }
+            }
+
+            $deliverySettings[$userId] = $delivery;
+        }
+
+        return $deliverySettings;
     }
 
     private static function excludeBotUserIds(array $userIds)
@@ -48,26 +101,6 @@ abstract class BroadcastNotificationBase implements ShouldQueue
             ->all();
 
         return array_values(array_diff($userIds, $botUserIds));
-    }
-
-    private static function filterUserIdsForNotificationOption(array $userIds)
-    {
-        // FIXME: filtering all the ids could get quite large?
-        $notificationOptions = UserNotificationOption
-            ::whereIn('user_id', $userIds)
-            ->where(['name' => static::NOTIFICATION_OPTION_NAME])
-            ->whereNotNull('details')
-            ->get()
-            ->keyBy('user_id');
-
-        $filteredUserIds = [];
-        foreach ($userIds as $userId) {
-            if ($notificationOptions[$userId]->details['push'] ?? true) {
-                $filteredUserIds[] = $userId;
-            }
-        }
-
-        return $filteredUserIds;
     }
 
     public function __construct(?User $source = null)
@@ -104,28 +137,29 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
     public function handle()
     {
-        $receiverIds = $this->getReceiverIds();
+        $deliverySettings = static::applyDeliverySettings(static::excludeBotUserIds($this->getReceiverIds()));
 
-        if (static::NOTIFICATION_OPTION_NAME !== null) {
-            $receiverIds = static::filterUserIdsForNotificationOption($receiverIds);
-        }
-
-        $receiverIds = static::excludeBotUserIds($receiverIds);
-
-        if (empty($receiverIds)) {
+        if (empty($deliverySettings)) {
             return;
         }
 
         $notification = $this->makeNotification();
         $notification->saveOrExplode();
 
-        event(new NewPrivateNotificationEvent($notification, $receiverIds));
+        // client should now be able to handle push notifications that come in after notification has been loaded,
+        // so, it should be fine to create the user notifications first.
 
-        DB::transaction(function () use ($notification, $receiverIds) {
-            foreach ($receiverIds as $id) {
-                $notification->userNotifications()->create(['user_id' => $id]);
+        $pushReceiverIds = [];
+        $notification->getConnection()->transaction(function () use ($deliverySettings, $notification, &$pushReceiverIds) {
+            foreach ($deliverySettings as $userId => $delivery) {
+                $userNotification = $notification->userNotifications()->create(['delivery' => $delivery, 'user_id' => $userId]);
+                $userNotification->isPush() && $pushReceiverIds[] = $userId;
             }
         });
+
+        if (!empty($pushReceiverIds)) {
+            event(new NewPrivateNotificationEvent($notification, $pushReceiverIds));
+        }
     }
 
     public function makeNotification(): Notification

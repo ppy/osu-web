@@ -8,7 +8,7 @@ namespace App\Libraries\Markdown;
 use League\CommonMark\Block\Element as Block;
 use League\CommonMark\EnvironmentInterface;
 use League\CommonMark\Event\DocumentParsedEvent;
-use League\CommonMark\Ext\Table as TableExtension;
+use League\CommonMark\Extension\Table as TableExtension;
 use League\CommonMark\Inline\Element as Inline;
 
 class OsuMarkdownProcessor

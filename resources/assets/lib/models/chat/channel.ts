@@ -12,6 +12,7 @@ export default class Channel {
   @observable description?: string;
   firstMessageId: number = -1;
   @observable icon?: string;
+  @observable inputText: string = '';
   @observable lastMessageId: number = -1;
   @observable lastReadId?: number;
   @observable loaded: boolean = false;
@@ -119,6 +120,11 @@ export default class Channel {
   @action
   resortMessages() {
     this.messages = _(this.messages).sortBy('timestamp').uniqBy('messageId').value();
+  }
+
+  @action
+  setInputText(message: string) {
+    this.inputText = message;
   }
 
   @action

@@ -7,8 +7,8 @@ namespace App\Libraries\Markdown\Indexing;
 
 use League\CommonMark\Block\Element as Block;
 use League\CommonMark\ConfigurableEnvironmentInterface;
-use League\CommonMark\Ext\Table as TableExtension;
 use League\CommonMark\Extension\ExtensionInterface;
+use League\CommonMark\Extension\Table as TableExtension;
 use League\CommonMark\Inline\Element as Inline;
 
 class RendererExtension implements ExtensionInterface
