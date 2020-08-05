@@ -88,6 +88,10 @@
 
     & > div {
       padding: @padding;
+
+      .@{_top}--edit-mode & {
+        padding-bottom: @padding + 31px; // 31px is the height of .circular-progress
+      }
     }
 
     .@{_top}--edit-mode & {
