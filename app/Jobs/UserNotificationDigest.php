@@ -8,7 +8,6 @@ namespace App\Jobs;
 use App\Exceptions\InvalidNotificationException;
 use App\Jobs\Notifications\BroadcastNotificationBase;
 use App\Mail\UserNotificationDigest as UserNotificationDigestMail;
-use App\Models\Forum\Topic;
 use App\Models\Notification;
 use App\Models\User;
 use DB;

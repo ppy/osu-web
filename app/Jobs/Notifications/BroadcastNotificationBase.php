@@ -69,7 +69,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
      * @param $watches A keyed collection of watches; this is here because there's no DB context cache but watches need preloading,
      * so it's preloaded and then passed in.
      * @param $time The time the mail notification is considered run at.
-     * @return boolean
+     * @return bool
      */
     public static function shouldSendMail(Notification $notification, $watches, $time): bool
     {

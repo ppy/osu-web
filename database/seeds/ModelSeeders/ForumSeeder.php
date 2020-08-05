@@ -92,7 +92,7 @@ class ForumSeeder extends Seeder
                         $t = $f2->topics()->save(factory(App\Models\Forum\Topic::class)->make([
                             'forum_id' => $f2->forum_id,
                             'topic_first_poster_name' => $topicUser->username,
-                            'topic_poster' => $topicUser->getKey()
+                            'topic_poster' => $topicUser->getKey(),
                         ]));
                         // Replies to the topic
                         for ($k = 0; $k < 5; $k++) {
@@ -100,7 +100,7 @@ class ForumSeeder extends Seeder
                             $p = $t->posts()->save(factory(App\Models\Forum\Post::class)->make([
                                 'forum_id' => $f2->forum_id,
                                 'post_username' => $postUser->username,
-                                'poster_id' => $postUser->getKey()
+                                'poster_id' => $postUser->getKey(),
                             ]));
                         }
                         // Refresh topic cache (updates last post times etc)
