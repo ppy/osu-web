@@ -42,6 +42,7 @@ export class Main extends React.PureComponent
 
     discussions = @state.discussions
     users = @state.users
+    relatedDiscussions = @state.relatedDiscussions
 
     discussionIds = _.map discussions, 'id'
     userIds = _.map users, 'id'
@@ -56,6 +57,8 @@ export class Main extends React.PureComponent
         # The discussion list shows discussions started by the current user, so it can be assumed that the first post is theirs
         newDiscussion.starting_post = newDiscussion.posts[0]
         discussions.push(newDiscussion)
+      else
+        relatedDiscussions.push(newDiscussion)
 
     _.each beatmapset.related_users, (newUser) ->
       if userIds.includes(newUser.id)
@@ -67,6 +70,7 @@ export class Main extends React.PureComponent
     @setState
       discussions: _.reverse(_.sortBy(discussions, (d) -> Date.parse(d.starting_post.created_at)))
       users: users
+      relatedDiscussions: relatedDiscussions
 
 
   discussions: =>
