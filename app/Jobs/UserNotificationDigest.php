@@ -11,6 +11,7 @@ use App\Mail\UserNotificationDigest as UserNotificationDigestMail;
 use App\Models\Forum\Topic;
 use App\Models\Notification;
 use App\Models\User;
+use DB;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
@@ -22,12 +23,10 @@ class UserNotificationDigest implements ShouldQueue
     use Queueable, SerializesModels;
 
     private $fromId;
+    private $now;
     private $toId;
     private $user;
-
-    private $beatmapsetWatches;
-    private $topicWatches;
-    private $now;
+    private $watches;
 
     public function __construct(User $user, int $fromId, int $toId)
     {
@@ -49,6 +48,52 @@ class UserNotificationDigest implements ShouldQueue
         Mail::to($this->user)->sendNow(new UserNotificationDigestMail($notifications, $this->user));
     }
 
+    private function filterNotifications(Collection $notifications)
+    {
+        // preload the watches and key them for lookup.
+        $this->watches = [
+            'beatmapsets' => $this->user->beatmapsetWatches()
+                ->whereIn('beatmapset_id', $notifications->where('notifiable_type', '=', 'beatmapset')->pluck('notifiable_id'))
+                ->where('last_read', '<', $this->now)
+                ->read()
+                ->get()
+                ->keyBy('beatmapset_id'),
+
+            'topics' => $this->user->topicWatches()
+                ->whereIn('topic_id', $notifications->where('notifiable_type', '=', 'forum_topic')->pluck('notifiable_id'))
+                ->where('mail', true)
+                ->where('notify_status', false)
+                ->get()
+                ->keyBy('topic_id'),
+        ];
+
+        $filtered = [];
+
+        foreach ($notifications as $notification) {
+            if (!$this->shouldSend($notification)) {
+                continue;
+            }
+
+            $filtered[] = $notification;
+        }
+
+        // bulk update the watches
+        DB::transaction(function () {
+            $beatmapsetIds = $this->watches['beatmapsets']->filter(function ($watch) {
+                return $watch->isDirty();
+            })->keys();
+
+            $topicIds = $this->watches['topics']->filter(function ($watch) {
+                return $watch->isDirty();
+            })->keys();
+
+            $this->user->beatmapsetWatches()->whereIn('beatmapset_id', $beatmapsetIds)->update(['last_notified' => $this->now]);
+            $this->user->topicWatches()->whereIn('topic_id', $topicIds)->update(['notify_status' => true]);
+        });
+
+        return $filtered;
+    }
+
     private function getNotifications()
     {
         return Notification
@@ -62,68 +107,16 @@ class UserNotificationDigest implements ShouldQueue
             ->get();
     }
 
-    private function filterNotifications(Collection $notifications)
-    {
-        $this->beatmapsetWatches = $this->user->beatmapsetWatches()
-            ->whereIn('beatmapset_id', $notifications->where('notifiable_type', '=', 'beatmapset')->pluck('notifiable_id'))
-            ->where('last_read', '<', $this->now)
-            ->read()
-            ->get()
-            ->keyBy('beatmapset_id');
-
-        $this->topicWatches = $this->user->topicWatches()
-            ->whereIn('topic_id', $notifications->where('notifiable_type', '=', 'forum_topic')->pluck('notifiable_id'))
-            ->where('mail', true)
-            ->where('notify_status', false)
-            ->get()
-            ->keyBy('topic_id');
-
-        $filtered = [];
-
-        foreach ($notifications as $notification) {
-            if (!$this->shouldSend($notification)) {
-                continue;
-            }
-
-            $filtered[] = $notification;
-        }
-
-        return $filtered;
-    }
-
     private function shouldSend(Notification $notification): bool
     {
         try {
             $class = BroadcastNotificationBase::getNotificationClassFromNotification($notification);
-            $key = $class::getBaseKey($notification);
 
-            // skip the more 'generic notifications if they've already been sent and not known to be 'read'.
-            if (in_array($key, ['beatmapset.beatmapset_state', 'forum_topic.forum_topic_reply'], true)) {
-                switch ($notification->notifiable_type) {
-                    case 'beatmapset':
-                        $watch = $this->beatmapsetWatches[$notification->notifiable_id] ?? null;
-                        if ($watch !== null) {
-                            $watch->update(['last_notified' => $this->now]);
-                        }
-
-                        break;
-                    case 'forum_topic':
-                        $watch = $this->topicWatches[$notification->notifiable_id] ?? null;
-                        if ($watch !== null) {
-                            $watch->update(['notify_status' => true]);
-                        }
-
-                        break;
-                }
-
-                return isset($watch);
-            }
+            return $class::shouldSendMail($notification, $this->watches, $this->now);
         } catch (InvalidNotificationException $e) {
             log_error($e);
 
             return false;
         }
-
-        return true;
     }
 }

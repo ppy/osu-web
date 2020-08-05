@@ -59,6 +59,23 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         return static::getNotificationClass($notification->name);
     }
 
+    /**
+     * Checks if a notification should be included into the user notification mail digest.
+     * This mainly used to exclude the more generic notifications from being re-notified if they haven't been 'read'.
+     * The notifications with more specific messages or links should still be included, since they're usually going to be
+     * different in each digest.
+     *
+     * @param Notification $notification The notification to check.
+     * @param $watches A keyed collection of watches; this is here because there's no DB context cache but watches need preloading,
+     * so it's preloaded and then passed in.
+     * @param $time The time the mail notification is considered run at.
+     * @return boolean
+     */
+    public static function shouldSendMail(Notification $notification, $watches, $time): bool
+    {
+        return true;
+    }
+
     private static function applyDeliverySettings(array $userIds)
     {
         static $defaults = ['mail' => true, 'push' => true];
