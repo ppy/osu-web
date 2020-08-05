@@ -83,6 +83,12 @@ return [
         'subject' => 'osu! Konto återaktivering krävs',
     ],
 
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
         'confirmation' => 'Detta är bara en bekräftelse på att ditt osu! lösenord har ändrats.',
         'subject' => 'bekräfta ändrat osu! lösenord',

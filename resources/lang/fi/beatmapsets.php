@@ -17,10 +17,10 @@ return [
 
     'panel' => [
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'lataa',
+            'video' => 'lataa videon kanssa',
+            'no_video' => 'lataa ilman videota',
+            'direct' => 'avaa osu!directissä',
         ],
     ],
 
@@ -79,7 +79,7 @@ return [
 
             'report' => [
                 '_' => '',
-                'button' => '',
+                'button' => 'Ilmoita Ongelma',
                 'link' => '',
             ],
         ],
@@ -115,7 +115,7 @@ return [
                 'rank' => 'Sijoitus',
                 'score_total' => 'Kokonaispisteet',
                 'score' => 'Pisteet',
-                'time' => '',
+                'time' => 'Aika',
             ],
 
             'no_scores' => [

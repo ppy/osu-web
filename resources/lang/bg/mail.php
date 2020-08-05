@@ -90,6 +90,12 @@ return [
         'subject' => 'Необходима е реактивация на osu! акаунта',
     ],
 
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
         'confirmation' => 'Това е подвърждение, че вашата osu! парола бе променена.',
         'subject' => 'подвърдете смяната на osu! паролата',

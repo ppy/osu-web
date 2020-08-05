@@ -10,7 +10,7 @@ return [
         'missing' => 'Az oldal ":keyword" nem található.',
         'missing_title' => 'Nem Található',
         'missing_translation' => 'A kért oldal nem található a jelenleg kiválasztott nyelven.',
-        'needs_cleanup_or_rewrite' => '',
+        'needs_cleanup_or_rewrite' => 'Ez az oldal elavult fordítást tartalmaz az eredeti osu! wikiről! Ha képes vagy rá, fontold meg a fordítás frissítését!',
         'search' => 'Létező oldalak keresése :link után.',
         'toc' => 'Tartalom',
 
