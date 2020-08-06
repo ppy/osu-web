@@ -18,7 +18,7 @@ abstract class BeatmapsetDiscussionPostNotification extends BroadcastNotificatio
 
     public static function getMailLink(Notification $notification): string
     {
-        return route('beatmapsets.discussion', ['beatmapset' => $notification->notifiable_id]);
+        return route('beatmapsets.discussion', ['beatmapset' => $notification->notifiable_id]).'#/'.$notification->details['discussion_id'];
     }
 
     public function __construct(BeatmapDiscussionPost $beatmapsetDiscussionPost, ?User $source = null)
