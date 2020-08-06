@@ -124,7 +124,7 @@ return [
             'wiki' => 'Wiki',
         ],
         'legal' => [
-            '_' => 'Legal y Estado',
+            '_' => 'Legal y estado',
             'copyright' => 'Derechos de autor (DMCA)',
             'privacy' => 'Privacidad',
             'server_status' => 'Estado del servidor',

@@ -24,6 +24,30 @@
       display: block;
       height: 100%;
     }
+
+    .@{_top}--readonly & {
+        &:hover .@{_top}__hover-menu {
+          display: none;
+        }
+    }
+
+    &:hover .@{_top}__hover-menu {
+      display: block;
+    }
+  }
+
+  &__block-count {
+    margin-right: 10px;
+  }
+
+  &__hover-menu {
+    bottom: -10px;
+    display: none;
+    margin-left: -@padding;
+    position: absolute;
+    user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+    .default-text-shadow();
+    z-index: @z-index--blackout-visible;
   }
 
   &__button-bar {
@@ -50,6 +74,13 @@
     }
   }
 
+  &__inner-block-count {
+    display: flex;
+    justify-content: flex-end;
+    pointer-events: none;
+    margin: -31px 10px 10px;
+  }
+
   &__input-area {
     .content-font();
     max-height: calc(70 * var(--vh, 1vh));
@@ -57,6 +88,10 @@
 
     & > div {
       padding: @padding;
+
+      .@{_top}--edit-mode & {
+        padding-bottom: @padding + 31px; // 31px is the height of .circular-progress
+      }
     }
 
     .@{_top}--edit-mode & {

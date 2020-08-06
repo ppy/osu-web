@@ -29,7 +29,6 @@ $factory->define(App\Models\Beatmap::class, function (Faker\Generator $faker) {
         'version' => $faker->domainWord,
         'total_length' => $length,
         'hit_length' => ($length - rand(0, 20)),
-        'countTotal' => $hits,
         'countNormal' => $hitsNormal,
         'countSlider' => $hitsSlider,
         'countSpinner' => $hitsSpinner,

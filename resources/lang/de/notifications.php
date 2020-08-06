@@ -7,7 +7,7 @@ return [
     'all_read' => 'Alle Benachrichtigungen gelesen!',
     'mark_read' => 'Lösche :type',
     'none' => 'Keine Benachrichtigungen',
-    'see_all' => 'alle Benachrichtigungen ansehen',
+    'see_all' => 'alle benachrichtigungen ansehen',
 
     'filters' => [
         '_' => 'alle',
@@ -131,6 +131,40 @@ return [
                 'user_achievement_unlock' => '":title" freigeschaltet!',
                 'user_achievement_unlock_compact' => '":title" freigeschaltet!',
             ],
+        ],
+    ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => '',
+            'beatmapset_discussion_lock' => '',
+            'beatmapset_discussion_unlock' => '',
+            'beatmapset_problem' => '',
+            'beatmapset_state' => '',
+            'comment' => '',
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => '',
+            ],
+        ],
+
+        'build' => [
+            'comment' => '',
+        ],
+
+        'news_post' => [
+            'comment' => '',
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => '',
+        ],
+
+        'user_achievement' => [
+            'user_achievement_unlock' => '',
+            'user_achievement_unlock_self' => '',
         ],
     ],
 ];
