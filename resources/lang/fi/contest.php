@@ -10,7 +10,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'listaus',
     ],
 
     'voting' => [
@@ -53,7 +53,7 @@ return [
     ],
     'dates' => [
         'ended' => 'Loppui :date',
-        'ended_no_date' => '',
+        'ended_no_date' => 'Päättyi',
 
         'starts' => [
             '_' => 'Alkoi :date',

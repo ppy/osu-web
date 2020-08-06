@@ -50,29 +50,29 @@ return [
     ],
 
     'disabled' => [
-        'title' => '',
-        'warning' => "",
+        'title' => 'Uh-oh! Úgy tűnik a fiókod le lett tiltva.',
+        'warning' => "Abban az esetben, ha megszegsz egy szabályt, kérlek vedd figyelembe, hogy van egy általános egy hónapos időszak, amiben nem fogadunk el amnesztiával kapcsolatos kéréseket. Ezután az időszak után, szabadon kapcsolatba léphetsz velünk, ha szükségesnek láttod. Kérlek vedd figyelembe, hogy ha egy új fiókot hozol létre, ha már volt legalább egy letiltott fiókod, ez egy újabb hónap meghosszabitást eredményez. Vedd azt is figyelembe, hogy minnél több fiókot hozol létre, annál több büntetésed lesz. Nagyon ajánljuk, hogy ne menj el ebbe az írányba!",
 
         'if_mistake' => [
-            '_' => '',
-            'email' => '',
+            '_' => 'Ha hibát észleltél, nyugodtan lépj kapcsolatba velünk (itt :email vagy kattints a ? ikonra a jobb alsó sarokba az oldalon). Fontos, hogy mi mindig magabiztosak vagyunk abban mit teszünk, mivel nagyon magabiztos adatokból dolgozunk. Továbbá fent tartjuk azt a jogot, hogy a becstelen  vagy sértő a kéréseket figyelmen kivül hagyjuk.',
+            'email' => 'email',
         ],
 
         'reasons' => [
-            'compromised' => '',
-            'opening' => '',
+            'compromised' => 'A fiókod veszélyeztetettnek tekinthető. Idéglenesen lehet nem lesz elérhető, addig amíg a valódi személyazonosság megerősítésre nem kerül.',
+            'opening' => 'Számtalan indok van, amiért a fiókod tiltva lett:',
 
             'tos' => [
-                '_' => '',
-                'community_rules' => '',
-                'tos' => '',
+                '_' => 'Megszegtél egy vagy több szabályt az előírásainkból :community_rules vagy :tos.',
+                'community_rules' => 'közösségi szabályok',
+                'tos' => 'felhasználási feltételek',
             ],
         ],
     ],
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "A fiókod hosszú ideje nem volt használva.",
         ],
     ],
 
@@ -80,10 +80,10 @@ return [
         '_' => 'Bejelentkezés',
         'button' => 'Bejelentkezés',
         'button_posting' => 'Bejelentkezés...',
-        'email_login_disabled' => '',
+        'email_login_disabled' => 'Az email-el való belépés jelenleg le van tiltva. Kérlek használd a felhasználó neved helyette.',
         'failed' => 'Hibás adatok',
         'forgot' => 'Elfelejtetted a jelszavad?',
-        'info' => '',
+        'info' => 'Jelentkezz be a folytatáshoz',
         'locked_ip' => 'Az IP címed zárolva van. Kérjük várj egy pár percet.',
         'password' => 'Jelszó',
         'register' => "Nincs osu! felhasználód? Regisztrálj egyet!",
@@ -207,8 +207,8 @@ return [
             ],
             'discussions' => [
                 'title' => 'Hozzászólások',
-                'title_longer' => '',
-                'show_more' => '',
+                'title_longer' => 'Legújabb beszélgetések',
+                'show_more' => 'további beszélgetések mutatása',
             ],
             'events' => [
                 'title' => 'Események',
@@ -281,7 +281,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
+                    '_' => 'Annak alapján, hogy a felhasználó milyen mértékben járult hozzá egy beatmap moderálásához. További információkért kattints a linkre. :link.',
                     'link' => 'ez az oldal',
                 ],
             ],
@@ -306,7 +306,7 @@ return [
                 'empty' => 'Még nem rendelkezik kiemelkedő eredménnyel. :(',
                 'not_ranked' => 'Kizárólag rangsorolt beatmap adhat pp-t.',
                 'pp_weight' => 'súlyozott :percentage',
-                'view_details' => '',
+                'view_details' => 'Részletek mutatása',
                 'title' => 'Rangok',
 
                 'best' => [
@@ -321,7 +321,7 @@ return [
                 'received' => 'Beérkezett Szavazatok (legutóbbi 3 hónap)',
                 'title' => 'Szavazatok',
                 'title_longer' => 'Legutóbbi Szavazatok',
-                'vote_count' => '',
+                'vote_count' => ':count_delimited  szavazás:count_delimited szavazatok',
             ],
             'account_standing' => [
                 'title' => 'Fiók Állása',
@@ -370,7 +370,7 @@ return [
             'placeholder' => 'Írd ide az oldal tartalmát',
 
             'restriction_info' => [
-                '_' => '',
+                '_' => 'Ennek a szolgáltatásnak a feloldásához egy linknek kell lennie. :link.',
                 'link' => 'osu!támogató',
             ],
         ],
@@ -398,10 +398,10 @@ return [
             'total_hits' => 'Találatok Száma',
             'total_score' => 'Összpontszám',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
-            'graveyard_beatmapset_count' => '',
+            'ranked_and_approved_beatmapset_count' => 'Rankedelt & jóváhagyott beatmapek',
+            'loved_beatmapset_count' => 'Kedvelt beatmapek',
+            'unranked_beatmapset_count' => 'Függőben lévő beatmapek',
+            'graveyard_beatmapset_count' => 'Eltemetett beatmapek',
         ],
     ],
 
@@ -418,7 +418,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '',
+        'brick' => 'Tégla nézet',
         'card' => 'Kártya nézet',
         'list' => 'Lista nézet',
     ],

@@ -57,9 +57,12 @@ return [
         'options' => [
             '_' => 'opzioni di notifica',
             'beatmapset:modding' => 'modding delle beatmap',
+            'channel_message' => '',
+            'comment_new' => '',
             'forum_topic_reply' => 'risposta al topic',
             'mail' => 'mail',
             'push' => 'push',
+            'user_achievement_unlock' => '',
         ],
     ],
 
@@ -79,7 +82,7 @@ return [
             'direct' => 'apri in osu!direct',
         ],
 
-        'beatmapset_title_show_original' => '',
+        'beatmapset_title_show_original' => 'mostra i metadati della beatmap in lingua originale',
     ],
 
     'playstyles' => [

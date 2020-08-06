@@ -5,17 +5,17 @@
 
 return [
     'mode' => [
-        'beatmapset' => '',
-        'forum_post' => '',
-        'other' => '',
-        'user' => '',
-        'wiki_page' => '',
+        'beatmapset' => 'Beatmap',
+        'forum_post' => 'Fórum',
+        'other' => 'Egyéb',
+        'user' => 'Játékos',
+        'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => '',
-        'empty_for' => '',
-        'more' => '',
-        'title' => '',
+        'empty' => 'Nincs találat',
+        'empty_for' => 'Nincs találat erre a modra/modokra :modes',
+        'more' => 'További keresési eredmények :mode',
+        'title' => ':mode keresési eredmények',
     ],
 ];

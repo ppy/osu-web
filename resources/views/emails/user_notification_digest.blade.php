@@ -8,7 +8,9 @@
 
 @foreach ($groups as $group)
 {!! $group['text'] !!}:
-{!! $group['link'] !!}
+@foreach ($group['links'] as $link => $_ignored)
+{!! $link !!}
+@endforeach
 
 @endforeach
 
