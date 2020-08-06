@@ -51,7 +51,6 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'receive notifications for new problem on qualified beatmaps of following modes',
         'beatmapset_disqualify' => 'receive notifications for when beatmaps of following modes are disqualified',
-        'comment_replies' => 'receive notifications for replies to your comments',
         'title' => 'Notifications',
         'topic_auto_subscribe' => 'automatically enable notifications on new forum topics that you create',
 
@@ -60,6 +59,7 @@ return [
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'private chat messages',
             'comment_new' => 'new comments',
+            'comment_reply' => 'replies to your comments',
             'forum_topic_reply' => 'topic reply',
             'mail' => 'mail',
             'push' => 'push',

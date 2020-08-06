@@ -5,11 +5,11 @@
 
 namespace App\Jobs\Notifications;
 
-use App\Models\UserNotificationOption;
+use App\Models\Notification;
 
 class CommentReply extends CommentBase
 {
-    const NOTIFICATION_OPTION_NAME = UserNotificationOption::COMMENT_REPLY;
+    const NOTIFICATION_OPTION_NAME = Notification::COMMENT_REPLY;
 
     public function getListeningUserIds(): array
     {

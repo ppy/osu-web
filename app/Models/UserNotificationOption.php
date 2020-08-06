@@ -27,11 +27,12 @@ class UserNotificationOption extends Model
     const BEATMAPSET_MODDING = 'beatmapset:modding'; // matches Follow notifiable_type:subtype
     const DELIVERY_MODES = ['mail', 'push'];
     const FORUM_TOPIC_REPLY = Notification::FORUM_TOPIC_REPLY;
-    const COMMENT_REPLY = Notification::COMMENT_REPLY; // FIXME: temporary until mail notification changes get merged in
+
     const HAS_DELIVERY_MODES = [
         self::BEATMAPSET_MODDING,
         Notification::CHANNEL_MESSAGE,
         Notification::COMMENT_NEW,
+        Notification::COMMENT_REPLY,
         self::FORUM_TOPIC_REPLY,
         Notification::USER_ACHIEVEMENT_UNLOCK,
     ];
@@ -43,8 +44,7 @@ class UserNotificationOption extends Model
     public static function supportsNotifications(string $name)
     {
         return in_array($name, static::HAS_DELIVERY_MODES, true)
-            || in_array($name, static::BEATMAPSET_DISQUALIFIABLE_NOTIFICATIONS, true)
-            || $name === static::COMMENT_REPLY;
+            || in_array($name, static::BEATMAPSET_DISQUALIFIABLE_NOTIFICATIONS, true);
     }
 
     public function user()
@@ -69,8 +69,7 @@ class UserNotificationOption extends Model
             }
         }
 
-        if (in_array($this->name, static::HAS_DELIVERY_MODES, true)
-            || $this->name === static::COMMENT_REPLY) {
+        if (in_array($this->name, static::HAS_DELIVERY_MODES, true)) {
             foreach (static::DELIVERY_MODES as $mode) {
                 if (isset($value[$mode])) {
                     $details[$mode] = get_bool($value[$mode] ?? null);
