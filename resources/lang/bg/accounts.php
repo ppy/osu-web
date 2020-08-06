@@ -57,9 +57,12 @@ return [
         'options' => [
             '_' => 'опции за доставка',
             'beatmapset:modding' => 'бийтмап modding',
+            'channel_message' => '',
+            'comment_new' => '',
             'forum_topic_reply' => 'отговор на темата',
             'mail' => 'поща',
             'push' => 'push',
+            'user_achievement_unlock' => '',
         ],
     ],
 
@@ -79,7 +82,7 @@ return [
             'direct' => 'отвори в osu!direct',
         ],
 
-        'beatmapset_title_show_original' => '',
+        'beatmapset_title_show_original' => 'покажете метаданни на beatmap на оригиналния език',
     ],
 
     'playstyles' => [

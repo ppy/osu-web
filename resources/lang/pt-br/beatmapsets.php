@@ -48,12 +48,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => 'aprovado há :timeago',
-            'loved' => 'loved há :timeago',
-            'qualified' => 'qualificado há :timeago',
-            'ranked' => 'ranqueado há :timeago',
-            'submitted' => 'submetido há :timeago',
-            'updated' => 'atualizado há :timeago',
+            'approved' => 'aprovado :timeago',
+            'loved' => 'loved :timeago',
+            'qualified' => 'qualificado :timeago',
+            'ranked' => 'ranqueado :timeago',
+            'submitted' => 'enviado :timeago',
+            'updated' => 'atualizado :timeago',
         ],
 
         'favourites' => [
@@ -115,7 +115,7 @@ return [
                 'rank' => 'Rank',
                 'score_total' => 'Pontuação Total',
                 'score' => 'Pontuação',
-                'time' => '',
+                'time' => 'Tempo',
             ],
 
             'no_scores' => [

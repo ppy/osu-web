@@ -9,7 +9,7 @@ return [
 
     'buttons' => [
         'add' => 'adicionar amigo',
-        'disabled' => 'amigos',
+        'disabled' => 'seguidores',
         'remove' => 'remover amigo',
     ],
 ];

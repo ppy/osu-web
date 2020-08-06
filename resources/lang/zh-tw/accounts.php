@@ -57,9 +57,12 @@ return [
         'options' => [
             '_' => '送貨選項',
             'beatmapset:modding' => '',
+            'channel_message' => '',
+            'comment_new' => '',
             'forum_topic_reply' => '主題回復',
             'mail' => '郵箱',
             'push' => '',
+            'user_achievement_unlock' => '',
         ],
     ],
 

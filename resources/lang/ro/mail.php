@@ -19,11 +19,11 @@ return [
 
     'donation_thanks' => [
         'benefit_more' => 'Mai multe beneficii de sprinjinitor vor apărea pe timp ce trece!',
-        'feedback' => "",
-        'keep_free' => '',
-        'keep_running' => '',
+        'feedback' => "Dacă ai orice întrebare sau feedback, nu ezita să răspunzi acestui mail; O să mă întorc la tine cât mai curând posibil!",
+        'keep_free' => 'Este mulțumită oamenilor ca tine care joacă osu! pentru care putem să menținem jocul și comunitatea funcțională în mod lin fără reclame sau plăți forțate.',
+        'keep_running' => 'Sprijinul tău păstrează osu! rulează de aproximativ :minutes! Poate nu pare prea mult, dar totul se adaugă :).',
         'subject' => 'Mulțumim, osu! te <3',
-        'translation' => '',
+        'translation' => 'O traducere furnizată de comunitate pentru scopuri informaționale urmează:',
 
         'benefit' => [
             'gift' => '',
@@ -80,6 +80,12 @@ return [
         'main' => '',
         'perform_reset' => '',
         'reason' => '',
+        'subject' => '',
+    ],
+
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
         'subject' => '',
     ],
 
