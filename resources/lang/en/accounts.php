@@ -59,7 +59,6 @@ return [
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'private chat messages',
             'comment_new' => 'new comments',
-            'comment_reply' => 'replies to your comments',
             'forum_topic_reply' => 'topic reply',
             'mail' => 'mail',
             'push' => 'push',

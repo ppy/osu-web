@@ -32,7 +32,6 @@ class UserNotificationOption extends Model
         self::BEATMAPSET_MODDING,
         Notification::CHANNEL_MESSAGE,
         Notification::COMMENT_NEW,
-        Notification::COMMENT_REPLY,
         self::FORUM_TOPIC_REPLY,
         Notification::USER_ACHIEVEMENT_UNLOCK,
     ];
