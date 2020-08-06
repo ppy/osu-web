@@ -14,42 +14,42 @@ return [
 
     'authorized_clients' => [
         'confirm_revoke' => 'Biztosan vissza akarod vonni ezen kliens jogait?',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'scopes_title' => 'Az alkalmazás képes:',
+        'owned_by' => ':user tulajdona',
+        'none' => 'Nincsnek kliensek',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Hozzáférés visszavonása',
+            'true' => 'Hozzáférés visszavonva',
         ],
     ],
 
     'client' => [
-        'id' => '',
+        'id' => 'Kliens ID',
         'name' => 'Alkalmazás neve',
-        'redirect' => '',
-        'reset' => '',
-        'reset_failed' => '',
+        'redirect' => 'Az alkalmazás URL-je',
+        'reset' => 'Ügyfél titkosításának visszavonása',
+        'reset_failed' => 'Az ügyfél titkosításának visszavonása sikertelen',
         'secret' => 'Ügyfél titkos kódja',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Ügyfél titkosított adatai mutatása',
+            'true' => 'Ügyfél titkosítása',
         ],
     ],
 
     'new_client' => [
-        'header' => '',
+        'header' => 'Regisztálj egy új OAuth alkalmazást',
         'register' => 'Regisztráld az alkalmazásodat',
         'terms_of_use' => [
-            '_' => '',
+            '_' => 'Ha az API-t használod, elfogadod a :link feltételeit.',
             'link' => 'Felhasználási feltételek',
         ],
     ],
 
     'own_clients' => [
-        'confirm_delete' => '',
-        'confirm_reset' => '',
+        'confirm_delete' => 'Biztos vagy benne, hogy törlöd ezt a klienst?',
+        'confirm_reset' => 'Biztos vagy benne, hogy törlöd az ügyfél titkositását? Ez az összes tokent eltávolitja.',
         'new' => 'Új OAuth alkalmazás',
         'none' => 'Nincs Kliens',
 

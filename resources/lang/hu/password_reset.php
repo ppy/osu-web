@@ -36,8 +36,8 @@ return [
         'username' => 'Add meg az e-mail címed vagy felhasználóneved',
 
         'support' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Segítség kéne? Lépj kapcsolatba velünk itt :botton.',
+            'button' => 'támogatói rendszer',
         ],
     ],
 ];
