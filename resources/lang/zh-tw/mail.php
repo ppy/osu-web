@@ -83,6 +83,12 @@ return [
         'subject' => '您需要重新驗證您的 osu! 帳戶',
     ],
 
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
         'confirmation' => '提醒您，您的osu!密碼已被修改',
         'subject' => 'osu! 帳號密碼變更',

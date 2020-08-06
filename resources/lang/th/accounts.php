@@ -57,9 +57,12 @@ return [
         'options' => [
             '_' => 'วิธีการรับการแจ้งเตือน',
             'beatmapset:modding' => 'การวิจารณ์บีทแมพ',
+            'channel_message' => '',
+            'comment_new' => '',
             'forum_topic_reply' => 'ข้อความตอบกลับในกระทู้',
             'mail' => 'อีเมล',
             'push' => 'ส่งการแจ้งเตือน',
+            'user_achievement_unlock' => '',
         ],
     ],
 

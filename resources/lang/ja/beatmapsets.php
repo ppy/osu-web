@@ -115,7 +115,7 @@ return [
                 'rank' => '順位',
                 'score_total' => '合計スコア',
                 'score' => 'スコア',
-                'time' => '',
+                'time' => '時間',
             ],
 
             'no_scores' => [

@@ -57,9 +57,12 @@ return [
         'options' => [
             '_' => 'leveransalternativ',
             'beatmapset:modding' => 'beatmap modding',
+            'channel_message' => '',
+            'comment_new' => '',
             'forum_topic_reply' => 'ämnessvar',
             'mail' => 'mail',
             'push' => 'push',
+            'user_achievement_unlock' => '',
         ],
     ],
 
@@ -79,7 +82,7 @@ return [
             'direct' => 'öppna i osu!direct',
         ],
 
-        'beatmapset_title_show_original' => '',
+        'beatmapset_title_show_original' => 'visa beatmapmetadata på originalspråk',
     ],
 
     'playstyles' => [

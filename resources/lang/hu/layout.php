@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Következő zene automatikus lejátszása',
     ],
 
     'defaults' => [
@@ -14,40 +14,40 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'beatmapset események',
+            'contest' => 'verseny',
+            'contests' => 'versenyek',
+            'root' => 'konzol',
+            'store_orders' => 'admin bolt',
         ],
 
         'artists' => [
-            'index' => '',
+            'index' => 'listázás',
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'listázás',
         ],
 
         'help' => [
-            'index' => '',
-            'sitemap' => '',
+            'index' => 'index',
+            'sitemap' => 'Oldaltérkép',
         ],
 
         'store' => [
-            'cart' => '',
-            'orders' => '',
-            'products' => '',
+            'cart' => 'kosár',
+            'orders' => 'rendelési előzmények',
+            'products' => 'termékek',
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'listázás',
         ],
 
         'users' => [
-            'modding' => '',
-            'show' => '',
+            'modding' => 'modolás',
+            'show' => 'információ',
         ],
     ],
 
@@ -96,7 +96,7 @@ return [
             'country' => 'ország',
             'index' => 'teljesítmény',
             'kudosu' => 'kudosu',
-            'multiplayer' => '',
+            'multiplayer' => 'többjátékos',
             'score' => 'pontszám',
         ],
         'store' => [
@@ -121,7 +121,7 @@ return [
             'forum' => 'Közösségi Fórumok',
             'livestreams' => 'Élő közvetítések',
             'report' => 'Hiba Jelentése',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Jogok és Állapot',
@@ -135,7 +135,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Érvénytelen lekérési paraméterek',
             'description' => '',
         ],
         '404' => [
@@ -155,7 +155,7 @@ return [
             'description' => "Bocsi, de a kért oldal nem itt van!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Érvénytelen lekérési paraméterek',
             'description' => '',
         ],
         '500' => [

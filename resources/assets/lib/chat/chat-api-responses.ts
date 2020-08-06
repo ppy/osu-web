@@ -3,6 +3,11 @@
 
 import UserJSON from 'interfaces/user-json';
 
+interface ChatSilenceJson {
+  id: number;
+  user_id: number;
+}
+
 export type ChannelType = 'PUBLIC'|'PRIVATE'|'MULTIPLAYER'|'SPECTATOR'|'TEMPORARY'|'PM'|'GROUP'|'NEW';
 
 export interface ChannelJSON {
@@ -24,6 +29,7 @@ export type GetMessagesJSON =
 export interface GetUpdatesJSON {
   messages: MessageJSON[];
   presence: ChannelJSON[];
+  silences: ChatSilenceJson[];
 }
 
 export type MarkAsReadJSON =
