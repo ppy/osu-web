@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import { CircularProgress } from 'circular-progress';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import isHotkey from 'is-hotkey';
 import { route } from 'laroute';
@@ -14,6 +15,7 @@ import { Spinner } from 'spinner';
 import { sortWithMode } from 'utils/beatmap-helper';
 import EditorDiscussionComponent from './editor-discussion-component';
 import {
+  blockCount,
   insideEmbed,
   serializeSlateDocument,
   slateDocumentContainsNewProblem,
@@ -23,6 +25,7 @@ import {
 import { EditorInsertionMenu } from './editor-insertion-menu';
 import { EditorToolbar } from './editor-toolbar';
 import { parseFromJson } from './review-document';
+import { ReviewEditorConfigContext } from './review-editor-config-context';
 import { SlateContext } from './slate-context';
 
 interface CacheInterface {
@@ -43,6 +46,7 @@ interface Props {
 }
 
 interface State {
+  blockCount: number;
   posting: boolean;
   value: SlateNode[];
 }
@@ -52,6 +56,7 @@ interface TimestampRange extends Range {
 }
 
 export default class Editor extends React.Component<Props, State> {
+  static contextType = ReviewEditorConfigContext;
   static defaultProps = {
     editing: false,
   };
@@ -88,6 +93,7 @@ export default class Editor extends React.Component<Props, State> {
     }
 
     this.state = {
+      blockCount: blockCount(initialValue),
       posting: false,
       value: initialValue,
     };
@@ -162,7 +168,10 @@ export default class Editor extends React.Component<Props, State> {
       }
     }
 
-    this.setState({value});
+    this.setState({
+      blockCount: blockCount(value),
+      value,
+    });
 
     if (ReactEditor.isFocused(this.slateEditor) && this.props.onFocus) {
       this.props.onFocus();
@@ -204,6 +213,7 @@ export default class Editor extends React.Component<Props, State> {
   render(): React.ReactNode {
     const editorClass = 'beatmap-discussion-editor';
     const modifiers = this.props.editMode ? ['edit-mode'] : [];
+    const overLimit = this.state.blockCount > this.context.max_blocks;
     if (this.state.posting) {
       modifiers.push('readonly');
     }
@@ -229,6 +239,11 @@ export default class Editor extends React.Component<Props, State> {
                   placeholder={osu.trans('beatmaps.discussions.message_placeholder.review')}
                 />
               </div>
+              {this.props.editMode &&
+                <div className={`${editorClass}__inner-block-count`}>
+                  {this.renderBlockCount('lighter')}
+                </div>
+              }
               { !this.props.editMode &&
                 <div className={`${editorClass}__button-bar`}>
                   <button
@@ -239,20 +254,37 @@ export default class Editor extends React.Component<Props, State> {
                   >
                     {osu.trans('common.buttons.clear')}
                   </button>
-                  <button
-                    className='btn-osu-big btn-osu-big--forum-primary'
-                    disabled={this.state.posting}
-                    type='submit'
-                    onClick={this.post}
-                  >
-                    {this.state.posting ? <Spinner /> : osu.trans('common.buttons.post')}
-                  </button>
+                  <div>
+                    <span className={`${editorClass}__block-count`}>
+                      {this.renderBlockCount()}
+                    </span>
+                    <button
+                      className='btn-osu-big btn-osu-big--forum-primary'
+                      disabled={this.state.posting || overLimit}
+                      type='submit'
+                      onClick={this.post}
+                    >
+                      {this.state.posting ? <Spinner /> : osu.trans('common.buttons.post')}
+                    </button>
+                  </div>
                 </div>
               }
             </Slate>
           </SlateContext.Provider>
         </div>
       </div>
+    );
+  }
+
+  renderBlockCount = (theme?: string) => {
+    return (
+      <CircularProgress
+        current={this.state.blockCount}
+        max={this.context.max_blocks}
+        onlyShowAsWarning={true}
+        theme={theme}
+        tooltip={osu.trans('beatmap_discussions.review.block_count', {used: this.state.blockCount, max: this.context.max_blocks})}
+      />
     );
   }
 
@@ -352,8 +384,11 @@ export default class Editor extends React.Component<Props, State> {
       return;
     }
 
+    const value = this.props.editing ? parseFromJson(this.props.document, this.props.discussions) : [];
+
     this.setState({
-      value: this.props.editing ? parseFromJson(this.props.document, this.props.discussions) : [],
+      blockCount: blockCount(value),
+      value,
     });
   }
 

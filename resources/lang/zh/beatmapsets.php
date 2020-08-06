@@ -20,7 +20,7 @@ return [
             'all' => '下载',
             'video' => '下载并包含视频',
             'no_video' => '下载并不包含视频',
-            'direct' => '在 osu!direct中查看',
+            'direct' => '在 osu!direct 中查看',
         ],
     ],
 
@@ -30,7 +30,7 @@ return [
         'details' => [
             'favourite' => '收藏这张谱面',
             'logged-out' => '下载谱面前请先登录！',
-            'mapped_by' => '作者: :mapper',
+            'mapped_by' => '作图者: :mapper',
             'unfavourite' => '取消收藏',
             'updated_timeago' => '上次更新于 :timeago',
 

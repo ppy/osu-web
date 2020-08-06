@@ -37,7 +37,7 @@ return [
                 'link_text' => 'Versenyek felfedezése &raquo;',
             ],
             'bounty-program' => [
-                'title' => '',
+                'title' => 'Nyílt forrású bounty program',
                 'description' => 'Támogasd a közösséget ami adta az idejét és az erejét, hogy az osu!-t jobbá tegyék.',
                 'link_text' => 'Láss többet &raquo;',
             ],
@@ -51,7 +51,7 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Baráti Ranglista',
-                'description' => "",
+                'description' => "Nézd meg hogyan álltok a barátaiddal egy beatmapen a ranglistán a játékban, vagy akár a weboldalon is.",
             ],
 
             'country_ranking' => [
@@ -61,7 +61,7 @@ return [
 
             'mod_filtering' => [
                 'title' => 'Szűrés modok szerint',
-                'description' => '',
+                'description' => 'Csak HDHR-es emberekkel akarsz játszani? Nem probléma!',
             ],
 
             'auto_downloads' => [
@@ -129,7 +129,8 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Több Beatmap Feltöltése',
-                'description' => '',
+                'description' => 'Hogy mennyi unranked mappod lehet, egy alap értéktől és egy adott bónusztól függ, minden egyes rankedelt maptól, ami jelenleg van neked (egy bizonyos korlátig).<br/><br/> Általában ez az alap érték :base és ez a plusz :bonus rangsorolt mapponként (egészen :bonus_max-ig).
+Ha van támogatói címed ez megnővekszik :supporter_base-re egészen :supporter_bonus-ig rangsorolt mapponként (egészen :supporter_bonus_max-ig). ',
             ],
             'friend_filtering' => [
                 'title' => 'Baráti ranglétrák',

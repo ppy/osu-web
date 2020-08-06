@@ -83,6 +83,12 @@ return [
         'subject' => '您需要重新激活您的 osu! 账户',
     ],
 
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
         'confirmation' => '您的 osu! 账户密码已被修改。',
         'subject' => 'osu! 帐户密码更改确认',

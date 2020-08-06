@@ -68,9 +68,6 @@
             "countSpinner": {
               "type": "long"
             },
-            "countTotal": {
-              "type": "long"
-            },
             "diff_approach": {
               "type": "double"
             },

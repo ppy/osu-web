@@ -57,9 +57,12 @@ return [
         'options' => [
             '_' => 'kirimkan notifikasi melalui',
             'beatmapset:modding' => 'modding beatmap',
+            'channel_message' => '',
+            'comment_new' => '',
             'forum_topic_reply' => 'balasan pada topik',
             'mail' => 'email',
             'push' => 'web',
+            'user_achievement_unlock' => '',
         ],
     ],
 
@@ -79,7 +82,7 @@ return [
             'direct' => 'buka melalui osu!direct',
         ],
 
-        'beatmapset_title_show_original' => '',
+        'beatmapset_title_show_original' => 'tampilkan metadata beatmap dalam bahasa aslinya',
     ],
 
     'playstyles' => [

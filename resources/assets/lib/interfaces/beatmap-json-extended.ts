@@ -16,7 +16,6 @@ export default interface BeatmapJsonExtended extends BeatmapJson {
   count_circles: number;
   count_sliders: number;
   count_spinners: number;
-  count_total: number;
   cs: number;
   deleted_at: string | null;
   drain: number;

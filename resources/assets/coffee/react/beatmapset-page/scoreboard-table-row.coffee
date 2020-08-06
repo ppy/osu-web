@@ -49,7 +49,7 @@ export class ScoreboardTableRow extends React.PureComponent
               type: 'performance'
             el FlagCountry,
               country: score.user.country
-              modifiers: ['scoreboard', 'small-box']
+              modifiers: ['scoreboard', 'small-box', 'wrapped']
 
       td className: cell,
         a
