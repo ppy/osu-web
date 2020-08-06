@@ -83,6 +83,12 @@ return [
         'subject' => '',
     ],
 
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
         'confirmation' => '',
         'subject' => 'osu!-salasanan muutoksen vahvistaminen',

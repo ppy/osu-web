@@ -64,6 +64,7 @@ return [
     ],
 
     'review' => [
+        'block_count' => ':used / :max blocks used',
         'go_to_parent' => 'View Review Post',
         'go_to_child' => 'View Discussion',
         'validation' => [

@@ -47,7 +47,7 @@ class ScoreSeeder extends Seeder
             //add 20 osu! Standard scores
             foreach ($osuBeatmaps as $bm) {
                 $bms = $allBeatmapsets->find($bm->beatmapset_id);
-                $maxcombo = rand(1, $bm->countTotal);
+                $maxcombo = rand(1, $bm->countNormal);
                 $possible_mods = [0, 16, 24, 64, 72]; // hr, hd/hr, dt, hd/dt
                 $sc = App\Models\Score\Osu::create([
                     'user_id' => $u->user_id,
@@ -89,7 +89,7 @@ class ScoreSeeder extends Seeder
             //Taiko scores
             foreach ($taikoBeatmaps as $bm) {
                 $bms = $allBeatmapsets->find($bm->beatmapset_id);
-                $maxcombo = rand(1, $bm->countTotal);
+                $maxcombo = rand(1, $bm->countNormal);
                 $possible_mods = [0, 16, 24, 64, 72];
                 $sc3 = App\Models\Score\Taiko::create([
                     'user_id' => $u->user_id,
@@ -131,7 +131,7 @@ class ScoreSeeder extends Seeder
             //Fruits scores
             foreach ($fruitsBeatmaps as $bm) {
                 $bms = $allBeatmapsets->find($bm->beatmapset_id);
-                $maxcombo = rand(1, $bm->countTotal);
+                $maxcombo = rand(1, $bm->countNormal);
                 $possible_mods = [0, 16, 24, 64, 72];
                 $sc5 = App\Models\Score\Fruits::create([
                     'user_id' => $u->user_id,
@@ -173,7 +173,7 @@ class ScoreSeeder extends Seeder
             //Mania scores
             foreach ($maniaBeatmaps as $bm) {
                 $bms = $allBeatmapsets->find($bm->beatmapset_id);
-                $maxcombo = rand(1, $bm->countTotal);
+                $maxcombo = rand(1, $bm->countNormal);
                 $possible_mods = [0, 16, 24, 64, 72]; // hr, hd/hr, dt, hd/dt
                 $sc7 = App\Models\Score\Mania::create([
                     'user_id' => $u->user_id,

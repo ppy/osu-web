@@ -14,7 +14,7 @@ foreach (Beatmap::MODES as $modeStr => $modeInt) {
         $beatmap = factory(Beatmap::class)->create([
             'playmode' => $modeInt, // force playmode to match score type
         ]);
-        $maxCombo = rand(1, $beatmap->countTotal);
+        $maxCombo = rand(1, $beatmap->countNormal);
 
         return [
             'user_id' => function () {

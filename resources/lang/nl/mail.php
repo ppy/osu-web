@@ -83,6 +83,12 @@ return [
         'subject' => 'osu! Account Reactivatie vereist',
     ],
 
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
         'confirmation' => 'Dit is een bevestiging dat uw osu! wachtwoord is gewijzigd.',
         'subject' => 'osu! wachtwoord wijziging bevestiging',
