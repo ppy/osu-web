@@ -10,6 +10,7 @@ use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
+use App\Models\UserAccountHistory;
 use Auth;
 
 /**
@@ -143,7 +144,24 @@ class ChatController extends Controller
 
         $messages = $messages->get()->reverse();
 
-        if ($messages->isEmpty()) {
+        $silenceQuery = UserAccountHistory::bans()->limit(100);
+        $lastHistoryId = get_int($params['history_since'] ?? null);
+
+        if ($lastHistoryId === null) {
+            $previousMessage = Message::where('message_id', '<=', $since)->last();
+
+            if ($previousMessage === null) {
+                $silenceQuery->none();
+            } else {
+                $silenceQuery->where('timestamp', '>', $previousMessage->timestamp);
+            }
+        } else {
+            $silenceQuery->where('ban_id', '>', $lastHistoryId)->reorderBy('ban_id', 'DESC');
+        }
+
+        $silences = $silenceQuery->get();
+
+        if ($messages->isEmpty() && $silences->isEmpty()) {
             return response([], 204);
         }
 
@@ -154,6 +172,7 @@ class ChatController extends Controller
                 'Chat\Message',
                 ['sender']
             ),
+            'silences' => json_collection($silences, 'Chat\UserSilence'),
         ];
     }
 
