@@ -83,6 +83,12 @@ return [
         'subject' => 'osu! Hesabının Yeniden Doğrulanması Gerekli',
     ],
 
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
         'confirmation' => 'Bu sadece osu! şifrenin değiştiğine dair bir doğrulamadır.',
         'subject' => 'osu! şifre değişikliği onayı',

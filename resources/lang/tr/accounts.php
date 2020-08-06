@@ -57,9 +57,12 @@ return [
         'options' => [
             '_' => 'bildirim seçenekleri',
             'beatmapset:modding' => 'beatmap modlama',
+            'channel_message' => '',
+            'comment_new' => '',
             'forum_topic_reply' => 'konu yanıtı',
             'mail' => 'posta',
             'push' => 'anlık',
+            'user_achievement_unlock' => '',
         ],
     ],
 

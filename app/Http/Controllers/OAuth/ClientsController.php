@@ -44,12 +44,17 @@ class ClientsController extends Controller
 
     public function store()
     {
+        $params = get_params(request()->all(), null, [
+            'name',
+            'redirect',
+        ]);
+
         // from ClientRepository::create but with custom Client.
         $client = (new Client)->forceFill([
             'user_id' => auth()->user()->getKey(),
-            'name' => request('name'),
+            'name' => $params['name'] ?? null,
             'secret' => str_random(40),
-            'redirect' => request('redirect'),
+            'redirect' => $params['redirect'] ?? '',
             'personal_access_client' => false,
             'password_client' => false,
             'revoked' => false,

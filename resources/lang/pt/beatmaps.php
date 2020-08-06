@@ -305,7 +305,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => '',
+        'V2' => 'Pontuação V2',
     ],
     'language' => [
         'any' => '',

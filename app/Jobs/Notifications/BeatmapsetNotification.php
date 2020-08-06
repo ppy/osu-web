@@ -6,6 +6,7 @@
 namespace App\Jobs\Notifications;
 
 use App\Models\Beatmapset;
+use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotificationOption;
 
@@ -14,6 +15,11 @@ abstract class BeatmapsetNotification extends BroadcastNotificationBase
     const NOTIFICATION_OPTION_NAME = UserNotificationOption::BEATMAPSET_MODDING;
 
     protected $beatmapset;
+
+    public static function getMailLink(Notification $notification): string
+    {
+        return route('beatmapsets.show', $notification->notifiable_id);
+    }
 
     public function __construct(Beatmapset $beatmapset, ?User $source = null)
     {

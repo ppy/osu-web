@@ -52,7 +52,7 @@ $ ./bin/db_setup.sh
 $ ./build.sh
 ```
 
-At this point you should be able to access the site via whatever webserver you configured
+At this point you should be able to access the site via whatever webserver you configured.
 
 ## 2\. Using Docker
 
@@ -84,36 +84,6 @@ git config core.filemode false
 ```
 
 ---
-
-
-### Testing
-
-To run test, first copy `.env.testing.example` to `.env.testing` and `.env.dusk.local.example` to `.env.dusk.local`.
-Make sure to set `ES_INDEX_PREFIX` and all the databases to something other than production.
-
-Once the env files are set, database for testing will need to be setup:
-
-```
-docker-compose run --rm -e APP_ENV=testing php artisan migrate:fresh --yes
-```
-
-Once setup, you can run either php test:
-
-```
-docker-compose run --rm php test phpunit
-```
-
-Or browser test:
-
-```
-docker-compose run --rm php test browser
-```
-
-Or javascript test:
-
-```
-docker-compose run --rm php test js
-```
 
 ### Docker hints
 
@@ -211,6 +181,91 @@ To continuously generate assets as you make changes to files (less, coffeescript
 
 ```
 $ yarn run watch
+```
+
+# Testing
+
+To run test, first copy `.env.testing.example` to `.env.testing` and `.env.dusk.local.example` to `.env.dusk.local`.
+Make sure to set `ES_INDEX_PREFIX` and all the databases to something other than production.
+
+Once the env files are set, database for testing will need to be setup:
+
+## Initializing the test database
+
+Tests should be run against an empty database, to initialize an empty database:
+
+```
+APP_ENV=testing php artisan migrate:fresh --yes
+```
+
+or if using docker:
+
+```
+docker-compose run --rm -e APP_ENV=testing php artisan migrate:fresh --yes
+```
+
+---
+**IMPORTANT**
+
+If there are existing matching databases, they will be dropped!
+
+---
+
+## PHP tests
+
+PHP tests use PHPUnit, to run:
+
+```
+bin/phpunit.sh
+```
+
+or if using Docker:
+
+```
+docker-compose run --rm php test phpunit
+```
+
+Regular PHPUnit arguments are accepted, e.g.:
+
+```
+bin/phpunit.sh --filter=Route --stop-on-failure
+```
+
+## Browser tests
+
+Browser tests are run using Laravel Dusk:
+
+```
+bin/run_dusk.sh
+```
+
+or if using Docker:
+
+```
+docker-compose run --rm php test browser
+```
+
+---
+**Known Issues**
+
+The Dusk tests currently do not clean up completely, leaving behind test data in the database; the database should be reintialized after running a Dusk test.
+
+---
+
+## Javascript tests
+
+Javascript tests are run with Karma.
+
+Karma is currently configured to to use Headless Chrome by default; this will require Chrome or a standalone Headless Chrome to be already installed. If you are using Docker, Headless Chrome will already be installed in the container.
+
+```
+yarn karma start --single-run
+```
+
+or if using Docker:
+
+```
+docker-compose run --rm php test js
 ```
 
 # Documentation

@@ -89,7 +89,7 @@ return [
             'genre' => 'Género',
             'language' => 'Idioma',
             'no_scores' => 'Los datos todavía están siendo calculados...',
-            'points-of-failure' => 'Puntos de Fracaso',
+            'points-of-failure' => 'Puntos de fracaso',
             'source' => 'Fuente',
             'success-rate' => 'Tasa de éxito',
             'tags' => 'Etiquetas',
