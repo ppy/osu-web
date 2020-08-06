@@ -148,6 +148,16 @@ class UserProfileCustomization extends Model
         $this->setOption('beatmapset_title_show_original', $value);
     }
 
+    public function getCommentRepliesAttribute()
+    {
+        return $this->options['comment_replies'] ?? false;
+    }
+
+    public function setCommentRepliesAttribute($value)
+    {
+        $this->setOption('comment_replies', $value);
+    }
+
     public function getCommentsSortAttribute()
     {
         return $this->options['comments_sort'] ?? Comment::DEFAULT_SORT;

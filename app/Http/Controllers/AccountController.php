@@ -204,6 +204,7 @@ class AccountController extends Controller
             'audio_volume:float',
             'beatmapset_download:string',
             'beatmapset_title_show_original:bool',
+            'comment_replies:bool',
             'comments_sort:string',
             'extras_order:string[]',
             'forum_posts_show_deleted:bool',

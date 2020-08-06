@@ -60,7 +60,12 @@ class CommentNew extends BroadcastNotificationBase
 
         if ($this->comment->parent !== null) {
             // also notify parent if option is enabled.
-            $userIds->push($this->comment->parent->user_id);
+            $user = $this->comment->parent->user;
+            $profileCustomization = $user->userProfileCustomization ?? $user->userProfileCustomization()->make();
+
+            if ($profileCustomization->commentReplies) {
+                $userIds->push($user->getKey());
+            }
         }
 
         return $userIds->all();
