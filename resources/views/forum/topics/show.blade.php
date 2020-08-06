@@ -150,7 +150,7 @@
 @section('permanent-fixed-footer')
     @parent
 
-    <div class="forum-topic-nav">
+    <div class="forum-topic-nav u-fancy-scrollbar">
         <div class="forum-topic-nav__seek-tooltip js-forum-posts-seek--tooltip" data-visibility="hidden">
             <div class="forum-topic-nav__seek-tooltip-number js-forum-posts-seek-tooltip-number">0</div>
         </div>
