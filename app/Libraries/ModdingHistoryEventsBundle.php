@@ -5,6 +5,7 @@
 
 namespace App\Libraries;
 
+use App\Libraries\BeatmapsetDiscussionReview;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -88,6 +89,7 @@ class ModdingHistoryEventsBundle
                     'BeatmapsetEvent',
                     ['discussion.starting_post', 'beatmapset.user']
                 ),
+                'reviewsConfig' => BeatmapsetDiscussionReview::config(),
                 'users' => json_collection(
                     $this->getUsers(),
                     'UserCompact',

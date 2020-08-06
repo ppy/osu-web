@@ -5,12 +5,13 @@ import { Main } from './modding-profile/main'
 
 reactTurbolinks.registerPersistent 'modding-profile', Main, true, (target) ->
   beatmaps: osu.parseJson('json-beatmaps')
+  container: target
   discussions: osu.parseJson('json-discussions')
   events: osu.parseJson('json-events')
   extras: osu.parseJson('json-extras')
   perPage: osu.parseJson('json-perPage')
   posts: osu.parseJson('json-posts')
+  reviewsConfig: osu.parseJson 'json-reviewsConfig'
   user: osu.parseJson('json-user')
   users: osu.parseJson('json-users')
   votes: osu.parseJson('json-votes')
-  container: target

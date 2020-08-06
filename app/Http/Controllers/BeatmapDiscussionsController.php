@@ -147,6 +147,7 @@ class BeatmapDiscussionsController extends Controller
                 'BeatmapDiscussion',
                 ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
             ),
+            'reviews-config' => BeatmapsetDiscussionReview::config(),
             'users' => json_collection(
                 $users,
                 'UserCompact',
