@@ -99,7 +99,7 @@ return [
             'new' => '',
             'embed' => [
                 'delete' => '',
-                'missing' => '',
+                'missing' => '[KESKUSTELU POISTETTU]',
                 'unlink' => '',
                 'unsaved' => '',
                 'timestamp' => [
@@ -304,7 +304,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => '',
+        'V2' => 'Pisteytys V2',
     ],
     'language' => [
         'any' => '',
@@ -349,9 +349,9 @@ return [
     ],
     'variant' => [
         'mania' => [
-            '4k' => '',
-            '7k' => '',
-            'all' => '',
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Kaikki',
         ],
     ],
 ];

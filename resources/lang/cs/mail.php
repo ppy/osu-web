@@ -83,6 +83,12 @@ return [
         'subject' => 'osu! Vyžadována reaktivace účtu',
     ],
 
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
         'confirmation' => 'Toto je pouze potvrzení toho, že od Vašeho osu! účtu bylo změněno heslo.',
         'subject' => 'potvrzení změny osu! hesla',

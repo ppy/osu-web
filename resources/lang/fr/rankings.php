@@ -6,7 +6,7 @@
 return [
     'countries' => [
         'all' => 'Tous',
-        'title' => '',
+        'title' => 'Pays',
     ],
 
     'filter' => [
@@ -20,7 +20,7 @@ return [
     'type' => [
         'charts' => 'Charts',
         'country' => 'Pays',
-        'multiplayer' => '',
+        'multiplayer' => 'multijoueur',
         'performance' => 'Performance',
         'score' => 'Score',
     ],

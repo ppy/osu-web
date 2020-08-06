@@ -18,13 +18,13 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'törölve',
-        'none_found' => '',
+        'none_found' => 'Nem található a keresési feltételeknek megfelelő beszélgetés.',
         'title' => 'Beatmap Megbeszélés',
 
         'form' => [
             '_' => 'Keresés',
             'deleted' => 'Törölt beszélgetések mellékelése',
-            'only_unresolved' => '',
+            'only_unresolved' => 'Csak a megoldatlan beszélgetéseket mutasd',
             'types' => 'Üzenettípusok',
             'username' => 'Felhasználónév',
 
@@ -64,16 +64,16 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => '',
+        'go_to_parent' => 'Legújabb posztok mutatása',
         'go_to_child' => 'Megbeszélés megtekintése',
         'validation' => [
-            'block_too_large' => '',
-            'external_references' => '',
-            'invalid_block_type' => '',
+            'block_too_large' => 'a maximális karakter szám :limit',
+            'external_references' => 'az áttekintés olyan kérdésekre hivatkozik, amelyek nem tartoznak ehhez a felülvizsgálathoz',
+            'invalid_block_type' => 'érvénytelen blokk típus',
             'invalid_document' => 'érévnytelen értékelés',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'minimum_issues' => 'az áttekintésnek tartalmaznia kell legalább :count problémát|Az áttekintésnek tartalmaznia kell legalább :count problémákat',
+            'missing_text' => 'hiányzó szöveg',
+            'too_many_blocks' => 'a beszámolók csak :count bekezdés/problémát tartalmazhatnak|a beszámolók legfeljebb :count bekezdést/problémát tartalmazhatnak',
         ],
     ],
 
