@@ -10,6 +10,8 @@ use App\Models\Notification;
 
 class CommentNew extends CommentBase
 {
+    const NOTIFICATION_OPTION_NAME = Notification::COMMENT_NEW;
+
     public function getListeningUserIds(): array
     {
         $userIds = Follow::whereNotifiable($this->comment->commentable)
