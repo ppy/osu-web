@@ -70,8 +70,6 @@ export default class InputBox extends React.Component<any, any> implements Dispa
     const channel = this.currentChannel;
     const disableInput = !channel || channel.moderated;
 
-    console.log(channel?.inputText);
-
     return (
       <div className='chat-input'>
         <TextareaAutosize
