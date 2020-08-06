@@ -57,9 +57,12 @@ return [
         'options' => [
             '_' => '送貨選項',
             'beatmapset:modding' => '',
+            'channel_message' => '',
+            'comment_new' => '',
             'forum_topic_reply' => '主題回復',
             'mail' => '郵箱',
             'push' => '',
+            'user_achievement_unlock' => '',
         ],
     ],
 
@@ -78,6 +81,8 @@ return [
             'no_video' => '不包含影片',
             'direct' => '在osu!direct中查看',
         ],
+
+        'beatmapset_title_show_original' => '',
     ],
 
     'playstyles' => [

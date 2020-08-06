@@ -6,7 +6,6 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\BeatmapsetDelete;
-use App\Jobs\NotifyBeatmapsetUpdate;
 use App\Libraries\CommentBundle;
 use App\Libraries\Search\BeatmapsetSearchCached;
 use App\Libraries\Search\BeatmapsetSearchRequestParams;
@@ -115,7 +114,10 @@ class BeatmapsetsController extends Controller
 
         $initialData = [
             'beatmapset' => $beatmapset->defaultDiscussionJson(),
-            'reviews_enabled' => config('osu.beatmapset.discussion_review_enabled'),
+            'reviews_config' => [
+                'enabled' => config('osu.beatmapset.discussion_review_enabled'),
+                'max_blocks' => config('osu.beatmapset.discussion_review_max_blocks'),
+            ],
         ];
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
@@ -195,10 +197,6 @@ class BeatmapsetsController extends Controller
         }
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
-        (new NotifyBeatmapsetUpdate([
-            'user' => Auth::user(),
-            'beatmapset' => $beatmapset,
-        ]))->delayedDispatch();
 
         return $beatmapset->defaultDiscussionJson();
     }
@@ -215,10 +213,6 @@ class BeatmapsetsController extends Controller
         }
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
-        (new NotifyBeatmapsetUpdate([
-            'user' => Auth::user(),
-            'beatmapset' => $beatmapset,
-        ]))->delayedDispatch();
 
         return $beatmapset->defaultDiscussionJson();
     }

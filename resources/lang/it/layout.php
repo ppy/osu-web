@@ -96,7 +96,7 @@ return [
             'country' => 'paese',
             'index' => 'performance',
             'kudosu' => 'kudosu',
-            'multiplayer' => '',
+            'multiplayer' => 'multigiocatore',
             'score' => 'punteggio',
         ],
         'store' => [

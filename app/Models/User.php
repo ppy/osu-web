@@ -1399,7 +1399,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return
             $this->user_id !== null
             && !$this->isRestricted()
-            && $this->group_id !== 6; // bots
+            && !$this->isBot();
     }
 
     public function updatePage($text)

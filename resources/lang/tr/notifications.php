@@ -12,7 +12,7 @@ return [
     'filters' => [
         '_' => 'hepsi',
         'user' => 'profil',
-        'beatmapset' => 'beatmaplar',
+        'beatmapset' => 'beatmapler',
         'forum_topic' => 'forum',
         'news_post' => 'haberler',
         'build' => 'sürümler',
@@ -131,6 +131,40 @@ return [
                 'user_achievement_unlock' => '":title" \'ın kilidi açıldı!',
                 'user_achievement_unlock_compact' => '":title" Açıldı!',
             ],
+        ],
+    ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => '',
+            'beatmapset_discussion_lock' => '',
+            'beatmapset_discussion_unlock' => '',
+            'beatmapset_problem' => '',
+            'beatmapset_state' => '',
+            'comment' => '',
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => '',
+            ],
+        ],
+
+        'build' => [
+            'comment' => '',
+        ],
+
+        'news_post' => [
+            'comment' => '',
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => '',
+        ],
+
+        'user_achievement' => [
+            'user_achievement_unlock' => '',
+            'user_achievement_unlock_self' => '',
         ],
     ],
 ];

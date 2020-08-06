@@ -304,6 +304,7 @@ return [
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
         'TD' => '',
+        'V2' => 'Score V2',
     ],
     'language' => [
         'any' => '모두',

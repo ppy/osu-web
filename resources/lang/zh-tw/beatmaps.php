@@ -304,6 +304,7 @@ return [
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
         'TD' => '觸控螢幕',
+        'V2' => '',
     ],
     'language' => [
         'any' => '所有',

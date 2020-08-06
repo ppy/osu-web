@@ -7,11 +7,18 @@ namespace App\Jobs\Notifications;
 
 use App\Exceptions\InvalidNotificationException;
 use App\Models\Comment;
+use App\Models\Notification;
 use App\Models\User;
 
 abstract class CommentBase extends BroadcastNotificationBase
 {
     protected $comment;
+
+    public static function getMailLink(Notification $notification): string
+    {
+        // TODO: actual item commented on.
+        return route('comments.show', $notification->details['comment_id']);
+    }
 
     public function __construct(Comment $comment, User $source)
     {

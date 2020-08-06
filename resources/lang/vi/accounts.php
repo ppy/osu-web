@@ -57,9 +57,12 @@ return [
         'options' => [
             '_' => '',
             'beatmapset:modding' => '',
+            'channel_message' => '',
+            'comment_new' => '',
             'forum_topic_reply' => '',
             'mail' => '',
             'push' => '',
+            'user_achievement_unlock' => '',
         ],
     ],
 
@@ -78,6 +81,8 @@ return [
             'no_video' => '',
             'direct' => '',
         ],
+
+        'beatmapset_title_show_original' => '',
     ],
 
     'playstyles' => [

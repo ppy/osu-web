@@ -58,9 +58,12 @@ return [
         'options' => [
             '_' => 'delivery options',
             'beatmapset:modding' => 'beatmap modding',
+            'channel_message' => 'private chat messages',
+            'comment_new' => 'new comments',
             'forum_topic_reply' => 'topic reply',
             'mail' => 'mail',
             'push' => 'push',
+            'user_achievement_unlock' => 'user medal unlocked',
         ],
     ],
 

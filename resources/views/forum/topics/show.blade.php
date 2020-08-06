@@ -5,12 +5,6 @@
 @extends('master', [
     'titlePrepend' => $topic->topic_title,
     'canonicalUrl' => route('forum.topics.show', $topic->topic_id),
-    'search' => [
-        'params' => [
-            'topic_id' => $topic->topic_id,
-        ],
-        'url' => route('forum.forums.search'),
-    ],
     'pageDescription' => $topic->toMetaDescription(),
 ])
 

@@ -57,9 +57,12 @@ return [
         'options' => [
             '_' => '配送設定',
             'beatmapset:modding' => 'ビートマップmodding',
+            'channel_message' => '',
+            'comment_new' => '',
             'forum_topic_reply' => 'トピックへの返信',
             'mail' => 'メール',
             'push' => 'プッシュ通知',
+            'user_achievement_unlock' => '',
         ],
     ],
 
@@ -78,6 +81,8 @@ return [
             'no_video' => '動画なし',
             'direct' => 'osu!directで開く',
         ],
+
+        'beatmapset_title_show_original' => 'ビートマップメタデータを元の言語で表示する',
     ],
 
     'playstyles' => [

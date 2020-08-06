@@ -57,9 +57,12 @@ return [
         'options' => [
             '_' => '수신 옵션',
             'beatmapset:modding' => '비트맵 모딩',
+            'channel_message' => '',
+            'comment_new' => '',
             'forum_topic_reply' => '주제 답글',
             'mail' => '메일',
             'push' => '푸시 알림',
+            'user_achievement_unlock' => '',
         ],
     ],
 
@@ -78,6 +81,8 @@ return [
             'no_video' => '영상이 없는 비트맵으로 받기',
             'direct' => 'osu!direct에서 열기',
         ],
+
+        'beatmapset_title_show_original' => '원본 언어로 비트맵 메타데이터 표시',
     ],
 
     'playstyles' => [

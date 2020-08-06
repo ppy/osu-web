@@ -96,7 +96,7 @@ return [
             'country' => 'الدولة',
             'index' => 'الأداء',
             'kudosu' => 'كودوسو',
-            'multiplayer' => '',
+            'multiplayer' => 'متعدد اللاعبين',
             'score' => 'النتيجة',
         ],
         'store' => [

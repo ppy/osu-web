@@ -50,16 +50,19 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'receber notificações para um novo problema em beatmaps qualificados dos modos seguintes',
-        'beatmapset_disqualify' => '',
+        'beatmapset_disqualify' => 'receber notificações para quando os beatmaps dos modos seguintes forem desqualificados',
         'title' => 'Notificações',
         'topic_auto_subscribe' => 'ativar automaticamente as notificações em novos tópicos de fórum que tenhas criado',
 
         'options' => [
             '_' => 'opções de envio',
             'beatmapset:modding' => 'modificações de beatmaps',
+            'channel_message' => '',
+            'comment_new' => '',
             'forum_topic_reply' => 'resposta a um tópico',
             'mail' => 'correio',
-            'push' => '',
+            'push' => 'push',
+            'user_achievement_unlock' => '',
         ],
     ],
 
@@ -78,6 +81,8 @@ return [
             'no_video' => 'sem vídeo',
             'direct' => 'abrir em osu!direct',
         ],
+
+        'beatmapset_title_show_original' => 'mostrar os metadados do beatmap no idioma original',
     ],
 
     'playstyles' => [

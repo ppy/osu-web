@@ -5,6 +5,8 @@ import { Editor, Node as SlateNode, Range as SlateRange, Text, Transforms } from
 import { ReactEditor } from 'slate-react';
 import { BeatmapDiscussionReview, DocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 
+export const blockCount = (input: SlateNode[]) => input.length;
+
 export const slateDocumentIsEmpty = (doc: SlateNode[]): boolean => {
   return doc.length === 0 || (
       doc.length === 1 &&

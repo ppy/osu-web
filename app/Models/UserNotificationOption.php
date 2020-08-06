@@ -28,7 +28,13 @@ class UserNotificationOption extends Model
     const DELIVERY_MODES = ['mail', 'push'];
     const FORUM_TOPIC_REPLY = Notification::FORUM_TOPIC_REPLY;
     const COMMENT_REPLY = Notification::COMMENT_REPLY; // FIXME: temporary until mail notification changes get merged in
-    const HAS_DELIVERY_MODES = [self::BEATMAPSET_MODDING, self::FORUM_TOPIC_REPLY];
+    const HAS_DELIVERY_MODES = [
+        self::BEATMAPSET_MODDING,
+        Notification::CHANNEL_MESSAGE,
+        Notification::COMMENT_NEW,
+        self::FORUM_TOPIC_REPLY,
+        Notification::USER_ACHIEVEMENT_UNLOCK,
+    ];
 
     protected $casts = [
         'details' => 'array',

@@ -145,8 +145,8 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => 'No hay votos negativos',
-                'up' => 'Aún no hay votos',
+                'down' => 'Aún no hay votos negativos',
+                'up' => 'Aún no hay votos positivos',
             ],
             'latest' => [
                 'down' => 'Últimos votos negativos',
@@ -304,6 +304,7 @@ return [
         'SD' => 'Muerte Súbita',
         'SO' => 'Spun Out',
         'TD' => 'Dispositivo touch',
+        'V2' => 'Puntuación V2',
     ],
     'language' => [
         'any' => 'Cualquiera',
@@ -323,7 +324,7 @@ return [
         'unspecified' => 'no especificado',
     ],
     'played' => [
-        'any' => 'Cualquiera',
+        'any' => 'Cualquier',
         'played' => 'Ya jugado',
         'unplayed' => 'No jugado',
     ],

@@ -139,4 +139,38 @@ return [
             ],
         ],
     ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => 'The discussion on ":title" has new updates',
+            'beatmapset_discussion_lock' => 'The discussion on ":title" has been locked',
+            'beatmapset_discussion_unlock' => 'The discussion on ":title" has been unlocked',
+            'beatmapset_problem' => 'A new problem reported was reported on ":title"',
+            'beatmapset_state' => 'The state of ":title" has changed',
+            'comment' => ' Beatmap ":title" has new comments',
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => 'You\'ve received a new message from :username',
+            ],
+        ],
+
+        'build' => [
+            'comment' => 'Changelog ":title" has new comments',
+        ],
+
+        'news_post' => [
+            'comment' => 'News ":title" has new comments',
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => 'There are new replies in ":title"',
+        ],
+
+        'user_achievement' => [
+            'user_achievement_unlock' => ':username has unlocked a new medal, ":title"!',
+            'user_achievement_unlock_self' => 'You\'ve unlocked a new medal, ":title"!',
+        ],
+    ],
 ];

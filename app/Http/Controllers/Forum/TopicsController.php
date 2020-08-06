@@ -195,11 +195,19 @@ class TopicsController extends Controller
 
     public function show($id)
     {
-        $postStartId = Request::input('start');
-        $postEndId = get_int(Request::input('end'));
-        $nthPost = get_int(Request::input('n'));
-        $skipLayout = get_bool(Request::input('skip_layout')) ?? false;
-        $showDeleted = get_bool(Request::input('with_deleted')) ?? true;
+        $params = get_params(request()->all(), null, [
+            'start',
+            'end:int',
+            'n:int',
+            'skip_layout:bool',
+            'with_deleted:bool',
+        ]);
+
+        $postStartId = $params['start'] ?? null;
+        $postEndId = $params['end'] ?? null;
+        $nthPost = $params['n'] ?? null;
+        $skipLayout = $params['skip_layout'] ?? false;
+        $showDeleted = $params['with_deleted'] ?? null;
         $jumpTo = null;
 
         $topic = Topic
@@ -220,9 +228,15 @@ class TopicsController extends Controller
             abort(404);
         }
 
+        if ($userCanModerate) {
+            $showDeleted = $showDeleted ?? auth()->user()->profileCustomization()->forum_posts_show_deleted;
+        } else {
+            $showDeleted = false;
+        }
+
         priv_check('ForumView', $topic->forum)->ensureCan();
 
-        $posts = $topic->posts()->showDeleted($showDeleted && $userCanModerate);
+        $posts = $topic->posts()->showDeleted($showDeleted);
 
         if ($postStartId === 'unread') {
             $postStartId = Post::lastUnreadByUser($topic, Auth::user());

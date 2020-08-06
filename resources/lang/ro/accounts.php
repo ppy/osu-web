@@ -57,9 +57,12 @@ return [
         'options' => [
             '_' => 'opțiuni de livrare',
             'beatmapset:modding' => 'modatul de beatmap',
+            'channel_message' => '',
+            'comment_new' => '',
             'forum_topic_reply' => 'răspuns topic',
             'mail' => 'mail',
             'push' => 'push',
+            'user_achievement_unlock' => '',
         ],
     ],
 
@@ -78,6 +81,8 @@ return [
             'no_video' => 'fără video',
             'direct' => 'deschis în osu!direct',
         ],
+
+        'beatmapset_title_show_original' => 'arată metadatele beatmap în limba originală',
     ],
 
     'playstyles' => [

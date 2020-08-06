@@ -162,6 +162,16 @@ class UserProfileCustomization extends Model
         $this->setOption('comments_sort', $value);
     }
 
+    public function getForumPostsShowDeletedAttribute()
+    {
+        return $this->options['forum_posts_show_deleted'] ?? true;
+    }
+
+    public function setForumPostsShowDeletedAttribute($value)
+    {
+        $this->setOption('forum_posts_show_deleted', $value);
+    }
+
     public function getUserListFilterAttribute()
     {
         return $this->options['user_list_filter'] ?? static::USER_LIST['filters']['default'];

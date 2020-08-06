@@ -5,6 +5,12 @@
 
 namespace App\Jobs\Notifications;
 
+use App\Models\Notification;
+
 class BeatmapsetDiscussionLock extends BeatmapsetNotification
 {
+    public static function getBaseKey(Notification $notification): string
+    {
+        return 'beatmapset.beatmapset_discussion_lock';
+    }
 }

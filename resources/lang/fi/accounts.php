@@ -56,16 +56,19 @@ return [
 
         'options' => [
             '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
+            'beatmapset:modding' => 'beatmapin modaus',
+            'channel_message' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => 'aihevastaus',
             'mail' => '',
-            'push' => '',
+            'push' => 'push',
+            'user_achievement_unlock' => '',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => '',
-        'own_clients' => '',
+        'authorized_clients' => 'valtuutetut clientit',
+        'own_clients' => 'omat clientit',
         'title' => 'OAuth',
     ],
 
@@ -78,6 +81,8 @@ return [
             'no_video' => 'ilman videota',
             'direct' => 'avaa osu!directissä',
         ],
+
+        'beatmapset_title_show_original' => 'näytä beatmap-metadata alkuperäisellä kielellä',
     ],
 
     'playstyles' => [

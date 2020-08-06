@@ -57,9 +57,12 @@ return [
         'options' => [
             '_' => 'verzend methodes',
             'beatmapset:modding' => 'beatmap modding',
+            'channel_message' => '',
+            'comment_new' => '',
             'forum_topic_reply' => 'topic antwoord',
             'mail' => 'e-mail',
             'push' => 'push',
+            'user_achievement_unlock' => '',
         ],
     ],
 
@@ -78,6 +81,8 @@ return [
             'no_video' => 'zonder video',
             'direct' => 'open in osu!direct',
         ],
+
+        'beatmapset_title_show_original' => 'beatmap metadata in originele taal weergeven',
     ],
 
     'playstyles' => [

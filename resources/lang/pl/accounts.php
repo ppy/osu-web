@@ -57,9 +57,12 @@ return [
         'options' => [
             '_' => 'opcje wysyłania',
             'beatmapset:modding' => 'dyskusje beatmap',
+            'channel_message' => '',
+            'comment_new' => '',
             'forum_topic_reply' => 'odpowiedzi do wątków',
             'mail' => 'e-mail',
             'push' => 'push',
+            'user_achievement_unlock' => '',
         ],
     ],
 
@@ -78,6 +81,8 @@ return [
             'no_video' => 'bez wideo',
             'direct' => 'otwórz w osu!direct',
         ],
+
+        'beatmapset_title_show_original' => 'pokaż metadane beatmapy w oryginalnym języku',
     ],
 
     'playstyles' => [

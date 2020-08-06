@@ -57,9 +57,12 @@ return [
         'options' => [
             '_' => 'способы доставки',
             'beatmapset:modding' => 'моддинг карт',
+            'channel_message' => '',
+            'comment_new' => '',
             'forum_topic_reply' => 'ответы на тему',
             'mail' => 'почта',
             'push' => 'рush',
+            'user_achievement_unlock' => '',
         ],
     ],
 
@@ -78,6 +81,8 @@ return [
             'no_video' => 'без видео',
             'direct' => 'открыть в osu!direct',
         ],
+
+        'beatmapset_title_show_original' => 'показывать метадату карт в оригинале',
     ],
 
     'playstyles' => [

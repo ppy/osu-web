@@ -7,10 +7,10 @@ return [
     'deleted' => 'изтрито',
     'deleted_count' => ':count_delimited изтрит коментар|:count_delimited изтрити коментари',
     'edited' => 'редактирано :timeago от :user',
-    'pinned' => '',
+    'pinned' => 'закачено',
     'empty' => 'Все още няма коментари.',
-    'load_replies' => '',
-    'replies_count' => '',
+    'load_replies' => 'зареди отговори',
+    'replies_count' => ':count_delimited отговор|:count_delimited отговори',
     'title' => 'Коментари',
 
     'commentable_name' => [
@@ -35,7 +35,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'списък',
     ],
 
     'placeholder' => [
@@ -45,6 +45,6 @@ return [
     ],
 
     'show' => [
-        'nav_title' => '',
+        'nav_title' => 'коментари',
     ],
 ];

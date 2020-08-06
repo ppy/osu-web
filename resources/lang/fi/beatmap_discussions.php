@@ -85,8 +85,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'yleiset',
+        'general_all' => 'yleiset (kaikki)',
     ],
 
     'user_filter' => [

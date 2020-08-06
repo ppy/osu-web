@@ -61,7 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Escreve aqui para publicar em Geral (:version)',
             'generalAll' => 'Escreve aqui para publicar em Geral (Todas as dificuldades)',
-            'review' => '',
+            'review' => 'Escreve aqui para publicar uma análise',
             'timeline' => 'Escreve aqui para publicar na Cronologia (:version)',
         ],
 
@@ -101,18 +101,18 @@ return [
                 'delete' => 'Apagar',
                 'missing' => '[DISCUSSÃO ELIMINADA]
 ',
-                'unlink' => '',
-                'unsaved' => '',
+                'unlink' => 'Desvincular',
+                'unsaved' => 'Não guardado',
                 'timestamp' => [
-                    'all-diff' => '',
-                    'diff' => '',
+                    'all-diff' => 'As publicações em "Todas as dificuldades" não podem ter carimbo da hora.',
+                    'diff' => 'Se este :type começa com um carimbo da hora, será mostrado na barra cronológica.',
                 ],
             ],
             'insert-block' => [
-                'paragraph' => '',
-                'praise' => '',
-                'problem' => '',
-                'suggestion' => '',
+                'paragraph' => 'inserir parágrafo',
+                'praise' => 'inserir elogio',
+                'problem' => 'inserir problema',
+                'suggestion' => 'inserir sugestão',
             ],
         ],
 
@@ -305,6 +305,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
+        'V2' => 'Pontuação V2',
     ],
     'language' => [
         'any' => '',
