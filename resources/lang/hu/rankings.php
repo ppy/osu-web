@@ -5,22 +5,22 @@
 
 return [
     'countries' => [
-        'all' => '',
-        'title' => '',
+        'all' => 'Összes',
+        'title' => 'Ország',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Mutat',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Változat',
         ],
     ],
 
     'type' => [
         'charts' => 'Reflektorfény',
         'country' => 'Ország',
-        'multiplayer' => '',
+        'multiplayer' => 'többjátékos',
         'performance' => 'Teljesítmény',
         'score' => 'Pontszám',
     ],

@@ -87,6 +87,12 @@ return [
         'subject' => 'ต้องเปิดบัญชีใช้งาน osu! อีกครั้ง',
     ],
 
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
         'confirmation' => 'นี่เป็นการยืนยันว่ารหัสผ่าน osu! ของคุณถูกเปลี่ยน',
         'subject' => 'ยืนยันการเปลี่ยนรหัสผ่าน osu!',

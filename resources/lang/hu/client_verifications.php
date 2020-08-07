@@ -5,14 +5,14 @@
 
 return [
     'completed' => [
-        'home' => '',
-        'logout' => '',
-        'text' => '',
-        'title' => '',
+        'home' => 'Menj az irányítópultra',
+        'logout' => 'Kijelentkezés',
+        'text' => 'Most már bezárhatod ezt az ablakot',
+        'title' => 'Az osu! kliens ellenőrzése befejezödőtt',
     ],
 
     'create' => [
-        'confirm' => '',
-        'title' => '',
+        'confirm' => 'Kattints az engedélyezés gombra, hogy befejezd a kliens hitelesítését.',
+        'title' => 'osu! kliens hitelesítése',
     ],
 ];
