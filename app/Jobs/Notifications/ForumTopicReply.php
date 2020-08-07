@@ -6,6 +6,7 @@
 namespace App\Jobs\Notifications;
 
 use App\Models\Forum\Post;
+use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotificationOption;
 
@@ -14,6 +15,12 @@ class ForumTopicReply extends BroadcastNotificationBase
     const NOTIFICATION_OPTION_NAME = UserNotificationOption::FORUM_TOPIC_REPLY;
 
     protected $post;
+
+    public static function getMailLink(Notification $notification): string
+    {
+        // link to start=unread since all updates get collapsed into one line.
+        return route('forum.topics.show', ['start' => 'unread', 'topic' => $notification->notifiable_id]);
+    }
 
     public function __construct(Post $post, User $source)
     {

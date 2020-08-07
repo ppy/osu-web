@@ -11,9 +11,19 @@ use DB;
 
 class UserNotification extends Model
 {
+    const DELIVERY_OFFSETS = [
+        'push' => 0,
+        'mail' => 1,
+    ];
+
     protected $casts = [
         'is_read' => 'boolean',
     ];
+
+    public static function deliveryMask(string $type): int
+    {
+        return 1 << self::DELIVERY_OFFSETS[$type];
+    }
 
     public static function markAsReadByIds(User $user, array $params)
     {
@@ -88,9 +98,36 @@ class UserNotification extends Model
         }
     }
 
+    public function isDelivery(string $type): bool
+    {
+        $mask = static::deliveryMask($type);
+
+        return ($this->delivery & $mask) === $mask;
+    }
+
+    public function isMail(): bool
+    {
+        return $this->isDelivery('mail');
+    }
+
+    public function isPush(): bool
+    {
+        return $this->isDelivery('push');
+    }
+
     public function notification()
     {
         return $this->belongsTo(Notification::class);
+    }
+
+    public function scopeHasMailDelivery($query)
+    {
+        return $query->where('delivery', '&', static::deliveryMask('mail'));
+    }
+
+    public function scopeHasPushDelivery($query)
+    {
+        return $query->where('delivery', '&', static::deliveryMask('push'));
     }
 
     public function user()

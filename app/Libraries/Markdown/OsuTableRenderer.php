@@ -9,7 +9,7 @@ use InvalidArgumentException;
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Renderer\BlockRendererInterface;
 use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\Ext\Table\Table;
+use League\CommonMark\Extension\Table\Table;
 use League\CommonMark\HtmlElement;
 
 class OsuTableRenderer implements BlockRendererInterface

@@ -6,6 +6,7 @@
 namespace Tests;
 
 use App\Http\Middleware\AuthApi;
+use App\Models\Beatmapset;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -151,6 +152,19 @@ class TestCase extends BaseTestCase
         }, glob("{$path}/*{$suffix}"));
     }
 
+    protected function makeBeatmapsetDiscussionPostParams(Beatmapset $beatmapset, string $messageType)
+    {
+        return [
+            'beatmapset_id' => $beatmapset->getKey(),
+            'beatmap_discussion' => [
+                'message_type' => $messageType,
+            ],
+            'beatmap_discussion_post' => [
+                'message' => 'Hello',
+            ],
+        ];
+    }
+
     protected function interOpSignature($url)
     {
         return hash_hmac('sha1', $url, config('osu.legacy.shared_interop_secret'));
@@ -172,6 +186,14 @@ class TestCase extends BaseTestCase
         return $property->getValue($obj);
     }
 
+    protected function invokeSetProperty($obj, string $name, $value)
+    {
+        $property = new ReflectionProperty($obj, $name);
+        $property->setAccessible(true);
+
+        $property->setValue($obj, $value);
+    }
+
     protected function normalizeHTML($html)
     {
         return str_replace('<br />', "<br />\n", str_replace("\n", '', preg_replace("/>\s*</s", '><', trim($html))));
@@ -182,5 +204,9 @@ class TestCase extends BaseTestCase
         collect(Queue::pushedJobs())->flatten(1)->each(function ($job) {
             $job['job']->handle();
         });
+
+        // clear queue jobs after running
+        // FIXME: this won't work if a job queues another job and you want to run that job.
+        $this->invokeSetProperty(app('queue'), 'jobs', []);
     }
 }

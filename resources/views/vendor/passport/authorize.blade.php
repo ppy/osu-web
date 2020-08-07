@@ -87,9 +87,6 @@
                     'url' => '/oauth/authorize',
                     'method' => 'POST',
                 ]) !!}
-                    <input type="hidden" name="state" value="{{ $request->state }}" />
-                    <input type="hidden" name="client_id" value="{{ $client->id }}" />
-
                     <button class="dialog-form__button">
                         {{ trans('common.buttons.authorise') }}
                     </button>
@@ -99,9 +96,6 @@
                     'url' => '/oauth/authorize',
                     'method' => 'DELETE',
                 ]) !!}
-                    <input type="hidden" name="state" value="{{ $request->state }}" />
-                    <input type="hidden" name="client_id" value="{{ $client->id }}" />
-
                     <button
                         class="dialog-form__button dialog-form__button--cancel"
                     >

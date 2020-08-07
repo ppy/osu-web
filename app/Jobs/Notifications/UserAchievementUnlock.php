@@ -6,11 +6,34 @@
 namespace App\Jobs\Notifications;
 
 use App\Models\Achievement;
+use App\Models\Notification;
 use App\Models\User;
 
 class UserAchievementUnlock extends BroadcastNotificationBase
 {
+    const NOTIFICATION_OPTION_NAME = Notification::USER_ACHIEVEMENT_UNLOCK;
+
     protected $achievement;
+
+    public static function getBaseKey(Notification $notification): string
+    {
+        return 'user_achievement.user_achievement_unlock';
+    }
+
+    public static function getMailGroupingKey(Notification $notification): string
+    {
+        $base = parent::getMailGroupingKey($notification);
+
+        return "{$base}-{$notification->details['achievement_id']}-{$notification->source_user_id}";
+    }
+
+    public static function getMailLink(Notification $notification): string
+    {
+        return route('users.show', [
+            'mode' => $notification->details['achievement_mode'] ?? null, // might not be set in old notifications.
+            'user' => $notification->details['user_id'],
+        ]).'#medals';
+    }
 
     public function __construct(Achievement $achievement, User $source)
     {
