@@ -126,7 +126,7 @@ class UserVerificationState
             return true;
         }
 
-        return true;
+        return false;
     }
 
     public function isDoneLegacy()
