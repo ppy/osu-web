@@ -157,7 +157,7 @@ return [
 
             'comment' => [
                 'comment_new' => 'Beatmap ":title" has new comments',
-            ]
+            ],
         ],
 
         'channel' => [
@@ -169,13 +169,13 @@ return [
         'build' => [
             'comment' => [
                 'comment_new' => 'Changelog ":title" has new comments',
-            ]
+            ],
         ],
 
         'news_post' => [
             'comment' => [
                 'comment_new' => 'News ":title" has new comments',
-            ]
+            ],
         ],
 
         'forum_topic' => [
@@ -186,7 +186,7 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username has unlocked a new medal, ":title"!',
                 'user_achievement_unlock_self' => 'You\'ve unlocked a new medal, ":title"!',
-            ]
+            ],
         ],
     ],
 ];
