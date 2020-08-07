@@ -305,6 +305,157 @@ The values of the cursor should be provided to next request of the same endpoint
 
 If there are no more results available, a cursor with a value of `null` is returned: `"cursor": null`.
 
+## Event
+
+The object has different attributes depending on its `type`. Following are attributes available to all types.
+
+Field | Type | Description
+------|------|------------
+created_at | Timestamp | |
+id         | number    | |
+type       | Type      | |
+
+### Additional objects
+
+#### EventBeatmap
+
+Field | Type
+------|-------
+title | string
+url   | string
+
+#### EventBeatmapset
+
+Field | Type
+------|-------
+title | string
+url   | string
+
+#### EventUser
+
+Field            | Type    | Description
+-----------------|---------|---------------------------------
+username         | string  | |
+url              | string  | |
+previousUsername | string? | Only for `usernameChange` event.
+
+### Available Types
+
+#### achievement
+
+When user obtained an achievement.
+
+Field       | Type
+------------|------------
+achievement | Achievement
+user        | EventUser
+
+#### beatmapPlaycount
+
+When a beatmap has been played for certain number of times.
+
+Field       | Type
+------------|------------
+beatmap     | EventBeatmap
+count       | number
+
+#### beatmapsetApprove
+
+When a beatmapset changed state.
+
+Field      | Type            | Description
+-----------|-----------------|--------------------------------------------
+approval   | string          | `ranked`, `approved`, `qualified`, `loved`.
+beatmapset | EventBeatmapset | |
+user       | EventUser       | Beatmapset owner.
+
+#### beatmapsetDelete
+
+When a beatmapset is deleted.
+
+Field      | Type
+-----------|----------------
+beatmapset | EventBeatmapset
+
+#### beatmapsetRevive
+
+When a beatmapset in graveyard state is updated.
+
+Field      | Type            | Description
+-----------|-----------------|--------------------------------------------
+beatmapset | EventBeatmapset | |
+user       | EventUser       | Beatmapset owner.
+
+#### beatmapsetUpdate
+
+When a beatmapset is updated.
+
+Field      | Type            | Description
+-----------|-----------------|--------------------------------------------
+beatmapset | EventBeatmapset | |
+user       | EventUser       | Beatmapset owner.
+
+#### beatmapsetUpload
+
+When a new beatmapset is uploaded.
+
+Field      | Type            | Description
+-----------|-----------------|--------------------------------------------
+beatmapset | EventBeatmapset | |
+user       | EventUser       | Beatmapset owner.
+
+#### rank
+
+When a user obtained certain rank on a beatmap.
+
+Field     | Type         | Description
+----------|--------------|--------------------------------------------
+scoreRank | string       | (FIXME)
+rank      | number       | |
+mode      | GameMode     | |
+beatmap   | EventBeatmap | |
+user      | EventUser    | |
+
+#### rankLost
+
+When a user lost first place to another user.
+
+Field     | Type
+----------|-------------
+mode      | GameMode
+beatmap   | EventBeatmap
+user      | EventUser
+
+#### userSupportAgain
+
+When a user becomes supporter for the second or more time.
+
+Field     | Type
+----------|----------
+user      | EventUser
+
+#### userSupportFirst
+
+When a user becomes supporter for the first time.
+
+Field     | Type
+----------|----------
+user      | EventUser
+#### userSupportGift
+
+When a user received supporter tag gift from another user.
+
+Field     | Type      | Description
+----------|-----------|----------------
+user      | EventUser | Recipient user.
+
+#### usernameChange
+
+When a user changed their username.
+
+Field     | Type      | Description
+----------|-----------|-----------------------------
+user      | EventUser | Includes `previousUsername`.
 
 ## Notification
 ```json
@@ -548,6 +699,32 @@ mania  | osu!mania
 osu    | osu!standard
 taiko  | osu!taiko
 
+## KudosuHistory
+
+Field      | Type       | Description
+-----------|------------|-----------------------------
+id         | number     | |
+action     | string     | Either `give`, `reset`, or `revoke`.
+amount     | number     | |
+model      | string     | Object type which the exchange happened on (`forum_post`, etc).
+created_at | Timestamp  | |
+giver      | Giver?     | Simple detail of the user who started the exchange.
+post       | Post       | Simple detail of the object for display.
+
+### Giver
+
+Field    | Type
+---------|-------
+url      | string
+username | string
+
+### Post
+
+Field | Type    | Description
+------|---------|------------------------------------------------------------------------
+url   | string? | Url of the object.
+title | string  | Title of the object. It'll be "[deleted beatmap]" for deleted beatmaps.
+
 ## MultiplayerScore
 
 Score data.
@@ -771,18 +948,254 @@ name              | number   | The name of the spotlight.
 start_date        | DateTime | The starting date of the spotlight.
 type              | string   | The type of spotlight.
 
+## Timestamp
+```json
+  "2020-01-01T00:00:00+00:00"
+```
+
+Timestamp string in ISO 8601 format.
 
 ## User
 ```json
 {
-  "💃": true,
+  "avatar_url": "https://a.ppy.sh/1?1501234567.jpeg",
+  "country_code": "AU",
+  "default_group": "default",
+  "id": 1,
+  "is_active": true,
+  "is_bot": false,
+  "is_online": false,
+  "is_supporter": true,
+  "last_visit": "2020-01-01T00:00:00+00:00",
+  "pm_friends_only": false,
+  "profile_colour": "#000000",
+  "username": "osuuser",
+  "cover_url": "https://assets.ppy.sh/user-profile-covers/1/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef.jpeg",
+  "discord": "osuuser#1337",
+  "has_supported": true,
+  "interests": null,
+  "join_date": "2010-01-01T00:00:00+00:00",
+  "kudosu": {
+    "total": 20,
+    "available": 10
+  },
+  "lastfm": null,
+  "location": null,
+  "max_blocks": 50,
+  "max_friends": 500,
+  "occupation": null,
+  "playmode": "osu",
+  "playstyle": [
+    "mouse",
+    "touch"
+  ],
+  "post_count": 100,
+  "profile_order": [
+    "me",
+    "recent_activity",
+    "beatmaps",
+    "historical",
+    "kudosu",
+    "top_ranks",
+    "medals"
+  ],
+  "skype": null,
+  "title": null,
+  "twitter": "osuuser",
+  "website": "https://osu.ppy.sh",
+  "country": {
+    "code": "AU",
+    "name": "Australia"
+  },
+  "cover": {
+    "custom_url": "https://assets.ppy.sh/user-profile-covers/1/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef.jpeg",
+    "url": "https://assets.ppy.sh/user-profile-covers/1/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef.jpeg",
+    "id": null
+  },
+  "account_history": [],
+  "active_tournament_banner": [],
+  "badges": [
+    {
+      "awarded_at": "2015-01-01T00:00:00+00:00",
+      "description": "Test badge",
+      "image_url": "https://assets.ppy.sh/profile-badges/test.png",
+      "url": ""
+    }
+  ],
+  "favourite_beatmapset_count": 10,
+  "follower_count": 100,
+  "graveyard_beatmapset_count": 10,
+  "groups": [
+    {
+      "id": 1,
+      "identifier": "gmt",
+      "name": "gmt",
+      "short_name": "GMT",
+      "description": "",
+      "colour": "#FF0000"
+    }
+  ],
+  "loved_beatmapset_count": 0,
+  "monthly_playcounts": [
+    {
+      "start_date": "2019-11-01",
+      "count": 100
+    },
+    {
+      "start_date": "2019-12-01",
+      "count": 150
+    },
+    {
+      "start_date": "2020-01-01",
+      "count": 20
+    }
+  ],
+  "page": {
+    "html": "<div class='bbcode bbcode--profile-page'><center>Hello</center></div>",
+    "raw": "[centre]Hello[/centre]"
+  },
+  "previous_usernames": [],
+  "ranked_and_approved_beatmapset_count": 10,
+  "replays_watched_counts": [
+    {
+      "start_date": "2019-11-01",
+      "count": 10
+    },
+    {
+      "start_date": "2019-12-01",
+      "count": 12
+    },
+    {
+      "start_date": "2020-01-01",
+      "count": 1
+    }
+  ],
+  "scores_first_count": 0,
+  "statistics": {
+    "level": {
+      "current": 60,
+      "progress": 55
+    },
+    "pp": 100,
+    "pp_rank": 2000,
+    "ranked_score": 2000000,
+    "hit_accuracy": 90.5,
+    "play_count": 1000,
+    "play_time": 100000,
+    "total_score": 3000000,
+    "total_hits": 6000,
+    "maximum_combo": 500,
+    "replays_watched_by_others": 270,
+    "is_ranked": true,
+    "grade_counts": {
+      "ss": 10,
+      "ssh": 5,
+      "s": 50,
+      "sh": 0,
+      "a": 40
+    },
+    "rank": {
+      "global": 15000,
+      "country": 30000
+    }
+  },
+  "support_level": 3,
+  "unranked_beatmapset_count": 0,
+  "user_achievements": [
+    {
+      "achieved_at": "2020-01-01T00:00:00+00:00",
+      "achievement_id": 1
+    }
+  ],
+  "rankHistory": {
+    "mode": "osu",
+    "data": [
+      16200,
+      15500,
+      15000
+    ]
+  }
 }
 ```
 
-Represents a User.
+Represents a User. Extends [UserCompact](#usercompact) object with additional attributes.
 
-<aside class="notice">TODO: This &gt;.&gt;</aside>
+Field                                     | Type                    | Description
+------------------------------------------|-------------------------|------------------------------------------------------------
+cover_url                               | string                | url of profile cover
+discord                                 | string?               | |
+has_supported                           | boolean               | whether or not ever being a supporter in the past
+interests                               | string?               | |
+join_date                               | Timestamp             | |
+kudosu                                  | Kudosu                | |
+last_visit                              | Timestamp?            | last access time. `null` if the user hides online presence
+lastfm                                  | string?               | |
+location                                | string?               | |
+max_blocks                              | number                | maximum number of users allowed to be blocked
+max_friends                             | number                | maximum number of friends allowed to be added
+occupation                              | string?               | |
+playmode                                | [GameMode](#gamemode) | |
+pm_friends_only                         | boolean               | whether or not the user allows PM from other than friends
+post_count                              | number                | number of forum posts
+profile_order                           | ProfilePage[]         | ordered array of sections in user profile page
+skype                                   | string?               | |
+title                                   | string?               | user-specific title
+twitter                                 | string?               | |
+website                                 | string?               | |
+account_history                         | UserAccountHistory[]  | |
+active_tournament_banner                | ProfileBanner         | |
+badges                                  | UserBadge[]           | |
+favourite_beatmapset_count              | | |
+follower_count                          | | |
+graveyard_beatmapset_count              | | |
+groups                                  | | |
+loved_beatmapset_count                  | | |
+monthly_playcounts                      | | |
+page                                    | | |
+previous_usernames                      | | |
+rankHistory                             | | |
+ranked_and_approved_beatmapset_count    | | |
+replays_watched_counts                  | | |
+scores_first_count                      | | |
+statistics                              | | |
+support_level                           | | |
+unranked_beatmapset_count               | | |
+user_achievements                       | | |
 
+### ProfileBanner
+
+Field         | Type        | Description
+--------------|-------------|------------
+
+### ProfilePage
+
+| Section         |
+|-----------------|
+| me              |
+| recent_activity |
+| beatmaps        |
+| historical      |
+| kudosu          |
+| top_ranks       |
+| medals          |
+
+### UserAccountHistory
+
+Field       | Type      | Description
+------------|-----------|------------
+id          | number    | |
+type        | string    | `note`, `restriction`, or `silence`.
+timestamp   | Timestamp | |
+length      | number    | In seconds.
+
+### UserBadge
+
+Field       | Type      | Description
+------------|-----------|------------
+awarded_at  | Timestamp | |
+description | string    | |
+image_url   | string    | |
+url         | string    | |
 
 ## UserCompact
 ```json
@@ -798,7 +1211,7 @@ Represents a User.
   "is_supporter": true
 }
 ```
-This is a subset of the above [User](#user), mainly used for embedding in certain responses to save additional api lookups.
+Mainly used for embedding in certain responses to save additional api lookups.
 
 Field          | Type        | Description
 -------------- | ------------| ----------------------------------------------------------------------
