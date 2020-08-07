@@ -169,8 +169,9 @@ class ScoresController extends BaseController
         abort_if($clientHash === null, 422, 'missing client version');
 
         // temporary measure to allow android builds to submit without access to the underlying dll to hash
-        if (strlen($clientHash) != 32)
+        if (strlen($clientHash) != 32) {
             $clientHash = md5($clientHash);
+        }
 
         Build::where([
             'hash' => hex2bin($clientHash),
