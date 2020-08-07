@@ -83,6 +83,12 @@ return [
         'subject' => 'Wymagana ponowna aktywacja konta osu!',
     ],
 
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
         'confirmation' => 'Ten e-mail jest tylko potwierdzeniem, że Twoje hasło w osu! zostało zmienione.',
         'subject' => 'Potwierdzenie zmiany hasła w osu!',

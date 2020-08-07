@@ -23,7 +23,7 @@ return [
         'generic' => 'Ostoksesi valmistelussa tapahtui virhe.',
     ],
     'search' => [
-        'default' => '',
+        'default' => 'Tuloksia ei saatu, yritä myöhemmin uudelleen.',
         'operation_timeout_exception' => '',
     ],
 

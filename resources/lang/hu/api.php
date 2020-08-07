@@ -19,6 +19,6 @@ return [
             'read' => 'Lásd, hogy kit követsz.',
         ],
 
-        'public' => '',
+        'public' => 'Nyilvános adatok olvasása az ön nevében',
     ],
 ];

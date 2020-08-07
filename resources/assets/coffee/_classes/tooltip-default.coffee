@@ -64,7 +64,9 @@ class @TooltipDefault
           height: 8
 
     if event.type == 'touchstart'
-      options.hide = inactive: 3000
+      options.hide =
+        inactive: 3000
+        event: 'unfocus'
 
     # if enabled, prevents tooltip from changing position
     if el.dataset.tooltipPinPosition
@@ -90,7 +92,7 @@ class @TooltipDefault
         api.enable()
       else
         $target.attr 'title', $target.text()
-        $target.trigger('mouseover') # immediately trigger qtip magic
+        $target.trigger(e.type) # immediately trigger qtip magic
     else
       api?.disable()
 

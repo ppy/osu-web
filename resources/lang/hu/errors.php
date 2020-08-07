@@ -23,8 +23,8 @@ return [
         'generic' => 'Hiba történt a fizetés előkészítése közben.',
     ],
     'search' => [
-        'default' => '',
-        'operation_timeout_exception' => '',
+        'default' => 'Nem sikerült bármi eredményt kapni, kérlek próbáld meg később.',
+        'operation_timeout_exception' => 'A keresés a szokásosnál jobban leterhelt, kérlek próbáld meg később.',
     ],
 
     'logged_out' => 'Ki lettél léptetve. Kérlek lépj be és próbáld újra.',
