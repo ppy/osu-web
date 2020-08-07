@@ -5,19 +5,19 @@
 
 return [
     'show' => [
-        'title' => '',
+        'title' => ':username ezen :title [:version]',
 
         'beatmap' => [
-            'by' => '',
+            'by' => 'Mappolva [x játékos] által',
         ],
 
         'player' => [
-            'by' => '',
-            'submitted_on' => '',
+            'by' => 'Lejátszva [x játékos] által',
+            'submitted_on' => 'Beküldve',
 
             'rank' => [
-                'country' => '',
-                'global' => '',
+                'country' => 'Országos rangsor',
+                'global' => 'Globális rangsor',
             ],
         ],
     ],

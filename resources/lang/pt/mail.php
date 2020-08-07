@@ -83,6 +83,12 @@ return [
         'subject' => 'Uma reativação da conta osu! é necessária',
     ],
 
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
         'confirmation' => 'Isto é apenas uma confirmação de que a tua palavra-passe do osu! foi alterada.',
         'subject' => 'Confirmação da alteração da passe da tua conta osu!',

@@ -117,7 +117,7 @@ return [
         'beatmaps' => [
             'new' => 'Uudet Hyväksytyt Beatmapit',
             'popular' => 'Suositut Beatmapit',
-            'by_user' => '',
+            'by_user' => 'tehnyt :user',
         ],
         'buttons' => [
             'download' => 'Lataa osu!',
