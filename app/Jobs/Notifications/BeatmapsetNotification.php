@@ -16,28 +16,14 @@ abstract class BeatmapsetNotification extends BroadcastNotificationBase
 
     protected $beatmapset;
 
+    public static function getBaseKey(Notification $notification): string
+    {
+        return "{$notification->notifiable_type}.{$notification->name}";
+    }
+
     public static function getMailLink(Notification $notification): string
     {
         return route('beatmapsets.show', $notification->notifiable_id);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function shouldSendMail(Notification $notification, $watches, $time): bool
-    {
-        // skip the more 'generic notifications if they've already been sent and not known to be 'read'.
-        if (static::getBaseKey($notification) === 'beatmapset.beatmapset_state') {
-            $watch = $watches['beatmapsets'][$notification->notifiable_id] ?? null;
-            if ($watch === null) {
-                return false;
-            }
-
-            // make the model dirty so UserNotificationDigest job can batch update
-            $watch->last_notified = $time;
-        }
-
-        return true;
     }
 
     public function __construct(Beatmapset $beatmapset, ?User $source = null)

@@ -136,6 +136,13 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmapset_disqualify' => '":title" has been disqualified',
+            'beatmapset_love' => '":title" was promoted to loved',
+            'beatmapset_nominate' => '":title" has been nominated',
+            'beatmapset_qualify' => '":title" has gained enough nominations and entered the ranking queue',
+            'beatmapset_rank' => '":title" has been ranked',
+            'beatmapset_reset_nominations' => 'Nomination of ":title" has been reset',
+
             'beatmapset_discussion' => 'The discussion on ":title" has new updates',
             'beatmapset_discussion_lock' => 'The discussion on ":title" has been locked',
             'beatmapset_discussion_unlock' => 'The discussion on ":title" has been unlocked',

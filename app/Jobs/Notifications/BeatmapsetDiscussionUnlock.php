@@ -9,8 +9,4 @@ use App\Models\Notification;
 
 class BeatmapsetDiscussionUnlock extends BeatmapsetNotification
 {
-    public static function getBaseKey(Notification $notification): string
-    {
-        return 'beatmapset.beatmapset_discussion_unlock';
-    }
 }
