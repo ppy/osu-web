@@ -18,6 +18,10 @@
     <div class="forum-item-stripe u-forum--before-bg"><span class="fas fa-angle-right"></span></div>
 
     <div class="forum-topic-entry__col forum-topic-entry__col--icon">
+        @if (isset($topicReplyStatus[$topic->getKey()]))
+            <span class="forum-topic-entry__replied" title="{{ trans('forum.topic.has_replied') }}"></span>
+        @endif
+
         <a
             class="
                 forum-topic-entry__icon
