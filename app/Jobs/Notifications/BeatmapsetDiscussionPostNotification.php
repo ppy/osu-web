@@ -16,6 +16,15 @@ abstract class BeatmapsetDiscussionPostNotification extends BroadcastNotificatio
 
     protected $beatmapsetDiscussionPost;
 
+    public static function getBaseKey(Notification $notification): string
+    {
+        $category = Notification::nameToCategory($notification->name);
+
+        return $category === 'beatmapset_discussion'
+            ? "{$notification->notifiable_type}.{$category}.beatmapset_discussion_post_new"
+            : "{$notification->notifiable_type}.{$category}.{$notification->name}";
+    }
+
     public static function getMailLink(Notification $notification): string
     {
         return route('beatmapsets.discussion', ['beatmapset' => $notification->notifiable_id]).'#/'.$notification->details['discussion_id'];

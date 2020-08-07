@@ -16,11 +16,6 @@ abstract class BeatmapsetNotification extends BroadcastNotificationBase
 
     protected $beatmapset;
 
-    public static function getBaseKey(Notification $notification): string
-    {
-        return "{$notification->notifiable_type}.{$notification->name}";
-    }
-
     public static function getMailLink(Notification $notification): string
     {
         return route('beatmapsets.show', $notification->notifiable_id);
