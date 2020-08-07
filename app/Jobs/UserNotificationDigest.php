@@ -51,13 +51,6 @@ class UserNotificationDigest implements ShouldQueue
     {
         // preload the watches and key them for lookup.
         $this->watches = [
-            'beatmapsets' => $this->user->beatmapsetWatches()
-                ->whereIn('beatmapset_id', $notifications->where('notifiable_type', '=', 'beatmapset')->pluck('notifiable_id'))
-                ->where('last_read', '<', $this->now)
-                ->read()
-                ->get()
-                ->keyBy('beatmapset_id'),
-
             'topics' => $this->user->topicWatches()
                 ->whereIn('topic_id', $notifications->where('notifiable_type', '=', 'forum_topic')->pluck('notifiable_id'))
                 ->where('mail', true)
@@ -78,15 +71,10 @@ class UserNotificationDigest implements ShouldQueue
 
         // bulk update the watches
         DB::transaction(function () {
-            $beatmapsetIds = $this->watches['beatmapsets']->filter(function ($watch) {
-                return $watch->isDirty();
-            })->keys();
-
             $topicIds = $this->watches['topics']->filter(function ($watch) {
                 return $watch->isDirty();
             })->keys();
 
-            $this->user->beatmapsetWatches()->whereIn('beatmapset_id', $beatmapsetIds)->update(['last_notified' => $this->now]);
             $this->user->topicWatches()->whereIn('topic_id', $topicIds)->update(['notify_status' => true]);
         });
 

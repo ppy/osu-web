@@ -6,7 +6,6 @@
 namespace Tests\Jobs;
 
 use App\Mail\UserNotificationDigest as UserNotificationDigestMail;
-use App\Models\Beatmapset;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
