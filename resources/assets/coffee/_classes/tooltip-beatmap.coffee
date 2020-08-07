@@ -44,7 +44,9 @@ class @TooltipBeatmap
           height: 9
 
     if event.type == 'touchstart'
-      options.hide = inactive: 3000
+      options.hide =
+        inactive: 3000
+        event: 'unfocus'
 
     $(el).qtip options, event
 

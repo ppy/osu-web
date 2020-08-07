@@ -57,9 +57,12 @@ return [
         'options' => [
             '_' => 'خيارات التوصيل',
             'beatmapset:modding' => 'اقتراحات الأغنية',
+            'channel_message' => '',
+            'comment_new' => '',
             'forum_topic_reply' => 'رد الموضوع',
             'mail' => 'البريد',
             'push' => 'دفع',
+            'user_achievement_unlock' => '',
         ],
     ],
 
@@ -79,7 +82,7 @@ return [
             'direct' => 'فتح في osu!direct',
         ],
 
-        'beatmapset_title_show_original' => '',
+        'beatmapset_title_show_original' => 'إظهار بيانات تعريف الخرائط باللغة الأصلية',
     ],
 
     'playstyles' => [

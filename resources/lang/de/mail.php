@@ -83,6 +83,12 @@ return [
         'subject' => 'osu!-Konto-Reaktivierung erforderlich',
     ],
 
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
         'confirmation' => 'Dies ist nur eine Bestätigung, dass Dein osu!-Passwort geändert wurde.',
         'subject' => 'Bestätigung des neuen Passworts für osu!',

@@ -25,7 +25,6 @@ class BeatmapTransformer extends BeatmapCompactTransformer
             'count_circles' => $beatmap->countNormal,
             'count_sliders' => $beatmap->countSlider,
             'count_spinners' => $beatmap->countSpinner,
-            'count_total' => $beatmap->countTotal,
             'cs' => $beatmap->diff_size,
             'deleted_at' => $beatmap->deleted_at,
             'drain' => $beatmap->diff_drain,

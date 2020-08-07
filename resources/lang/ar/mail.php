@@ -83,6 +83,12 @@ return [
         'subject' => 'حساب osu! يحتاج لأعادة تفعيل',
     ],
 
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
         'confirmation' => 'هذا فقط للتأكد من ان كلمة سر حسابك في osu! قم تغيرت.',
         'subject' => 'تأكيد تغيير كلمة المرور لـosu!',

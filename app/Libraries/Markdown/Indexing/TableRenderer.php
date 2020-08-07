@@ -7,9 +7,9 @@ namespace App\Libraries\Markdown\Indexing;
 
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\Ext\Table\TableCell;
-use League\CommonMark\Ext\Table\TableRow;
-use League\CommonMark\Ext\Table\TableSection;
+use League\CommonMark\Extension\Table\TableCell;
+use League\CommonMark\Extension\Table\TableRow;
+use League\CommonMark\Extension\Table\TableSection;
 
 class TableRenderer extends BlockRenderer
 {
