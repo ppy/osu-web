@@ -22,43 +22,6 @@ class UserNotificationDigestTest extends TestCase
 {
     protected $sender;
 
-    public function testBeatmapsetStateNotificationsShouldNotRenotify()
-    {
-        $this->user->notificationOptions()->create([
-            'name' => UserNotificationOption::BEATMAPSET_MODDING,
-            'details' => ['mail' => true],
-        ]);
-
-        $beatmapset = factory(Beatmapset::class)->states('with_discussion')->create([
-            'user_id' => $this->user->getKey(),
-        ]);
-
-        $beatmapset->watches()->create([
-            'last_read' => now()->subSecond(), // make sure last_read isn't the same second the test runs.
-            'user_id' => $this->user->getKey(),
-        ]);
-
-        // beatmapset_state type notifications
-        $notificationTypes = [
-            Notification::BEATMAPSET_DISQUALIFY,
-            Notification::BEATMAPSET_LOVE,
-            Notification::BEATMAPSET_NOMINATE,
-            Notification::BEATMAPSET_QUALIFY,
-            Notification::BEATMAPSET_RANK,
-            Notification::BEATMAPSET_RESET_NOMINATIONS,
-        ];
-
-        $this->broadcastAndSendMail($notificationTypes, $beatmapset, $this->sender);
-        Mail::assertSent(UserNotificationDigestMail::class);
-
-        $this->clearMailFake();
-
-        // simulate more notifications
-        $this->broadcastAndSendMail($notificationTypes, $beatmapset, $this->sender);
-        // new 'generic' notifications shouldn't be sent again
-        Mail::assertNotSent(UserNotificationDigestMail::class);
-    }
-
     public function testForumTopicReplyNotificationsShouldNotRenotify()
     {
         $this->user->notificationOptions()->create([
