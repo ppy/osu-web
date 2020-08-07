@@ -392,27 +392,27 @@ class UsersController extends Controller
      * Returns [User](#user) object.
      * Following attributes are included in the response object when applicable.
      *
-     * Attribute                                 | Notes
-     * ------------------------------------------|------
-     * account_history                         | |
-     * active_tournament_banner                | |
-     * badges                                  | |
-     * favourite_beatmapset_count              | |
-     * follower_count                          | |
-     * graveyard_beatmapset_count              | |
-     * groups                                  | |
-     * loved_beatmapset_count                  | |
-     * monthly_playcounts                      | |
-     * page                                    | |
-     * previous_usernames                      | |
-     * rankHistory                             | For specified mode.
-     * ranked_and_approved_beatmapset_count    | |
-     * replays_watched_counts                  | |
-     * scores_first_count                      | For specified mode.
-     * statistics                              | For specified mode. Inluces `rank` and `variants` attributes.
-     * support_level                           | |
-     * unranked_beatmapset_count               | |
-     * user_achievements                       | |
+     * Attribute                            | Notes
+     * -------------------------------------|------
+     * account_history                      | |
+     * active_tournament_banner             | |
+     * badges                               | |
+     * favourite_beatmapset_count           | |
+     * follower_count                       | |
+     * graveyard_beatmapset_count           | |
+     * groups                               | |
+     * loved_beatmapset_count               | |
+     * monthly_playcounts                   | |
+     * page                                 | |
+     * previous_usernames                   | |
+     * rankHistory                          | For specified mode.
+     * ranked_and_approved_beatmapset_count | |
+     * replays_watched_counts               | |
+     * scores_first_count                   | For specified mode.
+     * statistics                           | For specified mode. Inluces `rank` and `variants` attributes.
+     * support_level                        | |
+     * unranked_beatmapset_count            | |
+     * user_achievements                    | |
      *
      * @urlParam user required Id of the user. Example: 1
      * @urlParam mode [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
