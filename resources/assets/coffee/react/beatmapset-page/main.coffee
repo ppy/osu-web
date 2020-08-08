@@ -46,6 +46,7 @@ export class Main extends React.Component
         currentBeatmap: currentBeatmap
         favcount: props.beatmapset.favourite_count
         hasFavourited: props.beatmapset.has_favourited
+        recentFavourites: props.beatmapset.recent_favourites
         loading: false
         currentScoreboardType: 'global'
         enabledMods: []
@@ -158,6 +159,7 @@ export class Main extends React.Component
       @setState
         favcount: data.favourite_count
         hasFavourited: !@state.hasFavourited
+        recentFavourites: data.recent_favourites
 
     .fail (xhr, status) =>
       if status == 'abort'
@@ -197,6 +199,7 @@ export class Main extends React.Component
           hoveredBeatmap: @state.hoveredBeatmap
           favcount: @state.favcount
           hasFavourited: @state.hasFavourited
+          recentFavourites: @state.recentFavourites
 
         el Info,
           beatmapset: @state.beatmapset

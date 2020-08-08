@@ -102,7 +102,7 @@ export class Header extends React.Component
               className: 'user-list-popup user-list-popup__template'
               style:
                 display: 'none'
-              @props.beatmapset.recent_favourites.map (user) ->
+              @props.recentFavourites.map (user) ->
                 a
                   href: laroute.route('users.show', user: user.id)
                   className: 'js-usercard user-list-popup__user'
