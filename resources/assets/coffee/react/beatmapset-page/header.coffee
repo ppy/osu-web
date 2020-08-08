@@ -21,6 +21,11 @@ export class Header extends React.Component
   showFavourites: (event) =>
     target = event.currentTarget
 
+    if @props.favcount < 1 && target._tooltip
+      target._tooltip = false
+      $(target).qtip 'destroy', true
+      return
+
     if @props.favcount < 1 || target._tooltip
       return
 
