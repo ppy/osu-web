@@ -39,8 +39,11 @@ class FavouritesController extends Controller
                 throw new InvariantException('Invalid action');
         }
 
+        $beatmapset = $beatmapset->fresh();
+
         return [
-            'favourite_count' => $beatmapset->fresh()->favourite_count,
+            'favourite_count' => $beatmapset->favourite_count,
+            'recent_favourites' => json_collection($beatmapset->recentFavourites(), 'User')
         ];
     }
 }
