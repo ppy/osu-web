@@ -43,7 +43,7 @@ class FavouritesController extends Controller
 
         return [
             'favourite_count' => $beatmapset->favourite_count,
-            'recent_favourites' => json_collection($beatmapset->recentFavourites(), 'User')
+            'recent_favourites' => json_collection($beatmapset->recentFavourites(), 'User'),
         ];
     }
 }
