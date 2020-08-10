@@ -25,7 +25,13 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    overflow-x: auto;
+
+    @media @mobile {
+      overflow-x: auto;
+      height: auto;
+      padding-top: 150px;
+      padding-bottom: 10px;
+    }
   }
 
   &__counter {
