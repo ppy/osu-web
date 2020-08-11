@@ -68,9 +68,6 @@
             "countSpinner": {
               "type": "long"
             },
-            "countTotal": {
-              "type": "long"
-            },
             "diff_approach": {
               "type": "double"
             },
@@ -217,8 +214,8 @@
         "tokenizer": {
           "prefix": {
             "type": "edge_ngram",
-            "min_gram": "3",
-            "max_gram": "8",
+            "min_gram": "2",
+            "max_gram": "20",
             "token_chars": [
               "letter",
               "digit"

@@ -83,6 +83,12 @@ return [
         'subject' => 'osu! Account Genaktivering Påkrævet',
     ],
 
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
         'confirmation' => 'Dette er en bekræftekse på, at din osu! adgangskode er blevet ændret.',
         'subject' => 'Bekræftelse for opdatering af osu! adgangskode',

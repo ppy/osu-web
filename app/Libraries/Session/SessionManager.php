@@ -17,4 +17,15 @@ class SessionManager extends \Illuminate\Session\SessionManager
     {
         return new Store($this->app['config']['session.cookie'], $handler);
     }
+
+    // copied from upstream but with custom CacheBasedSessionHandler
+    protected function createCacheHandler($driver)
+    {
+        $store = $this->config->get('session.store') ?: $driver;
+
+        return new CacheBasedSessionHandler(
+            clone $this->container->make('cache')->store($store),
+            $this->config->get('session.lifetime')
+        );
+    }
 }

@@ -83,9 +83,20 @@ class ChangelogEntry extends Model
         foreach ($data['pull_request']['labels'] as $label) {
             $name = $label['name'];
 
-            if (!in_array(strtolower($name), $ignored, true)) {
-                return ucwords($name);
+            if (in_array(strtolower($name), $ignored, true)) {
+                continue;
             }
+
+            $separatorPos = strpos($name, ':');
+            if ($separatorPos !== false) {
+                $name = substr($name, $separatorPos + 1);
+            }
+
+            if (strpos($name, ' ') === false) {
+                $name = str_replace('-', ' ', $name);
+            }
+
+            return ucwords($name);
         }
     }
 
@@ -108,6 +119,7 @@ class ChangelogEntry extends Model
             'created_at' => Carbon::parse($data['pull_request']['merged_at']),
             'github_pull_request_id' => $data['pull_request']['number'],
             'message' => $data['pull_request']['body'],
+            'private' => static::isPrivate($data),
             'title' => $data['pull_request']['title'],
             'type' => static::guessType($data),
         ]);
@@ -126,6 +138,23 @@ class ChangelogEntry extends Model
         }
 
         return $entry;
+    }
+
+    public static function isPrivate($data)
+    {
+        static $privateCategories = [
+            'dependencies',
+        ];
+
+        foreach ($data['pull_request']['labels'] as $label) {
+            $name = $label['name'];
+
+            if (in_array(strtolower($name), $privateCategories, true)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static function placeholder()

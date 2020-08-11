@@ -304,7 +304,7 @@ return [
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
         'TD' => 'Urządzenie dotykowe',
-        'V2' => '',
+        'V2' => 'Score V2',
     ],
     'language' => [
         'any' => 'Jakikolwiek',
