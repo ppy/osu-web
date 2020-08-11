@@ -154,7 +154,8 @@ class UserChannel extends Model
                 if ($userChannel->type === Channel::TYPES['pm']) {
                     // remove ourselves from $membersArray, leaving only the other party
                     $members = array_diff($filteredChannelMembers, [$userId]);
-                    $targetUser = $byUserId[array_shift($members)] ?? null;
+                    $targetUserChannel = $byUserId[array_shift($members)] ?? null;
+                    $targetUser = optional($targetUserChannel)->userScoped;
 
                     // hide if target is restricted ($targetUser missing) or is blocked ($targetUser->foe)
                     if (!$targetUser || $targetUser->foe) {
@@ -162,11 +163,10 @@ class UserChannel extends Model
                     }
 
                     // override channel icon and display name in PMs to always show the other party
-                    $userActual = $targetUser->userScoped;
-                    $presence['icon'] = $userActual->user_avatar;
-                    $presence['name'] = $userActual->username;
+                    $presence['icon'] = $targetUser->user_avatar;
+                    $presence['name'] = $targetUser->username;
                     // ideally this should be ChatChannelSend but it involves too many queries
-                    $presence['moderated'] = $presence['moderated'] || !priv_check_user($user, 'ChatStart', $userActual)->can();
+                    $presence['moderated'] = $presence['moderated'] || !priv_check_user($user, 'ChatStart', $targetUser)->can();
                 }
 
                 return $presence;
