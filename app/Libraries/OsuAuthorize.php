@@ -788,6 +788,10 @@ class OsuAuthorize
         $this->ensureCleanRecord($user, $prefix);
         $this->ensureHasPlayed($user);
 
+        if ($user->isModerator()) {
+            return 'ok';
+        }
+
         if ($target->hasBlocked($user) || $user->hasBlocked($target)) {
             return $prefix.'blocked';
         }

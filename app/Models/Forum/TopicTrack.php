@@ -21,18 +21,10 @@ class TopicTrack extends Model
 
     protected $primaryKeys = ['topic_id', 'user_id'];
 
-    public static function readStatus($user, ...$topicsArrays)
+    public static function readStatus($user, $topics)
     {
         if ($user === null) {
             return [];
-        }
-
-        $topics = [];
-
-        foreach ($topicsArrays as $topicsArray) {
-            foreach ($topicsArray as $topic) {
-                $topics[] = $topic;
-            }
         }
 
         $readStatus = static::where('user_id', '=', $user->getKey())

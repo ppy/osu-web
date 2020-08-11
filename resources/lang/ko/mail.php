@@ -83,6 +83,12 @@ return [
         'subject' => 'osu! 계정 재활성화가 필요합니다',
     ],
 
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
         'confirmation' => '이는 귀하의 osu! 비밀번호 변경되었음을 알리기 위한 확인 이메일입니다.',
         'subject' => 'osu! 비밀번호 변경 확인',

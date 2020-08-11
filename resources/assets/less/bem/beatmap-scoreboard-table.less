@@ -44,6 +44,10 @@
   margin-right: -@handle;
   overflow-x: auto;
 
+  @media @mobile {
+    margin-right: 0;
+  }
+
   &__table {
     width: 100%;
     min-width: 800px;
@@ -209,6 +213,10 @@
 
     .@{passive-row} & {
       opacity: 0;
+
+      @media @mobile {
+        opacity: 1;
+      }
     }
 
     .@{passive-row}:hover & {

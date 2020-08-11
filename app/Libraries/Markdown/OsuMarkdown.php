@@ -9,8 +9,8 @@ use App\Libraries\Markdown\Indexing\RendererExtension as IndexingRendererExtensi
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
 use League\CommonMark\Event\DocumentParsedEvent;
-use League\CommonMark\Ext\Autolink\AutolinkExtension;
-use League\CommonMark\Ext\Table as TableExtension;
+use League\CommonMark\Extension\Autolink\AutolinkExtension;
+use League\CommonMark\Extension\Table as TableExtension;
 use Symfony\Component\Yaml\Exception\ParseException as YamlParseException;
 use Symfony\Component\Yaml\Yaml;
 

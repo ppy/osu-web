@@ -83,6 +83,12 @@ return [
         'subject' => 'Необхідна повторна активація облікового запису osu!',
     ],
 
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
         'confirmation' => 'Це всього лише подвержденном, що Ваш пароль до osu! був змінений.',
         'subject' => 'Підтвердження зміни пароля облікового запису osu!',

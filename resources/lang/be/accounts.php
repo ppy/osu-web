@@ -57,9 +57,12 @@ return [
         'options' => [
             '_' => 'спосабы дастаўкі',
             'beatmapset:modding' => 'модынг бітмап',
+            'channel_message' => '',
+            'comment_new' => '',
             'forum_topic_reply' => 'адказы да тэмы',
             'mail' => 'пошта',
             'push' => 'push',
+            'user_achievement_unlock' => '',
         ],
     ],
 
