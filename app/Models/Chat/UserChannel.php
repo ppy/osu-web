@@ -70,7 +70,10 @@ class UserChannel extends Model
         $userId = $user->user_id;
 
         // retrieve all the channels the user is in and the metadata for each
-        $userChannels = static::userChannelsForUser($user)->get();
+        $userChannels = static::userChannelsForUser($user)
+            ->whereHas('channel')
+            ->with('channel')
+            ->get();
         $channelIds = $userChannels->pluck('channel_id');
 
         // including MAX(message_id) in above query is slow for large channels.
@@ -83,10 +86,10 @@ class UserChannel extends Model
             ->keyBy('channel_id');
 
         // fetch the users in each of the channels (and whether they're restricted and/or blocked)
-        $userChannelMembers = self::whereIn('user_channels.channel_id', $channelIds)
-            ->selectRaw('user_channels.*')
-            ->join('channels', 'channels.channel_id', '=', 'user_channels.channel_id')
-            ->where('channels.type', '=', 'PM')
+        $userChannelMembers = static::whereIn('channel_id', $channelIds)
+            ->whereHas('channel', function ($q) {
+                $q->where('type', 'PM');
+            })
             ->with([
                 // only fetch data related to $user, to be used by ChatStart privilege check
                 'userScoped.friends' => function ($query) use ($userId) {
@@ -165,6 +168,6 @@ class UserChannel extends Model
 
     private static function userChannelsForUser(User $user)
     {
-        return static::where('user_id', $user->getKey())->where('hidden', false)->with('channel');
+        return static::where('user_id', $user->getKey())->where('hidden', false);
     }
 }
