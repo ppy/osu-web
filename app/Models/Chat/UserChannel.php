@@ -69,15 +69,8 @@ class UserChannel extends Model
     {
         $userId = $user->user_id;
 
-        // FIXME: this should do `->with('channel')` instead of using join and jamming everything to UserChannel.
         // retrieve all the channels the user is in and the metadata for each
-        $userChannels = self::where('user_channels.user_id', $userId)
-            ->where('hidden', false)
-            ->join('channels', 'channels.channel_id', '=', 'user_channels.channel_id')
-            ->selectRaw('channels.*')
-            ->selectRaw('user_channels.last_read_id')
-            ->get();
-
+        $userChannels = static::userChannelsForUser($user)->get();
         $channelIds = $userChannels->pluck('channel_id');
 
         // including MAX(message_id) in above query is slow for large channels.
@@ -125,27 +118,26 @@ class UserChannel extends Model
             // FIXME: this should be its own transformer class
             function ($userChannel) use ($byChannelId, $byUserId, $channelMessageIds, $userId, $user) {
                 $messageEnds = $channelMessageIds[$userChannel->channel_id] ?? null;
+                $channel = $userChannel->channel;
 
                 $presence = [
-                    'channel_id' => $userChannel->channel_id,
-                    'type' => $userChannel->type,
-                    'name' => $userChannel->name,
-                    'description' => presence($userChannel->description),
+                    'channel_id' => $channel->channel_id,
+                    'type' => $channel->type,
+                    'name' => $channel->name,
+                    'description' => presence($channel->description),
                     'last_read_id' => $userChannel->last_read_id,
                     'first_message_id' => optional($messageEnds)->first_message_id,
                     'last_message_id' => optional($messageEnds)->last_message_id,
-                    // `moderated` is not attribute of UserChannel so there's no casting.
-                    // Also see comment above on `$userChannels` assignment about this should be `$userChannel->channel->moderated`.
-                    'moderated' => (bool) $userChannel->moderated,
+                    'moderated' => $channel->moderated,
                 ];
 
-                if ($userChannel->type !== Channel::TYPES['public']) {
+                if ($channel->type !== Channel::TYPES['public']) {
                     // filter out restricted users from the listing
-                    $filteredChannelMembers = $byChannelId[$userChannel->channel_id] ?? [];
+                    $filteredChannelMembers = $byChannelId[$channel->channel_id] ?? [];
                     $presence['users'] = $filteredChannelMembers;
                 }
 
-                if ($userChannel->type === Channel::TYPES['pm']) {
+                if ($channel->type === Channel::TYPES['pm']) {
                     // remove ourselves from $membersArray, leaving only the other party
                     $members = array_diff($filteredChannelMembers, [$userId]);
                     $targetUserChannel = $byUserId[array_shift($members)] ?? null;
@@ -169,5 +161,10 @@ class UserChannel extends Model
 
         // strip out the empty [] elements (from restricted/blocked users)
         return array_values(array_filter($collection));
+    }
+
+    private static function userChannelsForUser(User $user)
+    {
+        return static::where('user_id', $user->getKey())->where('hidden', false)->with('channel');
     }
 }
