@@ -90,14 +90,8 @@ class UserChannel extends Model
             ->keyBy('channel_id');
 
         // fetch the users in each of the channels (and whether they're restricted and/or blocked)
-        $userRelationTableName = (new UserRelation)->tableName(true);
         $userChannelMembers = self::whereIn('user_channels.channel_id', $channelIds)
             ->selectRaw('user_channels.*')
-            ->selectRaw('phpbb_zebra.foe')
-            ->leftJoin($userRelationTableName, function ($join) use ($userRelationTableName, $userId) {
-                $join->on("{$userRelationTableName}.zebra_id", 'user_channels.user_id')
-                    ->where("{$userRelationTableName}.user_id", $userId);
-            })
             ->join('channels', 'channels.channel_id', '=', 'user_channels.channel_id')
             ->where('channels.type', '=', 'PM')
             ->with([
@@ -158,7 +152,7 @@ class UserChannel extends Model
                     $targetUser = optional($targetUserChannel)->userScoped;
 
                     // hide if target is restricted ($targetUser missing) or is blocked ($targetUser->foe)
-                    if (!$targetUser || $targetUser->foe) {
+                    if (!$targetUser || $user->hasBlocked($targetUser)) {
                         return [];
                     }
 
