@@ -168,7 +168,7 @@ class RankingController extends Controller
             }
         }
 
-        $maxResults = $this->friendsOnly ? $stats->count() : $this->maxResults($modeInt);
+        $maxResults = $this->maxResults($modeInt, $stats);
         $maxPages = ceil($maxResults / static::PAGE_SIZE);
         // TODO: less repeatedly getting params out of request.
         $page = clamp(get_int(request('cursor.page') ?? request('page')), 1, $maxPages);
@@ -284,8 +284,12 @@ class RankingController extends Controller
         return ['id' => $spotlight->chart_id, 'text' => $spotlight->name];
     }
 
-    private function maxResults($modeInt)
+    private function maxResults($modeInt, $stats)
     {
+        if ($this->friendsOnly) {
+            return $stats->count();
+        }
+
         if ($this->params['type'] === 'country') {
             return CountryStatistics::where('display', 1)
                 ->where('mode', $modeInt)
@@ -293,6 +297,10 @@ class RankingController extends Controller
         }
 
         $maxResults = static::MAX_RESULTS;
+
+        if ($this->params['variant'] !== null) {
+            return min($stats->count(), $maxResults);
+        }
 
         if ($this->countryStats !== null) {
             return min($this->countryStats->user_count, $maxResults);
