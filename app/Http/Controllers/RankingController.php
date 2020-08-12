@@ -19,6 +19,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class RankingController extends Controller
 {
     private $country;
+    private $countryStats;
     private $params;
     private $friendsOnly;
 
@@ -72,16 +73,16 @@ class RankingController extends Controller
             }
 
             if (isset($this->params['country']) && $type === 'performance') {
-                $countryStats = CountryStatistics::where('display', 1)
+                $this->countryStats = CountryStatistics::where('display', 1)
                     ->where('country_code', $this->params['country'])
                     ->where('mode', Beatmap::modeInt($mode))
                     ->first();
 
-                if ($countryStats === null) {
+                if ($this->countryStats === null) {
                     return ujs_redirect(route('rankings', ['mode' => $mode, 'type' => $type]));
                 }
 
-                $this->country = $countryStats->country;
+                $this->country = $this->countryStats->country;
             }
 
             view()->share('country', $this->country);
@@ -291,10 +292,13 @@ class RankingController extends Controller
                 ->count();
         }
 
-        return min(
-            $this->country !== null ? $this->country->usercount : static::MAX_RESULTS,
-            static::MAX_RESULTS
-        );
+        $maxResults = static::MAX_RESULTS;
+
+        if ($this->countryStats !== null) {
+            return min($this->countryStats->user_count, $maxResults);
+        }
+
+        return $maxResults;
     }
 
     private function setVariantParam()
