@@ -20,10 +20,10 @@
         <label
             class="
                 btn-osu-big
+                btn-osu-big--fileupload
                 btn-osu-big--forum-cover
                 btn-osu-big--forum-cover-edit
                 js-forum-cover--upload-button
-                fileupload
             "
             data-default-file-url="{{ $cover['defaultFileUrl'] ?? '' }}"
             data-file-url="{{ $cover['fileUrl'] ?? '' }}"
@@ -34,7 +34,7 @@
                 {!! spinner(['center-inline']) !!}
             </span>
             {{ trans('forum.covers.create.button') }}
-            <input class="fileupload__input" type="file" />
+            <input class="btn-osu-big__fileupload" type="file" />
         </label>
 
         <button

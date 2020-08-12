@@ -30,7 +30,7 @@
     background-color: @osu-colour-h1;
   }
 
-  &[disabled] {
+  &[disabled], &--disabled {
     background-color: @osu-colour-b3;
     color: @osu-colour-f1;
   }
@@ -143,6 +143,11 @@
       background-color: @blue-darker;
       background-position: calc(50% - 20px) 50%;
     }
+  }
+
+  &--fileupload {
+    overflow: hidden;
+    position: relative;
   }
 
   &--mega {
@@ -418,8 +423,16 @@
 
   &__fileupload {
     position: absolute;
-    left: -200%;
-    top: -200%;
+    opacity: 0;
+    top: 0;
+    right: 0;
+    width: 300%;
+    height: 300%;
+    cursor: pointer;
+
+    .@{top}--disabled & {
+      cursor: not-allowed;
+    }
   }
 
   &__icon {
