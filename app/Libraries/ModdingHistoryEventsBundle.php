@@ -88,6 +88,7 @@ class ModdingHistoryEventsBundle
                     'BeatmapsetEvent',
                     ['discussion.starting_post', 'beatmapset.user']
                 ),
+                'reviewsConfig' => BeatmapsetDiscussionReview::config(),
                 'users' => json_collection(
                     $this->getUsers(),
                     'UserCompact',
