@@ -85,7 +85,8 @@ class UserChannel extends Model
             ->get()
             ->keyBy('channel_id');
 
-        // fetch the users in each of the channels (and whether they're restricted and/or blocked)
+        // Fetch the users in PM channels (and whether they're restricted and/or blocked)
+        // Limited to PM channels due to large size of public channels.
         $userChannelMembers = static::whereIn('channel_id', $channelIds)
             ->whereHas('channel', function ($q) {
                 $q->where('type', 'PM');
@@ -134,6 +135,7 @@ class UserChannel extends Model
                     'moderated' => $channel->moderated,
                 ];
 
+                // this says != PUBLIC but really is just == PM because of the data loaded.
                 if ($channel->type !== Channel::TYPES['public']) {
                     // filter out restricted users from the listing
                     $filteredChannelMembers = $byChannelId[$channel->channel_id] ?? [];
@@ -146,8 +148,9 @@ class UserChannel extends Model
                     $targetUserChannel = $byUserId[array_shift($members)] ?? null;
                     $targetUser = optional($targetUserChannel)->userScoped;
 
-                    // hide if target is restricted ($targetUser missing) or is blocked ($targetUser->foe)
-                    if (!$targetUser || $user->hasBlocked($targetUser)) {
+                    // hide if target is restricted or blocked unless blocked user is a moderator.
+                    if (!$targetUser
+                        || $user->hasBlocked($targetUser) && !$targetUser->isModerator()) {
                         return [];
                     }
 
