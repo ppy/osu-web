@@ -27,6 +27,11 @@ use LaravelRedis as Redis;
 class Channel extends Model
 {
     protected $primaryKey = 'channel_id';
+
+    protected $casts = [
+        'moderated' => 'boolean',
+    ];
+
     protected $dates = [
         'creation_time',
     ];
