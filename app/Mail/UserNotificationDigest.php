@@ -36,24 +36,24 @@ class UserNotificationDigest extends Mailable
             $baseKey = 'notifications.mail.'.$class::getBaseKey($notification);
             $key = $class::getMailGroupingKey($notification);
 
-            if (isset($this->groups[$key])) {
-                return;
+            if (!isset($this->groups[$key])) {
+                // remove anything not a string because trans doesn't like it.
+                $details = array_filter($notification->details ?? [], function ($value) {
+                    return is_string($value);
+                });
+
+                if ($this->user->getKey() === $notification->source_user_id
+                    && trans_exists("{$baseKey}_self", app()->getLocale())) {
+                    $baseKey = "{$baseKey}_self";
+                }
+
+                $this->groups[$key] = [
+                    'text' => trans($baseKey, $details),
+                ];
             }
 
-            // remove anything not a string because trans doesn't like it.
-            $details = array_filter($notification->details ?? [], function ($value) {
-                return is_string($value);
-            });
-
-            if ($this->user->getKey() === $notification->source_user_id
-                && trans_exists("{$baseKey}_self", app()->getLocale())) {
-                $baseKey = "{$baseKey}_self";
-            }
-
-            $this->groups[$key] = [
-                'link' => $class::getMailLink($notification),
-                'text' => trans($baseKey, $details),
-            ];
+            $link = $class::getMailLink($notification);
+            $this->groups[$key]['links'][$link] = '';
         } catch (InvalidNotificationException $e) {
             log_error($e);
         }
