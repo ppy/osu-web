@@ -92,10 +92,8 @@ export class Main extends React.PureComponent
 
   render: =>
     el ReviewEditorConfigContext.Provider, value: @props.reviewsConfig,
-      el DiscussionsContext.Provider,
-        value: @discussions()
-        el BeatmapsContext.Provider,
-          value: @beatmaps()
+      el DiscussionsContext.Provider, value: @discussions(),
+        el BeatmapsContext.Provider, value: @beatmaps(),
           div className: 'modding-profile-list modding-profile-list--index',
             if @props.discussions.length == 0
               div className: 'modding-profile-list__empty', osu.trans('beatmap_discussions.index.none_found')

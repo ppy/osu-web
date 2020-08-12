@@ -150,10 +150,8 @@ export class Main extends React.PureComponent
     isBlocked = _.find(currentUser.blocks, target_id: @state.user.id)
 
     el ReviewEditorConfigContext.Provider, value: @props.reviewsConfig,
-      el DiscussionsContext.Provider,
-        value: @discussions()
-        el BeatmapsContext.Provider,
-          value: @beatmaps()
+      el DiscussionsContext.Provider, value: @discussions(),
+        el BeatmapsContext.Provider, value: @beatmaps(),
           div
             className: 'osu-layout__no-scroll' if isBlocked && !@state.forceShow
             if isBlocked
