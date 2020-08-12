@@ -40,7 +40,7 @@ export class Uploader extends React.Component
 
     $dropzone = $(@dropzoneRef.current)
     $uploadButton = $ '<input>',
-      class: 'js-contest-entry-upload contest-userentry__fileupload'
+      class: 'js-contest-entry-upload fileupload'
       type: 'file'
       name: 'entry'
       accept: allowedExtensions.join(',')

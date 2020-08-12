@@ -34,7 +34,7 @@
                 {!! spinner(['center-inline']) !!}
             </span>
             {{ trans('forum.covers.create.button') }}
-            <input class="btn-osu-big__fileupload" type="file" />
+            <input class="fileupload" type="file" />
         </label>
 
         <button

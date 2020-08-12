@@ -26,7 +26,7 @@ export class CoverUploader extends React.Component
     $dropzone = $(@props.dropzoneRef.current)
 
     $uploadButton = $ '<input>',
-      class: 'js-profile-cover-upload btn-osu-big__fileupload'
+      class: 'js-profile-cover-upload fileupload'
       type: 'file'
       name: 'cover_file'
       disabled: !@props.canUpload
