@@ -299,7 +299,12 @@ class RankingController extends Controller
         $maxResults = static::MAX_RESULTS;
 
         if ($this->params['variant'] !== null) {
-            return min($stats->count(), $maxResults);
+            $countryCode = optional($this->country)->getKey() ?? '_all';
+            $cacheKey = "ranking_count:{$this->params['type']}:{$this->params['mode']}:{$this->params['variant']}:{$countryCode}";
+
+            return cache_remember_mutexed($cacheKey, 300, $maxResults, function () use ($maxResults, $stats) {
+                return min($stats->count(), $maxResults);
+            });
         }
 
         if ($this->countryStats !== null) {
