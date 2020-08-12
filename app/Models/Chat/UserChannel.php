@@ -85,6 +85,7 @@ class UserChannel extends Model
             ->keyBy('channel_id');
 
         // Getting user list; Limited to PM channels due to large size of public channels.
+        // FIXME: Chat needs reworking so it doesn't need to preload all this extra data every update.
         $userPmChannels = static::whereIn('channel_id', $channelIds)
             ->whereHas('channel', function ($q) {
                 $q->where('type', 'PM');
