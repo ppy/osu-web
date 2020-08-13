@@ -117,12 +117,12 @@ class @BeatmapDiscussionHelper
       suggestion: ['far', '&#xf111;']
 
 
-  @nearbyDiscussions: (currentDiscussions, timestamp) =>
+  @nearbyDiscussions: (discussions, timestamp) =>
     return [] if !timestamp?
 
-    discussions = {}
+    nearby = {}
 
-    for discussion in currentDiscussions.timelineAllUsers
+    for discussion in discussions
       continue if discussion.message_type not in ['suggestion', 'problem']
 
       distance = Math.abs(discussion.timestamp - timestamp)
@@ -138,10 +138,10 @@ class @BeatmapDiscussionHelper
         when distance < 1000 then 'd1000'
         else 'other'
 
-      discussions[category] ?= []
-      discussions[category].push discussion
+      nearby[category] ?= []
+      nearby[category].push discussion
 
-    shownDiscussions = discussions.d0 ? discussions.d100 ? discussions.d1000 ? discussions.other ? []
+    shownDiscussions = nearby.d0 ? nearby.d100 ? nearby.d1000 ? nearby.other ? []
 
     _.sortBy shownDiscussions, 'timestamp'
 
