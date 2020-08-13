@@ -202,16 +202,14 @@ export class Main extends React.PureComponent
                         currentMode: @state.currentMode
 
             div
-              className: 'osu-layout__section osu-layout__section--users-extra'
-              div
-                className: 'osu-layout__row'
-                ref: @pages
-                @extraPage name for name in profileOrder
+              className: 'user-profile-pages'
+              ref: @pages
+              @extraPage name for name in profileOrder
 
 
   extraPage: (name) =>
     {extraClass, props, component} = @extraPageParams name
-    classes = 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
+    classes = 'user-profile-pages__item js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
     classes += " #{extraClass}" if extraClass?
     props.name = name
 
