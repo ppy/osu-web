@@ -66,9 +66,12 @@ class MarkNotificationsRead implements ShouldQueue
             $this->notificationTime = now();
         }
 
+        $notifiableId = $this->notifiable->getKey();
+        $notifiableType = MorphMap::getType($this->notifiable);
+
         $notifications = Notification
-            ::where('notifiable_type', '=', MorphMap::getType($this->notifiable))
-            ->where('notifiable_id', '=', $this->notifiable->getKey())
+            ::where('notifiable_type', '=', $notifiableType)
+            ->where('notifiable_id', '=', $notifiableId)
             ->where('created_at', '<=', $this->notificationTime);
 
         $userNotifications = $this->user
@@ -76,11 +79,19 @@ class MarkNotificationsRead implements ShouldQueue
             ->where('is_read', '=', false)
             ->whereIn('notification_id', $notifications->select('id'));
 
-        $notificationIds = $userNotifications->pluck('notification_id')->all();
-        $userNotifications->update(['is_read' => true]);
+        $count = $userNotifications->update(['is_read' => true]);
+        $notificationIdentity = [
+            'category' => Notification::nameToCategory(Notification::FORUM_TOPIC_REPLY),
+            'object_id' => $notifiableId,
+            'object_type' => $notifiableType,
+        ];
 
-        if (!empty($notificationIds)) {
-            event(new NotificationReadEvent($this->user->getKey(), ['ids' => $notificationIds]));
+        if ($count > 0) {
+            event(new NotificationReadEvent($this->user->getKey(), [
+                'notifications' => [$notificationIdentity],
+                'read_count' => $count,
+                'timestamp' => now(),
+            ]));
         }
     }
 }
