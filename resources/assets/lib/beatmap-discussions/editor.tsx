@@ -12,6 +12,7 @@ import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
 import { Spinner } from 'spinner';
 import { sortWithMode } from 'utils/beatmap-helper';
+import { DraftsContext } from './drafts-context';
 import EditorDiscussionComponent from './editor-discussion-component';
 import {
   insideEmbed,
@@ -25,6 +26,7 @@ import { parseFromJson } from './review-document';
 import { SlateContext } from './slate-context';
 
 interface CacheInterface {
+  draftEmbeds?: SlateNode[];
   sortedBeatmaps?: BeatmapJsonExtended[];
 }
 
@@ -281,6 +283,8 @@ export default class Editor extends React.Component<Props, State> {
       modifiers.push('readonly');
     }
 
+    this.updateDrafts();
+
     return (
       <div className={osu.classWithModifiers(editorClass, modifiers)}>
         <div className={`${editorClass}__content`}>
@@ -292,14 +296,16 @@ export default class Editor extends React.Component<Props, State> {
             >
               <div ref={this.scrollContainerRef} className={`${editorClass}__input-area`}>
                 <EditorToolbar ref={this.toolbarRef} />
-                <Editable
-                  decorate={this.decorateTimestamps}
-                  onKeyDown={this.onKeyDown}
-                  readOnly={this.state.posting}
-                  renderElement={this.renderElement}
-                  renderLeaf={this.renderLeaf}
-                  placeholder={osu.trans('beatmaps.discussions.message_placeholder.review')}
-                />
+                <DraftsContext.Provider value={this.cache.draftEmbeds || []}>
+                  <Editable
+                    decorate={this.decorateTimestamps}
+                    onKeyDown={this.onKeyDown}
+                    readOnly={this.state.posting}
+                    renderElement={this.renderElement}
+                    renderLeaf={this.renderLeaf}
+                    placeholder={osu.trans('beatmaps.discussions.message_placeholder.review')}
+                  />
+                </DraftsContext.Provider>
               </div>
               { !this.props.editMode &&
                 <div className={`${editorClass}__button-bar`}>
@@ -337,7 +343,7 @@ export default class Editor extends React.Component<Props, State> {
           <EditorDiscussionComponent
             beatmapset={this.props.beatmapset}
             currentBeatmap={this.props.currentBeatmap}
-            currentDiscussions={this.props.currentDiscussions}
+            discussions={this.props.discussions}
             editMode={this.props.editMode}
             beatmaps={this.sortedBeatmaps()}
             readOnly={this.state.posting}
@@ -427,6 +433,10 @@ export default class Editor extends React.Component<Props, State> {
     this.setState({
       value: this.props.editing ? parseFromJson(this.props.document, this.props.discussions) : [],
     });
+  }
+
+  updateDrafts = () => {
+    this.cache.draftEmbeds = this.state.value.filter((block) => block.type === 'embed' && !block.discussion_id);
   }
 
   withNormalization = (editor: ReactEditor) => {
