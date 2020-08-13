@@ -20,8 +20,6 @@ class MarkNotificationsRead implements ShouldQueue
 {
     use NotificationQueue, Queueable, SerializesModels;
 
-    private $notifiable;
-    private $notificationTime;
     private $object;
     private $user;
 
@@ -31,25 +29,10 @@ class MarkNotificationsRead implements ShouldQueue
         $this->user = $user;
     }
 
-    public function forForumPost()
-    {
-        $this->notifiable = $this->object->topic()->withTrashed()->first();
-
-        if ($this->notifiable === null) {
-            throw new Exception("Can't find topic {$this->object->getKey()} of post {$this->object->getKey()}");
-        }
-
-        $this->notificationTime = $this->object->post_time;
-    }
-
     public function handle()
     {
         try {
-            if ($this->object instanceof Beatmapset) {
-                // do nothing
-            } elseif ($this->object instanceof ForumPost) {
-                $this->forForumPost();
-            } else {
+            if (!($this->object instanceof ForumPost)) {
                 throw new Exception('Unknown object to be marked as read: '.get_class($this->object));
             }
         } catch (Exception $e) {
@@ -58,21 +41,20 @@ class MarkNotificationsRead implements ShouldQueue
             return;
         }
 
-        if (!isset($this->notifiable)) {
-            $this->notifiable = $this->object;
+        $notifiable = $this->object->topic()->withTrashed()->first();
+
+        if ($notifiable === null) {
+            throw new Exception("Can't find topic {$this->object->getKey()} of post {$this->object->getKey()}");
         }
 
-        if (!isset($this->notificationTime)) {
-            $this->notificationTime = now();
-        }
-
-        $notifiableId = $this->notifiable->getKey();
-        $notifiableType = MorphMap::getType($this->notifiable);
+        $notificationTime = $this->object->post_time;
+        $notifiableId = $notifiable->getKey();
+        $notifiableType = MorphMap::getType($notifiable);
 
         $notifications = Notification
             ::where('notifiable_type', '=', $notifiableType)
             ->where('notifiable_id', '=', $notifiableId)
-            ->where('created_at', '<=', $this->notificationTime);
+            ->where('created_at', '<=', $notificationTime);
 
         $userNotifications = $this->user
             ->userNotifications()
