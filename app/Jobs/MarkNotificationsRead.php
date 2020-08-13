@@ -31,14 +31,8 @@ class MarkNotificationsRead implements ShouldQueue
 
     public function handle()
     {
-        try {
-            if (!($this->object instanceof ForumPost)) {
-                throw new Exception('Unknown object to be marked as read: '.get_class($this->object));
-            }
-        } catch (Exception $e) {
-            log_error($e);
-
-            return;
+        if (!($this->object instanceof ForumPost)) {
+            throw new Exception('Unknown object to be marked as read: '.get_class($this->object));
         }
 
         $notifiable = $this->object->topic()->withTrashed()->first();
