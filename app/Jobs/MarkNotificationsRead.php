@@ -7,7 +7,6 @@ namespace App\Jobs;
 
 use App\Events\NotificationReadEvent;
 use App\Libraries\MorphMap;
-use App\Models\Beatmapset;
 use App\Models\Forum\Post as ForumPost;
 use App\Models\Notification;
 use App\Traits\NotificationQueue;
@@ -41,14 +40,13 @@ class MarkNotificationsRead implements ShouldQueue
             throw new Exception("Can't find topic {$this->object->getKey()} of post {$this->object->getKey()}");
         }
 
-        $notificationTime = $this->object->post_time;
         $notifiableId = $notifiable->getKey();
         $notifiableType = MorphMap::getType($notifiable);
 
         $notifications = Notification
             ::where('notifiable_type', '=', $notifiableType)
             ->where('notifiable_id', '=', $notifiableId)
-            ->where('created_at', '<=', $notificationTime);
+            ->where('created_at', '<=', $this->object->post_time);
 
         $userNotifications = $this->user
             ->userNotifications()
