@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\BeatmapsetDelete;
+use App\Libraries\BeatmapsetDiscussionReview;
 use App\Libraries\CommentBundle;
 use App\Libraries\Search\BeatmapsetSearchCached;
 use App\Libraries\Search\BeatmapsetSearchRequestParams;
@@ -114,10 +115,7 @@ class BeatmapsetsController extends Controller
 
         $initialData = [
             'beatmapset' => $beatmapset->defaultDiscussionJson(),
-            'reviews_config' => [
-                'enabled' => config('osu.beatmapset.discussion_review_enabled'),
-                'max_blocks' => config('osu.beatmapset.discussion_review_max_blocks'),
-            ],
+            'reviews_config' => BeatmapsetDiscussionReview::config(),
         ];
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
