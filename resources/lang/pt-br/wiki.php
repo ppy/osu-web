@@ -23,7 +23,7 @@ return [
             'legal' => 'Esta tradução é fornecida apenas por conveniência. A :default será a unica versão juridicamente vinculativa deste texto.',
             'outdated' => 'Esta pagina possui uma tradução desatualizada do conteúdo original. Por favor utilize a :default para ter informações mais precisas (e considere ajudar na atualização da tradução se possível)!',
 
-            'default' => 'Versão em inglês',
+            'default' => 'Versão em Inglês',
         ],
     ],
 ];

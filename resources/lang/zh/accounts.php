@@ -57,9 +57,12 @@ return [
         'options' => [
             '_' => '推送设置',
             'beatmapset:modding' => '谱面摸图',
+            'channel_message' => '',
+            'comment_new' => '',
             'forum_topic_reply' => '主题回复',
             'mail' => '邮件',
             'push' => '推送',
+            'user_achievement_unlock' => '',
         ],
     ],
 
@@ -76,10 +79,10 @@ return [
             '_' => '默认谱面下载类型',
             'all' => '包含视频',
             'no_video' => '不包含视频',
-            'direct' => '在 osu!direct中查看',
+            'direct' => '在 osu!direct 中查看',
         ],
 
-        'beatmapset_title_show_original' => '',
+        'beatmapset_title_show_original' => '以原语言显示谱面信息',
     ],
 
     'playstyles' => [

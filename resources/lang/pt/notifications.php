@@ -31,8 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nova publicação em ":title" por :username',
                 'beatmapset_discussion_post_new_compact' => 'Nova publicação por :username: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nova publicação por :username',
-                'beatmapset_discussion_review_new' => '',
-                'beatmapset_discussion_review_new_compact' => '',
+                'beatmapset_discussion_review_new' => 'Uma nova revisão em ":title" por :username contém :problems problemas, :suggestions sugestões e :praises elogios',
+                'beatmapset_discussion_review_new_compact' => 'Uma nova revisão por :username contém :problems problemas, :suggestions sugestões e :praises elogios',
                 'beatmapset_discussion_unlock' => 'A discussão em ":title" foi aberta',
                 'beatmapset_discussion_unlock_compact' => 'A discussão foi aberta',
             ],
@@ -131,6 +131,40 @@ return [
                 'user_achievement_unlock' => 'Desbloqueaste ":title"!',
                 'user_achievement_unlock_compact' => 'Desbloqueaste ":title"!',
             ],
+        ],
+    ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => '',
+            'beatmapset_discussion_lock' => '',
+            'beatmapset_discussion_unlock' => '',
+            'beatmapset_problem' => '',
+            'beatmapset_state' => '',
+            'comment' => '',
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => '',
+            ],
+        ],
+
+        'build' => [
+            'comment' => '',
+        ],
+
+        'news_post' => [
+            'comment' => '',
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => '',
+        ],
+
+        'user_achievement' => [
+            'user_achievement_unlock' => '',
+            'user_achievement_unlock_self' => '',
         ],
     ],
 ];
