@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
-import { NewDocumentIssueEmbed } from 'interfaces/beatmap-discussion-review';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as _ from 'lodash';
 import * as React from 'react';
@@ -38,6 +37,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   bn = 'beatmap-discussion-review-post-embed-preview';
   cache: Cache = {};
   tooltipContent = React.createRef<HTMLDivElement>();
+  tooltipEl?: HTMLElement;
 
   componentDidMount = () => {
     // reset timestamp to null on clone
@@ -76,11 +76,59 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
     if (purgeCache) {
       this.cache = {};
+      this.destroyTooltip();
     }
+  }
+
+  createTooltip = (event: (React.MouseEvent | React.TouchEvent)) => {
+    const target = event.currentTarget as HTMLElement;
+    const tooltipId = `${this.selectedBeatmap()}-${this.timestamp()}`;
+
+    // if the tooltipId hasn't changed, we don't need to re-render the tooltip
+    if (this.tooltipEl && this.tooltipEl._tooltip === tooltipId) {
+      return;
+    }
+
+    this.tooltipEl = target;
+    target._tooltip = tooltipId;
+
+    $(target).qtip({
+      content: {
+        text: () => this.tooltipContent.current?.innerHTML,
+      },
+      hide: {
+        fixed: true,
+      },
+      position: {
+        at: 'top center',
+        my: 'bottom center',
+        viewport: $(window),
+      },
+      show: {
+        ready: true,
+      },
+      style: {
+        classes: 'tooltip-default tooltip-default--interactable',
+      },
+    });
+
+    this.tooltipEl = target;
   }
 
   delete = () => {
     Transforms.delete(this.context, { at: this.path() });
+  }
+
+  destroyTooltip = () => {
+    if (!this.tooltipEl) {
+      return;
+    }
+
+    const qtip = $(this.tooltipEl).qtip('api');
+    if (qtip) {
+      qtip.destroy();
+      this.tooltipEl = undefined;
+    }
   }
 
   editable = () => {
@@ -161,8 +209,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         <div
           className={`${this.bn}__indicator ${this.bn}__indicator--warning`}
           contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
-          onMouseOver={this.renderNearbyTooltip}
-          onTouchStart={this.renderNearbyTooltip}
+          onMouseOver={this.createTooltip}
+          onTouchStart={this.createTooltip}
         >
           <div
             dangerouslySetInnerHTML={{
@@ -259,37 +307,6 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         {deleteButton}
       </div>
     );
-  }
-
-  renderNearbyTooltip = (event: (React.MouseEvent | React.TouchEvent)) => {
-    const target = event.currentTarget as HTMLElement;
-
-    // TODO: expire tooltip on timestamp/etc change
-    if (target._tooltip) {
-      return;
-    }
-
-    target._tooltip = `${this.selectedBeatmap()}-${this.timestamp()}`;
-
-    $(target).qtip({
-      content: {
-        text: () => this.tooltipContent.current?.innerHTML,
-      },
-      hide: {
-        fixed: true,
-      },
-      position: {
-        at: 'top center',
-        my: 'bottom center',
-        viewport: $(window),
-      },
-      show: {
-        ready: true,
-      },
-      style: {
-        classes: 'tooltip-default tooltip-default--interactable',
-      },
-    });
   }
 
   selectedBeatmap = () => this.props.element.beatmapId;
