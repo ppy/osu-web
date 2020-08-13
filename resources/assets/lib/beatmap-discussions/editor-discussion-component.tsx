@@ -195,14 +195,14 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         });
 
       if (nearbyUnsaved.length > 1) {
-        timestamps.push(`${nearbyUnsaved.length - 1} in this review`);
+        timestamps.push(osu.trans('beatmap_discussions.nearby_posts.unsaved', {count: nearbyUnsaved.length - 1}));
       }
 
       const timestampsString = osu.transArray(timestamps);
 
       const nearbyText = osu.trans('beatmap_discussions.nearby_posts.notice', {
-        timestamp: this.props.element.timestamp,
         existing_timestamps: timestampsString,
+        timestamp: this.props.element.timestamp,
       });
 
       return (
