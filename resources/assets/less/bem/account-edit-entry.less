@@ -31,6 +31,16 @@
     }
   }
 
+  &.js-account-edit-avatar--start {
+    position: relative;
+
+    // placeholder to prevent triggering dragleave when entring child element
+    &::after {
+      .full-size();
+      content: '';
+    }
+  }
+
   &__avatar {
     .default-border-radius();
     .own-layer();
