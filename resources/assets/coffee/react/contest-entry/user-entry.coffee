@@ -6,8 +6,8 @@ import { button, div, i } from 'react-dom-factories'
 el = React.createElement
 
 export class UserEntry extends React.Component
-  delete: (e) =>
-    e.preventDefault()
+  delete: =>
+    return unless confirm(osu.trans('common.confirmation'))
 
     params =
       method: 'DELETE'
@@ -26,7 +26,6 @@ export class UserEntry extends React.Component
         button
           className: 'contest-userentry__delete'
           type: 'button'
-          'data-confirm': osu.trans('common.confirmation')
           title: osu.trans('common.buttons.delete')
           onClick: @delete
           i className: 'fas fa-times'
