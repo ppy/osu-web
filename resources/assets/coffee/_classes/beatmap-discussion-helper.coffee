@@ -123,7 +123,7 @@ class @BeatmapDiscussionHelper
     nearby = {}
 
     for discussion in discussions
-      continue if discussion.message_type not in ['suggestion', 'problem']
+      continue if not discussion.timestamp or discussion.message_type not in ['suggestion', 'problem']
 
       distance = Math.abs(discussion.timestamp - timestamp)
 
