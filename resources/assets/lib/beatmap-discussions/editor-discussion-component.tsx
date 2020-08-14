@@ -170,7 +170,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         return false;
       }
 
-      return Math.abs(ts - timestamp) < 5000; // TODO: Fix range
+      return Math.abs(ts - timestamp) <= 5000;
     });
   }
 
