@@ -30,15 +30,22 @@
     background-color: @osu-colour-h1;
   }
 
-  &[disabled] {
+  &[disabled], &--disabled {
     background-color: @osu-colour-b3;
     color: @osu-colour-f1;
+
+    .link-hover({
+      background-color: @osu-colour-b3;
+      color: @osu-colour-f1;
+    });
   }
 
   &--account-edit {
     min-width: @avatar-size--base;
     padding: 7px 10px;
     text-align: left;
+    overflow: hidden;
+    position: relative;
   }
 
   &--beatmap-discussion-new {
@@ -143,6 +150,11 @@
       background-color: @blue-darker;
       background-position: calc(50% - 20px) 50%;
     }
+  }
+
+  &--fileupload {
+    overflow: hidden;
+    position: relative;
   }
 
   &--mega {
@@ -360,10 +372,6 @@
     margin-top: 10px;
   }
 
-  &--wrap-text {
-    white-space: normal;
-  }
-
   &--user-homepage {
     display: block;
     width: 100%;
@@ -371,6 +379,16 @@
     background-size: 175%;
     background-color: @blue;
     margin-bottom: 5px;
+  }
+
+  &--user-page-edit {
+    border-radius: 10000px;
+    width: 140px;
+    padding: 5px 10px;
+  }
+
+  &--wrap-text {
+    white-space: normal;
   }
 
   &--activated, &.js-activated {
@@ -414,12 +432,6 @@
     .@{top}--user-homepage & {
       flex-direction: column;
     }
-  }
-
-  &__fileupload {
-    position: absolute;
-    left: -200%;
-    top: -200%;
   }
 
   &__icon {
