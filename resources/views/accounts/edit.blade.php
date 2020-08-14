@@ -127,6 +127,7 @@
     </div>
 
     <div class="osu-page u-has-anchor">
+        <div id="notifications" class="fragment-target"></div>
         @include('accounts._edit_notifications')
     </div>
 

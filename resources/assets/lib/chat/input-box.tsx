@@ -8,30 +8,36 @@ import { dispatch, dispatchListener } from 'app-dispatcher';
 import { BigButton } from 'big-button';
 import DispatchListener from 'dispatch-listener';
 import * as _ from 'lodash';
+import { computed } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as React from 'react';
+import TextareaAutosize from 'react-autosize-textarea';
 import RootDataStore from 'stores/root-data-store';
 
 @inject('dataStore')
 @observer
 @dispatchListener
 export default class InputBox extends React.Component<any, any> implements DispatchListener {
-  private inputBoxRef = React.createRef<HTMLInputElement>();
 
-  buttonClicked = (e: React.MouseEvent<HTMLElement>) => {
-    const target = $(e.currentTarget).parent().children('input')[0] as HTMLInputElement;
-    const message = target.value || '';
-    this.sendMessage(message);
-    target.value = '';
+  @computed
+  get currentChannel() {
+    const dataStore: RootDataStore = this.props.dataStore;
+    return dataStore.channelStore.get(dataStore.uiState.chat.selected);
   }
 
-  checkIfEnterPressed = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  private inputBoxRef = React.createRef<HTMLTextAreaElement>();
+
+  buttonClicked = () => {
+    this.sendMessage(this.currentChannel?.inputText);
+    this.currentChannel?.setInputText('');
+  }
+
+  checkIfEnterPressed = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.keyCode === 13) {
-      const target = $(e.currentTarget)[0] as HTMLInputElement;
-      const message = target.value || '';
-      this.sendMessage(message);
-      target.value = '';
+      e.preventDefault();
+      this.sendMessage(this.currentChannel?.inputText);
+      this.currentChannel?.setInputText('');
     }
   }
 
@@ -45,6 +51,11 @@ export default class InputBox extends React.Component<any, any> implements Dispa
     }
   }
 
+  handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const message = e.target.value;
+    this.currentChannel?.setInputText(message);
+  }
+
   handleDispatchAction(action: DispatcherAction) {
     if (action instanceof WindowFocusAction) {
       this.focusInput();
@@ -56,13 +67,12 @@ export default class InputBox extends React.Component<any, any> implements Dispa
   }
 
   render(): React.ReactNode {
-    const dataStore: RootDataStore = this.props.dataStore;
-    const channel = dataStore.channelStore.get(dataStore.uiState.chat.selected);
+    const channel = this.currentChannel;
     const disableInput = !channel || channel.moderated;
 
     return (
       <div className='chat-input'>
-        <input
+        <TextareaAutosize
           className={`chat-input__box${disableInput ? ' chat-input__box--disabled' : ''}`}
           name='textbox'
           placeholder={disableInput ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
@@ -70,6 +80,9 @@ export default class InputBox extends React.Component<any, any> implements Dispa
           disabled={disableInput}
           autoComplete='off'
           ref={this.inputBoxRef}
+          onChange={this.handleChange}
+          value={channel?.inputText}
+          maxRows={3}
         />
 
         <BigButton

@@ -10,6 +10,7 @@ import {
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
+import UserSilenceAction from 'actions/user-silence-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import { ChannelJSON } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
@@ -22,6 +23,7 @@ import Store from 'stores/store';
 @dispatchListener
 export default class ChannelStore extends Store {
   @observable channels = observable.map<number, Channel>();
+  lastHistoryId: number | null = null;
   @observable loaded: boolean = false;
 
   @computed
@@ -138,6 +140,8 @@ export default class ChannelStore extends Store {
       channel.resortMessages();
     } else if (dispatchedAction instanceof ChatPresenceUpdateAction) {
       this.updatePresence(dispatchedAction.presence);
+    } else if (dispatchedAction instanceof UserSilenceAction) {
+      this.removePublicMessagesFromUser(dispatchedAction.userIds);
     } else if (dispatchedAction instanceof UserLogoutAction) {
       this.flushStore();
     }
@@ -146,6 +150,13 @@ export default class ChannelStore extends Store {
   @action
   partChannel(channelId: number) {
     this.channels.delete(channelId);
+  }
+
+  @action
+  removePublicMessagesFromUser(userIds: Set<number>) {
+    this.nonPmChannels.forEach((channel) => {
+      channel.messages = channel.messages.filter((message) => !userIds.has(message.sender.id));
+    });
   }
 
   @action

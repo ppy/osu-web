@@ -84,6 +84,12 @@ return [
         'subject' => 'osu! Konto Reaktivering kreves',
     ],
 
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
         'confirmation' => 'Dette er bare en bekreftelse på at osu!-passordet ditt er endret.',
         'subject' => 'bekreft endring av osu! passord',

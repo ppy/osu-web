@@ -116,7 +116,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   }
 
   delete = () => {
-    Transforms.delete(this.context, { at: this.path() });
+    // Timeout is used to let Slate handle the click event before the node is removed - otherwise a "Cannot find a descendant at path" error gets thrown.
+    Timeout.set(0, () => Transforms.delete(this.context, {at: this.path()}));
   }
 
   destroyTooltip = () => {

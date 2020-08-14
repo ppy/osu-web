@@ -8,4 +8,5 @@ reactTurbolinks.registerPersistent 'beatmap-discussions-history', Main, true, (t
   users: osu.parseJson 'json-users'
   relatedBeatmaps: osu.parseJson 'json-related-beatmaps'
   relatedDiscussions: osu.parseJson 'json-related-discussions'
+  reviewsConfig: osu.parseJson 'json-reviews-config'
   container: target

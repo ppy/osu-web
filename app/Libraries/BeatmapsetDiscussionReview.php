@@ -6,7 +6,6 @@
 namespace App\Libraries;
 
 use App\Exceptions\InvariantException;
-use App\Jobs\NotifyBeatmapsetUpdate;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
@@ -18,6 +17,14 @@ use DB;
 class BeatmapsetDiscussionReview
 {
     const BLOCK_TEXT_LENGTH_LIMIT = 750;
+
+    public static function config()
+    {
+        return [
+            'enabled' => config('osu.beatmapset.discussion_review_enabled'),
+            'max_blocks' => config('osu.beatmapset.discussion_review_max_blocks'),
+        ];
+    }
 
     public static function create(Beatmapset $beatmapset, array $document, User $user)
     {
@@ -110,10 +117,6 @@ class BeatmapsetDiscussionReview
             DB::commit();
 
             broadcast_notification(Notification::BEATMAPSET_DISCUSSION_REVIEW_NEW, $review, $user);
-            (new NotifyBeatmapsetUpdate([
-                'user' => $user,
-                'beatmapset' => $beatmapset,
-            ]))->delayedDispatch();
 
             return $review;
         } catch (\Exception $e) {

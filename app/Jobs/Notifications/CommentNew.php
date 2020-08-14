@@ -8,11 +8,20 @@ namespace App\Jobs\Notifications;
 use App\Exceptions\InvalidNotificationException;
 use App\Models\Comment;
 use App\Models\Follow;
+use App\Models\Notification;
 use App\Models\User;
 
 class CommentNew extends BroadcastNotificationBase
 {
+    const NOTIFICATION_OPTION_NAME = Notification::COMMENT_NEW;
+
     protected $comment;
+
+    public static function getMailLink(Notification $notification): string
+    {
+        // TODO: actual item commented on.
+        return route('comments.show', $notification->details['comment_id']);
+    }
 
     public function __construct(Comment $comment, User $source)
     {

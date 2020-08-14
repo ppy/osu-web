@@ -2,12 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import { CircularProgress } from 'circular-progress';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import isHotkey from 'is-hotkey';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import * as React from 'react';
-import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
+import { createEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
 import { Spinner } from 'spinner';
@@ -15,14 +16,17 @@ import { sortWithMode } from 'utils/beatmap-helper';
 import { DraftsContext } from './drafts-context';
 import EditorDiscussionComponent from './editor-discussion-component';
 import {
+  blockCount,
   insideEmbed,
   serializeSlateDocument,
   slateDocumentContainsNewProblem,
   slateDocumentIsEmpty,
   toggleFormat,
 } from './editor-helpers';
+import { EditorInsertionMenu } from './editor-insertion-menu';
 import { EditorToolbar } from './editor-toolbar';
 import { parseFromJson } from './review-document';
+import { ReviewEditorConfigContext } from './review-editor-config-context';
 import { SlateContext } from './slate-context';
 
 interface CacheInterface {
@@ -44,6 +48,7 @@ interface Props {
 }
 
 interface State {
+  blockCount: number;
   posting: boolean;
   value: SlateNode[];
 }
@@ -53,6 +58,7 @@ interface TimestampRange extends Range {
 }
 
 export default class Editor extends React.Component<Props, State> {
+  static contextType = ReviewEditorConfigContext;
   static defaultProps = {
     editing: false,
   };
@@ -60,11 +66,11 @@ export default class Editor extends React.Component<Props, State> {
   bn = 'beatmap-discussion-editor';
   cache: CacheInterface = {};
   emptyDocTemplate = [{children: [{text: ''}], type: 'paragraph'}];
+  insertMenuRef: React.RefObject<EditorInsertionMenu>;
   localStorageKey: string;
   scrollContainerRef: React.RefObject<HTMLDivElement>;
   slateEditor: ReactEditor;
   toolbarRef: React.RefObject<EditorToolbar>;
-
   private xhr?: JQueryXHR;
 
   constructor(props: Props) {
@@ -73,6 +79,7 @@ export default class Editor extends React.Component<Props, State> {
     this.slateEditor = this.withNormalization(withHistory(withReact(createEditor())));
     this.scrollContainerRef = React.createRef();
     this.toolbarRef = React.createRef();
+    this.insertMenuRef = React.createRef();
 
     let initialValue = this.emptyDocTemplate;
     this.localStorageKey = `newDiscussion-${this.props.beatmapset.id}`;
@@ -88,6 +95,7 @@ export default class Editor extends React.Component<Props, State> {
     }
 
     this.state = {
+      blockCount: blockCount(initialValue),
       posting: false,
       value: initialValue,
     };
@@ -96,23 +104,19 @@ export default class Editor extends React.Component<Props, State> {
   blockWrapper = (children: JSX.Element) => {
     return (
       <div className={`${this.bn}__block`}>
-        <div className={`${this.bn}__hover-menu`} contentEditable={false}>
-          <i className='fas fa-plus-circle' />
-          <div className={`${this.bn}__menu-content`}>
-            {this.insertButton('suggestion')}
-            {this.insertButton('problem')}
-            {this.insertButton('praise')}
-            {this.insertButton('paragraph')}
-          </div>
-        </div>
         {children}
       </div>
     );
   }
 
   componentDidMount() {
-    if (this.scrollContainerRef.current && this.toolbarRef.current) {
-      this.toolbarRef.current.setScrollContainer(this.scrollContainerRef.current);
+    if (this.scrollContainerRef.current) {
+      if (this.toolbarRef.current) {
+        this.toolbarRef.current.setScrollContainer(this.scrollContainerRef.current);
+      }
+      if (this.insertMenuRef.current) {
+        this.insertMenuRef.current.setScrollContainer(this.scrollContainerRef.current);
+      }
     }
   }
 
@@ -125,9 +129,6 @@ export default class Editor extends React.Component<Props, State> {
   componentWillUnmount() {
     if (this.xhr) {
       this.xhr.abort();
-    }
-    if (this.scrollContainerRef.current) {
-      $(this.scrollContainerRef.current).off('scroll');
     }
   }
 
@@ -158,74 +159,6 @@ export default class Editor extends React.Component<Props, State> {
     return ranges;
   }
 
-  insertBlock = (event: React.MouseEvent<HTMLElement>) => {
-    const type = event.currentTarget.dataset.dtype;
-    const beatmapId = this.props.currentBeatmap?.id;
-
-    // find where to insert the new embed (relative to the dropdown menu)
-    const lastChild = event.currentTarget.closest(`.${this.bn}__block`)?.lastChild;
-
-    if (!lastChild) {
-      return;
-    }
-
-    // convert from dom node to document path
-    const node = ReactEditor.toSlateNode(this.slateEditor, lastChild);
-    const path = ReactEditor.findPath(this.slateEditor, node);
-    const at = SlateEditor.end(this.slateEditor, path);
-    let insertNode;
-
-    switch (type) {
-      case 'suggestion': case 'problem': case 'praise':
-        insertNode = {
-          beatmapId,
-          children: [{text: ''}],
-          discussionType: type,
-          type: 'embed',
-        };
-        break;
-      case 'paragraph':
-        insertNode = {
-          children: [{text: ''}],
-          type: 'paragraph',
-        };
-        break;
-    }
-
-    if (!insertNode) {
-      return;
-    }
-
-    Transforms.insertNodes(this.slateEditor, insertNode, { at });
-  }
-
-  insertButton = (type: string) => {
-    let icon = 'fas fa-question';
-
-    switch (type) {
-      case 'praise':
-      case 'problem':
-      case 'suggestion':
-        icon = BeatmapDiscussionHelper.messageType.icon[type];
-        break;
-      case 'paragraph':
-        icon = 'fas fa-indent';
-        break;
-    }
-
-    return (
-      <button
-        type='button'
-        className={`${this.bn}__menu-button ${this.bn}__menu-button--${type}`}
-        data-dtype={type}
-        onClick={this.insertBlock}
-        title={osu.trans(`beatmaps.discussions.review.insert-block.${type}`)}
-      >
-        <i className={icon}/>
-      </button>
-    );
-  }
-
   onChange = (value: SlateNode[]) => {
     if (!this.props.editMode) {
       const content = JSON.stringify(value);
@@ -237,7 +170,10 @@ export default class Editor extends React.Component<Props, State> {
       }
     }
 
-    this.setState({value});
+    this.setState({
+      blockCount: blockCount(value),
+      value,
+    });
 
     if (ReactEditor.isFocused(this.slateEditor) && this.props.onFocus) {
       this.props.onFocus();
@@ -279,6 +215,7 @@ export default class Editor extends React.Component<Props, State> {
   render(): React.ReactNode {
     const editorClass = 'beatmap-discussion-editor';
     const modifiers = this.props.editMode ? ['edit-mode'] : [];
+    const overLimit = this.state.blockCount > this.context.max_blocks;
     if (this.state.posting) {
       modifiers.push('readonly');
     }
@@ -296,6 +233,7 @@ export default class Editor extends React.Component<Props, State> {
             >
               <div ref={this.scrollContainerRef} className={`${editorClass}__input-area`}>
                 <EditorToolbar ref={this.toolbarRef} />
+                <EditorInsertionMenu currentBeatmap={this.props.currentBeatmap} ref={this.insertMenuRef} />
                 <DraftsContext.Provider value={this.cache.draftEmbeds || []}>
                   <Editable
                     decorate={this.decorateTimestamps}
@@ -307,6 +245,11 @@ export default class Editor extends React.Component<Props, State> {
                   />
                 </DraftsContext.Provider>
               </div>
+              {this.props.editMode &&
+                <div className={`${editorClass}__inner-block-count`}>
+                  {this.renderBlockCount('lighter')}
+                </div>
+              }
               { !this.props.editMode &&
                 <div className={`${editorClass}__button-bar`}>
                   <button
@@ -317,20 +260,37 @@ export default class Editor extends React.Component<Props, State> {
                   >
                     {osu.trans('common.buttons.clear')}
                   </button>
-                  <button
-                    className='btn-osu-big btn-osu-big--forum-primary'
-                    disabled={this.state.posting}
-                    type='submit'
-                    onClick={this.post}
-                  >
-                    {this.state.posting ? <Spinner /> : osu.trans('common.buttons.post')}
-                  </button>
+                  <div>
+                    <span className={`${editorClass}__block-count`}>
+                      {this.renderBlockCount()}
+                    </span>
+                    <button
+                      className='btn-osu-big btn-osu-big--forum-primary'
+                      disabled={this.state.posting || overLimit}
+                      type='submit'
+                      onClick={this.post}
+                    >
+                      {this.state.posting ? <Spinner /> : osu.trans('common.buttons.post')}
+                    </button>
+                  </div>
                 </div>
               }
             </Slate>
           </SlateContext.Provider>
         </div>
       </div>
+    );
+  }
+
+  renderBlockCount = (theme?: string) => {
+    return (
+      <CircularProgress
+        current={this.state.blockCount}
+        max={this.context.max_blocks}
+        onlyShowAsWarning={true}
+        theme={theme}
+        tooltip={osu.trans('beatmap_discussions.review.block_count', {used: this.state.blockCount, max: this.context.max_blocks})}
+      />
     );
   }
 
@@ -430,8 +390,11 @@ export default class Editor extends React.Component<Props, State> {
       return;
     }
 
+    const value = this.props.editing ? parseFromJson(this.props.document, this.props.discussions) : [];
+
     this.setState({
-      value: this.props.editing ? parseFromJson(this.props.document, this.props.discussions) : [],
+      blockCount: blockCount(value),
+      value,
     });
   }
 
@@ -469,17 +432,6 @@ export default class Editor extends React.Component<Props, State> {
           if (node.beatmapId && (!this.props.beatmaps[node.beatmapId] || this.props.beatmaps[node.beatmapId].deleted_at)) {
             Transforms.setNodes(editor, {beatmapId: null}, {at: path});
           }
-        }
-      }
-
-      // ensure the last node is always a paragraph, (otherwise it becomes impossible to insert a normal paragraph after an embed)
-      if (editor.children.length > 0) {
-        const lastNode = editor.children[editor.children.length - 1];
-        if (lastNode.type === 'embed') {
-          const paragraph = {type: 'paragraph', children: [{text: ''}]};
-          Transforms.insertNodes(editor, paragraph, {at: SlateEditor.end(editor, [])});
-
-          return;
         }
       }
 
