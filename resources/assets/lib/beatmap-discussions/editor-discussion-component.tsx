@@ -80,6 +80,10 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     }
   }
 
+  componentWillUnmount() {
+    this.destroyTooltip();
+  }
+
   createTooltip = (event: (React.MouseEvent | React.TouchEvent)) => {
     const target = event.currentTarget as HTMLElement;
     const tooltipId = `${this.selectedBeatmap()}-${this.timestamp()}`;
