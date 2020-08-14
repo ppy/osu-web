@@ -16,15 +16,6 @@
   }
 
   &__block {
-    &::before {
-      content: '';
-      position: absolute;
-      right: 100%;
-      width: @padding;
-      display: block;
-      height: 100%;
-    }
-
     .@{_top}--readonly & {
         &:hover .@{_top}__hover-menu {
           display: none;
