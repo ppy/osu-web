@@ -136,6 +136,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     }
   }
 
+  discussionType = () => this.props.element.discussionType;
+
   editable = () => {
     return !(this.props.editMode && this.props.element.discussionId);
   }
@@ -179,7 +181,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   }
 
   nearbyIndicator = (drafts: SlateNode[]) => {
-    if (!this.timestamp()) {
+    if (!this.timestamp() || this.discussionType() === 'praise') {
       return;
     }
 
@@ -239,7 +241,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     const classMods = canEdit ? [] : ['read-only'];
     const timestampTooltipType = this.props.element.beatmapId ? 'diff' : 'all-diff';
     const timestampTooltip = osu.trans(`beatmaps.discussions.review.embed.timestamp.${timestampTooltipType}`, {
-        type: osu.trans(`beatmaps.discussions.message_type.${this.props.element.discussionType}`),
+        type: osu.trans(`beatmaps.discussions.message_type.${this.discussionType()}`),
       });
 
     const deleteButton =
