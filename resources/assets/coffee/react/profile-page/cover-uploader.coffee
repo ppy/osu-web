@@ -5,6 +5,7 @@ import { CoverSelection } from './cover-selection'
 import * as React from 'react'
 import { a, div, label, p, strong } from 'react-dom-factories'
 import { StringWithComponent } from 'string-with-component'
+import { classWithModifiers } from 'utils/css'
 el = React.createElement
 
 
@@ -15,11 +16,17 @@ export class CoverUploader extends React.Component
     @uploadButtonContainer = React.createRef()
 
 
-  componentDidMount: =>
-    $dropzone = $('.js-profile-cover-upload--dropzone')
+  destroy: =>
+    @$uploadButton()
+      .fileupload 'destroy'
+      .remove()
+
+
+  setup: =>
+    $dropzone = $(@props.dropzoneRef.current)
 
     $uploadButton = $ '<input>',
-      class: 'js-profile-cover-upload fileupload__input'
+      class: 'js-profile-cover-upload fileupload'
       type: 'file'
       name: 'cover_file'
       disabled: !@props.canUpload
@@ -44,15 +51,7 @@ export class CoverUploader extends React.Component
         $.publish 'user:cover:upload:state', false
 
 
-  componentWillUnmount: =>
-    @$uploadButton()
-      .fileupload 'destroy'
-      .remove()
-
   render: =>
-    labelClass = 'btn-osu btn-osu--small btn-osu-default fileupload profile-cover-uploader__button'
-    labelClass += ' disabled' unless @props.canUpload
-
     div className: 'profile-cover-uploader',
       el CoverSelection,
         url: @props.cover.custom_url
@@ -61,10 +60,11 @@ export class CoverUploader extends React.Component
         name: -1
         modifiers: ['custom']
 
-      label
-        className: labelClass
-        ref: @uploadButtonContainer
-        osu.trans 'users.show.edit.cover.upload.button'
+      div className: 'profile-cover-uploader__button',
+        label
+          className: classWithModifiers('btn-osu-big', fileupload: true, full: true, rounded: true, disabled: !@props.canUpload)
+          ref: @uploadButtonContainer
+          osu.trans 'users.show.edit.cover.upload.button'
 
       div className: 'profile-cover-uploader__info',
         p className: 'profile-cover-uploader__info-entry',

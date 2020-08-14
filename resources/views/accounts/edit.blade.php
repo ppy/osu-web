@@ -93,7 +93,7 @@
                             </div>
 
                             <input
-                                class="js-account-edit-avatar__button btn-osu-big__fileupload"
+                                class="js-account-edit-avatar__button fileupload"
                                 type="file"
                                 name="avatar_file"
                                 data-url="{{ route('account.avatar') }}"
