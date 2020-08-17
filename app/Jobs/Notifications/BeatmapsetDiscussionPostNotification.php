@@ -18,7 +18,7 @@ abstract class BeatmapsetDiscussionPostNotification extends BroadcastNotificatio
 
     public static function getBaseKey(Notification $notification): string
     {
-        $category = Notification::nameToCategory($notification->name);
+        $category = $notification->category;
 
         return $category === 'beatmapset_discussion'
             ? "{$notification->notifiable_type}.{$category}.beatmapset_discussion_post_new"

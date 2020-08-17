@@ -29,9 +29,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
     public static function getBaseKey(Notification $notification): string
     {
-        $category = Notification::nameToCategory($notification->name);
-
-        return "{$notification->notifiable_type}.{$category}.{$notification->name}";
+        return "{$notification->notifiable_type}.{$notification->category}.{$notification->name}";
     }
 
     public static function getMailGroupingKey(Notification $notification): string
