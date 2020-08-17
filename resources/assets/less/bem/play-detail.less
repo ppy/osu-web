@@ -100,10 +100,11 @@
     padding: @_padding-vertical @_padding-horizontal;
 
     &--bottom {
+      position: relative;
+
       @media @desktop {
         display: flex;
         padding: 0;
-        position: relative;
       }
 
       .@{_top}--compact & {
