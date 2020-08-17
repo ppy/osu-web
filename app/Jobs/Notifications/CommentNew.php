@@ -10,6 +10,7 @@ use App\Models\Comment;
 use App\Models\Follow;
 use App\Models\Notification;
 use App\Models\User;
+use App\Models\UserNotificationOption;
 
 class CommentNew extends BroadcastNotificationBase
 {
@@ -63,7 +64,7 @@ class CommentNew extends BroadcastNotificationBase
             $user = $this->comment->parent->user;
             $notificationOption = $user->notificationOptions()->where('name', Notification::COMMENT_NEW)->first();
 
-            if ($notificationOption->details['comment_replies'] ?? false) {
+            if ($notificationOption->details[UserNotificationOption::COMMENT_REPLY] ?? false) {
                 $userIds->push($user->getKey());
             }
         }

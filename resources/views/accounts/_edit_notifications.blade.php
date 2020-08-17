@@ -36,14 +36,18 @@
                 data-url="{{ route('account.notification-options') }}"
             >
                 <label class="account-edit-entry__checkbox">
+                    @php
+                        $name = App\Models\Notification::COMMENT_NEW;
+                        $option = App\Models\UserNotificationOption::COMMENT_REPLY;
+                    @endphp
                     @include('objects._switch', [
                         'additionalClass'=> 'js-account-edit__input',
-                        'checked' => $notificationOptions['comment_new']->details['comment_replies'] ?? false,
-                        'name' => "user_notification_option[comment_new][details][comment_replies]",
+                        'checked' => $notificationOptions[$name]->details[$option] ?? false,
+                        'name' => "user_notification_option[{$name}][details][{$option}]",
                     ])
 
                     <span class="account-edit-entry__checkbox-label">
-                        {{ trans('accounts.notifications.comment_replies') }}
+                        {{ trans('accounts.notifications.comment_reply') }}
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">

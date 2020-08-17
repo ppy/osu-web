@@ -25,6 +25,7 @@ class UserNotificationOption extends Model
     ];
 
     const BEATMAPSET_MODDING = 'beatmapset:modding'; // matches Follow notifiable_type:subtype
+    const COMMENT_REPLY = 'comment_reply';
     const DELIVERY_MODES = ['mail', 'push'];
     const FORUM_TOPIC_REPLY = Notification::FORUM_TOPIC_REPLY;
 
@@ -77,8 +78,8 @@ class UserNotificationOption extends Model
         }
 
         if ($this->name === Notification::COMMENT_NEW) {
-            if (isset($value['comment_replies'])) {
-                $details['comment_replies'] = get_bool($value['comment_replies']);
+            if (isset($value[static::COMMENT_REPLY])) {
+                $details[static::COMMENT_REPLY] = get_bool($value[static::COMMENT_REPLY]);
             }
         }
 
