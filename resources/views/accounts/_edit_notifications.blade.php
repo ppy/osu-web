@@ -29,12 +29,17 @@
                 </label>
             </div>
 
-            <div class="account-edit-entry account-edit-entry--no-label js-account-edit js-user-preferences-update" data-url="{{ route('account.options') }}" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
+            <div
+                class="account-edit-entry account-edit-entry--no-label js-account-edit js-user-preferences-update"
+                data-account-edit-auto-submit="1"
+                data-skip-ajax-error-popup="1"
+                data-url="{{ route('account.notification-options') }}"
+            >
                 <label class="account-edit-entry__checkbox">
                     @include('objects._switch', [
                         'additionalClass'=> 'js-account-edit__input',
-                        'checked' => auth()->user()->profileCustomization()->comment_replies,
-                        'name' => 'user_profile_customization[comment_replies]',
+                        'checked' => $notificationOptions['comment_new']->details['comment_replies'] ?? false,
+                        'name' => "user_notification_option[comment_new][details][comment_replies]",
                     ])
 
                     <span class="account-edit-entry__checkbox-label">

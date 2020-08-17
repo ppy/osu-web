@@ -76,6 +76,12 @@ class UserNotificationOption extends Model
             }
         }
 
+        if ($this->name === Notification::COMMENT_NEW) {
+            if (isset($value['comment_replies'])) {
+                $details['comment_replies'] = get_bool($value['comment_replies']);
+            }
+        }
+
         if (!empty($details)) {
             $detailsString = json_encode($details);
         }
