@@ -179,7 +179,9 @@ return [
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => 'There are new replies in ":title"',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => 'There are new replies in ":title"',
+            ],
         ],
 
         'user' => [
