@@ -60,7 +60,7 @@ return [
         ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap-diskussion',
-            'index' => 'beatmap-liste',
+            'index' => 'beatmap-auflistung',
             'show' => 'beatmap-info',
         ],
         'changelog_controller' => [

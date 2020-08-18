@@ -57,12 +57,12 @@ return [
         'options' => [
             '_' => 'opções de entrega',
             'beatmapset:modding' => 'modding em beatmap',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => 'mensagens privadas',
+            'comment_new' => 'novos comentários',
             'forum_topic_reply' => 'resposta em tópico',
             'mail' => 'email',
             'push' => 'push',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => 'medalha de usuário desbloqueada',
         ],
     ],
 

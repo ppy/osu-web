@@ -150,7 +150,7 @@ return [
         ],
 
         'change_username' => [
-            'restricted' => 'No puedes cambiar tu nombre de usuario mientras está restringido.',
+            'restricted' => 'No puede cambiar su nombre de usuario mientras esté restringido.',
             'supporter_required' => [
                 '_' => '¡Debes tener :link para cambiar tu nombre!',
                 'link_text' => 'apoyar a osu!',
@@ -161,7 +161,7 @@ return [
 
     'user_report' => [
         'reason_not_valid' => ':reason no es válido para este tipo de reporte.',
-        'self' => "¡No puedes denunciarte a ti mismo!",
+        'self' => "¡No puede reportarse a sí mismo!",
     ],
 
     'store' => [

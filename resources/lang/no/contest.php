@@ -53,7 +53,7 @@ return [
     ],
     'dates' => [
         'ended' => 'Avsluttet :date',
-        'ended_no_date' => '',
+        'ended_no_date' => 'Avsluttet',
 
         'starts' => [
             '_' => 'Starter :date',

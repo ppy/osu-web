@@ -73,7 +73,7 @@ return [
         'changed_to' => 'Questa è una email di conferma per informarti che l\'indirizzo email del tuo account osu! è stato cambiato in: ":email".',
         'check' => 'Assicurati di aver ricevuto questa email al tuo nuovo indirizzo per evitare di perdere in futuro l\'accesso al tuo account osu!.',
         'sent' => 'Per motivi di sicurezza, questa email è stata inviata al tuo nuovo e vecchio indirizzo email.',
-        'subject' => 'conferma il cambio della email di osu!',
+        'subject' => 'conferma del cambio di email per osu!',
     ],
 
     'user_force_reactivation' => [
@@ -86,7 +86,7 @@ return [
     'user_notification_digest' => [
         'new' => '',
         'settings' => '',
-        'subject' => '',
+        'subject' => 'Nuove notifiche di osu!',
     ],
 
     'user_password_updated' => [

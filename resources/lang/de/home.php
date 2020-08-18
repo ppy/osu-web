@@ -41,8 +41,8 @@ return [
             'title' => 'Forum',
 
             'label' => [
-                'forum' => 'in Foren suchen',
-                'forum_children' => 'Subforen einbeziehen',
+                'forum' => 'in foren suchen',
+                'forum_children' => 'subforen einbeziehen',
                 'topic_id' => 'Thread #',
                 'username' => 'autor',
             ],
@@ -50,7 +50,7 @@ return [
 
         'mode' => [
             'all' => 'alle',
-            'beatmapset' => 'Beatmap',
+            'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
             'user' => 'spieler',
             'wiki_page' => 'wiki',

@@ -13,7 +13,7 @@ return [
 
         'player' => [
             'by' => 'Gespielt von',
-            'submitted_on' => 'Gespielt am',
+            'submitted_on' => 'Erreicht am',
 
             'rank' => [
                 'country' => 'Landesrang',

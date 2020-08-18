@@ -34,13 +34,13 @@ return [
     'blocks' => [
         'banner_text' => 'Você bloqueou este usuário.',
         'blocked_count' => 'usuários bloqueados: (:count)',
-        'hide_profile' => 'ocultar perfil',
+        'hide_profile' => 'Ocultar perfil',
         'not_blocked' => 'Este usuário não está bloqueado.',
-        'show_profile' => 'exibir perfil',
+        'show_profile' => 'Exibir perfil',
         'too_many' => 'Limite de bloqueios atingido.',
         'button' => [
-            'block' => 'bloquear',
-            'unblock' => 'desbloquear',
+            'block' => 'Bloquear',
+            'unblock' => 'Desbloquear',
         ],
     ],
 
@@ -109,15 +109,15 @@ return [
     ],
     'logout_confirm' => 'Tem certeza de que deseja sair? :(',
     'report' => [
-        'button_text' => 'reportar',
+        'button_text' => 'Denunciar',
         'comments' => 'Comentários Adicionais',
         'placeholder' => 'Por favor, forneça qualquer informação que você acredite ser útil.',
         'reason' => 'Motivo',
-        'thanks' => 'Obrigado por sua denuncia!',
-        'title' => 'Reportar :username?',
+        'thanks' => 'Obrigado por sua denúncia!',
+        'title' => 'Denunciar :username?',
 
         'actions' => [
-            'send' => 'Enviar Reporte',
+            'send' => 'Enviar Denúncia',
             'cancel' => 'Cancelar',
         ],
 
@@ -156,7 +156,7 @@ return [
                 'upload' => [
                     'broken_file' => 'Falha ao processar imagem. Verifique a imagem enviada e tente novamente.',
                     'button' => 'Enviar imagem',
-                    'dropzone' => 'Solte aqui pare enviar',
+                    'dropzone' => 'Solte aqui para enviar',
                     'dropzone_info' => 'Você também pode soltar sua imagem aqui para enviar',
                     'size_info' => 'O tamanho da capa deve ser 2400x640',
                     'too_large' => 'O arquivo enviado é muito grande.',
@@ -393,7 +393,7 @@ return [
             'play_count' => 'Vezes Jogadas',
             'play_time' => 'Tempo de Jogo',
             'ranked_score' => 'Pontuação Ranqueada',
-            'replays_watched_by_others' => 'Replays Assistidos',
+            'replays_watched_by_others' => 'Replays Assistidos por Outros',
             'score_ranks' => 'Ranque em Pontuação',
             'total_hits' => 'Acertos Totais',
             'total_score' => 'Pontuação Total',

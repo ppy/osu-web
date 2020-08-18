@@ -6,7 +6,7 @@
 return [
     'countries' => [
         'all' => 'ทั่วโลก',
-        'title' => '',
+        'title' => 'ประเทศ',
     ],
 
     'filter' => [
@@ -18,9 +18,9 @@ return [
     ],
 
     'type' => [
-        'charts' => 'สปอตไลต์',
+        'charts' => 'โดดเด่น',
         'country' => 'ประเทศ',
-        'multiplayer' => '',
+        'multiplayer' => 'โหมดผู้เล่นหลายคน',
         'performance' => 'ประสิทธิภาพ',
         'score' => 'คะแนน',
     ],

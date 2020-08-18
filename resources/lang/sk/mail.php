@@ -13,7 +13,7 @@ return [
 
     'common' => [
         'closing' => '',
-        'hello' => '',
+        'hello' => 'Ahoj :user,',
         'report' => '',
     ],
 
