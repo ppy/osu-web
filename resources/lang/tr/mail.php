@@ -14,7 +14,7 @@ return [
     'common' => [
         'closing' => 'Saygılarımızla,',
         'hello' => 'Selam :user,',
-        'report' => 'Eğer bu değişim istemediğseniz, lütfen ACİLEN bu e-maile cevap yazın.',
+        'report' => 'Eğer böyle bir değişiklik talep etmediyseniz lütfen DERHAL bu e-postayı yanıtlayın.',
     ],
 
     'donation_thanks' => [
@@ -84,9 +84,9 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
-        'settings' => '',
-        'subject' => '',
+        'new' => 'Sadece sana son girdiğinden beri izlediğin ögelerde yeni güncellemeler olduğunu bildiriyoruz.',
+        'settings' => 'E-posta bildirim tercihlerini değiştirin:',
+        'subject' => 'Yeni osu! bildirimleri',
     ],
 
     'user_password_updated' => [

@@ -75,6 +75,7 @@ return [
     'topic' => [
         'deleted' => '삭제된 주제',
         'go_to_latest' => '최근에 올라온 글 보기',
+        'has_replied' => '',
         'latest_post' => ':when by :user',
         'latest_reply_by' => ':user님이 마지막 답변 작성',
         'new_topic' => '새 주제글 작성',

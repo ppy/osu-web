@@ -57,12 +57,12 @@ return [
         'options' => [
             '_' => 'opciones de entrega',
             'beatmapset:modding' => 'modding de mapas',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => 'mensajes de chat privados',
+            'comment_new' => 'nuevos comentarios',
             'forum_topic_reply' => 'respuestas a temas',
             'mail' => 'correo electrónico',
             'push' => 'push',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => 'medallas desbloqueadas',
         ],
     ],
 

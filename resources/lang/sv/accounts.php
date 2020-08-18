@@ -57,12 +57,12 @@ return [
         'options' => [
             '_' => 'leveransalternativ',
             'beatmapset:modding' => 'beatmap modding',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => 'privata chattmeddelanden',
+            'comment_new' => 'nya kommentarer',
             'forum_topic_reply' => 'ämnessvar',
             'mail' => 'mail',
             'push' => 'push',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => 'användarmedalj upplåst',
         ],
     ],
 

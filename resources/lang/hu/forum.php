@@ -75,6 +75,7 @@ return [
     'topic' => [
         'deleted' => 'törölt téma',
         'go_to_latest' => 'utolsó poszt megtekintése',
+        'has_replied' => '',
         'latest_post' => ':when :user által',
         'latest_reply_by' => 'legutóbbi hozzászólás: :user',
         'new_topic' => 'Új téma',

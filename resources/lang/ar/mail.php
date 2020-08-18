@@ -84,9 +84,9 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
-        'settings' => '',
-        'subject' => '',
+        'new' => 'لمعلوماتك, يوجد تحديثات جديدة عن عناصر تتابعها.',
+        'settings' => 'تغيير تفضيلات إشعار البريد الإلكتروني:',
+        'subject' => 'إشعار osu! جديد',
     ],
 
     'user_password_updated' => [

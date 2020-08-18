@@ -129,18 +129,18 @@ return [
     ],
 
     'scoreboard_time' => [
-        'd' => '',
-        'dd' => '',
-        'h' => '',
-        'hh' => '',
-        'M' => '',
+        'd' => '%d gün',
+        'dd' => '%d gün',
+        'h' => '%d saat',
+        'hh' => '%d saat',
+        'M' => '%d ay',
         'm' => '%d dk',
-        'MM' => '',
-        'mm' => '',
+        'MM' => '%d ay',
+        'mm' => '%d dk',
         'past' => '',
         's' => '%d sn',
-        'y' => '',
-        'yy' => '',
+        'y' => '%d yıl',
+        'yy' => '%d yıl',
     ],
 
     'time' => [

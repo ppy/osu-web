@@ -85,9 +85,9 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
-        'settings' => '',
-        'subject' => '',
+        'new' => 'Bare lar deg vite at det har vært nye oppdateringer på elementer du ser på.',
+        'settings' => 'Endre preferanser for e-postmeldinger:',
+        'subject' => 'Ny osu! varsler',
     ],
 
     'user_password_updated' => [

@@ -64,6 +64,7 @@ return [
     ],
 
     'review' => [
+        'block_count' => '',
         'go_to_parent' => '',
         'go_to_child' => 'Xem cuộc thảo luận',
         'validation' => [
