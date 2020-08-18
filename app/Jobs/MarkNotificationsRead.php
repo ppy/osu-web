@@ -9,6 +9,7 @@ use App\Events\NotificationReadEvent;
 use App\Libraries\MorphMap;
 use App\Models\Forum\Post as ForumPost;
 use App\Models\Notification;
+use App\Models\UserNotification;
 use App\Traits\NotificationQueue;
 use Exception;
 use Illuminate\Bus\Queueable;
@@ -41,19 +42,20 @@ class MarkNotificationsRead implements ShouldQueue
         }
 
         // TODO: should look at supporting marking stacks up to a certain point as read client side.
-        $notifications = Notification
-            ::where('notifiable_type', '=', MorphMap::getType($notifiable))
-            ->where('notifiable_id', '=', $notifiable->getKey())
-            ->where('created_at', '<=', $this->object->post_time)
-            ->get();
+        $userNotifications = UserNotification::where('user_id', $this->user->getKey())
+            ->where('is_read', false)
+            ->whereHas('notification', function ($query) use ($notifiable) {
+                $query
+                    ->where('notifiable_type', MorphMap::getType($notifiable))
+                    ->where('notifiable_id', $notifiable->getKey())
+                    ->where('created_at', '<=', $this->object->post_time);
+            });
 
-        $userNotifications = $this->user
-            ->userNotifications()
-            ->where('is_read', '=', false)
-            ->whereIn('notification_id', $notifications->pluck('id'));
+        // only fetch the models that require marking as read.
+        $notifications = Notification::whereIn('id', (clone $userNotifications)->select('notification_id'))->get();
+        $notificationIdentities = $notifications->map->toIdentityJson()->all();
 
         $count = $userNotifications->update(['is_read' => true]);
-        $notificationIdentities = $notifications->map->toIdentityJson()->all();
 
         if ($count > 0) {
             event(new NotificationReadEvent($this->user->getKey(), [
