@@ -19,7 +19,7 @@
                     data-menu-target="nav2-menu-popup-{{ $section }}"
                     data-menu-show-delay="0"
                 >
-                    <span class="nav2__menu-link-main-text">
+                    <span class="u-relative">
                         {{ trans("layout.menu.{$section}._") }}
 
                         @if ($section === $currentSection && !($isSearchPage ?? false))

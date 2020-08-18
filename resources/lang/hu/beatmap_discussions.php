@@ -64,6 +64,7 @@ return [
     ],
 
     'review' => [
+        'block_count' => '',
         'go_to_parent' => 'Legújabb posztok mutatása',
         'go_to_child' => 'Megbeszélés megtekintése',
         'validation' => [

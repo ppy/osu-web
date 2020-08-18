@@ -19,7 +19,7 @@ return [
         ],
 
         'posts' => [
-            'title_recent' => 'Neueste Posts',
+            'title_recent' => 'Neueste Beiträge',
         ],
 
         'votes_received' => [
@@ -39,14 +39,14 @@ return [
         'show_profile' => 'Profil anzeigen',
         'too_many' => 'Block-Limit erreicht.',
         'button' => [
-            'block' => 'blocken',
-            'unblock' => 'entblocken',
+            'block' => 'Blocken',
+            'unblock' => 'Entblocken',
         ],
     ],
 
     'card' => [
         'loading' => 'Lädt...',
-        'send_message' => 'nachricht senden',
+        'send_message' => 'Nachricht senden',
     ],
 
     'disabled' => [
@@ -251,11 +251,11 @@ return [
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => ':amount vom Post :post verwehrt',
+                            'reset' => ':amount vom Beitrag :post verwehrt',
                         ],
 
                         'delete' => [
-                            'reset' => ':amount durch das Löschen des Modding-Posts :post verloren',
+                            'reset' => ':amount durch das Löschen des Modding-Beitrags :post verloren',
                         ],
 
                         'restore' => [
@@ -263,8 +263,8 @@ return [
                         ],
 
                         'vote' => [
-                            'give' => ':amount durch erhaltene Stimmen im Post :post erhalten',
-                            'reset' => ':amount durch verlorene Stimmen im Post :post verloren',
+                            'give' => ':amount durch erhaltene Stimmen im Beitrag :post erhalten',
+                            'reset' => ':amount durch verlorene Stimmen im Beitrag :post verloren',
                         ],
 
                         'recalculate' => [
@@ -274,9 +274,9 @@ return [
                     ],
 
                     'forum_post' => [
-                        'give' => ':amount von :giver für einen Post in :post erhalten',
-                        'reset' => 'Kudosu von :giver im Post :post zurückgesetzt',
-                        'revoke' => 'Kudosu von :giver im Post :post verwehrt',
+                        'give' => ':amount von :giver für einen Beitrag in :post erhalten',
+                        'reset' => 'Kudosu von :giver im Beitrag :post zurückgesetzt',
+                        'revoke' => 'Kudosu von :giver im Beitrag :post verwehrt',
                     ],
                 ],
 
@@ -376,7 +376,7 @@ return [
         ],
         'post_count' => [
             '_' => ':link beigetragen',
-            'count' => ':count forenpost|:count forenposts',
+            'count' => ':count_delimited Forumsbeitrag|:count_delimited Forenbeiträge',
         ],
         'rank' => [
             'country' => 'Länderrang im Modus :mode',
@@ -411,7 +411,7 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'saved' => 'User erstellt',
+        'saved' => 'Benutzer erstellt',
     ],
     'verify' => [
         'title' => 'Accountverifizierung',

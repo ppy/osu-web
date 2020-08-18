@@ -84,9 +84,9 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
-        'settings' => '',
-        'subject' => '',
+        'new' => '只是想提醒你一下，你关注的项目有新的更新。',
+        'settings' => '更改邮件通知设置：',
+        'subject' => '新 osu! 通知',
     ],
 
     'user_password_updated' => [

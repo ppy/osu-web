@@ -136,35 +136,35 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '',
-            'beatmapset_discussion_lock' => '',
-            'beatmapset_discussion_unlock' => '',
-            'beatmapset_problem' => '',
-            'beatmapset_state' => '',
-            'comment' => '',
+            'beatmapset_discussion' => 'De discussie van ":title" heeft nieuwe updates',
+            'beatmapset_discussion_lock' => 'De discussie van ":title" is gesloten',
+            'beatmapset_discussion_unlock' => 'De discussie van ":title" is ontgrendeld',
+            'beatmapset_problem' => 'Er is een nieuw probleem vermeld op ":title:"',
+            'beatmapset_state' => 'De status van ":title" is veranderd',
+            'comment' => 'Beatmap ":title" heeft nieuwe reacties',
         ],
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => 'Je hebt een nieuw bericht ontvangen van :username',
             ],
         ],
 
         'build' => [
-            'comment' => '',
+            'comment' => 'Veranderingslogboek ":title" heeft nieuwe reacties',
         ],
 
         'news_post' => [
-            'comment' => '',
+            'comment' => 'Nieuws ":title" heeft nieuwe reacties',
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '',
+            'forum_topic_reply' => 'Er zijn nieuwe reacties in ":title"',
         ],
 
         'user_achievement' => [
-            'user_achievement_unlock' => '',
-            'user_achievement_unlock_self' => '',
+            'user_achievement_unlock' => ':username heeft een nieuwe medaille verdiend, ":title"!',
+            'user_achievement_unlock_self' => 'Je hebt een nieuwe medaille verdiend, ":title"!',
         ],
     ],
 ];

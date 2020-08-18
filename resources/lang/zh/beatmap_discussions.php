@@ -64,6 +64,7 @@ return [
     ],
 
     'review' => [
+        'block_count' => '',
         'go_to_parent' => '查看审阅帖',
         'go_to_child' => '查看讨论',
         'validation' => [

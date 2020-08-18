@@ -15,6 +15,7 @@
   z-index: @z-index--notification-banner-v2;
   flex-direction: column;
   text-align: center;
+  position: relative;
 
   @media @desktop {
     margin: 2px;
@@ -49,6 +50,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      position: relative;
 
       // own padding + bar paddings (both sides)
       padding-bottom: (@_padding * 2 + @_bar-width);

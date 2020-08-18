@@ -18,8 +18,8 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'ถูกลบไปแล้ว',
-        'none_found' => 'ไม่พบบทสนทนาตามเกณฑ์ที่ท่านเลือก',
-        'title' => 'การสนทนาเกี่ยวกับ Beatmap',
+        'none_found' => 'ไม่พบบทสนทนาตามเกณฑ์การค้นหาที่เลือก',
+        'title' => 'การสนทนาเกี่ยวกับบีทแมพ',
 
         'form' => [
             '_' => 'ค้นหา',
@@ -29,12 +29,12 @@ return [
             'username' => 'ชื่อผู้ใช้',
 
             'beatmapset_status' => [
-                '_' => 'สถานะบีตแมป',
+                '_' => 'สถานะบีทแมพ',
                 'all' => 'ทั้งหมด',
-                'disqualified' => 'คัดออกแล้ว',
-                'never_qualified' => 'ไม่เคยถูกคัดออก',
-                'qualified' => 'ผ่านเกณฑ์',
-                'ranked' => 'ถูกจัดอันดับแล้ว',
+                'disqualified' => 'ถูกตัดสิทธิ์',
+                'never_qualified' => 'ไม่เคยถูก Qualified',
+                'qualified' => 'Qualified',
+                'ranked' => 'จัดอันดับแล้ว',
             ],
 
             'user' => [
@@ -45,10 +45,10 @@ return [
     ],
 
     'item' => [
-        'created_at' => 'วันโพสต์',
-        'deleted_at' => 'วันที่ถูกลบ',
+        'created_at' => 'โพสเมื่อวันที่',
+        'deleted_at' => 'ถูกลบเมื่อวันที่',
         'message_type' => 'ประเภท',
-        'permalink' => 'ลิงก์ถาวร',
+        'permalink' => 'ลิงค์',
     ],
 
     'nearby_posts' => [
@@ -64,7 +64,8 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => 'ดูโพสต์รีวิว',
+        'block_count' => '',
+        'go_to_parent' => 'ดูโพสต์วิจารณ์',
         'go_to_child' => 'ดูการสนทนา',
         'validation' => [
             'block_too_large' => 'แต่ละบล็อกเก็บอักขระได้แค่ :limit อักขระ',
@@ -85,7 +86,7 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => 'หมวดทั่วไป',
+        'general' => 'ทั่วไป',
         'general_all' => 'หมวดทั่วไป (รวม)',
     ],
 

@@ -21,7 +21,7 @@ return [
             'full_bn_required_hybrid' => 'Musíte byť plný nominátor pre nominovanie setov beatmáp pre viacej ako jeden herný mód.',
             'incorrect_state' => 'Nastala chyba pri vykonávaní tejto činnosti, skús obnoviť túto stránku.',
             'owner' => "Nemôžete nominovať vlastnú beatmapu.",
-            'set_metadata' => '',
+            'set_metadata' => 'Musíš nastaviť žáner a jazyk pred nominovaním.',
         ],
         'resolve' => [
             'not_owner' => 'Iba tvorca diskusie a majiteľ beatmapy môže označiť diskusiu za vyriešenú.',

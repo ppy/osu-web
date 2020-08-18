@@ -64,6 +64,7 @@ return [
     ],
 
     'review' => [
+        'block_count' => '',
         'go_to_parent' => 'Пабачыць адказ',
         'go_to_child' => 'Пабачыць абмеркаванне',
         'validation' => [

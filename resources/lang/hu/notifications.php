@@ -138,34 +138,34 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmapset_discussion' => '',
-            'beatmapset_discussion_lock' => '',
-            'beatmapset_discussion_unlock' => '',
-            'beatmapset_problem' => '',
+            'beatmapset_discussion_lock' => 'A hozzászolás le lett tiltva ezen a beamapen::title',
+            'beatmapset_discussion_unlock' => 'A hozzászolás elérhető lett ezen a beatmapen::title',
+            'beatmapset_problem' => 'Egy új probléma jelentve lett itt::title',
             'beatmapset_state' => '',
-            'comment' => '',
+            'comment' => ' Új kommentek jelentek meg ezen a beatmapen::title',
         ],
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => 'Új üzenetet kaptál tőle::username',
             ],
         ],
 
         'build' => [
-            'comment' => '',
+            'comment' => 'Új kommentek jelentek meg itt::title',
         ],
 
         'news_post' => [
-            'comment' => '',
+            'comment' => 'Új kommentek jelentek meg itt::title',
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '',
+            'forum_topic_reply' => 'Új válaszok itt: ":title"',
         ],
 
         'user_achievement' => [
-            'user_achievement_unlock' => '',
-            'user_achievement_unlock_self' => '',
+            'user_achievement_unlock' => ':username feloldott egy új medált! ":title"',
+            'user_achievement_unlock_self' => 'Feloldottál egy új medált! ":title"',
         ],
     ],
 ];

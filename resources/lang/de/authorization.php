@@ -124,7 +124,7 @@ return [
             'store' => [
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
                 'no_permission' => 'Keine Berechtigung, einen neuen Thread zu erstellen.',
-                'forum_closed' => 'Das Forum ist geschlossen. Man kann keine Posts mehr senden.',
+                'forum_closed' => 'Das Forum ist geschlossen. Man kann keine Beiträge mehr posten.',
             ],
 
             'vote' => [

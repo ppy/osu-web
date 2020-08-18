@@ -14,8 +14,8 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => 'บีตแมปเซ็ท',
-            'beatmapset_covers' => 'ปกหลังบีตแมปเซ็ท',
+            'beatmapset' => 'บีทแมพเซ็ท',
+            'beatmapset_covers' => 'ปกหลังบีทแมพเซ็ท',
             'contest' => 'การแข่งขัน',
             'contests' => 'การแข่งขัน',
             'root' => 'แผงควบคุม',
@@ -46,7 +46,7 @@ return [
         ],
 
         'users' => [
-            'modding' => 'การให้คำวิจารณ์บีทแมพ',
+            'modding' => 'การวิจารณ์บีทแมพ',
             'show' => 'ข้อมูล',
         ],
     ],
@@ -61,7 +61,7 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'beatmaps',
+            '_' => 'บีทแมพ',
             'artists' => 'ศิลปินโดดเด่น',
             'index' => 'รายการ',
             'packs' => 'แพ็ค',
@@ -96,7 +96,7 @@ return [
             'country' => 'ประเทศ',
             'index' => 'ประสิทธิภาพ',
             'kudosu' => 'kudosu',
-            'multiplayer' => '',
+            'multiplayer' => 'โหมดผู้เล่นหลายคน',
             'score' => 'คะแนน',
         ],
         'store' => [

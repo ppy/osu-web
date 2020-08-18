@@ -84,9 +84,9 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
-        'settings' => '',
-        'subject' => '',
+        'new' => '구독 중인 항목에 새로운 업데이트가 있습니다.',
+        'settings' => '이메일 알림 설정 변경',
+        'subject' => '새로운 osu! 알림',
     ],
 
     'user_password_updated' => [

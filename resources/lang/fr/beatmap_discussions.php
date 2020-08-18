@@ -64,6 +64,7 @@ return [
     ],
 
     'review' => [
+        'block_count' => '',
         'go_to_parent' => 'Voir l\'avis',
         'go_to_child' => 'Voir la discussion',
         'validation' => [
@@ -91,6 +92,6 @@ return [
 
     'user_filter' => [
         'everyone' => 'Tout le monde',
-        'label' => 'Filtre par utilisateur',
+        'label' => 'Filtrer par utilisateur',
     ],
 ];

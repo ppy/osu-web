@@ -84,9 +84,9 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
-        'settings' => '',
-        'subject' => '',
+        'new' => 'Er zijn nieuwe updates op dingen die je volgt.',
+        'settings' => 'Verander voorkeuren voor email meldingen:',
+        'subject' => 'Nieuwe osu! meldingen',
     ],
 
     'user_password_updated' => [

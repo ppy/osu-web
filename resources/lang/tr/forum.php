@@ -75,6 +75,7 @@ return [
     'topic' => [
         'deleted' => 'silinmiş konu',
         'go_to_latest' => 'son yazılan mesajı göster',
+        'has_replied' => '',
         'latest_post' => ':user tarafından :when',
         'latest_reply_by' => 'son cevap :user tarafından',
         'new_topic' => 'Yeni konu aç',
