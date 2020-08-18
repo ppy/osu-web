@@ -289,7 +289,7 @@ return [
                 'title' => 'saya!',
             ],
             'medals' => [
-                'empty' => "Pengguna ini belum mendapatkannya. ;_;",
+                'empty' => "Pengguna ini belum tercatat pernah mendapatkan medali sebelumnya. ;_;",
                 'recent' => 'Terbaru',
                 'title' => 'Medali',
             ],

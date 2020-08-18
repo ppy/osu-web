@@ -136,35 +136,35 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '',
-            'beatmapset_discussion_lock' => '',
-            'beatmapset_discussion_unlock' => '',
-            'beatmapset_problem' => '',
+            'beatmapset_discussion' => 'Diskussionen om ":title" har nya uppdateringar',
+            'beatmapset_discussion_lock' => 'Diskussionen om ":title" har låsts',
+            'beatmapset_discussion_unlock' => 'Diskussionen om ":title" har låsts upp',
+            'beatmapset_problem' => 'Ett nytt problem rapporterat var rapporterat på ":title"',
             'beatmapset_state' => '',
-            'comment' => '',
+            'comment' => ' Beatmap ":title" har nya kommentarer',
         ],
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => 'Du har fått ett nytt meddelande från :username',
             ],
         ],
 
         'build' => [
-            'comment' => '',
+            'comment' => 'Ändringslogg ":title" har nya kommentarer',
         ],
 
         'news_post' => [
-            'comment' => '',
+            'comment' => 'Nyheter ":title" har nya kommentarer',
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '',
+            'forum_topic_reply' => 'Det finns nya svar i ":title"',
         ],
 
         'user_achievement' => [
-            'user_achievement_unlock' => '',
-            'user_achievement_unlock_self' => '',
+            'user_achievement_unlock' => ':username har låst upp en ny medalj, ":title"!',
+            'user_achievement_unlock_self' => 'Du har låst upp en ny medalj, ":title"!',
         ],
     ],
 ];

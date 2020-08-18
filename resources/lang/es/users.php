@@ -131,7 +131,7 @@ return [
         ],
     ],
     'restricted_banner' => [
-        'title' => '¡Tu cuenta ha sido restringida!',
+        'title' => '¡Su cuenta ha sido restringida!',
         'message' => 'Mientras estás restringido, no podrás interactuar con otros jugadores y tus puntuaciones solo las podrás ver tú. Esto es, normalmente, el resultado de un proceso automatizado, y se levanta normalmente dentro de 24 horas. Si deseas apelar a tu restricción, por favor <a href="mailto:accounts@ppy.sh">contacta con el soporte</a>.',
     ],
     'show' => [

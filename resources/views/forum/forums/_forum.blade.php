@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 <li class="clickable-row forum-item t-forum-{{ $forum->categorySlug() }}">
-    <div class="forum-item-stripe u-forum--before-bg"><span class="fas fa-angle-right"></span></div>
+    <div class="forum-item-stripe u-forum--before-bg"><span class="u-relative fas fa-angle-right"></span></div>
 
     <div class="forum-item__details">
         {!! link_to(

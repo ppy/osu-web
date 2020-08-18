@@ -61,11 +61,11 @@ return [
     ],
 
     'supporter_gift' => [
-        'anonymous_gift' => 'Die Person, die Dir dieses Abzeichen geschenkt hat, kann sich entscheiden, anonym zu bleiben, sodass sie in dieser Benachrichtigung nicht erwähnt wurde.',
+        'anonymous_gift' => 'Die Person, die Dir dieses Tag geschenkt hat, kann sich entscheiden, anonym zu bleiben, weshalb sie in dieser Benachrichtigung nicht erwähnt wurde.',
         'anonymous_gift_maybe_not' => 'Aber Du weißt wahrscheinlich schon, wer es ist ;).',
         'duration' => 'Dank ihnen hast Du Zugriff auf osu!direct und andere osu!supporter-Vorteile für die nächsten :duration.',
         'features' => 'Weitere Details zu diesen Funktionen findest Du hier:',
-        'gifted' => 'Jemand hat dir gerade ein osu!supporter-Tag geschenkt!',
+        'gifted' => 'Jemand hat Dir gerade ein osu!supporter-Tag geschenkt!',
         'subject' => 'Dir wurde ein osu!supporter-Tag geschenkt!',
     ],
 
@@ -84,9 +84,9 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
-        'settings' => '',
-        'subject' => '',
+        'new' => 'Ich wollte dich nur wissen lassen, dass es neue Updates auf Artikeln gibt, die Du beobachtest.',
+        'settings' => 'E-Mail-Benachrichtigungs-Einstellungen ändern:',
+        'subject' => 'Neue osu!-Benachrichtigungen',
     ],
 
     'user_password_updated' => [

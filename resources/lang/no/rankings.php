@@ -5,22 +5,22 @@
 
 return [
     'countries' => [
-        'all' => '',
-        'title' => '',
+        'all' => 'Alle',
+        'title' => 'Land',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Vis',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Variant',
         ],
     ],
 
     'type' => [
         'charts' => 'Rampelyset',
         'country' => 'Land',
-        'multiplayer' => '',
+        'multiplayer' => 'flerspiller',
         'performance' => 'Prestasjon',
         'score' => 'Poengsum',
     ],

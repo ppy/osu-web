@@ -84,9 +84,9 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
-        'settings' => '',
-        'subject' => '',
+        'new' => 'Låter dig bara veta att det har skett nya uppdateringar på objekt du tittar på.',
+        'settings' => 'Ändra preferenser för e-postnotifikationer:',
+        'subject' => 'Nya osu! aviseringar',
     ],
 
     'user_password_updated' => [

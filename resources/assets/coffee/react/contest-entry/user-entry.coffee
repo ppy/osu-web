@@ -2,12 +2,12 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react'
-import { div, a, i } from 'react-dom-factories'
+import { button, div, i } from 'react-dom-factories'
 el = React.createElement
 
 export class UserEntry extends React.Component
-  delete: (e) =>
-    e.preventDefault()
+  delete: =>
+    return unless confirm(osu.trans('common.confirmation'))
 
     params =
       method: 'DELETE'
@@ -23,7 +23,11 @@ export class UserEntry extends React.Component
   render: ->
     div className: 'contest-userentry contest-userentry--ok',
       if !@props.locked
-        a className: 'btn-osu btn-osu--textlike btn-osu--stick-right', href: '#', 'data-confirm': osu.trans('common.confirmation'), title: osu.trans('common.buttons.delete'), onClick: @delete,
+        button
+          className: 'contest-userentry__delete'
+          type: 'button'
+          title: osu.trans('common.buttons.delete')
+          onClick: @delete
           i className: 'fas fa-times'
 
       div className: 'contest-userentry__fileicon',
