@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\User\ForceReactivation;
 use App\Models\User;
 use Auth;
@@ -24,12 +25,27 @@ class SessionsController extends Controller
     public function store()
     {
         $request = request();
+
+        if ($request->attributes->get('csrf') === false) {
+            DatadogLoginAttempt::log('invalid_csrf');
+
+            abort(403, 'Reload page and try again');
+        }
+
         $params = get_params($request->all(), null, ['username:string', 'password:string', 'remember:bool']);
-        $username = trim($params['username'] ?? null);
-        $password = $params['password'] ?? null;
+        $username = presence(trim($params['username'] ?? null));
+        $password = presence($params['password'] ?? null);
         $remember = $params['remember'] ?? false;
 
-        if (!present($username) || !present($password)) {
+        if ($username === null) {
+            DatadogLoginAttempt::log('missing_username');
+
+            abort(422);
+        }
+
+        if ($password === null) {
+            DatadogLoginAttempt::log('missing_password');
+
             abort(422);
         }
 
