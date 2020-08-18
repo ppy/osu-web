@@ -69,13 +69,13 @@ export ScoreTop = (props) ->
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header #{bn}__stat-header--wider",
               osu.trans 'beatmapsets.show.scoreboard.headers.accuracy'
-            div className: classWithModifiers("#{bn}__stat-value", score: true, perfect: props.score.accuracy == 1),
+            div className: classWithModifiers("#{bn}__stat-value", perfect: props.score.accuracy == 1),
               "#{osu.formatNumber(props.score.accuracy * 100, 2)}%"
 
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header #{bn}__stat-header--wider",
               osu.trans 'beatmapsets.show.scoreboard.headers.combo'
-            div className: classWithModifiers("#{bn}__stat-value", score: true, perfect: props.score.max_combo == props.beatmap.max_combo),
+            div className: classWithModifiers("#{bn}__stat-value", perfect: props.score.max_combo == props.beatmap.max_combo),
               "#{osu.formatNumber(props.score.max_combo)}x"
 
         div className: "#{bn}__stats #{bn}__stats--wrappable",
