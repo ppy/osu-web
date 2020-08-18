@@ -84,9 +84,9 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
-        'settings' => '',
-        'subject' => '',
+        'new' => 'W obserwowanych przez Ciebie pozycjach pojawiły się nowe aktualizacje.',
+        'settings' => 'Zmień ustawienia powiadomień e-mail:',
+        'subject' => 'Nowe powiadomienia',
     ],
 
     'user_password_updated' => [

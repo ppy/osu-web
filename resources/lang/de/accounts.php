@@ -57,12 +57,12 @@ return [
         'options' => [
             '_' => 'zustelloptionen',
             'beatmapset:modding' => 'beatmap-modding',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => 'private chatnachrichten',
+            'comment_new' => 'neue kommentare',
             'forum_topic_reply' => 'antwort auf einen thread',
             'mail' => 'mail',
             'push' => 'push',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => 'medaille freigeschaltet',
         ],
     ],
 
@@ -82,7 +82,7 @@ return [
             'direct' => 'in osu!direct öffnen',
         ],
 
-        'beatmapset_title_show_original' => 'beatmap metadaten in originalsprache anzeigen',
+        'beatmapset_title_show_original' => 'beatmap-metadaten in originalsprache anzeigen',
     ],
 
     'playstyles' => [
@@ -105,7 +105,7 @@ return [
         'end_session_confirmation' => 'Das wird deine Sitzung auf diesem Gerät sofort beenden. Bist du sicher?',
         'last_active' => 'Zuletzt aktiv:',
         'title' => 'Sicherheit',
-        'web_sessions' => 'Sitzungen',
+        'web_sessions' => 'sitzungen',
     ],
 
     'update_email' => [

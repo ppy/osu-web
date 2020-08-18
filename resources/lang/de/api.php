@@ -13,10 +13,10 @@ return [
     ],
 
     'scopes' => [
-        'identify' => 'Identifiziere dich und lies dein öffentliches Profil.',
+        'identify' => 'Dich identifizieren und dein öffentliches Profil lesen.',
 
         'friends' => [
-            'read' => 'Sieh, wem du folgst.',
+            'read' => 'Sehen, wem du folgst.',
         ],
 
         'public' => 'In deinem Namen öffentliche Daten auslesen.',

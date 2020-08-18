@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Spill neste spor automatisk',
     ],
 
     'defaults' => [
@@ -96,7 +96,7 @@ return [
             'country' => 'land',
             'index' => 'prestasjon',
             'kudosu' => 'kudosu',
-            'multiplayer' => '',
+            'multiplayer' => 'flerspiller',
             'score' => 'poengsum',
         ],
         'store' => [

@@ -94,14 +94,14 @@ export class BeatmapsetPanel extends React.PureComponent
                 div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.nominations.required_text', {current: currentNominations, required: requiredNominations}),
                   span className: 'beatmapset-panel__count-number', currentNominations
                   i className: 'fas fa-thumbs-up fa-fw'
-            else
+
+            div null,
               div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.panel.playcount', count: playCount),
                 span className: 'beatmapset-panel__count-number', playCount
                 i className: 'fas fa-fw fa-play-circle'
-
-            div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.panel.favourites', count: favouriteCount),
-              span className: 'beatmapset-panel__count-number', favouriteCount
-              i className: 'fas fa-fw fa-heart'
+              div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.panel.favourites', count: favouriteCount),
+                span className: 'beatmapset-panel__count-number', favouriteCount
+                i className: 'fas fa-fw fa-heart'
 
           div className: 'beatmapset-panel__preview-bar'
 

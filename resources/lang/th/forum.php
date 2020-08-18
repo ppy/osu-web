@@ -5,7 +5,7 @@
 
 return [
     'pinned_topics' => 'หัวข้อที่ปักหมุดไว้',
-    'slogan' => "เล่นคนเดียวมันอันตราย",
+    'slogan' => "มันอันตรายที่จะเล่นคนเดียว",
     'subforums' => 'ฟอรั่มย่อย',
     'title' => 'ฟอรั่ม osu!',
 
@@ -75,6 +75,7 @@ return [
     'topic' => [
         'deleted' => 'ลบกระทู้',
         'go_to_latest' => 'ดูโพสต์ล่าสุด',
+        'has_replied' => '',
         'latest_post' => ':when โดย :user',
         'latest_reply_by' => 'ตอบกลับล่าสุดโดย :user',
         'new_topic' => 'สร้างกระทู้ใหม่',

@@ -6,7 +6,7 @@
 return [
     'availability' => [
         'disabled' => 'Diese Beatmap steht momentan nicht zum Herunterladen zur Verfügung.',
-        'parts-removed' => 'Teile dieser Beatmap wurden auf Anfrage eines Rechteinhabers entfernt.',
+        'parts-removed' => 'Teile dieser Beatmap wurden auf Anfrage des Erstellers oder eines Rechteinhabers entfernt.',
         'more-info' => 'Siehe hier für mehr Informationen.',
     ],
 
@@ -102,7 +102,7 @@ return [
             'friend' => 'Freundesrangliste',
             'global' => 'Globale Rangliste',
             'supporter-link' => '<a href=":link">Hier</a> klicken, um alle tollen Features zu entdecken!',
-            'supporter-only' => 'Du musst Supporter sein, um Freundes- und Länderranglisten zu sehen!',
+            'supporter-only' => 'Du musst Supporter sein, um Freundes- und Landesranglisten zu sehen!',
             'title' => 'Ranglisten',
 
             'headers' => [

@@ -4,7 +4,7 @@
 .beatmap-discussion-editor-insertion-menu {
   @_top: beatmap-discussion-editor-insertion-menu;
   display: none;
-  z-index: @z-index--blackout-visible;
+  z-index: @z-index--beatmap-discussion-editor-insertion-menu;
   position: fixed;
   width: 100%;
   justify-content: center;
@@ -35,6 +35,7 @@
     will-change: width, height;
     transition: ease-in-out 100ms;
     pointer-events: auto;
+    position: relative;
 
     overflow: hidden;
     .default-box-shadow();

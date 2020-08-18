@@ -282,10 +282,12 @@ class TopicsController extends Controller
         $posts = $posts
             ->take(20)
             ->with('forum')
+            ->with('lastEditor')
             ->with('topic')
             ->with('user.rank')
             ->with('user.country')
             ->with('user.supporterTagPurchases')
+            ->with('user.userGroups')
             ->get()
             ->sortBy('post_id');
 

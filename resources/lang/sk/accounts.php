@@ -55,14 +55,15 @@ return [
         'topic_auto_subscribe' => 'automaticky zapnúť notifikácie pre nové fórove témy ktoré vytvoríte',
 
         'options' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'channel_message' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mail' => '',
+            '_' => 'spôsoby doručenia',
+            'beatmapset:modding' => 'módovanie beatmáp',
+            'channel_message' => 'súkromné správy',
+            'comment_new' => 'nové komentáre
+',
+            'forum_topic_reply' => 'odpoveď na tému',
+            'mail' => 'pošta',
             'push' => '',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => 'hráčska medaila odomknutá',
         ],
     ],
 
@@ -77,12 +78,12 @@ return [
 
         'beatmapset_download' => [
             '_' => '',
-            'all' => '',
+            'all' => 's videom, ak je dostupné',
             'no_video' => 'bez videa',
-            'direct' => '',
+            'direct' => 'otvoriť v osu!direct',
         ],
 
-        'beatmapset_title_show_original' => '',
+        'beatmapset_title_show_original' => 'zobraziť metadáta beatmapy v originálnom jazyku',
     ],
 
     'playstyles' => [

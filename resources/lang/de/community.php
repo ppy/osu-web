@@ -133,7 +133,7 @@ return [
             ],
             'friend_filtering' => [
                 'title' => 'Freundesranglisten',
-                'description' => 'Miss Dich mit Deinen Freunden und finde heraus, wie Du Dich gegen sie behauptest!*<br/><br/><small>* noch nicht auf der neuen Seite verfügbar, Demnächst(tm)</small>',
+                'description' => 'Miss Dich mit Deinen Freunden und finde heraus, wie Du Dich gegen sie behauptest!',
             ],
 
         ],
