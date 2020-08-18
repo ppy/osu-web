@@ -93,6 +93,16 @@ class Notification extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function toIdentityJson()
+    {
+        return [
+            'category' => static::nameToCategory($this->name), // TODO: change to category after https://github.com/ppy/osu-web/pull/6439
+            'id' => $this->getKey(),
+            'object_id' => $this->notifiable_id,
+            'object_type' => $this->notifiable_type,
+        ];
+    }
+
     public function userNotifications()
     {
         return $this->hasMany(UserNotification::class);

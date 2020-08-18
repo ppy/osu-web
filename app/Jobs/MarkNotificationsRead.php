@@ -40,29 +40,24 @@ class MarkNotificationsRead implements ShouldQueue
             throw new Exception("Can't find topic {$this->object->getKey()} of post {$this->object->getKey()}");
         }
 
-        $notifiableId = $notifiable->getKey();
-        $notifiableType = MorphMap::getType($notifiable);
-
+        // TODO: should look at supporting marking stacks up to a certain point as read client side.
         $notifications = Notification
-            ::where('notifiable_type', '=', $notifiableType)
-            ->where('notifiable_id', '=', $notifiableId)
-            ->where('created_at', '<=', $this->object->post_time);
+            ::where('notifiable_type', '=', MorphMap::getType($notifiable))
+            ->where('notifiable_id', '=', $notifiable->getKey())
+            ->where('created_at', '<=', $this->object->post_time)
+            ->get();
 
         $userNotifications = $this->user
             ->userNotifications()
             ->where('is_read', '=', false)
-            ->whereIn('notification_id', $notifications->select('id'));
+            ->whereIn('notification_id', $notifications->pluck('id'));
 
         $count = $userNotifications->update(['is_read' => true]);
-        $notificationIdentity = [
-            'category' => Notification::nameToCategory(Notification::FORUM_TOPIC_REPLY),
-            'object_id' => $notifiableId,
-            'object_type' => $notifiableType,
-        ];
+        $notificationIdentities = $notifications->map->toIdentityJson()->all();
 
         if ($count > 0) {
             event(new NotificationReadEvent($this->user->getKey(), [
-                'notifications' => [$notificationIdentity],
+                'notifications' => $notificationIdentities,
                 'read_count' => $count,
                 'timestamp' => now(),
             ]));
