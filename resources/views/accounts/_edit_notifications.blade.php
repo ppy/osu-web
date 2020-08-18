@@ -30,7 +30,7 @@
             </div>
 
             <div
-                class="account-edit-entry account-edit-entry--no-label js-account-edit js-user-preferences-update"
+                class="account-edit-entry account-edit-entry--no-label js-account-edit"
                 data-account-edit-auto-submit="1"
                 data-skip-ajax-error-popup="1"
                 data-url="{{ route('account.notification-options') }}"
