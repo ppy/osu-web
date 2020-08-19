@@ -309,8 +309,8 @@ If there are no more results available, a cursor with a value of `null` is retur
 
 The object has different attributes depending on its `type`. Following are attributes available to all types.
 
-Field | Type | Description
-------|------|------------
+Field      | Type      | Description
+-----------|-----------|------------
 created_at | Timestamp | |
 id         | number    | |
 type       | Type      | |
@@ -1120,47 +1120,47 @@ Timestamp string in ISO 8601 format.
 
 Represents a User. Extends [UserCompact](#usercompact) object with additional attributes.
 
-Field                                     | Type                    | Description
-------------------------------------------|-------------------------|------------------------------------------------------------
-cover_url                               | string                | url of profile cover
-discord                                 | string?               | |
-has_supported                           | boolean               | whether or not ever being a supporter in the past
-interests                               | string?               | |
-join_date                               | Timestamp             | |
-kudosu                                  | Kudosu                | |
-last_visit                              | Timestamp?            | last access time. `null` if the user hides online presence
-lastfm                                  | string?               | |
-location                                | string?               | |
-max_blocks                              | number                | maximum number of users allowed to be blocked
-max_friends                             | number                | maximum number of friends allowed to be added
-occupation                              | string?               | |
-playmode                                | [GameMode](#gamemode) | |
-pm_friends_only                         | boolean               | whether or not the user allows PM from other than friends
-post_count                              | number                | number of forum posts
-profile_order                           | ProfilePage[]         | ordered array of sections in user profile page
-skype                                   | string?               | |
-title                                   | string?               | user-specific title
-twitter                                 | string?               | |
-website                                 | string?               | |
-account_history                         | UserAccountHistory[]  | |
-active_tournament_banner                | ProfileBanner         | |
-badges                                  | UserBadge[]           | |
-favourite_beatmapset_count              | | |
-follower_count                          | | |
-graveyard_beatmapset_count              | | |
-groups                                  | | |
-loved_beatmapset_count                  | | |
-monthly_playcounts                      | | |
-page                                    | | |
-previous_usernames                      | | |
-rankHistory                             | | |
-ranked_and_approved_beatmapset_count    | | |
-replays_watched_counts                  | | |
-scores_first_count                      | | |
-statistics                              | | |
-support_level                           | | |
-unranked_beatmapset_count               | | |
-user_achievements                       | | |
+Field                                | Type                  | Description
+-------------------------------------|-----------------------|------------------------------------------------------------
+cover_url                            | string                | url of profile cover
+discord                              | string?               | |
+has_supported                        | boolean               | whether or not ever being a supporter in the past
+interests                            | string?               | |
+join_date                            | Timestamp             | |
+kudosu                               | Kudosu                | |
+last_visit                           | Timestamp?            | last access time. `null` if the user hides online presence
+lastfm                               | string?               | |
+location                             | string?               | |
+max_blocks                           | number                | maximum number of users allowed to be blocked
+max_friends                          | number                | maximum number of friends allowed to be added
+occupation                           | string?               | |
+playmode                             | [GameMode](#gamemode) | |
+pm_friends_only                      | boolean               | whether or not the user allows PM from other than friends
+post_count                           | number                | number of forum posts
+profile_order                        | ProfilePage[]         | ordered array of sections in user profile page
+skype                                | string?               | |
+title                                | string?               | user-specific title
+twitter                              | string?               | |
+website                              | string?               | |
+account_history                      | UserAccountHistory[]  | |
+active_tournament_banner             | ProfileBanner         | |
+badges                               | UserBadge[]           | |
+favourite_beatmapset_count           | | |
+follower_count                       | | |
+graveyard_beatmapset_count           | | |
+groups                               | | |
+loved_beatmapset_count               | | |
+monthly_playcounts                   | | |
+page                                 | | |
+previous_usernames                   | | |
+rankHistory                          | | |
+ranked_and_approved_beatmapset_count | | |
+replays_watched_counts               | | |
+scores_first_count                   | | |
+statistics                           | | |
+support_level                        | | |
+unranked_beatmapset_count            | | |
+user_achievements                    | | |
 
 ### ProfileBanner
 
