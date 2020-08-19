@@ -61,7 +61,7 @@ class SessionsController extends Controller
             if (!$validCaptcha) {
                 DatadogLoginAttempt::log('invalid_captcha');
 
-                return error_popup(trans('users.login.invalid-captcha'), 422);
+                return error_popup(trans('users.login.invalid_captcha'), 422);
             }
         }
 
