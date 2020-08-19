@@ -85,6 +85,37 @@ let webpackConfig = {
         test: /\.(js|coffee)$/,
       },
       {
+        test: /\\.jsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                [
+                  'node_modules/@babel/preset-env/lib/index.js',
+                  {
+                    modules: false,
+                    forceAllTransforms: true
+                  }
+                ]
+              ],
+              plugins: [
+                'node_modules/@babel/plugin-syntax-dynamic-import/lib/index.js',
+                'node_modules/@babel/plugin-proposal-object-rest-spread/lib/index.js',
+                [
+                  'node_modules/@babel/plugin-transform-runtime/lib/index.js',
+                  {
+                    helpers: false
+                  }
+                ]
+              ],
+              cacheDirectory: true
+            }
+          }
+        ]
+      },
+      {
         test: /\.tsx?$/,
         loader: 'ts-loader',
         exclude: /node_modules/,
@@ -185,7 +216,12 @@ if (process.env.SENTRY_RELEASE === '1') {
   );
 }
 
-const entry = {};
+const entry = {
+  '/js/app': [
+    './resources/assets/app.js',
+    './resources/assets/less/app.less', // why?
+  ],
+};
 
 const coffeeReactComponents = [
   'artist-page',
@@ -230,9 +266,6 @@ webpackConfig.entry = entry;
 mix
 .webpackConfig(webpackConfig)
 .sourceMaps(true, 'source-map', 'source-map')
-.js([
-  'resources/assets/app.js',
-], 'js/app.js')
 .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/vendor/fonts/font-awesome')
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
 .copy('node_modules/moment/locale', 'public/vendor/js/moment-locales')
