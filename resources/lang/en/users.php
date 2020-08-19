@@ -84,6 +84,7 @@ return [
         'failed' => 'Incorrect sign in',
         'forgot' => 'Forgotten your password?',
         'info' => 'Please sign in to continue',
+        'invalid_captcha' => 'Captcha invalid, refresh the page and try again.',
         'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
         'password' => 'Password',
         'register' => "Don't have an osu! account? Make a new one",
