@@ -28,6 +28,7 @@ export const nameToIcons: IconsMap = {
   beatmapset_reset_nominations: ['fas fa-drafting-compass', 'fas fa-undo'],
   channel_message: ['fas fa-comments'],
   comment_new: ['fas fa-comment'],
+  comment_reply: ['fas fa-reply'],
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
   user_achievement_unlock: ['fas fa-trophy'],
@@ -46,6 +47,7 @@ export const nameToIconsCompact: IconsMap = {
   beatmapset_reset_nominations: ['fas fa-undo'],
   channel_message: ['fas fa-comments'],
   comment_new: ['fas fa-comment'],
+  comment_reply: ['fas fa-reply'],
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
 };

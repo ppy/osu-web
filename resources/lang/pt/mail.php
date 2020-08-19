@@ -84,9 +84,9 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
+        'new' => 'Apenas para lhe avisar que houve novas atualizações sobre os items que tu andaste a ver.',
         'settings' => '',
-        'subject' => '',
+        'subject' => 'Novas notificações do osu!',
     ],
 
     'user_password_updated' => [

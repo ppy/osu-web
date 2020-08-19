@@ -10,6 +10,6 @@ return [
         'reverting_username_mismatch' => 'Şuanki kullanıcı adı (:current), değiştirmek istediğiniz kullanıcı adı (:username) ile eşleşmemektedir',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Osu! Supporter tag gift için bağış gereği daha düşüktür (: gerçek>: beklenen)',
+        'insufficient_paid' => 'Yapılan bağış, osu!supporter etiketi hediyesi için yeterli miktarda değil. (:actual > :expected)',
     ],
 ];

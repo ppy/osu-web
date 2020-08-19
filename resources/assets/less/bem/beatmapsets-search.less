@@ -6,6 +6,7 @@
   @_icon-width--sticky: @font-size--normal-2 + 5px;
   @_top: beatmapsets-search;
   background-color: @osu-colour-b6;
+  position: relative;
 
   .default-box-shadow();
   padding: 10px 50px;
@@ -20,6 +21,7 @@
 
   &__advanced {
     display: none;
+    position: relative;
 
     .@{_top}--expanded & {
       display: block;
@@ -27,8 +29,8 @@
   }
 
   &__background {
-    .full-size();
     .default-header-overlay();
+    .full-size();
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -41,6 +43,7 @@
     font-size: @font-size--small;
     margin-top: 10px;
     color: #fff;
+    position: relative;
 
     &:hover,
     &:active,
@@ -103,6 +106,7 @@
     color: @osu-colour-l1;
     font-size: @font-size--large;
     margin: 20px -10px;
+    position: relative;
 
     .@{_top}--sticky & {
       font-size: @font-size--normal-2;

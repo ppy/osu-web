@@ -75,6 +75,7 @@ return [
     'topic' => [
         'deleted' => 'موضوع محذوف',
         'go_to_latest' => 'عرض اخر منشور',
+        'has_replied' => '',
         'latest_post' => ':when بواسطة :user',
         'latest_reply_by' => 'آخر رد من :user',
         'new_topic' => 'موضوع جديد',

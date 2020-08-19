@@ -27,7 +27,7 @@ return [
         'title' => 'ค้นหา',
 
         'beatmapset' => [
-            'login_required' => 'เข้าสู่ระบบเพื่อค้นหาบีตแมป',
+            'login_required' => 'เข้าสู่ระบบเพื่อค้นหาบีทแมพ',
             'more' => ':count more beatmap search results',
             'more_simple' => 'ดูผลการค้นหาบีทแมพเพิ่มเติม',
             'title' => 'บีทแมพ',
@@ -50,7 +50,7 @@ return [
 
         'mode' => [
             'all' => 'ทั้งหมด',
-            'beatmapset' => 'บีตแมป',
+            'beatmapset' => 'บีทแมพ',
             'forum_post' => 'ฟอรัม',
             'user' => 'ผู้เล่น',
             'wiki_page' => 'วิกิ',
@@ -91,7 +91,7 @@ return [
                 'description' => 'กดปุ่มข้างบนเพื่อดาวน์โหลดตัวติดตั้ง โหลดเสร็จก็รันซะ',
             ],
             'beatmaps' => [
-                'title' => 'ไปโหลดบีตแมป',
+                'title' => 'ไปโหลดบีทแมพ',
                 'description' => [
                     '_' => ':browse the vast library of user-created beatmaps and start playing!',
                     'browse' => 'ค้นหา',
@@ -116,7 +116,7 @@ return [
         ],
         'beatmaps' => [
             'new' => 'Ranked Beatmaps อันใหม่',
-            'popular' => 'บีตแมปยอดฮิต',
+            'popular' => 'บีทแมพยอดฮิต',
             'by_user' => 'โดย :user',
         ],
         'buttons' => [

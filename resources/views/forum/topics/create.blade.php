@@ -47,7 +47,7 @@
                 </label>
             </div>
 
-            <div class="forum-topic-toolbar__item">
+            <div class="forum-topic-toolbar__item u-relative">
                 @include('forum.topics._cover_editor')
             </div>
         </div>

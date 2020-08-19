@@ -19,5 +19,5 @@ return [
         'large' => 'ใหญ่',
     ],
     'spoilerbox' => 'กล่องซ่อนข้อความ',
-    'strikethrough' => 'ขีดเส้นบนตัวอักษร',
+    'strikethrough' => 'ขีดฆ่า',
 ];

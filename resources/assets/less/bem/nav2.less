@@ -36,6 +36,7 @@
 
     &--menu {
       align-items: stretch;
+      position: relative;
     }
   }
 
@@ -79,6 +80,7 @@
     height: @_logo-size;
     margin: -@__logo-whitespace;
     transition: width @header-pinned-animation-duration, height @header-pinned-animation-duration;
+    position: relative;
 
     .@{header-pinned} & {
       height: @nav2-avatar-height--pinned;

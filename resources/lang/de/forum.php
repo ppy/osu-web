@@ -7,7 +7,7 @@ return [
     'pinned_topics' => 'Angepinnte Threads',
     'slogan' => "es ist gefährlich, alleine zu spielen.",
     'subforums' => 'Subforen',
-    'title' => 'osu! Foren',
+    'title' => 'Foren',
 
     'covers' => [
         'edit' => 'Cover bearbeiten',
@@ -43,15 +43,15 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Post entfernen?',
+        'confirm_destroy' => 'Beitrag wirklich entfernen?',
         'confirm_restore' => 'Beitrag wirklich wiederherstellen?',
-        'edited' => 'Zuletzt von :user :when bearbeitet, insgesamt :count Mal bearbeitet.',
+        'edited' => 'Zuletzt von :user :when bearbeitet, insgesamt :count_delimited Mal bearbeitet.',
         'posted_at' => 'erstellt :when',
 
         'actions' => [
-            'destroy' => 'Post löschen',
+            'destroy' => 'Beitrag löschen',
             'restore' => 'Beitrag wiederherstellen',
-            'edit' => 'Post bearbeiten',
+            'edit' => 'Beitrag bearbeiten',
         ],
 
         'create' => [
@@ -62,19 +62,20 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited Beitrag | :count_delimited Beiträge',
-            'topic_starter' => 'Thread Starter',
+            'topic_starter' => 'Thread-Starter',
         ],
     ],
 
     'search' => [
         'go_to_post' => 'Gehe zu Beitrag',
-        'post_number_input' => 'postnummer hier eingeben',
-        'total_posts' => 'Insgesamt :posts_count Posts',
+        'post_number_input' => 'beitragsnummer hier eingeben',
+        'total_posts' => 'Insgesamt :posts_count Beiträge',
     ],
 
     'topic' => [
         'deleted' => 'gelöschter thread',
-        'go_to_latest' => 'letzten post anschauen',
+        'go_to_latest' => 'letzten beitrag anschauen',
+        'has_replied' => '',
         'latest_post' => ':when von :user',
         'latest_reply_by' => 'letzte antwort von :user',
         'new_topic' => 'Neuen Thread erstellen',
@@ -109,11 +110,11 @@ return [
         ],
 
         'jump' => [
-            'enter' => 'hier klicken, um eine postnummer einzugeben',
-            'first' => 'zum ersten post',
-            'last' => 'zum letzten post',
-            'next' => '10 posts überspringen',
-            'previous' => '10 posts zurückgehen',
+            'enter' => 'hier klicken, um eine beitragsnummer einzugeben',
+            'first' => 'zum ersten beitrag',
+            'last' => 'zum letzten beitrag',
+            'next' => '10 beiträge überspringen',
+            'previous' => '10 beiträge zurückgehen',
         ],
 
         'post_edit' => [
@@ -151,7 +152,7 @@ return [
         'actions' => [
             'login_reply' => 'Melde dich an, um zu antworten',
             'reply' => 'Antworten',
-            'reply_with_quote' => 'Post in der Antwort zitieren',
+            'reply_with_quote' => 'Beitrag in der Antwort zitieren',
             'search' => 'Suchen',
         ],
 
@@ -265,8 +266,8 @@ return [
         ],
 
         'show' => [
-            'deleted-posts' => 'Gelöschte Posts',
-            'total_posts' => 'Posts insgesamt',
+            'deleted-posts' => 'Gelöschte Beiträge',
+            'total_posts' => 'Beiträge insgesamt',
 
             'feature_vote' => [
                 'current' => 'Aktuelle Priorität: +:count',
@@ -279,7 +280,7 @@ return [
                 ],
 
                 'user' => [
-                    'count' => '{0} Keine Stimme|{1} :count Stimme|[2,*] :count Stimmen',
+                    'count' => '{0} Keine Stimme|{1} :count_delimited Stimme|[2,*] :count_delimited Stimmen',
                     'current' => 'Du hast noch :votes.',
                     'not_enough' => "Du hast keine Stimmen mehr",
                 ],

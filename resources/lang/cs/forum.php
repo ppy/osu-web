@@ -75,6 +75,7 @@ return [
     'topic' => [
         'deleted' => 'odstraněné téma',
         'go_to_latest' => 'zobrazit nejnovější příspěvek',
+        'has_replied' => '',
         'latest_post' => ':when uživatelem :user',
         'latest_reply_by' => 'poslední odpověd od :user',
         'new_topic' => 'Založit nové téma',

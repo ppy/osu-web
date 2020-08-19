@@ -11,7 +11,7 @@ return [
     ],
 
     'builds' => [
-        'users_online' => ':count_delimited user online |:count_delimited user online',
+        'users_online' => ':count_delimited Benutzer online',
     ],
 
     'entry' => [
@@ -25,7 +25,7 @@ return [
             '_from_to' => 'Änderungen zwischen :from und :to',
             '_stream' => 'Änderungen in :stream',
             '_stream_from' => 'Änderungen in :stream seit :from',
-            '_stream_from_to' => 'Änderungen in Stream zwischen :from und :to',
+            '_stream_from_to' => 'Änderungen in :stream zwischen :from und :to',
             '_stream_to' => 'Änderungen in :stream bis zum :to',
             '_to' => 'Änderungen bis zum :to',
         ],
@@ -34,7 +34,7 @@ return [
     'support' => [
         'heading' => 'Dir gefällt, was du siehst?',
         'text_1' => 'Unterstütze die weitere Entwicklung von osu! und :link!',
-        'text_1_link' => 'werde noch heute Supporter!',
+        'text_1_link' => 'werde noch heute Supporter',
         'text_2' => 'Damit treibst du nicht nur die Entwicklung schneller voran, sondern erhältst auch einige coole Features und besondere Anpassungsmöglichkeiten!',
     ],
 ];

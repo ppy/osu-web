@@ -64,6 +64,7 @@ return [
     ],
 
     'review' => [
+        'block_count' => '',
         'go_to_parent' => 'レビュー投稿を表示',
         'go_to_child' => 'ディスカッションを表示',
         'validation' => [
