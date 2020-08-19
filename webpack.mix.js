@@ -7,6 +7,7 @@ const mix = require('laravel-mix');
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SentryPlugin = require('webpack-sentry-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
@@ -194,6 +195,13 @@ let webpackConfig = {
       filename: '/css/app.css',
       chunkFilename: '/css/app.css',
     }),
+    new CopyPlugin({
+      patterns: [
+        { from: 'node_modules/@fortawesome/fontawesome-free/webfonts', to: 'vendor/fonts/font-awesome' },
+        { from: 'node_modules/photoswipe/dist/default-skin', to: 'vendor/_photoswipe-default-skin' },
+        { from: 'node_modules/moment/locale', to: 'vendor/js/moment-locales' },
+      ],
+    }),
   ],
   resolve: {
     alias: {
@@ -290,9 +298,6 @@ webpackConfig.entry = entry;
 
 mix
 .webpackConfig(webpackConfig)
-.copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/vendor/fonts/font-awesome')
-.copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
-.copy('node_modules/moment/locale', 'public/vendor/js/moment-locales')
 .scripts([
   'resources/assets/js/ga.js',
   'resources/assets/build/lang.js',

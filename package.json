@@ -72,6 +72,7 @@
     "babel-preset-env": "^1.7.0",
     "coffee-loader": "^0.9.0",
     "coffeescript": "^1.12.6",
+    "copy-webpack-plugin": "^6.0.3",
     "cross-env": "^5.2.0",
     "deasync": "^0.1.15",
     "glob": "^7.1.3",
