@@ -9,6 +9,7 @@ use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\User\ForceReactivation;
 use App\Models\User;
 use Auth;
+use NoCaptcha;
 use Request;
 
 class SessionsController extends Controller
@@ -32,7 +33,7 @@ class SessionsController extends Controller
             abort(403, 'Reload page and try again');
         }
 
-        $params = get_params($request->all(), null, ['username:string', 'password:string', 'remember:bool']);
+        $params = get_params($request->all(), null, ['username:string', 'password:string', 'remember:bool', 'g-recaptcha-response:string']);
         $username = presence(trim($params['username'] ?? null));
         $password = presence($params['password'] ?? null);
         $remember = $params['remember'] ?? false;
@@ -47,6 +48,21 @@ class SessionsController extends Controller
             DatadogLoginAttempt::log('missing_password');
 
             abort(422);
+        }
+
+        if (config('captcha.sitekey') !== '' && config('captcha.secret') !== '') {
+            $token = presence($params['g-recaptcha-response'] ?? null);
+            $validCaptcha = false;
+
+            if ($token !== null) {
+                $validCaptcha = NoCaptcha::verifyResponse($token);
+            }
+
+            if (!$validCaptcha) {
+                DatadogLoginAttempt::log('invalid_captcha');
+
+                return error_popup(trans('users.login.invalid-captcha'), 422);
+            }
         }
 
         $ip = $request->getClientIp();

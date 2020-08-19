@@ -107,6 +107,18 @@
     <script src="/vendor/js/moment-locales/{{ $momentLocale }}.js" data-turbolinks-track="reload"></script>
 @endif
 
+@if (config('captcha.sitekey') !== '' && config('captcha.secret') !== '')
+    <script src="https://www.recaptcha.net/recaptcha/api.js?render=explicit&onload=renderCaptcha" async defer></script>
+    <script>
+        function renderCaptcha() {
+            if (document.getElementsByClassName('g-recaptcha').length > 0 && typeof(grecaptcha) === 'object' && typeof(grecaptcha.render) === 'function') {
+                grecaptcha.render($('.g-recaptcha')[0], {'sitekey': '{{ config('captcha.sitekey') }}'});
+            }
+        }
+        $(document).on('turbolinks:load', renderCaptcha);
+    </script>
+@endif
+
 @if (isset($atom))
     <link rel="alternate" type="application/atom+xml" title="{{ $atom['title'] }}" href="{{ $atom['url'] }}">
 @endif
