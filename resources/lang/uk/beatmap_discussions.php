@@ -64,6 +64,7 @@ return [
     ],
 
     'review' => [
+        'block_count' => '',
         'go_to_parent' => 'Побачити відгук',
         'go_to_child' => 'Побачити обговорення',
         'validation' => [

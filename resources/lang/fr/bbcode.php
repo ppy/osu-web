@@ -10,7 +10,7 @@ return [
     'italic' => 'Italique',
     'link' => 'Lien',
     'list' => 'Liste',
-    'list_numbered' => 'Liste numérique',
+    'list_numbered' => 'Liste numérotée',
     'size' => [
         '_' => 'Taille de police',
         'tiny' => 'Très petite',

@@ -57,12 +57,12 @@ return [
         'options' => [
             '_' => 'Szállítási lehetőségek',
             'beatmapset:modding' => 'Beatmap szerkesztése',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => 'Privát üzenetek',
+            'comment_new' => 'Új megjegyzések',
             'forum_topic_reply' => 'Válaszolj erre a témára',
             'mail' => 'e-mail',
             'push' => 'Elöjövő',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => 'Medál feloldva',
         ],
     ],
 

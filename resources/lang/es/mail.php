@@ -5,7 +5,7 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => 'Para informarte, ha habido una nueva actualización en el mapa ":title" desde tu última visita.',
+        'new' => 'Sólo informándole de que ha habido una nueva actualización en el mapa ":title" desde su última visita.',
         'subject' => 'Nueva actualización para el mapa ":title"',
         'unwatch' => 'Si no deseas seguir viendo este mapa, puedes hacer clic en en enlace "Dejar de ver" que se encuentra en la página de arriba, o desde la página de lista de seguimiento de modding:',
         'visit' => 'Visita la página de discusión aquí:',
@@ -38,7 +38,7 @@ return [
     ],
 
     'forum_new_reply' => [
-        'new' => 'Para informarte, ha habido una nueva respuesta en ":title" desde tu última visita.',
+        'new' => 'Sólo informándole de que ha habido una nueva respuesta en ":title" desde su última visita.',
         'subject' => '[osu!] Nueva respuesta para el tema ":title"',
         'unwatch' => 'Si no deseas seguir viendo este tema, puedes hacer clic en el enlace "Cancelar suscripción al tema" que se encuentra en la parte inferior del tema de arriba, o desde la página de gestión de suscripciones al tema:',
         'visit' => 'Salte directamente a la última respuesta usando el siguiente enlace:',
@@ -84,9 +84,9 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
-        'settings' => '',
-        'subject' => '',
+        'new' => 'Sólo informándole de que hay nuevas actualizaciones en los elementos que está viendo.',
+        'settings' => 'Cambiar las preferencias de notificaciones por correo electrónico:',
+        'subject' => 'Nuevas notificaciones de osu!',
     ],
 
     'user_password_updated' => [

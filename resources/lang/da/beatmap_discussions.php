@@ -64,6 +64,7 @@ return [
     ],
 
     'review' => [
+        'block_count' => '',
         'go_to_parent' => 'Vis Anmeldelses-opslag',
         'go_to_child' => 'Vis Diskussion',
         'validation' => [

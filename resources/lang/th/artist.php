@@ -8,7 +8,7 @@ return [
     'title' => 'ศิลปินโดดเด่น',
 
     'admin' => [
-        'hidden' => 'ศิลปินคนนี้ถูกซ่อนอยู่ในปัจจุบัน',
+        'hidden' => 'ข้อมูลศิลปินคนนี้ถูกซ่อนอยู่',
     ],
 
     'beatmaps' => [
@@ -28,7 +28,7 @@ return [
 
     'songs' => [
         '_' => 'เพลง',
-        'count' => ':count เพลง|:count เพลง',
+        'count' => ':count_delimited เพลง|:count_delimited เพลง',
         'exclusive' => 'เฉพาะ osu!',
     ],
 

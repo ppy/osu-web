@@ -106,6 +106,13 @@ class Post extends Model implements AfterCommit
         $this->attributes['bbcode_bitfield'] = $bbcode->bitfield;
     }
 
+    public function getPostEditUserAttribute($value)
+    {
+        if ($value !== 0) {
+            return $value;
+        }
+    }
+
     public function setPostTimeAttribute($value)
     {
         $this->attributes['post_time'] = get_timestamp_or_zero($value);

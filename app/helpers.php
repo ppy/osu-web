@@ -656,7 +656,7 @@ function obscure_email($email)
         return '<unknown>';
     }
 
-    return $email[0][0].'***'.'@'.$email[1];
+    return mb_substr($email[0], 0, 1).'***'.'@'.$email[1];
 }
 
 function countries_array_for_select()

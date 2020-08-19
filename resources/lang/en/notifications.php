@@ -145,9 +145,9 @@ return [
             'beatmapset_discussion' => 'The discussion on ":title" has new updates',
             'beatmapset_discussion_lock' => 'The discussion on ":title" has been locked',
             'beatmapset_discussion_unlock' => 'The discussion on ":title" has been unlocked',
-            'beatmapset_problem' => 'A new problem reported was reported on ":title"',
+            'beatmapset_problem' => 'A new problem was reported on ":title"',
             'beatmapset_state' => 'The state of ":title" has changed',
-            'comment' => ' Beatmap ":title" has new comments',
+            'comment' => 'Beatmap ":title" has new comments',
         ],
 
         'channel' => [

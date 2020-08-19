@@ -6,11 +6,11 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Models\Forum\Forum;
+use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicTrack;
 use App\Transformers\Forum\ForumCoverTransformer;
 use Auth;
-use Request;
 
 class ForumsController extends Controller
 {
@@ -55,11 +55,18 @@ class ForumsController extends Controller
 
     public function show($id)
     {
+        $params = get_params(request()->all(), null, [
+            'sort',
+            'with_replies',
+        ]);
+
+        $user = auth()->user();
+
         $forum = Forum::with('subforums.subforums')->findOrFail($id);
         $lastTopics = Forum::lastTopics($forum);
 
-        $sort = Request::input('sort') ?? Topic::DEFAULT_SORT;
-        $withReplies = Request::input('with_replies', '');
+        $sort = $params['sort'] ?? Topic::DEFAULT_SORT;
+        $withReplies = $params['with_replies'] ?? null;
 
         priv_check('ForumView', $forum)->ensureCan();
 
@@ -84,7 +91,17 @@ class ForumsController extends Controller
             ->recent(compact('sort', 'withReplies'))
             ->paginate(30);
 
-        $topicReadStatus = TopicTrack::readStatus(Auth::user(), $pinnedTopics, $topics);
+        $allTopics = array_merge($pinnedTopics->all(), $topics->all());
+        $topicReadStatus = TopicTrack::readStatus($user, $allTopics);
+        $topicReplyStatus = $user === null
+            ? []
+            : Post
+                ::where('poster_id', $user->getKey())
+                ->whereIn('topic_id', array_pluck($allTopics, 'topic_id'))
+                ->distinct('topic_id')
+                ->select('topic_id')
+                ->get()
+                ->keyBy('topic_id');
 
         return ext_view('forum.forums.show', compact(
             'cover',
@@ -93,6 +110,7 @@ class ForumsController extends Controller
             'pinnedTopics',
             'sort',
             'topicReadStatus',
+            'topicReplyStatus',
             'topics'
         ));
     }

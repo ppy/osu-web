@@ -57,9 +57,12 @@
                                     <div class="artist-album__header-overlay{{$album['is_new'] ? ' artist-album__header-overlay--new' : ''}}" style="background-image: url({{$album['cover_url']}});"></div>
                                     <img class="artist-album__cover" src="{{$album['cover_url']}}">
                                     <span class="artist-album__title">{{$album['title']}}</span>
-                                    <span class="artist-album__spacer"></span>
                                     @if ($album['is_new'])
-                                        <span class="pill-badge pill-badge--yellow pill-badge--with-shadow">{{trans('common.badges.new')}}</span>
+                                        <span class="artist-album__badge">
+                                            <span class="pill-badge pill-badge--yellow pill-badge--with-shadow">
+                                                {{trans('common.badges.new')}}
+                                            </span>
+                                        </span>
                                     @endif
                                 </div>
                                 <div class="js-react--artistTracklist" data-src="album-json-{{$album['id']}}"></div>

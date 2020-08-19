@@ -10,6 +10,7 @@ use App\Exceptions\ModelNotSavedException;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
+use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\UsernameValidation;
 use App\Models\OAuth\Client;
 use App\Traits\UserAvatar;
@@ -1399,7 +1400,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return
             $this->user_id !== null
             && !$this->isRestricted()
-            && !$this->isBot();
+            && $this->group_id !== app('groups')->byIdentifier('no_profile')->getKey();
     }
 
     public function updatePage($text)
@@ -1600,14 +1601,30 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         $ip = $ip ?? Request::getClientIp() ?? '0.0.0.0';
 
         if (LoginAttempt::isLocked($ip)) {
+            DatadogLoginAttempt::log('locked_ip');
+
             return trans('users.login.locked_ip');
         }
 
-        $validAuth = $user === null
-            ? false
-            : !$user->isLoginBlocked() && $user->checkPassword($password);
+        $authError = null;
 
-        if (!$validAuth) {
+        if ($user === null) {
+            $authError = 'nonexistent_user';
+        } else {
+            $isLoginBlocked = $user->isLoginBlocked();
+
+            if ($isLoginBlocked) {
+                $authError = 'user_login_blocked';
+            } else {
+                if (!$user->checkPassword($password)) {
+                    $authError = 'invalid_password';
+                }
+            }
+        }
+
+        DatadogLoginAttempt::log($authError);
+
+        if ($authError !== null) {
             LoginAttempt::logAttempt($ip, $user, 'fail', $password);
 
             return trans('users.login.failed');

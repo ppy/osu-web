@@ -136,35 +136,35 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '',
-            'beatmapset_discussion_lock' => '',
-            'beatmapset_discussion_unlock' => '',
-            'beatmapset_problem' => '',
-            'beatmapset_state' => '',
-            'comment' => '',
+            'beatmapset_discussion' => 'Terdapat pembaharuan baru pada topik diskusi ":title"',
+            'beatmapset_discussion_lock' => 'Topik diskusi ":title" telah dikunci',
+            'beatmapset_discussion_unlock' => 'Topik diskusi ":title" telah kembali dibuka',
+            'beatmapset_problem' => 'Terdapat masalah baru yang dilaporkan pada ":title"',
+            'beatmapset_state' => 'Status beatmap ":title" telah berganti',
+            'comment' => 'Terdapat komentar baru pada beatmap ":title"',
         ],
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => 'Anda mendapatkan pesan baru dari :username',
             ],
         ],
 
         'build' => [
-            'comment' => '',
+            'comment' => 'Terdapat komentar baru pada riwayat perubahan ":title"',
         ],
 
         'news_post' => [
-            'comment' => '',
+            'comment' => 'Terdapat komentar baru pada topik berita ":title"',
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '',
+            'forum_topic_reply' => 'Terdapat balasan baru pada ":title"',
         ],
 
         'user_achievement' => [
-            'user_achievement_unlock' => '',
-            'user_achievement_unlock_self' => '',
+            'user_achievement_unlock' => ':username telah mendapatkan medali baru, ":title"!',
+            'user_achievement_unlock_self' => 'Anda telah mendapatkan medali baru, ":title"!',
         ],
     ],
 ];

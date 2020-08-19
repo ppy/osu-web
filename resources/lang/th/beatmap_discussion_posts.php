@@ -5,11 +5,11 @@
 
 return [
     'index' => [
-        'title' => 'โพสต์การอภิปราย Beatmap',
+        'title' => 'โพสต์การอภิปรายบีทแมพ',
     ],
 
     'item' => [
         'content' => 'เนื้อหา',
-        'modding_history_link' => 'ดูประวัติการ mod',
+        'modding_history_link' => 'ดูประวัติการวิจารณ์',
     ],
 ];

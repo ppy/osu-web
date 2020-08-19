@@ -57,12 +57,12 @@ return [
         'options' => [
             '_' => 'types d\'alertes',
             'beatmapset:modding' => 'modding de beatmap',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => 'messages privés',
+            'comment_new' => 'nouveaux commentaires',
             'forum_topic_reply' => 'réponse à un sujet',
             'mail' => 'email',
             'push' => 'push',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => 'médaille utilisateur déverrouillée',
         ],
     ],
 

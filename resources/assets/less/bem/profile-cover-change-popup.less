@@ -61,5 +61,11 @@
     &--hover {
       background-color: fade(#000, 70%);
     }
+
+    // placeholder to prevent triggering dragleave when entering child element
+    &::after {
+      .full-size();
+      content: '';
+    }
   }
 }

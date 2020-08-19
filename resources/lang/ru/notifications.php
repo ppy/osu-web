@@ -136,35 +136,35 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '',
-            'beatmapset_discussion_lock' => '',
-            'beatmapset_discussion_unlock' => '',
-            'beatmapset_problem' => '',
-            'beatmapset_state' => '',
-            'comment' => '',
+            'beatmapset_discussion' => 'Обсуждение ":title" имеет новые ответы',
+            'beatmapset_discussion_lock' => 'Обсуждение ":title" было закрыто',
+            'beatmapset_discussion_unlock' => 'Обсуждение ":title" было открыто',
+            'beatmapset_problem' => 'Сообщена новая проблема в ":title"',
+            'beatmapset_state' => 'Состояние ":title" изменилось',
+            'comment' => ' Карта ":title" имеет новые комментарии',
         ],
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => 'Вы получили новое сообщение от :username',
             ],
         ],
 
         'build' => [
-            'comment' => '',
+            'comment' => 'Список изменений ":title" содержит новые комментарии',
         ],
 
         'news_post' => [
-            'comment' => '',
+            'comment' => 'Новость ":title" имеет новые комментарии',
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '',
+            'forum_topic_reply' => 'Есть новые ответы в ":title"',
         ],
 
         'user_achievement' => [
-            'user_achievement_unlock' => '',
-            'user_achievement_unlock_self' => '',
+            'user_achievement_unlock' => ':username открыл новую медаль: ":title"!',
+            'user_achievement_unlock_self' => 'Вы открыли новую медаль: ":title"!',
         ],
     ],
 ];

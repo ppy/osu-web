@@ -57,12 +57,12 @@ return [
         'options' => [
             '_' => 'bildirim seçenekleri',
             'beatmapset:modding' => 'beatmap modlama',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => 'Özel Mesajlar',
+            'comment_new' => 'yeni yorum',
             'forum_topic_reply' => 'konu yanıtı',
             'mail' => 'posta',
             'push' => 'anlık',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => 'kullanıcı madalyası açıldı',
         ],
     ],
 
@@ -82,7 +82,7 @@ return [
             'direct' => 'osu!direkt\'de aç',
         ],
 
-        'beatmapset_title_show_original' => '',
+        'beatmapset_title_show_original' => 'şarkı verisini orijinal dilde göster',
     ],
 
     'playstyles' => [
