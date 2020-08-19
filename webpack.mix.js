@@ -21,10 +21,6 @@ if (mix.inProduction()) {
   reactMin = 'production.min';
 }
 
-const reactComponentSet = function(name) {
-    return [[`resources/assets/coffee/react/${name}.coffee`], `js/react/${name}.js`];
-};
-
 const paymentSandbox = !(process.env.PAYMENT_SANDBOX === '0'
                          || process.env.PAYMENT_SANDBOX === 'false'
                          || !process.env.PAYMENT_SANDBOX);
@@ -178,26 +174,37 @@ if (process.env.SENTRY_RELEASE === '1') {
   );
 }
 
+const entry = {};
+
+const coffeeReactComponents = [
+  'artist-page',
+  'beatmap-discussions',
+  'beatmap-discussions-history',
+  'beatmapset-page',
+  'changelog-build',
+  'changelog-index',
+  'comments-index',
+  'comments-show',
+  'mp-history',
+  'modding-profile',
+  'profile-page',
+  'admin/contest',
+  'contest-entry',
+  'contest-voting',
+];
+
+for (const name of coffeeReactComponents) {
+  entry[`js/react/${name}`] = [path.resolve(__dirname, `resources/assets/coffee/react/${name}.coffee`)];
+}
+
+webpackConfig.entry = entry;
+
 mix
 .webpackConfig(webpackConfig)
 .sourceMaps(true, 'source-map', 'source-map')
 .js([
   'resources/assets/app.js',
 ], 'js/app.js')
-.js(...reactComponentSet('artist-page'))
-.js(...reactComponentSet('beatmap-discussions'))
-.js(...reactComponentSet('beatmap-discussions-history'))
-.js(...reactComponentSet('beatmapset-page'))
-.js(...reactComponentSet('changelog-build'))
-.js(...reactComponentSet('changelog-index'))
-.js(...reactComponentSet('comments-index'))
-.js(...reactComponentSet('comments-show'))
-.js(...reactComponentSet('mp-history'))
-.js(...reactComponentSet('modding-profile'))
-.js(...reactComponentSet('profile-page'))
-.js(...reactComponentSet('admin/contest'))
-.js(...reactComponentSet('contest-entry'))
-.js(...reactComponentSet('contest-voting'))
 .ts('resources/assets/lib/account-edit.ts', 'js/react/account-edit.js')
 .js('resources/assets/lib/beatmaps.ts', 'js/react/beatmaps.js')
 .ts('resources/assets/lib/chat.ts', 'js/react/chat.js')
