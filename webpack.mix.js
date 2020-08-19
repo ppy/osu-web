@@ -68,6 +68,7 @@ vendor.forEach(function(script) {
 });
 
 let webpackConfig = {
+  devtool: 'source-map',
   externals: {
     'd3': 'd3',
     'lodash': '_',
@@ -289,7 +290,6 @@ webpackConfig.entry = entry;
 
 mix
 .webpackConfig(webpackConfig)
-.sourceMaps(true, 'source-map', 'source-map')
 .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/vendor/fonts/font-awesome')
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
 .copy('node_modules/moment/locale', 'public/vendor/js/moment-locales')
