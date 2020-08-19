@@ -23,7 +23,7 @@
         @endif
 
         <a
-            class="forum-post-info__row forum-post-info__row--username u-ellipsis-overflow js-usercard"
+            class="forum-post-info__row forum-post-info__row--username js-usercard"
             data-user-id="{{$user->user_id}}"
             href="{{ route("users.show", $user) }}"
         >{{ $user->username }}</a>
@@ -34,7 +34,7 @@
             </div>
         @endif
     @else
-        <span class="forum-post-info__row forum-post-info__row--username u-ellipsis-overflow">
+        <span class="forum-post-info__row forum-post-info__row--username">
             {{ $user->username }}
         </span>
     @endif
