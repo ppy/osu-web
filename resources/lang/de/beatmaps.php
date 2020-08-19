@@ -201,7 +201,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Bist du dir sicher? Der Nominierungsprozess wird durch das neue Problem zurückgesetzt.',
-            'disqualify' => 'Bist du sicher? Das wird die Beatmap von der Qualifiezierung entfernen und den Nominierungsprozess zurücksetzen.',
+            'disqualify' => 'Bist du sicher? Dadurch wird die Beatmap aus der Qualifizierung entfernt und der Nominierungsprozess zurückgesetzt.',
         ],
     ],
 
@@ -219,7 +219,7 @@ return [
                 'status' => 'Kategorien',
                 'genre' => 'Genre',
                 'language' => 'Sprache',
-                'extra' => 'extra',
+                'extra' => 'Extra',
                 'rank' => 'Erreichter Rang',
                 'played' => 'Gespielt',
             ],
@@ -236,7 +236,7 @@ return [
                 'nominations' => 'Nominierungen',
             ],
             'supporter_filter_quote' => [
-                '_' => 'Du benötigst einen aktiven :link, um nach :filters zu filtern',
+                '_' => 'Du benötigst ein aktives :link, um nach :filters zu filtern',
                 'link_text' => 'osu!supporter-Tag',
             ],
         ],

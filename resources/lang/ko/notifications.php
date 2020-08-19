@@ -136,35 +136,35 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '',
-            'beatmapset_discussion_lock' => '',
-            'beatmapset_discussion_unlock' => '',
-            'beatmapset_problem' => '',
-            'beatmapset_state' => '',
-            'comment' => '',
+            'beatmapset_discussion' => '토론 ":title" 에 새로운 업데이트가 있습니다.',
+            'beatmapset_discussion_lock' => '비트맵 ":title" 의 토론이 잠겼습니다.',
+            'beatmapset_discussion_unlock' => '비트맵 ":title" 의 토론이 잠금 해제되었습니다.',
+            'beatmapset_problem' => '비트맵 ":title" 에 새로운 문제가 제의되었습니다.',
+            'beatmapset_state' => '":title" 의 상태가 변경되었습니다.',
+            'comment' => '비트맵 ":title" 에 새로운 댓글이 달렸습니다.',
         ],
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => ':username 님에게 새로운 메시지를 받았습니다.',
             ],
         ],
 
         'build' => [
-            'comment' => '',
+            'comment' => '변경 사항 ":title" 에 새로운 댓글이 달렸습니다.',
         ],
 
         'news_post' => [
-            'comment' => '',
+            'comment' => '뉴스 ":title" 에 새로운 댓글이 달렸습니다.',
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '',
+            'forum_topic_reply' => '":title" 에 새로운 답글이 달렸습니다.',
         ],
 
         'user_achievement' => [
-            'user_achievement_unlock' => '',
-            'user_achievement_unlock_self' => '',
+            'user_achievement_unlock' => ':username 님이 ":title" 메달을 획득하셨습니다!',
+            'user_achievement_unlock_self' => '":title" 메달을 획득하셨습니다!',
         ],
     ],
 ];

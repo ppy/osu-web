@@ -20,7 +20,7 @@ return [
     'type' => [
         'charts' => 'wyróżnionych',
         'country' => 'krajowy',
-        'multiplayer' => 'ranking wieloosobowy',
+        'multiplayer' => 'wieloosobowy',
         'performance' => 'globalny',
         'score' => 'punktowy',
     ],

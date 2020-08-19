@@ -136,35 +136,35 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '',
-            'beatmapset_discussion_lock' => '',
-            'beatmapset_discussion_unlock' => '',
+            'beatmapset_discussion' => '":title" setinin tartışmasında yeni güncellemeler mevcut',
+            'beatmapset_discussion_lock' => '":title" setinin tartışması kilitlendi',
+            'beatmapset_discussion_unlock' => '":title" setinin tartışmasının kilidi kaldırıldı',
             'beatmapset_problem' => '',
-            'beatmapset_state' => '',
-            'comment' => '',
+            'beatmapset_state' => '":title" setinin durumu değişti',
+            'comment' => '":title" beatmapinde yeni yorumlar mevcut',
         ],
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => ':username kullanıcısından yeni bir mesaj geldi',
             ],
         ],
 
         'build' => [
-            'comment' => '',
+            'comment' => '":title" değişiklik kaydında yeni yorumlar mevcut',
         ],
 
         'news_post' => [
-            'comment' => '',
+            'comment' => '":title" haber göndersinde yeni yorumlar mevcut',
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '',
+            'forum_topic_reply' => '":title" konusunda yeni yanıtlar mevcut',
         ],
 
         'user_achievement' => [
-            'user_achievement_unlock' => '',
-            'user_achievement_unlock_self' => '',
+            'user_achievement_unlock' => ':username yeni bir madalya açtı, ":title"!',
+            'user_achievement_unlock_self' => 'Yeni başarım açıldı. "başlık"!',
         ],
     ],
 ];

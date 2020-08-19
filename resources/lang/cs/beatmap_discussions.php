@@ -64,6 +64,7 @@ return [
     ],
 
     'review' => [
+        'block_count' => '',
         'go_to_parent' => 'Zobrazit příspěvek recenze',
         'go_to_child' => 'Zobrazit diskuzi',
         'validation' => [

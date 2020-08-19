@@ -75,6 +75,7 @@ return [
     'topic' => [
         'deleted' => 'topik yang dihapus',
         'go_to_latest' => 'lihat posting terbaru',
+        'has_replied' => '',
         'latest_post' => ':when oleh :user',
         'latest_reply_by' => 'balasan terbaru oleh :user',
         'new_topic' => 'Post topik baru',

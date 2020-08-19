@@ -57,12 +57,12 @@ return [
         'options' => [
             '_' => 'kirimkan notifikasi melalui',
             'beatmapset:modding' => 'modding beatmap',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => 'pesan pribadi',
+            'comment_new' => 'komentar baru',
             'forum_topic_reply' => 'balasan pada topik',
             'mail' => 'email',
             'push' => 'web',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => 'medali terbuka',
         ],
     ],
 

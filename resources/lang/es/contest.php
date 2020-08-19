@@ -29,8 +29,8 @@ return [
     ],
     'entry' => [
         '_' => 'participación',
-        'login_required' => 'Por favor, inicia sesión para entrar al concurso.',
-        'silenced_or_restricted' => 'No puedes entrar a concursos mientras estas restringido o silenciado.',
+        'login_required' => 'Inicie sesión para participar en el concurso.',
+        'silenced_or_restricted' => 'No puede participar en los concursos mientras esté restringido o silenciado.',
         'preparation' => 'Estamos preparando este concurso actualmente. Por favor, ¡Espera pacientemente!',
         'over' => '¡Gracias por su participación! Los envíos se han cerrado para este concurso y la votación se abrirá pronto.',
         'limit_reached' => 'Has alcanzado el límite de entradas para este concurso',

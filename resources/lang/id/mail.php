@@ -84,9 +84,9 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
-        'settings' => '',
-        'subject' => '',
+        'new' => 'Kami ingin memberi tahu Anda bahwa saat ini terdapat perkembangan baru pada topik-topik yang telah Anda ikuti sebelumnya.',
+        'settings' => 'Ubah preferensi penerimaan notifikasi:',
+        'subject' => 'Notifikasi baru terkait osu!',
     ],
 
     'user_password_updated' => [

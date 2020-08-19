@@ -122,7 +122,7 @@ return [
     'supporter_tag' => [
         'gift' => 'an jemanden verschenken',
         'require_login' => [
-            '_' => 'Du musst :link sein, um ein osu!supporter Tag zu erhalten!',
+            '_' => 'Du musst :link sein, um ein osu!supporter-Tag zu erhalten!',
             'link_text' => 'eingeloggt',
         ],
     ],

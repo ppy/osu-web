@@ -96,7 +96,7 @@ return [
             'country' => 'länder',
             'index' => 'performance',
             'kudosu' => 'kudosu',
-            'multiplayer' => '',
+            'multiplayer' => 'mehrspieler',
             'score' => 'punkte',
         ],
         'store' => [
@@ -159,16 +159,16 @@ return [
             'description' => '',
         ],
         '500' => [
-            'error' => 'Oh nein! Irgendwas ist schief gelaufen! ;_;',
+            'error' => 'Oh nein! Irgendwas ist schiefgelaufen! ;_;',
             'description' => "Wir werden automatisch über jeden Fehler benachrichtigt.",
         ],
         'fatal' => [
-            'error' => 'Oh nein! Irgendwas ist extrem schief gelaufen! ;_;',
+            'error' => 'Oh nein! Irgendwas ist extrem schiefgelaufen! ;_;',
             'description' => "Wir werden automatisch über jeden Fehler benachrichtigt.",
         ],
         '503' => [
             'error' => 'Wegen Wartung nicht erreichbar!',
-            'description' => "Wartungen können von 5 Sekunden bis zu 10 Minuten dauern. Sollten wir länger nicht erreichbar sein, schau bei :link für mehr Informationen.",
+            'description' => "Wartungen dauern in der Regel zwischen 5 Sekunden und 10 Minuten. Sollten wir länger nicht erreichbar sein, schau bei :link für mehr Informationen.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',

@@ -136,35 +136,35 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '',
-            'beatmapset_discussion_lock' => '',
-            'beatmapset_discussion_unlock' => '',
-            'beatmapset_problem' => '',
-            'beatmapset_state' => '',
-            'comment' => '',
+            'beatmapset_discussion' => '谱面“:title”的讨论有新的更新',
+            'beatmapset_discussion_lock' => '谱面“:title”的讨论已被锁定',
+            'beatmapset_discussion_unlock' => '谱面“:title”的讨论已被解锁',
+            'beatmapset_problem' => '谱面“:title”有新的反馈',
+            'beatmapset_state' => '谱面”:title“的状态已被改变',
+            'comment' => ' 谱面”:title“有新的讨论',
         ],
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => '您收到了来自 :username 的新消息',
             ],
         ],
 
         'build' => [
-            'comment' => '',
+            'comment' => '更新日志”:title“有新评论',
         ],
 
         'news_post' => [
-            'comment' => '',
+            'comment' => '新闻”:title“有的新评论',
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '',
+            'forum_topic_reply' => '主题”:title“有新的回复',
         ],
 
         'user_achievement' => [
-            'user_achievement_unlock' => '',
-            'user_achievement_unlock_self' => '',
+            'user_achievement_unlock' => ':username 解锁了成就“:title”！',
+            'user_achievement_unlock_self' => '您已解锁成就“:title”！',
         ],
     ],
 ];

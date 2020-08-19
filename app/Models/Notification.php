@@ -78,9 +78,9 @@ class Notification extends Model
         return $categories[$category] ?? [$category];
     }
 
-    public static function nameToCategory($name)
+    public function getCategoryAttribute()
     {
-        return static::NAME_TO_CATEGORY[$name] ?? $name;
+        return static::NAME_TO_CATEGORY[$this->name] ?? $this->name;
     }
 
     public function notifiable()
