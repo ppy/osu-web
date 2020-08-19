@@ -107,8 +107,12 @@
     <script src="/vendor/js/moment-locales/{{ $momentLocale }}.js" data-turbolinks-track="reload"></script>
 @endif
 
+{{--
+    we're explicitly avoiding NoCaptcha::renderJs here in order to use recaptcha.net instead of google.com (as the latter is blocked in mainland china)
+    see: https://developers.google.com/recaptcha/docs/faq#can-i-use-recaptcha-globally
+--}}
 @if (config('captcha.sitekey') !== '' && config('captcha.secret') !== '')
-    <script src="https://www.recaptcha.net/recaptcha/api.js?render=explicit&onload=renderCaptcha" async defer></script>
+    <script src="https://www.recaptcha.net/recaptcha/api.js?render=explicit&onload=renderCaptcha&hl={{Lang::getLocale()}}" async defer></script>
     <script>
         function renderCaptcha() {
             if (document.getElementsByClassName('g-recaptcha').length > 0 && typeof(grecaptcha) === 'object' && typeof(grecaptcha.render) === 'function') {
