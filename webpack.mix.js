@@ -85,6 +85,17 @@ let webpackConfig = {
         test: /\.(js|coffee)$/,
       },
       {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+        include: [path.resolve(__dirname, 'resources/assets/lib')],
+        options: {
+          appendTsSuffixTo: [
+            /\.vue$/
+          ]
+        }
+      },
+      {
         // loader for preexisting global coffeescript
         exclude: [
           path.resolve(__dirname, 'resources/assets/coffee/react'),
@@ -133,7 +144,7 @@ let webpackConfig = {
       'ziggy': path.resolve(__dirname, 'resources/assets/js/ziggy.js'),
       'ziggy-route': path.resolve(__dirname, 'vendor/tightenco/ziggy/dist/js/route.js'),
     },
-    extensions: ['*', '.js', '.coffee', '.ts'],
+    extensions: ['*', '.js', '.coffee', '.ts', '.tsx'],
     modules: [
       path.resolve(__dirname, 'resources/assets/coffee'),
       path.resolve(__dirname, 'resources/assets/lib'),
@@ -193,8 +204,25 @@ const coffeeReactComponents = [
   'contest-voting',
 ];
 
+const tsReactComponents = [
+  'account-edit',
+  'beatmaps',
+  'chat',
+  'friends-index',
+  'groups-show',
+  'news-index',
+  'news-show',
+  'notifications-index',
+  'scores-show',
+  'store-bootstrap',
+];
+
 for (const name of coffeeReactComponents) {
   entry[`js/react/${name}`] = [path.resolve(__dirname, `resources/assets/coffee/react/${name}.coffee`)];
+}
+
+for (const name of tsReactComponents) {
+  entry[`js/react/${name}`] = [path.resolve(__dirname, `resources/assets/lib/${name}.ts`)];
 }
 
 webpackConfig.entry = entry;
@@ -205,16 +233,6 @@ mix
 .js([
   'resources/assets/app.js',
 ], 'js/app.js')
-.ts('resources/assets/lib/account-edit.ts', 'js/react/account-edit.js')
-.js('resources/assets/lib/beatmaps.ts', 'js/react/beatmaps.js')
-.ts('resources/assets/lib/chat.ts', 'js/react/chat.js')
-.ts('resources/assets/lib/friends-index.ts', 'js/react/friends-index.js')
-.ts('resources/assets/lib/groups-show.ts', 'js/react/groups-show.js')
-.ts('resources/assets/lib/news-index.ts', 'js/react/news-index.js')
-.ts('resources/assets/lib/news-show.ts', 'js/react/news-show.js')
-.ts('resources/assets/lib/notifications-index.ts', 'js/react/notifications-index.js')
-.ts('resources/assets/lib/scores-show.ts', 'js/react/scores-show.js')
-.ts('resources/assets/lib/store-bootstrap.ts', 'js/store-bootstrap.js')
 .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/vendor/fonts/font-awesome')
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
 .copy('node_modules/moment/locale', 'public/vendor/js/moment-locales')
