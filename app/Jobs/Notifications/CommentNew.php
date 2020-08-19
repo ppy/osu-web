@@ -10,6 +10,7 @@ use App\Models\Comment;
 use App\Models\Follow;
 use App\Models\Notification;
 use App\Models\User;
+use App\Models\UserNotificationOption;
 
 class CommentNew extends BroadcastNotificationBase
 {
@@ -30,26 +31,45 @@ class CommentNew extends BroadcastNotificationBase
         $this->comment = $comment;
 
         if ($this->comment->commentable === null) {
-            throw new InvalidNotificationException("comment_new: comment #{$this->comment->getKey()} missing commentable");
+            throw new InvalidNotificationException("{$this->name}: comment #{$this->comment->getKey()} missing commentable");
         }
     }
 
     public function getDetails(): array
     {
-        return [
+        $details = [
             'comment_id' => $this->comment->getKey(),
             'title' => $this->comment->commentable->commentableTitle(),
             'content' => truncate($this->comment->message, static::CONTENT_TRUNCATE),
             'cover_url' => $this->comment->commentable->notificationCover(),
         ];
+
+        if ($this->comment->parent !== null) {
+            $details['reply_to'] = [
+                'user_id' => $this->comment->parent->user_id,
+            ];
+        }
+
+        return $details;
     }
 
     public function getListeningUserIds(): array
     {
-        return Follow::whereNotifiable($this->comment->commentable)
+        $userIds = Follow::whereNotifiable($this->comment->commentable)
             ->where(['subtype' => 'comment'])
-            ->pluck('user_id')
-            ->all();
+            ->pluck('user_id');
+
+        if ($this->comment->parent !== null) {
+            // also notify parent if option is enabled.
+            $user = $this->comment->parent->user;
+            $notificationOption = $user->notificationOptions()->where('name', Notification::COMMENT_NEW)->first();
+
+            if ($notificationOption->details[UserNotificationOption::COMMENT_REPLY] ?? false) {
+                $userIds->push($user->getKey());
+            }
+        }
+
+        return $userIds->all();
     }
 
     public function getNotifiable()

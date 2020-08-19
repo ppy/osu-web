@@ -66,6 +66,8 @@ return [
 
                 'comment_new' => ':username commented ":content" on ":title"',
                 'comment_new_compact' => ':username commented ":content"',
+                'comment_reply' => ':username replied ":content" on ":title"',
+                'comment_reply_compact' => ':username replied ":content"',
             ],
         ],
 
@@ -90,6 +92,8 @@ return [
 
                 'comment_new' => ':username commented ":content" on ":title"',
                 'comment_new_compact' => ':username commented ":content"',
+                'comment_reply' => ':username replied ":content" on ":title"',
+                'comment_reply_compact' => ':username replied ":content"',
             ],
         ],
 
@@ -101,6 +105,8 @@ return [
 
                 'comment_new' => ':username commented ":content" on ":title"',
                 'comment_new_compact' => ':username commented ":content"',
+                'comment_reply' => ':username replied ":content" on ":title"',
+                'comment_reply_compact' => ':username replied ":content"',
             ],
         ],
 
