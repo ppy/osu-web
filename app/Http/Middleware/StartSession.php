@@ -9,12 +9,20 @@ use Illuminate\Session\Middleware\StartSession as BaseStartSession;
 
 class StartSession extends BaseStartSession
 {
-    protected function sessionConfigured()
+    protected function saveSession($request)
     {
-        if (request()->attributes->get('skip_session')) {
-            return false;
+        if ($this->shouldSaveSession()) {
+            return parent::saveSession($request);
         }
+    }
 
-        return parent::sessionConfigured();
+    protected function sessionIsPersistent(array $config = null)
+    {
+        return $this->shouldSaveSession() && parent::sessionIsPersistent($config);
+    }
+
+    private function shouldSaveSession()
+    {
+        return !request()->attributes->get('skip_session');
     }
 }
