@@ -7,6 +7,7 @@ const mix = require('laravel-mix');
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SentryPlugin = require('webpack-sentry-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -146,6 +147,25 @@ let webpackConfig = {
         test: /\.coffee$/,
         use: ['coffee-loader'],
       },
+      {
+        test: /\.less$/,
+          use: [
+              MiniCssExtractPlugin.loader,
+              // { loader: 'style-loader' },
+              { loader: 'css-loader', options: { url: true, sourceMap: true, importLoaders: 1 } },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: true,
+                  ident: 'postcss0', // TODO: do we need this?
+                  plugins: [
+                    require('autoprefixer')
+                  ],
+                },
+              },
+              { loader: 'less-loader', options: { sourceMap: true } },
+          ],
+      },
     ],
   },
   optimization: {
@@ -168,6 +188,10 @@ let webpackConfig = {
       'process.env.PAYMENT_SANDBOX': JSON.stringify(paymentSandbox),
       'process.env.SHOPIFY_DOMAIN': JSON.stringify(process.env.SHOPIFY_DOMAIN),
       'process.env.SHOPIFY_STOREFRONT_TOKEN': JSON.stringify(process.env.SHOPIFY_STOREFRONT_TOKEN),
+    }),
+    new MiniCssExtractPlugin({
+      filename: '/css/app.css',
+      chunkFilename: '/css/app.css',
     }),
   ],
   resolve: {
@@ -219,7 +243,7 @@ if (process.env.SENTRY_RELEASE === '1') {
 const entry = {
   '/js/app': [
     './resources/assets/app.js',
-    './resources/assets/less/app.less', // why?
+    './resources/assets/less/app.less',
   ],
 };
 
@@ -269,7 +293,6 @@ mix
 .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/vendor/fonts/font-awesome')
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
 .copy('node_modules/moment/locale', 'public/vendor/js/moment-locales')
-.less('resources/assets/less/app.less', 'public/css')
 .scripts([
   'resources/assets/js/ga.js',
   'resources/assets/build/lang.js',
