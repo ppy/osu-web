@@ -1085,6 +1085,11 @@ body {
 .content h1 {
   font-size: 25px;
 }
+.content h4,
+.content h5,
+.content h6 {
+  font-size: 12px;
+}
 .content blockquote {
   padding: 0;
 }
