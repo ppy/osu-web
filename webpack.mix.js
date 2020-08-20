@@ -15,8 +15,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SentryPlugin = require('webpack-sentry-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const { exit } = require('process');
-
 
 const inProduction = process.env.NODE_ENV === 'production' || process.argv.includes('-p');
 
