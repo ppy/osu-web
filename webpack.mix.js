@@ -16,9 +16,12 @@ const TerserPlugin = require('terser-webpack-plugin');
 // .js doesn't support globbing by itself, so we need to glob
 // and spread the values in.
 const glob = require('glob');
+
+const inProduction = process.env.NODE_ENV === 'production' || process.argv.includes('-p');
+
 let min = '';
 let reactMin = 'development';
-if (mix.inProduction()) {
+if (inProduction) {
   min = '.min';
   reactMin = 'production.min';
 }
@@ -219,7 +222,7 @@ let webpackConfig = {
   },
 };
 
-if (mix.inProduction()) {
+if (inProduction) {
   webpackConfig.optimization.minimizer = [
     new TerserPlugin({
       sourceMap: true,
@@ -317,6 +320,6 @@ for (const locale of locales) {
   mix.scripts([locale], `public/js/locales/${path.basename(locale)}`);
 }
 
-if (mix.inProduction()) {
+if (inProduction) {
   mix.version();
 }
