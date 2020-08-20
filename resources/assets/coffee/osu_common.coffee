@@ -14,6 +14,12 @@
     (body.scrollHeight - body.scrollTop) - body.clientHeight
 
 
+  captchaEnabled: () ->
+    document.getElementsByClassName('g-recaptcha').length > 0 &&
+      typeof(grecaptcha) == 'object' &&
+      typeof(grecaptcha.render) == 'function'
+
+
   classWithModifiers: (className, modifiers) ->
     ret = className
 
@@ -238,6 +244,10 @@
     window.reloadUrl = null
 
     osu.navigate url, keepScroll, action: 'replace'
+
+
+  resetCaptcha: ->
+    grecaptcha.reset() if osu.captchaEnabled()
 
 
   urlPresence: (url) ->

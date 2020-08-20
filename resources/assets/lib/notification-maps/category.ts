@@ -37,6 +37,7 @@ export const nameToCategory: CategoryMap = {
   beatmapset_reset_nominations: 'beatmapset_state',
   channel_message: 'channel',
   comment_new: 'comment',
+  comment_reply: 'comment',
   forum_topic_reply: 'forum_topic_reply',
   legacy_pm: 'legacy_pm',
   user_achievement_unlock: 'user_achievement_unlock',
