@@ -202,7 +202,6 @@ const webpackConfig = {
         test: /\.tsx?$/,
         loader: 'ts-loader',
         exclude: /node_modules/,
-        include: [path.resolve(__dirname, 'resources/assets/lib')],
         options: {
           appendTsSuffixTo: [
             /\.vue$/
