@@ -3,7 +3,6 @@
 
 'use strict';
 
-const mix = require('laravel-mix');
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
