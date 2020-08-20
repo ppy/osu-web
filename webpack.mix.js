@@ -71,6 +71,11 @@ vendor.forEach(function(script) {
   }
 });
 
+const locales = glob.sync('resources/assets/build/locales/*.js');
+if (locales.length === 0) {
+  throw new Error('missing locale files.');
+}
+
 const filesToConcat = {
   // FIXME: less dumb name; this needs to be separated -
   // compiling coffee and then concating together doesn't
@@ -221,6 +226,7 @@ let webpackConfig = {
     }),
     new CopyPlugin({
       patterns: [
+        { from: 'resources/assets/build/locales', to: 'js/locales' },
         { from: 'node_modules/@fortawesome/fontawesome-free/webfonts', to: 'vendor/fonts/font-awesome' },
         { from: 'node_modules/photoswipe/dist/default-skin', to: 'vendor/_photoswipe-default-skin' },
         { from: 'node_modules/moment/locale', to: 'vendor/js/moment-locales' },
@@ -321,17 +327,7 @@ for (const name of tsReactComponents) {
 webpackConfig.entry = entry;
 
 mix
-.webpackConfig(webpackConfig)
-
-// include locales in manifest
-const locales = glob.sync('resources/assets/build/locales/*.js');
-if (locales.length === 0) {
-  throw new Error('missing locale files.');
-}
-
-for (const locale of locales) {
-  mix.scripts([locale], `public/js/locales/${path.basename(locale)}`);
-}
+.webpackConfig(webpackConfig);
 
 if (inProduction) {
   mix.version();
