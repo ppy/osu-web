@@ -15,6 +15,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SentryPlugin = require('webpack-sentry-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const { exit } = require('process');
 
 
 const inProduction = process.env.NODE_ENV === 'production' || process.argv.includes('-p');
@@ -34,36 +35,36 @@ const paymentSandbox = !(process.env.PAYMENT_SANDBOX === '0'
 const nodeRoot = path.resolve(__dirname, 'node_modules');
 
 const vendor = [
-  path.join(nodeRoot, 'clipboard-polyfill/build/clipboard-polyfill.js'),
-  path.join(nodeRoot, `url-polyfill/url-polyfill${min}.js`),
-  path.join(nodeRoot, 'turbolinks/dist/turbolinks.js'),
-  path.join(nodeRoot, `jquery/dist/jquery${min}.js`),
-  path.join(nodeRoot, 'jquery-ujs/src/rails.js'),
-  path.join(nodeRoot, `qtip2/dist/jquery.qtip${min}.js`),
-  path.join(nodeRoot, 'jquery.scrollto/jquery.scrollTo.js'),
-  path.join(nodeRoot, 'jquery-ui/ui/data.js'),
-  path.join(nodeRoot, 'jquery-ui/ui/scroll-parent.js'),
-  path.join(nodeRoot, 'jquery-ui/ui/widget.js'),
-  path.join(nodeRoot, 'jquery-ui/ui/widgets/mouse.js'),
-  path.join(nodeRoot, 'jquery-ui/ui/widgets/slider.js'),
-  path.join(nodeRoot, 'jquery-ui/ui/widgets/sortable.js'),
-  path.join(nodeRoot, 'jquery-ui/ui/keycode.js'),
-  path.join(nodeRoot, 'timeago/jquery.timeago.js'),
-  path.join(nodeRoot, 'blueimp-file-upload/js/jquery.fileupload.js'),
-  path.join(nodeRoot, 'bootstrap/dist/js/bootstrap.js'),
-  path.join(nodeRoot, 'lodash/lodash.js'),
-  path.join(nodeRoot, 'layzr.js/dist/layzr.js'),
-  path.join(nodeRoot, `react/umd/react.${reactMin}.js`),
-  path.join(nodeRoot, 'react-dom-factories/index.js'),
-  path.join(nodeRoot, `react-dom/umd/react-dom.${reactMin}.js`),
-  path.join(nodeRoot, `prop-types/prop-types${min}.js`),
-  path.join(nodeRoot, 'photoswipe/dist/photoswipe.js'),
-  path.join(nodeRoot, 'photoswipe/dist/photoswipe-ui-default.js'),
-  path.join(nodeRoot, `d3/dist/d3${min}.js`),
-  path.join(nodeRoot, 'moment/moment.js'),
-  path.join(nodeRoot, 'js-cookie/src/js.cookie.js'),
-  path.join(nodeRoot, `imagesloaded/imagesloaded.pkgd${min}.js`),
-];
+  'clipboard-polyfill/build/clipboard-polyfill.js',
+  `url-polyfill/url-polyfill${min}.js`,
+  'turbolinks/dist/turbolinks.js',
+  `jquery/dist/jquery${min}.js`,
+  'jquery-ujs/src/rails.js',
+  `qtip2/dist/jquery.qtip${min}.js`,
+  'jquery.scrollto/jquery.scrollTo.js',
+  'jquery-ui/ui/data.js',
+  'jquery-ui/ui/scroll-parent.js',
+  'jquery-ui/ui/widget.js',
+  'jquery-ui/ui/widgets/mouse.js',
+  'jquery-ui/ui/widgets/slider.js',
+  'jquery-ui/ui/widgets/sortable.js',
+  'jquery-ui/ui/keycode.js',
+  'timeago/jquery.timeago.js',
+  'blueimp-file-upload/js/jquery.fileupload.js',
+  'bootstrap/dist/js/bootstrap.js',
+  'lodash/lodash.js',
+  'layzr.js/dist/layzr.js',
+  `react/umd/react.${reactMin}.js`,
+  'react-dom-factories/index.js',
+  `react-dom/umd/react-dom.${reactMin}.js`,
+  `prop-types/prop-types${min}.js`,
+  'photoswipe/dist/photoswipe.js',
+  'photoswipe/dist/photoswipe-ui-default.js',
+  `d3/dist/d3${min}.js`,
+  'moment/moment.js',
+  'js-cookie/src/js.cookie.js',
+  `imagesloaded/imagesloaded.pkgd${min}.js`,
+].map((name) => path.join(nodeRoot, name));
 
 vendor.forEach(function(script) {
   if (!fs.existsSync(script)) {
