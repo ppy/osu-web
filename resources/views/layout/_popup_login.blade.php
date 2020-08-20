@@ -2,14 +2,11 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@php
-    $captchaEnabled = config('captcha.sitekey') !== '' && config('captcha.secret') !== '';
-@endphp
 <div class="{{ class_with_modifiers('login-box', $modifiers ?? []) }}">
     <div
         class="
             login-box__content
-            {{ $captchaEnabled ? 'login-box__content--captcha' : '' }}
+            {{ captcha_enabled() ? 'login-box__content--captcha' : '' }}
             js-click-menu
             js-nav2--centered-popup
             js-nav2--login-box
@@ -45,7 +42,7 @@
                 />
             </div>
 
-            @if ($captchaEnabled)
+            @if (captcha_enabled())
                 <div class="login-box__row">
                     <div class='js-recaptcha-container'></div>
                 </div>
