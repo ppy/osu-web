@@ -96,8 +96,54 @@ for (const key in filesToConcat) {
   concatenate.sync(filesToConcat[key], out);
 }
 
-let webpackConfig = {
+const entry = {
+  '/js/app': [
+    './resources/assets/app.js',
+    './resources/assets/less/app.less',
+  ],
+};
+
+const coffeeReactComponents = [
+  'artist-page',
+  'beatmap-discussions',
+  'beatmap-discussions-history',
+  'beatmapset-page',
+  'changelog-build',
+  'changelog-index',
+  'comments-index',
+  'comments-show',
+  'mp-history',
+  'modding-profile',
+  'profile-page',
+  'admin/contest',
+  'contest-entry',
+  'contest-voting',
+];
+
+const tsReactComponents = [
+  'account-edit',
+  'beatmaps',
+  'chat',
+  'friends-index',
+  'groups-show',
+  'news-index',
+  'news-show',
+  'notifications-index',
+  'scores-show',
+  'store-bootstrap',
+];
+
+for (const name of coffeeReactComponents) {
+  entry[`js/react/${name}`] = [path.resolve(__dirname, `resources/assets/coffee/react/${name}.coffee`)];
+}
+
+for (const name of tsReactComponents) {
+  entry[`js/react/${name}`] = [path.resolve(__dirname, `resources/assets/lib/${name}.ts`)];
+}
+
+const webpackConfig = {
   devtool: 'source-map',
+  entry: entry,
   externals: {
     'd3': 'd3',
     'lodash': '_',
@@ -275,53 +321,6 @@ if (process.env.SENTRY_RELEASE === '1') {
     }),
   );
 }
-
-const entry = {
-  '/js/app': [
-    './resources/assets/app.js',
-    './resources/assets/less/app.less',
-  ],
-};
-
-const coffeeReactComponents = [
-  'artist-page',
-  'beatmap-discussions',
-  'beatmap-discussions-history',
-  'beatmapset-page',
-  'changelog-build',
-  'changelog-index',
-  'comments-index',
-  'comments-show',
-  'mp-history',
-  'modding-profile',
-  'profile-page',
-  'admin/contest',
-  'contest-entry',
-  'contest-voting',
-];
-
-const tsReactComponents = [
-  'account-edit',
-  'beatmaps',
-  'chat',
-  'friends-index',
-  'groups-show',
-  'news-index',
-  'news-show',
-  'notifications-index',
-  'scores-show',
-  'store-bootstrap',
-];
-
-for (const name of coffeeReactComponents) {
-  entry[`js/react/${name}`] = [path.resolve(__dirname, `resources/assets/coffee/react/${name}.coffee`)];
-}
-
-for (const name of tsReactComponents) {
-  entry[`js/react/${name}`] = [path.resolve(__dirname, `resources/assets/lib/${name}.ts`)];
-}
-
-webpackConfig.entry = entry;
 
 mix
 .webpackConfig(webpackConfig);
