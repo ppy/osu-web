@@ -8,21 +8,14 @@
  */
 
 const path = require('path');
-const currentPath = path.resolve(__dirname);
-const mixPath = path.resolve(currentPath, 'node_modules/laravel-mix');
 const { spawnSync } = require('child_process');
 const Watchpack = require('watchpack');
 const spawnOptions = { stdio: 'inherit' };
 
-require(path.resolve(mixPath, 'src/index'));
-
-Mix.paths.setRootPath(currentPath);
-
-let ComponentFactory = require(path.resolve(mixPath, 'src/components/ComponentFactory'));
-new ComponentFactory().installAll();
-
 const routesFile = path.resolve(__dirname, 'routes/web.php');
 const langDir = path.resolve(__dirname, 'resources/lang');
+
+const webpackConfig = require('./webpack.mix.js');
 
 let resolved = false;
 
@@ -46,15 +39,6 @@ const watches = [
     type: 'dir',
   },
 ];
-
-function buildConfig() {
-  require(Mix.paths.mix());
-  Mix.dispatch('init', Mix);
-  const WebpackConfig = require(path.resolve(mixPath, 'src/builder/WebpackConfig'));
-
-  return new WebpackConfig().build();
-}
-
 function configPromise(env, argv) {
   return new Promise((resolve) => {
     const options = {
@@ -69,7 +53,7 @@ function configPromise(env, argv) {
         watched.callback();
       });
 
-      return resolve(buildConfig());
+      return resolve(webpackConfig);
     }
 
     const wp = new Watchpack(options);
@@ -96,7 +80,7 @@ function configPromise(env, argv) {
       // let webpack run after the first build.
       if (!resolved && watches.reduce((value, watched) => value && watched.ranOnce, true)) {
         resolved = true;
-        resolve(buildConfig());
+        resolve(webpackConfig);
       }
     });
   });

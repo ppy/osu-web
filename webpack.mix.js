@@ -368,9 +368,4 @@ if (process.env.SENTRY_RELEASE === '1') {
   );
 }
 
-mix
-.webpackConfig(webpackConfig);
-
-if (inProduction) {
-  mix.version();
-}
+module.exports = webpackConfig;
