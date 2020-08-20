@@ -28,7 +28,7 @@ const paymentSandbox = !(process.env.PAYMENT_SANDBOX === '0'
                          || !process.env.PAYMENT_SANDBOX);
 
 // relative from root?
-const nodeRoot = 'node_modules';
+const nodeRoot = path.resolve(__dirname, 'node_modules');
 
 const vendor = [
   path.join(nodeRoot, 'clipboard-polyfill/build/clipboard-polyfill.js'),
