@@ -15,6 +15,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SentryPlugin = require('webpack-sentry-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
+
 
 const inProduction = process.env.NODE_ENV === 'production' || process.argv.includes('-p');
 
@@ -144,6 +146,8 @@ const webpackConfig = {
   devtool: 'source-map',
   entry: entry,
   output: {
+    chunkFilename: '[name].[chunkhash:8].js',
+    filename: '[name].[contenthash:8].js',
     path: path.resolve(__dirname, 'public'),
   },
   externals: {
@@ -310,8 +314,8 @@ const webpackConfig = {
       'process.env.SHOPIFY_STOREFRONT_TOKEN': JSON.stringify(process.env.SHOPIFY_STOREFRONT_TOKEN),
     }),
     new MiniCssExtractPlugin({
-      filename: '/css/app.css',
-      chunkFilename: '/css/app.css',
+      filename: '/css/app.[hash:8].css',
+      chunkFilename: '/css/app.[hash:8].css',
     }),
     new CopyPlugin({
       patterns: [
@@ -320,6 +324,9 @@ const webpackConfig = {
         { from: 'node_modules/photoswipe/dist/default-skin', to: 'vendor/_photoswipe-default-skin' },
         { from: 'node_modules/moment/locale', to: 'vendor/js/moment-locales' },
       ],
+    }),
+    new ManifestPlugin({
+      fileName: 'mix-manifest.json'
     }),
   ],
   resolve: {

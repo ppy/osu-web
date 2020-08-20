@@ -94,6 +94,7 @@
     "ts-loader": "6.0.4",
     "tslint": "^5.12.0",
     "tslint-react": "^4.0.0",
-    "vue-template-compiler": "^2.5.21"
+    "vue-template-compiler": "^2.5.21",
+    "webpack-manifest-plugin": "^2.2.0"
   }
 }
