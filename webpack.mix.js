@@ -6,7 +6,6 @@
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
-const concatenate = require('concatenate');
 
 const Autoprefixer = require('autoprefixer');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -75,24 +74,32 @@ if (!fs.readdirSync('resources/assets/build/locales').some((file) => file.endsWi
   throw new Error('missing locale files.');
 }
 
-const filesToConcat = {
-  // FIXME: less dumb name; this needs to be separated -
-  // compiling coffee and then concating together doesn't
-  // work so well when versioning is used with webpack.
-  'app-deps': [
-    'resources/assets/js/ga.js',
-    'resources/assets/build/lang.js',
-    'resources/assets/js/bootstrap-lang.js',
-  ],
-  vendor: vendor,
-};
+// TODO: move to own file
+class ConcatPlugin {
+  constructor(options = {}) {
+    this.sources = options.sources;
+    this.options = options.options || {};
+  }
 
-// TODO: move to plugin for webpack
-fs.mkdirSync('public/js', {recursive: true});
-for (const key in filesToConcat) {
-  const out = path.resolve(__dirname, `public/js/${key}.js`);
-  console.log(`Writing concatenate output to: ${out}`);
-  concatenate.sync(filesToConcat[key], out);
+  apply(compiler) {
+    const { RawSource } = require('webpack-sources');
+    const concatenate = require('concatenate');
+
+    const plugin = { name: 'ConcatPlugin' };
+
+    compiler.hooks.thisCompilation.tap(plugin, (compilation) => {
+      const logger = compilation.getLogger('concat-webpack-plugin');
+      compilation.hooks.additionalAssets.tapAsync('concat-webpack-plugin', async (callback) => {
+        this.sources.map((source) => {
+          const output = path.resolve(compiler.options.output.path, source.output);
+          const raw = concatenate.sync(source.input, output)
+          compilation.assets[source.output] = new RawSource(raw);
+        });
+
+        callback();
+      });
+    });
+  }
 }
 
 const entry = {
@@ -314,6 +321,21 @@ const webpackConfig = {
     new MiniCssExtractPlugin({
       filename: '/css/app.[hash:8].css',
       chunkFilename: '/css/app.[hash:8].css',
+    }),
+    new ConcatPlugin({
+      sources: [
+        {
+          input: [
+            'resources/assets/js/ga.js',
+            'resources/assets/build/lang.js',
+            'resources/assets/js/bootstrap-lang.js',
+          ],
+          output: 'js/app-deps.js',
+        },
+        {
+          input: vendor, output: 'js/vendor.js'
+        }
+      ]
     }),
     new CopyPlugin({
       patterns: [
