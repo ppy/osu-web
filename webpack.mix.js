@@ -71,6 +71,27 @@ vendor.forEach(function(script) {
   }
 });
 
+const filesToConcat = {
+  // FIXME: less dumb name; this needs to be separated -
+  // compiling coffee and then concating together doesn't
+  // work so well when versioning is used with webpack.
+  'app-deps': [
+    'resources/assets/js/ga.js',
+    'resources/assets/build/lang.js',
+    'resources/assets/js/bootstrap-lang.js',
+  ],
+  vendor: vendor,
+};
+
+// TODO: move to plugin for webpack
+fs.mkdirSync('public/js', {recursive: true});
+const concatenate = require('concatenate');
+for (const key in filesToConcat) {
+  const out = path.resolve(__dirname, `public/js/${key}.js`);
+  console.log(`Writing concatenate output to: ${out}`);
+  concatenate.sync(filesToConcat[key], out);
+}
+
 let webpackConfig = {
   devtool: 'source-map',
   externals: {
@@ -301,14 +322,6 @@ webpackConfig.entry = entry;
 
 mix
 .webpackConfig(webpackConfig)
-.scripts([
-  'resources/assets/js/ga.js',
-  'resources/assets/build/lang.js',
-  'resources/assets/js/bootstrap-lang.js',
-], 'public/js/app-deps.js') // FIXME: less dumb name; this needs to be separated -
-                            // compiling coffee and then concating together doesn't
-                            // work so well when versioning is used with webpack.
-.scripts(vendor, 'public/js/vendor.js');
 
 // include locales in manifest
 const locales = glob.sync('resources/assets/build/locales/*.js');
