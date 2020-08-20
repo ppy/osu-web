@@ -140,8 +140,12 @@ for (const name of tsReactComponents) {
 }
 
 const webpackConfig = {
+  mode: inProduction ? 'production' : 'development',
   devtool: 'source-map',
   entry: entry,
+  output: {
+    path: path.resolve(__dirname, 'public'),
+  },
   externals: {
     'd3': 'd3',
     'lodash': '_',
@@ -160,7 +164,7 @@ const webpackConfig = {
         test: /\.(js|coffee)$/,
       },
       {
-        test: /\\.jsx?$/,
+        test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
         use: [
           {
@@ -168,7 +172,7 @@ const webpackConfig = {
             options: {
               presets: [
                 [
-                  'node_modules/@babel/preset-env/lib/index.js',
+                  '@babel/preset-env',
                   {
                     modules: false,
                     forceAllTransforms: true
@@ -176,10 +180,10 @@ const webpackConfig = {
                 ]
               ],
               plugins: [
-                'node_modules/@babel/plugin-syntax-dynamic-import/lib/index.js',
-                'node_modules/@babel/plugin-proposal-object-rest-spread/lib/index.js',
+                '@babel/plugin-syntax-dynamic-import',
+                '@babel/plugin-proposal-object-rest-spread',
                 [
-                  'node_modules/@babel/plugin-transform-runtime/lib/index.js',
+                  '@babel/plugin-transform-runtime',
                   {
                     helpers: false
                   }
