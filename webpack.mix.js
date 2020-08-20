@@ -7,15 +7,15 @@ const mix = require('laravel-mix');
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
+const concatenate = require('concatenate');
+
+const Autoprefixer = require('autoprefixer');
 const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SentryPlugin = require('webpack-sentry-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
-// .js doesn't support globbing by itself, so we need to glob
-// and spread the values in.
-const glob = require('glob');
 
 const inProduction = process.env.NODE_ENV === 'production' || process.argv.includes('-p');
 
@@ -71,8 +71,7 @@ vendor.forEach(function(script) {
   }
 });
 
-const locales = glob.sync('resources/assets/build/locales/*.js');
-if (locales.length === 0) {
+if (!fs.readdirSync('resources/assets/build/locales').some((file) => file.endsWith('.js'))) {
   throw new Error('missing locale files.');
 }
 
@@ -90,7 +89,6 @@ const filesToConcat = {
 
 // TODO: move to plugin for webpack
 fs.mkdirSync('public/js', {recursive: true});
-const concatenate = require('concatenate');
 for (const key in filesToConcat) {
   const out = path.resolve(__dirname, `public/js/${key}.js`);
   console.log(`Writing concatenate output to: ${out}`);
@@ -189,9 +187,7 @@ let webpackConfig = {
                 options: {
                   sourceMap: true,
                   ident: 'postcss0', // TODO: do we need this?
-                  plugins: [
-                    require('autoprefixer')
-                  ],
+                  plugins: [Autoprefixer],
                 },
               },
               { loader: 'less-loader', options: { sourceMap: true } },
