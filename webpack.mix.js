@@ -238,13 +238,18 @@ const webpackConfig = {
         test: /\.less$/,
           use: [
               MiniCssExtractPlugin.loader,
-              // { loader: 'style-loader' },
-              { loader: 'css-loader', options: { url: true, sourceMap: true, importLoaders: 1 } },
+              {
+                loader: 'css-loader',
+                options: {
+                  url: (url) => !url.startsWith('/'),
+                  sourceMap: true,
+                  importLoaders: 1,
+                }
+              },
               {
                 loader: 'postcss-loader',
                 options: {
                   sourceMap: true,
-                  ident: 'postcss0', // TODO: do we need this?
                   plugins: [Autoprefixer],
                 },
               },
