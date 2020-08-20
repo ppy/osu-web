@@ -242,6 +242,50 @@ const webpackConfig = {
               { loader: 'less-loader', options: { sourceMap: true } },
           ],
       },
+      {
+        test: /(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/,
+        loaders: [{
+          loader: 'file-loader',
+          options: {
+            name: (path) => {
+              if (!/node_modules|bower_components/.test(path)) {
+                  return '/images/[name].[ext]?[hash]';
+              }
+
+              const cleanPath = path.replace(/\\/g, '/')
+                                    .replace(/((.*(node_modules|bower_components))|images|image|img|assets)\//g, '');
+
+              return `/images/vendor/${cleanPath}?[hash]`;
+            },
+          },
+        },
+        {
+          loader: 'img-loader',
+          options: {
+            enabled: true,
+            gifsicle: {},
+            mozjpeg: {},
+            optipng: {},
+            svgo: {},
+          },
+        }]
+      },
+      {
+        test: /(\.(woff2?|ttf|eot|otf)$|font.*\.svg$)/,
+        loader: 'file-loader',
+        options: {
+          name: (path) => {
+            if (!/node_modules|bower_components/.test(path)) {
+                return '/fonts/[name].[ext]?[hash]';
+            }
+
+            const cleanPath = path.replace(/\\/g, '/')
+                                  .replace(/((.*(node_modules|bower_components))|fonts|font|assets)\//g, '');
+
+            return `/fonts/vendor/${cleanPath}?[hash]`;
+          },
+        }
+      },
     ],
   },
   optimization: {
