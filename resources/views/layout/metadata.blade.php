@@ -112,15 +112,8 @@
     see: https://developers.google.com/recaptcha/docs/faq#can-i-use-recaptcha-globally
 --}}
 @if (config('captcha.sitekey') !== '' && config('captcha.secret') !== '')
-    <script src="https://www.recaptcha.net/recaptcha/api.js?render=explicit&onload=renderCaptcha&hl={{Lang::getLocale()}}" async defer></script>
-    <script>
-        function renderCaptcha() {
-            if (document.getElementsByClassName('g-recaptcha').length > 0 && typeof(grecaptcha) === 'object' && typeof(grecaptcha.render) === 'function') {
-                grecaptcha.render($('.g-recaptcha')[0], {'sitekey': '{{ config('captcha.sitekey') }}'});
-            }
-        }
-        $(document).on('turbolinks:load', renderCaptcha);
-    </script>
+    <script src="https://www.recaptcha.net/recaptcha/api.js?render=explicit&onload=initCaptcha&hl={{Lang::getLocale()}}" async defer></script>
+    <script>function initCaptcha() { captcha.init('{{config('captcha.sitekey')}}') }</script>
 @endif
 
 @if (isset($atom))
