@@ -140,11 +140,11 @@ const tsReactComponents = [
 ];
 
 for (const name of coffeeReactComponents) {
-  entry[`js/react/${name}`] = [path.resolve(__dirname, `resources/assets/coffee/react/${name}.coffee`)];
+  entry[`/js/react/${name}`] = [path.resolve(__dirname, `resources/assets/coffee/react/${name}.coffee`)];
 }
 
 for (const name of tsReactComponents) {
-  entry[`js/react/${name}`] = [path.resolve(__dirname, `resources/assets/lib/${name}.ts`)];
+  entry[`/js/react/${name}`] = [path.resolve(__dirname, `resources/assets/lib/${name}.ts`)];
 }
 
 const webpackConfig = {
