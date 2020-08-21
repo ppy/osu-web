@@ -5,6 +5,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { minify } = require('terser');
 const webpack = require('webpack');
 
 const Autoprefixer = require('autoprefixer');
@@ -40,8 +41,14 @@ class ConcatPlugin {
         const assets = this.patterns.map((pattern) => {
           const webpackTo = path.resolve(compiler.options.output.path, pattern.to);
 
+          let source = concatenate.sync(pattern.from);
+          if (inProduction) {
+            // TODO: source map
+            source = minify(source, { sourceMap: true }).code;
+          }
+
           return {
-            source: new RawSource(concatenate.sync(pattern.from)),
+            source: new RawSource(source),
             targetPath: pattern.to,
             webpackTo: webpackTo,
           };
