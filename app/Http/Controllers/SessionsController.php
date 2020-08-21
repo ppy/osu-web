@@ -50,7 +50,7 @@ class SessionsController extends Controller
             abort(422);
         }
 
-        if (captcha_enabled()) {
+        if (captcha_triggered()) {
             $token = presence($params['g-recaptcha-response'] ?? null);
             $validCaptcha = false;
 
@@ -96,6 +96,13 @@ class SessionsController extends Controller
                 'user' => Auth::user()->defaultJson(),
             ];
         } else {
+            if (captcha_triggered()) {
+                return response([
+                    'error' => $authError,
+                    'captcha_triggered' => true,
+                ], 403);
+            }
+
             return error_popup($authError, 403);
         }
     }

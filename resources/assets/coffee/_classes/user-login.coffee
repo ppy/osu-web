@@ -30,6 +30,7 @@ class @UserLogin
     e.preventDefault()
     e.stopPropagation()
     $('.js-login-form--error').text(osu.xhrErrorMessage(xhr))
+    captcha.trigger() if (xhr?.responseJSON?.captcha_triggered)
     captcha.reset()
 
 
@@ -47,7 +48,7 @@ class @UserLogin
       $('.js-user-login--menu')[0]?.click()
       $('.js-user-header').replaceWith data.header
       $('.js-user-header-popup').html data.header_popup
-      captcha.reset()
+      captcha.untrigger()
 
       osu.executeAction toClick
 
