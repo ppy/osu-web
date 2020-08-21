@@ -36,7 +36,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   bn = 'beatmap-discussion-review-post-embed-preview';
   cache: Cache = {};
-  tooltipContent = React.createRef<HTMLDivElement>();
+  tooltipContent = React.createRef<HTMLScriptElement>();
   tooltipEl?: HTMLElement;
 
   componentDidMount = () => {
@@ -219,13 +219,11 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
           onMouseOver={this.createTooltip}
           onTouchStart={this.createTooltip}
         >
-          <div
+          <script
+            type='text/html'
+            ref={this.tooltipContent}
             dangerouslySetInnerHTML={{
               __html: nearbyText,
-            }}
-            ref={this.tooltipContent}
-            style={{
-              display: 'none',
             }}
           />
           <i className='fas fa-exclamation-triangle' />
@@ -294,9 +292,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
                 </span>
               </div>
               {unsavedIndicator}
-              <DraftsContext.Consumer>
-                {(drafts) => (this.nearbyIndicator(drafts))}
-              </DraftsContext.Consumer>
+              <DraftsContext.Consumer>{this.nearbyIndicator}</DraftsContext.Consumer>
             </div>
             <div
               contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
@@ -306,9 +302,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
               <div className='beatmapset-discussion-message'>{this.props.children}</div>
             </div>
             {unsavedIndicator}
-              <DraftsContext.Consumer>
-                {(drafts) => (this.nearbyIndicator(drafts))}
-              </DraftsContext.Consumer>
+            <DraftsContext.Consumer>{this.nearbyIndicator}</DraftsContext.Consumer>
           </div>
         </div>
         {deleteButton}
