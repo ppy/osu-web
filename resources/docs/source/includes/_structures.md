@@ -1,10 +1,50 @@
 # Object Structures
 
+## Beatmap
+
+Represent a beatmap. This extends [BeatmapCompact](#beatmapcompact) with additional attributes.
+
+Field | Type | Description
+------|------|------------
+
+## BeatmapCompact
+
+Represent a beatmap.
+
+Field | Type | Description
+------|------|------------
+
 ## Beatmapset
+
+Represents a beatmapset. This extends [BeatmapsetCompact](#beatmapsetcompact) with additional attributes.
+
+Field | Type | Description
+------|------|------------
+
+
+## BeatmapsetCompact
 
 Represents a beatmapset.
 
-<aside class="notice">TODO: This &gt;.&gt;</aside>
+Field           | Type                 | Description
+----------------|----------------------|------------
+artist          | string               | |
+artist_unicode  | string               | |
+covers          | Cover                | |
+creator         | string               | |
+favourite_count | number               | |
+id              | number               | |
+play_count      | number               | |
+preview_url     | string               | |
+source          | string               | |
+status          | string               | |
+title           | string               | |
+title_unicode   | string               | |
+user_id         | number               | |
+video           | string               | |
+beatmaps        | [Beatmap?](#beatmap) | |
+has_favourited  | number?              | Not always included.
+
 
 ## Comment
 ```json
