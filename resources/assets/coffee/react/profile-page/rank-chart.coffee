@@ -37,9 +37,7 @@ export class RankChart extends React.Component
 
 
   render: =>
-    div
-      className: 'u-full-size'
-      ref: @rankChartArea
+    div ref: @rankChartArea
 
 
   rankChartUpdate: =>

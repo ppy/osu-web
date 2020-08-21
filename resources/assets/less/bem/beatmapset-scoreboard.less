@@ -2,59 +2,23 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-scoreboard {
-  @_top: beatmapset-scoreboard;
-
-  color: white;
-
-  &__mods-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
+  color: hsl(var(--hsl-c1));
 
   &__mods {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin: 20px auto 0;
+    max-width: 100%;
+    width: max-content;
 
     &--initial {
-      .@{_top}__mod-box {
-        opacity: 1;
-      }
+      --scoreboard-mod-opacity: 1;
 
-      &:hover .@{_top}__mod-box {
-        opacity: 0.5;
-      }
-
-      & .@{_top}__mod-box:hover {
-        opacity: 1;
+      &:hover {
+        --scoreboard-mod-opacity: 0.5;
       }
     }
-  }
-
-  &__mod-box {
-    display: flex;
-    align-items: center;
-
-    margin: 2px;
-
-    opacity: 0.5;
-
-    cursor: pointer;
-
-    &:hover {
-      opacity: 1;
-    }
-
-    &--enabled {
-      opacity: 1;
-    }
-  }
-
-  &__mod {
-    width: @mod-width-normal;
-    height: @mod-height-normal;
-    position: relative;
   }
 
   &__main {
