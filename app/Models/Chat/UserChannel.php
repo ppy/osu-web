@@ -163,7 +163,7 @@ class UserChannel extends Model
 
                 // hide if target is restricted or blocked unless blocked user is a moderator.
                 if (!$targetUser
-                    || $user->hasBlocked($targetUser) && !$targetUser->isModerator()) {
+                    || $user->hasBlocked($targetUser) && !($targetUser->isModerator() || $targetUser->isAdmin())) {
                     return [];
                 }
 
