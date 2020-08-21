@@ -8,7 +8,6 @@ import * as React from 'react';
 import { Node as SlateNode, Path, Transforms } from 'slate';
 import { RenderElementProps } from 'slate-react';
 import { ReactEditor } from 'slate-react';
-import { DraftsContext } from './drafts-context';
 import EditorBeatmapSelector from './editor-beatmap-selector';
 import EditorIssueTypeSelector from './editor-issue-type-selector';
 import { SlateContext } from './slate-context';
@@ -27,6 +26,7 @@ interface Props extends RenderElementProps {
   currentBeatmap: BeatmapJsonExtended;
   discussionId?: number;
   discussions: Record<number, BeatmapDiscussion>;
+  draftEmbeds: SlateNode[];
   editMode?: boolean;
   readOnly?: boolean;
 }
@@ -162,8 +162,9 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     return this.cache.nearbyDiscussions?.discussions;
   }
 
-  nearbyDraftEmbeds = (drafts: SlateNode[]) => {
+  nearbyDraftEmbeds = () => {
     const timestamp = this.timestamp();
+    const drafts = this.props.draftEmbeds;
     if (timestamp == null || !drafts || drafts.length === 0) {
       return;
     }
@@ -182,13 +183,13 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     });
   }
 
-  nearbyIndicator = (drafts: SlateNode[]) => {
+  nearbyIndicator = () => {
     if (this.timestamp() == null || this.discussionType() === 'praise') {
       return;
     }
 
     const nearbyDiscussions = this.editable() ? this.nearbyDiscussions() : [];
-    const nearbyUnsaved = this.nearbyDraftEmbeds(drafts) || [];
+    const nearbyUnsaved = this.nearbyDraftEmbeds() || [];
 
     if (nearbyDiscussions.length > 0 || nearbyUnsaved.length > 1) {
       const timestamps =
@@ -294,7 +295,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
                 </span>
               </div>
               {unsavedIndicator}
-              <DraftsContext.Consumer>{this.nearbyIndicator}</DraftsContext.Consumer>
+              {this.nearbyIndicator()}
             </div>
             <div
               contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
@@ -304,7 +305,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
               <div className='beatmapset-discussion-message'>{this.props.children}</div>
             </div>
             {unsavedIndicator}
-            <DraftsContext.Consumer>{this.nearbyIndicator}</DraftsContext.Consumer>
+            {this.nearbyIndicator()}
           </div>
         </div>
         {deleteButton}

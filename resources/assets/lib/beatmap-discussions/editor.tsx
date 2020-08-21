@@ -300,15 +300,22 @@ export default class Editor extends React.Component<Props, State> {
     switch (props.element.type) {
       case 'embed':
         el = (
-          <EditorDiscussionComponent
-            beatmapset={this.props.beatmapset}
-            currentBeatmap={this.props.currentBeatmap}
-            discussions={this.props.discussions}
-            editMode={this.props.editMode}
-            beatmaps={this.sortedBeatmaps()}
-            readOnly={this.state.posting}
-            {...props}
-          />
+          <DraftsContext.Consumer>
+            {
+              (drafts) => {
+                return <EditorDiscussionComponent
+                  beatmapset={this.props.beatmapset}
+                  currentBeatmap={this.props.currentBeatmap}
+                  discussions={this.props.discussions}
+                  draftEmbeds={drafts}
+                  editMode={this.props.editMode}
+                  beatmaps={this.sortedBeatmaps()}
+                  readOnly={this.state.posting}
+                  {...props}
+                />;
+              }
+            }
+          </DraftsContext.Consumer>
         );
         break;
 
