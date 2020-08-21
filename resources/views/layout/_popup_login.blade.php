@@ -44,7 +44,7 @@
 
             @if (captcha_enabled())
                 <div class="login-box__row">
-                    <div class='js-recaptcha-container'></div>
+                    <div class='js-captcha--container'></div>
                 </div>
             @endif
 
@@ -59,7 +59,7 @@
             <div class="login-box__row login-box__row--actions">
                 <div class="login-box__action">
                     <button
-                        class="btn-osu-big btn-osu-big--nav-popup js-login-form-submit"
+                        class="btn-osu-big btn-osu-big--nav-popup js-captcha--submit-button"
                         data-disable-with="{{ trans('users.login.button_posting') }}"
                     >
                         <div class="btn-osu-big__content">

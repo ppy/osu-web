@@ -8,6 +8,8 @@ export default class Captcha {
     $(document).on('turbolinks:load', this.render);
   }
 
+  container = () => document.querySelector<HTMLDivElement>('.js-captcha--container');
+
   disableSubmit = () => {
     const targetButton = this.submitButton();
     if (targetButton) {
@@ -28,7 +30,7 @@ export default class Captcha {
   }
 
   isEnabled = () => {
-    return this.renderContainer() &&
+    return this.container() &&
       typeof(grecaptcha) === 'object' &&
       typeof(grecaptcha.render) === 'function' &&
       this.sitekey !== '';
@@ -36,7 +38,7 @@ export default class Captcha {
 
   render = () => {
     if (this.isEnabled()) {
-      grecaptcha.render(this.renderContainer(), {
+      grecaptcha.render(this.container()!, {
         'callback': this.enableSubmit,
         'error-callback': this.disableSubmit,
         'expired-callback': this.disableSubmit,
@@ -48,13 +50,11 @@ export default class Captcha {
     }
   }
 
-  renderContainer = () => document.getElementsByClassName('js-recaptcha-container')[0] as HTMLDivElement;
-
   reset = () => {
     if (this.isEnabled()) {
       grecaptcha.reset();
     }
   }
 
-  submitButton = () => document.getElementsByClassName('js-login-form-submit')[0] as HTMLButtonElement;
+  submitButton = () => document.querySelector<HTMLButtonElement>('.js-captcha--submit-button');
 }
