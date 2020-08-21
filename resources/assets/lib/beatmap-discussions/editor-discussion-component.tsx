@@ -146,7 +146,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   nearbyDiscussions = () => {
     const timestamp = this.timestamp();
-    if (!timestamp) {
+    if (timestamp == null) {
       return [];
     }
 
@@ -164,7 +164,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   nearbyDraftEmbeds = (drafts: SlateNode[]) => {
     const timestamp = this.timestamp();
-    if (!timestamp || !drafts || drafts.length === 0) {
+    if (timestamp == null || !drafts || drafts.length === 0) {
       return;
     }
 
@@ -174,7 +174,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
       }
 
       const ts = BeatmapDiscussionHelper.parseTimestamp(embed.timestamp);
-      if (!ts) {
+      if (ts == null) {
         return false;
       }
 
@@ -183,7 +183,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   }
 
   nearbyIndicator = (drafts: SlateNode[]) => {
-    if (!this.timestamp() || this.discussionType() === 'praise') {
+    if (this.timestamp() == null || this.discussionType() === 'praise') {
       return;
     }
 
@@ -194,7 +194,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
       const timestamps =
         nearbyDiscussions.map((discussion) => {
           const timestamp = BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp);
-          if (!timestamp) {
+          if (timestamp == null) {
             return;
           }
           return osu.link(BeatmapDiscussionHelper.url({discussion}),
