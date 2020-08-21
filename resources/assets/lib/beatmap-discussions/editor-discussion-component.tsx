@@ -84,8 +84,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     this.destroyTooltip();
   }
 
-  createTooltip = (event: (React.MouseEvent | React.TouchEvent)) => {
-    const target = event.currentTarget as HTMLElement;
+  createTooltip = (event: (React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>)) => {
+    const target = event.currentTarget;
     const tooltipId = `${this.selectedBeatmap()}-${this.timestamp()}`;
 
     // if the tooltipId hasn't changed, we don't need to re-render the tooltip
