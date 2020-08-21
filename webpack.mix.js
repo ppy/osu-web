@@ -350,10 +350,10 @@ const webpackConfig = {
             'resources/assets/build/lang.js',
             'resources/assets/js/bootstrap-lang.js',
           ],
-          output: 'js/app-deps.js',
+          output: '/js/app-deps.js',
         },
         {
-          input: vendor, output: 'js/vendor.js'
+          input: vendor, output: '/js/vendor.js'
         }
       ]
     }),
