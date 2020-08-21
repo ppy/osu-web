@@ -11,6 +11,7 @@ use App\Models\OAuth\Client;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Testing\Fakes\MailFake;
 use Laravel\Passport\Token;
 use League\OAuth2\Server\ResourceServer;
 use Mockery;
@@ -134,6 +135,15 @@ class TestCase extends BaseTestCase
         $this->actAsUser($user, true);
 
         return $this;
+    }
+
+    protected function clearMailFake()
+    {
+        $mailer = app('mailer');
+        if ($mailer instanceof MailFake) {
+            $this->invokeSetProperty($mailer, 'mailables', []);
+            $this->invokeSetProperty($mailer, 'queuedMailables', []);
+        }
     }
 
     protected function createUserWithGroup($groupIdentifier, array $attributes = []): ?User

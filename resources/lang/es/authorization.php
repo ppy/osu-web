@@ -6,8 +6,8 @@
 return [
     'require_login' => 'Por favor, inicia sesión para continuar.',
     'require_verification' => 'Por favor verifica para proceder.',
-    'restricted' => "No puedes hacer eso mientras estés restringido.",
-    'silenced' => "No puedes hacer eso mientras estés silenciado.",
+    'restricted' => "No puede hacer eso mientras esté restringido.",
+    'silenced' => "No puede hacer eso mientras esté silenciado.",
     'unauthorized' => 'Acceso denegado.',
 
     'beatmap_discussion' => [
@@ -67,7 +67,7 @@ return [
         'friends_only' => 'Este usuario está bloqueando los mensajes de personas que no están en su lista de amigos.',
         'moderated' => 'Ese canal está actualmente siendo moderado.',
         'no_access' => 'No tienes acceso a ese canal.',
-        'restricted' => 'No puedes enviar mensajes mientras estés silenciado, restringido o baneado.',
+        'restricted' => 'No puede enviar mensajes mientras esté silenciado, restringido o baneado.',
     ],
 
     'comment' => [
@@ -116,8 +116,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Por favor, inicia sesión para responder.',
-                    'restricted' => "No puedes responder mientras estés restringido.",
-                    'silenced' => "No puedes responder mientras estés silenciado.",
+                    'restricted' => "No puede responder mientras esté restringido.",
+                    'silenced' => "No puede responder mientras esté silenciado.",
                 ],
             ],
 
@@ -135,8 +135,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Por favor, Inicia sesión para votar.',
-                    'restricted' => "No puedes votar mientras estés restringido.",
-                    'silenced' => "No puedes votar mientras estés silenciado.",
+                    'restricted' => "No puede votar mientras esté restringido.",
+                    'silenced' => "No puede votar mientras esté silenciado.",
                 ],
             ],
 

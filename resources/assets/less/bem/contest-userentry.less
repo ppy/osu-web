@@ -2,12 +2,46 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .contest-userentry {
+  @_top: contest-userentry;
+
+  position: relative;
   height: 150px;
   background: @osu-colour-b4;
   margin: 10px;
   width: calc(50% - 20px);
   .default-box-shadow();
   transition: 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+  &--disabled {
+    display: none;
+  }
+
+  &--dragndrop-active {
+    background-color: @osu-colour-b3;
+  }
+
+  &--new {
+    &:hover, .@{_top}--dragndrop-hover& {
+      background-color: @osu-colour-b3;
+      transform: scale(1.01);
+    }
+
+    &:active {
+      transform: scale(0.99);
+    }
+  }
+
+  &--ok {
+    border-bottom: hsl(var(--hsl-green-3)) 5px solid;
+  }
+
+  &__delete {
+    .reset-input();
+    color: hsl(var(--hsl-c1));
+    position: absolute;
+    right: 0;
+    padding: 5px 10px;
+  }
 
   &__fileicon {
     font-size: 32px;
@@ -31,34 +65,15 @@
     font-size: 16px;
   }
 
-  &--ok {
-    border-bottom: #A4CA01 5px solid;
-  }
-
-  &--disabled {
-    display: none;
-  }
-
-
-  &--dragndrop-active {
-    background-color: @osu-colour-b3;
-  }
-
-  &--new:hover, &--dragndrop-hover {
-    background-color: @osu-colour-b3;
-    transform: scale(1.01);
-  }
-
-  &--new:active {
-    transform: scale(0.99);
-  }
-
-  &--uploader {
+  &__uploader {
     margin: 0;
     width: 100%;
+    height: 100%;
     align-items: center;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    overflow: hidden;
+    position: relative;
   }
 }

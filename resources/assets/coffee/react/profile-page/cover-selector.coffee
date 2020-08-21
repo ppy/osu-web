@@ -5,11 +5,15 @@ import { CoverSelection } from './cover-selection'
 import { CoverUploader } from './cover-uploader'
 import * as React from 'react'
 import { div, p } from 'react-dom-factories'
+import { classWithModifiers } from 'utils/css'
 el = React.createElement
 
 export class CoverSelector extends React.PureComponent
   constructor: (props) ->
     super props
+
+    @dropzoneRef = React.createRef()
+    @uploaderRef = React.createRef()
 
     @state =
       dropOverlayState: 'inactive'
@@ -18,10 +22,12 @@ export class CoverSelector extends React.PureComponent
 
   componentDidMount: =>
     @_removeListeners()
+    @uploaderRef.current.setup()
     $.subscribe 'dragenterGlobal.profilePageCoverSelector', @_dropOverlayStart
     $.subscribe 'dragendGlobal.profilePageCoverSelector', @_dropOverlayEnd
 
   componentWillUnmount: =>
+    @uploaderRef.current.destroy()
     @_removeListeners()
 
   _dropOverlayEnter: =>
@@ -47,7 +53,9 @@ export class CoverSelector extends React.PureComponent
   render: =>
     dropOverlayClass = 'profile-cover-change-popup__drop-overlay'
 
-    div className: 'profile-cover-change-popup js-profile-cover-upload--dropzone',
+    div
+      className: 'profile-cover-change-popup'
+      ref: @dropzoneRef
       div className: 'profile-cover-change-popup__defaults',
         for i in [1..8]
           i = i.toString()
@@ -61,10 +69,14 @@ export class CoverSelector extends React.PureComponent
               thumbUrl: "/images/headers/profile-covers/c#{i}t.jpg"
         p className: 'profile-cover-change-popup__selections-info',
           osu.trans 'users.show.edit.cover.defaults_info'
-      el CoverUploader, cover: @props.cover, canUpload: @props.canUpload
+      el CoverUploader,
+        cover: @props.cover,
+        canUpload: @props.canUpload
+        dropzoneRef: @dropzoneRef
+        ref: @uploaderRef
       if @props.canUpload
         div
-          className: "#{dropOverlayClass} #{dropOverlayClass}--#{@state.dropOverlayState}"
+          className: classWithModifiers('profile-cover-change-popup__drop-overlay', [@state.dropOverlayState])
           'data-visibility': @state.dropOverlayVisibility
           onDragEnter: @_dropOverlayEnter
           onDragLeave: @_dropOverlayLeave

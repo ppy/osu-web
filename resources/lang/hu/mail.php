@@ -85,8 +85,8 @@ return [
 
     'user_notification_digest' => [
         'new' => '',
-        'settings' => '',
-        'subject' => '',
+        'settings' => 'Értesítési preferenciák megváltoztatása:',
+        'subject' => 'Új osu! értesítések',
     ],
 
     'user_password_updated' => [

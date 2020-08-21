@@ -64,6 +64,7 @@ return [
     ],
 
     'review' => [
+        'block_count' => '',
         'go_to_parent' => 'Ver publicación de revisión',
         'go_to_child' => 'Ver discusión',
         'validation' => [

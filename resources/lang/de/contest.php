@@ -41,7 +41,7 @@ return [
             'beatmap' => 'Nur .osu-Dateien werden in diesem Wettbewerb akzeptiert.',
             'music' => 'Nur .mp3-Dateien werden in diesem Wettbewerb akzeptiert.',
         ],
-        'too_big' => 'Einsendungen in diesem Wettbewerb können nur bis zu :limit. groß sein',
+        'too_big' => 'Einsendungen in diesem Wettbewerb können nur bis zu :limit groß sein.',
     ],
     'beatmaps' => [
         'download' => 'Einsendung herunterladen',
@@ -62,7 +62,7 @@ return [
     ],
     'states' => [
         'entry' => 'Einsendungen offen',
-        'voting' => 'Abstimmungen gestartet',
+        'voting' => 'Abstimmung gestartet',
         'results' => 'Ergebnisse bekanntgegeben',
     ],
 ];

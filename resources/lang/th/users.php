@@ -8,7 +8,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user's ประวัติการมอด",
-        'title_compact' => 'Modding',
+        'title_compact' => 'การวิจารณ์บีทแมพ',
 
         'discussions' => [
             'title_recent' => 'การสนทนาล่าสุด',
@@ -103,7 +103,7 @@ return [
     ],
 
     'anonymous' => [
-        'login_link' => 'คลิก! เพื่อลงชื่อเข้าใช้',
+        'login_link' => 'คลิกเพื่อลงชื่อเข้าใช้',
         'login_text' => 'ลงชื่อเข้าใช้',
         'username' => 'ผู้เยี่ยมชม',
         'error' => 'คุณจะต้องเข้าสู่ระบบเพื่อจะกระทำสิ่งนี้',
@@ -165,7 +165,7 @@ return [
 
                     'restriction_info' => [
                         '_' => 'อัพโหลดพร้อมแล้ว สำหรับ :link เท่านั้น',
-                        'link' => 'osu!ผู้สนับสนุน',
+                        'link' => 'ผู้สนับสนุน osu!',
                     ],
                 ],
             ],
@@ -400,7 +400,7 @@ return [
             'total_score' => 'คะแนนรวมทั้งหมด',
             // modding stats
             'ranked_and_approved_beatmapset_count' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
-            'loved_beatmapset_count' => 'เลิฟแมพ',
+            'loved_beatmapset_count' => 'บีทแมพที่ Loved',
             'unranked_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
             'graveyard_beatmapset_count' => 'สุสานบีทแมพ',
         ],

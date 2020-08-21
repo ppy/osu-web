@@ -32,13 +32,11 @@
       min-width: 0;
       display: flex;
       flex-direction: column;
+      position: relative;
     }
 
     &--meta {
-      // TODO: remove once default link style becomes... default
-      a {
-        .link-default();
-      }
+      position: relative;
 
       @media @desktop {
         width: 175px;
@@ -72,6 +70,7 @@
     min-height: 0;
     max-height: @max-height;
     flex: 1;
+    position: relative;
   }
 
   &__edit-button {

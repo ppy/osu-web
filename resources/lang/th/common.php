@@ -55,7 +55,7 @@ return [
         'show_more_options' => 'แสดงตัวเลือกเพิ่มเติม',
         'unpin' => 'ยกเลิกการปักหมุด',
         'update' => 'อัปเดต',
-        'upload_image' => 'อัพโหลดรูปภาพ',
+        'upload_image' => 'อัปโหลดรูปภาพ',
 
         'watch' => [
             'to_0' => 'เลิกติดตาม',
@@ -64,14 +64,14 @@ return [
     ],
 
     'count' => [
-        'badges' => ':count เหรียญ|:count เหรียญ',
-        'days' => ':count วัน|:count วัน',
+        'badges' => ':count_delimited เหรียญ|:count_delimited เหรียญ',
+        'days' => ':count_delimited วัน|:count_delimited วัน',
         'hour_short_unit' => 'ชั่วโมง|ชั่วโมง',
         'hours' => ':count ชั่วโมง|:count ชั่วโมง',
         'item' => ':count อัน|:count อัน',
         'minute_short_unit' => 'นาที|นาที',
         'minutes' => ':count_delimited นาที|:count_delimited นาที',
-        'months' => ':count เดือน|:count เดือน',
+        'months' => ':count_delimited เดือน|:count_delimited เดือน',
         'notifications' => ':count_delimited แต้ม|:count_delimited แต้มทั้งหมด',
         'plus_others' => 'อีก + :count_delimited อัน!|อีก + :count_delimited อัน!',
         'post' => ':count_delimited โพสต์|:count_delimited โพสต์',
@@ -79,7 +79,7 @@ return [
         'star_priority' => ':count_delimited ดาวความสำคัญ|:count_delimited ดาวความสำคัญ',
         'update' => ':count_delimited อัพเดต|:count_delimited อัพเดต',
         'view' => ':count_delimited วิว|:count_delimited วิว',
-        'years' => ':count ปี|:count ปี',
+        'years' => ':count_delimited ปี|:count_delimited ปี',
     ],
 
     'countdown' => [
@@ -107,7 +107,7 @@ return [
     ],
 
     'dropzone' => [
-        'target' => 'วางที่นี่เพื่ออัพโหลด',
+        'target' => 'วางที่นี่เพื่ออัปโหลด',
     ],
 
     'input' => [
@@ -129,23 +129,23 @@ return [
     ],
 
     'scoreboard_time' => [
-        'd' => '',
-        'dd' => '',
-        'h' => '',
-        'hh' => '',
-        'M' => '',
-        'm' => '',
-        'MM' => '',
-        'mm' => '',
+        'd' => '%d วัน',
+        'dd' => '%d วัน',
+        'h' => '%d ชั่วโมง',
+        'hh' => '%d ชั่วโมง',
+        'M' => '%d เดือน',
+        'm' => '%d นาที',
+        'MM' => '%d เดือน',
+        'mm' => '%d นาที',
         'past' => '',
-        's' => '',
-        'y' => '',
-        'yy' => '',
+        's' => '%d วินาที',
+        'y' => '%d ปี',
+        'yy' => '%d ปี',
     ],
 
     'time' => [
-        'days_ago' => ':count วันที่แล้ว|:count วันที่แล้ว',
-        'hours_ago' => ':count ชั่วโมงที่แล้ว|:count ชั่วโมงที่แล้ว',
+        'days_ago' => ':count_delimited วันที่แล้ว|:count_delimited วันที่แล้ว',
+        'hours_ago' => ':count_delimited ชั่วโมงที่แล้ว|:count_delimited ชั่วโมงที่แล้ว',
         'now' => 'ขณะนี้',
         'remaining' => 'เวลาที่เหลือ',
     ],

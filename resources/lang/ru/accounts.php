@@ -57,12 +57,12 @@ return [
         'options' => [
             '_' => 'способы доставки',
             'beatmapset:modding' => 'моддинг карт',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => 'личные сообщения',
+            'comment_new' => 'новые комментарии',
             'forum_topic_reply' => 'ответы на тему',
             'mail' => 'почта',
             'push' => 'рush',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => 'открытие медали',
         ],
     ],
 

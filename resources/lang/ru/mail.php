@@ -84,9 +84,9 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
-        'settings' => '',
-        'subject' => '',
+        'new' => 'Просто даем знать, что на темы, которые вы подписаны, есть новые овтеты.',
+        'settings' => 'Измените настройки email уведомлений:',
+        'subject' => 'Новые уведомления osu!',
     ],
 
     'user_password_updated' => [

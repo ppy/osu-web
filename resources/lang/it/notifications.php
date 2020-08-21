@@ -136,35 +136,35 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '',
-            'beatmapset_discussion_lock' => '',
-            'beatmapset_discussion_unlock' => '',
-            'beatmapset_problem' => '',
-            'beatmapset_state' => '',
-            'comment' => '',
+            'beatmapset_discussion' => 'La discussione su ":title" ha nuovi aggiornamenti',
+            'beatmapset_discussion_lock' => 'La discussione su ":title" è stata bloccata',
+            'beatmapset_discussion_unlock' => 'La discussione su ":title" è stata sbloccata',
+            'beatmapset_problem' => 'Un nuovo problema è stato segnalato su ":title"',
+            'beatmapset_state' => 'Lo stato di ":title" è cambiato',
+            'comment' => 'La beatmap ":title" ha nuovi commenti',
         ],
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => 'Hai ricevuto un nuovo messaggio da :username',
             ],
         ],
 
         'build' => [
-            'comment' => '',
+            'comment' => 'La nota di rilascio ":title" ha nuovi commenti',
         ],
 
         'news_post' => [
-            'comment' => '',
+            'comment' => 'La notizia ":title" ha nuovi commenti',
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '',
+            'forum_topic_reply' => 'Ci sono nuove risposte in ":title"',
         ],
 
         'user_achievement' => [
-            'user_achievement_unlock' => '',
-            'user_achievement_unlock_self' => '',
+            'user_achievement_unlock' => ':username ha sbloccato una nuova medaglia, ":title"!',
+            'user_achievement_unlock_self' => 'Hai sbloccato una nuova medaglia, ":title"!',
         ],
     ],
 ];

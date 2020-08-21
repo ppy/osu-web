@@ -29,6 +29,6 @@ return [
 
     'logged_out' => 'Tu sesión ha expirado. Por favor, inicia sesión y vuelve a intentarlo.',
     'supporter_only' => 'Debes ser un osu!supporter para usar esta característica.',
-    'no_restricted_access' => 'No puedes realizar esta acción mientras tu cuenta esté en estado restringido.',
+    'no_restricted_access' => 'No puede realizar esta acción mientras su cuenta esté en un estado restringido.',
     'unknown' => 'Se produjo un error desconocido.',
 ];

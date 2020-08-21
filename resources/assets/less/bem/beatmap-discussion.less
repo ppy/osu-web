@@ -60,6 +60,8 @@
     display: flex;
 
     &--with-line {
+      position: relative;
+
       &::before {
         .full-size();
         content: ' ';
@@ -81,6 +83,7 @@
     flex-direction: column;
     background-color: @osu-colour-b4;
     overflow: hidden;
+    position: relative;
 
     .@{_top}--highlighted & {
       .thicker-box-shadow();

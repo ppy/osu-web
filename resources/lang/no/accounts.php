@@ -50,19 +50,19 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'motta varsler for nye problemer på kvalifiserte beatmaps av følgende moduser',
-        'beatmapset_disqualify' => '',
+        'beatmapset_disqualify' => 'få varsler når beatmaperav de følgende moduser er diskvalifisert',
         'title' => 'Varsler',
         'topic_auto_subscribe' => 'aktiver automatiske varslinger på nye forum emner som du lager',
 
         'options' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'channel_message' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mail' => '',
-            'push' => '',
-            'user_achievement_unlock' => '',
+            '_' => 'leveringsalternativer',
+            'beatmapset:modding' => 'beatmap modding',
+            'channel_message' => 'private meldinger',
+            'comment_new' => 'nye kommentar',
+            'forum_topic_reply' => 'emne svar',
+            'mail' => 'e-post',
+            'push' => 'trykk',
+            'user_achievement_unlock' => 'brukerens medalje ulåst',
         ],
     ],
 
@@ -82,7 +82,7 @@ return [
             'direct' => 'åpne i osu!direct',
         ],
 
-        'beatmapset_title_show_original' => '',
+        'beatmapset_title_show_original' => 'vis beatmap metadata på originalspråket',
     ],
 
     'playstyles' => [

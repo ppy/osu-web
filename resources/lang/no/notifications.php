@@ -32,8 +32,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nytt innlegg ved ":title" av :username',
                 'beatmapset_discussion_post_new_compact' => 'Nytt innlegg av :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nytt innlegg av :username',
-                'beatmapset_discussion_review_new' => '',
-                'beatmapset_discussion_review_new_compact' => '',
+                'beatmapset_discussion_review_new' => 'Ny anmeldelse på ":title" av :username som inneholder problemer: :problems, forslag: :suggestions, ros: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Ny anmeldelse av :username som inneholder problemer: :problems, forslag: :suggestions, ros: :praises',
                 'beatmapset_discussion_unlock' => 'Beatmappen ":title" har blitt låst opp for diskusjon.',
                 'beatmapset_discussion_unlock_compact' => 'Diskusjon var ulåst',
             ],
@@ -137,35 +137,35 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '',
-            'beatmapset_discussion_lock' => '',
-            'beatmapset_discussion_unlock' => '',
-            'beatmapset_problem' => '',
-            'beatmapset_state' => '',
-            'comment' => '',
+            'beatmapset_discussion' => 'Diskusjonen om ":title" har nye oppdateringer',
+            'beatmapset_discussion_lock' => 'Diskusjonen om ":title" har blitt låst',
+            'beatmapset_discussion_unlock' => 'Diskusjonen om ":title" har blitt låst',
+            'beatmapset_problem' => 'Et nytt problem rapportert var rapportert på ":title"',
+            'beatmapset_state' => 'Tilstanden til ":title" har endret seg',
+            'comment' => ' Beatmap ":title" har nye kommentarer',
         ],
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => 'Du fått en ny melding fra :username',
             ],
         ],
 
         'build' => [
-            'comment' => '',
+            'comment' => 'Endringslogg ":title" har nye kommentarer',
         ],
 
         'news_post' => [
-            'comment' => '',
+            'comment' => 'Nyheter ":title" har nye kommentarer',
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '',
+            'forum_topic_reply' => 'Det finnes nye svar i ":title"',
         ],
 
         'user_achievement' => [
-            'user_achievement_unlock' => '',
-            'user_achievement_unlock_self' => '',
+            'user_achievement_unlock' => ':username har låst opp en ny medalje, ":title"!',
+            'user_achievement_unlock_self' => 'Du har låst opp en ny medalje, ":title"!',
         ],
     ],
 ];
