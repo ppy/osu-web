@@ -67,7 +67,7 @@ class UserChannel extends Model
     public static function presenceForUser(User $user)
     {
         // retrieve all the channels the user is in and the metadata for each
-        $userChannels = static::userChannelsForUser($user)
+        $userChannels = static::forUser($user)
             ->whereHas('channel')
             ->with('channel')
             ->get();
@@ -181,7 +181,7 @@ class UserChannel extends Model
         return array_values(array_filter($collection));
     }
 
-    private static function userChannelsForUser(User $user)
+    private static function forUser(User $user)
     {
         return static::where('user_id', $user->getKey())->where('hidden', false);
     }
