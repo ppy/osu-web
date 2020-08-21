@@ -77,7 +77,7 @@ if (!fs.readdirSync('resources/assets/build/locales').some((file) => file.endsWi
 // TODO: move to own file
 class ConcatPlugin {
   constructor(options = {}) {
-    this.sources = options.sources;
+    this.patterns = options.patterns;
     this.options = options.options || {};
   }
 
@@ -90,10 +90,25 @@ class ConcatPlugin {
     compiler.hooks.thisCompilation.tap(plugin, (compilation) => {
       const logger = compilation.getLogger('concat-webpack-plugin');
       compilation.hooks.additionalAssets.tapAsync('concat-webpack-plugin', async (callback) => {
-        this.sources.map((source) => {
-          const output = path.resolve(compiler.options.output.path, source.output);
-          const raw = concatenate.sync(source.input, output)
-          compilation.assets[source.output] = new RawSource(raw);
+        const assets = this.patterns.map((pattern) => {
+          const webpackTo = path.resolve(compiler.options.output.path, pattern.output);
+
+          return {
+            source: new RawSource(concatenate.sync(pattern.input)),
+            targetPath: pattern.output,
+            webpackTo: webpackTo
+          };
+        });
+
+        assets.forEach((asset) => {
+          const {
+            targetPath,
+            source,
+            webpackTo
+          } = asset;
+
+          logger.log(`writing '${webpackTo}'`);
+          compilation.emitAsset(targetPath, source);
         });
 
         callback();
@@ -328,7 +343,7 @@ const webpackConfig = {
       chunkFilename: '/css/app.[hash:8].css',
     }),
     new ConcatPlugin({
-      sources: [
+      patterns: [
         {
           input: [
             'resources/assets/js/ga.js',
