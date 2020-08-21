@@ -48,9 +48,8 @@ export class Historical extends React.PureComponent
             className: 'title title--page-extra-small'
             osu.trans('users.show.extra.historical.monthly_playcounts.title')
 
-          div
-            className: 'page-extra__chart'
-            ref: @monthlyPlaycountsChartArea
+          div className: 'page-extra__chart',
+            div ref: @monthlyPlaycountsChartArea
 
 
       h3
@@ -111,9 +110,8 @@ export class Historical extends React.PureComponent
             className: 'title title--page-extra-small'
             osu.trans('users.show.extra.historical.replays_watched_counts.title')
 
-          div
-            className: 'page-extra__chart'
-            ref: @replaysWatchedCountsChartArea
+          div className: 'page-extra__chart',
+            div ref: @replaysWatchedCountsChartArea
 
 
   chartUpdate: (attribute, area) =>
