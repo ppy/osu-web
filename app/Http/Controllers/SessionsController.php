@@ -17,7 +17,7 @@ class SessionsController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['only' => [
-            'login',
+            'store',
         ]]);
 
         return parent::__construct();
