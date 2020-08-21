@@ -285,13 +285,6 @@ const webpackConfig = {
         },
         {
           loader: 'img-loader',
-          options: {
-            enabled: true,
-            gifsicle: {},
-            mozjpeg: {},
-            optipng: {},
-            svgo: {},
-          },
         }]
       },
       {
