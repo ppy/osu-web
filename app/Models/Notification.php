@@ -96,7 +96,7 @@ class Notification extends Model
     public function toIdentityJson()
     {
         return [
-            'category' => static::nameToCategory($this->name), // TODO: change to category after https://github.com/ppy/osu-web/pull/6439
+            'category' => $this->category,
             'id' => $this->getKey(),
             'object_id' => $this->notifiable_id,
             'object_type' => $this->notifiable_type,
