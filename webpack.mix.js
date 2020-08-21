@@ -15,7 +15,6 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 
-
 const inProduction = process.env.NODE_ENV === 'production' || process.argv.includes('-p');
 
 let min = '';
@@ -96,7 +95,7 @@ class ConcatPlugin {
           return {
             source: new RawSource(concatenate.sync(pattern.input)),
             targetPath: pattern.output,
-            webpackTo: webpackTo
+            webpackTo: webpackTo,
           };
         });
 
@@ -104,7 +103,7 @@ class ConcatPlugin {
           const {
             targetPath,
             source,
-            webpackTo
+            webpackTo,
           } = asset;
 
           logger.log(`writing '${webpackTo}'`);
@@ -200,9 +199,9 @@ const webpackConfig = {
                   '@babel/preset-env',
                   {
                     modules: false,
-                    forceAllTransforms: true
-                  }
-                ]
+                    forceAllTransforms: true,
+                  },
+                ],
               ],
               plugins: [
                 '@babel/plugin-syntax-dynamic-import',
@@ -210,14 +209,14 @@ const webpackConfig = {
                 [
                   '@babel/plugin-transform-runtime',
                   {
-                    helpers: false
-                  }
-                ]
+                    helpers: false,
+                  },
+                ],
               ],
-              cacheDirectory: true
-            }
-          }
-        ]
+              cacheDirectory: true,
+            },
+          },
+        ],
       },
       {
         test: /\.tsx?$/,
@@ -246,46 +245,49 @@ const webpackConfig = {
       },
       {
         test: /\.less$/,
-          use: [
-              MiniCssExtractPlugin.loader,
-              {
-                loader: 'css-loader',
-                options: {
-                  url: (url) => !url.startsWith('/'),
-                  sourceMap: true,
-                  importLoaders: 1,
-                }
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: true,
-                  plugins: [Autoprefixer],
-                },
-              },
-              { loader: 'less-loader', options: { sourceMap: true } },
-          ],
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              url: (url) => !url.startsWith('/'),
+              sourceMap: true,
+              importLoaders: 1,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              plugins: [Autoprefixer],
+            },
+          },
+          { loader: 'less-loader', options: { sourceMap: true } },
+        ],
       },
       {
         test: /(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/,
-        loaders: [{
-          loader: 'file-loader',
-          options: {
-            name: (path) => {
-              if (!/node_modules|bower_components/.test(path)) {
+        loaders: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: (path) => {
+                if (!/node_modules|bower_components/.test(path)) {
                   return '/images/[name].[ext]?[hash]';
-              }
+                }
 
-              const cleanPath = path.replace(/\\/g, '/')
-                                    .replace(/((.*(node_modules|bower_components))|images|image|img|assets)\//g, '');
+                const cleanPath = path
+                  .replace(/\\/g, '/')
+                  .replace(/((.*(node_modules|bower_components))|images|image|img|assets)\//g, '');
 
-              return `/images/vendor/${cleanPath}?[hash]`;
+                return `/images/vendor/${cleanPath}?[hash]`;
+              },
             },
           },
-        },
-        {
-          loader: 'img-loader',
-        }]
+          {
+            loader: 'img-loader',
+          }
+        ],
       },
       {
         test: /(\.(woff2?|ttf|eot|otf)$|font.*\.svg$)/,
@@ -293,15 +295,16 @@ const webpackConfig = {
         options: {
           name: (path) => {
             if (!/node_modules|bower_components/.test(path)) {
-                return '/fonts/[name].[ext]?[hash]';
+              return '/fonts/[name].[ext]?[hash]';
             }
 
-            const cleanPath = path.replace(/\\/g, '/')
-                                  .replace(/((.*(node_modules|bower_components))|fonts|font|assets)\//g, '');
+            const cleanPath = path
+              .replace(/\\/g, '/')
+              .replace(/((.*(node_modules|bower_components))|fonts|font|assets)\//g, '');
 
             return `/fonts/vendor/${cleanPath}?[hash]`;
           },
-        }
+        },
       },
     ],
   },
@@ -341,9 +344,9 @@ const webpackConfig = {
           output: '/js/app-deps.js',
         },
         {
-          input: vendor, output: '/js/vendor.js'
-        }
-      ]
+          input: vendor, output: '/js/vendor.js',
+        },
+      ],
     }),
     new CopyPlugin({
       patterns: [
@@ -354,7 +357,7 @@ const webpackConfig = {
       ],
     }),
     new ManifestPlugin({
-      fileName: 'mix-manifest.json'
+      fileName: 'mix-manifest.json',
     }),
   ],
   resolve: {
