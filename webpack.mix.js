@@ -162,14 +162,8 @@ for (const name of tsReactComponents) {
 }
 
 const webpackConfig = {
-  mode: inProduction ? 'production' : 'development',
   devtool: 'source-map',
   entry: entry,
-  output: {
-    chunkFilename: '[name].[chunkhash:8].js',
-    filename: '[name].[contenthash:8].js',
-    path: path.resolve(__dirname, 'public'),
-  },
   externals: {
     'd3': 'd3',
     'lodash': '_',
@@ -179,6 +173,7 @@ const webpackConfig = {
     'react-dom': 'ReactDOM',
     'react-dom-factories': 'ReactDOMFactories',
   },
+  mode: inProduction ? 'production' : 'development',
   module: {
     rules: [
       {
@@ -188,21 +183,13 @@ const webpackConfig = {
         test: /\.(js|coffee)$/,
       },
       {
-        test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
+        test: /\.jsx?$/,
         use: [
           {
             loader: 'babel-loader',
             options: {
-              presets: [
-                [
-                  '@babel/preset-env',
-                  {
-                    modules: false,
-                    forceAllTransforms: true,
-                  },
-                ],
-              ],
+              cacheDirectory: true,
               plugins: [
                 '@babel/plugin-syntax-dynamic-import',
                 '@babel/plugin-proposal-object-rest-spread',
@@ -213,15 +200,23 @@ const webpackConfig = {
                   },
                 ],
               ],
-              cacheDirectory: true,
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    forceAllTransforms: true,
+                    modules: false,
+                  },
+                ],
+              ],
             },
           },
         ],
       },
       {
-        test: /\.tsx?$/,
-        loader: 'ts-loader',
         exclude: /node_modules/,
+        loader: 'ts-loader',
+        test: /\.tsx?$/,
       },
       {
         // loader for preexisting global coffeescript
@@ -250,33 +245,32 @@ const webpackConfig = {
           {
             loader: 'css-loader',
             options: {
-              url: (url) => !url.startsWith('/'),
-              sourceMap: true,
               importLoaders: 1,
+              sourceMap: true,
+              url: (url) => !url.startsWith('/'),
             },
           },
           {
             loader: 'postcss-loader',
             options: {
-              sourceMap: true,
               plugins: [Autoprefixer],
+              sourceMap: true,
             },
           },
           { loader: 'less-loader', options: { sourceMap: true } },
         ],
       },
       {
-        test: /(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/,
         loaders: [
           {
             loader: 'file-loader',
             options: {
-              name: (path) => {
-                if (!/node_modules|bower_components/.test(path)) {
+              name: (filepath) => {
+                if (!/node_modules|bower_components/.test(filepath)) {
                   return '/images/[name].[ext]?[hash]';
                 }
 
-                const cleanPath = path
+                const cleanPath = filepath
                   .replace(/\\/g, '/')
                   .replace(/((.*(node_modules|bower_components))|images|image|img|assets)\//g, '');
 
@@ -286,25 +280,26 @@ const webpackConfig = {
           },
           {
             loader: 'img-loader',
-          }
+          },
         ],
+        test: /(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/,
       },
       {
-        test: /(\.(woff2?|ttf|eot|otf)$|font.*\.svg$)/,
         loader: 'file-loader',
         options: {
-          name: (path) => {
-            if (!/node_modules|bower_components/.test(path)) {
+          name: (filepath) => {
+            if (!/node_modules|bower_components/.test(filepath)) {
               return '/fonts/[name].[ext]?[hash]';
             }
 
-            const cleanPath = path
+            const cleanPath = filepath
               .replace(/\\/g, '/')
               .replace(/((.*(node_modules|bower_components))|fonts|font|assets)\//g, '');
 
             return `/fonts/vendor/${cleanPath}?[hash]`;
           },
         },
+        test: /(\.(woff2?|ttf|eot|otf)$|font.*\.svg$)/,
       },
     ],
   },
@@ -322,6 +317,11 @@ const webpackConfig = {
       },
     },
   },
+  output: {
+    chunkFilename: '[name].[chunkhash:8].js',
+    filename: '[name].[contenthash:8].js',
+    path: path.resolve(__dirname, 'public'),
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.DOCS_URL': JSON.stringify(process.env.DOCS_URL || 'https://docs.ppy.sh'),
@@ -330,8 +330,8 @@ const webpackConfig = {
       'process.env.SHOPIFY_STOREFRONT_TOKEN': JSON.stringify(process.env.SHOPIFY_STOREFRONT_TOKEN),
     }),
     new MiniCssExtractPlugin({
-      filename: '/css/app.[hash:8].css',
       chunkFilename: '/css/app.[hash:8].css',
+      filename: '/css/app.[hash:8].css',
     }),
     new ConcatPlugin({
       patterns: [
