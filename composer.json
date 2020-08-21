@@ -19,6 +19,7 @@
     }
   ],
   "require": {
+    "anhskohbo/no-captcha": "^3.2",
     "chaseconey/laravel-datadog-helper": ">=1.2.0",
     "doctrine/dbal": "*",
     "egulias/email-validator": "*",

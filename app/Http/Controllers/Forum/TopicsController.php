@@ -178,19 +178,17 @@ class TopicsController extends Controller
             return error_popup($e->getMessage());
         }
 
-        if ($post->post_id !== null) {
-            $posts = collect([$post]);
-            $firstPostPosition = $topic->postPosition($post->post_id);
+        $posts = collect([$post]);
+        $firstPostPosition = $topic->postPosition($post->post_id);
 
-            $post->markRead(Auth::user());
-            ForumUpdateNotifier::onReply([
-                'topic' => $topic,
-                'post' => $post,
-                'user' => Auth::user(),
-            ]);
+        $post->markRead(Auth::user());
+        ForumUpdateNotifier::onReply([
+            'topic' => $topic,
+            'post' => $post,
+            'user' => Auth::user(),
+        ]);
 
-            return ext_view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
-        }
+        return ext_view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
     }
 
     public function show($id)
@@ -296,7 +294,7 @@ class TopicsController extends Controller
         }
 
         $firstPostId = $topic->posts()
-            ->showDeleted($userCanModerate)
+            ->showDeleted($showDeleted)
             ->orderBy('post_id', 'asc')
             ->select('post_id')
             ->first()

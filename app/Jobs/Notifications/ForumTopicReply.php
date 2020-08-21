@@ -22,6 +22,22 @@ class ForumTopicReply extends BroadcastNotificationBase
         return route('forum.topics.show', ['start' => 'unread', 'topic' => $notification->notifiable_id]);
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public static function shouldSendMail(Notification $notification, $watches, $time): bool
+    {
+        $watch = $watches['topics'][$notification->notifiable_id] ?? null;
+        if ($watch === null) {
+            return false;
+        }
+
+        // make the model dirty so UserNotificationDigest job can batch update.
+        $watch->notify_status = true;
+
+        return true;
+    }
+
     public function __construct(Post $post, User $source)
     {
         parent::__construct($source);

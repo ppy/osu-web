@@ -47,6 +47,12 @@
       width: 300px;
       margin-top: 5px; // sync with Nav2#centerPopup
     }
+
+    &--captcha {
+      @media @desktop {
+        width: 342px; // so the captcha box (in dark mode) looks visually as wide as the input boxes
+      }
+    }
   }
 
   &__action {

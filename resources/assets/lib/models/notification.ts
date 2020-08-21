@@ -92,6 +92,10 @@ export default class Notification implements NotificationReadable {
       forEach(json.details, (value, key) => {
         this.details[camelCase(key)] = value;
       });
+
+      if (json.name === 'comment_new' && json.details.reply_to?.user_id === currentUser.id) {
+        this.name = 'comment_reply';
+      }
     }
 
     return this;
