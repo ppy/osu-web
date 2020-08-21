@@ -101,6 +101,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         text: () => this.tooltipContent.current?.innerHTML,
       },
       hide: {
+        delay: 200,
         fixed: true,
       },
       position: {
@@ -109,6 +110,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         viewport: $(window),
       },
       show: {
+        delay: 200,
         ready: true,
       },
       style: {
