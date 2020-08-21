@@ -14,6 +14,7 @@ const SentryPlugin = require('webpack-sentry-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const inProduction = process.env.NODE_ENV === 'production' || process.argv.includes('-p');
 const paymentSandbox = !(process.env.PAYMENT_SANDBOX === '0'
@@ -393,6 +394,9 @@ if (inProduction) {
       terserOptions: {
         safari10: true,
       },
+    }),
+    new CssMinimizerPlugin({
+      sourceMap: true,
     }),
   ];
 }

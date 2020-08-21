@@ -84,6 +84,7 @@
     "copy-webpack-plugin": "^6.0.3",
     "cross-env": "^5.2.0",
     "css-loader": "^4.2.1",
+    "css-minimizer-webpack-plugin": "^1.1.1",
     "deasync": "^0.1.15",
     "dotenv": "^6.2.0",
     "file-loader": "^6.0.0",
