@@ -12,7 +12,7 @@ class @StickyFooter
   constructor: ->
     @stickMarker = document.getElementsByClassName('js-sticky-footer')
     @permanentFixedFooter = document.getElementsByClassName('js-permanent-fixed-footer')
-    @throttledStickOrUnstick = _.throttle @stickOrUnstick, 20
+    @throttledStickOrUnstick = _.throttle @stickOrUnstick, 100
 
     $(window).on 'throttled-scroll throttled-resize', @throttledStickOrUnstick
     $.subscribe 'stickyFooter:check', @throttledStickOrUnstick

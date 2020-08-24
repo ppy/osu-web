@@ -19,7 +19,7 @@ class @Forum
     @_postsProgress = document.getElementsByClassName('js-forum__posts-progress')
     @posts = document.getElementsByClassName('js-forum-post')
     @loadMoreLinks = document.getElementsByClassName('js-forum-posts-show-more')
-    @throttledBoot = _.throttle @boot, 20
+    @throttledBoot = _.throttle @boot, 100
 
     @maxPosts = 250
 
