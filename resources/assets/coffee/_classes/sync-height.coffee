@@ -6,7 +6,8 @@ class @SyncHeight
     @targets = document.getElementsByClassName('js-sync-height--target')
     @references = document.getElementsByClassName('js-sync-height--reference')
 
-    $(document).on 'turbolinks:load osu:page:change', @sync
+    $(document).on 'turbolinks:load', @sync
+    $.subscribe 'osu:page:change', @sync
     $(window).on 'throttled-resize', @sync
 
     @observe()

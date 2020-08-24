@@ -15,7 +15,8 @@ class @StickyFooter
 
     $(window).on 'throttled-scroll throttled-resize', @stickOrUnstick
     $.subscribe 'stickyFooter:check', @stickOrUnstick
-    $(document).on 'turbolinks:load osu:page:change', @stickOrUnstick
+    $(document).on 'turbolinks:load', @stickOrUnstick
+    $.subscribe 'osu:page:change', @stickOrUnstick
 
 
   stickOrUnstick: =>

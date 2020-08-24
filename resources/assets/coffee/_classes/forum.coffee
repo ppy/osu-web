@@ -22,7 +22,8 @@ class @Forum
 
     @maxPosts = 250
 
-    $(document).on 'turbolinks:load osu:page:change', @boot
+    $(document).on 'turbolinks:load', @boot
+    $.subscribe 'osu:page:change', @boot
 
     $(window).on 'throttled-scroll', @refreshCounter
     $(document).on 'click', '.js-forum-posts-show-more', @showMore
