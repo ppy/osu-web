@@ -15,13 +15,70 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SentryPlugin = require('webpack-sentry-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const inProduction = process.env.NODE_ENV === 'production' || process.argv.includes('-p');
 const paymentSandbox = !(process.env.PAYMENT_SANDBOX === '0'
                          || process.env.PAYMENT_SANDBOX === 'false'
                          || !process.env.PAYMENT_SANDBOX);
+
+
+// Custom manifest dumper
+// Dumps a manifest file and:
+// Strip the hashes out - the problem is when adding assets via additionalAssets, as the copy and concat plugins do,
+// we currently don't have the option to change th asset name to be different from the file name.
+// Prefix the manifest keys with / - the existing php mix helper doesn't work properly without them.
+class Manifest {
+  constructor(options = {}) {
+    this.fileName = options.fileName;
+  }
+
+  apply(compiler) {
+    compiler.hooks.afterEmit.tap({ name: 'Manifest' }, (compilation) => {
+      const json = compilation.getStats().toJson({
+        // Disable data generation of everything we don't use
+        all: false,
+        // Add asset Information
+        assets: true,
+        // Show cached assets (setting this to `false` only shows emitted files)
+        cachedAssets: true,
+      });
+
+      const manifest = {};
+      json.assets.forEach((asset) => {
+        let name = asset.name;
+
+        // remove hash from name.
+        if (name.lastIndexOf('?') > 0) {
+          // querystring version
+          name = name.substring(0, name.lastIndexOf('?'));
+        } else {
+          // hash in filename version
+          let extname = path.extname(name);
+          let basename = name.substring(0, name.lastIndexOf(extname))
+          if (extname === '.map') {
+            extname = `${path.extname(basename)}.map`;
+          }
+
+          basename = name.substring(0, name.lastIndexOf(extname));
+          basename = basename.substring(0, basename.lastIndexOf('.'));
+
+          name = `${basename}${extname}`;
+        }
+
+
+        // ensure lookup name starts with / because mix helper is dumb.
+        if (!name.startsWith('/')) {
+          name = `/${name}`;
+        }
+
+        manifest[name] = asset.name;
+      })
+
+      fs.writeFileSync(this.fileName, JSON.stringify(manifest, null, 2));
+    });
+  }
+}
 
 // TODO: move to own file
 class ConcatPlugin {
@@ -38,6 +95,7 @@ class ConcatPlugin {
 
     compiler.hooks.thisCompilation.tap(plugin, (compilation) => {
       const logger = compilation.getLogger('concat-webpack-plugin');
+
       compilation.hooks.additionalAssets.tapAsync('concat-webpack-plugin', async (callback) => {
         const assets = this.patterns.map((pattern) => {
           let content = concatenate.sync(pattern.from);
@@ -87,7 +145,7 @@ class ConcatPlugin {
 
 // declare entrypoints and output first.
 const entry = {
-  '/js/app': [
+  'js/app': [
     './resources/assets/app.js',
     './resources/assets/less/app.less',
   ],
@@ -124,16 +182,25 @@ const tsReactComponents = [
 ];
 
 for (const name of coffeeReactComponents) {
-  entry[`/js/react/${name}`] = [path.resolve(__dirname, `resources/assets/coffee/react/${name}.coffee`)];
+  entry[`js/react/${name}`] = [path.resolve(__dirname, `resources/assets/coffee/react/${name}.coffee`)];
 }
 
 for (const name of tsReactComponents) {
-  entry[`/js/react/${name}`] = [path.resolve(__dirname, `resources/assets/lib/${name}.ts`)];
+  entry[`js/react/${name}`] = [path.resolve(__dirname, `resources/assets/lib/${name}.ts`)];
+}
+
+function chunkFilename(name, ext = 'js') {
+  return outputFilename(name, ext, 'chunkhash:8');
+}
+
+function outputFilename(name, ext = 'js', hashType = 'contenthash:8') {
+  // return `${name}.${ext}?[${hashType}]`;
+  return `${name}.[${hashType}].${ext}`;
 }
 
 const output = {
-  chunkFilename: '[name].[chunkhash:8].js',
-  filename: '[name].[contenthash:8].js',
+  chunkFilename: chunkFilename('[name]'),
+  filename:  outputFilename('[name]'),
   path: path.resolve(__dirname, 'public'),
 };
 
@@ -197,10 +264,10 @@ const plugins = (function() {
             'resources/assets/build/lang.js',
             'resources/assets/js/bootstrap-lang.js',
           ],
-          to: 'js/app-deps.[contenthash:8].js',
+          to: outputFilename('js/app-deps'),
         },
         {
-          from: vendor, to: 'js/vendor.[contenthash:8].js',
+          from: vendor, to: outputFilename('js/vendor'),
         },
       ],
     });
@@ -208,10 +275,10 @@ const plugins = (function() {
 
   const copyPlugin = new CopyPlugin({
     patterns: [
-      { from: 'resources/assets/build/locales/*', to: 'js/locales/[name].[contenthash:8].[ext]' },
-      { from: 'node_modules/@fortawesome/fontawesome-free/webfonts/*', to: 'vendor/fonts/font-awesome/[name].[contenthash:8].[ext]' },
-      { from: 'node_modules/photoswipe/dist/default-skin/*', to: 'vendor/_photoswipe-default-skin/[name].[contenthash:8].[ext]' },
-      { from: 'node_modules/moment/locale/*', to: 'vendor/js/moment-locales/[name].[contenthash:8].[ext]' },
+      { from: 'resources/assets/build/locales', to: outputFilename('js/locales/[name]', '[ext]') },
+      { from: 'node_modules/@fortawesome/fontawesome-free/webfonts', to: outputFilename('vendor/fonts/font-awesome/[name]', '[ext]') },
+      { from: 'node_modules/photoswipe/dist/default-skin', to: outputFilename('vendor/_photoswipe-default-skin/[name]', '[ext]') },
+      { from: 'node_modules/moment/locale', to: outputFilename('vendor/js/moment-locales/[name]', '[ext]') },
     ],
   });
 
@@ -223,14 +290,12 @@ const plugins = (function() {
       'process.env.SHOPIFY_STOREFRONT_TOKEN': JSON.stringify(process.env.SHOPIFY_STOREFRONT_TOKEN),
     }),
     new MiniCssExtractPlugin({
-      chunkFilename: '/css/app.[contenthash:8].css',
-      filename: '/css/app.[contenthash:8].css',
+      chunkFilename: outputFilename('css/app', 'css'),
+      filename: outputFilename('css/app', 'css'),
     }),
     concatPlugin,
     copyPlugin,
-    new ManifestPlugin({
-      fileName: 'mix-manifest.json',
-    }),
+    new Manifest({ fileName: 'public/mix-manifest.json'}),
   ];
 }());
 
@@ -379,14 +444,14 @@ const webpackConfig = {
   optimization: {
     moduleIds: 'hashed',
     runtimeChunk: {
-      name: '/js/commons',
+      name: 'js/commons',
     },
     splitChunks: {
       cacheGroups: {
         commons: {
           chunks: 'initial',
           minChunks: 2,
-          name: '/js/commons',
+          name: 'js/commons',
         },
       },
     },
