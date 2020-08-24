@@ -12,7 +12,8 @@ export class Info extends React.Component
   constructor: (props) ->
     super props
 
-    @overlay = React.createRef()
+    @overlayRef = React.createRef()
+    @chartAreaRef = React.createRef()
 
     @state =
       isBusy: false
@@ -35,7 +36,7 @@ export class Info extends React.Component
   # see Modal#hideModal
   dismissEditor: (e) =>
     @setState isEditingDescription: false if e.button == 0 &&
-                                  e.target == @overlay.current &&
+                                  e.target == @overlayRef.current &&
                                   @clickEndTarget == @clickStartTarget
 
 
@@ -107,7 +108,7 @@ export class Info extends React.Component
           y: d3.scaleLinear()
         modifiers: ['beatmap-success-rate']
 
-      @_failurePointsChart = new StackedBarChart @refs.chartArea, options
+      @_failurePointsChart = new StackedBarChart @chartAreaRef.current, options
       $(window).on 'throttled-resize.beatmapsetPageInfo', @_failurePointsChart.resize
 
     @_failurePointsChart.loadData @props.beatmap.failtimes
@@ -152,7 +153,7 @@ export class Info extends React.Component
             onClick: @dismissEditor
             onMouseDown: @handleClickStart
             onMouseUp: @handleClickEnd
-            ref: @overlay
+            ref: @overlayRef
 
             div className: 'osu-page',
               el BbcodeEditor,
@@ -259,7 +260,7 @@ export class Info extends React.Component
 
               div
                 className: 'beatmap-success-rate__chart'
-                ref: 'chartArea'
+                ref: @chartAreaRef
           else
             div className: 'beatmap-success-rate',
               div
