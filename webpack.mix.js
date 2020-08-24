@@ -194,10 +194,10 @@ const plugins = (function() {
 
   const copyPlugin = new CopyPlugin({
     patterns: [
-      { from: 'resources/assets/build/locales', to: 'js/locales' },
-      { from: 'node_modules/@fortawesome/fontawesome-free/webfonts', to: 'vendor/fonts/font-awesome' },
-      { from: 'node_modules/photoswipe/dist/default-skin', to: 'vendor/_photoswipe-default-skin' },
-      { from: 'node_modules/moment/locale', to: 'vendor/js/moment-locales' },
+      { from: 'resources/assets/build/locales/*', to: 'js/locales/[name].[contenthash:8].[ext]' },
+      { from: 'node_modules/@fortawesome/fontawesome-free/webfonts/*', to: 'vendor/fonts/font-awesome/[name].[contenthash:8].[ext]' },
+      { from: 'node_modules/photoswipe/dist/default-skin/*', to: 'vendor/_photoswipe-default-skin/[name].[contenthash:8].[ext]' },
+      { from: 'node_modules/moment/locale/*', to: 'vendor/js/moment-locales/[name].[contenthash:8].[ext]' },
     ],
   });
 
