@@ -6,7 +6,7 @@ class @ForumAutoClick
     @_triggerDistance = 1200
     @nextLink = document.getElementsByClassName('js-forum__posts-show-more--next')
     @previousLink = document.getElementsByClassName('js-forum__posts-show-more--previous')
-    @throttledOnScroll = _.throttle(@onScroll, 1000)
+    @throttledOnScroll = _.throttle @onScroll, 1000
 
     $(window).on 'throttled-scroll', @throttledOnScroll
     $(document).on 'turbolinks:load', @throttledOnScroll

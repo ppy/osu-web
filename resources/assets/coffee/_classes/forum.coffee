@@ -19,11 +19,12 @@ class @Forum
     @_postsProgress = document.getElementsByClassName('js-forum__posts-progress')
     @posts = document.getElementsByClassName('js-forum-post')
     @loadMoreLinks = document.getElementsByClassName('js-forum-posts-show-more')
+    @throttledBoot = _.throttle @boot, 20
 
     @maxPosts = 250
 
-    $(document).on 'turbolinks:load', @boot
-    $.subscribe 'osu:page:change', @boot
+    $(document).on 'turbolinks:load', @throttledBoot
+    $.subscribe 'osu:page:change', @throttledBoot
 
     $(window).on 'throttled-scroll', @refreshCounter
     $(document).on 'click', '.js-forum-posts-show-more', @showMore
