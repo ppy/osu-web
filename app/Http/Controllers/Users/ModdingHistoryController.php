@@ -70,6 +70,7 @@ class ModdingHistoryController extends Controller
         $user = $this->user;
 
         $bundle = ModdingHistoryEventsBundle::forListing($user, $this->searchParams);
+        $bundle->paginationIncludeUserParam = false;
         $jsonChunks = $bundle->toArray();
         $paginator = $bundle->getPaginator();
         $params = $bundle->getParams();

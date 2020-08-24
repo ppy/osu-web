@@ -18,6 +18,8 @@ class ModdingHistoryEventsBundle
 {
     const KUDOSU_PER_PAGE = 5;
 
+    public $paginationIncludeUserParam = true;
+
     protected $isModerator;
     protected $isKudosuModerator;
     protected $memoized = [];
@@ -60,7 +62,9 @@ class ModdingHistoryEventsBundle
     {
         $events = $this->getEvents();
         $params = $this->params;
-        unset($params['user']);
+        if (!$this->paginationIncludeUserParam) {
+            unset($params['user']);
+        }
 
         return new LengthAwarePaginator(
             $events,
