@@ -7,6 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const { minify } = require('terser');
 const webpack = require('webpack');
+const loaderUtils = require('loader-utils');
 
 const Autoprefixer = require('autoprefixer');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -30,7 +31,7 @@ class ConcatPlugin {
   }
 
   apply(compiler) {
-    const { RawSource } = require('webpack-sources');
+    const { RawSource, SourceMapSource } = require('webpack-sources');
     const concatenate = require('concatenate');
 
     const plugin = { name: 'ConcatPlugin' };
@@ -39,30 +40,43 @@ class ConcatPlugin {
       const logger = compilation.getLogger('concat-webpack-plugin');
       compilation.hooks.additionalAssets.tapAsync('concat-webpack-plugin', async (callback) => {
         const assets = this.patterns.map((pattern) => {
-          const webpackTo = path.resolve(compiler.options.output.path, pattern.to);
+          let content = concatenate.sync(pattern.from);
+          const webpackTo = loaderUtils.interpolateName(
+            { resourcePath: path.resolve(compiler.options.output.path, pattern.to) },
+            pattern.to,
+            { content },
+          );
 
-          let source = concatenate.sync(pattern.from);
+          let source = content;
+          let map = null;
           if (inProduction) {
-            // TODO: source map
-            source = minify(source, { sourceMap: true }).code;
+            // TODO: move source map to optimization stage; also add sourcemap url
+            const minified = minify(content, { sourceMap: true });
+            source = minified.code;
+            map = minified.map;
           }
 
           return {
-            source: new RawSource(source),
-            targetPath: pattern.to,
-            webpackTo: webpackTo,
+            map,
+            source,
+            webpackTo,
           };
         });
 
         assets.forEach((asset) => {
           const {
-            targetPath,
+            map,
             source,
             webpackTo,
           } = asset;
 
+          const outputSource = map != null ? new SourceMapSource(source, webpackTo, map) : new RawSource(source);
           logger.log(`writing '${webpackTo}'`);
-          compilation.emitAsset(targetPath, source);
+          compilation.emitAsset(`${webpackTo}`, outputSource);
+
+          if (map != null) {
+            compilation.emitAsset(`${webpackTo}.map`, new RawSource(map), { info: { development: true } });
+          }
         });
 
         callback();
@@ -183,10 +197,10 @@ const plugins = (function() {
             'resources/assets/build/lang.js',
             'resources/assets/js/bootstrap-lang.js',
           ],
-          to: '/js/app-deps.js',
+          to: 'js/app-deps.[contenthash:8].js',
         },
         {
-          from: vendor, to: '/js/vendor.js',
+          from: vendor, to: 'js/vendor.[contenthash:8].js',
         },
       ],
     });
@@ -209,8 +223,8 @@ const plugins = (function() {
       'process.env.SHOPIFY_STOREFRONT_TOKEN': JSON.stringify(process.env.SHOPIFY_STOREFRONT_TOKEN),
     }),
     new MiniCssExtractPlugin({
-      chunkFilename: '/css/app.[hash:8].css',
-      filename: '/css/app.[hash:8].css',
+      chunkFilename: '/css/app.[contenthash:8].css',
+      filename: '/css/app.[contenthash:8].css',
     }),
     concatPlugin,
     copyPlugin,
@@ -363,6 +377,7 @@ const webpackConfig = {
     ],
   },
   optimization: {
+    moduleIds: 'hashed',
     runtimeChunk: {
       name: '/js/commons',
     },
