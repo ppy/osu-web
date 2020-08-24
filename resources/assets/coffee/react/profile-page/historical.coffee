@@ -22,7 +22,7 @@ export class Historical extends React.PureComponent
 
 
   componentDidMount: =>
-    $(window).on "throttled-resize.#{@id}", @resizeCharts
+    $(window).on "resize.#{@id}", @resizeCharts
     @monthlyPlaycountsChartUpdate()
     @replaysWatchedCountsChartUpdate()
 
