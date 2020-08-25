@@ -472,6 +472,16 @@ const webpackConfig = {
     ],
     plugins: [new TsconfigPathsPlugin()],
   },
+  stats: {
+    entrypoints: false,
+    errorDetails: false,
+    excludeAssets: [
+      // exclude copied files
+      /^js\/locales\//,
+      /^\/fonts\//,
+      /^vendor\//,
+    ],
+  }
 };
 
 if (inProduction) {
