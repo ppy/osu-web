@@ -175,6 +175,6 @@ export class Header extends React.PureComponent
 
       @_chart = new BeatmapDiscussionsChart(area, length)
 
-      $(window).on 'throttled-resize.beatmapDiscussionsOverview', @_chart.resize
+      $(window).on 'resize.beatmapDiscussionsOverview', @_chart.resize
 
     @_chart.loadData _.values(@props.currentDiscussions.byFilter[@props.currentFilter].timeline)

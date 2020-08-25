@@ -30,7 +30,6 @@ $(document).on 'turbolinks:load', ->
 
 # ensure currentUser is updated early enough.
 @currentUserObserver ?= new CurrentUserObserver
-@throttledWindowEvents ?= new ThrottledWindowEvents
 @syncHeight ?= new SyncHeight
 @stickyHeader ?= new StickyHeader
 
