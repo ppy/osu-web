@@ -13,7 +13,7 @@ class @Nav2
   autoCenterPopup: (_e, {target}) =>
     @currentMenu = target
 
-    $(window).off 'throttled-resize.nav2-center-popup'
+    $(window).off 'resize.nav2-center-popup'
 
     for popup in document.querySelectorAll('.js-nav2--centered-popup')
       container = popup.closest('.js-click-menu')
@@ -33,7 +33,7 @@ class @Nav2
     doCenter = =>
       @centerPopup currentPopup, link
 
-    $(window).on 'throttled-resize.nav2-center-popup', doCenter
+    $(window).on 'resize.nav2-center-popup', doCenter
     osu.pageChangeImmediate() if @loginBoxVisible()
     doCenter()
     currentPopup.querySelector('.js-nav2--autofocus')?.focus()
