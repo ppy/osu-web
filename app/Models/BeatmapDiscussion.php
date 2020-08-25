@@ -260,6 +260,11 @@ class BeatmapDiscussion extends Model
         $currentVotes = $this->canGrantKudosu() ?
             (int) $this->beatmapDiscussionVotes()->sum('score') :
             0;
+        // remove kudosu by bots here instead of in canGrantKudosu due to
+        // the function is also called by transformer without user preloaded
+        if ($this->user !== null && $this->user->isBot()) {
+            $currentVotes = 0;
+        }
         $kudosuGranted = (int) $this->kudosuHistory()->sum('amount');
         $targetKudosu = 0;
 
