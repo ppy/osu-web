@@ -28,7 +28,7 @@ export class PopupMenu extends PureComponent
 
   componentDidMount: =>
     @tooltipHideEvent = @tooltipElement().qtip('option', 'hide.event')
-    $(window).on 'throttled-resize.#{@uuid}', @resize
+    $(window).on "resize.#{@uuid}", @resize
     $(document).on "turbolinks:before-cache.#{@uuid}", () =>
       @removePortal()
 
