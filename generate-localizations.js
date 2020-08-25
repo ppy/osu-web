@@ -59,12 +59,6 @@ fs.mkdirSync(localesPath, {recursive: true});
 generateTranslations();
 writeTranslations(extractLanguages());
 
-// copy lang.js
-fs.copyFileSync(
-  path.resolve(__dirname, 'vendor/mariuzzo/laravel-js-localization/lib/lang.min.js'),
-  path.resolve(buildPath, 'lang.js'),
-);
-
 // cleanup
 fs.unlinkSync(messagesPath);
 console.log(`Removed: ${messagesPath}`);
