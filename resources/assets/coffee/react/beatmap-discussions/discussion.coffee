@@ -162,7 +162,8 @@ export class Discussion extends React.PureComponent
 
     topClasses = "#{vbn} #{vbn}--#{type}"
     topClasses += " #{vbn}--inactive" if score != 0
-    disabled = @isOwner() || (type == 'down' && !@canDownvote()) || !@canBeRepliedTo()
+    user = @props.users[@props.discussion.user_id]
+    disabled = @isOwner() || user.is_bot || (type == 'down' && !@canDownvote()) || !@canBeRepliedTo()
 
     button
       className: topClasses
