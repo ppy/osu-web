@@ -62,7 +62,7 @@
 @endif
 
 <link rel="stylesheet" media="all" href="{{ mix('vendor/_photoswipe-default-skin/default-skin.css') }}">
-<link rel="stylesheet" media="all" href="{{ mix('js/app.css') }}" data-turbolinks-track="reload">
+<link rel="stylesheet" media="all" href="{{ mix('css/app.css') }}" data-turbolinks-track="reload">
 
 <script>
     var currentLocale = {!! json_encode(App::getLocale()) !!};
