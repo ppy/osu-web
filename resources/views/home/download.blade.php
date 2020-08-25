@@ -68,6 +68,24 @@
                 ]) !!}
             </div>
         </div>
+
+        @if (config('services.enchant.id') !== null)
+            <div class="download-page__help">
+                {!! trans('home.download.help._', [
+                    'support_button' => tag('a', [
+                        'class' => 'js-enchant--show',
+                        'role' => 'button',
+                        'href' => '#',
+                    ], trans('home.download.help.support_button')),
+                    'help_forum_link' => tag('a', [
+                        'href' => route('forum.forums.show', ['forum' => config('osu.forum.help_forum_id')]),
+                    ], trans('home.download.help.help_forum_link')),
+                ]) !!}
+            </div>
+
+            @include('objects._enchant')
+        @endif
+
         <div class="download-page__accent"></div>
     </div>
 </div>
@@ -85,6 +103,4 @@
         </div>
     </div>
 </div>
-
-@include('objects._enchant')
 @endsection
