@@ -22,7 +22,6 @@ const paymentSandbox = !(process.env.PAYMENT_SANDBOX === '0'
                          || process.env.PAYMENT_SANDBOX === 'false'
                          || !process.env.PAYMENT_SANDBOX);
 
-
 // Custom manifest dumper
 // Dumps a manifest file and:
 // Strip the hashes out - the problem is when adding assets via additionalAssets, as the copy and concat plugins do,
@@ -258,14 +257,6 @@ const plugins = (function() {
 
     return new ConcatPlugin({
       patterns: [
-        {
-          from: [
-            'resources/assets/js/ga.js',
-            'resources/assets/build/lang.js',
-            'resources/assets/js/bootstrap-lang.js',
-          ],
-          to: outputFilename('js/app-deps'),
-        },
         {
           from: vendor, to: outputFilename('js/vendor'),
         },
