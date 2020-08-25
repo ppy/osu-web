@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Lang from 'lang.js';
-import './../js/ga.js'; // FIXME: fix lookup path
 
 declare global {
   interface Window {
