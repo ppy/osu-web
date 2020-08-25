@@ -64,6 +64,7 @@ return [
     ],
 
     'review' => [
+        'block_count' => '',
         'go_to_parent' => 'Visualizza il post della recensione',
         'go_to_child' => 'Visualizza Discussione',
         'validation' => [

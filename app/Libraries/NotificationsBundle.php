@@ -102,8 +102,7 @@ class NotificationsBundle
         $heads = $this->getStackHeads($type);
 
         $heads->each(function ($row) {
-            $category = Notification::nameToCategory($row->name);
-            $this->fillStacks($row->notifiable_type, $row->notifiable_id, $category);
+            $this->fillStacks($row->notifiable_type, $row->notifiable_id, $row->category);
         });
 
         $last = $heads->last();
@@ -187,7 +186,7 @@ class NotificationsBundle
         ];
 
         return [
-            'category' => Notification::nameToCategory($last->name),
+            'category' => $last->category,
             'cursor' => $cursor,
             'name' => $last->name,
             'object_type' => $last->notifiable_type,

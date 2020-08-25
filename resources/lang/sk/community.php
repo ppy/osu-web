@@ -12,10 +12,10 @@ return [
             'instructions' => 'klikni na srdiečko pre presunutie do osu!store',
         ],
         'why-support' => [
-            'title' => '',
+            'title' => 'Prečo by som mal podporovať osu!? Kam peniaze idú?',
 
             'team' => [
-                'title' => '',
+                'title' => 'Podpor tím',
                 'description' => '',
             ],
             'infra' => [
@@ -50,12 +50,12 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => '',
+                'title' => 'Rebríček priateľov',
                 'description' => "",
             ],
 
             'country_ranking' => [
-                'title' => '',
+                'title' => 'Rebríček krajiny',
                 'description' => '',
             ],
 

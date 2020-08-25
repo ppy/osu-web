@@ -306,7 +306,7 @@ return [
                 'empty' => 'Ingen fantastiske prestasjoner på rekordlisten enda. :(',
                 'not_ranked' => 'Bare rangerte beatmaps gir pp.',
                 'pp_weight' => 'veid :percentage',
-                'view_details' => '',
+                'view_details' => 'Vis detaljer',
                 'title' => 'Rangeringer',
 
                 'best' => [

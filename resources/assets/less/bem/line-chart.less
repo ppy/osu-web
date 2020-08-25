@@ -7,6 +7,7 @@
   @_marker-radius-profile-page: 10px;
   @_line-width: 3px;
   @_line-width-profile-page: 2px;
+  .full-size();
 
   &__axis {
     font-family: inherit;
@@ -28,6 +29,7 @@
     border: @_line-width solid @pink-darker;
     top: (-@_marker-radius);
     left: (-@_marker-radius);
+    position: relative;
 
     .@{_top}--profile-page & {
       .circle(@_marker-radius-profile-page * 2);

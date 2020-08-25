@@ -57,12 +57,12 @@ return [
         'options' => [
             '_' => '수신 옵션',
             'beatmapset:modding' => '비트맵 모딩',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => '개인 채팅 메시지',
+            'comment_new' => '새 댓글',
             'forum_topic_reply' => '주제 답글',
             'mail' => '메일',
             'push' => '푸시 알림',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => '메달 획득',
         ],
     ],
 

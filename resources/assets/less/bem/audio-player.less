@@ -20,6 +20,7 @@
   padding: 5px 10px;
   font-family: @font-default;
   pointer-events: auto;
+  position: relative;
 
   &[data-audio-state="loading"],
   &[data-audio-state="playing"] {
@@ -118,6 +119,7 @@
     --bar: 0;
     transition: height 100ms, opacity 100ms;
     user-select: none;
+    position: relative;
 
     // extended hover area
     &::before {
@@ -156,6 +158,7 @@
     background-color: @osu-colour-h1;
     pointer-events: none;
     border-radius: inherit;
+    position: relative;
 
     // current head
     &::after {

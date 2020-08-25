@@ -2,11 +2,12 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { ScoreTop } from './score-top'
-import { ScoreboardMod } from './scoreboard-mod'
 import { ScoreboardTab } from './scoreboard-tab'
 import { ScoreboardTable } from './scoreboard-table'
+import ScoreboardMod from 'beatmapsets-show/scoreboard-mod'
 import * as React from 'react'
 import { div, h2, p } from 'react-dom-factories'
+import { classWithModifiers } from 'utils/css'
 el = React.createElement
 
 export class Scoreboard extends React.PureComponent
@@ -49,9 +50,6 @@ export class Scoreboard extends React.PureComponent
     className = 'beatmapset-scoreboard__main'
     className += ' beatmapset-scoreboard__main--loading' if @props.loading
 
-    modsClassName = 'beatmapset-scoreboard__mods'
-    modsClassName += ' beatmapset-scoreboard__mods--initial' if _.isEmpty @props.enabledMods
-
     mods = if @props.beatmap.mode == 'mania'
       if @props.beatmap.convert
         _.concat(MANIA_MODS, MANIA_KEY_MODS)
@@ -72,13 +70,13 @@ export class Scoreboard extends React.PureComponent
             active: @props.type == type
 
       if currentUser.is_supporter && @props.isScoreable
-        div className: 'beatmapset-scoreboard__mods-wrapper',
-          div className: modsClassName,
-            for mod in mods
-              el ScoreboardMod,
-                key: mod
-                mod: mod
-                enabled: _.includes @props.enabledMods, mod
+        div
+          className: classWithModifiers('beatmapset-scoreboard__mods', initial: @props.enabledMods.length == 0)
+          for mod in mods
+            el ScoreboardMod,
+              key: mod
+              mod: mod
+              enabled: _.includes @props.enabledMods, mod
 
       div className: className,
         if @props.scores.length > 0

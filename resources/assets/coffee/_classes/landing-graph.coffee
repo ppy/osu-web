@@ -6,7 +6,7 @@ class @LandingGraph
 
 
   constructor: ->
-    $(window).on 'throttled-resize', @resize
+    $(window).on 'resize', @resize
     $(document).on 'turbolinks:load', @initialize
 
 

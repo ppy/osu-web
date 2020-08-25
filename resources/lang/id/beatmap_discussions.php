@@ -64,6 +64,7 @@ return [
     ],
 
     'review' => [
+        'block_count' => '',
         'go_to_parent' => 'Lihat Ulasan',
         'go_to_child' => 'Lihat Topik Diskusi',
         'validation' => [

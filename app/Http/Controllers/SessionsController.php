@@ -5,9 +5,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\User\ForceReactivation;
 use App\Models\User;
 use Auth;
+use NoCaptcha;
 use Request;
 
 class SessionsController extends Controller
@@ -15,7 +17,7 @@ class SessionsController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['only' => [
-            'login',
+            'store',
         ]]);
 
         return parent::__construct();
@@ -24,13 +26,47 @@ class SessionsController extends Controller
     public function store()
     {
         $request = request();
-        $params = get_params($request->all(), null, ['username:string', 'password:string', 'remember:bool']);
-        $username = trim($params['username'] ?? null);
-        $password = $params['password'] ?? null;
+
+        if ($request->attributes->get('csrf') === false) {
+            DatadogLoginAttempt::log('invalid_csrf');
+
+            abort(403, 'Reload page and try again');
+        }
+
+        $params = get_params($request->all(), null, ['username:string', 'password:string', 'remember:bool', 'g-recaptcha-response:string']);
+        $username = presence(trim($params['username'] ?? null));
+        $password = presence($params['password'] ?? null);
         $remember = $params['remember'] ?? false;
 
-        if (!present($username) || !present($password)) {
+        if ($username === null) {
+            DatadogLoginAttempt::log('missing_username');
+
             abort(422);
+        }
+
+        if ($password === null) {
+            DatadogLoginAttempt::log('missing_password');
+
+            abort(422);
+        }
+
+        if (config('captcha.sitekey') !== '' && config('captcha.secret') !== '') {
+            $token = presence($params['g-recaptcha-response'] ?? null);
+            $validCaptcha = false;
+
+            if ($token !== null) {
+                $validCaptcha = NoCaptcha::verifyResponse($token);
+            }
+
+            if (!$validCaptcha) {
+                if ($token === null) {
+                    DatadogLoginAttempt::log('missing_captcha');
+                } else {
+                    DatadogLoginAttempt::log('invalid_captcha');
+                }
+
+                return error_popup(trans('users.login.invalid_captcha'), 422);
+            }
         }
 
         $ip = $request->getClientIp();

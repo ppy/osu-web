@@ -57,12 +57,12 @@ return [
         'options' => [
             '_' => 'opcje wysyłania',
             'beatmapset:modding' => 'dyskusje beatmap',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => 'wiadomości prywatne',
+            'comment_new' => 'nowe komentarze',
             'forum_topic_reply' => 'odpowiedzi do wątków',
             'mail' => 'e-mail',
             'push' => 'push',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => 'odblokowanie medalu',
         ],
     ],
 

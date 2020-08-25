@@ -68,7 +68,10 @@ class NotificationsSendMailTest extends TestCase
         ];
 
         foreach ($beatmapsets as $beatmapset) {
-            $beatmapset->watches()->create(['user_id' => $user->getKey()]);
+            $beatmapset->watches()->create([
+                'last_read' => now()->subSecond(),
+                'user_id' => $user->getKey(),
+            ]);
             $this
                 ->actingAsVerified($sender)
                 ->post(route('beatmap-discussion-posts.store'), $this->makeBeatmapsetDiscussionPostParams($beatmapset, 'praise'));

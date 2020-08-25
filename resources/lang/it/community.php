@@ -95,8 +95,8 @@ return [
             ],
 
             'speedy_downloads' => [
-                'title' => 'Download Veloce',
-                'description' => 'Restrizioni di downlaod più leggere, specialmente quando usi l\'osu!direct.',
+                'title' => 'Download Rapidi',
+                'description' => 'Restrizioni più leggere sui download, specialmente quando si utilizza osu!direct.',
             ],
 
             'change_username' => [

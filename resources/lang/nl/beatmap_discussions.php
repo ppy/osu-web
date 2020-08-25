@@ -64,6 +64,7 @@ return [
     ],
 
     'review' => [
+        'block_count' => '',
         'go_to_parent' => 'Bekijk Review Post',
         'go_to_child' => 'Bekijk discussie',
         'validation' => [

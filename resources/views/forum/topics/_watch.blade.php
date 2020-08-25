@@ -12,7 +12,7 @@
     ];
 @endphp
 <div
-    class="js-forum-topic-watch"
+    class="js-forum-topic-watch u-relative"
     data-topic-id="{{ $topic->topic_id }}"
 >
     <button

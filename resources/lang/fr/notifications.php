@@ -136,35 +136,35 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '',
-            'beatmapset_discussion_lock' => '',
-            'beatmapset_discussion_unlock' => '',
-            'beatmapset_problem' => '',
-            'beatmapset_state' => '',
-            'comment' => '',
+            'beatmapset_discussion' => 'La discussion sur ":title" a de nouvelles mises à jour',
+            'beatmapset_discussion_lock' => 'La discussion sur ":title" a été verrouillée',
+            'beatmapset_discussion_unlock' => 'La discussion sur ":title" a été déverrouillée',
+            'beatmapset_problem' => 'Un nouveau problème a été signalé sur ":title"',
+            'beatmapset_state' => 'L\'état de ":title" a changé',
+            'comment' => ' La beatmap ":title" a de nouveaux commentaires',
         ],
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => 'Vous avez reçu un nouveau message de :username',
             ],
         ],
 
         'build' => [
-            'comment' => '',
+            'comment' => 'Les notes de mises à jour ":title" ont de nouveaux commentaires',
         ],
 
         'news_post' => [
-            'comment' => '',
+            'comment' => 'Les nouvelles ":title" ont de nouveaux commentaires',
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '',
+            'forum_topic_reply' => 'Il y a de nouvelles réponses dans ":title"',
         ],
 
         'user_achievement' => [
-            'user_achievement_unlock' => '',
-            'user_achievement_unlock_self' => '',
+            'user_achievement_unlock' => ':username a débloqué une nouvelle médaille, ":title" !',
+            'user_achievement_unlock_self' => 'Vous avez débloqué une nouvelle médaille, ":title" !',
         ],
     ],
 ];

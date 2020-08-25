@@ -57,12 +57,12 @@ return [
         'options' => [
             '_' => '推送设置',
             'beatmapset:modding' => '谱面摸图',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => '私信',
+            'comment_new' => '新评论',
             'forum_topic_reply' => '主题回复',
             'mail' => '邮件',
             'push' => '推送',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => '成就解锁',
         ],
     ],
 

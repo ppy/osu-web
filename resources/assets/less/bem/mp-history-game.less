@@ -18,6 +18,7 @@
     background-size: cover;
 
     border-radius: @border-radius-base @border-radius-base 0 0;
+    position: relative;
 
     @media @desktop {
       height: 150px;
@@ -88,10 +89,12 @@
     }
   }
 
-  &__mods-box {
+  &__mods {
     position: absolute;
     right: 10px;
     top: 10px;
+    display: flex;
+    --mod-height: @mod-height;
   }
 
   &__team-type {

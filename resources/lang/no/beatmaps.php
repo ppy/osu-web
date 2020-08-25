@@ -21,7 +21,7 @@ return [
         'kudosu_denied' => 'Avvist fra å få kudosu.',
         'message_placeholder_deleted_beatmap' => 'Denne vanskelighetsgraden har blitt slettet så den kan ikke bli diskutert lenger.',
         'message_placeholder_locked' => 'Diskusjon for dette beatmappet har blitt deaktivert.',
-        'message_placeholder_silenced' => "",
+        'message_placeholder_silenced' => "Kan ikke publisere diskusjonen mens du er dempet.",
         'message_type_select' => 'Velg kommentartype',
         'reply_notice' => 'Trykk enter for å svare.',
         'reply_placeholder' => 'Skriv din respons her',
@@ -61,7 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Skriv her for å legge til på Generelt (:version)',
             'generalAll' => 'Skriv her for å legge til på Generelt (Alle vanskelighetsgrader)',
-            'review' => '',
+            'review' => 'Skriv her for å legge til en anmeldelse',
             'timeline' => 'Skriv her for å legg til på tidslinjen (:version)',
         ],
 
@@ -96,22 +96,22 @@ return [
         ],
 
         'review' => [
-            'new' => '',
+            'new' => 'Ny anmeldelse',
             'embed' => [
-                'delete' => '',
-                'missing' => '',
-                'unlink' => '',
-                'unsaved' => '',
+                'delete' => 'Slett',
+                'missing' => '[DISKUSJON SLETTE]',
+                'unlink' => 'Koble fra',
+                'unsaved' => 'Ulagret',
                 'timestamp' => [
-                    'all-diff' => '',
-                    'diff' => '',
+                    'all-diff' => 'Innlegg på "Alle vanskeligheter" kan ikke bli tidsstemplet.',
+                    'diff' => 'Hvis denne :type starter med en tidsstempel, skal den bli vist under Timeline.',
                 ],
             ],
             'insert-block' => [
-                'paragraph' => '',
-                'praise' => '',
-                'problem' => '',
-                'suggestion' => '',
+                'paragraph' => 'sett inn avsnitt',
+                'praise' => 'sett inn ros',
+                'problem' => 'sett inn problem',
+                'suggestion' => 'sett inn forslag',
             ],
         ],
 
@@ -275,10 +275,10 @@ return [
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Elektronisk',
-        'metal' => '',
-        'classical' => '',
-        'folk' => '',
-        'jazz' => '',
+        'metal' => 'Metall',
+        'classical' => 'Klassisk',
+        'folk' => 'Folkemusikk',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '',
@@ -304,7 +304,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => '',
+        'V2' => 'Score V2',
     ],
     'language' => [
         'any' => '',
@@ -317,11 +317,11 @@ return [
         'korean' => 'Koreansk',
         'spanish' => 'Spansk',
         'swedish' => 'Svensk',
-        'russian' => '',
-        'polish' => '',
+        'russian' => 'Russisk',
+        'polish' => 'Polsk',
         'instrumental' => 'Instrumental',
         'other' => 'Andre',
-        'unspecified' => '',
+        'unspecified' => 'Uspesifisert',
     ],
     'played' => [
         'any' => 'Alle',
@@ -349,9 +349,9 @@ return [
     ],
     'variant' => [
         'mania' => [
-            '4k' => '',
-            '7k' => '',
-            'all' => '',
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'All',
         ],
     ],
 ];

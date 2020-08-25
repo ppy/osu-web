@@ -61,7 +61,7 @@ return [
         'beatmapsets_controller' => [
             'discussion' => 'การสนทนาเกี่ยวกับ Beatmap',
             'index' => 'รายการ Beatmap',
-            'show' => 'ข้อมูลบีตแมป',
+            'show' => 'ข้อมูลบีทแมพ',
         ],
         'changelog_controller' => [
             '_' => 'การเปลี่ยนแปลง',
@@ -129,7 +129,7 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => '',
+            '_' => 'การจัดอันดับ',
         ],
     ],
     'store' => [

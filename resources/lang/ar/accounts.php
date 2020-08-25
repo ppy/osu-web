@@ -57,12 +57,12 @@ return [
         'options' => [
             '_' => 'خيارات التوصيل',
             'beatmapset:modding' => 'اقتراحات الأغنية',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => 'الرسائل الخاصة',
+            'comment_new' => 'تعليقات جديدة',
             'forum_topic_reply' => 'رد الموضوع',
             'mail' => 'البريد',
             'push' => 'دفع',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => 'تم فتح ميدالية المستخدم',
         ],
     ],
 

@@ -109,6 +109,7 @@
     &--mods {
       min-width: 50px;
       padding-left: 5px;
+      display: flex;
     }
 
     &--popup-menu {
@@ -206,7 +207,14 @@
     .row-color(@self-row, fade(@green-dark, 30%));
   }
 
+  &__mods {
+    display: flex;
+    --mod-height: @mod-height-small;
+  }
+
   &__popup-menu {
+    position: relative;
+
     .@{activated-row} & {
       opacity: 1;
     }

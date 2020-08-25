@@ -120,7 +120,7 @@ export class Header extends React.PureComponent
               className: "#{bn}__stats"
               @stats()
 
-        div null,
+        div className: 'u-relative',
           div ref: 'chartArea', className: "#{bn}__chart"
 
           div className: "#{bn}__beatmap-stats",
@@ -175,6 +175,6 @@ export class Header extends React.PureComponent
 
       @_chart = new BeatmapDiscussionsChart(area, length)
 
-      $(window).on 'throttled-resize.beatmapDiscussionsOverview', @_chart.resize
+      $(window).on 'resize.beatmapDiscussionsOverview', @_chart.resize
 
     @_chart.loadData _.values(@props.currentDiscussions.byFilter[@props.currentFilter].timeline)

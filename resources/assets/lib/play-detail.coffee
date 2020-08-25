@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Mods } from 'mods'
+import Mod from 'mod'
 import { PlayDetailMenu } from 'play-detail-menu'
 import { createElement as el, PureComponent } from 'react'
 import * as React from 'react'
@@ -83,7 +83,7 @@ export class PlayDetail extends PureComponent
                   percentage: "#{osu.formatNumber(Math.round(score.weight.percentage))}%"
         div
           className: "#{bn}__score-detail #{bn}__score-detail--mods"
-          el Mods, mods: score.mods, modifiers: ['profile-page'], modModifiers: ['dynamic']
+          el(Mod, key: mod, mod: mod) for mod in score.mods
 
         div
           className: "#{bn}__pp"

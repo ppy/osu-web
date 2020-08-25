@@ -18,6 +18,14 @@ class BeatmapsetDiscussionReview
 {
     const BLOCK_TEXT_LENGTH_LIMIT = 750;
 
+    public static function config()
+    {
+        return [
+            'enabled' => config('osu.beatmapset.discussion_review_enabled'),
+            'max_blocks' => config('osu.beatmapset.discussion_review_max_blocks'),
+        ];
+    }
+
     public static function create(Beatmapset $beatmapset, array $document, User $user)
     {
         if (empty($document)) {

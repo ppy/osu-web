@@ -7,7 +7,7 @@ class @ForumAutoClick
     @nextLink = document.getElementsByClassName('js-forum__posts-show-more--next')
     @previousLink = document.getElementsByClassName('js-forum__posts-show-more--previous')
 
-    $(window).on 'throttled-scroll', _.throttle(@onScroll, 1000)
+    $(window).on 'scroll', _.throttle(@onScroll, 1000)
 
     $(document).on 'turbolinks:load osu:page:change', =>
       Timeout.set 1000, @onScroll
