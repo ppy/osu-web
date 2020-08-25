@@ -214,7 +214,6 @@ const plugins = (function() {
 
     // vendor and locale files.
     const vendor = [
-      'clipboard-polyfill/build/clipboard-polyfill.js',
       `url-polyfill/url-polyfill${min}.js`,
       'turbolinks/dist/turbolinks.js',
       `jquery/dist/jquery${min}.js`,
