@@ -3,6 +3,7 @@
 
 @polyfills ?= new Polyfills
 
+Turbolinks.start()
 Turbolinks.setProgressBarDelay(0)
 
 Lang.setLocale(@currentLocale)

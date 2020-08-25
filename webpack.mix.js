@@ -215,7 +215,6 @@ const plugins = (function() {
     // vendor and locale files.
     const vendor = [
       `url-polyfill/url-polyfill${min}.js`,
-      'turbolinks/dist/turbolinks.js',
       `jquery/dist/jquery${min}.js`,
       'jquery-ujs/src/rails.js',
       `qtip2/dist/jquery.qtip${min}.js`,
@@ -267,6 +266,7 @@ const plugins = (function() {
     new webpack.ProvidePlugin({
       React: 'react',
       ReactDOM: 'react-dom',
+      Turbolinks: 'turbolinks',
     }),
     new webpack.DefinePlugin({
       'process.env.DOCS_URL': JSON.stringify(process.env.DOCS_URL || 'https://docs.ppy.sh'),
