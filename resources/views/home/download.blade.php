@@ -85,4 +85,6 @@
         </div>
     </div>
 </div>
+
+@include('objects._enchant')
 @endsection
