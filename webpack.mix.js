@@ -237,7 +237,6 @@ const plugins = (function() {
       `d3/dist/d3${min}.js`,
       'moment/moment.js',
       'js-cookie/src/js.cookie.js',
-      `imagesloaded/imagesloaded.pkgd${min}.js`,
     ].map((name) => path.join(path.resolve(__dirname, 'node_modules'), name));
 
     if (!fs.readdirSync('resources/assets/build/locales').some((file) => file.endsWith('.js'))) {
