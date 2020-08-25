@@ -61,10 +61,11 @@
             </div>
             <div class="download-page__text download-page__text--description">
                 {!! trans('home.download.steps.beatmaps.description._', [
-                    'browse' =>
-                        '<a class="download-page__link" href="'.e(route('beatmapsets.index')).'" >'.
-                        trans('home.download.steps.beatmaps.description.browse').
-                        '</a>',
+                    'browse' => tag(
+                        'a',
+                        ['href' => route('beatmapsets.index')],
+                        trans('home.download.steps.beatmaps.description.browse')
+                    )
                 ]) !!}
             </div>
         </div>
@@ -85,8 +86,6 @@
 
             @include('objects._enchant')
         @endif
-
-        <div class="download-page__accent"></div>
     </div>
 </div>
 
