@@ -109,7 +109,7 @@ export class Info extends React.Component
         modifiers: ['beatmap-success-rate']
 
       @_failurePointsChart = new StackedBarChart @chartAreaRef.current, options
-      $(window).on 'throttled-resize.beatmapsetPageInfo', @_failurePointsChart.resize
+      $(window).on 'resize.beatmapsetPageInfo', @_failurePointsChart.resize
 
     @_failurePointsChart.loadData @props.beatmap.failtimes
 
