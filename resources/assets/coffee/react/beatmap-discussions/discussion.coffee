@@ -110,7 +110,7 @@ export class Discussion extends React.PureComponent
         ['up', 'down'].map (type) =>
           div
             key: type
-            type: type
+            'data-type': type
             className: "#{bn}__action"
             onMouseOver: @showVoters
             onTouchStart: @showVoters
@@ -215,7 +215,7 @@ export class Discussion extends React.PureComponent
 
     target._tooltip = true
 
-    type = target.getAttribute('type')
+    type = target.getAttribute('data-type')
 
     @tooltips[type] =
       $(target).qtip
