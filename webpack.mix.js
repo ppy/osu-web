@@ -194,7 +194,7 @@ function chunkFilename(name, ext = 'js') {
 }
 
 function outputFilename(name, ext = 'js', hashType = 'contenthash:8') {
-  return `${name}.${ext}?[${hashType}]`;
+  return `${name}.${ext}?id=[${hashType}]`;
   // return `${name}.[${hashType}].${ext}`;
 }
 
