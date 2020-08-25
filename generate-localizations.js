@@ -45,7 +45,7 @@ function writeTranslations(languages) {
     delete json[`${lang}.mail`];
     const jsonString = JSON.stringify(json);
     const filename = path.resolve(localesPath, `${lang}.js`);
-    const script = `(function() { 'use strict'; Object.assign(Lang.messages, ${jsonString}); })();`;
+    const script = `(function() { 'use strict'; if (window.Lang === undefined) window.Lang = { messages: {}}; Object.assign(Lang.messages, ${jsonString}); })();`;
 
     fs.writeFileSync(filename, script);
     console.log(`Created: ${filename}`);

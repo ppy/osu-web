@@ -10,5 +10,13 @@ declare global {
   }
 }
 
-window.Lang = new Lang({});
-window.Lang.setMessages({});
+if (window.Lang !== undefined) {
+  // existing locale data loaded first
+  const existing = window.Lang as any; // FIXME: messages key
+
+  window.Lang = new Lang({
+    messages: existing.messages,
+  });
+} else {
+  window.Lang = new Lang({ messages: {} });
+}
