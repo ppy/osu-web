@@ -87,7 +87,7 @@ return [
                 'description' => 'follow the prompts when starting the game to sign in or make a new account',
             ],
             'download' => [
-                'title' => 'download the game',
+                'title' => 'install the game',
                 'description' => 'click the button above to download the installer, then run it!',
             ],
             'beatmaps' => [
