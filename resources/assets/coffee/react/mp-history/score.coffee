@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { FlagCountry } from 'flag-country'
-import { Mods } from 'mods'
+import  Mod from 'mod'
 import * as React from 'react'
 import { div, span, a } from 'react-dom-factories'
 el = React.createElement
@@ -40,10 +40,9 @@ export class Score extends React.Component
 
         div className: 'mp-history-player-score__info-box mp-history-player-score__info-box--stats',
           div className: 'mp-history-player-score__stat-row mp-history-player-score__stat-row--first',
-            div className: 'mp-history-player-score__mods-box',
-              el Mods,
-                mods: @props.score.mods
-                modifiers: ['reversed']
+            div className: 'mp-history-player-score__mods',
+              for mod in @props.score.mods
+                el Mod, key: mod, mod: mod
 
             @firstRow.map (m) =>
               modifier = 'medium'

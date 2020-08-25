@@ -6,7 +6,7 @@ class @Scale
     @els = document.getElementsByClassName('js-scale')
 
     $(document).on 'turbolinks:load', @resizeAll
-    $(window).on 'throttled-resize', @resizeAll
+    $(window).on 'resize', @resizeAll
 
 
   readParentSize: (el) =>

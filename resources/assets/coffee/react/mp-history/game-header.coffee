@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Mods } from 'mods'
+import Mod from 'mod'
 import * as React from 'react'
 import { div, a, span, h1, h2 } from 'react-dom-factories'
 import TimeWithTooltip from 'time-with-tooltip'
@@ -43,10 +43,8 @@ export class GameHeader extends React.Component
           title
         h2 className: 'mp-history-game__metadata mp-history-game__metadata--artist', getArtist(@props.beatmapset)
 
-      div className: 'mp-history-game__mods-box',
-        el Mods,
-          mods: @props.game.mods
-          modifiers: ['large', 'reversed']
+      div className: 'mp-history-game__mods',
+        el(Mod, key: mod, mod: mod) for mod in @props.game.mods
 
       div
         className: 'mp-history-game__team-type'

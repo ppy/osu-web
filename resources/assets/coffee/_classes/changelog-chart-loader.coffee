@@ -5,7 +5,7 @@ class @ChangelogChartLoader
   container: document.getElementsByClassName('js-changelog-chart')
 
   constructor: ->
-    $(window).on 'throttled-resize', @resize
+    $(window).on 'resize', @resize
     $(document).on 'turbolinks:load', @initialize
 
   initialize: =>
