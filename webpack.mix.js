@@ -232,9 +232,6 @@ const plugins = (function() {
       'bootstrap/dist/js/bootstrap.js',
       'lodash/lodash.js',
       'layzr.js/dist/layzr.js',
-      `react/umd/react.${reactMin}.js`,
-      'react-dom-factories/index.js',
-      `react-dom/umd/react-dom.${reactMin}.js`,
       `prop-types/prop-types${min}.js`,
       'photoswipe/dist/photoswipe.js',
       'photoswipe/dist/photoswipe-ui-default.js',
@@ -267,6 +264,10 @@ const plugins = (function() {
   });
 
   return [
+    new webpack.ProvidePlugin({
+      React: 'react',
+      ReactDOM: 'react-dom',
+    }),
     new webpack.DefinePlugin({
       'process.env.DOCS_URL': JSON.stringify(process.env.DOCS_URL || 'https://docs.ppy.sh'),
       'process.env.PAYMENT_SANDBOX': JSON.stringify(paymentSandbox),
@@ -291,9 +292,6 @@ const webpackConfig = {
     'lodash': '_',
     'moment': 'moment',
     'prop-types': 'PropTypes',
-    'react': 'React',
-    'react-dom': 'ReactDOM',
-    'react-dom-factories': 'ReactDOMFactories',
   },
   mode: inProduction ? 'production' : 'development',
   module: {
