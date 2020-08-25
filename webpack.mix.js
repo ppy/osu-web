@@ -46,8 +46,14 @@ class Manifest {
 
       const manifest = {};
       json.assets.forEach((asset) => {
-        let name = asset.name;
+        let assetName = asset.name
+        // ensure lookup name starts with / because mix helper is dumb.
+        // also ensure assets are relative to root.
+        if (!assetName.startsWith('/')) {
+          assetName = `/${assetName}`;
+        }
 
+        let name = assetName;
         // remove hash from name.
         if (name.lastIndexOf('?') > 0) {
           // querystring version
@@ -66,13 +72,7 @@ class Manifest {
           name = `${basename}${extname}`;
         }
 
-
-        // ensure lookup name starts with / because mix helper is dumb.
-        if (!name.startsWith('/')) {
-          name = `/${name}`;
-        }
-
-        manifest[name] = asset.name;
+        manifest[name] = assetName;
       })
 
       fs.writeFileSync(this.fileName, JSON.stringify(manifest, null, 2));
