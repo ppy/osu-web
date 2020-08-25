@@ -23,7 +23,6 @@ trait UserScoreable
             ->query(
                 (new BoolQuery)
                     ->filter(['term' => ['user_id' => $this->getKey()]])
-                    ->filter(['term' => ['hidden' => 0]])
             )
             ->setAggregations([
                 'by_beatmaps' => [
