@@ -245,12 +245,6 @@ const plugins = (function() {
       `imagesloaded/imagesloaded.pkgd${min}.js`,
     ].map((name) => path.join(path.resolve(__dirname, 'node_modules'), name));
 
-    vendor.forEach(function(script) {
-      if (!fs.existsSync(script)) {
-        throw new Error(`${script} doesn't exist`);
-      }
-    });
-
     if (!fs.readdirSync('resources/assets/build/locales').some((file) => file.endsWith('.js'))) {
       throw new Error('missing locale files.');
     }
