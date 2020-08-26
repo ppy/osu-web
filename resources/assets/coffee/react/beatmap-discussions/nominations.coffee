@@ -393,7 +393,7 @@ export class Nominations extends React.PureComponent
     el BigButton,
       text: osu.trans 'beatmaps.nominations.disqualify'
       icon: 'fas fa-thumbs-down'
-      modifiers: ['warn']
+      modifiers: ['warning']
       props:
         onClick: @focusNewDiscussionWithModeSwitch
 
