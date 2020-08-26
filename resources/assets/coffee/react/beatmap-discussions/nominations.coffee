@@ -40,12 +40,12 @@ export class Nominations extends React.PureComponent
         div className: "#{bn}__item", @discussionLockMessage()
         div className: "#{bn}__item #{bn}__item--nominators", @nominatorsList()
       div className: "#{bn}__items #{bn}__items--buttons",
-        div className: "#{bn}__items--grouping",
+        div className: "#{bn}__items-grouping",
           div className: "#{bn}__item", @feedbackButton()
           div className: "#{bn}__item", @hypeButton()
           div className: "#{bn}__item", @disqualifyButton()
           div className: "#{bn}__item", @nominationButton()
-        div className: "#{bn}__items--grouping",
+        div className: "#{bn}__items-grouping",
           div className: "#{bn}__item", @discussionLockButton()
           div className: "#{bn}__item", @loveButton()
           div className: "#{bn}__item", @deleteButton()
