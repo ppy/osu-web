@@ -214,7 +214,6 @@ const plugins = (function() {
 
     // vendor and locale files.
     const vendor = [
-      `url-polyfill/url-polyfill${min}.js`,
       `jquery/dist/jquery${min}.js`,
       'jquery-ujs/src/rails.js',
       `qtip2/dist/jquery.qtip${min}.js`,
@@ -229,14 +228,10 @@ const plugins = (function() {
       'timeago/jquery.timeago.js',
       'blueimp-file-upload/js/jquery.fileupload.js',
       'bootstrap/dist/js/bootstrap.js',
-      'lodash/lodash.js',
       'layzr.js/dist/layzr.js',
-      `prop-types/prop-types${min}.js`,
       'photoswipe/dist/photoswipe.js',
       'photoswipe/dist/photoswipe-ui-default.js',
-      `d3/dist/d3${min}.js`,
       'moment/moment.js',
-      'js-cookie/src/js.cookie.js',
     ].map((name) => path.join(path.resolve(__dirname, 'node_modules'), name));
 
     if (!fs.readdirSync('resources/assets/build/locales').some((file) => file.endsWith('.js'))) {
@@ -263,6 +258,9 @@ const plugins = (function() {
 
   return [
     new webpack.ProvidePlugin({
+      _: 'lodash',
+      d3: 'd3', // TODO: d3 is fat and probably should have it's own chunk
+      Cookies: 'js-cookie',
       React: 'react',
       ReactDOM: 'react-dom',
       Turbolinks: 'turbolinks',
@@ -286,12 +284,6 @@ const plugins = (function() {
 const webpackConfig = {
   devtool: 'source-map',
   entry,
-  externals: {
-    'd3': 'd3',
-    'lodash': '_',
-    'moment': 'moment',
-    'prop-types': 'PropTypes',
-  },
   mode: inProduction ? 'production' : 'development',
   module: {
     rules: [
