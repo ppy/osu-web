@@ -164,7 +164,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   nearbyDraftEmbeds = (drafts: SlateNode[]) => {
     const timestamp = this.timestamp();
-    if (timestamp == null || !drafts || drafts.length === 0) {
+    if (timestamp == null || drafts.length === 0) {
       return;
     }
 
