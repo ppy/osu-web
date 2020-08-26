@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "let's get<br>you started!",
         'action' => 'Download osu!',
+
+        'help' => [
+            '_' => 'if you have problem starting the game or registering for account, :help_forum_link or :support_button.',
+            'help_forum_link' => 'check help forum',
+            'support_button' => 'contact support',
+        ],
+
         'os' => [
             'windows' => 'for Windows',
             'macos' => 'for macOS',
@@ -87,7 +94,7 @@ return [
                 'description' => 'follow the prompts when starting the game to sign in or make a new account',
             ],
             'download' => [
-                'title' => 'download the game',
+                'title' => 'install the game',
                 'description' => 'click the button above to download the installer, then run it!',
             ],
             'beatmaps' => [
