@@ -14,10 +14,10 @@ class @StickyHeader
     @stickyBreadcrumbs = document.getElementsByClassName('js-sticky-header-breadcrumbs')
     @stickyContent = document.getElementsByClassName('js-sticky-header-content')
 
-    $(window).on 'throttled-scroll', @onScroll
+    $(window).on 'scroll', @onScroll
     $(document).on 'turbolinks:load', @debouncedOnScroll
     $.subscribe 'osu:page:change', @debouncedOnScroll
-    $(window).on 'throttled-resize', @stickOrUnstick
+    $(window).on 'resize', @stickOrUnstick
 
 
   breadcrumbsElement: ->

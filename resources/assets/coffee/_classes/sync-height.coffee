@@ -9,7 +9,7 @@ class @SyncHeight
 
     $(document).on 'turbolinks:load', @sync
     $.subscribe 'osu:page:change', @throttledSync
-    $(window).on 'throttled-resize', @sync
+    $(window).on 'resize', @sync
 
     @observe()
 

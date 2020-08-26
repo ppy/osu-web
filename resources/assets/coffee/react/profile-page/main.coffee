@@ -74,7 +74,7 @@ export class Main extends React.PureComponent
     $.subscribe 'user:page:update.profilePage', @userPageUpdate
     $.subscribe 'profile:showMore.profilePage', @showMore
     $.subscribe 'profile:page:jump.profilePage', @pageJump
-    $(window).on 'throttled-scroll.profilePage', @pageScan
+    $(window).on 'scroll.profilePage', @pageScan
     $(document).on 'turbolinks:before-cache.profilePage', @saveStateToContainer
 
     $(@pages.current).sortable

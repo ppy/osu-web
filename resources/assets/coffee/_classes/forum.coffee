@@ -26,7 +26,7 @@ class @Forum
     $(document).on 'turbolinks:load', @throttledBoot
     $.subscribe 'osu:page:change', @throttledBoot
 
-    $(window).on 'throttled-scroll', @refreshCounter
+    $(window).on 'scroll', @refreshCounter
     $(document).on 'click', '.js-forum-posts-show-more', @showMore
     $(document).on 'click', '.js-post-url', @postUrlClick
     $(document).on 'submit', '.js-forum-posts-jump-to', @jumpToSubmit

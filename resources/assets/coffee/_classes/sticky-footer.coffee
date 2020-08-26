@@ -14,7 +14,7 @@ class @StickyFooter
     @permanentFixedFooter = document.getElementsByClassName('js-permanent-fixed-footer')
     @throttledStickOrUnstick = _.throttle @stickOrUnstick, 100
 
-    $(window).on 'throttled-scroll throttled-resize', @throttledStickOrUnstick
+    $(window).on 'scroll resize', @stickOrUnstick
     $.subscribe 'stickyFooter:check', @throttledStickOrUnstick
     $(document).on 'turbolinks:load', @throttledStickOrUnstick
     $.subscribe 'osu:page:change', @throttledStickOrUnstick
