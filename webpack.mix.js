@@ -203,82 +203,38 @@ const output = {
   path: path.resolve(__dirname, 'public'),
 };
 
-const plugins = (function() {
-  const concatPlugin = (function() {
-    let min = '';
-    let reactMin = 'development';
-    if (inProduction) {
-      min = '.min';
-      reactMin = 'production.min';
-    }
-
-    // vendor and locale files.
-    const vendor = [
-      `jquery/dist/jquery${min}.js`,
-      'jquery-ujs/src/rails.js',
-      `qtip2/dist/jquery.qtip${min}.js`,
-      'jquery.scrollto/jquery.scrollTo.js',
-      'jquery-ui/ui/data.js',
-      'jquery-ui/ui/scroll-parent.js',
-      'jquery-ui/ui/widget.js',
-      'jquery-ui/ui/widgets/mouse.js',
-      'jquery-ui/ui/widgets/slider.js',
-      'jquery-ui/ui/widgets/sortable.js',
-      'jquery-ui/ui/keycode.js',
-      'timeago/jquery.timeago.js',
-      'blueimp-file-upload/js/jquery.fileupload.js',
-      'bootstrap/dist/js/bootstrap.js',
-      'photoswipe/dist/photoswipe.js',
-      'photoswipe/dist/photoswipe-ui-default.js',
-    ].map((name) => path.join(path.resolve(__dirname, 'node_modules'), name));
-
-    if (!fs.readdirSync('resources/assets/build/locales').some((file) => file.endsWith('.js'))) {
-      throw new Error('missing locale files.');
-    }
-
-    return new ConcatPlugin({
-      patterns: [
-        {
-          from: vendor, to: outputFilename('js/vendor'),
-        },
-      ],
-    });
-  }());
-
-  const copyPlugin = new CopyPlugin({
+const plugins = [
+  new webpack.ProvidePlugin({
+    _: 'lodash',
+    $: 'jquery',
+    jQuery: 'jquery',
+    Cookies: 'js-cookie',
+    d3: 'd3', // TODO: d3 is fat and probably should have it's own chunk
+    moment: 'moment',
+    React: 'react',
+    ReactDOM: 'react-dom',
+    Turbolinks: 'turbolinks',
+  }),
+  new webpack.DefinePlugin({
+    'process.env.DOCS_URL': JSON.stringify(process.env.DOCS_URL || 'https://docs.ppy.sh'),
+    'process.env.PAYMENT_SANDBOX': JSON.stringify(paymentSandbox),
+    'process.env.SHOPIFY_DOMAIN': JSON.stringify(process.env.SHOPIFY_DOMAIN),
+    'process.env.SHOPIFY_STOREFRONT_TOKEN': JSON.stringify(process.env.SHOPIFY_STOREFRONT_TOKEN),
+  }),
+  new MiniCssExtractPlugin({
+    chunkFilename: outputFilename('css/app', 'css'),
+    filename: outputFilename('css/app', 'css'),
+  }),
+  new CopyPlugin({
     patterns: [
       { from: 'resources/assets/build/locales', to: outputFilename('js/locales/[name]', '[ext]') },
       { from: 'node_modules/@fortawesome/fontawesome-free/webfonts', to: outputFilename('vendor/fonts/font-awesome/[name]', '[ext]') },
       { from: 'node_modules/photoswipe/dist/default-skin', to: outputFilename('vendor/_photoswipe-default-skin/[name]', '[ext]') },
       { from: 'node_modules/moment/locale', to: outputFilename('vendor/js/moment-locales/[name]', '[ext]') },
     ],
-  });
-
-  return [
-    new webpack.ProvidePlugin({
-      _: 'lodash',
-      Cookies: 'js-cookie',
-      d3: 'd3', // TODO: d3 is fat and probably should have it's own chunk
-      moment: 'moment',
-      React: 'react',
-      ReactDOM: 'react-dom',
-      Turbolinks: 'turbolinks',
-    }),
-    new webpack.DefinePlugin({
-      'process.env.DOCS_URL': JSON.stringify(process.env.DOCS_URL || 'https://docs.ppy.sh'),
-      'process.env.PAYMENT_SANDBOX': JSON.stringify(paymentSandbox),
-      'process.env.SHOPIFY_DOMAIN': JSON.stringify(process.env.SHOPIFY_DOMAIN),
-      'process.env.SHOPIFY_STOREFRONT_TOKEN': JSON.stringify(process.env.SHOPIFY_STOREFRONT_TOKEN),
-    }),
-    new MiniCssExtractPlugin({
-      chunkFilename: outputFilename('css/app', 'css'),
-      filename: outputFilename('css/app', 'css'),
-    }),
-    concatPlugin,
-    copyPlugin,
-    new Manifest({ fileName: 'public/mix-manifest.json'}),
-  ];
-}());
+  }),
+  new Manifest({ fileName: 'public/mix-manifest.json'}),
+];
 
 const webpackConfig = {
   devtool: 'source-map',
@@ -337,7 +293,7 @@ const webpackConfig = {
           path.resolve(__dirname, 'resources/assets/coffee'),
         ],
         test: /\.coffee$/,
-        use: ['imports-loader?this=>window', 'coffee-loader'],
+        use: ['imports-loader?jQuery=jquery,$=jquery,this=>window', 'coffee-loader'],
       },
       {
         // loader for import-based coffeescript
