@@ -15,7 +15,8 @@ class @StickyHeader
     @stickyContent = document.getElementsByClassName('js-sticky-header-content')
 
     $(window).on 'scroll', @onScroll
-    $(document).on 'turbolinks:load osu:page:change', @debouncedOnScroll
+    $(document).on 'turbolinks:load', @debouncedOnScroll
+    $.subscribe 'osu:page:change', @debouncedOnScroll
     $(window).on 'resize', @stickOrUnstick
 
 
