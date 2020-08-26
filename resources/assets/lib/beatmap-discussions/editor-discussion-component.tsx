@@ -257,6 +257,9 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         </button>
       );
 
+    const nearbyIndicator =
+      <DraftsContext.Consumer>{this.nearbyIndicator}</DraftsContext.Consumer>;
+
     const unsavedIndicator =
       this.props.editMode && canEdit ?
         (
@@ -294,7 +297,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
                 </span>
               </div>
               {unsavedIndicator}
-              <DraftsContext.Consumer>{this.nearbyIndicator}</DraftsContext.Consumer>
+              {nearbyIndicator}
             </div>
             <div
               contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
@@ -304,7 +307,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
               <div className='beatmapset-discussion-message'>{this.props.children}</div>
             </div>
             {unsavedIndicator}
-            <DraftsContext.Consumer>{this.nearbyIndicator}</DraftsContext.Consumer>
+            {nearbyIndicator}
           </div>
         </div>
         {deleteButton}
