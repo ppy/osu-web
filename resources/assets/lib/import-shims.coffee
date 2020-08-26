@@ -12,6 +12,8 @@ import * as laroute from 'laroute'
 import Localtime from 'localtime'
 import MobileToggle from 'mobile-toggle'
 import OsuAudio from 'osu-audio/main'
+import OsuLayzr from 'osu-layzr'
+import * as moment from 'moment'
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
@@ -19,6 +21,10 @@ import GalleryContest from 'gallery-contest'
 import WindowVHPatcher from 'window-vh-patcher'
 import TurbolinksReload from 'turbolinks-reload'
 import OsuUrlHelper from 'osu-url-helper'
+
+# for moment locales to load
+# FIXME: load moment locales with imports?
+window.moment = moment
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
@@ -34,6 +40,7 @@ window._exported = {
   Localtime
   MobileToggle
   OsuAudio
+  OsuLayzr
   OsuUrlHelper
   TurbolinksReload
   WindowVHPatcher

@@ -228,10 +228,8 @@ const plugins = (function() {
       'timeago/jquery.timeago.js',
       'blueimp-file-upload/js/jquery.fileupload.js',
       'bootstrap/dist/js/bootstrap.js',
-      'layzr.js/dist/layzr.js',
       'photoswipe/dist/photoswipe.js',
       'photoswipe/dist/photoswipe-ui-default.js',
-      'moment/moment.js',
     ].map((name) => path.join(path.resolve(__dirname, 'node_modules'), name));
 
     if (!fs.readdirSync('resources/assets/build/locales').some((file) => file.endsWith('.js'))) {
@@ -259,8 +257,9 @@ const plugins = (function() {
   return [
     new webpack.ProvidePlugin({
       _: 'lodash',
-      d3: 'd3', // TODO: d3 is fat and probably should have it's own chunk
       Cookies: 'js-cookie',
+      d3: 'd3', // TODO: d3 is fat and probably should have it's own chunk
+      moment: 'moment',
       React: 'react',
       ReactDOM: 'react-dom',
       Turbolinks: 'turbolinks',
@@ -433,6 +432,7 @@ const webpackConfig = {
   plugins,
   resolve: {
     alias: {
+      'layzr': path.resolve(__dirname, 'node_modules/layzr.js/dist/layzr.module.js'),
       'ziggy': path.resolve(__dirname, 'resources/assets/js/ziggy.js'),
       'ziggy-route': path.resolve(__dirname, 'vendor/tightenco/ziggy/dist/js/route.js'),
     },

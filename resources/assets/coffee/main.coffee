@@ -62,7 +62,7 @@ $(document).on 'turbolinks:load', ->
 @mobileToggle ?= new _exported.MobileToggle
 @navButton ?= new NavButton
 @osuAudio ?= new _exported.OsuAudio
-@osuLayzr ?= new OsuLayzr
+@osuLayzr ?= new _exported.OsuLayzr
 @postPreview ?= new PostPreview
 @scale ?= new Scale
 @search ?= new Search
