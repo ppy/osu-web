@@ -109,6 +109,6 @@ export class Stats extends React.Component
         modifiers: ['beatmapset-rating']
 
       @_ratingChart = new StackedBarChart @refs.chartArea, options
-      $(window).on 'throttled-resize.beatmapsetPageStats', @_ratingChart.resize
+      $(window).on 'resize.beatmapsetPageStats', @_ratingChart.resize
 
     @_ratingChart.loadData rating: @props.beatmapset.ratings[1..]

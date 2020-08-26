@@ -55,7 +55,7 @@
                     </a>
                 @else
                     <button
-                        class="mobile-menu-tab mobile-menu-tab--user js-navbar-mobile--top-icon js-user-link"
+                        class="mobile-menu-tab mobile-menu-tab--user js-user-link"
                     >
                         <span class="mobile-menu-tab__avatar">
                             <span class="avatar avatar--full-rounded avatar--guest"></span>

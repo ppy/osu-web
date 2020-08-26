@@ -8,6 +8,21 @@ namespace App\Models;
 use App\Models\Chat\Channel;
 use App\Models\Forum\Topic;
 
+/**
+ * @property \Carbon\Carbon|null $created_at
+ * @property string $category
+ * @property array|null $details
+ * @property int $id
+ * @property Model $notifiable
+ * @property string $notifiable_type
+ * @property int $notifiable_id
+ * @property int $priority
+ * @property User $source
+ * @property int|null $source_user_id
+ * @property string $name
+ * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Database\Eloquent\Collection $userNotifications UserNotification
+ */
 class Notification extends Model
 {
     const BEATMAPSET_DISCUSSION_LOCK = 'beatmapset_discussion_lock';
@@ -91,6 +106,16 @@ class Notification extends Model
     public function source()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function toIdentityJson()
+    {
+        return [
+            'category' => $this->category,
+            'id' => $this->getKey(),
+            'object_id' => $this->notifiable_id,
+            'object_type' => $this->notifiable_type,
+        ];
     }
 
     public function userNotifications()
