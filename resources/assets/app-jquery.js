@@ -22,7 +22,9 @@ import 'photoswipe/dist/photoswipe.js';
 import 'photoswipe/dist/photoswipe-ui-default.js';
 
 import moment from 'moment';
+import Turbolinks from 'turbolinks';
 
+window.Turbolinks = Turbolinks;
 window.$ = $;
 window.jQuery = $;
 window.moment = moment;
