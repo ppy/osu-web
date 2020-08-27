@@ -2,14 +2,11 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@php
-    $captchaEnabled = config('captcha.sitekey') !== '' && config('captcha.secret') !== '';
-@endphp
 <div class="{{ class_with_modifiers('login-box', $modifiers ?? []) }}">
     <div
         class="
             login-box__content
-            {{ $captchaEnabled ? 'login-box__content--captcha' : '' }}
+            {{ captcha_enabled() ? 'login-box__content--captcha' : '' }}
             js-click-menu
             js-nav2--centered-popup
             js-nav2--login-box
@@ -45,9 +42,9 @@
                 />
             </div>
 
-            @if ($captchaEnabled)
+            @if (captcha_enabled())
                 <div class="login-box__row">
-                    {!! NoCaptcha::display(['data-theme' => 'dark']) !!}
+                    <div class='js-captcha--container'></div>
                 </div>
             @endif
 
@@ -62,7 +59,7 @@
             <div class="login-box__row login-box__row--actions">
                 <div class="login-box__action">
                     <button
-                        class="btn-osu-big btn-osu-big--nav-popup"
+                        class="btn-osu-big btn-osu-big--nav-popup js-captcha--submit-button"
                         data-disable-with="{{ trans('users.login.button_posting') }}"
                     >
                         <div class="btn-osu-big__content">
@@ -102,3 +99,13 @@
         </div>
     </div>
 </div>
+{{--
+    we're explicitly avoiding NoCaptcha::renderJs here in order to use recaptcha.net instead of google.com (as the latter is blocked in mainland china)
+    see: https://developers.google.com/recaptcha/docs/faq#can-i-use-recaptcha-globally
+--}}
+@if (captcha_enabled())
+    <script>
+        turbolinksReload.load('https://www.recaptcha.net/recaptcha/api.js?render=explicit&onload=initCaptcha&hl={{Lang::getLocale()}}');
+        function initCaptcha() { captcha.init('{{config('captcha.sitekey')}}') }
+    </script>
+@endif

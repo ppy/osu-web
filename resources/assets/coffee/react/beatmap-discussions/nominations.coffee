@@ -40,13 +40,15 @@ export class Nominations extends React.PureComponent
         div className: "#{bn}__item", @discussionLockMessage()
         div className: "#{bn}__item #{bn}__item--nominators", @nominatorsList()
       div className: "#{bn}__items #{bn}__items--buttons",
-        div className: "#{bn}__item", @feedbackButton()
-        div className: "#{bn}__item", @hypeButton()
-        div className: "#{bn}__item", @disqualifyButton()
-        div className: "#{bn}__item", @nominationButton()
-        div className: "#{bn}__item", @loveButton()
-        div className: "#{bn}__item", @deleteButton()
-        div className: "#{bn}__item", @discussionLockButton()
+        div className: "#{bn}__items-grouping",
+          div className: "#{bn}__item", @feedbackButton()
+          div className: "#{bn}__item", @hypeButton()
+          div className: "#{bn}__item", @disqualifyButton()
+          div className: "#{bn}__item", @nominationButton()
+        div className: "#{bn}__items-grouping",
+          div className: "#{bn}__item", @discussionLockButton()
+          div className: "#{bn}__item", @loveButton()
+          div className: "#{bn}__item", @deleteButton()
 
 
   renderLights: (lightsOn, lightsTotal) ->
@@ -391,6 +393,7 @@ export class Nominations extends React.PureComponent
     el BigButton,
       text: osu.trans 'beatmaps.nominations.disqualify'
       icon: 'fas fa-thumbs-down'
+      modifiers: ['warning']
       props:
         onClick: @focusNewDiscussionWithModeSwitch
 
@@ -435,6 +438,7 @@ export class Nominations extends React.PureComponent
     el BigButton,
       text: osu.trans "beatmaps.discussions.lock.button.#{action}"
       icon: icon
+      modifiers: ['warning']
       props: { onClick }
 
 
@@ -444,6 +448,7 @@ export class Nominations extends React.PureComponent
     el BigButton,
       text: osu.trans 'beatmaps.nominations.love'
       icon: 'fas fa-heart'
+      modifiers: ['pink']
       props:
         onClick: @love
 
@@ -454,5 +459,6 @@ export class Nominations extends React.PureComponent
     el BigButton,
       text: osu.trans 'beatmaps.nominations.delete'
       icon: 'fas fa-trash'
+      modifiers: ['danger']
       props:
         onClick: @delete

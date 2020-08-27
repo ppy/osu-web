@@ -6,11 +6,11 @@ class @ForumAutoClick
     @_triggerDistance = 1200
     @nextLink = document.getElementsByClassName('js-forum__posts-show-more--next')
     @previousLink = document.getElementsByClassName('js-forum__posts-show-more--previous')
+    @throttledOnScroll = _.throttle @onScroll, 1000
 
-    $(window).on 'scroll', _.throttle(@onScroll, 1000)
-
-    $(document).on 'turbolinks:load osu:page:change', =>
-      Timeout.set 1000, @onScroll
+    $(window).on 'scroll', @throttledOnScroll
+    $(document).on 'turbolinks:load', @throttledOnScroll
+    $.subscribe 'osu:page:change', @throttledOnScroll
 
 
   commonClick: (link) ->

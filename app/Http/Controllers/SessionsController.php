@@ -50,7 +50,7 @@ class SessionsController extends Controller
             abort(422);
         }
 
-        if (config('captcha.sitekey') !== '' && config('captcha.secret') !== '') {
+        if (captcha_enabled()) {
             $token = presence($params['g-recaptcha-response'] ?? null);
             $validCaptcha = false;
 

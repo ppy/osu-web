@@ -32,6 +32,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "Can't vote on discussion made by bot",
             'limit_exceeded' => 'Please wait a while before casting more votes',
             'owner' => "Can't vote on own discussion.",
             'wrong_beatmapset_state' => 'Can only vote on discussions of pending beatmaps.',
