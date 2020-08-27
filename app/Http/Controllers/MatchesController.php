@@ -96,6 +96,7 @@ class MatchesController extends Controller
         );
 
         return [
+            'match' => json_item($match, 'Match\Match'),
             'events' => $events,
             'users' => $users,
             'latest_event_id' => $match->events()->select('event_id')->last()->getKey(),

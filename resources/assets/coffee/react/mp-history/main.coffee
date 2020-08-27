@@ -24,6 +24,7 @@ export class Main extends React.Component
     @timeouts = {}
 
     @state =
+      match: props.match
       events: events
       users: _.keyBy props.events.users, 'id'
       currentGameId: props.events.current_game_id
@@ -41,7 +42,7 @@ export class Main extends React.Component
         theme: 'mp-history'
 
       el Content,
-        match: @props.match
+        match: @state.match
         events: @state.events
         currentGameId: @state.currentGameId
         allEventsCount: @state.allEventsCount
@@ -74,7 +75,7 @@ export class Main extends React.Component
 
 
   hasNext: =>
-    _.last(@state.events)?.detail.type != 'match-disbanded'
+    !@state.match.end_time?
 
 
   loadNext: =>
@@ -83,7 +84,7 @@ export class Main extends React.Component
     Timeout.clear @timeouts.autoload
     @setState loadingNext: true
 
-    $.ajax laroute.route('matches.history', match: @props.match.id),
+    $.ajax laroute.route('matches.history', match: @state.match.id),
       method: 'GET'
       dataType: 'JSON'
       data:
@@ -100,6 +101,7 @@ export class Main extends React.Component
       newUsers = @newUsersHash data.users
 
       @setState
+        match: data.match
         events: newEvents
         users: newUsers
         currentGameId: data.current_game_id
@@ -128,7 +130,7 @@ export class Main extends React.Component
 
     @setState loadingPrevious: true
 
-    $.ajax laroute.route('matches.history', match: @props.match.id),
+    $.ajax laroute.route('matches.history', match: @state.match.id),
       method: 'GET'
       dataType: 'JSON'
       data:
