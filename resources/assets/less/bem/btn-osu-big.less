@@ -106,12 +106,12 @@
   }
 
   &--danger {
-    background-color: @red;
+    background-color: @osu-colour-red-3;
 
     &:focus,
     &:hover,
     &:active {
-      background-color: @red-light;
+      background-color: @osu-colour-red-2;
     };
 
     &[disabled] {
@@ -291,7 +291,18 @@
   }
 
   &--pink {
-    background-color: @pink;
+    background-color: @osu-colour-pink-3;
+
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: @osu-colour-pink-2;
+    };
+
+    &[disabled] {
+      background-color: @osu-colour-b3;
+      color: @osu-colour-f1;
+    }
   }
 
   &--quick-search-close {
@@ -386,6 +397,21 @@
     border-radius: 10000px;
     width: 140px;
     padding: 5px 10px;
+  }
+
+  &--warning {
+    background-color: @osu-colour-orange-3;
+
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: @osu-colour-orange-2;
+    };
+
+    &[disabled] {
+      background-color: @osu-colour-b3;
+      color: @osu-colour-f1;
+    }
   }
 
   &--wrap-text {

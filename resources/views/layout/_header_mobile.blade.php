@@ -42,17 +42,28 @@
                         data-click-menu-target="mobile-user"
                         class="mobile-menu-tab mobile-menu-tab--user js-click-menu"
                     >
-                        <span
-                            class="avatar avatar--full-rounded"
-                            style="background-image: url('{{ $user->user_avatar }}');"
-                        ></span>
+                        <span class="mobile-menu-tab__avatar">
+                            <span
+                                class="avatar avatar--full-rounded"
+                                style="background-image: url('{{ $user->user_avatar }}');"
+                            ></span>
+                        </span>
+
+                        <span class="u-ellipsis-overflow">
+                            {{ $user->username }}
+                        </span>
                     </a>
                 @else
                     <button
-                        title="{{ trans('users.anonymous.login_link') }}"
-                        class="mobile-menu-tab mobile-menu-tab--user js-navbar-mobile--top-icon js-user-link"
+                        class="mobile-menu-tab mobile-menu-tab--user js-user-link"
                     >
-                        <span class="avatar avatar--full-rounded avatar--guest"></span>
+                        <span class="mobile-menu-tab__avatar">
+                            <span class="avatar avatar--full-rounded avatar--guest"></span>
+                        </span>
+
+                        <span class="u-ellipsis-overflow">
+                            {{ trans('layout.popup_login.button') }}
+                        </span>
                     </button>
                 @endif
 

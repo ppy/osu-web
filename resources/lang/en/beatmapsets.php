@@ -93,7 +93,6 @@ return [
             'source' => 'Source',
             'success-rate' => 'Success Rate',
             'tags' => 'Tags',
-            'unranked' => 'Unranked beatmap',
         ],
 
         'scoreboard' => [

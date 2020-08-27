@@ -68,7 +68,7 @@ export class Main extends React.PureComponent
     $.subscribe 'profile:page:jump.moddingProfilePage', @pageJump
     $.subscribe 'beatmapsetDiscussions:update.moddingProfilePage', @discussionUpdate
     $(document).on 'ajax:success.moddingProfilePage', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
-    $(window).on 'throttled-scroll.moddingProfilePage', @pageScan
+    $(window).on 'scroll.moddingProfilePage', @pageScan
 
     osu.pageChange()
 

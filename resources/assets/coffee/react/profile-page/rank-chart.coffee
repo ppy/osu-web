@@ -37,9 +37,7 @@ export class RankChart extends React.Component
 
 
   render: =>
-    div
-      className: 'u-full-size'
-      ref: @rankChartArea
+    div ref: @rankChartArea
 
 
   rankChartUpdate: =>
@@ -62,7 +60,7 @@ export class RankChart extends React.Component
 
       @rankChart = new LineChart(@rankChartArea.current, options)
 
-      $(window).on "throttled-resize.#{@id}", @rankChart.resize
+      $(window).on "resize.#{@id}", @rankChart.resize
 
     data = @props.rankHistory?.data if @props.stats.is_ranked
 
