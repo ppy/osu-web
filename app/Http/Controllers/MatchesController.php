@@ -8,7 +8,6 @@ namespace App\Http\Controllers;
 use App\Models\Match\Match;
 use App\Models\User;
 use App\Transformers\Match\EventTransformer;
-use App\Transformers\Match\MatchTransformer;
 use App\Transformers\UserCompactTransformer;
 
 class MatchesController extends Controller
