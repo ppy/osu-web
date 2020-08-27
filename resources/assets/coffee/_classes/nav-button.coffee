@@ -13,7 +13,7 @@ class @NavButton
   load: =>
     if !@listening
       @listening = true
-      $(window).on 'throttled-resize', @hideOrShow
+      $(window).on 'resize', @hideOrShow
 
     return if @main.length == 0
 
