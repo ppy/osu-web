@@ -47,18 +47,22 @@ class UserBestScoresCheck
         $clazz = Best\Model::getClassByString($mode);
 
         $search = $this->newSearch('osu');
-        $esIds = [];
         $cursor = [''];
 
+        $missingIds = [];
+
         while ($cursor !== null) {
-            $ids = $search->searchAfter(array_values($cursor))->response()->ids();
-            $esIds = array_merge($esIds, $ids);
+            $esIds = $search->searchAfter(array_values($cursor))->response()->ids();
+            $dbIds = $clazz::default()->whereIn('score_id', $esIds)->pluck('score_id')->all();
+            $missingIds = array_merge(
+                $missingIds,
+                array_values(array_diff($esIds, $dbIds))
+            );
+
             $cursor = $search->getSortCursor();
         }
 
-        $dbIds = $clazz::default()->whereIn('score_id', $esIds)->pluck('score_id')->all();
-
-        return array_values(array_diff($esIds, $dbIds));
+        return $missingIds;
     }
 
     /**
