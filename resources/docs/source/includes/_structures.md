@@ -401,7 +401,7 @@ count       | number
 
 #### beatmapsetApprove
 
-When a beatmapset changed state.
+When a beatmapset changes state.
 
 Field      | Type            | Description
 -----------|-----------------|--------------------------------------------
@@ -446,7 +446,7 @@ user       | EventUser       | Beatmapset owner.
 
 #### rank
 
-When a user obtained certain rank on a beatmap.
+When a user achieves a certain rank on a beatmap.
 
 Field     | Type         | Description
 ----------|--------------|--------------------------------------------
@@ -458,7 +458,7 @@ user      | EventUser    | |
 
 #### rankLost
 
-When a user lost first place to another user.
+When a user loses first place to another user.
 
 Field     | Type
 ----------|-------------
@@ -468,7 +468,7 @@ user      | EventUser
 
 #### userSupportAgain
 
-When a user becomes supporter for the second or more time.
+When a user supports osu! for the second and onwards.
 
 Field     | Type
 ----------|----------
@@ -476,14 +476,15 @@ user      | EventUser
 
 #### userSupportFirst
 
-When a user becomes supporter for the first time.
+When a user becomes a supporter for the first time.
 
 Field     | Type
 ----------|----------
 user      | EventUser
+
 #### userSupportGift
 
-When a user received supporter tag gift from another user.
+When a user is gifted a supporter tag by another user.
 
 Field     | Type      | Description
 ----------|-----------|----------------
@@ -491,7 +492,7 @@ user      | EventUser | Recipient user.
 
 #### usernameChange
 
-When a user changed their username.
+When a user changes their username.
 
 Field     | Type      | Description
 ----------|-----------|-----------------------------
