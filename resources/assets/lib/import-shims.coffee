@@ -3,6 +3,7 @@
 
 # Import shim so that globally declared scripts can work without changes.
 
+import Captcha from 'captcha'
 import ClickMenu from 'click-menu'
 import Fade from 'fade'
 import Enchant from 'enchant'
@@ -25,6 +26,7 @@ window.Promise ?= Promise
 window.Fade = Fade
 
 window._exported = {
+  Captcha
   ClickMenu
   Enchant
   ForumPoll
