@@ -91,7 +91,7 @@ class Groups
 
     public function resetCache()
     {
-        cache()->forget('groups_local_cache_version');
+        cache()->put('groups_local_cache_version', hrtime(true));
     }
 
     private function reset()
