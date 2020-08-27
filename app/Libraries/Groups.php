@@ -55,6 +55,23 @@ class Groups
         return $group;
     }
 
+    /**
+     * Fetch groups data
+     *
+     * This data is being used on every request so fetching them directly
+     * from external database will cause unnecessary load on network.
+     *
+     * Store the data locally on each servers and use normal shared cache
+     * to indicate the servers whether or not to reset the local cache.
+     *
+     * Expiration doesn't really exist on file storage cache so in some rare
+     * cases (like testing) using file storage for local cache will generate
+     * lots of files. Array storage should be used in those cases.
+     * In normal use where groups don't change there shouldn't be too many
+     * files generated.
+     *
+     * If needed, a scheduled `rm -rf storage/framework/cache` may be in order.
+     */
     public function fetch()
     {
         $localCacheVersion = cache()->get('groups_local_cache_version');
