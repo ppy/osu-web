@@ -10,7 +10,7 @@ class @UserVerification
     $(document).on 'click', '.js-user-verification--reissue', @reissue
     $.subscribe 'user-verification:success', @success
 
-    $(window).on 'throttled-resize throttled-scroll', @reposition
+    $(window).on 'resize scroll', @reposition
 
     # Used as callback on original action (where verification was required)
     @clickAfterVerification = null

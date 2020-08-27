@@ -92,7 +92,7 @@
 
 
   pageChangeImmediate: ->
-    $(document).trigger('osu:page:change')
+    $.publish 'osu:page:change'
 
 
   parseJson: (id, remove = false) ->

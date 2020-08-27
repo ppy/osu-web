@@ -107,15 +107,6 @@
     <script src="/vendor/js/moment-locales/{{ $momentLocale }}.js" data-turbolinks-track="reload"></script>
 @endif
 
-{{--
-    we're explicitly avoiding NoCaptcha::renderJs here in order to use recaptcha.net instead of google.com (as the latter is blocked in mainland china)
-    see: https://developers.google.com/recaptcha/docs/faq#can-i-use-recaptcha-globally
---}}
-@if (captcha_enabled())
-    <script src="https://www.recaptcha.net/recaptcha/api.js?render=explicit&onload=initCaptcha&hl={{Lang::getLocale()}}" async defer></script>
-    <script>function initCaptcha() { captcha.init('{{config('captcha.sitekey')}}', {{captcha_triggered() ? 'true' : 'false'}}) }</script>
-@endif
-
 @if (isset($atom))
     <link rel="alternate" type="application/atom+xml" title="{{ $atom['title'] }}" href="{{ $atom['url'] }}">
 @endif

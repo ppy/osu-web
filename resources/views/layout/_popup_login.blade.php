@@ -99,3 +99,13 @@
         </div>
     </div>
 </div>
+{{--
+    we're explicitly avoiding NoCaptcha::renderJs here in order to use recaptcha.net instead of google.com (as the latter is blocked in mainland china)
+    see: https://developers.google.com/recaptcha/docs/faq#can-i-use-recaptcha-globally
+--}}
+@if (captcha_enabled())
+    <script>
+        turbolinksReload.load('https://www.recaptcha.net/recaptcha/api.js?render=explicit&onload=initCaptcha&hl={{Lang::getLocale()}}');
+        function initCaptcha() { captcha.init('{{config('captcha.sitekey')}}') }
+    </script>
+@endif

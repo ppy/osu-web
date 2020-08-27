@@ -21,7 +21,7 @@ export default function Player(props: Props) {
         <div className='score-player__mods'>
           {props.score.mods.map((mod) => (
             <div key={mod} className='score-player__mod'>
-              <Mod mod={mod} modifiers={['dynamic']} />
+              <Mod mod={mod} />
             </div>
           ))}
         </div>

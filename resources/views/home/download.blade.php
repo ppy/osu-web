@@ -61,14 +61,31 @@
             </div>
             <div class="download-page__text download-page__text--description">
                 {!! trans('home.download.steps.beatmaps.description._', [
-                    'browse' =>
-                        '<a class="download-page__link" href="'.e(route('beatmapsets.index')).'" >'.
-                        trans('home.download.steps.beatmaps.description.browse').
-                        '</a>',
+                    'browse' => tag(
+                        'a',
+                        ['href' => route('beatmapsets.index')],
+                        trans('home.download.steps.beatmaps.description.browse')
+                    )
                 ]) !!}
             </div>
         </div>
-        <div class="download-page__accent"></div>
+
+        @if (config('services.enchant.id') !== null)
+            <div class="download-page__help">
+                {!! trans('home.download.help._', [
+                    'support_button' => tag('a', [
+                        'class' => 'js-enchant--show',
+                        'role' => 'button',
+                        'href' => '#',
+                    ], trans('home.download.help.support_button')),
+                    'help_forum_link' => tag('a', [
+                        'href' => route('forum.forums.show', ['forum' => config('osu.forum.help_forum_id')]),
+                    ], trans('home.download.help.help_forum_link')),
+                ]) !!}
+            </div>
+
+            @include('objects._enchant')
+        @endif
     </div>
 </div>
 

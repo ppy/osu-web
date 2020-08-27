@@ -41,8 +41,10 @@ export default class Captcha {
       this.triggered;
   }
 
+  isLoaded = () => this.container()?.innerHTML !== '';
+
   render = () => {
-    if (this.isEnabled()) {
+    if (this.isEnabled() && !this.isLoaded()) {
       grecaptcha.render(this.container()!, {
         'callback': this.enableSubmit,
         'error-callback': this.disableSubmit,

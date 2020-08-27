@@ -25,9 +25,9 @@ class ScoresController extends BaseController
     }
 
     /**
-     * @group Multiplayer
-     *
      * Get Scores
+     *
+     * @group Multiplayer
      *
      * Returns a list of scores for specified playlist item.
      *
@@ -97,9 +97,9 @@ class ScoresController extends BaseController
     }
 
     /**
-     * @group Multiplayer
-     *
      * Get a Score
+     *
+     * @group Multiplayer
      *
      * Returns detail of specified score and the surrounding scores.
      *
@@ -129,9 +129,9 @@ class ScoresController extends BaseController
     }
 
     /**
-     * @group Multiplayer
-     *
      * Get User High Score
+     *
+     * @group Multiplayer
      *
      * Returns detail of highest score of specified user and the surrounding scores.
      *
