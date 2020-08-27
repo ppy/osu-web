@@ -221,6 +221,7 @@ const plugins = [
     'process.env.SHOPIFY_DOMAIN': JSON.stringify(process.env.SHOPIFY_DOMAIN),
     'process.env.SHOPIFY_STOREFRONT_TOKEN': JSON.stringify(process.env.SHOPIFY_STOREFRONT_TOKEN),
   }),
+  new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // don't add moment locales to bundle.
   new MiniCssExtractPlugin({
     chunkFilename: outputFilename('css/app', 'css'),
     filename: outputFilename('css/app', 'css'),
