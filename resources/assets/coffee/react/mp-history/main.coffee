@@ -24,7 +24,7 @@ export class Main extends React.Component
     @timeouts = {}
 
     @state =
-      match: props.match
+      match: props.events.match
       events: events
       users: _.keyBy props.events.users, 'id'
       currentGameId: props.events.current_game_id
