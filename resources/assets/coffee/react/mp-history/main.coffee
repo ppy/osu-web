@@ -12,10 +12,6 @@ export class Main extends React.Component
   MAXIMUM_EVENTS = 500
   REFRESH_TIMEOUT = 10000
 
-  findLastGame = (events) ->
-    _.findLast events, (e) -> e.game?
-
-
   constructor: (props) ->
     super props
 
