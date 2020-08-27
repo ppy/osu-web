@@ -158,6 +158,11 @@ function cache_forget_with_fallback($key)
     return Cache::forget("{$key}:with_fallback");
 }
 
+function captcha_enabled()
+{
+    return config('captcha.sitekey') !== '' && config('captcha.secret') !== '';
+}
+
 function class_with_modifiers(string $className, ?array $modifiers = null)
 {
     $class = $className;
