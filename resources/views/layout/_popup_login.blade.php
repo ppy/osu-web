@@ -104,6 +104,8 @@
     see: https://developers.google.com/recaptcha/docs/faq#can-i-use-recaptcha-globally
 --}}
 @if (captcha_enabled())
-    <script src="https://www.recaptcha.net/recaptcha/api.js?render=explicit&onload=initCaptcha&hl={{Lang::getLocale()}}" async defer></script>
-    <script>function initCaptcha() { captcha.init('{{config('captcha.sitekey')}}') }</script>
+    <script>
+        turbolinksReload.load('https://www.recaptcha.net/recaptcha/api.js?render=explicit&onload=initCaptcha&hl={{Lang::getLocale()}}');
+        function initCaptcha() { captcha.init('{{config('captcha.sitekey')}}') }
+    </script>
 @endif
