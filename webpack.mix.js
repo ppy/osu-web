@@ -372,7 +372,7 @@ const webpackConfig = {
   optimization: {
     moduleIds: 'hashed',
     runtimeChunk: {
-      name: 'js/commons',
+      name: 'js/runtime',
     },
     splitChunks: {
       cacheGroups: {
