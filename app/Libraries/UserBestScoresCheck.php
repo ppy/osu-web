@@ -5,7 +5,11 @@
 
 namespace App\Libraries;
 
+use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Es;
+use App\Libraries\Elasticsearch\Search;
+use App\Libraries\Elasticsearch\Sort;
+use App\Libraries\Search\BasicSearch;
 use App\Models\Score\Best;
 use App\Models\User;
 
@@ -19,6 +23,8 @@ use App\Models\User;
  */
 class UserBestScoresCheck
 {
+    const BATCH_SIZE = 1000;
+
     /** @var User */
     private $user;
 
@@ -40,7 +46,16 @@ class UserBestScoresCheck
     {
         $clazz = Best\Model::getClassByString($mode);
 
-        $esIds = $this->user->beatmapBestScoreIds($mode, 2000);
+        $search = $this->newSearch('osu');
+        $esIds = [];
+        $cursor = [''];
+
+        while ($cursor !== null) {
+            $ids = $search->searchAfter(array_values($cursor))->response()->ids();
+            $esIds = array_merge($esIds, $ids);
+            $cursor = $search->getSortCursor();
+        }
+
         $dbIds = $clazz::default()->whereIn('score_id', $esIds)->pluck('score_id')->all();
 
         return array_values(array_diff($esIds, $dbIds));
@@ -70,5 +85,17 @@ class UserBestScoresCheck
     public function run(string $mode)
     {
         return $this->removeFromEs($mode, $this->check($mode));
+    }
+
+    private function newSearch(string $mode): Search
+    {
+        $index = config('osu.elasticsearch.prefix')."high_scores_{$mode}";
+
+        $search = new BasicSearch($index, "user_best_scores_check_{$mode}");
+        $search->connectionName = 'scores';
+        return $search
+            ->sort(new Sort('_id', 'asc'))
+            ->size(static::BATCH_SIZE)
+            ->query((new BoolQuery)->filter(['term' => ['user_id' => $this->user->getKey()]]));
     }
 }
