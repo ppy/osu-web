@@ -24,7 +24,7 @@ export class Events extends React.Component
               a
                 className: 'modding-profile-list__show-more'
                 key: 'show-more'
-                href: laroute.route('users.modding.events', {user: @props.user.id}),
+                href: laroute.route('beatmapsets.events.index', user: @props.user.id),
                 osu.trans('users.show.extra.events.show_more')
             ]
 
