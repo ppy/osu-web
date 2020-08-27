@@ -349,11 +349,11 @@ If there are no more results available, a cursor with a value of `null` is retur
 
 The object has different attributes depending on its `type`. Following are attributes available to all types.
 
-Field      | Type      | Description
------------|-----------|------------
-created_at | Timestamp | |
-id         | number    | |
-type       | Type      | |
+Field      | Type                      | Description
+-----------|---------------------------|------------
+created_at | Timestamp                 | |
+id         | number                    | |
+type       | [Event.Type](#event-type) | |
 
 ### Additional objects
 
@@ -378,6 +378,8 @@ Field            | Type    | Description
 username         | string  | |
 url              | string  | |
 previousUsername | string? | Only for `usernameChange` event.
+
+<div id="event-type" data-unique="event-type"></div>
 
 ### Available Types
 
