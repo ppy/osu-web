@@ -69,8 +69,6 @@ class Groups
      * lots of files. Array storage should be used in those cases.
      * In normal use where groups don't change there shouldn't be too many
      * files generated.
-     *
-     * If needed, a scheduled `rm -rf storage/framework/cache` may be in order.
      */
     public function fetch()
     {
