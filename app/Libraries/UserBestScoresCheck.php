@@ -25,6 +25,11 @@ class UserBestScoresCheck
 {
     const BATCH_SIZE = 1000;
 
+    /** @var int */
+    public $dbIdsFound;
+    /** @var int */
+    public $esIdsFound;
+
     /** @var User */
     private $user;
 
@@ -44,6 +49,9 @@ class UserBestScoresCheck
      */
     public function check(string $mode)
     {
+        $this->dbIdsFound = 0;
+        $this->esIdsFound = 0;
+
         $clazz = Best\Model::getClassByString($mode);
 
         $search = $this->newSearch('osu');
@@ -53,7 +61,11 @@ class UserBestScoresCheck
 
         while ($cursor !== null) {
             $esIds = $search->searchAfter(array_values($cursor))->response()->ids();
+            $this->esIdsFound += count($esIds);
+
             $dbIds = $clazz::default()->whereIn('score_id', $esIds)->pluck('score_id')->all();
+            $this->dbIdsFound += count($dbIds);
+
             $missingIds = array_merge(
                 $missingIds,
                 array_values(array_diff($esIds, $dbIds))
@@ -97,6 +109,7 @@ class UserBestScoresCheck
 
         $search = new BasicSearch($index, "user_best_scores_check_{$mode}");
         $search->connectionName = 'scores';
+
         return $search
             ->sort(new Sort('_id', 'asc'))
             ->size(static::BATCH_SIZE)
