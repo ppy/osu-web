@@ -23,10 +23,3 @@ export class Events extends React.Component
               className: 'modding-profile-list__show-more'
               href: laroute.route('beatmapsets.events.index', user: @props.user.id),
               osu.trans('users.show.extra.events.show_more')
-
-
-  typeForTranslation: (event) =>
-    if event.type == 'disqualify' && !_.isArray(event.comment)
-      'disqualify_legacy'
-
-    event.type
