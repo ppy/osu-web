@@ -69,7 +69,6 @@
     var fallbackLocale = {!! json_encode(config('app.fallback_locale')) !!};
 </script>
 
-<script src="{{ mix('js/vendor.js') }}" data-turbolinks-track="reload"></script>
 @if(config('services.sentry.public_dsn') !== '')
     <script src="https://browser.sentry-cdn.com/5.1.0/bundle.min.js" crossorigin="anonymous"></script>
     <script>
