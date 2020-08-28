@@ -43,7 +43,7 @@ export class NewReply extends React.PureComponent
 
   renderBox: =>
     div
-      className: "#{bn} #{bn}--reply #{bn}--new-reply"
+      className: "#{bn} #{bn}--reply #{bn}--new-reply u-relative"
 
       div
         className: "#{bn}__content"
