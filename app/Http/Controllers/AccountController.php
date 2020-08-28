@@ -221,11 +221,11 @@ class AccountController extends Controller
         try {
             if (!empty($userParams)) {
                 $user->fill($userParams)->saveOrExplode();
-            };
+            }
 
             if (!empty($profileParams)) {
                 $user->profileCustomization()->fill($profileParams)->saveOrExplode();
-            };
+            }
         } catch (ModelNotSavedException $e) {
             return $this->errorResponse($user, $e);
         }
