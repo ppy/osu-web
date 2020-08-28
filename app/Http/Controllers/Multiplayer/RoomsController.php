@@ -47,16 +47,23 @@ class RoomsController extends BaseController
     public function leaderboard($roomId)
     {
         $limit = clamp(get_int(request('limit')) ?? 50, 1, 50);
+        $room = Room::findOrFail($roomId);
 
-        $leaderboard = json_collection(
-            Room::findOrFail($roomId)
-                ->topScores()
-                ->paginate($limit),
-            'Multiplayer\UserScoreAggregate',
-            ['user.country']
-        );
+        // leaderboard currently requires auth so auth()->check() is not required.
+        $ownScore = $room->topScores()->where('user_id', auth()->id())->first();
 
-        return compact('leaderboard');
+        return [
+            'leaderboard' => json_collection(
+                $room->topScores()->paginate($limit),
+                'Multiplayer\UserScoreAggregate',
+                ['user.country']
+            ),
+            'own_score' => $ownScore !== null ? json_item(
+                $ownScore,
+                'Multiplayer\UserScoreAggregate',
+                ['user.country']
+            ) : null,
+        ];
     }
 
     public function part($roomId, $userId)
