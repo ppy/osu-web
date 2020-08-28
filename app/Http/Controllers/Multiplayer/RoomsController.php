@@ -61,7 +61,7 @@ class RoomsController extends BaseController
             'own_score' => $ownScore !== null ? json_item(
                 $ownScore,
                 'Multiplayer\UserScoreAggregate',
-                ['user.country']
+                ['position', 'user.country']
             ) : null,
         ];
     }

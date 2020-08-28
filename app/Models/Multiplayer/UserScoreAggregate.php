@@ -133,6 +133,21 @@ class UserScoreAggregate extends RoomUserHighScore
         $this->increment('attempts');
     }
 
+    public function userRank()
+    {
+        if ($this->total_score === null || $this->last_score_id === null) {
+            return;
+        }
+
+        $query = $this->room->topScores()
+            ->cursorWhere([
+                ['column' => 'total_score', 'order' => 'ASC', 'value' => $this->total_score],
+                ['column' => 'last_score_id', 'order' => 'DESC', 'value' => $this->last_score_id],
+            ]);
+
+        return 1 + $query->count();
+    }
+
     private function updateUserTotal(Score $current, PlaylistItemUserHighScore $prev)
     {
         if ($current->passed) {
