@@ -65,7 +65,7 @@ export class GameModeSwitcher extends React.PureComponent
     @setState settingDefault: true
 
     @xhr =
-      $.ajax laroute.route('account.update'),
+      $.ajax laroute.route('account.options'),
         method: 'PUT'
         data:
           user:
