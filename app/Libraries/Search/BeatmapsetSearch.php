@@ -58,6 +58,7 @@ class BeatmapsetSearch extends RecordSearch
         $this->addGenreFilter($query);
         $this->addLanguageFilter($query);
         $this->addExtraFilter($query);
+        $this->addNsfwFilter($query);
         $this->addStatusFilter($query);
 
         $nested = new BoolQuery;
@@ -153,6 +154,13 @@ class BeatmapsetSearch extends RecordSearch
 
         if ($this->params->mode !== null) {
             $query->filter(['term' => ['beatmaps.playmode' => $this->params->mode]]);
+        }
+    }
+
+    private function addNsfwFilter($query)
+    {
+        if (!$this->params->includeNsfw) {
+            $query->filter(['term' => ['nsfw' => false]]);
         }
     }
 
