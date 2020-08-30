@@ -239,13 +239,16 @@ export class Main extends React.Component
 
 
   renderPageHeader: =>
-    el HeaderV4,
-      theme: 'beatmapsets'
-      titleAppend: el PlaymodeTabs,
+    unless @state.showingNsfwWarning
+      titleAppend = el PlaymodeTabs,
         beatmaps: @state.beatmaps
         currentMode: @state.currentBeatmap.mode
         hrefFunc: @tabHrefFunc
         showCounts: true
+
+    el HeaderV4,
+      theme: 'beatmapsets'
+      titleAppend: titleAppend
 
   saveStateToContainer: =>
     @props.container.dataset.state = JSON.stringify(@state)
