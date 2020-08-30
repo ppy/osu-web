@@ -47,10 +47,6 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
         $sort = $request['sort'] ?? null;
 
-        if ($user !== null) {
-            $this->includeNsfw = $user->userProfileCustomization->beatmapset_show_nsfw;
-        }
-
         if (priv_check_user($this->user, 'BeatmapsetAdvancedSearch')->can()) {
             $this->queryString = es_query_escape_with_caveats($this->requestQuery);
             $status = presence($request['s'] ?? null);
@@ -77,6 +73,10 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
         $this->parseSortOrder($sort);
         $this->searchAfter = $this->getSearchAfter($request['cursor'] ?? null);
+
+        if (optional($user)->userProfileCustomization !== null) {
+            $this->includeNsfw = $user->userProfileCustomization->beatmapset_show_nsfw;
+        }
 
         // Supporter-only options.
         $this->rank = array_intersect(
