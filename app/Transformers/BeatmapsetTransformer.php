@@ -42,6 +42,7 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
                 'current' => $beatmapset->nominations,
                 'required' => $beatmapset->requiredNominationCount(),
             ],
+            'nsfw' => $beatmapset->nsfw,
             'ranked' => $beatmapset->approved,
             'ranked_date' => json_time($beatmapset->approved_date),
             'source' => $beatmapset->source,

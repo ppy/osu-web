@@ -89,6 +89,7 @@ return [
             'genre' => 'Genre',
             'language' => 'Language',
             'no_scores' => 'Data still being calculated...',
+            'nsfw' => 'Not safe for work',
             'points-of-failure' => 'Points of Failure',
             'source' => 'Source',
             'success-rate' => 'Success Rate',
