@@ -140,6 +140,9 @@
         "nominations": {
           "type": "long"
         },
+        "nsfw": {
+          "type": "boolean"
+        },
         "offset": {
           "type": "long"
         },
