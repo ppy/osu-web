@@ -134,6 +134,20 @@ class UserProfileCustomization extends Model
         $this->setOption('beatmapset_download', $value);
     }
 
+    public function getBeatmapsetShowNsfwAttribute()
+    {
+        return $this->options['beatmapset_show_nsfw'] ?? false;
+    }
+
+    public function setBeatmapsetShowNsfwAttribute($value)
+    {
+        if (!is_bool($value)) {
+            $value = null;
+        }
+
+        $this->setOption('beatmapset_show_nsfw', $value);
+    }
+
     public function getBeatmapsetTitleShowOriginalAttribute()
     {
         return $this->options['beatmapset_title_show_original'] ?? false;

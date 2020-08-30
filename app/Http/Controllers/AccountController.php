@@ -203,6 +203,7 @@ class AccountController extends Controller
             'audio_muted:bool',
             'audio_volume:float',
             'beatmapset_download:string',
+            'beatmapset_show_nsfw:bool',
             'beatmapset_title_show_original:bool',
             'comments_sort:string',
             'extras_order:string[]',
