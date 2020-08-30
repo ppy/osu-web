@@ -32,6 +32,7 @@ export interface BeatmapsetJson {
   id: number;
   language: LanguageJson;
   nominations?: BeatmapsetNominations;
+  nsfw: boolean;
   status: BeatmapsetStatus;
   title: string;
   title_unicode: string | null;

@@ -96,6 +96,17 @@ return [
             'tags' => 'Tags',
         ],
 
+        'nsfw_warning' => [
+            'details' => 'This beatmap contains explicit or disturbing content. Would you like to view it anyway?',
+            'title' => 'Not safe for work!',
+
+            'buttons' => [
+                'back' => 'Go back',
+                'disable' => 'Disable warning',
+                'show' => 'Show',
+            ],
+        ],
+
         'scoreboard' => [
             'achieved' => 'achieved :when',
             'country' => 'Country Ranking',
