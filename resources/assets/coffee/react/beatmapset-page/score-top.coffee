@@ -3,7 +3,7 @@
 
 import { FlagCountry } from 'flag-country'
 import { route } from 'laroute'
-import { Mods } from 'mods'
+import Mod from 'mod'
 import * as React from 'react'
 import { div, a } from 'react-dom-factories'
 import ScoreboardTime from 'scoreboard-time'
@@ -69,13 +69,13 @@ export ScoreTop = (props) ->
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header #{bn}__stat-header--wider",
               osu.trans 'beatmapsets.show.scoreboard.headers.accuracy'
-            div className: classWithModifiers("#{bn}__stat-value", score: true, perfect: props.score.accuracy == 1),
+            div className: classWithModifiers("#{bn}__stat-value", perfect: props.score.accuracy == 1),
               "#{osu.formatNumber(props.score.accuracy * 100, 2)}%"
 
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header #{bn}__stat-header--wider",
               osu.trans 'beatmapsets.show.scoreboard.headers.combo'
-            div className: classWithModifiers("#{bn}__stat-value", score: true, perfect: props.score.max_combo == props.beatmap.max_combo),
+            div className: classWithModifiers("#{bn}__stat-value", perfect: props.score.max_combo == props.beatmap.max_combo),
               "#{osu.formatNumber(props.score.max_combo)}x"
 
         div className: "#{bn}__stats #{bn}__stats--wrappable",
@@ -85,30 +85,30 @@ export ScoreTop = (props) ->
               className: "#{bn}__stat"
               div className: "#{bn}__stat-header",
                 stat[0]
-              div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
+              div className: "#{bn}__stat-value #{bn}__stat-value--smaller",
                 osu.formatNumber(props.score.statistics["count_#{stat[1]}"])
 
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header",
               osu.trans 'beatmapsets.show.scoreboard.headers.miss'
-            div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
+            div className: "#{bn}__stat-value #{bn}__stat-value--smaller",
               osu.formatNumber(props.score.statistics.count_miss)
 
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header",
               osu.trans 'beatmapsets.show.scoreboard.headers.pp'
-            div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
+            div className: "#{bn}__stat-value #{bn}__stat-value--smaller",
               _.round props.score.pp
 
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header",
               osu.trans 'beatmapsets.show.scoreboard.headers.time'
-            div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
+            div className: "#{bn}__stat-value #{bn}__stat-value--smaller",
               el ScoreboardTime,
                 dateTime: props.score.created_at
 
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header #{bn}__stat-header--mods",
               osu.trans 'beatmapsets.show.scoreboard.headers.mods'
-            div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
-              el Mods, modModifiers: ['dynamic'], modifiers: ['scoreboard'], mods: props.score.mods
+            div className: "#{bn}__stat-value #{bn}__stat-value--mods",
+              el(Mod, key: mod, mod: mod) for mod in props.score.mods

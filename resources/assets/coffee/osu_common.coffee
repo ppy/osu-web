@@ -14,12 +14,6 @@
     (body.scrollHeight - body.scrollTop) - body.clientHeight
 
 
-  captchaEnabled: () ->
-    document.getElementsByClassName('g-recaptcha').length > 0 &&
-      typeof(grecaptcha) == 'object' &&
-      typeof(grecaptcha.render) == 'function'
-
-
   classWithModifiers: (className, modifiers) ->
     ret = className
 
@@ -98,7 +92,7 @@
 
 
   pageChangeImmediate: ->
-    $(document).trigger('osu:page:change')
+    $.publish 'osu:page:change'
 
 
   parseJson: (id, remove = false) ->
@@ -244,10 +238,6 @@
     window.reloadUrl = null
 
     osu.navigate url, keepScroll, action: 'replace'
-
-
-  resetCaptcha: ->
-    grecaptcha.reset() if osu.captchaEnabled()
 
 
   urlPresence: (url) ->

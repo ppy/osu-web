@@ -44,6 +44,29 @@
     }
   }
 
+  &__indicator {
+    align-self: center;
+    color: @osu-colour-blue-3;
+    margin-left: 10px;
+    user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+
+    &--warning {
+      color: @osu-colour-orange-3;
+    }
+
+    .@{_top}__selectors > & {
+      @media @desktop {
+        display: none;
+      }
+    }
+
+    .@{_top}__content > & {
+      @media @mobile {
+        display: none;
+      }
+    }
+  }
+
   &__link {
     padding: 5px;
 
@@ -135,23 +158,5 @@
     font-size: 9px;
     user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
     flex-grow: 1;
-  }
-
-  &__unsaved-indicator {
-    align-self: center;
-    color: @osu-colour-blue-3;
-    user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
-
-    .@{_top}__selectors > & {
-      @media @desktop {
-        display: none;
-      }
-    }
-
-    .@{_top}__content > & {
-      @media @mobile {
-        display: none;
-      }
-    }
   }
 }

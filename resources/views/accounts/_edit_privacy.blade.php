@@ -11,7 +11,11 @@
 
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
-            <div class="account-edit-entry account-edit-entry--no-label js-account-edit" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
+            <div
+                class="account-edit-entry account-edit-entry--no-label js-account-edit"
+                data-account-edit-auto-submit="1"
+                data-url="{{ route('account.options') }}"
+            >
                 <label class="account-edit-entry__checkbox">
                     @include('objects._switch', [
                         'additionalClass' => 'js-account-edit__input',
@@ -29,7 +33,11 @@
                 </label>
             </div>
 
-            <div class="account-edit-entry account-edit-entry--no-label js-account-edit" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
+            <div
+                class="account-edit-entry account-edit-entry--no-label js-account-edit"
+                data-account-edit-auto-submit="1"
+                data-url="{{ route('account.options') }}"
+            >
                 <label class="account-edit-entry__checkbox">
                     @include('objects._switch', [
                         'additionalClass' => 'js-account-edit__input',
