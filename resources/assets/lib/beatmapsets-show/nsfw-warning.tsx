@@ -27,7 +27,7 @@ export default class NsfwWarning extends React.PureComponent<Props, State> {
         <div className='nsfw-warning'>
           <div className='nsfw-warning__header'>
             <div className='nsfw-warning__row nsfw-warning__row--icon'>
-              <span className='fas fa-exclamation-triangle'></span>
+              <span className='fas fa-exclamation-triangle' />
             </div>
 
             <div className='nsfw-warning__row nsfw-warning__row--title'>
@@ -64,7 +64,7 @@ export default class NsfwWarning extends React.PureComponent<Props, State> {
               type='button'
               className='nsfw-warning__button'
               disabled={this.state.busy}
-              onClick={() => history.back()}
+              onClick={this.goBack}
             >
               {osu.trans('beatmapsets.show.nsfw_warning.buttons.back')}
             </button>
@@ -84,5 +84,9 @@ export default class NsfwWarning extends React.PureComponent<Props, State> {
     .fail(osu.ajaxError)
     .always(() => this.setState({ busy: false }))
     .done(this.props.onClose);
+  }
+
+  private goBack = () => {
+    history.back();
   }
 }

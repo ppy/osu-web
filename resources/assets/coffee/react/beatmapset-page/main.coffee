@@ -238,7 +238,7 @@ export class Main extends React.Component
             commentableId: @state.beatmapset.id
 
 
-  renderPageHeader: =>
+  renderPageHeader: ->
     unless @state.showingNsfwWarning
       titleAppend = el PlaymodeTabs,
         beatmaps: @state.beatmaps
