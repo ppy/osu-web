@@ -1186,7 +1186,7 @@ occupation                           | string?               | |
 playmode                             | [GameMode](#gamemode) | |
 pm_friends_only                      | boolean               | whether or not the user allows PM from other than friends
 post_count                           | number                | number of forum posts
-profile_order                        | ProfilePage[]         | ordered array of sections in user profile page
+profile_order                        | [ProfilePage](#user-profilepage)[]         | ordered array of sections in user profile page
 skype                                | string?               | |
 title                                | string?               | user-specific title
 twitter                              | string?               | |
@@ -1215,6 +1215,8 @@ user_achievements                    | | |
 
 Field         | Type        | Description
 --------------|-------------|------------
+
+<div id="user-profilepage" data-unique="user-profilepage"></div>
 
 ### ProfilePage
 
