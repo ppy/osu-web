@@ -54,7 +54,7 @@ class UserBestScoresCheck
 
         $clazz = Best\Model::getClassByString($mode);
 
-        $search = $this->newSearch('osu');
+        $search = $this->newSearch($mode);
         $cursor = [''];
 
         $missingIds = [];
