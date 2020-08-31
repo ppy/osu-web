@@ -63,7 +63,7 @@ class PaypalExecutePayment
 
                 return $payment->execute($this->execution, $context);
             } catch (PayPalConnectionException $e) {
-                \Log::error($e->getData());
+                \Log::error($e->getMessage());
                 // TODO: get more context data
                 $this->notifyError($e, $this->order);
                 throw $e;
