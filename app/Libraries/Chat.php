@@ -14,8 +14,12 @@ class Chat
 {
     public static function sendPrivateMessage(?User $sender, $target, $message, $isAction)
     {
-        if ($sender === null || $target === null) {
-            abort(422);
+        if ($sender === null) {
+            abort(422, 'missing sender');
+        }
+
+        if ($target === null) {
+            abort(422, 'missing target');
         }
 
         if (!($target instanceof User)) {
