@@ -71,8 +71,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Den Metadaten-Post einer Beatmap kann man nicht löschen.',
-            'beatmapset_post_no_edit' => 'Den Metadaten-Post einer Beatmap kann man nicht bearbeiten.',
+            'beatmapset_post_no_delete' => 'Den Metadaten-Beitrag einer Beatmap kann man nicht löschen.',
+            'beatmapset_post_no_edit' => 'Den Metadaten-Beitrag einer Beatmap kann man nicht bearbeiten.',
             'only_quote' => 'In deiner Antwort ist nur ein Zitat enthalten.',
 
             'attributes' => [
@@ -132,7 +132,7 @@ return [
         'username_invalid_characters' => 'Der angeforderte Nutzername enthält ungültige Zeichen.',
         'username_in_use' => 'Dieser Nutzername wird bereits verwendet!',
         'username_locked' => 'Dieser Nutzername wird bereits verwendet!', // TODO: language for this should be slightly different.
-        'username_no_space_userscore_mix' => 'Bitte verwende nur Unterstricht ODER Leerzeichen, und nicht beides zusammen!',
+        'username_no_space_userscore_mix' => 'Bitte verwende entweder Unterstrich oder Leerzeichen, nicht beides zusammen!',
         'username_no_spaces' => "Nutzernamen können nicht mit Leerzeichen beginnen oder enden.",
         'username_not_allowed' => 'Dieser Nutzername ist nicht erlaubt.',
         'username_too_short' => 'Der angeforderte Nutzername ist zu kurz.',

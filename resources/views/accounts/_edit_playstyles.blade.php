@@ -16,7 +16,7 @@
                     class="account-edit-entry__checkboxes js-account-edit"
                     data-account-edit-auto-submit="1"
                     data-account-edit-type="array"
-                    data-url="{{ route('account.update') }}"
+                    data-url="{{ route('account.options') }}"
                     data-field="user[osu_playstyle]"
                 >
                     @foreach (App\Models\User::PLAYSTYLES as $key => $_value)

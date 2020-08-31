@@ -35,7 +35,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => 'Auflistung',
+        'nav_title' => 'liste',
     ],
 
     'placeholder' => [
@@ -45,6 +45,6 @@ return [
     ],
 
     'show' => [
-        'nav_title' => 'Kommentare',
+        'nav_title' => 'kommentare',
     ],
 ];

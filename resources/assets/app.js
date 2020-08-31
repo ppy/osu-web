@@ -7,7 +7,6 @@ import './coffee/_classes/*.coffee';
 import 'jquery-pubsub.coffee';
 import 'osu_common.coffee';
 
-import 'navbar-mobile.coffee';
 import 'spoilerbox.coffee';
 import 'store.coffee';
 import 'store-username-change.coffee';

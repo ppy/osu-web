@@ -75,6 +75,7 @@ return [
     'topic' => [
         'deleted' => 'usunięty wątek',
         'go_to_latest' => 'pokaż najnowszy post',
+        'has_replied' => '',
         'latest_post' => ':when przez :user',
         'latest_reply_by' => 'ostatnia odpowiedź od :user',
         'new_topic' => 'Utwórz nowy wątek',

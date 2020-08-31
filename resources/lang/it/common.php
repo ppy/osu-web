@@ -129,13 +129,13 @@ return [
     ],
 
     'scoreboard_time' => [
-        'd' => '%d d',
-        'dd' => '%d d',
+        'd' => '%d g',
+        'dd' => '%d g',
         'h' => '%d h',
         'hh' => '%d h',
-        'M' => '%d mese',
+        'M' => '%d me',
         'm' => '%d min',
-        'MM' => '%d mesi',
+        'MM' => '%d me',
         'mm' => '%d min',
         'past' => '%s',
         's' => '%d s',

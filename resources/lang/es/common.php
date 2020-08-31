@@ -100,10 +100,10 @@ return [
     ],
 
     'device' => [
-        'keyboard' => 'Teclado',
-        'mouse' => 'Ratón',
-        'tablet' => 'Tableta',
-        'touch' => 'Pantalla Táctil',
+        'keyboard' => 'teclado',
+        'mouse' => 'ratón',
+        'tablet' => 'tableta',
+        'touch' => 'pantalla táctil',
     ],
 
     'dropzone' => [

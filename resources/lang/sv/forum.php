@@ -75,6 +75,7 @@ return [
     'topic' => [
         'deleted' => 'raderat ämne',
         'go_to_latest' => 'visa senaste inlägg',
+        'has_replied' => '',
         'latest_post' => ':when av :user',
         'latest_reply_by' => 'senaste svar av :user',
         'new_topic' => 'Lägg upp nytt ämne',

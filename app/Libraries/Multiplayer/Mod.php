@@ -53,6 +53,7 @@ class Mod
     const MANIA_FADEIN = 'FI';
     const MANIA_MIRROR = 'MR';
     const MANIA_RANDOM = 'RD';
+    const MANIA_INVERT = 'IN';
 
     // taiko-specific
     const TAIKO_RANDOM = 'RD';
@@ -250,6 +251,7 @@ class Mod
                         self::MANIA_FADEIN,
                         self::MANIA_MIRROR,
                         self::MANIA_RANDOM,
+                        self::MANIA_INVERT,
                     ]
                 ),
             ];

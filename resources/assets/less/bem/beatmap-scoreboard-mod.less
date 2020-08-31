@@ -1,0 +1,17 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmap-scoreboard-mod {
+  .reset-input();
+  margin: 2px;
+  cursor: pointer;
+  opacity: var(--scoreboard-mod-opacity, 0.5);
+
+  &:hover {
+    --scoreboard-mod-opacity: 1;
+  }
+
+  &--enabled {
+    --scoreboard-mod-opacity: 1;
+  }
+}

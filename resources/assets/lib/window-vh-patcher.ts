@@ -12,7 +12,7 @@ export default class WindowVHPatcher {
 
   private constructor(window: Window) {
     this.window = window;
-    $(this.window).on('throttled-resize.windowVHPatch', this.handleResize);
+    $(this.window).on('resize.windowVHPatch', this.handleResize);
     this.handleResize();
   }
 

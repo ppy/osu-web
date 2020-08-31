@@ -3,7 +3,7 @@
 
 import { FlagCountry } from 'flag-country'
 import { route } from 'laroute'
-import { Mods } from 'mods'
+import Mod from 'mod'
 import { PlayDetailMenu } from 'play-detail-menu'
 import * as React from 'react'
 import { a, div, tr, td } from 'react-dom-factories'
@@ -77,7 +77,8 @@ export class ScoreboardTableRow extends React.PureComponent
           dateTime: score.created_at
 
       td className: osu.classWithModifiers(cell, ['mods']),
-        el Mods, modModifiers: ['dynamic'], modifiers: ['scoreboard'], mods: score.mods
+        div className: "#{bn}__mods",
+          el(Mod, mod: mod, key: mod) for mod in score.mods
 
       td className: "#{bn}__popup-menu",
         if hasMenu(score)

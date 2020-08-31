@@ -20,7 +20,7 @@ return [
     'type' => [
         'charts' => 'charts',
         'country' => 'länder',
-        'multiplayer' => '',
+        'multiplayer' => 'mehrspieler',
         'performance' => 'performance',
         'score' => 'punktzahl',
     ],

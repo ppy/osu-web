@@ -4,5 +4,4 @@
 import { Main } from './mp-history/main'
 
 reactTurbolinks.register 'mp-history', Main, ->
-  match: osu.parseJson('json-match')
   events: osu.parseJson('json-events')
