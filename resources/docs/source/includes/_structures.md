@@ -748,6 +748,17 @@ mania  | osu!mania
 osu    | osu!standard
 taiko  | osu!taiko
 
+## Group
+
+Field       | Type   | Description
+------------|--------|-------------------------------------
+id          | number | |
+identifier  | string | Unique string to identify the group.
+name        | string | |
+short_name  | string | Short name of the group for display.
+description | string | |
+colour      | string | |
+
 ## KudosuHistory
 
 Field      | Type       | Description
@@ -1169,52 +1180,58 @@ Timestamp string in ISO 8601 format.
 
 Represents a User. Extends [UserCompact](#usercompact) object with additional attributes.
 
-Field                                | Type                  | Description
--------------------------------------|-----------------------|------------------------------------------------------------
-cover_url                            | string                | url of profile cover
-discord                              | string?               | |
-has_supported                        | boolean               | whether or not ever being a supporter in the past
-interests                            | string?               | |
-join_date                            | Timestamp             | |
-kudosu                               | Kudosu                | |
-last_visit                           | Timestamp?            | last access time. `null` if the user hides online presence
-lastfm                               | string?               | |
-location                             | string?               | |
-max_blocks                           | number                | maximum number of users allowed to be blocked
-max_friends                          | number                | maximum number of friends allowed to be added
-occupation                           | string?               | |
-playmode                             | [GameMode](#gamemode) | |
-pm_friends_only                      | boolean               | whether or not the user allows PM from other than friends
-post_count                           | number                | number of forum posts
-profile_order                        | [ProfilePage](#user-profilepage)[]         | ordered array of sections in user profile page
-skype                                | string?               | |
-title                                | string?               | user-specific title
-twitter                              | string?               | |
-website                              | string?               | |
-account_history                      | UserAccountHistory[]  | |
-active_tournament_banner             | ProfileBanner         | |
-badges                               | UserBadge[]           | |
-favourite_beatmapset_count           | | |
-follower_count                       | | |
-graveyard_beatmapset_count           | | |
-groups                               | | |
-loved_beatmapset_count               | | |
-monthly_playcounts                   | | |
-page                                 | | |
-previous_usernames                   | | |
-rankHistory                          | | |
-ranked_and_approved_beatmapset_count | | |
-replays_watched_counts               | | |
-scores_first_count                   | | |
-statistics                           | | |
-support_level                        | | |
-unranked_beatmapset_count            | | |
-user_achievements                    | | |
+Field                                | Type                                             | Description
+-------------------------------------|--------------------------------------------------|------------------------------------------------------------
+cover_url                            | string                                           | url of profile cover
+discord                              | string?                                          | |
+has_supported                        | boolean                                          | whether or not ever being a supporter in the past
+interests                            | string?                                          | |
+join_date                            | Timestamp                                        | |
+kudosu.available                     | number                                           | |
+kudosu.total                         | number                                           | |
+last_visit                           | Timestamp?                                       | last access time. `null` if the user hides online presence
+lastfm                               | string?                                          | |
+location                             | string?                                          | |
+max_blocks                           | number                                           | maximum number of users allowed to be blocked
+max_friends                          | number                                           | maximum number of friends allowed to be added
+occupation                           | string?                                          | |
+playmode                             | [GameMode](#gamemode)                            | |
+pm_friends_only                      | boolean                                          | whether or not the user allows PM from other than friends
+post_count                           | number                                           | number of forum posts
+profile_order                        | [ProfilePage](#user-profilepage)[]               | ordered array of sections in user profile page
+skype                                | string?                                          | |
+title                                | string?                                          | user-specific title
+twitter                              | string?                                          | |
+website                              | string?                                          | |
+account_history                      | UserAccountHistory[]                             | |
+active_tournament_banner             | [ProfileBanner](#user-profilebanner)?            | |
+badges                               | UserBadge[]                                      | |
+favourite_beatmapset_count           | number                                           | |
+follower_count                       | number                                           | |
+graveyard_beatmapset_count           | number                                           | |
+groups                               | [Group](#group)[]                                | |
+loved_beatmapset_count               | number                                           | |
+monthly_playcounts                   | [UserMonthlyPlaycount](#usermounthlyplaycount)[] | |
+page                                 |                                                  | |
+previous_usernames                   |                                                  | |
+rankHistory                          |                                                  | |
+ranked_and_approved_beatmapset_count |                                                  | |
+replays_watched_counts               |                                                  | |
+scores_first_count                   |                                                  | |
+statistics                           |                                                  | |
+support_level                        |                                                  | |
+unranked_beatmapset_count            |                                                  | |
+user_achievements                    |                                                  | |
+
+<div id="user-profilebanner" data-unique="user-profilebanner"></div>
 
 ### ProfileBanner
 
 Field         | Type        | Description
 --------------|-------------|------------
+id            | number      | |
+tournament_id | number      | |
+image         | string      | |
 
 <div id="user-profilepage" data-unique="user-profilepage"></div>
 
