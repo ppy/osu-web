@@ -224,37 +224,11 @@ export class NewDiscussion extends React.PureComponent
   nearbyDiscussions: =>
     return [] if !@timestamp()?
 
-    if @nearbyDiscussionsCache? && (@nearbyDiscussionsCache.beatmap != @props.currentBeatmap || @nearbyDiscussionsCache.timestamp != @timestamp())
-      @nearbyDiscussionsCache = null
-
-    if !@nearbyDiscussionsCache?
-      discussions = {}
-
-      for discussion in @props.currentDiscussions.timelineAllUsers
-        continue if discussion.message_type not in ['suggestion', 'problem']
-
-        distance = Math.abs(discussion.timestamp - @timestamp())
-
-        continue if distance > 5000
-
-        if discussion.user_id == @props.currentUser.id
-          continue if moment(discussion.updated_at).diff(moment(), 'hour') > -24
-
-        category = switch
-          when distance == 0 then 'd0'
-          when distance < 100 then 'd100'
-          when distance < 1000 then 'd1000'
-          else 'other'
-
-        discussions[category] ?= []
-        discussions[category].push discussion
-
-      shownDiscussions = discussions.d0 ? discussions.d100 ? discussions.d1000 ? discussions.other ? []
-
+    if !@nearbyDiscussionsCache? || (@nearbyDiscussionsCache.beatmap != @props.currentBeatmap || @nearbyDiscussionsCache.timestamp != @timestamp())
       @nearbyDiscussionsCache =
         beatmap: @props.currentBeatmap
         timestamp: @timestamp()
-        discussions: _.sortBy shownDiscussions, 'timestamp'
+        discussions: BeatmapDiscussionHelper.nearbyDiscussions(@props.currentDiscussions.timelineAllUsers, @timestamp())
 
     @nearbyDiscussionsCache.discussions
 
