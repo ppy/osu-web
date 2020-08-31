@@ -74,8 +74,8 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         $this->parseSortOrder($sort);
         $this->searchAfter = $this->getSearchAfter($request['cursor'] ?? null);
 
-        if (optional($user)->userProfileCustomization !== null) {
-            $this->includeNsfw = $user->userProfileCustomization->beatmapset_show_nsfw;
+        if ($user !== null) {
+            $this->includeNsfw = $user->profileCustomization()->beatmapset_show_nsfw;
         }
 
         // Supporter-only options.
