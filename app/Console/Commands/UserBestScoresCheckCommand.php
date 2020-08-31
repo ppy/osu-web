@@ -20,8 +20,11 @@ class UserBestScoresCheckCommand extends Command
         $mode = $this->argument('mode');
         $user = User::findOrFail($this->argument('userId'));
 
-        $response = (new UserBestScoresCheck($user))->run($mode);
+        $checker = new UserBestScoresCheck($user);
+        $response = $checker->run($mode);
 
+        $this->line("Found {$checker->esIdsFound} in index, {$checker->dbIdsFound} valid.");
+        $this->line('Delete query response from elasticsearch:');
         $this->line(json_encode($response, JSON_PRETTY_PRINT));
     }
 }
