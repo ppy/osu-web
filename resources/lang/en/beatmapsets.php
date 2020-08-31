@@ -89,7 +89,7 @@ return [
             'genre' => 'Genre',
             'language' => 'Language',
             'no_scores' => 'Data still being calculated...',
-            'nsfw' => 'Not safe for work',
+            'nsfw' => 'Explicit content',
             'points-of-failure' => 'Points of Failure',
             'source' => 'Source',
             'success-rate' => 'Success Rate',
@@ -97,8 +97,8 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => 'This beatmap contains explicit or disturbing content. Would you like to view it anyway?',
-            'title' => 'Not safe for work!',
+            'details' => 'This beatmap contains explicit, offensive, or disturbing content. Would you like to view it anyway?',
+            'title' => 'Explicit Content',
 
             'buttons' => [
                 'back' => 'Go back',

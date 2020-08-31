@@ -83,7 +83,7 @@ return [
             'direct' => 'open in osu!direct',
         ],
 
-        'beatmapset_show_nsfw' => 'hide warnings for NSFW content in beatmaps',
+        'beatmapset_show_nsfw' => 'hide warnings for explicit content in beatmaps',
         'beatmapset_title_show_original' => 'show beatmap metadata in original language',
     ],
 
