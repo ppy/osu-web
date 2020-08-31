@@ -463,6 +463,7 @@ class UsersController extends Controller
             'previous_usernames',
             'ranked_and_approved_beatmapset_count',
             "rankHistory:mode({$currentMode})",
+            "rank_history:mode({$currentMode})",
             'replays_watched_counts',
             'statistics.rank',
             'statistics.variants',
