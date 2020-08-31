@@ -12,14 +12,10 @@ use ChaseConey\LaravelDatadogHelper\Datadog;
 
 class Chat
 {
-    public static function sendPrivateMessage($sender, $target, $message, $isAction)
+    public static function sendPrivateMessage(?User $sender, $target, $message, $isAction)
     {
         if ($sender === null || $target === null) {
             abort(422);
-        }
-
-        if (!($sender instanceof User)) {
-            $sender = User::findOrFail($sender);
         }
 
         if (!($target instanceof User)) {
