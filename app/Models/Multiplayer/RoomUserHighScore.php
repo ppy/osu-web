@@ -33,6 +33,17 @@ class RoomUserHighScore extends Model
         return $this->belongsTo(Room::class);
     }
 
+    public function scopeForRanking($query)
+    {
+        return $query
+            ->where('completed', '>', 0)
+            ->whereHas('user', function ($userQuery) {
+                $userQuery->default();
+            })
+            ->orderBy('total_score', 'DESC')
+            ->orderBy('last_score_id', 'ASC');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

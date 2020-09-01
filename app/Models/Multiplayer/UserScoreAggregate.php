@@ -139,7 +139,7 @@ class UserScoreAggregate extends RoomUserHighScore
             return;
         }
 
-        $query = $this->room->topScores()
+        $query = $this->forRanking()
             ->cursorWhere([
                 ['column' => 'total_score', 'order' => 'ASC', 'value' => $this->total_score],
                 ['column' => 'last_score_id', 'order' => 'DESC', 'value' => $this->last_score_id],

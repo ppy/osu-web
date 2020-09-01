@@ -284,14 +284,7 @@ class Room extends Model
 
     public function topScores()
     {
-        return $this->hasMany(UserScoreAggregate::class)
-            ->where('completed', '>', 0)
-            ->whereHas('user', function ($userQuery) {
-                $userQuery->default();
-            })
-            ->orderBy('total_score', 'DESC')
-            ->orderBy('last_score_id', 'ASC')
-            ->with('user.country');
+        return $this->hasMany(UserScoreAggregate::class)->forRanking()->with('user.country');
     }
 
     private function assertValidCompletePlay()
