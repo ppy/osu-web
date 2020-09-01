@@ -284,7 +284,7 @@ class Room extends Model
 
     public function topScores()
     {
-        return UserScoreAggregate::where('room_id', $this->getKey())
+        return $this->hasMany(UserScoreAggregate::class)
             ->where('completed', '>', 0)
             ->whereHas('user', function ($userQuery) {
                 $userQuery->default();
