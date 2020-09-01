@@ -47,6 +47,6 @@ class ChannelTransformer extends TransformerAbstract
 
     public function includeUsers(Channel $channel)
     {
-        return $this->collection($channel->users()->get(), new UserCompactTransformer);
+        return $this->primitive($channel->userChannels()->pluck('user_id'));
     }
 }

@@ -102,6 +102,11 @@ class Channel extends Model
         return $messages;
     }
 
+    public function userChannels()
+    {
+        return $this->hasMany(UserChannel::class);
+    }
+
     public function users()
     {
         // This isn't a has-many-through because the relationship is cross-database.

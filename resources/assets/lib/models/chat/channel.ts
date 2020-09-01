@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChannelJsonExtended, ChannelType } from 'chat/chat-api-responses';
+import { ChannelJSON, ChannelJsonExtended, ChannelType } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
 import { action, computed, observable, transaction } from 'mobx';
 import User from 'models/user';
@@ -162,6 +162,17 @@ export default class Channel {
 
     this.users = presence.users;
     this.moderated = presence.moderated;
+    this.metaLoaded = true;
+  }
+
+  @action
+  updateWithJson(json: ChannelJSON) {
+    this.name = json.name;
+    this.description = json.description;
+    this.type = json.type;
+    this.icon = json?.icon || '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
+    this.moderated = json.moderated;
+    this.users = json.users;
     this.metaLoaded = true;
   }
 }

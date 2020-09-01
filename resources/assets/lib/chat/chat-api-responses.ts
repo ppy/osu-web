@@ -14,10 +14,11 @@ export type ChannelType = 'PUBLIC'|'PRIVATE'|'MULTIPLAYER'|'SPECTATOR'|'TEMPORAR
 export interface ChannelJSON {
   channel_id: number;
   description?: string;
+  icon?: string;
   moderated: boolean;
   name: string;
   type: ChannelType;
-  users?: number[];
+  users: number[];
 }
 
 // This is the version used by 'presence'.
@@ -53,9 +54,9 @@ export interface MessageJSON {
 }
 
 export interface NewConversationJSON {
+  channel: ChannelJSON;
   message: MessageJSON;
   new_channel_id: number;
-  presence: PresenceJSON;
 }
 
 export type PresenceJSON =
