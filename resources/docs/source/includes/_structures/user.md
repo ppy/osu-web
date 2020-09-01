@@ -163,29 +163,28 @@
 
 Represents a User. Extends [UserCompact](#usercompact) object with additional attributes.
 
-Field                                | Type                                             | Description
--------------------------------------|--------------------------------------------------|------------------------------------------------------------
-cover_url                            | string                                           | url of profile cover
-discord                              | string?                                          | |
-has_supported                        | boolean                                          | whether or not ever being a supporter in the past
-interests                            | string?                                          | |
-join_date                            | Timestamp                                        | |
-kudosu.available                     | number                                           | |
-kudosu.total                         | number                                           | |
-last_visit                           | Timestamp?                                       | last access time. `null` if the user hides online presence
-lastfm                               | string?                                          | |
-location                             | string?                                          | |
-max_blocks                           | number                                           | maximum number of users allowed to be blocked
-max_friends                          | number                                           | maximum number of friends allowed to be added
-occupation                           | string?                                          | |
-playmode                             | [GameMode](#gamemode)                            | |
-pm_friends_only                      | boolean                                          | whether or not the user allows PM from other than friends
-post_count                           | number                                           | number of forum posts
-profile_order                        | [ProfilePage](#user-profilepage)[]               | ordered array of sections in user profile page
-skype                                | string?                                          | |
-title                                | string?                                          | user-specific title
-twitter                              | string?                                          | |
-website                              | string?                                          | |
+Field            | Type                               | Description
+---------------- | ---------------------------------- | -----------------------------------------------------------
+cover_url        | string                             | url of profile cover
+discord          | string?                            | |
+has_supported    | boolean                            | whether or not ever being a supporter in the past
+interests        | string?                            | |
+join_date        | Timestamp                          | |
+kudosu.available | number                             | |
+kudosu.total     | number                             | |
+lastfm           | string?                            | |
+location         | string?                            | |
+max_blocks       | number                             | maximum number of users allowed to be blocked
+max_friends      | number                             | maximum number of friends allowed to be added
+occupation       | string?                            | |
+playmode         | [GameMode](#gamemode)              | |
+playstyle        | string[]                           | Device choices of the user.
+post_count       | number                             | number of forum posts
+profile_order    | [ProfilePage](#user-profilepage)[] | ordered array of sections in user profile page
+skype            | string?                            | |
+title            | string?                            | user-specific title
+twitter          | string?                            | |
+website          | string?                            | |
 
 <div id="user-profilepage" data-unique="user-profilepage"></div>
 
