@@ -12,7 +12,7 @@ import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import UserSilenceAction from 'actions/user-silence-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
-import { ChannelJSON } from 'chat/chat-api-responses';
+import { PresenceJSON } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
 import { action, computed, observable } from 'mobx';
 import Channel from 'models/chat/channel';
@@ -160,7 +160,7 @@ export default class ChannelStore extends Store {
   }
 
   @action
-  updatePresence(presence: ChannelJSON[]) {
+  updatePresence(presence: PresenceJSON) {
     presence.forEach((json) => {
       this.getOrCreate(json.channel_id).updatePresence(json);
     });

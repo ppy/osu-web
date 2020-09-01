@@ -10,16 +10,23 @@ interface ChatSilenceJson {
 
 export type ChannelType = 'PUBLIC'|'PRIVATE'|'MULTIPLAYER'|'SPECTATOR'|'TEMPORARY'|'PM'|'GROUP'|'NEW';
 
+// This is the one that matches the php-side transformer response.
 export interface ChannelJSON {
   channel_id: number;
   description?: string;
+  moderated: boolean;
+  name: string;
+  type: ChannelType;
+  users?: number[];
+}
+
+// This is the version used by 'presence'.
+export interface ChannelJsonExtended extends ChannelJSON {
   first_message_id: number;
   icon?: string;
   last_message_id: number;
   last_read_id: number;
   moderated: boolean;
-  name: string;
-  type: ChannelType;
   users: number[];
 }
 
@@ -28,7 +35,7 @@ export type GetMessagesJSON =
 
 export interface GetUpdatesJSON {
   messages: MessageJSON[];
-  presence: ChannelJSON[];
+  presence: PresenceJSON;
   silences: ChatSilenceJson[];
 }
 
@@ -48,11 +55,11 @@ export interface MessageJSON {
 export interface NewConversationJSON {
   message: MessageJSON;
   new_channel_id: number;
-  presence: ChannelJSON[];
+  presence: PresenceJSON;
 }
 
 export type PresenceJSON =
-  ChannelJSON[];
+  ChannelJsonExtended[];
 
 export type SendMessageJSON =
   MessageJSON;

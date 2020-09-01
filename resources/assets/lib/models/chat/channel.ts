@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChannelJSON, ChannelType } from 'chat/chat-api-responses';
+import { ChannelJsonExtended, ChannelType } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
 import { action, computed, observable, transaction } from 'mobx';
 import User from 'models/user';
@@ -65,7 +65,7 @@ export default class Channel {
     this.channelId = channelId;
   }
 
-  static fromJSON(json: ChannelJSON): Channel {
+  static fromJSON(json: ChannelJsonExtended): Channel {
     const channel = Object.create(Channel.prototype);
     return Object.assign(channel, {
       channelId: json.channel_id,
@@ -148,7 +148,7 @@ export default class Channel {
   }
 
   @action
-  updatePresence = (presence: ChannelJSON) => {
+  updatePresence = (presence: ChannelJsonExtended) => {
     this.name = presence.name;
     this.description = presence.description;
     this.type = presence.type;
