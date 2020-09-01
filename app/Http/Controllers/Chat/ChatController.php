@@ -258,6 +258,7 @@ class ChatController extends Controller
     {
         $params = request()->all();
 
+        /** @var Message $message */
         $message = Chat::sendPrivateMessage(
             auth()->user(),
             get_int($params['target_id'] ?? null),
@@ -265,14 +266,28 @@ class ChatController extends Controller
             get_bool($params['is_action'] ?? null)
         );
 
+        $targetUser = User::find($params['target_id']);
+        $channel = $message->channel;
+
         return [
+            'channel' => [
+                'channel_id' => $message->channel_id,
+                'description' => $channel->description,
+                'first_message_id' => $message->getKey(), // TODO: get actual first_message_id
+                'icon' => $targetUser->user_avatar,
+                'last_message_id' => 907,
+                'last_read_id' => 907,
+                'moderated' => $channel->moderated,
+                'name' => $targetUser->username,
+                'type' => $channel->type,
+                'users' => $channel->users()->pluck('user_id'), // TODO: terrible
+            ],
             'new_channel_id' => $message->channel_id,
             'message' => json_item(
                 $message,
                 'Chat/Message',
                 ['sender']
             ),
-            'presence' => self::presence(),
         ];
     }
 }
