@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Keiner dieser Beiträge behandelt mein Anliegen.',
         'notice' => 'Es gibt bereits Beiträge in der Nähe von :timestamp (:existing_timestamps). Bitte überprüfe sie, bevor du diesen absendest.',
+        'unsaved' => '',
     ],
 
     'reply' => [
@@ -64,7 +65,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max Blöcke verwendet',
         'go_to_parent' => 'Rezensionsbeitrag anzeigen',
         'go_to_child' => 'Diskussion anzeigen',
         'validation' => [

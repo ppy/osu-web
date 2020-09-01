@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Inget av inläggen tar upp min oro',
         'notice' => 'Det finns inlägg runt :timestamp (:existing_timestamps). Var vänlig kontrollera detta innan du lägger upp ett inlägg.',
+        'unsaved' => '',
     ],
 
     'reply' => [

@@ -51,6 +51,7 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'erhalte benachrichtigungen für neue probleme auf qualifizierten beatmaps der folgenden modi',
         'beatmapset_disqualify' => 'erhalte benachrichtigungen, wenn beatmaps der folgenden modi disqualifiziert werden',
+        'comment_reply' => '',
         'title' => 'Benachrichtigungen',
         'topic_auto_subscribe' => 'automatisch benachrichtigungen zu neuen forenthreads, die du erstellst, aktivieren',
 

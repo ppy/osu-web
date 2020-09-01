@@ -84,6 +84,7 @@ return [
         'failed' => 'Väärät kirjautumistiedot',
         'forgot' => 'Unohditko salasanasi?',
         'info' => 'Kirjaudu sisään jatkaaksesi',
+        'invalid_captcha' => '',
         'locked_ip' => 'IP-osoitteesi on lukittu. Ole hyvä ja odota muutama minuutti.',
         'password' => 'Salasana',
         'register' => "Eikö sinulla ole osu!-tiliä? Tee yksi",

@@ -93,7 +93,6 @@ return [
             'source' => 'Крыніца',
             'success-rate' => 'Шанц поспеху',
             'tags' => 'Тэгі',
-            'unranked' => 'Unranked бітмапа',
         ],
 
         'scoreboard' => [

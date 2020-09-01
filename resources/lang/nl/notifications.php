@@ -66,6 +66,8 @@ return [
 
                 'comment_new' => ':username gaf commentaar op ":content" op ":title"',
                 'comment_new_compact' => ':username gaf commentaar op ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -90,6 +92,8 @@ return [
 
                 'comment_new' => ':username gaf commentaar ":content" op ":title"',
                 'comment_new_compact' => ':username gaf commentaar op ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -101,6 +105,8 @@ return [
 
                 'comment_new' => ':username gaf commentaar ":content" op ":title"',
                 'comment_new_compact' => ':username gaf commentaar op ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -136,12 +142,28 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => 'De discussie van ":title" heeft nieuwe updates',
-            'beatmapset_discussion_lock' => 'De discussie van ":title" is gesloten',
-            'beatmapset_discussion_unlock' => 'De discussie van ":title" is ontgrendeld',
-            'beatmapset_problem' => 'Er is een nieuw probleem vermeld op ":title:"',
-            'beatmapset_state' => 'De status van ":title" is veranderd',
-            'comment' => 'Beatmap ":title" heeft nieuwe reacties',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_unlock' => '',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'channel' => [
@@ -151,20 +173,28 @@ return [
         ],
 
         'build' => [
-            'comment' => 'Veranderingslogboek ":title" heeft nieuwe reacties',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'news_post' => [
-            'comment' => 'Nieuws ":title" heeft nieuwe reacties',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => 'Er zijn nieuwe reacties in ":title"',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => ':username heeft een nieuwe medaille verdiend, ":title"!',
-            'user_achievement_unlock_self' => 'Je hebt een nieuwe medaille verdiend, ":title"!',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => '',
+                'user_achievement_unlock_self' => '',
+            ],
         ],
     ],
 ];

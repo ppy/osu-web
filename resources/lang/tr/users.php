@@ -84,6 +84,7 @@ return [
         'failed' => 'Hatalı giriş',
         'forgot' => 'Şifrenizi mi unuttunuz?',
         'info' => 'Devam etmek için lütfen giriş yapınız',
+        'invalid_captcha' => '',
         'locked_ip' => 'IP adresiniz kilitli. Lütfen birkaç dakika bekleyin.',
         'password' => 'Şifre',
         'register' => "osu! hesabınız yok mu? Yeni bir tane oluşturun",
@@ -305,7 +306,7 @@ return [
                 'download_replay' => 'Tekrarı İndir',
                 'empty' => 'Henüz kayda değer bir performans kaydı yok. :(',
                 'not_ranked' => 'Sadece dereceli beatmapler pp verir.',
-                'pp_weight' => 'ağırlıklı: yüzde',
+                'pp_weight' => ':percentage ağırlıklı',
                 'view_details' => 'Ayrıntıları Göster',
                 'title' => 'Dereceler',
 

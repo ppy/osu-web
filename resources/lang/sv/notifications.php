@@ -66,6 +66,8 @@ return [
 
                 'comment_new' => ':username kommenterade ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterade ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -90,6 +92,8 @@ return [
 
                 'comment_new' => ':username kommenterade ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterade ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -101,6 +105,8 @@ return [
 
                 'comment_new' => ':username kommenterade ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterade ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -136,12 +142,28 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => 'Diskussionen om ":title" har nya uppdateringar',
-            'beatmapset_discussion_lock' => 'Diskussionen om ":title" har låsts',
-            'beatmapset_discussion_unlock' => 'Diskussionen om ":title" har låsts upp',
-            'beatmapset_problem' => 'Ett nytt problem rapporterat var rapporterat på ":title"',
-            'beatmapset_state' => '',
-            'comment' => ' Beatmap ":title" har nya kommentarer',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_unlock' => '',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'channel' => [
@@ -151,20 +173,28 @@ return [
         ],
 
         'build' => [
-            'comment' => 'Ändringslogg ":title" har nya kommentarer',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'news_post' => [
-            'comment' => 'Nyheter ":title" har nya kommentarer',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => 'Det finns nya svar i ":title"',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => ':username har låst upp en ny medalj, ":title"!',
-            'user_achievement_unlock_self' => 'Du har låst upp en ny medalj, ":title"!',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => '',
+                'user_achievement_unlock_self' => '',
+            ],
         ],
     ],
 ];

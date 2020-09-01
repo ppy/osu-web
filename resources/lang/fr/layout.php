@@ -179,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "J'ai oublié mes identifiants",
             'password' => 'mot de passe',

@@ -84,6 +84,7 @@ return [
         'failed' => 'Nesprávne prihlásenie',
         'forgot' => 'Zabudli ste heslo?',
         'info' => 'Prosím prihláste sa pre pokračovanie',
+        'invalid_captcha' => '',
         'locked_ip' => 'vaša IP adresa je zamknutá. Prosím počkajte niekoľko minút.',
         'password' => 'Heslo',
         'register' => "Nemáš osu! účet? Vytvor si nový",

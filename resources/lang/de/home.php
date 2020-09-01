@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "lass uns<br>loslegen!",
         'action' => 'osu! herunterladen',
+
+        'help' => [
+            '_' => '',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'für Windows',
             'macos' => 'für macOS',

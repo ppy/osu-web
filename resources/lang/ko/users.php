@@ -84,6 +84,7 @@ return [
         'failed' => '계정 정보가 올바르지 않습니다',
         'forgot' => '비밀번호를 잊어버리셨나요?',
         'info' => '계속 하시려면 로그인 해주세요',
+        'invalid_captcha' => '',
         'locked_ip' => 'IP 주소가 잠겨있습니다. 잠시 기다려주세요.',
         'password' => 'Password',
         'register' => "osu!계정이 없으신가요? 새로 하나 만들어보세요",

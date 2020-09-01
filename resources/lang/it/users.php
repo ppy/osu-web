@@ -84,6 +84,7 @@ return [
         'failed' => 'Login non corretto',
         'forgot' => 'Hai dimenticato la tua password?',
         'info' => 'Accedi per continuare',
+        'invalid_captcha' => '',
         'locked_ip' => 'il tuo indirizzo IP è bloccato. Aspetta qualche minuto per favore.',
         'password' => 'Password',
         'register' => "Non hai un account di osu!? Fanne uno nuovo",

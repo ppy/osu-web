@@ -233,7 +233,7 @@ return [
                 'rating' => 'Nilai Pengguna',
                 'plays' => 'Jumlah Dimainkan',
                 'relevance' => 'Relevansi',
-                'nominations' => 'Nominasi',
+                'nominations' => 'Jumlah Nominasi',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Penyaringan dengan :filters memerlukan :link aktif',

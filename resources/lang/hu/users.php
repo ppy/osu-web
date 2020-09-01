@@ -84,6 +84,7 @@ return [
         'failed' => 'Hibás adatok',
         'forgot' => 'Elfelejtetted a jelszavad?',
         'info' => 'Jelentkezz be a folytatáshoz',
+        'invalid_captcha' => '',
         'locked_ip' => 'Az IP címed zárolva van. Kérjük várj egy pár percet.',
         'password' => 'Jelszó',
         'register' => "Nincs osu! felhasználód? Regisztrálj egyet!",

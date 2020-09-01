@@ -93,7 +93,6 @@ return [
             'source' => 'Kaynak',
             'success-rate' => 'Başarı Oranı',
             'tags' => 'Etiketler',
-            'unranked' => 'Derecelendirilmemiş beatmap',
         ],
 
         'scoreboard' => [

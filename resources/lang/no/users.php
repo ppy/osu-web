@@ -84,6 +84,7 @@ return [
         'failed' => 'Feil innlogging',
         'forgot' => 'Glemt passordet ditt?',
         'info' => 'Vennligst logg inn for å fortsette',
+        'invalid_captcha' => '',
         'locked_ip' => 'IP-adressen din er blokkert. Vennligst vent et par minutter.',
         'password' => 'Passord',
         'register' => "Har du ikke en osu!-konto? Lag en ny en",

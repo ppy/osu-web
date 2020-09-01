@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "laten we<br>beginnen!",
         'action' => 'Download osu!',
+
+        'help' => [
+            '_' => '',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'voor Windows',
             'macos' => 'voor macOS',

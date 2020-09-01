@@ -66,6 +66,8 @@ return [
 
                 'comment_new' => ':username berkomentar ":content" di topik ":title"',
                 'comment_new_compact' => ':username berkomentar ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -90,6 +92,8 @@ return [
 
                 'comment_new' => ':username berkomentar ":content" pada topik ":title"',
                 'comment_new_compact' => ':username berkomentar ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -101,6 +105,8 @@ return [
 
                 'comment_new' => ':username berkomentar ":content" pada topik ":title"',
                 'comment_new_compact' => ':username berkomentar ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -136,12 +142,28 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => 'Terdapat pembaharuan baru pada topik diskusi ":title"',
-            'beatmapset_discussion_lock' => 'Topik diskusi ":title" telah dikunci',
-            'beatmapset_discussion_unlock' => 'Topik diskusi ":title" telah kembali dibuka',
-            'beatmapset_problem' => 'Terdapat masalah baru yang dilaporkan pada ":title"',
-            'beatmapset_state' => 'Status beatmap ":title" telah berganti',
-            'comment' => 'Terdapat komentar baru pada beatmap ":title"',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_unlock' => '',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'channel' => [
@@ -151,20 +173,28 @@ return [
         ],
 
         'build' => [
-            'comment' => 'Terdapat komentar baru pada riwayat perubahan ":title"',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'news_post' => [
-            'comment' => 'Terdapat komentar baru pada topik berita ":title"',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => 'Terdapat balasan baru pada ":title"',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => ':username telah mendapatkan medali baru, ":title"!',
-            'user_achievement_unlock_self' => 'Anda telah mendapatkan medali baru, ":title"!',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => '',
+                'user_achievement_unlock_self' => '',
+            ],
         ],
     ],
 ];

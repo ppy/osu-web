@@ -67,6 +67,8 @@ return [
 
                 'comment_new' => ':username ezt kommentálta: ":content" ezen: ":title"',
                 'comment_new_compact' => ':username ezt kommentálta: ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -91,6 +93,8 @@ return [
 
                 'comment_new' => ':username ezt kommentálta: ":content" ezen: ":title"',
                 'comment_new_compact' => ':username ezt kommentálta: ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -102,6 +106,8 @@ return [
 
                 'comment_new' => ':username ezt kommentálta: ":content" ezen: ":title"',
                 'comment_new_compact' => ':username ezt kommentálta: ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -137,12 +143,28 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '',
-            'beatmapset_discussion_lock' => 'A hozzászolás le lett tiltva ezen a beamapen::title',
-            'beatmapset_discussion_unlock' => 'A hozzászolás elérhető lett ezen a beatmapen::title',
-            'beatmapset_problem' => 'Egy új probléma jelentve lett itt::title',
-            'beatmapset_state' => '',
-            'comment' => ' Új kommentek jelentek meg ezen a beatmapen::title',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_unlock' => '',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'channel' => [
@@ -152,20 +174,28 @@ return [
         ],
 
         'build' => [
-            'comment' => 'Új kommentek jelentek meg itt::title',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'news_post' => [
-            'comment' => 'Új kommentek jelentek meg itt::title',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => 'Új válaszok itt: ":title"',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => ':username feloldott egy új medált! ":title"',
-            'user_achievement_unlock_self' => 'Feloldottál egy új medált! ":title"',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => '',
+                'user_achievement_unlock_self' => '',
+            ],
         ],
     ],
 ];

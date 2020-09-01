@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Ни один из постов не решает мою проблему',
         'notice' => 'Есть ответы между :timestamp (:existing_timestamps). Проверьте их перед тем как отвечать.',
+        'unsaved' => '',
     ],
 
     'reply' => [
@@ -64,7 +65,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max блоков использовано',
         'go_to_parent' => 'Посмотреть отзыв',
         'go_to_child' => 'Посмотреть обсуждение',
         'validation' => [

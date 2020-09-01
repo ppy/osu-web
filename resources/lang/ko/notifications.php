@@ -66,6 +66,8 @@ return [
 
                 'comment_new' => ':username님이 ":title"에 ":content"라고 댓글을 다셨습니다.',
                 'comment_new_compact' => ':username님이 ":content"라고 댓글을 다셨습니다.',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -90,6 +92,8 @@ return [
 
                 'comment_new' => ':username 님이 ":title" 에 ":content" 를 다셨습니다.',
                 'comment_new_compact' => ':username님이 ":content"라고 댓글을 다셨습니다.',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -101,6 +105,8 @@ return [
 
                 'comment_new' => ':username님이 ":title"에 ":content"라고 댓글을 다셨습니다.',
                 'comment_new_compact' => ':username님이 ":content"라고 댓글을 다셨습니다.',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -136,12 +142,28 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '토론 ":title" 에 새로운 업데이트가 있습니다.',
-            'beatmapset_discussion_lock' => '비트맵 ":title" 의 토론이 잠겼습니다.',
-            'beatmapset_discussion_unlock' => '비트맵 ":title" 의 토론이 잠금 해제되었습니다.',
-            'beatmapset_problem' => '비트맵 ":title" 에 새로운 문제가 제의되었습니다.',
-            'beatmapset_state' => '":title" 의 상태가 변경되었습니다.',
-            'comment' => '비트맵 ":title" 에 새로운 댓글이 달렸습니다.',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_unlock' => '',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'channel' => [
@@ -151,20 +173,28 @@ return [
         ],
 
         'build' => [
-            'comment' => '변경 사항 ":title" 에 새로운 댓글이 달렸습니다.',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'news_post' => [
-            'comment' => '뉴스 ":title" 에 새로운 댓글이 달렸습니다.',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '":title" 에 새로운 답글이 달렸습니다.',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => ':username 님이 ":title" 메달을 획득하셨습니다!',
-            'user_achievement_unlock_self' => '":title" 메달을 획득하셨습니다!',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => '',
+                'user_achievement_unlock_self' => '',
+            ],
         ],
     ],
 ];

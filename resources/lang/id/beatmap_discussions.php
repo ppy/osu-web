@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Tidak ada postingan yang membahas masalah saya',
         'notice' => 'Terdapat postingan pada :timestamp (:existing_timestamps). Silakan periksa sebelum memposting.',
+        'unsaved' => '',
     ],
 
     'reply' => [
@@ -64,7 +65,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max blok telah dipergunakan',
         'go_to_parent' => 'Lihat Ulasan',
         'go_to_child' => 'Lihat Topik Diskusi',
         'validation' => [

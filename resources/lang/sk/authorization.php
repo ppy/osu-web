@@ -32,6 +32,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "",
             'limit_exceeded' => 'Počkaj chvíľku pred ďalším hlasovaním',
             'owner' => "Nemôžete hlasovať vo vlastnej diskusii.",
             'wrong_beatmapset_state' => 'Hlasovať môžete iba v diskusii očakávaných beatmáp.',

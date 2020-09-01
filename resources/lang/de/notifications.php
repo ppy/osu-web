@@ -66,6 +66,8 @@ return [
 
                 'comment_new' => ':username kommentierte ":content" auf ":title"',
                 'comment_new_compact' => ':username kommentierte ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -90,6 +92,8 @@ return [
 
                 'comment_new' => ':username kommentierte ":content" auf ":title"',
                 'comment_new_compact' => ':username kommentierte ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -101,6 +105,8 @@ return [
 
                 'comment_new' => ':username kommentierte ":content" auf ":title"',
                 'comment_new_compact' => ':username kommentierte ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -136,12 +142,28 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => 'Die Diskussion über ":title" hat neue Updates',
-            'beatmapset_discussion_lock' => 'Die Diskussion über ":title" wurde gesperrt',
-            'beatmapset_discussion_unlock' => 'Die Diskussion über ":title" wurde entsperrt',
-            'beatmapset_problem' => 'Ein neues Problem wurde auf ":title" gemeldet',
-            'beatmapset_state' => 'Der Status von ":title" hat sich geändert',
-            'comment' => 'Beatmap ":title" hat neue Kommentare',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_unlock' => '',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'channel' => [
@@ -151,20 +173,28 @@ return [
         ],
 
         'build' => [
-            'comment' => 'Changelog ":title" hat neue Kommentare',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'news_post' => [
-            'comment' => 'Neuigkeit ":title" hat neue Kommentare',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => 'Es gibt neue Antworten in ":title"',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => ':username hat eine neue Medaille freigeschaltet, ":title"!',
-            'user_achievement_unlock_self' => 'Du hast eine neue Medaille freigeschaltet, ":title"!',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => '',
+                'user_achievement_unlock_self' => '',
+            ],
         ],
     ],
 ];

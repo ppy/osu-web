@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "iniziamo<br>subito!",
         'action' => 'Scarica osu!',
+
+        'help' => [
+            '_' => '',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'per Windows',
             'macos' => 'per macOS',

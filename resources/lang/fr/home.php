@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "c'est parti<br>lancez-vous !",
         'action' => 'Télécharger osu!',
+
+        'help' => [
+            '_' => '',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'pour Windows',
             'macos' => 'pour macOS',

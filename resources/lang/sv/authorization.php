@@ -32,6 +32,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "",
             'limit_exceeded' => 'Var god vänta innan du lägger fler röster',
             'owner' => "Kan inte rösta på din egen diskussion!",
             'wrong_beatmapset_state' => 'Kan endast rösta på diskussioner för väntande beatmaps.',

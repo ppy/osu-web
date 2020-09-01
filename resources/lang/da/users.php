@@ -84,6 +84,7 @@ return [
         'failed' => 'Ugyldigt login',
         'forgot' => 'Glemt din adgangskode?',
         'info' => 'Log ind for at fortsætte',
+        'invalid_captcha' => '',
         'locked_ip' => 'din IP-adresse er låst. Vent venligst et par minutter.',
         'password' => 'Adgangskode',
         'register' => "Har du ikke en osu! konto? Opret en ny én!",

@@ -66,6 +66,8 @@ return [
 
                 'comment_new' => ':username ":title" üzerinde ":content" yorumunu yaptı',
                 'comment_new_compact' => ':username ":content" yorumunu yaptı',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -90,6 +92,8 @@ return [
 
                 'comment_new' => ':username ":title" üzerinde ":content" yorumunu yaptı',
                 'comment_new_compact' => ':username ":content" yorumunu yaptı',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -101,6 +105,8 @@ return [
 
                 'comment_new' => ':username ":title" üzerinde ":content" yorumunu yaptı',
                 'comment_new_compact' => ':username ":content" yorumunu yaptı',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -136,12 +142,28 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '":title" setinin tartışmasında yeni güncellemeler mevcut',
-            'beatmapset_discussion_lock' => '":title" setinin tartışması kilitlendi',
-            'beatmapset_discussion_unlock' => '":title" setinin tartışmasının kilidi kaldırıldı',
-            'beatmapset_problem' => '',
-            'beatmapset_state' => '":title" setinin durumu değişti',
-            'comment' => '":title" beatmapinde yeni yorumlar mevcut',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_unlock' => '',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'channel' => [
@@ -151,20 +173,28 @@ return [
         ],
 
         'build' => [
-            'comment' => '":title" değişiklik kaydında yeni yorumlar mevcut',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'news_post' => [
-            'comment' => '":title" haber göndersinde yeni yorumlar mevcut',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '":title" konusunda yeni yanıtlar mevcut',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => ':username yeni bir madalya açtı, ":title"!',
-            'user_achievement_unlock_self' => 'Yeni başarım açıldı. "başlık"!',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => '',
+                'user_achievement_unlock_self' => '',
+            ],
         ],
     ],
 ];

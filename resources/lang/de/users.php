@@ -84,6 +84,7 @@ return [
         'failed' => 'Falscher Login',
         'forgot' => 'Passwort vergessen?',
         'info' => 'Bitte melde dich an, um fortzufahren',
+        'invalid_captcha' => '',
         'locked_ip' => 'Deine IP-Adresse ist gesperrt. Bitte warte ein paar Minuten.',
         'password' => 'Passwort',
         'register' => "Noch keinen osu!-Account? Erstell' einen",
@@ -242,7 +243,7 @@ return [
                 'total' => 'Kudosu insgesamt',
 
                 'entry' => [
-                    'amount' => ':amount kudosu',
+                    'amount' => ':amount Kudosu',
                     'empty' => "Dieser Benutzer hat kein Kudosu erhalten!",
 
                     'beatmap_discussion' => [
@@ -263,7 +264,7 @@ return [
                         ],
 
                         'vote' => [
-                            'give' => ':amount durch erhaltene Stimmen im Beitrag :post erhalten',
+                            'give' => ':amount durch erhaltene Stimmen im Post :post erhalten',
                             'reset' => ':amount durch verlorene Stimmen im Beitrag :post verloren',
                         ],
 
@@ -281,7 +282,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Basierend auf dem Beitrag, den der Benutzer zur Beatmap-Moderation geleistet hat. Weitere Informationen unter :link.',
+                    '_' => 'Basierend auf dem Beitrag, den der Benutzer zum Beatmap-Modding geleistet hat. Weitere Informationen auf :link.',
                     'link' => 'dieser Seite',
                 ],
             ],

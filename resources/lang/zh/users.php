@@ -84,6 +84,7 @@ return [
         'failed' => '登录失败',
         'forgot' => '忘记密码？',
         'info' => '请登录以继续',
+        'invalid_captcha' => '',
         'locked_ip' => 'IP 已被锁定，请稍等几分钟',
         'password' => '密码',
         'register' => "没有 osu! 账户？现在就注册一个！",

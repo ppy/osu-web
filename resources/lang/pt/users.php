@@ -84,6 +84,7 @@ return [
         'failed' => 'Início de sessão incorreto',
         'forgot' => 'Esqueceste-te da palavra-passe?',
         'info' => 'Por favor inicia sessão para continuar',
+        'invalid_captcha' => '',
         'locked_ip' => 'o teu endereço de IP foi bloqueado. Por favor espera uns minutos.',
         'password' => 'Palavra-passe',
         'register' => "Não tens uma conta osu? Cria uma nova",

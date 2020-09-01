@@ -180,6 +180,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Jag har glömt mina detaljer",
             'password' => 'lösenord',

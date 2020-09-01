@@ -84,6 +84,7 @@ return [
         'failed' => 'Đăng nhập không chính xác',
         'forgot' => 'Quên mật khẩu?',
         'info' => '',
+        'invalid_captcha' => '',
         'locked_ip' => 'Địa chỉ IP của bạn đã bị khóa. Vui lòng đợi một vài phút.',
         'password' => 'Mật khẩu',
         'register' => "Không có tài khoản osu!? Tạo một tài khoản mới",

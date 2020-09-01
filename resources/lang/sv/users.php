@@ -84,6 +84,7 @@ return [
         'failed' => 'Felaktig inloggning',
         'forgot' => 'Glömt ditt lösenord?',
         'info' => 'Vänligen logga in för att fortsätta',
+        'invalid_captcha' => '',
         'locked_ip' => 'din IP-adress är låst. Var vänlig vänta några minuter.',
         'password' => 'Lösenord',
         'register' => "Har du inget osu! konto? Skapa ett nytt",

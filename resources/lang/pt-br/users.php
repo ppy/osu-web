@@ -84,6 +84,7 @@ return [
         'failed' => 'Login incorreto',
         'forgot' => 'Esqueceu sua senha?',
         'info' => 'Por favor, conecte-se para continuar',
+        'invalid_captcha' => '',
         'locked_ip' => 'seu endereço IP está bloqueado. Por favor, espere alguns minutos.',
         'password' => 'Senha',
         'register' => "Você não tem uma conta no osu!? Faça uma!",
@@ -196,7 +197,7 @@ return [
                     'title' => 'Beatmaps no Cemitério',
                 ],
                 'loved' => [
-                    'title' => 'Loved Beatmaps',
+                    'title' => 'Beatmaps Loved',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmaps Ranqueados & Aprovados',
@@ -233,7 +234,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Histórico de Replays Assistidos',
-                    'count_label' => 'Replays assistidos',
+                    'count_label' => 'Replays Assistidos',
                 ],
             ],
             'kudosu' => [
@@ -399,7 +400,7 @@ return [
             'total_score' => 'Pontuação Total',
             // modding stats
             'ranked_and_approved_beatmapset_count' => 'Beatmaps Ranqueados e Aprovados',
-            'loved_beatmapset_count' => 'Loved Beatmaps',
+            'loved_beatmapset_count' => 'Beatmaps Loved',
             'unranked_beatmapset_count' => 'Beatmaps Pendentes',
             'graveyard_beatmapset_count' => 'Beatmaps no Cemitério',
         ],

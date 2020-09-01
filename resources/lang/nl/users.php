@@ -84,6 +84,7 @@ return [
         'failed' => 'Verkeerde login',
         'forgot' => 'Wachtwoord vergeten?',
         'info' => 'Log in om verder te gaan',
+        'invalid_captcha' => '',
         'locked_ip' => 'je IP adres is vergrendeld. Wacht enkele minuten.',
         'password' => 'Wachtwoord',
         'register' => "Heb je geen osu! account? Maak een nieuwe",

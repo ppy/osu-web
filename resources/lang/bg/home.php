@@ -75,6 +75,13 @@ return [
         'tagline' => "нека ти помогнем<br>
 с основите да започнеш!",
         'action' => 'Изтеглете osu!',
+
+        'help' => [
+            '_' => '',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'за Windows',
             'macos' => 'за macOS',

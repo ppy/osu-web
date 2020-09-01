@@ -51,6 +51,7 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'ricevi notifiche per nuovi problemi sulle beatmap qualificate delle seguenti modalità',
         'beatmapset_disqualify' => 'ricevi notifiche quando per quando le beatmap delle seguenti modalità vengono squalificate',
+        'comment_reply' => '',
         'title' => 'Notifiche',
         'topic_auto_subscribe' => 'attiva automaticamente le notifiche sui nuovi topic del forum che crei',
 

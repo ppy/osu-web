@@ -179,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Ik ben mij gegevens vergeten",
             'password' => 'wachtwoord',

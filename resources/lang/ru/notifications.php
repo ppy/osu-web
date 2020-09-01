@@ -66,6 +66,8 @@ return [
 
                 'comment_new' => ':username прокомментировал ":content" на ":title"',
                 'comment_new_compact' => ':username прокомментировал ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -90,6 +92,8 @@ return [
 
                 'comment_new' => ':username прокомментировал ":content" на ":title"',
                 'comment_new_compact' => ':username прокомментировал ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -101,6 +105,8 @@ return [
 
                 'comment_new' => ':username прокомментировал ":content" на ":title"',
                 'comment_new_compact' => ':username прокомментировал ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -136,12 +142,28 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => 'Обсуждение ":title" имеет новые ответы',
-            'beatmapset_discussion_lock' => 'Обсуждение ":title" было закрыто',
-            'beatmapset_discussion_unlock' => 'Обсуждение ":title" было открыто',
-            'beatmapset_problem' => 'Сообщена новая проблема в ":title"',
-            'beatmapset_state' => 'Состояние ":title" изменилось',
-            'comment' => ' Карта ":title" имеет новые комментарии',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_unlock' => '',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'channel' => [
@@ -151,20 +173,28 @@ return [
         ],
 
         'build' => [
-            'comment' => 'Список изменений ":title" содержит новые комментарии',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'news_post' => [
-            'comment' => 'Новость ":title" имеет новые комментарии',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => 'Есть новые ответы в ":title"',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => ':username открыл новую медаль: ":title"!',
-            'user_achievement_unlock_self' => 'Вы открыли новую медаль: ":title"!',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => '',
+                'user_achievement_unlock_self' => '',
+            ],
         ],
     ],
 ];

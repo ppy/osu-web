@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "시작해봐요!",
         'action' => 'osu! 다운로드',
+
+        'help' => [
+            '_' => '',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'Windows 용',
             'macos' => 'macOS 용',

@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Nenhuma das publicações abordam a minha preocupação',
         'notice' => 'Há publicações à volta de :timestamp (:existing_timestamps). Por favor consulta-as antes de publicar.',
+        'unsaved' => '',
     ],
 
     'reply' => [
@@ -64,7 +65,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max blocos usados',
         'go_to_parent' => 'Ver publicação de análise',
         'go_to_child' => 'Ver discussão',
         'validation' => [

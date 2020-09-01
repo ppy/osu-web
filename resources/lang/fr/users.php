@@ -84,6 +84,7 @@ return [
         'failed' => 'Identifiants incorrects',
         'forgot' => 'Mot de passe oublié ?',
         'info' => 'Veuillez vous connecter pour continuer',
+        'invalid_captcha' => '',
         'locked_ip' => 'votre adresse IP est bloquée. Merci d\'attendre quelques minutes.',
         'password' => 'Mot de passe',
         'register' => "Vous n'avez pas de compte osu! ? Inscrivez-vous maintenant ici",

@@ -344,7 +344,7 @@ return [
         'D' => 'D',
     ],
     'panel' => [
-        'playcount' => 'Numero partite: :count',
+        'playcount' => 'Volte giocata: :count',
         'favourites' => 'Preferiti: :count',
     ],
     'variant' => [

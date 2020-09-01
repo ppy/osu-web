@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "mari persiapkan<br>diri Anda!",
         'action' => 'Unduh osu!',
+
+        'help' => [
+            '_' => '',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'untuk Windows',
             'macos' => 'untuk macOS',

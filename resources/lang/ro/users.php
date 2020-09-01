@@ -84,6 +84,7 @@ return [
         'failed' => 'Conectare incorectă',
         'forgot' => 'Ți-ai uitat parola?',
         'info' => 'Pentru a continua, vă rugam să vă autentificaţi',
+        'invalid_captcha' => '',
         'locked_ip' => 'adresa ta IP este blocată. Te rugăm să aștepți câteva minute.',
         'password' => 'Parolă',
         'register' => "Nu ai un cont osu!? Fă-ți unul nou",
