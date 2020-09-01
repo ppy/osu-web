@@ -20,8 +20,9 @@ class ChannelTransformer extends TransformerAbstract
     {
         return [
             'channel_id' => $channel->channel_id,
-            'name' => $channel->name,
             'description' => $channel->description,
+            'moderated' => $channel->moderated,
+            'name' => $channel->name,
             'type' => $channel->type,
         ];
     }

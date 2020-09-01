@@ -269,19 +269,15 @@ class ChatController extends Controller
         $targetUser = User::find($params['target_id']);
         $channel = $message->channel;
 
+        $channelJson = json_item($channel, 'Chat\Channel', ['users']); // TODO: return ids instead.
+        $channelJson['first_message_id'] = $message->getKey(); // TODO: get actual first_message_id
+        $channelJson['icon'] = $targetUser->user_avatar;
+        $channelJson['last_message_id'] = null; // TODO: get actual first_message_id
+        $channelJson['last_read_id'] = null; // TODO: get actual first_message_id
+        $channelJson['name'] = $targetUser->username;
+
         return [
-            'channel' => [
-                'channel_id' => $message->channel_id,
-                'description' => $channel->description,
-                'first_message_id' => $message->getKey(), // TODO: get actual first_message_id
-                'icon' => $targetUser->user_avatar,
-                'last_message_id' => 907,
-                'last_read_id' => 907,
-                'moderated' => $channel->moderated,
-                'name' => $targetUser->username,
-                'type' => $channel->type,
-                'users' => $channel->users()->pluck('user_id'), // TODO: terrible
-            ],
+            'channel' => $channelJson,
             'new_channel_id' => $message->channel_id,
             'message' => json_item(
                 $message,
