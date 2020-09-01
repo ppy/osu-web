@@ -5,9 +5,13 @@
 
 namespace App\Models\Multiplayer;
 
+use App\Models\Model;
 use App\Models\User;
 
 /**
+ * Aggregate root for user multiplayer high scores.
+ * Updates should be done via this root and not directly against the models.
+ *
  * @property float $accuracy
  * @property int $attempts
  * @property int $completed
@@ -19,8 +23,10 @@ use App\Models\User;
  * @property \Carbon\Carbon $updated_at
  * @property int $user_id
  */
-class UserScoreAggregate extends RoomUserHighScore
+class UserScoreAggregate extends Model
 {
+    protected $table = 'multiplayer_rooms_high';
+
     public $isNew = false;
 
     public static function getPlaylistItemUserHighScore(Score $score)
@@ -128,9 +134,30 @@ class UserScoreAggregate extends RoomUserHighScore
         }
     }
 
+    public function room()
+    {
+        return $this->belongsTo(Room::class);
+    }
+
+    public function scopeForRanking($query)
+    {
+        return $query
+            ->where('completed', '>', 0)
+            ->whereHas('user', function ($userQuery) {
+                $userQuery->default();
+            })
+            ->orderBy('total_score', 'DESC')
+            ->orderBy('last_score_id', 'ASC');
+    }
+
     public function updateUserAttempts()
     {
         $this->increment('attempts');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function userRank()
