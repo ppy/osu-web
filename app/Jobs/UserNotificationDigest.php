@@ -37,6 +37,10 @@ class UserNotificationDigest implements ShouldQueue
 
     public function handle()
     {
+        if (!present($this->user->email)) {
+            return;
+        }
+
         $notifications = $this->filterNotifications($this->getNotifications());
 
         if (empty($notifications)) {
