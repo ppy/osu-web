@@ -50,7 +50,7 @@ class RoomsController extends BaseController
         $room = Room::findOrFail($roomId);
 
         // leaderboard currently requires auth so auth()->check() is not required.
-        $ownScore = $room->topScores()->where('user_id', auth()->id())->first();
+        $userScore = $room->topScores()->where('user_id', auth()->id())->first();
 
         return [
             'leaderboard' => json_collection(
@@ -58,8 +58,8 @@ class RoomsController extends BaseController
                 'Multiplayer\UserScoreAggregate',
                 ['user.country']
             ),
-            'own_score' => $ownScore !== null ? json_item(
-                $ownScore,
+            'user_score' => $userScore !== null ? json_item(
+                $userScore,
                 'Multiplayer\UserScoreAggregate',
                 ['position', 'user.country']
             ) : null,
