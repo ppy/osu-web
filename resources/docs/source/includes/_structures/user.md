@@ -186,35 +186,6 @@ skype                                | string?                                  
 title                                | string?                                          | user-specific title
 twitter                              | string?                                          | |
 website                              | string?                                          | |
-account_history                      | UserAccountHistory[]                             | |
-active_tournament_banner             | [ProfileBanner](#user-profilebanner)?            | |
-badges                               | UserBadge[]                                      | |
-favourite_beatmapset_count           | number                                           | |
-follower_count                       | number                                           | |
-graveyard_beatmapset_count           | number                                           | |
-groups                               | [Group](#group)[]                                | |
-loved_beatmapset_count               | number                                           | |
-monthly_playcounts                   | [UserMonthlyPlaycount](#usermounthlyplaycount)[] | |
-page                                 |                                                  | |
-previous_usernames                   |                                                  | |
-rankHistory                          |                                                  | |
-ranked_and_approved_beatmapset_count |                                                  | |
-replays_watched_counts               |                                                  | |
-scores_first_count                   |                                                  | |
-statistics                           |                                                  | |
-support_level                        |                                                  | |
-unranked_beatmapset_count            |                                                  | |
-user_achievements                    |                                                  | |
-
-<div id="user-profilebanner" data-unique="user-profilebanner"></div>
-
-### ProfileBanner
-
-Field         | Type        | Description
---------------|-------------|------------
-id            | number      | |
-tournament_id | number      | |
-image         | string      | |
 
 <div id="user-profilepage" data-unique="user-profilepage"></div>
 
@@ -229,21 +200,3 @@ image         | string      | |
 | kudosu          |
 | top_ranks       |
 | medals          |
-
-### UserAccountHistory
-
-Field       | Type      | Description
-------------|-----------|------------
-id          | number    | |
-type        | string    | `note`, `restriction`, or `silence`.
-timestamp   | Timestamp | |
-length      | number    | In seconds.
-
-### UserBadge
-
-Field       | Type      | Description
-------------|-----------|------------
-awarded_at  | Timestamp | |
-description | string    | |
-image_url   | string    | |
-url         | string    | |
