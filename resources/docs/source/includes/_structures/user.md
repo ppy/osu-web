@@ -186,6 +186,22 @@ title            | string?                            | user-specific title
 twitter          | string?                            | |
 website          | string?                            | |
 
+In addition, following attributes are always included:
+
+| Attribute     |
+| ------------- |
+| country       |
+| cover         |
+| is_admin      |
+| is_bng        |
+| is_full_bn    |
+| is_gmt        |
+| is_limited_bn |
+| is_moderator  |
+| is_nat        |
+| is_restricted |
+| is_silenced   |
+
 <div id="user-profilepage" data-unique="user-profilepage"></div>
 
 ### ProfilePage
