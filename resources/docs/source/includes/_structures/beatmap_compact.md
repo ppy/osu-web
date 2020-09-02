@@ -15,6 +15,5 @@ Field       | Type | Description
 ----------- | ---- | -----------
 beatmapset  |      | |
 checksum    |      | |
-scores_best |      | |
 failtimes   |      | |
 max_combo   |      | |
