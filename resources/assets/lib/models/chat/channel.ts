@@ -148,21 +148,9 @@ export default class Channel {
   }
 
   @action
-  updatePresence = (presence: ChannelJsonExtended) => {
-    this.name = presence.name;
-    this.description = presence.description;
-    this.type = presence.type;
-    this.icon = presence.icon || '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
-    this.lastReadId = presence.last_read_id;
-
-    const lastMessageId = _.max([this.lastMessageId, presence.last_message_id]);
-    this.lastMessageId = lastMessageId ?? -1;
-
-    this.firstMessageId = presence.first_message_id ?? -1;
-
-    this.users = presence.users;
-    this.moderated = presence.moderated;
-    this.metaLoaded = true;
+  updatePresence = (json: ChannelJsonExtended) => {
+    this.updateWithJson(json);
+    this.lastReadId = json.last_read_id;
   }
 
   @action
@@ -170,12 +158,13 @@ export default class Channel {
     this.name = json.name;
     this.description = json.description;
     this.type = json.type;
-    this.icon = json?.icon ?? '/images/layout/chat/channel-default.png';
+    this.icon = json?.icon ?? '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
     this.moderated = json.moderated;
     this.users = json.users;
 
-    if (json.first_message_id != null) this.firstMessageId = json.first_message_id;
-    if (json.last_message_id != null) this.lastMessageId = json.last_message_id;
+    this.firstMessageId = json.first_message_id ?? this.firstMessageId;
+    // ?? -1 is just there for typing, lastMessageId initializes with -1.
+    this.lastMessageId = _.max([this.lastMessageId, json.last_message_id]) ?? -1;
 
     this.metaLoaded = true;
   }

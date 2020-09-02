@@ -88,6 +88,13 @@ export default class ChannelStore extends Store {
     this.getOrCreate(channelId).addMessages(messages);
   }
 
+  @action
+  addNewConversation(json: ChannelJSON, message: MessageJSON) {
+    const channel = this.getOrCreate(json.channel_id);
+    channel.updateWithJson(json);
+    channel.lastReadId = message.message_id;
+  }
+
   findPM(userId: number): Channel | null {
     if (userId === core.currentUser?.id) {
       return null;
@@ -177,12 +184,5 @@ export default class ChannelStore extends Store {
     });
 
     this.loaded = true;
-  }
-
-  @action
-  updateWithChannel(json: ChannelJSON, message: MessageJSON) {
-    const channel = this.getOrCreate(json.channel_id);
-    channel.updateWithJson(json);
-    channel.lastReadId = message.message_id;
   }
 }

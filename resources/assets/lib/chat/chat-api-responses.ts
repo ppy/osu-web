@@ -26,11 +26,8 @@ export interface ChannelJSON {
 // This is the version used by 'presence'.
 export interface ChannelJsonExtended extends ChannelJSON {
   first_message_id: number;
-  icon?: string;
   last_message_id: number;
   last_read_id: number;
-  moderated: boolean;
-  users: number[];
 }
 
 export type GetMessagesJSON =

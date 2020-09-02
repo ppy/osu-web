@@ -122,11 +122,10 @@ export default class ChatWorker implements DispatchListener {
 
       this.api.newConversation(userId, message.content, message.isAction)
         .then((response) => {
-          const newId = response.new_channel_id;
           transaction(() => {
             this.rootDataStore.channelStore.channels.delete(channelId);
-            this.rootDataStore.channelStore.updateWithChannel(response.channel, response.message);
-            dispatch(new ChatChannelSwitchAction(newId));
+            this.rootDataStore.channelStore.addNewConversation(response.channel, response.message);
+            dispatch(new ChatChannelSwitchAction(response.channel.channel_id));
           });
         })
         .catch(() => {
