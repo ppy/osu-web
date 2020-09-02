@@ -7,7 +7,6 @@ namespace App\Transformers\Chat;
 
 use App\Models\Chat\Channel;
 use App\Transformers\TransformerAbstract;
-use App\Transformers\UserCompactTransformer;
 
 class ChannelTransformer extends TransformerAbstract
 {
