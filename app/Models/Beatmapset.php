@@ -332,6 +332,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         });
     }
 
+    public function scopeBundled($query)
+    {
+        return $query->where('bundled', true);
+    }
+
     // one-time checks
 
     public function isGraveyard()

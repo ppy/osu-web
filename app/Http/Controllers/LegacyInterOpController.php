@@ -32,6 +32,29 @@ class LegacyInterOpController extends Controller
 {
     use DispatchesJobs;
 
+    public function bundleBeatmapsets()
+    {
+        $beatmapsetIds = get_params(request(), null, ['beatmapsets:int[]'])['beatmapsets'] ?? null;
+
+        if (empty($beatmapsetIds)) {
+            abort(422, '"beatmapsets" parameter must be a list of IDs');
+        }
+
+        $beatmapsetsToIndex = Beatmapset::esIndexingQuery()
+            ->bundled()
+            ->orWhereIn('beatmapset_id', $beatmapsetIds)
+            ->get();
+
+        Beatmapset::bundled()->update(['bundled' => false]);
+        Beatmapset::whereIn('beatmapset_id', $beatmapsetIds)->update(['bundled' => true]);
+
+        foreach ($beatmapsetsToIndex as $beatmapset) {
+            dispatch(new EsIndexDocument($beatmapset));
+        }
+
+        return response(null, 204);
+    }
+
     public function generateNotification()
     {
         $params = request()->all();
