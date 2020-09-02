@@ -79,69 +79,6 @@ class Manifest {
   }
 }
 
-// TODO: move to own file
-class ConcatPlugin {
-  constructor(options = {}) {
-    this.patterns = options.patterns;
-    this.options = options.options || {};
-  }
-
-  apply(compiler) {
-    const { RawSource, SourceMapSource } = require('webpack-sources');
-    const concatenate = require('concatenate');
-
-    const plugin = { name: 'ConcatPlugin' };
-
-    compiler.hooks.thisCompilation.tap(plugin, (compilation) => {
-      const logger = compilation.getLogger('concat-webpack-plugin');
-
-      compilation.hooks.additionalAssets.tapAsync('concat-webpack-plugin', async (callback) => {
-        const assets = this.patterns.map((pattern) => {
-          let content = concatenate.sync(pattern.from);
-          const webpackTo = loaderUtils.interpolateName(
-            { resourcePath: path.resolve(compiler.options.output.path, pattern.to) },
-            pattern.to,
-            { content },
-          );
-
-          let source = content;
-          let map = null;
-          if (inProduction) {
-            // TODO: move source map to optimization stage; also add sourcemap url
-            const minified = minify(content, { sourceMap: true });
-            source = minified.code;
-            map = minified.map;
-          }
-
-          return {
-            map,
-            source,
-            webpackTo,
-          };
-        });
-
-        assets.forEach((asset) => {
-          const {
-            map,
-            source,
-            webpackTo,
-          } = asset;
-
-          const outputSource = map != null ? new SourceMapSource(source, webpackTo, map) : new RawSource(source);
-          logger.log(`writing '${webpackTo}'`);
-          compilation.emitAsset(`${webpackTo}`, outputSource);
-
-          if (map != null) {
-            compilation.emitAsset(`${webpackTo}.map`, new RawSource(map), { info: { development: true } });
-          }
-        });
-
-        callback();
-      });
-    });
-  }
-}
-
 // declare entrypoints and output first.
 const entry = {
   'app': [
