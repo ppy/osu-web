@@ -4,26 +4,26 @@ Represent a beatmap. This extends [BeatmapCompact](#beatmapcompact) with additio
 
 Additional attributes:
 
-Field          | Type   | Description
--------------- | ------ | -----------
-accuracy       |        | |
-ar             |        | |
-beatmapset_id  |        | |
-bpm            |        | |
-convert        |        | |
-count_circles  |        | |
-count_sliders  |        | |
-count_spinners |        | |
-cs             |        | |
-deleted_at     |        | |
-drain          |        | |
-hit_length     |        | |
-is_scoreable   |        | |
-last_updated   |        | |
-mode_int       |        | |
-passcount      |        | |
-playcount      |        | |
-ranked         |        | |
-status         |        | |
-total_length   |        | |
-url            |        | |
+Field          | Type                     | Description
+-------------- | ------------------------ | -----------------------------------------------------------------------
+accuracy       | float                    | |
+ar             | float                    | |
+beatmapset_id  | integer                  | |
+bpm            | float                    | |
+convert        | boolean                  | |
+count_circles  | integer                  | |
+count_sliders  | integer                  | |
+count_spinners | integer                  | |
+cs             | float                    | |
+deleted_at     | [Timestamp](#timestamp)? | |
+drain          | float                    | |
+hit_length     | integer                  | |
+is_scoreable   | boolean                  | |
+last_updated   | [Timestamp](#timestamp)  | |
+mode_int       | integer                  | |
+passcount      | integer                  | |
+playcount      | integer                  | |
+ranked         | integer                  | See [Rank status](#beatmapset-rank-status) for list of possible values.
+status         | string                   | See [Rank status](#beatmapset-rank-status) for list of possible values.
+total_length   | integer                  | |
+url            | string                   | |

@@ -30,3 +30,19 @@ The following attributes are always included as well:
 | Field          |
 | -------------- |
 | has_favourited |
+
+<div id="beatmapset-rank-status" data-unique="beatmapset-rank-status"></div>
+
+### Rank status
+
+The possible values are denoted either as integer or string.
+
+Integer | String
+------- | ---------
+-2      | graveyard
+-1      | wip
+0       | pending
+1       | ranked
+2       | approved
+3       | qualified
+4       | loved

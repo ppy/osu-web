@@ -4,8 +4,8 @@ Represent a beatmap.
 
 Field             | Type   | Description
 ----------------- | ------ | -----------
-difficulty_rating | number | |
-id                | number | |
+difficulty_rating | float  | |
+id                | integer| |
 mode              |        | |
 version           |        | |
 
