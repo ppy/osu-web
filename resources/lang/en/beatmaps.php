@@ -331,6 +331,7 @@ return [
     'extra' => [
         'video' => 'Has Video',
         'storyboard' => 'Has Storyboard',
+        'bundled' => 'Bundled',
     ],
     'rank' => [
         'any' => 'Any',

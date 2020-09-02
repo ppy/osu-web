@@ -16,7 +16,7 @@ use App\Models\User;
 class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 {
     const AVAILABLE_STATUSES = ['any', 'leaderboard', 'ranked', 'qualified', 'loved', 'favourites', 'pending', 'graveyard', 'mine'];
-    const AVAILABLE_EXTRAS = ['video', 'storyboard'];
+    const AVAILABLE_EXTRAS = ['video', 'storyboard', 'bundled'];
     const AVAILABLE_GENERAL = ['recommended', 'converts'];
     const AVAILABLE_PLAYED = ['any', 'played', 'unplayed'];
     const AVAILABLE_RANKS = ['XH', 'X', 'SH', 'S', 'A', 'B', 'C', 'D'];
@@ -54,10 +54,13 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
             $this->genre = get_int($request['g'] ?? null);
             $this->language = get_int($request['l'] ?? null);
-            $this->extra = array_intersect(
-                explode('.', $request['e'] ?? null),
-                $validExtras
-            );
+
+            $extras = explode('.', $request['e'] ?? null) ?? [];
+            $this->extra = array_intersect($extras, $validExtras);
+
+            if (in_array('bundled', $extras, true)) {
+                $this->extra[] = 'can_bundle';
+            }
 
             $this->mode = get_int($request['m'] ?? null);
             if (!in_array($this->mode, Beatmap::MODES, true)) {
@@ -145,6 +148,10 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
         if (in_array($this->status, ['pending', 'graveyard', 'mine'], true)) {
             return [new Sort('last_update', $order)];
+        }
+
+        if (in_array('can_bundle', $this->extra, true)) {
+            return [new Sort('bundled', $order)];
         }
 
         return [new Sort('approved_date', $order)];
