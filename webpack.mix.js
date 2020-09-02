@@ -381,6 +381,17 @@ const webpackConfig = {
           chunks: 'initial',
           minChunks: 2,
           name: 'commons',
+          priority: -20,
+        },
+        vendor: {
+          chunks: 'initial',
+          priority: -10,
+          name: 'vendor',
+          reuseExistingChunk: true,
+          test: (module, chunks) => {
+            // Doing it this way doesn't split the css imported via app.less from the main css bundle.
+            return module.resource && module.resource.includes(`${path.sep}node_modules${path.sep}`);
+          },
         },
       },
     },
