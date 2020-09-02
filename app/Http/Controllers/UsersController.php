@@ -413,7 +413,7 @@ class UsersController extends Controller
      * monthly_playcounts                   | |
      * page                                 | |
      * previous_usernames                   | |
-     * rankHistory                          | For specified mode.
+     * rank_history                         | For specified mode.
      * ranked_and_approved_beatmapset_count | |
      * replays_watched_counts               | |
      * scores_first_count                   | For specified mode.

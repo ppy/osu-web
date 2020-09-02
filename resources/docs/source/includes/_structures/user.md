@@ -150,7 +150,7 @@
       "achievement_id": 1
     }
   ],
-  "rankHistory": {
+  "rank_history": {
     "mode": "osu",
     "data": [
       16200,
