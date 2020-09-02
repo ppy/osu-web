@@ -18,5 +18,22 @@ title           | string               | |
 title_unicode   | string               | |
 user_id         | number               | |
 video           | string               | |
-beatmaps        | [Beatmap?](#beatmap) | |
-has_favourited  | number?              | Not always included.
+
+Those fields are optional.
+
+Field                   | Type                  | Description
+----------------------- | --------------------- | -----------
+beatmaps                | [Beatmap](#beatmap)[] | |
+converts                |                       | |
+current_user_attributes |                       | |
+description             |                       | |
+discussions             |                       | |
+events                  |                       | |
+genre                   |                       | |
+has_favourited          | boolean               | |
+language                |                       | |
+nominations             |                       | |
+ratings                 |                       | |
+recent_favourites       |                       | |
+related_users           |                       | |
+user                    |                       | |
