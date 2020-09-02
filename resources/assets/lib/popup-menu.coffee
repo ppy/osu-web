@@ -77,6 +77,7 @@ export class PopupMenu extends PureComponent
 
   componentWillUnmount: =>
     $(document).off ".#{@uuid}"
+    $(window).off ".#{@uuid}"
 
 
   dismiss: =>

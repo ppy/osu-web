@@ -179,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'sign in / register',
+
         'login' => [
             'forgot' => "I've forgotten my details",
             'password' => 'password',
