@@ -2,22 +2,22 @@
 
 Represents a beatmapset.
 
-Field           | Type                 | Description
-----------------|----------------------|------------
-artist          | string               | |
-artist_unicode  | string               | |
-covers          | Cover                | |
-creator         | string               | |
-favourite_count | number               | |
-id              | number               | |
-play_count      | number               | |
-preview_url     | string               | |
-source          | string               | |
-status          | string               | |
-title           | string               | |
-title_unicode   | string               | |
-user_id         | number               | |
-video           | string               | |
+Field           | Type                                | Description
+--------------- | ----------------------------------- | -----------
+artist          | string                              | |
+artist_unicode  | string                              | |
+covers          | [Covers](#beatmapsetcompact-covers) | |
+creator         | string                              | |
+favourite_count | number                              | |
+id              | number                              | |
+play_count      | number                              | |
+preview_url     | string                              | |
+source          | string                              | |
+status          | string                              | |
+title           | string                              | |
+title_unicode   | string                              | |
+user_id         | number                              | |
+video           | string                              | |
 
 Those fields are optional.
 
@@ -37,6 +37,21 @@ ratings                 |                       | |
 recent_favourites       |                       | |
 related_users           |                       | |
 user                    |                       | |
+
+<div id="beatmapsetcompact-covers" data-unique="beatmapsetcompact-covers"></div>
+
+### Covers
+
+Field        | Type
+------------ | ------
+cover        | string
+cover@2x     | string
+card         | string
+card@2x      | string
+list         | string
+list@2x      | string
+slimcover    | string
+slimcover@2x | string
 
 <div id="beatmapsetcompact-rank-status" data-unique="beatmapsetcompact-rank-status"></div>
 
