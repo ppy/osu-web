@@ -2,47 +2,31 @@
 
 Represents a beatmapset. This extends [BeatmapsetCompact](#beatmapsetcompact) with additional attributes.
 
-Field                          | Type  | Description
------------------------------- | ----- | -----------
-availability.download_disabled |       | |
-availability.more_information  |       | |
-bpm                            |       | |
-can_be_hyped                   |       | |
-creator                        |       | |
-discussion_enabled             |       | |
-discussion_locked              |       | |
-hype.current                   |       | |
-hype.required                  |       | |
-is_scoreable                   |       | |
-last_updated                   |       | |
-legacy_thread_url              |       | |
-nominations.current            |       | |
-nominations.required           |       | |
-ranked                         |       | |
-ranked_date                    |       | |
-source                         |       | |
-storyboard                     |       | |
-submitted_date                 |       | |
-tags                           |       | |
+Field                          | Type                     | Description
+------------------------------ | ------------------------ | -----------------------------------------------------------------------
+availability.download_disabled | boolean                  | |
+availability.more_information  | string?                  | |
+bpm                            | float                    | |
+can_be_hyped                   | boolean                  | |
+creator                        | string                   | Username of the mapper at the time of beatmapset creation.
+discussion_enabled             | boolean                  | |
+discussion_locked              | boolean                  | |
+hype.current                   | integer                  | |
+hype.required                  | integer                  | |
+is_scoreable                   | boolean                  | |
+last_updated                   | [Timestamp](#timestamp)  | |
+legacy_thread_url              | string?                  | |
+nominations.current            | integer                  | |
+nominations.required           | integer                  | |
+ranked                         | integer                  | See [Rank status](#beatmapset-rank-status) for list of possible values.
+ranked_date                    | [Timestamp](#timestamp)? | |
+source                         | string                   | |
+storyboard                     | boolean                  | |
+submitted_date                 | [Timestamp](#timestamp)? | |
+tags                           | string                   | |
 
 The following attributes are always included as well:
 
 | Field          |
 | -------------- |
 | has_favourited |
-
-<div id="beatmapset-rank-status" data-unique="beatmapset-rank-status"></div>
-
-### Rank status
-
-The possible values are denoted either as integer or string.
-
-Integer | String
-------- | ---------
--2      | graveyard
--1      | wip
-0       | pending
-1       | ranked
-2       | approved
-3       | qualified
-4       | loved
