@@ -144,7 +144,7 @@ class ConcatPlugin {
 
 // declare entrypoints and output first.
 const entry = {
-  'js/app': [
+  'app': [
     './resources/assets/app.js',
     './resources/assets/less/app.less',
   ],
@@ -181,11 +181,11 @@ const tsReactComponents = [
 ];
 
 for (const name of coffeeReactComponents) {
-  entry[`js/react/${name}`] = [path.resolve(__dirname, `resources/assets/coffee/react/${name}.coffee`)];
+  entry[`react/${name}`] = [path.resolve(__dirname, `resources/assets/coffee/react/${name}.coffee`)];
 }
 
 for (const name of tsReactComponents) {
-  entry[`js/react/${name}`] = [path.resolve(__dirname, `resources/assets/lib/${name}.ts`)];
+  entry[`react/${name}`] = [path.resolve(__dirname, `resources/assets/lib/${name}.ts`)];
 }
 
 function chunkFilename(name, ext = 'js') {
@@ -198,8 +198,8 @@ function outputFilename(name, ext = 'js', hashType = 'contenthash:8') {
 }
 
 const output = {
-  chunkFilename: chunkFilename('[name]'),
-  filename:  outputFilename('[name]'),
+  chunkFilename: chunkFilename('js/[name]'),
+  filename: outputFilename('js/[name]'),
   path: path.resolve(__dirname, 'public'),
 };
 
@@ -223,8 +223,8 @@ const plugins = [
   }),
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // don't add moment locales to bundle.
   new MiniCssExtractPlugin({
-    chunkFilename: outputFilename('css/app', 'css'),
-    filename: outputFilename('css/app', 'css'),
+    chunkFilename: outputFilename('css/[name]', 'css'),
+    filename: outputFilename('css/[name]', 'css'),
   }),
   new CopyPlugin({
     patterns: [
@@ -373,14 +373,14 @@ const webpackConfig = {
   optimization: {
     moduleIds: 'hashed',
     runtimeChunk: {
-      name: 'js/runtime',
+      name: 'runtime',
     },
     splitChunks: {
       cacheGroups: {
         commons: {
           chunks: 'initial',
           minChunks: 2,
-          name: 'js/commons',
+          name: 'commons',
         },
       },
     },
