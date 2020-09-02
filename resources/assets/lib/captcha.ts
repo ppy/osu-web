@@ -12,12 +12,10 @@ export default class Captcha {
   container = () => document.querySelector<HTMLDivElement>('.js-captcha--container');
 
   disableSubmit = () => {
-    Timeout.set(0, () => {
-      const targetButton = this.submitButton();
-      if (targetButton) {
-        targetButton.disabled = true;
-      }
-    });
+    const targetButton = this.submitButton();
+    if (targetButton) {
+      targetButton.disabled = true;
+    }
   }
 
   enableSubmit = () => {
