@@ -310,7 +310,7 @@ class UsersController extends Controller
      *
      * ### Response format
      *
-     * Array of Score.
+     * Array of [Score](#score).
      * Following attributes are included in the response object when applicable.
      *
      * Attribute  | Notes
