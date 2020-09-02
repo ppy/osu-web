@@ -12,6 +12,8 @@ use App\Transformers\UserCompactTransformer;
 class ChannelTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
+        'first_message_id',
+        'last_message_id',
         'recent_messages',
         'users',
     ];
@@ -25,6 +27,16 @@ class ChannelTransformer extends TransformerAbstract
             'name' => $channel->name,
             'type' => $channel->type,
         ];
+    }
+
+    public function includeFirstMessageId(Channel $channel)
+    {
+        return $this->primitive($channel->messages()->select('message_id')->first()->message_id ?? null);
+    }
+
+    public function includeLastMessageId(Channel $channel)
+    {
+        return $this->primitive($channel->messages()->select('message_id')->last()->message_id ?? null);
     }
 
     public function includeRecentMessages(Channel $channel)

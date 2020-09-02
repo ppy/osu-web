@@ -183,8 +183,6 @@ export default class ChannelStore extends Store {
   updateWithChannel(json: ChannelJSON, message: MessageJSON) {
     const channel = this.getOrCreate(json.channel_id);
     channel.updateWithJson(json);
-
-    channel.lastMessageId = message.message_id;
-    channel.firstMessageId = message.message_id;
+    channel.lastReadId = message.message_id;
   }
 }

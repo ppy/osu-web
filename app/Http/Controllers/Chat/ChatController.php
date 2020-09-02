@@ -267,7 +267,7 @@ class ChatController extends Controller
             get_bool($params['is_action'] ?? null)
         );
 
-        $channelJson = json_item($message->channel, 'Chat\Channel', ['users']);
+        $channelJson = json_item($message->channel, 'Chat\Channel', ['first_message_id', 'last_message_id', 'users']);
         $channelJson['icon'] = $targetUser->user_avatar;
         $channelJson['name'] = $targetUser->username;
 
