@@ -2,18 +2,29 @@
 
 Represent a beatmap.
 
-Field             | Type   | Description
------------------ | ------ | -----------
-difficulty_rating | float  | |
-id                | integer| |
-mode              |        | |
-version           |        | |
+Field             | Type                  | Description
+----------------- | --------------------- | -----------
+difficulty_rating | float                 | |
+id                | integer               | |
+mode              | [GameMode](#gamemode) | |
+version           | string                | |
 
 Optional attributes:
 
-Field       | Type | Description
------------ | ---- | -----------
-beatmapset  |      | |
-checksum    |      | |
-failtimes   |      | |
-max_combo   |      | |
+Field       | Type                                                                     | Description
+----------- | ------------------------------------------------------------------------ | -----------
+beatmapset  | [Beatmapset](#beatmapset)\|[BeatmapsetCompact](#beatmapsetcompact)\|null | `Beatmapset` for `Beatmap` object, `BeatmapsetCompact` for `BeatmapCompact` object. `null` if the beatmap doesn't have associated beatmapset (e.g. deleted).
+checksum    | string?                                                                  | |
+failtimes   | [Failtimes](#beatmapcompact-failtimes)                                   | |
+max_combo   | integer                                                                  | |
+
+<div id="beatmapcompact-failtimes" data-unique="beatmapcompact-failtimes"></div>
+
+### Failtimes
+
+All fields are optional but there's always at least one field returned.
+
+Field | Type       | Description
+----- | ---------- | --------------------
+exit  | integer[]? | Array of length 100.
+fail  | integer[]? | Array of length 100.
