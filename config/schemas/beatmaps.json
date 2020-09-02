@@ -42,6 +42,12 @@
         "bpm": {
           "type": "double"
         },
+        "bundled": {
+          "type": "boolean"
+        },
+        "can_bundle": {
+          "type": "boolean"
+        },
         "creator": {
           "type": "text",
           "fields": {

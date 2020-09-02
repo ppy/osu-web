@@ -36,6 +36,8 @@ use Illuminate\Database\QueryException;
  * @property int $beatmapset_id
  * @property mixed|null $body_hash
  * @property float $bpm
+ * @property bool $bundled
+ * @property bool $can_bundle
  * @property Comment $comments
  * @property \Carbon\Carbon|null $cover_updated_at
  * @property string $creator
@@ -94,6 +96,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     protected $casts = [
         'active' => 'boolean',
+        'bundled' => 'boolean',
+        'can_bundle' => 'boolean',
         'download_disabled' => 'boolean',
         'epilepsy' => 'boolean',
         'storyboard' => 'boolean',
