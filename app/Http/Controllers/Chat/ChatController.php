@@ -257,19 +257,19 @@ class ChatController extends Controller
     public function newConversation()
     {
         $params = request()->all();
-        $targetUser = User::lookup(get_int($params['target_id'] ?? null), 'id');
+        $target = User::lookup(get_int($params['target_id'] ?? null), 'id');
 
         /** @var Message $message */
         $message = Chat::sendPrivateMessage(
             auth()->user(),
-            $targetUser,
+            $target,
             presence($params['message'] ?? null),
             get_bool($params['is_action'] ?? null)
         );
 
         $channelJson = json_item($message->channel, 'Chat\Channel', ['first_message_id', 'last_message_id', 'users']);
-        $channelJson['icon'] = $targetUser->user_avatar;
-        $channelJson['name'] = $targetUser->username;
+        $channelJson['icon'] = $target->user_avatar;
+        $channelJson['name'] = $target->username;
 
         return [
             'channel' => $channelJson,

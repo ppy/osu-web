@@ -12,23 +12,15 @@ use ChaseConey\LaravelDatadogHelper\Datadog;
 
 class Chat
 {
-    public static function sendPrivateMessage(?User $sender, $target, $message, $isAction)
+    // Do the restricted user lookup before calling this.
+    public static function sendPrivateMessage(?User $sender, ?User $target, $message, $isAction)
     {
         if ($sender === null) {
-            abort(422, 'missing sender');
+            abort(404, 'sender not found');
         }
 
         if ($target === null) {
-            abort(422, 'missing target');
-        }
-
-        if (!($target instanceof User)) {
-            $target = User::lookup($target, 'id');
-
-            if ($target === null) {
-                // restricted users should be treated as if they do not exist
-                abort(404, 'target user not found');
-            }
+            abort(404, 'target user not found');
         }
 
         if ($target->is($sender)) {
