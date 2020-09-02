@@ -114,7 +114,7 @@ class SessionsController extends Controller
             return ujs_redirect(route('home'));
         }
 
-        return [];
+        return captcha_triggered() ? ['captcha_triggered' => true] : [];
     }
 
     private function triggerCaptcha($message, $returnCode = 403)
