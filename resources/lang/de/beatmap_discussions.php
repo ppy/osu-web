@@ -54,7 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Keiner dieser Beiträge behandelt mein Anliegen.',
         'notice' => 'Es gibt bereits Beiträge in der Nähe von :timestamp (:existing_timestamps). Bitte überprüfe sie, bevor du diesen absendest.',
-        'unsaved' => '',
+        'unsaved' => ':count in dieser Bewertung',
     ],
 
     'reply' => [

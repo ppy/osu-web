@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'por :artist',
-                'none' => 'Nenhum... ainda.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'ver mais eventos',
             ],
             'historical' => [
-                'empty' => 'Sem registro de performance. :(',
                 'title' => 'Histórico',
 
                 'monthly_playcounts' => [
@@ -304,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Baixar Replay',
-                'empty' => 'Nenhuma performance incrível ainda. :(',
                 'not_ranked' => 'Apenas beatmaps ranqueados dão pp.',
                 'pp_weight' => 'ajustado :percentage',
                 'view_details' => 'Ver Detalhes',

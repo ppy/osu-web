@@ -66,8 +66,8 @@ return [
 
                 'comment_new' => ':username прокомментировал ":content" на ":title"',
                 'comment_new_compact' => ':username прокомментировал ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username ответил ":content" на ":title"',
+                'comment_reply_compact' => ':username ответил ":content"',
             ],
         ],
 
@@ -92,8 +92,8 @@ return [
 
                 'comment_new' => ':username прокомментировал ":content" на ":title"',
                 'comment_new_compact' => ':username прокомментировал ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username ответил ":content" на ":title"',
+                'comment_reply_compact' => ':username ответил ":content"',
             ],
         ],
 
@@ -105,8 +105,8 @@ return [
 
                 'comment_new' => ':username прокомментировал ":content" на ":title"',
                 'comment_new_compact' => ':username прокомментировал ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username ответил ":content" на ":title"',
+                'comment_reply_compact' => ':username ответил ":content"',
             ],
         ],
 
@@ -143,26 +143,26 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_lock' => 'Обсуждение ":title" было закрыто',
+                'beatmapset_discussion_post_new' => 'Обсуждение ":title" имеет новые ответы',
+                'beatmapset_discussion_unlock' => 'Обсуждение ":title" было открыто',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => 'Сообщена новая проблема в ":title"',
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_disqualify' => '":title" был дисквалифицирован',
+                'beatmapset_love' => '":title" был повышен до любимого',
+                'beatmapset_nominate' => '":title" был номинирован',
+                'beatmapset_qualify' => '":title" получило достаточно номинаций и вступило в очередь ранка',
+                'beatmapset_rank' => '":title" было ранкнуто',
+                'beatmapset_reset_nominations' => 'Номинация ":title" была сброшена',
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Карта ":title" имеет новые комментарии',
             ],
         ],
 
@@ -174,26 +174,26 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Список изменений ":title" содержит новые комментарии',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Новость ":title" имеет новые комментарии',
             ],
         ],
 
         'forum_topic' => [
             'forum_topic_reply' => [
-                'forum_topic_reply' => '',
+                'forum_topic_reply' => 'Есть новые ответы в ":title"',
             ],
         ],
 
         'user' => [
             'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock' => ':username открыл новую медаль: ":title"!',
+                'user_achievement_unlock_self' => 'Вы открыли новую медаль: ":title"!',
             ],
         ],
     ],

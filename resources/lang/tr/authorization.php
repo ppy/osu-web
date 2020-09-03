@@ -32,7 +32,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "",
+            'bot' => "Bot tarafından açılan tartışmada oy kullanılamaz",
             'limit_exceeded' => 'Lütfen daha fazla oy vermeden önce bir süre bekleyin',
             'owner' => "Kendi tartışmanıza oy veremezsiniz.",
             'wrong_beatmapset_state' => 'Yalnızca beklemede olan beatmaplerin tartışmalarında oy kullanabilirsiniz.',

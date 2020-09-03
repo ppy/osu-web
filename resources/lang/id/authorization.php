@@ -21,18 +21,18 @@ return [
             'full_bn_required_hybrid' => 'Anda harus berstatus sebagai nominator penuh (full nominator) untuk dapat menominasikan set beatmap yang mencakup lebih dari satu mode permainan.',
             'incorrect_state' => 'Terjadi kesalahan saat memproses perintah, silakan muat ulang laman.',
             'owner' => "Tidak dapat menominasikan beatmap buatan sendiri.",
-            'set_metadata' => 'Anda harus terlebih dahulu mengatur aliran dan bahasa sebelum beatmap ini dapat dinominasikan.',
+            'set_metadata' => 'Anda harus terlebih dahulu mengubah pengaturan aliran dan bahasa sebelum beatmap ini dapat dinominasikan.',
         ],
         'resolve' => [
             'not_owner' => 'Hanya pemilik topik dan beatmap yang dapat menyelesaikan diskusi.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Hanya pembuat beatmap atau anggota nominator/QAT yang dapat memposting catatan mapper.',
+            'mapper_note_wrong_user' => 'Hanya pembuat beatmap atau anggota BN/NAT yang dapat membubuhkan catatan pada laman diskusi beatmap.',
         ],
 
         'vote' => [
-            'bot' => "",
+            'bot' => "Tidak dapat memberikan suara pada topik diskusi yang dibuka oleh bot",
             'limit_exceeded' => 'Harap tunggu sebentar sebelum memberikan lebih banyak suara.',
             'owner' => "Tidak dapat memberikan suara pada topik diskusi sendiri.",
             'wrong_beatmapset_state' => 'Hanya dapat memberikan suara pada diskusi di beatmap pending.',
@@ -41,8 +41,8 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => 'Kamu tidak dapat menghapus postingan milikmu sendiri.',
-            'resolved' => 'Kamu tidak dapat menghapus konten dari postingan yang sudah ditutup.',
+            'not_owner' => 'Anda hanya dapat menghapus postingan milik Anda sendiri.',
+            'resolved' => 'Anda tidak dapat menghapus postingan pada topik diskusi yang telah terjawab.',
             'system_generated' => 'Postingan yang dibuat otomatis tidak dapat dihapus.',
         ],
 
@@ -111,14 +111,14 @@ return [
         'topic' => [
             'reply' => [
                 'double_post' => 'Mohon sunting postingan terakhir Anda ketimbang memposting kembali.',
-                'locked' => 'Tidak bisa membalas di topik yang telah dikunci.',
+                'locked' => 'Tidak dapat mengirimkan balasan pada topik yang telah dikunci.',
                 'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
                 'no_permission' => 'Tidak memiliki izin untuk membalas.',
 
                 'user' => [
                     'require_login' => 'Silakan masuk untuk membalas.',
                     'restricted' => "Anda tidak dapat mengirimkan balasan ketika akun Anda sedang dibatasi.",
-                    'silenced' => "Tidak dapat membalas saat dibungkam.",
+                    'silenced' => "Anda tidak dapat mengirimkan balasan ketika akun Anda sedang di-silence.",
                 ],
             ],
 
@@ -137,7 +137,7 @@ return [
                 'user' => [
                     'require_login' => 'Silakan masuk untuk memberikan suara.',
                     'restricted' => "Anda tidak dapat memberikan suara ketika akun Anda sedang dibatasi.",
-                    'silenced' => "Tidak dapat memberikan suara saat dibungkam.",
+                    'silenced' => "Tidak dapat memberikan suara saat di-silence.",
                 ],
             ],
 

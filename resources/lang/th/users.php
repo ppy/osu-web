@@ -188,7 +188,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'โดย :artist',
-                'none' => 'ยังไม่มี... อะ.',
                 'title' => 'บีทแมพ',
 
                 'favourite' => [
@@ -218,7 +217,6 @@ return [
                 'show_more' => 'ดูอีเว้นท์อื่นๆ เพิ่มเติม',
             ],
             'historical' => [
-                'empty' => 'ไม่มี performance ที่บันทึกไว้. :(',
                 'title' => 'ประวัติ',
 
                 'monthly_playcounts' => [
@@ -305,7 +303,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'ดาวน์โหลดรีเพลย์',
-                'empty' => 'ยังไม่มี performance ที่เจ๋งๆบันทึกไว้เลย . :(',
                 'not_ranked' => 'บีทแมพแรงค์เท่านั้นที่ให้พีพี',
                 'pp_weight' => 'weighted :percentage',
                 'view_details' => 'ดูรายละเอียดเพิ่มเติม',

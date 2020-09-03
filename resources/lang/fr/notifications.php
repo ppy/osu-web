@@ -66,8 +66,8 @@ return [
 
                 'comment_new' => ':username a commenté ":content" sur ":title"',
                 'comment_new_compact' => ':username a commenté ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username a répondu ":content" sur ":title"',
+                'comment_reply_compact' => ':username à répondu ":content"',
             ],
         ],
 
@@ -92,8 +92,8 @@ return [
 
                 'comment_new' => ':username a commenté ":content" sur ":title"',
                 'comment_new_compact' => ':username a commenté ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username a répondu ":content" sur ":title"',
+                'comment_reply_compact' => ':username a répondu ":content"',
             ],
         ],
 
@@ -105,8 +105,8 @@ return [
 
                 'comment_new' => ':username a commenté ":content" sur ":title"',
                 'comment_new_compact' => ':username a commenté ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username a répondu ":content" sur ":title"',
+                'comment_reply_compact' => ':username a répondu ":content"',
             ],
         ],
 
@@ -143,26 +143,26 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_lock' => 'La discussion sur ":title" a été verrouillée',
+                'beatmapset_discussion_post_new' => 'La discussion sur ":title" a de nouvelles mises à jour',
+                'beatmapset_discussion_unlock' => 'La discussion sur ":title" a été déverrouillée',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => 'Un nouveau problème a été signalé sur ":title"',
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_disqualify' => '":title" a été disqualifiée',
+                'beatmapset_love' => '":title" a été promue en aimée',
+                'beatmapset_nominate' => '":title" a été nominée',
+                'beatmapset_qualify' => '":title" a atteint suffisament de nominations et est entrée dans la file d\'attente de classement',
+                'beatmapset_rank' => '":title" a été classée',
+                'beatmapset_reset_nominations' => 'La nomination de ":title" a été réinitialisée',
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'La beatmap ":title" a de nouveaux commentaires',
             ],
         ],
 
@@ -174,26 +174,26 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Les notes de mises à jour ":title" ont de nouveaux commentaires',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'L\'article ":title" a de nouveaux commentaires',
             ],
         ],
 
         'forum_topic' => [
             'forum_topic_reply' => [
-                'forum_topic_reply' => '',
+                'forum_topic_reply' => 'Il y a de nouvelles réponses dans ":title"',
             ],
         ],
 
         'user' => [
             'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock' => ':username a déverrouillé une nouvelle médaille, ":title" !',
+                'user_achievement_unlock_self' => 'Vous avez déverrouillé une nouvelle médaille, ":title" !',
             ],
         ],
     ],

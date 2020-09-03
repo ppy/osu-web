@@ -143,13 +143,13 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_lock' => 'การพูดคุยใน ":title:" ได้ถูกล็อก',
+                'beatmapset_discussion_post_new' => 'การพูดคุยใน ":title:" มีอัปเดตใหม่',
+                'beatmapset_discussion_unlock' => 'การพูดคุยใน ":title:" ได้ถูกปลดล็อก',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => 'ปัญหาใหม่ได้ถูกแจ้งใน ":title"',
             ],
 
             'beatmapset_state' => [
@@ -162,7 +162,7 @@ return [
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => ' บีทแมพ ":title" มีคอมเมนต์ใหม่',
             ],
         ],
 
@@ -174,26 +174,26 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'บันทึกการเปลี่ยนแปลง ":title" มีคอมเมนต์ใหม่',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'ข่าว ":title" มีคอมเมนต์ใหม่',
             ],
         ],
 
         'forum_topic' => [
             'forum_topic_reply' => [
-                'forum_topic_reply' => '',
+                'forum_topic_reply' => 'มีการตอบกลับใหม่ใน ":title"',
             ],
         ],
 
         'user' => [
             'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock' => ':username ได้ปลดล็อกเหรียญตรา ":title"!',
+                'user_achievement_unlock_self' => 'คุณได้ปลดล็อกเหรียญตรา ":title"!',
             ],
         ],
     ],

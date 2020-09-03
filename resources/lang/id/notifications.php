@@ -66,8 +66,8 @@ return [
 
                 'comment_new' => ':username berkomentar ":content" di topik ":title"',
                 'comment_new_compact' => ':username berkomentar ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username berkomentar ":content" pada topik ":title"',
+                'comment_reply_compact' => ':username berkomentar ":content"',
             ],
         ],
 
@@ -92,8 +92,8 @@ return [
 
                 'comment_new' => ':username berkomentar ":content" pada topik ":title"',
                 'comment_new_compact' => ':username berkomentar ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username berkomentar ":content" pada topik ":title"',
+                'comment_reply_compact' => ':username berkomentar ":content"',
             ],
         ],
 
@@ -105,8 +105,8 @@ return [
 
                 'comment_new' => ':username berkomentar ":content" pada topik ":title"',
                 'comment_new_compact' => ':username berkomentar ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username berkomentar ":content" pada topik ":title"',
+                'comment_reply_compact' => ':username berkomentar ":content"',
             ],
         ],
 
@@ -143,26 +143,26 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_lock' => 'Topik diskusi ":title" telah dikunci',
+                'beatmapset_discussion_post_new' => 'Terdapat pembaharuan baru pada topik diskusi ":title"',
+                'beatmapset_discussion_unlock' => 'Topik diskusi ":title" telah kembali dibuka',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => 'Terdapat masalah baru yang dilaporkan pada ":title"',
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_disqualify' => '":title" telah didiskualifikasi',
+                'beatmapset_love' => '":title" telah dipromosikan ke dalam kategori Loved',
+                'beatmapset_nominate' => '":title" telah mendapatkan nominasi',
+                'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk memasuki antrean status ranking',
+                'beatmapset_rank' => '":title" telah berstatus Ranked',
+                'beatmapset_reset_nominations' => 'Status nominasi pada ":title" telah dianulir',
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Terdapat komentar baru pada beatmap ":title"',
             ],
         ],
 
@@ -174,26 +174,26 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Terdapat komentar baru pada riwayat perubahan ":title"',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Terdapat komentar baru pada topik berita ":title"',
             ],
         ],
 
         'forum_topic' => [
             'forum_topic_reply' => [
-                'forum_topic_reply' => '',
+                'forum_topic_reply' => 'Terdapat balasan baru pada ":title"',
             ],
         ],
 
         'user' => [
             'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock' => ':username telah mendapatkan medali baru, ":title"!',
+                'user_achievement_unlock_self' => 'Anda telah mendapatkan medali baru, ":title"!',
             ],
         ],
     ],

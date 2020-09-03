@@ -76,9 +76,9 @@ return [
         'action' => 'osu!\'yu indir',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => 'oyunu çalıştırırken ya da hesap oluştururken herhangi bir sorun yaşıyorsanız, :help_forum_link veya :support_button.',
+            'help_forum_link' => 'yardım forumunu kontrol edin',
+            'support_button' => 'destek ile iletişime geçin',
         ],
 
         'os' => [

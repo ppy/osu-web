@@ -54,7 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Ни один из постов не решает мою проблему',
         'notice' => 'Есть ответы между :timestamp (:existing_timestamps). Проверьте их перед тем как отвечать.',
-        'unsaved' => '',
+        'unsaved' => ':count в этом отзыве',
     ],
 
     'reply' => [

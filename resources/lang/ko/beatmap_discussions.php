@@ -54,7 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => '지금 작성하는 토론과 연관된 토론이 없습니다',
         'notice' => ':timestamp (:existing_timestamps)주위에 달린 답글이 있습니다. 포스팅하기 전에 한 번 확인해보세요.',
-        'unsaved' => '',
+        'unsaved' => '이 리뷰에서 :count개',
     ],
 
     'reply' => [
@@ -81,7 +81,7 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => ':user님이 토론을 끝마쳤습니다',
+            'true' => ':user 님이 해결함으로 표시함.',
             'false' => ':user님이 토론을 재개했습니다',
         ],
     ],

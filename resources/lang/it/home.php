@@ -76,9 +76,9 @@ return [
         'action' => 'Scarica osu!',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => 'se hai problemi ad avviare il gioco o a registrarti l\'account, :help_forum_link oppure :support_button.',
+            'help_forum_link' => 'visita il forum di assistenza',
+            'support_button' => 'contatta il supporto',
         ],
 
         'os' => [

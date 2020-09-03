@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'ад :artist',
-                'none' => 'Няма... пакуль што.',
                 'title' => 'Бітмапы',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => '',
             ],
             'historical' => [
-                'empty' => 'Няма прадукцыйных спісаў. :(',
                 'title' => 'Храналогія',
 
                 'monthly_playcounts' => [
@@ -304,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Спампаваць паўтор',
-                'empty' => 'Яшчэ няма запісаў пра цудоўную прадукцыйнасць. :(',
                 'not_ranked' => 'Адзінкі прадукцыйнасці даюцца толькі бітмапам, якія набылі ранг.',
                 'pp_weight' => 'узважана :percentage',
                 'view_details' => '',

@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'autora :artist',
-                'none' => 'Žádná... zatím.',
                 'title' => 'Beatmapy',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'zobrazit více eventů',
             ],
             'historical' => [
-                'empty' => 'Žádné výkonnostní záznamy. :(',
                 'title' => 'Historické',
 
                 'monthly_playcounts' => [
@@ -304,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Stáhnout záznam',
-                'empty' => 'Zatím žádné záznamy o úžasném výkonu. :(',
                 'not_ranked' => 'Pouze hodnocené mapy vydávají pp.',
                 'pp_weight' => 'váženo na :percentage',
                 'view_details' => '',

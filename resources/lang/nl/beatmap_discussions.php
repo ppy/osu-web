@@ -54,7 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Geen van deze posts pakken mijn punten van zorg aan',
         'notice' => 'Dit zijn de posts rond :timestamp (:existing_timestamp). Controleer ze voor te posten.',
-        'unsaved' => '',
+        'unsaved' => ':count in deze review',
     ],
 
     'reply' => [

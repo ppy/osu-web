@@ -54,7 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Aucun des posts ne parle de mon problème',
         'notice' => 'Il y a des posts pour :timestamp (:existing_timestamps). Merci de les vérifier avant de poster.',
-        'unsaved' => '',
+        'unsaved' => ':count dans cette revue',
     ],
 
     'reply' => [

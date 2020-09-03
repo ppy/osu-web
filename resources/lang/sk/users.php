@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'od :artist',
-                'none' => 'Zatiaľ žiadne...',
                 'title' => 'Beatmapy',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'pozri ďalšie udalosti',
             ],
             'historical' => [
-                'empty' => 'Žiadne výkonnostné rekordy. :(',
                 'title' => 'História',
 
                 'monthly_playcounts' => [
@@ -304,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Stiahnuť Záznam',
-                'empty' => 'Zatial žiadné záznamy o úžasnom výkone. :(',
                 'not_ranked' => 'Iba hodnotené beatmapy ti dajú pp.',
                 'pp_weight' => 'odvážené :percentage',
                 'view_details' => '',

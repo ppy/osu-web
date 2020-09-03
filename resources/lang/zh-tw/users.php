@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => '作者：:artist',
-                'none' => '暫時沒有...',
                 'title' => '圖譜',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => '顯示更多活動',
             ],
             'historical' => [
-                'empty' => '尚無遊戲分數。:(',
                 'title' => '歷史記錄',
 
                 'monthly_playcounts' => [
@@ -304,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => '下載重播',
-                'empty' => '尚未有好成績。 :(',
                 'not_ranked' => '僅被列入排名的圖譜才能獲得 pp。',
                 'pp_weight' => '權重 :percentage',
                 'view_details' => '',

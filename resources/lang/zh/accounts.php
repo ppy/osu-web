@@ -51,7 +51,7 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => '在以下模式的合格谱面上接收新问题通知：',
         'beatmapset_disqualify' => '在以下模式的谱面被标记为不合格时接收通知：',
-        'comment_reply' => '',
+        'comment_reply' => '在你的评论被回复时接收通知',
         'title' => '通知',
         'topic_auto_subscribe' => '自动启用自己创建的主题的通知',
 

@@ -144,13 +144,13 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_lock' => 'A hozzászolás le lett tiltva ezen a beamapen::title',
                 'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_unlock' => 'A hozzászolás elérhető lett ezen a beatmapen::title',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => 'Egy új probléma jelentve lett itt::title',
             ],
 
             'beatmapset_state' => [
@@ -163,7 +163,7 @@ return [
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => ' Új kommentek jelentek meg ezen a beatmapen::title',
             ],
         ],
 
@@ -175,26 +175,26 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Új kommentek jelentek meg itt::title',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Új kommentek jelentek meg itt::title',
             ],
         ],
 
         'forum_topic' => [
             'forum_topic_reply' => [
-                'forum_topic_reply' => '',
+                'forum_topic_reply' => 'Új válaszok itt: ":title"',
             ],
         ],
 
         'user' => [
             'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock' => ':username feloldott egy új medált! ":title"',
+                'user_achievement_unlock_self' => 'Feloldottál egy új medált! ":title"',
             ],
         ],
     ],

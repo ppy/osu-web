@@ -66,8 +66,8 @@ return [
 
                 'comment_new' => ':username kommenterade ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterade ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username svarade ":content" på ":title"',
+                'comment_reply_compact' => ':username svarade ":content"',
             ],
         ],
 
@@ -92,8 +92,8 @@ return [
 
                 'comment_new' => ':username kommenterade ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterade ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username svarade ":content" på ":title"',
+                'comment_reply_compact' => ':username svarade ":content"',
             ],
         ],
 
@@ -105,8 +105,8 @@ return [
 
                 'comment_new' => ':username kommenterade ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterade ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username svarade ":content" på ":title"',
+                'comment_reply_compact' => ':username svarade ":content"',
             ],
         ],
 
@@ -143,26 +143,26 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_lock' => 'Diskussionen om ":title" har låsts',
+                'beatmapset_discussion_post_new' => 'Diskussionen om ":title" har nya uppdateringar',
+                'beatmapset_discussion_unlock' => 'Diskussionen om ":title" har låsts upp',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => 'Ett nytt problem rapporterades på ":title"',
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
+                'beatmapset_disqualify' => '":title" har blivit diskvalificerad',
+                'beatmapset_love' => '":title" befordrades till älskad',
+                'beatmapset_nominate' => '":title" har blivit nominerad',
                 'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_rank' => '":title" har blivit rankad',
+                'beatmapset_reset_nominations' => 'Nominering av ":title" har blivit återställd',
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Beatmap ":title" har nya kommentarer',
             ],
         ],
 
@@ -174,26 +174,26 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Ändringslogg ":title" har nya kommentarer',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Nyheter ":title" har nya kommentarer',
             ],
         ],
 
         'forum_topic' => [
             'forum_topic_reply' => [
-                'forum_topic_reply' => '',
+                'forum_topic_reply' => 'Det finns nya svar i ":title"',
             ],
         ],
 
         'user' => [
             'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock' => ':username har låst upp en ny medalj, ":title"!',
+                'user_achievement_unlock_self' => 'Du har låst upp en ny medalj, ":title"!',
             ],
         ],
     ],

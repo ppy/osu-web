@@ -179,7 +179,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => '로그인 / 등록',
 
         'login' => [
             'forgot' => "계정 정보를 잊어버렸어요.",

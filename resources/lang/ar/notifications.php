@@ -143,13 +143,13 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_lock' => 'تم اقفال المناقشة على ":title"',
+                'beatmapset_discussion_post_new' => 'المناقشة حول ":title" تحتوي على تحديثات جديدة',
+                'beatmapset_discussion_unlock' => 'تم فتح قفل المناقشة على ":title"',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => 'تم الإبلاغ عن مشكلة جديدة على ":title"',
             ],
 
             'beatmapset_state' => [
@@ -162,7 +162,7 @@ return [
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => ' الخريطة ":title" تحتوي على تعليقات جديدة',
             ],
         ],
 
@@ -174,26 +174,26 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'سجل ":title" يحتوي على تعليقات جديدة',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'الأخبار ":title" تحتوي على تعليقات جديدة',
             ],
         ],
 
         'forum_topic' => [
             'forum_topic_reply' => [
-                'forum_topic_reply' => '',
+                'forum_topic_reply' => 'هناك ردود جديدة في ":title"',
             ],
         ],
 
         'user' => [
             'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock' => ':username فتح ميدالية جديدة، ":title"!',
+                'user_achievement_unlock_self' => 'لقد فتحت ميدالية جديدة، ":title"!',
             ],
         ],
     ],

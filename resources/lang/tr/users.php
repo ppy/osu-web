@@ -84,7 +84,7 @@ return [
         'failed' => 'Hatalı giriş',
         'forgot' => 'Şifrenizi mi unuttunuz?',
         'info' => 'Devam etmek için lütfen giriş yapınız',
-        'invalid_captcha' => '',
+        'invalid_captcha' => 'Captcha geçersiz, sayfayı yenileyip tekrar deneyin.',
         'locked_ip' => 'IP adresiniz kilitli. Lütfen birkaç dakika bekleyin.',
         'password' => 'Şifre',
         'register' => "osu! hesabınız yok mu? Yeni bir tane oluşturun",
@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => ':artist tarafından',
-                'none' => 'Hiç yok... şimdilik.',
                 'title' => 'Beatmapler',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'daha fazla etkinlik gör',
             ],
             'historical' => [
-                'empty' => 'Performans kaydı yok. :(',
                 'title' => 'Geçmiş',
 
                 'monthly_playcounts' => [
@@ -304,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Tekrarı İndir',
-                'empty' => 'Henüz kayda değer bir performans kaydı yok. :(',
                 'not_ranked' => 'Sadece dereceli beatmapler pp verir.',
                 'pp_weight' => ':percentage ağırlıklı',
                 'view_details' => 'Ayrıntıları Göster',

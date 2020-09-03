@@ -54,7 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Bu gönderilerin hiçbiri sorunumla ilgili değil',
         'notice' => ':timestamp (:existing_timestamp) civarında gönderilmiş mesajlar var. Göndermeden önce lütfen onlara bir göz atın.',
-        'unsaved' => '',
+        'unsaved' => 'bu incelemede :count',
     ],
 
     'reply' => [

@@ -179,7 +179,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'inloggen / registreren',
 
         'login' => [
             'forgot' => "Ik ben mij gegevens vergeten",

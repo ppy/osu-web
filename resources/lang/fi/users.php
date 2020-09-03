@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'artistilta :artist',
-                'none' => 'Ei yhtään... vielä.',
                 'title' => 'Beatmapit',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => '',
             ],
             'historical' => [
-                'empty' => 'Tuloksia ei löydy. :(',
                 'title' => 'Historialliset',
 
                 'monthly_playcounts' => [
@@ -304,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Lataa Replay',
-                'empty' => 'Loistavia suorituksia ei ole vielä. :(',
                 'not_ranked' => 'Vain hyväksytyt beatmapit antavat pp:tä.',
                 'pp_weight' => 'painotettu :percentage',
                 'view_details' => '',

@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'від :artist',
-                'none' => 'Нічого... поки що.',
                 'title' => 'Карти',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'бачити більше подій',
             ],
             'historical' => [
-                'empty' => 'Поки записів немає :(',
                 'title' => 'Активність',
 
                 'monthly_playcounts' => [
@@ -304,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Завантажити повтор',
-                'empty' => 'Поки рекордів немає :(',
                 'not_ranked' => 'Очки продуктивності видаються тільки за рейтингові або одобрені карти.',
                 'pp_weight' => 'зважено: :percentage',
                 'view_details' => 'Придивитися до деталей',

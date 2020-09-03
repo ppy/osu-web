@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'autorstwa :artist',
-                'none' => 'Jeszcze nie ma...',
                 'title' => 'Beatmapy',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'zobacz więcej wydarzeń',
             ],
             'historical' => [
-                'empty' => 'Brak wyników. :(',
                 'title' => 'Historia',
 
                 'monthly_playcounts' => [
@@ -304,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Pobierz powtórkę',
-                'empty' => 'Brak wyników. :(',
                 'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp.',
                 'pp_weight' => 'ważone :percentage',
                 'view_details' => 'Pokaż szczegóły',

@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'από :artist',
-                'none' => 'Κανένα... ακόμα.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => '',
             ],
             'historical' => [
-                'empty' => 'Κανένα ρεκόρ επίδοσης. :(',
                 'title' => 'Ιστορικό',
 
                 'monthly_playcounts' => [
@@ -304,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Λήψη Επανάληψης',
-                'empty' => 'Καμία εκπληκτική επίδοση ακόμα. :(',
                 'not_ranked' => 'Μόνο τα ranked beatmaps δίνουν pp.',
                 'pp_weight' => 'σταθμισμένo :percentage',
                 'view_details' => '',

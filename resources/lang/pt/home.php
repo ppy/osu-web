@@ -77,8 +77,8 @@ return [
 
         'help' => [
             '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            'help_forum_link' => 'consultar o fórum de ajuda',
+            'support_button' => 'contactar apoio',
         ],
 
         'os' => [

@@ -66,8 +66,8 @@ return [
 
                 'comment_new' => ':username 在 ":title" 中评论道 ":content',
                 'comment_new_compact' => ':username 评论道 ":content',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username 回复了“:title”：“:content”',
+                'comment_reply_compact' => ':username 回复了：“:content”',
             ],
         ],
 
@@ -92,8 +92,8 @@ return [
 
                 'comment_new' => ':username 在 ":title" 中评论道 ":content"',
                 'comment_new_compact' => ':username 评论道 ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username 回复了“:title”：“:content”',
+                'comment_reply_compact' => ':username 回复了：“:content”',
             ],
         ],
 
@@ -105,8 +105,8 @@ return [
 
                 'comment_new' => ':username 在 ":title" 中评论道 ":content',
                 'comment_new_compact' => ':username 评论道 ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username 回复了“:title”：“:content”',
+                'comment_reply_compact' => ':username 回复了：“:content”',
             ],
         ],
 
@@ -143,26 +143,26 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_lock' => '谱面“:title”的讨论已被锁定',
+                'beatmapset_discussion_post_new' => '谱面“:title”的讨论有新动态',
+                'beatmapset_discussion_unlock' => '谱面“:title”的讨论已被解锁',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => '谱面“:title”被反馈了一个新问题',
             ],
 
             'beatmapset_state' => [
                 'beatmapset_disqualify' => '',
                 'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
+                'beatmapset_nominate' => '“:title”已被提名',
                 'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_rank' => '“:title”已被 ranked',
+                'beatmapset_reset_nominations' => '“:title”的提名被重置',
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => '谱面“:title”有新的评论',
             ],
         ],
 
@@ -174,26 +174,26 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => '更新日志“:title”有新的评论',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => '新闻“:title”有新的评论',
             ],
         ],
 
         'forum_topic' => [
             'forum_topic_reply' => [
-                'forum_topic_reply' => '',
+                'forum_topic_reply' => '主题“:title”有新的回复',
             ],
         ],
 
         'user' => [
             'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock' => ':username 解锁了新成就“:title”！',
+                'user_achievement_unlock_self' => '您已解锁了新成就“:title”！',
             ],
         ],
     ],

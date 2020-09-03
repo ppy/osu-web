@@ -179,7 +179,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'Einloggen / Registrieren',
 
         'login' => [
             'forgot' => "Passwort vergessen",

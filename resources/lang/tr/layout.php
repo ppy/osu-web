@@ -179,7 +179,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'giriş yap / kayıt ol',
 
         'login' => [
             'forgot' => "Bilgilerimi unuttum",

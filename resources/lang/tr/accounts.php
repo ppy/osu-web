@@ -51,7 +51,7 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'belirtilen modlardaki nitelikli maplerin yeni sorunlarında bildirim al ',
         'beatmapset_disqualify' => 'belirtilen modlardaki beatmapler diskalifiye olduğunda bildirim al',
-        'comment_reply' => '',
+        'comment_reply' => 'yorumlarınıza yapılan yanıtlar için bildirim al',
         'title' => 'Bildirimler',
         'topic_auto_subscribe' => 'oluşturduğunuz yeni forum başlıklarında bildirimleri otomatik olarak etkinleştir',
 

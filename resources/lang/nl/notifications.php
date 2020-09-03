@@ -66,8 +66,8 @@ return [
 
                 'comment_new' => ':username gaf commentaar op ":content" op ":title"',
                 'comment_new_compact' => ':username gaf commentaar op ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username antwoordde ":content" op ":title"',
+                'comment_reply_compact' => ':username antwoordde ":content"',
             ],
         ],
 
@@ -92,8 +92,8 @@ return [
 
                 'comment_new' => ':username gaf commentaar ":content" op ":title"',
                 'comment_new_compact' => ':username gaf commentaar op ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username antwoordde ":content" op ":title"',
+                'comment_reply_compact' => ':username antwoordde ":content"',
             ],
         ],
 
@@ -105,8 +105,8 @@ return [
 
                 'comment_new' => ':username gaf commentaar ":content" op ":title"',
                 'comment_new_compact' => ':username gaf commentaar op ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username antwoordde ":content" op ":title"',
+                'comment_reply_compact' => ':username antwoordde ":content"',
             ],
         ],
 
@@ -143,26 +143,26 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_lock' => 'De discussie op ":title" is vergrendeld',
+                'beatmapset_discussion_post_new' => 'De discussie over ":title" heeft nieuwe updates',
+                'beatmapset_discussion_unlock' => 'De discussie op ":title" is ontgrendeld',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => 'Er is een nieuw probleem gemeld op ":title"',
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_disqualify' => '":title" is gediskwalificeerd',
+                'beatmapset_love' => '":title" was gepromoveerd naar geliefde',
+                'beatmapset_nominate' => '":title" is genomineerd',
+                'beatmapset_qualify' => '":title" heeft genoeg nominaties gekregen en de rij van rangen ingevoerd',
+                'beatmapset_rank' => '":title" is gerangschikt',
+                'beatmapset_reset_nominations' => 'Nominatie van ":title" is gereset',
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Beatmap ":title" heeft nieuwe reacties',
             ],
         ],
 
@@ -174,26 +174,26 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Changelog ":title" heeft nieuwe reacties',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Nieuws ":title" heeft nieuwe reacties',
             ],
         ],
 
         'forum_topic' => [
             'forum_topic_reply' => [
-                'forum_topic_reply' => '',
+                'forum_topic_reply' => 'Er zijn nieuwe antwoorden in ":title"',
             ],
         ],
 
         'user' => [
             'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock' => ':username heeft een nieuwe medaille ontgrendeld, ":title"!',
+                'user_achievement_unlock_self' => 'Je hebt een nieuwe medaille, ":title"!',
             ],
         ],
     ],

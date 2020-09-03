@@ -29,16 +29,11 @@ export class Beatmaps extends React.PureComponent
     count = @props.counts[section]
     beatmapsets = @props[section]
 
-    div
-      key: section
+    el React.Fragment, key: section,
       h3
         className: 'title title--page-extra-small'
         osu.trans("users.show.extra.beatmaps.#{sectionSnaked}.title")
-        ' '
-        if count > 0
-          span
-            className: 'title__count'
-            osu.formatNumber(count)
+        span className: 'title__count', osu.formatNumber(count)
 
       if beatmapsets.length > 0
         div className: 'osu-layout__col-container osu-layout__col-container--with-gutter js-audio--group',
@@ -60,6 +55,3 @@ export class Beatmaps extends React.PureComponent
                 url: laroute.route 'users.beatmapsets',
                   user: @props.user.id
                   type: sectionSnaked
-
-      else
-        p className: 'page-extra-entries', osu.trans('users.show.extra.beatmaps.none')

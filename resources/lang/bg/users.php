@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'от :artist',
-                'none' => 'Няма... все още.',
                 'title' => 'Бийтмапове',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'виж повече събития',
             ],
             'historical' => [
-                'empty' => 'Няма записани изпълнения. :(',
                 'title' => 'Хронология',
 
                 'monthly_playcounts' => [
@@ -304,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Изтегли повторението',
-                'empty' => 'Все още няма страхотни изпълнения. :(',
                 'not_ranked' => 'Само класираните бийтмапове дават pp точки.',
                 'pp_weight' => 'с тежест :percentage',
                 'view_details' => 'Виж детайлите',

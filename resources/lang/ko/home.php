@@ -76,9 +76,9 @@ return [
         'action' => 'osu! 다운로드',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => '게임을 시작하거나 계정을 등록하는데 문제가 있다면, :help_forum_link 하거나 :support_button 해보세요.',
+            'help_forum_link' => '도움말 포럼을 확인',
+            'support_button' => '지원 팀에 연락',
         ],
 
         'os' => [

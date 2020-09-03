@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'por :artist',
-                'none' => 'Ninguno... aún.',
                 'title' => 'Mapas',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'ver más eventos',
             ],
             'historical' => [
-                'empty' => 'No hay registros de rendimiento. :(',
                 'title' => 'Histórico',
 
                 'monthly_playcounts' => [
@@ -304,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Descargar repetición',
-                'empty' => 'Aún no hay registros de rendimiento impresionantes. :(',
                 'not_ranked' => 'Sólo los mapas clasificados dan pp.',
                 'pp_weight' => 'valorado :percentage',
                 'view_details' => 'Ver detalles',

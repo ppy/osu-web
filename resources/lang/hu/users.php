@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => ':artist által',
-                'none' => 'Nincsen... még.',
                 'title' => 'Beatmap-ek',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'további események',
             ],
             'historical' => [
-                'empty' => 'Nincsenek teljesítmény rekordok. :(',
                 'title' => 'Történelem',
 
                 'monthly_playcounts' => [
@@ -304,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Replay letöltése',
-                'empty' => 'Még nem rendelkezik kiemelkedő eredménnyel. :(',
                 'not_ranked' => 'Kizárólag rangsorolt beatmap adhat pp-t.',
                 'pp_weight' => 'súlyozott :percentage',
                 'view_details' => 'Részletek mutatása',

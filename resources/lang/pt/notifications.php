@@ -66,8 +66,8 @@ return [
 
                 'comment_new' => ':username comentou ":content" em ":title"',
                 'comment_new_compact' => ':username comentou ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username respondeu ":content" em ":title"',
+                'comment_reply_compact' => ':username respondeu ":content"',
             ],
         ],
 
@@ -92,8 +92,8 @@ return [
 
                 'comment_new' => ':username comentou ":content" em ":title"',
                 'comment_new_compact' => ':username comentou ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username respondeu ":content" em ":title"',
+                'comment_reply_compact' => ':username respondeu ":content"',
             ],
         ],
 
@@ -105,8 +105,8 @@ return [
 
                 'comment_new' => ':username comentou ":content" em ":title"',
                 'comment_new_compact' => ':username comentou ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username respondeu ":content" em ":title"',
+                'comment_reply_compact' => ':username respondeu ":content"',
             ],
         ],
 
@@ -143,26 +143,26 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_lock' => 'A conversa sobre ":title" foi bloqueada',
+                'beatmapset_discussion_post_new' => 'A conversa sobre ":title" tem novas atualizações ',
+                'beatmapset_discussion_unlock' => 'A discussão em ":title" foi desbloqueada',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => 'Um novo problema foi relatado em ":title"',
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
+                'beatmapset_disqualify' => '":title" foi desqualificado',
+                'beatmapset_love' => '":title" foi promovido a adorado',
+                'beatmapset_nominate' => '":title" foi nomeado',
                 'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
+                'beatmapset_rank' => '":title" foi classificado',
                 'beatmapset_reset_nominations' => '',
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'O beatmap ":title" tem novos comentários',
             ],
         ],
 
@@ -174,26 +174,26 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'O registro de alterações ":title" tem novos comentários ',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'As notícias ":title" têm novos comentários',
             ],
         ],
 
         'forum_topic' => [
             'forum_topic_reply' => [
-                'forum_topic_reply' => '',
+                'forum_topic_reply' => 'Há novas respostas em ":title"',
             ],
         ],
 
         'user' => [
             'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock' => ':username desbloqueou uma nova medalha, ":title"!',
+                'user_achievement_unlock_self' => 'Desbloqueaste uma nova medalha: ":title"!',
             ],
         ],
     ],

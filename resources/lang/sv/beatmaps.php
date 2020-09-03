@@ -304,7 +304,7 @@ return [
         'SD' => 'Sudden Death',
         'SO' => 'Spinnat Ut',
         'TD' => '',
-        'V2' => 'Göra V2',
+        'V2' => 'Score V2',
     ],
     'language' => [
         'any' => 'Alla',

@@ -45,7 +45,7 @@ return [
     'post' => [
         'confirm_destroy' => '정말 이 글을 삭제할까요?',
         'confirm_restore' => '정말 이 글을 복원할까요?',
-        'edited' => '마지막으로 :user님이 :when에 수정하여 총 :count회 수정되었습니다.',
+        'edited' => ':user 님이 마지막으로 :when에 수정하여 총 :count_delimited회 수정되었습니다.',
         'posted_at' => ':when에 게시됨',
 
         'actions' => [

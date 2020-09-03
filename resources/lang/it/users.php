@@ -188,7 +188,6 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
             ],
             'beatmaps' => [
                 'by_artist' => 'di :artist',
-                'none' => 'Nessuna... per ora.',
                 'title' => 'Beatmap',
 
                 'favourite' => [
@@ -218,7 +217,6 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
                 'show_more' => 'guarda più eventi',
             ],
             'historical' => [
-                'empty' => 'Nessuna performance recente :(',
                 'title' => 'Cronologia',
 
                 'monthly_playcounts' => [
@@ -305,7 +303,6 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
             ],
             'top_ranks' => [
                 'download_replay' => 'Scarica Replay',
-                'empty' => 'Ancora nessuna prestazione impressionante. :(',
                 'not_ranked' => 'Solo le mappe classificate danno pp.',
                 'pp_weight' => 'valutata :percentage',
                 'view_details' => 'Visualizza Dettagli',

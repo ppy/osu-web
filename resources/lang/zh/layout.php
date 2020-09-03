@@ -179,7 +179,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => '登录/注册',
 
         'login' => [
             'forgot' => "我忘记了我的登录信息",
