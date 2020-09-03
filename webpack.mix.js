@@ -284,6 +284,8 @@ const rules = [
         options: {
           importLoaders: 1,
           sourceMap: true,
+          // url-loader didn't try to resolve aboslute paths before 4.1
+          // https://github.com/webpack-contrib/css-loader/commit/f9ba0ce11789770c4c9220478e9c98dbd432a5d6
           url: (url) => !url.startsWith('/'),
         },
       },
