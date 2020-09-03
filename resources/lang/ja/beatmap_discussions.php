@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => '私が知りたいことに関する投稿はまだありません',
         'notice' => ':timestamp付近に他の投稿(:existing_timestamps)があります。投稿する前に確認してください。',
+        'unsaved' => '',
     ],
 
     'reply' => [

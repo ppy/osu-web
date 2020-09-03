@@ -80,7 +80,7 @@ export class Header extends React.Component
                 el DetailMobile,
                   stats: @props.stats
                   userAchievements: @props.userAchievements
-                  rankHistory: @props.user.rankHistory
+                  rankHistory: @props.user.rank_history
 
                 el Stats, stats: @props.stats
 

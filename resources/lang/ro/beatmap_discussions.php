@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Niciuna dintre aceste postări nu mă preocupă',
         'notice' => 'Există postări în jurul :timestamp (:existing_timestamps). Te rugăm să verifici înainte de a posta.',
+        'unsaved' => '',
     ],
 
     'reply' => [

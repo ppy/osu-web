@@ -37,9 +37,9 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => 'Contrassegna il forum come già letto',
-        'forums' => 'Contrassegna i forum come già letti',
-        'busy' => 'Contrassegnando come già letto...',
+        'forum' => 'Segna il forum come già letto',
+        'forums' => 'Segna i forum come già letti',
+        'busy' => 'Segnando come già letto...',
     ],
 
     'post' => [
@@ -62,7 +62,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited post|:count_delimited post',
-            'topic_starter' => 'Creatore del Topic',
+            'topic_starter' => 'Creatore del topic',
         ],
     ],
 
@@ -235,7 +235,7 @@ return [
         ],
 
         'lock' => [
-            'is_locked' => 'Questo topic è bloccato e non può essere risposto',
+            'is_locked' => 'Questo topic è bloccato e non si può più rispondere',
             'to_0' => 'Sblocca topic',
             'to_0_confirm' => 'Sbloccare il topic?',
             'to_0_done' => 'Il topic è stato sbloccato',
@@ -255,7 +255,7 @@ return [
             'to_1' => 'Fissa topic',
             'to_1_confirm' => 'Fissare il topic?',
             'to_1_done' => 'Il topic è stato fissato',
-            'to_2' => 'Fissa discussione e segna come annuncio',
+            'to_2' => 'Fissa il topic e segna come annuncio',
             'to_2_confirm' => 'Fissare il topic e segnarlo come annuncio?',
             'to_2_done' => 'Il topic è stato fissato e segnato come annuncio',
         ],

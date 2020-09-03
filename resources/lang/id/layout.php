@@ -5,11 +5,11 @@
 
 return [
     'audio' => [
-        'autoplay' => 'Mainkan lagu berikutnya secara otomatis',
+        'autoplay' => 'Putar lagu berikutnya secara otomatis',
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - Rhythm is just a *click* away! Dengan berbagai mode permainan seperti Ouendan/EBA, Taiko, serta level editor yang berfungsi.',
+        'page_description' => 'osu! - Rhythm is just a *click* away! Dengan berbagai mode permainan seperti Ouendan/EBA, Taiko, serta level editor yang sepenuhnya fungsional.',
     ],
 
     'header' => [
@@ -144,11 +144,11 @@ return [
         ],
         '403' => [
             'error' => "Anda seharusnya tidak di sini.",
-            'description' => 'Anda dapat mencoba kembali. Atau mungkin coba masuk.',
+            'description' => 'Anda dapat mencoba untuk kembali ke halaman sebelumnya.',
         ],
         '401' => [
             'error' => "Anda seharusnya tidak di sini.",
-            'description' => 'Anda dapat mencoba kembali. Atau mungkin coba masuk.',
+            'description' => 'Anda dapat mencoba untuk kembali ke halaman sebelumnya. Atau mungkin coba untuk masuk terlebih dahulu.',
         ],
         '405' => [
             'error' => 'Halaman Hilang',
@@ -159,26 +159,28 @@ return [
             'description' => '',
         ],
         '500' => [
-            'error' => 'Oh tidak! Ada yang rusak (buruk)! ;_;',
-            'description' => "Kami diberitahu secara otomatis setiap ada kesalahan.",
+            'error' => 'Oh, tidak! Sepertinya ada sesuatu yang rusak! ;_;',
+            'description' => "Sistem osu! akan secara otomatis memberitahukan kami setiap kali terdapat kesalahan seperti ini.",
         ],
         'fatal' => [
-            'error' => 'Oh tidak! Ada yang rusak (buruk)! ;_;',
-            'description' => "Kami diberitahu secara otomatis setiap ada kesalahan.",
+            'error' => 'Oh, tidak! Sepertinya ada sesuatu yang (sangat) rusak! ;_;',
+            'description' => "Sistem osu! akan secara otomatis memberitahukan kami setiap kali terdapat kesalahan seperti ini.",
         ],
         '503' => [
             'error' => 'Sedang dalam pemeliharaan!',
-            'description' => "Proses pemeliharaan (maintenance) biasanya berlangsung selama 5 detik hingga 10 menit. Jika proses pemeliharaan ternyata berlangsung lebih lama dari yang diharapkan, kunjungi :link untuk informasi lebih lanjut.",
+            'description' => "Proses pemeliharaan utamanya dapat berlangsung dalam durasi yang cukup beragam, mulai dari 5 detik hingga lebih dari 10 menit. Jika proses pemeliharaan ternyata berlangsung lebih lama dari yang sewajarnya, harap kunjungi :link untuk informasi lebih lanjut.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "Untuk jaga-jaga, ini kode yang dapat Anda berikan saat menghubungi layanan dukungan!",
+        'reference' => "Untuk berjaga-jaga, berikut kode yang dapat Anda berikan kepada layanan dukungan kami!",
     ],
 
     'popup_login' => [
+        'button' => 'masuk / daftar',
+
         'login' => [
             'forgot' => "Saya lupa identitas saya",
             'password' => 'kata sandi',
@@ -186,14 +188,14 @@ return [
             'username' => 'nama pengguna',
 
             'error' => [
-                'email' => "Nama pengguna atau alamat email tidak ada",
+                'email' => "Nama pengguna atau alamat email tidak ditemukan",
                 'password' => 'Kata sandi salah',
             ],
         ],
 
         'register' => [
             'download' => 'Unduh',
-            'info' => 'Anda butuh akun. Mengapa Anda belum memilikinya?',
+            'info' => 'Unduh osu! untuk membuat akun Anda!',
             'title' => "Belum memiliki akun?",
         ],
     ],

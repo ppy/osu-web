@@ -84,6 +84,7 @@ return [
         'failed' => 'Väärät kirjautumistiedot',
         'forgot' => 'Unohditko salasanasi?',
         'info' => 'Kirjaudu sisään jatkaaksesi',
+        'invalid_captcha' => '',
         'locked_ip' => 'IP-osoitteesi on lukittu. Ole hyvä ja odota muutama minuutti.',
         'password' => 'Salasana',
         'register' => "Eikö sinulla ole osu!-tiliä? Tee yksi",
@@ -186,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'artistilta :artist',
-                'none' => 'Ei yhtään... vielä.',
                 'title' => 'Beatmapit',
 
                 'favourite' => [
@@ -216,7 +216,6 @@ return [
                 'show_more' => '',
             ],
             'historical' => [
-                'empty' => 'Tuloksia ei löydy. :(',
                 'title' => 'Historialliset',
 
                 'monthly_playcounts' => [
@@ -303,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Lataa Replay',
-                'empty' => 'Loistavia suorituksia ei ole vielä. :(',
                 'not_ranked' => 'Vain hyväksytyt beatmapit antavat pp:tä.',
                 'pp_weight' => 'painotettu :percentage',
                 'view_details' => '',

@@ -51,6 +51,7 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => '',
         'beatmapset_disqualify' => '',
+        'comment_reply' => '',
         'title' => 'Ειδοποιήσεις',
         'topic_auto_subscribe' => 'αυτόματη ενεργοποίηση ειδοποιήσεων για τα νέα θέματα που δημιουργείτε στο φόρουμ',
 

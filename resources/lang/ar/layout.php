@@ -179,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "لقد نسيت بياناتي",
             'password' => 'كلمة السر',

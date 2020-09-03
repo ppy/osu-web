@@ -32,6 +32,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "",
             'limit_exceeded' => 'Te rugăm să aștepți un timp înainte să acorzi mai multe voturi',
             'owner' => "Nu îți poți vota propria discuție.",
             'wrong_beatmapset_state' => 'Poți vota doar discuțiile despre beatmapuri în așteptare.',

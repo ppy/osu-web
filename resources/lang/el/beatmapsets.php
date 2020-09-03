@@ -93,7 +93,6 @@ return [
             'source' => 'Προέλευση',
             'success-rate' => 'Ποσοστό Επιτυχίας',
             'tags' => 'Ετικέτες',
-            'unranked' => 'Unranked beatmap',
         ],
 
         'scoreboard' => [

@@ -32,6 +32,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "",
             'limit_exceeded' => 'Espera un poco antes de seguir votando',
             'owner' => "No puedes votar tus propias discusiones.",
             'wrong_beatmapset_state' => 'Solo puedes votar en discusiones de mapas pendientes.',

@@ -50,7 +50,7 @@ class SessionsController extends Controller
             abort(422);
         }
 
-        if (captcha_enabled()) {
+        if (captcha_triggered()) {
             $token = presence($params['g-recaptcha-response'] ?? null);
             $validCaptcha = false;
 
@@ -65,7 +65,7 @@ class SessionsController extends Controller
                     DatadogLoginAttempt::log('invalid_captcha');
                 }
 
-                return error_popup(trans('users.login.invalid_captcha'), 422);
+                return $this->triggerCaptcha(trans('users.login.invalid_captcha'), 422);
             }
         }
 
@@ -95,9 +95,13 @@ class SessionsController extends Controller
                 'header_popup' => view('layout._popup_user')->render(),
                 'user' => Auth::user()->defaultJson(),
             ];
-        } else {
-            return error_popup($authError, 403);
         }
+
+        if (captcha_triggered()) {
+            return $this->triggerCaptcha($authError);
+        }
+
+        return error_popup($authError, 403);
     }
 
     public function destroy()
@@ -110,6 +114,14 @@ class SessionsController extends Controller
             return ujs_redirect(route('home'));
         }
 
-        return [];
+        return captcha_triggered() ? ['captcha_triggered' => true] : [];
+    }
+
+    private function triggerCaptcha($message, $returnCode = 403)
+    {
+        return response([
+            'error' => $message,
+            'captcha_triggered' => true,
+        ], $returnCode);
     }
 }

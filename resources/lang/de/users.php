@@ -84,6 +84,7 @@ return [
         'failed' => 'Falscher Login',
         'forgot' => 'Passwort vergessen?',
         'info' => 'Bitte melde dich an, um fortzufahren',
+        'invalid_captcha' => 'Captcha ungültig, bitte aktualisiere die Seite und versuche es erneut.',
         'locked_ip' => 'Deine IP-Adresse ist gesperrt. Bitte warte ein paar Minuten.',
         'password' => 'Passwort',
         'register' => "Noch keinen osu!-Account? Erstell' einen",
@@ -186,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'von :artist',
-                'none' => '(Noch) keine.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -216,7 +216,6 @@ return [
                 'show_more' => 'mehr Events anzeigen',
             ],
             'historical' => [
-                'empty' => 'Keine Einträge. :(',
                 'title' => 'Historisch',
 
                 'monthly_playcounts' => [
@@ -242,7 +241,7 @@ return [
                 'total' => 'Kudosu insgesamt',
 
                 'entry' => [
-                    'amount' => ':amount kudosu',
+                    'amount' => ':amount Kudosu',
                     'empty' => "Dieser Benutzer hat kein Kudosu erhalten!",
 
                     'beatmap_discussion' => [
@@ -263,7 +262,7 @@ return [
                         ],
 
                         'vote' => [
-                            'give' => ':amount durch erhaltene Stimmen im Beitrag :post erhalten',
+                            'give' => ':amount durch erhaltene Stimmen im Post :post erhalten',
                             'reset' => ':amount durch verlorene Stimmen im Beitrag :post verloren',
                         ],
 
@@ -281,7 +280,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Basierend auf dem Beitrag, den der Benutzer zur Beatmap-Moderation geleistet hat. Weitere Informationen unter :link.',
+                    '_' => 'Basierend auf dem Beitrag, den der Benutzer zum Beatmap-Modding geleistet hat. Weitere Informationen auf :link.',
                     'link' => 'dieser Seite',
                 ],
             ],
@@ -303,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Replay herunterladen',
-                'empty' => 'Noch keine Einträge großartiger Performances. :(',
                 'not_ranked' => 'Nur Ranked Beatmaps geben PP.',
                 'pp_weight' => ':percentage gewichtet',
                 'view_details' => 'Details anzeigen',
