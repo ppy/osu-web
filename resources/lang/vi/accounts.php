@@ -50,7 +50,8 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => '',
-        'beatmapset_disqualify' => '',
+        'beatmapset_disqualify' => 'nhận thông báo khi beatmap ở các chế độ sau bị disqualified',
+        'comment_reply' => '',
         'title' => 'Thông báo',
         'topic_auto_subscribe' => 'tự động nhận thông báo cho các topic bạn tạo trong forum',
 
@@ -82,7 +83,7 @@ return [
             'direct' => '',
         ],
 
-        'beatmapset_title_show_original' => '',
+        'beatmapset_title_show_original' => 'hiển thị metadata của beatmap trong ngôn ngữ gốc',
     ],
 
     'playstyles' => [

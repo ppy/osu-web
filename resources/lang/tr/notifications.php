@@ -66,6 +66,8 @@ return [
 
                 'comment_new' => ':username ":title" üzerinde ":content" yorumunu yaptı',
                 'comment_new_compact' => ':username ":content" yorumunu yaptı',
+                'comment_reply' => ':username ":title" üzerinde ":content" yorumunu yaptı',
+                'comment_reply_compact' => ':username ":content" yorumunu yaptı',
             ],
         ],
 
@@ -90,6 +92,8 @@ return [
 
                 'comment_new' => ':username ":title" üzerinde ":content" yorumunu yaptı',
                 'comment_new_compact' => ':username ":content" yorumunu yaptı',
+                'comment_reply' => ':username ":title" üzerinde ":content" yorumunu yaptı',
+                'comment_reply_compact' => ':username ":content" yorumunu yaptı',
             ],
         ],
 
@@ -101,6 +105,8 @@ return [
 
                 'comment_new' => ':username ":title" üzerinde ":content" yorumunu yaptı',
                 'comment_new_compact' => ':username ":content" yorumunu yaptı',
+                'comment_reply' => ':username ":title" üzerinde ":content" yorumunu yaptı',
+                'comment_reply_compact' => ':username ":content" yorumunu yaptı',
             ],
         ],
 
@@ -136,12 +142,28 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '":title" setinin tartışmasında yeni güncellemeler mevcut',
-            'beatmapset_discussion_lock' => '":title" setinin tartışması kilitlendi',
-            'beatmapset_discussion_unlock' => '":title" setinin tartışmasının kilidi kaldırıldı',
-            'beatmapset_problem' => '',
-            'beatmapset_state' => '":title" setinin durumu değişti',
-            'comment' => '":title" beatmapinde yeni yorumlar mevcut',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '":title" setinin tartışması kilitlendi',
+                'beatmapset_discussion_post_new' => '":title" setinin tartışmasında yeni güncellemeler mevcut',
+                'beatmapset_discussion_unlock' => '":title" setinin tartışmasının kilidi kaldırıldı',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '":title" setinde yeni bir sorun bildirildi',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '":title" diskalifiye edildi',
+                'beatmapset_love' => '":title" loved\'a yükseltildi',
+                'beatmapset_nominate' => '":title" aday gösterildi',
+                'beatmapset_qualify' => '":title" yeterli aday gösterimi aldı ve derecelendirme sırasına girdi',
+                'beatmapset_rank' => '":title" dereceli oldu',
+                'beatmapset_reset_nominations' => '":title" setinin aday gösterimi sıfırlandı',
+            ],
+
+            'comment' => [
+                'comment_new' => '":title" beatmapinde yeni yorumlar mevcut',
+            ],
         ],
 
         'channel' => [
@@ -151,20 +173,28 @@ return [
         ],
 
         'build' => [
-            'comment' => '":title" değişiklik kaydında yeni yorumlar mevcut',
+            'comment' => [
+                'comment_new' => '":title" değişiklik kaydında yeni yorumlar mevcut',
+            ],
         ],
 
         'news_post' => [
-            'comment' => '":title" haber göndersinde yeni yorumlar mevcut',
+            'comment' => [
+                'comment_new' => '":title" haber göndersinde yeni yorumlar mevcut',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '":title" konusunda yeni yanıtlar mevcut',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '":title" konusunda yeni yanıtlar mevcut',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => ':username yeni bir madalya açtı, ":title"!',
-            'user_achievement_unlock_self' => 'Yeni başarım açıldı. "başlık"!',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => ':username yeni bir madalya açtı, ":title"!',
+                'user_achievement_unlock_self' => 'Yeni bir madalya açtınız, ":title"!',
+            ],
         ],
     ],
 ];

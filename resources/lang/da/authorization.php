@@ -32,6 +32,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "",
             'limit_exceeded' => 'Vent venligst før du stemmer igen',
             'owner' => "Du kan ikke stemme på din egen diskussion!",
             'wrong_beatmapset_state' => 'Kan kun stemme på diskussioner fra afventende beatmaps.',

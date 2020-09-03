@@ -75,7 +75,7 @@ return [
     'topic' => [
         'deleted' => '已删除的主题',
         'go_to_latest' => '查看最后的帖子',
-        'has_replied' => '',
+        'has_replied' => '你已回复过此主题',
         'latest_post' => ':when :user',
         'latest_reply_by' => '最后回复： :user',
         'new_topic' => '发表新主题',

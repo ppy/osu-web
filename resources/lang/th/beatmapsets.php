@@ -93,7 +93,6 @@ return [
             'source' => 'แหล่งที่มา',
             'success-rate' => 'อัตราการผ่าน',
             'tags' => 'แท็ก',
-            'unranked' => 'แมพที่ไม่ได้จัดอันดับ',
         ],
 
         'scoreboard' => [

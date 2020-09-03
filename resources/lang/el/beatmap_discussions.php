@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Καμία δημοσίευση δεν απαντάει στο ερώτημά μου',
         'notice' => 'Υπάρχουν αναρτήσεις περίπου :timestamp (:existing_timestamps). Παρακαλώ να τις ελέγξετε πριν αναρτήσετε.',
+        'unsaved' => '',
     ],
 
     'reply' => [

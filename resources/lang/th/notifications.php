@@ -66,6 +66,8 @@ return [
 
                 'comment_new' => ':username ได้แสดงความคิดเห็น ":content" บน ":title"',
                 'comment_new_compact' => ':username ได้แสดงความคิดเห็น ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -90,6 +92,8 @@ return [
 
                 'comment_new' => ':username ได้แสดงความคิดเห็น ":content" บน ":title"',
                 'comment_new_compact' => ':username ได้แสดงความคิดเห็น ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -101,6 +105,8 @@ return [
 
                 'comment_new' => ':username ได้แสดงความคิดเห็น ":content" บน ":title"',
                 'comment_new_compact' => ':username ได้แสดงความคิดเห็น ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -136,12 +142,28 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => 'การพูดคุยใน ":title:" มีอัปเดตใหม่',
-            'beatmapset_discussion_lock' => 'การพูดคุยใน ":title:" ได้ถูกล็อก',
-            'beatmapset_discussion_unlock' => 'การพูดคุยใน ":title:" ได้ถูกปลดล็อก',
-            'beatmapset_problem' => 'ปัญหาใหม่ได้ถูกแจ้งใน ":title"',
-            'beatmapset_state' => 'สถานะของ ":title" ได้เปลี่ยนไป',
-            'comment' => ' บีทแมพ ":title" มีคอมเมนต์ใหม่',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => 'การพูดคุยใน ":title:" ได้ถูกล็อก',
+                'beatmapset_discussion_post_new' => 'การพูดคุยใน ":title:" มีอัปเดตใหม่',
+                'beatmapset_discussion_unlock' => 'การพูดคุยใน ":title:" ได้ถูกปลดล็อก',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => 'ปัญหาใหม่ได้ถูกแจ้งใน ":title"',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => ' บีทแมพ ":title" มีคอมเมนต์ใหม่',
+            ],
         ],
 
         'channel' => [
@@ -151,20 +173,28 @@ return [
         ],
 
         'build' => [
-            'comment' => 'บันทึกการเปลี่ยนแปลง ":title" มีคอมเมนต์ใหม่',
+            'comment' => [
+                'comment_new' => 'บันทึกการเปลี่ยนแปลง ":title" มีคอมเมนต์ใหม่',
+            ],
         ],
 
         'news_post' => [
-            'comment' => 'ข่าว ":title" มีคอมเมนต์ใหม่',
+            'comment' => [
+                'comment_new' => 'ข่าว ":title" มีคอมเมนต์ใหม่',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => 'มีการตอบกลับใหม่ใน ":title"',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => 'มีการตอบกลับใหม่ใน ":title"',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => ':username ได้ปลดล็อกเหรียญตรา ":title"!',
-            'user_achievement_unlock_self' => 'คุณได้ปลดล็อกเหรียญตรา ":title"!',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => ':username ได้ปลดล็อกเหรียญตรา ":title"!',
+                'user_achievement_unlock_self' => 'คุณได้ปลดล็อกเหรียญตรา ":title"!',
+            ],
         ],
     ],
 ];

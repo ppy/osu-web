@@ -85,6 +85,7 @@ return [
         'failed' => 'เข้าสู่ระบบไม่ถูกต้อง',
         'forgot' => 'ลืมรหัสผ่าน?',
         'info' => 'กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อ',
+        'invalid_captcha' => '',
         'locked_ip' => 'ที่อยู่ IP ของคุณถูกล็อก โปรดรอสักครู่',
         'password' => 'รหัสผ่าน',
         'register' => "ไม่มีแอคเคาท์ Osu! หรอ? สร้างเลยสิ",
@@ -187,7 +188,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'โดย :artist',
-                'none' => 'ยังไม่มี... อะ.',
                 'title' => 'บีทแมพ',
 
                 'favourite' => [
@@ -197,7 +197,7 @@ return [
                     'title' => 'สุสานบีทแมพ',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps ที่ชื่นชอบ',
+                    'title' => 'บีทแมพที่ Loved',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
@@ -217,7 +217,6 @@ return [
                 'show_more' => 'ดูอีเว้นท์อื่นๆ เพิ่มเติม',
             ],
             'historical' => [
-                'empty' => 'ไม่มี performance ที่บันทึกไว้. :(',
                 'title' => 'ประวัติ',
 
                 'monthly_playcounts' => [
@@ -304,7 +303,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'ดาวน์โหลดรีเพลย์',
-                'empty' => 'ยังไม่มี performance ที่เจ๋งๆบันทึกไว้เลย . :(',
                 'not_ranked' => 'บีทแมพแรงค์เท่านั้นที่ให้พีพี',
                 'pp_weight' => 'weighted :percentage',
                 'view_details' => 'ดูรายละเอียดเพิ่มเติม',

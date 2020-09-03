@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "låt oss<br>få dig igång!",
         'action' => 'Ladda ner osu!',
+
+        'help' => [
+            '_' => 'om du har problem med att starta spelet eller registrera dig för konto, :help_forum_link eller :support_button.',
+            'help_forum_link' => '',
+            'support_button' => 'kontakta support',
+        ],
+
         'os' => [
             'windows' => 'för Windows',
             'macos' => 'för macOS',

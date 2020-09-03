@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => '在這個時間點上沒有相關的討論記錄。',
         'notice' => '在 :timestamp 附近（:existing_timestamps）有討論記錄，發表前請檢查。',
+        'unsaved' => '',
     ],
 
     'reply' => [
@@ -64,7 +65,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => '已耗用 :used / :max 個方塊',
         'go_to_parent' => '檢視其他人的評論',
         'go_to_child' => '查看討論',
         'validation' => [

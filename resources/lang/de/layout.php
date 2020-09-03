@@ -179,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'Einloggen / Registrieren',
+
         'login' => [
             'forgot' => "Passwort vergessen",
             'password' => 'passwort',
