@@ -9,6 +9,7 @@ import { forEach, random } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import core from 'osu-core-singleton';
 import {
+  NotificationEventChatJson,
   NotificationEventLogoutJson,
   NotificationEventMoreLoaded,
   NotificationEventNew,
@@ -33,6 +34,10 @@ interface TimeoutCollection {
 interface XHRLoadingStateCollection {
   [key: string]: boolean;
 }
+
+const isNotificationEventChatJson = (arg: any): arg is NotificationEventChatJson => {
+  return arg.event?.startsWith('chat.') ?? false;
+};
 
 const isNotificationEventLogoutJson = (arg: any): arg is NotificationEventLogoutJson => {
   return arg.event === 'logout';
@@ -131,6 +136,7 @@ export default class Worker {
     }
   }
 
+  // TODO: events receiver should probably be moved out and actions dispatched to appropriate handlers.
   @action handleNewEvent = (event: MessageEvent) => {
     let eventData: any;
 
@@ -157,6 +163,8 @@ export default class Worker {
         this.loadMore();
       }
       $.publish('user-verification:success');
+    } else if (isNotificationEventChatJson(eventData)) {
+      console.log(eventData);
     }
   }
 

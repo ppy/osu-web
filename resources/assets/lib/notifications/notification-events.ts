@@ -7,6 +7,13 @@ import { NotificationContextData } from 'notifications-context';
 import { fromJson, NotificationIdentity, NotificationIdentityJson } from 'notifications/notification-identity';
 
 // tslint:disable: max-classes-per-file
+export interface NotificationEventChatJson {
+  event: string;
+  data: {
+    channel_id: number;
+  };
+}
+
 export interface NotificationEventLogoutJson {
   event: 'logout';
 }
