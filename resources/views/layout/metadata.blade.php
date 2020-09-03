@@ -75,7 +75,7 @@
 @if(config('services.sentry.public_dsn') !== '')
     <script src="https://browser.sentry-cdn.com/5.1.0/bundle.min.js" crossorigin="anonymous"></script>
     <script>
-        Sentry.init({
+        typeof Sentry !== 'undefined' && Sentry.init({
             debug: {!! json_encode(config('app.debug')) !!},
             dsn: {!! json_encode(config('services.sentry.public_dsn')) !!},
             ignoreErrors: [
