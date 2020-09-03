@@ -30,8 +30,12 @@ class @UserLogin
     e.preventDefault()
     e.stopPropagation()
     $('.js-login-form--error').text(osu.xhrErrorMessage(xhr))
-    captcha.trigger() if (xhr?.responseJSON?.captcha_triggered)
-    captcha.reset()
+
+    # Timeout here is to let ujs events fire first, so that the disabling of the submit button
+    # in captcha.reset() happens _after_ the button has been re-enabled
+    Timeout.set 0, =>
+      captcha.trigger() if (xhr?.responseJSON?.captcha_triggered)
+      captcha.reset()
 
 
   loginSuccess: (_event, data) =>
