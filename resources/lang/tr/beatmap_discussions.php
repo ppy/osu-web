@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Bu gönderilerin hiçbiri sorunumla ilgili değil',
         'notice' => ':timestamp (:existing_timestamp) civarında gönderilmiş mesajlar var. Göndermeden önce lütfen onlara bir göz atın.',
+        'unsaved' => 'bu incelemede :count',
     ],
 
     'reply' => [
@@ -64,7 +65,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max blok kullanıldı',
         'go_to_parent' => 'İnceleme paylaşımını görüntüle',
         'go_to_child' => 'Tartışmayı görüntüle',
         'validation' => [

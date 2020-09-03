@@ -61,7 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Ketik di sini untuk membuka topik bahasan baru pada Umum (:version)',
             'generalAll' => 'Ketik di sini untuk membuka topik bahasan baru pada Umum (Semua tingkat kesulitan)',
-            'review' => 'Ketik di sini untuk memulai ulasan baru',
+            'review' => 'Ketik di sini untuk memulai kajian baru',
             'timeline' => 'Ketik di sini untuk membuka topik bahasan baru pada Linimasa (:version)',
         ],
 
@@ -72,14 +72,14 @@ return [
             'nomination_reset' => 'Hilangkan Status Nominasi',
             'praise' => 'Pujian',
             'problem' => 'Masalah',
-            'review' => 'Ulasan',
+            'review' => 'Kajian',
             'suggestion' => 'Saran',
         ],
 
         'mode' => [
             'events' => 'Riwayat',
             'general' => 'Umum :scope',
-            'reviews' => 'Ulasan',
+            'reviews' => 'Kajian',
             'timeline' => 'Linimasa',
             'scopes' => [
                 'general' => 'Tingkat kesulitan ini',
@@ -96,7 +96,7 @@ return [
         ],
 
         'review' => [
-            'new' => 'Ulasan Baru',
+            'new' => 'Kajian Baru',
             'embed' => [
                 'delete' => 'Hapus',
                 'missing' => '[TOPIK DISKUSI DIHAPUS]',
@@ -201,7 +201,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Apakah kamu yakin? Memposting masalah baru akan mengulang proses nominasi.',
-            'disqualify' => 'Apakah Anda yakin? Tindakan ini akan menghilangkan status Qualified beatmap ini dan mengulang proses nominasi dari awal.',
+            'disqualify' => 'Apakah Anda yakin? Tindakan ini akan menganulir status Qualified pada beatmap ini dan mengulang proses nominasi dari awal.',
         ],
     ],
 
@@ -233,7 +233,7 @@ return [
                 'rating' => 'Nilai Pengguna',
                 'plays' => 'Jumlah Dimainkan',
                 'relevance' => 'Relevansi',
-                'nominations' => 'Nominasi',
+                'nominations' => 'Jumlah Nominasi',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Penyaringan dengan :filters memerlukan :link aktif',

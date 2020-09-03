@@ -8,7 +8,6 @@ namespace App\Http\Controllers;
 use App\Models\Match\Match;
 use App\Models\User;
 use App\Transformers\Match\EventTransformer;
-use App\Transformers\Match\MatchTransformer;
 use App\Transformers\UserCompactTransformer;
 
 class MatchesController extends Controller
@@ -25,12 +24,7 @@ class MatchesController extends Controller
             'before' => request('before'),
         ]);
 
-        $matchJson = json_item(
-            $match,
-            new MatchTransformer
-        );
-
-        return ext_view('matches.index', compact('match', 'matchJson', 'eventsJson'));
+        return ext_view('matches.index', compact('match', 'eventsJson'));
     }
 
     public function history($matchId)
@@ -96,6 +90,7 @@ class MatchesController extends Controller
         );
 
         return [
+            'match' => json_item($match, 'Match\Match'),
             'events' => $events,
             'users' => $users,
             'latest_event_id' => $match->events()->select('event_id')->last()->getKey(),

@@ -179,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "He olvidado mis datos",
             'password' => 'contraseña',

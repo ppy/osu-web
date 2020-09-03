@@ -179,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Zapomněl jsem své údaje",
             'password' => 'heslo',

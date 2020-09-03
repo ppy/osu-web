@@ -306,6 +306,10 @@ class OsuAuthorize
     {
         $prefix = 'beatmap_discussion.vote.';
 
+        if ($discussion->user !== null && $discussion->user->isBot()) {
+            return $prefix.'bot';
+        }
+
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
@@ -355,6 +359,10 @@ class OsuAuthorize
     public function checkBeatmapDiscussionVoteDown(?User $user, BeatmapDiscussion $discussion): string
     {
         $prefix = 'beatmap_discussion.vote.';
+
+        if ($discussion->user !== null && $discussion->user->isBot()) {
+            return $prefix.'bot';
+        }
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);

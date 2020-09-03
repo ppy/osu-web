@@ -11,11 +11,11 @@ return [
     ],
 
     'discussions' => [
-        'allow_kudosu' => 'อนุญาตการให้ Kudosu',
+        'allow_kudosu' => 'อนุญาตการให้ kudosu',
         'beatmap_information' => 'หน้าบีทแมพ',
         'delete' => 'ลบ',
         'deleted' => 'ถูกลบโดย :editor เมื่อเวลา :delete_time',
-        'deny_kudosu' => 'ปฏิเสธการให้ค่าชื่อเสียง',
+        'deny_kudosu' => 'ปฏิเสธการให้ kudosu',
         'edit' => 'แก้ไข',
         'edited' => 'แก้ไขล่าสุดโดย :editor เมื่อเวลา :update_time',
         'kudosu_denied' => 'ถูกปฏิเสธการให้ kudosu',
@@ -103,7 +103,7 @@ return [
                 'unlink' => 'เลิกการเชื่อมโยง',
                 'unsaved' => 'ยังไม่ได้บันทึก',
                 'timestamp' => [
-                    'all-diff' => 'โพสต์ทุกโพสต์ที่มีนัยยะความหมายกว้าง ครอบคลุมบีทแมพทั้งหมดในชุดบีทแมพ จะไม่สามารถประทับเวลาได้',
+                    'all-diff' => 'โพสต์ในหมวด "ทุกระดับความยาก" จะไม่สามารถใส่ประทับเวลาได้',
                     'diff' => 'ถ้า :type เริ่มต้นด้วยการประทับเวลา สิ่งเหล่านั้นจะถูกแสดงภายใต้ไทม์ไลน์',
                 ],
             ],
@@ -116,20 +116,20 @@ return [
         ],
 
         'show' => [
-            'title' => ':title lสร้างโดย :mapper',
+            'title' => ':title แมพโดย :mapper',
         ],
 
         'sort' => [
             'created_at' => 'เวลาที่สร้าง',
             'timeline' => 'ไทม์ไลน์',
-            'updated_at' => 'อัพเดทล่าสุด',
+            'updated_at' => 'อัปเดตล่าสุด',
         ],
 
         'stats' => [
             'deleted' => 'ถูกลบไปแล้ว',
             'mapper_notes' => 'หมายเหตุ',
             'mine' => 'ของเรา',
-            'pending' => 'ดำเนินการ',
+            'pending' => 'อยู่ระหว่างดำเนินการ',
             'praises' => 'ชื่นชม',
             'resolved' => 'แก้ไขแล้ว',
             'total' => 'ทั้งหมด',
@@ -181,7 +181,7 @@ return [
         'disqualified_no_reason' => 'ไม่มีเหตุผลที่ระบุไว้',
         'disqualify' => 'ตัดสิทธิ์',
         'incorrect_state' => 'เกิดข้อผิดพลาดในการดำเนินการ ลองรีเฟรชหน้าเพจนี้ดู',
-        'love' => 'รัก',
+        'love' => 'Love',
         'love_confirm' => 'ชอบบีทแมพนี้หรือ?',
         'nominate' => 'เสนอชื่อ',
         'nominate_confirm' => 'เสนอชื่อบีทแมพนี้?',
@@ -230,14 +230,14 @@ return [
                 'favourites' => 'รายการโปรด',
                 'updated' => 'อัปเดต',
                 'ranked' => 'จัดอันดับแล้ว',
-                'rating' => 'คะแนน',
+                'rating' => 'เรตติ้ง',
                 'plays' => 'จำนวนการเล่น',
                 'relevance' => 'ความเกี่ยวข้อง',
                 'nominations' => 'การเสนอชื่อ',
             ],
             'supporter_filter_quote' => [
                 '_' => 'กรองโดย :filters ต้องมี :link ทำงานอยู่',
-                'link_text' => 'osu!supporter tag (ผู้สนับสนุนเกม)',
+                'link_text' => 'แท็กสนับสนุน',
             ],
         ],
     ],

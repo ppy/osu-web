@@ -93,7 +93,6 @@ return [
             'source' => 'المصدر',
             'success-rate' => 'معدل النجاح',
             'tags' => 'ألعلامات',
-            'unranked' => 'خريطة غير مصنفة',
         ],
 
         'scoreboard' => [

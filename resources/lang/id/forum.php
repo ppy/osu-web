@@ -7,14 +7,14 @@ return [
     'pinned_topics' => 'Topik yang Disematkan',
     'slogan' => "Bermain sendiri itu berbahaya.",
     'subforums' => 'Subforum',
-    'title' => 'forum osu!',
+    'title' => 'Forum',
 
     'covers' => [
-        'edit' => 'Sunting sampul',
+        'edit' => 'Sunting gambar sampul',
 
         'create' => [
             '_' => 'Pasang gambar sampul',
-            'button' => 'Unggah gambar',
+            'button' => 'Unggah gambar sampul',
             'info' => 'Ukuran gambar yang optimal adalah :dimensions. Anda juga dapat meletakkan gambar di sini untuk mengunggah.',
         ],
 
@@ -45,8 +45,8 @@ return [
     'post' => [
         'confirm_destroy' => 'Yakin menghapus post?',
         'confirm_restore' => 'Yakin mengembalikan post?',
-        'edited' => 'Terakhir disunting oleh :user :when, total disunting sebanyak :count kali.',
-        'posted_at' => 'Diposting :when',
+        'edited' => 'Terakhir disunting oleh :user :when, dengan total penyuntingan sebanyak :count_delimited kali.|Terakhir disunting oleh :user :when, dengan total penyuntingan sebanyak :count_delimited kali.',
+        'posted_at' => 'diposting :when',
 
         'actions' => [
             'destroy' => 'Hapus Kiriman',
@@ -75,7 +75,7 @@ return [
     'topic' => [
         'deleted' => 'topik yang dihapus',
         'go_to_latest' => 'lihat posting terbaru',
-        'has_replied' => '',
+        'has_replied' => 'Anda telah mengirimkan balasan pada topik ini',
         'latest_post' => ':when oleh :user',
         'latest_reply_by' => 'balasan terbaru oleh :user',
         'new_topic' => 'Post topik baru',

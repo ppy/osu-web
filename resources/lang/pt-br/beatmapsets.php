@@ -93,7 +93,6 @@ return [
             'source' => 'Fonte',
             'success-rate' => 'Taxa de Sucesso',
             'tags' => 'Tags',
-            'unranked' => 'Beatmap não ranqueado',
         ],
 
         'scoreboard' => [

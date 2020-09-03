@@ -51,6 +51,7 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => '',
         'beatmapset_disqualify' => '',
+        'comment_reply' => '',
         'title' => 'Ilmoitukset',
         'topic_auto_subscribe' => 'automaattisesti salli ilmoitukset uusille foorumiaiheille jotka luot',
 

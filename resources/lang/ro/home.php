@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "să<br>începem!",
         'action' => 'Descarcă osu!',
+
+        'help' => [
+            '_' => '',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'pentru Windows',
             'macos' => 'pentru macOS',

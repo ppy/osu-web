@@ -179,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Jeg har glemt min login-info",
             'password' => 'adgangskode',

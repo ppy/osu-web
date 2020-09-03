@@ -5,7 +5,11 @@
 
 namespace App\Libraries;
 
+use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Es;
+use App\Libraries\Elasticsearch\Search;
+use App\Libraries\Elasticsearch\Sort;
+use App\Libraries\Search\BasicSearch;
 use App\Models\Score\Best;
 use App\Models\User;
 
@@ -19,6 +23,13 @@ use App\Models\User;
  */
 class UserBestScoresCheck
 {
+    const BATCH_SIZE = 1000;
+
+    /** @var int */
+    public $dbIdsFound;
+    /** @var int */
+    public $esIdsFound;
+
     /** @var User */
     private $user;
 
@@ -38,12 +49,32 @@ class UserBestScoresCheck
      */
     public function check(string $mode)
     {
+        $this->dbIdsFound = 0;
+        $this->esIdsFound = 0;
+
         $clazz = Best\Model::getClassByString($mode);
 
-        $esIds = $this->user->beatmapBestScoreIds($mode, 2000);
-        $dbIds = $clazz::default()->whereIn('score_id', $esIds)->pluck('score_id')->all();
+        $search = $this->newSearch($mode);
+        $cursor = [0];
 
-        return array_values(array_diff($esIds, $dbIds));
+        $missingIds = [];
+
+        while ($cursor !== null) {
+            $esIds = $search->searchAfter(array_values($cursor))->response()->ids();
+            $this->esIdsFound += count($esIds);
+
+            $dbIds = $clazz::default()->whereIn('score_id', $esIds)->pluck('score_id')->all();
+            $this->dbIdsFound += count($dbIds);
+
+            $missingIds = array_merge(
+                $missingIds,
+                array_values(array_diff($esIds, $dbIds))
+            );
+
+            $cursor = $search->getSortCursor();
+        }
+
+        return $missingIds;
     }
 
     /**
@@ -70,5 +101,18 @@ class UserBestScoresCheck
     public function run(string $mode)
     {
         return $this->removeFromEs($mode, $this->check($mode));
+    }
+
+    private function newSearch(string $mode): Search
+    {
+        $index = config('osu.elasticsearch.prefix')."high_scores_{$mode}";
+
+        $search = new BasicSearch($index, "user_best_scores_check_{$mode}");
+        $search->connectionName = 'scores';
+
+        return $search
+            ->sort(new Sort('score_id', 'asc'))
+            ->size(static::BATCH_SIZE)
+            ->query((new BoolQuery)->filter(['term' => ['user_id' => $this->user->getKey()]]));
     }
 }

@@ -93,7 +93,6 @@ return [
             'source' => '来源',
             'success-rate' => '成功率',
             'tags' => '标签',
-            'unranked' => 'Unranked 谱面',
         ],
 
         'scoreboard' => [
