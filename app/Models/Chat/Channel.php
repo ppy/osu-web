@@ -5,6 +5,7 @@
 
 namespace App\Models\Chat;
 
+use App\Events\UserActionEvent;
 use App\Exceptions\API;
 use App\Jobs\Notifications\ChannelMessage;
 use App\Models\Match\Match;
@@ -261,6 +262,8 @@ class Channel extends Model
             $userChannel->save();
         }
 
+        event(new UserActionEvent($user->getKey(), 'chat.channel.join', ['channel_id' => $userChannel->channel_id]));
+
         Datadog::increment('chat.channel.join', 1, ['type' => $this->type]);
     }
 
@@ -281,6 +284,8 @@ class Channel extends Model
         } else {
             $userChannel->delete();
         }
+
+        event(new UserActionEvent($user->getKey(), 'chat.channel.part', ['channel_id' => $userChannel->channel_id]));
 
         Datadog::increment('chat.channel.part', 1, ['type' => $this->type]);
     }

@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { dispatch } from 'app-dispatcher';
+import { dispatchChatChannelEvent, isChatChannelEventJson } from 'chat/chat-events';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import XHRCollection from 'interfaces/xhr-collection';
 import { route } from 'laroute';
@@ -9,7 +10,6 @@ import { forEach, random } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import core from 'osu-core-singleton';
 import {
-  NotificationEventChatJson,
   NotificationEventLogoutJson,
   NotificationEventMoreLoaded,
   NotificationEventNew,
@@ -34,10 +34,6 @@ interface TimeoutCollection {
 interface XHRLoadingStateCollection {
   [key: string]: boolean;
 }
-
-const isNotificationEventChatJson = (arg: any): arg is NotificationEventChatJson => {
-  return arg.event?.startsWith('chat.') ?? false;
-};
 
 const isNotificationEventLogoutJson = (arg: any): arg is NotificationEventLogoutJson => {
   return arg.event === 'logout';
@@ -163,8 +159,8 @@ export default class Worker {
         this.loadMore();
       }
       $.publish('user-verification:success');
-    } else if (isNotificationEventChatJson(eventData)) {
-      console.log(eventData);
+    } else if (isChatChannelEventJson(eventData)) {
+      dispatchChatChannelEvent(eventData);
     }
   }
 
