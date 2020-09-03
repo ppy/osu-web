@@ -14,7 +14,7 @@ export default class OsuLayzr {
   }
 
   init = () => {
-    this.layzr = Layzr();
+    this.layzr = this.layzr ?? Layzr();
 
     this.reinit();
     this.observer.observe(document.body, { childList: true, subtree: true });
