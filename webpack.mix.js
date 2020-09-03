@@ -125,17 +125,13 @@ for (const name of tsReactComponents) {
   entry[`react/${name}`] = [path.resolve(__dirname, `resources/assets/lib/${name}.ts`)];
 }
 
-function chunkFilename(name, ext = 'js') {
-  return outputFilename(name, ext, 'chunkhash:8');
-}
-
 function outputFilename(name, ext = 'js', hashType = 'contenthash:8') {
   return `${name}.${ext}?id=[${hashType}]`;
   // return `${name}.[${hashType}].${ext}`;
 }
 
 const output = {
-  chunkFilename: chunkFilename('js/[name]'),
+  chunkFilename: outputFilename('js/[name]'),
   filename: outputFilename('js/[name]'),
   path: path.resolve(__dirname, 'public'),
 };
