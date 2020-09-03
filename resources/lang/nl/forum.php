@@ -75,7 +75,7 @@ return [
     'topic' => [
         'deleted' => 'verwijder topic',
         'go_to_latest' => 'bekijk nieuwste post',
-        'has_replied' => '',
+        'has_replied' => 'Je hebt gereageerd op dit onderwerp',
         'latest_post' => ':when door :user',
         'latest_reply_by' => 'laatste bericht door :user',
         'new_topic' => 'Nieuw onderwerp',

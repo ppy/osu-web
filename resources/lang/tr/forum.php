@@ -6,15 +6,15 @@
 return [
     'pinned_topics' => 'Sabitlenmiş Konular',
     'slogan' => "yalnız başına oynamak tehlikeli.",
-    'subforums' => 'Alt Başlıklar',
+    'subforums' => 'Alt forumlar',
     'title' => 'osu! forumları',
 
     'covers' => [
         'edit' => 'Kapak resmini düzenle',
 
         'create' => [
-            '_' => 'Kapak fotoğrafı ekle',
-            'button' => 'Resim yükle',
+            '_' => 'Kapak resmi ekle',
+            'button' => 'Kapak resmi yükle',
             'info' => 'Kapak boyutları :dimensions olmalıdır. Görselleri yüklemek için buraya da sürükleyebilirsin.',
         ],
 
@@ -32,7 +32,7 @@ return [
         ],
 
         'topics' => [
-            'empty' => 'Başlık yok!',
+            'empty' => 'Konu yok!',
         ],
     ],
 
@@ -45,7 +45,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Gerçekten gönderiyi silmek istiyor musun?',
         'confirm_restore' => 'Gönderiyi geri yükle?',
-        'edited' => 'En son :user tarafından :when, toplamda :count defa düzenlendi.',
+        'edited' => 'En son :user tarafından :when, toplamda :count_delimited defa düzenlendi.|En son :user tarafından :when, toplamda :count_delimited defa düzenlendi.',
         'posted_at' => ':when gönderildi',
 
         'actions' => [
@@ -75,7 +75,7 @@ return [
     'topic' => [
         'deleted' => 'silinmiş konu',
         'go_to_latest' => 'son yazılan mesajı göster',
-        'has_replied' => '',
+        'has_replied' => 'Bu konuyu yanıtladınız',
         'latest_post' => ':user tarafından :when',
         'latest_reply_by' => 'son cevap :user tarafından',
         'new_topic' => 'Yeni konu aç',

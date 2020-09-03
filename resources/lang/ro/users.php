@@ -84,6 +84,7 @@ return [
         'failed' => 'Conectare incorectă',
         'forgot' => 'Ți-ai uitat parola?',
         'info' => 'Pentru a continua, vă rugam să vă autentificaţi',
+        'invalid_captcha' => '',
         'locked_ip' => 'adresa ta IP este blocată. Te rugăm să aștepți câteva minute.',
         'password' => 'Parolă',
         'register' => "Nu ai un cont osu!? Fă-ți unul nou",
@@ -186,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'de :artist',
-                'none' => 'Nici unul... încă.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -216,7 +216,6 @@ return [
                 'show_more' => 'vedeți mai multe evenimente',
             ],
             'historical' => [
-                'empty' => 'Nicio înregistrare de performanță. :(',
                 'title' => 'Istoric',
 
                 'monthly_playcounts' => [
@@ -303,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Descarcă replay-ul',
-                'empty' => 'Nicio performanță uimitoare nu a fost înregistrată încă. :(',
                 'not_ranked' => 'Numai beatmaps clasate acordă pp.',
                 'pp_weight' => 'ponderat :percentage',
                 'view_details' => 'Vezi detalii',

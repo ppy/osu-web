@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "vágjunk<br>bele!",
         'action' => 'osu! letöltése',
+
+        'help' => [
+            '_' => '',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'Windows rendszerre',
             'macos' => 'macOS rendszerre',

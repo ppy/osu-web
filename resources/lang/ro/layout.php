@@ -179,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Mi-am uitat detaliile de autentificare",
             'password' => 'parolă',

@@ -84,6 +84,7 @@ return [
         'failed' => 'ログインに失敗しました',
         'forgot' => 'パスワードを忘れましたか？',
         'info' => 'ログインして続行してください',
+        'invalid_captcha' => '',
         'locked_ip' => 'あなたのIPアドレスはロックされています。数分後もう一度お試しください。',
         'password' => 'パスワード',
         'register' => "osu!アカウントを持っていませんか？新しいアカウントを作るにはこちらから",
@@ -186,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'by :artist',
-                'none' => 'まだ、空っぽ。',
                 'title' => 'ビートマップ',
 
                 'favourite' => [
@@ -216,7 +216,6 @@ return [
                 'show_more' => '他のイベントを見る',
             ],
             'historical' => [
-                'empty' => 'パフォーマンスの記録がありません。',
                 'title' => '履歴',
 
                 'monthly_playcounts' => [
@@ -303,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'リプレイをダウンロード',
-                'empty' => 'まだ記録がありません！',
                 'not_ranked' => 'Rankedビートマップのみがppを与えます。',
                 'pp_weight' => '割合 :percentage',
                 'view_details' => '詳細の表示',

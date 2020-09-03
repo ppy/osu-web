@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Żaden z tych postów nie jest istotny',
         'notice' => 'Istnieją posty dotyczące :timestamp (:existing_timestamps). Sprawdź je przed opublikowaniem posta.',
+        'unsaved' => '',
     ],
 
     'reply' => [
@@ -64,7 +65,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => 'użyto :used z :max bloków',
         'go_to_parent' => 'Zobacz recenzję',
         'go_to_child' => 'Zobacz dyskusję',
         'validation' => [

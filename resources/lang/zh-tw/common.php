@@ -6,7 +6,7 @@
 return [
     'confirmation' => '確定？',
     'confirmation_unsaved' => '未被修改的將不會保存。你確定嗎？',
-    'saved' => '儲存',
+    'saved' => '已儲存',
 
     'array_and' => [
         'words_connector' => '，',

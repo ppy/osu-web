@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Ні адзін з допісаў не вырашае маю праблему',
         'notice' => 'Існуюць допісы між :timestamp (:existing_timestamps). Праверце іх перш, чым размяшчаць.',
+        'unsaved' => '',
     ],
 
     'reply' => [

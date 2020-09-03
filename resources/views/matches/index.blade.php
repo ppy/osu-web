@@ -10,10 +10,6 @@
 
 @section("script")
     @parent
-    <script id="json-match" type="application/json">
-        {!! json_encode($matchJson) !!}
-    </script>
-
     <script id="json-events" type="application/json">
         {!! json_encode($eventsJson) !!}
     </script>

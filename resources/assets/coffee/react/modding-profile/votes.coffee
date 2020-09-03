@@ -15,26 +15,20 @@ export class Votes extends React.Component
       h1 className: 'title title--page-extra',
         osu.trans("users.show.extra.votes.title_longer")
 
-      ['received', 'given'].map (direction) =>
-        [
+      for direction in ['received', 'given']
+        el React.Fragment, key: direction,
           h2
-            key: "#{direction}-title"
-            className: 'page-extra__subtitle',
-
+            className: 'title title--page-extra-small'
             osu.trans("users.show.extra.votes.#{direction}")
-
-          div
-            key: direction
-            className: 'modding-profile-list modding-profile-list--votes',
-
             if @props.votes[direction].length == 0
-              div className: 'modding-profile-list__empty', osu.trans('users.show.extra.none')
-            else
-              [
-                for vote in @props.votes[direction]
-                  @renderUser(@props.users[vote.user_id], vote.score, vote.count)
-              ]
-        ]
+              span className: 'title__count', osu.formatNumber(0)
+
+          if @props.votes[direction].length > 0
+            div
+              className: 'modding-profile-list modding-profile-list--votes'
+              for vote in @props.votes[direction]
+                @renderUser(@props.users[vote.user_id], vote.score, vote.count)
+
 
   renderUser: (user, score, count) =>
     bn = 'modding-profile-vote-card'

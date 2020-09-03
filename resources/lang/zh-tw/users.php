@@ -84,6 +84,7 @@ return [
         'failed' => '登入失敗',
         'forgot' => '忘記密碼？',
         'info' => '請先登入以繼續',
+        'invalid_captcha' => '',
         'locked_ip' => '您的 IP 位址已被鎖定。請稍候幾分鐘。',
         'password' => '密碼',
         'register' => "沒有 osu! 帳號嗎？現在就註冊一個吧！",
@@ -186,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => '作者：:artist',
-                'none' => '暫時沒有...',
                 'title' => '圖譜',
 
                 'favourite' => [
@@ -216,7 +216,6 @@ return [
                 'show_more' => '顯示更多活動',
             ],
             'historical' => [
-                'empty' => '尚無遊戲分數。:(',
                 'title' => '歷史記錄',
 
                 'monthly_playcounts' => [
@@ -281,7 +280,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '基於使用者對圖譜審核的貢獻量。請看 :link 以獲得更多信息。',
+                    '_' => '基於使用者對圖譜審核的貢獻量。請看 :link 以獲得更多資訊。',
                     'link' => '這個頁面',
                 ],
             ],
@@ -303,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => '下載重播',
-                'empty' => '尚未有好成績。 :(',
                 'not_ranked' => '僅被列入排名的圖譜才能獲得 pp。',
                 'pp_weight' => '權重 :percentage',
                 'view_details' => '',

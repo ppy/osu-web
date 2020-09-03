@@ -32,6 +32,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "",
             'limit_exceeded' => 'Kérlek várj egy keveset újabb szavazat leadása előtt',
             'owner' => "Nem szavazhatsz a saját posztodra.",
             'wrong_beatmapset_state' => 'Csak függő beatmap beszélgetéseken lehet szavazni.',
