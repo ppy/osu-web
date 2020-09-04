@@ -1,9 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatChannelJoinAction, ChatChannelPartAction } from 'actions/chat-actions';
+import { ChatChannelJoinAction, ChatChannelPartAction, ChatMessageAddAction } from 'actions/chat-actions';
 import { dispatch } from 'app-dispatcher';
 import { runInAction } from 'mobx';
+import Message from 'models/chat/message';
 
 // tslint:disable: max-classes-per-file
 
@@ -42,6 +43,10 @@ export function dispatchChatChannelEvent(json: ChatChannelEventJson) {
 
       case 'chat.channel.join':
         return dispatch(new ChatChannelJoinAction(data.channel_id, data.name, data.type, data.icon));
+
+      case 'chat.message.add':
+        const message = Message.fromJSON(json.data);
+        return dispatch(new ChatMessageAddAction(message));
     }
   });
 }

@@ -36,6 +36,7 @@ export default class Message {
       isAction: json.is_action,
       messageId: json.message_id,
       persisted: true,
+      sender: json.sender != null ? User.fromJSON(json.sender) : undefined,
       timestamp: json.timestamp,
       uuid: osu.uuid(),
     });

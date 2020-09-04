@@ -10,6 +10,7 @@ use App\Exceptions\API;
 use App\Jobs\Notifications\ChannelMessage;
 use App\Models\Match\Match;
 use App\Models\User;
+use App\Transformers\Chat\MessageTransformer;
 use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
 use Illuminate\Support\Str;
@@ -234,7 +235,14 @@ class Channel extends Model
 
         if ($this->isPM()) {
             $this->unhide();
-            (new ChannelMessage($message, $sender))->dispatch();
+
+            $notification = new ChannelMessage($message, $sender);
+            foreach ($notification->getReceiverIds() as $receiverId) {
+                // TODO: handle displaying channel message without including sender.
+                event(new UserActionEvent($receiverId, 'chat.message.add', json_item($message, 'Chat\Message', ['sender'])));
+            };
+
+            $notification->dispatch();
         }
 
         Datadog::increment('chat.channel.send', 1, ['target' => $this->type]);
