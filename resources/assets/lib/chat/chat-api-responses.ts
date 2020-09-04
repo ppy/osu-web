@@ -47,7 +47,7 @@ export interface MessageJSON {
   content: string;
   is_action: boolean;
   message_id: number;
-  sender: UserJSON;
+  sender?: UserJSON;
   sender_id: number;
   timestamp: string;
 }

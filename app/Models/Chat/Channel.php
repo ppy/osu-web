@@ -238,8 +238,7 @@ class Channel extends Model
 
             $notification = new ChannelMessage($message, $sender);
             foreach ($notification->getReceiverIds() as $receiverId) {
-                // TODO: handle displaying channel message without including sender.
-                event(new UserActionEvent($receiverId, 'chat.message.add', json_item($message, 'Chat\Message', ['sender'])));
+                event(new UserActionEvent($receiverId, 'chat.message.add', json_item($message, 'Chat\Message')));
             };
 
             $notification->dispatch();

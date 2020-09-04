@@ -37,8 +37,8 @@ export default class ChatOrchestrator implements DispatchListener {
 
     transaction(() => {
       messages.forEach((json: MessageJSON) => {
+        if (json.sender != null) this.rootDataStore.userStore.getOrCreate(json.sender_id, json.sender);
         const newMessage = Message.fromJSON(json);
-        newMessage.sender = this.rootDataStore.userStore.getOrCreate(json.sender_id, json.sender);
         newMessages.push(newMessage);
       });
 

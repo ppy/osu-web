@@ -6,6 +6,7 @@ import * as _ from 'lodash';
 import { action, computed, observable } from 'mobx';
 import User from 'models/user';
 import * as moment from 'moment';
+import core from 'osu-core-singleton';
 
 export default class Message {
   @observable channelId: number = -1;
@@ -14,18 +15,18 @@ export default class Message {
   @observable isAction: boolean = false;
   @observable messageId: number | string = -1;
   @observable persisted: boolean = false;
-  @observable sender: User;
+  @observable senderId: number = -1;
   @observable timestamp: string = moment().toISOString();
   @observable uuid: string = osu.uuid();
 
   @computed
-  get parsedContent(): string {
-    return osu.linkify(_.escape(this.content), true);
+  get sender() {
+    return core.dataStore.userStore.get(this.senderId) ?? new User(-1);
   }
 
-  constructor() {
-    this.uuid = osu.uuid();
-    this.sender = new User(-1); // placeholder user
+  @computed
+  get parsedContent(): string {
+    return osu.linkify(_.escape(this.content), true);
   }
 
   static fromJSON(json: MessageJSON): Message {
@@ -36,7 +37,7 @@ export default class Message {
       isAction: json.is_action,
       messageId: json.message_id,
       persisted: true,
-      sender: json.sender != null ? User.fromJSON(json.sender) : undefined,
+      senderId: json.sender_id,
       timestamp: json.timestamp,
       uuid: osu.uuid(),
     });

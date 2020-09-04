@@ -65,8 +65,8 @@ export default class ChatWorker implements DispatchListener {
 
         transaction(() => {
           updateJson.messages.forEach((message: MessageJSON) => {
+            if (message.sender != null) this.rootDataStore.userStore.getOrCreate(message.sender_id, message.sender);
             const newMessage = Message.fromJSON(message);
-            newMessage.sender = this.rootDataStore.userStore.getOrCreate(message.sender_id, message.sender);
             dispatch(new ChatMessageAddAction(newMessage));
           });
 
