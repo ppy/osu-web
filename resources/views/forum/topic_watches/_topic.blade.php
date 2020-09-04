@@ -4,4 +4,5 @@
 --}}
 @include('forum.forums._topic', [
     'buttons' => 'forum.topic_watches._topic_buttons',
+    'includeForumName' => true,
 ])
