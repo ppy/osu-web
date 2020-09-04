@@ -13,7 +13,6 @@ use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
-use App\Models\Notification;
 use App\Models\User;
 use DB;
 
