@@ -48,17 +48,4 @@ export default class Message {
 
     return this;
   }
-
-  @action
-  update(message: Message): Message {
-    this.messageId = message.messageId;
-    this.channelId = message.channelId;
-    this.content = message.content;
-    this.timestamp = message.timestamp;
-    this.isAction = message.isAction;
-    this.errored = message.errored;
-    this.sender = message.sender;
-
-    return this;
-  }
 }

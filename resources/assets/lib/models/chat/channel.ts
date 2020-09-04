@@ -138,7 +138,6 @@ export default class Channel {
   updateMessage(message: Message) {
     const messageObject = _.find(this.messages, {uuid: message.uuid});
     if (messageObject) {
-      messageObject.update(message);
       if (messageObject.errored) {
         messageObject.messageId = messageObject.uuid; // prevent from being culled by uniq sort thing
       } else {
