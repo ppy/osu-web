@@ -122,6 +122,15 @@ class ChannelsController extends Controller
         return response([], 204);
     }
 
+    public function show($channelId)
+    {
+        $channel = Channel::findOrFail($channelId);
+
+        priv_check('ChatChannelShow', $channel)->ensureCan();
+
+        return ['channel' => json_item($channel, 'Chat\Channel')];
+    }
+
     /**
      * Create Channel
      *

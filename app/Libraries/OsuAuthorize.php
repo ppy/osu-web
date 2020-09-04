@@ -915,6 +915,30 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @param Channel $channel
+     * @return string
+     * @throws AuthorizationException
+     */
+    public function checkChatChannelShow(?User $user, Channel $channel): string
+    {
+        $prefix = 'chat.';
+
+        $this->ensureLoggedIn($user);
+
+        if ($channel->type === Channel::TYPES['public']) {
+            return 'ok';
+        }
+
+        // TODO: was there another permission to check?
+        if ($channel->hasUser($user)) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
+    /**
+     * @param User|null $user
      * @param Comment $comment
      * @return string
      * @throws AuthorizationException
