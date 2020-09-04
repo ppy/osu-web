@@ -129,22 +129,15 @@ export default class ChatWorker implements DispatchListener {
           });
         })
         .catch(() => {
-          message.errored = true;
-          dispatch(new ChatMessageUpdateAction(message));
+          dispatch(new ChatMessageUpdateAction(message, null));
         });
     } else {
       this.api.sendMessage(channelId, message.content, message.isAction)
         .then((updateJson) => {
-          if (updateJson) {
-            message.messageId = updateJson.message_id;
-          } else {
-            message.errored = true;
-          }
-          dispatch(new ChatMessageUpdateAction(message));
+          dispatch(new ChatMessageUpdateAction(message, updateJson));
         })
         .catch(() => {
-          message.errored = true;
-          dispatch(new ChatMessageUpdateAction(message));
+          dispatch(new ChatMessageUpdateAction(message, null));
         });
     }
   }

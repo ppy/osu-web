@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChannelJSON, ChannelJsonExtended, ChannelType } from 'chat/chat-api-responses';
+import { ChannelJSON, ChannelJsonExtended, ChannelType, MessageJSON } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
 import { action, computed, observable, transaction } from 'mobx';
 import User from 'models/user';
@@ -135,15 +135,14 @@ export default class Channel {
   }
 
   @action
-  updateMessage(message: Message) {
-    const messageObject = _.find(this.messages, {uuid: message.uuid});
-    if (messageObject) {
-      if (messageObject.errored) {
-        messageObject.messageId = messageObject.uuid; // prevent from being culled by uniq sort thing
-      } else {
-        messageObject.persist();
-      }
+  updateMessage(message: Message, json: MessageJSON | null) {
+    if (json != null) {
+      message.messageId = json.message_id;
+      message.persist();
     } else {
+      message.messageId = message.uuid; // prevent from being culled by uniq sort thing
+      message.errored = true;
+
       // delay and retry?
     }
   }
