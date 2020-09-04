@@ -178,7 +178,7 @@ class MessagesController extends BaseController
 
         return json_item(
             $message,
-            'Chat/Message',
+            'Chat\Message',
             ['sender']
         );
     }
