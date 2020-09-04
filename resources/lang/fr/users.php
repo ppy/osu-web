@@ -84,6 +84,7 @@ return [
         'failed' => 'Identifiants incorrects',
         'forgot' => 'Mot de passe oublié ?',
         'info' => 'Veuillez vous connecter pour continuer',
+        'invalid_captcha' => 'Captcha invalide, rafraîchissez la page et retentez.',
         'locked_ip' => 'votre adresse IP est bloquée. Merci d\'attendre quelques minutes.',
         'password' => 'Mot de passe',
         'register' => "Vous n'avez pas de compte osu! ? Inscrivez-vous maintenant ici",
@@ -186,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'par :artist',
-                'none' => 'Aucune... pour le moment.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -216,7 +216,6 @@ return [
                 'show_more' => 'voir plus d\'événements',
             ],
             'historical' => [
-                'empty' => 'Aucune performance enregistrée. :(',
                 'title' => 'Historique',
 
                 'monthly_playcounts' => [
@@ -303,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Télécharger le replay',
-                'empty' => 'Pas de première place. :(',
                 'not_ranked' => 'Seules les beatmaps classées accordent des pp.',
                 'pp_weight' => 'pondéré :percentage',
                 'view_details' => 'Voir les détails',

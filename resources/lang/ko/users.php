@@ -84,6 +84,7 @@ return [
         'failed' => '계정 정보가 올바르지 않습니다',
         'forgot' => '비밀번호를 잊어버리셨나요?',
         'info' => '계속 하시려면 로그인 해주세요',
+        'invalid_captcha' => 'Captcha가 올바르지 않습니다. 페이지를 새로 고친 후 다시 시도해주세요.',
         'locked_ip' => 'IP 주소가 잠겨있습니다. 잠시 기다려주세요.',
         'password' => 'Password',
         'register' => "osu!계정이 없으신가요? 새로 하나 만들어보세요",
@@ -186,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'by :artist',
-                'none' => '아직... 없네요...',
                 'title' => '비트맵',
 
                 'favourite' => [
@@ -216,7 +216,6 @@ return [
                 'show_more' => '이벤트 더 보기',
             ],
             'historical' => [
-                'empty' => '기록된 플레이가 없습니다. :(',
                 'title' => '통계',
 
                 'monthly_playcounts' => [
@@ -303,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => '리플레이 다운로드',
-                'empty' => '아직 이렇다 할 플레이 기록이 없네요. :(',
                 'not_ranked' => '랭크된 비트맵만 pp를 줍니다.',
                 'pp_weight' => '가중치 :percentage',
                 'view_details' => '자세히 보기',

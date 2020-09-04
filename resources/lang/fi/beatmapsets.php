@@ -93,7 +93,6 @@ return [
             'source' => 'Lähde',
             'success-rate' => 'Läpäisyprosentti',
             'tags' => 'Tunnisteet',
-            'unranked' => 'Beatmap ei ole hyväksytyssä tilassa',
         ],
 
         'scoreboard' => [

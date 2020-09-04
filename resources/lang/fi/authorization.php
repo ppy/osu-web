@@ -32,6 +32,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "",
             'limit_exceeded' => 'Odota hetki ennen uusien äänien antamista',
             'owner' => "Omia keskusteluja ei voi äänestää.",
             'wrong_beatmapset_state' => 'Voit äänestää vain vireillä olevien beatmappien keskusteluissa.',

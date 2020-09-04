@@ -49,8 +49,9 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'terima notifikasi ketika terdapat suatu masalah baru pada beatmap yang berstatus Qualified pada mode',
-        'beatmapset_disqualify' => 'terima notifikasi ketika terdapat beatmap yang didiskualifikasi pada mode',
+        'beatmapset_discussion_qualified_problem' => 'terima notifikasi pada saat terdapat masalah baru pada beatmap yang berstatus Qualified pada mode',
+        'beatmapset_disqualify' => 'terima notifikasi pada saat terdapat beatmap yang didiskualifikasi pada mode',
+        'comment_reply' => 'terima notifikasi pada saat terdapat balasan baru pada komentar yang Anda kirim',
         'title' => 'Notifikasi',
         'topic_auto_subscribe' => 'hidupkan notifikasi secara otomatis di topik forum baru yang Anda buat',
 
@@ -62,7 +63,7 @@ return [
             'forum_topic_reply' => 'balasan pada topik',
             'mail' => 'email',
             'push' => 'web',
-            'user_achievement_unlock' => 'medali terbuka',
+            'user_achievement_unlock' => 'terbukanya medali baru',
         ],
     ],
 

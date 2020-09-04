@@ -115,7 +115,7 @@ class Room extends Model
 
     public function userHighScores()
     {
-        return $this->hasMany(RoomUserHighScore::class);
+        return $this->hasMany(UserScoreAggregate::class);
     }
 
     public function scopeActive($query)
@@ -284,14 +284,7 @@ class Room extends Model
 
     public function topScores()
     {
-        return UserScoreAggregate::where('room_id', $this->getKey())
-            ->where('completed', '>', 0)
-            ->whereHas('user', function ($userQuery) {
-                $userQuery->default();
-            })
-            ->orderBy('total_score', 'DESC')
-            ->orderBy('last_score_id', 'ASC')
-            ->with('user.country');
+        return $this->userHighScores()->forRanking()->with('user.country');
     }
 
     private function assertValidCompletePlay()

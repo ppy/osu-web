@@ -43,7 +43,7 @@ export class Historical extends React.PureComponent
       el ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       if @hasMonthlyPlaycounts()
-        div null,
+        el React.Fragment, null,
           h3
             className: 'title title--page-extra-small'
             osu.trans('users.show.extra.historical.monthly_playcounts.title')
@@ -55,9 +55,11 @@ export class Historical extends React.PureComponent
       h3
         className: 'title title--page-extra-small'
         osu.trans('users.show.extra.historical.most_played.title')
+        if @props.beatmapPlaycounts?.length == 0
+          span className: 'title__count', osu.formatNumber(0)
 
-      if @props.beatmapPlaycounts?.length
-        [
+      if (@props.beatmapPlaycounts?.length ? 0) != 0
+        el React.Fragment, null,
           for playcount in @props.beatmapPlaycounts
             el BeatmapPlaycount,
               key: playcount.beatmap.id
@@ -74,17 +76,15 @@ export class Historical extends React.PureComponent
               url: laroute.route 'users.beatmapsets',
                   user: @props.user.id
                   type: 'most_played'
-        ]
-
-      else
-        p null, osu.trans('users.show.extra.historical.empty')
 
       h3
         className: 'title title--page-extra-small'
         osu.trans('users.show.extra.historical.recent_plays.title')
+        if @props.scoresRecent?.length == 0
+          span className: 'title__count', osu.formatNumber(0)
 
-      if @props.scoresRecent?.length
-        [
+      if (@props.scoresRecent?.length ? 0) != 0
+        el React.Fragment, null,
           el PlayDetailList, key: 'play-detail-list', scores: @props.scoresRecent
 
           el ShowMoreLink,
@@ -99,13 +99,9 @@ export class Historical extends React.PureComponent
                   user: @props.user.id
                   type: 'recent'
                   mode: @props.currentMode
-        ]
-
-      else
-        p null, osu.trans('users.show.extra.historical.empty')
 
       if @hasReplaysWatchedCounts()
-        div null,
+        el React.Fragment, null,
           h3
             className: 'title title--page-extra-small'
             osu.trans('users.show.extra.historical.replays_watched_counts.title')

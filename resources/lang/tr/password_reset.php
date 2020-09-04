@@ -12,8 +12,8 @@ return [
     ],
 
     'error' => [
-        'contact_support' => 'Lütfen hesabı kurtarmak için desteğe başvurun.',
-        'is_privileged' => 'Peppy\'e sorsana lulz.',
+        'contact_support' => 'Hesabınızı kurtarmak için lütfen destek ile iletişime geçin.',
+        'is_privileged' => 'Hesabınızı kurtarmak için lütfen üst düzey bir yönetici ile iletişime geçin.',
         'missing_key' => 'Gerekli.',
         'too_many_tries' => 'Çok fazla başarısız deneme.',
         'user_not_found' => 'İstenen kullanıcı mevcut değil.',

@@ -93,7 +93,6 @@ return [
             'source' => 'ソース',
             'success-rate' => 'クリア率',
             'tags' => 'タグ',
-            'unranked' => 'Unrankedビートマップ',
         ],
 
         'scoreboard' => [

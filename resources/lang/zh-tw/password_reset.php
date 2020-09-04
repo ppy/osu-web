@@ -12,7 +12,7 @@ return [
     ],
 
     'error' => [
-        'contact_support' => '請聯繫支持團隊以找回帳戶。',
+        'contact_support' => '請聯繫支援團隊以找回帳戶。',
         'is_privileged' => '聯繫 peppy（笑）',
         'missing_key' => '必填',
         'too_many_tries' => '重試次數過多',

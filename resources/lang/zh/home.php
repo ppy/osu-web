@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "让我们<br>开始吧！",
         'action' => '下载 osu!',
+
+        'help' => [
+            '_' => '如果您在开始游戏或注册帐户时遇到问题，请 :help_forum_link 或 :support_button。',
+            'help_forum_link' => '查看帮助论坛',
+            'support_button' => '联系支持团队',
+        ],
+
         'os' => [
             'windows' => 'Windows 版',
             'macos' => 'macOS 版',
