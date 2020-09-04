@@ -112,11 +112,7 @@ export class Links extends React.PureComponent
 
     componentClass = "#{bn}__value"
 
-    if url?
-      component = a
-      componentClass += " #{bn}__value--link"
-    else
-      component = span
+    component = if url? then a else span
 
     div
       className: "#{bn}__item"

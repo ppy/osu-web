@@ -11,8 +11,7 @@
         {!! trans('livestreams.top-headers.description', [
             'link' => link_to(
                 wiki_url('Guides/Live_Streaming_osu!'),
-                trans('livestreams.top-headers.link'),
-                ['class' => 'link link--default']
+                trans('livestreams.top-headers.link')
             ),
         ]) !!}
     </div>
