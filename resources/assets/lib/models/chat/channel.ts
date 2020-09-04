@@ -7,6 +7,8 @@ import { action, computed, observable, transaction } from 'mobx';
 import User from 'models/user';
 import Message from './message';
 
+export const defaultIcon = '/images/layout/chat/channel-default.png';
+
 export default class Channel {
   @observable channelId: number;
   @observable description?: string;
@@ -158,7 +160,7 @@ export default class Channel {
     this.name = json.name;
     this.description = json.description;
     this.type = json.type;
-    this.icon = json?.icon ?? '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
+    this.icon = json?.icon ?? defaultIcon; // TODO: update with channel-specific icons?
     this.moderated = json.moderated;
     this.users = json.users;
 
