@@ -52,17 +52,6 @@ function blade_safe($html)
     return new Illuminate\Support\HtmlString($html);
 }
 
-function broadcast_notification($name, ...$arguments)
-{
-    try {
-        $class = App\Jobs\Notifications\BroadcastNotificationBase::getNotificationClass($name);
-
-        return (new $class(...$arguments))->dispatch();
-    } catch (App\Exceptions\InvalidNotificationException $e) {
-        log_error($e);
-    }
-}
-
 /**
  * Like cache_remember_with_fallback but with a mutex that only allows a single process to run the callback.
  */
