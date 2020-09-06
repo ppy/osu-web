@@ -28,7 +28,7 @@ class SpotlightsController extends Controller
      *
      * ### Response Format
      *
-     * Returns [Spotlight Response](#spotlight-response)
+     * Returns [Spotlights](#spotlights)
      *
      * @authenticated
      */
