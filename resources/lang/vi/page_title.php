@@ -128,7 +128,8 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => '',
+            '_' => 'xếp hạng
+',
         ],
     ],
     'store' => [

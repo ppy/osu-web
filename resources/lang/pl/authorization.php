@@ -32,6 +32,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "",
             'limit_exceeded' => 'Zaczekaj, zanim zagłosujesz ponownie',
             'owner' => "Nie możesz głosować we własnej dyskusji!",
             'wrong_beatmapset_state' => 'Możesz głosować tylko przy oczekujących beatmapach.',

@@ -35,7 +35,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'danh sách',
     ],
 
     'placeholder' => [
@@ -45,6 +45,6 @@ return [
     ],
 
     'show' => [
-        'nav_title' => '',
+        'nav_title' => 'bình luận',
     ],
 ];

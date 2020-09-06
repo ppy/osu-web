@@ -84,6 +84,7 @@ return [
         'failed' => 'Verkeerde login',
         'forgot' => 'Wachtwoord vergeten?',
         'info' => 'Log in om verder te gaan',
+        'invalid_captcha' => 'Captcha ongeldig, vernieuw de pagina en probeer het opnieuw.',
         'locked_ip' => 'je IP adres is vergrendeld. Wacht enkele minuten.',
         'password' => 'Wachtwoord',
         'register' => "Heb je geen osu! account? Maak een nieuwe",
@@ -186,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'door :artist',
-                'none' => 'Nog geen...',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -216,7 +216,6 @@ return [
                 'show_more' => 'meer gebeurtenissen zien',
             ],
             'historical' => [
-                'empty' => 'Geen prestatiegegevens. :(',
                 'title' => 'Historisch',
 
                 'monthly_playcounts' => [
@@ -303,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Download Replay',
-                'empty' => 'Nog geen geweldige prestatiegegevens. :(',
                 'not_ranked' => 'Enkel gerankte beatmaps geven pp.',
                 'pp_weight' => 'gewogen :percentage',
                 'view_details' => 'Details Bekijken',

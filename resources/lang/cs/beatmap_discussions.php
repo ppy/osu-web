@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Žádný z příspěvků neřeší mé obavy',
         'notice' => 'Poblíž :timestamp (:existing_timestamps) se už nějaké příspěvky nacházejí. Prosím zkontroluj je před zveřejněním tvého přispěvku.',
+        'unsaved' => '',
     ],
 
     'reply' => [

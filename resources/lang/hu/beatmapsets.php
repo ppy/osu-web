@@ -93,7 +93,6 @@ return [
             'source' => 'Forrás',
             'success-rate' => 'Teljesítési arány',
             'tags' => 'Címkék',
-            'unranked' => 'Rangsorolatlan beatmap',
         ],
 
         'scoreboard' => [

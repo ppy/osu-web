@@ -21,7 +21,7 @@ return [
             'full_bn_required_hybrid' => 'Bạn phải là người đề cử beatmap để đề cử các set beatmap có nhiều hơn một chế độ chơi.',
             'incorrect_state' => 'Có lỗi khi thực hiện, hãy thử tải lại trang.',
             'owner' => "Bạn không thể đề cử beatmap của bạn.",
-            'set_metadata' => '',
+            'set_metadata' => 'Bạn phải chọn thể loại nhạc và ngôn ngữ trước khi nominating.',
         ],
         'resolve' => [
             'not_owner' => 'Chỉ có người mở thread và chủ beatmap mới có thể đánh dấu cuộc thảo luận là đã được giải quyết.',
@@ -32,6 +32,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "",
             'limit_exceeded' => 'Vui lòng đợi một lúc trước khi bình chọn thêm',
             'owner' => "Không thể bình chọn cuộc thảo luận của bạn.",
             'wrong_beatmapset_state' => 'Chỉ có thể bình chọn cuộc thảo luận của beatmap ở trạng thái pending.',
@@ -58,7 +59,7 @@ return [
 
     'beatmapset' => [
         'metadata' => [
-            'nominated' => '',
+            'nominated' => 'Bạn không thể thay đổi metadata của map đã được nominated. Liên hệ với một BN hoặc NAT nếu bạn thấy metadata bị sai.',
         ],
     ],
 

@@ -75,7 +75,7 @@ return [
     'topic' => [
         'deleted' => 'удалённая тема',
         'go_to_latest' => 'перейти к последнему ответу',
-        'has_replied' => '',
+        'has_replied' => 'Вы отвечали на эту тему',
         'latest_post' => ':when от :user',
         'latest_reply_by' => 'последний ответ от :user',
         'new_topic' => 'Создать новую тему',

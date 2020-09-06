@@ -215,3 +215,4 @@ In addition, following attributes are always included:
 | kudosu          |
 | top_ranks       |
 | medals          |
+

@@ -25,7 +25,7 @@ return [
     'show' => [
         'banner' => '贊助您的隊伍',
         'entered' => '你已經報名這次比賽。<br><br>請注意，這不表示你已經被分組。<br><br>比賽開始前你將收到郵件通知，所以請確保你的 osu! 帳號的email可以收到信件！',
-        'info_page' => '訊息頁',
+        'info_page' => '資訊頁',
         'login_to_register' => '請 :login 以查看報名細節！',
         'not_yet_entered' => '你還沒有報名這次比賽。',
         'rank_too_low' => '抱歉, 您的排名不符合這次比賽的要求!',
@@ -43,9 +43,9 @@ return [
 
         'state' => [
             'before_registration' => '這次比賽還沒開放報名。',
-            'ended' => '本次比賽已結束，請查看訊息頁面以取得比賽結果',
-            'registration_closed' => '本次比賽已停止報名，請查看訊息頁面以取得最新消息',
-            'running' => '本次比赛正在進行。查看訊息頁面以取得賽況。',
+            'ended' => '本次比賽已結束，請查看資訊頁面以取得比賽結果。',
+            'registration_closed' => '本次比賽已停止報名，請查看資訊頁面以取得最新消息。',
+            'running' => '本次比賽正在進行。查看資訊頁面以取得賽況。',
         ],
     ],
     'tournament_period' => ':start 到 :end',

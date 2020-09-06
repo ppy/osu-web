@@ -12,6 +12,7 @@
   "is_supporter": true
 }
 ```
+
 Mainly used for embedding in certain responses to save additional api lookups.
 
 Field           | Type                      | Description
@@ -102,3 +103,4 @@ awarded_at  | Timestamp | |
 description | string    | |
 image_url   | string    | |
 url         | string    | |
+
