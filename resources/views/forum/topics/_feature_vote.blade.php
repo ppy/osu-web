@@ -6,7 +6,7 @@
     <div class="forum-topic-feature-vote__info">
         {!! trans('forum.topics.show.feature_vote.info._', [
             'feature_request' => '<strong>'.trans('forum.topics.show.feature_vote.info.feature_request').'</strong>',
-            'supporters' => link_to(route('support-the-game'), trans('forum.topics.show.feature_vote.info.supporters'), ['class' => 'link link--default']),
+            'supporters' => link_to(route('support-the-game'), trans('forum.topics.show.feature_vote.info.supporters')),
         ]) !!}
     </div>
 
