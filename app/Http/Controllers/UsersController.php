@@ -125,7 +125,7 @@ class UsersController extends Controller
             return error_popup('Wrong client', 403);
         }
 
-        $params = get_params(request(), 'user', ['username', 'user_email', 'password']);
+        $params = get_params(request()->all(), 'user', ['username', 'user_email', 'password']);
         $countryCode = request_country();
         $country = Country::find($countryCode);
         $params['user_ip'] = $ip;

@@ -43,7 +43,7 @@ class BeatmapDiscussionPostsController extends Controller
     public function index()
     {
         $isModerator = priv_check('BeatmapDiscussionModerate')->can();
-        $params = request();
+        $params = request()->all();
         $params['is_moderator'] = $isModerator;
 
         if (!$isModerator) {
@@ -94,7 +94,7 @@ class BeatmapDiscussionPostsController extends Controller
             priv_check('BeatmapDiscussionStore', $discussion)->ensureCan();
         }
 
-        $postParams = get_params(request(), 'beatmap_discussion_post', ['message']);
+        $postParams = get_params(request()->all(), 'beatmap_discussion_post', ['message']);
         $postParams['user_id'] = Auth::user()->user_id;
         $post = new BeatmapDiscussionPost($postParams);
         $post->beatmapDiscussion()->associate($discussion);
@@ -197,7 +197,7 @@ class BeatmapDiscussionPostsController extends Controller
 
         priv_check('BeatmapDiscussionPostEdit', $post)->ensureCan();
 
-        $params = get_params(request(), 'beatmap_discussion_post', ['message']);
+        $params = get_params(request()->all(), 'beatmap_discussion_post', ['message']);
         $params['last_editor_id'] = Auth::user()->user_id;
 
         if ($post->beatmapDiscussion->message_type === 'review' && $post->isFirstPost()) {
