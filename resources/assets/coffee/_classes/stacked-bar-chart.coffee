@@ -37,7 +37,7 @@ class @StackedBarChart
           value: y
           height: if previousData? then previousData.value + previousData.height else 0
 
-    @max = Math.max(1, _.map(@data, (m) -> _.sumBy(m, 'value'))...)
+    @max = d3.max _.map @data, (m) -> _.sumBy m, 'value'
 
     @resize()
 
@@ -56,7 +56,7 @@ class @StackedBarChart
 
     @options.scales.y
       .range [0, @height]
-      .domain [0, @max]
+      .domain [0, Math.max(@max, 1)]
 
 
   setSvgSize: ->
