@@ -32,6 +32,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "봇이 만든 토론에는 투표할 수 없습니다.",
             'limit_exceeded' => '투표를 더 하기 전에 조금 기다려주세요',
             'owner' => "자신이 시작한 토론에는 투표할 수 없습니다.",
             'wrong_beatmapset_state' => 'Pending인 비트맵의 토론에만 투표할 수 있습니다.',

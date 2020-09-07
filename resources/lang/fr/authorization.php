@@ -32,6 +32,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "Vous ne pouvez pas voter sur une discussion créée par un bot",
             'limit_exceeded' => 'Veuillez attendre un peu avant d\'envoyer de nouveaux votes',
             'owner' => "Vous ne pouvez pas voter pour votre propre discussion.",
             'wrong_beatmapset_state' => 'Vous ne pouvez voter que sur les discussions des beatmaps en attente.',

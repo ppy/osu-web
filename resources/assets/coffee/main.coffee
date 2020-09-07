@@ -38,6 +38,7 @@ $(document).on 'turbolinks:load', ->
 @accountEditBlocklist ?= new AccountEditBlocklist
 @bbcodePreview ?= new BbcodePreview
 @beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
+@captcha ?= new _exported.Captcha
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
 @clickMenu ?= new _exported.ClickMenu

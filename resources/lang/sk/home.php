@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "poďme začať!",
         'action' => 'Sťahovať!',
+
+        'help' => [
+            '_' => '',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'pre Windows',
             'macos' => 'pre macOS',

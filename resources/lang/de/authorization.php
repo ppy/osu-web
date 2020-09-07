@@ -32,6 +32,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "Kann nicht über vom Bot gestartete Diskussion abstimmen",
             'limit_exceeded' => 'Bitte warte eine Weile, bevor du mehr Stimmen abgibst',
             'owner' => "Man kann nicht in der eigenen Diskussion abstimmen!",
             'wrong_beatmapset_state' => 'Abstimmung nur in Diskussion von Pending Beatmaps möglich.',

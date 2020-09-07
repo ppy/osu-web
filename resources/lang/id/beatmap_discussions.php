@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Tidak ada postingan yang membahas masalah saya',
         'notice' => 'Terdapat postingan pada :timestamp (:existing_timestamps). Silakan periksa sebelum memposting.',
+        'unsaved' => ':count pada kajian ini',
     ],
 
     'reply' => [
@@ -64,12 +65,12 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
-        'go_to_parent' => 'Lihat Ulasan',
+        'block_count' => ':used / :max blok telah dipergunakan',
+        'go_to_parent' => 'Lihat Kajian',
         'go_to_child' => 'Lihat Topik Diskusi',
         'validation' => [
-            'block_too_large' => 'masing-masing poin yang diulas terbatas pada :limit karakter',
-            'external_references' => 'ulasan ini mengandung satu atau lebih poin yang mengacu pada isu-isu yang tidak berasal dari beatmap ini',
+            'block_too_large' => 'masing-masing poin yang dikaji terbatas pada :limit karakter',
+            'external_references' => 'kajian ini mengandung satu atau lebih poin yang mengacu pada isu-isu yang tidak berasal dari beatmap ini',
             'invalid_block_type' => 'tipe blok tidak sah',
             'invalid_document' => 'kajian tidak sah',
             'minimum_issues' => 'kajian harus tersusun atas setidaknya :count isu|kajian harus tersusun atas setidaknya :count isu',

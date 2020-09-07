@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+use App\Models\LoginAttempt;
+
 /*
  * Like array_search but returns null if not found instead of false.
  * Strict mode only.
@@ -156,6 +158,27 @@ function cache_expire_with_fallback(string $key, int $duration = 2592000)
 function cache_forget_with_fallback($key)
 {
     return Cache::forget("{$key}:with_fallback");
+}
+
+function captcha_enabled()
+{
+    return config('captcha.sitekey') !== '' && config('captcha.secret') !== '';
+}
+
+function captcha_triggered()
+{
+    if (!captcha_enabled()) {
+        return false;
+    }
+
+    if (config('captcha.threshold') === 0) {
+        $triggered = true;
+    } else {
+        $loginAttempts = LoginAttempt::find(request()->getClientIp());
+        $triggered = $loginAttempts && $loginAttempts->failed_attempts >= config('captcha.threshold');
+    }
+
+    return $triggered;
 }
 
 function class_with_modifiers(string $className, ?array $modifiers = null)

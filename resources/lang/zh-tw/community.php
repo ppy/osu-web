@@ -12,7 +12,7 @@ return [
             'instructions' => '點擊愛心前往 osu! 商店',
         ],
         'why-support' => [
-            'title' => '我為什麼要支持osu!? 錢都花到哪兒了?',
+            'title' => '我為什麼要支持 osu! ？錢都花到哪兒了？',
 
             'team' => [
                 'title' => '支持團隊',
@@ -138,7 +138,7 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => '感謝您一直以來的支持！你已經捐贈了 :dollars 並購買了 :tags 次贊助者標籤！',
+            'contribution' => '感謝您一直以來的支持！您已經捐贈了 :dollars 並購買了 :tags 次贊助者標籤！',
             'gifted' => "您已經捐贈了 :giftedTags 次贊助者標籤（花費了 :giftedDollars ），真慷慨啊！",
             'not_yet' => "您還沒有贊助者標籤 :(",
             'valid_until' => '您的贊助者標籤將在 :date 到期',

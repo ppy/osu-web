@@ -8,6 +8,7 @@ import { DetailMobile } from './detail-mobile'
 import { GameModeSwitcher } from './game-mode-switcher'
 import { HeaderInfo } from './header-info'
 import { Links } from './links'
+import { RankCount } from './rank-count'
 import { Stats } from './stats'
 import * as React from 'react'
 import HeaderV4 from 'header-v4'
@@ -79,9 +80,12 @@ export class Header extends React.Component
                 el DetailMobile,
                   stats: @props.stats
                   userAchievements: @props.userAchievements
-                  rankHistory: @props.user.rankHistory
+                  rankHistory: @props.user.rank_history
 
                 el Stats, stats: @props.stats
+
+                div className: 'profile-header__rank-count-mobile',
+                  el RankCount, stats: @props.stats
 
           if @props.user.is_bot
             el DetailBot, user: @props.user

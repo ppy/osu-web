@@ -13,7 +13,6 @@ class BeatmapCompactTransformer extends TransformerAbstract
     protected $availableIncludes = [
         'beatmapset',
         'checksum',
-        'scoresBest',
         'failtimes',
         'max_combo',
     ];
@@ -69,17 +68,5 @@ class BeatmapCompactTransformer extends TransformerAbstract
     public function includeMaxCombo(Beatmap $beatmap)
     {
         return $this->primitive($beatmap->maxCombo());
-    }
-
-    public function includeScoresBest(Beatmap $beatmap)
-    {
-        $scores = $beatmap
-            ->scoresBest()
-            ->default()
-            ->visibleUsers()
-            ->limit(config('osu.beatmaps.max-scores'))
-            ->get();
-
-        return $this->collection($scores, new ScoreTransformer);
     }
 }

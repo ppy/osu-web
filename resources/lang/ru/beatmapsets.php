@@ -93,7 +93,6 @@ return [
             'source' => 'Источник',
             'success-rate' => 'Шанс успеха',
             'tags' => 'Теги',
-            'unranked' => 'Безрейтинговая карта',
         ],
 
         'scoreboard' => [

@@ -51,6 +51,7 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'ได้รับการแจ้งเตือนเกียวกับปัญหาของ Qualified beatmaps กับโหมดต่อไปนี้',
         'beatmapset_disqualify' => 'ได้รับการแจ้งเตือนเมื่อบีทแมพในโหมดที่ท่านเลือกถูกตัดสิทธิ์',
+        'comment_reply' => '',
         'title' => 'การแจ้งเตือน',
         'topic_auto_subscribe' => 'เปิดการแจ้งเตือนอัตโนมัติในกระทู้ที่คุณสร้างขึ้น',
 
@@ -76,7 +77,7 @@ return [
         'title' => 'ตัวเลือก',
 
         'beatmapset_download' => [
-            '_' => 'ประเภทการดาวน์โหลด Beatmap เริ่มต้น',
+            '_' => 'ประเภทการดาวน์โหลดบีทแมพเริ่มต้น',
             'all' => 'พร้อมวิดีโอ ถ้าใช้ได้',
             'no_video' => 'โดยที่ไม่มีวิดีโอ',
             'direct' => 'เปิดใน osu!direct',

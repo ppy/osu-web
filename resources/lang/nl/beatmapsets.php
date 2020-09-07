@@ -93,7 +93,6 @@ return [
             'source' => 'Bron',
             'success-rate' => 'Slagingspercentage',
             'tags' => 'Labels',
-            'unranked' => 'Unranked beatmap',
         ],
 
         'scoreboard' => [

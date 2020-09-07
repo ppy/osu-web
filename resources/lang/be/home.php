@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "давай<br>распачнем!",
         'action' => 'Спампаваць osu!',
+
+        'help' => [
+            '_' => '',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'для Windows',
             'macos' => 'для macOS',

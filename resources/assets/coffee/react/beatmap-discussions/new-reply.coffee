@@ -45,12 +45,12 @@ export class NewReply extends React.PureComponent
     div
       className: "#{bn} #{bn}--reply #{bn}--new-reply"
 
+      @renderCancelButton()
+
       div
         className: "#{bn}__content"
         div className: "#{bn}__avatar",
           el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
-
-        @renderCancelButton()
 
         div className: "#{bn}__message-container",
           el TextareaAutosize,

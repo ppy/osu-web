@@ -274,6 +274,9 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2020-08-28
+- `/rooms/{room_id}/leaderboard` no longer returns an array at the top level; an object with keys is now returned.
+
 ### 2020-05-01
 - `users.read` scope removed, replace with more general `public` scope.
 
