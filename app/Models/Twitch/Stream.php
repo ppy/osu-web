@@ -8,17 +8,15 @@ namespace App\Models\Twitch;
 class Stream
 {
     public $data = null;
-    public $user = null;
 
-    public function __construct($data, $user)
+    public function __construct($data)
     {
         $this->data = $data;
-        $this->user = $user;
     }
 
     public function url()
     {
-        return "https://twitch.tv/{$this->user['login']}";
+        return "https://twitch.tv/{$this->data['user_name']}";
     }
 
     public function preview($width, $height)
