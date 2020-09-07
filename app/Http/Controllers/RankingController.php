@@ -100,7 +100,7 @@ class RankingController extends Controller
      *
      * ### Response Format
      *
-     * Returns [Ranking Response](#ranking-response)
+     * Returns [Rankings](#rankings)
      *
      * ### Route Parameters
      *
