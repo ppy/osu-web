@@ -37,8 +37,7 @@ class @StackedBarChart
           value: y
           height: if previousData? then previousData.value + previousData.height else 0
 
-    @max = d3.max _.map @data, (m) -> _.sumBy m, 'value'
-    @max = 1 if @max == 0
+    @max = Math.max(1, _.map(@data, (m) -> _.sumBy(m, 'value'))...)
 
     @resize()
 
