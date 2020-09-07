@@ -60,7 +60,6 @@ export class NewClient extends React.Component {
   render() {
     const link = (
       <a
-        className='oauth-client-details__link'
         href={`${process.env.DOCS_URL}#terms-of-use`}
         key='link'
       >
