@@ -90,8 +90,7 @@
         @php
             $pendingCheckoutLink = Html::link(
                 route('store.orders.index', ['type' => 'processing']),
-                trans('store.checkout.has_pending.link_text'),
-                ['class' => 'link link--default']
+                trans('store.checkout.has_pending.link_text')
             )
         @endphp
         <div class="store-notice">

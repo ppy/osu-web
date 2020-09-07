@@ -60,7 +60,6 @@ class ModdingHistoryEventsBundle
     {
         $events = $this->getEvents();
         $params = $this->params;
-        unset($params['user']);
 
         return new LengthAwarePaginator(
             $events,

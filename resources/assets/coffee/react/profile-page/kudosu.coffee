@@ -35,17 +35,13 @@ export class Kudosu extends React.Component
 
             giver =
               if kudosu.giver?
-                osu.link kudosu.giver.url,
-                  kudosu.giver.username
-                  classNames: ['profile-extra-entries__link profile-extra-entries__link--kudosu']
+                osu.link kudosu.giver.url, kudosu.giver.username
               else
                 _.escape osu.trans('users.deleted')
 
             post =
               if kudosu.post?.url?
-                osu.link kudosu.post?.url,
-                  kudosu.post?.title
-                  classNames: ['profile-extra-entries__link profile-extra-entries__link--kudosu']
+                osu.link kudosu.post?.url, kudosu.post?.title
               else
                 kudosu.post?.title
 

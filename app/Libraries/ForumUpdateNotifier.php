@@ -5,8 +5,8 @@
 
 namespace App\Libraries;
 
+use App\Jobs\Notifications\ForumTopicReply;
 use App\Jobs\NotifyForumUpdateSlack;
-use App\Models\Notification;
 
 class ForumUpdateNotifier
 {
@@ -17,7 +17,7 @@ class ForumUpdateNotifier
 
     public static function onReply($data)
     {
-        broadcast_notification(Notification::FORUM_TOPIC_REPLY, $data['post'], $data['user']);
+        (new ForumTopicReply($data['post'], $data['user']))->dispatch();
 
         (new NotifyForumUpdateSlack($data, 'reply'))->dispatchIfNeeded();
     }
