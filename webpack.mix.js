@@ -148,7 +148,6 @@ for (const name of tsReactComponents) {
 }
 
 const output = {
-  chunkFilename: outputFilename('js/[name]'),
   filename: outputFilename('js/[name]'),
   path: resolvePath('public'),
 };
@@ -176,7 +175,6 @@ const plugins = [
   }),
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // don't add moment locales to bundle.
   new MiniCssExtractPlugin({
-    chunkFilename: outputFilename('css/[name]', 'css'),
     filename: outputFilename('css/[name]', 'css'),
   }),
   new CopyPlugin({
