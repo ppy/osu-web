@@ -274,6 +274,9 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2020-09-08
+- `presence` removed from `chat/new` response.
+
 ### 2020-05-01
 - `users.read` scope removed, replace with more general `public` scope.
 
