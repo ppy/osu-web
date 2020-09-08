@@ -258,6 +258,9 @@ class ChatController extends Controller
     {
         $params = request()->all();
         $target = User::lookup(get_int($params['target_id'] ?? null), 'id');
+        if ($target === null) {
+            abort(404, 'target user not found');
+        }
 
         /** @var Message $message */
         $message = Chat::sendPrivateMessage(
