@@ -6,11 +6,13 @@
 namespace App\Libraries;
 
 use App\Exceptions\InvariantException;
+use App\Jobs\Notifications\BeatmapsetDiscussionQualifiedProblem;
+use App\Jobs\Notifications\BeatmapsetDiscussionReviewNew;
+use App\Jobs\Notifications\BeatmapsetResetNominations;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
-use App\Models\Notification;
 use App\Models\User;
 use DB;
 
@@ -116,7 +118,7 @@ class BeatmapsetDiscussionReview
 
             DB::commit();
 
-            broadcast_notification(Notification::BEATMAPSET_DISCUSSION_REVIEW_NEW, $review, $user);
+            (new BeatmapsetDiscussionReviewNew($review, $user))->dispatch();
 
             return $review;
         } catch (\Exception $e) {
@@ -283,7 +285,7 @@ class BeatmapsetDiscussionReview
 
         if ($resetNominations) {
             BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET, $user, $problemDiscussion)->saveOrExplode();
-            broadcast_notification(Notification::BEATMAPSET_RESET_NOMINATIONS, $beatmapset, $user);
+            (new BeatmapsetResetNominations($beatmapset, $user))->dispatch();
             $beatmapset->refreshCache();
         }
 
@@ -292,11 +294,10 @@ class BeatmapsetDiscussionReview
                 $beatmapset->disqualify($user, $problemDiscussion);
             } else {
                 if ($priorOpenProblemCount === 0) {
-                    broadcast_notification(
-                        Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+                    (new BeatmapsetDiscussionQualifiedProblem(
                         $problemDiscussion->startingPost,
                         $user
-                    );
+                    ))->dispatch();
                 }
             }
         }

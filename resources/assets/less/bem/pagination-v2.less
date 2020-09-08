@@ -46,26 +46,10 @@
       font-weight: 600;
       color: @osu-colour-b5;
       background-color: @osu-colour-h1;
-
-      // TODO: remove after forum/store restyle
-      .@{_top}--light-bg & {
-        color: @osu-colour-c1;
-        background-color: @osu-colour-h2;
-      }
     }
 
     &--disabled {
       opacity: 0.5;
-    }
-
-    &--link {
-      .link-default();
-
-      .@{_top}--light-bg & {
-        .link-hover({
-          color: @osu-colour-h1;
-        });
-      }
     }
 
     &--quick {
@@ -74,11 +58,6 @@
       padding-left: 15px;
       padding-right: 15px;
       background-color: @osu-colour-b4;
-
-      // TODO: remove after forum/store restyle
-      .@{_top}--light-bg & {
-        background-color: osu-hsla(@osu-colour-l1, 0.2);
-      }
     }
   }
 }

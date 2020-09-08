@@ -201,10 +201,10 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
           // don't linkify timestamps when in edit mode
           return this.props.editMode
             ? timestamp
-            : osu.link(BeatmapDiscussionHelper.url({discussion}),
-            timestamp,
-            {classNames: ['js-beatmap-discussion--jump', `${this.bn}__notice-link`]},
-          );
+            : osu.link(BeatmapDiscussionHelper.url({ discussion }),
+              timestamp,
+              { classNames: ['js-beatmap-discussion--jump'] },
+            );
         });
 
       if (nearbyUnsaved.length > 1) {

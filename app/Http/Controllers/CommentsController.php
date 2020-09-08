@@ -6,11 +6,11 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Jobs\Notifications\CommentNew;
 use App\Libraries\CommentBundle;
 use App\Libraries\MorphMap;
 use App\Models\Comment;
 use App\Models\Log;
-use App\Models\Notification;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -198,7 +198,7 @@ class CommentsController extends Controller
             return error_popup($e->getMessage());
         }
 
-        broadcast_notification(Notification::COMMENT_NEW, $comment, $user);
+        (new CommentNew($comment, $user))->dispatch();
 
         return CommentBundle::forComment($comment)->toArray();
     }

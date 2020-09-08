@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 class @StackedBarChart
-  constructor: (area, @options = {}) ->
+  constructor: (@area, @options = {}) ->
     @margins =
       top: 0
       right: 0
@@ -16,8 +16,7 @@ class @StackedBarChart
     blockClass = 'stacked-bar-chart'
     blockClass += " stacked-bar-chart--#{mod}" for mod in @options.modifiers
 
-    @area = d3.select area
-    @svg = @area
+    @svg = d3.select(@area)
       .append 'svg'
       .attr 'class', blockClass
 
@@ -42,8 +41,15 @@ class @StackedBarChart
     @resize()
 
 
+  reattach: (newArea) =>
+    return if !newArea? || newArea == @area
+
+    @area = newArea
+    @area.append(@svg.node())
+
+
   setDimensions: ->
-    areaDims = @area.node().getBoundingClientRect()
+    areaDims = @area.getBoundingClientRect()
 
     @width = areaDims.width - (@margins.left + @margins.right)
     @height = areaDims.height - (@margins.top + @margins.bottom)
@@ -56,7 +62,7 @@ class @StackedBarChart
 
     @options.scales.y
       .range [0, @height]
-      .domain [0, @max]
+      .domain [0, Math.max(@max, 1)]
 
 
   setSvgSize: ->
