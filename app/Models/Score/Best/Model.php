@@ -212,13 +212,15 @@ abstract class Model extends BaseModel
     public function scopeWithMods($query, $modsArray)
     {
         return $query->where(function ($q) use ($modsArray) {
+            $bitset = ModsHelper::toBitset($modsArray);
+            $preferenceMask = ~ModsHelper::PREFERENCE_MODS_BITSET;
+
             if (in_array('NM', $modsArray, true)) {
-                $q->orWhere('enabled_mods', 0);
+                $q->orWhereRaw('enabled_mods & ? = 0', [$preferenceMask]);
             }
 
-            $bitset = ModsHelper::toBitset($modsArray);
             if ($bitset > 0) {
-                $q->orWhere('enabled_mods', $bitset);
+                $q->orWhereRaw('enabled_mods & ? = ?', [$preferenceMask | $bitset, $bitset]);
             }
         });
     }
