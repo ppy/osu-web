@@ -60,7 +60,6 @@ delete webpackConfig.entry; // test runner doesn't use the entry points
 const testIndex = './tests/karma/index.ts';
 
 const files = [
-  './public/js/locales/en.js',
   './tests/karma/globals.js', // shims for tests
   testIndex,
 ];

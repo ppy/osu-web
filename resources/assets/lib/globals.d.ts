@@ -137,6 +137,7 @@ interface LangClass {
   _getPluralForm: (count: number) => number;
   _origGetPluralForm: (count: number) => number;
   locale: string;
+  has(key: string): boolean;
 }
 
 interface TooltipDefault {
