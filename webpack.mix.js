@@ -208,8 +208,6 @@ mix
 .ts('resources/assets/lib/notifications-index.ts', 'js/react/notifications-index.js')
 .ts('resources/assets/lib/scores-show.ts', 'js/react/scores-show.js')
 .ts('resources/assets/lib/store-bootstrap.ts', 'js/store-bootstrap.js')
-.copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/vendor/fonts/font-awesome')
-.copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
 .copy('node_modules/moment/locale', 'public/vendor/js/moment-locales')
 .less('resources/assets/less/app.less', 'public/css')
 .scripts([
