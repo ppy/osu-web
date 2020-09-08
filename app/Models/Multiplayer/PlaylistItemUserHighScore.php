@@ -9,6 +9,7 @@ use App\Models\Model;
 
 /**
  * Dumb persistence model for UserScoreAggregate.
+ * i.e. should only be modified via UserScoreAggregate.
  *
  * @property float $accuracy
  * @property \Carbon\Carbon $created_at

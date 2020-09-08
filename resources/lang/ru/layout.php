@@ -179,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'вход / регистрация',
+
         'login' => [
             'forgot' => "я не помню, помогите",
             'password' => 'пароль',

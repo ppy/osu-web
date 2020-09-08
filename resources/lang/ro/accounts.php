@@ -51,6 +51,7 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'primește notificări pentru noi probleme pe hărți calificate de modelele următoare',
         'beatmapset_disqualify' => 'primește notificări pentru când beatmap-urile din modurile următoare sunt descalificate',
+        'comment_reply' => '',
         'title' => 'Notificări',
         'topic_auto_subscribe' => 'activați notificările automat pe noi topici de pe forum pe care le poți creea',
 

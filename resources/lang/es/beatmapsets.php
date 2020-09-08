@@ -93,7 +93,6 @@ return [
             'source' => 'Fuente',
             'success-rate' => 'Tasa de éxito',
             'tags' => 'Etiquetas',
-            'unranked' => 'Mapa no clasificado',
         ],
 
         'scoreboard' => [
@@ -101,7 +100,7 @@ return [
             'country' => 'Clasificación Nacional',
             'friend' => 'Clasificación entre Amigos',
             'global' => 'Clasificación Global',
-            'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
+            'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las características de lujo que ofrece!',
             'supporter-only' => '¡Debe ser un osu!supporter para acceder a las clasificaciones nacionales y entre amigos!',
             'title' => 'Tabla de puntuaciones',
 

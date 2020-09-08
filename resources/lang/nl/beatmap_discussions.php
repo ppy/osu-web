@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Geen van deze posts pakken mijn punten van zorg aan',
         'notice' => 'Dit zijn de posts rond :timestamp (:existing_timestamp). Controleer ze voor te posten.',
+        'unsaved' => ':count in deze review',
     ],
 
     'reply' => [
@@ -64,7 +65,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max blokken gebruikt',
         'go_to_parent' => 'Bekijk Review Post',
         'go_to_child' => 'Bekijk discussie',
         'validation' => [

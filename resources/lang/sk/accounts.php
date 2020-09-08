@@ -51,6 +51,7 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'dostávať notifikácie pre nové problémy na kvalifikovaných beatmapách pre následujúce módy',
         'beatmapset_disqualify' => '',
+        'comment_reply' => '',
         'title' => 'Oznámenia',
         'topic_auto_subscribe' => 'automaticky zapnúť notifikácie pre nové fórove témy ktoré vytvoríte',
 

@@ -27,18 +27,8 @@ class LivestreamCollection
             $this->streams = Cache::remember('livestreams:arr:v2', 300, function () {
                 $streams = $this->downloadStreams()['data'] ?? [];
 
-                $userIds = array_map(function ($stream) {
-                    return $stream['user_id'];
-                }, $streams);
-
-                $users = [];
-
-                foreach ($this->downloadUsers($userIds)['data'] ?? [] as $user) {
-                    $users[$user['id']] = $user;
-                }
-
-                return array_map(function ($stream) use ($users) {
-                    return new Twitch\Stream($stream, $users[$stream['user_id']]);
+                return array_map(function ($stream) {
+                    return new Twitch\Stream($stream);
                 }, $streams);
             });
         }
@@ -49,15 +39,6 @@ class LivestreamCollection
     public function downloadStreams()
     {
         return $this->download('streams?first=40&game_id=21465');
-    }
-
-    public function downloadUsers($userIds)
-    {
-        if (count($userIds) === 0) {
-            return;
-        }
-
-        return $this->download('users?id='.implode('&id=', $userIds));
     }
 
     public function download($api)

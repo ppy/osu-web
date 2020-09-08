@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Egy poszt sem foglalkozik a problémámmal',
         'notice' => 'Már vannak posztok :timestamp (:existing_timestamps) körül. Kérlek nézd meg posztolás előtt.',
+        'unsaved' => '',
     ],
 
     'reply' => [

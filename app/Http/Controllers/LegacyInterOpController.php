@@ -7,6 +7,8 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\Handler as ExceptionHandler;
 use App\Jobs\EsIndexDocument;
+use App\Jobs\Notifications\ForumTopicReply;
+use App\Jobs\Notifications\UserAchievementUnlock;
 use App\Jobs\RegenerateBeatmapsetCover;
 use App\Libraries\Chat;
 use App\Libraries\Session\Store as SessionStore;
@@ -48,7 +50,7 @@ class LegacyInterOpController extends Controller
                 abort(422, 'post is missing or it contains invalid user');
             }
 
-            broadcast_notification($params['name'], $post, $user);
+            (new ForumTopicReply($post, $user))->dispatch();
 
             return response(null, 204);
         }
@@ -111,7 +113,8 @@ class LegacyInterOpController extends Controller
         }
 
         Event::generate('achievement', compact('achievement', 'user'));
-        broadcast_notification(Notification::USER_ACHIEVEMENT_UNLOCK, $achievement, $user);
+
+        (new UserAchievementUnlock($achievement, $user))->dispatch();
 
         return $achievement->getKey();
     }

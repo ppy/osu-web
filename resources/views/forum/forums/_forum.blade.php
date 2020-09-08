@@ -17,7 +17,7 @@
             <ul class="forum-item__subforums">
                 @foreach($forum->subforums as $subforum)
                     <li class="forum-item__subforum">
-                        <a class="forum-item__link" href="{{ route("forum.forums.show", $subforum->forum_id) }}" title="{{ $subforum->forum_desc }}">
+                        <a href="{{ route("forum.forums.show", $subforum->forum_id) }}" title="{{ $subforum->forum_desc }}">
                             <i class="forum-item__subforum-icon fas fa-angle-right"></i>{{ $subforum->forum_name }}
                         </a>
                     </li>
@@ -32,7 +32,7 @@
                 {{ trans('forum.forums.latest_post') }}
             </span>
             <a
-                class="forum-item__link u-ellipsis-overflow"
+                class="u-ellipsis-overflow"
                 href="{{ post_url($lastTopic->topic_id, "unread", false) }}"
             >
                 @if ($lastTopic->topic_replies > 0)
@@ -48,7 +48,7 @@
                         $lastTopic->topic_last_poster_id,
                         $lastTopic->topic_last_poster_name,
                         null,
-                        ['forum-item__link']
+                        []
                     ),
                 ]) !!}
             </div>

@@ -84,6 +84,7 @@ return [
         'failed' => 'Nesprávne prihlásenie',
         'forgot' => 'Zabudli ste heslo?',
         'info' => 'Prosím prihláste sa pre pokračovanie',
+        'invalid_captcha' => '',
         'locked_ip' => 'vaša IP adresa je zamknutá. Prosím počkajte niekoľko minút.',
         'password' => 'Heslo',
         'register' => "Nemáš osu! účet? Vytvor si nový",
@@ -186,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'od :artist',
-                'none' => 'Zatiaľ žiadne...',
                 'title' => 'Beatmapy',
 
                 'favourite' => [
@@ -216,7 +216,6 @@ return [
                 'show_more' => 'pozri ďalšie udalosti',
             ],
             'historical' => [
-                'empty' => 'Žiadne výkonnostné rekordy. :(',
                 'title' => 'História',
 
                 'monthly_playcounts' => [
@@ -303,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Stiahnuť Záznam',
-                'empty' => 'Zatial žiadné záznamy o úžasnom výkone. :(',
                 'not_ranked' => 'Iba hodnotené beatmapy ti dajú pp.',
                 'pp_weight' => 'odvážené :percentage',
                 'view_details' => '',

@@ -72,7 +72,7 @@
 
     @if ($user->getKey() !== null)
         <div class="forum-post-info__row forum-post-info__row--posts">
-            <a class="link link--default" href="{{ route("users.posts", $user) }}">
+            <a href="{{ route("users.posts", $user) }}">
                 {{ trans_choice('forum.post.info.post_count', $user->user_posts) }}
             </a>
         </div>

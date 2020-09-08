@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Mikään viesteistä ei käsittele aihettani',
         'notice' => 'Aikajanalta :timestamp (:existing_timestamps) löytyy viestejä. Tarkista ne ennen viestin lähettämistä.',
+        'unsaved' => '',
     ],
 
     'reply' => [

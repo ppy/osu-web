@@ -128,7 +128,7 @@ return [
             'copyright' => 'Copyright (DMCA)',
             'privacy' => 'Confidentialité',
             'server_status' => 'Statut du serveur',
-            'source_code' => 'Code Source',
+            'source_code' => 'Code source',
             'terms' => 'Conditions du service',
         ],
     ],
@@ -179,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'connexion / inscription',
+
         'login' => [
             'forgot' => "J'ai oublié mes identifiants",
             'password' => 'mot de passe',

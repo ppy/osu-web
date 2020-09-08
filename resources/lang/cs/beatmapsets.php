@@ -17,10 +17,10 @@ return [
 
     'panel' => [
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'stáhnout',
+            'video' => 'stáhnout s videem',
+            'no_video' => 'stáhnout bez videa',
+            'direct' => 'otevřít v osu!direct',
         ],
     ],
 
@@ -93,7 +93,6 @@ return [
             'source' => 'Zdroj',
             'success-rate' => 'Úspěšnost',
             'tags' => 'Tagy',
-            'unranked' => 'Nehodnocená beatmapa',
         ],
 
         'scoreboard' => [

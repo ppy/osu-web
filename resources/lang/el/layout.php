@@ -179,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Έχω ξεχάσει τα στοιχεία μου",
             'password' => 'κωδικός',

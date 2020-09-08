@@ -20,19 +20,18 @@
                 <h2 class="simple-form__row simple-form__row--title">
                     {{ trans('beatmap_discussions.index.form._') }}
                 </h2>
-                @if ($showUserSearch ?? true)
-                    <label class="simple-form__row">
-                        <div class="simple-form__label">
-                            {{ trans('beatmap_discussions.index.form.username') }}
-                        </div>
 
-                        <input
-                            class="simple-form__input"
-                            name="user"
-                            value="{{ $search['params']['user'] ?? '' }}"
-                        >
-                    </label>
-                @endif
+                <label class="simple-form__row">
+                    <div class="simple-form__label">
+                        {{ trans('beatmap_discussions.index.form.username') }}
+                    </div>
+
+                    <input
+                        class="simple-form__input"
+                        name="user"
+                        value="{{ $search['params']['user'] ?? '' }}"
+                    >
+                </label>
 
                 <div class="simple-form__row">
                     <div class="simple-form__label">

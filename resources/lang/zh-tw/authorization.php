@@ -32,6 +32,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "",
             'limit_exceeded' => '在投更多票之前請稍等一會',
             'owner' => "不能為自己的討論投票。",
             'wrong_beatmapset_state' => '只能對待處理的圖譜討論進行投票。',
