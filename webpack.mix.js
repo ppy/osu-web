@@ -134,9 +134,9 @@ let webpackConfig = {
   ],
   resolve: {
     alias: {
+      '@fonts': path.resolve(__dirname, 'resources/assets/fonts'),
       'ziggy': path.resolve(__dirname, 'resources/assets/js/ziggy.js'),
       'ziggy-route': path.resolve(__dirname, 'vendor/tightenco/ziggy/dist/js/route.js'),
-      '@fonts': path.resolve(__dirname, 'resources/assets/fonts'),
     },
     extensions: ['*', '.js', '.coffee', '.ts'],
     modules: [
