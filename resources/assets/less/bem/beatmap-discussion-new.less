@@ -78,6 +78,10 @@
     flex: 1 0 auto;
     font-size: @font-size--phone-input;
 
+    @media @mobile {
+      max-height: calc(40 * var(--vh, 1vh));
+    }
+
     &::placeholder {
       color: @osu-colour-b1;
     }
