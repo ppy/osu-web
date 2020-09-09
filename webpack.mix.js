@@ -180,8 +180,6 @@ const plugins = [
   new CopyPlugin({
     patterns: [
       { from: 'resources/assets/build/locales', to: outputFilename('js/locales/[name]', '[ext]') },
-      { from: 'node_modules/@fortawesome/fontawesome-free/webfonts', to: outputFilename('vendor/fonts/font-awesome/[name]', '[ext]') },
-      { from: 'node_modules/photoswipe/dist/default-skin', to: outputFilename('vendor/_photoswipe-default-skin/[name]', '[ext]') },
       { from: 'node_modules/moment/locale', to: outputFilename('vendor/js/moment-locales/[name]', '[ext]') },
     ],
   }),
@@ -345,6 +343,7 @@ const rules = [
 //#region resolvers
 const resolve = {
   alias: {
+    '@fonts': path.resolve(__dirname, 'resources/assets/fonts'),
     'layzr': resolvePath('node_modules/layzr.js/dist/layzr.module.js'),
     'ziggy': resolvePath('resources/assets/js/ziggy.js'),
     'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist/js/route.js'),
