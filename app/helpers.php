@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 use App\Models\LoginAttempt;
+use Illuminate\Support\HtmlString;
 
 /*
  * Like array_search but returns null if not found instead of false.
@@ -1655,4 +1656,44 @@ function search_error_message(?Exception $e): ?string
     $text = trans($key);
 
     return $text === $key ? trans('errors.search.default') : $text;
+}
+
+/**
+ * Gets the path to a versioned resource.
+ *
+ * @param string $resource
+ * @param string $manifest
+ * @return HtmlString
+ *
+ * @throws Exception
+ */
+function unmix(string $resource, $manifest = 'mix-manifest.json')
+{
+    static $manifests = [];
+
+    $manifestPath = public_path($manifest);
+
+    if (!isset($manifests[$manifestPath])) {
+        if (!file_exists($manifestPath)) {
+            throw new Exception("The manifest {$manifest} does not exist.");
+        }
+
+        $manifests[$manifestPath] = json_decode(file_get_contents($manifestPath), true);
+    }
+
+    $manifest = $manifests[$manifestPath];
+
+    if (!isset($manifest[$resource])) {
+        $exception = new Exception("resource not defined in {$manifestPath}: {$resource}.");
+
+        if (!config('app.debug')) {
+            report($exception);
+
+            return $resource;
+        } else {
+            throw $exception;
+        }
+    }
+
+    return new HtmlString($manifest[$resource]);
 }

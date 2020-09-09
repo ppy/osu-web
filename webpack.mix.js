@@ -65,14 +65,7 @@ class Manifest {
 
       const manifest = {};
       json.assets.forEach((asset) => {
-        let assetName = asset.name;
-        // ensure lookup name starts with / because mix helper is dumb.
-        // also ensure assets are relative to root.
-        if (!assetName.startsWith('/')) {
-          assetName = `/${assetName}`;
-        }
-
-        let name = assetName;
+        let name = asset.name;
         // remove hash from name.
         if (name.lastIndexOf('?') > 0) {
           // querystring version
@@ -91,7 +84,7 @@ class Manifest {
           name = `${basename}${extname}`;
         }
 
-        manifest[name] = assetName;
+        manifest[name] = path.join(compiler.options.output.publicPath, asset.name);
       });
 
       fs.writeFileSync(this.fileName, JSON.stringify(manifest, null, 2));
@@ -302,15 +295,7 @@ const rules = [
         loader: 'file-loader',
         options: {
           name: (filepath) => {
-            if (!/node_modules|bower_components/.test(filepath)) {
-              return '/images/[name].[ext]?[hash]';
-            }
-
-            const cleanPath = filepath
-              .replace(/\\/g, '/')
-              .replace(/((.*(node_modules|bower_components))|images|image|img|assets)\//g, '');
-
-            return `/images/vendor/${cleanPath}?[hash]`;
+            return outputFilename('images/[name]', '[ext]');
           },
         },
       },
@@ -324,15 +309,7 @@ const rules = [
     loader: 'file-loader',
     options: {
       name: (filepath) => {
-        if (!/node_modules|bower_components/.test(filepath)) {
-          return '/fonts/[name].[ext]?[hash]';
-        }
-
-        const cleanPath = filepath
-          .replace(/\\/g, '/')
-          .replace(/((.*(node_modules|bower_components))|fonts|font|assets)\//g, '');
-
-        return `/fonts/vendor/${cleanPath}?[hash]`;
+        return outputFilename('fonts/[name]', '[ext]');
       },
     },
     test: /(\.(woff2?|ttf|eot|otf)$|font.*\.svg$)/,
@@ -424,9 +401,9 @@ module.exports = {
     errorDetails: false,
     excludeAssets: [
       // exclude copied files
-      /^js\/locales\//,
-      /^\/fonts\//,
-      /^vendor\//,
+      /^js\/(moment-locales|locales)\//,
+      /^fonts/,
+      /^images/,
     ],
   },
 };
