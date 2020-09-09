@@ -34,7 +34,7 @@ class LegacyInterOpController extends Controller
 
     public function bundleBeatmapsets()
     {
-        $beatmapsetIds = get_params(request(), null, ['beatmapsets:int[]'])['beatmapsets'] ?? null;
+        $beatmapsetIds = get_params(request()->all(), null, ['beatmapsets:int[]'])['beatmapsets'] ?? null;
 
         if (empty($beatmapsetIds)) {
             abort(422, '"beatmapsets" parameter must be a list of IDs');
