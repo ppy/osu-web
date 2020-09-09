@@ -39,6 +39,6 @@
             </ul>
         </div>
 
-        @include('objects._pagination_v2', ['object' => $topics, 'modifiers' => ['light-bg']])
+        @include('objects._pagination_v2', ['object' => $topics])
     </div>
 @endsection

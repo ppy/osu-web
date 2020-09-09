@@ -80,7 +80,7 @@
                             $topic->topic_poster,
                             $topic->topic_first_poster_name,
                             null,
-                            ['forum-topic-entry__link']
+                            []
                         )
                     ]) !!}
                 </span>
@@ -138,7 +138,7 @@
                         $topic->topic_last_poster_id,
                         $topic->topic_last_poster_name,
                         null,
-                        ['forum-topic-entry__link']
+                        []
                     )]
                 ) !!}
             </div>
