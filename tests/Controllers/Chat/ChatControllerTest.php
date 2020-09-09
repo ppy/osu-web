@@ -173,7 +173,7 @@ class ChatControllerTest extends TestCase
                     'target_id' => $restrictedUser->user_id,
                     'message' => self::$faker->sentence(),
                 ]
-            )->assertStatus(404);
+            )->assertStatus(422);
     }
 
     public function testCreatePMWithSelf() // fail
