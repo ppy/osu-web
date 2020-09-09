@@ -181,7 +181,7 @@ const plugins = [
   new CopyPlugin({
     patterns: [
       { from: 'resources/assets/build/locales', to: outputFilename('js/locales/[name]', '[ext]') },
-      { from: 'node_modules/moment/locale', to: outputFilename('vendor/js/moment-locales/[name]', '[ext]') },
+      { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]', '[ext]') },
     ],
   }),
   new Manifest({ fileName: 'public/mix-manifest.json'}),
