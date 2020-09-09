@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Nessuno dei post riguarda il mio problema',
         'notice' => 'Ci sono già dei post verso :timestamp (:existing_timestamps). Controlla prima di postare.',
+        'unsaved' => '',
     ],
 
     'reply' => [
@@ -64,7 +65,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max blocchi usati',
         'go_to_parent' => 'Visualizza il post della recensione',
         'go_to_child' => 'Visualizza Discussione',
         'validation' => [

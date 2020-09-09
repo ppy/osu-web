@@ -37,7 +37,7 @@
                 <div class="search-forum-post__url">
                     {{ $link }}
                 </div>
-                <time class="search-forum-post__time timeago" datetime="{{ $time }}">
+                <time class="search-forum-post__time js-timeago" datetime="{{ $time }}">
                     {{ $time }}
                 </time>
             </div>

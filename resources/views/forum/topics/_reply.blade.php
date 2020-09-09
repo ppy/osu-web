@@ -10,8 +10,7 @@
                     'create' => link_to_route(
                         'forum.topics.create',
                         trans('forum.topic.create.necropost.new_topic.create'),
-                        ['forum_id' => $topic->forum],
-                        ['class' => 'link link--default']
+                        ['forum_id' => $topic->forum]
                     ),
                 ]);
             } else {

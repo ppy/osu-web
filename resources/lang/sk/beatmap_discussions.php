@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Žiadny z príspevkov nerieši môj problém',
         'notice' => 'Príspevky okolo času :timestamp (:existing_timestamps) už existujú. Prosím, skontrolujte ich pred prispievaním.',
+        'unsaved' => '',
     ],
 
     'reply' => [

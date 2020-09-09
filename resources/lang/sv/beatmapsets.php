@@ -93,7 +93,6 @@ return [
             'source' => 'Källa',
             'success-rate' => 'Genomsnittig Succe',
             'tags' => 'Taggar',
-            'unranked' => 'Ej rankad beatmap',
         ],
 
         'scoreboard' => [

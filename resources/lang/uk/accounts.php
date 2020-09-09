@@ -51,18 +51,19 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'отримувати повідомлення про нові проблеми кваліфікованих карт для наступних режимів',
         'beatmapset_disqualify' => 'отримувати повідомлення коли карти наступних модов дискваліфіковані',
+        'comment_reply' => '',
         'title' => 'Сповіщення',
         'topic_auto_subscribe' => 'автоматично вмикати сповіщення для тем на форумі, коли ви їх створюєте',
 
         'options' => [
             '_' => 'способи доставки',
             'beatmapset:modding' => 'моддінг карт',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => 'приватні повідомлення',
+            'comment_new' => 'нові коментарі',
             'forum_topic_reply' => 'відповідь темі',
             'mail' => 'пошта',
             'push' => 'push',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => 'медаль користувача розблоковано',
         ],
     ],
 
@@ -82,7 +83,7 @@ return [
             'direct' => 'відкрити в osu!direct',
         ],
 
-        'beatmapset_title_show_original' => '',
+        'beatmapset_title_show_original' => 'показувати метадату мовою оригіналу',
     ],
 
     'playstyles' => [

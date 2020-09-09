@@ -51,17 +51,18 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => '在以下模式的 qualified 圖譜上接收新問題通知',
         'beatmapset_disqualify' => '',
+        'comment_reply' => '',
         'title' => '通知',
         'topic_auto_subscribe' => '自動啟用自己創建的主題的通知',
 
         'options' => [
-            '_' => '送貨選項',
+            '_' => '傳送選項',
             'beatmapset:modding' => '',
-            'channel_message' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '主題回復',
+            'channel_message' => '私人訊息',
+            'comment_new' => '新評論',
+            'forum_topic_reply' => '主題回覆',
             'mail' => '郵箱',
-            'push' => '',
+            'push' => '推送',
             'user_achievement_unlock' => '',
         ],
     ],
@@ -82,7 +83,7 @@ return [
             'direct' => '在osu!direct中查看',
         ],
 
-        'beatmapset_title_show_original' => '',
+        'beatmapset_title_show_original' => '以原語言顯示譜面資料',
     ],
 
     'playstyles' => [

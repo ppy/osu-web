@@ -13,7 +13,6 @@ class BeatmapCompactTransformer extends TransformerAbstract
     protected $availableIncludes = [
         'beatmapset',
         'checksum',
-        'scoresBest',
         'failtimes',
         'max_combo',
     ];
@@ -48,19 +47,16 @@ class BeatmapCompactTransformer extends TransformerAbstract
     {
         $failtimes = $beatmap->failtimes;
 
-        // adding a set of empty failtimes, so that the chart transitions
-        // to 0 when a map has no failtimes (for now non-standard modes)
-        if ($failtimes->isEmpty() || $beatmap->convert) {
-            $failtimes = [
-                new BeatmapFailtimes(['type' => 'fail']),
-                new BeatmapFailtimes(['type' => 'exit']),
-            ];
-        }
-
         $result = [];
 
         foreach ($failtimes as $failtime) {
             $result[$failtime->type] = $failtime->data;
+        }
+
+        foreach (['exit', 'fail'] as $type) {
+            if (!isset($result[$type])) {
+                $result[$type] = (new BeatmapFailtimes)->data;
+            }
         }
 
         return $this->primitive($result);
@@ -69,17 +65,5 @@ class BeatmapCompactTransformer extends TransformerAbstract
     public function includeMaxCombo(Beatmap $beatmap)
     {
         return $this->primitive($beatmap->maxCombo());
-    }
-
-    public function includeScoresBest(Beatmap $beatmap)
-    {
-        $scores = $beatmap
-            ->scoresBest()
-            ->default()
-            ->visibleUsers()
-            ->limit(config('osu.beatmaps.max-scores'))
-            ->get();
-
-        return $this->collection($scores, new ScoreTransformer);
     }
 }

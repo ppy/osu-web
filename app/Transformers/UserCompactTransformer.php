@@ -50,6 +50,7 @@ class UserCompactTransformer extends TransformerAbstract
         // TODO: should be changed to rank_history
         // TODO: should be alphabetically ordered but lazer relies on being after statistics. can revert to alphabetical after 2020-05-01
         'rankHistory',
+        'rank_history',
     ];
 
     protected $permissions = [

@@ -75,7 +75,7 @@ return [
     'topic' => [
         'deleted' => 'tópico excluído',
         'go_to_latest' => 'ver a ultima publicação',
-        'has_replied' => '',
+        'has_replied' => 'Você respondeu a este tópico',
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última resposta por :user',
         'new_topic' => 'Criar novo tópico',

@@ -93,7 +93,6 @@ return [
             'source' => 'Kilde',
             'success-rate' => 'Suksessrate',
             'tags' => 'Stikkord',
-            'unranked' => 'Urangert beatmap',
         ],
 
         'scoreboard' => [

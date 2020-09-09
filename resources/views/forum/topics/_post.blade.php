@@ -41,7 +41,7 @@
                 <div class="forum-post__header-content-item">
                     {!! link_to_user($user, null, '', ['forum-post__user']) !!}
 
-                    <a class="link link--default js-post-url" rel="nofollow" href="{{ $post->exists ? route('forum.posts.show', $post->post_id) : '#' }}">
+                    <a class="js-post-url" rel="nofollow" href="{{ $post->exists ? route('forum.posts.show', $post->post_id) : '#' }}">
                         {!! timeago($post->post_time) !!}
                     </a>
                 </div>
@@ -83,7 +83,7 @@
             <div class="forum-post__content forum-post__content--footer">
                 {!!
                     trans_choice('forum.post.edited', $post->post_edit_count, [
-                        'user' => link_to_user($post->lastEditorNormalized(), null, '', ['link link--default']),
+                        'user' => link_to_user($post->lastEditorNormalized(), null, '', []),
                         'when' => timeago($post->post_edit_time),
                     ])
                 !!}

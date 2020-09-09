@@ -15,22 +15,11 @@ export class Events extends React.Component
           div className: 'modding-profile-list__empty', osu.trans('users.show.extra.none')
         else
           div className: 'beatmapset-events beatmapset-events--profile',
-            [
-              el DiscussionEvents,
-                events: @props.events
-                key: 'events'
-                users: @props.users
+            el DiscussionEvents,
+              events: @props.events
+              users: @props.users
 
-              a
-                className: 'modding-profile-list__show-more'
-                key: 'show-more'
-                href: laroute.route('users.modding.events', {user: @props.user.id}),
-                osu.trans('users.show.extra.events.show_more')
-            ]
-
-
-  typeForTranslation: (event) =>
-    if event.type == 'disqualify' && !_.isArray(event.comment)
-      'disqualify_legacy'
-
-    event.type
+            a
+              className: 'modding-profile-list__show-more'
+              href: laroute.route('beatmapsets.events.index', user: @props.user.id),
+              osu.trans('users.show.extra.events.show_more')

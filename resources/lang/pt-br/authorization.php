@@ -32,6 +32,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "",
             'limit_exceeded' => 'Por favor, espere um pouco antes de votar mais vezes',
             'owner' => "Não é possível votar na própria discussão.",
             'wrong_beatmapset_state' => 'Só é possível votar nas discussões de beatmaps pendentes.',

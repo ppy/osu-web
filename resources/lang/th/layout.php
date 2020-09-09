@@ -179,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "ฉันลืมรายละเอียดของฉัน",
             'password' => 'รหัสผ่าน',

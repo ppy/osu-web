@@ -179,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Elfelejtettem az adataimat",
             'password' => 'jelszó',

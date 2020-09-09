@@ -51,6 +51,7 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'الحصول على اشعارات عند حدوث مشاكل في الأغاني المؤهلة على الأنماط التالية',
         'beatmapset_disqualify' => 'تلقي إشعارات عندما تكون الخرائط للأوضاع التالية مرفوضة',
+        'comment_reply' => '',
         'title' => 'الإشعارات',
         'topic_auto_subscribe' => 'تفعيل الإشعارات تلقائيًا حول مواضيع المنتدى الجديدة التي تنشئها',
 
