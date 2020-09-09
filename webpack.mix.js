@@ -150,6 +150,7 @@ for (const name of tsReactComponents) {
 const output = {
   filename: outputFilename('js/[name]'),
   path: resolvePath('public'),
+  publicPath: '/',
 };
 
 //#endregion
