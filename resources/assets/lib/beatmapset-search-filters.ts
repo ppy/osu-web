@@ -6,6 +6,7 @@ import { action, computed, observable } from 'mobx';
 type filterValueType = string | null;
 
 export interface BeatmapsetSearchParams {
+  bundled: filterValueType;
   extra: filterValueType;
   general: filterValueType;
   genre: filterValueType;
@@ -21,6 +22,7 @@ export interface BeatmapsetSearchParams {
 }
 
 export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
+  @observable bundled: filterValueType = null;
   @observable extra: filterValueType = null;
   @observable general: filterValueType = null;
   @observable genre: filterValueType = null;
