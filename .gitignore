@@ -24,8 +24,8 @@ desktop.ini
 /node_modules
 /yarn-error.log
 
-# Mix manifest
-/public/mix-manifest.json
+# manifest
+/public/manifest.json
 
 # Compiled/copied assets
 /public/docs

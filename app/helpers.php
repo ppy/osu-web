@@ -1667,32 +1667,22 @@ function search_error_message(?Exception $e): ?string
  *
  * @throws Exception
  */
-function unmix(string $resource, $manifest = 'mix-manifest.json')
+function unmix(string $resource)
 {
-    static $manifests = [];
+    static $manifest;
 
-    $manifestPath = public_path($manifest);
+    if (!isset($manifest)) {
+        $manifestPath = public_path('manifest.json');
 
-    if (!isset($manifests[$manifestPath])) {
         if (!file_exists($manifestPath)) {
-            throw new Exception("The manifest {$manifest} does not exist.");
+            throw new Exception('The manifest does not exist.');
         }
 
-        $manifests[$manifestPath] = json_decode(file_get_contents($manifestPath), true);
+        $manifest = json_decode(file_get_contents($manifestPath), true);
     }
 
-    $manifest = $manifests[$manifestPath];
-
     if (!isset($manifest[$resource])) {
-        $exception = new Exception("resource not defined in {$manifestPath}: {$resource}.");
-
-        if (!config('app.debug')) {
-            report($exception);
-
-            return $resource;
-        } else {
-            throw $exception;
-        }
+        throw new Exception("resource not defined: {$resource}.");
     }
 
     return new HtmlString($manifest[$resource]);

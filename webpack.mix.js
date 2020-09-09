@@ -177,7 +177,7 @@ const plugins = [
       { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]', '[ext]') },
     ],
   }),
-  new Manifest({ fileName: 'public/mix-manifest.json'}),
+  new Manifest({ fileName: 'public/manifest.json'}),
 ];
 
 if (process.env.SENTRY_RELEASE === '1') {
