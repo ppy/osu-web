@@ -32,20 +32,6 @@ export default class ChatOrchestrator implements DispatchListener {
     this.api = new ChatAPI();
   }
 
-  addMessages(channelId: number, messages: MessageJSON[]) {
-    const newMessages: Message[] = [];
-
-    transaction(() => {
-      messages.forEach((json: MessageJSON) => {
-        if (json.sender != null) this.rootDataStore.userStore.getOrCreate(json.sender_id, json.sender);
-        const newMessage = Message.fromJSON(json);
-        newMessages.push(newMessage);
-      });
-
-      this.rootDataStore.channelStore.addMessages(channelId, newMessages);
-    });
-  }
-
   changeChannel(channelId: number) {
     const uiState = this.rootDataStore.uiState.chat;
     const channelStore = this.rootDataStore.channelStore;
@@ -197,6 +183,17 @@ export default class ChatOrchestrator implements DispatchListener {
     }, 1000);
 
     this.markingAsRead[channelId] = currentTimeout;
+  }
+
+  private addMessages(channelId: number, messages: MessageJSON[]) {
+    transaction(() => {
+      const newMessages = messages.map((json: MessageJSON) => {
+        if (json.sender != null) this.rootDataStore.userStore.getOrCreate(json.sender_id, json.sender);
+        return Message.fromJSON(json);
+      });
+
+      this.rootDataStore.channelStore.addMessages(channelId, newMessages);
+    });
   }
 
   private handleChatChannelJoinAction(action: ChatChannelJoinAction) {
