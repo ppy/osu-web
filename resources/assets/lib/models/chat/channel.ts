@@ -29,15 +29,6 @@ export default class Channel {
   @observable users: number[] = [];
 
   @computed
-  get isUnread(): boolean {
-    if (this.lastReadId != null) {
-      return this.lastMessageId > this.lastReadId;
-    } else {
-      return this.lastMessageId > -1;
-    }
-  }
-
-  @computed
   get exists(): boolean {
     return this.channelId > 0;
   }
@@ -45,6 +36,15 @@ export default class Channel {
   @computed
   get hasEarlierMessages() {
     return this.firstMessageId !== this.minMessageId;
+  }
+
+  @computed
+  get isUnread(): boolean {
+    if (this.lastReadId != null) {
+      return this.lastMessageId > this.lastReadId;
+    } else {
+      return this.lastMessageId > -1;
+    }
   }
 
   @computed
