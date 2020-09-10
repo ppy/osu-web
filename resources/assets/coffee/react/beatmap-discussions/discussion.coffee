@@ -266,7 +266,7 @@ export class Discussion extends React.PureComponent
 
 
   isRead: (post) =>
-    _.includes(@props.readPostIds, post.id) && !@isOwner(post) && !@props.preview
+    @props.readPostIds.has(post.id) && !@isOwner(post) && !@props.preview
 
 
   isOwner: (object = @props.discussion) =>
