@@ -13,7 +13,7 @@ import { UserLogoutAction } from 'actions/user-login-actions';
 import UserSilenceAction from 'actions/user-silence-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import { ChannelJSON, MessageJSON, PresenceJSON } from 'chat/chat-api-responses';
-import * as _ from 'lodash';
+import { maxBy } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
@@ -34,7 +34,7 @@ export default class ChannelStore extends Store {
   @computed
   get maxMessageId(): number {
     const channelArray = Array.from(this.channels.toJS().values());
-    const max = _.maxBy(channelArray, 'lastMessageId');
+    const max = maxBy(channelArray, 'lastMessageId');
 
     return max == null ? -1 : max.lastMessageId;
   }
@@ -81,7 +81,7 @@ export default class ChannelStore extends Store {
 
   @action
   addMessages(channelId: number, messages: Message[]) {
-    if (_.isEmpty(messages)) {
+    if (messages.length === 0) {
       return;
     }
 
