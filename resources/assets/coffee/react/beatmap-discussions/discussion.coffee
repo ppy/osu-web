@@ -9,6 +9,7 @@ import mapperGroup from 'beatmap-discussions/mapper-group'
 import * as React from 'react'
 import { button, div, i, span, a } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
+import { classWithModifiers } from 'utils/css'
 
 el = React.createElement
 
@@ -45,25 +46,25 @@ export class Discussion extends React.PureComponent
     return null if !@isVisible(@props.discussion)
     return null if !@props.discussion.starting_post && (!@props.discussion.posts || @props.discussion.posts.length == 0)
 
-    topClasses = "#{bn} js-beatmap-discussion-jump"
-    topClasses += " #{bn}--highlighted" if @state.highlighted
-    topClasses += " #{bn}--deleted" if @props.discussion.deleted_at?
-    topClasses += " #{bn}--timeline" if @props.discussion.timestamp?
-    topClasses += " #{bn}--preview" if @props.preview
-    topClasses += " #{bn}--review" if @props.discussion.message_type == 'review'
-
-    lineClasses = "#{bn}__line"
-    lineClasses += " #{bn}__line--resolved" if @props.discussion.resolved
+    lineClasses = classWithModifiers "#{bn}__line",
+      resolved: @props.discussion.resolved
 
     lastResolvedState = false
     @_resolvedSystemPostId = null
 
     firstPost = @props.discussion.starting_post || @props.discussion.posts[0]
 
+    topClasses = classWithModifiers bn,
+      deleted: @props.discussion.deleted_at?
+      highlighted: @state.highlighted
+      preview: @props.preview
+      review: @props.discussion.message_type == 'review'
+      timeline: @props.discussion.timestamp?
+      unread: !_.includes(@props.readPostIds, firstPost.id) && !@isOwner(firstPost) && !@props.preview
+    topClasses += ' js-beatmap-discussion-jump'
+
     user = @props.users[@props.discussion.user_id]
     group = if user.id == @props.beatmapset.user_id then mapperGroup else user.groups[0]
-
-    topClasses += " #{bn}--unread" unless _.includes(@props.readPostIds, firstPost.id) || @isOwner(firstPost) || @props.preview
 
     div
       className: topClasses
