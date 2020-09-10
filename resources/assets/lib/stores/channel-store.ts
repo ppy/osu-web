@@ -24,7 +24,6 @@ import Store from 'stores/store';
 export default class ChannelStore extends Store {
   @observable channels = observable.map<number, Channel>();
   lastHistoryId: number | null = null;
-  @observable loaded: boolean = false;
 
   @computed
   get channelList(): Channel[] {
@@ -116,8 +115,7 @@ export default class ChannelStore extends Store {
 
   @action
   flushStore() {
-    this.channels = observable.map<number, Channel>();
-    this.loaded = false;
+    this.channels.clear();
   }
 
   get(channelId: number): Channel | undefined {
@@ -182,7 +180,5 @@ export default class ChannelStore extends Store {
         dispatch(new ChatChannelPartAction(channel.channelId, false));
       }
     });
-
-    this.loaded = true;
   }
 }

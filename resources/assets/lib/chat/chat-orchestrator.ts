@@ -61,7 +61,6 @@ export default class ChatOrchestrator implements DispatchListener {
   focusChannelAtIndex(index: number) {
     const channelList = this.rootDataStore.channelStore.channelList;
     if (channelList.length === 0) {
-      this.rootDataStore.channelStore.loaded = false;
       return;
     }
 
@@ -147,7 +146,7 @@ export default class ChatOrchestrator implements DispatchListener {
   }
 
   markAsRead(channelId: number) {
-    if (!this.windowIsActive || this.markingAsRead[channelId] != null || !this.rootDataStore.channelStore.loaded) {
+    if (!this.windowIsActive || this.markingAsRead[channelId] != null) {
       return;
     }
 
@@ -218,7 +217,7 @@ export default class ChatOrchestrator implements DispatchListener {
     }
 
     if (action.shouldSync && action.channelId !== -1) {
-      return this.api.partChannel(action.channelId, window.currentUser.id)
+      this.api.partChannel(action.channelId, window.currentUser.id)
         .catch((err) => {
           console.debug('leaveChannel error', err);
         });
