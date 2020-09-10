@@ -38,10 +38,12 @@
   }
 
   &--unread {
+    position: relative;
+
     &::before {
       .full-size();
-      content: ' ';
-      background-color: @blue-darker;
+      content: '';
+      background-color: hsl(var(--hsl-blue-3));
       width: 5px;
     }
   }
