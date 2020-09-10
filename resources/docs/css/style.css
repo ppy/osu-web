@@ -1085,6 +1085,11 @@ body {
 .content h1 {
   font-size: 25px;
 }
+.content h4,
+.content h5,
+.content h6 {
+  font-size: 12px;
+}
 .content blockquote {
   padding: 0;
 }
@@ -1099,6 +1104,10 @@ body {
 }
 .content pre > code {
   overflow: visible;
+}
+.content table td {
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 .content table tr:nth-child(2n+1) > td {
   background-color: #fff;
