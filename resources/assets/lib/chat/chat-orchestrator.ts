@@ -64,9 +64,7 @@ export default class ChatOrchestrator implements DispatchListener {
 
       if (!channel.newChannel) {
         this.loadChannel(channelId).then(() => {
-          if (this.windowIsActive) {
-            this.markAsRead(channelId);
-          }
+          this.markAsRead(channelId);
         });
       }
 
@@ -97,7 +95,7 @@ export default class ChatOrchestrator implements DispatchListener {
     } else if (action instanceof ChatChannelPartAction) {
       this.handleChatChannelPartAction(action);
     } else if (action instanceof ChatMessageAddAction) {
-      if (this.windowIsActive && this.rootDataStore.channelStore.loaded) {
+      if (this.rootDataStore.channelStore.loaded) {
         this.markAsRead(this.rootDataStore.uiState.chat.selected);
       }
     } else if (action instanceof ChatPresenceUpdateAction) {
@@ -167,7 +165,7 @@ export default class ChatOrchestrator implements DispatchListener {
   }
 
   markAsRead(channelId: number) {
-    if (this.markingAsRead[channelId] != null) {
+    if (!this.windowIsActive || this.markingAsRead[channelId] != null) {
       return;
     }
 
