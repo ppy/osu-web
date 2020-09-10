@@ -265,12 +265,12 @@ export class Discussion extends React.PureComponent
     $.publish 'beatmapDiscussionEntry:highlight', id: @props.discussion.id
 
 
-  isRead: (post) =>
-    @props.readPostIds.has(post.id) && !@isOwner(post) && !@props.preview
-
-
   isOwner: (object = @props.discussion) =>
     @props.currentUser.id? && object.user_id == @props.currentUser.id
+
+
+  isRead: (post) =>
+    @props.readPostIds.has(post.id) && !@isOwner(post) && !@props.preview
 
 
   isVisible: (object) =>
