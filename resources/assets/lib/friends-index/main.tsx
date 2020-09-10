@@ -32,7 +32,7 @@ export class Main extends React.PureComponent<Props> {
         <HeaderV4
           backgroundImage={this.props.user.cover?.url}
           links={Main.links}
-          theme='home'
+          theme='friends'
         />
 
         <div className='osu-page osu-page--users'>
