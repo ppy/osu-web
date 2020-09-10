@@ -95,16 +95,12 @@ export default class ChatOrchestrator implements DispatchListener {
     } else if (action instanceof ChatChannelPartAction) {
       this.handleChatChannelPartAction(action);
     } else if (action instanceof ChatMessageAddAction) {
-      if (this.rootDataStore.channelStore.loaded) {
-        this.markAsRead(this.rootDataStore.uiState.chat.selected);
-      }
+      this.markAsRead(this.rootDataStore.uiState.chat.selected);
     } else if (action instanceof ChatPresenceUpdateAction) {
       this.handleChatPresenceUpdateAction();
     } else if (action instanceof WindowFocusAction) {
       this.windowIsActive = true;
-      if (this.rootDataStore.channelStore.loaded) {
-        this.markAsRead(this.rootDataStore.uiState.chat.selected);
-      }
+      this.markAsRead(this.rootDataStore.uiState.chat.selected);
     } else if (action instanceof WindowBlurAction) {
       this.windowIsActive = false;
     }
@@ -165,7 +161,7 @@ export default class ChatOrchestrator implements DispatchListener {
   }
 
   markAsRead(channelId: number) {
-    if (!this.windowIsActive || this.markingAsRead[channelId] != null) {
+    if (!this.windowIsActive || this.markingAsRead[channelId] != null || !this.rootDataStore.channelStore.loaded) {
       return;
     }
 
