@@ -63,16 +63,11 @@ export default class ChatOrchestrator implements DispatchListener {
       const channel = channelStore.getOrCreate(channelId);
 
       if (!channel.newChannel) {
-        if (channel.loaded) {
-          this.markAsRead(channelId);
-        } else {
-          this.loadChannel(channelId)
-            .then(() => {
-              if (this.windowIsActive) {
-                this.markAsRead(channelId);
-              }
-            });
-        }
+        this.loadChannel(channelId).then(() => {
+          if (this.windowIsActive) {
+            this.markAsRead(channelId);
+          }
+        });
       }
 
       uiState.selected = channelId;
