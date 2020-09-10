@@ -416,7 +416,7 @@ export class Main extends React.PureComponent
 
   saveStateToContainer: =>
     # This is only so it can be stored with JSON.stringify.
-    @state.readPostIdsArray = [@state.readPostIds...]
+    @state.readPostIdsArray = _.toArray(@state.readPostIds)
     @props.container.dataset.beatmapsetDiscussionState = JSON.stringify(@state)
 
 
