@@ -401,7 +401,13 @@ export class Main extends React.PureComponent
   markPostRead: (_e, {id}) =>
     return if @state.readPostIds.has(id)
 
-    @setState readPostIds: new Set([id, @state.readPostIds...])
+    newSet = new Set(@state.readPostIds)
+    if Array.isArray(id)
+      newSet.add(i) for i in id
+    else
+      newSet.add(id)
+
+    @setState readPostIds: newSet
 
 
   queryFromLocation: (discussions = @state.beatmapsetDiscussion.beatmap_discussions) =>
