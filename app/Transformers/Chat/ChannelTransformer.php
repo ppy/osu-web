@@ -7,11 +7,12 @@ namespace App\Transformers\Chat;
 
 use App\Models\Chat\Channel;
 use App\Transformers\TransformerAbstract;
-use App\Transformers\UserCompactTransformer;
 
 class ChannelTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
+        'first_message_id',
+        'last_message_id',
         'recent_messages',
         'users',
     ];
@@ -20,10 +21,21 @@ class ChannelTransformer extends TransformerAbstract
     {
         return [
             'channel_id' => $channel->channel_id,
-            'name' => $channel->name,
             'description' => $channel->description,
+            'moderated' => $channel->moderated,
+            'name' => $channel->name,
             'type' => $channel->type,
         ];
+    }
+
+    public function includeFirstMessageId(Channel $channel)
+    {
+        return $this->primitive($channel->messages()->select('message_id')->orderBy('message_id')->first()->message_id ?? null);
+    }
+
+    public function includeLastMessageId(Channel $channel)
+    {
+        return $this->primitive($channel->messages()->select('message_id')->last()->message_id ?? null);
     }
 
     public function includeRecentMessages(Channel $channel)
@@ -46,6 +58,6 @@ class ChannelTransformer extends TransformerAbstract
 
     public function includeUsers(Channel $channel)
     {
-        return $this->collection($channel->users()->get(), new UserCompactTransformer);
+        return $this->primitive($channel->userChannels()->pluck('user_id'));
     }
 }

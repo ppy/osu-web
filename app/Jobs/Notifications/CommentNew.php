@@ -64,7 +64,7 @@ class CommentNew extends BroadcastNotificationBase
             $user = $this->comment->parent->user;
             $notificationOption = $user->notificationOptions()->where('name', Notification::COMMENT_NEW)->first();
 
-            if ($notificationOption->details[UserNotificationOption::COMMENT_REPLY] ?? false) {
+            if ($notificationOption->details[UserNotificationOption::COMMENT_REPLY] ?? true) {
                 $userIds->push($user->getKey());
             }
         }
