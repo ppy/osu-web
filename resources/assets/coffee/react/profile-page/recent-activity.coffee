@@ -71,7 +71,7 @@ export class RecentActivity extends React.PureComponent
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
             __html: osu.trans 'events.beatmapset_approve',
-              approval: event.approval
+              approval: osu.trans "events.beatmapset_status.#{event.approval}"
               beatmapset: link(event.beatmapset.url, event.beatmapset.title)
               user: link(event.user.url, event.user.username)
 
