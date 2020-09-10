@@ -11,7 +11,9 @@
 
   @_content-gutter-base: 15px;
 
+  --stripe-colour: transparent;
   transition: background-color .1s ease-in-out;
+  border-left: 5px solid var(--stripe-colour);
 
   &--deleted {
     opacity: 0.5;
@@ -38,12 +40,7 @@
   }
 
   &--unread {
-    &::before {
-      .full-size();
-      content: ' ';
-      background-color: @blue-darker;
-      width: 5px;
-    }
+    --stripe-colour: hsl(var(--hsl-blue-3));
   }
 
   &__action {
