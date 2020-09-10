@@ -34,7 +34,9 @@ export class Main extends React.PureComponent
     # FIXME: update url handler to recognize this instead
     @focusNewDiscussion = document.location.hash == '#new'
 
-    if !@restoredState
+    if @restoredState
+      @state.readPostIds = new Set(@state.readPostIdsArray)
+    else
       beatmapset = props.initial.beatmapset
       reviewsConfig = props.initial.reviews_config
       showDeleted = true
@@ -407,6 +409,8 @@ export class Main extends React.PureComponent
 
 
   saveStateToContainer: =>
+    # This is only so it can be stored with JSON.stringify.
+    @state.readPostIdsArray = [@state.readPostIds...]
     @props.container.dataset.beatmapsetDiscussionState = JSON.stringify(@state)
 
 
