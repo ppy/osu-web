@@ -128,7 +128,8 @@ class ChannelsController extends Controller
 
         priv_check('ChatChannelShow', $channel)->ensureCan();
 
-        return ['channel' => json_item($channel, 'Chat\Channel')];
+        // TODO: set correct names and stuff for PM.
+        return ['channel' => json_item($channel, 'Chat\Channel', ['users'])];
     }
 
     /**

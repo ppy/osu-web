@@ -117,7 +117,7 @@ export default class ChatOrchestrator implements DispatchListener {
     }
   }
 
-  loadChannel(channelId: number): Promise<void> {
+  async loadChannel(channelId: number) {
     const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
 
     if (channel.loading) {
@@ -125,7 +125,17 @@ export default class ChatOrchestrator implements DispatchListener {
     }
 
     channel.loading = true;
+    if (!channel.metaLoaded) {
+      console.debug(`loading metadata for channel ${channel.channelId}`);
+      const json = await this.api.getChannel(channel.channelId);
+      channel.updateWithJson(json);
+    }
 
+    if (channel.loaded) {
+      return Promise.resolve();
+    }
+
+    // FIXME: initial messsages and earlier messages should be rolled up?
     return this.api.getMessages(channelId)
       .then((messages) => {
         transaction(() => {
