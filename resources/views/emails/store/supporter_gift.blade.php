@@ -5,7 +5,7 @@
 {!! trans('mail.common.hello', ['user' => $giftee->username]) !!}
 
 {!! trans('mail.supporter_gift.gifted') !!}
-{!! trans('mail.supporter_gift.duration', ['duration' => $duration]) !!}
+{!! trans('mail.supporter_gift.duration', ['duration' => \App\Models\SupporterTag::getDurationText($duration)]) !!}
 {!! trans('mail.supporter_gift.features') !!}
 {!! route('support-the-game') !!}
 {!! trans('mail.supporter_gift.anonymous_gift') !!}

@@ -29,7 +29,7 @@ class SupporterGift extends Mailable implements ShouldQueue
         $this->params = [
             'donor' => $donor,
             'giftee' => $giftee,
-            'duration' => SupporterTag::getDurationText($duration),
+            'duration' => $duration,
         ];
     }
 
