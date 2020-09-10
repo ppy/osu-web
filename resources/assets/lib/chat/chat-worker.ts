@@ -109,7 +109,7 @@ export default class ChatWorker implements DispatchListener {
     const channelId = message.channelId;
     const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
 
-    if (channel.newChannel) {
+    if (channel.newPmChannel) {
       const users = channel.users.slice();
       const userId = users.find((user) => {
         return user !== currentUser.id;

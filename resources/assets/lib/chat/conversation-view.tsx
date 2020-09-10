@@ -121,7 +121,7 @@ export default class ConversationView extends React.Component<Props> implements 
       return;
     }
 
-    if (channel.type === 'PM' || channel.type === 'NEW') {
+    if (channel.type === 'PM' || channel.transient) {
       return (
         <div>
           <div className='chat-conversation__cannot-message'>{osu.trans('chat.cannot_send.user')}</div>

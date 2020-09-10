@@ -55,14 +55,14 @@ export default class ChatOrchestrator implements DispatchListener {
     }
 
     transaction(() => {
-      if (channelStore.getOrCreate(uiState.selected).type !== 'NEW') {
+      if (!channelStore.getOrCreate(uiState.selected).transient) {
         // don't disable autoScroll if we're 'switching' away from the 'new chat' screen
         //   e.g. keep autoScroll enabled to jump to the newly sent message when restarting an old conversation
         uiState.autoScroll = false;
       }
       const channel = channelStore.getOrCreate(channelId);
 
-      if (!channel.newChannel) {
+      if (!channel.newPmChannel) {
         this.loadChannel(channelId).then(() => {
           this.markAsRead(channelId);
         });
