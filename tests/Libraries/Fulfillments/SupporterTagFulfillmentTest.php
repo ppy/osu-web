@@ -10,7 +10,6 @@ use App\Mail\DonationThanks;
 use App\Mail\SupporterGift;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
-use App\Models\SupporterTag;
 use App\Models\User;
 use App\Models\UserDonation;
 use Carbon\Carbon;
