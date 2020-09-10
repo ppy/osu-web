@@ -270,7 +270,7 @@ export class Discussion extends React.PureComponent
 
 
   isRead: (post) =>
-    @props.readPostIds.has(post.id) || @isOwner(post) || !@props.preview
+    @props.readPostIds.has(post.id) || @isOwner(post) || @props.preview
 
 
   isVisible: (object) =>
