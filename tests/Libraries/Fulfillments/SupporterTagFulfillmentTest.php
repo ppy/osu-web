@@ -87,9 +87,9 @@ class SupporterTagFulfillmentTest extends TestCase
             $params = $this->invokeProperty($mail, 'params');
 
             if ($params['giftee']->is($giftee1)) {
-                return $params['duration'] === SupporterTag::getDurationText(2);
+                return $params['duration'] === 2;
             } elseif ($params['giftee']->is($giftee2)) {
-                return $params['duration'] === SupporterTag::getDurationText(1);
+                return $params['duration'] === 1;
             }
         });
 
