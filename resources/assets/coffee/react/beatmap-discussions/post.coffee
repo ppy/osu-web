@@ -59,7 +59,7 @@ export class Post extends React.PureComponent
     if @state.editing
       topClasses += " #{bn}--editing"
     topClasses += " #{bn}--deleted" if @props.post.deleted_at?
-    topClasses += " #{bn}--unread" if !@props.read
+    topClasses += " #{bn}--unread" if !@props.read && @props.type != 'discussion'
 
     userGroup = if @isOwner() then mapperGroup else @props.user.groups[0]
 
