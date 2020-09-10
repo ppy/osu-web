@@ -60,7 +60,7 @@ export class Discussion extends React.PureComponent
       preview: @props.preview
       review: @props.discussion.message_type == 'review'
       timeline: @props.discussion.timestamp?
-      unread: !_.includes(@props.readPostIds, firstPost.id) && !@isOwner(firstPost) && !@props.preview
+      unread: !@isRead(firstPost)
     topClasses += ' js-beatmap-discussion-jump'
 
     user = @props.users[@props.discussion.user_id]
@@ -265,6 +265,10 @@ export class Discussion extends React.PureComponent
     $.publish 'beatmapDiscussionEntry:highlight', id: @props.discussion.id
 
 
+  isRead: (post) =>
+    _.includes(@props.readPostIds, post.id) && !@isOwner(post) && !@props.preview
+
+
   isOwner: (object = @props.discussion) =>
     @props.currentUser.id? && object.user_id == @props.currentUser.id
 
@@ -302,7 +306,7 @@ export class Discussion extends React.PureComponent
       discussion: @props.discussion
       post: post
       type: type
-      read: _.includes(@props.readPostIds, post.id) || @isOwner(post) || @props.preview
+      read: @isRead(post)
       users: @props.users
       user: @props.users[post.user_id]
       lastEditor: @props.users[post.last_editor_id]
