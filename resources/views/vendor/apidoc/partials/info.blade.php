@@ -274,6 +274,9 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2020-09-08
+- `presence` removed from `chat/new` response.
+
 ### 2020-08-28
 - `/rooms/{room_id}/leaderboard` no longer returns an array at the top level; an object with keys is now returned.
 
