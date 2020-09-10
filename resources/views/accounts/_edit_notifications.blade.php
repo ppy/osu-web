@@ -45,7 +45,7 @@
                     @endphp
                     @include('objects._switch', [
                         'additionalClass'=> 'js-account-edit__input',
-                        'checked' => $notificationOptions[$name]->details[$option] ?? false,
+                        'checked' => $notificationOptions[$name]->details[$option] ?? true,
                         'name' => "user_notification_option[{$name}][details][{$option}]",
                     ])
 

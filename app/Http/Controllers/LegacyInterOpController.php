@@ -250,9 +250,19 @@ class LegacyInterOpController extends Controller
                     abort(422);
                 }
 
+                $sender = optional($users[$messageParams['sender_id']] ?? null)->markSessionVerified();
+                if ($sender === null) {
+                    abort(422, 'sender not found');
+                }
+
+                $target = $users[$messageParams['target_id']] ?? null;
+                if ($target === null) {
+                    abort(422, 'target user not found');
+                }
+
                 $message = Chat::sendPrivateMessage(
-                    optional($users[$messageParams['sender_id']] ?? null)->markSessionVerified(),
-                    $users[$messageParams['target_id']] ?? null,
+                    $sender,
+                    $target,
                     presence($messageParams['message'] ?? null),
                     $messageParams['is_action'] ?? null
                 );
@@ -351,10 +361,14 @@ class LegacyInterOpController extends Controller
         $params = request()->all();
 
         $sender = User::findOrFail($params['sender_id'] ?? null)->markSessionVerified();
+        $target = User::lookup($params['target_id'] ?? null, 'id');
+        if ($target === null) {
+            abort(422, 'target user not found');
+        }
 
         $message = Chat::sendPrivateMessage(
             $sender,
-            get_int($params['target_id'] ?? null),
+            $target,
             presence($params['message'] ?? null),
             get_bool($params['is_action'] ?? null)
         );
