@@ -11,7 +11,7 @@
 
 {{-- FIXME: move to user modding history --}}
 @section('content')
-    @include('layout._page_header_v4')
+    @include('layout._page_header_v4', ['params' => ['theme' => 'beatmapsets']])
     <div class="osu-page osu-page--generic">
         <div class="beatmapset-activities">
             <h3>{{ trans('beatmap_discussions.index.title') }}</h3>
