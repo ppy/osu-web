@@ -55,6 +55,7 @@ export class Discussion extends React.PureComponent
     firstPost = @props.discussion.starting_post || @props.discussion.posts[0]
 
     topClasses = classWithModifiers bn,
+      'horizontal-desktop': @props.discussion.message_type != 'review'
       deleted: @props.discussion.deleted_at?
       highlighted: @state.highlighted
       preview: @props.preview
@@ -74,56 +75,47 @@ export class Discussion extends React.PureComponent
       div className: "#{bn}__timestamp hidden-xs",
         @timestamp()
 
-      div className: "#{bn}__compact",
-        div className: "#{bn}__discussion",
-          div
-            className: "#{bn}__top"
-            style:
-              color: osu.groupColour(group)
-            div className: "#{bn}__discussion-header",
-              el UserCard,
-                user: user
-                group: group
-                hideStripe: true
-            @postButtons() if !@props.preview
-          div className: "#{bn}__review-wrapper",
+      div className: "#{bn}__discussion",
+        div
+          className: "#{bn}__top"
+          style: osu.groupColour(group)
+          div className: "#{bn}__top-user",
+            el UserCard,
+              user: user
+              group: group
+              hideStripe: true
+          div className: "#{bn}__top-message",
             @post firstPost, 'discussion', true
-          @postFooter() if !@props.preview
-          div className: lineClasses
-      div className: "#{bn}__full",
-        div className: "#{bn}__discussion",
-          div className: "#{bn}__top",
-            @post firstPost, 'discussion'
+          div className: "#{bn}__top-actions",
             @postButtons() if !@props.preview
-          @postFooter() if !@props.preview
-          div className: lineClasses
+        @postFooter() if !@props.preview
+        div className: lineClasses
 
   postButtons: =>
-    div className: "#{bn}__actions-container",
-      div className: "#{bn}__actions",
-        if @props.parentDiscussion?
-          a
-            href: BeatmapDiscussionHelper.url({discussion: @props.parentDiscussion})
-            title: osu.trans('beatmap_discussions.review.go_to_parent')
-            className: "#{bn}__link-to-parent js-beatmap-discussion--jump",
-            i className: 'fas fa-tasks'
+    div className: "#{bn}__actions",
+      if @props.parentDiscussion?
+        a
+          href: BeatmapDiscussionHelper.url({discussion: @props.parentDiscussion})
+          title: osu.trans('beatmap_discussions.review.go_to_parent')
+          className: "#{bn}__link-to-parent js-beatmap-discussion--jump",
+          i className: 'fas fa-tasks'
 
-        ['up', 'down'].map (type) =>
-          div
-            key: type
-            'data-type': type
-            className: "#{bn}__action"
-            onMouseOver: @showVoters
-            onTouchStart: @showVoters
-            @displayVote type
-            @voterList type
+      ['up', 'down'].map (type) =>
+        div
+          key: type
+          'data-type': type
+          className: "#{bn}__action"
+          onMouseOver: @showVoters
+          onTouchStart: @showVoters
+          @displayVote type
+          @voterList type
 
-        button
-          className: "#{bn}__action #{bn}__action--with-line"
-          onClick: @toggleExpand
-          div
-            className: "beatmap-discussion-expand #{'beatmap-discussion-expand--expanded' if !@state.collapsed}"
-            i className: 'fas fa-chevron-down'
+      button
+        className: "#{bn}__action #{bn}__action--with-line"
+        onClick: @toggleExpand
+        div
+          className: "beatmap-discussion-expand #{'beatmap-discussion-expand--expanded' if !@state.collapsed}"
+          i className: 'fas fa-chevron-down'
 
 
   postFooter: =>

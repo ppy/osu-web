@@ -12,7 +12,7 @@ class BeatmapsetDiscussionVotesController extends Controller
 {
     public function index()
     {
-        $params = request();
+        $params = request()->all();
         $params['is_moderator'] = priv_check('BeatmapDiscussionModerate')->can();
 
         $search = BeatmapDiscussionVote::search($params);

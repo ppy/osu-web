@@ -180,7 +180,7 @@ class CommentsController extends Controller
     {
         $user = auth()->user();
 
-        $params = get_params(request(), 'comment', [
+        $params = get_params(request()->all(), 'comment', [
             'commentable_id:int',
             'commentable_type',
             'message',
@@ -224,7 +224,7 @@ class CommentsController extends Controller
 
         priv_check('CommentUpdate', $comment)->ensureCan();
 
-        $params = get_params(request(), 'comment', ['message']);
+        $params = get_params(request()->all(), 'comment', ['message']);
         $params['edited_by_id'] = auth()->user()->getKey();
         $params['edited_at'] = Carbon::now();
         $comment->update($params);

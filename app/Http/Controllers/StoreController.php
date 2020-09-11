@@ -112,7 +112,7 @@ class StoreController extends Controller
             'address' => Request::input('address'),
         ]));
 
-        $addressInput = get_params(request(), 'address', [
+        $addressInput = get_params(request()->all(), 'address', [
             'first_name',
             'last_name',
             'street',

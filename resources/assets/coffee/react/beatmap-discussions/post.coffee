@@ -13,6 +13,7 @@ import { ReportReportable } from 'report-reportable'
 import Editor from 'beatmap-discussions/editor'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
+import { classWithModifiers } from 'utils/css'
 
 el = React.createElement
 
@@ -55,11 +56,11 @@ export class Post extends React.PureComponent
 
 
   render: =>
-    topClasses = "#{bn} #{bn}--#{@props.type}"
-    if @state.editing
-      topClasses += " #{bn}--editing"
-    topClasses += " #{bn}--deleted" if @props.post.deleted_at?
-    topClasses += " #{bn}--unread" if !@props.read
+    topClasses = classWithModifiers bn,
+      "#{@props.type}": true
+      deleted: @props.post.deleted_at?
+      editing: @state.editing
+      unread: !@props.read && @props.type != 'discussion'
 
     userGroup = if @isOwner() then mapperGroup else @props.user.groups[0]
 

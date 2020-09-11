@@ -7,7 +7,7 @@
 @endphp
 @include('layout._page_header_v4', ['params' => [
     'backgroundExtraClass' => 'js-current-user-cover',
-    'theme' => 'home',
+    'theme' => $themeOverride ?? 'home',
 
     'links' => [
         [

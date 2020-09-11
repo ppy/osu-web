@@ -6,7 +6,7 @@
 
 {{-- FIXME: move to user modding history --}}
 @section('content')
-    @include('layout._page_header_v4')
+    @include('layout._page_header_v4', ['params' => ['theme' => 'beatmapsets']])
     <div class="osu-layout__row osu-layout__row--page">
         <div class="beatmapset-activities">
             @if (isset($user))
