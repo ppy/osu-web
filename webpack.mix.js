@@ -6,6 +6,7 @@
 //#region plugin imports
 const Autoprefixer = require('autoprefixer');
 const CopyPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SentryPlugin = require('webpack-sentry-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
@@ -31,8 +32,8 @@ const paymentSandbox = !(process.env.PAYMENT_SANDBOX === '0'
 
 //#region helpers
 function outputFilename(name, ext = 'js', hashType = 'contenthash:8') {
-  return `${name}.${ext}?id=[${hashType}]`;
-  // return `${name}.[${hashType}].${ext}`;
+  // return `${name}.${ext}?id=[${hashType}]`;
+  return `${name}.[${hashType}].${ext}`;
 }
 
 function resolvePath(...segments) {
@@ -176,6 +177,7 @@ const plugins = [
     ],
   }),
   new Manifest({ fileName: 'public/manifest.json'}),
+  new CleanWebpackPlugin(),
 ];
 
 if (process.env.SENTRY_RELEASE === '1') {
