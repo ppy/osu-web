@@ -38,10 +38,12 @@
   }
 
   &--unread {
+    position: relative;
+
     &::before {
       .full-size();
-      content: ' ';
-      background-color: @blue-darker;
+      content: '';
+      background-color: hsl(var(--hsl-blue-3));
       width: 5px;
     }
   }
@@ -113,6 +115,20 @@
     @media @desktop {
       flex-direction: row;
       flex: 1;
+    }
+
+    // Thread starter post is styled slightly differently.
+    // The post itself doesn't contain user card.
+    // On desktop, it means the left side should have slightly smaller gutter.
+    // On mobile, user card located on top of the content and already has
+    // bottom margin. Reduce the padding here to compensate.
+    .@{_top}--discussion & {
+      padding-top: 5px;
+
+      @media @desktop {
+        padding-top: 10px;
+        padding-left: 10px;
+      }
     }
 
     .@{_top}--reply & {
