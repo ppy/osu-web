@@ -77,8 +77,7 @@ export class Discussion extends React.PureComponent
         div className: "#{bn}__discussion",
           div
             className: "#{bn}__top"
-            style:
-              color: osu.groupColour(group)
+            style: osu.groupColour(group)
             div className: "#{bn}__discussion-header",
               el UserCard,
                 user: user
