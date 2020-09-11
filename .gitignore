@@ -28,12 +28,8 @@ desktop.ini
 /public/manifest.json
 
 # Compiled/copied assets
+/public/assets
 /public/docs
-/public/fonts
-/public/images/vendor
-/public/js
-/public/css
-/public/vendor
 /public/uploads
 /public/uploads-avatar
 /public/uploads-replay
