@@ -182,9 +182,8 @@ export default class Editor extends React.Component<Props, State> {
         if (ReactEditor.isFocused(this.slateEditor) && this.props.onFocus) {
           this.props.onFocus();
         }
-        if (this.props.onChange) {
-          this.props.onChange();
-        }
+
+        this.props.onChange?.();
       },
     );
   }
