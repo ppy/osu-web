@@ -177,8 +177,12 @@ const plugins = [
     ],
   }),
   new Manifest({ fileName: 'public/manifest.json'}),
-  new CleanWebpackPlugin(),
 ];
+
+// TODO: should have a different flag for this
+if (!inProduction) {
+  plugins.push(new CleanWebpackPlugin());
+}
 
 if (process.env.SENTRY_RELEASE === '1') {
   plugins.push(
