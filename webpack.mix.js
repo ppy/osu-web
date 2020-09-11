@@ -66,19 +66,17 @@ class Manifest {
       const manifest = {};
       json.assets.forEach((asset) => {
         let name = asset.name;
+        if (!(name.startsWith('js/') || name.startsWith('css/'))) return;
+        if (name.endsWith('.map')) return;
+
         // remove hash from name.
         if (name.lastIndexOf('?') > 0) {
           // querystring version
           name = name.substring(0, name.lastIndexOf('?'));
         } else {
           // hash in filename version
-          let extname = path.extname(name);
+          const extname = path.extname(name);
           let basename = name.substring(0, name.lastIndexOf(extname));
-          if (extname === '.map') {
-            extname = `${path.extname(basename)}.map`;
-          }
-
-          basename = name.substring(0, name.lastIndexOf(extname));
           basename = basename.substring(0, basename.lastIndexOf('.'));
 
           name = `${basename}${extname}`;
