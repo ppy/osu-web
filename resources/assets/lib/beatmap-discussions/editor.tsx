@@ -273,7 +273,7 @@ export default class Editor extends React.Component<Props, State> {
                     </span>
                     <button
                       className='btn-osu-big btn-osu-big--forum-primary'
-                      disabled={this.canSave()}
+                      disabled={!this.canSave()}
                       type='submit'
                       onClick={this.post}
                     >
