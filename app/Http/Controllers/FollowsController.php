@@ -52,7 +52,7 @@ class FollowsController extends Controller
 
     private function getParams()
     {
-        $params = get_params(request(), 'follow', ['notifiable_type:string', 'notifiable_id:int', 'subtype:string']);
+        $params = get_params(request()->all(), 'follow', ['notifiable_type:string', 'notifiable_id:int', 'subtype:string']);
         $params['user_id'] = auth()->user()->getKey();
 
         return $params;
