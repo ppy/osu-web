@@ -284,13 +284,4 @@ class BeatmapsetEvent extends Model
     {
         $this->attributes['comment'] = is_array($value) ? json_encode($value) : $value;
     }
-
-    public function typeForTranslation()
-    {
-        if ($this->type === 'disqualify' && !is_array($this->comment)) {
-            return 'disqualify_legacy';
-        }
-
-        return $this->type;
-    }
 }

@@ -62,7 +62,7 @@ class @StackedBarChart
 
     @options.scales.y
       .range [0, @height]
-      .domain [0, @max]
+      .domain [0, Math.max(@max, 1)]
 
 
   setSvgSize: ->

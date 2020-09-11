@@ -18,7 +18,7 @@ class CommentTest extends TestCase
     /**
      * @dataProvider commentReplyOptionDataProvider
      */
-    public function testCommentReplyNotification($option)
+    public function testCommentReplyNotification($option, $shouldBeSent)
     {
         $user = factory(User::class)->create();
         if ($option !== null) {
@@ -43,7 +43,7 @@ class CommentTest extends TestCase
 
         $notification = new CommentNew($comment, $commenter);
 
-        if ($option) {
+        if ($shouldBeSent) {
             $this->assertSame([$user->getKey()], $notification->getReceiverIds());
         } else {
             $this->assertEmpty($notification->getReceiverIds());
@@ -72,9 +72,9 @@ class CommentTest extends TestCase
     public function commentReplyOptionDataProvider()
     {
         return [
-            [null],
-            [false],
-            [true],
+            [null, true],
+            [false, false],
+            [true, true],
         ];
     }
 }

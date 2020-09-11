@@ -7,6 +7,8 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\Handler as ExceptionHandler;
 use App\Jobs\EsIndexDocument;
+use App\Jobs\Notifications\ForumTopicReply;
+use App\Jobs\Notifications\UserAchievementUnlock;
 use App\Jobs\RegenerateBeatmapsetCover;
 use App\Libraries\Chat;
 use App\Libraries\Session\Store as SessionStore;
@@ -48,7 +50,7 @@ class LegacyInterOpController extends Controller
                 abort(422, 'post is missing or it contains invalid user');
             }
 
-            broadcast_notification($params['name'], $post, $user);
+            (new ForumTopicReply($post, $user))->dispatch();
 
             return response(null, 204);
         }
@@ -111,7 +113,8 @@ class LegacyInterOpController extends Controller
         }
 
         Event::generate('achievement', compact('achievement', 'user'));
-        broadcast_notification(Notification::USER_ACHIEVEMENT_UNLOCK, $achievement, $user);
+
+        (new UserAchievementUnlock($achievement, $user))->dispatch();
 
         return $achievement->getKey();
     }
@@ -247,9 +250,19 @@ class LegacyInterOpController extends Controller
                     abort(422);
                 }
 
+                $sender = optional($users[$messageParams['sender_id']] ?? null)->markSessionVerified();
+                if ($sender === null) {
+                    abort(422, 'sender not found');
+                }
+
+                $target = $users[$messageParams['target_id']] ?? null;
+                if ($target === null) {
+                    abort(422, 'target user not found');
+                }
+
                 $message = Chat::sendPrivateMessage(
-                    optional($users[$messageParams['sender_id']] ?? null)->markSessionVerified(),
-                    $users[$messageParams['target_id']] ?? null,
+                    $sender,
+                    $target,
                     presence($messageParams['message'] ?? null),
                     $messageParams['is_action'] ?? null
                 );
@@ -348,10 +361,14 @@ class LegacyInterOpController extends Controller
         $params = request()->all();
 
         $sender = User::findOrFail($params['sender_id'] ?? null)->markSessionVerified();
+        $target = User::lookup($params['target_id'] ?? null, 'id');
+        if ($target === null) {
+            abort(422, 'target user not found');
+        }
 
         $message = Chat::sendPrivateMessage(
             $sender,
-            get_int($params['target_id'] ?? null),
+            $target,
             presence($params['message'] ?? null),
             get_bool($params['is_action'] ?? null)
         );
