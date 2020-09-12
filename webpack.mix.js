@@ -280,9 +280,6 @@ const rules = [
         options: {
           importLoaders: 1,
           sourceMap: true,
-          // url-loader didn't try to resolve aboslute paths before 4.1
-          // https://github.com/webpack-contrib/css-loader/commit/f9ba0ce11789770c4c9220478e9c98dbd432a5d6
-          url: (url) => !url.startsWith('/'),
         },
       },
       {
@@ -328,6 +325,7 @@ const rules = [
 const resolve = {
   alias: {
     '@fonts': path.resolve(__dirname, 'resources/assets/fonts'),
+    '@images': path.resolve(__dirname, 'public/images'),
     'layzr': resolvePath('node_modules/layzr.js/dist/layzr.module.js'),
     'ziggy': resolvePath('resources/assets/js/ziggy.js'),
     'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist/js/route.js'),
