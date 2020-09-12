@@ -6,7 +6,7 @@
 
 @section('content')
 @include('layout._page_header_v4', ['params' => [
-    'theme' => 'default',
+    'theme' => 'error',
 ]])
 
 <div class="osu-page osu-page--generic text-center">

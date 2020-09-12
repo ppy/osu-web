@@ -29,7 +29,8 @@ desktop.ini
 
 # Compiled/copied assets
 /public/docs
-/public/fonts/vendor
+/public/fonts
+/public/images/vendor
 /public/js
 /public/css
 /public/vendor

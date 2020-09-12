@@ -66,6 +66,8 @@ return [
 
                 'comment_new' => ':username kommentierte ":content" auf ":title"',
                 'comment_new_compact' => ':username kommentierte ":content"',
+                'comment_reply' => ':username antwortete ":content" auf ":title"',
+                'comment_reply_compact' => ':username antwortete ":content"',
             ],
         ],
 
@@ -90,6 +92,8 @@ return [
 
                 'comment_new' => ':username kommentierte ":content" auf ":title"',
                 'comment_new_compact' => ':username kommentierte ":content"',
+                'comment_reply' => ':username antwortete ":content" auf ":title"',
+                'comment_reply_compact' => ':username antwortete ":content"',
             ],
         ],
 
@@ -101,6 +105,8 @@ return [
 
                 'comment_new' => ':username kommentierte ":content" auf ":title"',
                 'comment_new_compact' => ':username kommentierte ":content"',
+                'comment_reply' => ':username antwortete ":content" auf ":title"',
+                'comment_reply_compact' => ':username antwortete ":content"',
             ],
         ],
 
@@ -136,12 +142,28 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => 'Die Diskussion über ":title" hat neue Updates',
-            'beatmapset_discussion_lock' => 'Die Diskussion über ":title" wurde gesperrt',
-            'beatmapset_discussion_unlock' => 'Die Diskussion über ":title" wurde entsperrt',
-            'beatmapset_problem' => 'Ein neues Problem wurde auf ":title" gemeldet',
-            'beatmapset_state' => 'Der Status von ":title" hat sich geändert',
-            'comment' => 'Beatmap ":title" hat neue Kommentare',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => 'Die Diskussion über ":title" wurde gesperrt',
+                'beatmapset_discussion_post_new' => 'Die Diskussion über ":title" hat neue Updates',
+                'beatmapset_discussion_unlock' => 'Die Diskussion über ":title" wurde freigegeben',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => 'Ein neues Problem wurde zu ":title" gemeldet',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '":title" wurde disqualifiziert',
+                'beatmapset_love' => '":title" hat loved-Status erlangt',
+                'beatmapset_nominate' => '":title" wurde nominiert',
+                'beatmapset_qualify' => '":title" hat genug Nominierungen erhalten und wurde in die Ranglisten-Warteschlange aufgenommen',
+                'beatmapset_rank' => '":title" wurde ranked',
+                'beatmapset_reset_nominations' => 'Nominierung von ":title" wurde zurückgesetzt',
+            ],
+
+            'comment' => [
+                'comment_new' => 'Beatmap ":title" hat neue Kommentare',
+            ],
         ],
 
         'channel' => [
@@ -151,20 +173,28 @@ return [
         ],
 
         'build' => [
-            'comment' => 'Changelog ":title" hat neue Kommentare',
+            'comment' => [
+                'comment_new' => 'Changelog ":title" hat neue Kommentare',
+            ],
         ],
 
         'news_post' => [
-            'comment' => 'Neuigkeit ":title" hat neue Kommentare',
+            'comment' => [
+                'comment_new' => 'News ":title" hat neue Kommentare',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => 'Es gibt neue Antworten in ":title"',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => 'Es gibt neue Antworten in ":title"',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => ':username hat eine neue Medaille freigeschaltet, ":title"!',
-            'user_achievement_unlock_self' => 'Du hast eine neue Medaille freigeschaltet, ":title"!',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => ':username hat eine neue Medaille freigeschaltet, ":title"!',
+                'user_achievement_unlock_self' => 'Du hast eine neue Medaille freigeschaltet, ":title"!',
+            ],
         ],
     ],
 ];

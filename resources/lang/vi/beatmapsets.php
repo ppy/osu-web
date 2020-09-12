@@ -93,7 +93,6 @@ return [
             'source' => 'Nguồn',
             'success-rate' => 'Tỉ Lệ Thành Công',
             'tags' => 'Tags',
-            'unranked' => 'Beatmap chưa được xếp hạng',
         ],
 
         'scoreboard' => [

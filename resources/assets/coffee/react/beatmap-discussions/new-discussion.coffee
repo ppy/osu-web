@@ -164,7 +164,7 @@ export class NewDiscussion extends React.PureComponent
             for discussion in @nearbyDiscussions()
               osu.link BeatmapDiscussionHelper.url(discussion: discussion),
                 BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)
-                classNames: ['js-beatmap-discussion--jump', "#{bn}__notice-link"]
+                classNames: ['js-beatmap-discussion--jump']
           timestampsString = osu.transArray(timestamps)
 
           div className: "#{bn}__notice",

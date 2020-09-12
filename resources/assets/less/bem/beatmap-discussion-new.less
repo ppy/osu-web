@@ -9,7 +9,6 @@
   display: flex;
   background-color: @osu-colour-b4;
   flex-direction: column;
-  max-height: calc(70 * var(--vh, 1vh));
 
   &__avatar {
     flex: none;
@@ -72,7 +71,7 @@
     .reset-input();
     resize: vertical;
     width: 100%;
-    max-height: 70vh;
+    max-height: calc(50 * var(--vh, 1vh));
     min-height: 3em;
 
     flex: 1 0 auto;
@@ -113,10 +112,6 @@
     margin: 5px 0 0;
     text-transform: initial;
     font-weight: initial;
-  }
-
-  &__notice-link {
-    .link-default();
   }
 
   &__timestamp-col {

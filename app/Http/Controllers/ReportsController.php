@@ -20,7 +20,7 @@ class ReportsController extends Controller
 
     public function store()
     {
-        $params = get_params(request(), null, [
+        $params = get_params(request()->all(), null, [
             'comments',
             'reason',
             'reportable_id:int',

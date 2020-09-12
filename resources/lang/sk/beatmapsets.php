@@ -93,7 +93,6 @@ return [
             'source' => 'Zdroj',
             'success-rate' => 'Úspešnosť',
             'tags' => 'Tagy',
-            'unranked' => 'Nehodnotená beatmapa',
         ],
 
         'scoreboard' => [

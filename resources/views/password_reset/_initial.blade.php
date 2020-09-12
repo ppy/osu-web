@@ -27,7 +27,7 @@
     @if (config('services.enchant.id') !== null)
         <div>
             {!! trans('password_reset.starting.support._', ['button' => tag('a', [
-                'class' => 'link link--default js-enchant--show',
+                'class' => 'js-enchant--show',
                 'role' => 'button',
                 'href' => '#',
             ], trans('password_reset.starting.support.button'))]) !!}

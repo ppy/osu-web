@@ -242,7 +242,6 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'namespace' => 'Users'], function () {
         Route::get('/', 'ModdingHistoryController@index')->name('index');
-        Route::get('/events', 'ModdingHistoryController@events')->name('events');
         Route::get('/posts', 'ModdingHistoryController@posts')->name('posts');
         Route::get('/votes-given', 'ModdingHistoryController@votesGiven')->name('votes-given');
         Route::get('/votes-received', 'ModdingHistoryController@votesReceived')->name('votes-received');

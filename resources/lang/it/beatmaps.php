@@ -177,7 +177,7 @@ return [
         'delete_own_confirm' => 'Sei sicuro? La beatmap verrà eliminata e sarai reindirizzato al tuo profilo.',
         'delete_other_confirm' => 'Sei sicuro? La beatmap verrà eliminata e sarai reindirizzato al profilo del creatore.',
         'disqualification_prompt' => 'Ragioni della squalifica?',
-        'disqualified_at' => 'squalificata :time_ago',
+        'disqualified_at' => 'Squalificata :time_ago (:reason).',
         'disqualified_no_reason' => 'nessuna motivazione specificata',
         'disqualify' => 'Squalifica',
         'incorrect_state' => 'Errore nel eseguire quell\'azione, prova a ricaricare la pagina.',
@@ -229,7 +229,7 @@ return [
                 'difficulty' => 'Difficoltà',
                 'favourites' => 'Preferiti',
                 'updated' => 'Aggiornato',
-                'ranked' => 'Classificata',
+                'ranked' => 'Rankata',
                 'rating' => 'Valutazione',
                 'plays' => 'Giocate',
                 'relevance' => 'Pertinenza',
@@ -344,7 +344,7 @@ return [
         'D' => 'D',
     ],
     'panel' => [
-        'playcount' => 'Numero partite: :count',
+        'playcount' => 'Volte giocata: :count',
         'favourites' => 'Preferiti: :count',
     ],
     'variant' => [

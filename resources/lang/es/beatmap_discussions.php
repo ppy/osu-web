@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Ninguna de las publicaciones aborda mi asunto',
         'notice' => 'Ya hay publicaciones cerca de :timestamp (:existing_timestamps). Por favor revíselas antes de publicar.',
+        'unsaved' => '',
     ],
 
     'reply' => [
@@ -64,7 +65,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max bloques usados',
         'go_to_parent' => 'Ver publicación de revisión',
         'go_to_child' => 'Ver discusión',
         'validation' => [

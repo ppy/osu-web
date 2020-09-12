@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Ingen av innleggene gjelder mine bekymringer',
         'notice' => 'Det er innlegg rundt :timestamp (:existing_timestamps). Vennligst gjennomgå dem før publisering.',
+        'unsaved' => '',
     ],
 
     'reply' => [

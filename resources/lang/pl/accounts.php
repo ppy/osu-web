@@ -51,13 +51,14 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'otrzymuj powiadomienia o nowych problemach z zakwalifikowanymi beatmapami dla następujących trybów',
         'beatmapset_disqualify' => 'otrzymuj powiadomienia o dyskwalifikacjach beatmap następujących trybów',
+        'comment_reply' => '',
         'title' => 'Powiadomienia',
         'topic_auto_subscribe' => 'automatycznie włączaj powiadomienia dla twoich wątków na forum',
 
         'options' => [
             '_' => 'opcje wysyłania',
             'beatmapset:modding' => 'dyskusje beatmap',
-            'channel_message' => 'wiadomości prywatne',
+            'channel_message' => 'wiadomości prywatne na czacie',
             'comment_new' => 'nowe komentarze',
             'forum_topic_reply' => 'odpowiedzi do wątków',
             'mail' => 'e-mail',

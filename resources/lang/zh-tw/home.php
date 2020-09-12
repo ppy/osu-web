@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "讓我們<br>開始吧！",
         'action' => '下載 osu!',
+
+        'help' => [
+            '_' => '',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'Windows 版',
             'macos' => 'macOS 版',
@@ -130,7 +137,7 @@ return [
         'title' => '哇！',
         'subtitle' => '看起來你玩得很開心！',
         'body' => [
-            'part-1' => '你知道嗎？ osu! 是一款沒有廣告，完全依賴玩家贊助以維持開發及運營的遊戲。',
+            'part-1' => '你知道嗎？ osu! 是一款沒有廣告，完全依賴玩家贊助以維持開發及營運的遊戲。',
             'part-2' => '如果你選擇給 osu! 捐贈，就可以解鎖額外的功能，例如<strong>遊戲內自動下載</strong>。',
         ],
         'find-out-more' => '點擊這裡以瞭解更多',

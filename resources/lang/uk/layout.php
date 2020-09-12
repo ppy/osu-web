@@ -96,7 +96,7 @@ return [
             'country' => 'країна',
             'index' => 'по продуктивності',
             'kudosu' => 'кудосу',
-            'multiplayer' => '',
+            'multiplayer' => 'мультиплеер',
             'score' => 'рахунок',
         ],
         'store' => [
@@ -179,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Я все забув",
             'password' => 'пароль',

@@ -179,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'giriş yap / kayıt ol',
+
         'login' => [
             'forgot' => "Bilgilerimi unuttum",
             'password' => 'şifre',

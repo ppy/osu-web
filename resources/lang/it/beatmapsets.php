@@ -31,7 +31,7 @@ return [
             'favourite' => 'Mi piace questo beatmapset',
             'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!',
             'mapped_by' => 'mappata da :mapper',
-            'unfavourite' => 'Non mi piace questo set di beatmap',
+            'unfavourite' => 'Non mi piace questo beatmapset',
             'updated_timeago' => 'ultimo aggiornamento :timeago',
 
             'download' => [
@@ -93,7 +93,6 @@ return [
             'source' => 'Sorgente',
             'success-rate' => 'Rateo di Successo',
             'tags' => 'Tag',
-            'unranked' => 'Beatmap non classificata',
         ],
 
         'scoreboard' => [
@@ -149,7 +148,7 @@ return [
         ],
 
         'status' => [
-            'ranked' => 'Classificata',
+            'ranked' => 'Rankata',
             'approved' => 'Approvata',
             'loved' => 'Amata',
             'qualified' => 'Qualificata',

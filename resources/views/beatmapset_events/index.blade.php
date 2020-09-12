@@ -6,7 +6,7 @@
 
 {{-- FIXME: move to user modding history --}}
 @section('content')
-    @include('layout._page_header_v4')
+    @include('layout._page_header_v4', ['params' => ['theme' => 'beatmapsets']])
     <div class="osu-layout__row osu-layout__row--page">
         <div class="beatmapset-activities">
             @if (isset($user))
@@ -18,19 +18,17 @@
                     {{ trans('beatmap_discussions.index.form._') }}
                 </h2>
 
-                @if ($showUserSearch ?? true)
-                    <label class="simple-form__row">
-                        <div class="simple-form__label">
-                            {{ trans('beatmap_discussions.index.form.username') }}
-                        </div>
+                <label class="simple-form__row">
+                    <div class="simple-form__label">
+                        {{ trans('beatmap_discussions.index.form.username') }}
+                    </div>
 
-                        <input
-                            class="simple-form__input"
-                            name="user"
-                            value="{{ $params['user'] ?? '' }}"
-                        >
-                    </label>
-                @endif
+                    <input
+                        class="simple-form__input"
+                        name="user"
+                        value="{{ $params['user'] ?? '' }}"
+                    >
+                </label>
 
                 <div class="simple-form__row">
                     <div class="simple-form__label">

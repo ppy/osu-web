@@ -33,7 +33,7 @@ return [
 
         'button' => [
             'cancel' => 'ยกเลิกการลงทะเบียน',
-            'register' => 'ลงทะเบียน',
+            'register' => 'ลงทะเบียนเลย! ',
         ],
 
         'period' => [

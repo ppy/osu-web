@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "เรามา<br>เริ่มกันเถอะ",
         'action' => 'ดาวน์โหลด osu!',
+
+        'help' => [
+            '_' => '',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'สำหรับวินโดวส์',
             'macos' => 'สำหรับ macOS',
