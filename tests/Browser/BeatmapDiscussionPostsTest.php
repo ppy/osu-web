@@ -15,7 +15,7 @@ use Tests\DuskTestCase;
 
 class BeatmapDiscussionPostsTest extends DuskTestCase
 {
-    private $new_reply_widget_selector = '.beatmap-discussion__full .beatmap-discussion-post--new-reply';
+    private $new_reply_widget_selector = '.beatmap-discussion-post--new-reply';
 
     public function testConcurrentPostAfterResolve()
     {
