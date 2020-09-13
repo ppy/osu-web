@@ -20,6 +20,7 @@ class AddBundledFlagsToBeatmapsets extends Migration
             $table->boolean('bundled')->default(false);
             $table->boolean('can_bundle')->default(false);
             $table->index('bundled');
+            $table->index('can_bundle');
         });
     }
 
@@ -32,6 +33,7 @@ class AddBundledFlagsToBeatmapsets extends Migration
     {
         Schema::table('osu_beatmapsets', function (Blueprint $table) {
             $table->dropIndex(['bundled']);
+            $table->dropIndex(['can_bundle']);
             $table->dropColumn('bundled');
             $table->dropColumn('can_bundle');
         });
