@@ -301,6 +301,21 @@ class LegacyInterOpController extends Controller
         return ['success' => true];
     }
 
+    public function userGroupAdd()
+    {
+        return $this->userGroupAction('addToGroup');
+    }
+
+    public function userGroupRemove()
+    {
+        return $this->userGroupAction('removeFromGroup');
+    }
+
+    public function userGroupSetDefault()
+    {
+        return $this->userGroupAction('setDefaultGroup');
+    }
+
     public function userIndex($id)
     {
         $user = User::findOrFail($id);
@@ -381,5 +396,27 @@ class LegacyInterOpController extends Controller
         SessionStore::destroy($id);
 
         return ['success' => true];
+    }
+
+    private function userGroupAction(string $userMethod)
+    {
+        $params = get_params(request()->all(), null, [
+            'group_id:int',
+            'user_id:int',
+        ]);
+
+        $group = app('groups')->byId($params['group_id']);
+        if ($group === null) {
+            abort(404, 'Group not found');
+        }
+
+        $user = User::findOrFail($params['user_id']);
+        $user->$userMethod($group);
+
+        if ($user->validationErrors()->isAny()) {
+            return error_popup($user->validationErrors()->toSentence());
+        }
+
+        return response(null, 204);
     }
 }

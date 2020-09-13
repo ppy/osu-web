@@ -455,6 +455,9 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::post('user-recalculate-ranked-scores/{user}', 'LegacyInterOpController@userRecalculateRankedScores');
     Route::get('/news', 'LegacyInterOpController@news');
     Route::apiResource('users', 'InterOp\UsersController', ['only' => ['store']]);
+    Route::post('user-group', 'LegacyInterOpController@userGroupAdd');
+    Route::delete('user-group', 'LegacyInterOpController@userGroupRemove');
+    Route::post('user-default-group', 'LegacyInterOpController@userGroupSetDefault');
 });
 
 Route::fallback('FallbackController@index');
