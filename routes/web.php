@@ -442,7 +442,6 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'requir
 
 // Callbacks for legacy systems to interact with
 Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], function () {
-    Route::post('bundle-beatmapsets', 'LegacyInterOpController@bundleBeatmapsets');
     Route::post('generate-notification', 'LegacyInterOpController@generateNotification');
     Route::post('index-beatmapset/{beatmapset}', 'LegacyInterOpController@indexBeatmapset');
     Route::post('/refresh-beatmapset-cache/{beatmapset}', 'LegacyInterOpController@refreshBeatmapsetCache');
