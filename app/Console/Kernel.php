@@ -63,6 +63,8 @@ class Kernel extends ConsoleKernel
 
         Commands\UserBestScoresCheckCommand::class,
         Commands\UserRecalculateRankCounts::class,
+
+        Commands\BeatmapsetsBundle::class,
     ];
 
     /**

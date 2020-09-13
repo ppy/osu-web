@@ -150,6 +150,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable
     const RANKED_PER_DAY = 8;
     const MINIMUM_DAYS_FOR_RANKING = 7;
 
+    const BUNDLED_PER_MODE = [8, 3, 3, 3];
+
     public static function coverSizes()
     {
         $shapes = ['cover', 'card', 'list', 'slimcover'];
@@ -342,6 +344,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable
     public function scopeBundled($query)
     {
         return $query->where('bundled', true);
+    }
+
+    public function scopeCanBundle($query)
+    {
+        return $query->where('can_bundle', true);
     }
 
     // one-time checks
