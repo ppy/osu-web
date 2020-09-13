@@ -336,6 +336,43 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         });
     }
 
+    public function addToGroup(Group $group): void
+    {
+        if ($this->isGroup($group)) {
+            return;
+        }
+
+        $this->getConnection()->transaction(function () use ($group) {
+            $this->userGroups()->create(['group_id' => $group->getKey()]);
+            UserGroupEvent::log(UserGroupEvent::USER_ADD, $group, $this);
+        });
+    }
+
+    public function removeFromGroup(Group $group): void
+    {
+        if (!$this->isGroup($group)) {
+            return;
+        }
+
+        $this->getConnection()->transaction(function () use ($group) {
+            $this->userGroups()->where(['group_id' => $group->getKey()])->delete();
+            UserGroupEvent::log(UserGroupEvent::USER_REMOVE, $group, $this);
+
+            if ($this->group_id === $group->getKey()) {
+                $this->setDefaultGroup(app('groups')->byIdentifier('default'));
+            }
+        });
+    }
+
+    public function setDefaultGroup(Group $group): void
+    {
+        $this->update([
+            'group_id' => $group->getKey(),
+            'user_colour' => $group->group_colour,
+            'user_rank' => $group->group_rank,
+        ]);
+    }
+
     public static function cleanUsername($username)
     {
         return strtolower($username);

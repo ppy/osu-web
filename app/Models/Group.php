@@ -66,6 +66,27 @@ class Group extends Model implements AfterCommit
         return User::whereIn('user_id', $userIds);
     }
 
+    public function rename($name): void
+    {
+        if ($this->group_name === $name) {
+            return;
+        }
+
+        $this->getConnection()->transaction(function () use ($name) {
+            UserGroupEvent::log(
+                UserGroupEvent::GROUP_RENAME,
+                $this,
+                null,
+                [
+                    'old_name' => $this->group_name,
+                    'new_name' => $name,
+                ]
+            );
+
+            $this->update(['group_name' => $name]);
+        });
+    }
+
     public function afterCommit()
     {
         app('groups')->resetCache();
