@@ -97,6 +97,12 @@ class Kernel extends ConsoleKernel
         $schedule->command('notifications:send-mail')
             ->hourly()
             ->withoutOverlapping();
+
+        $schedule->command('beatmapsets:bundle')
+            ->daily()
+            ->when(function () {
+                return Carbon::now('UTC')->dayOfYear % 7 === 0;
+            });
     }
 
     protected function commands()
