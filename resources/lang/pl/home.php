@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "rozpocznij swoją<br>przygodę z osu!",
         'action' => 'Pobierz osu!',
+
+        'help' => [
+            '_' => '',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'dla systemu Windows',
             'macos' => 'dla systemu macOS',

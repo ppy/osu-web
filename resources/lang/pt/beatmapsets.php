@@ -93,7 +93,6 @@ return [
             'source' => 'Fonte',
             'success-rate' => 'Taxa de sucesso',
             'tags' => 'Etiquetas',
-            'unranked' => 'Beatmap sem classificação',
         ],
 
         'scoreboard' => [

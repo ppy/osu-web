@@ -23,7 +23,7 @@ return [
         'button' => 'Cari',
         'empty_result' => 'Tidak ditemukan!',
         'keyword_required' => 'Kata kunci pencarian diperlukan',
-        'placeholder' => 'ketik untuk mencari',
+        'placeholder' => 'ketik untuk mulai mencari',
         'title' => 'Pencarian',
 
         'beatmapset' => [
@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "mari persiapkan<br>diri Anda!",
         'action' => 'Unduh osu!',
+
+        'help' => [
+            '_' => 'apabila Anda mengalami masalah dalam memulai permainan atau mendaftarkan akun, harap :help_forum_link atau :support_button.',
+            'help_forum_link' => 'kunjungi sub-forum Help',
+            'support_button' => 'hubungi osu!support',
+        ],
+
         'os' => [
             'windows' => 'untuk Windows',
             'macos' => 'untuk macOS',
@@ -93,7 +100,7 @@ return [
             'beatmaps' => [
                 'title' => 'dapatkan beatmap',
                 'description' => [
-                    '_' => ':browse berbagai beatmap buatan pengguna dari katalog beatmap kami yang luas dan mulailah bermain!',
+                    '_' => ':browse berbagai beatmap buatan pengguna yang tersedia pada katalog beatmap kami yang senantiasa berkembang dan mulailah bermain!',
                     'browse' => 'telusuri',
                 ],
             ],

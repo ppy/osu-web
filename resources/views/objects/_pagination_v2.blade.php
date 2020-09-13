@@ -21,7 +21,7 @@
                     </span>
                 </span>
             @else
-                <a class="pagination-v2__link pagination-v2__link--link pagination-v2__link--quick" href="{{ $object->url($currentPage - 1) }}">
+                <a class="pagination-v2__link pagination-v2__link--quick" href="{{ $object->url($currentPage - 1) }}">
                     <i class="fas fa-angle-left"></i>
                     <span class="hidden-xs">
                         {{ trans('common.pagination.previous') }}
@@ -34,7 +34,7 @@
             {{-- decide if we're showing first page link separately --}}
             @if ($currentPage > 3)
                 <li class="pagination-v2__item">
-                    <a class="pagination-v2__link pagination-v2__link--link" href="{{ $object->url(1) }}">1</a>
+                    <a class="pagination-v2__link" href="{{ $object->url(1) }}">1</a>
                 </li>
             @endif
 
@@ -49,7 +49,7 @@
                     @if ($page === $currentPage)
                         <span class="pagination-v2__link pagination-v2__link--active">{{ $page }}</span>
                     @else
-                        <a class="pagination-v2__link pagination-v2__link--link" href="{{ $object->url($page) }}">{{ $page }}</a>
+                        <a class="pagination-v2__link" href="{{ $object->url($page) }}">{{ $page }}</a>
                     @endif
                 </li>
             @endforeach
@@ -65,7 +65,7 @@
             {{-- see if the link is needed --}}
             @if (($currentPage + 2) < $object->lastPage())
                 <li class="pagination-v2__item">
-                    <a class="pagination-v2__link pagination-v2__link--link" href="{{ $object->url($object->lastPage()) }}">{{ $object->lastPage() }}</a>
+                    <a class="pagination-v2__link" href="{{ $object->url($object->lastPage()) }}">{{ $object->lastPage() }}</a>
                 </li>
             @endif
         </ul>
@@ -79,7 +79,7 @@
                     <i class="fas fa-angle-right"></i>
                 </span>
             @else
-                <a class="pagination-v2__link pagination-v2__link--link pagination-v2__link--quick" href="{{ $object->url($currentPage + 1) }}">
+                <a class="pagination-v2__link pagination-v2__link--quick" href="{{ $object->url($currentPage + 1) }}">
                     <span class="hidden-xs">
                         {{ trans('common.pagination.next') }}
                     </span>

@@ -391,7 +391,7 @@ class TopicsController extends Controller
             abort(403);
         }
 
-        $params = get_params(request(), 'forum_topic', ['topic_title']);
+        $params = get_params(request()->all(), 'forum_topic', ['topic_title']);
 
         if ($topic->update($params)) {
             if ((Auth::user()->user_id ?? null) !== $topic->topic_poster) {
@@ -441,7 +441,7 @@ class TopicsController extends Controller
 
     private function getPollParams()
     {
-        return get_params(request(), 'forum_topic_poll', [
+        return get_params(request()->all(), 'forum_topic_poll', [
             'hide_results:bool',
             'length_days:int',
             'max_options:int',

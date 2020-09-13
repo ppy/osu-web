@@ -122,7 +122,7 @@ class AccountController extends Controller
     {
         $user = Auth::user();
 
-        $params = get_params(request(), 'user', [
+        $params = get_params(request()->all(), 'user', [
             'user_from:string',
             'user_interests:string',
             'user_msnm:string',
@@ -144,7 +144,7 @@ class AccountController extends Controller
 
     public function updateEmail()
     {
-        $params = get_params(request(), 'user', ['current_password', 'user_email', 'user_email_confirmation']);
+        $params = get_params(request()->all(), 'user', ['current_password', 'user_email', 'user_email_confirmation']);
         $user = Auth::user()->validateCurrentPassword()->validateEmailConfirmation();
         $previousEmail = $user->user_email;
 
@@ -235,7 +235,7 @@ class AccountController extends Controller
 
     public function updatePassword()
     {
-        $params = get_params(request(), 'user', ['current_password', 'password', 'password_confirmation']);
+        $params = get_params(request()->all(), 'user', ['current_password', 'password', 'password_confirmation']);
         $user = Auth::user()->validateCurrentPassword()->validatePasswordConfirmation();
 
         if ($user->update($params) === true) {

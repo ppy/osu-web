@@ -125,7 +125,7 @@ class UsersController extends Controller
             return error_popup('Wrong client', 403);
         }
 
-        $params = get_params(request(), 'user', ['username', 'user_email', 'password']);
+        $params = get_params(request()->all(), 'user', ['username', 'user_email', 'password']);
         $countryCode = request_country();
         $country = Country::find($countryCode);
         $params['user_ip'] = $ip;
@@ -246,7 +246,7 @@ class UsersController extends Controller
      *
      * ### Response format
      *
-     * Array of KudosuHistory.
+     * Array of [KudosuHistory](#kudosuhistory).
      *
      * @urlParam user required Id of the user. Example: 1
      *
@@ -278,7 +278,7 @@ class UsersController extends Controller
      *
      * ### Response format
      *
-     * Array of Event.
+     * Array of [Event](#event).
      *
      * @urlParam user required Id of the user. Example: 1
      *
@@ -310,7 +310,15 @@ class UsersController extends Controller
      *
      * ### Response format
      *
-     * Array of Score.
+     * Array of [Score](#score).
+     * Following attributes are included in the response object when applicable.
+     *
+     * Attribute  | Notes
+     * -----------|----------------------
+     * beatmap    | |
+     * beatmapset | |
+     * weight     | Only for type `best`.
+     * user       | |
      *
      * @urlParam user required Id of the user. Example: 1
      * @urlParam type required Score type. Must be one of these: `best`, `firsts`, `recent`. Example: best
@@ -405,7 +413,7 @@ class UsersController extends Controller
      * monthly_playcounts                   | |
      * page                                 | |
      * previous_usernames                   | |
-     * rankHistory                          | For specified mode.
+     * rank_history                         | For specified mode.
      * ranked_and_approved_beatmapset_count | |
      * replays_watched_counts               | |
      * scores_first_count                   | For specified mode.
@@ -463,6 +471,7 @@ class UsersController extends Controller
             'previous_usernames',
             'ranked_and_approved_beatmapset_count',
             "rankHistory:mode({$currentMode})",
+            "rank_history:mode({$currentMode})",
             'replays_watched_counts',
             'statistics.rank',
             'statistics.variants',

@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "lass uns<br>loslegen!",
         'action' => 'osu! herunterladen',
+
+        'help' => [
+            '_' => 'wenn du Probleme mit dem Starten des Spiels oder der Registrierung deines Accounts hast, :help_forum_link oder :support_button.',
+            'help_forum_link' => 'schau im Forum',
+            'support_button' => 'kontaktiere den Support',
+        ],
+
         'os' => [
             'windows' => 'für Windows',
             'macos' => 'für macOS',

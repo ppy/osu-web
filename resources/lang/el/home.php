@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "ας<br>αρχίσουμε!",
         'action' => 'Λήψη osu!',
+
+        'help' => [
+            '_' => '',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'για Windows',
             'macos' => 'για macOS',

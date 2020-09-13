@@ -10,7 +10,6 @@ use App\Mail\DonationThanks;
 use App\Mail\SupporterGift;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
-use App\Models\SupporterTag;
 use App\Models\User;
 use App\Models\UserDonation;
 use Carbon\Carbon;
@@ -87,9 +86,9 @@ class SupporterTagFulfillmentTest extends TestCase
             $params = $this->invokeProperty($mail, 'params');
 
             if ($params['giftee']->is($giftee1)) {
-                return $params['duration'] === SupporterTag::getDurationText(2);
+                return $params['duration'] === 2;
             } elseif ($params['giftee']->is($giftee2)) {
-                return $params['duration'] === SupporterTag::getDurationText(1);
+                return $params['duration'] === 1;
             }
         });
 

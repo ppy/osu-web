@@ -51,6 +51,7 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => '次のモードのQualifiedビートマップで新しい問題の通知を受け取る',
         'beatmapset_disqualify' => '以下のモードのビートマップがDisqualifiedになった場合に通知を受け取る',
+        'comment_reply' => '',
         'title' => '通知',
         'topic_auto_subscribe' => '作成した新しいフォーラムトピックに関する通知を自動的に有効にします',
 

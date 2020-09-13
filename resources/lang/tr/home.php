@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "haydi seni<br>oyuna hazırlayalım!",
         'action' => 'osu!\'yu indir',
+
+        'help' => [
+            '_' => 'oyunu çalıştırırken ya da hesap oluştururken herhangi bir sorun yaşıyorsanız, :help_forum_link veya :support_button.',
+            'help_forum_link' => 'yardım forumunu kontrol edin',
+            'support_button' => 'destek ile iletişime geçin',
+        ],
+
         'os' => [
             'windows' => 'Windows için',
             'macos' => 'macOS için',

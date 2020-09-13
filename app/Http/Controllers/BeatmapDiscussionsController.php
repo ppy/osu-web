@@ -69,7 +69,7 @@ class BeatmapDiscussionsController extends Controller
     public function index()
     {
         $isModerator = priv_check('BeatmapDiscussionModerate')->can();
-        $params = request();
+        $params = request()->all();
         $params['is_moderator'] = $isModerator;
 
         if (!$isModerator) {

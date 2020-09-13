@@ -45,13 +45,9 @@
     }
 
     &--last-link {
-      .link-default();
+      .link-plain();
       font-size: 14px; // icon size
       width: 30px;
-
-      .link-hover({
-        text-decoration: none;
-      });
     }
 
     &--main {
@@ -98,6 +94,10 @@
     font-weight: 600;
   }
 
+  &__detail + &__detail {
+    padding-left: 10px;
+  }
+
   &__icon {
     .center-content();
     min-width: 46px;
@@ -136,10 +136,6 @@
       order: 0;
       padding-top: 0;
     }
-  }
-
-  &__link {
-    .link-default();
   }
 
   &__lock {

@@ -84,6 +84,7 @@ return [
         'failed' => 'Gagal masuk',
         'forgot' => 'Lupa kata sandi?',
         'info' => 'Silahkan sign in untuk melanjutkan',
+        'invalid_captcha' => 'Captcha tidak valid. Harap muat ulang halaman.',
         'locked_ip' => 'Alamat IP Anda dikunci. Mohon tunggu beberapa menit.',
         'password' => 'Kata Sandi',
         'register' => "Belum memiliki akun osu!? Buat yang baru sekarang",
@@ -186,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'oleh :artist',
-                'none' => 'Saat ini belum ada...',
                 'title' => 'Beatmap',
 
                 'favourite' => [
@@ -216,7 +216,6 @@ return [
                 'show_more' => 'lihat lebih banyak aktivitas',
             ],
             'historical' => [
-                'empty' => 'Tidak ada catatan performa terbaru. :(',
                 'title' => 'Historis',
 
                 'monthly_playcounts' => [
@@ -303,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Unduh Replay',
-                'empty' => 'Belum ada catatan performa yang mendapat peringkat pertama. :(',
                 'not_ranked' => 'Hanya beatmap Ranked yang dapat memberikan pp.',
                 'pp_weight' => 'terbobotkan sejumlah :percentage',
                 'view_details' => 'Lihat Rincian',

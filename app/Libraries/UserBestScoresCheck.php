@@ -55,7 +55,7 @@ class UserBestScoresCheck
         $clazz = Best\Model::getClassByString($mode);
 
         $search = $this->newSearch($mode);
-        $cursor = [''];
+        $cursor = [0];
 
         $missingIds = [];
 
@@ -111,7 +111,7 @@ class UserBestScoresCheck
         $search->connectionName = 'scores';
 
         return $search
-            ->sort(new Sort('_id', 'asc'))
+            ->sort(new Sort('score_id', 'asc'))
             ->size(static::BATCH_SIZE)
             ->query((new BoolQuery)->filter(['term' => ['user_id' => $this->user->getKey()]]));
     }

@@ -12,6 +12,7 @@ use App\Transformers\UserCompactTransformer;
 class UserScoreAggregateTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
+        'position',
         'user',
     ];
 
@@ -26,6 +27,11 @@ class UserScoreAggregateTransformer extends TransformerAbstract
             'total_score' => $score->total_score,
             'user_id' => $score->user_id,
         ];
+    }
+
+    public function includePosition(UserScoreAggregate $score)
+    {
+        return $this->primitive($score->userRank());
     }
 
     public function includeUser(UserScoreAggregate $score)

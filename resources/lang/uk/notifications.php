@@ -66,6 +66,8 @@ return [
 
                 'comment_new' => ':username прокоментував ":content" у ":title"',
                 'comment_new_compact' => ':username прокоментував ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -90,6 +92,8 @@ return [
 
                 'comment_new' => ':username прокоментував ":content" на ":title"',
                 'comment_new_compact' => ':username прокоментував ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -101,6 +105,8 @@ return [
 
                 'comment_new' => ':username прокоментував ":content" на ":title"',
                 'comment_new_compact' => ':username прокоментував ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -136,35 +142,59 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '',
-            'beatmapset_discussion_lock' => '',
-            'beatmapset_discussion_unlock' => '',
-            'beatmapset_problem' => '',
-            'beatmapset_state' => '',
-            'comment' => '',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_unlock' => '',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => 'Ви отримали нове повідомлення від :username',
             ],
         ],
 
         'build' => [
-            'comment' => '',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'news_post' => [
-            'comment' => '',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => '',
-            'user_achievement_unlock_self' => '',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => '',
+                'user_achievement_unlock_self' => '',
+            ],
         ],
     ],
 ];

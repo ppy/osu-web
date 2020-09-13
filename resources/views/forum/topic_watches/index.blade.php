@@ -5,7 +5,7 @@
 @extends('master', ['titlePrepend' => trans('forum.topic_watches.index.title_compact')])
 
 @section('content')
-    @include('home._user_header_default')
+    @include('home._user_header_default', ['themeOverride' => 'settings'])
 
     <div class="osu-page osu-page--info-bar">
         <div class="grid-items">
@@ -39,6 +39,6 @@
             </ul>
         </div>
 
-        @include('objects._pagination_v2', ['object' => $topics, 'modifiers' => ['light-bg']])
+        @include('objects._pagination_v2', ['object' => $topics])
     </div>
 @endsection

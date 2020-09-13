@@ -8,16 +8,16 @@ return [
         'title' => '',
 
         'beatmap' => [
-            'by' => '',
+            'by' => 'bởi :artist',
         ],
 
         'player' => [
-            'by' => '',
-            'submitted_on' => '',
+            'by' => 'Chơi bởi',
+            'submitted_on' => 'Tải lên',
 
             'rank' => [
-                'country' => '',
-                'global' => '',
+                'country' => 'Xếp hạng quốc gia',
+                'global' => 'Xếp hàng Toàn cầu',
             ],
         ],
     ],

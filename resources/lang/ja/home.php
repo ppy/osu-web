@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "さぁ、<br>始めよう！",
         'action' => 'osu!をダウンロード',
+
+        'help' => [
+            '_' => '',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'for Windows',
             'macos' => 'for macOS',

@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "c'est parti<br>lancez-vous !",
         'action' => 'Télécharger osu!',
+
+        'help' => [
+            '_' => 'si vous avez des problèmes pour démarrer le jeu ou pour créer un compte, :help_forum_link ou :support_button.',
+            'help_forum_link' => 'consultez le forum d\'aide',
+            'support_button' => 'contacter l\'assistance',
+        ],
+
         'os' => [
             'windows' => 'pour Windows',
             'macos' => 'pour macOS',
@@ -87,7 +94,7 @@ return [
                 'description' => 'suivez les indications lorsque vous démarrerez le jeu pour vous connecter ou créer un nouveau compte',
             ],
             'download' => [
-                'title' => 'télécharger le jeu',
+                'title' => 'installer le jeu',
                 'description' => 'cliquez sur le bouton au-dessus pour télécharger l\'installateur, lancez-le ensuite !',
             ],
             'beatmaps' => [

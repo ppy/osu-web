@@ -8,6 +8,13 @@ namespace App\Models;
 use App\Exceptions\BeatmapProcessorException;
 use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\EsIndexDocument;
+use App\Jobs\Notifications\BeatmapsetDiscussionLock;
+use App\Jobs\Notifications\BeatmapsetDiscussionUnlock;
+use App\Jobs\Notifications\BeatmapsetDisqualify;
+use App\Jobs\Notifications\BeatmapsetLove;
+use App\Jobs\Notifications\BeatmapsetNominate;
+use App\Jobs\Notifications\BeatmapsetQualify;
+use App\Jobs\Notifications\BeatmapsetRank;
 use App\Jobs\RemoveBeatmapsetBestScores;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\Commentable;
@@ -574,7 +581,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
                 'reason' => $reason,
             ])->saveOrExplode();
             $this->update(['discussion_locked' => true]);
-            broadcast_notification(Notification::BEATMAPSET_DISCUSSION_LOCK, $this, $user);
+            (new BeatmapsetDiscussionLock($this, $user))->dispatch();
         });
     }
 
@@ -587,7 +594,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         DB::transaction(function () use ($user) {
             BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_UNLOCK, $user, $this)->saveOrExplode();
             $this->update(['discussion_locked' => false]);
-            broadcast_notification(Notification::BEATMAPSET_DISCUSSION_UNLOCK, $this, $user);
+            (new BeatmapsetDiscussionUnlock($this, $user))->dispatch();
         });
     }
 
@@ -602,7 +609,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
             $this->setApproved('pending', $user);
 
-            broadcast_notification(Notification::BEATMAPSET_DISQUALIFY, $this, $user);
+            (new BeatmapsetDisqualify($this, $user))->dispatch();
         });
 
         return true;
@@ -626,7 +633,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             $job = (new CheckBeatmapsetCovers($this))->onQueue('beatmap_high');
             dispatch($job);
 
-            broadcast_notification(Notification::BEATMAPSET_QUALIFY, $this, $user);
+            (new BeatmapsetQualify($this, $user))->dispatch();
         });
 
         return true;
@@ -661,7 +668,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
                 if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
                     $this->qualify($user);
                 } else {
-                    broadcast_notification(Notification::BEATMAPSET_NOMINATE, $this, $user);
+                    (new BeatmapsetNominate($this, $user))->dispatch();
                 }
             }
             $this->refreshCache();
@@ -689,7 +696,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
             dispatch((new CheckBeatmapsetCovers($this))->onQueue('beatmap_high'));
 
-            broadcast_notification(Notification::BEATMAPSET_LOVE, $this, $user);
+            (new BeatmapsetLove($this, $user))->dispatch();
         });
 
         return [
@@ -717,7 +724,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             $job = (new CheckBeatmapsetCovers($this))->onQueue('beatmap_high');
             dispatch($job);
 
-            broadcast_notification(Notification::BEATMAPSET_RANK, $this);
+            (new BeatmapsetRank($this))->dispatch();
         });
 
         return true;
