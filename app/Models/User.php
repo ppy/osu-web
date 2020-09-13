@@ -1930,6 +1930,16 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             }
         }
 
+        if ($this->isDirty('group_id')) {
+            $primaryGroup = app('groups')->byId($this->group_id);
+
+            if ($primaryGroup === null) {
+                $this->validationErrors()->add('group_id', '.invalid_primary_group');
+            } elseif (!$this->isGroup($primaryGroup)) {
+                $this->validationErrors()->add('group_id', '.not_in_primary_group', ['group' => $primaryGroup->group_name]);
+            }
+        }
+
         return $this->validationErrors()->isEmpty();
     }
 
