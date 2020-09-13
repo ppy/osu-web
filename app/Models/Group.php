@@ -52,6 +52,12 @@ class Group extends Model implements AfterCommit
         return $value;
     }
 
+    // Illuminate\Database\Eloquent\Model has $visible
+    public function isVisible(): bool
+    {
+        return $this->group_type === 1;
+    }
+
     public function users()
     {
         // 'cuz hasManyThrough is derp
