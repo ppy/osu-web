@@ -22,7 +22,13 @@ class CreateUserGroupEvents extends Migration
             $table->mediumInteger('group_id')->unsigned();
             $table->boolean('hidden')->default(false);
             $table->timestamp('timestamp')->useCurrent();
-            $table->string('type');
+            $table->enum('type', [
+                'group_add',
+                'group_remove',
+                'group_rename',
+                'user_add',
+                'user_remove',
+            ]);
             $table->integer('user_id')->unsigned()->nullable();
         });
     }
