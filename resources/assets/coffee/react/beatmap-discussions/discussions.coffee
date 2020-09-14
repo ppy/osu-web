@@ -40,12 +40,26 @@ export class Discussions extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @eventId = "beatmapset-discussions-#{osu.uuid()}"
+
     @state =
+      discussionCollapses: {}
+      discussionDefaultCollapsed: false
+      highlightedDiscussionId: null
       sort:
         generalAll: 'updated_at'
         general: 'updated_at'
         timeline: 'timeline'
         reviews: 'updated_at'
+
+
+  componentDidMount: ->
+    $.subscribe "beatmapset-discussions:collapse.#{@eventId}", @toggleCollapse
+    $.subscribe "beatmapset-discussions:highlight.#{@eventId}", @setHighlight
+
+
+  componentWillUnmount: ->
+    $.unsubscribe ".#{@eventId}"
 
 
   render: =>
@@ -171,6 +185,8 @@ export class Discussions extends React.PureComponent
         visible: visible
         showDeleted: @props.showDeleted
         parentDiscussion: parentDiscussion
+        collapsed: @isDiscussionCollapsed(discussion.id)
+        highlighted: @state.highlightedDiscussionId == discussion.id
 
 
   changeSort: (e) =>
@@ -189,8 +205,9 @@ export class Discussions extends React.PureComponent
 
 
   expand: (e) =>
-    e.preventDefault()
-    $.publish 'beatmapDiscussionEntry:collapse', collapse: e.currentTarget.dataset.type
+    @setState
+      discussionCollapses: {}
+      discussionDefaultCollapsed: e.currentTarget.dataset.type == 'collapse'
 
 
   hidden: (discussion) =>
@@ -202,8 +219,16 @@ export class Discussions extends React.PureComponent
       else false
 
 
+  isDiscussionCollapsed: (discussionId) ->
+    @state.discussionCollapses[discussionId] ? @state.discussionDefaultCollapsed
+
+
   isTimelineVisible: =>
     @props.mode == 'timeline' && @currentSort() == 'timeline'
+
+
+  setHighlight: (_event, {discussionId}) =>
+    @setState highlightedDiscussionId: discussionId
 
 
   sortedDiscussions: ->
@@ -226,6 +251,13 @@ export class Discussions extends React.PureComponent
     div
       'data-visibility': if !@isTimelineVisible() then 'hidden'
       className: "#{bn}__mode-circle #{bn}__mode-circle--active hidden-xs"
+
+
+  toggleCollapse: (_event, {discussionId}) =>
+    newDiscussionCollapses = Object.assign({}, @state.discussionCollapses)
+    newDiscussionCollapses[discussionId] = !(@isDiscussionCollapsed(discussionId))
+
+    @setState discussionCollapses: newDiscussionCollapses
 
 
   toggleShowDeleted: =>
