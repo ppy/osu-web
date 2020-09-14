@@ -91,7 +91,7 @@ class UserNotification extends Model
             ->where('user_id', $user->getKey())
             ->where('is_read', false)
             ->whereIn('notification_id', $notifications->select('id'));
-        // raw bulider doesn't have model scope magic.
+        // raw builder doesn't have model scope magic.
         $instance->scopeHasPushDelivery($itemsQuery);
 
         $now = now();
