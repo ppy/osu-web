@@ -3,23 +3,23 @@
 .support-osu-popup {
   @padding: 30px;
 
-  background-color: #FFF;
+  background-color: hsl(var(--hsl-b5));
   border-radius: 10px;
-  width: 880px;
+  width: calc(100% - 30px);
+  max-width: 880px;
   position: fixed;
   left: 0;
   right: 0;
   margin: 0 auto;
   font-size: @font-size--support-osu-popup-body;
-  color: #555;
   padding: @padding;
   display: flex;
 
   &__close-button {
     position: absolute;
-    top: 0px;
-    right: 0px;
-    .link-gray-555();
+    top: 5px;
+    right: 5px;
+    .link-white();
     .link-plain();
     font-size: @font-size--support-osu-popup-header-smaller;
 
@@ -78,6 +78,7 @@
     flex-shrink: 0;
     background: url("//s.ppy.sh/images/ty-pippi.jpg");
     .own-layer();
+    border-radius: @border-radius-large;
 
     &::before {
       .full-size();
@@ -96,7 +97,6 @@
   }
 
   &__video {
-    width: 556px;
-    height: 138px;
+    width: 100%;
   }
 }
