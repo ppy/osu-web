@@ -19,7 +19,7 @@ class @BeatmapsetDownloadObserver
       downloaded = json.quota_used
       # after 20 downloads and every multiple of 50 thereafter, maybe move this to a config var later?
       if (downloaded == 20 || (downloaded > 0 && downloaded % 50 == 0))
-        @loadAndShowPopup
+        @loadAndShowPopup()
 
 
   loadAndShowPopup: =>
