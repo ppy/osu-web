@@ -150,16 +150,16 @@ export class Discussions extends React.PureComponent
   discussionPage: (discussion) =>
     return if !discussion.id?
 
-    className = "#{bn}__discussion"
     visible = @props.currentDiscussions.byFilter[@props.currentFilter][@props.mode][discussion.id]?
-    className += ' u-hide-by-height' unless visible
+
+    return unless visible
 
     if discussion.parent_id?
       parentDiscussion = @props.currentDiscussions.byFilter.total.reviews[discussion.parent_id]
 
     div
       key: discussion.id
-      className: className
+      className: "#{bn}__discussion"
       el Discussion,
         discussion: discussion
         users: @props.users
