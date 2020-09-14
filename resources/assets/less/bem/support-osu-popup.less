@@ -3,7 +3,7 @@
 .support-osu-popup {
   @padding: 30px;
 
-  background-color: hsl(var(--hsl-b5));
+  background-color: #333; // to match the ty-pippi bg colour
   border-radius: 10px;
   width: calc(100% - 30px);
   max-width: 880px;
@@ -74,16 +74,18 @@
     height: 548px;
     overflow: hidden;
     flex-shrink: 0;
-    background: url("//s.ppy.sh/images/ty-pippi.jpg");
+    .at2x-simple("/images/layout/ty-pippi.jpg");
+    background-size: 100%;
     .own-layer();
     border-radius: @border-radius-large;
 
     &::before {
       .full-size();
+      .at2x-simple("/images/layout/ty-pippi.jpg");
+      background-size: 100%;
       content: ' ';
       height: 200%;
       top: -100%;
-      background: url("//s.ppy.sh/images/ty-pippi.jpg");
       animation: fade-in-out 2.0s infinite linear;
       animation-fill-mode: none;
       .own-layer();
