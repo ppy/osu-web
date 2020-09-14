@@ -2,12 +2,14 @@
 # See the LICENCE file in the repository root for full licence text.
 
 class @BeatmapsetDownloadObserver
-  targetSelector: '.support-osu-popup'
+  targetSelector: '.js-support-osu-popup'
   container: '#popup-container'
-  wrapperClass: 'empty-popup'
 
   constructor: ->
     $(document).on 'click mouseup', '.js-beatmapset-download-link', @quotaCheck
+
+
+  $currentPopup: => $(@targetSelector)
 
 
   quotaCheck: (e) =>
@@ -32,15 +34,9 @@ class @BeatmapsetDownloadObserver
 
 
   createPopup: (content) =>
-    return if content is undefined
+    return unless content?
 
-    $popup = $(".#{@wrapperClass}--clone").clone()
-    $popup.removeClass "#{@wrapperClass}--clone"
-    $popup.find('.popup-content').html content
-    $popup.find('.support-osu-popup__close-button').on 'click', (e) ->
-      e.preventDefault()
-      $popup.fadeOut()
-      Blackout.hide()
+    $popup = $(content)
 
     $popup.appendTo($(@container))
 
@@ -48,4 +44,18 @@ class @BeatmapsetDownloadObserver
   showPopup: =>
     document.activeElement.blur?()
     Blackout.show()
-    $(@targetSelector).parents(".#{@wrapperClass}").fadeIn()
+    @$currentPopup().fadeIn()
+
+    close = (immediate = false) =>
+      if immediate
+        @$currentPopup().hide()
+      else
+        @$currentPopup().fadeOut()
+      Blackout.hide()
+      $(document).off('.support-osu-popup')
+
+    maybeClose = (e) =>
+      close() if e.target.closest("#{@targetSelector}--close")? || !e.target.closest(@targetSelector)?
+
+    $(document).on('click.support-osu-popup', maybeClose)
+    $(document).on('turbolinks:before-cache.support-osu-popup', -> close(true))

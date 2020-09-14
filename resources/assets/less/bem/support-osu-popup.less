@@ -16,16 +16,14 @@
   display: flex;
 
   &__close-button {
+    .reset-input();
     position: absolute;
     top: 5px;
     right: 5px;
     .link-white();
     .link-plain();
     font-size: @font-size--support-osu-popup-header-smaller;
-
-    &:hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
   }
 
   &__content {
