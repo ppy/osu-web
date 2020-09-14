@@ -36,16 +36,8 @@ export class Post extends React.PureComponent
       message: @props.post.message
 
 
-  componentDidMount: =>
-    osu.pageChange()
-
-
   componentWillUpdate: =>
     @cache = {}
-
-
-  componentDidUpdate: =>
-    osu.pageChange()
 
 
   componentWillUnmount: =>
