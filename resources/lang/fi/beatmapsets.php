@@ -151,10 +151,10 @@ return [
             'ranked' => '',
             'approved' => '',
             'loved' => '',
-            'qualified' => '',
-            'wip' => '',
+            'qualified' => 'Esihyväksytty',
+            'wip' => 'Työn alla',
             'pending' => '',
-            'graveyard' => '',
+            'graveyard' => 'Hautausmaa',
         ],
     ],
 ];

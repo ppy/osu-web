@@ -37,7 +37,7 @@ return [
 
         'support' => [
             '_' => 'Membutuhkan bantuan tambahan? Hubungi kami dengan menghubungi :button berikut.',
-            'button' => 'tim dukungan',
+            'button' => 'layanan dukungan',
         ],
     ],
 ];

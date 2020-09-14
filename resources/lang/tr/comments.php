@@ -5,7 +5,7 @@
 
 return [
     'deleted' => 'silindi',
-    'deleted_count' => ':count_delimited silinmiş yorum|:count_delimited silinmiş yorum',
+    'deleted_count' => ':count_delimited tane silinmiş yorum|:count_delimited tane silinmiş yorum',
     'edited' => ':timeago tarihinde :user tarafından düzenlendi',
     'pinned' => 'sabitlenmiş',
     'empty' => 'Henüz yorum yok.',
@@ -30,7 +30,7 @@ return [
     ],
 
     'guest_button' => [
-        'new' => 'Yorum yazmak için oturum açılsın mı',
+        'new' => 'Yorum yapmak için giriş yap',
         'reply' => 'Cevaplamak için giriş yap',
     ],
 

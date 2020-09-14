@@ -62,7 +62,7 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmapler',
-            'artists' => 'seçkin sanatçılar',
+            'artists' => 'featured artist\'ler',
             'index' => 'listeleme',
             'packs' => 'paketler',
         ],
