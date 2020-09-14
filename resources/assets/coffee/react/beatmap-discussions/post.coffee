@@ -27,7 +27,6 @@ export class Post extends React.PureComponent
     @throttledUpdatePost = _.throttle @updatePost, 1000
     @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
     @xhr = {}
-    @cache = {}
     @reviewEditor = React.createRef()
 
     @state =
@@ -38,10 +37,6 @@ export class Post extends React.PureComponent
 
   componentDidMount: =>
     osu.pageChange()
-
-
-  componentWillUpdate: =>
-    @cache = {}
 
 
   componentDidUpdate: =>
