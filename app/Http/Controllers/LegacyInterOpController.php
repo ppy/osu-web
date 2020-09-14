@@ -410,12 +410,7 @@ class LegacyInterOpController extends Controller
             abort(404, 'Group not found');
         }
 
-        $user = User::findOrFail($params['user_id']);
-        $user->$userMethod($group);
-
-        if ($user->validationErrors()->isAny()) {
-            return error_popup($user->validationErrors()->toSentence());
-        }
+        User::findOrFail($params['user_id'])->$userMethod($group);
 
         return response(null, 204);
     }

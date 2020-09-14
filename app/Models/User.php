@@ -366,6 +366,10 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function setDefaultGroup(Group $group): void
     {
+        if (!$this->isGroup($group)) {
+            $this->addToGroup($group);
+        }
+
         $this->update([
             'group_id' => $group->getKey(),
             'user_colour' => $group->group_colour,
