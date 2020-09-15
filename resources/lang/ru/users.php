@@ -311,7 +311,7 @@ return [
                     'title' => 'Лучшие результаты',
                 ],
                 'first' => [
-                    'title' => 'Рекорды',
+                    'title' => 'Первые места',
                 ],
             ],
             'votes' => [
@@ -322,7 +322,7 @@ return [
                 'vote_count' => ':count_delimited голос|:count_delimited голоса|:count_delimited голосов',
             ],
             'account_standing' => [
-                'title' => 'Состояние аккаунта',
+                'title' => 'Нарушения',
                 'bad_standing' => "с аккаунтом <strong>:username</strong> не всё хорошо :(",
                 'remaining_silence' => 'пользователю <strong>:username</strong> можно будет говорить через :duration.',
 

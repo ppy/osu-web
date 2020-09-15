@@ -111,7 +111,7 @@ return [
                 'paragraph' => '',
                 'praise' => '',
                 'problem' => '',
-                'suggestion' => '',
+                'suggestion' => 'lisää ehdotus',
             ],
         ],
 
@@ -257,7 +257,7 @@ return [
         'approved' => 'Vahvistettu',
         'favourites' => 'Suosikit',
         'graveyard' => 'Hautausmaa',
-        'leaderboard' => '',
+        'leaderboard' => 'Tulostaulukollinen',
         'loved' => 'Rakastettu',
         'mine' => 'Mappini',
         'pending' => 'Vireillä & WIP',

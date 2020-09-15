@@ -80,10 +80,10 @@ return [
             '_' => 'varsayılan beatmap indirme tipi',
             'all' => 'eğer varsa video ile beraber',
             'no_video' => 'video olmadan',
-            'direct' => 'osu!direkt\'de aç',
+            'direct' => 'osu!direct\'de aç',
         ],
 
-        'beatmapset_title_show_original' => 'şarkı verisini orijinal dilde göster',
+        'beatmapset_title_show_original' => 'beatmap metaverisini orijinal dilinde göster',
     ],
 
     'playstyles' => [
@@ -118,7 +118,7 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => 'Bu pencereyi kapatabilirsiniz',
+        'text' => 'Şimdi bu sekmeyi/pencereyi kapatabilirsiniz',
         'title' => 'Doğrulama tamamlandı',
     ],
 

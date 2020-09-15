@@ -76,6 +76,7 @@ return [
         'deleted' => 'изтрита тема',
         'go_to_latest' => 'виж най-новата публикация',
         'has_replied' => '',
+        'in_forum' => '',
         'latest_post' => ':when от :user',
         'latest_reply_by' => 'последният отговор от :user',
         'new_topic' => 'Създай нова тема',
