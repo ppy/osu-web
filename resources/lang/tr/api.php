@@ -19,6 +19,6 @@ return [
             'read' => 'Kimi takip ettiğinizi görebilir.',
         ],
 
-        'public' => 'Herkese açık verileri kendi adına oku.',
+        'public' => 'Herkese açık verilerinizi sizin adınıza okuyabilir.',
     ],
 ];

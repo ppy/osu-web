@@ -29,10 +29,10 @@ return [
             'username' => 'Kullanıcı adı',
 
             'beatmapset_status' => [
-                '_' => 'Beatmap durumu',
+                '_' => 'Beatmap Durumu',
                 'all' => 'Tümü',
                 'disqualified' => 'Diskalifiye edildi',
-                'never_qualified' => 'Nitelikli Değildi',
+                'never_qualified' => 'Niteliklendirilmedi',
                 'qualified' => 'Nitelikli',
                 'ranked' => 'Dereceli',
             ],

@@ -6,7 +6,7 @@
 return [
     'match' => [
         'beatmap-deleted' => 'beatmap dihapus',
-        'difference' => 'dengan :difference',
+        'difference' => 'dengan selisih skor sebesar :difference',
         'failed' => 'GAGAL',
         'header' => 'Pertandingan Multiplayer',
         'in-progress' => '(pertandingan sedang berlangsung)',

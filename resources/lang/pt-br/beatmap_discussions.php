@@ -54,7 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Nenhuma das postagens corresponde ao que procuro',
         'notice' => 'Existem postagens próximas de :timestamp (:existing_timestamps). Por favor, visualize-as antes de postar.',
-        'unsaved' => '',
+        'unsaved' => ':count nesta revisão',
     ],
 
     'reply' => [

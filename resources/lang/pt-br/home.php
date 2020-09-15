@@ -76,9 +76,9 @@ return [
         'action' => 'Baixar osu!',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => 'se você tiver problemas para iniciar o jogo ou registrar-se, :help_forum_link ou :support_button.',
+            'help_forum_link' => 'visite o fórum de ajuda',
+            'support_button' => 'entre em contato com o suporte',
         ],
 
         'os' => [
