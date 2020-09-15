@@ -27,17 +27,12 @@ export class Post extends React.PureComponent
     @throttledUpdatePost = _.throttle @updatePost, 1000
     @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
     @xhr = {}
-    @cache = {}
     @reviewEditor = React.createRef()
 
     @state =
       editing: false
       posting: false
       message: @props.post.message
-
-
-  componentWillUpdate: =>
-    @cache = {}
 
 
   componentWillUnmount: =>

@@ -68,7 +68,7 @@ return [
         'friends_only' => 'Pengguna memblokir pesan dari orang yang tidak ada dalam daftar teman pengguna.',
         'moderated' => 'Channel itu sedang dalam pengelolaan.',
         'no_access' => 'Anda tidak memiliki akses ke channel ini.',
-        'restricted' => 'Anda tidak dapat mengirim pesan ketika sedang dibungkam, dibatasi atau diban.',
+        'restricted' => 'Anda tidak dapat mengirim pesan saat akun Anda sedang di-silence, di-restrict, atau di-ban.',
     ],
 
     'comment' => [
@@ -117,7 +117,7 @@ return [
 
                 'user' => [
                     'require_login' => 'Silakan masuk untuk membalas.',
-                    'restricted' => "Anda tidak dapat mengirimkan balasan ketika akun Anda sedang dibatasi.",
+                    'restricted' => "Anda tidak dapat mengirimkan balasan ketika akun Anda sedang di-restrict.",
                     'silenced' => "Anda tidak dapat mengirimkan balasan ketika akun Anda sedang di-silence.",
                 ],
             ],
@@ -136,7 +136,7 @@ return [
 
                 'user' => [
                     'require_login' => 'Silakan masuk untuk memberikan suara.',
-                    'restricted' => "Anda tidak dapat memberikan suara ketika akun Anda sedang dibatasi.",
+                    'restricted' => "Anda tidak dapat memberikan suara ketika akun Anda sedang di-restrict.",
                     'silenced' => "Tidak dapat memberikan suara saat di-silence.",
                 ],
             ],

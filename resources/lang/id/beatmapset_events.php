@@ -26,7 +26,7 @@ return [
         'love' => 'Di-love oleh :user',
         'nominate' => 'Dinominasikan oleh :user.',
         'nomination_reset' => 'Masalah baru di :discussion (:text) memicu pengaturan ulang nominasi.',
-        'qualify' => 'Beatmap ini telah mencapai ketentuan nominasi dan berstatus qualified.',
+        'qualify' => 'Beatmap ini telah memperoleh jumlah nominasi yang cukup untuk mendapatkan status Qualified.',
         'rank' => 'Ranked.',
     ],
 

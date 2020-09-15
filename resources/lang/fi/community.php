@@ -12,23 +12,23 @@ return [
             'instructions' => 'klikkaa sydäntä jatkaaksesi osu!kauppaan',
         ],
         'why-support' => [
-            'title' => '',
+            'title' => 'Miksi minun pitäisi tukea osu!:a? Mihin rahat menevät?',
 
             'team' => [
-                'title' => '',
+                'title' => 'Tue Tiimiä',
                 'description' => '',
             ],
             'infra' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Palvelininfrastruktuuri',
+                'description' => 'Avustukset menevät palvelimiin, joilla ylläpidetään verkkosivustoa, moninpelipalveluita, online-pistetaulukoita jne.',
             ],
             'featured-artists' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Esittelyssä olevat Artistit',
+                'description' => 'Sinun tuella voimme lähestyä mahtavia artisteja vielä enemmän ja lisensoida lisää hienoa musiikkia käytettäväksi osu!:ssa',
                 'link_text' => '',
             ],
             'ads' => [
-                'title' => '',
+                'title' => 'Pidä osu! itsekestävänä',
                 'description' => '',
             ],
             'tournaments' => [
