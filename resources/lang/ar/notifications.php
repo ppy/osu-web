@@ -66,8 +66,8 @@ return [
 
                 'comment_new' => 'علق :username ":content" على ":title"',
                 'comment_new_compact' => 'علق :username ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username رد ":content" على ":title"',
+                'comment_reply_compact' => ':username رد ":content"',
             ],
         ],
 
@@ -92,8 +92,8 @@ return [
 
                 'comment_new' => 'علق :username ":content" في ":title"',
                 'comment_new_compact' => 'علق:username ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username رد ":content" على ":title"',
+                'comment_reply_compact' => ':username رد ":content"',
             ],
         ],
 
@@ -105,8 +105,8 @@ return [
 
                 'comment_new' => 'علق :username ":content" في ":title"',
                 'comment_new_compact' => 'علق :username ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username رد ":content" على ":title"',
+                'comment_reply_compact' => ':username رد ":content"',
             ],
         ],
 
@@ -153,12 +153,12 @@ return [
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_disqualify' => 'حُرِمَت ":title" من التأهُل',
+                'beatmapset_love' => 'اصبحت ":title" محبوبة',
+                'beatmapset_nominate' => 'اصبحت ":title" مرشحة',
+                'beatmapset_qualify' => '":title" حصلت على ترشيحات كافية ودخلت حالة التصنيف',
+                'beatmapset_rank' => 'اصبحت ":title" مصنفة',
+                'beatmapset_reset_nominations' => 'تم اعادة تعيين ترشيحات ":title"',
             ],
 
             'comment' => [

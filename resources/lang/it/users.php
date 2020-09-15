@@ -40,7 +40,7 @@ return [
         'too_many' => 'Limite blocchi raggiunto.',
         'button' => [
             'block' => 'Blocca',
-            'unblock' => 'sblocca',
+            'unblock' => 'Sblocca',
         ],
     ],
 
@@ -54,7 +54,7 @@ return [
         'warning' => "Nel caso tu abbia violato una regola, è necessario evidenziare che si tratta di un periodo dalla durata di un mese dove non saranno considerate alcune richieste di scuse. Dopo questo periodo, sarai libero di contattarci se lo ritieni opportuno. La creazione di nuovi account dopo la disattivazione di un altro sarà punita con <strong>l'estensione del periodo di un mese</strong>. È necessario sottolineare che <strong>creando un nuovo account ogni volta, violi ancora di più le regole</strong>. Ti suggeriamo caldamente di non prendere questa strada!",
 
         'if_mistake' => [
-            '_' => 'Se pensi che si tratti di un\'errore, sei libero di contattarci (via :email o cliccando "?" presente nell\'angolo in basso a destra di questa pagina). Siamo pienamente fiduciosi delle nostre azioni, siccome si basano su prove consolidate. Ci riserviamo il diritto di rifiutare la tua richiesta nel caso capissimo la tua intenzione di essere disonesto.',
+            '_' => 'Se pensi che si tratti di un\'errore, sei libero di contattarci (via :email o cliccando su "?" nell\'angolo in basso a destra di questa pagina). Nota che siamo pienamente fiduciosi delle nostre azioni, siccome si basano su prove consolidate. Ci riserviamo il diritto di rifiutare la tua richiesta se riteniamo che tu sia intenzionalmente disonesto.',
             'email' => 'email',
         ],
 
@@ -94,7 +94,7 @@ return [
 
         'beta' => [
             'main' => 'L\'accesso alla beta è attualmente limitato ad utenti privilegiati.',
-            'small' => '(i supporter lo avranno a breve)',
+            'small' => '(gli osu!supporter lo avranno a breve)',
         ],
     ],
 
@@ -160,7 +160,7 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
                     'button' => 'Carica immagine',
                     'dropzone' => 'Trascina qui per caricarla',
                     'dropzone_info' => 'Puoi anche trascinare qui l\'immagine per caricarla',
-                    'size_info' => 'L\'immagine di copertina dovrebbe essere 2400x620',
+                    'size_info' => 'L\'immagine di copertina dovrebbe essere 2400x640',
                     'too_large' => 'Il file caricato è troppo grande.',
                     'unsupported_format' => 'Formato non supportato.',
 
