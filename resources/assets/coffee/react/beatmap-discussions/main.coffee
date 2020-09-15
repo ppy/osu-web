@@ -364,7 +364,7 @@ export class Main extends React.PureComponent
       newState.selectedUserId = null
 
     newState.callback = =>
-      $.publish 'beatmap-discussions:highlight', discussionId: discussion.id
+      $.publish 'beatmapset-discussions:highlight', discussionId: discussion.id
 
       target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
 
