@@ -34,7 +34,7 @@ export class Post extends React.PureComponent
       editing: false
       editorMinHeight: '0'
       posting: false
-      message: @props.post.message
+      message: null
 
 
   componentWillUnmount: =>
@@ -70,17 +70,19 @@ export class Post extends React.PureComponent
 
 
   editCancel: =>
-    @setState
-      editing: false
-      message: @props.post.message
+    @setState editing: false
 
 
   editStart: =>
     if @messageBodyRef.current?
       editorMinHeight = "#{@messageBodyRef.current.getBoundingClientRect().height + 50}px"
 
-    @setState editing: true, editorMinHeight: editorMinHeight ? '0', =>
-      @textareaRef.current?.focus()
+    @setState
+      editing: true
+      editorMinHeight: editorMinHeight ? '0'
+      message: @props.post.message
+      => @textareaRef.current?.focus()
+
 
   handleKeyDownCallback: (type, event) =>
     switch type
