@@ -5,7 +5,7 @@
 
 return [
     'page_description' => 'osu!\'daki Seçkin sanatçılar',
-    'title' => 'Seçkin Sanatçılar',
+    'title' => 'Featured Artist\'ler',
 
     'admin' => [
         'hidden' => 'SANATÇI ŞU ANDA GİZLİ',

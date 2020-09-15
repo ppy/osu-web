@@ -109,11 +109,11 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => '',
-            'url' => '',
+            'url' => 'Syötä kelvollinen URL-osoite.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Sovelluksen Nimi',
+                'redirect' => 'Sovelluksen Vastakutsun URL',
             ],
         ],
     ],
@@ -124,7 +124,7 @@ return [
         'invalid_country' => 'Maata ei ole tietokannassa.',
         'invalid_discord' => 'Virheellinen Discord käyttäjänimi.',
         'invalid_email' => "Ei näytä kelvolliselta sähköpostiosoitteelta.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Twitter-käyttäjätunnus ei kelpaa.',
         'too_short' => 'Uusi salasana on liian lyhyt.',
         'unknown_duplicate' => 'Käyttäjätunnus tai sähköpostiosoite on jo käytössä.',
         'username_available_in' => 'Tämän käyttäjänimen aukeamiseen on aikaa :duration.',
@@ -150,7 +150,7 @@ return [
         ],
 
         'change_username' => [
-            'restricted' => '',
+            'restricted' => 'Et voi vaihtaa käyttäjänimeäsi kun tilisi on rajoitettu.',
             'supporter_required' => [
                 '_' => 'Sinun pitää olla :link, jotta voit muuttaa nimeäsi!',
                 'link_text' => 'tukenut osua!',
@@ -160,15 +160,15 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason ei kelpaa tälle ilmoitustyypille.',
         'self' => "Et voi ilmiantaa itseäsi!",
     ],
 
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Määrä',
+                'cost' => 'Hinta',
             ],
         ],
     ],

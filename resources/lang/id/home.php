@@ -78,7 +78,7 @@ return [
         'help' => [
             '_' => 'apabila Anda mengalami masalah dalam memulai permainan atau mendaftarkan akun, harap :help_forum_link atau :support_button.',
             'help_forum_link' => 'kunjungi sub-forum Help',
-            'support_button' => 'hubungi osu!support',
+            'support_button' => 'hubungi layanan dukungan kami',
         ],
 
         'os' => [

@@ -67,7 +67,7 @@ return [
                 'comment_new' => ':usernameが「:title」でコメント「:content」',
                 'comment_new_compact' => ':usernameがコメント「:content」',
                 'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply_compact' => ':usernameが「:content」に返信しました',
             ],
         ],
 
@@ -93,7 +93,7 @@ return [
                 'comment_new' => ':usernameが「:title」でコメント「:content」',
                 'comment_new_compact' => ':usernameがコメント「:content」',
                 'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply_compact' => ':usernameが「:content」に返信しました',
             ],
         ],
 
@@ -106,7 +106,7 @@ return [
                 'comment_new' => ':usernameが「:title」でコメント「:content」',
                 'comment_new_compact' => ':usernameがコメント「:content」',
                 'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply_compact' => ':usernameが「:content」に返信しました',
             ],
         ],
 
@@ -153,12 +153,12 @@ return [
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
+                'beatmapset_disqualify' => '「:title」はdisqualifyされました',
                 'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
+                'beatmapset_nominate' => '「:title」はノミネートされました',
                 'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_rank' => '「:title」はrankedされました',
+                'beatmapset_reset_nominations' => '「:title」のノミネーションがリセットされました',
             ],
 
             'comment' => [
