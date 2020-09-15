@@ -34,15 +34,17 @@ export class Main extends React.PureComponent
     # FIXME: update url handler to recognize this instead
     @focusNewDiscussion = document.location.hash == '#new'
 
-    if !@restoredState
+    if @restoredState
+      @state.readPostIds = new Set(@state.readPostIdsArray)
+    else
       beatmapset = props.initial.beatmapset
       reviewsConfig = props.initial.reviews_config
       showDeleted = true
-      readPostIds = []
+      readPostIds = new Set
 
       for discussion in beatmapset.discussions
         for post in discussion?.posts ? []
-          readPostIds.push post.id if post?
+          readPostIds.add(post.id) if post?
 
       @state = {beatmapset, currentUser, readPostIds, reviewsConfig, showDeleted}
 
@@ -397,9 +399,15 @@ export class Main extends React.PureComponent
 
 
   markPostRead: (_e, {id}) =>
-    return if _.includes @state.readPostIds, id
+    return if @state.readPostIds.has(id)
 
-    @setState readPostIds: @state.readPostIds.concat(id)
+    newSet = new Set(@state.readPostIds)
+    if Array.isArray(id)
+      newSet.add(i) for i in id
+    else
+      newSet.add(id)
+
+    @setState readPostIds: newSet
 
 
   queryFromLocation: (discussions = @state.beatmapsetDiscussion.beatmap_discussions) =>
@@ -407,6 +415,8 @@ export class Main extends React.PureComponent
 
 
   saveStateToContainer: =>
+    # This is only so it can be stored with JSON.stringify.
+    @state.readPostIdsArray = Array.from(@state.readPostIds)
     @props.container.dataset.beatmapsetDiscussionState = JSON.stringify(@state)
 
 

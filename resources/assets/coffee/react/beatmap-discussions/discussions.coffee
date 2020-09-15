@@ -155,7 +155,7 @@ export class Discussions extends React.PureComponent
     return unless visible
 
     if discussion.parent_id?
-      parentDiscussion = _.find(@props.currentDiscussions.reviews, {id: discussion.parent_id})
+      parentDiscussion = @props.currentDiscussions.byFilter.total.reviews[discussion.parent_id]
 
     div
       key: discussion.id
