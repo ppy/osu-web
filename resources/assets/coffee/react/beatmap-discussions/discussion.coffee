@@ -7,6 +7,7 @@ import { SystemPost } from './system-post'
 import { UserCard } from './user-card'
 import mapperGroup from 'beatmap-discussions/mapper-group'
 import * as React from 'react'
+import { renderToStaticMarkup } from 'react-dom/server'
 import { button, div, i, span, a } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
 import { classWithModifiers } from 'utils/css'
@@ -14,6 +15,28 @@ import { classWithModifiers } from 'utils/css'
 el = React.createElement
 
 bn = 'beatmap-discussion'
+
+VoterList = ({type, discussion, users}) =>
+  div
+    className: 'user-list-popup user-list-popup--blank'
+    if discussion.votes[type] < 1
+      osu.trans "beatmaps.discussions.votes.none.#{type}"
+    else
+      el React.Fragment, null,
+        div className: 'user-list-popup__title',
+          osu.trans("beatmaps.discussions.votes.latest.#{type}")
+          ':'
+        discussion.votes['voters'][type].map (userId) =>
+          a
+            href: laroute.route('users.show', user: userId)
+            className: 'js-usercard user-list-popup__user'
+            key: userId
+            'data-user-id': userId
+            el UserAvatar, user: users[userId] ? [], modifiers: ['full']
+        if discussion.votes[type] > discussion.votes['voters'][type].length
+          div className: 'user-list-popup__remainder-count',
+            osu.transChoice 'common.count.plus_others', discussion.votes[type] - discussion.votes['voters'][type].length
+
 
 export class Discussion extends React.PureComponent
   constructor: (props) ->
@@ -28,7 +51,7 @@ export class Discussion extends React.PureComponent
 
 
   componentDidUpdate: =>
-    _.each @tooltips, (tooltip, type) =>
+    for own type, tooltip of @tooltips
       @refreshTooltip(tooltip.qtip('api'), type)
 
 
@@ -98,7 +121,6 @@ export class Discussion extends React.PureComponent
           onMouseOver: @showVoters
           onTouchStart: @showVoters
           @displayVote type
-          @voterList type
 
       button
         className: "#{bn}__action #{bn}__action--with-line"
@@ -158,44 +180,18 @@ export class Discussion extends React.PureComponent
         @props.discussion.votes[type]
 
 
-  voterList: (type) =>
-    div
-      className: "user-list-popup user-list-popup__template js-user-list-popup--#{@props.discussion.id}-#{type}"
-      style:
-        display: 'none'
-      if @props.discussion.votes[type] < 1
-        osu.trans "beatmaps.discussions.votes.none.#{type}"
-      else
-        el React.Fragment, null,
-          div className: 'user-list-popup__title',
-            osu.trans("beatmaps.discussions.votes.latest.#{type}")
-            ':'
-          @props.discussion.votes['voters'][type].map (userId) =>
-            a
-              href: laroute.route('users.show', user: userId)
-              className: 'js-usercard user-list-popup__user'
-              key: userId
-              'data-user-id': userId
-              el UserAvatar, user: @props.users[userId] ? [], modifiers: ['full']
-          if @props.discussion.votes[type] > @props.discussion.votes['voters'][type].length
-            div className: 'user-list-popup__remainder-count',
-              osu.transChoice 'common.count.plus_others', @props.discussion.votes[type] - @props.discussion.votes['voters'][type].length
-
-
   getTooltipContent: (type) =>
-    $(".js-user-list-popup--#{@props.discussion.id}-#{type}").html()
+    renderToStaticMarkup el(VoterList, type: type, discussion: @props.discussion, users: @props.users)
 
 
   refreshTooltip: (api, type) =>
-    return unless api
-    api.set('content.text', @getTooltipContent(type))
+    api?.set('content.text', @getTooltipContent(type))
 
 
   showVoters: (event) =>
     target = event.currentTarget
 
-    if @props.favcount < 1 || target._tooltip
-      return
+    return if target._tooltip
 
     target._tooltip = true
 
@@ -208,7 +204,7 @@ export class Discussion extends React.PureComponent
           def: false
           tip: false
         content:
-          text: (event, api) => @getTooltipContent(type)
+          text: @getTooltipContent(type)
         position:
           at: 'top center'
           my: 'bottom center'
