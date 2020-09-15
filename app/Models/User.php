@@ -344,7 +344,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
         $this->getConnection()->transaction(function () use ($group) {
             $this->userGroups()->create(['group_id' => $group->getKey()]);
-            UserGroupEvent::log(UserGroupEvent::USER_ADD, $group, $this);
+            UserGroupEvent::logUserAdd($this, $group);
         });
     }
 
@@ -356,7 +356,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
         $this->getConnection()->transaction(function () use ($group) {
             $this->userGroups()->where(['group_id' => $group->getKey()])->delete();
-            UserGroupEvent::log(UserGroupEvent::USER_REMOVE, $group, $this);
+            UserGroupEvent::logUserRemove($this, $group);
 
             if ($this->group_id === $group->getKey()) {
                 $this->setDefaultGroup(app('groups')->byIdentifier('default'));

@@ -32,15 +32,40 @@ class UserGroupEvent extends Model
 
     public $timestamps = false;
 
-    public static function log(string $type, Group $group, ?User $user = null, ?array $details = null): self
+    public static function logGroupRename(Group $group, string $oldName, string $newName): self
     {
-        return static::create([
-            'details' => $details,
-            'group_id' => $group->getKey(),
-            'hidden' => !$group->isVisible(),
-            'type' => $type,
-            'user_id' => optional($user)->getKey(),
+        return static::log(static::GROUP_RENAME, $group, [
+            'details' => [
+                'old_name' => $oldName,
+                'new_name' => $newName,
+            ],
         ]);
+    }
+
+    public static function logUserAdd(User $user, Group $group): self
+    {
+        return static::log(static::USER_ADD, $group, [
+            'user_id' => $user->getKey(),
+        ]);
+    }
+
+    public static function logUserRemove(User $user, Group $group): self
+    {
+        return static::log(static::USER_REMOVE, $group, [
+            'user_id' => $user->getKey(),
+        ]);
+    }
+
+    private static function log(string $type, Group $group, array $attributes = []): self
+    {
+        return static::create(array_merge(
+            [
+                'group_id' => $group->getKey(),
+                'hidden' => !$group->isVisible(),
+                'type' => $type,
+            ],
+            $attributes,
+        ));
     }
 
     public function group()

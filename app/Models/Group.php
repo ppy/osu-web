@@ -72,16 +72,7 @@ class Group extends Model implements AfterCommit
         }
 
         $this->getConnection()->transaction(function () use ($name) {
-            UserGroupEvent::log(
-                UserGroupEvent::GROUP_RENAME,
-                $this,
-                null,
-                [
-                    'old_name' => $this->group_name,
-                    'new_name' => $name,
-                ]
-            );
-
+            UserGroupEvent::logGroupRename($this, $this->group_name, $name);
             $this->update(['group_name' => $name]);
         });
     }
