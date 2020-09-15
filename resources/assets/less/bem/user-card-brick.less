@@ -4,18 +4,19 @@
 .user-card-brick {
   @_top: user-card-brick;
   @_fade-duration: 220ms;
-
-  @_background-color: @osu-colour-b6;
   @_border-radius: @border-radius-large;
 
   --border: transparent;
+
+  .link-white();
+  .link-plain();
 
   margin: var(--item-margin);
   flex: none;
 
   width: min-content;
   max-width: 100%;
-  background-color: @_background-color;
+  background-color: osu-hsla(@osu-colour-b4, 0.8);
   border-radius: @_border-radius;
   display: flex;
   align-items: center;
@@ -75,8 +76,6 @@
   }
 
   &__username {
-    .link-white();
-    .link-plain();
     display: flex;
     align-items: center;
     min-width: 0;

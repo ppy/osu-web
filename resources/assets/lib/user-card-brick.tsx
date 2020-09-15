@@ -45,22 +45,21 @@ export default class UserCardBrick extends React.PureComponent<Props, State> {
     this.addFriendModifier(modifiers);
 
     return (
-      <div
+      <a
         className={`js-usercard ${osu.classWithModifiers('user-card-brick', modifiers)}`}
         data-user-id={this.props.user.id}
+        href={route('users.show', { user: this.props.user.id })}
       >
-        {this.renderBackground()}
-
         <div
           className='user-card-brick__group-bar'
           style={osu.groupColour(this.props.user.groups?.[0])}
           title={this.props.user.groups?.[0]?.name}
         />
 
-        <a className='user-card-brick__username' href={route('users.show', { user: this.props.user.id })}>
-          <div className='u-ellipsis-overflow'>{this.props.user.username}</div>
-        </a>
-      </div>
+        <div className='user-card-brick__username u-ellipsis-overflow'>
+          {this.props.user.username}
+        </div>
+      </a>
     );
   }
 
