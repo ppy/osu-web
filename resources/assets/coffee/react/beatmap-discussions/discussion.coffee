@@ -22,18 +22,8 @@ export class Discussion extends React.PureComponent
     @eventId = "beatmap-discussion-entry-#{@props.discussion.id}"
     @tooltips = {}
 
-    @state =
-      collapsed: false
-      highlighted: false
-
-
-  componentWillMount: =>
-    $.subscribe "beatmapDiscussionEntry:collapse.#{@eventId}", @setCollapse
-    $.subscribe "beatmapDiscussionEntry:highlight.#{@eventId}", @setHighlight
-
 
   componentWillUnmount: =>
-    $.unsubscribe ".#{@eventId}"
     @voteXhr?.abort()
 
 
@@ -57,7 +47,7 @@ export class Discussion extends React.PureComponent
     topClasses = classWithModifiers bn,
       'horizontal-desktop': @props.discussion.message_type != 'review'
       deleted: @props.discussion.deleted_at?
-      highlighted: @state.highlighted
+      highlighted: @props.highlighted
       preview: @props.preview
       review: @props.discussion.message_type == 'review'
       timeline: @props.discussion.timestamp?
@@ -112,15 +102,15 @@ export class Discussion extends React.PureComponent
 
       button
         className: "#{bn}__action #{bn}__action--with-line"
-        onClick: @toggleExpand
+        onClick: @toggleCollapse
         div
-          className: "beatmap-discussion-expand #{'beatmap-discussion-expand--expanded' if !@state.collapsed}"
+          className: "beatmap-discussion-expand #{'beatmap-discussion-expand--expanded' if !@props.collapsed}"
           i className: 'fas fa-chevron-down'
 
 
   postFooter: =>
     div
-      className: "#{bn}__expanded #{'hidden' if @state.collapsed}"
+      className: "#{bn}__expanded #{'hidden' if @props.collapsed}"
       div
         className: "#{bn}__replies"
         for reply in @props.discussion.posts.slice(1)
@@ -254,7 +244,7 @@ export class Discussion extends React.PureComponent
 
 
   emitSetHighlight: =>
-    $.publish 'beatmapDiscussionEntry:highlight', id: @props.discussion.id
+    $.publish 'beatmapset-discussions:highlight', discussionId: @props.discussion.id
 
 
   isOwner: (object = @props.discussion) =>
@@ -317,24 +307,6 @@ export class Discussion extends React.PureComponent
     return @_resolvedSystemPostId
 
 
-  setCollapse: (_e, {collapse}) =>
-    return unless @props.visible
-
-    newState = collapse == 'collapse'
-
-    return if @state.collapsed == newState
-
-    @setState collapsed: newState
-
-
-  setHighlight: (_e, {id}) =>
-    newState = id == @props.discussion.id
-
-    return if @state.highlighted == newState
-
-    @setState highlighted: newState
-
-
   timestamp: =>
     tbn = 'beatmap-discussion-timestamp'
 
@@ -355,5 +327,5 @@ export class Discussion extends React.PureComponent
           BeatmapDiscussionHelper.formatTimestamp @props.discussion.timestamp
 
 
-  toggleExpand: =>
-    @setState collapsed: !@state.collapsed
+  toggleCollapse: =>
+    $.publish 'beatmapset-discussions:collapse', discussionId: @props.discussion.id
