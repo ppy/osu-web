@@ -7,10 +7,10 @@
 Welcome to the documentation for osu!api v2. You can use this API to get information on various circles and those who click them.
 
 <aside class="warning">
-WARNING: The API in under heavy development and has not stabilised yet. If you choose to use it at this stage, you do so at your own risk. Endpoints may appear, disappear, be renamed and completely change behaviour without warning.
+WARNING: The API is under heavy development and has not stabilised yet. If you choose to use it at this stage, you do so at your own risk. Endpoints may appear, disappear, be renamed and completely change behaviour without warning.
 </aside>
 
-Note that while we endeavour to keep this documentation up to date, consider it a work-in-progress and note that it will likely contains errors.
+Note that while we endeavour to keep this documentation up to date, consider it a work-in-progress and note that it will likely contain errors.
 
 If you notice any errors in the documentation or encounter problems using the API, please check for (or create if necessary) [issues on GitHub](https://github.com/ppy/osu-web/issues). Alternatively, you can ask in `#osu-web` [on the development discord](https://discord.gg/ppy).
 
@@ -219,7 +219,7 @@ access_token  | string | The access token.
 
 With the access token, you can make requests to osu!api on behalf of a user.
 
-The token should in included in the header of requests to the API.
+The token should be included in the header of requests to the API.
 
 `Authorization: Bearer @{{token}}`
 
@@ -281,7 +281,7 @@ For a full list of changes, see the
 - `/rooms/{room_id}/leaderboard` no longer returns an array at the top level; an object with keys is now returned.
 
 ### 2020-05-01
-- `users.read` scope removed, replace with more general `public` scope.
+- `users.read` scope removed, replaced with more general `public` scope.
 
 ### 2020-02-18
 - Beatmap `max_combo` and build update stream `user_count` now return the values as primitives instead of numbers wrapped in an array.
