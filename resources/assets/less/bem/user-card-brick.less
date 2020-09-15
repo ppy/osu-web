@@ -12,8 +12,6 @@
   .link-plain();
 
   margin: var(--item-margin);
-  flex: none;
-
   width: min-content;
   max-width: 100%;
   background-color: osu-hsla(@osu-colour-b4, 0.8);
@@ -42,46 +40,17 @@
     --border: @osu-colour-pink-2;
   }
 
-  &__background {
-    // to prevent annoying white-pixel artefacts appearing due to
-    // browsers not handling 'overflow: hidden' properly
-    border-radius: @_border-radius;
-    .full-size();
-    object-fit: cover;
-    transition: opacity ease-in-out @_fade-duration;
-    opacity: 0;
-
-    &--loaded {
-      opacity: 1;
-    }
-  }
-
-  &__background-container {
-    .full-size();
-
-    &::after {
-      .full-size();
-      content: '';
-      background-color: osu-hsla(@osu-colour-b4, 0.8);
-    }
-  }
-
   &__group-bar {
     background-color: var(--group-colour, @group-colour-default);
     width: 4px;
     height: 1em;
     border-radius: 10000px;
     margin: 0 5px;
-    position: relative;
   }
 
   &__username {
-    display: flex;
-    align-items: center;
-    min-width: 0;
     margin: 0 5px 0 0;
     font-weight: bold;
     padding-bottom: 1px; // adjust alignment
-    position: relative;
   }
 }
