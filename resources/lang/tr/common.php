@@ -49,7 +49,7 @@ return [
         'search' => 'Arama',
         'see_more' => 'daha fazla',
         'show' => 'göster',
-        'show_deleted' => 'Silineni göster',
+        'show_deleted' => 'Silinenleri göster',
         'show_less' => 'daha az göster',
         'show_more' => 'daha fazla göster',
         'show_more_options' => 'daha fazla seçenek göster',

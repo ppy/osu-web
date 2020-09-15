@@ -49,7 +49,7 @@ return [
 
             'prompt' => [
                 'lock' => 'Kilitleme sebebi',
-                'unlock' => 'Kilidi açmak istediğinizden emin misiniz?',
+                'unlock' => 'Tartışmanın kilidini açmak istediğine emin misin?',
             ],
         ],
 
@@ -319,7 +319,7 @@ return [
         'swedish' => 'İsveççe',
         'russian' => 'Rusça',
         'polish' => 'Lehçe',
-        'instrumental' => 'Enstrümental',
+        'instrumental' => 'Enstrümantal',
         'other' => 'Diğer',
         'unspecified' => 'Belirtilmemiş',
     ],

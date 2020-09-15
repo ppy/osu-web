@@ -54,7 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Ninguna de las publicaciones aborda mi asunto',
         'notice' => 'Ya hay publicaciones cerca de :timestamp (:existing_timestamps). Por favor revíselas antes de publicar.',
-        'unsaved' => '',
+        'unsaved' => ':count en esta revisión',
     ],
 
     'reply' => [
