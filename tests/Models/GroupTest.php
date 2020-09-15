@@ -15,32 +15,30 @@ class GroupTest extends TestCase
     {
         $newName = 'new name';
         $group = factory(Group::class)->create(['group_name' => 'name']);
+        $groupRenameEventCount = $this->getGroupRenameEventCount($group);
 
         $group->rename($newName);
 
         $this->assertSame($group->group_name, $newName);
-        $this->assertSame(
-            UserGroupEvent::where([
-                'group_id' => $group->getKey(),
-                'type' => UserGroupEvent::GROUP_RENAME,
-            ])->count(),
-            1,
-        );
+        $this->assertSame($this->getGroupRenameEventCount($group), $groupRenameEventCount + 1);
     }
 
     public function testRenameUnchanged()
     {
         $name = 'name';
         $group = factory(Group::class)->create(['group_name' => $name]);
+        $groupRenameEventCount = $this->getGroupRenameEventCount($group);
 
         $group->rename($name);
 
-        $this->assertSame(
-            UserGroupEvent::where([
-                'group_id' => $group->getKey(),
-                'type' => UserGroupEvent::GROUP_RENAME,
-            ])->count(),
-            0,
-        );
+        $this->assertSame($this->getGroupRenameEventCount($group), $groupRenameEventCount);
+    }
+
+    private function getGroupRenameEventCount(Group $group): int
+    {
+        return UserGroupEvent::where([
+            'group_id' => $group->getKey(),
+            'type' => UserGroupEvent::GROUP_RENAME,
+        ])->count();
     }
 }
