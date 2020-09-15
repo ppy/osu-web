@@ -37,14 +37,6 @@ export class Post extends React.PureComponent
       message: @props.post.message
 
 
-  componentDidMount: =>
-    osu.pageChange()
-
-
-  componentDidUpdate: =>
-    osu.pageChange()
-
-
   componentWillUnmount: =>
     @throttledUpdatePost.cancel()
 
