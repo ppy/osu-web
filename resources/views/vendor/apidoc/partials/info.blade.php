@@ -83,7 +83,7 @@ The flow to authorize users for your application is:
 
 ### Request authorization from a user
 
-To obtain an access token, you must first get an authorization code that is created when a user grants permissions to your application. To request permission from the user, they should to redirected to:
+To obtain an access token, you must first get an authorization code that is created when a user grants permissions to your application. To request permission from the user, they should be redirected to:
 
 `GET {{ route('oauth.authorizations.authorize') }}`
 
@@ -100,7 +100,7 @@ state         | string | Data that will be returned when a temporary code is iss
 
 ### User is redirected back to your site
 
-If the user accepts your request, they will be redirect back to your site with a temporary single-use `code` contained in the URL paramater.
+If the user accepts your request, they will be redirected back to your site with a temporary single-use `code` contained in the URL parameter.
 If a `state` value was provided in the previous request, it will be returned here.
 
 <aside class="notice">
