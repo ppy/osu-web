@@ -6,12 +6,12 @@ import { ChannelJSON, ChannelType, MessageJSON, PresenceJSON } from '../chat/cha
 import DispatcherAction from './dispatcher-action';
 
 export class ChatChannelLoadEarlierMessages implements DispatcherAction {
-  constructor(public channelId: number) {
+  constructor(readonly channelId: number) {
   }
 }
 
 export class ChatChannelPartAction implements DispatcherAction {
-  constructor(public channelId: number, public shouldSync = true) {
+  constructor(readonly channelId: number, readonly shouldSync = true) {
   }
 }
 
@@ -21,12 +21,12 @@ export class ChatChannelJoinAction implements DispatcherAction {
 }
 
 export class ChatChannelSwitchAction implements DispatcherAction {
-  constructor(public channelId: number) {
+  constructor(readonly channelId: number) {
   }
 }
 
 export class ChatMessageAddAction implements DispatcherAction {
-  constructor(public message: Message) {
+  constructor(readonly message: Message) {
   }
 }
 
@@ -46,6 +46,6 @@ export class ChatNewConversation implements DispatcherAction {
 }
 
 export class ChatPresenceUpdateAction implements DispatcherAction {
-  constructor(public presence: PresenceJSON) {
+  constructor(readonly presence: PresenceJSON) {
   }
 }
