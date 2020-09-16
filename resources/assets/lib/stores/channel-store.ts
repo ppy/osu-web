@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import {
+  ChatChannelDeletedAction,
   ChatChannelPartAction,
   ChatChannelSwitchAction,
   ChatMessageAddAction,
@@ -139,7 +140,9 @@ export default class ChannelStore extends Store {
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof ChatMessageSendAction) {
+    if (dispatchedAction instanceof ChatChannelPartAction) {
+      this.handleChatChannelPartAction(dispatchedAction);
+    } else if (dispatchedAction instanceof ChatMessageSendAction) {
       this.handleChatMessageSendAction(dispatchedAction);
     } else if (dispatchedAction instanceof ChatMessageAddAction) {
       this.getOrCreate(dispatchedAction.message.channelId).addMessages(dispatchedAction.message);
@@ -186,6 +189,13 @@ export default class ChannelStore extends Store {
         dispatch(new ChatChannelPartAction(channel.channelId, false));
       }
     });
+  }
+
+  @action
+  private handleChatChannelPartAction(dispatchedAction: ChatChannelPartAction) {
+    if (this.channels.delete(dispatchedAction.channelId)) {
+      dispatch(new ChatChannelDeletedAction(dispatchedAction.channelId));
+    }
   }
 
   private async handleChatMessageSendAction(dispatchedAction: ChatMessageAddAction) {

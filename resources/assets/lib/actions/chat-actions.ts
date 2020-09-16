@@ -5,6 +5,11 @@ import Message from 'models/chat/message';
 import { ChannelJSON, ChannelType, MessageJSON, PresenceJSON } from '../chat/chat-api-responses';
 import DispatcherAction from './dispatcher-action';
 
+export class ChatChannelDeletedAction implements DispatcherAction {
+  constructor(readonly channelId: number) {
+  }
+}
+
 export class ChatChannelLoadEarlierMessages implements DispatcherAction {
   constructor(readonly channelId: number) {
   }

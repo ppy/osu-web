@@ -2,12 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import {
+  ChatChannelDeletedAction,
   ChatChannelJoinAction,
   ChatChannelLoadEarlierMessages,
-  ChatChannelPartAction,
   ChatChannelSwitchAction,
   ChatMessageAddAction,
-  ChatPresenceUpdateAction,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
@@ -25,6 +24,7 @@ import { MessageJSON } from './chat-api-responses';
 export default class ChatOrchestrator implements DispatchListener {
   private api: ChatAPI;
   private markingAsRead: Record<number, number> = {};
+  private selectedIndex = 0;
   private windowIsActive: boolean = true;
 
   constructor(private rootDataStore: RootDataStore) {
@@ -55,36 +55,23 @@ export default class ChatOrchestrator implements DispatchListener {
       }
 
       uiState.selected = channelId;
+      this.selectedIndex = channelStore.channelList.indexOf(channel);
     });
   }
 
-  focusChannelAtIndex(index: number) {
-    const channelList = this.rootDataStore.channelStore.channelList;
-    if (channelList.length === 0) {
-      return;
-    }
-
-    const nextIndex = clamp(index, 0, channelList.length - 1);
-    const channel = this.rootDataStore.channelStore.channelList[nextIndex];
-
-    dispatch(new ChatChannelSwitchAction(channel.channelId));
-  }
-
   handleDispatchAction(action: DispatcherAction) {
-    if (action instanceof ChatChannelSwitchAction) {
+    if (action instanceof ChatChannelDeletedAction) {
+      this.handleChatChannelDeletedAction(action);
+    } else if (action instanceof ChatChannelSwitchAction) {
       this.changeChannel(action.channelId);
     } else if (action instanceof ChatChannelLoadEarlierMessages) {
       this.loadChannelEarlierMessages(action.channelId);
     } else if (action instanceof ChatChannelJoinAction) {
       this.handleChatChannelJoinAction(action);
-    } else if (action instanceof ChatChannelPartAction) {
-      this.handleChatChannelPartAction(action);
     } else if (action instanceof ChatMessageAddAction) {
       if (action.message.channelId === this.rootDataStore.uiState.chat.selected) {
         this.markAsRead(this.rootDataStore.uiState.chat.selected);
       }
-    } else if (action instanceof ChatPresenceUpdateAction) {
-      this.handleChatPresenceUpdateAction();
     } else if (action instanceof WindowFocusAction) {
       this.windowIsActive = true;
       this.markAsRead(this.rootDataStore.uiState.chat.selected);
@@ -158,6 +145,26 @@ export default class ChatOrchestrator implements DispatchListener {
     });
   }
 
+  private focusChannelAtIndex(index: number) {
+    const channelList = this.rootDataStore.channelStore.channelList;
+    if (channelList.length === 0) {
+      return;
+    }
+
+    const nextIndex = clamp(index, 0, channelList.length - 1);
+    const channel = this.rootDataStore.channelStore.channelList[nextIndex];
+
+    dispatch(new ChatChannelSwitchAction(channel.channelId));
+  }
+
+  private handleChatChannelDeletedAction(action: ChatChannelDeletedAction) {
+    this.focusChannelAtIndex(this.selectedIndex);
+
+    if (action.channelId !== -1) {
+      this.api.partChannel(action.channelId, window.currentUser.id);
+    }
+  }
+
   private handleChatChannelJoinAction(action: ChatChannelJoinAction) {
     transaction(() => {
       const channelStore = this.rootDataStore.channelStore;
@@ -167,33 +174,6 @@ export default class ChatOrchestrator implements DispatchListener {
       channel.type = action.type;
       channel.metaLoaded = true;
     });
-  }
-
-  private handleChatChannelPartAction(action: ChatChannelPartAction) {
-    const channelStore = this.rootDataStore.channelStore;
-    const channel = channelStore.get(action.channelId);
-    const index = channel != null ? channelStore.channelList.indexOf(channel) : null;
-    channelStore.partChannel(action.channelId);
-
-    if (this.rootDataStore.uiState.chat.selected === channel?.channelId) {
-      this.focusChannelAtIndex(index ?? 0);
-    }
-
-    if (action.shouldSync && action.channelId !== -1) {
-      this.api.partChannel(action.channelId, window.currentUser.id)
-        .catch((err) => {
-          console.debug('leaveChannel error', err);
-        });
-    }
-  }
-
-  // ensure a channel is selected if available
-  private handleChatPresenceUpdateAction() {
-    const channelStore = this.rootDataStore.channelStore;
-    const channel = channelStore.get(this.rootDataStore.uiState.chat.selected);
-    if (channel == null) {
-      this.focusChannelAtIndex(0);
-    }
   }
 
   private markAsRead(channelId: number) {
