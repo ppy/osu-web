@@ -35,8 +35,9 @@ export default class ChatOrchestrator implements DispatchListener {
   changeChannel(channelId: number) {
     const uiState = this.rootDataStore.uiState.chat;
     const channelStore = this.rootDataStore.channelStore;
+    const channel = channelStore.getOrCreate(channelId);
 
-    if (channelId === uiState.selected && !channelStore.getOrCreate(channelId).loaded) {
+    if (channelId === uiState.selected && !channel.loaded) {
       return;
     }
 
@@ -46,7 +47,6 @@ export default class ChatOrchestrator implements DispatchListener {
         //   e.g. keep autoScroll enabled to jump to the newly sent message when restarting an old conversation
         uiState.autoScroll = false;
       }
-      const channel = channelStore.getOrCreate(channelId);
 
       if (!channel.newPmChannel) {
         this.loadChannel(channelId).then(() => {
