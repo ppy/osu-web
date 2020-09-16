@@ -27,7 +27,6 @@ import Store from 'stores/store';
 @dispatchListener
 export default class ChannelStore extends Store {
   @observable channels = observable.map<number, Channel>();
-  lastHistoryId: number | null = null;
   private api = new ChatAPI();
 
   @computed
@@ -174,24 +173,6 @@ export default class ChannelStore extends Store {
   }
 
   @action
-  updatePresence(presence: PresenceJSON) {
-    presence.forEach((json) => {
-      this.getOrCreate(json.channel_id).updatePresence(json);
-    });
-
-    // remove parted channels
-    this.channels.forEach((channel) => {
-      if (channel.newPmChannel) {
-        return;
-      }
-
-      if (!presence.find((json) => json.channel_id === channel.channelId)) {
-        dispatch(new ChatChannelPartAction(channel.channelId, false));
-      }
-    });
-  }
-
-  @action
   private handleChatChannelPartAction(dispatchedAction: ChatChannelPartAction) {
     if (this.channels.delete(dispatchedAction.channelId)) {
       dispatch(new ChatChannelDeletedAction(dispatchedAction.channelId));
@@ -232,5 +213,23 @@ export default class ChannelStore extends Store {
     this.addNewConversation(dispatchedAction.channel, dispatchedAction.message);
     dispatch(new ChatChannelSwitchAction(dispatchedAction.channel.channel_id));
     dispatch(new ChatChannelPartAction(dispatchedAction.tempChannelId));
+  }
+
+  @action
+  private updatePresence(presence: PresenceJSON) {
+    presence.forEach((json) => {
+      this.getOrCreate(json.channel_id).updatePresence(json);
+    });
+
+    // remove parted channels
+    this.channels.forEach((channel) => {
+      if (channel.newPmChannel) {
+        return;
+      }
+
+      if (!presence.find((json) => json.channel_id === channel.channelId)) {
+        dispatch(new ChatChannelPartAction(channel.channelId, false));
+      }
+    });
   }
 }

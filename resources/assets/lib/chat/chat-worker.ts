@@ -19,6 +19,7 @@ import { MessageJSON } from './chat-api-responses';
 @dispatchListener
 export default class ChatWorker implements DispatchListener {
   private api: ChatAPI;
+  private lastHistoryId: number | null = null;
   private pollingEnabled: boolean = true;
   private pollTime: number = 1000;
   private pollTimeIdle: number = 5000;
@@ -45,9 +46,8 @@ export default class ChatWorker implements DispatchListener {
     this.updateXHR = true;
 
     const maxMessageId = this.rootDataStore.channelStore.maxMessageId;
-    const lastHistoryId = this.rootDataStore.channelStore.lastHistoryId;
 
-    this.api.getUpdates(maxMessageId, lastHistoryId)
+    this.api.getUpdates(maxMessageId, this.lastHistoryId)
       .then((updateJson) => {
         this.updateXHR = false;
         if (this.pollingEnabled) {
@@ -81,7 +81,7 @@ export default class ChatWorker implements DispatchListener {
 
           dispatch(new UserSilenceAction(silencedUserIds));
           if (newHistoryId != null) {
-            this.rootDataStore.channelStore.lastHistoryId = newHistoryId;
+            this.lastHistoryId = newHistoryId;
           }
 
           dispatch(new ChatPresenceUpdateAction(updateJson.presence));
