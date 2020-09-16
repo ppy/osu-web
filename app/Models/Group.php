@@ -65,14 +65,14 @@ class Group extends Model implements AfterCommit
         return User::whereIn('user_id', $userIds);
     }
 
-    public function rename($name): void
+    public function rename(string $name, ?User $actor = null): void
     {
         if ($this->group_name === $name) {
             return;
         }
 
-        $this->getConnection()->transaction(function () use ($name) {
-            UserGroupEvent::logGroupRename($this, $this->group_name, $name);
+        $this->getConnection()->transaction(function () use ($actor, $name) {
+            UserGroupEvent::logGroupRename($actor, $this, $this->group_name, $name);
             $this->update(['group_name' => $name]);
         });
     }

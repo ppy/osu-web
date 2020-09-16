@@ -336,27 +336,27 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         });
     }
 
-    public function addToGroup(Group $group): void
+    public function addToGroup(Group $group, ?self $actor = null): void
     {
         if ($this->isGroup($group)) {
             return;
         }
 
-        $this->getConnection()->transaction(function () use ($group) {
+        $this->getConnection()->transaction(function () use ($actor, $group) {
             $this->userGroups()->create(['group_id' => $group->getKey()]);
-            UserGroupEvent::logUserAdd($this, $group);
+            UserGroupEvent::logUserAdd($actor, $this, $group);
         });
     }
 
-    public function removeFromGroup(Group $group): void
+    public function removeFromGroup(Group $group, ?self $actor = null): void
     {
         if (!$this->isGroup($group)) {
             return;
         }
 
-        $this->getConnection()->transaction(function () use ($group) {
+        $this->getConnection()->transaction(function () use ($actor, $group) {
             $this->userGroups()->where(['group_id' => $group->getKey()])->delete();
-            UserGroupEvent::logUserRemove($this, $group);
+            UserGroupEvent::logUserRemove($actor, $this, $group);
 
             if ($this->group_id === $group->getKey()) {
                 $this->setDefaultGroup(app('groups')->byIdentifier('default'));
@@ -364,10 +364,10 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         });
     }
 
-    public function setDefaultGroup(Group $group): void
+    public function setDefaultGroup(Group $group, ?self $actor = null): void
     {
         if (!$this->isGroup($group)) {
-            $this->addToGroup($group);
+            $this->addToGroup($group, $actor);
         }
 
         $this->update([

@@ -6,6 +6,8 @@
 namespace App\Models;
 
 /**
+ * @property User $actor
+ * @property int|null $actor_id
  * @property array|null $details
  * @property Group $group
  * @property int $group_id
@@ -32,9 +34,9 @@ class UserGroupEvent extends Model
 
     public $timestamps = false;
 
-    public static function logGroupRename(Group $group, string $oldName, string $newName): self
+    public static function logGroupRename(?User $actor, Group $group, string $oldName, string $newName): self
     {
-        return static::log(static::GROUP_RENAME, $group, [
+        return static::log($actor, static::GROUP_RENAME, $group, [
             'details' => [
                 'old_name' => $oldName,
                 'new_name' => $newName,
@@ -42,30 +44,36 @@ class UserGroupEvent extends Model
         ]);
     }
 
-    public static function logUserAdd(User $user, Group $group): self
+    public static function logUserAdd(?User $actor, User $user, Group $group): self
     {
-        return static::log(static::USER_ADD, $group, [
+        return static::log($actor, static::USER_ADD, $group, [
             'user_id' => $user->getKey(),
         ]);
     }
 
-    public static function logUserRemove(User $user, Group $group): self
+    public static function logUserRemove(?User $actor, User $user, Group $group): self
     {
-        return static::log(static::USER_REMOVE, $group, [
+        return static::log($actor, static::USER_REMOVE, $group, [
             'user_id' => $user->getKey(),
         ]);
     }
 
-    private static function log(string $type, Group $group, array $attributes = []): self
+    private static function log(?User $actor, string $type, Group $group, array $attributes = []): self
     {
         return static::create(array_merge(
             [
+                'actor_id' => optional($actor)->getKey(),
                 'group_id' => $group->getKey(),
                 'hidden' => !$group->isVisible(),
                 'type' => $type,
             ],
             $attributes,
         ));
+    }
+
+    public function actor()
+    {
+        return $this->belongsTo(User::class, 'actor_id');
     }
 
     public function group()
