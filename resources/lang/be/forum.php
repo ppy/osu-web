@@ -76,6 +76,7 @@ return [
         'deleted' => 'выдаленая тэма',
         'go_to_latest' => 'праглядзець апошні допіс',
         'has_replied' => '',
+        'in_forum' => '',
         'latest_post' => ':when ад :user',
         'latest_reply_by' => 'апошні адказ ад :user',
         'new_topic' => 'Новая тэма',

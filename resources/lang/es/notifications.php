@@ -66,8 +66,8 @@ return [
 
                 'comment_new' => ':username comentó ":content" en ":title"',
                 'comment_new_compact' => ':username comentó ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username respondió ":content" en ":title"',
+                'comment_reply_compact' => ':username respondió ":content"',
             ],
         ],
 
@@ -92,8 +92,8 @@ return [
 
                 'comment_new' => ':username comentó ":content" en ":title"',
                 'comment_new_compact' => ':username comentó ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username respondió ":content" en ":title"',
+                'comment_reply_compact' => ':username respondió ":content"',
             ],
         ],
 
@@ -105,8 +105,8 @@ return [
 
                 'comment_new' => ':username comentó ":content" en ":title"',
                 'comment_new_compact' => ':username comentó ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username respondió ":content" en ":title"',
+                'comment_reply_compact' => ':username respondió ":content"',
             ],
         ],
 
@@ -153,12 +153,12 @@ return [
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_disqualify' => '":title" ha sido descalificado',
+                'beatmapset_love' => '":title" fue promovido a amado',
+                'beatmapset_nominate' => '":title" ha sido nominado',
+                'beatmapset_qualify' => '":title" ha ganado suficientes nominaciones e ingresó a la cola de clasificación',
+                'beatmapset_rank' => '":title" ha sido clasificado',
+                'beatmapset_reset_nominations' => 'La nominación de ":title" ha sido restablecida',
             ],
 
             'comment' => [

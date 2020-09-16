@@ -23,7 +23,7 @@ return [
                 'description' => 'Katkılar, websitesini, çok oyunculu servisleri, çevrimiçi sıralamaları vb. sürdürmek için doğrudan sunuculara gider.',
             ],
             'featured-artists' => [
-                'title' => 'Seçkin Sanatçılar',
+                'title' => 'Featured Artist\'ler',
                 'description' => 'Sizin desteğinizle, daha çok müzisyen ile iletişim kurabilir ve onların güzel şarkılarını osu! için lisanslayabiliriz!',
                 'link_text' => 'Güncel listeyi görüntüleyin &raquo;',
             ],

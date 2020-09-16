@@ -18,4 +18,11 @@ return [
     'user_support_first' => 'Ο χρήστης <strong>:user</strong> έγινε ένας osu! supporter - ευχαριστούμε για τη γενναιοδωρία σου!',
     'user_support_gift' => 'Ο χρήστης <strong>:user</strong> έλαβε το δώρο του osu! supporter!',
     'username_change' => 'Ο χρήστης <strong>:previousUsername</strong> άλλαξε το όνομα χρήστη του σε <strong><em>:user</strong></em>!',
+
+    'beatmapset_status' => [
+        'approved' => '',
+        'loved' => '',
+        'qualified' => '',
+        'ranked' => '',
+    ],
 ];

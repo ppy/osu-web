@@ -31,7 +31,7 @@ return [
         ],
 
         'support' => [
-            '_' => 'osu!\'ya karşı olan :support \'un için çokça teşekkür ederiz!.',
+            '_' => 'osu!\'ya vermiş olduğun :support için çok teşekkür ederiz!',
             'first' => 'destek',
             'repeat' => 'sürekli destek',
         ],
