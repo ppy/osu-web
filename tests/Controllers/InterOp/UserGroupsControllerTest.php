@@ -143,6 +143,18 @@ class UserGroupsControllerTest extends TestCase
         $this->assertSame($this->getUserSetDefaultEventCount($user, $group), $userSetDefaultEventCount + 1);
     }
 
+    public function testMissingUserOrGroup()
+    {
+        $url = route('interop.user-groups.store', [
+            'timestamp' => time(),
+        ]);
+
+        $this
+            ->withInterOpHeader($url)
+            ->post($url)
+            ->assertStatus(404);
+    }
+
     private function getUserAddEventCount(User $user, Group $group): int
     {
         return UserGroupEvent::where([
