@@ -80,7 +80,9 @@ export default class ChatOrchestrator implements DispatchListener {
     } else if (action instanceof ChatChannelPartAction) {
       this.handleChatChannelPartAction(action);
     } else if (action instanceof ChatMessageAddAction) {
-      this.markAsRead(this.rootDataStore.uiState.chat.selected);
+      if (action.message.channelId === this.rootDataStore.uiState.chat.selected) {
+        this.markAsRead(this.rootDataStore.uiState.chat.selected);
+      }
     } else if (action instanceof ChatPresenceUpdateAction) {
       this.handleChatPresenceUpdateAction();
     } else if (action instanceof WindowFocusAction) {
@@ -145,41 +147,6 @@ export default class ChatOrchestrator implements DispatchListener {
       });
   }
 
-  markAsRead(channelId: number) {
-    if (!this.windowIsActive || this.markingAsRead[channelId] != null) {
-      return;
-    }
-
-    const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
-
-    if (!channel.isUnread) {
-      return;
-    }
-
-    channel.markAsRead();
-
-    const currentTimeout = window.setTimeout(() => {
-      // allow next debounce to be queued again
-      if (this.markingAsRead[channelId] === currentTimeout) {
-        delete this.markingAsRead[channelId];
-      }
-
-      // TODO: need to mark again in case the marker has moved?
-
-      // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
-      const lastSentMessage = channel.messages[channel.messages.length - 1];
-      if (lastSentMessage && lastSentMessage.sender.id === window.currentUser.id) {
-        return;
-      }
-
-      this.api.markAsRead(channel.channelId, channel.lastMessageId).catch((err) => {
-        console.debug('markAsRead error', err);
-      });
-    }, 1000);
-
-    this.markingAsRead[channelId] = currentTimeout;
-  }
-
   private addMessages(channelId: number, messages: MessageJSON[]) {
     transaction(() => {
       const newMessages = messages.map((json: MessageJSON) => {
@@ -227,5 +194,40 @@ export default class ChatOrchestrator implements DispatchListener {
     if (channel == null) {
       this.focusChannelAtIndex(0);
     }
+  }
+
+  private markAsRead(channelId: number) {
+    if (!this.windowIsActive || this.markingAsRead[channelId] != null) {
+      return;
+    }
+
+    const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
+
+    if (!channel.isUnread) {
+      return;
+    }
+
+    channel.markAsRead();
+
+    const currentTimeout = window.setTimeout(() => {
+      // allow next debounce to be queued again
+      if (this.markingAsRead[channelId] === currentTimeout) {
+        delete this.markingAsRead[channelId];
+      }
+
+      // TODO: need to mark again in case the marker has moved?
+
+      // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
+      const lastSentMessage = channel.messages[channel.messages.length - 1];
+      if (lastSentMessage && lastSentMessage.sender.id === window.currentUser.id) {
+        return;
+      }
+
+      this.api.markAsRead(channel.channelId, channel.lastMessageId).catch((err) => {
+        console.debug('markAsRead error', err);
+      });
+    }, 1000);
+
+    this.markingAsRead[channelId] = currentTimeout;
   }
 }
