@@ -125,6 +125,11 @@ export default class Channel {
   }
 
   @action
+  markAsRead() {
+    this.lastReadId = this.lastMessageId;
+  }
+
+  @action
   resortMessages() {
     this.messages = _(this.messages).sortBy('timestamp').uniqBy('messageId').value();
   }
