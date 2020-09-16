@@ -188,25 +188,31 @@ export default class ChannelStore extends Store {
     });
   }
 
-  private handleChatMessageSendAction(dispatchedAction: ChatMessageAddAction) {
+  private async handleChatMessageSendAction(dispatchedAction: ChatMessageAddAction) {
     const message = dispatchedAction.message;
     const channel = this.getOrCreate(message.channelId);
     channel.addMessages(message, true);
 
-    if (channel.newPmChannel) {
-      const users = channel.users.slice();
-      const userId = users.find((user) => {
-        return user !== currentUser.id;
-      });
+    try {
+      if (channel.newPmChannel) {
+        const users = channel.users.slice();
+        const userId = users.find((user) => {
+          return user !== currentUser.id;
+        });
 
-      if (!userId) {
-        console.debug('sendMessage:: userId not found?? this shouldn\'t happen');
-        return;
+        if (!userId) {
+          console.debug('sendMessage:: userId not found?? this shouldn\'t happen');
+          return;
+        }
+
+        const response = await this.api.newConversation(userId, message);
+        dispatch(new ChatNewConversation(response.channel, response.message, message.channelId));
+      } else {
+        const response = await this.api.sendMessage(message);
+        dispatch(new ChatMessageUpdateAction(message, response));
       }
-
-      this.api.newConversation(userId, message);
-    } else {
-      this.api.sendMessage(message);
+    } catch {
+      dispatch(new ChatMessageUpdateAction(message, null));
     }
   }
 

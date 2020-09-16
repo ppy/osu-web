@@ -1,5 +1,3 @@
-import { ChatMessageUpdateAction, ChatNewConversation } from 'actions/chat-actions';
-import { dispatch } from 'app-dispatcher';
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
@@ -27,15 +25,11 @@ export default class ChatAPI {
     });
   }
 
-  newConversation(userId: number, message: Message) {
+  newConversation(userId: number, message: Message): JQuery.jqXHR<ApiResponses.NewConversationJSON> {
     return $.post(route('chat.new'), {
       is_action: message.isAction,
       message: message.content,
       target_id: userId,
-    }).done((response: ApiResponses.NewConversationJSON) => {
-      dispatch(new ChatNewConversation(response.channel, response.message, message.channelId));
-    }).fail(() => {
-      dispatch(new ChatMessageUpdateAction(message, null));
     });
   }
 
@@ -54,10 +48,6 @@ export default class ChatAPI {
       message: message.content,
       target_id: message.channelId,
       target_type: 'channel',
-    }).done((response: ApiResponses.SendMessageJSON) => {
-      dispatch(new ChatMessageUpdateAction(message, response));
-    }).fail(() => {
-      dispatch(new ChatMessageUpdateAction(message, null));
     });
   }
 }
