@@ -323,6 +323,6 @@ export class Post extends React.PureComponent
 
   validPost: =>
     if @props.discussion.message_type == 'review' && @props.type == 'discussion'
-      @reviewEditor.current?.canSave()
+      @reviewEditor.current?.canSave
     else
       BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())
