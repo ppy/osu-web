@@ -119,6 +119,7 @@ class LegacyInterOpControllerTest extends TestCase
         $user = $this->createUserWithGroup('gmt', ['group_id' => app('groups')->byIdentifier('default')->getKey()]);
         $group = app('groups')->byIdentifier('gmt');
         $userAddEventCount = $this->getUserAddEventCount($user, $group);
+        $userSetDefaultEventCount = $this->getUserSetDefaultEventCount($user, $group);
         $url = route('interop.user-groups.store-default', [
             'group_id' => $group->getKey(),
             'timestamp' => time(),
@@ -134,6 +135,7 @@ class LegacyInterOpControllerTest extends TestCase
 
         $this->assertSame($user->group_id, $group->getKey());
         $this->assertSame($this->getUserAddEventCount($user, $group), $userAddEventCount);
+        $this->assertSame($this->getUserSetDefaultEventCount($user, $group), $userSetDefaultEventCount + 1);
     }
 
     public function testUserGroupSetDefaultWhenNotMember()
@@ -141,6 +143,7 @@ class LegacyInterOpControllerTest extends TestCase
         $user = factory(User::class)->create();
         $group = app('groups')->byIdentifier('gmt');
         $userAddEventCount = $this->getUserAddEventCount($user, $group);
+        $userSetDefaultEventCount = $this->getUserSetDefaultEventCount($user, $group);
         $url = route('interop.user-groups.store-default', [
             'group_id' => $group->getKey(),
             'timestamp' => time(),
@@ -155,7 +158,9 @@ class LegacyInterOpControllerTest extends TestCase
         $user->refresh();
 
         $this->assertSame($user->group_id, $group->getKey());
+        $this->assertTrue($user->isGroup($group));
         $this->assertSame($this->getUserAddEventCount($user, $group), $userAddEventCount + 1);
+        $this->assertSame($this->getUserSetDefaultEventCount($user, $group), $userSetDefaultEventCount + 1);
     }
 
     private function getUserAddEventCount(User $user, Group $group): int
@@ -172,6 +177,15 @@ class LegacyInterOpControllerTest extends TestCase
         return UserGroupEvent::where([
             'group_id' => $group->getKey(),
             'type' => UserGroupEvent::USER_REMOVE,
+            'user_id' => $user->getKey(),
+        ])->count();
+    }
+
+    private function getUserSetDefaultEventCount(User $user, Group $group): int
+    {
+        return UserGroupEvent::where([
+            'group_id' => $group->getKey(),
+            'type' => UserGroupEvent::USER_SET_DEFAULT,
             'user_id' => $user->getKey(),
         ])->count();
     }

@@ -29,6 +29,7 @@ class CreateUserGroupEvents extends Migration
                 'group_rename',
                 'user_add',
                 'user_remove',
+                'user_set_default',
             ]);
             $table->integer('user_id')->unsigned()->nullable();
         });

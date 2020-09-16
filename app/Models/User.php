@@ -370,11 +370,14 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             $this->addToGroup($group, $actor);
         }
 
-        $this->update([
-            'group_id' => $group->getKey(),
-            'user_colour' => $group->group_colour,
-            'user_rank' => $group->group_rank,
-        ]);
+        $this->getConnection()->transaction(function () use ($actor, $group) {
+            $this->update([
+                'group_id' => $group->getKey(),
+                'user_colour' => $group->group_colour,
+                'user_rank' => $group->group_rank,
+            ]);
+            UserGroupEvent::logUserSetDefault($actor, $this, $group);
+        });
     }
 
     public static function cleanUsername($username)

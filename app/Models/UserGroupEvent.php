@@ -25,6 +25,7 @@ class UserGroupEvent extends Model
     const GROUP_RENAME = 'group_rename';
     const USER_ADD = 'user_add';
     const USER_REMOVE = 'user_remove';
+    const USER_SET_DEFAULT = 'user_set_default';
 
     protected $casts = [
         'details' => 'array',
@@ -54,6 +55,14 @@ class UserGroupEvent extends Model
     public static function logUserRemove(?User $actor, User $user, Group $group): self
     {
         return static::log($actor, static::USER_REMOVE, $group, [
+            'user_id' => $user->getKey(),
+        ]);
+    }
+
+    public static function logUserSetDefault(?User $actor, User $user, Group $group): self
+    {
+        return static::log($actor, static::USER_SET_DEFAULT, $group, [
+            'hidden' => true,
             'user_id' => $user->getKey(),
         ]);
     }
