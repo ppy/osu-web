@@ -30,7 +30,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   @observable rank: filterValueType = null;
   @observable sort: filterValueType = null;
   @observable status: filterValueType = null;
-  @observable private sanitizedQuery: filterValueType = null;
+  @observable private sanitizedQuery?: filterValueType = null;
 
   [key: string]: any;
 
@@ -48,11 +48,11 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
 
   @computed
   get query() {
-    return this.sanitizedQuery;
+    return this.sanitizedQuery ?? null;
   }
 
   set query(value: string | null) {
-    const sanitizedQuery = osu.presence((value || '').trim());
+    const sanitizedQuery = osu.presence(value?.trim());
     if (this.sanitizedQuery !== sanitizedQuery) {
       this.sanitizedQuery = sanitizedQuery;
     }
@@ -103,9 +103,10 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
    */
   @computed
   private get values() {
-    // Object.assign doesn't copy the methods
+    // Object.assign doesn't copy the methods or getters
     const values = Object.assign({}, this);
-    values.query = this.sanitizedQuery;
+    // FIXME: use better serialization
+    values.query = this.query;
     delete values.sanitizedQuery;
 
     return values as BeatmapsetSearchParams;
