@@ -12,7 +12,7 @@ class UserGroupsController extends Controller
 {
     public function store()
     {
-        list($user, $group) = $this->getUserAndGroupModels();
+        [$user, $group] = $this->getUserAndGroupModels();
 
         $user->addToGroup($group);
 
@@ -21,7 +21,7 @@ class UserGroupsController extends Controller
 
     public function destroy()
     {
-        list($user, $group) = $this->getUserAndGroupModels();
+        [$user, $group] = $this->getUserAndGroupModels();
 
         $user->removeFromGroup($group);
 
@@ -30,7 +30,7 @@ class UserGroupsController extends Controller
 
     public function setDefault()
     {
-        list($user, $group) = $this->getUserAndGroupModels();
+        [$user, $group] = $this->getUserAndGroupModels();
 
         $user->setDefaultGroup($group);
 
