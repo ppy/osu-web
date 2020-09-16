@@ -12,20 +12,32 @@ class UserGroupsController extends Controller
 {
     public function store()
     {
-        return $this->userGroupAction('addToGroup');
+        list($user, $group) = $this->getUserAndGroupModels();
+
+        $user->addToGroup($group);
+
+        return response(null, 204);
     }
 
     public function destroy()
     {
-        return $this->userGroupAction('removeFromGroup');
+        list($user, $group) = $this->getUserAndGroupModels();
+
+        $user->removeFromGroup($group);
+
+        return response(null, 204);
     }
 
     public function setDefault()
     {
-        return $this->userGroupAction('setDefaultGroup');
+        list($user, $group) = $this->getUserAndGroupModels();
+
+        $user->setDefaultGroup($group);
+
+        return response(null, 204);
     }
 
-    private function userGroupAction(string $userMethod)
+    private function getUserAndGroupModels()
     {
         $params = get_params(request()->all(), null, [
             'group_id:int',
@@ -35,8 +47,9 @@ class UserGroupsController extends Controller
         $group = app('groups')->byId($params['group_id'] ?? null);
         abort_if($group === null, 404, 'Group not found');
 
-        User::findOrFail($params['user_id'])->$userMethod($group);
-
-        return response(null, 204);
+        return [
+            User::findOrFail($params['user_id'] ?? null),
+            $group,
+        ];
     }
 }
