@@ -46,6 +46,7 @@
                 <div class="login-box__row">
                     <div class='js-captcha--container'></div>
                 </div>
+                @include('objects._captcha_script')
             @endif
 
             <div class="login-box__row login-box__row--error js-login-form--error"></div>
@@ -99,13 +100,3 @@
         </div>
     </div>
 </div>
-{{--
-    we're explicitly avoiding NoCaptcha::renderJs here in order to use recaptcha.net instead of google.com (as the latter is blocked in mainland china)
-    see: https://developers.google.com/recaptcha/docs/faq#can-i-use-recaptcha-globally
---}}
-@if (captcha_enabled())
-    <script>
-        turbolinksReload.load('https://www.recaptcha.net/recaptcha/api.js?render=explicit&onload=initCaptcha&hl={{Lang::getLocale()}}');
-        function initCaptcha() { captcha.init('{{config('captcha.sitekey')}}', {{captcha_triggered() ? 'true' : 'false'}}); }
-    </script>
-@endif
