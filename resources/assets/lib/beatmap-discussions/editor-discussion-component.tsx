@@ -16,7 +16,7 @@ import { SlateContext } from './slate-context';
 interface Cache {
   nearbyDiscussions?: {
     beatmap_id: number;
-    discussions: BeatmapDiscussion[];
+    discussions: BeatmapsetDiscussionJson[];
     timestamp: number;
   };
 }
@@ -26,7 +26,7 @@ interface Props extends RenderElementProps {
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapJsonExtended;
   discussionId?: number;
-  discussions: Record<number, BeatmapDiscussion>;
+  discussions: Record<number, BeatmapsetDiscussionJson>;
   editMode?: boolean;
   readOnly?: boolean;
 }
@@ -151,7 +151,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     }
 
     if (!this.cache.nearbyDiscussions || this.cache.nearbyDiscussions.timestamp !== timestamp || (this.cache.nearbyDiscussions.beatmap_id !== this.selectedBeatmap())) {
-      const relevantDiscussions = _.filter(this.props.discussions, (discussion: BeatmapDiscussion) => discussion.beatmap_id === this.selectedBeatmap());
+      const relevantDiscussions = _.filter(this.props.discussions, (discussion: BeatmapsetDiscussionJson) => discussion.beatmap_id === this.selectedBeatmap());
       this.cache.nearbyDiscussions = {
         beatmap_id: this.selectedBeatmap(),
         discussions: BeatmapDiscussionHelper.nearbyDiscussions(relevantDiscussions, timestamp),

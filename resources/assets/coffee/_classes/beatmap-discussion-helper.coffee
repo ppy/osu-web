@@ -108,14 +108,6 @@ class @BeatmapDiscussionHelper
       review: 'fas fa-tasks'
       suggestion: 'far fa-circle'
 
-    # used for svg since it doesn't seem to have ::before pseudo-element
-    iconText:
-      mapperNote: ['far', '&#xf249;']
-      praise: ['fas', '&#xf004;']
-      problem: ['fas', '&#xf06a;']
-      resolved: ['far', '&#xf058;']
-      suggestion: ['far', '&#xf111;']
-
 
   @nearbyDiscussions: (discussions, timestamp) =>
     return [] if !timestamp?

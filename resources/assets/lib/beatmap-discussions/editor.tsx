@@ -38,9 +38,9 @@ interface Props {
   beatmaps: Record<number, BeatmapJsonExtended>;
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapJsonExtended;
-  currentDiscussions: BeatmapDiscussion[];
-  discussion?: BeatmapDiscussion;
-  discussions: Record<number, BeatmapDiscussion>;
+  currentDiscussions: BeatmapsetDiscussionJson[];
+  discussion?: BeatmapsetDiscussionJson;
+  discussions: Record<number, BeatmapsetDiscussionJson>;
   document?: string;
   editing: boolean;
   editMode?: boolean;
