@@ -12,9 +12,10 @@ import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import UserSilenceAction from 'actions/user-silence-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
+import ChatAPI from 'chat/chat-api';
 import { ChannelJSON, MessageJSON, PresenceJSON } from 'chat/chat-api-responses';
 import { maxBy } from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { action, computed, observable, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
@@ -24,6 +25,7 @@ import Store from 'stores/store';
 export default class ChannelStore extends Store {
   @observable channels = observable.map<number, Channel>();
   lastHistoryId: number | null = null;
+  private api = new ChatAPI();
 
   @computed
   get channelList(): Channel[] {
@@ -136,7 +138,7 @@ export default class ChannelStore extends Store {
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
     if (dispatchedAction instanceof ChatMessageSendAction) {
-      this.getOrCreate(dispatchedAction.message.channelId).addMessages(dispatchedAction.message, true);
+      this.handleChatMessageSendAction(dispatchedAction);
     } else if (dispatchedAction instanceof ChatMessageAddAction) {
       this.getOrCreate(dispatchedAction.message.channelId).addMessages(dispatchedAction.message);
     } else if (dispatchedAction instanceof ChatMessageUpdateAction) {
@@ -180,5 +182,45 @@ export default class ChannelStore extends Store {
         dispatch(new ChatChannelPartAction(channel.channelId, false));
       }
     });
+  }
+
+  @action
+  private handleChatMessageSendAction(dispatchedAction: ChatMessageAddAction) {
+    const message = dispatchedAction.message;
+    const channelId = message.channelId;
+    const channel = this.getOrCreate(channelId);
+    channel.addMessages(message, true);
+
+    if (channel.newPmChannel) {
+      const users = channel.users.slice();
+      const userId = users.find((user) => {
+        return user !== currentUser.id;
+      });
+
+      if (!userId) {
+        console.debug('sendMessage:: userId not found?? this shouldn\'t happen');
+        return;
+      }
+
+      this.api.newConversation(userId, message.content, message.isAction)
+        .then((response) => {
+          runInAction(() => {
+            this.channels.delete(channelId);
+            this.addNewConversation(response.channel, response.message);
+            dispatch(new ChatChannelPartAction(response.channel.channel_id));
+          });
+        })
+        .catch(() => {
+          dispatch(new ChatMessageUpdateAction(message, null));
+        });
+    } else {
+      this.api.sendMessage(channelId, message.content, message.isAction)
+        .then((updateJson) => {
+          dispatch(new ChatMessageUpdateAction(message, updateJson));
+        })
+        .catch(() => {
+          dispatch(new ChatMessageUpdateAction(message, null));
+        });
+    }
   }
 }
