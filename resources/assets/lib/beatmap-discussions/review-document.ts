@@ -4,7 +4,7 @@
 import * as markdown from 'remark-parse';
 import { Node as SlateNode } from 'slate';
 import * as unified from 'unified';
-import { Node as UnistNode } from 'unist';
+import type { Node as UnistNode } from 'unist';
 import { BeatmapDiscussionReview, PersistedDocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 
