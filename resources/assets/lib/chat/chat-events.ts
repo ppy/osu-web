@@ -3,7 +3,7 @@
 
 import { ChatChannelJoinAction, ChatChannelPartAction, ChatMessageAddAction } from 'actions/chat-actions';
 import { dispatch } from 'app-dispatcher';
-import { runInAction } from 'mobx';
+import { ChannelType, MessageJSON } from 'chat/chat-api-responses';
 import Message from 'models/chat/message';
 
 // tslint:disable: max-classes-per-file
@@ -20,6 +20,7 @@ export interface ChatChannelJoinEventJson {
     channel_id: number;
     icon?: string;
     name: string;
+    type: ChannelType;
   };
   event: 'chat.channel.join';
 }
@@ -31,24 +32,36 @@ export interface ChatChannelPartEventJson {
   event: 'chat.channel.part';
 }
 
+export interface ChatMessageAddEventJson {
+  data: MessageJSON;
+  event: 'chat.message.add';
+}
+
 export function dispatchChatChannelEvent(json: ChatChannelEventJson) {
   // TODO: dynamic class loading?
   // const className = startCase(json.event).replace(/\s/g, '');
-  runInAction(() => {
+
+  if (isChatChannelJoinEventJson(json)) {
     const data = json.data;
-    console.log(json);
-    switch (json.event) {
-      case 'chat.channel.part':
-        return dispatch(new ChatChannelPartAction(data.channel_id, false));
+    return dispatch(new ChatChannelJoinAction(data.channel_id, data.name, data.type, data.icon));
+  } else if (isChatChannelPartEventJson(json)) {
+    return dispatch(new ChatChannelPartAction(json.data.channel_id, false));
+  } else if (isChatMessageAddEventJson(json)) {
+    const message = Message.fromJSON(json.data);
+    return dispatch(new ChatMessageAddAction(message));
+  }
+}
 
-      case 'chat.channel.join':
-        return dispatch(new ChatChannelJoinAction(data.channel_id, data.name, data.type, data.icon));
+function isChatChannelJoinEventJson(arg: any): arg is ChatChannelJoinEventJson {
+  return arg.event === 'chat.channel.join';
+}
 
-      case 'chat.message.add':
-        const message = Message.fromJSON(json.data);
-        return dispatch(new ChatMessageAddAction(message));
-    }
-  });
+function isChatChannelPartEventJson(arg: any): arg is ChatChannelPartEventJson {
+  return arg.event === 'chat.channel.part';
+}
+
+function isChatMessageAddEventJson(arg: any): arg is ChatMessageAddEventJson {
+  return arg.event === 'chat.message.add';
 }
 
 export function isChatChannelEventJson(arg: any): arg is ChatChannelEventJson {
