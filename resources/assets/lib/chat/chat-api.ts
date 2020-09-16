@@ -8,42 +8,22 @@ import Message from 'models/chat/message';
 import * as ApiResponses from './chat-api-responses';
 
 export default class ChatAPI {
-  async getChannel(channelId: number): Promise<ApiResponses.ChannelJSON> {
+  getChannel(channelId: number): JQuery.jqXHR<ApiResponses.ChannelJSON> {
     return $.get(route('chat.channels.show', { channel: channelId }));
   }
 
-  getMessages(channelId: number, params?: { since?: number; until?: number }): Promise<ApiResponses.GetMessagesJSON> {
-    return new Promise((resolve, reject) => {
-      $.get(route('chat.channels.messages.index', { channel: channelId, ...params }))
-        .done((response) => {
-          resolve(response as ApiResponses.GetMessagesJSON);
-        }).fail((error) => {
-          reject(error);
-        });
-    });
+  getMessages(channelId: number, params?: { since?: number; until?: number }): JQuery.jqXHR<ApiResponses.GetMessagesJSON> {
+    return $.get(route('chat.channels.messages.index', { channel: channelId, ...params }));
   }
 
-  getUpdates(since: number, lastHistoryId?: number | null): Promise<ApiResponses.GetUpdatesJSON> {
-    return new Promise((resolve, reject) => {
-      $.get(route('chat.updates'), { since, history_since: lastHistoryId })
-      .done((response) => {
-        resolve(response as ApiResponses.GetUpdatesJSON);
-      }).fail((error) => {
-        reject(error);
-      });
-    });
+  getUpdates(since: number, lastHistoryId?: number | null): JQuery.jqXHR<ApiResponses.GetUpdatesJSON> {
+    return $.get(route('chat.updates'), { since, history_since: lastHistoryId });
   }
 
-  markAsRead(channelId: number, messageId: number): Promise<ApiResponses.MarkAsReadJSON> {
-    return new Promise((resolve, reject) => {
-      $.ajax({
-        type: 'PUT',
-        url: route('chat.channels.mark-as-read', {channel: channelId, message: messageId}),
-      }).done((response) => {
-        resolve(response as ApiResponses.MarkAsReadJSON);
-      }).fail((error) => {
-        reject(error);
-      });
+  markAsRead(channelId: number, messageId: number): JQuery.jqXHR<ApiResponses.MarkAsReadJSON> {
+    return $.ajax({
+      type: 'PUT',
+      url: route('chat.channels.mark-as-read', {channel: channelId, message: messageId}),
     });
   }
 
@@ -60,17 +40,11 @@ export default class ChatAPI {
   }
 
   partChannel(channelId: number, userId: number) {
-    return new Promise((resolve, reject) => {
-      $.ajax(route('chat.channels.part', {
-        channel: channelId,
-        user: userId,
-      }), {
-        method: 'DELETE',
-      }).done((response) => {
-        resolve(response);
-      }).fail((error) => {
-        reject(error);
-      });
+    return $.ajax(route('chat.channels.part', {
+      channel: channelId,
+      user: userId,
+    }), {
+      method: 'DELETE',
     });
   }
 
