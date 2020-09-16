@@ -269,6 +269,7 @@ class Channel extends Model
             $userChannel->save();
         }
 
+        // FIXME: send correct icons, etc.
         event(new UserActionEvent($user->getKey(), 'chat.channel.join', ['channel_id' => $userChannel->channel_id]));
 
         Datadog::increment('chat.channel.join', 1, ['type' => $this->type]);

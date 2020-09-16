@@ -1,7 +1,10 @@
+import { ChatMessageUpdateAction, ChatNewConversation } from 'actions/chat-actions';
+import { dispatch } from 'app-dispatcher';
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
+import Message from 'models/chat/message';
 import * as ApiResponses from './chat-api-responses';
 
 export default class ChatAPI {
@@ -44,17 +47,15 @@ export default class ChatAPI {
     });
   }
 
-  newConversation(userId: number, message: string, action?: boolean): Promise<ApiResponses.NewConversationJSON> {
-    return new Promise((resolve, reject) => {
-      $.post(route('chat.new'), {
-        is_action: action,
-        message,
-        target_id: userId,
-      }).done((response) => {
-        resolve(response as ApiResponses.NewConversationJSON);
-      }).fail((error) => {
-        reject(error);
-      });
+  newConversation(userId: number, message: Message) {
+    return $.post(route('chat.new'), {
+      is_action: message.isAction,
+      message: message.content,
+      target_id: userId,
+    }).done((response: ApiResponses.NewConversationJSON) => {
+      dispatch(new ChatNewConversation(response.channel, response.message, message.channelId));
+    }).fail(() => {
+      dispatch(new ChatMessageUpdateAction(message, null));
     });
   }
 
@@ -73,18 +74,16 @@ export default class ChatAPI {
     });
   }
 
-  sendMessage(channelId: number, message: string, action?: boolean): Promise<ApiResponses.SendMessageJSON> {
-    return new Promise((resolve, reject) => {
-      $.post(route('chat.channels.messages.store', {channel: channelId}), {
-        is_action: action,
-        message,
-        target_id: channelId,
-        target_type: 'channel',
-      }).done((response) => {
-        resolve(response as ApiResponses.SendMessageJSON);
-      }).fail((error) => {
-        reject(error);
-      });
+  sendMessage(message: Message) {
+    return $.post(route('chat.channels.messages.store', { channel: message.channelId }), {
+      is_action: message.isAction,
+      message: message.content,
+      target_id: message.channelId,
+      target_type: 'channel',
+    }).done((response: ApiResponses.SendMessageJSON) => {
+      dispatch(new ChatMessageUpdateAction(message, response));
+    }).fail(() => {
+      dispatch(new ChatMessageUpdateAction(message, null));
     });
   }
 }

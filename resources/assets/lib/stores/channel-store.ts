@@ -3,9 +3,11 @@
 
 import {
   ChatChannelPartAction,
+  ChatChannelSwitchAction,
   ChatMessageAddAction,
   ChatMessageSendAction,
   ChatMessageUpdateAction,
+  ChatNewConversation,
   ChatPresenceUpdateAction,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
@@ -15,7 +17,7 @@ import { dispatch, dispatchListener } from 'app-dispatcher';
 import ChatAPI from 'chat/chat-api';
 import { ChannelJSON, MessageJSON, PresenceJSON } from 'chat/chat-api-responses';
 import { maxBy } from 'lodash';
-import { action, computed, observable, runInAction } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
@@ -145,6 +147,8 @@ export default class ChannelStore extends Store {
       const channel: Channel = this.getOrCreate(dispatchedAction.message.channelId);
       channel.updateMessage(dispatchedAction.message, dispatchedAction.json);
       channel.resortMessages();
+    } else if (dispatchedAction instanceof ChatNewConversation) {
+      this.handleChatNewConversation(dispatchedAction);
     } else if (dispatchedAction instanceof ChatPresenceUpdateAction) {
       this.updatePresence(dispatchedAction.presence);
     } else if (dispatchedAction instanceof UserSilenceAction) {
@@ -184,11 +188,9 @@ export default class ChannelStore extends Store {
     });
   }
 
-  @action
   private handleChatMessageSendAction(dispatchedAction: ChatMessageAddAction) {
     const message = dispatchedAction.message;
-    const channelId = message.channelId;
-    const channel = this.getOrCreate(channelId);
+    const channel = this.getOrCreate(message.channelId);
     channel.addMessages(message, true);
 
     if (channel.newPmChannel) {
@@ -202,25 +204,17 @@ export default class ChannelStore extends Store {
         return;
       }
 
-      this.api.newConversation(userId, message.content, message.isAction)
-        .then((response) => {
-          runInAction(() => {
-            this.channels.delete(channelId);
-            this.addNewConversation(response.channel, response.message);
-            dispatch(new ChatChannelPartAction(response.channel.channel_id));
-          });
-        })
-        .catch(() => {
-          dispatch(new ChatMessageUpdateAction(message, null));
-        });
+      this.api.newConversation(userId, message);
     } else {
-      this.api.sendMessage(channelId, message.content, message.isAction)
-        .then((updateJson) => {
-          dispatch(new ChatMessageUpdateAction(message, updateJson));
-        })
-        .catch(() => {
-          dispatch(new ChatMessageUpdateAction(message, null));
-        });
+      this.api.sendMessage(message);
     }
+  }
+
+  @action
+  private handleChatNewConversation(dispatchedAction: ChatNewConversation) {
+    this.channels.delete(dispatchedAction.tempChannelId);
+    this.addNewConversation(dispatchedAction.channel, dispatchedAction.message);
+    dispatch(new ChatChannelSwitchAction(dispatchedAction.channel.channel_id));
+    dispatch(new ChatChannelPartAction(dispatchedAction.tempChannelId));
   }
 }
