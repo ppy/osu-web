@@ -51,9 +51,9 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en mapas calificados de los siguientes modos',
         'beatmapset_disqualify' => 'recibir notificaciones para cuando se descalifiquen los mapas de los siguientes modos',
-        'comment_reply' => '',
+        'comment_reply' => 'recibir notificaciones de respuestas a sus comentarios',
         'title' => 'Notificaciones',
-        'topic_auto_subscribe' => 'activar automáticamente las notificaciones en nuevos temas del foro que crees',
+        'topic_auto_subscribe' => 'activar automáticamente las notificaciones en nuevos temas del foro que cree',
 
         'options' => [
             '_' => 'opciones de entrega',
