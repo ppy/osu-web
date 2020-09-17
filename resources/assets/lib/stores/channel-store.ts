@@ -91,6 +91,8 @@ export default class ChannelStore extends Store {
     const channel = this.getOrCreate(json.channel_id);
     channel.updateWithJson(json);
     channel.lastReadId = message.message_id;
+
+    return channel;
   }
 
   findPM(userId: number): Channel | null {
@@ -321,8 +323,8 @@ export default class ChannelStore extends Store {
   @action
   private handleChatNewConversation(dispatchedAction: ChatNewConversation) {
     this.channels.delete(dispatchedAction.tempChannelId);
-    this.addNewConversation(dispatchedAction.channel, dispatchedAction.message);
-    dispatch(new ChatChannelSwitchAction(dispatchedAction.channel.channel_id));
+    const channel = this.addNewConversation(dispatchedAction.channel, dispatchedAction.message);
+    dispatch(new ChatChannelSwitchAction(channel));
     dispatch(new ChatChannelPartAction(dispatchedAction.tempChannelId));
   }
 

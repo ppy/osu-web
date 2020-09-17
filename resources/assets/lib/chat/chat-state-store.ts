@@ -43,7 +43,8 @@ export default class ChatStateStore extends Store {
   @action
   selectChannel(channelId: number) {
     if (this.selected !== channelId) {
-      if (this.root.channelStore.get(channelId) == null) {
+      const channel = this.root.channelStore.get(channelId);
+      if (channel == null) {
         console.error(`Trying to switch to non-existent channel ${channelId}`);
         return;
       }
@@ -55,7 +56,7 @@ export default class ChatStateStore extends Store {
       }
 
       this.selected = channelId;
-      dispatch(new ChatChannelSwitchAction(channelId));
+      dispatch(new ChatChannelSwitchAction(channel));
     }
   }
 
@@ -80,9 +81,10 @@ export default class ChatStateStore extends Store {
   @action
   private handleChatChannelSwitchAction(dispatchedAction: ChatChannelSwitchAction) {
     const channelStore = this.root.channelStore;
-    const channelId = dispatchedAction.channelId;
+    const channelId = dispatchedAction.channel.channelId;
     // FIXME: changing to a channel that doesn't exist yet from an external message should create the channel before switching.
-    const channel = channelStore.getOrCreate(channelId);
+    const channel = channelStore.get(channelId);
+    if (channel == null) return;
 
     channelStore.loadChannel(channelId).then(() => {
       this.root.channelStore.markAsRead(channelId);

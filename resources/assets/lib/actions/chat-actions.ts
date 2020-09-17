@@ -1,6 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 // tslint:disable:max-classes-per-file
+
+import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import { ChannelJSON, ChannelType, MessageJSON, PresenceJSON } from '../chat/chat-api-responses';
 import DispatcherAction from './dispatcher-action';
@@ -31,7 +33,7 @@ export class ChatChannelJoinAction implements DispatcherAction {
 }
 
 export class ChatChannelSwitchAction implements DispatcherAction {
-  constructor(readonly channelId: number) {
+  constructor(readonly channel: Channel) {
   }
 }
 
