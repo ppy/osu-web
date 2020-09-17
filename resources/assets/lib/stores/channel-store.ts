@@ -4,6 +4,7 @@
 import {
   ChatChannelDeletedAction,
   ChatChannelJoinAction,
+  ChatChannelLoadEarlierMessages,
   ChatChannelNewMessages,
   ChatChannelPartAction,
   ChatChannelSwitchAction,
@@ -20,7 +21,7 @@ import { dispatch, dispatchListener } from 'app-dispatcher';
 import ChatAPI from 'chat/chat-api';
 import { ChannelJSON, MessageJSON, PresenceJSON } from 'chat/chat-api-responses';
 import { maxBy } from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { action, computed, observable, runInAction } from 'mobx';
 import Channel, { defaultIcon } from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
@@ -132,7 +133,9 @@ export default class ChannelStore extends Store {
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof ChatChannelJoinAction) {
+    if (dispatchedAction instanceof ChatChannelLoadEarlierMessages) {
+      this.handleChatChannelLoadEarlierMessages(dispatchedAction);
+    } else if (dispatchedAction instanceof ChatChannelJoinAction) {
       this.handleChatChannelJoinAction(dispatchedAction);
     } else if (dispatchedAction instanceof ChatChannelNewMessages) {
       this.handleChatChannelNewMessages(dispatchedAction);
@@ -233,6 +236,32 @@ export default class ChannelStore extends Store {
       channel.name = dispatchedAction.name;
       channel.type = dispatchedAction.type;
       channel.metaLoaded = true;
+  }
+
+  @action
+  private async handleChatChannelLoadEarlierMessages(dispatchedAction: ChatChannelLoadEarlierMessages) {
+    const channelId = dispatchedAction.channelId;
+    const channel = this.get(channelId);
+
+    if (channel == null || !channel.hasEarlierMessages || channel.loadingEarlierMessages) {
+      return;
+    }
+
+    channel.loadingEarlierMessages = true;
+    let until: number | undefined;
+    // FIXME: nullable id instead?
+    if (channel.minMessageId > 0) {
+      until = channel.minMessageId;
+    }
+
+    try {
+      const response = await this.api.getMessages(channel.channelId, { until });
+      dispatch(new ChatChannelNewMessages(channelId, response));
+    } finally {
+      runInAction(() => {
+        channel.loadingEarlierMessages = false;
+      });
+    }
   }
 
   @action
