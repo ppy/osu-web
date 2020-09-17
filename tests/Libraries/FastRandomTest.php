@@ -16,6 +16,8 @@ class FastRandomTest extends TestCase
      */
     public function testNextDouble(int $seed, array $expectedResults)
     {
+        $this->skipIf32Bit("FastRandom::nextDouble() isn't as precise as the osu! client on 32-bit installations of PHP");
+
         $random = new FastRandom($seed);
 
         foreach ($expectedResults as $expected) {
@@ -43,7 +45,7 @@ class FastRandomTest extends TestCase
         $random = new FastRandom($seed);
 
         foreach ($expectedResults as $expected) {
-            $this->assertSame($random->nextInt32(), $expected);
+            $this->assertSame($random->nextInt32(), $this->maskTo32Bit($expected));
         }
     }
 
@@ -52,9 +54,7 @@ class FastRandomTest extends TestCase
      */
     public function testInvalidSeed(int $seed)
     {
-        if (PHP_INT_SIZE === 4) {
-            $this->markTestSkipped('Every FastRandom seed is valid on 32-bit installations of PHP');
-        }
+        $this->skipIf32Bit('Every FastRandom seed is valid on 32-bit installations of PHP');
 
         $this->expectException(InvalidArgumentException::class);
         new FastRandom($seed);
@@ -83,10 +83,10 @@ class FastRandomTest extends TestCase
     public function int32Examples()
     {
         return [
-            [0, [273327012, 2660065245, 3082852308, 4072804168, 3083912503]],
-            [1, [273329069, 2660063188, 3082854365, 4072802113, 3079720311]],
-            [-1, [273327196, 2660063269, 3082850348, 4072802480, 3085908720]],
-            [100000, [477237634, 2461396092, 3153602034, 4277845225, 1921539253]],
+            [0, [273327012, -1634902051, -1212114988, -222163128, -1211054793]],
+            [1, [273329069, -1634904108, -1212112931, -222165183, -1215246985]],
+            [-1, [273327196, -1634904027, -1212116948, -222164816, -1209058576]],
+            [100000, [477237634, -1833571204, -1141365262, -17122071, 1921539253]],
         ];
     }
 
@@ -96,5 +96,21 @@ class FastRandomTest extends TestCase
             [0x80000000],
             [-0x80000001],
         ];
+    }
+
+    private function maskTo32Bit(int $int): int
+    {
+        if (PHP_INT_SIZE > 4) {
+            $int &= 0xFFFFFFFF;
+        }
+
+        return $int;
+    }
+
+    private function skipIf32Bit(string $message): void
+    {
+        if (PHP_INT_SIZE === 4) {
+            $this->markTestSkipped($message);
+        }
     }
 }
