@@ -30,38 +30,11 @@ export default class ChatOrchestrator implements DispatchListener {
   constructor(private rootDataStore: RootDataStore) {
   }
 
-  changeChannel(channelId: number) {
-    const uiState = this.rootDataStore.uiState.chat;
-    const channelStore = this.rootDataStore.channelStore;
-    const channel = channelStore.getOrCreate(channelId);
-
-    if (channelId === uiState.selected && !channel.loaded) {
-      return;
-    }
-
-    transaction(() => {
-      if (!channelStore.getOrCreate(uiState.selected).transient) {
-        // don't disable autoScroll if we're 'switching' away from the 'new chat' screen
-        //   e.g. keep autoScroll enabled to jump to the newly sent message when restarting an old conversation
-        uiState.autoScroll = false;
-      }
-
-      if (!channel.newPmChannel) {
-        this.loadChannel(channelId).then(() => {
-          this.markAsRead(channelId);
-        });
-      }
-
-      uiState.selected = channelId;
-      this.selectedIndex = channelStore.channelList.indexOf(channel);
-    });
-  }
-
   handleDispatchAction(action: DispatcherAction) {
     if (action instanceof ChatChannelDeletedAction) {
       this.handleChatChannelDeletedAction(action);
     } else if (action instanceof ChatChannelSwitchAction) {
-      this.changeChannel(action.channelId);
+      this.handleChatChannelSwitchAction(action.channelId);
     } else if (action instanceof ChatChannelLoadEarlierMessages) {
       this.loadChannelEarlierMessages(action.channelId);
     } else if (action instanceof ChatChannelJoinAction) {
@@ -171,6 +144,23 @@ export default class ChatOrchestrator implements DispatchListener {
       channel.name = action.name;
       channel.type = action.type;
       channel.metaLoaded = true;
+    });
+  }
+
+  private handleChatChannelSwitchAction(channelId: number) {
+    const channelStore = this.rootDataStore.channelStore;
+    // FIXME: changing to a channel that doesn't exist yet from an external message should create the channel before switching.
+    const channel = channelStore.getOrCreate(channelId);
+
+    transaction(() => {
+      // TODO: this should probably be in the store?
+      if (!channel.newPmChannel) {
+        this.loadChannel(channelId).then(() => {
+          this.markAsRead(channelId);
+        });
+      }
+
+      this.selectedIndex = channelStore.channelList.indexOf(channel);
     });
   }
 

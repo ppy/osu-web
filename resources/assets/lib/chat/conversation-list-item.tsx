@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatChannelPartAction, ChatChannelSwitchAction } from 'actions/chat-actions';
+import { ChatChannelPartAction } from 'actions/chat-actions';
 import { dispatch } from 'app-dispatcher';
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
@@ -55,8 +55,6 @@ export default class ConversationListItem extends React.Component<any, {}> {
   }
 
   switch = (e: React.MouseEvent<HTMLElement>) => {
-    if (this.props.dataStore.uiState.chat.selected !== this.props.channelId) {
-      dispatch(new ChatChannelSwitchAction(this.props.channelId));
-    }
+    this.props.dataStore.uiState.chat.selectChannel(this.props.channelId);
   }
 }

@@ -25,7 +25,7 @@ reactTurbolinks.register('chat', MainView, () => {
     const target = dataStore.userStore.getOrCreate(sendTo.target.id, sendTo.target); // pre-populate userStore with target
     let channel = dataStore.channelStore.findPM(target.id);
 
-    if (channel) {
+    if (channel != null) {
       initialChannel = channel.channelId;
     } else if (!target.is(core.currentUser)) {
       channel = Channel.newPM(target);
@@ -33,15 +33,15 @@ reactTurbolinks.register('chat', MainView, () => {
       dataStore.channelStore.channels.set(channel.channelId, channel);
       initialChannel = channel.channelId;
     }
-  }
+  } else {
+    const hasNonPmChannels = dataStore.channelStore.nonPmChannels.length > 0;
+    const hasPmChannels = dataStore.channelStore.pmChannels.length > 0;
 
-  const hasNonPmChannels = dataStore.channelStore.nonPmChannels.length > 0;
-  const hasPmChannels = dataStore.channelStore.pmChannels.length > 0;
-
-  if (hasNonPmChannels) {
-    initialChannel = dataStore.channelStore.nonPmChannels[0].channelId;
-  } else if (hasPmChannels) {
-    initialChannel = dataStore.channelStore.pmChannels[0].channelId;
+    if (hasNonPmChannels) {
+      initialChannel = dataStore.channelStore.nonPmChannels[0].channelId;
+    } else if (hasPmChannels) {
+      initialChannel = dataStore.channelStore.pmChannels[0].channelId;
+    }
   }
 
   return {
