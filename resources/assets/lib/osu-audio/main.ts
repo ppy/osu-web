@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { isFinite } from 'lodash';
 import Settings from './settings';
 import Slider from './slider';
 import { format, TimeFormat } from './time-format';
@@ -299,7 +298,7 @@ export default class Main {
 
     if ((this.pagePlayer == null || !this.pagePlayer.contains(bar)) && (this.mainPlayer == null || !this.mainPlayer.contains(bar))) return;
 
-    if (!isFinite(this.audio.duration) || this.audio.duration === 0) return;
+    if (!Number.isFinite(this.audio.duration) || this.audio.duration === 0) return;
 
     this.currentSlider = Slider.start({
       bar,
@@ -487,7 +486,11 @@ export default class Main {
       player.dataset.audioAutoplay = this.settings.autoplay ? '1' : '0';
       player.dataset.audioState = this.state;
       player.dataset.audioTimeFormat = this.timeFormat;
-      player.style.setProperty('--duration', this.durationFormatted);
+      if (Number.isFinite(this.audio.duration)) {
+        player.style.setProperty('--duration', this.durationFormatted);
+      } else {
+        player.style.removeProperty('--duration');
+      }
     });
 
     this.syncProgress();
