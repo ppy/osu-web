@@ -178,14 +178,15 @@ export default class ChannelStore extends Store {
     }
 
     channel.loading = true;
-    // FIXME: initial messsages and earlier messages should be rolled up?
-    return this.api.getMessages(channelId)
-      .then((response) => {
-        dispatch(new ChatChannelNewMessages(channelId, response));
-      })
-      .catch((err) => {
-        console.debug('loadChannel error', err);
+
+    try {
+      const response = await this.api.getMessages(channelId);
+      dispatch(new ChatChannelNewMessages(channelId, response));
+    } finally {
+      runInAction(() => {
+        channel.loading = false;
       });
+    }
   }
 
   @action
@@ -274,9 +275,8 @@ export default class ChannelStore extends Store {
     if (messages.length === 0) return;
 
     const channel = this.getOrCreate(dispatchedAction.channelId);
-    channel.loaded = true;
-    channel.loading = false;
     channel.addMessages(messages);
+    channel.loaded = true;
   }
 
   @action
