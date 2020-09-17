@@ -24,26 +24,26 @@ class FastRandomTest extends TestCase
     }
 
     /**
-     * @dataProvider intExamples
+     * @dataProvider int31Examples
      */
-    public function testNextInt(int $seed, array $expectedResults)
+    public function testNextInt31(int $seed, array $expectedResults)
     {
         $random = new FastRandom($seed);
 
         foreach ($expectedResults as $expected) {
-            $this->assertSame($random->nextInt(), $expected);
+            $this->assertSame($random->nextInt31(), $expected);
         }
     }
 
     /**
-     * @dataProvider nonnegativeIntExamples
+     * @dataProvider int32Examples
      */
-    public function testNextNonnegativeInt(int $seed, array $expectedResults)
+    public function testNextInt32(int $seed, array $expectedResults)
     {
         $random = new FastRandom($seed);
 
         foreach ($expectedResults as $expected) {
-            $this->assertSame($random->nextNonnegativeInt(), $expected);
+            $this->assertSame($random->nextInt32(), $expected);
         }
     }
 
@@ -70,23 +70,23 @@ class FastRandomTest extends TestCase
         ];
     }
 
-    public function intExamples()
-    {
-        return [
-            [0, [273327012, 2660065245, 3082852308, 4072804168, 3083912503]],
-            [1, [273329069, 2660063188, 3082854365, 4072802113, 3079720311]],
-            [-1, [273327196, 2660063269, 3082850348, 4072802480, 3085908720]],
-            [100000, [477237634, 2461396092, 3153602034, 4277845225, 1921539253]],
-        ];
-    }
-
-    public function nonnegativeIntExamples()
+    public function int31Examples()
     {
         return [
             [0, [273327012, 512581597, 935368660, 1925320520, 936428855]],
             [1, [273329069, 512579540, 935370717, 1925318465, 932236663]],
             [-1, [273327196, 512579621, 935366700, 1925318832, 938425072]],
             [100000, [477237634, 313912444, 1006118386, 2130361577, 1921539253]],
+        ];
+    }
+
+    public function int32Examples()
+    {
+        return [
+            [0, [273327012, 2660065245, 3082852308, 4072804168, 3083912503]],
+            [1, [273329069, 2660063188, 3082854365, 4072802113, 3079720311]],
+            [-1, [273327196, 2660063269, 3082850348, 4072802480, 3085908720]],
+            [100000, [477237634, 2461396092, 3153602034, 4277845225, 1921539253]],
         ];
     }
 

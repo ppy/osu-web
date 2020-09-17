@@ -43,10 +43,15 @@ class FastRandom
         //          that aren't 64-bit due to less precision, but they'll be close
         static $intToReal = 1 / 0x80000000;
 
-        return $intToReal * $this->nextNonnegativeInt();
+        return $intToReal * $this->nextInt31();
     }
 
-    public function nextInt(): int
+    public function nextInt31(): int
+    {
+        return $this->nextInt32() & 0x7FFFFFFF;
+    }
+
+    public function nextInt32(): int
     {
         $t = $this->x ^ static::maskedLeftShift($this->x, 11);
 
@@ -55,11 +60,6 @@ class FastRandom
         $this->z = $this->w;
 
         return $this->w = $this->w ^ static::logicalRightShift($this->w, 19) ^ $t ^ static::logicalRightShift($t, 8);
-    }
-
-    public function nextNonnegativeInt(): int
-    {
-        return $this->nextInt() & 0x7FFFFFFF;
     }
 
     private static function logicalRightShift(int $number, int $shift): int
