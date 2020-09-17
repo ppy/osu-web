@@ -81,17 +81,23 @@ export default class Editor extends React.Component<Props, State> {
     this.scrollContainerRef = React.createRef();
     this.toolbarRef = React.createRef();
     this.insertMenuRef = React.createRef();
-
-    let initialValue = this.emptyDocTemplate;
     this.localStorageKey = `newDiscussion-${this.props.beatmapset.id}`;
-    const saved = localStorage.getItem(this.localStorageKey);
-    if (!props.editMode && saved) {
-      try {
-        initialValue = JSON.parse(saved);
-      } catch (error) {
-        // tslint:disable-next-line:no-console
-        console.error('invalid json in localStorage, ignoring');
-        localStorage.removeItem(this.localStorageKey);
+
+    let initialValue: SlateNode[] = this.emptyDocTemplate;
+
+    if (props.editMode) {
+      initialValue = this.valueFromProps();
+    } else {
+      const saved = localStorage.getItem(this.localStorageKey);
+
+      if (saved != null) {
+        try {
+          initialValue = JSON.parse(saved);
+        } catch (error) {
+          // tslint:disable-next-line:no-console
+          console.error('invalid json in localStorage, ignoring');
+          localStorage.removeItem(this.localStorageKey);
+        }
       }
     }
 
@@ -126,8 +132,13 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<any>, snapshot?: any): void {
-    if (this.props.editing !== prevProps.editing) {
-      this.toggleEditing();
+    if (this.props.document !== prevProps.document) {
+      const newValue = this.valueFromProps();
+
+      this.setState({
+        blockCount: blockCount(newValue),
+        value: newValue,
+      });
     }
   }
 
@@ -394,19 +405,6 @@ export default class Editor extends React.Component<Props, State> {
     return this.cache.sortedBeatmaps;
   }
 
-  toggleEditing = () => {
-    if (!this.props.document || !this.props.discussions || _.isEmpty(this.props.discussions)) {
-      return;
-    }
-
-    const value = this.props.editing ? parseFromJson(this.props.document, this.props.discussions) : [];
-
-    this.setState({
-      blockCount: blockCount(value),
-      value,
-    });
-  }
-
   updateDrafts = () => {
     this.cache.draftEmbeds = this.state.value.filter((block) => block.type === 'embed' && !block.discussion_id);
   }
@@ -448,5 +446,13 @@ export default class Editor extends React.Component<Props, State> {
     };
 
     return editor;
+  }
+
+  private valueFromProps() {
+    if (!this.props.editing || this.props.document == null || this.props.discussions == null) {
+      return [];
+    }
+
+    return parseFromJson(this.props.document, this.props.discussions);
   }
 }
