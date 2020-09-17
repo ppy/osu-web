@@ -29,8 +29,6 @@ export default class ChatStateStore extends Store {
   handleDispatchAction(dispatchedAction: DispatcherAction) {
     if (dispatchedAction instanceof ChatChannelDeletedAction) {
       this.handleChatChannelDeletedAction();
-    } else if (dispatchedAction instanceof ChatChannelSwitchAction) {
-      this.handleChatChannelSwitchAction(dispatchedAction);
     } else if (dispatchedAction instanceof ChatMessageSendAction) {
       this.autoScroll = true;
     } else if (dispatchedAction instanceof UserLogoutAction) {
@@ -42,22 +40,30 @@ export default class ChatStateStore extends Store {
 
   @action
   selectChannel(channelId: number) {
-    if (this.selected !== channelId) {
-      const channel = this.root.channelStore.get(channelId);
-      if (channel == null) {
-        console.error(`Trying to switch to non-existent channel ${channelId}`);
-        return;
-      }
+    if (this.selected === channelId) return;
 
-      if (!(this.root.channelStore.get(this.selected)?.transient ?? true)) {
-        // don't disable autoScroll if we're 'switching' away from the 'new chat' screen
-        //   e.g. keep autoScroll enabled to jump to the newly sent message when restarting an old conversation
-        this.autoScroll = false;
-      }
-
-      this.selected = channelId;
-      dispatch(new ChatChannelSwitchAction(channel));
+    const channelStore = this.root.channelStore;
+    const channel = channelStore.get(channelId);
+    if (channel == null) {
+      console.error(`Trying to switch to non-existent channel ${channelId}`);
+      return;
     }
+
+    if (!(this.root.channelStore.get(this.selected)?.transient ?? true)) {
+      // don't disable autoScroll if we're 'switching' away from the 'new chat' screen
+      //   e.g. keep autoScroll enabled to jump to the newly sent message when restarting an old conversation
+      this.autoScroll = false;
+    }
+
+    this.selected = channelId;
+    this.selectedIndex = channelStore.channelList.indexOf(channel);
+
+    // TODO: should this be here or have something else figure out if channel needs to be loaded?
+    channelStore.loadChannel(channelId).then(() => {
+      this.root.channelStore.markAsRead(channelId);
+    });
+
+    dispatch(new ChatChannelSwitchAction(channel));
   }
 
   @action
@@ -76,21 +82,6 @@ export default class ChatStateStore extends Store {
   @action
   private handleChatChannelDeletedAction() {
     this.focusChannelAtIndex(this.selectedIndex);
-  }
-
-  @action
-  private handleChatChannelSwitchAction(dispatchedAction: ChatChannelSwitchAction) {
-    const channelStore = this.root.channelStore;
-    const channelId = dispatchedAction.channel.channelId;
-    // FIXME: changing to a channel that doesn't exist yet from an external message should create the channel before switching.
-    const channel = channelStore.get(channelId);
-    if (channel == null) return;
-
-    channelStore.loadChannel(channelId).then(() => {
-      this.root.channelStore.markAsRead(channelId);
-    });
-
-    this.selectedIndex = channelStore.channelList.indexOf(channel);
   }
 
   @action
