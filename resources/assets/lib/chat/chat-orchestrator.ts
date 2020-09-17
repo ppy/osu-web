@@ -4,18 +4,17 @@
 import {
   ChatChannelJoinAction,
   ChatChannelLoadEarlierMessages,
+  ChatChannelNewMessages,
   ChatMessageAddAction,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
-import { dispatchListener } from 'app-dispatcher';
+import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { transaction } from 'mobx';
 import { defaultIcon } from 'models/chat/channel';
-import Message from 'models/chat/message';
 import RootDataStore from 'stores/root-data-store';
 import ChatAPI from './chat-api';
-import { MessageJSON } from './chat-api-responses';
 
 @dispatchListener
 export default class ChatOrchestrator implements DispatchListener {
@@ -63,15 +62,10 @@ export default class ChatOrchestrator implements DispatchListener {
 
     // FIXME: initial messsages and earlier messages should be rolled up?
     return this.api.getMessages(channelId)
-      .then((messages) => {
-        transaction(() => {
-          this.addMessages(channelId, messages);
-          channel.loading = false;
-          channel.loaded = true;
-        });
+      .then((response) => {
+        dispatch(new ChatChannelNewMessages(channelId, response));
       })
       .catch((err) => {
-        channel.loading = false;
         console.debug('loadChannel error', err);
       });
   }
@@ -91,26 +85,15 @@ export default class ChatOrchestrator implements DispatchListener {
     }
 
     this.api.getMessages(channel.channelId, { until })
-      .then((messages) => {
+      .then((response) => {
         transaction(() => {
           channel.loadingEarlierMessages = false;
-          this.addMessages(channelId, messages);
+          dispatch(new ChatChannelNewMessages(channelId, response));
         });
       }).catch((err) => {
         channel.loadingEarlierMessages = false;
         console.debug('loadChannelEarlierMessages error', err);
       });
-  }
-
-  private addMessages(channelId: number, messages: MessageJSON[]) {
-    transaction(() => {
-      const newMessages = messages.map((json: MessageJSON) => {
-        if (json.sender != null) this.rootDataStore.userStore.getOrCreate(json.sender_id, json.sender);
-        return Message.fromJSON(json);
-      });
-
-      this.rootDataStore.channelStore.addMessages(channelId, newMessages);
-    });
   }
 
   private handleChatChannelJoinAction(action: ChatChannelJoinAction) {

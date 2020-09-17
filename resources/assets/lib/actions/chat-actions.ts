@@ -15,6 +15,11 @@ export class ChatChannelLoadEarlierMessages implements DispatcherAction {
   }
 }
 
+export class ChatChannelNewMessages implements DispatcherAction {
+  constructor(readonly channelId: number, readonly json: MessageJSON[]) {
+  }
+}
+
 export class ChatChannelPartAction implements DispatcherAction {
   constructor(readonly channelId: number, readonly shouldSync = true) {
   }

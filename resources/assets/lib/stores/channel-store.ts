@@ -3,6 +3,7 @@
 
 import {
   ChatChannelDeletedAction,
+  ChatChannelNewMessages,
   ChatChannelPartAction,
   ChatChannelSwitchAction,
   ChatMessageAddAction,
@@ -83,15 +84,6 @@ export default class ChannelStore extends Store {
   }
 
   @action
-  addMessages(channelId: number, messages: Message[]) {
-    if (messages.length === 0) {
-      return;
-    }
-
-    this.getOrCreate(channelId).addMessages(messages);
-  }
-
-  @action
   addNewConversation(json: ChannelJSON, message: MessageJSON) {
     const channel = this.getOrCreate(json.channel_id);
     channel.updateWithJson(json);
@@ -138,7 +130,9 @@ export default class ChannelStore extends Store {
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof ChatChannelPartAction) {
+    if (dispatchedAction instanceof ChatChannelNewMessages) {
+      this.handleChatChannelNewMessages(dispatchedAction);
+    } else if (dispatchedAction instanceof ChatChannelPartAction) {
       this.handleChatChannelPartAction(dispatchedAction);
     } else if (dispatchedAction instanceof ChatMessageSendAction) {
       this.handleChatMessageSendAction(dispatchedAction);
@@ -164,6 +158,21 @@ export default class ChannelStore extends Store {
     this.nonPmChannels.forEach((channel) => {
       channel.messages = channel.messages.filter((message) => !userIds.has(message.senderId));
     });
+  }
+
+  @action
+  private handleChatChannelNewMessages(dispatchedAction: ChatChannelNewMessages) {
+    const messages = dispatchedAction.json.map((json) => {
+      if (json.sender != null) this.root.userStore.getOrCreate(json.sender_id, json.sender);
+      return Message.fromJSON(json);
+    });
+
+    if (messages.length === 0) return;
+
+    const channel = this.getOrCreate(dispatchedAction.channelId);
+    channel.loaded = true;
+    channel.loading = false;
+    channel.addMessages(messages);
   }
 
   @action
