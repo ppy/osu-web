@@ -84,8 +84,13 @@ export default class ChatOrchestrator implements DispatchListener {
     }
 
     channel.loadingEarlierMessages = true;
+    let until: number | undefined;
+    // FIXME: nullable id instead?
+    if (channel.minMessageId > 0) {
+      until = channel.minMessageId;
+    }
 
-    this.api.getMessages(channel.channelId, { until: channel.minMessageId })
+    this.api.getMessages(channel.channelId, { until })
       .then((messages) => {
         transaction(() => {
           channel.loadingEarlierMessages = false;
