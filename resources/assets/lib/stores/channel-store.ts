@@ -29,6 +29,7 @@ import Store from 'stores/store';
 export default class ChannelStore extends Store {
   @observable channels = observable.map<number, Channel>();
   private api = new ChatAPI();
+  private markingAsRead: Record<number, number> = {};
 
   @computed
   get channelList(): Channel[] {
@@ -179,6 +180,40 @@ export default class ChannelStore extends Store {
       .catch((err) => {
         console.debug('loadChannel error', err);
       });
+  }
+
+  @action
+  markAsRead(channelId: number) {
+    const channel = this.get(channelId);
+
+    if (channel == null || !channel.isUnread) {
+      return;
+    }
+
+    if (this.markingAsRead[channelId] != null) {
+      return;
+    }
+
+    channel.markAsRead();
+
+    const currentTimeout = window.setTimeout(() => {
+      // allow next debounce to be queued again
+      if (this.markingAsRead[channelId] === currentTimeout) {
+        delete this.markingAsRead[channelId];
+      }
+
+      // TODO: need to mark again in case the marker has moved?
+
+      // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
+      const lastSentMessage = channel.messages[channel.messages.length - 1];
+      if (lastSentMessage && lastSentMessage.sender.id === window.currentUser.id) {
+        return;
+      }
+
+      this.api.markAsRead(channel.channelId, channel.lastMessageId);
+    }, 1000);
+
+    this.markingAsRead[channelId] = currentTimeout;
   }
 
   @action

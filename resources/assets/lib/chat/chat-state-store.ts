@@ -4,6 +4,7 @@
 import { ChatChannelDeletedAction, ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
+import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import { clamp } from 'lodash';
 import { action, computed, observable } from 'mobx';
@@ -34,6 +35,8 @@ export default class ChatStateStore extends Store {
       this.autoScroll = true;
     } else if (dispatchedAction instanceof UserLogoutAction) {
       this.flushStore();
+    } else if (dispatchedAction instanceof WindowFocusAction) {
+      this.handleWindowFocusAction();
     }
   }
 
@@ -82,9 +85,14 @@ export default class ChatStateStore extends Store {
     const channel = channelStore.getOrCreate(channelId);
 
     channelStore.loadChannel(channelId).then(() => {
-      // this.markAsRead(channelId);
+      this.root.channelStore.markAsRead(channelId);
     });
 
     this.selectedIndex = channelStore.channelList.indexOf(channel);
+  }
+
+  @action
+  private handleWindowFocusAction() {
+    this.root.channelStore.markAsRead(this.selected);
   }
 }

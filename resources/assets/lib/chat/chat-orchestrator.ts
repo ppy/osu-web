@@ -7,7 +7,6 @@ import {
   ChatChannelNewMessages,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
-import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { transaction } from 'mobx';
@@ -18,8 +17,6 @@ import ChatAPI from './chat-api';
 @dispatchListener
 export default class ChatOrchestrator implements DispatchListener {
   private api = new ChatAPI();
-  private markingAsRead: Record<number, number> = {};
-  private windowIsActive: boolean = true;
 
   constructor(private rootDataStore: RootDataStore) {
   }
@@ -29,11 +26,6 @@ export default class ChatOrchestrator implements DispatchListener {
       this.loadChannelEarlierMessages(action.channelId);
     } else if (action instanceof ChatChannelJoinAction) {
       this.handleChatChannelJoinAction(action);
-    } else if (action instanceof WindowFocusAction) {
-      this.windowIsActive = true;
-      this.markAsRead(this.rootDataStore.uiState.chat.selected);
-    } else if (action instanceof WindowBlurAction) {
-      this.windowIsActive = false;
     }
   }
 
@@ -72,40 +64,5 @@ export default class ChatOrchestrator implements DispatchListener {
       channel.type = action.type;
       channel.metaLoaded = true;
     });
-  }
-
-  private markAsRead(channelId: number) {
-    if (!this.windowIsActive || this.markingAsRead[channelId] != null) {
-      return;
-    }
-
-    const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
-
-    if (!channel.isUnread) {
-      return;
-    }
-
-    channel.markAsRead();
-
-    const currentTimeout = window.setTimeout(() => {
-      // allow next debounce to be queued again
-      if (this.markingAsRead[channelId] === currentTimeout) {
-        delete this.markingAsRead[channelId];
-      }
-
-      // TODO: need to mark again in case the marker has moved?
-
-      // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
-      const lastSentMessage = channel.messages[channel.messages.length - 1];
-      if (lastSentMessage && lastSentMessage.sender.id === window.currentUser.id) {
-        return;
-      }
-
-      this.api.markAsRead(channel.channelId, channel.lastMessageId).catch((err) => {
-        console.debug('markAsRead error', err);
-      });
-    }, 1000);
-
-    this.markingAsRead[channelId] = currentTimeout;
   }
 }
