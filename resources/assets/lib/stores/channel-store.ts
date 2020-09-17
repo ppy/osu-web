@@ -153,6 +153,34 @@ export default class ChannelStore extends Store {
     }
   }
 
+  async loadChannel(channelId: number) {
+    const channel = this.getOrCreate(channelId);
+    if (channel.loading || channel.newPmChannel) {
+      return Promise.resolve();
+    }
+
+    if (!channel.metaLoaded) {
+      console.debug(`loading metadata for channel ${channel.channelId}`);
+      channel.loading = true;
+      const json = await this.api.getChannel(channel.channelId);
+      channel.updateWithJson(json);
+    }
+
+    if (channel.loaded) {
+      return Promise.resolve();
+    }
+
+    channel.loading = true;
+    // FIXME: initial messsages and earlier messages should be rolled up?
+    return this.api.getMessages(channelId)
+      .then((response) => {
+        dispatch(new ChatChannelNewMessages(channelId, response));
+      })
+      .catch((err) => {
+        console.debug('loadChannel error', err);
+      });
+  }
+
   @action
   removePublicMessagesFromUser(userIds: Set<number>) {
     this.nonPmChannels.forEach((channel) => {

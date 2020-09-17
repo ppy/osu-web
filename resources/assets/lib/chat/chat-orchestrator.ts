@@ -42,34 +42,6 @@ export default class ChatOrchestrator implements DispatchListener {
     }
   }
 
-  async loadChannel(channelId: number) {
-    const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
-
-    if (channel.loading) {
-      return Promise.resolve();
-    }
-
-    channel.loading = true;
-    if (!channel.metaLoaded) {
-      console.debug(`loading metadata for channel ${channel.channelId}`);
-      const json = await this.api.getChannel(channel.channelId);
-      channel.updateWithJson(json);
-    }
-
-    if (channel.loaded) {
-      return Promise.resolve();
-    }
-
-    // FIXME: initial messsages and earlier messages should be rolled up?
-    return this.api.getMessages(channelId)
-      .then((response) => {
-        dispatch(new ChatChannelNewMessages(channelId, response));
-      })
-      .catch((err) => {
-        console.debug('loadChannel error', err);
-      });
-  }
-
   loadChannelEarlierMessages(channelId: number) {
     const channel = this.rootDataStore.channelStore.get(channelId);
 

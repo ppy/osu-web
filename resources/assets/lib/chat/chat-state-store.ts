@@ -81,12 +81,9 @@ export default class ChatStateStore extends Store {
     // FIXME: changing to a channel that doesn't exist yet from an external message should create the channel before switching.
     const channel = channelStore.getOrCreate(channelId);
 
-    // TODO: this should probably be in the store?
-    if (!channel.newPmChannel) {
-      // this.loadChannel(channelId).then(() => {
-      //   this.markAsRead(channelId);
-      // });
-    }
+    channelStore.loadChannel(channelId).then(() => {
+      // this.markAsRead(channelId);
+    });
 
     this.selectedIndex = channelStore.channelList.indexOf(channel);
   }
