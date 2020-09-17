@@ -67,13 +67,13 @@ class FastRandom
         return ($number >> $shift) & (PHP_INT_MAX >> ($shift - 1));
     }
 
-    private static function maskedLeftShift(int $number, int $shift, int $bits = 32): int
+    private static function maskedLeftShift(int $number, int $shift): int
     {
         $shifted = $number << $shift;
         $phpIntBits = PHP_INT_SIZE * 8;
 
-        if ($phpIntBits > $bits) {
-            $shifted &= PHP_INT_MAX >> ($phpIntBits - $bits - 1);
+        if ($phpIntBits > 32) {
+            $shifted &= PHP_INT_MAX >> ($phpIntBits - 33);
         }
 
         return $shifted;
