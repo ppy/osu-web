@@ -44,6 +44,7 @@ interface Props {
   document?: string;
   editing: boolean;
   editMode?: boolean;
+  onChange?: () => void;
   onFocus?: () => void;
 }
 
@@ -115,6 +116,10 @@ export default class Editor extends React.Component<Props, State> {
     );
   }
 
+  get canSave() {
+    return !this.state.posting && this.state.blockCount <= this.context.max_blocks;
+  }
+
   componentDidMount() {
     if (this.scrollContainerRef.current) {
       if (this.toolbarRef.current) {
@@ -181,14 +186,19 @@ export default class Editor extends React.Component<Props, State> {
       }
     }
 
-    this.setState({
-      blockCount: blockCount(value),
-      value,
-    });
+    this.setState(
+      {
+        blockCount: blockCount(value),
+        value,
+      },
+      () => {
+        if (ReactEditor.isFocused(this.slateEditor) && this.props.onFocus) {
+          this.props.onFocus();
+        }
 
-    if (ReactEditor.isFocused(this.slateEditor) && this.props.onFocus) {
-      this.props.onFocus();
-    }
+        this.props.onChange?.();
+      },
+    );
   }
 
   onKeyDown = (event: KeyboardEvent) => {
@@ -226,7 +236,6 @@ export default class Editor extends React.Component<Props, State> {
   render(): React.ReactNode {
     const editorClass = 'beatmap-discussion-editor';
     const modifiers = this.props.editMode ? ['edit-mode'] : [];
-    const overLimit = this.state.blockCount > this.context.max_blocks;
     if (this.state.posting) {
       modifiers.push('readonly');
     }
@@ -277,7 +286,7 @@ export default class Editor extends React.Component<Props, State> {
                     </span>
                     <button
                       className='btn-osu-big btn-osu-big--forum-primary'
-                      disabled={this.state.posting || overLimit}
+                      disabled={!this.canSave}
                       type='submit'
                       onClick={this.post}
                     >
