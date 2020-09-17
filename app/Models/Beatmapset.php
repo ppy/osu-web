@@ -143,7 +143,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable
     ];
     const HYPEABLE_STATES = [-1, 0, 3];
 
-    const RANKED_PER_DAY = 8;
     const MINIMUM_DAYS_FOR_RANKING = 7;
 
     public static function coverSizes()
@@ -881,7 +880,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             ->withModesForRanking($modes)
             ->where('queued_at', '<', $this->queued_at)
             ->count();
-        $days = ceil($queueSize / static::RANKED_PER_DAY);
+        $days = ceil($queueSize / config('osu.beatmapset.rank_per_day'));
 
         $minDays = static::MINIMUM_DAYS_FOR_RANKING - $this->queued_at->diffInDays();
         $days = max($minDays, $days);
