@@ -1,10 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-actions';
+import { ChatChannelDeletedAction, ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
+import { clamp } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import Store from 'stores/store';
 
@@ -12,6 +13,7 @@ import Store from 'stores/store';
 export default class ChatStateStore extends Store {
   @observable autoScroll: boolean = false;
   @observable selected: number = 0;
+  private selectedIndex = 0;
 
   @computed
   get lastReadId() {
@@ -24,7 +26,11 @@ export default class ChatStateStore extends Store {
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof ChatMessageSendAction) {
+    if (dispatchedAction instanceof ChatChannelDeletedAction) {
+      this.handleChatChannelDeletedAction();
+    } else if (dispatchedAction instanceof ChatChannelSwitchAction) {
+      this.handleChatChannelSwitchAction(dispatchedAction);
+    } else if (dispatchedAction instanceof ChatMessageSendAction) {
       this.autoScroll = true;
     } else if (dispatchedAction instanceof UserLogoutAction) {
       this.flushStore();
@@ -48,5 +54,40 @@ export default class ChatStateStore extends Store {
       this.selected = channelId;
       dispatch(new ChatChannelSwitchAction(channelId));
     }
+  }
+
+  @action
+  private focusChannelAtIndex(index: number) {
+    const channelList = this.root.channelStore.channelList;
+    if (channelList.length === 0) {
+      return;
+    }
+
+    const nextIndex = clamp(index, 0, channelList.length - 1);
+    const channel = this.root.channelStore.channelList[nextIndex];
+
+    this.selectChannel(channel.channelId);
+  }
+
+  @action
+  private handleChatChannelDeletedAction() {
+    this.focusChannelAtIndex(this.selectedIndex);
+  }
+
+  @action
+  private handleChatChannelSwitchAction(dispatchedAction: ChatChannelSwitchAction) {
+    const channelStore = this.root.channelStore;
+    const channelId = dispatchedAction.channelId;
+    // FIXME: changing to a channel that doesn't exist yet from an external message should create the channel before switching.
+    const channel = channelStore.getOrCreate(channelId);
+
+    // TODO: this should probably be in the store?
+    if (!channel.newPmChannel) {
+      // this.loadChannel(channelId).then(() => {
+      //   this.markAsRead(channelId);
+      // });
+    }
+
+    this.selectedIndex = channelStore.channelList.indexOf(channel);
   }
 }

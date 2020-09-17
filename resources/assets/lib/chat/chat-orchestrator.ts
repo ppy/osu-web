@@ -2,17 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import {
-  ChatChannelDeletedAction,
   ChatChannelJoinAction,
   ChatChannelLoadEarlierMessages,
-  ChatChannelSwitchAction,
   ChatMessageAddAction,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
-import { dispatch, dispatchListener } from 'app-dispatcher';
+import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
-import { clamp } from 'lodash';
 import { transaction } from 'mobx';
 import { defaultIcon } from 'models/chat/channel';
 import Message from 'models/chat/message';
@@ -24,18 +21,13 @@ import { MessageJSON } from './chat-api-responses';
 export default class ChatOrchestrator implements DispatchListener {
   private api = new ChatAPI();
   private markingAsRead: Record<number, number> = {};
-  private selectedIndex = 0;
   private windowIsActive: boolean = true;
 
   constructor(private rootDataStore: RootDataStore) {
   }
 
   handleDispatchAction(action: DispatcherAction) {
-    if (action instanceof ChatChannelDeletedAction) {
-      this.handleChatChannelDeletedAction(action);
-    } else if (action instanceof ChatChannelSwitchAction) {
-      this.handleChatChannelSwitchAction(action.channelId);
-    } else if (action instanceof ChatChannelLoadEarlierMessages) {
+    if (action instanceof ChatChannelLoadEarlierMessages) {
       this.loadChannelEarlierMessages(action.channelId);
     } else if (action instanceof ChatChannelJoinAction) {
       this.handleChatChannelJoinAction(action);
@@ -116,22 +108,6 @@ export default class ChatOrchestrator implements DispatchListener {
     });
   }
 
-  private focusChannelAtIndex(index: number) {
-    const channelList = this.rootDataStore.channelStore.channelList;
-    if (channelList.length === 0) {
-      return;
-    }
-
-    const nextIndex = clamp(index, 0, channelList.length - 1);
-    const channel = this.rootDataStore.channelStore.channelList[nextIndex];
-
-    dispatch(new ChatChannelSwitchAction(channel.channelId));
-  }
-
-  private handleChatChannelDeletedAction(action: ChatChannelDeletedAction) {
-    this.focusChannelAtIndex(this.selectedIndex);
-  }
-
   private handleChatChannelJoinAction(action: ChatChannelJoinAction) {
     transaction(() => {
       const channelStore = this.rootDataStore.channelStore;
@@ -140,23 +116,6 @@ export default class ChatOrchestrator implements DispatchListener {
       channel.name = action.name;
       channel.type = action.type;
       channel.metaLoaded = true;
-    });
-  }
-
-  private handleChatChannelSwitchAction(channelId: number) {
-    const channelStore = this.rootDataStore.channelStore;
-    // FIXME: changing to a channel that doesn't exist yet from an external message should create the channel before switching.
-    const channel = channelStore.getOrCreate(channelId);
-
-    transaction(() => {
-      // TODO: this should probably be in the store?
-      if (!channel.newPmChannel) {
-        this.loadChannel(channelId).then(() => {
-          this.markAsRead(channelId);
-        });
-      }
-
-      this.selectedIndex = channelStore.channelList.indexOf(channel);
     });
   }
 
