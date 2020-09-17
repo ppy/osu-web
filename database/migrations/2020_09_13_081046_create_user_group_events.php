@@ -19,10 +19,10 @@ class CreateUserGroupEvents extends Migration
         Schema::create('user_group_events', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('actor_id')->unsigned()->nullable();
+            $table->timestamp('created_at');
             $table->json('details')->nullable();
             $table->mediumInteger('group_id')->unsigned();
             $table->boolean('hidden')->default(false);
-            $table->timestamp('timestamp')->useCurrent();
             $table->enum('type', [
                 'group_add',
                 'group_remove',

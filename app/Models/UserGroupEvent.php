@@ -8,12 +8,12 @@ namespace App\Models;
 /**
  * @property User $actor
  * @property int|null $actor_id
+ * @property \Carbon\Carbon $created_at
  * @property array|null $details
  * @property Group $group
  * @property int $group_id
  * @property bool $hidden
  * @property int $id
- * @property \Carbon\Carbon $timestamp
  * @property string $type
  * @property User $user
  * @property int|null $user_id
@@ -27,13 +27,12 @@ class UserGroupEvent extends Model
     const USER_REMOVE = 'user_remove';
     const USER_SET_DEFAULT = 'user_set_default';
 
+    const UPDATED_AT = null;
+
     protected $casts = [
         'details' => 'array',
         'hidden' => 'boolean',
     ];
-    protected $dates = ['timestamp'];
-
-    public $timestamps = false;
 
     public static function logGroupRename(?User $actor, Group $group, string $oldName, string $newName): self
     {
