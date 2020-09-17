@@ -3,6 +3,10 @@
 
 .beatmap-discussion {
   @_top: beatmap-discussion;
+
+  @_top-padding-y: 10px;
+  @_top-padding-x: 15px;
+
   .own-layer();
   display: flex;
 
@@ -129,6 +133,7 @@
     display: grid;
     grid-template-areas: "user actions" "message message";
     grid-template-columns: 1fr auto;
+    gap: 10px;
 
     .@{_top}--horizontal-desktop & {
       @media @desktop {
@@ -160,15 +165,22 @@
 
   &__top-message {
     grid-area: message;
-  }
-
-  &__top-user {
-    margin-top: 10px;
-    margin-left: 15px;
+    margin: 0 @_top-padding-x @_top-padding-y;
 
     .@{_top}--horizontal-desktop & {
       @media @desktop {
-        margin-bottom: 10px;
+        margin: @_top-padding-y 0;
+      }
+    }
+  }
+
+  &__top-user {
+    margin-top: @_top-padding-y;
+    margin-left: @_top-padding-x;
+
+    .@{_top}--horizontal-desktop & {
+      @media @desktop {
+        margin-bottom: @_top-padding-y;
         border-right: 2px solid var(--group-colour, hsl(var(--hsl-b5)));
       }
     }
