@@ -11,7 +11,6 @@ use InvalidArgumentException;
  * A fast PRNG used in the osu! client
  *
  * @see https://github.com/ppy/osu/blob/bf1c5a3b1f6d48a23a8ab89d90dfb4838def0911/osu.Game.Rulesets.Catch/MathUtils/FastRandom.cs osu!lazer implementation
- * @see http://heliosphan.org/fastrandom.html Algorithm specification
  */
 class FastRandom
 {
