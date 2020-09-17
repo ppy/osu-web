@@ -52,11 +52,6 @@ export class ChatMessageUpdateAction implements DispatcherAction {
   }
 }
 
-export class ChatNewConversation implements DispatcherAction {
-  constructor(readonly channel: ChannelJSON, readonly message: MessageJSON, readonly tempChannelId: number) {
-  }
-}
-
 export class ChatPresenceUpdateAction implements DispatcherAction {
   constructor(readonly presence: PresenceJSON) {
   }

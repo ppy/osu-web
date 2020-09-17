@@ -11,7 +11,6 @@ import {
   ChatMessageAddAction,
   ChatMessageSendAction,
   ChatMessageUpdateAction,
-  ChatNewConversation,
   ChatPresenceUpdateAction,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
@@ -151,8 +150,6 @@ export default class ChannelStore extends Store {
       const channel: Channel = this.getOrCreate(dispatchedAction.message.channelId);
       channel.updateMessage(dispatchedAction.message, dispatchedAction.json);
       channel.resortMessages();
-    } else if (dispatchedAction instanceof ChatNewConversation) {
-      this.handleChatNewConversation(dispatchedAction);
     } else if (dispatchedAction instanceof ChatPresenceUpdateAction) {
       this.updatePresence(dispatchedAction.presence);
     } else if (dispatchedAction instanceof UserSilenceAction) {
@@ -292,6 +289,7 @@ export default class ChannelStore extends Store {
     }
   }
 
+  @action
   private async handleChatMessageSendAction(dispatchedAction: ChatMessageAddAction) {
     const message = dispatchedAction.message;
     const channel = this.getOrCreate(message.channelId);
@@ -310,7 +308,13 @@ export default class ChannelStore extends Store {
         }
 
         const response = await this.api.newConversation(userId, message);
-        dispatch(new ChatNewConversation(response.channel, response.message, message.channelId));
+
+        runInAction(() => {
+          this.channels.delete(message.channelId);
+          const newChannel = this.addNewConversation(response.channel, response.message);
+          dispatch(new ChatChannelSwitchAction(newChannel));
+          dispatch(new ChatChannelPartAction(message.channelId));
+        });
       } else {
         const response = await this.api.sendMessage(message);
         dispatch(new ChatMessageUpdateAction(message, response));
@@ -318,14 +322,6 @@ export default class ChannelStore extends Store {
     } catch {
       dispatch(new ChatMessageUpdateAction(message, null));
     }
-  }
-
-  @action
-  private handleChatNewConversation(dispatchedAction: ChatNewConversation) {
-    this.channels.delete(dispatchedAction.tempChannelId);
-    const channel = this.addNewConversation(dispatchedAction.channel, dispatchedAction.message);
-    dispatch(new ChatChannelSwitchAction(channel));
-    dispatch(new ChatChannelPartAction(dispatchedAction.tempChannelId));
   }
 
   @action
