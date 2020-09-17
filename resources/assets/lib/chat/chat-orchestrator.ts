@@ -5,7 +5,6 @@ import {
   ChatChannelJoinAction,
   ChatChannelLoadEarlierMessages,
   ChatChannelNewMessages,
-  ChatMessageAddAction,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
@@ -30,10 +29,6 @@ export default class ChatOrchestrator implements DispatchListener {
       this.loadChannelEarlierMessages(action.channelId);
     } else if (action instanceof ChatChannelJoinAction) {
       this.handleChatChannelJoinAction(action);
-    } else if (action instanceof ChatMessageAddAction) {
-      if (action.message.channelId === this.rootDataStore.uiState.chat.selected) {
-        this.markAsRead(this.rootDataStore.uiState.chat.selected);
-      }
     } else if (action instanceof WindowFocusAction) {
       this.windowIsActive = true;
       this.markAsRead(this.rootDataStore.uiState.chat.selected);
