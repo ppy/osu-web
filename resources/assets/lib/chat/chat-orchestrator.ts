@@ -22,14 +22,12 @@ import { MessageJSON } from './chat-api-responses';
 
 @dispatchListener
 export default class ChatOrchestrator implements DispatchListener {
-  private api: ChatAPI;
+  private api = new ChatAPI();
   private markingAsRead: Record<number, number> = {};
   private selectedIndex = 0;
   private windowIsActive: boolean = true;
 
   constructor(private rootDataStore: RootDataStore) {
-    this.rootDataStore = rootDataStore;
-    this.api = new ChatAPI();
   }
 
   changeChannel(channelId: number) {
