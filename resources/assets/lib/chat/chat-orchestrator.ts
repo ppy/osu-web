@@ -130,10 +130,6 @@ export default class ChatOrchestrator implements DispatchListener {
 
   private handleChatChannelDeletedAction(action: ChatChannelDeletedAction) {
     this.focusChannelAtIndex(this.selectedIndex);
-
-    if (action.channelId !== -1) {
-      this.api.partChannel(action.channelId, window.currentUser.id);
-    }
   }
 
   private handleChatChannelJoinAction(action: ChatChannelJoinAction) {

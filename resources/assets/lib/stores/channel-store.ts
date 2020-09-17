@@ -160,11 +160,6 @@ export default class ChannelStore extends Store {
   }
 
   @action
-  partChannel(channelId: number) {
-    this.channels.delete(channelId);
-  }
-
-  @action
   removePublicMessagesFromUser(userIds: Set<number>) {
     this.nonPmChannels.forEach((channel) => {
       channel.messages = channel.messages.filter((message) => !userIds.has(message.senderId));
@@ -173,6 +168,10 @@ export default class ChannelStore extends Store {
 
   @action
   private handleChatChannelPartAction(dispatchedAction: ChatChannelPartAction) {
+    if (dispatchedAction.channelId !== -1) {
+      this.api.partChannel(dispatchedAction.channelId, window.currentUser.id);
+    }
+
     if (this.channels.delete(dispatchedAction.channelId)) {
       dispatch(new ChatChannelDeletedAction(dispatchedAction.channelId));
     }
