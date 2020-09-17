@@ -32,7 +32,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "",
+            'bot' => "Não é possível votar na discussão feita pelo bot",
             'limit_exceeded' => 'Por favor, espere um pouco antes de votar mais vezes',
             'owner' => "Não é possível votar na própria discussão.",
             'wrong_beatmapset_state' => 'Só é possível votar nas discussões de beatmaps pendentes.',
@@ -59,7 +59,7 @@ return [
 
     'beatmapset' => [
         'metadata' => [
-            'nominated' => 'Você não pode alterar os metadados de um mapa nominado. Entre em contato com um membro do BN ou NAT se você acha que ele está definido incorretamente.',
+            'nominated' => 'Você não pode alterar os metadados de um mapa nomeado. Entre em contato com um membro do BN ou NAT se você acha que ele está definido incorretamente.',
         ],
     ],
 

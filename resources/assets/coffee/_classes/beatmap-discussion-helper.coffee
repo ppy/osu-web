@@ -9,8 +9,8 @@ class @BeatmapDiscussionHelper
   @MAX_LENGTH_TIMELINE: 750
   @TIMESTAMP_REGEX: /\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|])*\d+\))?)/
 
-  @MODES = ['events', 'general', 'generalAll', 'timeline', 'reviews']
-  @FILTERS = ['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total']
+  @MODES = new Set(['events', 'general', 'generalAll', 'timeline', 'reviews'])
+  @FILTERS = new Set(['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total'])
 
 
   @canModeratePosts: (user) =>
@@ -249,8 +249,8 @@ class @BeatmapDiscussionHelper
       beatmapsetId: if isFinite(beatmapsetId) then beatmapsetId
       beatmapId: if isFinite(beatmapId) then beatmapId
       # empty path segments are ''
-      mode: if _.includes(@MODES, mode) then mode else @DEFAULT_MODE
-      filter: if _.includes(@FILTERS, filter) then filter else @DEFAULT_FILTER
+      mode: if @MODES.has(mode) then mode else @DEFAULT_MODE
+      filter: if @FILTERS.has(filter) then filter else @DEFAULT_FILTER
       user: parseInt(url.searchParams.get('user'), 10) if url.searchParams.get('user')?
 
     if url.hash[1] == '/'

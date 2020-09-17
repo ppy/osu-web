@@ -55,10 +55,10 @@ return [
                 'beatmapset_nominate_compact' => 'Beatmap telah mendapatkan nominasi',
                 'beatmapset_qualify' => 'Beatmap ":title" telah memperoleh jumlah nominasi yang diperlukan untuk proses ranking.',
                 'beatmapset_qualify_compact' => 'Beatmap telah memasuki antrean status ranking',
-                'beatmapset_rank' => '":title" telah berstatus ranked',
-                'beatmapset_rank_compact' => 'Beatmap telah berstatus ranked',
+                'beatmapset_rank' => '":title" telah berstatus Ranked',
+                'beatmapset_rank_compact' => 'Beatmap telah berstatus Ranked',
                 'beatmapset_reset_nominations' => 'Masalah yang dikemukakan oleh :username menganulir nominasi sebelumnya pada beatmap ":title" ',
-                'beatmapset_reset_nominations_compact' => 'Proses nominasi diulang',
+                'beatmapset_reset_nominations_compact' => 'Nominasi beatmap dianulir',
             ],
 
             'comment' => [

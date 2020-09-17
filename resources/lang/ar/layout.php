@@ -179,7 +179,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'تسجيل الدخول / إنشاء حساب',
 
         'login' => [
             'forgot' => "لقد نسيت بياناتي",

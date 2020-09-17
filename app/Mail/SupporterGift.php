@@ -5,7 +5,6 @@
 
 namespace App\Mail;
 
-use App\Models\SupporterTag;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -29,7 +28,7 @@ class SupporterGift extends Mailable implements ShouldQueue
         $this->params = [
             'donor' => $donor,
             'giftee' => $giftee,
-            'duration' => SupporterTag::getDurationText($duration),
+            'duration' => $duration,
         ];
     }
 

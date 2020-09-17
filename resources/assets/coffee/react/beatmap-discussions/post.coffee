@@ -13,6 +13,7 @@ import { ReportReportable } from 'report-reportable'
 import Editor from 'beatmap-discussions/editor'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
+import { classWithModifiers } from 'utils/css'
 
 el = React.createElement
 
@@ -22,30 +23,19 @@ export class Post extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @textarea = React.createRef()
+    @textareaRef = React.createRef()
+    @messageBodyRef = React.createRef()
     @throttledUpdatePost = _.throttle @updatePost, 1000
     @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
     @xhr = {}
-    @cache = {}
     @reviewEditor = React.createRef()
 
     @state =
       canSave: true
       editing: false
+      editorMinHeight: '0'
       posting: false
       message: @props.post.message
-
-
-  componentDidMount: =>
-    osu.pageChange()
-
-
-  componentWillUpdate: =>
-    @cache = {}
-
-
-  componentDidUpdate: =>
-    osu.pageChange()
 
 
   componentWillUnmount: =>
@@ -56,11 +46,11 @@ export class Post extends React.PureComponent
 
 
   render: =>
-    topClasses = "#{bn} #{bn}--#{@props.type}"
-    if @state.editing
-      topClasses += " #{bn}--editing"
-    topClasses += " #{bn}--deleted" if @props.post.deleted_at?
-    topClasses += " #{bn}--unread" if !@props.read
+    topClasses = classWithModifiers bn,
+      "#{@props.type}": true
+      deleted: @props.post.deleted_at?
+      editing: @state.editing
+      unread: !@props.read && @props.type != 'discussion'
 
     userGroup = if @isOwner() then mapperGroup else @props.user.groups[0]
 
@@ -76,8 +66,10 @@ export class Post extends React.PureComponent
           el UserCard,
             user: @props.user
             group: userGroup
-        @messageViewer()
-        @messageEditor()
+        if @state.editing
+          @messageEditor()
+        else
+          @messageViewer()
 
 
   editCancel: =>
@@ -87,10 +79,11 @@ export class Post extends React.PureComponent
 
 
   editStart: =>
-    @textarea.current?.style.minHeight = "#{@messageBody.getBoundingClientRect().height + 50}px"
+    if @messageBodyRef.current?
+      editorMinHeight = "#{@messageBodyRef.current.getBoundingClientRect().height + 50}px"
 
-    @setState editing: true, =>
-      @textarea.current?.focus()
+    @setState editing: true, editorMinHeight: editorMinHeight ? '0', =>
+      @textareaRef.current?.focus()
 
 
   handleKeyDownCallback: (type, event) =>
@@ -108,7 +101,7 @@ export class Post extends React.PureComponent
 
     canPost = !@state.posting && @state.canSave
 
-    div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
+    div className: "#{bn}__message-container",
       if @props.discussion.message_type == 'review' && @props.type == 'discussion'
         el DiscussionsContext.Consumer, null,
           (discussions) =>
@@ -127,12 +120,13 @@ export class Post extends React.PureComponent
       else
         el React.Fragment, null,
           el TextareaAutosize,
+            style: minHeight: @state.editorMinHeight
             disabled: @state.posting
             className: "#{bn}__message #{bn}__message--editor"
             onChange: @setMessage
             onKeyDown: @handleKeyDown
             value: @state.message
-            ref: @textarea
+            ref: @textareaRef
           el MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
 
       div className: "#{bn}__actions",
@@ -161,18 +155,17 @@ export class Post extends React.PureComponent
       else
         ['beatmap-discussions', 'beatmap_discussion', @props.discussion]
 
-    div className: "#{bn}__message-container #{'hidden' if @state.editing}",
+    div className: "#{bn}__message-container",
       if @props.discussion.message_type == 'review' && @props.type == 'discussion'
         div
           className: "#{bn}__message"
-          ref: (el) => @messageBody = el
           el ReviewPost,
             discussions: @context.discussions
             message: @props.post.message
       else
         div
           className: "#{bn}__message"
-          ref: (el) => @messageBody = el
+          ref: @messageBodyRef
           dangerouslySetInnerHTML:
             __html: BeatmapDiscussionHelper.format @props.post.message
 

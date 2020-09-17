@@ -5,7 +5,7 @@
 @extends('master', ['titlePrepend' => trans('beatmapset_watches.index.title_compact')])
 
 @section('content')
-    @include('home._user_header_default')
+    @include('home._user_header_default', ['themeOverride' => 'settings'])
 
     <div class="osu-page osu-page--full osu-page--generic">
         <div class="beatmapset-watches">
