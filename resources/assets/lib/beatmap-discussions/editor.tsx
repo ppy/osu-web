@@ -18,6 +18,7 @@ import EditorDiscussionComponent from './editor-discussion-component';
 import {
   blockCount,
   insideEmbed,
+  insideEmptyNode,
   serializeSlateDocument,
   slateDocumentContainsNewProblem,
   slateDocumentIsEmpty,
@@ -212,6 +213,11 @@ export default class Editor extends React.Component<Props, State> {
       if (insideEmbed(this.slateEditor)) {
         event.preventDefault();
         this.slateEditor.insertText('\n');
+      }
+    } else if (isHotkey('delete', event) || isHotkey('backspace', event)) {
+      if (insideEmptyNode(this.slateEditor)) {
+        event.preventDefault();
+        Transforms.removeNodes(this.slateEditor);
       }
     }
   }

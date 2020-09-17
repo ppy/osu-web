@@ -16,14 +16,15 @@ export const slateDocumentIsEmpty = (doc: SlateNode[]): boolean => {
     );
 };
 
-export const insideEmbed = (editor: ReactEditor) => {
-  if (editor.selection) {
-    const parent = SlateNode.parent(editor, SlateRange.start(editor.selection).path);
+export const insideEmbed = (editor: ReactEditor) => getCurrentNode(editor)?.type === 'embed';
 
-    return parent.type === 'embed';
+export const insideEmptyNode = (editor: ReactEditor) => {
+  const parent = getCurrentNode(editor);
+  if (!parent) {
+    return false;
   }
 
-  return false;
+  return Editor.isEmpty(editor, parent);
 };
 
 export const isFormatActive = (editor: ReactEditor, format: string) => {
@@ -32,6 +33,12 @@ export const isFormatActive = (editor: ReactEditor, format: string) => {
     mode: 'all',
   });
   return !!match;
+};
+
+export const getCurrentNode = (editor: ReactEditor) => {
+  if (editor.selection) {
+    return SlateNode.parent(editor, SlateRange.start(editor.selection).path);
+  }
 };
 
 export const toggleFormat = (editor: ReactEditor, format: string) => {
