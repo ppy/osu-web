@@ -83,7 +83,7 @@ export default class Editor extends React.Component<Props, State> {
     this.insertMenuRef = React.createRef();
     this.localStorageKey = `newDiscussion-${this.props.beatmapset.id}`;
 
-    let initialValue: SlateNode[] = this.emptyDocTemplate;
+    let initialValue: SlateElement[] = this.emptyDocTemplate;
 
     if (props.editMode) {
       initialValue = this.valueFromProps();
