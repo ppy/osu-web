@@ -6,7 +6,7 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Libraries\ForumUpdateNotifier;
+use App\Jobs\Notifications\ForumTopicReply;
 use App\Libraries\NewForumTopic;
 use App\Models\Forum\FeatureVote;
 use App\Models\Forum\Forum;
@@ -182,11 +182,7 @@ class TopicsController extends Controller
         $firstPostPosition = $topic->postPosition($post->post_id);
 
         $post->markRead(Auth::user());
-        ForumUpdateNotifier::onReply([
-            'topic' => $topic,
-            'post' => $post,
-            'user' => Auth::user(),
-        ]);
+        (new ForumTopicReply($post, auth()->user()))->dispatch();
 
         return ext_view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
     }
@@ -378,7 +374,6 @@ class TopicsController extends Controller
 
         $post = $topic->posts->last();
         $post->markRead($user);
-        ForumUpdateNotifier::onNew(['topic' => $topic, 'post' => $post, 'user' => $user]);
 
         return ujs_redirect(route('forum.topics.show', $topic));
     }
