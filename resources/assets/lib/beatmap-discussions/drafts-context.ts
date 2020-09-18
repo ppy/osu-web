@@ -2,6 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
-import { Node as SlateNode } from 'slate';
+import { Element as SlateElement } from 'slate';
 
-export const DraftsContext = React.createContext<SlateNode[]>([]);
+export const DraftsContext = React.createContext<SlateElement[]>([]);
