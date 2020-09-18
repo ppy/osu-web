@@ -216,37 +216,6 @@ const rules = [
     test: /\.(js|coffee)$/,
   },
   {
-    exclude: /(node_modules|bower_components)/,
-    test: /\.jsx?$/,
-    use: [
-      {
-        loader: 'babel-loader',
-        options: {
-          cacheDirectory: true,
-          plugins: [
-            '@babel/plugin-syntax-dynamic-import',
-            '@babel/plugin-proposal-object-rest-spread',
-            [
-              '@babel/plugin-transform-runtime',
-              {
-                helpers: false,
-              },
-            ],
-          ],
-          presets: [
-            [
-              '@babel/preset-env',
-              {
-                forceAllTransforms: true,
-                modules: false,
-              },
-            ],
-          ],
-        },
-      },
-    ],
-  },
-  {
     exclude: /node_modules/,
     loader: 'ts-loader',
     test: /\.tsx?$/,
