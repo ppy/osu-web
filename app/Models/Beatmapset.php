@@ -869,7 +869,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         return $this->playmodes()->count();
     }
 
-    public function rankingETA()
+    public function rankingQueueStatus()
     {
         if (!$this->isQualified()) {
             return;
@@ -886,7 +886,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         $minDays = static::MINIMUM_DAYS_FOR_RANKING - $this->queued_at->diffInDays();
         $days = max($minDays, $days);
 
-        return $days > 0 ? Carbon::now()->addDays($days) : null;
+        return [
+            'eta' => $days > 0 ? Carbon::now()->addDays($days) : null,
+            'position' => $queueSize + 1,
+        ];
     }
 
     public function disqualificationEvent()

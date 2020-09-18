@@ -179,8 +179,10 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
                 $result['nominated'] = $beatmapset->nominationsSinceReset()->where('user_id', $currentUser->user_id)->exists();
             }
         } elseif ($beatmapset->qualified()) {
-            $eta = $beatmapset->rankingETA();
-            $result['ranking_eta'] = json_time($eta);
+            $queueStatus = $beatmapset->rankingQueueStatus();
+
+            $result['ranking_eta'] = json_time($queueStatus['eta']);
+            $result['ranking_queue_position'] = $queueStatus['position'];
         }
 
         return $this->primitive($result);
