@@ -15,11 +15,7 @@ interface Props {
   user: UserJSON;
 }
 
-interface State {
-  backgroundLoaded: boolean;
-}
-
-export default class UserCardBrick extends React.PureComponent<Props, State> {
+export default class UserCardBrick extends React.PureComponent<Props> {
   static readonly contextType = UserCardTypeContext;
 
   static defaultProps = {
@@ -28,9 +24,6 @@ export default class UserCardBrick extends React.PureComponent<Props, State> {
   };
 
   readonly eventId = `user-card-brick-${osu.uuid()}`;
-  readonly state: State = {
-    backgroundLoaded: false,
-  };
 
   componentDidMount() {
     $.subscribe(`friendButton:refresh.${this.eventId}`, this.refresh);
@@ -45,22 +38,21 @@ export default class UserCardBrick extends React.PureComponent<Props, State> {
     this.addFriendModifier(modifiers);
 
     return (
-      <div
+      <a
         className={`js-usercard ${osu.classWithModifiers('user-card-brick', modifiers)}`}
         data-user-id={this.props.user.id}
+        href={route('users.show', { user: this.props.user.id })}
       >
-        {this.renderBackground()}
-
         <div
           className='user-card-brick__group-bar'
           style={osu.groupColour(this.props.user.groups?.[0])}
           title={this.props.user.groups?.[0]?.name}
         />
 
-        <a className='user-card-brick__username' href={route('users.show', { user: this.props.user.id })}>
-          <div className='u-ellipsis-overflow'>{this.props.user.username}</div>
-        </a>
-      </div>
+        <div className='user-card-brick__username u-ellipsis-overflow'>
+          {this.props.user.username}
+        </div>
+      </a>
     );
   }
 
@@ -84,33 +76,7 @@ export default class UserCardBrick extends React.PureComponent<Props, State> {
     }
   }
 
-  private onBackgroundLoad = () => {
-    this.setState({ backgroundLoaded: true });
-  }
-
   private refresh = () => {
     this.forceUpdate();
-  }
-
-  private renderBackground() {
-    let background: React.ReactNode | null = null;
-
-    if (this.props.user.cover && this.props.user.cover.url) {
-      let backgroundCssClass = 'user-card-brick__background';
-      if (this.state.backgroundLoaded) {
-        backgroundCssClass += ' user-card-brick__background--loaded';
-      }
-
-      background = <img className={backgroundCssClass} onLoad={this.onBackgroundLoad} src={this.props.user.cover.url} />;
-    }
-
-    return (
-      <a
-        href={route('users.show', { user: this.props.user.id })}
-        className='user-card-brick__background-container'
-      >
-        {background}
-      </a>
-    );
   }
 }
