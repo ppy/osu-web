@@ -5,64 +5,28 @@
   @_top: user-card-brick;
   @_fade-duration: 220ms;
 
-  @_background-color: @osu-colour-b6;
-  @_border-radius: @border-radius-large;
-
-  --border: transparent;
+  .link-white();
+  .link-plain();
 
   margin: var(--item-margin);
-  flex: none;
-
   width: min-content;
   max-width: 100%;
-  background-color: @_background-color;
-  border-radius: @_border-radius;
+  background-color: hsla(var(--hsl-b4), 0.8);
+  border: 2px solid transparent;
+  border-radius: @border-radius-large;
   display: flex;
   align-items: center;
-  padding: 3px 5px;
+  padding: 1px 3px;
   font-size: @font-size--normal-2;
-  position: relative;
 
   overflow: hidden;
 
-  &::after {
-    .full-size();
-    content: '';
-    box-shadow: inset 0 0 0 2px var(--border);
-    border-radius: @_border-radius;
-    pointer-events: none;
-  }
-
   &--friend {
-    --border: @osu-colour-green-2;
+    border-color: @osu-colour-green-2;
   }
 
   &--mutual {
-    --border: @osu-colour-pink-2;
-  }
-
-  &__background {
-    // to prevent annoying white-pixel artefacts appearing due to
-    // browsers not handling 'overflow: hidden' properly
-    border-radius: @_border-radius;
-    .full-size();
-    object-fit: cover;
-    transition: opacity ease-in-out @_fade-duration;
-    opacity: 0;
-
-    &--loaded {
-      opacity: 1;
-    }
-  }
-
-  &__background-container {
-    .full-size();
-
-    &::after {
-      .full-size();
-      content: '';
-      background-color: osu-hsla(@osu-colour-b4, 0.8);
-    }
+    border-color: @osu-colour-pink-2;
   }
 
   &__group-bar {
@@ -71,18 +35,11 @@
     height: 1em;
     border-radius: 10000px;
     margin: 0 5px;
-    position: relative;
   }
 
   &__username {
-    .link-white();
-    .link-plain();
-    display: flex;
-    align-items: center;
-    min-width: 0;
     margin: 0 5px 0 0;
     font-weight: bold;
     padding-bottom: 1px; // adjust alignment
-    position: relative;
   }
 }
