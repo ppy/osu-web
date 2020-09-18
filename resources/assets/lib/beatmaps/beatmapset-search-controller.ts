@@ -151,9 +151,8 @@ export class BeatmapsetSearchController {
 
     this.searchStatus.state = 'input';
     this.debouncedFilterChangedSearch();
-    // not sure if observing change of private variable is a good idea
-    // but computed value doesn't show up here
-    if (change.name !== 'sanitizedQuery') {
+
+    if (change.name !== 'query') {
       this.debouncedFilterChangedSearch.flush();
     }
   }
