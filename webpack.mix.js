@@ -297,9 +297,7 @@ const rules = [
       {
         loader: 'file-loader',
         options: {
-          name: (filepath) => {
-            return outputFilename('images/[name]', '[ext]');
-          },
+          name: outputFilename('images/[name]', '[ext]'),
         },
       },
       {
@@ -311,9 +309,7 @@ const rules = [
   {
     loader: 'file-loader',
     options: {
-      name: (filepath) => {
-        return outputFilename('fonts/[name]', '[ext]');
-      },
+      name: outputFilename('fonts/[name]', '[ext]'),
     },
     test: /(\.(woff2?|ttf|eot|otf)$|font.*\.svg$)/,
   },
