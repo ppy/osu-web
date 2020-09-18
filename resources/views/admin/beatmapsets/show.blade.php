@@ -18,8 +18,8 @@
                     /
                     <a
                         href="{{ route('admin.beatmapsets.update', [
-                            'beatmapsets' => $beatmapset->getKey(),
-                            'beatmapset[discussion_enabled]=1'
+                            $beatmapset->getKey(),
+                            'beatmapset[discussion_enabled]' => true,
                         ]) }}"
                         data-method="PUT"
                         data-confirm="{{ trans('admin.beatmapsets.show.discussion.activate_confirm') }}"

@@ -23,29 +23,19 @@ export class Post extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @textarea = React.createRef()
+    @textareaRef = React.createRef()
+    @messageBodyRef = React.createRef()
     @throttledUpdatePost = _.throttle @updatePost, 1000
     @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
     @xhr = {}
-    @cache = {}
     @reviewEditor = React.createRef()
 
     @state =
+      canSave: true
       editing: false
+      editorMinHeight: '0'
       posting: false
       message: @props.post.message
-
-
-  componentDidMount: =>
-    osu.pageChange()
-
-
-  componentWillUpdate: =>
-    @cache = {}
-
-
-  componentDidUpdate: =>
-    osu.pageChange()
 
 
   componentWillUnmount: =>
@@ -76,8 +66,10 @@ export class Post extends React.PureComponent
           el UserCard,
             user: @props.user
             group: userGroup
-        @messageViewer()
-        @messageEditor()
+        if @state.editing
+          @messageEditor()
+        else
+          @messageViewer()
 
 
   editCancel: =>
@@ -87,10 +79,12 @@ export class Post extends React.PureComponent
 
 
   editStart: =>
-    @textarea.current?.style.minHeight = "#{@messageBody.getBoundingClientRect().height + 50}px"
+    if @messageBodyRef.current?
+      editorMinHeight = "#{@messageBodyRef.current.getBoundingClientRect().height + 50}px"
 
-    @setState editing: true, =>
-      @textarea.current?.focus()
+    @setState editing: true, editorMinHeight: editorMinHeight ? '0', =>
+      @textareaRef.current?.focus()
+
 
   handleKeyDownCallback: (type, event) =>
     switch type
@@ -105,9 +99,9 @@ export class Post extends React.PureComponent
   messageEditor: =>
     return if !@props.canBeEdited
 
-    canPost = !@state.posting && @validPost()
+    canPost = !@state.posting && @state.canSave
 
-    div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
+    div className: "#{bn}__message-container",
       if @props.discussion.message_type == 'review' && @props.type == 'discussion'
         el DiscussionsContext.Consumer, null,
           (discussions) =>
@@ -122,15 +116,17 @@ export class Post extends React.PureComponent
                   editMode: true
                   editing: @state.editing
                   ref: @reviewEditor
+                  onChange: @updateCanSave
       else
         el React.Fragment, null,
           el TextareaAutosize,
+            style: minHeight: @state.editorMinHeight
             disabled: @state.posting
             className: "#{bn}__message #{bn}__message--editor"
             onChange: @setMessage
             onKeyDown: @handleKeyDown
             value: @state.message
-            ref: @textarea
+            ref: @textareaRef
           el MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
 
       div className: "#{bn}__actions",
@@ -159,18 +155,17 @@ export class Post extends React.PureComponent
       else
         ['beatmap-discussions', 'beatmap_discussion', @props.discussion]
 
-    div className: "#{bn}__message-container #{'hidden' if @state.editing}",
+    div className: "#{bn}__message-container",
       if @props.discussion.message_type == 'review' && @props.type == 'discussion'
         div
           className: "#{bn}__message"
-          ref: (el) => @messageBody = el
           el ReviewPost,
             discussions: @context.discussions
             message: @props.post.message
       else
         div
           className: "#{bn}__message"
-          ref: (el) => @messageBody = el
+          ref: @messageBodyRef
           dangerouslySetInnerHTML:
             __html: BeatmapDiscussionHelper.format @props.post.message
 
@@ -276,7 +271,11 @@ export class Post extends React.PureComponent
 
 
   setMessage: (e) =>
-    @setState message: e.target.value
+    @setState message: e.target.value, @updateCanSave
+
+
+  updateCanSave: =>
+    @setState canSave: @validPost()
 
 
   updatePost: =>
@@ -316,4 +315,7 @@ export class Post extends React.PureComponent
 
 
   validPost: =>
-    BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())
+    if @props.discussion.message_type == 'review' && @props.type == 'discussion'
+      @reviewEditor.current?.canSave
+    else
+      BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())

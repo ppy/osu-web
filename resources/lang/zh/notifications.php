@@ -50,7 +50,7 @@ return [
                 'beatmapset_disqualify' => '谱面 :title 被 :username 取消提名。',
                 'beatmapset_disqualify_compact' => '谱面被取消资格',
                 'beatmapset_love' => '谱面 :title 已经被 :username 推荐为 loved 。',
-                'beatmapset_love_compact' => '谱面被提升至最爱',
+                'beatmapset_love_compact' => '谱面已被 Loved',
                 'beatmapset_nominate' => '谱面 :title 被 :username 提名。',
                 'beatmapset_nominate_compact' => '谱面被提名',
                 'beatmapset_qualify' => '谱面 :title 已经得到足够数量的提名并进入到 ranking 队列。',
@@ -153,10 +153,10 @@ return [
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
+                'beatmapset_disqualify' => '谱面 :title 已被 DQ',
+                'beatmapset_love' => '谱面 :title 已被 Loved',
                 'beatmapset_nominate' => '“:title”已被提名',
-                'beatmapset_qualify' => '',
+                'beatmapset_qualify' => '谱面 :title 已获得足够的提名，已进入 Ranked 流程',
                 'beatmapset_rank' => '“:title”已被 ranked',
                 'beatmapset_reset_nominations' => '“:title”的提名被重置',
             ],

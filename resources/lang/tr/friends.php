@@ -9,7 +9,7 @@ return [
 
     'buttons' => [
         'add' => 'arkadaş ekle',
-        'disabled' => 'arkadaşlar',
+        'disabled' => 'takipçiler',
         'remove' => 'arkadaşlıktan çıkar',
     ],
 ];
