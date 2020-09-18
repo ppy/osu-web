@@ -1,12 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-/**
- * As our first step, we'll pull in the user's webpack.mix.js
- * file. Based on what the user requests in that file,
- * a generic config object will be constructed for us.
- */
-
 const path = require('path');
 const { spawnSync } = require('child_process');
 const Watchpack = require('watchpack');
@@ -15,7 +9,7 @@ const spawnOptions = { stdio: 'inherit' };
 const routesFile = path.resolve(__dirname, 'routes/web.php');
 const langDir = path.resolve(__dirname, 'resources/lang');
 
-const webpackConfig = require('./webpack.mix.js');
+const webpackConfig = require('./webpack.unmix.js');
 
 let resolved = false;
 
