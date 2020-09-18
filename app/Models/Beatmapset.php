@@ -43,6 +43,8 @@ use Illuminate\Database\QueryException;
  * @property int $beatmapset_id
  * @property mixed|null $body_hash
  * @property float $bpm
+ * @property bool $bundled
+ * @property bool $can_bundle
  * @property Comment $comments
  * @property \Carbon\Carbon|null $cover_updated_at
  * @property string $creator
@@ -101,6 +103,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     protected $casts = [
         'active' => 'boolean',
+        'bundled' => 'boolean',
+        'can_bundle' => 'boolean',
         'download_disabled' => 'boolean',
         'epilepsy' => 'boolean',
         'storyboard' => 'boolean',
@@ -145,6 +149,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     const RANKED_PER_DAY = 8;
     const MINIMUM_DAYS_FOR_RANKING = 7;
+
+    const BUNDLED_PER_MODE = [8, 3, 3, 3];
 
     public static function coverSizes()
     {
@@ -333,6 +339,16 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         })->whereDoesntHave('beatmaps', function ($query) use ($modeInts) {
             $query->where('playmode', '<', min($modeInts));
         });
+    }
+
+    public function scopeBundled($query)
+    {
+        return $query->where('bundled', true);
+    }
+
+    public function scopeCanBundle($query)
+    {
+        return $query->where('can_bundle', true);
     }
 
     // one-time checks

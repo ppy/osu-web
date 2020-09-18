@@ -20,6 +20,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
     const AVAILABLE_GENERAL = ['recommended', 'converts'];
     const AVAILABLE_PLAYED = ['any', 'played', 'unplayed'];
     const AVAILABLE_RANKS = ['XH', 'X', 'SH', 'S', 'A', 'B', 'C', 'D'];
+    const AVAILABLE_BUNDLED = ['any', 'can_bundle', 'bundled'];
 
     const LEGACY_STATUS_MAP = [
         '0' => 'ranked',
@@ -67,6 +68,11 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $generals = explode('.', $request['c'] ?? null) ?? [];
             $this->includeConverts = in_array('converts', $generals, true);
             $this->showRecommended = in_array('recommended', $generals, true);
+
+            $this->bundledFilter = $request['bundled'] ?? null;
+            if (!in_array($this->bundledFilter, static::BUNDLED_STATES, true)) {
+                $this->bundledFilter = null;
+            }
         } else {
             $sort = null;
         }
@@ -96,11 +102,16 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $modes[] = ['id' => $id, 'name' => trans("beatmaps.mode.{$name}")];
         }
 
+        $bundled = [];
         $extras = [];
         $general = [];
         $played = [];
         $ranks = [];
         $statuses = [];
+
+        foreach (static::AVAILABLE_BUNDLED as $id) {
+            $bundled[] = ['id' => $id, 'name' => trans("beatmaps.bundled.{$id}")];
+        }
 
         foreach (static::AVAILABLE_EXTRAS as $id) {
             $extras[] = ['id' => $id, 'name' => trans("beatmaps.extra.{$id}")];
@@ -122,7 +133,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $statuses[] = ['id' => $id, 'name' => trans("beatmaps.status.{$id}")];
         }
 
-        return compact('extras', 'general', 'genres', 'languages', 'modes', 'played', 'ranks', 'statuses');
+        return compact('bundled', 'extras', 'general', 'genres', 'languages', 'modes', 'played', 'ranks', 'statuses');
     }
 
     public function isLoginRequired(): bool

@@ -15,6 +15,7 @@ class @BeatmapsetFilter
 
 
   @charToKey:
+    bundled: 'bundled'
     c: 'general'
     m: 'mode'
     s: 'status'
@@ -48,6 +49,7 @@ class @BeatmapsetFilter
 
 
   @defaults:
+    bundled: 'any'
     general: ''
     extra: ''
     genre: null
@@ -59,7 +61,7 @@ class @BeatmapsetFilter
     status: 'leaderboard'
 
 
-  @expand: ['genre', 'language', 'extra', 'rank', 'played']
+  @expand: ['genre', 'language', 'extra', 'rank', 'played', 'bundled']
 
   @fillDefaults: (filters) =>
     ret = {}
@@ -93,6 +95,7 @@ class @BeatmapsetFilter
 
 
   @keys: [
+    'bundled'
     'general'
     'extra'
     'genre'

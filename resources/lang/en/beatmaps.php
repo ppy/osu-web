@@ -222,6 +222,7 @@ return [
                 'extra' => 'Extra',
                 'rank' => 'Rank Achieved',
                 'played' => 'Played',
+                'bundled' => 'Bundled',
             ],
             'sorting' => [
                 'title' => 'Title',
@@ -327,6 +328,11 @@ return [
         'any' => 'Any',
         'played' => 'Played',
         'unplayed' => 'Unplayed',
+    ],
+    'bundled' => [
+        'any' => 'Any',
+        'can_bundle' => 'Can Bundle',
+        'bundled' => 'Currently Bundled',
     ],
     'extra' => [
         'video' => 'Has Video',
