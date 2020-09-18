@@ -34,7 +34,7 @@ const createMainPlayer = () => {
 
     <div class="audio-player__timestamps">
       <div class="audio-player__timestamp audio-player__timestamp--current"></div>
-      /
+      <div class="audio-player__timestamp-separator">/</div>
       <div class="audio-player__timestamp audio-player__timestamp--total"></div>
     </div>
 
@@ -68,7 +68,7 @@ const createPagePlayer = () => {
 
     <div class="audio-player__timestamps">
       <div class="audio-player__timestamp audio-player__timestamp--current"></div>
-      /
+      <div class="audio-player__timestamp-separator">/</div>
       <div class="audio-player__timestamp audio-player__timestamp--total"></div>
     </div>
   `;
@@ -484,13 +484,10 @@ export default class Main {
   private syncState = () => {
     this.updatePlayers((player) => {
       player.dataset.audioAutoplay = this.settings.autoplay ? '1' : '0';
+      player.dataset.audioHasDuration = Number.isFinite(this.audio.duration) ? '1' : '0';
       player.dataset.audioState = this.state;
       player.dataset.audioTimeFormat = this.timeFormat;
-      if (Number.isFinite(this.audio.duration)) {
-        player.style.setProperty('--duration', this.durationFormatted);
-      } else {
-        player.style.removeProperty('--duration');
-      }
+      player.style.setProperty('--duration', this.durationFormatted);
     });
 
     this.syncProgress();

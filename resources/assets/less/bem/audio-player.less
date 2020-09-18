@@ -8,7 +8,7 @@
   --play-button: @fa-var-play;
 
   --current-time: '0:00';
-  --duration: '--:--';
+  --duration: '0:00';
   --progress: 0;
 
   height: @_height;
@@ -206,12 +206,29 @@
     }
 
     &--current {
-      --timestamp: var(--current-time);
+      display: none;
+
+      .@{_top}[data-audio-has-duration="1"] & {
+        display: block;
+        --timestamp: var(--current-time);
+      }
     }
 
     &--total {
-      --timestamp: var(--duration);
       color: @osu-colour-c2;
+      --timestamp: '--:--';
+
+      .@{_top}[data-audio-has-duration="1"] & {
+        --timestamp: var(--duration);
+      }
+    }
+  }
+
+  &__timestamp-separator {
+    display: none;
+
+    .@{_top}[data-audio-has-duration="1"] & {
+      display: block;
     }
   }
 
