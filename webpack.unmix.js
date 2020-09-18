@@ -44,10 +44,10 @@ function resolvePath(...segments) {
 
 //#region Custom plugins
 // Custom manifest dumper
-// Dumps a manifest file and:
-// Strip the hashes out - the problem is when adding assets via additionalAssets, as the copy and concat plugins do,
-// we currently don't have the option to change th asset name to be different from the file name.
-// Prefix the manifest keys with / - the existing php mix helper doesn't work properly without them.
+// Dumps a manifest file for hashless asset name lookups outside of webpack.
+// Uses asset name only unlike webpack-manifest-plugin which prefers chunk name first.
+// webpack-assets-manifest is better but doesn't include assets from copy-webpack-plugin
+// https://github.com/webdeveric/webpack-assets-manifest/issues/49
 class Manifest {
   constructor(options = {}) {
     this.fileName = options.fileName;
