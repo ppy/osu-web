@@ -350,8 +350,7 @@ export default class Editor extends React.Component<Props, State> {
     }
 
     if (props.leaf.timestamp) {
-      // TODO: fix this nested stuff
-      return <span className='beatmapset-discussion-message' {...props.attributes}><span className={'beatmapset-discussion-message__timestamp'}>{children}</span></span>;
+      return <span className='beatmap-discussion-timestamp-decoration' {...props.attributes}>{children}</span>;
     }
 
     return (
