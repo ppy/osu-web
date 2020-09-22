@@ -143,8 +143,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable
     ];
     const HYPEABLE_STATES = [-1, 0, 3];
 
-    const MINIMUM_DAYS_FOR_RANKING = 7;
-
     public static function coverSizes()
     {
         $shapes = ['cover', 'card', 'list', 'slimcover'];
@@ -528,7 +526,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             $this->previous_queue_duration = ($this->queued_at ?? $this->approved_date)->diffinSeconds();
             $this->queued_at = null;
         } elseif ($this->isPending() && $state === 'qualified') {
-            $maxAdjustment = (static::MINIMUM_DAYS_FOR_RANKING - 1) * 24 * 3600;
+            $maxAdjustment = (config('osu.beatmapset.minimum_days_for_rank') - 1) * 24 * 3600;
             $adjustment = min($this->previous_queue_duration, $maxAdjustment);
             $this->queued_at = $currentTime->copy()->subSeconds($adjustment);
         }
@@ -882,7 +880,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             ->count();
         $days = ceil($queueSize / config('osu.beatmapset.rank_per_day'));
 
-        $minDays = static::MINIMUM_DAYS_FOR_RANKING - $this->queued_at->diffInDays();
+        $minDays = config('osu.beatmapset.minimum_days_for_rank') - $this->queued_at->diffInDays();
         $days = max($minDays, $days);
 
         return $days > 0 ? Carbon::now()->addDays($days) : null;
