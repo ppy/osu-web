@@ -28,11 +28,6 @@
               "analyzer": "prefix",
               "search_analyzer": "standard"
             },
-            "_slop": {
-              "type": "text",
-              "analyzer": "username_slop",
-              "search_analyzer": "username_lower"
-            },
             "_whitespace": {
               "type": "text",
               "analyzer": "whitespace"
@@ -49,13 +44,6 @@
   "settings": {
     "index": {
       "analysis": {
-        "filter": {
-          "username_slop_filter": {
-            "type": "ngram",
-            "min_gram": "2",
-            "max_gram": "8"
-          }
-        },
         "analyzer": {
           "prefix": {
             "filter": [
@@ -69,14 +57,6 @@
             ],
             "type": "custom",
             "tokenizer": "whitespace"
-          },
-          "username_slop": {
-            "filter": [
-              "lowercase",
-              "username_slop_filter"
-            ],
-            "type": "custom",
-            "tokenizer": "standard"
           },
           "username_lower": {
             "filter": [
