@@ -7,23 +7,21 @@ import { UserLogoutAction } from 'actions/user-login-actions';
 import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import { clamp } from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { action, observable } from 'mobx';
 import Store from 'stores/store';
 
 @dispatchListener
 export default class ChatStateStore extends Store {
   @observable autoScroll: boolean = false;
+  @observable lastReadId = -1;
   @observable selected: number = 0;
   private selectedIndex = 0;
-
-  @computed
-  get lastReadId() {
-    return this.root.channelStore.get(this.selected)?.lastReadId ?? -1;
-  }
 
   @action
   flushStore() {
     this.selected = 0;
+    this.lastReadId = -1;
+    this.autoScroll = false;
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
@@ -87,6 +85,7 @@ export default class ChatStateStore extends Store {
 
     this.selected = channelId;
     this.selectedIndex = channelStore.channelList.indexOf(channel);
+    this.lastReadId = channel.lastReadId ?? -1;
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
     channelStore.loadChannel(channelId).then(() => {
