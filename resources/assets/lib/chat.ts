@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatPresenceUpdateAction } from 'actions/chat-actions';
+import { ChatChannelSelectAction, ChatPresenceUpdateAction } from 'actions/chat-actions';
 import { dispatch } from 'app-dispatcher';
 import { PresenceJSON, SendToJSON } from 'chat/chat-api-responses';
 import MainView from 'chat/main-view';
@@ -44,9 +44,12 @@ reactTurbolinks.register('chat', MainView, () => {
     }
   }
 
+  if (initialChannel != null) {
+    dispatch(new ChatChannelSelectAction(initialChannel));
+  }
+
   return {
     dataStore: core.dataStore,
-    initialChannel,
     worker: core.chatWorker,
   };
 });

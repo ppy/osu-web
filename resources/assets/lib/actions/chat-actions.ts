@@ -4,7 +4,7 @@
 
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
-import { ChannelJSON, ChannelType, MessageJSON, PresenceJSON } from '../chat/chat-api-responses';
+import { ChannelType, MessageJSON, PresenceJSON } from '../chat/chat-api-responses';
 import DispatcherAction from './dispatcher-action';
 
 export class ChatChannelDeletedAction implements DispatcherAction {
@@ -29,6 +29,11 @@ export class ChatChannelPartAction implements DispatcherAction {
 
 export class ChatChannelJoinAction implements DispatcherAction {
   constructor(readonly channelId: number, readonly name: string, readonly type: ChannelType, readonly icon?: string) {
+  }
+}
+
+export class ChatChannelSelectAction implements DispatcherAction {
+  constructor(readonly channelId: number) {
   }
 }
 

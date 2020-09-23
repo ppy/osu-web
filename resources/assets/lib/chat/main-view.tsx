@@ -13,20 +13,11 @@ import InputBox from './input-box';
 
 interface Props {
   dataStore: RootDataStore;
-  initialChannel?: number;
   worker: ChatWorker;
 }
 
 @observer
 export default class MainView extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-
-    if (this.props.initialChannel) {
-      this.props.dataStore.uiState.chat.selectChannel(this.props.initialChannel);
-    }
-  }
-
   componentDidMount() {
     $('html').addClass('osu-layout--mobile-app');
     // this.props.worker.startPolling();
