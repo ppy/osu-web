@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatChannelDeletedAction, ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-actions';
+import { ChatChannelDeletedAction, ChatChannelSwitchedAction, ChatMessageSendAction } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { WindowFocusAction } from 'actions/window-focus-actions';
@@ -63,7 +63,7 @@ export default class ChatStateStore extends Store {
       this.root.channelStore.markAsRead(channelId);
     });
 
-    dispatch(new ChatChannelSwitchAction(channel));
+    dispatch(new ChatChannelSwitchedAction(channel));
   }
 
   @action

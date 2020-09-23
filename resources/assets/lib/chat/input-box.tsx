@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-actions';
+import { ChatChannelSwitchedAction, ChatMessageSendAction } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
@@ -59,7 +59,7 @@ export default class InputBox extends React.Component<any, any> implements Dispa
   handleDispatchAction(action: DispatcherAction) {
     if (action instanceof WindowFocusAction) {
       this.focusInput();
-    } else if (action instanceof ChatChannelSwitchAction) {
+    } else if (action instanceof ChatChannelSwitchedAction) {
       if (osu.isDesktop()) {
         this.focusInput();
       }

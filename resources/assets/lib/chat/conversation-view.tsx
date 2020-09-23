@@ -15,7 +15,7 @@ import { Spinner } from 'spinner';
 import RootDataStore from 'stores/root-data-store';
 import { StringWithComponent } from 'string-with-component';
 import { UserAvatar } from 'user-avatar';
-import { ChatChannelSwitchAction } from '../actions/chat-actions';
+import { ChatChannelSwitchedAction } from '../actions/chat-actions';
 import DispatcherAction from '../actions/dispatcher-action';
 import DispatchListener from '../dispatch-listener';
 import { MessageDivider } from './message-divider';
@@ -108,7 +108,7 @@ export default class ConversationView extends React.Component<Props> implements 
   }
 
   handleDispatchAction(action: DispatcherAction) {
-    if (action instanceof ChatChannelSwitchAction) {
+    if (action instanceof ChatChannelSwitchedAction) {
       this.didSwitchChannel = true;
     }
   }

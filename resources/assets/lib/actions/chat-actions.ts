@@ -32,7 +32,7 @@ export class ChatChannelJoinAction implements DispatcherAction {
   }
 }
 
-export class ChatChannelSwitchAction implements DispatcherAction {
+export class ChatChannelSwitchedAction implements DispatcherAction {
   constructor(readonly channel: Channel) {
   }
 }
