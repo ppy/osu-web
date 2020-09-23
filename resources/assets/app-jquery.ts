@@ -3,8 +3,9 @@
 
 // import jquery + plugins
 
-import $ from 'jquery';
-import {} from 'jquery-ujs'
+// tslint:disable: ordered-imports
+import * as $ from 'jquery';
+import 'jquery-ujs';
 import 'bootstrap';
 import 'timeago/jquery.timeago.js';
 import 'qtip2/dist/jquery.qtip.js';
@@ -21,8 +22,16 @@ import 'blueimp-file-upload/js/jquery.fileupload.js';
 import 'photoswipe/dist/photoswipe.js';
 import 'photoswipe/dist/photoswipe-ui-default.js';
 
-import moment from 'moment';
+import * as moment from 'moment';
 import Turbolinks from 'turbolinks';
+
+declare global {
+  interface Window {
+    $: any;
+    jQuery: any;
+    moment: any;
+  }
+}
 
 window.Turbolinks = Turbolinks;
 window.$ = $;

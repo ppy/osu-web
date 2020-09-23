@@ -96,7 +96,7 @@ class Manifest {
 //#region entrypoints and output
 const entry = {
   'app': [
-    './resources/assets/app.js',
+    './resources/assets/app.ts',
     './resources/assets/less/app.less',
   ],
 };
@@ -213,7 +213,7 @@ const rules = [
     enforce: 'pre',
     exclude: /(node_modules)/,
     loader: 'import-glob-loader',
-    test: /\.(js|coffee)$/,
+    test: /\.(js|ts|coffee)$/,
   },
   {
     exclude: /node_modules/,
