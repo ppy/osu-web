@@ -6,7 +6,6 @@
 namespace Tests\Controllers\Chat\Channels;
 
 use App\Models\Chat;
-use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
 use App\Models\UserRelation;
