@@ -23,7 +23,7 @@ export class ChatChannelNewMessages implements DispatcherAction {
 }
 
 export class ChatChannelPartAction implements DispatcherAction {
-  constructor(readonly channelId: number, readonly shouldSync = true) {
+  constructor(readonly channelId: number) {
   }
 }
 

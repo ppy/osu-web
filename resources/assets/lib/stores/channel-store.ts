@@ -227,6 +227,13 @@ export default class ChannelStore extends Store {
   }
 
   @action
+  private delete(channelId: number) {
+    if (this.channels.delete(channelId)) {
+      dispatch(new ChatChannelDeletedAction(channelId));
+    }
+  }
+
+  @action
   private async handleChatChannelLoadEarlierMessages(dispatchedAction: ChatChannelLoadEarlierMessages) {
     const channelId = dispatchedAction.channelId;
     const channel = this.get(channelId);
@@ -272,9 +279,7 @@ export default class ChannelStore extends Store {
       this.api.partChannel(dispatchedAction.channelId, window.currentUser.id);
     }
 
-    if (this.channels.delete(dispatchedAction.channelId)) {
-      dispatch(new ChatChannelDeletedAction(dispatchedAction.channelId));
-    }
+    this.delete(dispatchedAction.channelId);
   }
 
   @action
@@ -324,7 +329,7 @@ export default class ChannelStore extends Store {
       }
 
       if (!presence.find((json) => json.channel_id === channel.channelId)) {
-        dispatch(new ChatChannelPartAction(channel.channelId, false));
+        this.delete(channel.channelId);
       }
     });
   }
