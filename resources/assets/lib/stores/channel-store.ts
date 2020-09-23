@@ -7,7 +7,6 @@ import {
   ChatChannelLoadEarlierMessages,
   ChatChannelNewMessages,
   ChatChannelPartAction,
-  ChatChannelSwitchAction,
   ChatMessageAddAction,
   ChatMessageSendAction,
   ChatMessageUpdateAction,
@@ -312,8 +311,7 @@ export default class ChannelStore extends Store {
         runInAction(() => {
           this.channels.delete(message.channelId);
           const newChannel = this.addNewConversation(response.channel, response.message);
-          dispatch(new ChatChannelSwitchAction(newChannel));
-          dispatch(new ChatChannelPartAction(message.channelId));
+          this.root.uiState.chat.selectChannel(newChannel.channelId); // FIXME: decouple
         });
       } else {
         const response = await this.api.sendMessage(message);
