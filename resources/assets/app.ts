@@ -5,8 +5,6 @@
 import 'url-polyfill';
 import 'app-deps';
 
-import './app-jquery.ts';
-
 // import-glob-loader doesn't seem to work with resolve: {}?
 import './coffee/_classes/*.coffee';
 
