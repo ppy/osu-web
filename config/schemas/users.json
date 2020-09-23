@@ -23,6 +23,11 @@
         "username": {
           "type": "text",
           "fields": {
+            "_prefix": {
+              "type": "text",
+              "analyzer": "prefix",
+              "search_analyzer": "standard"
+            },
             "_slop": {
               "type": "text",
               "analyzer": "username_slop",
@@ -52,6 +57,12 @@
           }
         },
         "analyzer": {
+          "prefix": {
+            "filter": [
+              "lowercase"
+            ],
+            "tokenizer": "prefix"
+          },
           "whitespace": {
             "filter": [
               "lowercase"
@@ -73,6 +84,13 @@
             ],
             "type": "custom",
             "tokenizer": "standard"
+          }
+        },
+        "tokenizer": {
+          "prefix": {
+            "type": "edge_ngram",
+            "min_gram": "2",
+            "max_gram": "20"
           }
         }
       },
