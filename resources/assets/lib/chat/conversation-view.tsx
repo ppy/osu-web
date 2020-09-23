@@ -45,7 +45,7 @@ export default class ConversationView extends React.Component<Props> implements 
 
   @computed
   get currentChannel() {
-    return this.dataStore.channelStore.channels.get(this.dataStore.uiState.chat.selected);
+    return this.dataStore.uiState.chat.selectedChannel;
   }
 
   constructor(props: Props) {
@@ -66,7 +66,7 @@ export default class ConversationView extends React.Component<Props> implements 
     }
 
     const dataStore = this.dataStore;
-    const channel = dataStore.channelStore.channels.get(dataStore.uiState.chat.selected);
+    const channel = dataStore.uiState.chat.selectedChannel;
     if (!channel?.loaded) {
       return;
     }

@@ -15,15 +15,19 @@ import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import RootDataStore from 'stores/root-data-store';
 
+interface Props {
+  dataStore?: RootDataStore;
+}
+
 @inject('dataStore')
 @observer
 @dispatchListener
-export default class InputBox extends React.Component<any, any> implements DispatchListener {
+export default class InputBox extends React.Component<Props> implements DispatchListener {
+  readonly dataStore: RootDataStore = this.props.dataStore!;
 
   @computed
   get currentChannel() {
-    const dataStore: RootDataStore = this.props.dataStore;
-    return dataStore.channelStore.get(dataStore.uiState.chat.selected);
+    return this.dataStore.uiState.chat.selectedChannel;
   }
 
   private inputBoxRef = React.createRef<HTMLTextAreaElement>();
@@ -123,7 +127,7 @@ export default class InputBox extends React.Component<any, any> implements Dispa
 
     const message = new Message();
     message.senderId = currentUser.id;
-    message.channelId = this.props.dataStore.uiState.chat.selected;
+    message.channelId = this.dataStore.uiState.chat.selected;
     message.content = messageText;
 
     // Technically we don't need to check command here, but doing so in case we add more commands

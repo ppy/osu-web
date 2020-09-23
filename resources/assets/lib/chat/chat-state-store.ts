@@ -7,7 +7,7 @@ import { UserLogoutAction } from 'actions/user-login-actions';
 import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import { clamp } from 'lodash';
-import { action, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import Store from 'stores/store';
 
 @dispatchListener
@@ -16,6 +16,11 @@ export default class ChatStateStore extends Store {
   @observable lastReadId = -1;
   @observable selected = 0;
   private selectedIndex = 0;
+
+  @computed
+  get selectedChannel() {
+    return this.root.channelStore.get(this.selected);
+  }
 
   @action
   flushStore() {
@@ -77,7 +82,7 @@ export default class ChatStateStore extends Store {
       return;
     }
 
-    if (!(this.root.channelStore.get(this.selected)?.transient ?? true)) {
+    if (!(this.selectedChannel?.transient ?? true)) {
       // don't disable autoScroll if we're 'switching' away from the 'new chat' screen
       //   e.g. keep autoScroll enabled to jump to the newly sent message when restarting an old conversation
       this.autoScroll = false;
