@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { dispatch } from 'app-dispatcher';
-import { dispatchChatChannelEvent, isChatChannelEventJson } from 'chat/chat-events';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import XHRCollection from 'interfaces/xhr-collection';
 import { route } from 'laroute';
@@ -159,8 +158,6 @@ export default class Worker {
         this.loadMore();
       }
       $.publish('user-verification:success');
-    } else if (isChatChannelEventJson(eventData)) {
-      dispatchChatChannelEvent(eventData);
     }
   }
 

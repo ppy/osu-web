@@ -20,12 +20,12 @@ interface Props {
 export default class MainView extends React.Component<Props> {
   componentDidMount() {
     $('html').addClass('osu-layout--mobile-app');
-    // this.props.worker.startPolling();
+    this.props.worker.startPolling();
   }
 
   componentWillUnmount() {
     $('html').removeClass('osu-layout--mobile-app');
-    // this.props.worker.stopPolling();
+    this.props.worker.stopPolling();
   }
 
   render(): React.ReactNode {

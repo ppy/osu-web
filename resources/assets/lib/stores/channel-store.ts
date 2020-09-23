@@ -3,7 +3,6 @@
 
 import {
   ChatChannelDeletedAction,
-  ChatChannelJoinAction,
   ChatChannelLoadEarlierMessages,
   ChatChannelNewMessages,
   ChatChannelPartAction,
@@ -21,7 +20,7 @@ import ChatAPI from 'chat/chat-api';
 import { ChannelJSON, MessageJSON, PresenceJSON } from 'chat/chat-api-responses';
 import { maxBy } from 'lodash';
 import { action, computed, observable, runInAction } from 'mobx';
-import Channel, { defaultIcon } from 'models/chat/channel';
+import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 import Store from 'stores/store';
@@ -136,8 +135,6 @@ export default class ChannelStore extends Store {
   handleDispatchAction(dispatchedAction: DispatcherAction) {
     if (dispatchedAction instanceof ChatChannelLoadEarlierMessages) {
       this.handleChatChannelLoadEarlierMessages(dispatchedAction);
-    } else if (dispatchedAction instanceof ChatChannelJoinAction) {
-      this.handleChatChannelJoinAction(dispatchedAction);
     } else if (dispatchedAction instanceof ChatChannelNewMessages) {
       this.handleChatChannelNewMessages(dispatchedAction);
     } else if (dispatchedAction instanceof ChatChannelPartAction) {
@@ -227,15 +224,6 @@ export default class ChannelStore extends Store {
     this.nonPmChannels.forEach((channel) => {
       channel.messages = channel.messages.filter((message) => !userIds.has(message.senderId));
     });
-  }
-
-  @action
-  private handleChatChannelJoinAction(dispatchedAction: ChatChannelJoinAction) {
-      const channel = this.getOrCreate(dispatchedAction.channelId);
-      channel.icon = dispatchedAction.icon ?? defaultIcon;
-      channel.name = dispatchedAction.name;
-      channel.type = dispatchedAction.type;
-      channel.metaLoaded = true;
   }
 
   @action
