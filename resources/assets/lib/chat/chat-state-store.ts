@@ -12,9 +12,9 @@ import Store from 'stores/store';
 
 @dispatchListener
 export default class ChatStateStore extends Store {
-  @observable autoScroll: boolean = false;
+  @observable autoScroll = false;
   @observable lastReadId = -1;
-  @observable selected: number = 0;
+  @observable selected = 0;
   private selectedIndex = 0;
 
   @action
