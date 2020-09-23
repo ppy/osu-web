@@ -30,6 +30,7 @@ declare global {
     $: any;
     jQuery: any;
     moment: any;
+    Turbolinks: Turbolinks;
   }
 }
 

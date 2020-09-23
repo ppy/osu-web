@@ -13,7 +13,7 @@ interface ProcessEnv {
 declare var process: Process;
 
 // TODO: Turbolinks 5.3 is Typescript, so this should be updated then.
-declare var Turbolinks: TurbolinksStatic;
+declare var Turbolinks: import('turbolinks').default;
 
 // our helpers
 declare var tooltipDefault: TooltipDefault;
@@ -142,23 +142,4 @@ interface LangClass {
 
 interface TooltipDefault {
   remove: (el: HTMLElement) => void;
-}
-
-interface TurbolinksAction {
-  action: 'advance' | 'replace' | 'restore';
-}
-
-interface TurbolinksLocation {
-    getPath(): string;
-    isHTML(): boolean;
-}
-
-interface TurbolinksStatic {
-  controller: any;
-  supported: boolean;
-
-  clearCache(): void;
-  setProgressBarDelay(delayInMilliseconds: number): void;
-  uuid(): string;
-  visit(location: string, options?: TurbolinksAction): void;
 }
