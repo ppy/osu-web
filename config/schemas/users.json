@@ -47,9 +47,11 @@
         "analyzer": {
           "prefix": {
             "filter": [
-              "lowercase"
+              "lowercase",
+              "prefix"
             ],
-            "tokenizer": "prefix"
+            "type": "custom",
+            "tokenizer": "whitespace"
           },
           "whitespace": {
             "filter": [
@@ -66,7 +68,7 @@
             "tokenizer": "standard"
           }
         },
-        "tokenizer": {
+        "filter": {
           "prefix": {
             "type": "edge_ngram",
             "min_gram": "2",
