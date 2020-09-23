@@ -5,12 +5,10 @@
 
 namespace App\Models\Chat;
 
-use App\Events\UserActionEvent;
 use App\Exceptions\API;
 use App\Jobs\Notifications\ChannelMessage;
 use App\Models\Match\Match;
 use App\Models\User;
-use App\Transformers\Chat\MessageTransformer;
 use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
 use Illuminate\Support\Str;
@@ -235,13 +233,7 @@ class Channel extends Model
 
         if ($this->isPM()) {
             $this->unhide();
-
-            $notification = new ChannelMessage($message, $sender);
-            foreach ($notification->getReceiverIds() as $receiverId) {
-                event(new UserActionEvent($receiverId, 'chat.message.add', json_item($message, 'Chat\Message')));
-            };
-
-            $notification->dispatch();
+            (new ChannelMessage($message, $sender))->dispatch();
         }
 
         Datadog::increment('chat.channel.send', 1, ['target' => $this->type]);
@@ -269,9 +261,6 @@ class Channel extends Model
             $userChannel->save();
         }
 
-        // FIXME: send correct icons, etc.
-        event(new UserActionEvent($user->getKey(), 'chat.channel.join', ['channel_id' => $userChannel->channel_id]));
-
         Datadog::increment('chat.channel.join', 1, ['type' => $this->type]);
     }
 
@@ -292,8 +281,6 @@ class Channel extends Model
         } else {
             $userChannel->delete();
         }
-
-        event(new UserActionEvent($user->getKey(), 'chat.channel.part', ['channel_id' => $userChannel->channel_id]));
 
         Datadog::increment('chat.channel.part', 1, ['type' => $this->type]);
     }

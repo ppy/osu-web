@@ -147,7 +147,7 @@ Route::group(['middleware' => ['web']], function () {
                 Route::delete('{channel}/users/{user}', 'ChannelsController@part')->name('part');
                 Route::put('{channel}/mark-as-read/{message}', 'ChannelsController@markAsRead')->name('mark-as-read');
             });
-            Route::apiResource('channels', 'ChannelsController', ['only' => ['index', 'show']]);
+            Route::apiResource('channels', 'ChannelsController', ['only' => ['index']]);
         });
         Route::resource('chat', 'ChatController', ['only' => ['index']]);
     });
@@ -358,7 +358,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'requir
                 Route::delete('{channel}/users/{user}', 'ChannelsController@part')->name('part');
                 Route::put('{channel}/mark-as-read/{message}', 'ChannelsController@markAsRead')->name('mark-as-read');
             });
-            Route::apiResource('channels', 'ChannelsController', ['only' => ['index', 'show', 'store']]);
+            Route::apiResource('channels', 'ChannelsController', ['only' => ['index', 'store']]);
         });
 
         Route::get('changelog/{stream}/{build}', 'ChangelogController@build')->name('changelog.build');
