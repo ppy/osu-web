@@ -11,10 +11,6 @@
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/nanaya/slack-php"
-    },
-    {
-      "type": "vcs",
       "url": "https://github.com/nanaya/xsolla-sdk-php"
     }
   ],
@@ -39,7 +35,6 @@
     "league/flysystem-aws-s3-v3": "*",
     "league/fractal": "*",
     "league/html-to-markdown": "*",
-    "maknz/slack": "dev-laravel-any",
     "mariuzzo/laravel-js-localization": "*",
     "mpociot/laravel-apidoc-generator": "*",
     "paypal/rest-api-sdk-php": "*",

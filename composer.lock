@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef0fdf25b31794ec636428dc9d1635e8",
+    "content-hash": "4ddecf6dfc12f377b4abb2d812e2bdbf",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -297,13 +297,13 @@
             "authors": [
                 {
                     "name": "Alex Corley",
-                    "email": "anthroprose@gmail.com",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "anthroprose@gmail.com"
                 },
                 {
                     "name": "Datadog",
-                    "email": "dev@datadoghq.com",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "dev@datadoghq.com"
                 }
             ],
             "description": "This is an extremely simple PHP datadogstatsd client",
@@ -3077,57 +3077,6 @@
                 "server"
             ],
             "time": "2019-07-13T18:58:26+00:00"
-        },
-        {
-            "name": "maknz/slack",
-            "version": "dev-laravel-any",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nanaya/slack-php.git",
-                "reference": "2f8534e23ffd5d6255f347f61a94c40a17029f42"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nanaya/slack-php/zipball/2f8534e23ffd5d6255f347f61a94c40a17029f42",
-                "reference": "2f8534e23ffd5d6255f347f61a94c40a17029f42",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "guzzlehttp/guzzle": "~6.0|~5.0|~4.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "0.9.*",
-                "phpunit/phpunit": "4.2.*"
-            },
-            "suggest": {
-                "illuminate/support": "Required for Laravel support"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Maknz\\Slack\\": "src/"
-                }
-            },
-            "license": [
-                "BSD-2-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "maknz",
-                    "email": "github@mak.geek.nz"
-                }
-            ],
-            "description": "A simple PHP package for sending messages to Slack, with a focus on ease of use and elegant syntax. Includes Laravel support out of the box.",
-            "keywords": [
-                "laravel",
-                "slack"
-            ],
-            "support": {
-                "source": "https://github.com/nanaya/slack-php/tree/laravel-any"
-            },
-            "time": "2019-09-27T02:54:26+00:00"
         },
         {
             "name": "mariuzzo/laravel-js-localization",
@@ -7897,12 +7846,12 @@
             "version": "v0.8.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/tightenco/ziggy.git",
+                "url": "https://github.com/tighten/ziggy.git",
                 "reference": "4c4b29bc658153f0771b0a145173ce83a7b6b885"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tightenco/ziggy/zipball/4c4b29bc658153f0771b0a145173ce83a7b6b885",
+                "url": "https://api.github.com/repos/tighten/ziggy/zipball/4c4b29bc658153f0771b0a145173ce83a7b6b885",
                 "reference": "4c4b29bc658153f0771b0a145173ce83a7b6b885",
                 "shasum": ""
             },
@@ -8727,18 +8676,18 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "email": "arne@blankerts.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "arne@blankerts.de"
                 },
                 {
                     "name": "Sebastian Heuer",
-                    "email": "sebastian@phpeople.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "sebastian@phpeople.de"
                 },
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Component for reading phar.io manifest information from a PHP Archive (PHAR)",
@@ -8774,18 +8723,18 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "email": "arne@blankerts.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "arne@blankerts.de"
                 },
                 {
                     "name": "Sebastian Heuer",
-                    "email": "sebastian@phpeople.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "sebastian@phpeople.de"
                 },
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Library for handling version information and constraints",
@@ -9169,8 +9118,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "FilterIterator implementation that filters files based on a list of suffixes.",
@@ -9260,8 +9209,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Utility class for timing",
@@ -10171,9 +10120,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "maknz/slack": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
