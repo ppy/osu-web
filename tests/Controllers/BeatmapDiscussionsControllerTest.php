@@ -285,7 +285,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
     private function bngUserGroup($user)
     {
-        $table = (new UserGroup)->getTable();
+        $table = (new UserGroup())->getTable();
 
         $conditions = [
             'user_id' => $user->user_id,

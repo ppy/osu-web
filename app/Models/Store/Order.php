@@ -116,8 +116,10 @@ class Order extends Model
 
     public function scopeWhereOrderNumber($query, $orderNumber)
     {
-        if (!preg_match(static::ORDER_NUMBER_REGEX, $orderNumber, $matches)
-            || config('store.order.prefix') !== $matches['prefix']) {
+        if (
+            !preg_match(static::ORDER_NUMBER_REGEX, $orderNumber, $matches)
+            || config('store.order.prefix') !== $matches['prefix']
+        ) {
             // hope there's no order_id 0 :D
             return $query->where('order_id', '=', 0);
         }

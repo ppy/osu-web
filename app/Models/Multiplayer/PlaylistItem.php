@@ -50,7 +50,7 @@ class PlaylistItem extends Model
 
     public static function fromJsonParams($json)
     {
-        $obj = new self;
+        $obj = new self();
         foreach (['beatmap_id', 'ruleset_id'] as $field) {
             $obj->$field = array_get($json, $field);
             if (!present($obj->$field)) {

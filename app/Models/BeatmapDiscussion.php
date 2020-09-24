@@ -182,7 +182,7 @@ class BeatmapDiscussion extends Model
     public function startingPost()
     {
         return $this->hasOne(BeatmapDiscussionPost::class)->whereNotExists(function ($query) {
-            $table = (new BeatmapDiscussionPost)->getTable();
+            $table = (new BeatmapDiscussionPost())->getTable();
 
             $query->selectRaw(1)
                 ->from(DB::raw("{$table} d"))
@@ -393,7 +393,8 @@ class BeatmapDiscussion extends Model
             'kudosu_denied_by_id',
         ];
 
-        if ($this->exists &&
+        if (
+            $this->exists &&
             count(array_diff(array_keys($this->getDirty()), $modifiableWhenLocked)) > 0 &&
             $this->isLocked()
         ) {

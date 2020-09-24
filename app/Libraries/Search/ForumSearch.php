@@ -21,7 +21,7 @@ class ForumSearch extends Search
 {
     public function __construct(?ForumSearchParams $params = null)
     {
-        parent::__construct(Post::esIndexName(), $params ?? new ForumSearchParams);
+        parent::__construct(Post::esIndexName(), $params ?? new ForumSearchParams());
     }
 
     // TODO: maybe move to a response/view helper?
@@ -81,7 +81,7 @@ class ForumSearch extends Search
             ->scoreMode('max')
             ->source(['topic_id', 'post_id', 'post_time', 'poster_id', 'search_content'])
             ->highlight(
-                (new Highlight)
+                (new Highlight())
                     ->field('search_content')
                     ->fragmentSize(static::HIGHLIGHT_FRAGMENT_SIZE)
                     ->numberOfFragments(3)
@@ -105,7 +105,7 @@ class ForumSearch extends Search
         $search = (new BasicSearch(Post::esIndexName(), 'forumsearch_firstposts'))
             ->size(count($ids))
             ->query(
-                (new BoolQuery)
+                (new BoolQuery())
                     ->filter(['term' => ['type' => 'posts']])
                     ->filter(['terms' => ['post_id' => $ids]])
             )->source(['topic_id', 'search_content']);

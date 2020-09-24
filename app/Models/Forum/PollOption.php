@@ -78,7 +78,7 @@ class PollOption extends Model
 
     public static function updateTotals($filters)
     {
-        $staticTable = (new static)->table;
+        $staticTable = (new static())->table;
         $countQuery = PollVote::where([
             'topic_id' => DB::raw($staticTable.'.topic_id'),
             'poll_option_id' => DB::raw($staticTable.'.poll_option_id'),

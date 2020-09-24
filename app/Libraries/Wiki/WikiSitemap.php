@@ -31,7 +31,7 @@ class WikiSitemap
         ];
 
         return cache_remember_mutexed('wiki:sitemap', Page::CACHE_DURATION, $default, function () {
-            return (new static)->generate()->toArray();
+            return (new static())->generate()->toArray();
         });
     }
 

@@ -384,7 +384,8 @@ class SanityTest extends DuskTestCase
                 $url = optional($matches[1])[0];
 
                 // ignore missing non-critical assets
-                if (($returnCode === 404 && starts_with($url, 'https://assets.ppy.sh')) ||
+                if (
+                    ($returnCode === 404 && starts_with($url, 'https://assets.ppy.sh')) ||
                     ($returnCode === 403 && starts_with($url, 'https://i.ppy.sh'))
                 ) {
                     continue;

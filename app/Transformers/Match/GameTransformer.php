@@ -34,7 +34,7 @@ class GameTransformer extends TransformerAbstract
     public function includeBeatmap(Game $game)
     {
         if ($game->beatmap) {
-            return $this->item($game->beatmap, new BeatmapCompactTransformer);
+            return $this->item($game->beatmap, new BeatmapCompactTransformer());
         }
     }
 
@@ -42,7 +42,7 @@ class GameTransformer extends TransformerAbstract
     {
         return $this->collection(
             $game->scores,
-            new ScoreTransformer
+            new ScoreTransformer()
         );
     }
 }

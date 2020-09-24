@@ -195,7 +195,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
         // use relevant mode when sorting on nested field
         if (starts_with($sort->field, 'beatmaps.')) {
-            $sortFilter = new BoolQuery;
+            $sortFilter = new BoolQuery();
 
             if (!$this->includeConverts) {
                 $sortFilter->filter(['term' => ['beatmaps.convert' => false]]);

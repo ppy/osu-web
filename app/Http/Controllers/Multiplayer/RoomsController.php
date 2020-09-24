@@ -130,7 +130,7 @@ class RoomsController extends BaseController
     public function store()
     {
         try {
-            $room = (new Room)->startGame(auth()->user(), request()->all());
+            $room = (new Room())->startGame(auth()->user(), request()->all());
 
             return json_item(
                 $room

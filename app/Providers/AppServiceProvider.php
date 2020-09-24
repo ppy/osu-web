@@ -46,7 +46,7 @@ class AppServiceProvider extends ServiceProvider
             );
         });
 
-        $this->app->make('translator')->setSelector(new OsuMessageSelector);
+        $this->app->make('translator')->setSelector(new OsuMessageSelector());
 
         app('url')->forceScheme(substr(config('app.url'), 0, 5) === 'https' ? 'https' : 'http');
     }
@@ -68,7 +68,7 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton('groups', function () {
-            return new Groups;
+            return new Groups();
         });
 
         $this->app->singleton('hash', function ($app) {
@@ -84,13 +84,13 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('route-section', function () {
-            return new RouteSection;
+            return new RouteSection();
         });
 
         $this->app->singleton('cookie', function ($app) {
             $config = $app->make('config')->get('session');
 
-            return (new OsuCookieJar)->setDefaultPathAndDomain(
+            return (new OsuCookieJar())->setDefaultPathAndDomain(
                 $config['path'],
                 $config['domain'],
                 $config['secure'],

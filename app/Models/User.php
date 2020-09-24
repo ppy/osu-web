@@ -952,8 +952,8 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function favouriteBeatmapsets()
     {
-        $favouritesTable = (new FavouriteBeatmapset)->getTable();
-        $beatmapsetsTable = (new Beatmapset)->getTable();
+        $favouritesTable = (new FavouriteBeatmapset())->getTable();
+        $beatmapsetsTable = (new Beatmapset())->getTable();
 
         return Beatmapset::select("{$beatmapsetsTable}.*")
             ->join($favouritesTable, "{$favouritesTable}.beatmapset_id", '=', "{$beatmapsetsTable}.beatmapset_id")
@@ -1856,8 +1856,8 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         }
 
         if ($this->isDirty('user_email') && present($this->user_email)) {
-            $emailValidator = new EmailValidator;
-            if (!$emailValidator->isValid($this->user_email, new NoRFCWarningsValidation)) {
+            $emailValidator = new EmailValidator();
+            if (!$emailValidator->isValid($this->user_email, new NoRFCWarningsValidation())) {
                 $this->validationErrors()->add('user_email', '.invalid_email');
             }
 
