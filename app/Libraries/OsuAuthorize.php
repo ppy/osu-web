@@ -1764,14 +1764,14 @@ class OsuAuthorize
             return;
         }
 
-        if ($user->isSessionVerified()) {
-            if (config('osu.user.min_plays_allow_verified_bypass')) {
+        if (config('osu.user.min_plays_allow_verified_bypass')) {
+            if ($user->isSessionVerified()) {
                 return;
             }
 
-            throw new AuthorizationException('play_more');
+            throw new AuthorizationException('require_verification');
         }
 
-        throw new AuthorizationException('require_verification');
+        throw new AuthorizationException('play_more');
     }
 }
