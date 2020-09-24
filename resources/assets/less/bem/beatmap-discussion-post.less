@@ -38,10 +38,12 @@
   }
 
   &--unread {
+    position: relative;
+
     &::before {
       .full-size();
-      content: ' ';
-      background-color: @blue-darker;
+      content: '';
+      background-color: hsl(var(--hsl-blue-3));
       width: 5px;
     }
   }
@@ -113,6 +115,11 @@
     @media @desktop {
       flex-direction: row;
       flex: 1;
+    }
+
+    // Paddings for thread starter is handled by its parent.
+    .@{_top}--discussion & {
+      padding: 0;
     }
 
     .@{_top}--reply & {

@@ -86,7 +86,7 @@ class PasswordResetController extends Controller
             ]], 422);
         }
 
-        $params = get_params(request(), 'user', ['password', 'password_confirmation']);
+        $params = get_params(request()->all(), 'user', ['password', 'password_confirmation']);
         $user->validatePasswordConfirmation();
 
         if ($user->update($params)) {

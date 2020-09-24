@@ -85,7 +85,7 @@ return [
 
     'user_notification_digest' => [
         'new' => 'Ich wollte dich nur wissen lassen, dass es neue Updates auf Artikeln gibt, die Du beobachtest.',
-        'settings' => 'E-Mail-Benachrichtigungs-Einstellungen ändern:',
+        'settings' => 'E-Mail-Benachrichtigungseinstellungen ändern:',
         'subject' => 'Neue osu!-Benachrichtigungen',
     ],
 

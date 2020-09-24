@@ -14,7 +14,7 @@ return [
 
         'title' => [
             '_' => 'Neuigkeiten :info',
-            'info' => 'Startseite',
+            'info' => 'startseite',
         ],
     ],
 

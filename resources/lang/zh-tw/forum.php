@@ -76,6 +76,7 @@ return [
         'deleted' => '已刪除的主題',
         'go_to_latest' => '查看最後的貼文',
         'has_replied' => '您已回覆此主題',
+        'in_forum' => '',
         'latest_post' => ':when :user',
         'latest_reply_by' => '最後回覆: :user',
         'new_topic' => '發表新主題',

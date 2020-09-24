@@ -12,25 +12,9 @@ use ChaseConey\LaravelDatadogHelper\Datadog;
 
 class Chat
 {
-    public static function sendPrivateMessage($sender, $target, $message, $isAction)
+    // Do the restricted user lookup before calling this.
+    public static function sendPrivateMessage(User $sender, User $target, $message, $isAction)
     {
-        if ($sender === null || $target === null) {
-            abort(422);
-        }
-
-        if (!($sender instanceof User)) {
-            $sender = User::findOrFail($sender);
-        }
-
-        if (!($target instanceof User)) {
-            $target = User::lookup($target, 'id');
-
-            if ($target === null) {
-                // restricted users should be treated as if they do not exist
-                abort(404, 'target user not found');
-            }
-        }
-
         if ($target->is($sender)) {
             abort(422, "can't send message to same user");
         }

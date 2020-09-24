@@ -84,7 +84,7 @@ return [
         'failed' => 'Login incorreto',
         'forgot' => 'Esqueceu sua senha?',
         'info' => 'Por favor, conecte-se para continuar',
-        'invalid_captcha' => '',
+        'invalid_captcha' => 'Captcha inválido, atualize a página e tente novamente.',
         'locked_ip' => 'seu endereço IP está bloqueado. Por favor, espere alguns minutos.',
         'password' => 'Senha',
         'register' => "Você não tem uma conta no osu!? Faça uma!",

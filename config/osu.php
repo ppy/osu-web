@@ -32,7 +32,6 @@ return [
         'sentry' => env('BM_PROCESSOR_SENTRY'),
     ],
     'beatmapset' => [
-        'client_bundle' => array_map('intval', explode(' ', env('BEATMAPSET_CLIENT_BUNDLE', '3756 163112 140662 151878 190390 123593 241526 299224'))),
         'discussion_kudosu_per_user' => get_int(env('BEATMAPSET_DISCUSSION_KUDOSU_PER_USER')) ?? 10,
         'discussion_review_enabled' => get_bool(env('BEATMAPSET_DISCUSSION_REVIEW_ENABLED', false)),
         'discussion_review_max_blocks' => get_int(env('BEATMAPSET_DISCUSSION_REVIEW_MAXIMUM_BLOCKS', 10)),
@@ -43,6 +42,7 @@ return [
         'favourite_limit' => intval(env('BEATMAPSET_USER_FAVOURITE_LIMIT', 100)),
         'favourite_limit_supporter' => intval(env('BEATMAPSET_USER_FAVOURITE_LIMIT_SUPPORTER', 1000)),
         'guest_advanced_search' => get_bool(env('BEATMAPSET_GUEST_ADVANCED_SEARCH')) ?? false,
+        'minimum_days_for_rank' => get_int(env('BEATMAPSET_MINIMUM_DAYS_FOR_RANK')) ?? 7,
         'rank_per_day' => get_int(env('BEATMAPSET_RANK_PER_DAY')) ?? 8,
         'rank_per_run' => get_int(env('BEATMAPSET_RANK_PER_RUN')) ?? 2,
         'required_hype' => get_int(env('BEATMAPSET_REQUIRED_HYPE')) ?? 5,
