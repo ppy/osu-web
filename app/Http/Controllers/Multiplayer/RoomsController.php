@@ -22,7 +22,8 @@ class RoomsController extends BaseController
         $params = request()->all();
         $params['user'] = auth()->user();
 
-        return Room::search($params,
+        return Room::search(
+            $params,
             ['host.country', 'playlist.beatmap.beatmapset', 'playlist.beatmap.baseMaxCombo'],
             [
                 'host.country',

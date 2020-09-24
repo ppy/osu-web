@@ -244,7 +244,7 @@ class BeatmapsetSearch extends RecordSearch
                     ['match' => ['approved' => Beatmapset::STATES['approved']]],
                     ['match' => ['approved' => Beatmapset::STATES['loved']]],
                 ]);
-            break;
+                break;
         }
 
         $mainQuery->filter($query);

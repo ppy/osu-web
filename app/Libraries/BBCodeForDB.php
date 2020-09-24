@@ -217,7 +217,8 @@ class BBCodeForDB
         return preg_replace(
             "#\[(notice)\](.*?)\[/\\1\]#s",
             "[\\1:{$this->uid}]\\2[/\\1:{$this->uid}]",
-            $text);
+            $text
+        );
     }
 
     public function parseProfile($text)

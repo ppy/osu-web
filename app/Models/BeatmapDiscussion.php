@@ -242,8 +242,7 @@ class BeatmapDiscussion extends Model
 
     public function canGrantKudosu()
     {
-        return
-            in_array($this->attributes['message_type'] ?? null, static::KUDOSUABLE_TYPES, true) &&
+        return in_array($this->attributes['message_type'] ?? null, static::KUDOSUABLE_TYPES, true) &&
             $this->user_id !== $this->beatmapset->user_id &&
             !$this->trashed() &&
             !$this->kudosu_denied;
@@ -278,9 +277,9 @@ class BeatmapDiscussion extends Model
 
         $beatmapsetKudosuGranted = (int) KudosuHistory
             ::where('kudosuable_type', $this->getMorphClass())
-            ->whereIn('kudosuable_id',
-                static
-                    ::where('kudosu_denied', '=', false)
+            ->whereIn(
+                'kudosuable_id',
+                static::where('kudosu_denied', '=', false)
                     ->where('beatmapset_id', '=', $this->beatmapset_id)
                     ->where('user_id', '=', $this->user_id)
                     ->select('id')

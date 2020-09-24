@@ -41,7 +41,8 @@ class GameTransformer extends TransformerAbstract
     public function includeScores(Game $game)
     {
         return $this->collection(
-            $game->scores, new ScoreTransformer
+            $game->scores,
+            new ScoreTransformer
         );
     }
 }

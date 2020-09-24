@@ -243,7 +243,7 @@ class SanityTest extends DuskTestCase
             });
         }
 
-        $this->output("\n\n{$this->passed}/".($this->passed + $this->failed).' passed ('.round(($this->passed / ($this->passed + $this->failed)) * 100, 2)."%) [{$this->skipped} skipped]\n\n");
+        $this->output("\n\n{$this->passed}/".($this->passed + $this->failed).' passed ('.round($this->passed / ($this->passed + $this->failed) * 100, 2)."%) [{$this->skipped} skipped]\n\n");
 
         if ($this->testFailed !== null) {
             // triggered delayed test failure
@@ -384,8 +384,7 @@ class SanityTest extends DuskTestCase
                 $url = optional($matches[1])[0];
 
                 // ignore missing non-critical assets
-                if (
-                    ($returnCode === 404 && starts_with($url, 'https://assets.ppy.sh')) ||
+                if (($returnCode === 404 && starts_with($url, 'https://assets.ppy.sh')) ||
                     ($returnCode === 403 && starts_with($url, 'https://i.ppy.sh'))
                 ) {
                     continue;

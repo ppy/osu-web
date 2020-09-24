@@ -266,7 +266,7 @@ class Order extends Model
             if ($primaryShipping === $i->product->base_shipping) {
                 $total += $i->product->base_shipping * 1 + ($i->quantity - 1) * $i->product->next_shipping;
             } else {
-                $total += ($i->quantity) * $i->product->next_shipping;
+                $total += $i->quantity * $i->product->next_shipping;
             }
         }
 

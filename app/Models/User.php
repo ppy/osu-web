@@ -241,12 +241,18 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             ->count();
 
         switch ($changesToDate) {
-            case 0: return 0;
-            case 1: return 8;
-            case 2: return 16;
-            case 3: return 32;
-            case 4: return 64;
-            default: return 100;
+            case 0:
+                return 0;
+            case 1:
+                return 8;
+            case 2:
+                return 16;
+            case 3:
+                return 32;
+            case 4:
+                return 64;
+            default:
+                return 100;
         }
     }
 
@@ -412,10 +418,13 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         // An interactive graph of the formula can be found at https://www.desmos.com/calculator/s7bxytxbbt
 
         return $this->user_lastvisit
-                ->addDays(intval(
+            ->addDays(
+                intval(
                     $minDays +
                     1580 * (1 - pow(M_E, $playCount * $expMod * -1 / 5900)) +
-                    ($playCount * $linMod * 8 / 5900)));
+                    ($playCount * $linMod * 8 / 5900)
+                )
+            );
     }
 
     public function validateChangeUsername(string $username, string $type = 'paid')
@@ -1403,8 +1412,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function hasProfile()
     {
-        return
-            $this->user_id !== null
+        return $this->user_id !== null
             && !$this->isRestricted()
             && $this->group_id !== app('groups')->byIdentifier('no_profile')->getKey();
     }

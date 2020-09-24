@@ -45,6 +45,7 @@ class WikiSitemap
     {
         $keys = explode('/', $key);
 
+        // phpcs:ignore
         while (count($keys) > 1) {
             $key = array_shift($keys);
 

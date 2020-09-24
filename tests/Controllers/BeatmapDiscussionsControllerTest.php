@@ -232,10 +232,10 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ])
             ->assertSuccessful()
             ->assertJsonFragment(
-              [
-                  'user_id' => $this->user->getKey(),
-                  'message' => $timestampedIssueText,
-              ]
+                [
+                    'user_id' => $this->user->getKey(),
+                    'message' => $timestampedIssueText,
+                ]
             )
             // ensure timestamp was parsed correctly
             ->assertJsonFragment(

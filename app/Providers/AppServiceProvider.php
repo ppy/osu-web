@@ -91,7 +91,10 @@ class AppServiceProvider extends ServiceProvider
             $config = $app->make('config')->get('session');
 
             return (new OsuCookieJar)->setDefaultPathAndDomain(
-                $config['path'], $config['domain'], $config['secure'], $config['same_site'] ?? null
+                $config['path'],
+                $config['domain'],
+                $config['secure'],
+                $config['same_site'] ?? null
             );
         });
 
