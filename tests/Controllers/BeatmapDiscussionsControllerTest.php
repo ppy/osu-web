@@ -244,10 +244,10 @@ class BeatmapDiscussionsControllerTest extends TestCase
                 ]
             )
             ->assertJsonFragment(
-              [
-                  'user_id' => $this->user->getKey(),
-                  'message' => $issueText,
-              ]
+                [
+                    'user_id' => $this->user->getKey(),
+                    'message' => $issueText,
+                ]
             );
 
         // ensure 3 discussions/posts are created - one for the review and one for each embedded problem
