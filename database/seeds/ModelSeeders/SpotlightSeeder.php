@@ -6,7 +6,6 @@
 use App\Models\Beatmap;
 use App\Models\Score\Best\Model as ScoresBestModel;
 use App\Models\Spotlight;
-use App\Models\Users;
 use App\Models\UserStatistics\Spotlight\Model as UserStatisticsModel;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;

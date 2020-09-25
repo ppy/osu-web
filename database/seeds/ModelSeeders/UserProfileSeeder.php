@@ -27,7 +27,7 @@ class UserProfileSeeder extends Seeder
 
             // FAVOURITE BEATMAPS AND BEATMAP PLAYCOUNTS FOR EACH USER
 
-            foreach (App\Models\User::all()as $usr) {
+            foreach (App\Models\User::all() as $usr) {
                 $bms = $usr->scoresBestOsu()->get();
                 if (count($bms) < 1) {
                     $this->command->info('Can\'t seed favourite maps, map playcounts or leaders due to having no beatmap data.');
@@ -39,7 +39,7 @@ class UserProfileSeeder extends Seeder
                 foreach ($bms as $bm) {
                     $beatmapset = $bm->beatmap->beatmapset;
                     DB::table('osu_favouritemaps')->where('user_id', $usr_id)->where('beatmapset_id', $beatmapset->beatmapset_id)->delete();
-                    $fav = new App\Models\FavouriteBeatmapset;
+                    $fav = new App\Models\FavouriteBeatmapset();
                     $fav->beatmapset_id = $beatmapset->beatmapset_id;
                     $fav->user_id = $usr_id;
                     $fav->save();
@@ -48,7 +48,7 @@ class UserProfileSeeder extends Seeder
 
                     $bm = $bms[rand(0, count($bms) - 1)];
                     DB::table('osu_user_beatmap_playcount')->where('user_id', $usr_id)->where('beatmap_id', $bm['beatmap_id'])->delete();
-                    $playcount = new App\Models\BeatmapPlaycount;
+                    $playcount = new App\Models\BeatmapPlaycount();
 
                     $playcount->user_id = $usr_id;
                     $playcount->beatmap_id = $bm['beatmap_id'];
@@ -63,7 +63,7 @@ class UserProfileSeeder extends Seeder
                             DB::table('osu_leaders')->where('beatmap_id', $bm['beatmap_id'])->delete();
                         }
                     }
-                    $leader = new App\Models\BeatmapLeader\Osu;
+                    $leader = new App\Models\BeatmapLeader\Osu();
                     $leader->beatmap_id = $bm['beatmap_id'];
                     $leader->user_id = $usr_id;
                     $leader->score_id = $bm['score_id'];

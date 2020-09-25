@@ -26,9 +26,9 @@ class UserSeeder extends Seeder
 
         // Store some constants
         $this->improvement_speeds = [
-            (rand(100, 110) / 100), // Fast Learner
-            (rand(100, 102) / 100), // Slow Learner
-            (rand(100, 115) / 100), // Genius / Multiaccounter :P
+            rand(100, 110) / 100, // Fast Learner
+            rand(100, 102) / 100, // Slow Learner
+            rand(100, 115) / 100, // Genius / Multiaccounter :P
         ];
         $this->common_countries = ['US', 'JP', 'CN', 'DE', 'TW', 'RU', 'KR', 'PL', 'CA', 'FR', 'BR', 'GB', 'AU'];
 
@@ -55,14 +55,23 @@ class UserSeeder extends Seeder
             // Create rank histories for all 4 modes
             for ($c = 0; $c <= 3; $c++) {
                 switch ($c) {
-                    case 0: $rank = $st->rank; break;
-                    case 1: $rank = $st1->rank; break;
-                    case 2: $rank = $st2->rank; break;
-                    case 3: $rank = $st3->rank; break;
-                    default: $rank = $st->rank;
+                    case 0:
+                        $rank = $st->rank;
+                        break;
+                    case 1:
+                        $rank = $st1->rank;
+                        break;
+                    case 2:
+                        $rank = $st2->rank;
+                        break;
+                    case 3:
+                        $rank = $st3->rank;
+                        break;
+                    default:
+                        $rank = $st->rank;
                 }
 
-                $hist = new App\Models\RankHistory;
+                $hist = new App\Models\RankHistory();
 
                 $hist->mode = $c; // 0 = standard, 1 = taiko etc...
 
@@ -90,7 +99,7 @@ class UserSeeder extends Seeder
                         }
                         $hist->$r = $new_rank;
                     } else {
-                        $new_rank = round($hist->$prev_r * (rand(998, 999) / 1000));
+                        $new_rank = round($hist->$prev_r * rand(998, 999) / 1000);
                         if ($new_rank < 1) {
                             $new_rank = 1;
                         }
