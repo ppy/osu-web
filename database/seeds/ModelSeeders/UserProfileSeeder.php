@@ -3,6 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+use Illuminate\Database\QueryException;
 use Illuminate\Database\Seeder;
 
 class UserProfileSeeder extends Seeder
@@ -15,16 +16,6 @@ class UserProfileSeeder extends Seeder
     public function run()
     {
         try {
-            // DB::table('osu_favouritemaps')->delete();
-            // DB::table('osu_user_beatmap_playcount')->delete();
-            // DB::table('osu_leaders')->delete();
-
-            $allusers = App\Models\User::all()->toArray();
-            $userids = [];
-            for ($ct = 0; $ct < count($allusers); $ct++) {
-                $userids[] = $allusers[$ct]['user_id'];
-            }
-
             // FAVOURITE BEATMAPS AND BEATMAP PLAYCOUNTS FOR EACH USER
 
             foreach (App\Models\User::all() as $usr) {
@@ -70,7 +61,7 @@ class UserProfileSeeder extends Seeder
                     $leader->save();
                 }
             }
-        } catch (\Illuminate\Database\QueryException $e) {
+        } catch (QueryException $e) {
             $this->command->error("Error: Unable to save User Profile Data\r\n".$e->getMessage());
         } catch (Exception $ex) {
             $this->command->error("Error: Unable to save User Profile Data\r\n".$ex->getMessage());
