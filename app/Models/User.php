@@ -1848,14 +1848,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         }
 
         if ($this->isDirty('user_email') && present($this->user_email)) {
-            $emailValidator = new EmailValidator;
-            if (!$emailValidator->isValid($this->user_email, new NoRFCWarningsValidation)) {
-                $this->validationErrors()->add('user_email', '.invalid_email');
-            }
-
-            if (static::where('user_id', '<>', $this->getKey())->where('user_email', '=', $this->user_email)->exists()) {
-                $this->validationErrors()->add('user_email', '.email_already_used');
-            }
+            $this->isValidEmail();
         }
 
         if ($this->isDirty('country_acronym') && present($this->country_acronym)) {
@@ -1894,6 +1887,34 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         }
 
         return $this->validationErrors()->isEmpty();
+    }
+
+    public function isValidEmail()
+    {
+        $emailValidator = new EmailValidator;
+        if (!$emailValidator->isValid($this->user_email, new NoRFCWarningsValidation)) {
+            $this->validationErrors()->add('user_email', '.invalid_email');
+
+            // no point validating further if address isn't valid.
+            return false;
+        }
+
+        $banlist = DB::table('phpbb_banlist')->where('ban_end', '>=', now()->timestamp)->orWhere('ban_end', 0);
+        foreach (model_pluck($banlist, 'ban_email') as $check) {
+            if (preg_match('#^'.str_replace('\*', '.*?', preg_quote($check, '#')).'$#i', $this->user_email)) {
+                $this->validationErrors()->add('user_email', '.email_not_allowed');
+
+                return false;
+            }
+        }
+
+        if (static::where('user_id', '<>', $this->getKey())->where('user_email', '=', $this->user_email)->exists()) {
+            $this->validationErrors()->add('user_email', '.email_already_used');
+
+            return false;
+        }
+
+        return true;
     }
 
     public function preferredLocale()
