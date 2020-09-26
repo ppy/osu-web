@@ -39,7 +39,7 @@ class RoomTransformer extends TransformerAbstract
     {
         return $this->item(
             $room->host,
-            new UserCompactTransformer
+            new UserCompactTransformer()
         );
     }
 
@@ -53,14 +53,14 @@ class RoomTransformer extends TransformerAbstract
             ->get()
             ->pluck('user');
 
-        return $this->collection($users, new UserCompactTransformer);
+        return $this->collection($users, new UserCompactTransformer());
     }
 
     public function includePlaylist(Room $room)
     {
         return $this->collection(
             $room->playlist,
-            new PlaylistItemTransformer
+            new PlaylistItemTransformer()
         );
     }
 
@@ -68,7 +68,7 @@ class RoomTransformer extends TransformerAbstract
     {
         return $this->collection(
             $room->scores()->completed()->get(),
-            new ScoreTransformer
+            new ScoreTransformer()
         );
     }
 }

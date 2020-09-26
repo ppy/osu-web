@@ -21,7 +21,7 @@ class BBCodeForDBTest extends TestCase
         $baseFilePath = "{$path}/{$name}.base.txt";
         $dbFilePath = "{$path}/{$name}.db.txt";
 
-        $text = new BBCodeForDB;
+        $text = new BBCodeForDB();
         $text->uid = $this->uid;
         $text->text = file_get_contents($baseFilePath);
 

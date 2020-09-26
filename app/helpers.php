@@ -200,6 +200,7 @@ function cleanup_cookies()
 
     $domains = [$host, ''];
 
+    // phpcs:ignore
     while (count($hostParts) > 1) {
         array_shift($hostParts);
         $domains[] = implode('.', $hostParts);
@@ -859,12 +860,18 @@ function link_to_user($id, $username = null, $color = null, $classNames = null)
 function issue_icon($issue)
 {
     switch ($issue) {
-        case 'added': return 'fas fa-cogs';
-        case 'assigned': return 'fas fa-user';
-        case 'confirmed': return 'fas fa-exclamation-triangle';
-        case 'resolved': return 'far fa-check-circle';
-        case 'duplicate': return 'fas fa-copy';
-        case 'invalid': return 'far fa-times-circle';
+        case 'added':
+            return 'fas fa-cogs';
+        case 'assigned':
+            return 'fas fa-user';
+        case 'confirmed':
+            return 'fas fa-exclamation-triangle';
+        case 'resolved':
+            return 'far fa-check-circle';
+        case 'duplicate':
+            return 'fas fa-copy';
+        case 'invalid':
+            return 'far fa-times-circle';
     }
 }
 
@@ -1058,7 +1065,7 @@ function base62_encode($input)
     $remaining = $input;
 
     do {
-        $output = $numbers[($remaining % $base)].$output;
+        $output = $numbers[$remaining % $base].$output;
         $remaining = floor($remaining / $base);
     } while ($remaining > 0);
 
@@ -1322,7 +1329,7 @@ function deltree($dir)
 {
     $files = array_diff(scandir($dir), ['.', '..']);
     foreach ($files as $file) {
-        (is_dir("$dir/$file")) ? deltree("$dir/$file") : unlink("$dir/$file");
+        is_dir("$dir/$file") ? deltree("$dir/$file") : unlink("$dir/$file");
     }
 
     return rmdir($dir);
@@ -1406,7 +1413,7 @@ function array_rand_val($array)
 function model_pluck($builder, $key, $class = null)
 {
     if ($class) {
-        $selectKey = (new $class)->qualifyColumn($key);
+        $selectKey = (new $class())->qualifyColumn($key);
     }
 
     $result = [];
@@ -1468,7 +1475,7 @@ function parse_time_to_carbon($value)
 
 function format_duration_for_display($seconds)
 {
-    return floor($seconds / 60).':'.str_pad(($seconds % 60), 2, '0', STR_PAD_LEFT);
+    return floor($seconds / 60).':'.str_pad($seconds % 60, 2, '0', STR_PAD_LEFT);
 }
 
 // Converts a standard image url to a retina one
@@ -1519,15 +1526,18 @@ function first_paragraph($html, $split_on = "\n")
     $text = strip_tags($html);
     $match_pos = strpos($text, $split_on);
 
-    return ($match_pos === false) ? $text : substr($text, 0, $match_pos);
+    return $match_pos === false ? $text : substr($text, 0, $match_pos);
 }
 
 function build_icon($prefix)
 {
     switch ($prefix) {
-        case 'add': return 'plus';
-        case 'fix': return 'wrench';
-        case 'misc': return 'question';
+        case 'add':
+            return 'plus';
+        case 'fix':
+            return 'wrench';
+        case 'misc':
+            return 'question';
     }
 }
 

@@ -39,7 +39,7 @@ abstract class Model extends BaseModel
 
     public static function queueIndexingForUser(User $user)
     {
-        $instance = new static;
+        $instance = new static();
         $table = $instance->getTable();
         $modeId = Beatmap::MODES[static::getMode()];
 

@@ -6,7 +6,6 @@
 namespace App\Http\Controllers\Store;
 
 use App\Libraries\OrderCheckout;
-use Request;
 
 class CartController extends Controller
 {

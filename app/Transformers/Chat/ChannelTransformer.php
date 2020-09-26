@@ -53,7 +53,7 @@ class ChannelTransformer extends TransformerAbstract
             $messages = [];
         }
 
-        return $this->collection($messages, new MessageTransformer);
+        return $this->collection($messages, new MessageTransformer());
     }
 
     public function includeUsers(Channel $channel)

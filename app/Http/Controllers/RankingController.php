@@ -128,7 +128,7 @@ class RankingController extends Controller
                 ->orderBy('performance', 'desc');
         } else {
             $class = UserStatistics\Model::getClass($mode, $this->params['variant']);
-            $table = (new $class)->getTable();
+            $table = (new $class())->getTable();
             $stats = $class
                 ::with(['user', 'user.country'])
                 ->whereHas('user', function ($userQuery) {

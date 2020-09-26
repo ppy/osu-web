@@ -92,7 +92,7 @@ class UserNotificationOption extends Model
 
     public function setNameAttribute($value)
     {
-        if (!(static::supportsNotifications($value))) {
+        if (!static::supportsNotifications($value)) {
             $value = null;
         }
 

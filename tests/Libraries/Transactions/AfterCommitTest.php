@@ -254,9 +254,9 @@ class AfterCommitTest extends TestCase
         return resolve(TransactionStateManager::class)->current($connection);
     }
 
-    //
-    // Test double helpers.
-    //
+    /*
+       Test double helpers.
+    */
 
     private function notAfterCommittable()
     {

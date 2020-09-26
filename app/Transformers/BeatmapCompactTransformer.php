@@ -35,7 +35,7 @@ class BeatmapCompactTransformer extends TransformerAbstract
 
         return $beatmapset === null
             ? $this->primitive(null)
-            : $this->item($beatmap->beatmapset, new $this->beatmapsetTransformer);
+            : $this->item($beatmap->beatmapset, new $this->beatmapsetTransformer());
     }
 
     public function includeChecksum(Beatmap $beatmap)
@@ -55,7 +55,7 @@ class BeatmapCompactTransformer extends TransformerAbstract
 
         foreach (['exit', 'fail'] as $type) {
             if (!isset($result[$type])) {
-                $result[$type] = (new BeatmapFailtimes)->data;
+                $result[$type] = (new BeatmapFailtimes())->data;
             }
         }
 

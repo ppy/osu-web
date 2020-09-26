@@ -143,7 +143,8 @@ class ChangelogController extends Controller
             config('osu.changelog.build_history_interval'),
             function () use ($build) {
                 return $this->chartConfig($build->updateStream);
-            });
+            }
+        );
 
         if (is_json_request()) {
             return $buildJson;
