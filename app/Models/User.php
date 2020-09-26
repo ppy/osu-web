@@ -1907,8 +1907,8 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function isValidEmail()
     {
-        $emailValidator = new EmailValidator;
-        if (!$emailValidator->isValid($this->user_email, new NoRFCWarningsValidation)) {
+        $emailValidator = new EmailValidator();
+        if (!$emailValidator->isValid($this->user_email, new NoRFCWarningsValidation())) {
             $this->validationErrors()->add('user_email', '.invalid_email');
 
             // no point validating further if address isn't valid.
