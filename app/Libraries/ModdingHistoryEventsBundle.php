@@ -41,7 +41,7 @@ class ModdingHistoryEventsBundle
 
     public static function forListing(?User $user, array $searchParams)
     {
-        $obj = new static;
+        $obj = new static();
         $obj->user = $user;
         $obj->searchParams = $searchParams;
         $obj->isModerator = priv_check('BeatmapDiscussionModerate')->can();

@@ -11,6 +11,6 @@ trait MacroableModel
 {
     public static function bootMacroableModel()
     {
-        static::addGlobalScope(new MacroableModelScope);
+        static::addGlobalScope(new MacroableModelScope());
     }
 }

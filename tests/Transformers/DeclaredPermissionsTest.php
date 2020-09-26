@@ -27,8 +27,8 @@ class DeclaredPermissionsTest extends TestCase
      */
     public function testPrivilegeExists($class, ?string $include, string $privilege)
     {
-        /** @var TransformerAbstract */
-        $transformer = new $class;
+        /** @var TransformerAbstract $transformer */
+        $transformer = new $class();
         $allIncludes = array_merge($transformer->getDefaultIncludes(), $transformer->getAvailableIncludes());
 
         if ($include !== null) {
@@ -53,7 +53,7 @@ class DeclaredPermissionsTest extends TestCase
         $data = [];
 
         foreach (static::getTransformerClasses() as $class) {
-            $transformer = new $class;
+            $transformer = new $class();
 
             if ($transformer->getRequiredPermission() !== null) {
                 $data[] = [$class, null, $transformer->getRequiredPermission()];
@@ -78,8 +78,10 @@ class DeclaredPermissionsTest extends TestCase
             $class = static::classFromFileInfo($file);
             // use ReflectionClass so the qualified names are normalized.
             $reflectionClass = new ReflectionClass($class);
-            if ($reflectionClass->isSubclassOf(FractalTrasformerAbstract::class)
-                && $reflectionClass->getName() !== (new ReflectionClass(TransformerAbstract::class))->getName()) {
+            if (
+                $reflectionClass->isSubclassOf(FractalTrasformerAbstract::class)
+                && $reflectionClass->getName() !== (new ReflectionClass(TransformerAbstract::class))->getName()
+            ) {
                 $classes[] = $class;
             }
         }

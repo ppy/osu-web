@@ -93,9 +93,9 @@ abstract class Model extends BaseModel
     {
         $bestClass = Best\Model::getClassByString(static::getMode());
 
-        $instance = new static;
+        $instance = new static();
         $statsTable = $instance->getTable();
-        $bestTable = (new $bestClass)->getTable();
+        $bestTable = (new $bestClass())->getTable();
 
         $instance->getConnection()->update(
             "UPDATE {$statsTable} SET accuracy_count = 0, accuracy_total = 0, ranked_score = (SELECT COALESCE(SUM(score), 0) FROM (SELECT MAX(score) AS score FROM {$bestTable} WHERE user_id = {$user->getKey()} GROUP BY beatmap_id) s) WHERE user_id = {$user->getKey()}"

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 $factory->define(App\Models\Multiplayer\Room::class, function (Faker\Generator $faker) {
-    return  [
+    return [
         'user_id' => function (array $self) {
             return factory(App\Models\User::class)->create()->getKey();
         },

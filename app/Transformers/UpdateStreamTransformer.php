@@ -26,7 +26,7 @@ class UpdateStreamTransformer extends TransformerAbstract
 
     public function includeLatestBuild(UpdateStream $stream)
     {
-        return $this->item($stream->latestBuild(), new BuildTransformer);
+        return $this->item($stream->latestBuild(), new BuildTransformer());
     }
 
     public function includeUserCount(UpdateStream $stream)

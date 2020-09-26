@@ -20,7 +20,6 @@ class OsuMarkdownProcessor
     private $environment;
     private $event;
     private $node;
-    private $previousNode;
 
     private $listLevel;
     private $tocSlugs;
@@ -47,7 +46,6 @@ class OsuMarkdownProcessor
         $this->listLevel = 0;
 
         while (($this->event = $walker->next()) !== null) {
-            $this->previousNode = $this->node;
             $this->node = $this->event->getNode();
 
             $this->updateLocaleLink();

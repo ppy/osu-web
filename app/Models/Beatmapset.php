@@ -1094,7 +1094,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     public function getDisplayArtist(?User $user)
     {
-        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization;
+        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
         if ($profileCustomization->beatmapset_title_show_original) {
             return presence($this->artist_unicode) ?? $this->artist;
         }
@@ -1104,7 +1104,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     public function getDisplayTitle(?User $user)
     {
-        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization;
+        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
         if ($profileCustomization->beatmapset_title_show_original) {
             return presence($this->title_unicode) ?? $this->title;
         }

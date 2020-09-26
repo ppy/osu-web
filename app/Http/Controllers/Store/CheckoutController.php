@@ -12,7 +12,6 @@ use App\Traits\StoreNotifiable;
 use Auth;
 use DB;
 use Exception;
-use Request;
 
 class CheckoutController extends Controller
 {

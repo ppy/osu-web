@@ -187,7 +187,7 @@ class Forum extends Model
 
     public function setForumParentsAttribute($value)
     {
-        $this->attributes['forum_parents'] = ($value === null || count($value) === 0) ? '' : serialize($value);
+        $this->attributes['forum_parents'] = $value === null || count($value) === 0 ? '' : serialize($value);
     }
 
     /**

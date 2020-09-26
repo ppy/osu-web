@@ -104,14 +104,14 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeActiveTournamentBanner(User $user)
     {
-        return $this->item($user->profileBanners()->active(), new ProfileBannerTransformer);
+        return $this->item($user->profileBanners()->active(), new ProfileBannerTransformer());
     }
 
     public function includeBadges(User $user)
     {
         return $this->collection(
             $user->badges()->orderBy('awarded', 'DESC')->get(),
-            new UserBadgeTransformer
+            new UserBadgeTransformer()
         );
     }
 
@@ -127,7 +127,7 @@ class UserCompactTransformer extends TransformerAbstract
     {
         return $user->country === null
             ? $this->primitive(null)
-            : $this->item($user->country, new CountryTransformer);
+            : $this->item($user->country, new CountryTransformer());
     }
 
     public function includeCover(User $user)
@@ -173,7 +173,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeGroups(User $user)
     {
-        return $this->collection($user->visibleGroups(), new GroupTransformer);
+        return $this->collection($user->visibleGroups(), new GroupTransformer());
     }
 
     public function includeIsAdmin(User $user)
@@ -230,7 +230,7 @@ class UserCompactTransformer extends TransformerAbstract
     {
         return $this->collection(
             $user->monthlyPlaycounts,
-            new UserMonthlyPlaycountTransformer
+            new UserMonthlyPlaycountTransformer()
         );
     }
 
@@ -268,14 +268,14 @@ class UserCompactTransformer extends TransformerAbstract
 
         return $rankHistoryData === null
             ? $this->primitive(null)
-            : $this->item($rankHistoryData, new RankHistoryTransformer);
+            : $this->item($rankHistoryData, new RankHistoryTransformer());
     }
 
     public function includeReplaysWatchedCounts(User $user)
     {
         return $this->collection(
             $user->replaysWatchedCounts,
-            new UserReplaysWatchedCountTransformer
+            new UserReplaysWatchedCountTransformer()
         );
     }
 
@@ -290,7 +290,7 @@ class UserCompactTransformer extends TransformerAbstract
     {
         $stats = $user->statistics($params->get('mode')[0]);
 
-        return $this->item($stats, new UserStatisticsTransformer);
+        return $this->item($stats, new UserStatisticsTransformer());
     }
 
     public function includeSupportLevel(User $user)
