@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => '登入以繼續。',
     'require_verification' => '需要驗證帳戶!',
     'restricted' => "帳戶處於限制模式，無法進行該操作。",

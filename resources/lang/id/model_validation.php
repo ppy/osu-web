@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Nama pengguna tidak diperbolehkan untuk berada di dalam kata sandi.',
         'email_already_used' => 'Alamat email sudah digunakan.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Negara tidak ada dalam basis data.',
         'invalid_discord' => 'Nama pengguna Discord tidak valid.',
         'invalid_email' => "Tampaknya bukan alamat email yang valid.",

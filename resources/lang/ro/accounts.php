@@ -51,19 +51,19 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'primește notificări pentru noi probleme pe hărți calificate de modelele următoare',
         'beatmapset_disqualify' => 'primește notificări pentru când beatmap-urile din modurile următoare sunt descalificate',
-        'comment_reply' => '',
+        'comment_reply' => 'primește notificări pentru răspunsurile la comentariile tale',
         'title' => 'Notificări',
         'topic_auto_subscribe' => 'activați notificările automat pe noi topici de pe forum pe care le poți creea',
 
         'options' => [
             '_' => 'opțiuni de livrare',
             'beatmapset:modding' => 'modatul de beatmap',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => 'mesaje chat private',
+            'comment_new' => 'comentarii noi',
             'forum_topic_reply' => 'răspuns topic',
             'mail' => 'mail',
             'push' => 'push',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => 'medalie de utilizator deblocată',
         ],
     ],
 

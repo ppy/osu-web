@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Kérlek jelentkezz be a folytatáshoz.',
     'require_verification' => 'Kérlek, hagyd jóvá a folytatáshoz.',
     'restricted' => "Felfüggesztett állapotban erre nem vagy képes.",

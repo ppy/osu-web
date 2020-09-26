@@ -76,7 +76,7 @@ return [
         'action' => 'osu! letöltése',
 
         'help' => [
-            '_' => '',
+            '_' => 'ha meccs indításakor vagy fiók létrehozásánál problémába ütközöl, :help_forum_link vagy :support_button.',
             'help_forum_link' => '',
             'support_button' => '',
         ],
