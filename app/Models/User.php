@@ -1856,15 +1856,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         }
 
         if ($this->isDirty('user_email') && present($this->user_email)) {
-            $emailValidator = new EmailValidator();
-
-            if (!$emailValidator->isValid($this->user_email, new NoRFCWarningsValidation())) {
-                $this->validationErrors()->add('user_email', '.invalid_email');
-            }
-
-            if (static::where('user_id', '<>', $this->getKey())->where('user_email', '=', $this->user_email)->exists()) {
-                $this->validationErrors()->add('user_email', '.email_already_used');
-            }
+            $this->isValidEmail();
         }
 
         if ($this->isDirty('country_acronym') && present($this->country_acronym)) {

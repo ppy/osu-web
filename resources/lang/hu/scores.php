@@ -8,11 +8,11 @@ return [
         'title' => ':username ezen :title [:version]',
 
         'beatmap' => [
-            'by' => 'Mappolva [x játékos] által',
+            'by' => ':artist dala',
         ],
 
         'player' => [
-            'by' => 'Lejátszva [x játékos] által',
+            'by' => 'Játékos',
             'submitted_on' => 'Beküldve',
 
             'rank' => [

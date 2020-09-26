@@ -20,9 +20,9 @@ return [
     'username_change' => '<strong>:previousUsername</strong> telah mengubah nama penggunanya menjadi <strong><em>:user</strong></em>!',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
-        'ranked' => '',
+        'approved' => 'approved',
+        'loved' => 'loved',
+        'qualified' => 'qualified',
+        'ranked' => 'ranked',
     ],
 ];

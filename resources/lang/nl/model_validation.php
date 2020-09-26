@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Wachtwoorden mogen je gebruikersnaam niet bevatten.',
         'email_already_used' => 'Dit e-mailadres is al in gebruik.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Land niet in de database.',
         'invalid_discord' => 'Discord gebruikersnaam is ongeldig.',
         'invalid_email' => "Dit lijkt niet een geldig e-mailadres te zijn.",
