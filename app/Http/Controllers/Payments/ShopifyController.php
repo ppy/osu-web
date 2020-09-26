@@ -70,7 +70,7 @@ class ShopifyController extends Controller
                 app('sentry')->getClient()->captureMessage(
                     'Received unknown webhook for order from Shopify',
                     null,
-                    (new Scope)
+                    (new Scope())
                         ->setExtra('type', $type)
                         ->setExtra('order_id', $orderId)
                 );

@@ -17,7 +17,7 @@
 use Carbon\Carbon;
 
 $factory->define(App\Models\BanchoStats::class, function (Faker\Generator $faker) {
-    return  [
+    return [
         'users_irc' => 100 + $faker->randomNumber(2),
         'users_osu' => 10000 + $faker->randomNumber(4),
         'multiplayer_games' => 200 + $faker->randomNumber(3),

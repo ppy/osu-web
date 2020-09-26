@@ -202,7 +202,7 @@ class LegacyInterOpController extends Controller
     {
         $params = request('messages');
 
-        $results = new stdClass;
+        $results = new stdClass();
 
         if (!isset($params)) {
             return response()->json($results);

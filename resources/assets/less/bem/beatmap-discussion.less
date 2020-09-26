@@ -43,7 +43,6 @@
 
   &__discussion {
     .default-box-shadow();
-    .default-border-radius();
 
     flex: 1;
     min-width: 0;
@@ -68,6 +67,10 @@
           100% { opacity: 0.5; }
         }
       }
+    }
+
+    @media @desktop {
+      .default-border-radius();
     }
   }
 

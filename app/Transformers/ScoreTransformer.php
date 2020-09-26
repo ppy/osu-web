@@ -90,12 +90,12 @@ class ScoreTransformer extends TransformerAbstract
             $score->beatmap->playmode = Beatmap::MODES[$score->getMode()];
         }
 
-        return $this->item($score->beatmap, new BeatmapTransformer);
+        return $this->item($score->beatmap, new BeatmapTransformer());
     }
 
     public function includeBeatmapset($score)
     {
-        return $this->item($score->beatmap->beatmapset, new BeatmapsetCompactTransformer);
+        return $this->item($score->beatmap->beatmapset, new BeatmapsetCompactTransformer());
     }
 
     public function includeWeight($score)
@@ -116,6 +116,6 @@ class ScoreTransformer extends TransformerAbstract
     {
         $user = $score->user ?? new DeletedUser(['user_id' => $score->user_id]);
 
-        return $this->item($user, new UserCompactTransformer);
+        return $this->item($user, new UserCompactTransformer());
     }
 }

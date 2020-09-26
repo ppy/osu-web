@@ -23,12 +23,12 @@ $factory->define(App\Models\Beatmap::class, function (Faker\Generator $faker) {
     $hitsSlider = $hits - $hitsSpinner - $hitsNormal;
     $playCount = rand(0, 50000);
 
-    return  [
+    return [
         'filename' => $name,
         'checksum' => str_repeat('0', 32),
         'version' => $faker->domainWord,
         'total_length' => $length,
-        'hit_length' => ($length - rand(0, 20)),
+        'hit_length' => $length - rand(0, 20),
         'countNormal' => $hitsNormal,
         'countSlider' => $hitsSlider,
         'countSpinner' => $hitsSpinner,
@@ -39,14 +39,14 @@ $factory->define(App\Models\Beatmap::class, function (Faker\Generator $faker) {
         'diff_approach' => rand(0, 10),
         'playmode' => array_rand_val(App\Models\Beatmap::MODES),
         'approved' => rand(-2, 4),
-        'difficultyrating' => (rand(0, 5000) / 1000),
+        'difficultyrating' => rand(0, 5000) / 1000,
         'playcount' => $playCount,
         'passcount' => round($playCount * 0.7),
     ];
 });
 
 $factory->state(App\Models\Beatmap::class, 'approved', function (Faker\Generator $faker) {
-    return  [
+    return [
         'approved' => 3,
     ];
 });

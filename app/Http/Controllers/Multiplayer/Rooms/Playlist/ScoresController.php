@@ -71,7 +71,8 @@ class ScoresController extends BaseController
         if ($hasMore) {
             $highScores->pop();
         }
-        $scoresJson = json_collection($highScores->pluck('score'),
+        $scoresJson = json_collection(
+            $highScores->pluck('score'),
             'Multiplayer\Score',
             ScoreTransformer::BASE_INCLUDES
         );
