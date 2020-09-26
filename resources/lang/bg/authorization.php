@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Моля влезте в профила си, за да продължите.',
     'require_verification' => 'Моля потвърдете, за да продължите.',
     'restricted' => "Не може да правите това докато сте с ограничен статут.",

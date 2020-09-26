@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Por favor, inicie a sessão para continuar.',
     'require_verification' => 'Por favor verifique para prosseguir.',
     'restricted' => "Não é possível fazer isso enquanto restrito.",

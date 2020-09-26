@@ -122,6 +122,7 @@ return [
     'user' => [
         'contains_username' => 'Passord kan ikke inneholde brukernavnet ditt.',
         'email_already_used' => 'E-postadressen er allerede i bruk.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Land er ikke i databasen.',
         'invalid_discord' => 'Discord brukernavnet er ugyldig.',
         'invalid_email' => "Dette ser ikke ut til å være en gyldig e-postadresse.",

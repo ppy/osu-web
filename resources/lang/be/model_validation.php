@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Пароль не павінен змяшчаць імя карыстальніка.',
         'email_already_used' => 'Эл. пошта ўжо выкарыстоўваецца.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Краіны няма ў базедадзеных.',
         'invalid_discord' => 'Няправільнае імя карыстальніка Discord.',
         'invalid_email' => "Не падобна на дзейны адрас эл. пошты.",

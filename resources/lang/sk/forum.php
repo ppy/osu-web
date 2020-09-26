@@ -76,7 +76,7 @@ return [
         'deleted' => 'odstranená téma',
         'go_to_latest' => 'zobraziť najnovší príspevok',
         'has_replied' => '',
-        'in_forum' => '',
+        'in_forum' => 'v :forum',
         'latest_post' => ':when použivateľom :user',
         'latest_reply_by' => 'posledná odpoveď od :user',
         'new_topic' => 'Založiť novú tému',

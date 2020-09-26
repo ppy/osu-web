@@ -20,9 +20,9 @@ return [
     'username_change' => '<strong>:previousUsername</strong> sa premenoval na <strong><em>:user</strong></em>!',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
-        'ranked' => '',
+        'approved' => 'schválené',
+        'loved' => 'obľúbené',
+        'qualified' => 'kvalifikované',
+        'ranked' => 'hodnotené',
     ],
 ];
