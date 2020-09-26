@@ -26,6 +26,13 @@
   &--page-extra-tabs {
     padding-top: 5px;
     border-bottom: 1px solid @osu-colour-h1;
+
+    @media @mobile {
+      display: flex;
+      align-items: center;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
   }
 
   &--post-reply {
@@ -75,6 +82,12 @@
       margin-right: 10px;
       margin-top: 5px;
       vertical-align: middle;
+    }
+
+    @media @mobile {
+      &:last-child {
+        padding-right: 10px;
+      }
     }
   }
 
