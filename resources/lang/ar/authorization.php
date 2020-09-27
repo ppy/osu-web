@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'الرجاء تسجيل الدخول للمضي قدما.',
     'require_verification' => 'الرجاء التحقق للمضي قدما.',
     'restricted' => "لا يمكنك فعل ذلك بينما تكون مقيدًا.",

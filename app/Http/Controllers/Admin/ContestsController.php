@@ -52,7 +52,7 @@ class ContestsController extends Controller
 
             // fetch 'em
             foreach ($entries as $entry) {
-                $targetDir = "{$workingFolder}/".($entry->user ?? (new \App\Models\DeletedUser))->username." ({$entry->user_id})/";
+                $targetDir = "{$workingFolder}/".($entry->user ?? (new \App\Models\DeletedUser()))->username." ({$entry->user_id})/";
                 if (!is_dir($targetDir)) {
                     mkdir($targetDir, 0755, true);
                 }
@@ -63,7 +63,7 @@ class ContestsController extends Controller
             // zip 'em
             $zipOutput = "{$outputFolder}/contest-{$id}.zip";
 
-            $zip = new \ZipArchive;
+            $zip = new \ZipArchive();
             $zip->open($zipOutput, \ZipArchive::CREATE);
             foreach (glob("{$workingFolder}/**/*.*") as $file) {
                 // we just want the path relative to the working folder root

@@ -90,7 +90,7 @@ class EsIndexWiki extends Command
     private function newBaseSearch(): Search
     {
         return (new BasicSearch($this->indexName))
-            ->query(['match_all' => new \stdClass])
+            ->query(['match_all' => new \stdClass()])
             ->sort(new Sort('_id', 'asc'))
             ->source(false);
     }

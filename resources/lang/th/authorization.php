@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อไป',
     'require_verification' => 'กรุณายืนยันเพื่อดำเนินการต่อไป',
     'restricted' => "ไม่สามารถทำสิ่งนั้นได้ในขณะที่ถูกจำกัด",

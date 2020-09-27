@@ -29,14 +29,14 @@ class EventTransformer extends TransformerAbstract
     public function includeUser(Event $event)
     {
         if ($event->user) {
-            return $this->item($event->user, new UserCompactTransformer);
+            return $this->item($event->user, new UserCompactTransformer());
         }
     }
 
     public function includeGame(Event $event)
     {
         if ($event->game) {
-            return $this->item($event->game, new GameTransformer);
+            return $this->item($event->game, new GameTransformer());
         }
     }
 }

@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Vennligst logg inn for å fortsette.',
     'require_verification' => 'Vennligst verifiser deg for å fortsette.',
     'restricted' => "Kan ikke gjøre det mens kontoen din er begrenset.",

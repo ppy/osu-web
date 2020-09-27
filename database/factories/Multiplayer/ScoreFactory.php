@@ -8,7 +8,7 @@ use App\Models\Multiplayer\Score;
 use App\Models\User;
 
 $factory->define(Score::class, function (Faker\Generator $faker) {
-    return  [
+    return [
         'playlist_item_id' => function () {
             return factory(PlaylistItem::class)->create()->getKey();
         },

@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Adgangskoden må ikke indholde et brugernavn.',
         'email_already_used' => 'Email-adressen er allerede i brug.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Landet er ikke i databasen.',
         'invalid_discord' => 'Ugyldigt Discord brugernavn.',
         'invalid_email' => "Dette ligner ikke en email-adresse...",

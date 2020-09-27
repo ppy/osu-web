@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 $factory->define(App\Models\Multiplayer\PlaylistItem::class, function (Faker\Generator $faker) {
-    return  [
+    return [
         'beatmap_id' => function () {
             return factory(App\Models\Beatmap::class)->create()->getKey();
         },

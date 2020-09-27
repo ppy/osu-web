@@ -6,7 +6,7 @@
 use App\Models\BeatmapMirror;
 
 $factory->define(BeatmapMirror::class, function (Faker\Generator $faker) {
-    return  [
+    return [
         'base_url' => 'http://beatmap-download.test/',
         'traffic_used' => rand(0, pow(2, 32)),
         'secret_key' => function () use ($faker) {

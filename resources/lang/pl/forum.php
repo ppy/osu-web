@@ -76,7 +76,7 @@ return [
         'deleted' => 'usunięty wątek',
         'go_to_latest' => 'pokaż najnowszy post',
         'has_replied' => 'Twoja odpowiedź znajduje się w tym wątku',
-        'in_forum' => '',
+        'in_forum' => 'forum: :forum',
         'latest_post' => ':when przez :user',
         'latest_reply_by' => 'ostatnia odpowiedź od :user',
         'new_topic' => 'Utwórz nowy wątek',
@@ -84,7 +84,7 @@ return [
         'post_reply' => 'Opublikuj',
         'reply_box_placeholder' => 'Napisz tutaj swoją odpowiedź',
         'reply_title_prefix' => 'Odp.',
-        'started_by' => 'Autor: :user',
+        'started_by' => 'autor: :user',
         'started_by_verbose' => 'utworzony przez :user',
 
         'create' => [

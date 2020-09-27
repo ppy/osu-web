@@ -15,7 +15,8 @@ class BroadcastServiceProvider extends ServiceProvider
     {
         $broadcastManager->extend('redis', function ($app, array $config) {
             return new RedisBroadcaster(
-                $this->app->make('redis'), $config['connection'] ?? null,
+                $this->app->make('redis'),
+                $config['connection'] ?? null,
                 $this->app['config']->get('database.redis.options.prefix', '')
             );
         });

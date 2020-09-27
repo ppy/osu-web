@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Log venligst ind for at fortsætte.',
     'require_verification' => 'Verificer venligst for at fortsætte.',
     'restricted' => "Det kan du ikke gøre, når du er tilbageholdt.",

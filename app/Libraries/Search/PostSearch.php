@@ -21,10 +21,10 @@ class PostSearch extends Search
 {
     public function __construct(?PostSearchParams $params = null)
     {
-        parent::__construct(Post::esIndexName(), $params ?? new PostSearchParams);
+        parent::__construct(Post::esIndexName(), $params ?? new PostSearchParams());
 
         $this->highlight(
-            (new Highlight)
+            (new Highlight())
                 ->field('search_content')
                 ->fragmentSize(static::HIGHLIGHT_FRAGMENT_SIZE)
                 ->numberOfFragments(3)

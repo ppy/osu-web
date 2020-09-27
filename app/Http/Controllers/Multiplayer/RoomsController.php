@@ -22,12 +22,14 @@ class RoomsController extends BaseController
         $params = request()->all();
         $params['user'] = auth()->user();
 
-        return Room::search($params,
-            ['host.country', 'playlist.beatmap.beatmapset'],
+        return Room::search(
+            $params,
+            ['host.country', 'playlist.beatmap.beatmapset', 'playlist.beatmap.baseMaxCombo'],
             [
                 'host.country',
                 'playlist.beatmap.beatmapset',
                 'playlist.beatmap.checksum',
+                'playlist.beatmap.max_combo',
             ]
         );
     }
@@ -98,12 +100,14 @@ class RoomsController extends BaseController
             return json_item(
                 $room
                     ->load('host.country')
-                    ->load('playlist.beatmap.beatmapset'),
+                    ->load('playlist.beatmap.beatmapset')
+                    ->load('playlist.beatmap.baseMaxCombo'),
                 'Multiplayer\Room',
                 [
                     'host.country',
                     'playlist.beatmap.beatmapset',
                     'playlist.beatmap.checksum',
+                    'playlist.beatmap.max_combo',
                     'recent_participants',
                 ]
             );
@@ -126,17 +130,19 @@ class RoomsController extends BaseController
     public function store()
     {
         try {
-            $room = (new Room)->startGame(auth()->user(), request()->all());
+            $room = (new Room())->startGame(auth()->user(), request()->all());
 
             return json_item(
                 $room
                     ->load('host.country')
-                    ->load('playlist.beatmap.beatmapset'),
+                    ->load('playlist.beatmap.beatmapset')
+                    ->load('playlist.beatmap.baseMaxCombo'),
                 'Multiplayer\Room',
                 [
                     'host.country',
                     'playlist.beatmap.beatmapset',
                     'playlist.beatmap.checksum',
+                    'playlist.beatmap.max_combo',
                     'recent_participants',
                 ]
             );

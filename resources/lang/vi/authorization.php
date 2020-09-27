@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Vui lòng đăng nhập để tiếp tục.',
     'require_verification' => 'Vui lòng xác minh để tiếp tục.',
     'restricted' => "Không thể làm việc đó trong khi bị hạn chế.",

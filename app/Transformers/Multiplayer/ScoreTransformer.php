@@ -83,7 +83,7 @@ class ScoreTransformer extends TransformerAbstract
             }
 
             $ret[$type] = [
-                'scores' => json_collection($highScores->pluck('score'), new static, static::BASE_INCLUDES),
+                'scores' => json_collection($highScores->pluck('score'), new static(), static::BASE_INCLUDES),
                 'params' => ['sort' => $cursorHelper->getSortName()],
                 'cursor' => $hasMore ? $cursorHelper->next($highScores) : null,
             ];
@@ -96,7 +96,7 @@ class ScoreTransformer extends TransformerAbstract
     {
         return $this->item(
             $score->user,
-            new UserCompactTransformer
+            new UserCompactTransformer()
         );
     }
 }

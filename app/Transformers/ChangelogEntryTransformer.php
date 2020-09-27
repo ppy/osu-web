@@ -33,6 +33,6 @@ class ChangelogEntryTransformer extends TransformerAbstract
 
     public function includeGithubUser(ChangelogEntry $entry)
     {
-        return $this->item($entry->githubUser ?? new GithubUser, new GithubUserTransformer);
+        return $this->item($entry->githubUser ?? new GithubUser(), new GithubUserTransformer());
     }
 }

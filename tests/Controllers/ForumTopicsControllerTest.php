@@ -210,7 +210,7 @@ class ForumTopicsControllerTest extends TestCase
 
     private function defaultUserGroup($user)
     {
-        $table = (new UserGroup)->getTable();
+        $table = (new UserGroup())->getTable();
 
         $conditions = [
             'user_id' => $user->user_id,

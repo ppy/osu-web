@@ -149,20 +149,20 @@ return [
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => 'Zgłoszono nowy problem z beatmapą „:title”',
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
+                'beatmapset_disqualify' => 'Beatmapa „:title” została zdyskwalifikowana',
+                'beatmapset_love' => 'Beatmapa „:title” uzyskała status ulubionej społeczności',
+                'beatmapset_nominate' => 'Beatmapa „:title” została nominowana',
+                'beatmapset_qualify' => 'Beatmapa „:title” uzyskała wystarczającą liczbę nominacji i została zakwalifikowana',
+                'beatmapset_rank' => 'Beatmapa „:title” uzyskała status rankingowy',
                 'beatmapset_reset_nominations' => '',
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'W beatmapie „:title” pojawiły się nowe komentarze',
             ],
         ],
 

@@ -15,7 +15,7 @@
 */
 
 $factory->define(App\Models\Country::class, function (Faker\Generator $faker) {
-    return  [
+    return [
         'acronym' => $faker->unique()->countryCode,
         'name' => $faker->unique()->country,
         'rankedscore' => rand(5000000, 500000000) * 10000,

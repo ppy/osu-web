@@ -135,7 +135,6 @@ class RouteSection
     ];
 
     private $default;
-    private $override;
 
     public function getCurrent($key = null)
     {

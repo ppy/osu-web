@@ -256,7 +256,7 @@ return [
         'any' => 'Hepsi',
         'approved' => 'Onaylı',
         'favourites' => 'Favoriler',
-        'graveyard' => 'Mezarlık',
+        'graveyard' => 'Mezarlıkta',
         'leaderboard' => 'Liderlik tablosu olanlar',
         'loved' => 'Sevilen',
         'mine' => 'Benim haritalarım',

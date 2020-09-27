@@ -36,6 +36,6 @@ class UserScoreAggregateTransformer extends TransformerAbstract
 
     public function includeUser(UserScoreAggregate $score)
     {
-        return $this->item($score->user, new UserCompactTransformer);
+        return $this->item($score->user, new UserCompactTransformer());
     }
 }
