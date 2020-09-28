@@ -182,7 +182,7 @@ const plugins = [
       { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]') },
     ],
   }),
-  new Manifest({ fileName: 'public/manifest.json'}),
+  new Manifest({ fileName: 'public/assets/manifest.json'}),
 ];
 
 // TODO: should have a different flag for this

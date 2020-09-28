@@ -24,9 +24,6 @@ desktop.ini
 /node_modules
 /yarn-error.log
 
-# manifest
-/public/manifest.json
-
 # Compiled/copied assets
 /public/assets
 /public/docs

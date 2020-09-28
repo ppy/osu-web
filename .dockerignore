@@ -6,10 +6,10 @@ bootstrap/cache/
 bootstrap/compiler.php
 composer.phar
 node_modules/
+public/assets
 public/css
 public/fonts/vendor
 public/js
-public/mix-manifest.json
 public/uploads
 public/uploads-avatar
 public/uploads-replay

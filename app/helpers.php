@@ -1682,7 +1682,7 @@ function unmix(string $resource)
     static $manifest;
 
     if (!isset($manifest)) {
-        $manifestPath = public_path('manifest.json');
+        $manifestPath = public_path('assets/manifest.json');
 
         if (!file_exists($manifestPath)) {
             throw new Exception('The manifest does not exist.');
