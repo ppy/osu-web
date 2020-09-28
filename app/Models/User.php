@@ -482,6 +482,50 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         }
     }
 
+    public function addToGroup(Group $group, ?self $actor = null): void
+    {
+        if ($this->isGroup($group)) {
+            return;
+        }
+
+        $this->getConnection()->transaction(function () use ($actor, $group) {
+            $this->userGroups()->create(['group_id' => $group->getKey()]);
+            UserGroupEvent::logUserAdd($actor, $this, $group);
+        });
+    }
+
+    public function removeFromGroup(Group $group, ?self $actor = null): void
+    {
+        if (!$this->isGroup($group)) {
+            return;
+        }
+
+        $this->getConnection()->transaction(function () use ($actor, $group) {
+            $this->userGroups()->where(['group_id' => $group->getKey()])->delete();
+            UserGroupEvent::logUserRemove($actor, $this, $group);
+
+            if ($this->group_id === $group->getKey()) {
+                $this->setDefaultGroup(app('groups')->byIdentifier('default'));
+            }
+        });
+    }
+
+    public function setDefaultGroup(Group $group, ?self $actor = null): void
+    {
+        if (!$this->isGroup($group)) {
+            $this->addToGroup($group, $actor);
+        }
+
+        $this->getConnection()->transaction(function () use ($actor, $group) {
+            $this->update([
+                'group_id' => $group->getKey(),
+                'user_colour' => $group->group_colour,
+                'user_rank' => $group->group_rank,
+            ]);
+            UserGroupEvent::logUserSetDefault($actor, $this, $group);
+        });
+    }
+
     public function getCountryAcronymAttribute($value)
     {
         return presence($value);
@@ -1892,6 +1936,10 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
                     $this->validationErrors()->add($field, '.too_long', ['limit' => $limit]);
                 }
             }
+        }
+
+        if ($this->isDirty('group_id') && app('groups')->byId($this->group_id) === null) {
+            $this->validationErrors()->add('group_id', 'invalid');
         }
 
         return $this->validationErrors()->isEmpty();
