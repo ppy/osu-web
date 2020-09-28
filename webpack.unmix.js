@@ -31,8 +31,9 @@ const paymentSandbox = !(process.env.PAYMENT_SANDBOX === '0'
 //#endregion
 
 //#region helpers
-function outputFilename(name, ext = 'js', hashType = 'contenthash:8') {
-  // return `${name}.${ext}?id=[${hashType}]`;
+// Most plugins should follow webpack's own interpolation format:
+// https://github.com/webpack/loader-utils#interpolatename
+function outputFilename(name, ext = '[ext]', hashType = 'contenthash:8') {
   return `${name}.[${hashType}].${ext}`;
 }
 
@@ -140,7 +141,7 @@ for (const name of tsReactComponents) {
 }
 
 const output = {
-  filename: outputFilename('js/[name]'),
+  filename: outputFilename('js/[name]', 'js'),
   path: resolvePath('public/assets'),
   publicPath: '/assets/',
 };
@@ -172,8 +173,8 @@ const plugins = [
   }),
   new CopyPlugin({
     patterns: [
-      { from: 'resources/assets/build/locales', to: outputFilename('js/locales/[name]', '[ext]') },
-      { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]', '[ext]') },
+      { from: 'resources/assets/build/locales', to: outputFilename('js/locales/[name]') },
+      { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]') },
     ],
   }),
   new Manifest({ fileName: 'public/manifest.json'}),
@@ -266,7 +267,7 @@ const rules = [
       {
         loader: 'file-loader',
         options: {
-          name: outputFilename('images/[name]', '[ext]'),
+          name: outputFilename('images/[name]'),
         },
       },
       {
@@ -278,7 +279,7 @@ const rules = [
   {
     loader: 'file-loader',
     options: {
-      name: outputFilename('fonts/[name]', '[ext]'),
+      name: outputFilename('fonts/[name]'),
     },
     test: /(\.(woff2?|ttf|eot|otf)$|font.*\.svg$)/,
   },
