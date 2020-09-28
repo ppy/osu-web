@@ -16,6 +16,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 //#endregion
 
 // #region non-plugin imports
+const dotenv = require('dotenv');
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -23,7 +24,11 @@ const webpack = require('webpack');
 //#endregion
 
 //#region env
-const inProduction = process.env.NODE_ENV === 'production' || process.argv.includes('-p');
+const env = process.env.NODE_ENV || 'development';
+dotenv.config({ path: `.env.${env}` });
+dotenv.config();
+
+const inProduction = env === 'production' || process.argv.includes('-p');
 const paymentSandbox = !(process.env.PAYMENT_SANDBOX === '0'
                          || process.env.PAYMENT_SANDBOX === 'false'
                          || !process.env.PAYMENT_SANDBOX);
