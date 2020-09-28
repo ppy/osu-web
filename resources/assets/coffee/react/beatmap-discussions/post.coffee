@@ -35,7 +35,7 @@ export class Post extends React.PureComponent
       editing: false
       editorMinHeight: '0'
       posting: false
-      message: @props.post.message
+      message: null
 
 
   componentWillUnmount: =>
@@ -52,8 +52,6 @@ export class Post extends React.PureComponent
       editing: @state.editing
       unread: !@props.read && @props.type != 'discussion'
 
-    userGroup = if @isOwner() then mapperGroup else @props.user.groups[0]
-
     div
       className: topClasses
       key: "#{@props.type}-#{@props.post.id}"
@@ -65,7 +63,7 @@ export class Post extends React.PureComponent
         if (!@props.hideUserCard)
           el UserCard,
             user: @props.user
-            group: userGroup
+            group: @userGroup()
         if @state.editing
           @messageEditor()
         else
@@ -73,17 +71,19 @@ export class Post extends React.PureComponent
 
 
   editCancel: =>
-    @setState
-      editing: false
-      message: @props.post.message
+    @setState editing: false
 
 
   editStart: =>
     if @messageBodyRef.current?
       editorMinHeight = "#{@messageBodyRef.current.getBoundingClientRect().height + 50}px"
 
-    @setState editing: true, editorMinHeight: editorMinHeight ? '0', =>
-      @textareaRef.current?.focus()
+    @setState
+      editing: true
+      editorMinHeight: editorMinHeight ? '0'
+      message: @props.post.message
+      => @textareaRef.current?.focus()
+
 
 
   handleKeyDownCallback: (type, event) =>
@@ -312,6 +312,10 @@ export class Post extends React.PureComponent
     .fail osu.ajaxError
 
     .always => @setState posting: false
+
+
+  userGroup: ->
+    if @isOwner() then mapperGroup else @props.user.groups[0]
 
 
   validPost: =>

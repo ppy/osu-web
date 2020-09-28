@@ -13,7 +13,7 @@ class ForumCoverTransformer extends TransformerAbstract
     public function transform(ForumCover $cover = null)
     {
         if ($cover === null) {
-            $cover = new ForumCover;
+            $cover = new ForumCover();
         }
 
         if ($cover->getFileProperties() === null) {

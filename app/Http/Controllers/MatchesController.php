@@ -79,13 +79,13 @@ class MatchesController extends Controller
 
         $users = json_collection(
             $users,
-            new UserCompactTransformer,
+            new UserCompactTransformer(),
             'country'
         );
 
         $events = json_collection(
             $events,
-            new EventTransformer,
+            new EventTransformer(),
             ['game.beatmap.beatmapset', 'game.scores.match']
         );
 

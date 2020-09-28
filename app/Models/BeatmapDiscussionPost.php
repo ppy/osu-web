@@ -62,7 +62,7 @@ class BeatmapDiscussionPost extends Model
 
         // only find replies (i.e. exclude discussion starting-posts)
         $query->whereExists(function ($postQuery) {
-            $table = (new self)->getTable();
+            $table = (new self())->getTable();
 
             $postQuery->selectRaw(1)
                 ->from(DB::raw("{$table} d"))
@@ -244,7 +244,7 @@ class BeatmapDiscussionPost extends Model
                 }
 
                 if (!parent::save($options)) {
-                    throw new ModelNotSavedException;
+                    throw new ModelNotSavedException();
                 }
 
                 $this->beatmapDiscussion->refreshTimestampOrExplode();

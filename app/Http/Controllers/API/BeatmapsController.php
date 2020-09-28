@@ -6,7 +6,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Beatmap;
-use Request;
 
 class BeatmapsController extends Controller
 {

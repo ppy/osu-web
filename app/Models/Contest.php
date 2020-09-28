@@ -248,9 +248,9 @@ class Contest extends Model
             $includes[] = 'results';
         }
 
-        $contestJson = json_item($this, new ContestTransformer);
+        $contestJson = json_item($this, new ContestTransformer());
         if ($this->isVotingStarted()) {
-            $contestJson['entries'] = json_collection($this->entriesByType($user), new ContestEntryTransformer, $includes);
+            $contestJson['entries'] = json_collection($this->entriesByType($user), new ContestEntryTransformer(), $includes);
         }
 
         if (!empty($contestJson['entries'])) {
@@ -297,7 +297,7 @@ class Contest extends Model
 
         return json_collection(
             UserContestEntry::where(['contest_id' => $this->id, 'user_id' => $user->user_id])->get(),
-            new UserContestEntryTransformer
+            new UserContestEntryTransformer()
         );
     }
 

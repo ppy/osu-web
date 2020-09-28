@@ -4,7 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 use App\Models\User;
-use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class ForumSeeder extends Seeder
@@ -23,7 +22,7 @@ class ForumSeeder extends Seeder
             $authOptionIds = [];
 
             foreach (['f_post', 'f_postcount', 'f_read', 'f_reply'] as $authOption) {
-                $option = new App\Models\Forum\AuthOption;
+                $option = new App\Models\Forum\AuthOption();
                 $option->auth_option = $authOption;
                 $option->save();
 
@@ -113,7 +112,7 @@ class ForumSeeder extends Seeder
 
             foreach (App\Models\Forum\Forum::all() as $forum) {
                 foreach ($authOptionIds as $optionId) {
-                    $group = new App\Models\Forum\Authorize;
+                    $group = new App\Models\Forum\Authorize();
 
                     $group->group_id = app('groups')->byIdentifier('default')->getKey();
                     $group->forum_id = $forum->forum_id;

@@ -20,9 +20,9 @@ return [
     'username_change' => '<strong>:previousUsername</strong> și-a schimbat numele de utilizator la <strong><em>:user</strong></em>!',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
-        'ranked' => '',
+        'approved' => 'aprobat',
+        'loved' => 'iubit',
+        'qualified' => 'calificat',
+        'ranked' => 'clasat',
     ],
 ];

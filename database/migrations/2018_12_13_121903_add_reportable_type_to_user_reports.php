@@ -32,8 +32,7 @@ class AddReportableTypeToUserReports extends Migration
                 WHEN mode = 1 THEN 'score_best_taiko'
                 WHEN mode = 2 THEN 'score_best_fruits'
                 WHEN mode = 3 THEN 'score_best_mania'
-            END WHERE score_id <> 0"
-        );
+            END WHERE score_id <> 0");
 
         Schema::table('osu_user_reports', function (Blueprint $table) {
             $table->dropIndex('unique-new');

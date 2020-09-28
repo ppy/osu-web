@@ -116,8 +116,10 @@ class Order extends Model
 
     public function scopeWhereOrderNumber($query, $orderNumber)
     {
-        if (!preg_match(static::ORDER_NUMBER_REGEX, $orderNumber, $matches)
-            || config('store.order.prefix') !== $matches['prefix']) {
+        if (
+            !preg_match(static::ORDER_NUMBER_REGEX, $orderNumber, $matches)
+            || config('store.order.prefix') !== $matches['prefix']
+        ) {
             // hope there's no order_id 0 :D
             return $query->where('order_id', '=', 0);
         }
@@ -266,7 +268,7 @@ class Order extends Model
             if ($primaryShipping === $i->product->base_shipping) {
                 $total += $i->product->base_shipping * 1 + ($i->quantity - 1) * $i->product->next_shipping;
             } else {
-                $total += ($i->quantity) * $i->product->next_shipping;
+                $total += $i->quantity * $i->product->next_shipping;
             }
         }
 
