@@ -154,7 +154,7 @@ return [
             'qualified' => 'Nitelikli',
             'wip' => 'Yapım Aşamasında',
             'pending' => 'Beklemede',
-            'graveyard' => 'Mezarlık',
+            'graveyard' => 'Mezarlıkta',
         ],
     ],
 ];

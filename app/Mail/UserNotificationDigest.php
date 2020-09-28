@@ -42,8 +42,10 @@ class UserNotificationDigest extends Mailable
                     return is_string($value);
                 });
 
-                if ($this->user->getKey() === $notification->source_user_id
-                    && trans_exists("{$baseKey}_self", app()->getLocale())) {
+                if (
+                    $this->user->getKey() === $notification->source_user_id
+                    && trans_exists("{$baseKey}_self", app()->getLocale())
+                ) {
                     $baseKey = "{$baseKey}_self";
                 }
 

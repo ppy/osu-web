@@ -108,10 +108,10 @@ class OsuMarkdown
         $this->processor = new OsuMarkdownProcessor($env);
         $env->addEventListener(DocumentParsedEvent::class, [$this->processor, 'onDocumentParsed']);
 
-        $env->addExtension(new TableExtension\TableExtension);
-        $env->addBlockRenderer(TableExtension\Table::class, new OsuTableRenderer);
+        $env->addExtension(new TableExtension\TableExtension());
+        $env->addBlockRenderer(TableExtension\Table::class, new OsuTableRenderer());
 
-        $env->addExtension(new AutolinkExtension);
+        $env->addExtension(new AutolinkExtension());
 
         $this->converter = new CommonMarkConverter($this->config, $env);
     }
@@ -161,8 +161,8 @@ class OsuMarkdown
     {
         if ($this->indexable === null) {
             $env = Environment::createCommonMarkEnvironment();
-            $env->addExtension(new TableExtension\TableExtension);
-            $env->addExtension(new IndexingRendererExtension);
+            $env->addExtension(new TableExtension\TableExtension());
+            $env->addExtension(new IndexingRendererExtension());
             $converter = new CommonMarkConverter($this->config, $env);
             $this->indexable = $converter->convertToHtml($this->document);
         }

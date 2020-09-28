@@ -31,6 +31,7 @@ export class Post extends React.PureComponent
     @reviewEditor = React.createRef()
 
     @state =
+      canSave: true
       editing: false
       editorMinHeight: '0'
       posting: false
@@ -84,6 +85,7 @@ export class Post extends React.PureComponent
       => @textareaRef.current?.focus()
 
 
+
   handleKeyDownCallback: (type, event) =>
     switch type
       when InputHandler.SUBMIT
@@ -97,7 +99,7 @@ export class Post extends React.PureComponent
   messageEditor: =>
     return if !@props.canBeEdited
 
-    canPost = !@state.posting && @validPost()
+    canPost = !@state.posting && @state.canSave
 
     div className: "#{bn}__message-container",
       if @props.discussion.message_type == 'review' && @props.type == 'discussion'
@@ -114,6 +116,7 @@ export class Post extends React.PureComponent
                   editMode: true
                   editing: @state.editing
                   ref: @reviewEditor
+                  onChange: @updateCanSave
       else
         el React.Fragment, null,
           el TextareaAutosize,
@@ -268,7 +271,11 @@ export class Post extends React.PureComponent
 
 
   setMessage: (e) =>
-    @setState message: e.target.value
+    @setState message: e.target.value, @updateCanSave
+
+
+  updateCanSave: =>
+    @setState canSave: @validPost()
 
 
   updatePost: =>
@@ -312,4 +319,7 @@ export class Post extends React.PureComponent
 
 
   validPost: =>
-    BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())
+    if @props.discussion.message_type == 'review' && @props.type == 'discussion'
+      @reviewEditor.current?.canSave
+    else
+      BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())

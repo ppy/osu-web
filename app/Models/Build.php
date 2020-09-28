@@ -79,7 +79,7 @@ class Build extends Model implements Commentable
 
         $lastChange = Carbon::parse($data['head_commit']['timestamp']);
 
-        $changelogEntry = new ChangelogEntry;
+        $changelogEntry = new ChangelogEntry();
 
         $newChangelogEntryIds = $stream
             ->changelogEntries()

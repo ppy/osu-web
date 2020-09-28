@@ -122,7 +122,7 @@ class UserCompactTransformerTest extends TestCase
     public function propertyPermissionsDataProvider()
     {
         $data = [];
-        $transformer = new UserTransformer;
+        $transformer = new UserTransformer();
         foreach ($transformer->getPermissions() as $property => $permission) {
             if ($permission === 'IsNotOAuth') {
                 $data[] = [$property];

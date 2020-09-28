@@ -214,10 +214,12 @@ class Product extends Model
 
     public function release($quantity)
     {
-        if ($this->stock === null
+        if (
+            $this->stock === null
             // stock may have been directly updated to 0.
             // TODO: should count reservations and available stock separately or something.
-            || $this->stock <= 0) {
+            || $this->stock <= 0
+        ) {
             return;
         }
 

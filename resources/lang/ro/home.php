@@ -76,9 +76,9 @@ return [
         'action' => 'Descarcă osu!',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => 'dacă ai o problemă la pornirea jocului pentru înregistrarea contului, :help_forum_link sau :support_button.',
+            'help_forum_link' => 'verifică forumul de ajutor',
+            'support_button' => 'contactează asistență',
         ],
 
         'os' => [

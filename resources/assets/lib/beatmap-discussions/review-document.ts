@@ -115,7 +115,7 @@ function squash(items: SlateNode[], currentMarks?: {bold: boolean, italic: boole
       flat = flat.concat(squash(item.children, newMarks));
     } else {
       const newItem: SlateNode = {
-        text: item.value || '',
+        text: (item.value as string) || '',
       };
 
       if (newMarks.bold) {

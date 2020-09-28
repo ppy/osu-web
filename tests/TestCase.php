@@ -175,11 +175,6 @@ class TestCase extends BaseTestCase
         ];
     }
 
-    protected function interOpSignature($url)
-    {
-        return hash_hmac('sha1', $url, config('osu.legacy.shared_interop_secret'));
-    }
-
     protected function invokeMethod($obj, string $name, array $params = [])
     {
         $method = new ReflectionMethod($obj, $name);
@@ -218,5 +213,12 @@ class TestCase extends BaseTestCase
         // clear queue jobs after running
         // FIXME: this won't work if a job queues another job and you want to run that job.
         $this->invokeSetProperty(app('queue'), 'jobs', []);
+    }
+
+    protected function withInterOpHeader($url)
+    {
+        return $this->withHeaders([
+            'X-LIO-Signature' => hash_hmac('sha1', $url, config('osu.legacy.shared_interop_secret')),
+        ]);
     }
 }

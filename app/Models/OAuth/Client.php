@@ -145,7 +145,7 @@ class Client extends PassportClient
     private function revokeTokens($timestamp)
     {
         $this->tokens()->update(['revoked' => true, 'updated_at' => $timestamp]);
-        $this->refreshTokens()->update([(new RefreshToken)->qualifyColumn('revoked') => true]);
+        $this->refreshTokens()->update([(new RefreshToken())->qualifyColumn('revoked') => true]);
         $this->authCodes()->update(['revoked' => true]);
     }
 }

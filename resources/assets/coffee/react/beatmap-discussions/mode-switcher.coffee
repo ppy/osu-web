@@ -6,8 +6,19 @@ import { a, div, li, span, ul } from 'react-dom-factories'
 el = React.createElement
 
 export class ModeSwitcher extends React.PureComponent
+  selectedClassName: 'page-mode-link--is-active'
+
   constructor: (props) ->
     super props
+
+    @scrollerRef = React.createRef()
+
+
+  componentDidUpdate: =>
+    return if !@scrollerRef.current?
+
+    # on mobile, ModeSwitcher becomes horizontally scrollable - scrollTo ensures that the selected tab is made visible
+    $(@scrollerRef.current).scrollTo(".#{@selectedClassName}", 0, {over: {left: -1}})
 
 
   render: =>
@@ -25,13 +36,16 @@ export class ModeSwitcher extends React.PureComponent
         ref: @props.innerRef
 
         div className: 'osu-page osu-page--small',
-          ul className: 'page-mode page-mode--page-extra-tabs',
+          ul
+            className: 'page-mode page-mode--page-extra-tabs',
+            ref: @scrollerRef
+
             for mode in modes
               li
                 key: mode
                 className: 'page-mode__item'
                 a
-                  className: "page-mode-link #{if @props.mode == mode then 'page-mode-link--is-active' else ''}"
+                  className: "page-mode-link #{if @props.mode == mode then @selectedClassName else ''}"
                   onClick: @switch
                   href: BeatmapDiscussionHelper.url
                     mode: mode

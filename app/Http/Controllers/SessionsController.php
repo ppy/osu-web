@@ -10,7 +10,6 @@ use App\Libraries\User\ForceReactivation;
 use App\Models\User;
 use Auth;
 use NoCaptcha;
-use Request;
 
 class SessionsController extends Controller
 {

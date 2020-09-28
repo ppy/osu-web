@@ -7,7 +7,7 @@ use App\Models\Forum\AuthOption;
 use App\Models\User;
 
 $factory->defineAs(App\Models\Forum\Forum::class, 'parent', function (Faker\Generator $faker) {
-    return  [
+    return [
         'forum_name' => $faker->catchPhrase,
         'forum_desc' => $faker->realtext(80),
         'forum_type' => 0,
@@ -17,7 +17,7 @@ $factory->defineAs(App\Models\Forum\Forum::class, 'parent', function (Faker\Gene
 });
 
 $factory->defineAs(App\Models\Forum\Forum::class, 'child', function (Faker\Generator $faker) {
-    return  [
+    return [
         'forum_name' => $faker->catchPhrase,
         'forum_desc' => $faker->realtext(80),
         'forum_type' => 1,
@@ -27,7 +27,7 @@ $factory->defineAs(App\Models\Forum\Forum::class, 'child', function (Faker\Gener
 });
 
 $factory->define(App\Models\Forum\Topic::class, function (Faker\Generator $faker) {
-    return  [
+    return [
         'topic_poster' => function (array &$self) {
             $factoryUser = factory(User::class)->create();
             $self['topic_first_poster_name'] = $factoryUser->username;
@@ -42,7 +42,7 @@ $factory->define(App\Models\Forum\Topic::class, function (Faker\Generator $faker
 });
 
 $factory->define(App\Models\Forum\Post::class, function (Faker\Generator $faker) {
-    return  [
+    return [
         'poster_id' => function (array &$self) {
             $factoryUser = factory(User::class)->create();
             $self['post_username'] = $factoryUser->username;

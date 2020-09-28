@@ -58,7 +58,7 @@ class Spotlight extends Model
     public function scores(string $mode)
     {
         $clazz = ScoreBest\Model::getClass(Beatmap::MODES[$mode]);
-        $model = new $clazz;
+        $model = new $clazz();
         $model->setTable($this->bestScoresTableName($mode));
         $model->setConnection('mysql-charts');
 
@@ -75,7 +75,7 @@ class Spotlight extends Model
     public function userStats(string $mode)
     {
         $clazz = UserStatistics\Model::getClass($mode);
-        $model = new $clazz;
+        $model = new $clazz();
         $model->setTable($this->userStatsTableName($mode));
         $model->setConnection('mysql-charts');
 
@@ -99,7 +99,7 @@ class Spotlight extends Model
         return $this->userStats($mode)
             ->with(['user', 'user.country'])
             ->whereHas('user', function ($userQuery) {
-                $model = new User;
+                $model = new User();
                 $userQuery
                     ->from($model->tableName(true))
                     ->default();

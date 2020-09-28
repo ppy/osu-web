@@ -28,7 +28,7 @@ class MatchTransformer extends TransformerAbstract
     {
         return $this->collection(
             $match->events()->default()->get(),
-            new EventTransformer
+            new EventTransformer()
         );
     }
 }

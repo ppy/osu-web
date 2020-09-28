@@ -65,7 +65,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     {
         $rel = $params->get('with_trashed') ? 'allBeatmaps' : 'beatmaps';
 
-        return $this->collection($beatmapset->$rel, new $this->beatmapTransformer);
+        return $this->collection($beatmapset->$rel, new $this->beatmapTransformer());
     }
 
     public function includeConverts(Beatmapset $beatmapset)
@@ -91,7 +91,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             }
         }
 
-        return $this->collection($converts, new BeatmapTransformer);
+        return $this->collection($converts, new BeatmapTransformer());
     }
 
     public function includeCurrentUserAttributes(Beatmapset $beatmapset)
@@ -118,7 +118,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
     public function includeDescription(Beatmapset $beatmapset)
     {
-        return $this->item($beatmapset, new BeatmapsetDescriptionTransformer);
+        return $this->item($beatmapset, new BeatmapsetDescriptionTransformer());
     }
 
     public function includeDiscussions(Beatmapset $beatmapset)
@@ -144,12 +144,12 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
     public function includeGenre(Beatmapset $beatmapset)
     {
-        return $this->item($beatmapset->genre, new GenreTransformer);
+        return $this->item($beatmapset->genre, new GenreTransformer());
     }
 
     public function includeLanguage(Beatmapset $beatmapset)
     {
-        return $this->item($beatmapset->language, new LanguageTransformer);
+        return $this->item($beatmapset->language, new LanguageTransformer());
     }
 
     public function includeNominations(Beatmapset $beatmapset)
@@ -189,8 +189,8 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     public function includeUser(Beatmapset $beatmapset)
     {
         return $this->item(
-            $beatmapset->user ?? (new DeletedUser),
-            new UserCompactTransformer
+            $beatmapset->user ?? (new DeletedUser()),
+            new UserCompactTransformer()
         );
     }
 
@@ -203,7 +203,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     {
         return $this->collection(
             $beatmapset->recentFavourites(),
-            new UserCompactTransformer
+            new UserCompactTransformer()
         );
     }
 
@@ -243,6 +243,6 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         $userIds = array_unique($userIds);
         $users = User::with('userGroups')->whereIn('user_id', $userIds)->get();
 
-        return $this->collection($users, new UserCompactTransformer);
+        return $this->collection($users, new UserCompactTransformer());
     }
 }

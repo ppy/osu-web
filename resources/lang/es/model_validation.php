@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'La contraseña no puede contener el nombre de usuario.',
         'email_already_used' => 'El correo electrónico ya está siendo utilizado.',
+        'email_not_allowed' => '',
         'invalid_country' => 'El país no está en la base de datos.',
         'invalid_discord' => 'Nombre de usuario de Discord no válido.',
         'invalid_email' => "No parece ser una dirección de correo electrónico válida.",

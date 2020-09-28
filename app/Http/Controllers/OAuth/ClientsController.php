@@ -50,7 +50,7 @@ class ClientsController extends Controller
         ]);
 
         // from ClientRepository::create but with custom Client.
-        $client = (new Client)->forceFill([
+        $client = (new Client())->forceFill([
             'user_id' => auth()->user()->getKey(),
             'name' => $params['name'] ?? null,
             'secret' => str_random(40),

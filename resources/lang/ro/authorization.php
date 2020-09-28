@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Te rugăm să te autentifici pentru a continua.',
     'require_verification' => 'Vă rugăm să verificați pentru a continua.',
     'restricted' => "Nu poți face asta cât timp ești restricționat.",

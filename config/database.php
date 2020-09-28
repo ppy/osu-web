@@ -5,6 +5,7 @@
  * This function check is inspired by
  * https://stackoverflow.com/a/22499259 .
  */
+
 if (!function_exists('mysqli_get_client_stats')) {
     exit('Required mysqlnd driver is missing.');
 }

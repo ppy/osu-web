@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model as BaseModel;
 abstract class Model extends BaseModel
 {
     use MacroableModel;
+
     protected $connection = 'mysql';
     protected $guarded = [];
 
