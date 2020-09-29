@@ -150,6 +150,23 @@
 @section('permanent-fixed-footer')
     @parent
 
+    @section('forum-topic-moderation-menu')
+        @include('forum.topics._lock', compact('topic'))
+
+        @if ($userCanModerate)
+            @include('forum.topics._moderate_pin', compact('topic'))
+            @include('forum.topics._moderate_move', compact('topic'))
+
+            @if ($topic->isIssue())
+                @foreach ($topic::ISSUE_TAGS as $type)
+                    @include("forum.topics._issue_tag_{$type}")
+                @endforeach
+            @endif
+
+            @include('forum.topics._moderate_toggle_deleted')
+        @endif
+    @endsection
+
     <div class="forum-topic-nav u-fancy-scrollbar">
         <div class="forum-topic-nav__seek-tooltip js-forum-posts-seek--tooltip" data-visibility="hidden">
             <div class="forum-topic-nav__seek-tooltip-number js-forum-posts-seek-tooltip-number">0</div>
@@ -193,39 +210,14 @@
                         data-visibility="hidden"
                     >
                         <div class="simple-menu__content">
-                            @include('forum.topics._lock', compact('topic'))
-
-                            @include('forum.topics._moderate_pin', compact('topic'))
-                            @include('forum.topics._moderate_move', compact('topic'))
-
-                            @if ($topic->isIssue())
-                                @foreach ($topic::ISSUE_TAGS as $type)
-                                    @include("forum.topics._issue_tag_{$type}")
-                                @endforeach
-                            @endif
-
-                            @include('forum.topics._moderate_toggle_deleted')
+                            @yield('forum-topic-moderation-menu')
                         </div>
                     </div>
                 </div>
             @endif
 
             <div class="forum-topic-nav__group forum-topic-nav__group--desktop">
-                @include('forum.topics._lock', compact('topic'))
-
-                @if ($userCanModerate)
-                    @include('forum.topics._moderate_pin', compact('topic'))
-                    @include('forum.topics._moderate_move', compact('topic'))
-
-                    @if ($topic->isIssue())
-                        @foreach ($topic::ISSUE_TAGS as $type)
-                            @include("forum.topics._issue_tag_{$type}")
-                        @endforeach
-                    @endif
-
-                    @include('forum.topics._moderate_toggle_deleted')
-                @endif
-
+                @yield('forum-topic-moderation-menu')
                 @include('forum.topics._watch', ['topic' => $topic, 'state' => $watch])
             </div>
 
