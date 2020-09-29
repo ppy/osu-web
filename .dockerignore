@@ -7,13 +7,9 @@ bootstrap/compiler.php
 composer.phar
 node_modules/
 public/assets
-public/css
-public/fonts/vendor
-public/js
 public/uploads
 public/uploads-avatar
 public/uploads-replay
-public/vendor
 resources/assets/build/
 resources/assets/js/ziggy.js
 storage/
