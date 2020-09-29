@@ -173,7 +173,44 @@
         </div>
 
         <div class="forum-topic-nav__content">
-            <div class="forum-topic-nav__group">
+            <div class="forum-topic-nav__mobile-float">
+                @include('forum.topics._watch', ['topic' => $topic, 'state' => $watch])
+            </div>
+
+            @if ($userCanModerate)
+                <div class="forum-topic-nav__mobile-float forum-topic-nav__mobile-float--right">
+                    <div
+                        class="btn-circle btn-circle--topic-nav js-menu"
+                        data-menu-target="topic-moderation-mobile"
+                    >
+                        <div class="btn-circle__content">
+                            <span class="fas fa-ellipsis-v"></span>
+                        </div>
+                    </div>
+                    <div
+                        class="js-menu simple-menu simple-menu--forum-topic-moderation"
+                        data-menu-id="topic-moderation-mobile"
+                        data-visibility="hidden"
+                    >
+                        <div class="simple-menu__content">
+                            @include('forum.topics._lock', compact('topic'))
+
+                            @include('forum.topics._moderate_pin', compact('topic'))
+                            @include('forum.topics._moderate_move', compact('topic'))
+
+                            @if ($topic->isIssue())
+                                @foreach ($topic::ISSUE_TAGS as $type)
+                                    @include("forum.topics._issue_tag_{$type}")
+                                @endforeach
+                            @endif
+
+                            @include('forum.topics._moderate_toggle_deleted')
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            <div class="forum-topic-nav__group forum-topic-nav__group--desktop">
                 @include('forum.topics._lock', compact('topic'))
 
                 @if ($userCanModerate)
@@ -192,42 +229,46 @@
                 @include('forum.topics._watch', ['topic' => $topic, 'state' => $watch])
             </div>
 
+            <div class="forum-topic-nav__group forum-topic-nav__group--mobile">
+                <a
+                    href="{{ route('search', ['mode' => 'forum_post', 'topic_id' => $topic->getKey()]) }}"
+                    class="btn-circle btn-circle--topic-nav"
+                    data-tooltip-float="fixed"
+                    title="{{ trans('forum.topics.actions.search') }}"
+                >
+                    <span class="btn-circle__content">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </a>
+            </div>
+
             <div class="forum-topic-nav__group forum-topic-nav__group--main">
                 <a
                     href="{{ route("forum.topics.show", $topic->topic_id) }}"
-                    class="js-forum-posts-seek--jump
-                        forum-topic-nav__item
-                        forum-topic-nav__item--main
-                        forum-topic-nav__item--button"
+                    class="js-forum-posts-seek--jump btn-circle btn-circle--topic-nav"
                     data-jump-target="first"
                     data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.first') }}"
                 >
-                    <span class="forum-topic-nav__item-content">
+                    <span class="btn-circle__content">
                         <i class="fas fa-angle-double-left"></i>
                     </span>
                 </a>
 
                 <button
                     type="button"
-                    class="js-forum-posts-seek--jump
-                        forum-topic-nav__item
-                        forum-topic-nav__item--main
-                        forum-topic-nav__item--button"
+                    class="js-forum-posts-seek--jump btn-circle btn-circle--topic-nav"
                     data-jump-target="previous"
                     data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.previous') }}"
                 >
-                    <span class="forum-topic-nav__item-content">
+                    <span class="btn-circle__content">
                         <i class="fas fa-angle-left"></i>
                     </span>
                 </button>
 
                 <div class="
-                    post-counter
-                    forum-topic-nav__item
-                    forum-topic-nav__item--main
-                    forum-topic-nav__item--counter
+                    forum-topic-nav__counter-container
                     js-forum-topic-post-jump--container
                 ">
                     <form method="get" class="js-forum-posts-jump-to js-forum-topic-post-jump--form">
@@ -269,36 +310,68 @@
 
                 <button
                     type="button"
-                    class="js-forum-posts-seek--jump
-                        forum-topic-nav__item
-                        forum-topic-nav__item--main
-                        forum-topic-nav__item--button"
+                    class="js-forum-posts-seek--jump btn-circle btn-circle--topic-nav"
                     data-jump-target="next"
                     data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.next') }}"
                 >
-                    <span class="forum-topic-nav__item-content">
+                    <span class="btn-circle__content">
                         <i class="fas fa-angle-right"></i>
                     </span>
                 </button>
 
                 <a
                     href="{{ route('forum.topics.show', ['topic' => $topic, 'end' => $topic->topic_last_post_id]) }}#forum-post-{{ $topic->topic_last_post_id }}"
-                    class="js-forum-posts-seek--jump
-                        forum-topic-nav__item
-                        forum-topic-nav__item--main
-                        forum-topic-nav__item--button"
+                    class="js-forum-posts-seek--jump btn-circle btn-circle--topic-nav"
                     data-jump-target="last"
                     data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.last') }}"
                 >
-                    <span class="forum-topic-nav__item-content">
+                    <span class="btn-circle__content">
                         <i class="fas fa-angle-double-right"></i>
                     </span>
                 </a>
             </div>
 
-            <div class="forum-topic-nav__group forum-topic-nav__group--right">
+            <div class="forum-topic-nav__group forum-topic-nav__group--mobile">
+                @if ($topic->isLocked())
+                    <div
+                        class="btn-circle btn-circle--topic-nav btn-circle--blank"
+                        data-tooltip-float="fixed"
+                        title="{{ trans('forum.topics.lock.is_locked') }}"
+                    >
+                        <span class="btn-circle__content">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </div>
+                @else
+                    @if (Auth::check())
+                        <button
+                            type="button"
+                            class="btn-circle btn-circle--topic-nav js-forum-topic-reply--toggle"
+                            data-tooltip-float="fixed"
+                            title="{{ trans('forum.topics.actions.reply') }}"
+                        >
+                            <span class="btn-circle__content">
+                                <i class="fas fa-reply"></i>
+                            </span>
+                        </button>
+                    @else
+                        <button
+                            type="button"
+                            class="btn-circle btn-circle--topic-nav js-user-link"
+                            data-tooltip-float="fixed"
+                            title="{{ trans('forum.topics.actions.login_reply') }}"
+                        >
+                            <span class="btn-circle__content">
+                                <i class="fas fa-reply"></i>
+                            </span>
+                        </button>
+                    @endif
+                @endif
+            </div>
+
+            <div class="forum-topic-nav__group forum-topic-nav__group--right forum-topic-nav__group--desktop">
                 <a
                     href="{{ route('search', ['mode' => 'forum_post', 'topic_id' => $topic->getKey()]) }}"
                     class="btn-circle btn-circle--topic-nav"

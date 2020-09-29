@@ -37,6 +37,13 @@
     margin-top: 5px;
   }
 
+  &--forum-topic-moderation {
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 10px;
+    right: 0;
+  }
+
   &--forum-topic-watch {
     position: absolute;
     bottom: 100%;
@@ -103,6 +110,13 @@
     padding: 0 @_gutter;
     display: flex;
     flex-direction: column;
+
+    .@{_top}--forum-topic-moderation & {
+      flex-direction: row;
+      flex-wrap: wrap;
+      max-width: calc(100vw - (2 * @forum-topic-nav-item--gutter));
+      width: max-content;
+    }
 
     .@{_top}--nav2 & {
       min-height: 100px;
