@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { forOwn } from 'lodash';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 
@@ -21,8 +20,12 @@ export default function Chart(props: Props) {
   const items: React.ReactNode[] = [];
 
   if (props.duration !== 0) {
-    forOwn(props.discussions, (discussion) => {
-      if (discussion.timestamp == null) return;
+    for (const key in props.discussions) {
+      if (!props.discussions.hasOwnProperty(key)) continue;
+
+      const discussion = props.discussions[key];
+
+      if (discussion.timestamp == null) continue;
 
       let className = classWithModifiers('beatmapset-discussions-chart__item', [
         (discussion.resolved ? 'resolved' : messageTypeCss[discussion.message_type]),
@@ -43,7 +46,7 @@ export default function Chart(props: Props) {
           data-tooltip-modifiers='extra-padding'
         />
       ));
-    });
+    }
   }
 
   return (
