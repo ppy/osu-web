@@ -4,7 +4,6 @@
     "dev": "yarn run development",
     "development": "cross-env NODE_ENV=development webpack --progress --hide-modules --config=webpack.config.js",
     "generate-localizations": "node generate-localizations.js",
-    "hot": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config=webpack.config.js",
     "lint": "tslint -c tslint.json 'resources/assets/lib/**/*.{js,jsx,ts,tsx}' *.js",
     "localize": "yarn run generate-localizations",
     "prod": "yarn run production",
