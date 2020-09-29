@@ -182,7 +182,7 @@ const plugins = [
       { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]') },
     ],
   }),
-  new Manifest({ fileName: 'public/assets/manifest.json'}),
+  new Manifest({ fileName: path.join(output.path, 'manifest.json') }),
 ];
 
 // TODO: should have a different flag for this
@@ -202,7 +202,7 @@ if (process.env.SENTRY_RELEASE === '1') {
       deleteAfterCompile: true,
       exclude: /\.css(\.map)?$/,
       filenameTransform: function(filename) {
-        return '~' + filename;
+        return path.join('~', filename);
       },
       release: function() {
         return process.env.GIT_SHA;
