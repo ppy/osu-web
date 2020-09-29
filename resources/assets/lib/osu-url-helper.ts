@@ -3,6 +3,7 @@
 
 import * as laroute from 'laroute';
 import * as _ from 'lodash';
+import { TurbolinksLocation } from 'turbolinks';
 
 export default class OsuUrlHelper {
   private static internalUrls = [
