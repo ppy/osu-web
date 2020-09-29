@@ -102,16 +102,13 @@ class RankingController extends Controller
      *
      * Returns [Rankings](#rankings)
      *
-     * ### Route Parameters
+     * @urlParam mode required [GameMode](#gamemode). Example: mania
+     * @urlParam type required [RankingType](#rankingtype). Example: performance
      *
-     * Field  | Status   | Type
-     * -------| ---------| -----------------
-     * mode   | required | [GameMode](#gamemode)
-     * type   | required | [RankingType](#rankingtype)
-     *
-     * @authenticated
-     *
-     * @queryParam spotlight The id of the spotlight if `type` is `charts`
+     * @queryParam country Filter ranking by country code. Only available for `type` of `performance`. Example: JP
+     * @queryParam filter Either `all` or `friends`. Example: all
+     * @queryParam spotlight The id of the spotlight if `type` is `charts`. Example: 1
+     * @queryParam variant Either `4k` or `7k`. Only available for `type` of `performance` and `mode` of `mania`. Example: 4k
      */
     public function index($mode, $type)
     {
