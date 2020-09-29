@@ -20,12 +20,8 @@ export default function Chart(props: Props) {
   const items: React.ReactNode[] = [];
 
   if (props.duration !== 0) {
-    for (const key in props.discussions) {
-      if (!props.discussions.hasOwnProperty(key)) continue;
-
-      const discussion = props.discussions[key];
-
-      if (discussion.timestamp == null) continue;
+    Object.values(props.discussions).forEach((discussion) => {
+      if (discussion.timestamp == null) return;
 
       let className = classWithModifiers('beatmapset-discussions-chart__item', [
         (discussion.resolved ? 'resolved' : messageTypeCss[discussion.message_type]),
@@ -46,7 +42,7 @@ export default function Chart(props: Props) {
           data-tooltip-modifiers='extra-padding'
         />
       ));
-    }
+    });
   }
 
   return (
