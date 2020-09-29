@@ -204,9 +204,7 @@ if (process.env.SENTRY_RELEASE === '1') {
       filenameTransform: function(filename) {
         return path.join('~', filename);
       },
-      release: function() {
-        return process.env.GIT_SHA;
-      },
+      release: process.env.GIT_SHA,
     }),
   );
 }
