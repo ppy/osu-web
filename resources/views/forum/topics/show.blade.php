@@ -333,8 +333,12 @@
                 </a>
             </div>
 
-            <div class="forum-topic-nav__group forum-topic-nav__group--mobile">
-                @if ($topic->isLocked())
+            <div
+                class="forum-topic-nav__group forum-topic-nav__group--mobile js-forum-topic-lock--state"
+                data-topic-id="{{ $topic->getKey() }}"
+                data-topic-lock="{{ $topic->isLocked() ? '1' : '0' }}"
+            >
+                <div class="forum-topic-nav__lock-or-reply forum-topic-nav__lock-or-reply--lock">
                     <div
                         class="btn-circle btn-circle--topic-nav btn-circle--blank"
                         data-tooltip-float="fixed"
@@ -344,7 +348,8 @@
                             <i class="fas fa-lock"></i>
                         </span>
                     </div>
-                @else
+                </div>
+                <div class="forum-topic-nav__lock-or-reply forum-topic-nav__lock-or-reply--reply">
                     @if (Auth::check())
                         <button
                             type="button"
@@ -368,7 +373,7 @@
                             </span>
                         </button>
                     @endif
-                @endif
+                </div>
             </div>
 
             <div class="forum-topic-nav__group forum-topic-nav__group--right forum-topic-nav__group--desktop">

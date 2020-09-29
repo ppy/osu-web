@@ -125,6 +125,21 @@
     }
   }
 
+  &__lock-or-reply {
+    &--lock {
+      [data-topic-lock="0"] & {
+        display: none;
+      }
+    }
+
+    &--reply {
+      [data-topic-lock="1"] & {
+        display: none;
+      }
+    }
+
+  }
+
   &__mobile-float {
     position: absolute;
     bottom: 100%;
