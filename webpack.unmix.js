@@ -33,6 +33,9 @@ const paymentSandbox = !(process.env.PAYMENT_SANDBOX === '0'
                          || process.env.PAYMENT_SANDBOX === 'false'
                          || !process.env.PAYMENT_SANDBOX);
 
+const writeManifest = !(process.env.SKIP_MANIFEST === '1'
+                        || process.env.SKIP_MANIFEST === 'true'
+                        || process.env.SKIP_MANIFEST);
 //#endregion
 
 //#region helpers
@@ -91,6 +94,13 @@ class Manifest {
 
         manifest[name] = path.join(compiler.options.output.publicPath, asset.name);
       });
+
+      // directory might not exist when using webpack-dev-server because it
+      // doesn't write to the same location as the manifest file.
+      const dirname = path.dirname(this.fileName);
+      if (!fs.existsSync(dirname)) {
+        fs.mkdirSync(dirname, { recursive: true });
+      }
 
       fs.writeFileSync(this.fileName, JSON.stringify(manifest, null, 2));
     });
@@ -182,8 +192,11 @@ const plugins = [
       { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]') },
     ],
   }),
-  new Manifest({ fileName: path.join(output.path, 'manifest.json') }),
 ];
+
+if (writeManifest) {
+  plugins.push(new Manifest({ fileName: path.join(output.path, 'manifest.json') }));
+}
 
 // TODO: should have a different flag for this
 if (!inProduction) {

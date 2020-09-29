@@ -50,6 +50,7 @@ function readWebpackConfig() {
   return value;
 }
 
+process.env.SKIP_MANIFEST = true;
 webpackConfig = readWebpackConfig();
 webpackConfig.plugins.push(new ExitOnErrorWebpackPlugin());
 webpackConfig.mode = 'development';
