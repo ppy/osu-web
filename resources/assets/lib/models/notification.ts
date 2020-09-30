@@ -57,6 +57,10 @@ export default class Notification implements NotificationReadable {
       return osu.trans(key, replacements);
     }
 
+    if (this.name === 'user_achievement_unlock') {
+      return osu.trans(`notifications.item.${this.displayType}.${this.category}.${this.name}_group`);
+    }
+
     return this.title;
   }
 
