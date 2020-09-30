@@ -441,19 +441,6 @@ function locale_for_moment($locale)
     return $locale;
 }
 
-function locale_for_timeago($locale)
-{
-    if ($locale === 'zh') {
-        return 'zh-CN';
-    }
-
-    if ($locale === 'zh-tw') {
-        return 'zh-TW';
-    }
-
-    return $locale;
-}
-
 function log_error($exception)
 {
     Log::error($exception);
