@@ -12,6 +12,7 @@ import * as laroute from 'laroute'
 import Localtime from 'localtime'
 import MobileToggle from 'mobile-toggle'
 import OsuAudio from 'osu-audio/main'
+import OsuLayzr from 'osu-layzr'
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
@@ -34,6 +35,7 @@ window._exported = {
   Localtime
   MobileToggle
   OsuAudio
+  OsuLayzr
   OsuUrlHelper
   TurbolinksReload
   WindowVHPatcher
