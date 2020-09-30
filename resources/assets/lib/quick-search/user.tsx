@@ -29,7 +29,7 @@ export default function User({ user, modifiers = [] }: { modifiers?: string[], u
 
         {user.is_supporter
           ? (
-            <div className='user-search-card__col user-search-card__col--icon'>
+            <div className='user-search-card__col user-search-card__col--icon u-hidden-narrow'>
               <SupporterIcon level={user.support_level} modifiers={['quick-search']} />
             </div>
           ) : null}
