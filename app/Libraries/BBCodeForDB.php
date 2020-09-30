@@ -225,20 +225,26 @@ class BBCodeForDB
     public function parseProfile($text)
     {
         return preg_replace_callback(
-            "#\[profile\](.+?)\[/profile\]#",
+            "#\[profile(?:=(?<id>[0-9]+))?\](?<name>.+?)\[/profile\]#",
             function ($m) {
-                $user = User::lookup($m[1], null, true);
+                if (present($m['id'])) {
+                    $id = $m['id'];
+                    $name = $this->extraEscapes($m['name']);
+                } else {
+                    $user = User::lookup($m['name'], null, true);
 
-                if ($user === null) {
-                    $name = $this->extraEscapes($m[1]);
+                    if ($user === null) {
+                        $name = $this->extraEscapes($m['name']);
 
-                    return "[profile:{$this->uid}]{$name}[/profile:{$this->uid}]";
+                        return "[profile:{$this->uid}]{$name}[/profile:{$this->uid}]";
+                    }
+
+                    $id = $user->getKey();
+                    $name = $this->extraEscapes($user->username);
                 }
 
-                $url = $this->extraEscapes($user->url());
-                $name = $this->extraEscapes($user->username);
 
-                return "[url={$url}:{$this->uid}]{$name}[/url:{$this->uid}]";
+                return "[profile={$id}:{$this->uid}]{$name}[/profile:{$this->uid}]";
             },
             $text
         );

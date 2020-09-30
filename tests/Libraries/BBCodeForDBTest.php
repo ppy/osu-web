@@ -37,12 +37,11 @@ class BBCodeForDBTest extends TestCase
     public function testProfile()
     {
         $user = factory(User::class)->create();
-        $emptyBbcode = new BBCodeForDB;
-        $url = $emptyBbcode->extraEscapes($user->url());
+        $emptyBbcode = new BBCodeForDB();
         $name = $emptyBbcode->extraEscapes($user->username);
 
         $source = "[profile]{$user->username}[/profile]";
-        $expectedOutput = "[url={$url}:1]{$name}[/url:1]";
+        $expectedOutput = "[profile={$user->getKey()}:1]{$name}[/profile:1]";
 
         $output = (new BBCodeForDB($source))->generate();
 
