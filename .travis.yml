@@ -69,11 +69,11 @@ jobs:
   fast_finish: true
   include:
     - name: phpunit
+      env:
+        - APP_URL=http://localhost
       script: ./bin/phpunit.sh
 
     - name: browser tests
-      env:
-        - APP_URL=http://localhost
       addons:
         chrome: stable
         <<: *addons
