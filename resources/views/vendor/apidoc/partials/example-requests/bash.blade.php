@@ -13,14 +13,7 @@
         }
     }
 
-    $filteredQueryParams = [];
-    foreach ($route['cleanQueryParameters'] as $key => $value) {
-        if ($value !== '--skip--') {
-            $filteredQueryParams[$key] = $value;
-        }
-    }
-
-    $queryString = http_build_query($filteredQueryParams);
+    $queryString = http_build_query($route['cleanQueryParameters']);
 
     if ($queryString !== '') {
         $queryString = "?{$queryString}";
