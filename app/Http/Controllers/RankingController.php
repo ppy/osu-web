@@ -106,6 +106,7 @@ class RankingController extends Controller
      * @urlParam type required [RankingType](#rankingtype). Example: performance
      *
      * @queryParam country Filter ranking by country code. Only available for `type` of `performance`. Example: JP
+     * @queryParam cursor [Cursor](#cursor). Example: --skip--
      * @queryParam filter Either `all` or `friends`. Example: all
      * @queryParam spotlight The id of the spotlight if `type` is `charts`. Example: --skip--
      * @queryParam variant Either `4k` or `7k`. Only available for `type` of `performance` and `mode` of `mania`. Example: 4k
