@@ -3,4 +3,4 @@
 
 import * as React from 'react';
 
-export const DiscussionsContext = React.createContext([] as BeatmapDiscussion[]);
+export const DiscussionsContext = React.createContext([] as BeatmapsetDiscussionJson[]);
