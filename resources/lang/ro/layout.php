@@ -179,7 +179,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'autentifică-te / Înregistrează-te',
 
         'login' => [
             'forgot' => "Mi-am uitat detaliile de autentificare",

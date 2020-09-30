@@ -42,7 +42,7 @@ class AuthApi
             $request->attributes->set(static::REQUEST_OAUTH_TOKEN_KEY, $token);
         } else {
             if (!RequireScopes::noTokenRequired($request)) {
-                throw new AuthenticationException;
+                throw new AuthenticationException();
             }
         }
 
@@ -52,16 +52,16 @@ class AuthApi
     private function validateRequest($request)
     {
         $psr = (new PsrHttpFactory(
-            new ServerRequestFactory,
-            new StreamFactory,
-            new UploadedFileFactory,
-            new ResponseFactory
+            new ServerRequestFactory(),
+            new StreamFactory(),
+            new UploadedFileFactory(),
+            new ResponseFactory()
         ))->createRequest($request);
 
         try {
             return $this->server->validateAuthenticatedRequest($psr);
         } catch (OAuthServerException $e) {
-            throw new AuthenticationException;
+            throw new AuthenticationException();
         }
     }
 
@@ -83,7 +83,7 @@ class AuthApi
 
         $user = $psrUserId !== null ? User::find($psrUserId) : null;
         if (optional($user)->getKey() !== $token->user_id) {
-            throw new AuthenticationException;
+            throw new AuthenticationException();
         }
 
         if ($user !== null) {

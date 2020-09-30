@@ -78,8 +78,10 @@ class ImageProcessor
             throw new ImageProcessorException(trans('users.show.edit.cover.upload.broken_file'));
         }
 
-        if ($this->inputDim[0] <= $this->targetDim[0] &&
-            $this->inputDim[1] <= $this->targetDim[1]) {
+        if (
+            $this->inputDim[0] <= $this->targetDim[0] &&
+            $this->inputDim[1] <= $this->targetDim[1]
+        ) {
             if ($this->inputFileSize < $this->targetFileSize) {
                 return;
             }

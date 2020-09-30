@@ -46,7 +46,7 @@ class ErrorMessage extends Message
 
         $content .= "; `{$this->exceptionClass}`";
 
-        return (new SlackMessage)
+        return (new SlackMessage())
             ->http(static::HTTP_OPTIONS)
             ->to(config('payments.notification_channel'))
             ->error()

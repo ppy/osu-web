@@ -23,9 +23,7 @@ class Kernel extends ConsoleKernel
         Commands\EsIndexWiki::class,
 
         // modding stuff
-        Commands\ModdingQueueUpdateCommand::class,
         Commands\ModdingRankCommand::class,
-        Commands\ModdingScoreIndexCommand::class,
 
         Commands\UserForumStatSyncCommand::class,
         Commands\BeatmapsetsHypeSyncCommand::class,

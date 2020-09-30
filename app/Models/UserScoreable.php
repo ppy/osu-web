@@ -21,7 +21,7 @@ trait UserScoreable
         $search
             ->size(0) // don't care about hits
             ->query(
-                (new BoolQuery)
+                (new BoolQuery())
                     ->filter(['term' => ['user_id' => $this->getKey()]])
             )
             ->setAggregations([

@@ -63,7 +63,7 @@ class @BeatmapDiscussionHelper
     text = _.escape text
     text = text.trim()
     text = @discussionLinkify text
-    text = @linkTimestamp text, ["#{blockName}__timestamp"]
+    text = @linkTimestamp text, ['beatmap-discussion-timestamp-decoration']
 
     if options.newlines ? true
       # replace newlines with <br>

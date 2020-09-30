@@ -100,7 +100,8 @@ class BBCodeFromDB
         return preg_replace(
             "#\[code:{$this->uid}\]\n*(.*?)\n*\[/code:{$this->uid}\]\n?#s",
             '<pre>\\1</pre>',
-            $text);
+            $text
+        );
     }
 
     public function parseColour($text)
@@ -156,7 +157,7 @@ class BBCodeFromDB
             }
 
             if (!$this->options['withoutImageDimensions'] && $imageSize !== null && $imageSize[0] !== 0) {
-                $heightPercentage = ($imageSize[1] / $imageSize[0]) * 100;
+                $heightPercentage = $imageSize[1] / $imageSize[0] * 100;
 
                 $topClass = 'proportional-container';
                 if ($this->options['withGallery']) {
@@ -207,7 +208,8 @@ class BBCodeFromDB
         return preg_replace(
             "#\[notice:{$this->uid}\]\n*(.*?)\n*\[/notice:{$this->uid}\]\n?#s",
             "<div class='well'>\\1</div>",
-            $text);
+            $text
+        );
     }
 
     public function parseProfile($text)

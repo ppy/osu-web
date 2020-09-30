@@ -6,7 +6,7 @@
 return [
     'achievement' => '<strong><em>:user</em></strong> zdobywa osiągnięcie <strong>:achievement</strong>!',
     'beatmap_playcount' => 'Beatmapa :beatmap została zagrana :count razy!',
-    'beatmapset_approve' => 'Beatmapa :beatmapset użytkownika <strong>:user</strong> została :approval!',
+    'beatmapset_approve' => 'Beatmapa :beatmapset użytkownika <strong>:user</strong> :approval!',
     'beatmapset_delete' => 'Beatmapa :beatmapset została usunięta.',
     'beatmapset_revive' => 'Beatmapa :beatmapset została ożywiona z wiecznego snu przez użytkownika <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> aktualizuje beatmapę <em>:beatmapset</em>',
@@ -20,9 +20,9 @@ return [
     'username_change' => '<strong>:previousUsername</strong> zmienia swoją nazwę użytkownika na <strong><em>:user</em></strong>!',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
-        'ranked' => '',
+        'approved' => 'została zatwierdzona',
+        'loved' => 'uzyskała status ulubionej społeczności',
+        'qualified' => 'została zakwalifikowana',
+        'ranked' => 'uzyskała status rankingowy',
     ],
 ];

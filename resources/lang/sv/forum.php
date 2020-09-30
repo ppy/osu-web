@@ -76,7 +76,7 @@ return [
         'deleted' => 'raderat ämne',
         'go_to_latest' => 'visa senaste inlägg',
         'has_replied' => 'Du har svarat på detta ämne',
-        'in_forum' => '',
+        'in_forum' => 'i :forum',
         'latest_post' => ':when av :user',
         'latest_reply_by' => 'senaste svar av :user',
         'new_topic' => 'Lägg upp nytt ämne',

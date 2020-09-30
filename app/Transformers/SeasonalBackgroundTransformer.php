@@ -31,6 +31,6 @@ class SeasonalBackgroundTransformer extends TransformerAbstract
 
     public function includeUser(UserContestEntry $entry)
     {
-        return $this->item($entry->user, new UserCompactTransformer);
+        return $this->item($entry->user, new UserCompactTransformer());
     }
 }

@@ -17,12 +17,13 @@ export interface PersistedDocumentIssueEmbed {
 
 export interface NewDocumentIssueEmbed extends DocumentBlock {
   beatmap_id: number | null;
-  discussion_type: 'praise' | 'problem' | 'suggestion';
+  discussion_type: BeatmapReviewDiscussionType;
   timestamp: number | null;
   type: 'embed';
 }
 
 export type DocumentIssueEmbed = NewDocumentIssueEmbed | PersistedDocumentIssueEmbed;
+export type BeatmapReviewDiscussionType = 'praise' | 'problem' | 'suggestion';
 export type BeatmapReviewBlock = DocumentIssueEmbed | DocumentParagraph;
 export type BeatmapDiscussionReview = BeatmapReviewBlock[];
 export type PersistedBeatmapReviewBlock = DocumentParagraph | PersistedDocumentIssueEmbed;

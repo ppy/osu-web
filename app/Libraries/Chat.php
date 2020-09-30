@@ -21,7 +21,7 @@ class Chat
 
         priv_check_user($sender, 'ChatStart', $target)->ensureCan();
 
-        return (new Channel)->getConnection()->transaction(function () use ($sender, $target, $message, $isAction) {
+        return (new Channel())->getConnection()->transaction(function () use ($sender, $target, $message, $isAction) {
             $channel = Channel::findPM($target, $sender);
 
             $newChannel = $channel === null;

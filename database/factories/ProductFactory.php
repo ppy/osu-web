@@ -15,7 +15,7 @@
 */
 
 $factory->define(App\Models\Store\Product::class, function (Faker\Generator $faker) {
-    return  [
+    return [
         'name' => 'Imagination / '.$faker->colorName,
         'cost' => 16.00,
         'weight' => 100,
@@ -27,7 +27,7 @@ $factory->define(App\Models\Store\Product::class, function (Faker\Generator $fak
 });
 
 $factory->defineAs(App\Models\Store\Product::class, 'master_tshirt', function (Faker\Generator $faker) {
-    return  [
+    return [
         'name' => 'osu! t-shirt (triangles) / '.$faker->colorName,
         'cost' => 16.00,
         'weight' => 100,
@@ -63,7 +63,7 @@ NOTE: These are Japanese sizes. Overseas customers are advised to check the size
 });
 
 $factory->defineAs(App\Models\Store\Product::class, 'child_tshirt', function (Faker\Generator $faker) {
-    return  [
+    return [
         'name' => 'osu! t-shirt (triangles) / '.$faker->colorName,
         'cost' => 16.00,
         'weight' => 100,

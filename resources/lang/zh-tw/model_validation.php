@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => '密碼不能包含用戶名。',
         'email_already_used' => '郵箱已被使用。',
+        'email_not_allowed' => '',
         'invalid_country' => '國家或地區未被數據庫收錄。',
         'invalid_discord' => 'Discord 用户名無效。',
         'invalid_email' => "無效的郵箱地址。",

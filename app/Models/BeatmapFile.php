@@ -53,7 +53,7 @@ class BeatmapFile
             }
         }
 
-        $file = new static;
+        $file = new static();
         $file->parsed = true;
 
         if (isset($imageFilename)) {

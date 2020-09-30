@@ -293,8 +293,7 @@ class Post extends Model implements AfterCommit
     public function isBeatmapsetPost()
     {
         if ($this->topic !== null) {
-            return
-                $this->getKey() === $this->topic->topic_first_post_id &&
+            return $this->getKey() === $this->topic->topic_first_post_id &&
                 $this->topic->beatmapset()->exists();
         }
     }

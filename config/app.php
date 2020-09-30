@@ -194,7 +194,6 @@ return [
          * Package Service Providers...
          */
         GrahamCampbell\GitHub\GitHubServiceProvider::class,
-        Maknz\Slack\SlackServiceProvider::class,
         Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
 
@@ -277,7 +276,6 @@ return [
 
         'GitHub' => GrahamCampbell\GitHub\Facades\GitHub::class,
 
-        'Slack' => Maknz\Slack\Facades\Slack::class,
         'Datadog' => ChaseConey\LaravelDatadogHelper\Datadog::class,
     ],
 

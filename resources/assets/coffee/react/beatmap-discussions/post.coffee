@@ -31,10 +31,11 @@ export class Post extends React.PureComponent
     @reviewEditor = React.createRef()
 
     @state =
+      canSave: true
       editing: false
       editorMinHeight: '0'
       posting: false
-      message: @props.post.message
+      message: null
 
 
   componentWillUnmount: =>
@@ -51,8 +52,6 @@ export class Post extends React.PureComponent
       editing: @state.editing
       unread: !@props.read && @props.type != 'discussion'
 
-    userGroup = if @isOwner() then mapperGroup else @props.user.groups[0]
-
     div
       className: topClasses
       key: "#{@props.type}-#{@props.post.id}"
@@ -64,7 +63,7 @@ export class Post extends React.PureComponent
         if (!@props.hideUserCard)
           el UserCard,
             user: @props.user
-            group: userGroup
+            group: @userGroup()
         if @state.editing
           @messageEditor()
         else
@@ -72,17 +71,20 @@ export class Post extends React.PureComponent
 
 
   editCancel: =>
-    @setState
-      editing: false
-      message: @props.post.message
+    @setState editing: false
 
 
   editStart: =>
     if @messageBodyRef.current?
       editorMinHeight = "#{@messageBodyRef.current.getBoundingClientRect().height + 50}px"
 
-    @setState editing: true, editorMinHeight: editorMinHeight ? '0', =>
-      @textareaRef.current?.focus()
+    @setState
+      editing: true
+      editorMinHeight: editorMinHeight ? '0'
+      message: @props.post.message
+      => @textareaRef.current?.focus()
+
+
 
   handleKeyDownCallback: (type, event) =>
     switch type
@@ -97,7 +99,7 @@ export class Post extends React.PureComponent
   messageEditor: =>
     return if !@props.canBeEdited
 
-    canPost = !@state.posting && @validPost()
+    canPost = !@state.posting && @state.canSave
 
     div className: "#{bn}__message-container",
       if @props.discussion.message_type == 'review' && @props.type == 'discussion'
@@ -114,6 +116,7 @@ export class Post extends React.PureComponent
                   editMode: true
                   editing: @state.editing
                   ref: @reviewEditor
+                  onChange: @updateCanSave
       else
         el React.Fragment, null,
           el TextareaAutosize,
@@ -268,7 +271,11 @@ export class Post extends React.PureComponent
 
 
   setMessage: (e) =>
-    @setState message: e.target.value
+    @setState message: e.target.value, @updateCanSave
+
+
+  updateCanSave: =>
+    @setState canSave: @validPost()
 
 
   updatePost: =>
@@ -307,5 +314,12 @@ export class Post extends React.PureComponent
     .always => @setState posting: false
 
 
+  userGroup: ->
+    if @isOwner() then mapperGroup else @props.user.groups[0]
+
+
   validPost: =>
-    BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())
+    if @props.discussion.message_type == 'review' && @props.type == 'discussion'
+      @reviewEditor.current?.canSave
+    else
+      BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())
