@@ -13,21 +13,10 @@ import { PlaymodeTabs } from 'playmode-tabs'
 import * as React from 'react'
 import { a, div, h1, h2, p } from 'react-dom-factories'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
+import Chart from 'beatmap-discussions/chart'
 el = React.createElement
 
 export class Header extends React.PureComponent
-  componentDidMount: =>
-    @updateChart()
-
-
-  componentDidUpdate: =>
-    @updateChart()
-
-
-  componentWillUnmount: =>
-    $(window).off '.beatmapDiscussionsOverview'
-
-
   render: =>
     el React.Fragment, null,
       el HeaderV4,
@@ -121,7 +110,9 @@ export class Header extends React.PureComponent
               @stats()
 
         div className: 'u-relative',
-          div ref: 'chartArea', className: "#{bn}__chart"
+          el Chart,
+            discussions: @props.currentDiscussions.byFilter[@props.currentFilter].timeline
+            duration: @props.currentBeatmap.total_length * 1000
 
           div className: "#{bn}__beatmap-stats",
             el BeatmapBasicStats, beatmap: @props.currentBeatmap
@@ -166,15 +157,3 @@ export class Header extends React.PureComponent
             total
 
         div className: "#{bn}__line"
-
-
-  updateChart: =>
-    if !@_chart?
-      area = @refs.chartArea
-      length = @props.currentBeatmap.total_length * 1000
-
-      @_chart = new BeatmapDiscussionsChart(area, length)
-
-      $(window).on 'resize.beatmapDiscussionsOverview', @_chart.resize
-
-    @_chart.loadData _.values(@props.currentDiscussions.byFilter[@props.currentFilter].timeline)

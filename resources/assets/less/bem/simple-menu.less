@@ -37,6 +37,15 @@
     margin-top: 5px;
   }
 
+  &--forum-topic-moderation {
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 10px;
+    right: 0;
+    padding-left: @_padding-vertical;
+    padding-right: $padding-left;
+  }
+
   &--forum-topic-watch {
     position: absolute;
     bottom: 100%;
@@ -103,6 +112,16 @@
     padding: 0 @_gutter;
     display: flex;
     flex-direction: column;
+
+    .@{_top}--forum-topic-moderation & {
+      // hopefully 25px is enough to account for scrollbar (when exists)
+      max-width: calc(100vw - (2 * @forum-topic-nav-item--gutter + 2 * @_padding-vertical + 25px));
+      width: max-content;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, @btn-circle-diameter);
+      grid-template-rows: @btn-circle-diameter;
+      grid-gap: @forum-topic-nav-item--gutter * 2;
+    }
 
     .@{_top}--nav2 & {
       min-height: 100px;
