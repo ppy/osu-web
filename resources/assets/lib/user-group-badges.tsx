@@ -6,7 +6,7 @@ import * as React from 'react';
 import UserGroupBadge from 'user-group-badge';
 
 interface Props {
-  groups: GroupJSON[];
+  groups?: GroupJSON[];
   modifiers?: string[];
   short?: boolean;
   wrapper: string; // FIXME: temporary?
