@@ -434,6 +434,10 @@ function locale_for_moment($locale)
         return 'zh-cn';
     }
 
+    if ($locale === 'no') {
+        return 'nb';
+    }
+
     return $locale;
 }
 
