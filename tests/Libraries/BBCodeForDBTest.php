@@ -67,7 +67,6 @@ class BBCodeForDBTest extends TestCase
     {
         parent::setUp();
 
-        config()->set('app.url', 'http://localhost');
         config()->set('osu.bbcode.uid', '1');
     }
 }
