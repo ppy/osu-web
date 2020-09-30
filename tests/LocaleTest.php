@@ -71,19 +71,19 @@ class LocaleTest extends TestCase
     /**
      * @dataProvider availableLocalesProvider
      */
-    public function testCorrespondingMomentLocaleFile($locale)
+    public function testCorrespondingLocaleFile($locale)
     {
-        $momentLocale = locale_for_moment($locale);
-
-        $this->assertTrue(unmix("js/moment-locales/{$momentLocale}.js") !== null);
+        $this->assertTrue(unmix("js/locales/{$locale}.js") !== null);
     }
 
     /**
      * @dataProvider availableLocalesProvider
      */
-    public function testCorrespondingLocaleFile($locale)
+    public function testCorrespondingMomentLocaleFile($locale)
     {
-        $this->assertTrue(unmix("js/locales/{$locale}.js") !== null);
+        $momentLocale = locale_for_moment($locale);
+
+        $this->assertTrue(unmix("js/moment-locales/{$momentLocale}.js") !== null);
     }
 
     public function availableLocalesProvider()
