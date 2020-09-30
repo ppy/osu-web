@@ -7,7 +7,7 @@ export default interface BeatmapsetEventJson {
   beatmapset?: BeatmapsetJson;
   comment: any; // TODO: make always an object instead of object or string.
   created_at: string;
-  discussion?: BeatmapDiscussion;
+  discussion?: BeatmapsetDiscussionJson;
   id: number;
   starting_post?: string; // used when looking at user modding profile.
   type: string;
