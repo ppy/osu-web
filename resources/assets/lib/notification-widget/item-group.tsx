@@ -7,6 +7,7 @@ import NotificationStack from 'models/notification-stack';
 import { categoryToIcons } from 'notification-maps/icons';
 import { urlGroup } from 'notification-maps/url';
 import { NotificationContext } from 'notifications-context';
+import { formatMessageGroup } from 'notification-maps/message';
 import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
@@ -41,7 +42,7 @@ export default class ItemGroup extends React.Component<Props, State> {
           expandButton={this.renderExpandButton()}
           icons={categoryToIcons[item.category]}
           item={item}
-          message={item.messageGroup}
+          message={formatMessageGroup(item)}
           modifiers={['group']}
           url={urlGroup(item)}
           withCategory={true}
