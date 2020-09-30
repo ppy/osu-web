@@ -64,12 +64,9 @@ class Client extends PassportClient
             $this->validationErrors()->add('name', 'required');
         }
 
-        if (mb_strlen(trim($this->redirect)) === 0) {
-            $this->validationErrors()->add('redirect', 'required');
-        }
-
+        $redirect = trim($this->redirect);
         // TODO: this url validation is not very good.
-        if (!filter_var(trim($this->redirect), FILTER_VALIDATE_URL)) {
+        if (present($redirect) && !filter_var($redirect, FILTER_VALIDATE_URL)) {
             $this->validationErrors()->add('redirect', '.url');
         }
 
@@ -148,7 +145,7 @@ class Client extends PassportClient
     private function revokeTokens($timestamp)
     {
         $this->tokens()->update(['revoked' => true, 'updated_at' => $timestamp]);
-        $this->refreshTokens()->update([(new RefreshToken)->qualifyColumn('revoked') => true]);
+        $this->refreshTokens()->update([(new RefreshToken())->qualifyColumn('revoked') => true]);
         $this->authCodes()->update(['revoked' => true]);
     }
 }

@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute 超出最大長度——最多允許 :limit 個字符。',
     'wrong_confirmation' => '確認信息不匹配。',
 
-    'beatmap_discussion_post' => [
-        'discussion_locked' => '討論被鎖定。',
-        'first_post' => '無法刪除第一個討論。',
-
-        'attributes' => [
-            'message' => '訊息',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => '指定了時間戳但是譜面不存在。',
         'beatmapset_no_hype' => "無法推薦譜面。",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => '指定的時間戳不在譜面範圍內。',
             'negative' => "無法定位時間戳。",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => '討論被鎖定。',
+        'first_post' => '無法刪除第一個討論。',
+
+        'attributes' => [
+            'message' => '訊息',
         ],
     ],
 
@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => '密碼不能包含用戶名。',
         'email_already_used' => '郵箱已被使用。',
+        'email_not_allowed' => '',
         'invalid_country' => '國家或地區未被數據庫收錄。',
         'invalid_discord' => 'Discord 用户名無效。',
         'invalid_email' => "無效的郵箱地址。",

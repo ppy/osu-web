@@ -3,6 +3,7 @@
 
 .profile-header {
   background-color: @osu-colour-b5;
+  position: relative;
 
   &__cover-editor {
     position: absolute;
@@ -17,6 +18,15 @@
       display: flex;
       justify-content: center;
       width: @gutter-desktop;
+    }
+  }
+
+  &__rank-count-mobile {
+    max-width: max-content;
+    margin: 0 auto 10px;
+
+    @media @desktop {
+      display: none;
     }
   }
 

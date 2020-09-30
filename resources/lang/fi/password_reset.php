@@ -36,7 +36,7 @@ return [
         'username' => 'Anna sähköposti tai käyttäjänimi',
 
         'support' => [
-            '_' => '',
+            '_' => 'Tarvitsetko lisäapua? Ota yhteyttä meihin: :button.',
             'button' => '',
         ],
     ],

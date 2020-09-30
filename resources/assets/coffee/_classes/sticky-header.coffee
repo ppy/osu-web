@@ -7,15 +7,17 @@
 # 2. Add 'js-sticky-header' class to a marker element that should cause the sticky to show.
 class @StickyHeader
   constructor: ->
+    @debouncedOnScroll = _.debounce @onScroll, 20
     @header = document.getElementsByClassName('js-pinned-header')
     @marker = document.getElementsByClassName('js-sticky-header')
     @pinnedSticky = document.getElementsByClassName('js-pinned-header-sticky')
     @stickyBreadcrumbs = document.getElementsByClassName('js-sticky-header-breadcrumbs')
     @stickyContent = document.getElementsByClassName('js-sticky-header-content')
 
-    $(window).on 'throttled-scroll', @onScroll
-    $(document).on 'turbolinks:load osu:page:change', => Timeout.set 0, @onScroll
-    $(window).on 'throttled-resize', @stickOrUnstick
+    $(window).on 'scroll', @onScroll
+    $(document).on 'turbolinks:load', @debouncedOnScroll
+    $.subscribe 'osu:page:change', @debouncedOnScroll
+    $(window).on 'resize', @stickOrUnstick
 
 
   breadcrumbsElement: ->

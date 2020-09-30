@@ -49,32 +49,41 @@ return [
     ],
 
     'notifications' => [
-        'title' => 'Ilmoitukset',
-        'topic_auto_subscribe' => '',
         'beatmapset_discussion_qualified_problem' => '',
+        'beatmapset_disqualify' => '',
+        'comment_reply' => '',
+        'title' => 'Ilmoitukset',
+        'topic_auto_subscribe' => 'automaattisesti salli ilmoitukset uusille foorumiaiheille jotka luot',
 
-        'mail' => [
+        'options' => [
             '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
+            'beatmapset:modding' => 'beatmapin modaus',
+            'channel_message' => 'yksityisviestit',
+            'comment_new' => 'uudet kommentit',
+            'forum_topic_reply' => 'aihevastaus',
+            'mail' => 'posti',
+            'push' => 'push',
+            'user_achievement_unlock' => 'käyttäjämitali avattu',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => '',
-        'own_clients' => '',
+        'authorized_clients' => 'valtuutetut clientit',
+        'own_clients' => 'omat clientit',
         'title' => 'OAuth',
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Asetukset',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'oletus beatmap-lataus tyyppi',
+            'all' => 'videon kanssa jos saatavilla',
+            'no_video' => 'ilman videota',
+            'direct' => 'avaa osu!directissä',
         ],
+
+        'beatmapset_title_show_original' => 'näytä beatmap-metadata alkuperäisellä kielellä',
     ],
 
     'playstyles' => [
@@ -110,10 +119,11 @@ return [
 
     'verification_completed' => [
         'text' => 'Tämän välilehden/ikkunan voi nyt sulkea',
-        'title' => '',
+        'title' => 'Vahvistaminen on valmis',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Kelvoton tai vanhentunut vahvistuslinkki
+',
     ],
 ];

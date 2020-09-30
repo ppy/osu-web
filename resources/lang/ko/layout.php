@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => '다음 트랙 자동 재생',
     ],
 
     'defaults' => [
@@ -96,6 +96,7 @@ return [
             'country' => '국가',
             'index' => '퍼포먼스',
             'kudosu' => 'kudosu',
+            'multiplayer' => '멀티플레이어',
             'score' => '점수',
         ],
         'store' => [
@@ -178,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '로그인 / 등록',
+
         'login' => [
             'forgot' => "계정 정보를 잊어버렸어요.",
             'password' => '비밀번호',

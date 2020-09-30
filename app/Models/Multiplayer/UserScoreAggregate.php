@@ -5,9 +5,13 @@
 
 namespace App\Models\Multiplayer;
 
+use App\Models\Model;
 use App\Models\User;
 
 /**
+ * Aggregate root for user multiplayer high scores.
+ * Updates should be done via this root and not directly against the models.
+ *
  * @property float $accuracy
  * @property int $attempts
  * @property int $completed
@@ -19,11 +23,13 @@ use App\Models\User;
  * @property \Carbon\Carbon $updated_at
  * @property int $user_id
  */
-class UserScoreAggregate extends RoomUserHighScore
+class UserScoreAggregate extends Model
 {
+    protected $table = 'multiplayer_rooms_high';
+
     public $isNew = false;
 
-    public static function getPlaylistItemUserHighScore(RoomScore $score)
+    public static function getPlaylistItemUserHighScore(Score $score)
     {
         return PlaylistItemUserHighScore::firstOrNew([
             'playlist_item_id' => $score->playlist_item_id,
@@ -31,7 +37,7 @@ class UserScoreAggregate extends RoomUserHighScore
         ]);
     }
 
-    public static function updatePlaylistItemUserHighScore(PlaylistItemUserHighScore $highScore, RoomScore $score)
+    public static function updatePlaylistItemUserHighScore(PlaylistItemUserHighScore $highScore, Score $score)
     {
         if (!$score->passed) {
             return;
@@ -66,7 +72,7 @@ class UserScoreAggregate extends RoomUserHighScore
         return $obj;
     }
 
-    public function addScore(RoomScore $score)
+    public function addScore(Score $score)
     {
         return $this->getConnection()->transaction(function () use ($score) {
             if (!$score->isCompleted()) {
@@ -96,7 +102,7 @@ class UserScoreAggregate extends RoomUserHighScore
 
     public function getScores()
     {
-        return RoomScore
+        return Score
             ::where('room_id', $this->room_id)
             ->where('user_id', $this->user_id)
             ->get();
@@ -128,12 +134,48 @@ class UserScoreAggregate extends RoomUserHighScore
         }
     }
 
+    public function room()
+    {
+        return $this->belongsTo(Room::class);
+    }
+
+    public function scopeForRanking($query)
+    {
+        return $query
+            ->where('completed', '>', 0)
+            ->whereHas('user', function ($userQuery) {
+                $userQuery->default();
+            })
+            ->orderBy('total_score', 'DESC')
+            ->orderBy('last_score_id', 'ASC');
+    }
+
     public function updateUserAttempts()
     {
         $this->increment('attempts');
     }
 
-    private function updateUserTotal(RoomScore $current, PlaylistItemUserHighScore $prev)
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function userRank()
+    {
+        if ($this->total_score === null || $this->last_score_id === null) {
+            return;
+        }
+
+        $query = static::where('room_id', $this->room_id)->forRanking()
+            ->cursorWhere([
+                ['column' => 'total_score', 'order' => 'ASC', 'value' => $this->total_score],
+                ['column' => 'last_score_id', 'order' => 'DESC', 'value' => $this->last_score_id],
+            ]);
+
+        return 1 + $query->count();
+    }
+
+    private function updateUserTotal(Score $current, PlaylistItemUserHighScore $prev)
     {
         if ($current->passed) {
             if ($prev->exists) {
@@ -147,6 +189,7 @@ class UserScoreAggregate extends RoomUserHighScore
             $this->accuracy += $current->accuracy;
             $this->pp += $current->pp;
             $this->completed++;
+            $this->last_score_id = $current->getKey();
         }
 
         $this->save();

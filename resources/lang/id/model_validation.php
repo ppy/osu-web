@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute melebihi batas maksimum - hanya bisa hingga :limit karakter.',
     'wrong_confirmation' => 'Konfirmasi tidak cocok.',
 
-    'beatmap_discussion_post' => [
-        'discussion_locked' => 'Diskusi terkunci',
-        'first_post' => 'Tidak dapat menghapus postingan awal.',
-
-        'attributes' => [
-            'message' => 'Isi pesan',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Keterangan waktu telah ditentukan tetapi beatmap tidak ada.',
         'beatmapset_no_hype' => "Beatmap tidak dapat dihype.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Keterangan waktu yang ditentukan melebihi panjang beatmap.',
             'negative' => "Keterangan waktu tidak bisa bernilai negatif.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Topik diskusi ini terkunci.',
+        'first_post' => 'Tidak dapat menghapus postingan awal.',
+
+        'attributes' => [
+            'message' => 'Pesan',
         ],
     ],
 
@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Nama pengguna tidak diperbolehkan untuk berada di dalam kata sandi.',
         'email_already_used' => 'Alamat email sudah digunakan.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Negara tidak ada dalam basis data.',
         'invalid_discord' => 'Nama pengguna Discord tidak valid.',
         'invalid_email' => "Tampaknya bukan alamat email yang valid.",
@@ -150,7 +151,7 @@ return [
         ],
 
         'change_username' => [
-            'restricted' => 'Anda tidak dapat mengganti nama pengguna Anda selama dibatasi.',
+            'restricted' => 'Anda tidak dapat mengganti nama pengguna ketika akun Anda sedang di-restrict.',
             'supporter_required' => [
                 '_' => 'Anda harus menjadi :link untuk mengubah nama Anda!',
                 'link_text' => 'osu!supporter',

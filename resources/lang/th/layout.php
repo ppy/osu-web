@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'เล่นเพลงถัดไปโดยอัตโนมัติ',
     ],
 
     'defaults' => [
@@ -14,11 +14,11 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => 'บีตแมปเซ็ท',
-            'beatmapset_covers' => 'ปกหลังบีตแมปเซ็ท',
+            'beatmapset' => 'บีทแมพเซ็ท',
+            'beatmapset_covers' => 'ปกหลังบีทแมพเซ็ท',
             'contest' => 'การแข่งขัน',
             'contests' => 'การแข่งขัน',
-            'root' => '',
+            'root' => 'แผงควบคุม',
             'store_orders' => 'ผู้ดูแลระบบร้านค้า',
         ],
 
@@ -32,7 +32,7 @@ return [
 
         'help' => [
             'index' => 'หน้าแรก',
-            'sitemap' => '',
+            'sitemap' => 'แผนผังเว็บไซต์',
         ],
 
         'store' => [
@@ -42,11 +42,11 @@ return [
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'รายการทัวร์นาเมนต์',
         ],
 
         'users' => [
-            'modding' => '',
+            'modding' => 'การวิจารณ์บีทแมพ',
             'show' => 'ข้อมูล',
         ],
     ],
@@ -61,7 +61,7 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'beatmaps',
+            '_' => 'บีทแมพ',
             'artists' => 'ศิลปินโดดเด่น',
             'index' => 'รายการ',
             'packs' => 'แพ็ค',
@@ -96,6 +96,7 @@ return [
             'country' => 'ประเทศ',
             'index' => 'ประสิทธิภาพ',
             'kudosu' => 'kudosu',
+            'multiplayer' => 'โหมดผู้เล่นหลายคน',
             'score' => 'คะแนน',
         ],
         'store' => [
@@ -120,7 +121,7 @@ return [
             'forum' => 'ฟอรัมชุมชน',
             'livestreams' => 'การถ่ายทอดสด',
             'report' => 'รายงานปัญหา',
-            'wiki' => '',
+            'wiki' => 'วิกิ',
         ],
         'legal' => [
             '_' => 'สถานะและกฎหมาย',
@@ -134,7 +135,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'คำร้องขอมีลักษณะไม่ถูกต้อง',
             'description' => '',
         ],
         '404' => [
@@ -154,7 +155,7 @@ return [
             'description' => "ขออภัย แต่หน้าที่คุณร้องขอไม่อยู่ที่นี่!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'คำร้องขอมีลักษณะไม่ถูกต้อง',
             'description' => '',
         ],
         '500' => [
@@ -178,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "ฉันลืมรายละเอียดของฉัน",
             'password' => 'รหัสผ่าน',

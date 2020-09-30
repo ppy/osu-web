@@ -93,7 +93,6 @@ return [
             'source' => 'Kilde',
             'success-rate' => 'Suksessrate',
             'tags' => 'Stikkord',
-            'unranked' => 'Urangert beatmap',
         ],
 
         'scoreboard' => [
@@ -115,6 +114,7 @@ return [
                 'rank' => 'Rang',
                 'score_total' => 'Total Poengsum',
                 'score' => 'Poengsum',
+                'time' => 'Tid',
             ],
 
             'no_scores' => [

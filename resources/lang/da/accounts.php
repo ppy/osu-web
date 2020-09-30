@@ -49,14 +49,21 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'modtag notifikationer for nye problemer på kvalificerede beatmaps for de følgende spileltilstande',
+        'beatmapset_disqualify' => '',
+        'comment_reply' => '',
         'title' => 'Notifikationer',
         'topic_auto_subscribe' => 'aktiver automatisk notifikationer på nye forum emner du opretter',
-        'beatmapset_discussion_qualified_problem' => 'modtag notifikationer for nye problemer på kvalificerede beatmaps for de følgende spileltilstande',
 
-        'mail' => [
-            '_' => 'modtag email notifikationer for',
-            'beatmapset:modding' => 'beatmap modding',
-            'forum_topic_reply' => 'emne svar',
+        'options' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'channel_message' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mail' => '',
+            'push' => '',
+            'user_achievement_unlock' => '',
         ],
     ],
 
@@ -75,6 +82,8 @@ return [
             'no_video' => 'uden video',
             'direct' => 'open med osu!direct',
         ],
+
+        'beatmapset_title_show_original' => '',
     ],
 
     'playstyles' => [

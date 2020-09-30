@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Pastikan avatar Anda mematuhi :link.<br/> Hal ini berarti konten harus <strong>cocok untuk segala usia</strong>. mis. tidak menampilkan ketelanjangan, kata-kata kotor atau sugestif.',
+            'rules' => 'Pastikan avatar Anda mematuhi :link yang berlaku.<br/>  Dengan kata lain, avatar Anda harus <strong>cocok untuk segala usia</strong> tanpa mengandung unsur-unsur yang tidak dibenarkan seperti cacian, hinaan, atau konten-konten yang bersifat sugestif.',
             'rules_link' => 'peraturan komunitas',
         ],
 
@@ -49,14 +49,21 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'terima notifikasi pada saat terdapat masalah baru pada beatmap yang berstatus Qualified pada mode',
+        'beatmapset_disqualify' => 'terima notifikasi pada saat terdapat beatmap yang didiskualifikasi pada mode',
+        'comment_reply' => 'terima notifikasi pada saat terdapat balasan baru pada komentar yang Anda kirim',
         'title' => 'Notifikasi',
         'topic_auto_subscribe' => 'hidupkan notifikasi secara otomatis di topik forum baru yang Anda buat',
-        'beatmapset_discussion_qualified_problem' => 'terima pemberitahuan untuk masalah baru pada qualified beatmap dari mode berikut',
 
-        'mail' => [
-            '_' => 'terima pemberitahuan email tentang',
+        'options' => [
+            '_' => 'kirimkan notifikasi melalui',
             'beatmapset:modding' => 'modding beatmap',
+            'channel_message' => 'pesan pribadi',
+            'comment_new' => 'komentar baru',
             'forum_topic_reply' => 'balasan pada topik',
+            'mail' => 'email',
+            'push' => 'web',
+            'user_achievement_unlock' => 'terbukanya medali baru',
         ],
     ],
 
@@ -75,6 +82,8 @@ return [
             'no_video' => 'tanpa video',
             'direct' => 'buka melalui osu!direct',
         ],
+
+        'beatmapset_title_show_original' => 'tampilkan metadata beatmap dalam bahasa aslinya',
     ],
 
     'playstyles' => [

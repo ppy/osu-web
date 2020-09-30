@@ -11,9 +11,19 @@ use DB;
 
 class UserNotification extends Model
 {
+    const DELIVERY_OFFSETS = [
+        'push' => 0,
+        'mail' => 1,
+    ];
+
     protected $casts = [
         'is_read' => 'boolean',
     ];
+
+    public static function deliveryMask(string $type): int
+    {
+        return 1 << self::DELIVERY_OFFSETS[$type];
+    }
 
     public static function markAsReadByIds(User $user, array $params)
     {
@@ -34,6 +44,7 @@ class UserNotification extends Model
         $now = now();
         $count = $user
             ->userNotifications()
+            ->hasPushDelivery()
             ->where('is_read', false)
             ->whereIn('notification_id', $ids)
             ->update(['is_read' => true, 'updated_at' => $now]);
@@ -55,8 +66,6 @@ class UserNotification extends Model
         $objectId = $params['object_id'] ?? null;
         $objectType = presence($params['object_type'] ?? null);
 
-        $tableName = (new static)->getTable();
-
         $notifications = Notification::query();
         if ($objectType !== null) {
             $notifications->where('notifiable_type', $objectType);
@@ -73,13 +82,17 @@ class UserNotification extends Model
                 ->whereIn('name', $names);
         }
 
+        $instance = new static();
+        $tableName = $instance->getTable();
         // force mysql optimizer to optimize properly with a fake multi-table update
         // https://dev.mysql.com/doc/refman/8.0/en/subquery-optimization.html
-        $itemsQuery = $user->getConnection()
+        $itemsQuery = $instance->getConnection()
             ->table(DB::raw("{$tableName}, (SELECT 1) dummy"))
             ->where('user_id', $user->getKey())
             ->where('is_read', false)
             ->whereIn('notification_id', $notifications->select('id'));
+        // raw builder doesn't have model scope magic.
+        $instance->scopeHasPushDelivery($itemsQuery);
 
         $now = now();
         $count = $itemsQuery->update(['is_read' => true, 'updated_at' => $now]);
@@ -88,9 +101,36 @@ class UserNotification extends Model
         }
     }
 
+    public function isDelivery(string $type): bool
+    {
+        $mask = static::deliveryMask($type);
+
+        return ($this->delivery & $mask) === $mask;
+    }
+
+    public function isMail(): bool
+    {
+        return $this->isDelivery('mail');
+    }
+
+    public function isPush(): bool
+    {
+        return $this->isDelivery('push');
+    }
+
     public function notification()
     {
         return $this->belongsTo(Notification::class);
+    }
+
+    public function scopeHasMailDelivery($query)
+    {
+        return $query->where('delivery', '&', static::deliveryMask('mail'));
+    }
+
+    public function scopeHasPushDelivery($query)
+    {
+        return $query->where('delivery', '&', static::deliveryMask('push'));
     }
 
     public function user()

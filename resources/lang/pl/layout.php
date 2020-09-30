@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Odtwarzaj następny utwór automatycznie',
     ],
 
     'defaults' => [
@@ -96,6 +96,7 @@ return [
             'country' => 'krajowy',
             'index' => 'globalny',
             'kudosu' => 'kudosu',
+            'multiplayer' => 'wieloosobowy',
             'score' => 'punktowy',
         ],
         'store' => [
@@ -178,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'zaloguj się / utwórz konto',
+
         'login' => [
             'forgot' => "Nie pamiętam swoich danych logowania",
             'password' => 'hasło',

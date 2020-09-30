@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "laitetaan sinut<br>liikkeelle!",
         'action' => 'Lataa osu!',
+
+        'help' => [
+            '_' => '',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'Windowsille',
             'macos' => 'macOS:lle',
@@ -117,7 +124,7 @@ return [
         'beatmaps' => [
             'new' => 'Uudet Hyväksytyt Beatmapit',
             'popular' => 'Suositut Beatmapit',
-            'by_user' => '',
+            'by_user' => 'tehnyt :user',
         ],
         'buttons' => [
             'download' => 'Lataa osu!',

@@ -4,15 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => '',
+    'countries' => [
+        'all' => '',
+        'title' => '',
+    ],
+
+    'filter' => [
+        'title' => '',
+
+        'variant' => [
+            'title' => '',
+        ],
     ],
 
     'type' => [
-        'performance' => 'Επίδοσης',
         'charts' => 'Spotlights',
-        'score' => 'Σκορ',
         'country' => 'Χώρας',
+        'multiplayer' => '',
+        'performance' => 'Επίδοσης',
+        'score' => 'Σκορ',
     ],
 
     'spotlight' => [

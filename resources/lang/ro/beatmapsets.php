@@ -52,8 +52,8 @@ return [
             'loved' => 'iubit :timeago',
             'qualified' => 'calificat :timeago',
             'ranked' => 'clasat :timeago',
-            'submitted' => '',
-            'updated' => '',
+            'submitted' => 'postat :timeago',
+            'updated' => 'ultima dată actualizat :timeago',
         ],
 
         'favourites' => [
@@ -93,7 +93,6 @@ return [
             'source' => 'Sursă',
             'success-rate' => 'Rata de succes',
             'tags' => 'Tag-uri',
-            'unranked' => 'Beatmap neclasificat',
         ],
 
         'scoreboard' => [
@@ -115,6 +114,7 @@ return [
                 'rank' => 'Rang',
                 'score_total' => 'Scor total',
                 'score' => 'Scor',
+                'time' => 'Timp',
             ],
 
             'no_scores' => [

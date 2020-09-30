@@ -5,17 +5,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\User\ForceReactivation;
 use App\Models\User;
 use Auth;
-use Request;
+use NoCaptcha;
 
 class SessionsController extends Controller
 {
     public function __construct()
     {
         $this->middleware('guest', ['only' => [
-            'login',
+            'store',
         ]]);
 
         return parent::__construct();
@@ -24,13 +25,47 @@ class SessionsController extends Controller
     public function store()
     {
         $request = request();
-        $params = get_params($request->all(), null, ['username:string', 'password:string', 'remember:bool']);
-        $username = trim($params['username'] ?? null);
-        $password = $params['password'] ?? null;
+
+        if ($request->attributes->get('csrf') === false) {
+            DatadogLoginAttempt::log('invalid_csrf');
+
+            abort(403, 'Reload page and try again');
+        }
+
+        $params = get_params($request->all(), null, ['username:string', 'password:string', 'remember:bool', 'g-recaptcha-response:string']);
+        $username = presence(trim($params['username'] ?? null));
+        $password = presence($params['password'] ?? null);
         $remember = $params['remember'] ?? false;
 
-        if (!present($username) || !present($password)) {
+        if ($username === null) {
+            DatadogLoginAttempt::log('missing_username');
+
             abort(422);
+        }
+
+        if ($password === null) {
+            DatadogLoginAttempt::log('missing_password');
+
+            abort(422);
+        }
+
+        if (captcha_triggered()) {
+            $token = presence($params['g-recaptcha-response'] ?? null);
+            $validCaptcha = false;
+
+            if ($token !== null) {
+                $validCaptcha = NoCaptcha::verifyResponse($token);
+            }
+
+            if (!$validCaptcha) {
+                if ($token === null) {
+                    DatadogLoginAttempt::log('missing_captcha');
+                } else {
+                    DatadogLoginAttempt::log('invalid_captcha');
+                }
+
+                return $this->triggerCaptcha(trans('users.login.invalid_captcha'), 422);
+            }
         }
 
         $ip = $request->getClientIp();
@@ -59,9 +94,13 @@ class SessionsController extends Controller
                 'header_popup' => view('layout._popup_user')->render(),
                 'user' => Auth::user()->defaultJson(),
             ];
-        } else {
-            return error_popup($authError, 403);
         }
+
+        if (captcha_triggered()) {
+            return $this->triggerCaptcha($authError);
+        }
+
+        return error_popup($authError, 403);
     }
 
     public function destroy()
@@ -74,6 +113,14 @@ class SessionsController extends Controller
             return ujs_redirect(route('home'));
         }
 
-        return [];
+        return captcha_triggered() ? ['captcha_triggered' => true] : [];
+    }
+
+    private function triggerCaptcha($message, $returnCode = 403)
+    {
+        return response([
+            'error' => $message,
+            'captcha_triggered' => true,
+        ], $returnCode);
     }
 }

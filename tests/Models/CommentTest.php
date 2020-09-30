@@ -5,14 +5,51 @@
 
 namespace Tests\Models;
 
+use App\Jobs\Notifications\CommentNew;
 use App\Models\Build;
 use App\Models\Comment;
+use App\Models\Notification;
 use App\Models\User;
-use Carbon\Carbon;
+use App\Models\UserNotificationOption;
 use Tests\TestCase;
 
 class CommentTest extends TestCase
 {
+    /**
+     * @dataProvider commentReplyOptionDataProvider
+     */
+    public function testCommentReplyNotification($option, $shouldBeSent)
+    {
+        $user = factory(User::class)->create();
+        if ($option !== null) {
+            $user->notificationOptions()->create([
+                'name' => Notification::COMMENT_NEW,
+                'details' => [UserNotificationOption::COMMENT_REPLY => $option],
+            ]);
+        }
+
+        $commenter = factory(User::class)->create();
+        $commentable = factory(Build::class)->create();
+        $parentComment = $commentable->comments()->create([
+            'message' => 'Test',
+            'user_id' => $user->getKey(),
+        ]);
+
+        $comment = $commentable->comments()->create([
+            'parent_id' => $parentComment->getKey(),
+            'message' => 'Hello',
+            'user_id' => $commenter->getKey(),
+        ]);
+
+        $notification = new CommentNew($comment, $commenter);
+
+        if ($shouldBeSent) {
+            $this->assertSame([$user->getKey()], $notification->getReceiverIds());
+        } else {
+            $this->assertEmpty($notification->getReceiverIds());
+        }
+    }
+
     public function testReplyingToDeletedComment()
     {
         $user = factory(User::class)->create();
@@ -20,7 +57,7 @@ class CommentTest extends TestCase
         $parentComment = $commentable->comments()->create([
             'message' => 'Test',
             'user_id' => $user->getKey(),
-            'deleted_at' => Carbon::now(),
+            'deleted_at' => now(),
         ]);
 
         $comment = new Comment([
@@ -30,5 +67,14 @@ class CommentTest extends TestCase
 
         $this->assertFalse($comment->isValid());
         $this->assertArrayHasKey('parent_id', $comment->validationErrors()->all());
+    }
+
+    public function commentReplyOptionDataProvider()
+    {
+        return [
+            [null, true],
+            [false, false],
+            [true, true],
+        ];
     }
 }

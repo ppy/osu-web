@@ -4,20 +4,30 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => 'filtrador por país',
+    'countries' => [
+        'all' => 'Todos',
+        'title' => 'País',
+    ],
+
+    'filter' => [
+        'title' => 'Exibir',
+
+        'variant' => [
+            'title' => 'Variante',
+        ],
     ],
 
     'type' => [
-        'performance' => 'Desempenho',
         'charts' => 'Destaques',
-        'score' => 'Pontuação',
         'country' => 'País',
+        'multiplayer' => 'multiplayer',
+        'performance' => 'Desempenho',
+        'score' => 'Pontuação',
     ],
 
     'spotlight' => [
         'end_date' => 'Data de Término',
-        'map_count' => 'Contagem do Map',
+        'map_count' => 'Contagem de Map',
         'participants' => 'Participantes',
         'start_date' => 'Data de Ínicio',
     ],

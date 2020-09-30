@@ -49,14 +49,21 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'otrzymuj powiadomienia o nowych problemach z zakwalifikowanymi beatmapami dla następujących trybów',
+        'beatmapset_disqualify' => 'otrzymuj powiadomienia o dyskwalifikacjach beatmap następujących trybów',
+        'comment_reply' => 'otrzymuj powiadomienia o odpowiedziach do twoich komentarzy',
         'title' => 'Powiadomienia',
         'topic_auto_subscribe' => 'automatycznie włączaj powiadomienia dla twoich wątków na forum',
-        'beatmapset_discussion_qualified_problem' => 'otrzymuj powiadomienia o nowych problemach z zakwalifikowanymi beatmapami dla następujących trybów',
 
-        'mail' => [
-            '_' => 'otrzymuj powiadomienia e-mail dla',
-            'beatmapset:modding' => 'dyskusji beatmap',
-            'forum_topic_reply' => 'odpowiedzi w wątkach',
+        'options' => [
+            '_' => 'opcje wysyłania',
+            'beatmapset:modding' => 'dyskusje beatmap',
+            'channel_message' => 'wiadomości prywatne na czacie',
+            'comment_new' => 'nowe komentarze',
+            'forum_topic_reply' => 'odpowiedzi do wątków',
+            'mail' => 'e-mail',
+            'push' => 'push',
+            'user_achievement_unlock' => 'odblokowanie medalu',
         ],
     ],
 
@@ -75,6 +82,8 @@ return [
             'no_video' => 'bez wideo',
             'direct' => 'otwórz w osu!direct',
         ],
+
+        'beatmapset_title_show_original' => 'pokaż metadane beatmapy w oryginalnym języku',
     ],
 
     'playstyles' => [

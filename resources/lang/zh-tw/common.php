@@ -6,7 +6,7 @@
 return [
     'confirmation' => '確定？',
     'confirmation_unsaved' => '未被修改的將不會保存。你確定嗎？',
-    'saved' => '儲存',
+    'saved' => '已儲存',
 
     'array_and' => [
         'words_connector' => '，',
@@ -26,6 +26,7 @@ return [
         'back_to_top' => '返回頂部',
         'cancel' => '取消',
         'change' => '變更',
+        'clear' => '',
         'click_to_copy' => '點擊以複製到剪貼簿',
         'click_to_copy_copied' => '已複製到剪貼簿！',
         'close' => '關閉',
@@ -125,6 +126,21 @@ return [
         'count_geki' => 'MAX',
         'count_katu' => '200',
         'count_miss' => 'Miss',
+    ],
+
+    'scoreboard_time' => [
+        'd' => '%d 天',
+        'dd' => '%d 天',
+        'h' => '%d 小時',
+        'hh' => '%d 小時',
+        'M' => '%d 月',
+        'm' => '%d 分鐘',
+        'MM' => '%d 月',
+        'mm' => '%d 分鐘',
+        'past' => '%s',
+        's' => '%d 秒',
+        'y' => '%d 年',
+        'yy' => '%d 年',
     ],
 
     'time' => [

@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Nhập vào đây để đăng vào Chung (:version)',
             'generalAll' => 'Nhập vào đây để đăng vào Chung (Tất cả difficulties)',
+            'review' => '',
             'timeline' => 'Nhập vào đây để đăng vào Timeline (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'ctrl-c trong chế độ chỉnh sửa (edit mode) và dán trong bài đăng của bạn để thêm một mốc thời gian!',
             'title' => 'Cuộc Thảo Luận Mới',
             'unpin' => 'Bỏ ghim',
+        ],
+
+        'review' => [
+            'new' => '',
+            'embed' => [
+                'delete' => '',
+                'missing' => '',
+                'unlink' => '',
+                'unsaved' => '',
+                'timestamp' => [
+                    'all-diff' => '',
+                    'diff' => '',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => '',
+                'praise' => '',
+                'problem' => '',
+                'suggestion' => '',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Mới Lạ',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Điện Tử',
+        'metal' => 'Metal',
+        'classical' => 'Cổ điển',
+        'folk' => 'Dân ca',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '4K',
@@ -279,6 +304,7 @@ return [
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
         'TD' => 'Touch Device',
+        'V2' => '',
     ],
     'language' => [
         'any' => 'Bất Kì',
@@ -291,8 +317,11 @@ return [
         'korean' => 'Tiếng Hàn',
         'spanish' => 'Tiếng Tây Ban Nha',
         'swedish' => 'Tiếng Thụy Điển',
+        'russian' => 'Tiếng Nga',
+        'polish' => 'Tiếng Ba Lan',
         'instrumental' => 'Nhạc Cụ',
         'other' => 'Khác',
+        'unspecified' => 'Không xác định',
     ],
     'played' => [
         'any' => 'Bất Kì',
@@ -317,5 +346,12 @@ return [
     'panel' => [
         'playcount' => 'Số lượt chơi: :count',
         'favourites' => 'Yêu thích: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '',
+            '7k' => '',
+            'all' => '',
+        ],
     ],
 ];

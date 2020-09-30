@@ -4,15 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => 'gefilterd op land',
+    'countries' => [
+        'all' => 'Alles',
+        'title' => 'Land',
+    ],
+
+    'filter' => [
+        'title' => 'Weergeven',
+
+        'variant' => [
+            'title' => 'Variant',
+        ],
     ],
 
     'type' => [
-        'performance' => 'Prestatie',
         'charts' => 'In de schijnwerpers',
-        'score' => 'Score',
         'country' => 'Landelijk',
+        'multiplayer' => 'multiplayer',
+        'performance' => 'Prestatie',
+        'score' => 'Score',
     ],
 
     'spotlight' => [

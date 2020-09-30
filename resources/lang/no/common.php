@@ -26,6 +26,7 @@ return [
         'back_to_top' => 'Tilbake til toppen',
         'cancel' => 'Avbryt',
         'change' => 'endre',
+        'clear' => 'Fjern',
         'click_to_copy' => 'klikk for å kopiere til utklippstavlen',
         'click_to_copy_copied' => 'kopiert til utklippstavle!',
         'close' => 'Lukk',
@@ -37,7 +38,7 @@ return [
         'permalink' => 'permalenke',
         'pin' => 'fest',
         'post' => 'Del',
-        'read_more' => '',
+        'read_more' => 'les mer',
         'reply' => 'Svar',
         'reply_reopen' => 'Svar og åpne igjen',
         'reply_resolve' => 'Svar og marker som løst',
@@ -125,6 +126,21 @@ return [
         'count_geki' => 'MAX',
         'count_katu' => '200',
         'count_miss' => 'Miss',
+    ],
+
+    'scoreboard_time' => [
+        'd' => '%d d',
+        'dd' => '%d d',
+        'h' => '%d t',
+        'hh' => '%d t',
+        'M' => '%d må',
+        'm' => '%d min',
+        'MM' => '%d må',
+        'mm' => '%d min',
+        'past' => '',
+        's' => '%d sek',
+        'y' => '%d år',
+        'yy' => '%d år',
     ],
 
     'time' => [

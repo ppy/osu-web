@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Каб апублікаваць у агульных, напішыце тут (:version)',
             'generalAll' => 'Каб апублікаваць у агульных, напішыце тут (Усе цяжкасці)',
+            'review' => '',
             'timeline' => 'Каб размясціць у шкале часу, напішыце тут (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'націсніце «ctrl-c» у рэдактары, каб скапіяваць пазнаку часу!',
             'title' => 'Новые абмеркаванне',
             'unpin' => 'Адмацаваць',
+        ],
+
+        'review' => [
+            'new' => '',
+            'embed' => [
+                'delete' => '',
+                'missing' => '',
+                'unlink' => '',
+                'unsaved' => '',
+                'timestamp' => [
+                    'all-diff' => '',
+                    'diff' => '',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => '',
+                'praise' => '',
+                'problem' => '',
+                'suggestion' => '',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Новый',
         'hip-hop' => 'Хіп-хоп',
         'electronic' => 'Электронная музыка',
+        'metal' => '',
+        'classical' => '',
+        'folk' => '',
+        'jazz' => '',
     ],
     'mods' => [
         '4K' => '',
@@ -279,6 +304,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
+        'V2' => '',
     ],
     'language' => [
         'any' => '',
@@ -291,8 +317,11 @@ return [
         'korean' => 'Карэйская',
         'spanish' => 'Іспанская',
         'swedish' => 'Шведская',
+        'russian' => '',
+        'polish' => '',
         'instrumental' => 'Інструментал',
         'other' => 'Іншае',
+        'unspecified' => '',
     ],
     'played' => [
         'any' => 'Усе',
@@ -317,5 +346,12 @@ return [
     'panel' => [
         'playcount' => 'Колькасць гульняў: :count',
         'favourites' => 'У абраных: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '',
+            '7k' => '',
+            'all' => '',
+        ],
     ],
 ];

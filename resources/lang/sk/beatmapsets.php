@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'availability' => [
@@ -30,12 +15,20 @@ return [
         'guest_title' => 'Beatmapy',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => 'stiahnúť',
+            'video' => 'stiahnuť s videom',
+            'no_video' => 'stiahnuť bez videa',
+            'direct' => '',
+        ],
+    ],
+
     'show' => [
         'discussion' => 'Diskusia',
 
         'details' => [
             'favourite' => 'Pridať do mojich obľúbených',
-            'favourited_count' => '+ 1 ďalší!|+ :count ďalších!',
             'logged-out' => 'Pre sťahovanie beatmap sa najskôr musíš prihlásiť!',
             'mapped_by' => 'beatmapu vytvoril :mapper',
             'unfavourite' => 'Odobrať z mojich obľúbených',
@@ -49,13 +42,22 @@ return [
             ],
 
             'login_required' => [
-                'bottom' => '',
-                'top' => '',
+                'bottom' => 'pre prístup k ďalším funkciám',
+                'top' => 'Prihláste sa',
             ],
         ],
 
+        'details_date' => [
+            'approved' => '',
+            'loved' => '',
+            'qualified' => '',
+            'ranked' => '',
+            'submitted' => '',
+            'updated' => 'naposledy aktualizovaný :timeago',
+        ],
+
         'favourites' => [
-            'limit_reached' => '',
+            'limit_reached' => 'Máte príliš veľa obľúbených beatmáp! Prosím odstráňte jednu pre pokračovanie.',
         ],
 
         'hype' => [
@@ -70,6 +72,16 @@ return [
                     'wip' => 'rozpracované',
                 ],
             ],
+
+            'disqualify' => [
+                '_' => '',
+            ],
+
+            'report' => [
+                '_' => '',
+                'button' => 'Nahlásiť problém',
+                'link' => 'tu',
+            ],
         ],
 
         'info' => [
@@ -81,7 +93,6 @@ return [
             'source' => 'Zdroj',
             'success-rate' => 'Úspešnosť',
             'tags' => 'Tagy',
-            'unranked' => 'Nehodnotená beatmapa',
         ],
 
         'scoreboard' => [
@@ -103,6 +114,7 @@ return [
                 'rank' => 'Hodnotenie',
                 'score_total' => 'Celkové skóre',
                 'score' => 'Skóre',
+                'time' => '',
             ],
 
             'no_scores' => [
@@ -133,6 +145,16 @@ return [
             'rating-spread' => 'Graf hodnotenia',
             'nominations' => 'Nominácie',
             'playcount' => 'Počet zahraní',
+        ],
+
+        'status' => [
+            'ranked' => 'Hodnotené',
+            'approved' => 'Schválené',
+            'loved' => 'Obľúbené',
+            'qualified' => 'Kvalifikované',
+            'wip' => 'Nedorobené',
+            'pending' => 'Nevybavené',
+            'graveyard' => 'Cintorín',
         ],
     ],
 ];

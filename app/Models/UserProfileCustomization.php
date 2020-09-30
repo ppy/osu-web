@@ -5,7 +5,6 @@
 
 namespace App\Models;
 
-use App\Libraries\CommentBundleParams;
 use App\Libraries\ProfileCover;
 
 /**
@@ -49,18 +48,17 @@ class UserProfileCustomization extends Model
     public static function repairExtrasOrder($value)
     {
         // read from inside out
-        return
-            array_values(
-                // remove duplicate sections from previous merge
-                array_unique(
-                    // ensure all sections are included
-                    array_merge(
-                        // remove invalid sections
-                        array_intersect($value, static::SECTIONS),
-                        static::SECTIONS
-                    )
+        return array_values(
+            // remove duplicate sections from previous merge
+            array_unique(
+                // ensure all sections are included
+                array_merge(
+                    // remove invalid sections
+                    array_intersect($value, static::SECTIONS),
+                    static::SECTIONS
                 )
-            );
+            )
+        );
     }
 
     public function cover()
@@ -135,18 +133,42 @@ class UserProfileCustomization extends Model
         $this->setOption('beatmapset_download', $value);
     }
 
+    public function getBeatmapsetTitleShowOriginalAttribute()
+    {
+        return $this->options['beatmapset_title_show_original'] ?? false;
+    }
+
+    public function setBeatmapsetTitleShowOriginalAttribute($value)
+    {
+        if (!is_bool($value)) {
+            $value = null;
+        }
+
+        $this->setOption('beatmapset_title_show_original', $value);
+    }
+
     public function getCommentsSortAttribute()
     {
-        return $this->options['comments_sort'] ?? CommentBundleParams::DEFAULT_SORT;
+        return $this->options['comments_sort'] ?? Comment::DEFAULT_SORT;
     }
 
     public function setCommentsSortAttribute($value)
     {
-        if ($value !== null && !in_array($value, array_keys(CommentBundleParams::SORTS), true)) {
+        if ($value !== null && !array_key_exists($value, Comment::SORTS)) {
             $value = null;
         }
 
         $this->setOption('comments_sort', $value);
+    }
+
+    public function getForumPostsShowDeletedAttribute()
+    {
+        return $this->options['forum_posts_show_deleted'] ?? true;
+    }
+
+    public function setForumPostsShowDeletedAttribute($value)
+    {
+        $this->setOption('forum_posts_show_deleted', $value);
     }
 
     public function getUserListFilterAttribute()

@@ -26,6 +26,7 @@ return [
         'back_to_top' => 'Vissza a lap tetejére',
         'cancel' => 'Mégse',
         'change' => 'változtat',
+        'clear' => 'Törlés',
         'click_to_copy' => 'kattints ide a vágólapra helyezéshez',
         'click_to_copy_copied' => 'vágólapra helyezve!',
         'close' => 'Bezárás',
@@ -37,7 +38,7 @@ return [
         'permalink' => 'állandó hivatkozás',
         'pin' => 'kitűzés',
         'post' => 'Küldés',
-        'read_more' => '',
+        'read_more' => 'tudj meg többet',
         'reply' => 'Válasz',
         'reply_reopen' => 'Válaszolás és újranyitás',
         'reply_resolve' => 'Válaszolás és megoldás',
@@ -125,6 +126,21 @@ return [
         'count_geki' => '',
         'count_katu' => '200',
         'count_miss' => 'Miss',
+    ],
+
+    'scoreboard_time' => [
+        'd' => '%d nap',
+        'dd' => '%d nap',
+        'h' => '%d óra',
+        'hh' => '%d óra',
+        'M' => '%d hónap',
+        'm' => '%d perc',
+        'MM' => '%d hónap',
+        'mm' => '%d perc',
+        'past' => '%s',
+        's' => '%d perc másodperc',
+        'y' => '%d év',
+        'yy' => '%d év',
     ],
 
     'time' => [

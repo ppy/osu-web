@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Var vänlig logga in för att fortsätta.',
     'require_verification' => 'Vänligen verifiera för att fortsätta.',
     'restricted' => "Kan ej göra det när man är begränsad.",
@@ -21,6 +22,7 @@ return [
             'full_bn_required_hybrid' => 'Du måste vara en fullständig väljare för att nominera beatmap-set med mer än ett spelläge.',
             'incorrect_state' => 'Ett fel uppstod, försök att uppdatera sidan.',
             'owner' => "Kan ej nominera sin egna beatmap.",
+            'set_metadata' => 'Du måste ange genren och språket innan du nominerar.',
         ],
         'resolve' => [
             'not_owner' => 'Endast trådskaparen eller beatmap-ägare kan lösa en diskussion.',
@@ -31,6 +33,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "Kan inte rösta på diskussion gjord av bot",
             'limit_exceeded' => 'Var god vänta innan du lägger fler röster',
             'owner' => "Kan inte rösta på din egen diskussion!",
             'wrong_beatmapset_state' => 'Kan endast rösta på diskussioner för väntande beatmaps.',
@@ -52,6 +55,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => 'Denna beatmap är låst för diskussion.',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => 'Du kan inte ändra metadata för en nominerad karta. Kontakta en BN eller NAT-medlem om du tror att det är felaktigt inställt.',
         ],
     ],
 

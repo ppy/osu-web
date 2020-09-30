@@ -22,7 +22,7 @@ $factory->define(Beatmapset::class, function (Faker\Generator $faker) {
     $title = $faker->sentence(rand(0, 5));
     $isApproved = (rand(0, 2) > 0);
 
-    return  [
+    return [
         'creator' => $faker->userName,
         'artist' => $artist,
         'title' => $title,
@@ -59,22 +59,29 @@ $factory->state(Beatmapset::class, 'no_discussion', function () {
 });
 
 $factory->state(Beatmapset::class, 'qualified', function () {
+    $approvedAt = now();
+
     return [
         'approved' => Beatmapset::STATES['qualified'],
-        'queued_at' => now(),
+        'approved_date' => $approvedAt,
+        'queued_at' => $approvedAt,
     ];
 });
 
 $factory->afterCreatingState(Beatmapset::class, 'with_discussion', function (App\Models\Beatmapset $beatmapset) {
-    if (!$beatmapset->beatmaps()->save(
-        factory(App\Models\Beatmap::class)->make()
-    )) {
+    if (
+        !$beatmapset->beatmaps()->save(
+            factory(App\Models\Beatmap::class)->make()
+        )
+    ) {
         throw new Exception();
     }
 
-    if (!$beatmapset->beatmapDiscussions()->save(
-        factory(BeatmapDiscussion::class, 'general')->make(['user_id' => $beatmapset->user_id])
-    )) {
+    if (
+        !$beatmapset->beatmapDiscussions()->save(
+            factory(BeatmapDiscussion::class, 'general')->make(['user_id' => $beatmapset->user_id])
+        )
+    ) {
         throw new Exception();
     }
 });

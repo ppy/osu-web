@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nieuw bericht op ":title" door :username',
                 'beatmapset_discussion_post_new_compact' => 'Nieuw bericht door :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nieuw bericht door :username',
+                'beatmapset_discussion_review_new' => 'Nieuwe beoordeling op ":title" door :username die problemen bevat: :problems, suggesties: :suggestions, prijzen: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Nieuwe beoordeling door :username die problemen bevat: :problems, suggesties: :suggestions, prijzen: :praises',
                 'beatmapset_discussion_unlock' => 'Beatmap ":title" is ontgrendeld voor discussie.',
                 'beatmapset_discussion_unlock_compact' => 'Discussie is ontgrendeld',
             ],
@@ -64,6 +66,8 @@ return [
 
                 'comment_new' => ':username gaf commentaar op ":content" op ":title"',
                 'comment_new_compact' => ':username gaf commentaar op ":content"',
+                'comment_reply' => ':username antwoordde ":content" op ":title"',
+                'comment_reply_compact' => ':username antwoordde ":content"',
             ],
         ],
 
@@ -88,6 +92,8 @@ return [
 
                 'comment_new' => ':username gaf commentaar ":content" op ":title"',
                 'comment_new_compact' => ':username gaf commentaar op ":content"',
+                'comment_reply' => ':username antwoordde ":content" op ":title"',
+                'comment_reply_compact' => ':username antwoordde ":content"',
             ],
         ],
 
@@ -99,6 +105,8 @@ return [
 
                 'comment_new' => ':username gaf commentaar ":content" op ":title"',
                 'comment_new_compact' => ':username gaf commentaar op ":content"',
+                'comment_reply' => ':username antwoordde ":content" op ":title"',
+                'comment_reply_compact' => ':username antwoordde ":content"',
             ],
         ],
 
@@ -128,6 +136,64 @@ return [
                 '_' => 'Nieuwe medaille',
                 'user_achievement_unlock' => '":title" ontgrendeld!',
                 'user_achievement_unlock_compact' => '":title" ontgrendeld!',
+            ],
+        ],
+    ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => 'De discussie op ":title" is vergrendeld',
+                'beatmapset_discussion_post_new' => 'De discussie over ":title" heeft nieuwe updates',
+                'beatmapset_discussion_unlock' => 'De discussie op ":title" is ontgrendeld',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => 'Er is een nieuw probleem gemeld op ":title"',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '":title" is gediskwalificeerd',
+                'beatmapset_love' => '":title" was gepromoveerd naar geliefde',
+                'beatmapset_nominate' => '":title" is genomineerd',
+                'beatmapset_qualify' => '":title" heeft genoeg nominaties gekregen en de rij van rangen ingevoerd',
+                'beatmapset_rank' => '":title" is gerangschikt',
+                'beatmapset_reset_nominations' => 'Nominatie van ":title" is gereset',
+            ],
+
+            'comment' => [
+                'comment_new' => 'Beatmap ":title" heeft nieuwe reacties',
+            ],
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => 'Je hebt een nieuw bericht ontvangen van :username',
+            ],
+        ],
+
+        'build' => [
+            'comment' => [
+                'comment_new' => 'Changelog ":title" heeft nieuwe reacties',
+            ],
+        ],
+
+        'news_post' => [
+            'comment' => [
+                'comment_new' => 'Nieuws ":title" heeft nieuwe reacties',
+            ],
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => [
+                'forum_topic_reply' => 'Er zijn nieuwe antwoorden in ":title"',
+            ],
+        ],
+
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => ':username heeft een nieuwe medaille ontgrendeld, ":title"!',
+                'user_achievement_unlock_self' => 'Je hebt een nieuwe medaille, ":title"!',
             ],
         ],
     ],

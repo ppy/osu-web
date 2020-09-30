@@ -6,12 +6,11 @@
 namespace App\Http\Controllers\Chat;
 
 use App\Libraries\Chat;
-use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
+use App\Models\UserAccountHistory;
 use Auth;
-use Request;
 
 /**
  * @group Chat
@@ -116,14 +115,16 @@ class ChatController extends Controller
      */
     public function updates()
     {
-        if (!present(Request::input('since'))) {
+        $params = request()->all();
+
+        if (!present($params['since'] ?? null)) {
             abort(422);
         }
 
-        $presence = self::presence();
+        $presence = $this->presence();
 
-        $since = Request::input('since');
-        $limit = clamp(get_int(Request::input('limit')) ?? 50, 1, 50);
+        $since = $params['since'];
+        $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
 
         // this is used to filter out messages from restricted users/etc
         $channelIds = array_map(function ($e) {
@@ -136,26 +137,42 @@ class ChatController extends Controller
             ->since($since)
             ->limit($limit);
 
-        if (present(Request::input('channel_id'))) {
-            $messages->where('channel_id', get_int(Request::input('channel_id')));
+        if (present($params['channel_id'] ?? null)) {
+            $messages->where('channel_id', get_int($params['channel_id']));
         }
 
         $messages = $messages->get()->reverse();
 
-        if ($messages->isEmpty() || $since >= $messages->last()->message_id) {
+        $silenceQuery = UserAccountHistory::bans()->limit(100);
+        $lastHistoryId = get_int($params['history_since'] ?? null);
+
+        if ($lastHistoryId === null) {
+            $previousMessage = Message::where('message_id', '<=', $since)->last();
+
+            if ($previousMessage === null) {
+                $silenceQuery->none();
+            } else {
+                $silenceQuery->where('timestamp', '>', $previousMessage->timestamp);
+            }
+        } else {
+            $silenceQuery->where('ban_id', '>', $lastHistoryId)->reorderBy('ban_id', 'DESC');
+        }
+
+        $silences = $silenceQuery->get();
+
+        if ($messages->isEmpty() && $silences->isEmpty()) {
             return response([], 204);
         }
 
-        $response = [
+        return [
             'presence' => $presence,
             'messages' => json_collection(
                 $messages,
                 'Chat\Message',
                 ['sender']
             ),
+            'silences' => json_collection($silences, 'Chat\UserSilence'),
         ];
-
-        return $response;
     }
 
     /**
@@ -192,27 +209,14 @@ class ChatController extends Controller
      * @bodyParam is_action boolean required whether the message is an action
      *
      * @response {
-     *   "new_channel_id": 1234,
-     *   "presence": [
-     *     {
-     *       "channel_id": 5,
-     *       "name": "#osu",
-     *       "description": "The official osu! channel (english only).",
-     *       "type": "public",
-     *       "last_read_id": 9150005005,
-     *       "last_message_id": 9150005005
-     *     },
+     *   "channel": [
      *     {
      *       "channel_id": 1234,
-     *       "type": "PM",
      *       "name": "peppy",
-     *       "icon": "https://a.ppy.sh/2?1519081077.png",
-     *       "users": [
-     *         2,
-     *         102
-     *       ],
-     *       "last_read_id": 9150001235,
-     *       "last_message_id": 9150001234
+     *       "description": "",
+     *       "type": "PM",
+     *       "last_read_id": 9150005005,
+     *       "last_message_id": 9150005005
      *     }
      *   ],
      *   "message": {
@@ -233,28 +237,38 @@ class ChatController extends Controller
      *       "is_online": true,
      *       "is_supporter": true
      *     }
-     *   }
+     *   },
+     *   "new_channel_id": 1234,
      * }
      */
     public function newConversation()
     {
         $params = request()->all();
+        $target = User::lookup(get_int($params['target_id'] ?? null), 'id');
+        if ($target === null) {
+            abort(422, 'target user not found');
+        }
 
+        /** @var Message $message */
         $message = Chat::sendPrivateMessage(
             auth()->user(),
-            get_int($params['target_id'] ?? null),
+            $target,
             presence($params['message'] ?? null),
             get_bool($params['is_action'] ?? null)
         );
 
+        $channelJson = json_item($message->channel, 'Chat\Channel', ['first_message_id', 'last_message_id', 'users']);
+        $channelJson['icon'] = $target->user_avatar;
+        $channelJson['name'] = $target->username;
+
         return [
-            'new_channel_id' => $message->channel_id,
+            'channel' => $channelJson,
             'message' => json_item(
                 $message,
                 'Chat/Message',
                 ['sender']
             ),
-            'presence' => self::presence(),
+            'new_channel_id' => $message->channel_id,
         ];
     }
 }

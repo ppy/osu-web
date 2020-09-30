@@ -11,7 +11,11 @@
 
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
-            <div class="account-edit-entry account-edit-entry--no-label js-account-edit" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
+            <div
+                class="account-edit-entry account-edit-entry--no-label js-account-edit"
+                data-account-edit-auto-submit="1"
+                data-url="{{ route('account.options') }}"
+            >
                 <label class="account-edit-entry__checkbox">
                     @include('objects._switch', [
                         'additionalClass'=> 'js-account-edit__input',
@@ -21,6 +25,32 @@
 
                     <span class="account-edit-entry__checkbox-label">
                         {{ trans('accounts.notifications.topic_auto_subscribe') }}
+                    </span>
+
+                    <div class="account-edit-entry__checkbox-status">
+                        @include('accounts._edit_entry_status')
+                    </div>
+                </label>
+            </div>
+
+            <div
+                class="account-edit-entry account-edit-entry--no-label js-account-edit"
+                data-account-edit-auto-submit="1"
+                data-url="{{ route('account.notification-options') }}"
+            >
+                <label class="account-edit-entry__checkbox">
+                    @php
+                        $name = App\Models\Notification::COMMENT_NEW;
+                        $option = App\Models\UserNotificationOption::COMMENT_REPLY;
+                    @endphp
+                    @include('objects._switch', [
+                        'additionalClass'=> 'js-account-edit__input',
+                        'checked' => $notificationOptions[$name]->details[$option] ?? true,
+                        'name' => "user_notification_option[{$name}][details][{$option}]",
+                    ])
+
+                    <span class="account-edit-entry__checkbox-label">
+                        {{ trans('accounts.notifications.comment_reply') }}
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">

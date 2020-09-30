@@ -4,15 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => 'ország szerinti szűrő',
+    'countries' => [
+        'all' => 'Összes',
+        'title' => 'Ország',
+    ],
+
+    'filter' => [
+        'title' => 'Mutat',
+
+        'variant' => [
+            'title' => 'Változat',
+        ],
     ],
 
     'type' => [
-        'performance' => 'Teljesítmény',
         'charts' => 'Reflektorfény',
-        'score' => 'Pontszám',
         'country' => 'Ország',
+        'multiplayer' => 'többjátékos',
+        'performance' => 'Teljesítmény',
+        'score' => 'Pontszám',
     ],
 
     'spotlight' => [

@@ -8,7 +8,7 @@ return [
         'download' => '지금 바로 다운로드하기',
         'online' => '<strong>:players</strong>명이 현재 접속 중이며, <strong>:games</strong>개의 게임이 개설되어 있습니다.',
         'peak' => '최다 동시 접속자 수: :count명',
-        'players' => '가입된 플레이어: <strong>:count</strong>명',
+        'players' => '<strong>:count</strong>명이 가입되어 있고',
         'title' => '환영합니다',
         'see_more_news' => '소식 더 보기',
 
@@ -72,8 +72,15 @@ return [
     ],
 
     'download' => [
-        'tagline' => "시작해 봐요!",
+        'tagline' => "시작해봐요!",
         'action' => 'osu! 다운로드',
+
+        'help' => [
+            '_' => '게임을 시작하거나 계정을 등록하는데 문제가 있다면, :help_forum_link 하거나 :support_button 해보세요.',
+            'help_forum_link' => '도움말 포럼을 확인',
+            'support_button' => '지원 팀에 연락',
+        ],
+
         'os' => [
             'windows' => 'Windows 용',
             'macos' => 'macOS 용',
@@ -122,7 +129,7 @@ return [
         'buttons' => [
             'download' => 'osu! 다운로드',
             'support' => 'osu! 지원하기',
-            'store' => 'osu!상점',
+            'store' => 'osu!store',
         ],
     ],
 

@@ -7,8 +7,8 @@ return [
     'deleted' => 'eliminado',
     'deleted_count' => ':count_delimited comentario eliminado|:count_delimited comentarios eliminados',
     'edited' => 'editado :timeago por :user',
-    'pinned' => 'fijado',
-    'empty' => 'Todavía no hay comentarios.',
+    'pinned' => 'anclado',
+    'empty' => 'Aún no hay comentarios.',
     'load_replies' => 'cargar respuestas',
     'replies_count' => ':count_delimited respuesta|:count_delimited respuestas',
     'title' => 'Comentarios',
@@ -40,8 +40,8 @@ return [
 
     'placeholder' => [
         'edit' => 'Editar el comentario aquí',
-        'new' => 'Escribe un nuevo comentario aquí',
-        'reply' => 'Escribe tu respuesta aquí',
+        'new' => 'Escriba un nuevo comentario aquí',
+        'reply' => 'Escriba su respuesta aquí',
     ],
 
     'show' => [

@@ -16,6 +16,7 @@ class AuthorizationControllerTest extends TestCase
 
     public function testAuthorizeNormalizes()
     {
+        // phpcs:disable
         $request = new ServerRequest(
             /* $serverParams */ [],
             /* $uploadedFiles */ [],
@@ -28,6 +29,7 @@ class AuthorizationControllerTest extends TestCase
             /* $parsedBody */ null,
             /* $protocol*/ '1.1'
         );
+        // phpcs:enable
 
         $actual = $this->invokeMethod($this->controller, 'normalizeRequestScopes', [$request])->getQueryParams()['scope'];
 

@@ -56,7 +56,7 @@ export default class ConversationView extends React.Component<Props> implements 
 
   componentDidMount() {
     this.componentDidUpdate();
-    $(window).on('throttled-scroll', _.throttle(this.onScroll, 1000));
+    $(window).on('scroll', _.throttle(this.onScroll, 1000));
   }
 
   componentDidUpdate = (prevProps?: Props, prevState?: {}, snapshot?: Snapshot) => {

@@ -50,7 +50,7 @@ class DisqusImport extends Command
 
         $this->prepareUsersDB();
 
-        $this->converter = new HtmlConverter;
+        $this->converter = new HtmlConverter();
         $this->converter->getConfig()->setOption('strip_tags', true);
 
         $file = $this->option('file');

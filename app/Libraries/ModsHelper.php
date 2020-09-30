@@ -32,7 +32,10 @@ class ModsHelper
         [18, '7K'],
         [19, '8K'],
         [24, '9K'],
+
+        [29, 'V2'],
     ];
+    const PREFERENCE_MODS_BITSET = 0b01000000000000000100001000100000; // SD, NC, PF, MR
 
     public static function toArray($bitset)
     {

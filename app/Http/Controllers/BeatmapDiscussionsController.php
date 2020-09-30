@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\BeatmapsetDiscussionReview;
+use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use App\Models\User;
@@ -68,7 +69,7 @@ class BeatmapDiscussionsController extends Controller
     public function index()
     {
         $isModerator = priv_check('BeatmapDiscussionModerate')->can();
-        $params = request();
+        $params = request()->all();
         $params['is_moderator'] = $isModerator;
 
         if (!$isModerator) {
@@ -98,6 +99,7 @@ class BeatmapDiscussionsController extends Controller
 
         // TODO: remove this when reviews are released
         $relatedDiscussions = [];
+        $relatedBeatmapsetIds = [];
         if (config('osu.beatmapset.discussion_review_enabled')) {
             $children = BeatmapDiscussion::whereIn('parent_id', $discussions->pluck('id'))
                 ->with([
@@ -120,6 +122,7 @@ class BeatmapDiscussionsController extends Controller
         foreach ($discussions->merge($relatedDiscussions) as $discussion) {
             $userIds[$discussion->user_id] = true;
             $userIds[$discussion->startingPost->last_editor_id] = true;
+            $relatedBeatmapsetIds[$discussion->beatmapset_id] = true;
         }
 
         $users = User::whereIn('user_id', array_keys($userIds))
@@ -127,17 +130,24 @@ class BeatmapDiscussionsController extends Controller
             ->default()
             ->get();
 
+        $relatedBeatmaps = Beatmap::whereIn('beatmapset_id', array_keys($relatedBeatmapsetIds))->get();
+
         $jsonChunks = [
             'discussions' => json_collection(
                 $discussions,
                 'BeatmapDiscussion',
                 ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
             ),
+            'related-beatmaps' => json_collection(
+                $relatedBeatmaps,
+                'Beatmap'
+            ),
             'related-discussions' => json_collection(
                 $relatedDiscussions,
                 'BeatmapDiscussion',
                 ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
             ),
+            'reviews-config' => BeatmapsetDiscussionReview::config(),
             'users' => json_collection(
                 $users,
                 'UserCompact',

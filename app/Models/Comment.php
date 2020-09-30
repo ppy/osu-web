@@ -49,6 +49,24 @@ class Comment extends Model
     // some people seem to put song lyrics in comment which inflated the size.
     const MESSAGE_LIMIT = 10000;
 
+    const DEFAULT_SORT = 'new';
+
+    const SORTS = [
+        'new' => [
+            ['column' => 'created_at', 'order' => 'DESC', 'type' => 'time'],
+            ['column' => 'id', 'order' => 'DESC'],
+        ],
+        'old' => [
+            ['column' => 'created_at', 'order' => 'ASC', 'type' => 'time'],
+            ['column' => 'id', 'order' => 'ASC'],
+        ],
+        'top' => [
+            ['column' => 'votes_count_cache', 'columnInput' => 'votes_count', 'order' => 'DESC'],
+            ['column' => 'created_at', 'order' => 'DESC', 'type' => 'time'],
+            ['column' => 'id', 'order' => 'DESC'],
+        ],
+    ];
+
     protected $dates = ['deleted_at', 'edited_at'];
 
     protected $casts = [
@@ -138,11 +156,13 @@ class Comment extends Model
             }
         }
 
-        if (!$this->allowEmptyCommentable && (
-            $this->commentable_type === null ||
-            $this->commentable_id === null ||
-            !$this->commentable()->exists()
-        )) {
+        if (
+            !$this->allowEmptyCommentable && (
+                $this->commentable_type === null ||
+                $this->commentable_id === null ||
+                !$this->commentable()->exists()
+            )
+        ) {
             $this->validationErrors()->add('commentable', 'required');
         }
 

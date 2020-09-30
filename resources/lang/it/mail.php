@@ -56,7 +56,7 @@ return [
         'questions' => "Se hai dubbi, non esitare a contattarci rispondendo a questa email.",
         'shipping' => 'Spedizione',
         'subject' => 'Abbiamo ricevuto il tuo ordine su osu!store!',
-        'thank_you' => 'Grazie per il tuo ordine sul osu!store!',
+        'thank_you' => 'Grazie per il tuo ordine sull\'osu!store!',
         'total' => 'Totale',
     ],
 
@@ -73,7 +73,7 @@ return [
         'changed_to' => 'Questa è una email di conferma per informarti che l\'indirizzo email del tuo account osu! è stato cambiato in: ":email".',
         'check' => 'Assicurati di aver ricevuto questa email al tuo nuovo indirizzo per evitare di perdere in futuro l\'accesso al tuo account osu!.',
         'sent' => 'Per motivi di sicurezza, questa email è stata inviata al tuo nuovo e vecchio indirizzo email.',
-        'subject' => 'conferma il cambio della email di osu!',
+        'subject' => 'conferma del cambio di email per osu!',
     ],
 
     'user_force_reactivation' => [
@@ -81,6 +81,12 @@ return [
         'perform_reset' => 'Puoi eseguire il reset da :url',
         'reason' => 'Motivazione:',
         'subject' => 'Riattivazione dell\'account di osu! richiesta',
+    ],
+
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => 'Nuove notifiche di osu!',
     ],
 
     'user_password_updated' => [

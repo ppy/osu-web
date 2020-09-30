@@ -39,7 +39,7 @@ abstract class Model extends BaseModel
 
     public static function queueIndexingForUser(User $user)
     {
-        $instance = new static;
+        $instance = new static();
         $table = $instance->getTable();
         $modeId = Beatmap::MODES[static::getMode()];
 
@@ -97,31 +97,24 @@ abstract class Model extends BaseModel
             return;
         }
 
-        return with_db_fallback('mysql-readonly', function ($connection) use ($options) {
-            $query = static::on($connection)
-                ->where('beatmap_id', '=', $this->beatmap_id)
-                ->where(function ($query) {
-                    $query
-                        ->where('score', '>', $this->score)
-                        ->orWhere(function ($query2) {
-                            $query2
-                                ->where('score', '=', $this->score)
-                                ->where('score_id', '<', $this->getKey());
-                        });
-                });
+        $query = static
+            ::where('beatmap_id', '=', $this->beatmap_id)
+            ->cursorWhere([
+                ['column' => 'score', 'order' => 'ASC', 'value' => $this->score],
+                ['column' => 'score_id', 'order' => 'DESC', 'value' => $this->getKey()],
+            ]);
 
-            if (isset($options['type'])) {
-                $query->withType($options['type'], ['user' => $this->user]);
-            }
+        if (isset($options['type'])) {
+            $query->withType($options['type'], ['user' => $this->user]);
+        }
 
-            if (isset($options['mods'])) {
-                $query->withMods($options['mods']);
-            }
+        if (isset($options['mods'])) {
+            $query->withMods($options['mods']);
+        }
 
-            $countQuery = DB::raw('DISTINCT user_id');
+        $countQuery = DB::raw('DISTINCT user_id');
 
-            return 1 + $query->visibleUsers()->default()->count($countQuery);
-        });
+        return 1 + $query->visibleUsers()->default()->count($countQuery);
     }
 
     public function macroUserBest()
@@ -219,13 +212,15 @@ abstract class Model extends BaseModel
     public function scopeWithMods($query, $modsArray)
     {
         return $query->where(function ($q) use ($modsArray) {
+            $bitset = ModsHelper::toBitset($modsArray);
+            $preferenceMask = ~ModsHelper::PREFERENCE_MODS_BITSET;
+
             if (in_array('NM', $modsArray, true)) {
-                $q->orWhere('enabled_mods', 0);
+                $q->orWhereRaw('enabled_mods & ? = 0', [$preferenceMask]);
             }
 
-            $bitset = ModsHelper::toBitset($modsArray);
             if ($bitset > 0) {
-                $q->orWhere('enabled_mods', $bitset);
+                $q->orWhereRaw('enabled_mods & ? = ?', [$preferenceMask | $bitset, $bitset]);
             }
         });
     }

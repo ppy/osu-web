@@ -110,7 +110,7 @@ return [
             '_' => 'peringkat',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'performa',
         ],
         'store_controller' => [
             '_' => 'osu!store',
@@ -124,6 +124,11 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'basis pengetahuan',
+        ],
+    ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => 'peringkat',
         ],
     ],
     'store' => [

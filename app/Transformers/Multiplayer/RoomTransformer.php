@@ -24,6 +24,7 @@ class RoomTransformer extends TransformerAbstract
         return [
             'id' => $room->id,
             'name' => $room->name,
+            'category' => $room->category,
             'user_id' => $room->user_id,
             'starts_at' => json_time($room->starts_at),
             'ends_at' => json_time($room->ends_at),
@@ -38,7 +39,7 @@ class RoomTransformer extends TransformerAbstract
     {
         return $this->item(
             $room->host,
-            new UserCompactTransformer
+            new UserCompactTransformer()
         );
     }
 
@@ -52,14 +53,14 @@ class RoomTransformer extends TransformerAbstract
             ->get()
             ->pluck('user');
 
-        return $this->collection($users, new UserCompactTransformer);
+        return $this->collection($users, new UserCompactTransformer());
     }
 
     public function includePlaylist(Room $room)
     {
         return $this->collection(
             $room->playlist,
-            new PlaylistItemTransformer
+            new PlaylistItemTransformer()
         );
     }
 
@@ -67,7 +68,7 @@ class RoomTransformer extends TransformerAbstract
     {
         return $this->collection(
             $room->scores()->completed()->get(),
-            new RoomScoreTransformer
+            new ScoreTransformer()
         );
     }
 }

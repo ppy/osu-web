@@ -110,7 +110,7 @@ return [
             '_' => 'ranglijst',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'prestatie',
         ],
         'store_controller' => [
             '_' => 'osu!store',
@@ -124,6 +124,11 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'kennisbank',
+        ],
+    ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => 'ranglijst',
         ],
     ],
     'store' => [

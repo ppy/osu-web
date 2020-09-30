@@ -12,15 +12,13 @@ interface ProcessEnv {
 
 declare var process: Process;
 
-declare var window: Window;
-
 // TODO: Turbolinks 5.3 is Typescript, so this should be updated then.
-declare var Turbolinks: TurbolinksStatic;
+declare var Turbolinks: import('turbolinks').default;
 
 // our helpers
 declare var tooltipDefault: TooltipDefault;
 declare var osu: OsuCommon;
-declare var currentUser: any;
+declare var currentUser: import('interfaces/current-user').default;
 declare var reactTurbolinks: any;
 declare var userVerification: any;
 
@@ -40,14 +38,14 @@ interface Comment {
 
 interface DiscussionMessageType {
   icon: {[key: string]: string};
-  iconText: {[key: string]: string[]};
 }
 
 interface BeatmapDiscussionHelperClass {
   messageType: DiscussionMessageType;
   TIMESTAMP_REGEX: RegExp;
   format(text: string, options?: any): string;
-  formatTimestamp(value: number): string;
+  formatTimestamp(value: number | null): string | undefined;
+  nearbyDiscussions(discussions: BeatmapsetDiscussionJson[], timestamp: number): BeatmapsetDiscussionJson[];
   parseTimestamp(value: string): number | null;
   previewMessage(value: string): string;
   url(options: any, useCurrent?: boolean): string;
@@ -116,21 +114,21 @@ interface BeatmapFailTimesArray {
 }
 
 // TODO: incomplete
-interface BeatmapDiscussion {
+interface BeatmapsetDiscussionJson {
   beatmap_id: number | null;
   beatmapset_id: number;
   deleted_at: string | null;
   id: number;
   message_type: string;
   parent_id: number | null;
-  posts: BeatmapDiscussionPost[];
+  posts: BeatmapsetDiscussionPostJson[];
   resolved: boolean;
-  starting_post: BeatmapDiscussionPost;
+  starting_post: BeatmapsetDiscussionPostJson;
   timestamp: number | null;
 }
 
 // TODO: incomplete
-interface BeatmapDiscussionPost {
+interface BeatmapsetDiscussionPostJson {
   message: string;
 }
 
@@ -138,27 +136,9 @@ interface LangClass {
   _getPluralForm: (count: number) => number;
   _origGetPluralForm: (count: number) => number;
   locale: string;
+  has(key: string): boolean;
 }
 
 interface TooltipDefault {
   remove: (el: HTMLElement) => void;
-}
-
-interface TurbolinksAction {
-  action: 'advance' | 'replace' | 'restore';
-}
-
-interface TurbolinksLocation {
-    getPath(): string;
-    isHTML(): boolean;
-}
-
-interface TurbolinksStatic {
-  controller: any;
-  supported: boolean;
-
-  clearCache(): void;
-  setProgressBarDelay(delayInMilliseconds: number): void;
-  uuid(): string;
-  visit(location: string, options?: TurbolinksAction): void;
 }

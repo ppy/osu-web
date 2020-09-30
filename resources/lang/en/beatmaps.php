@@ -275,6 +275,10 @@ return [
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Electronic',
+        'metal' => 'Metal',
+        'classical' => 'Classical',
+        'folk' => 'Folk',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '4K',
@@ -300,6 +304,7 @@ return [
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
         'TD' => 'Touch Device',
+        'V2' => 'Score V2',
     ],
     'language' => [
         'any' => 'Any',
@@ -312,8 +317,11 @@ return [
         'korean' => 'Korean',
         'spanish' => 'Spanish',
         'swedish' => 'Swedish',
+        'russian' => 'Russian',
+        'polish' => 'Polish',
         'instrumental' => 'Instrumental',
         'other' => 'Other',
+        'unspecified' => 'Unspecified',
     ],
     'played' => [
         'any' => 'Any',
@@ -338,5 +346,12 @@ return [
     'panel' => [
         'playcount' => 'Playcount: :count',
         'favourites' => 'Favourites: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'All',
+        ],
     ],
 ];

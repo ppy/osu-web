@@ -1,0 +1,98 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmap-discussion-editor-insertion-menu {
+  @_top: beatmap-discussion-editor-insertion-menu;
+  display: none;
+  z-index: @z-index--beatmap-discussion-editor-insertion-menu;
+  position: fixed;
+  width: 100%;
+  justify-content: center;
+  pointer-events: none; // as to not impede text-selection/etc within the editor itself
+
+  &::before {
+    content: '';
+    background: @osu-colour-b3;
+    position: absolute;
+    top: 9px;
+    height: 3px;
+    width: 100%;
+    .default-box-shadow();
+    .default-border-radius();
+  }
+
+  &__body {
+    align-items: center;
+    background: @osu-colour-b6;
+    border-radius: 20px;
+    display: flex;
+    font-size: 12px;
+    justify-content: center;
+    text-align: center;
+    width: 100px;
+    height: 20px;
+    color: @osu-colour-f1;
+    will-change: width, height;
+    transition: ease-in-out 100ms;
+    pointer-events: auto;
+    position: relative;
+
+    overflow: hidden;
+    .default-box-shadow();
+
+    &:hover {
+      width: 150px;
+      height: 30px;
+      margin-top: -5px;
+    }
+
+    @media @mobile {
+      width: 150px;
+      height: 30px;
+      margin-top: -5px;
+    }
+  }
+
+  &__buttons {
+    position: absolute;
+    background: @osu-colour-b6;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity ease-in-out 100ms;
+
+    .@{_top}__body:hover & {
+      opacity: 1;
+    }
+
+    @media @mobile {
+      opacity: 1;
+    }
+  }
+
+  &__menu-button {
+    .reset-input();
+    padding: 5px 10px;
+    color: @osu-colour-f1;
+    filter: grayscale(1);
+
+    &:hover {
+      filter: none;
+    }
+
+    &--paragraph:hover {
+      color: @osu-colour-c1;
+    }
+
+    &--praise:hover {
+      color: @beatmap-discussion--color-praise;
+    }
+
+    &--problem:hover {
+      color: @beatmap-discussion--color-problem;
+    }
+
+    &--suggestion:hover {
+      color: @beatmap-discussion--color-suggestion;
+    }
+  }
+}

@@ -10,15 +10,6 @@ return [
     'too_long' => 'το :attribute υπερβαίνει το μέγιστο όριο χαρακτήρων - μπορεί να είναι μέχρι :limit χαρακτήρες.',
     'wrong_confirmation' => 'Η βεβαίωση δεν ταιριάζει.',
 
-    'beatmap_discussion_post' => [
-        'discussion_locked' => 'Η συζήτηση έχει κλειδωθεί.',
-        'first_post' => 'Το αρχικό post δε μπορεί να διαγραφεί.',
-
-        'attributes' => [
-            'message' => '',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Η χρονική σήμανση έχει καθοριστεί αλλά το beatmap λείπει.',
         'beatmapset_no_hype' => "Το beatmap δε μπορεί να γίνει hyped.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Το καθορισμένο timestamp είναι πέρα από τη διάρκεια του beatmap.',
             'negative' => "Η χρονική σήμανση δε μπορεί να είναι αρνητική.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Η συζήτηση έχει κλειδωθεί.',
+        'first_post' => 'Το αρχικό post δε μπορεί να διαγραφεί.',
+
+        'attributes' => [
+            'message' => '',
         ],
     ],
 
@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Ο κωδικός δεν πρέπει να περιέχει το όνομα χρήστη.',
         'email_already_used' => 'Το email είναι ήδη σε χρήση.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Η χώρα δεν υπάρχει στη βάση δεδομένων.',
         'invalid_discord' => 'Το όνομα χρήστη στο Discord δεν είναι έγκυρο.',
         'invalid_email' => "Δε φαίνεται να είναι ένα έγκυρο email.",

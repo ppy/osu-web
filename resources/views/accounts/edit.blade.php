@@ -5,7 +5,7 @@
 @extends('master', ['titlePrepend' => trans('accounts.edit.title_compact')])
 
 @section('content')
-    @include('home._user_header_default')
+    @include('home._user_header_default', ['themeOverride' => 'settings'])
 
     <div class="osu-page u-has-anchor">
         <div class="account-edit account-edit--first">
@@ -93,7 +93,7 @@
                             </div>
 
                             <input
-                                class="js-account-edit-avatar__button btn-osu-big__fileupload"
+                                class="js-account-edit-avatar__button fileupload"
                                 type="file"
                                 name="avatar_file"
                                 data-url="{{ route('account.avatar') }}"
@@ -127,6 +127,7 @@
     </div>
 
     <div class="osu-page u-has-anchor">
+        <div id="notifications" class="fragment-target"></div>
         @include('accounts._edit_notifications')
     </div>
 

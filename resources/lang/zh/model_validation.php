@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute 超出最大长度——最多允许 :limit 个字符。',
     'wrong_confirmation' => '确认信息不匹配。',
 
-    'beatmap_discussion_post' => [
-        'discussion_locked' => '讨论被锁定。',
-        'first_post' => '无法删除第一个讨论。',
-
-        'attributes' => [
-            'message' => '消息',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => '指定了时间戳但是谱面不存在。',
         'beatmapset_no_hype' => "无法推荐谱面。",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => '指定的时间戳不在谱面范围内。',
             'negative' => "无法定位时间戳。",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => '讨论被锁定。',
+        'first_post' => '无法删除第一个帖子。',
+
+        'attributes' => [
+            'message' => '消息',
         ],
     ],
 
@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => '密码不能包含用户名。',
         'email_already_used' => '邮箱已被使用。',
+        'email_not_allowed' => '',
         'invalid_country' => '国家未被数据库收录。',
         'invalid_discord' => 'Discord 用户名无效。',
         'invalid_email' => "无效的邮箱地址。",

@@ -12,12 +12,13 @@
 
     width: 100%;
     height: 100px;
-    .at2x-simple('/images/layout/beatmaps/default-bg.png');
+    .at2x-simple('~@images/layout/beatmaps/default-bg.png');
 
     background-position: center;
     background-size: cover;
 
     border-radius: @border-radius-base @border-radius-base 0 0;
+    position: relative;
 
     @media @desktop {
       height: 150px;
@@ -63,10 +64,6 @@
     position: absolute;
     left: 10px;
     bottom: 10px;
-
-    @media @desktop {
-      width: auto;
-    }
   }
 
   &__metadata {
@@ -92,10 +89,12 @@
     }
   }
 
-  &__mods-box {
+  &__mods {
     position: absolute;
     right: 10px;
     top: 10px;
+    display: flex;
+    --mod-height: @mod-height;
   }
 
   &__team-type {

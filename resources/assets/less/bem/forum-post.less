@@ -44,6 +44,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    position: relative;
 
     // to prevent child from overflowing
     // reference: https://bugzilla.mozilla.org/show_bug.cgi?id=1108514#c2
@@ -114,6 +115,7 @@
 
   &__menu {
     margin-left: auto;
+    position: relative;
 
     @media @desktop {
       display: none;
@@ -126,7 +128,6 @@
   }
 
   &__user {
-    .link-default();
     font-weight: 600;
     font-size: @font-size--title-small;
 

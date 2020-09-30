@@ -84,6 +84,7 @@ return [
         'failed' => 'Feil innlogging',
         'forgot' => 'Glemt passordet ditt?',
         'info' => 'Vennligst logg inn for å fortsette',
+        'invalid_captcha' => '',
         'locked_ip' => 'IP-adressen din er blokkert. Vennligst vent et par minutter.',
         'password' => 'Passord',
         'register' => "Har du ikke en osu!-konto? Lag en ny en",
@@ -145,7 +146,6 @@ return [
         'lastvisit_online' => 'Pålogget for øyeblikket',
         'missingtext' => 'Du begikk muligens en skrivefeil! (eller så kan brukeren ha blitt utestengt)',
         'origin_country' => 'Fra :country',
-        'page_description' => 'osu! - Alt du noensinne måtte ønske å vite om :username!',
         'previous_usernames' => 'tidligere kjent som',
         'plays_with' => 'Spiller med :devices',
         'title' => "Profilen til :username",
@@ -159,7 +159,7 @@ return [
                     'button' => 'Last opp bilde',
                     'dropzone' => 'Slipp her for å laste opp',
                     'dropzone_info' => 'Du kan også slippe bildet ditt her for å laste det opp',
-                    'size_info' => 'Størrelsen på banneret bør være 2800x620',
+                    'size_info' => 'Størrelsen på banneret bør være 2400x620',
                     'too_large' => 'Den opplastede filen er for stor.',
                     'unsupported_format' => 'Formatet støttes ikke.',
 
@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'av :artist',
-                'none' => 'Ingen... ennå.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'se flere hendelser',
             ],
             'historical' => [
-                'empty' => 'Ingen prestasjoner :(',
                 'title' => 'Historikk',
 
                 'monthly_playcounts' => [
@@ -304,10 +302,9 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Last ned Reprise',
-                'empty' => 'Ingen fantastiske prestasjoner på rekordlisten enda. :(',
                 'not_ranked' => 'Bare rangerte beatmaps gir pp.',
                 'pp_weight' => 'veid :percentage',
-                'view_details' => '',
+                'view_details' => 'Vis detaljer',
                 'title' => 'Rangeringer',
 
                 'best' => [

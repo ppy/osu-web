@@ -26,6 +26,7 @@ return [
         'back_to_top' => 'Torna in cima',
         'cancel' => 'Cancella',
         'change' => 'cambia',
+        'clear' => 'Svuota',
         'click_to_copy' => 'clicca per copiare negli appunti',
         'click_to_copy_copied' => 'copiato negli appunti!',
         'close' => 'Chiudi',
@@ -37,7 +38,7 @@ return [
         'permalink' => 'permalink',
         'pin' => 'fissa',
         'post' => 'Posta',
-        'read_more' => '',
+        'read_more' => 'leggi di più',
         'reply' => 'Rispondi',
         'reply_reopen' => 'Rispondi e Riapri',
         'reply_resolve' => 'Rispondi e Risolvi',
@@ -125,6 +126,21 @@ return [
         'count_geki' => 'MAX',
         'count_katu' => '200',
         'count_miss' => 'Miss',
+    ],
+
+    'scoreboard_time' => [
+        'd' => '%d g',
+        'dd' => '%d g',
+        'h' => '%d h',
+        'hh' => '%d h',
+        'M' => '%d me',
+        'm' => '%d min',
+        'MM' => '%d me',
+        'mm' => '%d min',
+        'past' => '%s',
+        's' => '%d s',
+        'y' => '%d y',
+        'yy' => '%d y',
     ],
 
     'time' => [

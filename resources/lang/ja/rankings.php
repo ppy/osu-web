@@ -4,15 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => '国別でフィルタリング',
+    'countries' => [
+        'all' => '全て',
+        'title' => '国別',
+    ],
+
+    'filter' => [
+        'title' => '表示',
+
+        'variant' => [
+            'title' => 'バリエーション',
+        ],
     ],
 
     'type' => [
-        'performance' => 'パフォーマンス',
         'charts' => 'スポットライト',
-        'score' => 'スコア',
         'country' => '国別',
+        'multiplayer' => 'マルチプレイ',
+        'performance' => 'パフォーマンス',
+        'score' => 'スコア',
     ],
 
     'spotlight' => [

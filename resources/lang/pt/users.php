@@ -84,6 +84,7 @@ return [
         'failed' => 'Início de sessão incorreto',
         'forgot' => 'Esqueceste-te da palavra-passe?',
         'info' => 'Por favor inicia sessão para continuar',
+        'invalid_captcha' => '',
         'locked_ip' => 'o teu endereço de IP foi bloqueado. Por favor espera uns minutos.',
         'password' => 'Palavra-passe',
         'register' => "Não tens uma conta osu? Cria uma nova",
@@ -145,7 +146,6 @@ return [
         'lastvisit_online' => 'Atualmente online',
         'missingtext' => 'Poderás ter escrito mal! (ou o utilizador poderá ter sido banido)',
         'origin_country' => 'De :country',
-        'page_description' => 'osu! - Tudo o que sempre quiseste saber sobre :username!',
         'previous_usernames' => 'antigamente conhecido como',
         'plays_with' => 'Joga com :devices',
         'title' => "Perfil de :username",
@@ -159,7 +159,7 @@ return [
                     'button' => 'Carregar imagem',
                     'dropzone' => 'Larga aqui para carregar',
                     'dropzone_info' => 'Também podes largar aqui a tua imagem para carregá-la',
-                    'size_info' => 'O tamanho da capa deverá ter 2800x620',
+                    'size_info' => 'O tamanho da capa deverá ter 2400x620',
                     'too_large' => 'O ficheiro carregado é demasiado grande.',
                     'unsupported_format' => 'Formato não suportado.',
 
@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'por :artist',
-                'none' => 'Nenhuns... por agora.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'ver mais eventos',
             ],
             'historical' => [
-                'empty' => 'Sem registos de desempenho :(',
                 'title' => 'Historial',
 
                 'monthly_playcounts' => [
@@ -304,10 +302,9 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Transferir repetição',
-                'empty' => 'Nenhum registo de desempenhos espectaculares ainda :(',
                 'not_ranked' => 'Somente beatmaps classificados é que dão pp.',
                 'pp_weight' => ':percentage ponderada',
-                'view_details' => '',
+                'view_details' => 'Ver detalhes',
                 'title' => 'Classificações',
 
                 'best' => [

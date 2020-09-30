@@ -8,7 +8,7 @@ namespace App\Libraries\Markdown;
 use League\CommonMark\Block\Element as Block;
 use League\CommonMark\EnvironmentInterface;
 use League\CommonMark\Event\DocumentParsedEvent;
-use League\CommonMark\Ext\Table as TableExtension;
+use League\CommonMark\Extension\Table as TableExtension;
 use League\CommonMark\Inline\Element as Inline;
 
 class OsuMarkdownProcessor
@@ -20,7 +20,6 @@ class OsuMarkdownProcessor
     private $environment;
     private $event;
     private $node;
-    private $previousNode;
 
     private $listLevel;
     private $tocSlugs;
@@ -47,7 +46,6 @@ class OsuMarkdownProcessor
         $this->listLevel = 0;
 
         while (($this->event = $walker->next()) !== null) {
-            $this->previousNode = $this->node;
             $this->node = $this->event->getNode();
 
             $this->updateLocaleLink();

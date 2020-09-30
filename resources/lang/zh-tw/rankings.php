@@ -4,15 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => '按國家/地區篩選',
+    'countries' => [
+        'all' => '',
+        'title' => '國家',
+    ],
+
+    'filter' => [
+        'title' => '',
+
+        'variant' => [
+            'title' => '',
+        ],
     ],
 
     'type' => [
-        'performance' => '成績',
         'charts' => '月賽',
-        'score' => '總分',
         'country' => '國家',
+        'multiplayer' => '多人遊戲',
+        'performance' => '成績',
+        'score' => '總分',
     ],
 
     'spotlight' => [

@@ -9,10 +9,10 @@
   padding-bottom: $padding-top;
   display: flex;
   flex-direction: column;
-  margin: -5px;
 
   @media @desktop {
     flex-direction: row;
+    margin: -5px;
   }
 
   &__group {
@@ -59,6 +59,10 @@
       border-radius: 10000px;
       text-transform: uppercase;
       white-space: nowrap;
+    }
+
+    &--perfect {
+      color: hsl(@beatmap-score--hsl-perfect);
     }
   }
 }

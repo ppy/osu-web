@@ -49,7 +49,7 @@ return [
 
             'prompt' => [
                 'lock' => 'Kilitleme sebebi',
-                'unlock' => 'Kilidi açmak istediğinizden emin misiniz?',
+                'unlock' => 'Tartışmanın kilidini açmak istediğine emin misin?',
             ],
         ],
 
@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Genel\'e yazmak için burayı kullanın (:version)',
             'generalAll' => 'Genel\'e yazmak için burayı kullanın (tüm zorluklar)',
+            'review' => 'İnceleme göndermek için buraya yazın',
             'timeline' => 'Timeline\'a yazmak için burayı kullanın (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'bir zaman damgası eklemek için editörde ctrl-c\'ye basıp mesajınıza yapıştırın!',
             'title' => 'Yeni Tartışma',
             'unpin' => 'Sabitlemeyi kaldır',
+        ],
+
+        'review' => [
+            'new' => 'Yeni İnceleme',
+            'embed' => [
+                'delete' => 'Sil',
+                'missing' => '[TARTIŞMA SİLİNDİ]',
+                'unlink' => 'Bağlantıyı kaldır',
+                'unsaved' => 'Kaydedilmemiş',
+                'timestamp' => [
+                    'all-diff' => '"Tüm zorluklar" kısmındaki gönderilere zaman damgası yerleştirilemez.',
+                    'diff' => 'Eğer bu :type bir zaman damgasıyla başlıyorsa, Zaman çizgisi altında gösterilecektir.',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => 'paragraf ekle',
+                'praise' => 'övgü ekle',
+                'problem' => 'sorun ekle',
+                'suggestion' => 'öneri ekle',
+            ],
         ],
 
         'show' => [
@@ -235,7 +256,7 @@ return [
         'any' => 'Hepsi',
         'approved' => 'Onaylı',
         'favourites' => 'Favoriler',
-        'graveyard' => 'Mezarlık',
+        'graveyard' => 'Mezarlıkta',
         'leaderboard' => 'Liderlik tablosu olanlar',
         'loved' => 'Sevilen',
         'mine' => 'Benim haritalarım',
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Elektronik',
+        'metal' => 'Metal',
+        'classical' => 'Klasik',
+        'folk' => 'Folk',
+        'jazz' => 'Caz',
     ],
     'mods' => [
         '4K' => '',
@@ -279,6 +304,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
+        'V2' => 'Skor V2',
     ],
     'language' => [
         'any' => '',
@@ -291,8 +317,11 @@ return [
         'korean' => 'Korece',
         'spanish' => 'İspanyolca',
         'swedish' => 'İsveççe',
-        'instrumental' => 'Enstrümental',
+        'russian' => 'Rusça',
+        'polish' => 'Lehçe',
+        'instrumental' => 'Enstrümantal',
         'other' => 'Diğer',
+        'unspecified' => 'Belirtilmemiş',
     ],
     'played' => [
         'any' => 'Hepsi',
@@ -317,5 +346,12 @@ return [
     'panel' => [
         'playcount' => 'Oynanma sayısı',
         'favourites' => 'Favoriler',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Tümü',
+        ],
     ],
 ];

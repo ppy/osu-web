@@ -93,7 +93,6 @@ return [
             'source' => 'Nguồn',
             'success-rate' => 'Tỉ Lệ Thành Công',
             'tags' => 'Tags',
-            'unranked' => 'Beatmap chưa được xếp hạng',
         ],
 
         'scoreboard' => [
@@ -115,6 +114,7 @@ return [
                 'rank' => 'Xếp Hạng',
                 'score_total' => 'Tổng Điểm',
                 'score' => 'Điểm',
+                'time' => '',
             ],
 
             'no_scores' => [

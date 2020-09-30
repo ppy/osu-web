@@ -21,7 +21,7 @@ return [
         'kudosu_denied' => 'A refuzat să primească kudosu.',
         'message_placeholder_deleted_beatmap' => 'Această dificultate a fost ștearsă, deci e posibil să nu mai fie discutată.',
         'message_placeholder_locked' => 'Discuție pentru acest beatmap a fost dezactivată.',
-        'message_placeholder_silenced' => "",
+        'message_placeholder_silenced' => "Nu poți posta atunci când ai fost redus la tăcere.",
         'message_type_select' => 'Selectează tipul comentariului',
         'reply_notice' => 'Apasă enter pentru a răspunde.',
         'reply_placeholder' => 'Scrie-ți răspunsul aici',
@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Scrie aici pentru a posta în General (:version)',
             'generalAll' => 'Scrie aici pentru a posta în General (toate dificultățile)',
+            'review' => 'Scrie aici pentru a posta o recenzie',
             'timeline' => 'Scrie aici pentru a posta în Cronologie (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'ctrl-c în modul de editare și lipește-ți mesajul pentru a adăuga un marcaj de timp!',
             'title' => 'Discuție nouă',
             'unpin' => 'DeFixează',
+        ],
+
+        'review' => [
+            'new' => 'Recenzie Nouă',
+            'embed' => [
+                'delete' => 'Șterge',
+                'missing' => '[DISCUȚIE ȘTEARSĂ]',
+                'unlink' => 'Dezasociați',
+                'unsaved' => 'Nesalvat',
+                'timestamp' => [
+                    'all-diff' => 'Postările de pe "Toate dificultățile" nu pot fi marcate.',
+                    'diff' => 'Dacă acest :type începe cu un marcaj, o să fie arătat sub Cronologie.',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => 'inserează un paragraf',
+                'praise' => 'inserează laudă',
+                'problem' => 'inserează problema',
+                'suggestion' => 'inserează sugestie',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Noutate',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Electronic',
+        'metal' => 'Metal',
+        'classical' => 'Clasice',
+        'folk' => 'Folclor',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '',
@@ -279,6 +304,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
+        'V2' => 'Score V2',
     ],
     'language' => [
         'any' => '',
@@ -291,8 +317,11 @@ return [
         'korean' => 'Coreeană',
         'spanish' => 'Spaniolă',
         'swedish' => 'Suedeză',
+        'russian' => 'Rusă',
+        'polish' => 'Poloneză',
         'instrumental' => 'Instrumental',
         'other' => 'Altul',
+        'unspecified' => 'Nespecificat',
     ],
     'played' => [
         'any' => 'Oricare',
@@ -317,5 +346,12 @@ return [
     'panel' => [
         'playcount' => 'Numărul de jocuri :count',
         'favourites' => 'Favorite :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Tot',
+        ],
     ],
 ];

@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => '一般（:version）への投稿をここに入力',
             'generalAll' => '一般 （全ての難易度）への投稿をここに入力',
+            'review' => 'レビューを投稿するにはここに入力してください',
             'timeline' => 'タイムライン（:version）へ投稿するにはここに入力',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'ゲーム内のEdit画面でCtrl+Cを押してメッセージに張り付けるとタイムスタンプになります！',
             'title' => '新しいディスカッション',
             'unpin' => 'ピン解除',
+        ],
+
+        'review' => [
+            'new' => '新しいレビュー',
+            'embed' => [
+                'delete' => '削除',
+                'missing' => '[削除されたディスカッション]',
+                'unlink' => 'リンク解除',
+                'unsaved' => '未保存',
+                'timestamp' => [
+                    'all-diff' => '「全ての難易度」に関する投稿はタイムスタンプできません。',
+                    'diff' => 'この:typeがタイムスタンプで始まる場合、タイムラインの下に表示されます。',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => '段落の挿入',
+                'praise' => '称賛を挿入',
+                'problem' => '問題の挿入',
+                'suggestion' => '提案を挿入',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'ノベルティ',
         'hip-hop' => 'ヒップホップ',
         'electronic' => 'エレクトロニック',
+        'metal' => 'メタル',
+        'classical' => 'クラシカル',
+        'folk' => 'フォーク',
+        'jazz' => 'ジャズ',
     ],
     'mods' => [
         '4K' => '4K',
@@ -279,6 +304,7 @@ return [
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
         'TD' => '液晶タブレット',
+        'V2' => 'スコア V2',
     ],
     'language' => [
         'any' => '全て',
@@ -291,8 +317,11 @@ return [
         'korean' => '韓国語',
         'spanish' => 'スペイン語',
         'swedish' => 'スウェーデン語',
+        'russian' => 'ロシア語',
+        'polish' => 'ポーランド語',
         'instrumental' => '楽器',
         'other' => 'その他',
+        'unspecified' => '未分類',
     ],
     'played' => [
         'any' => '全て',
@@ -317,5 +346,12 @@ return [
     'panel' => [
         'playcount' => 'プレイ回数：:count',
         'favourites' => 'お気に入り：:count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => '全て',
+        ],
     ],
 ];

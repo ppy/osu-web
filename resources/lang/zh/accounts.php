@@ -49,14 +49,21 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => '在以下模式的合格谱面上接收新问题通知：',
+        'beatmapset_disqualify' => '在以下模式的谱面被标记为不合格时接收通知：',
+        'comment_reply' => '在你的评论被回复时接收通知',
         'title' => '通知',
         'topic_auto_subscribe' => '自动启用自己创建的主题的通知',
-        'beatmapset_discussion_qualified_problem' => '在以下模式的合格谱面上接收新问题通知：',
 
-        'mail' => [
-            '_' => '接收有关下列项目中的邮件通知：',
-            'beatmapset:modding' => '谱面审核',
-            'forum_topic_reply' => '帖子回复',
+        'options' => [
+            '_' => '推送设置',
+            'beatmapset:modding' => '谱面摸图',
+            'channel_message' => '私信',
+            'comment_new' => '新评论',
+            'forum_topic_reply' => '主题回复',
+            'mail' => '邮件',
+            'push' => '推送',
+            'user_achievement_unlock' => '成就解锁',
         ],
     ],
 
@@ -73,8 +80,10 @@ return [
             '_' => '默认谱面下载类型',
             'all' => '包含视频',
             'no_video' => '不包含视频',
-            'direct' => '在 osu!direct中查看',
+            'direct' => '在 osu!direct 中查看',
         ],
+
+        'beatmapset_title_show_original' => '以原语言显示谱面信息',
     ],
 
     'playstyles' => [

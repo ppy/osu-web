@@ -14,7 +14,7 @@ return [
         'allow_kudosu' => 'السماح بـ كودوسو',
         'beatmap_information' => 'صفحة الخريطة',
         'delete' => 'حذف',
-        'deleted' => 'حذف بواسطة :editor:delete_time.',
+        'deleted' => 'تم الحذف بواسطة :editor:delete_time.',
         'deny_kudosu' => 'رفض كودوسو',
         'edit' => 'تعديل',
         'edited' => 'التعديل الأخير تم بواسطة :editor:update_time.',
@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'اكتب هنا للنشر في العام (:version)',
             'generalAll' => 'اكتب هنا للنشر في العام (جميع الصعوبات)',
+            'review' => 'اكتب هنا لنشر مراجعة',
             'timeline' => 'اكتب هنا للنشر في الخط الزمني (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'ctrl-c في وضع التعديل والصق الرسالة هنا لأدخال طابع زمني!',
             'title' => 'مناقشة جديدة',
             'unpin' => 'إزالة التثبيت',
+        ],
+
+        'review' => [
+            'new' => 'مراجعة جديدة',
+            'embed' => [
+                'delete' => 'حذف',
+                'missing' => '[المناقشة محذوفة]',
+                'unlink' => 'إلغاء الربط',
+                'unsaved' => 'غير محفوظة',
+                'timestamp' => [
+                    'all-diff' => 'المشاركات على "كل الصعوبات" لا يمكن أن تكون مميزة زمنياً.',
+                    'diff' => 'إذا بدأ :type مع علامة زمنية، فسيتم عرضه تحت الخط الزمني.',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => 'إدراج فقرة',
+                'praise' => 'ادراج تشجيع',
+                'problem' => 'إدراج مشكلة',
+                'suggestion' => 'إدراج اقتراح',
+            ],
         ],
 
         'show' => [
@@ -153,8 +174,8 @@ return [
 
     'nominations' => [
         'delete' => 'حذف',
-        'delete_own_confirm' => 'هل انت متأكد؟ سوف تمسح الخريطة وسوف يتم ارجاعك الى ملفك الشخصي.',
-        'delete_other_confirm' => 'هل انت متأكد؟ سوف تمسح الخريطة وسوف يتم ارجاعك الى ملف المستخدم الشخصي.',
+        'delete_own_confirm' => 'هل انت متأكد؟ سوف تمسح الخريطة وسيتم ارجاعك الى ملفك الشخصي.',
+        'delete_other_confirm' => 'هل انت متأكد؟ سوف تمسح الخريطة وسيتم ارجاعك الى ملف المستخدم الشخصي.',
         'disqualification_prompt' => 'سبب رفض التأهيل؟',
         'disqualified_at' => 'رفض تأهيلها في :time_ago (:reason).',
         'disqualified_no_reason' => 'لم يتم كتابة سبب معين',
@@ -189,7 +210,7 @@ return [
             'prompt' => 'اكتب الكلمات المفتاحية...',
             'login_required' => 'سجل الدخول للبحث.',
             'options' => 'خيارات بحث اكثر',
-            'supporter_filter' => 'تصفية بحسب :filters تحتاج الى إشارة مؤيد!osu فعالة',
+            'supporter_filter' => 'التصفية بحسب :filters تحتاج الى شارة osu!supporter فعالة',
             'not-found' => 'لا نتائج',
             'not-found-quote' => '... لا, لا يوجد شيء.',
             'filters' => [
@@ -216,7 +237,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'تصفية بحسب :filters تحتاج الى تفعيل :link',
-                'link_text' => 'اشارة مؤيد!osu',
+                'link_text' => 'شارة osu!supporter',
             ],
         ],
     ],
@@ -254,6 +275,10 @@ return [
         'novelty' => 'الابداع',
         'hip-hop' => 'هيب هوب',
         'electronic' => 'إلكتروني',
+        'metal' => 'ميتال',
+        'classical' => 'كلاسيكي',
+        'folk' => 'شعبي',
+        'jazz' => 'جاز',
     ],
     'mods' => [
         '4K' => '',
@@ -279,6 +304,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
+        'V2' => 'أحرز هدفا V2',
     ],
     'language' => [
         'any' => '',
@@ -291,8 +317,11 @@ return [
         'korean' => 'كورية',
         'spanish' => 'إسبانية',
         'swedish' => 'سويدية',
+        'russian' => 'روسية',
+        'polish' => 'بولندي',
         'instrumental' => 'آلة موسيقية',
         'other' => 'أخرى',
+        'unspecified' => 'غير محدد',
     ],
     'played' => [
         'any' => 'الكل',
@@ -317,5 +346,12 @@ return [
     'panel' => [
         'playcount' => 'مرات اللعب: :count',
         'favourites' => 'التفضيلات: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'الكل',
+        ],
     ],
 ];

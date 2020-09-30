@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nový příspěvek v ":title" od :username',
                 'beatmapset_discussion_post_new_compact' => 'Nový příspěvek od :username ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nový příspěvek od :username',
+                'beatmapset_discussion_review_new' => '',
+                'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => 'Diskuze ":title" byla odemčena',
                 'beatmapset_discussion_unlock_compact' => 'Diskuze byla odemčena',
             ],
@@ -64,6 +66,8 @@ return [
 
                 'comment_new' => '',
                 'comment_new_compact' => ':username okomentoval ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -88,6 +92,8 @@ return [
 
                 'comment_new' => ':username okomentoval ":content" v ":title"',
                 'comment_new_compact' => ':username okomentoval ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -99,6 +105,8 @@ return [
 
                 'comment_new' => ':username odpověděl ":content" v ":title"',
                 'comment_new_compact' => ':username okomentoval ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -128,6 +136,64 @@ return [
                 '_' => 'Nová medaile',
                 'user_achievement_unlock' => 'Odemčeno ":title"\'!',
                 'user_achievement_unlock_compact' => 'Odemčeno ":title"\'!',
+            ],
+        ],
+    ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_unlock' => '',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => '',
+            ],
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => '',
+            ],
+        ],
+
+        'build' => [
+            'comment' => [
+                'comment_new' => '',
+            ],
+        ],
+
+        'news_post' => [
+            'comment' => [
+                'comment_new' => '',
+            ],
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '',
+            ],
+        ],
+
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => '',
+                'user_achievement_unlock_self' => '',
             ],
         ],
     ],

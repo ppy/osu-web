@@ -93,7 +93,6 @@ return [
             'source' => 'Fonte',
             'success-rate' => 'Taxa de sucesso',
             'tags' => 'Etiquetas',
-            'unranked' => 'Beatmap sem classificação',
         ],
 
         'scoreboard' => [
@@ -115,6 +114,7 @@ return [
                 'rank' => 'Posição',
                 'score_total' => 'Pontuação total',
                 'score' => 'Pontuação',
+                'time' => 'Tempo',
             ],
 
             'no_scores' => [

@@ -22,6 +22,7 @@
   height: @user-card-height;
   background-color: @background-color;
   border-radius: @card-border-radius;
+  position: relative;
 
   overflow: hidden;
 
@@ -79,6 +80,7 @@
     width: @avatar-size;
     height: @avatar-size;
     flex: none;
+    position: relative;
 
     .@{top}--list & {
       width: @avatar-size--list;
@@ -170,6 +172,7 @@
     pointer-events: none;
 
     height: 100%;
+    position: relative;
 
     .@{top}--list & {
       flex-direction: row;
@@ -240,6 +243,7 @@
       background-color: @osu-colour-b6;
       opacity: 0;
       transition: background-color 120ms ease-in-out;
+      position: relative;
 
       // NB: there is a issue where clicking on the button to close the menu
       // causes the state to momentarily unhover and rehover

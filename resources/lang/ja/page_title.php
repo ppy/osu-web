@@ -110,7 +110,7 @@ return [
             '_' => 'ランキング',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'パフォーマンス',
         ],
         'store_controller' => [
             '_' => 'osu!ストア',
@@ -124,6 +124,11 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'ナレッジベース',
+        ],
+    ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => 'ランキング',
         ],
     ],
     'store' => [

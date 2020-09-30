@@ -15,7 +15,14 @@ return [
     'rank' => '<strong><em>:user</em></strong> حصل على المرتبة #:rank على <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> خسر المرتبة الاولى على <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> اختار مجدداََ ان يدعم osu! - شكرا لكرمك!',
-    'user_support_first' => '<strong>:user</strong> اصبح مؤيد!osu - شكرا لكرمك!',
-    'user_support_gift' => '<strong>:user</strong> حصل على مؤيد!osu كهدية!',
+    'user_support_first' => '<strong>:user</strong> أَصبحَ osu!supporter - شكرا لكَرَمِك!',
+    'user_support_gift' => '<strong>:user</strong> حصل على osu!supporter كهدية!',
     'username_change' => '<strong>:previousUsername</strong> غير اسمه الى <strong><em>:user</strong></em>!',
+
+    'beatmapset_status' => [
+        'approved' => 'مقبولة',
+        'loved' => 'محبوبة',
+        'qualified' => 'مؤهلة',
+        'ranked' => 'مصفوفة',
+    ],
 ];

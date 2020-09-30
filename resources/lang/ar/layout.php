@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'تشغيل المقطع التالي تلقائياً',
     ],
 
     'defaults' => [
@@ -96,6 +96,7 @@ return [
             'country' => 'الدولة',
             'index' => 'الأداء',
             'kudosu' => 'كودوسو',
+            'multiplayer' => 'متعدد اللاعبين',
             'score' => 'النتيجة',
         ],
         'store' => [
@@ -178,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'تسجيل الدخول / إنشاء حساب',
+
         'login' => [
             'forgot' => "لقد نسيت بياناتي",
             'password' => 'كلمة السر',

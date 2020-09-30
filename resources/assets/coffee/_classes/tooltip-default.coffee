@@ -13,8 +13,9 @@ class @TooltipDefault
 
     title = el.getAttribute 'title'
     el.removeAttribute 'title'
+    htmlTitle = osu.presence(el.dataset.htmlTitle)
 
-    return if _.size(title) == 0
+    return if _.size(title) == 0 && !htmlTitle?
 
     isTime = el.classList.contains('js-timeago') || el.classList.contains('js-tooltip-time')
 
@@ -22,7 +23,7 @@ class @TooltipDefault
       if isTime
         @timeagoTip el, title
       else
-        $('<span>').text(title)
+        htmlTitle ? $('<span>').text(title)
 
     if el._tooltip
       $(el).qtip 'set', 'content.text': $content
@@ -63,7 +64,9 @@ class @TooltipDefault
           height: 8
 
     if event.type == 'touchstart'
-      options.hide = inactive: 3000
+      options.hide =
+        inactive: 3000
+        event: 'unfocus'
 
     # if enabled, prevents tooltip from changing position
     if el.dataset.tooltipPinPosition
@@ -89,7 +92,7 @@ class @TooltipDefault
         api.enable()
       else
         $target.attr 'title', $target.text()
-        $target.trigger('mouseover') # immediately trigger qtip magic
+        $target.trigger(e.type) # immediately trigger qtip magic
     else
       api?.disable()
 

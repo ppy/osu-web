@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Играть следующий трек автоматически',
     ],
 
     'defaults' => [
@@ -96,6 +96,7 @@ return [
             'country' => 'по странам',
             'index' => 'по производительности',
             'kudosu' => 'по кудосу',
+            'multiplayer' => 'мультиплеер',
             'score' => 'по очкам',
         ],
         'store' => [
@@ -178,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'вход / регистрация',
+
         'login' => [
             'forgot' => "я не помню, помогите",
             'password' => 'пароль',

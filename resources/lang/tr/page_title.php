@@ -38,7 +38,7 @@ return [
             'verify_link' => 'hesap doğrulama',
         ],
         'artists_controller' => [
-            '_' => 'featured artists',
+            '_' => 'featured artist\'ler',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'beatmap tartışma gönderileri',
@@ -110,7 +110,7 @@ return [
             '_' => 'sıralama',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'performans',
         ],
         'store_controller' => [
             '_' => 'osu!store',
@@ -124,6 +124,11 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'bilgi bankası',
+        ],
+    ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => 'sıralama',
         ],
     ],
     'store' => [

@@ -110,7 +110,7 @@ return [
             '_' => 'рейтинг',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'продуктивність',
         ],
         'store_controller' => [
             '_' => 'osu!store',
@@ -124,6 +124,11 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'база знань',
+        ],
+    ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => 'рейтинг',
         ],
     ],
     'store' => [

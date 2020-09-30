@@ -96,6 +96,7 @@ return [
             'country' => '國家',
             'index' => '成績',
             'kudosu' => 'kudosu',
+            'multiplayer' => '多人遊戲',
             'score' => '總分',
         ],
         'store' => [
@@ -167,7 +168,7 @@ return [
         ],
         '503' => [
             'error' => '啊...伺服器正在維護中',
-            'description' => "每次維護需要5秒到10分鐘的時間。如果維護時間太長，查看 :link 以獲得更多信息。",
+            'description' => "每次維護需要5秒到10分鐘的時間。如果維護時間太長，查看 :link 以取得更多資訊。",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
@@ -178,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "忘記登入資訊？",
             'password' => '密碼',

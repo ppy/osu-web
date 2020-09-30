@@ -4,15 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => '국가별로 필터링 됨',
+    'countries' => [
+        'all' => '모두',
+        'title' => '국가별',
+    ],
+
+    'filter' => [
+        'title' => '보기',
+
+        'variant' => [
+            'title' => '변형',
+        ],
     ],
 
     'type' => [
-        'performance' => '퍼포먼스',
         'charts' => '스포트라이트',
-        'score' => '점수',
         'country' => '국가별',
+        'multiplayer' => '멀티플레이어',
+        'performance' => '퍼포먼스',
+        'score' => '점수',
     ],
 
     'spotlight' => [

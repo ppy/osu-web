@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nytt inlägg på ":title" av :username',
                 'beatmapset_discussion_post_new_compact' => 'Nytt inlägg på ":username" av :content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nytt inlägg av :username',
+                'beatmapset_discussion_review_new' => 'Ny recension av ":title" av:username som innehåller problem: :problems, förslag: :suggestions, beröm: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Ny recension av :username som innehåller problem: :problems, förslag: :suggestions, beröm: :praises',
                 'beatmapset_discussion_unlock' => 'Diskussion om ":title" har låsts upp',
                 'beatmapset_discussion_unlock_compact' => 'Diskussionen var upplåst',
             ],
@@ -64,6 +66,8 @@ return [
 
                 'comment_new' => ':username kommenterade ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterade ":content"',
+                'comment_reply' => ':username svarade ":content" på ":title"',
+                'comment_reply_compact' => ':username svarade ":content"',
             ],
         ],
 
@@ -88,6 +92,8 @@ return [
 
                 'comment_new' => ':username kommenterade ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterade ":content"',
+                'comment_reply' => ':username svarade ":content" på ":title"',
+                'comment_reply_compact' => ':username svarade ":content"',
             ],
         ],
 
@@ -99,6 +105,8 @@ return [
 
                 'comment_new' => ':username kommenterade ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterade ":content"',
+                'comment_reply' => ':username svarade ":content" på ":title"',
+                'comment_reply_compact' => ':username svarade ":content"',
             ],
         ],
 
@@ -128,6 +136,64 @@ return [
                 '_' => 'Ny medalj',
                 'user_achievement_unlock' => 'Upplåst ":title"!',
                 'user_achievement_unlock_compact' => 'Upplåst ":title"!',
+            ],
+        ],
+    ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => 'Diskussionen om ":title" har låsts',
+                'beatmapset_discussion_post_new' => 'Diskussionen om ":title" har nya uppdateringar',
+                'beatmapset_discussion_unlock' => 'Diskussionen om ":title" har låsts upp',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => 'Ett nytt problem rapporterades på ":title"',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '":title" har blivit diskvalificerad',
+                'beatmapset_love' => '":title" befordrades till älskad',
+                'beatmapset_nominate' => '":title" har blivit nominerad',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '":title" har blivit rankad',
+                'beatmapset_reset_nominations' => 'Nominering av ":title" har blivit återställd',
+            ],
+
+            'comment' => [
+                'comment_new' => 'Beatmap ":title" har nya kommentarer',
+            ],
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => 'Du har fått ett nytt meddelande från :username',
+            ],
+        ],
+
+        'build' => [
+            'comment' => [
+                'comment_new' => 'Ändringslogg ":title" har nya kommentarer',
+            ],
+        ],
+
+        'news_post' => [
+            'comment' => [
+                'comment_new' => 'Nyheter ":title" har nya kommentarer',
+            ],
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => [
+                'forum_topic_reply' => 'Det finns nya svar i ":title"',
+            ],
+        ],
+
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => ':username har låst upp en ny medalj, ":title"!',
+                'user_achievement_unlock_self' => 'Du har låst upp en ny medalj, ":title"!',
             ],
         ],
     ],

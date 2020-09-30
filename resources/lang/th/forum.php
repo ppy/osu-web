@@ -5,7 +5,7 @@
 
 return [
     'pinned_topics' => 'หัวข้อที่ปักหมุดไว้',
-    'slogan' => "เล่นคนเดียวมันอันตราย",
+    'slogan' => "มันอันตรายที่จะเล่นคนเดียว",
     'subforums' => 'ฟอรั่มย่อย',
     'title' => 'ฟอรั่ม osu!',
 
@@ -28,7 +28,7 @@ return [
         'latest_post' => 'โพสต์ล่าสุด',
 
         'index' => [
-            'title' => '',
+            'title' => 'หน้าแรกของบอร์ด',
         ],
 
         'topics' => [
@@ -62,7 +62,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited โพสต์|:count_delimited โพสต์',
-            'topic_starter' => '',
+            'topic_starter' => 'ผู้เริ่มกระทู้',
         ],
     ],
 
@@ -75,6 +75,8 @@ return [
     'topic' => [
         'deleted' => 'ลบกระทู้',
         'go_to_latest' => 'ดูโพสต์ล่าสุด',
+        'has_replied' => 'คุณได้ตอบกลับการสนทนานี้',
+        'in_forum' => '',
         'latest_post' => ':when โดย :user',
         'latest_reply_by' => 'ตอบกลับล่าสุดโดย :user',
         'new_topic' => 'สร้างกระทู้ใหม่',

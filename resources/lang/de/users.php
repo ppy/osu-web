@@ -19,7 +19,7 @@ return [
         ],
 
         'posts' => [
-            'title_recent' => 'Neueste Posts',
+            'title_recent' => 'Neueste Beiträge',
         ],
 
         'votes_received' => [
@@ -39,14 +39,14 @@ return [
         'show_profile' => 'Profil anzeigen',
         'too_many' => 'Block-Limit erreicht.',
         'button' => [
-            'block' => 'blocken',
-            'unblock' => 'entblocken',
+            'block' => 'Blocken',
+            'unblock' => 'Entblocken',
         ],
     ],
 
     'card' => [
         'loading' => 'Lädt...',
-        'send_message' => 'nachricht senden',
+        'send_message' => 'Nachricht senden',
     ],
 
     'disabled' => [
@@ -84,6 +84,7 @@ return [
         'failed' => 'Falscher Login',
         'forgot' => 'Passwort vergessen?',
         'info' => 'Bitte melde dich an, um fortzufahren',
+        'invalid_captcha' => 'Captcha ungültig, bitte aktualisiere die Seite und versuche es erneut.',
         'locked_ip' => 'Deine IP-Adresse ist gesperrt. Bitte warte ein paar Minuten.',
         'password' => 'Passwort',
         'register' => "Noch keinen osu!-Account? Erstell' einen",
@@ -145,7 +146,6 @@ return [
         'lastvisit_online' => 'Derzeit online',
         'missingtext' => 'Vielleicht hast du dich verschrieben (oder der Benutzer wurde gebannt)!',
         'origin_country' => 'Aus :country',
-        'page_description' => 'osu! - Alles, was du jemals über :username wissen wolltest!',
         'previous_usernames' => 'auch bekannt als',
         'plays_with' => 'Spielt mit :devices',
         'title' => "Profil von :username",
@@ -159,7 +159,7 @@ return [
                     'button' => 'Bild hochladen',
                     'dropzone' => 'Zum Hochladen hier ablegen',
                     'dropzone_info' => 'Du kannst das Bild auch hier ablegen, um es hochzuladen',
-                    'size_info' => 'Banner sollte 2800x620 groß sein',
+                    'size_info' => 'Banner sollte 2400x620 groß sein',
                     'too_large' => 'Datei ist zu groß.',
                     'unsupported_format' => 'Format wird nicht unterstützt.',
 
@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'von :artist',
-                'none' => '(Noch) keine.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'mehr Events anzeigen',
             ],
             'historical' => [
-                'empty' => 'Keine Einträge. :(',
                 'title' => 'Historisch',
 
                 'monthly_playcounts' => [
@@ -243,7 +241,7 @@ return [
                 'total' => 'Kudosu insgesamt',
 
                 'entry' => [
-                    'amount' => ':amount kudosu',
+                    'amount' => ':amount Kudosu',
                     'empty' => "Dieser Benutzer hat kein Kudosu erhalten!",
 
                     'beatmap_discussion' => [
@@ -252,11 +250,11 @@ return [
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => ':amount vom Post :post verwehrt',
+                            'reset' => ':amount vom Beitrag :post verwehrt',
                         ],
 
                         'delete' => [
-                            'reset' => ':amount durch das Löschen des Modding-Posts :post verloren',
+                            'reset' => ':amount durch das Löschen des Modding-Beitrags :post verloren',
                         ],
 
                         'restore' => [
@@ -265,7 +263,7 @@ return [
 
                         'vote' => [
                             'give' => ':amount durch erhaltene Stimmen im Post :post erhalten',
-                            'reset' => ':amount durch verlorene Stimmen im Post :post verloren',
+                            'reset' => ':amount durch verlorene Stimmen im Beitrag :post verloren',
                         ],
 
                         'recalculate' => [
@@ -275,14 +273,14 @@ return [
                     ],
 
                     'forum_post' => [
-                        'give' => ':amount von :giver für einen Post in :post erhalten',
-                        'reset' => 'Kudosu von :giver im Post :post zurückgesetzt',
-                        'revoke' => 'Kudosu von :giver im Post :post verwehrt',
+                        'give' => ':amount von :giver für einen Beitrag in :post erhalten',
+                        'reset' => 'Kudosu von :giver im Beitrag :post zurückgesetzt',
+                        'revoke' => 'Kudosu von :giver im Beitrag :post verwehrt',
                     ],
                 ],
 
                 'total_info' => [
-                    '_' => 'Basierend auf dem Beitrag, den der Benutzer zur Beatmap-Moderation geleistet hat. Weitere Informationen unter :link.',
+                    '_' => 'Basierend auf dem Beitrag, den der Benutzer zum Beatmap-Modding geleistet hat. Weitere Informationen auf :link.',
                     'link' => 'dieser Seite',
                 ],
             ],
@@ -304,10 +302,9 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Replay herunterladen',
-                'empty' => 'Noch keine Einträge großartiger Performances. :(',
                 'not_ranked' => 'Nur Ranked Beatmaps geben PP.',
                 'pp_weight' => ':percentage gewichtet',
-                'view_details' => '',
+                'view_details' => 'Details anzeigen',
                 'title' => 'Ränge',
 
                 'best' => [
@@ -377,7 +374,7 @@ return [
         ],
         'post_count' => [
             '_' => ':link beigetragen',
-            'count' => ':count forenpost|:count forenposts',
+            'count' => ':count_delimited Forumsbeitrag|:count_delimited Forenbeiträge',
         ],
         'rank' => [
             'country' => 'Länderrang im Modus :mode',
@@ -412,7 +409,7 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'saved' => 'User erstellt',
+        'saved' => 'Benutzer erstellt',
     ],
     'verify' => [
         'title' => 'Accountverifizierung',

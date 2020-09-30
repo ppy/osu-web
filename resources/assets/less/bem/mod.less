@@ -2,22 +2,19 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .mod {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  height: var(--mod-height, @mod-height-normal);
+  width: calc($height * unit(@mod-width) / unit(@mod-height));
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 
-  &--dynamic {
-    position: relative;
-    height: 1em;
-    width: (@mod-width / @mod-height * $height);
+  &--V2 {
+    display: none;
   }
 
   .all(@name, @filename) {
     &--@{name} {
-      .at2x-simple("/images/badges/mods/mod_@{filename}.png");
+      .at2x-simple("~@images/badges/mods/mod_@{filename}.png");
     }
   }
 

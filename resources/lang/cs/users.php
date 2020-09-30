@@ -84,6 +84,7 @@ return [
         'failed' => 'Nesprávné přihlášení',
         'forgot' => 'Zapoměl jsi heslo?',
         'info' => 'Prosím přihlaste se pro pokračování',
+        'invalid_captcha' => '',
         'locked_ip' => 'vaše IP adresa je uzamčena. Počkejte, prosím, několik minut.',
         'password' => 'Heslo',
         'register' => "Nemáš osu! účet? Vytvoř si ho",
@@ -145,7 +146,6 @@ return [
         'lastvisit_online' => 'Momentálně aktivní',
         'missingtext' => 'Možná jste se přepsal! (nebo byl uživatel zabanován)',
         'origin_country' => 'Z :country',
-        'page_description' => 'osu! - Všechno co jste kdy chtěli vědět o :username!',
         'previous_usernames' => 'dříve znám jako',
         'plays_with' => 'Hraje s :devices',
         'title' => "profil uživatele :username",
@@ -159,7 +159,7 @@ return [
                     'button' => 'Nahrát obrázek',
                     'dropzone' => 'Přetáhni sem pro nahrání',
                     'dropzone_info' => 'Můžeš také přetánout sem pro nahrání',
-                    'size_info' => 'Velikost záhlaví by měla být 2800x620',
+                    'size_info' => 'Velikost záhlaví by měla být 2400x620',
                     'too_large' => 'Nahraný soubor je příliš velký.',
                     'unsupported_format' => 'Nepodporovaný formát.',
 
@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'autora :artist',
-                'none' => 'Žádná... zatím.',
                 'title' => 'Beatmapy',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'zobrazit více eventů',
             ],
             'historical' => [
-                'empty' => 'Žádné výkonnostní záznamy. :(',
                 'title' => 'Historické',
 
                 'monthly_playcounts' => [
@@ -304,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Stáhnout záznam',
-                'empty' => 'Zatím žádné záznamy o úžasném výkonu. :(',
                 'not_ranked' => 'Pouze hodnocené mapy vydávají pp.',
                 'pp_weight' => 'váženo na :percentage',
                 'view_details' => '',

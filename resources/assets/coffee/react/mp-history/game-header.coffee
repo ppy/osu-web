@@ -1,10 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Mods } from 'mods'
+import Mod from 'mod'
 import * as React from 'react'
 import { div, a, span, h1, h2 } from 'react-dom-factories'
 import TimeWithTooltip from 'time-with-tooltip'
+import { getArtist, getTitle } from 'utils/beatmap-helper'
 
 el = React.createElement
 
@@ -13,7 +14,7 @@ timeFormat = 'LTS'
 export class GameHeader extends React.Component
 
   render: ->
-    title = @props.beatmapset.title
+    title = getTitle(@props.beatmapset)
     title += " [#{@props.beatmap.version}]" if @props.beatmap.version
 
     a
@@ -33,22 +34,20 @@ export class GameHeader extends React.Component
               ' - '
               el TimeWithTooltip, dateTime: @props.game.end_time, format: timeFormat
           else
-            " #{osu.trans 'multiplayer.match.in-progress'}"
+            " #{osu.trans 'matches.match.in-progress'}"
         span className: 'mp-history-game__stat', osu.trans "beatmaps.mode.#{@props.game.mode}"
-        span className: 'mp-history-game__stat', osu.trans "multiplayer.game.scoring-type.#{@props.game.scoring_type}"
+        span className: 'mp-history-game__stat', osu.trans "matches.game.scoring-type.#{@props.game.scoring_type}"
 
       div className: 'mp-history-game__metadata-box',
         h1 className: 'mp-history-game__metadata mp-history-game__metadata--title',
           title
-        h2 className: 'mp-history-game__metadata mp-history-game__metadata--artist', @props.beatmapset.artist
+        h2 className: 'mp-history-game__metadata mp-history-game__metadata--artist', getArtist(@props.beatmapset)
 
-      div className: 'mp-history-game__mods-box',
-        el Mods,
-          mods: @props.game.mods
-          modifiers: ['large', 'reversed']
+      div className: 'mp-history-game__mods',
+        el(Mod, key: mod, mod: mod) for mod in @props.game.mods
 
       div
         className: 'mp-history-game__team-type'
-        title: osu.trans "multiplayer.match.team-types.#{@props.game.team_type}"
+        title: osu.trans "matches.match.team-types.#{@props.game.team_type}"
         style:
           backgroundImage: "url(/images/badges/team-types/#{@props.game.team_type}.svg)"

@@ -9,7 +9,7 @@ import * as React from 'react';
 import TimeWithTooltip from 'time-with-tooltip';
 
 interface Props {
-  discussions?: Record<string, BeatmapDiscussion>;
+  discussions?: Record<string, BeatmapsetDiscussionJson>;
   event: BeatmapsetEventJson;
   mode: 'discussions' | 'profile';
   time?: string;

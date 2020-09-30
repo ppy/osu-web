@@ -96,6 +96,7 @@ return [
             'country' => 'па краінах',
             'index' => 'прадукцыйнасць',
             'kudosu' => 'кудосу',
+            'multiplayer' => '',
             'score' => 'па ачках',
         ],
         'store' => [
@@ -178,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Не помню свае даныя",
             'password' => 'пароль',

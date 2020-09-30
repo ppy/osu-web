@@ -93,7 +93,6 @@ return [
             'source' => 'Источник',
             'success-rate' => 'Шанс успеха',
             'tags' => 'Теги',
-            'unranked' => 'Безрейтинговая карта',
         ],
 
         'scoreboard' => [
@@ -115,6 +114,7 @@ return [
                 'rank' => 'Ранг',
                 'score_total' => 'Всего очков',
                 'score' => 'Очки',
+                'time' => 'Время',
             ],
 
             'no_scores' => [

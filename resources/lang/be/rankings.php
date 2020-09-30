@@ -4,15 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => 'адфільтравана па краінам',
+    'countries' => [
+        'all' => 'Усе',
+        'title' => '',
+    ],
+
+    'filter' => [
+        'title' => 'Паказаць',
+
+        'variant' => [
+            'title' => 'Варыянт',
+        ],
     ],
 
     'type' => [
-        'performance' => 'Прадукцыйнасць',
         'charts' => 'Чартам',
-        'score' => 'Ачкі',
         'country' => 'Краіна',
+        'multiplayer' => '',
+        'performance' => 'Прадукцыйнасць',
+        'score' => 'Ачкі',
     ],
 
     'spotlight' => [

@@ -9,8 +9,8 @@ use App\Libraries\Markdown\Indexing\RendererExtension as IndexingRendererExtensi
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
 use League\CommonMark\Event\DocumentParsedEvent;
-use League\CommonMark\Ext\Autolink\AutolinkExtension;
-use League\CommonMark\Ext\Table as TableExtension;
+use League\CommonMark\Extension\Autolink\AutolinkExtension;
+use League\CommonMark\Extension\Table as TableExtension;
 use Symfony\Component\Yaml\Exception\ParseException as YamlParseException;
 use Symfony\Component\Yaml\Yaml;
 
@@ -108,10 +108,10 @@ class OsuMarkdown
         $this->processor = new OsuMarkdownProcessor($env);
         $env->addEventListener(DocumentParsedEvent::class, [$this->processor, 'onDocumentParsed']);
 
-        $env->addExtension(new TableExtension\TableExtension);
-        $env->addBlockRenderer(TableExtension\Table::class, new OsuTableRenderer);
+        $env->addExtension(new TableExtension\TableExtension());
+        $env->addBlockRenderer(TableExtension\Table::class, new OsuTableRenderer());
 
-        $env->addExtension(new AutolinkExtension);
+        $env->addExtension(new AutolinkExtension());
 
         $this->converter = new CommonMarkConverter($this->config, $env);
     }
@@ -161,8 +161,8 @@ class OsuMarkdown
     {
         if ($this->indexable === null) {
             $env = Environment::createCommonMarkEnvironment();
-            $env->addExtension(new TableExtension\TableExtension);
-            $env->addExtension(new IndexingRendererExtension);
+            $env->addExtension(new TableExtension\TableExtension());
+            $env->addExtension(new IndexingRendererExtension());
             $converter = new CommonMarkConverter($this->config, $env);
             $this->indexable = $converter->convertToHtml($this->document);
         }

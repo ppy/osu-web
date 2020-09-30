@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Írj ide az Általános (:version) részlegbe való posztoláshoz',
             'generalAll' => 'Ide írj az Általánosba posztoláshoz (Összes nehézség)',
+            'review' => 'Ide írj, hogy hozzászólj',
             'timeline' => 'Írj ide az Idővonalra (:version) való posztoláshoz',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'Időbélyeg hozzáadásához nyomj ctrl-c billentyűkombinációt szerkesztő módban, majd illeszd be az üzenetedbe!',
             'title' => 'Új beszélgetés indítása',
             'unpin' => 'Rögzítés feloldása',
+        ],
+
+        'review' => [
+            'new' => 'Új hozzászólás',
+            'embed' => [
+                'delete' => 'Törlés',
+                'missing' => 'Hozzászólás törölve',
+                'unlink' => 'Leválasztás',
+                'unsaved' => 'Mentetlen',
+                'timestamp' => [
+                    'all-diff' => 'Az összes nehézséget tartalmazó posztra posztolni, nem lehet időjelölni.',
+                    'diff' => 'Ha a :type-al fog kezdődni, akkor az idővonal alatt fog megjelenni.',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => 'Bekezdés beszúrása',
+                'praise' => 'Dícséret beszúrása',
+                'problem' => 'Probléma beszúrása',
+                'suggestion' => 'Javaslat beszúrása',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Kortárs',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Elektronikus',
+        'metal' => 'Metál',
+        'classical' => 'Klasszikus',
+        'folk' => 'Népi',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '',
@@ -279,6 +304,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
+        'V2' => 'Score V2',
     ],
     'language' => [
         'any' => '',
@@ -291,8 +317,11 @@ return [
         'korean' => 'Koreai',
         'spanish' => 'Spanyol',
         'swedish' => 'Svéd',
+        'russian' => 'Orosz',
+        'polish' => 'Lengyel',
         'instrumental' => 'Instrumentális',
         'other' => 'Egyéb',
+        'unspecified' => 'Meghatározatlan',
     ],
     'played' => [
         'any' => 'Bármelyik',
@@ -317,5 +346,12 @@ return [
     'panel' => [
         'playcount' => 'Játékszám: :count',
         'favourites' => 'Kedvencek: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Összes',
+        ],
     ],
 ];

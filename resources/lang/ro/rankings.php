@@ -4,15 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => '',
+    'countries' => [
+        'all' => 'Tot',
+        'title' => 'Țară',
+    ],
+
+    'filter' => [
+        'title' => 'Arată',
+
+        'variant' => [
+            'title' => 'Variantă',
+        ],
     ],
 
     'type' => [
-        'performance' => 'performanță',
         'charts' => 'În lumina reflectoarelor',
-        'score' => 'scor',
         'country' => 'pe țară',
+        'multiplayer' => 'multiplayer',
+        'performance' => 'performanță',
+        'score' => 'scor',
     ],
 
     'spotlight' => [

@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'لا يشمل اي من هذه المنشورات حالتي',
         'notice' => 'هناك منشورات حول :timestamp (:existing_timestamps). رجائا تحقق منهم قبل النشر.',
+        'unsaved' => ':count في هذه المراجعة',
     ],
 
     'reply' => [
@@ -64,9 +65,12 @@ return [
     ],
 
     'review' => [
+        'block_count' => ':used / :max كتل مستخدمة',
         'go_to_parent' => 'مشاهدة منشور المراجعة',
         'go_to_child' => 'مشاهدة المناقشة',
         'validation' => [
+            'block_too_large' => 'كل كتلة قد تحتوي فقط على ما يصل إلى :limit أحرف',
+            'external_references' => 'المراجعة تحتوي إشارات إلى مشاكل لا تنتمي إلى هذه المراجعة',
             'invalid_block_type' => 'نوع كتلة غير صالح',
             'invalid_document' => 'مراجعة غير صالحة',
             'minimum_issues' => 'ألمراجعة يجب ان تحوي :count مشكلة على الأقل|المراجعة يجب ان تحوي :count مشاكل على الأقل',

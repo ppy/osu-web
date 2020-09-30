@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Ingen av innleggene gjelder mine bekymringer',
         'notice' => 'Det er innlegg rundt :timestamp (:existing_timestamps). Vennligst gjennomgå dem før publisering.',
+        'unsaved' => '',
     ],
 
     'reply' => [
@@ -64,9 +65,12 @@ return [
     ],
 
     'review' => [
+        'block_count' => '',
         'go_to_parent' => 'Vis Tilbakemeldingsinnlegg',
         'go_to_child' => 'Vis diskusjon',
         'validation' => [
+            'block_too_large' => 'hver blokk kan bare inneholde opptil :limit tegn',
+            'external_references' => 'gjennomgangen inneholder referanser til saker som ikke tilhører denne gjennomgangen',
             'invalid_block_type' => 'ugyldig blokktype',
             'invalid_document' => 'ugyldig anmeldelse',
             'minimum_issues' => 'anmeldelsen må minst inneholde et minimum av :count saker|anmeldelsen må minst inneholde et minimum av :count saker',

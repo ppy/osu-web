@@ -7,7 +7,7 @@ return [
     'all_read' => 'Alle Benachrichtigungen gelesen!',
     'mark_read' => 'Lösche :type',
     'none' => 'Keine Benachrichtigungen',
-    'see_all' => 'alle Benachrichtigungen ansehen',
+    'see_all' => 'alle benachrichtigungen ansehen',
 
     'filters' => [
         '_' => 'alle',
@@ -24,14 +24,16 @@ return [
             '_' => 'Beatmap',
 
             'beatmapset_discussion' => [
-                '_' => 'Beatmap Diskussion',
+                '_' => 'Beatmap-Diskussion',
                 'beatmapset_discussion_lock' => 'Die Diskussion der Beatmap ":title" wurde gesperrt.',
                 'beatmapset_discussion_lock_compact' => 'Die Diskussion ist gesperrt',
-                'beatmapset_discussion_post_new' => ':username hat eine neue Nachricht in der Diskussion zur Beatmap ":title" gepostet.',
+                'beatmapset_discussion_post_new' => 'Neuer Beitrag auf ":title" von :username: ":content"',
                 'beatmapset_discussion_post_new_empty' => 'Neuer Beitrag auf ":title" von :username',
-                'beatmapset_discussion_post_new_compact' => 'Neuer Beitrag von :username',
+                'beatmapset_discussion_post_new_compact' => 'Neuer Beitrag von :username: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Neuer Beitrag von :username',
-                'beatmapset_discussion_unlock' => 'Beatmap ":title" wurde zur Diskussion freigegeben.',
+                'beatmapset_discussion_review_new' => 'Neue Rezension zu ":title" von :username mit Problemen: :problems, Vorschlägen: :suggestions, Lob: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Neue Rezension von :username mit Problemen: :problems, Vorschlägen: :suggestions, Lob: :praises',
+                'beatmapset_discussion_unlock' => 'Diskussion auf ":title" wurde freigegeben',
                 'beatmapset_discussion_unlock_compact' => 'Die Diskussion ist freigegeben',
             ],
 
@@ -44,17 +46,17 @@ return [
             ],
 
             'beatmapset_state' => [
-                '_' => 'Beatmap Status geändert',
-                'beatmapset_disqualify' => 'Beatmap ":title" wurde von :username disqualifiziert.',
+                '_' => 'Beatmap-Status geändert',
+                'beatmapset_disqualify' => '":title" wurde disqualifiziert',
                 'beatmapset_disqualify_compact' => 'Beatmap wurde disqualifiziert',
-                'beatmapset_love' => 'Beatmap ":title" wurde zu geliebt erhoben',
-                'beatmapset_love_compact' => 'Beatmap wurde zu geliebt erhoben',
-                'beatmapset_nominate' => 'Beatmap ":title" wurde von :username nominiert.',
+                'beatmapset_love' => '":title" hat loved-Status erlangt',
+                'beatmapset_love_compact' => 'Beatmap hat loved-Status erlangt',
+                'beatmapset_nominate' => '":title" wurde nominiert',
                 'beatmapset_nominate_compact' => 'Beatmap wurde nominiert',
                 'beatmapset_qualify' => '":title" hat genug Nominierungen erhalten und wurde in die Ranglisten-Warteschlange aufgenommen',
                 'beatmapset_qualify_compact' => 'Beatmap wurde in die Ranglisten-Warteschlange aufgenommen',
-                'beatmapset_rank' => '":title" wurde zur Rangliste erhoben',
-                'beatmapset_rank_compact' => 'Beatmap wurde zur Rangliste erhoben',
+                'beatmapset_rank' => '":title" wurde ranked',
+                'beatmapset_rank_compact' => 'Beatmap wurde ranked',
                 'beatmapset_reset_nominations' => 'Nominierung von ":title" wurde zurückgesetzt',
                 'beatmapset_reset_nominations_compact' => 'Nominierung wurde zurückgesetzt',
             ],
@@ -64,6 +66,8 @@ return [
 
                 'comment_new' => ':username kommentierte ":content" auf ":title"',
                 'comment_new_compact' => ':username kommentierte ":content"',
+                'comment_reply' => ':username antwortete ":content" auf ":title"',
+                'comment_reply_compact' => ':username antwortete ":content"',
             ],
         ],
 
@@ -88,6 +92,8 @@ return [
 
                 'comment_new' => ':username kommentierte ":content" auf ":title"',
                 'comment_new_compact' => ':username kommentierte ":content"',
+                'comment_reply' => ':username antwortete ":content" auf ":title"',
+                'comment_reply_compact' => ':username antwortete ":content"',
             ],
         ],
 
@@ -99,11 +105,13 @@ return [
 
                 'comment_new' => ':username kommentierte ":content" auf ":title"',
                 'comment_new_compact' => ':username kommentierte ":content"',
+                'comment_reply' => ':username antwortete ":content" auf ":title"',
+                'comment_reply_compact' => ':username antwortete ":content"',
             ],
         ],
 
         'forum_topic' => [
-            '_' => 'Forum Thema',
+            '_' => 'Forum-Thema',
 
             'forum_topic_reply' => [
                 '_' => 'Neue Foren-Antwort',
@@ -128,6 +136,64 @@ return [
                 '_' => 'Neue Medaille',
                 'user_achievement_unlock' => '":title" freigeschaltet!',
                 'user_achievement_unlock_compact' => '":title" freigeschaltet!',
+            ],
+        ],
+    ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => 'Die Diskussion über ":title" wurde gesperrt',
+                'beatmapset_discussion_post_new' => 'Die Diskussion über ":title" hat neue Updates',
+                'beatmapset_discussion_unlock' => 'Die Diskussion über ":title" wurde freigegeben',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => 'Ein neues Problem wurde zu ":title" gemeldet',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '":title" wurde disqualifiziert',
+                'beatmapset_love' => '":title" hat loved-Status erlangt',
+                'beatmapset_nominate' => '":title" wurde nominiert',
+                'beatmapset_qualify' => '":title" hat genug Nominierungen erhalten und wurde in die Ranglisten-Warteschlange aufgenommen',
+                'beatmapset_rank' => '":title" wurde ranked',
+                'beatmapset_reset_nominations' => 'Nominierung von ":title" wurde zurückgesetzt',
+            ],
+
+            'comment' => [
+                'comment_new' => 'Beatmap ":title" hat neue Kommentare',
+            ],
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => 'Du hast eine neue Nachricht von :username erhalten',
+            ],
+        ],
+
+        'build' => [
+            'comment' => [
+                'comment_new' => 'Changelog ":title" hat neue Kommentare',
+            ],
+        ],
+
+        'news_post' => [
+            'comment' => [
+                'comment_new' => 'News ":title" hat neue Kommentare',
+            ],
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => [
+                'forum_topic_reply' => 'Es gibt neue Antworten in ":title"',
+            ],
+        ],
+
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => ':username hat eine neue Medaille freigeschaltet, ":title"!',
+                'user_achievement_unlock_self' => 'Du hast eine neue Medaille freigeschaltet, ":title"!',
             ],
         ],
     ],

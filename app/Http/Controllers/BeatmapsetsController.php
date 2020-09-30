@@ -6,7 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\BeatmapsetDelete;
-use App\Jobs\NotifyBeatmapsetUpdate;
+use App\Libraries\BeatmapsetDiscussionReview;
 use App\Libraries\CommentBundle;
 use App\Libraries\Search\BeatmapsetSearchCached;
 use App\Libraries\Search\BeatmapsetSearchRequestParams;
@@ -15,11 +15,9 @@ use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
-use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Transformers\BeatmapsetTransformer;
-use App\Transformers\CountryTransformer;
 use Auth;
 use Carbon\Carbon;
 use DB;
@@ -62,7 +60,6 @@ class BeatmapsetsController extends Controller
             return $set;
         } else {
             $commentBundle = CommentBundle::forEmbed($beatmapset);
-            $countries = json_collection(Country::all(), new CountryTransformer);
             $hasDiscussion = $beatmapset->discussion_enabled;
 
             if (priv_check('BeatmapsetMetadataEdit', $beatmapset)->can()) {
@@ -73,13 +70,15 @@ class BeatmapsetsController extends Controller
                 $languages = [];
             }
 
+            $noindex = !$beatmapset->esShouldIndex();
+
             return ext_view('beatmapsets.show', compact(
                 'beatmapset',
                 'commentBundle',
-                'countries',
                 'genres',
                 'hasDiscussion',
                 'languages',
+                'noindex',
                 'set'
             ));
         }
@@ -116,7 +115,7 @@ class BeatmapsetsController extends Controller
 
         $initialData = [
             'beatmapset' => $beatmapset->defaultDiscussionJson(),
-            'reviews_enabled' => config('osu.beatmapset.discussion_review_enabled'),
+            'reviews_config' => BeatmapsetDiscussionReview::config(),
         ];
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
@@ -196,10 +195,6 @@ class BeatmapsetsController extends Controller
         }
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
-        (new NotifyBeatmapsetUpdate([
-            'user' => Auth::user(),
-            'beatmapset' => $beatmapset,
-        ]))->delayedDispatch();
 
         return $beatmapset->defaultDiscussionJson();
     }
@@ -216,10 +211,6 @@ class BeatmapsetsController extends Controller
         }
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
-        (new NotifyBeatmapsetUpdate([
-            'user' => Auth::user(),
-            'beatmapset' => $beatmapset,
-        ]))->delayedDispatch();
 
         return $beatmapset->defaultDiscussionJson();
     }
@@ -286,8 +277,8 @@ class BeatmapsetsController extends Controller
         return [
             'beatmapsets' => json_collection(
                 $records,
-                new BeatmapsetTransformer,
-                'beatmaps'
+                new BeatmapsetTransformer(),
+                'beatmaps.max_combo'
             ),
             'cursor' => $search->getSortCursor(),
             'recommended_difficulty' => $params->getRecommendedDifficulty(),
@@ -299,6 +290,7 @@ class BeatmapsetsController extends Controller
     private function showJson($beatmapset)
     {
         $beatmapset->load([
+            'beatmaps.baseMaxCombo',
             'beatmaps.difficulty',
             'beatmaps.failtimes',
             'genre',

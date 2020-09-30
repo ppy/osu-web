@@ -26,6 +26,7 @@ return [
         'back_to_top' => 'Πίσω στην αρχή',
         'cancel' => 'Ακύρωση',
         'change' => 'κάντε αλλαγές',
+        'clear' => '',
         'click_to_copy' => 'κάντε κλικ για να αντιγράψετε στο πρόχειρο',
         'click_to_copy_copied' => 'αντιγράφτηκε στο πρόχειρο!',
         'close' => '',
@@ -125,6 +126,21 @@ return [
         'count_geki' => '',
         'count_katu' => '200',
         'count_miss' => 'Miss',
+    ],
+
+    'scoreboard_time' => [
+        'd' => '',
+        'dd' => '',
+        'h' => '',
+        'hh' => '',
+        'M' => '',
+        'm' => '',
+        'MM' => '',
+        'mm' => '',
+        'past' => '',
+        's' => '',
+        'y' => '',
+        'yy' => '',
     ],
 
     'time' => [

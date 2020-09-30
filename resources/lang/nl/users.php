@@ -84,6 +84,7 @@ return [
         'failed' => 'Verkeerde login',
         'forgot' => 'Wachtwoord vergeten?',
         'info' => 'Log in om verder te gaan',
+        'invalid_captcha' => 'Captcha ongeldig, vernieuw de pagina en probeer het opnieuw.',
         'locked_ip' => 'je IP adres is vergrendeld. Wacht enkele minuten.',
         'password' => 'Wachtwoord',
         'register' => "Heb je geen osu! account? Maak een nieuwe",
@@ -145,7 +146,6 @@ return [
         'lastvisit_online' => 'Momenteel online',
         'missingtext' => 'Je hebt misschien een typfout gemaakt! (of de gebruiker is verbannen)',
         'origin_country' => 'Uit :country',
-        'page_description' => 'osu! - Alles wat je ooit over :username wilde weten!',
         'previous_usernames' => 'vroeger bekend als',
         'plays_with' => 'Speelt met :devices',
         'title' => "Profiel van :username",
@@ -159,7 +159,7 @@ return [
                     'button' => 'Upload afbeelding',
                     'dropzone' => 'Drop hier om te uploaden',
                     'dropzone_info' => 'Je kunt je afbeelding ook hier droppen om te uploaden',
-                    'size_info' => 'Cover grootte moet 2800x620 zijn',
+                    'size_info' => 'Cover grootte moet 2400x620 zijn',
                     'too_large' => 'Het geüploade bestand is te groot.',
                     'unsupported_format' => 'Niet ondersteund formaat.',
 
@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'door :artist',
-                'none' => 'Nog geen...',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'meer gebeurtenissen zien',
             ],
             'historical' => [
-                'empty' => 'Geen prestatiegegevens. :(',
                 'title' => 'Historisch',
 
                 'monthly_playcounts' => [
@@ -304,10 +302,9 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Download Replay',
-                'empty' => 'Nog geen geweldige prestatiegegevens. :(',
                 'not_ranked' => 'Enkel gerankte beatmaps geven pp.',
                 'pp_weight' => 'gewogen :percentage',
-                'view_details' => '',
+                'view_details' => 'Details Bekijken',
                 'title' => 'Ranks',
 
                 'best' => [

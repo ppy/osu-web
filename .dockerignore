@@ -1,0 +1,16 @@
+.docker/
+.env*
+.git/
+Dockerfile
+bootstrap/cache/
+bootstrap/compiler.php
+composer.phar
+node_modules/
+public/assets
+public/uploads
+public/uploads-avatar
+public/uploads-replay
+resources/assets/build/
+resources/assets/js/ziggy.js
+storage/
+vendor/

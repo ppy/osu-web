@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Pro pokračování se prosím přihlašte.',
     'require_verification' => '',
     'restricted' => "Toto nelze provést, když jste omezeni.",
@@ -21,6 +22,7 @@ return [
             'full_bn_required_hybrid' => 'Musíte být nominátor k nominaci setů map s více než jedním herním módem.',
             'incorrect_state' => 'Nastala chyba při provádění akce, zkuste stránku obnovit.',
             'owner' => "Nelze nominovat vlastní beatmapu.",
+            'set_metadata' => '',
         ],
         'resolve' => [
             'not_owner' => 'Pouze zakladatel vlákna a vlastník beatmapy může označit diskusi za vyřešenou.',
@@ -31,6 +33,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "",
             'limit_exceeded' => 'Chvíli počkej, než budeš zasílat další hlasy',
             'owner' => "Ve vlastní diskusi nemůžeš hlasovat.",
             'wrong_beatmapset_state' => 'Hlasovat lze pouze v diskusích čekajících beatmap.',
@@ -52,6 +55,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => 'Tato beatmapa je zablokována od diskuze.',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => '',
         ],
     ],
 

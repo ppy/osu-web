@@ -91,10 +91,11 @@
   &__portrait-wrapper {
     width: 200px;
     height: 200px;
+    position: relative;
   }
 
   &__portrait {
-    .at2x-simple("/images/layout/artist-noavatar.jpg");
+    .at2x-simple("~@images/layout/artist-noavatar.jpg");
     width: 250px;
     height: 250px;
     .default-box-shadow();
@@ -104,6 +105,7 @@
     display: block;
 
     margin: 10px auto;
+    position: relative;
 
     @media @desktop {
       margin-top: -113px; // approximately aligned to inside of title bar

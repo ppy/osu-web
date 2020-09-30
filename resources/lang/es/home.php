@@ -7,7 +7,7 @@ return [
     'landing' => [
         'download' => 'Descargar ahora',
         'online' => '<strong>:players</strong> actualmente en línea en <strong>:games</strong> partidas',
-        'peak' => ':count usuarios en línea',
+        'peak' => 'Pico, :count usuarios en línea',
         'players' => '<strong>:count</strong> usuarios registrados',
         'title' => 'bienvenido',
         'see_more_news' => 'ver más novedades',
@@ -23,7 +23,7 @@ return [
         'button' => 'Buscar',
         'empty_result' => '¡No se ha encontrado nada!',
         'keyword_required' => 'Se requiere una palabra clave de búsqueda',
-        'placeholder' => 'escribe para buscar',
+        'placeholder' => 'escriba para buscar',
         'title' => 'buscar',
 
         'beatmapset' => [
@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "¡vamos a<br>empezar!",
         'action' => 'Descargar osu!',
+
+        'help' => [
+            '_' => 'si tiene problemas para iniciar el juego o para obtener una cuenta, :help_forum_link o :support_button.',
+            'help_forum_link' => 'consulte el foro de ayuda',
+            'support_button' => 'contacte al soporte técnico',
+        ],
+
         'os' => [
             'windows' => 'para Windows',
             'macos' => 'para macOS',

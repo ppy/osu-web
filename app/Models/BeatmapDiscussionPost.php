@@ -40,12 +40,14 @@ class BeatmapDiscussionPost extends Model
 
     public static function search($rawParams = [])
     {
+        $pagination = pagination($rawParams);
+
         $params = [
-            'limit' => clamp(get_int($rawParams['limit'] ?? null) ?? 20, 5, 50),
-            'page' => max(get_int($rawParams['page'] ?? null) ?? 1, 1),
+            'limit' => $pagination['limit'],
+            'page' => $pagination['page'],
         ];
 
-        $query = static::limit($params['limit'])->offset(max_offset($params['page'], $params['limit']));
+        $query = static::limit($params['limit'])->offset($pagination['offset']);
 
         if (isset($rawParams['user'])) {
             $params['user'] = $rawParams['user'];
@@ -60,7 +62,7 @@ class BeatmapDiscussionPost extends Model
 
         // only find replies (i.e. exclude discussion starting-posts)
         $query->whereExists(function ($postQuery) {
-            $table = (new self)->getTable();
+            $table = (new self())->getTable();
 
             $postQuery->selectRaw(1)
                 ->from(DB::raw("{$table} d"))
@@ -242,7 +244,7 @@ class BeatmapDiscussionPost extends Model
                 }
 
                 if (!parent::save($options)) {
-                    throw new ModelNotSavedException;
+                    throw new ModelNotSavedException();
                 }
 
                 $this->beatmapDiscussion->refreshTimestampOrExplode();

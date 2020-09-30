@@ -4,15 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => 'filtrerad efter land',
+    'countries' => [
+        'all' => 'Alla',
+        'title' => 'Land',
+    ],
+
+    'filter' => [
+        'title' => 'Visa',
+
+        'variant' => [
+            'title' => 'Variant',
+        ],
     ],
 
     'type' => [
-        'performance' => 'Prestanda',
         'charts' => 'I rampljuset',
-        'score' => 'Poäng',
         'country' => 'Land',
+        'multiplayer' => 'flerspelarläge',
+        'performance' => 'Prestanda',
+        'score' => 'Poäng',
     ],
 
     'spotlight' => [
@@ -29,7 +39,7 @@ return [
         'play_count' => 'Antal Gånger Spelat',
         'performance' => 'Prestanda',
         'total_score' => 'Total Poäng',
-        'ranked_score' => 'Rankad Poäng',
+        'ranked_score' => 'Rankad poäng',
         'average_score' => 'Snittpoäng',
         'average_performance' => 'Snittprestanda',
         'ss' => '',

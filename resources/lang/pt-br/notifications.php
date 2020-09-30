@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nova publicação em ":title" de :username',
                 'beatmapset_discussion_post_new_compact' => 'Nova publicação de :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nova publicação de :username',
+                'beatmapset_discussion_review_new' => 'Nova revisão em ":title" por :username contendo problemas: :problems, sugestões: :suggestions, elogios: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Nova revisão por :username contendo problemas: :problems, sugestões: :suggestions, elogios: :praises',
                 'beatmapset_discussion_unlock' => 'A discussão do beatmap ":title" foi destrancada.',
                 'beatmapset_discussion_unlock_compact' => 'A discussão foi destrancada',
             ],
@@ -47,8 +49,8 @@ return [
                 '_' => 'Estado do beatmap alterado',
                 'beatmapset_disqualify' => 'O beatmap ":title" foi desqualificado por :username.',
                 'beatmapset_disqualify_compact' => 'O beatmap foi desqualificado',
-                'beatmapset_love' => 'O beatmap ":title" foi promovido a amado',
-                'beatmapset_love_compact' => 'O beatmap foi promovido a amado',
+                'beatmapset_love' => 'O beatmap ":title" foi promovido a loved',
+                'beatmapset_love_compact' => 'O beatmap foi promovido a loved',
                 'beatmapset_nominate' => 'O beatmap ":title" foi nomeado por :username.',
                 'beatmapset_nominate_compact' => 'O beatmap foi nomeado',
                 'beatmapset_qualify' => 'O beatmap ":title" recebeu indicações suficientes e, portanto, está na fila para se tornar ranqueado.',
@@ -64,6 +66,8 @@ return [
 
                 'comment_new' => ':username comentou ":content" em ":title"',
                 'comment_new_compact' => ':username comentou ":content"',
+                'comment_reply' => ':username respondeu ":content" em ":title"',
+                'comment_reply_compact' => ':username respondeu ":content"',
             ],
         ],
 
@@ -88,6 +92,8 @@ return [
 
                 'comment_new' => ':username comentou ":content" em ":title"',
                 'comment_new_compact' => ':username comentou ":content"',
+                'comment_reply' => ':username respondeu ":content" em ":title"',
+                'comment_reply_compact' => ':username respondeu ":content"',
             ],
         ],
 
@@ -99,6 +105,8 @@ return [
 
                 'comment_new' => ':username comentou ":content" em ":title"',
                 'comment_new_compact' => ':username comentou ":content"',
+                'comment_reply' => ':username respondeu ":content" em ":title"',
+                'comment_reply_compact' => ':username respondeu ":content"',
             ],
         ],
 
@@ -128,6 +136,64 @@ return [
                 '_' => 'Nova medalha',
                 'user_achievement_unlock' => '":title" desbloqueado!',
                 'user_achievement_unlock_compact' => '":title" desbloqueado!',
+            ],
+        ],
+    ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => 'A discussão em ":title" foi trancada',
+                'beatmapset_discussion_post_new' => 'A discussão em ":title" tem novas atualizações',
+                'beatmapset_discussion_unlock' => 'A discussão em ":title" foi destravada',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => 'Um novo problema foi reportado em ":title"',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '":title" foi desqualificado',
+                'beatmapset_love' => '":title" foi promovido a loved',
+                'beatmapset_nominate' => '":title" foi nomeado',
+                'beatmapset_qualify' => '":title" ganhou nomeações suficientes e entrou na fila de ranqueamento',
+                'beatmapset_rank' => '":title" foi ranqueado',
+                'beatmapset_reset_nominations' => 'A nomeação de ":title" foi reiniciada',
+            ],
+
+            'comment' => [
+                'comment_new' => 'Há novos comentários no beatmap ":title"',
+            ],
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => 'Você recebeu uma nova mensagem de :username',
+            ],
+        ],
+
+        'build' => [
+            'comment' => [
+                'comment_new' => 'Há novos comentários no registro de alterações ":title"',
+            ],
+        ],
+
+        'news_post' => [
+            'comment' => [
+                'comment_new' => 'Há novos comentários na notícia ":title"',
+            ],
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => [
+                'forum_topic_reply' => 'Há novas respostas em ":title"',
+            ],
+        ],
+
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => ':username desbloqueou uma nova medalha, ":title"!',
+                'user_achievement_unlock_self' => 'Você desbloqueou uma nova medalha, ":title"!',
             ],
         ],
     ],

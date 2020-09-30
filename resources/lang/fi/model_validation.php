@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute ylittää maksimipituuden - voi olla enintään :limit merkkiä.',
     'wrong_confirmation' => 'Tarkistus ei täsmää.',
 
-    'beatmap_discussion_post' => [
-        'discussion_locked' => 'Keskustelu on lukittu.',
-        'first_post' => 'Aloitusviestiä ei voida poistaa.',
-
-        'attributes' => [
-            'message' => '',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Aikaleima on määritelty, mutta beatmap puuttuu.',
         'beatmapset_no_hype' => "Beatmappia ei voi hurrata.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Määritelty aikaleima on beatmapin pituuden ulkopuolella.',
             'negative' => "Aikaleima ei voi olla negatiivinen.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Keskustelu on lukittu.',
+        'first_post' => 'Aloitusviestiä ei voida poistaa.',
+
+        'attributes' => [
+            'message' => '',
         ],
     ],
 
@@ -109,11 +109,11 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => '',
-            'url' => '',
+            'url' => 'Syötä kelvollinen URL-osoite.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Sovelluksen Nimi',
+                'redirect' => 'Sovelluksen Vastakutsun URL',
             ],
         ],
     ],
@@ -121,10 +121,11 @@ return [
     'user' => [
         'contains_username' => 'Salasana ei saa sisältää käyttäjätunnusta.',
         'email_already_used' => 'Tämä sähköpostiosoite on jo käytössä.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Maata ei ole tietokannassa.',
         'invalid_discord' => 'Virheellinen Discord käyttäjänimi.',
         'invalid_email' => "Ei näytä kelvolliselta sähköpostiosoitteelta.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Twitter-käyttäjätunnus ei kelpaa.',
         'too_short' => 'Uusi salasana on liian lyhyt.',
         'unknown_duplicate' => 'Käyttäjätunnus tai sähköpostiosoite on jo käytössä.',
         'username_available_in' => 'Tämän käyttäjänimen aukeamiseen on aikaa :duration.',
@@ -150,7 +151,7 @@ return [
         ],
 
         'change_username' => [
-            'restricted' => '',
+            'restricted' => 'Et voi vaihtaa käyttäjänimeäsi kun tilisi on rajoitettu.',
             'supporter_required' => [
                 '_' => 'Sinun pitää olla :link, jotta voit muuttaa nimeäsi!',
                 'link_text' => 'tukenut osua!',
@@ -160,15 +161,15 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason ei kelpaa tälle ilmoitustyypille.',
         'self' => "Et voi ilmiantaa itseäsi!",
     ],
 
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Määrä',
+                'cost' => 'Hinta',
             ],
         ],
     ],

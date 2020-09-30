@@ -91,6 +91,15 @@
 
     line-height: 0.9;
 
+    &--mods {
+      display: flex;
+      --mod-height: @mod-height-small;
+    }
+
+    &--perfect {
+      color: hsl(@beatmap-score--hsl-perfect);
+    }
+
     &--smaller {
       font-size: 16px;
       font-weight: 500;

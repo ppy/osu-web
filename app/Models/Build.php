@@ -79,7 +79,7 @@ class Build extends Model implements Commentable
 
         $lastChange = Carbon::parse($data['head_commit']['timestamp']);
 
-        $changelogEntry = new ChangelogEntry;
+        $changelogEntry = new ChangelogEntry();
 
         $newChangelogEntryIds = $stream
             ->changelogEntries()
@@ -120,7 +120,7 @@ class Build extends Model implements Commentable
 
     public function scopeDefault($query)
     {
-        $query->whereNotNull('stream_id');
+        $query->whereIn('stream_id', config('osu.changelog.update_streams'));
     }
 
     public function propagationHistories()

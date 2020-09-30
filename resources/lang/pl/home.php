@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "rozpocznij swoją<br>przygodę z osu!",
         'action' => 'Pobierz osu!',
+
+        'help' => [
+            '_' => 'jeżeli masz problem z uruchomieniem gry bądź utworzeniem konta, :help_forum_link lub :support_button.',
+            'help_forum_link' => 'sprawdź forum',
+            'support_button' => 'skontaktuj się z pomocą techniczną',
+        ],
+
         'os' => [
             'windows' => 'dla systemu Windows',
             'macos' => 'dla systemu macOS',

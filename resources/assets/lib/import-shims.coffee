@@ -3,6 +3,7 @@
 
 # Import shim so that globally declared scripts can work without changes.
 
+import Captcha from 'captcha'
 import ClickMenu from 'click-menu'
 import Fade from 'fade'
 import Enchant from 'enchant'
@@ -11,6 +12,7 @@ import * as laroute from 'laroute'
 import Localtime from 'localtime'
 import MobileToggle from 'mobile-toggle'
 import OsuAudio from 'osu-audio/main'
+import OsuLayzr from 'osu-layzr'
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
@@ -25,6 +27,7 @@ window.Promise ?= Promise
 window.Fade = Fade
 
 window._exported = {
+  Captcha
   ClickMenu
   Enchant
   ForumPoll
@@ -32,6 +35,7 @@ window._exported = {
   Localtime
   MobileToggle
   OsuAudio
+  OsuLayzr
   OsuUrlHelper
   TurbolinksReload
   WindowVHPatcher

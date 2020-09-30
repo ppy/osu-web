@@ -1,0 +1,89 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.circular-progress {
+  @_top: circular-progress;
+
+  @size: 31px; // same height as .btn-osu-big
+  @thickness: 0.1em;
+  @label-size: 0.4em;
+
+  font-size: @size;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  float: left;
+  pointer-events: auto;
+
+  background-color: @osu-colour-b4;
+  --circle-center-fill: @osu-colour-b6;
+
+  &--lighter {
+    background-color: @osu-colour-b3;
+    --circle-center-fill: @osu-colour-b5;
+  }
+
+  &:after {
+    position: absolute;
+    margin-top: @thickness;
+    margin-left: @thickness;
+    display: block;
+    content: " ";
+    border-radius: 50%;
+    background-color: var(--circle-center-fill);
+    width: 1em - (@thickness * 2);
+    height: 1em - (@thickness * 2);
+  }
+
+  &__label {
+    position: absolute;
+    z-index: 1;
+    width: 1 / @label-size;
+    line-height: 1 / @label-size;
+    font-size: @label-size;
+    text-align: center;
+    white-space: nowrap;
+    color: @osu-colour-h1;
+
+    .@{_top}--warn & {
+      color: @osu-colour-orange-2;
+    }
+    .@{_top}--over & {
+      color: @osu-colour-red-2;
+    }
+  }
+
+
+  &__circle {
+    position: absolute;
+    border: @thickness solid @osu-colour-h1;
+    width: 1em;
+    height: 1em;
+    clip: rect(0em, 0.5em, 1em, 0em);
+    border-radius: 50%;
+
+    .@{_top}--warn & {
+      border-color: @osu-colour-orange-2;
+    }
+    .@{_top}--over & {
+      border-color: @osu-colour-red-2;
+    }
+
+    &--fill {
+      .@{_top}--over50 & {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &__slice {
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    clip: rect(0em, 1em, 1em, 0.5em);
+
+    .@{_top}--over50 & {
+      clip: rect(auto, auto, auto, auto);
+    }
+  }
+}

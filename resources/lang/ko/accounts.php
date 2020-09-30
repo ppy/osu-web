@@ -49,14 +49,21 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'Qualified 비트맵에 문제가 생길 경우 알림을 수신할 모드',
+        'beatmapset_disqualify' => '비트맵이 Disqualified 처리됐을 때 알림을 수신할 모드',
+        'comment_reply' => '댓글에 답글이 달리면 알림 받기',
         'title' => '알림',
         'topic_auto_subscribe' => '새로 만드는 포럼 주제에 대한 알림을 자동으로 활성화',
-        'beatmapset_discussion_qualified_problem' => 'Qualified 비트맵에 문제가 생길 경우 알림을 수신할 모드',
 
-        'mail' => [
-            '_' => '다음 사항은 메일 알림 받기',
+        'options' => [
+            '_' => '수신 옵션',
             'beatmapset:modding' => '비트맵 모딩',
+            'channel_message' => '개인 채팅 메시지',
+            'comment_new' => '새 댓글',
             'forum_topic_reply' => '주제 답글',
+            'mail' => '메일',
+            'push' => '푸시 알림',
+            'user_achievement_unlock' => '메달 획득',
         ],
     ],
 
@@ -75,6 +82,8 @@ return [
             'no_video' => '영상이 없는 비트맵으로 받기',
             'direct' => 'osu!direct에서 열기',
         ],
+
+        'beatmapset_title_show_original' => '원본 언어로 비트맵 메타데이터 표시',
     ],
 
     'playstyles' => [

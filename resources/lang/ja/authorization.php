@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => '続行するにはログインが必要です。',
     'require_verification' => '続行するには認証が必要です。',
     'restricted' => "制限されている間は実行できません。",
@@ -21,6 +22,7 @@ return [
             'full_bn_required_hybrid' => 'ビートマップセットを複数のゲームモードでノミネートするには、完全なノミネーターでなければなりません。',
             'incorrect_state' => '実行中にエラーが発生しました。ページを更新してください。',
             'owner' => "自分のビートマップをノミネートすることはできません。",
+            'set_metadata' => 'ノミネートする前にジャンルと言語を設定する必要があります。',
         ],
         'resolve' => [
             'not_owner' => 'スレッド作者とビートマップの所有者のみがディスカッションを解決できます。',
@@ -31,6 +33,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "ボットによるディスカッションに投票できません",
             'limit_exceeded' => '再度評価するには少し間を置いてください。',
             'owner' => "自分のディスカッションは評価できません。",
             'wrong_beatmapset_state' => 'Pendingビートマップはディスカッションでのみ評価できます。',
@@ -52,6 +55,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => 'このビートマップはディスカッションのためにロックされています。',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => 'ノミネートされたビートマップのメタデータを変更することはできません。正しく設定されていないと思われる場合は、BNまたはNATのメンバーに問い合わせてください。',
         ],
     ],
 

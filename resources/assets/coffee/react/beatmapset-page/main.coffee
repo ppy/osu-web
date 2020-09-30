@@ -218,7 +218,6 @@ export class Main extends React.Component
               userScore: @state.userScore?.score
               userScorePosition: @state.userScore?.position
               enabledMods: @state.enabledMods
-              countries: @props.countries
               loading: @state.loading
               isScoreable: @state.currentBeatmap.is_scoreable
 

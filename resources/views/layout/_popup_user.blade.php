@@ -13,7 +13,7 @@
         {!! background_image(Auth::user()->cover(), false) !!}
     >
         <img class="simple-menu__header-icon" src="/images/icons/profile.svg" alt="">
-        <div>{{ Auth::user()->username }}</div>
+        <div class="u-relative">{{ Auth::user()->username }}</div>
     </a>
 
     <a

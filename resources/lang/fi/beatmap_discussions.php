@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Mikään viesteistä ei käsittele aihettani',
         'notice' => 'Aikajanalta :timestamp (:existing_timestamps) löytyy viestejä. Tarkista ne ennen viestin lähettämistä.',
+        'unsaved' => '',
     ],
 
     'reply' => [
@@ -64,9 +65,12 @@ return [
     ],
 
     'review' => [
+        'block_count' => '',
         'go_to_parent' => '',
         'go_to_child' => '',
         'validation' => [
+            'block_too_large' => '',
+            'external_references' => '',
             'invalid_block_type' => '',
             'invalid_document' => '',
             'minimum_issues' => '',
@@ -83,8 +87,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'yleiset',
+        'general_all' => 'yleiset (kaikki)',
     ],
 
     'user_filter' => [

@@ -110,7 +110,7 @@ return [
             '_' => 'rangering',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'gjennomføring',
         ],
         'store_controller' => [
             '_' => 'osu!butikken',
@@ -124,6 +124,11 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'kunnskapsbase',
+        ],
+    ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => 'rangering',
         ],
     ],
     'store' => [

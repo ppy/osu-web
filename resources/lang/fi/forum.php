@@ -75,6 +75,8 @@ return [
     'topic' => [
         'deleted' => 'poistettu aihe',
         'go_to_latest' => 'näytä viimeisin viesti',
+        'has_replied' => '',
+        'in_forum' => '',
         'latest_post' => ':when käyttäjältä :user',
         'latest_reply_by' => 'viimeisimmän vastauksen jätti :user',
         'new_topic' => 'Lähetä uusi aihe',
@@ -239,7 +241,7 @@ return [
             'to_0_confirm' => '',
             'to_0_done' => 'Aihe on avattu',
             'to_1' => 'Lukitse aihe',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Lukitse aihe?',
             'to_1_done' => 'Aihe lukittu',
         ],
 
@@ -249,19 +251,19 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Irrota aihe',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Irrota aihe?',
             'to_0_done' => 'Aihe irrotettu',
             'to_1' => 'Kiinnitä aihe',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Kiinnitä aihe?',
             'to_1_done' => 'Aihe kiinnitetty',
             'to_2' => 'Kiinnitä aihe ja merkkaa ilmoitukseksi',
-            'to_2_confirm' => '',
+            'to_2_confirm' => 'Kiinnitä aihe ja merkkaa ilmoitukseksi?',
             'to_2_done' => 'Aihe on kiinnitetty ja merkattu ilmoitukseksi',
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Näytä poistetut viestit',
+            'hide' => 'Piilota poistetut viestit',
         ],
 
         'show' => [
@@ -294,7 +296,7 @@ return [
                     'change_vote' => '',
                     'edit' => '',
                     'view_results' => '',
-                    'vote' => '',
+                    'vote' => 'Äänestä',
                 ],
 
                 'detail' => [

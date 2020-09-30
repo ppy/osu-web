@@ -8,6 +8,13 @@ namespace App\Models;
 use App\Exceptions\BeatmapProcessorException;
 use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\EsIndexDocument;
+use App\Jobs\Notifications\BeatmapsetDiscussionLock;
+use App\Jobs\Notifications\BeatmapsetDiscussionUnlock;
+use App\Jobs\Notifications\BeatmapsetDisqualify;
+use App\Jobs\Notifications\BeatmapsetLove;
+use App\Jobs\Notifications\BeatmapsetNominate;
+use App\Jobs\Notifications\BeatmapsetQualify;
+use App\Jobs\Notifications\BeatmapsetRank;
 use App\Jobs\RemoveBeatmapsetBestScores;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\Commentable;
@@ -135,9 +142,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         'loved' => 4,
     ];
     const HYPEABLE_STATES = [-1, 0, 3];
-
-    const RANKED_PER_DAY = 8;
-    const MINIMUM_DAYS_FOR_RANKING = 7;
 
     public static function coverSizes()
     {
@@ -522,7 +526,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             $this->previous_queue_duration = ($this->queued_at ?? $this->approved_date)->diffinSeconds();
             $this->queued_at = null;
         } elseif ($this->isPending() && $state === 'qualified') {
-            $maxAdjustment = (static::MINIMUM_DAYS_FOR_RANKING - 1) * 24 * 3600;
+            $maxAdjustment = (config('osu.beatmapset.minimum_days_for_rank') - 1) * 24 * 3600;
             $adjustment = min($this->previous_queue_duration, $maxAdjustment);
             $this->queued_at = $currentTime->copy()->subSeconds($adjustment);
         }
@@ -565,7 +569,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
                 'reason' => $reason,
             ])->saveOrExplode();
             $this->update(['discussion_locked' => true]);
-            broadcast_notification(Notification::BEATMAPSET_DISCUSSION_LOCK, $this, $user);
+            (new BeatmapsetDiscussionLock($this, $user))->dispatch();
         });
     }
 
@@ -578,7 +582,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         DB::transaction(function () use ($user) {
             BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_UNLOCK, $user, $this)->saveOrExplode();
             $this->update(['discussion_locked' => false]);
-            broadcast_notification(Notification::BEATMAPSET_DISCUSSION_UNLOCK, $this, $user);
+            (new BeatmapsetDiscussionUnlock($this, $user))->dispatch();
         });
     }
 
@@ -593,7 +597,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
             $this->setApproved('pending', $user);
 
-            broadcast_notification(Notification::BEATMAPSET_DISQUALIFY, $this, $user);
+            (new BeatmapsetDisqualify($this, $user))->dispatch();
         });
 
         return true;
@@ -617,7 +621,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             $job = (new CheckBeatmapsetCovers($this))->onQueue('beatmap_high');
             dispatch($job);
 
-            broadcast_notification(Notification::BEATMAPSET_QUALIFY, $this, $user);
+            (new BeatmapsetQualify($this, $user))->dispatch();
         });
 
         return true;
@@ -652,7 +656,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
                 if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
                     $this->qualify($user);
                 } else {
-                    broadcast_notification(Notification::BEATMAPSET_NOMINATE, $this, $user);
+                    (new BeatmapsetNominate($this, $user))->dispatch();
                 }
             }
             $this->refreshCache();
@@ -680,7 +684,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
             dispatch((new CheckBeatmapsetCovers($this))->onQueue('beatmap_high'));
 
-            broadcast_notification(Notification::BEATMAPSET_LOVE, $this, $user);
+            (new BeatmapsetLove($this, $user))->dispatch();
         });
 
         return [
@@ -708,7 +712,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             $job = (new CheckBeatmapsetCovers($this))->onQueue('beatmap_high');
             dispatch($job);
 
-            broadcast_notification(Notification::BEATMAPSET_RANK, $this);
+            (new BeatmapsetRank($this))->dispatch();
         });
 
         return true;
@@ -874,9 +878,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             ->withModesForRanking($modes)
             ->where('queued_at', '<', $this->queued_at)
             ->count();
-        $days = ceil($queueSize / static::RANKED_PER_DAY);
+        $days = ceil($queueSize / config('osu.beatmapset.rank_per_day'));
 
-        $minDays = static::MINIMUM_DAYS_FOR_RANKING - $this->queued_at->diffInDays();
+        $minDays = config('osu.beatmapset.minimum_days_for_rank') - $this->queued_at->diffInDays();
         $days = max($minDays, $days);
 
         return $days > 0 ? Carbon::now()->addDays($days) : null;
@@ -1086,6 +1090,26 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         ];
 
         return new BBCodeFromDB($description, $post->bbcode_uid, $options);
+    }
+
+    public function getDisplayArtist(?User $user)
+    {
+        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
+        if ($profileCustomization->beatmapset_title_show_original) {
+            return presence($this->artist_unicode) ?? $this->artist;
+        }
+
+        return $this->artist;
+    }
+
+    public function getDisplayTitle(?User $user)
+    {
+        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
+        if ($profileCustomization->beatmapset_title_show_original) {
+            return presence($this->title_unicode) ?? $this->title;
+        }
+
+        return $this->title;
     }
 
     public function getPost()

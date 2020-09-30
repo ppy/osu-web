@@ -1,31 +1,17 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'edit' => [
-        'title' => 'Nastavenia <strong>Učtu</strong>',
         'title_compact' => 'nastavenia',
         'username' => 'používateľské meno',
 
         'avatar' => [
             'title' => 'Avatar',
+            'rules' => 'Prosím uistite sa že váš avatar sedí s :link.<br/>Toto znamená že musí byť <strong>primeraný pre každý vek</strong>. to znamená žiadna nudita, vulgarizmy alebo sugestívny obsah.',
+            'rules_link' => 'pravidlá komunity',
         ],
 
         'email' => [
@@ -46,13 +32,13 @@ return [
             'title' => 'Profil',
 
             'user' => [
+                'user_discord' => '',
                 'user_from' => 'súčasná poloha',
                 'user_interests' => 'záujmy',
                 'user_msnm' => '',
                 'user_occ' => 'povolanie',
                 'user_twitter' => '',
                 'user_website' => 'webstránka',
-                'user_discord' => '',
             ],
         ],
 
@@ -62,28 +48,57 @@ return [
         ],
     ],
 
-    'update_email' => [
-        'email_subject' => 'potvrdenie zmeny osu! emailu',
-        'update' => 'aktualizovať',
+    'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'dostávať notifikácie pre nové problémy na kvalifikovaných beatmapách pre následujúce módy',
+        'beatmapset_disqualify' => 'prijímať upozornenia, keď sú beatmapy diskvalifikované s týchto módov',
+        'comment_reply' => 'prijímať upozornenia pre odpovede na moje komentáre',
+        'title' => 'Oznámenia',
+        'topic_auto_subscribe' => 'automaticky zapnúť notifikácie pre nové fórove témy ktoré vytvoríte',
+
+        'options' => [
+            '_' => 'spôsoby doručenia',
+            'beatmapset:modding' => 'módovanie beatmáp',
+            'channel_message' => 'súkromné správy',
+            'comment_new' => 'nové komentáre
+',
+            'forum_topic_reply' => 'odpoveď na tému',
+            'mail' => 'pošta',
+            'push' => 'upozornenia na stránke',
+            'user_achievement_unlock' => 'hráčska medaila odomknutá',
+        ],
     ],
 
-    'update_password' => [
-        'email_subject' => 'potvrdenie zmeny osu! hesla',
-        'update' => 'aktualizovať',
+    'oauth' => [
+        'authorized_clients' => 'autorizované klienty',
+        'own_clients' => 'vlastné klienty',
+        'title' => 'OAuth',
+    ],
+
+    'options' => [
+        'title' => 'Možnosti',
+
+        'beatmapset_download' => [
+            '_' => 'predvolený druh sťahovania beatmáp',
+            'all' => 's videom, ak je dostupné',
+            'no_video' => 'bez videa',
+            'direct' => 'otvoriť v osu!direct',
+        ],
+
+        'beatmapset_title_show_original' => 'zobraziť metadáta beatmapy v originálnom jazyku',
     ],
 
     'playstyles' => [
-        'title' => 'Štýly hrania',
-        'mouse' => 'myš',
         'keyboard' => 'klávesnica',
+        'mouse' => 'myš',
         'tablet' => 'tablet',
+        'title' => 'Štýly hrania',
         'touch' => 'dotyk',
     ],
 
     'privacy' => [
-        'title' => 'Súkromie',
         'friends_only' => 'blokovať súkromné správy od osôb mimo vášho zoznamu priateľov',
         'hide_online' => 'skryť online status',
+        'title' => 'Súkromie',
     ],
 
     'security' => [
@@ -93,5 +108,22 @@ return [
         'last_active' => 'Naposledy aktívny:',
         'title' => 'Zabezpečenie',
         'web_sessions' => 'webové relácie',
+    ],
+
+    'update_email' => [
+        'update' => 'aktualizovať',
+    ],
+
+    'update_password' => [
+        'update' => 'aktualizovať',
+    ],
+
+    'verification_completed' => [
+        'text' => 'Už môžete túto kartu/okno zatvoriť',
+        'title' => 'Overenie bolo dokončené',
+    ],
+
+    'verification_invalid' => [
+        'title' => 'Link už vypršal alebo je neplatný',
     ],
 ];

@@ -3,7 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-use Faker\Factory;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class ForumSeeder extends Seeder
@@ -21,8 +21,8 @@ class ForumSeeder extends Seeder
             // Create appropriate forum permissions
             $authOptionIds = [];
 
-            foreach (['f_post', 'f_reply'] as $authOption) {
-                $option = new App\Models\Forum\AuthOption;
+            foreach (['f_post', 'f_postcount', 'f_read', 'f_reply'] as $authOption) {
+                $option = new App\Models\Forum\AuthOption();
                 $option->auth_option = $authOption;
                 $option->save();
 
@@ -45,9 +45,11 @@ class ForumSeeder extends Seeder
 
                 $bms = App\Models\Beatmapset::all();
                 foreach ($bms as $set) {
+                    $user = User::find($set->user_id);
                     $t = $f2->topics()->save(factory(App\Models\Forum\Topic::class)->make([
                         'forum_id' => $f2->forum_id,
-                        'topic_poster' => $set->user_id,
+                        'topic_first_poster_name' => $user->username,
+                        'topic_poster' => $user->getKey(),
                         'topic_title' => $set->artist.' - '.$set->title,
                     ]));
 
@@ -85,10 +87,20 @@ class ForumSeeder extends Seeder
                     $f2 = $f->subforums()->save(factory(App\Models\Forum\Forum::class, 'child')->make());
                     // Topics for each subforum
                     for ($j = 0; $j < 3; $j++) {
-                        $t = $f2->topics()->save(factory(App\Models\Forum\Topic::class)->make(['forum_id' => $f2->forum_id]));
+                        $topicUser = User::orderByRaw('RAND()')->first();
+                        $t = $f2->topics()->save(factory(App\Models\Forum\Topic::class)->make([
+                            'forum_id' => $f2->forum_id,
+                            'topic_first_poster_name' => $topicUser->username,
+                            'topic_poster' => $topicUser->getKey(),
+                        ]));
                         // Replies to the topic
                         for ($k = 0; $k < 5; $k++) {
-                            $p = $t->posts()->save(factory(App\Models\Forum\Post::class)->make(['forum_id' => $f2->forum_id]));
+                            $postUser = User::orderByRaw('RAND()')->first();
+                            $p = $t->posts()->save(factory(App\Models\Forum\Post::class)->make([
+                                'forum_id' => $f2->forum_id,
+                                'post_username' => $postUser->username,
+                                'poster_id' => $postUser->getKey(),
+                            ]));
                         }
                         // Refresh topic cache (updates last post times etc)
                         $t->refreshCache();
@@ -100,7 +112,7 @@ class ForumSeeder extends Seeder
 
             foreach (App\Models\Forum\Forum::all() as $forum) {
                 foreach ($authOptionIds as $optionId) {
-                    $group = new App\Models\Forum\Authorize;
+                    $group = new App\Models\Forum\Authorize();
 
                     $group->group_id = app('groups')->byIdentifier('default')->getKey();
                     $group->forum_id = $forum->forum_id;

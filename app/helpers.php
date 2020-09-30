@@ -3,6 +3,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+use App\Models\LoginAttempt;
+use Illuminate\Support\HtmlString;
+
 /*
  * Like array_search but returns null if not found instead of false.
  * Strict mode only.
@@ -48,11 +51,6 @@ function beatmap_timestamp_format($ms)
 function blade_safe($html)
 {
     return new Illuminate\Support\HtmlString($html);
-}
-
-function broadcast_notification(...$arguments)
-{
-    return (new App\Jobs\BroadcastNotification(...$arguments))->dispatch();
 }
 
 /**
@@ -152,6 +150,27 @@ function cache_forget_with_fallback($key)
     return Cache::forget("{$key}:with_fallback");
 }
 
+function captcha_enabled()
+{
+    return config('captcha.sitekey') !== '' && config('captcha.secret') !== '';
+}
+
+function captcha_triggered()
+{
+    if (!captcha_enabled()) {
+        return false;
+    }
+
+    if (config('captcha.threshold') === 0) {
+        $triggered = true;
+    } else {
+        $loginAttempts = LoginAttempt::find(request()->getClientIp());
+        $triggered = $loginAttempts && $loginAttempts->failed_attempts >= config('captcha.threshold');
+    }
+
+    return $triggered;
+}
+
 function class_with_modifiers(string $className, ?array $modifiers = null)
 {
     $class = $className;
@@ -165,11 +184,23 @@ function class_with_modifiers(string $className, ?array $modifiers = null)
 
 function cleanup_cookies()
 {
-    $host = request()->getHttpHost();
-    $domains = [$host, ''];
+    $host = request()->getHost();
+
+    // don't do anything for ip address access
+    if (filter_var($host, FILTER_VALIDATE_IP) !== false) {
+        return;
+    }
 
     $hostParts = explode('.', $host);
 
+    // don't do anything for single word domain
+    if (count($hostParts) === 1) {
+        return;
+    }
+
+    $domains = [$host, ''];
+
+    // phpcs:ignore
     while (count($hostParts) > 1) {
         array_shift($hostParts);
         $domains[] = implode('.', $hostParts);
@@ -205,22 +236,28 @@ function css_var_2x(string $key, string $url)
 
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
-    $uid = uniqid($stat);
-    // spaces used so clockwork doesn't run across the whole screen.
-    $description = $stat
-                   .' '.($tag['type'] ?? null)
-                   .' '.($tag['index'] ?? null);
+    $withClockwork = app('clockwork.support')->isEnabled();
+
+    if ($withClockwork) {
+        $uid = uniqid($stat);
+        // spaces used so clockwork doesn't run across the whole screen.
+        $description = $stat
+                       .' '.($tag['type'] ?? null)
+                       .' '.($tag['index'] ?? null);
+
+        clock()->startEvent($uid, $description);
+    }
 
     $start = microtime(true);
 
-    clock()->startEvent($uid, $description);
     $result = $callable();
-    clock()->endEvent($uid);
 
-    if (config('datadog-helper.enabled')) {
-        $duration = microtime(true) - $start;
-        Datadog::microtiming($stat, $duration, 1, $tag);
+    if ($withClockwork) {
+        clock()->endEvent($uid);
     }
+
+    $duration = microtime(true) - $start;
+    Datadog::microtiming($stat, $duration, 1, $tag);
 
     return $result;
 }
@@ -353,6 +390,11 @@ function img2x(array $attributes)
     return tag('img', $attributes);
 }
 
+function trim_unicode(?string $value)
+{
+    return preg_replace('/(^\s+|\s+$)/u', '', $value);
+}
+
 function truncate(string $text, $limit = 100, $ellipsis = '...')
 {
     if (mb_strlen($text) > $limit) {
@@ -392,17 +434,8 @@ function locale_for_moment($locale)
         return 'zh-cn';
     }
 
-    return $locale;
-}
-
-function locale_for_timeago($locale)
-{
-    if ($locale === 'zh') {
-        return 'zh-CN';
-    }
-
-    if ($locale === 'zh-tw') {
-        return 'zh-TW';
+    if ($locale === 'no') {
+        return 'nb';
     }
 
     return $locale;
@@ -419,7 +452,10 @@ function log_error($exception)
 
 function logout()
 {
-    auth()->logout();
+    $guard = auth()->guard();
+    if ($guard instanceof Illuminate\Contracts\Auth\StatefulGuard) {
+        $guard->logout();
+    }
 
     // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
     foreach (['phpbb3_2cjk5_sid', 'phpbb3_2cjk5_sid_check'] as $key) {
@@ -458,6 +494,11 @@ function mysql_escape_like($string)
     return addcslashes($string, '%_\\');
 }
 
+function oauth_token(): ?App\Models\OAuth\Token
+{
+    return request()->attributes->get(App\Http\Middleware\AuthApi::REQUEST_OAUTH_TOKEN_KEY);
+}
+
 function osu_url($key)
 {
     $url = config("osu.urls.{$key}");
@@ -472,6 +513,17 @@ function osu_url($key)
 function pack_str($str)
 {
     return pack('ccH*', 0x0b, strlen($str), bin2hex($str));
+}
+
+function pagination($params, $defaults = null)
+{
+    $limit = clamp(get_int($params['limit'] ?? null) ?? $defaults['limit'] ?? 20, 5, 50);
+    $page = max(get_int($params['page'] ?? null) ?? 1, 1);
+
+    $offset = max_offset($page, $limit);
+    $page = 1 + $offset / $limit;
+
+    return compact('limit', 'page', 'offset');
 }
 
 function param_string_simple($value)
@@ -601,27 +653,6 @@ function trans_exists($key, $locale)
     return present($translated) && $translated !== $key;
 }
 
-function with_db_fallback($connection, callable $callable)
-{
-    try {
-        return $callable($connection);
-    } catch (Illuminate\Database\QueryException $ex) {
-        // string after the error code can change depending on actual state of the server.
-        static $errorCodes = ['SQLSTATE[HY000] [2002]', 'SQLSTATE[HY000] [2003]'];
-        if (starts_with($ex->getMessage(), $errorCodes)) {
-            Datadog::increment(
-                config('datadog-helper.prefix_web').'.db_fallback',
-                1,
-                compact('connection')
-            );
-
-            return $callable(config('database.default'));
-        }
-
-        throw $ex;
-    }
-}
-
 function obscure_email($email)
 {
     $email = explode('@', $email);
@@ -630,7 +661,7 @@ function obscure_email($email)
         return '<unknown>';
     }
 
-    return $email[0][0].'***'.'@'.$email[1];
+    return mb_substr($email[0], 0, 1).'***'.'@'.$email[1];
 }
 
 function countries_array_for_select()
@@ -728,6 +759,17 @@ function js_localtime($date)
     return "<time class='js-localtime' datetime='{$formatted}'>{$formatted}</time>";
 }
 
+function page_description($extra)
+{
+    $parts = ['osu!', page_title()];
+
+    if (present($extra)) {
+        $parts[] = $extra;
+    }
+
+    return blade_safe(implode(' » ', array_map('e', $parts)));
+}
+
 function page_title()
 {
     $currentRoute = app('route-section')->getCurrent();
@@ -809,12 +851,18 @@ function link_to_user($id, $username = null, $color = null, $classNames = null)
 function issue_icon($issue)
 {
     switch ($issue) {
-        case 'added': return 'fas fa-cogs';
-        case 'assigned': return 'fas fa-user';
-        case 'confirmed': return 'fas fa-exclamation-triangle';
-        case 'resolved': return 'far fa-check-circle';
-        case 'duplicate': return 'fas fa-copy';
-        case 'invalid': return 'far fa-times-circle';
+        case 'added':
+            return 'fas fa-cogs';
+        case 'assigned':
+            return 'fas fa-user';
+        case 'confirmed':
+            return 'fas fa-exclamation-triangle';
+        case 'resolved':
+            return 'far fa-check-circle';
+        case 'duplicate':
+            return 'fas fa-copy';
+        case 'invalid':
+            return 'far fa-times-circle';
     }
 }
 
@@ -924,6 +972,7 @@ function nav_links()
         'charts' => route('rankings', ['mode' => $defaultMode, 'type' => 'charts']),
         'score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
         'country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
+        'multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
         'kudosu' => osu_url('rankings.kudosu'),
     ];
     $links['community'] = [
@@ -1007,7 +1056,7 @@ function base62_encode($input)
     $remaining = $input;
 
     do {
-        $output = $numbers[($remaining % $base)].$output;
+        $output = $numbers[$remaining % $base].$output;
         $remaining = floor($remaining / $base);
     } while ($remaining > 0);
 
@@ -1185,7 +1234,7 @@ function get_bool($string)
  */
 function get_float($string)
 {
-    if (present($string)) {
+    if (present($string) && is_scalar($string)) {
         return (float) $string;
     }
 }
@@ -1196,7 +1245,7 @@ function get_float($string)
  */
 function get_int($string)
 {
-    if (present($string)) {
+    if (present($string) && is_scalar($string)) {
         return (int) $string;
     }
 }
@@ -1210,9 +1259,16 @@ function get_file($input)
 
 function get_string($input)
 {
-    if (is_string($input)) {
-        return $input;
+    if (is_scalar($input)) {
+        return (string) $input;
     }
+}
+
+function get_string_split($input)
+{
+    return get_arr(explode("\r\n", get_string($input)), function ($item) {
+        return presence(trim_unicode($item));
+    });
 }
 
 function get_class_basename($className)
@@ -1264,7 +1320,7 @@ function deltree($dir)
 {
     $files = array_diff(scandir($dir), ['.', '..']);
     foreach ($files as $file) {
-        (is_dir("$dir/$file")) ? deltree("$dir/$file") : unlink("$dir/$file");
+        is_dir("$dir/$file") ? deltree("$dir/$file") : unlink("$dir/$file");
     }
 
     return rmdir($dir);
@@ -1277,29 +1333,24 @@ function get_param_value($input, $type)
             return $input;
         case 'bool':
             return get_bool($input);
-            break;
         case 'int':
             return get_int($input);
-            break;
         case 'file':
             return get_file($input);
-            break;
         case 'float':
             return get_float($input);
-            break;
         case 'string':
             return get_string($input);
         case 'string_split':
-            return get_arr(explode("\r\n", $input), 'get_string');
-            break;
+            return get_string_split($input);
         case 'string[]':
             return get_arr($input, 'get_string');
-            break;
         case 'int[]':
             return get_arr($input, 'get_int');
-            break;
+        case 'time':
+            return parse_time_to_carbon($input);
         default:
-            return presence((string) $input);
+            return presence(get_string($input));
     }
 }
 
@@ -1353,7 +1404,7 @@ function array_rand_val($array)
 function model_pluck($builder, $key, $class = null)
 {
     if ($class) {
-        $selectKey = (new $class)->qualifyColumn($key);
+        $selectKey = (new $class())->qualifyColumn($key);
     }
 
     $result = [];
@@ -1415,7 +1466,7 @@ function parse_time_to_carbon($value)
 
 function format_duration_for_display($seconds)
 {
-    return floor($seconds / 60).':'.str_pad(($seconds % 60), 2, '0', STR_PAD_LEFT);
+    return floor($seconds / 60).':'.str_pad($seconds % 60, 2, '0', STR_PAD_LEFT);
 }
 
 // Converts a standard image url to a retina one
@@ -1466,15 +1517,18 @@ function first_paragraph($html, $split_on = "\n")
     $text = strip_tags($html);
     $match_pos = strpos($text, $split_on);
 
-    return ($match_pos === false) ? $text : substr($text, 0, $match_pos);
+    return $match_pos === false ? $text : substr($text, 0, $match_pos);
 }
 
 function build_icon($prefix)
 {
     switch ($prefix) {
-        case 'add': return 'plus';
-        case 'fix': return 'wrench';
-        case 'misc': return 'question';
+        case 'add':
+            return 'plus';
+        case 'fix':
+            return 'wrench';
+        case 'misc':
+            return 'question';
     }
 }
 
@@ -1603,4 +1657,34 @@ function search_error_message(?Exception $e): ?string
     $text = trans($key);
 
     return $text === $key ? trans('errors.search.default') : $text;
+}
+
+/**
+ * Gets the path to a versioned resource.
+ *
+ * @param string $resource
+ * @param string $manifest
+ * @return HtmlString
+ *
+ * @throws Exception
+ */
+function unmix(string $resource)
+{
+    static $manifest;
+
+    if (!isset($manifest)) {
+        $manifestPath = public_path('assets/manifest.json');
+
+        if (!file_exists($manifestPath)) {
+            throw new Exception('The manifest does not exist.');
+        }
+
+        $manifest = json_decode(file_get_contents($manifestPath), true);
+    }
+
+    if (!isset($manifest[$resource])) {
+        throw new Exception("resource not defined: {$resource}.");
+    }
+
+    return new HtmlString($manifest[$resource]);
 }

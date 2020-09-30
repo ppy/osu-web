@@ -57,10 +57,6 @@
       padding: 0;
     }
 
-    a {
-      .link-default();
-    }
-
     pre {
       background-color: @osu-colour-b6;
       border: none;
@@ -261,6 +257,7 @@
 
   &--notification-banners {
     @media @desktop {
+      position: relative;
       height: 0;
       top: (@nav2-height + 10px);
     }

@@ -6,8 +6,8 @@
 namespace App\Models\Chat;
 
 use App\Exceptions\API;
-use App\Models\Multiplayer\Match;
-use App\Models\Notification;
+use App\Jobs\Notifications\ChannelMessage;
+use App\Models\Match\Match;
 use App\Models\User;
 use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
@@ -27,6 +27,11 @@ use LaravelRedis as Redis;
 class Channel extends Model
 {
     protected $primaryKey = 'channel_id';
+
+    protected $casts = [
+        'moderated' => 'boolean',
+    ];
+
     protected $dates = [
         'creation_time',
     ];
@@ -95,6 +100,11 @@ class Channel extends Model
         // TODO: additional message filtering
 
         return $messages;
+    }
+
+    public function userChannels()
+    {
+        return $this->hasMany(UserChannel::class);
     }
 
     public function users()
@@ -223,7 +233,7 @@ class Channel extends Model
 
         if ($this->isPM()) {
             $this->unhide();
-            broadcast_notification(Notification::CHANNEL_MESSAGE, $message, $sender);
+            (new ChannelMessage($message, $sender))->dispatch();
         }
 
         Datadog::increment('chat.channel.send', 1, ['target' => $this->type]);

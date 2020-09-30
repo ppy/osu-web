@@ -6,12 +6,19 @@ import * as React from 'react';
 interface Props {
   currentValue: string;
   modifiers?: string[];
+  showTitle?: boolean;
   title?: string;
+  transPrefix: string;
   values: string[];
   onChange(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export class Sort extends React.PureComponent<Props> {
+  static readonly defaultProps = {
+    showTitle: true,
+    transPrefix: 'sort.',
+  };
+
   render() {
     const items = this.props.values.map((value) => {
       let cssClasses = 'sort__item sort__item--button';
@@ -31,7 +38,7 @@ export class Sort extends React.PureComponent<Props> {
             ? <span>
                 <i className={`fas fa-extra-mode-${currentUser.playmode ?? 'osu'}`} /> {osu.trans('sort.rank')}
               </span>
-            : osu.trans(`sort.${value}`)
+            : osu.trans(`${this.props.transPrefix}${value}`)
           }
         </button>
       );
@@ -40,7 +47,9 @@ export class Sort extends React.PureComponent<Props> {
     return (
       <div className={osu.classWithModifiers('sort', this.props.modifiers)}>
         <div className='sort__items'>
-          <span className='sort__item sort__item--title'>{this.props.title ?? osu.trans('sort._')}</span>
+          {this.props.showTitle && (
+            <span className='sort__item sort__item--title'>{this.props.title ?? osu.trans('sort._')}</span>
+          )}
           {items}
         </div>
       </div>

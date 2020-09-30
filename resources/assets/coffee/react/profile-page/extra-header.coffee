@@ -6,7 +6,7 @@ import { div, h2, i, span } from 'react-dom-factories'
 el = React.createElement
 
 export ExtraHeader = (props) ->
-  div null,
+  div className: 'u-relative',
     h2 className: 'title title--page-extra', osu.trans("users.show.extra.#{props.name}.title")
     if props.withEdit
       span className: 'page-extra__dragdrop-toggle hidden-xs js-profile-page-extra--sortable-handle',

@@ -24,14 +24,9 @@ desktop.ini
 /node_modules
 /yarn-error.log
 
-# Mix manifest
-/public/mix-manifest.json
-
 # Compiled/copied assets
-/public/fonts/vendor
-/public/js
-/public/css
-/public/vendor
+/public/assets
+/public/docs
 /public/uploads
 /public/uploads-avatar
 /public/uploads-replay
@@ -91,5 +86,3 @@ composer-installer
 /storage/oauth-private.key
 
 /storage/paypal_auth.cache
-
-/notification-server/

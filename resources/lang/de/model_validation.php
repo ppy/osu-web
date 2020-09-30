@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute hat die maximale Länge überschritten - höchstens :limit Zeichen.',
     'wrong_confirmation' => 'Bestätigung stimmt nicht überein.',
 
-    'beatmap_discussion_post' => [
-        'discussion_locked' => 'Diskussion ist gesperrt.',
-        'first_post' => 'Der erste Beitrag kann nicht gelöscht werden.',
-
-        'attributes' => [
-            'message' => 'Die Nachricht',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Ein Zeitpunkt ist angegeben, aber die Beatmap fehlt.',
         'beatmapset_no_hype' => "Diese Beatmap kann nicht gehypt werden.",
@@ -47,6 +38,15 @@ return [
         ],
     ],
 
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Diese Diskussion ist gesperrt.',
+        'first_post' => 'Der erste Beitrag kann nicht gelöscht werden.',
+
+        'attributes' => [
+            'message' => 'Die Nachricht',
+        ],
+    ],
+
     'comment' => [
         'deleted_parent' => 'Das Antworten auf den gelöschten Kommentar ist nicht erlaubt.',
         'top_only' => 'Kommentarantworten anzuheften ist nicht erlaubt.',
@@ -71,8 +71,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Den Metadaten-Post einer Beatmap kann man nicht löschen.',
-            'beatmapset_post_no_edit' => 'Den Metadaten-Post einer Beatmap kann man nicht bearbeiten.',
+            'beatmapset_post_no_delete' => 'Den Metadaten-Beitrag einer Beatmap kann man nicht löschen.',
+            'beatmapset_post_no_edit' => 'Den Metadaten-Beitrag einer Beatmap kann man nicht bearbeiten.',
             'only_quote' => 'In deiner Antwort ist nur ein Zitat enthalten.',
 
             'attributes' => [
@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Das Passwort darf den Nutzernamen nicht enthalten.',
         'email_already_used' => 'E-Mail-Adresse wird bereits verwendet.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Das Land ist nicht in der Datenbank.',
         'invalid_discord' => 'Discordname ungültig.',
         'invalid_email' => "Scheint keine gültige E-Mail-Adresse zu sein.",
@@ -132,7 +133,7 @@ return [
         'username_invalid_characters' => 'Der angeforderte Nutzername enthält ungültige Zeichen.',
         'username_in_use' => 'Dieser Nutzername wird bereits verwendet!',
         'username_locked' => 'Dieser Nutzername wird bereits verwendet!', // TODO: language for this should be slightly different.
-        'username_no_space_userscore_mix' => 'Bitte verwende nur Unterstricht ODER Leerzeichen, und nicht beides zusammen!',
+        'username_no_space_userscore_mix' => 'Bitte verwende entweder Unterstrich oder Leerzeichen, nicht beides zusammen!',
         'username_no_spaces' => "Nutzernamen können nicht mit Leerzeichen beginnen oder enden.",
         'username_not_allowed' => 'Dieser Nutzername ist nicht erlaubt.',
         'username_too_short' => 'Der angeforderte Nutzername ist zu kurz.',

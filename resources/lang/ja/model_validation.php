@@ -10,15 +10,6 @@ return [
     'too_long' => ':attributeの使用文字数の制限を超えています。上限は:limit文字です。',
     'wrong_confirmation' => '認証が一致しません。',
 
-    'beatmap_discussion_post' => [
-        'discussion_locked' => 'ディスカッションはロックされています。',
-        'first_post' => '最初の投稿は削除できません。',
-
-        'attributes' => [
-            'message' => 'メッセージ',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'タイムスタンプは存在しますがビートマップが見つかりませんでした',
         'beatmapset_no_hype' => "このビートマップはHypeできません。",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => '指定されたタイムスタンプはビートマップの長さの範囲に存在しません。',
             'negative' => "タイムスタンプは負の数が使えません。",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'ディスカッションはロックされています。',
+        'first_post' => '最初の投稿は削除できません。',
+
+        'attributes' => [
+            'message' => 'メッセージ',
         ],
     ],
 
@@ -122,6 +122,7 @@ return [
     'user' => [
         'contains_username' => 'ユーザー名を含んだパスワードは使用できません。',
         'email_already_used' => '既に使用されているメールアドレスです。',
+        'email_not_allowed' => '',
         'invalid_country' => 'データベースに存在しない国です。',
         'invalid_discord' => 'Discordのユーザー名が無効です。',
         'invalid_email' => "無効なメールアドレスです。",

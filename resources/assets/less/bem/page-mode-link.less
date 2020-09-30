@@ -8,6 +8,11 @@
   .link-gray-light();
   padding: 5px 0 10px;
   display: flex;
+  position: relative;
+
+  @media @mobile {
+    white-space: nowrap;
+  }
 
   &.js-is-active, &--is-active {
     font-weight: 600;

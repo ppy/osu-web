@@ -49,14 +49,21 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'erhalte benachrichtigungen für neue probleme auf qualifizierten beatmaps der folgenden modi',
+        'beatmapset_disqualify' => 'erhalte benachrichtigungen, wenn beatmaps der folgenden modi disqualifiziert werden',
+        'comment_reply' => 'werde über Antworten auf deine Kommentare benachrichtigt',
         'title' => 'Benachrichtigungen',
         'topic_auto_subscribe' => 'automatisch benachrichtigungen zu neuen forenthreads, die du erstellst, aktivieren',
-        'beatmapset_discussion_qualified_problem' => 'erhalte benachrichtigungen für neue probleme auf qualifizierten beatmaps der folgenden modi',
 
-        'mail' => [
-            '_' => 'e-mail-benachrichtigungen erhalten für',
+        'options' => [
+            '_' => 'zustelloptionen',
             'beatmapset:modding' => 'beatmap-modding',
+            'channel_message' => 'private chatnachrichten',
+            'comment_new' => 'neue kommentare',
             'forum_topic_reply' => 'antwort auf einen thread',
+            'mail' => 'mail',
+            'push' => 'push',
+            'user_achievement_unlock' => 'medaille freigeschaltet',
         ],
     ],
 
@@ -75,6 +82,8 @@ return [
             'no_video' => 'ohne video',
             'direct' => 'in osu!direct öffnen',
         ],
+
+        'beatmapset_title_show_original' => 'beatmap-metadaten in originalsprache anzeigen',
     ],
 
     'playstyles' => [
@@ -97,7 +106,7 @@ return [
         'end_session_confirmation' => 'Das wird deine Sitzung auf diesem Gerät sofort beenden. Bist du sicher?',
         'last_active' => 'Zuletzt aktiv:',
         'title' => 'Sicherheit',
-        'web_sessions' => 'Sitzungen',
+        'web_sessions' => 'sitzungen',
     ],
 
     'update_email' => [

@@ -26,6 +26,7 @@ return [
         'back_to_top' => 'Kembali ke atas',
         'cancel' => 'Batal',
         'change' => 'ubah',
+        'clear' => 'Hapus',
         'click_to_copy' => 'klik untuk menyalin',
         'click_to_copy_copied' => 'tersalin!',
         'close' => 'Tutup',
@@ -37,7 +38,7 @@ return [
         'permalink' => 'tautan',
         'pin' => 'sematkan',
         'post' => 'Posting',
-        'read_more' => '',
+        'read_more' => 'baca selengkapnya',
         'reply' => 'Balas',
         'reply_reopen' => 'Balas dan Buka Kembali',
         'reply_resolve' => 'Balas dan Tandai Selesai',
@@ -57,8 +58,8 @@ return [
         'upload_image' => 'unggah gambar',
 
         'watch' => [
-            'to_0' => 'Batal Ikuti',
-            'to_1' => 'Ikuti',
+            'to_0' => 'Batalkan Pengamatan',
+            'to_1' => 'Amati',
         ],
     ],
 
@@ -125,6 +126,21 @@ return [
         'count_geki' => 'MAX',
         'count_katu' => '200',
         'count_miss' => 'Miss',
+    ],
+
+    'scoreboard_time' => [
+        'd' => '%d hr',
+        'dd' => '%d hr',
+        'h' => '%d jam',
+        'hh' => '%d jam',
+        'M' => '%d bln',
+        'm' => '%d mnt',
+        'MM' => '%d bln',
+        'mm' => '%d mnt',
+        'past' => '%s',
+        's' => '%d dtk',
+        'y' => '%d thn',
+        'yy' => '%d thn',
     ],
 
     'time' => [

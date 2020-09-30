@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nowy post od użytkownika :username dla beatmapy „:title”',
                 'beatmapset_discussion_post_new_compact' => 'Nowy post od użytkownika :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nowy post od użytkownika :username',
+                'beatmapset_discussion_review_new' => 'Nowa recenzja od :username pod beatmapą „:title” zawierająca problemów: :problems, sugestii: :suggestions, pochwał: :praises.',
+                'beatmapset_discussion_review_new_compact' => 'Nowa recenzja od :username zawierająca problemów: :problems, sugestii: :suggestions, pochwał: :praises.',
                 'beatmapset_discussion_unlock' => 'Tworzenie dyskusji dla beatmapy „:title” zostało odblokowane.',
                 'beatmapset_discussion_unlock_compact' => 'Dyskusja została odblokowana',
             ],
@@ -64,6 +66,8 @@ return [
 
                 'comment_new' => 'Użytkownik :username napisał komentarz pod „:title”: „:content”',
                 'comment_new_compact' => 'Użytkownik :username napisał komentarz: „:content”',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -88,6 +92,8 @@ return [
 
                 'comment_new' => 'Użytkownik :username napisał komentarz pod „:title”: „:content”',
                 'comment_new_compact' => 'Użytkownik :username napisał komentarz: „:content”',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -99,6 +105,8 @@ return [
 
                 'comment_new' => 'Użytkownik :username napisał komentarz pod „:title”: „:content”',
                 'comment_new_compact' => 'Użytkownik :username napisał komentarz: „:content”',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -128,6 +136,64 @@ return [
                 '_' => 'Nowy medal',
                 'user_achievement_unlock' => 'Odblokowano medal „:title”!',
                 'user_achievement_unlock_compact' => 'Odblokowano medal „:title”!',
+            ],
+        ],
+    ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => 'Dyskusja do beatmapy „:title” została zablokowana',
+                'beatmapset_discussion_post_new' => 'W dyskusji do beatmapy „:title” pojawiły się nowe aktualizacje',
+                'beatmapset_discussion_unlock' => 'Dyskusja do beatmapy „:title” została odblokowana',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => 'Zgłoszono nowy problem z beatmapą „:title”',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => 'Beatmapa „:title” została zdyskwalifikowana',
+                'beatmapset_love' => 'Beatmapa „:title” uzyskała status ulubionej społeczności',
+                'beatmapset_nominate' => 'Beatmapa „:title” została nominowana',
+                'beatmapset_qualify' => 'Beatmapa „:title” uzyskała wystarczającą liczbę nominacji i została zakwalifikowana',
+                'beatmapset_rank' => 'Beatmapa „:title” uzyskała status rankingowy',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => 'W beatmapie „:title” pojawiły się nowe komentarze',
+            ],
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => 'Otrzymujesz nową wiadomość od użytkownika :username',
+            ],
+        ],
+
+        'build' => [
+            'comment' => [
+                'comment_new' => 'W liście zmian „:title” pojawiły się nowe komentarze',
+            ],
+        ],
+
+        'news_post' => [
+            'comment' => [
+                'comment_new' => 'W wiadomości „:title” pojawiły się nowe komentarze',
+            ],
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => [
+                'forum_topic_reply' => 'W wątku „:title” pojawiły się nowe odpowiedzi',
+            ],
+        ],
+
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => 'Użytkownik :username odblokował nowy medal - „:title”!',
+                'user_achievement_unlock_self' => 'Odblokowano nowy medal - „:title”!',
             ],
         ],
     ],

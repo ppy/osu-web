@@ -26,6 +26,7 @@ return [
         'back_to_top' => 'Zpátky nahoru',
         'cancel' => 'Zrušit',
         'change' => 'změnit',
+        'clear' => '',
         'click_to_copy' => 'klikněte pro zkopírování do schránky',
         'click_to_copy_copied' => 'zkopírováno do schránky!',
         'close' => 'Zavřít',
@@ -125,6 +126,21 @@ return [
         'count_geki' => 'MAX',
         'count_katu' => '200',
         'count_miss' => 'Miss',
+    ],
+
+    'scoreboard_time' => [
+        'd' => '',
+        'dd' => '',
+        'h' => '',
+        'hh' => '',
+        'M' => '',
+        'm' => '',
+        'MM' => '',
+        'mm' => '',
+        'past' => '',
+        's' => '',
+        'y' => '',
+        'yy' => '',
     ],
 
     'time' => [

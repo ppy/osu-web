@@ -12,7 +12,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'разреши kudosu',
-        'beatmap_information' => '',
+        'beatmap_information' => 'Страница на бийтмапа',
         'delete' => 'изтрий',
         'deleted' => 'Изтрито от :editor :delete_time.',
         'deny_kudosu' => 'забрани kudosu',
@@ -20,8 +20,8 @@ return [
         'edited' => 'Последно редактирано от :editor :update_time.',
         'kudosu_denied' => 'Забранено получаване на kudosu.',
         'message_placeholder_deleted_beatmap' => 'Тази трудност е била изтрита, така че тя вече не може да се обсъжда.',
-        'message_placeholder_locked' => '',
-        'message_placeholder_silenced' => "",
+        'message_placeholder_locked' => 'Дискусията за този бийтмап бе деактивирана.',
+        'message_placeholder_silenced' => "Не може да публикувате дискусии, докато сте заглушен.",
         'message_type_select' => 'Изберете тип на коментар',
         'reply_notice' => 'Натиснете enter за да отговорите.',
         'reply_placeholder' => 'Въведете вашия отговор тук',
@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Пишете тук, за да публикувате в General (:version)',
             'generalAll' => 'Пишете тук, за да публикувате в General (Всички трудности)',
+            'review' => 'Пишете тук, за да публикувате ревю',
             'timeline' => 'Пишете тук, за да публикувате в Timeline (:version)',
         ],
 
@@ -71,14 +72,14 @@ return [
             'nomination_reset' => 'Анулирай Номинацията',
             'praise' => 'Възхвали',
             'problem' => 'Проблем',
-            'review' => '',
+            'review' => 'Ревю',
             'suggestion' => 'Предложение',
         ],
 
         'mode' => [
             'events' => 'История',
             'general' => 'Обща :scope',
-            'reviews' => '',
+            'reviews' => 'Ревюта',
             'timeline' => 'Времева лента',
             'scopes' => [
                 'general' => 'Тази трудност',
@@ -88,10 +89,30 @@ return [
 
         'new' => [
             'pin' => 'Закачи',
-            'timestamp' => 'Времев етикет',
+            'timestamp' => 'Времева отметка',
             'timestamp_missing' => 'ctrl-c в редактора и вмъкнете вашето съобщение, за да добавите времев етикет!',
             'title' => 'Нова Дискусия',
             'unpin' => 'Откачи',
+        ],
+
+        'review' => [
+            'new' => 'Ново ревю',
+            'embed' => [
+                'delete' => 'Изтрий',
+                'missing' => '[ИЗТРИТА ДИСКУСИЯ]',
+                'unlink' => 'Прекрати връзката',
+                'unsaved' => 'Незапазено',
+                'timestamp' => [
+                    'all-diff' => 'Публикациите за "Всички трудности" не могат да имат времеви отметки.',
+                    'diff' => 'Ако този :type започва с времева отметка, тя ще бъде показана под времевата линия.',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => 'добави параграф',
+                'praise' => 'добави похвала',
+                'problem' => 'добави проблем',
+                'suggestion' => 'добави предложение',
+            ],
         ],
 
         'show' => [
@@ -124,12 +145,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Все още няма отрицателни оценки',
+                'up' => 'Все още няма положителни оценки',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Последни отрицателни оценки',
+                'up' => 'Последни положителни оценки',
             ],
         ],
     ],
@@ -165,7 +186,7 @@ return [
         'nominate' => 'Номинирай',
         'nominate_confirm' => 'Номинирай този бийтмап?',
         'nominated_by' => 'номиниран от :users',
-        'not_enough_hype' => "",
+        'not_enough_hype' => "Няма достатъчно надъхвания.",
         'qualified' => 'Очаква се да бъде класиран :date, ако няма открити проблеми.',
         'qualified_soon' => 'Очаква се да бъде класиран скоро, ако няма открити проблеми.',
         'required_text' => 'Номинации: :current/:required',
@@ -234,14 +255,14 @@ return [
     'status' => [
         'any' => 'Всички',
         'approved' => 'Одобрени',
-        'favourites' => '',
+        'favourites' => 'Любими',
         'graveyard' => 'Гробище',
-        'leaderboard' => '',
+        'leaderboard' => 'Имат таблица с класации',
         'loved' => 'Обичани',
-        'mine' => '',
+        'mine' => 'Моите мапове',
         'pending' => 'Изчакващи одобрение или недовършени',
         'qualified' => 'Квалифицирани',
-        'ranked' => '',
+        'ranked' => 'Класиран',
     ],
     'genre' => [
         'any' => 'Всички',
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Новела',
         'hip-hop' => 'Хип-Хоп',
         'electronic' => 'Електронна',
+        'metal' => 'Метъл',
+        'classical' => 'Класическа',
+        'folk' => 'Фолк',
+        'jazz' => 'Джаз',
     ],
     'mods' => [
         '4K' => '',
@@ -279,6 +304,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
+        'V2' => 'Резултат V2',
     ],
     'language' => [
         'any' => '',
@@ -291,8 +317,11 @@ return [
         'korean' => 'Корейски',
         'spanish' => 'Испански',
         'swedish' => 'Шведски',
+        'russian' => 'Руски',
+        'polish' => 'Полски',
         'instrumental' => 'Инструментал',
         'other' => 'Други',
+        'unspecified' => 'Неопределен',
     ],
     'played' => [
         'any' => 'Всички',
@@ -317,5 +346,12 @@ return [
     'panel' => [
         'playcount' => 'Брой игри: :count',
         'favourites' => 'Любими: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Всички',
+        ],
     ],
 ];

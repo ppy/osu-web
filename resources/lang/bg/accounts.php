@@ -10,8 +10,8 @@ return [
 
         'avatar' => [
             'title' => 'Аватар',
-            'rules' => '',
-            'rules_link' => 'правилата на общността',
+            'rules' => 'Моля, уверете се, че вашият аватар се придържда към :link.<br/>Това означава, че задължително трябва да бъде <strong>подходящ за всички възрасти</strong>. т.е. няма голота, ругатни или внушаващо съдържание.',
+            'rules_link' => 'обществените правила',
         ],
 
         'email' => [
@@ -49,14 +49,21 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'получаване на известия за нови проблеми на квалифицирани бийтмапове от следните ремижи на игра',
+        'beatmapset_disqualify' => 'получаване на известия, когато бийтмапове от следните режими на игра са дисквалифицирани',
+        'comment_reply' => '',
         'title' => 'Известия',
-        'topic_auto_subscribe' => '',
-        'beatmapset_discussion_qualified_problem' => '',
+        'topic_auto_subscribe' => 'автоматично включване на известията при създаването на нови форумни теми',
 
-        'mail' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
+        'options' => [
+            '_' => 'опции за доставка',
+            'beatmapset:modding' => 'бийтмап modding',
+            'channel_message' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => 'отговор на темата',
+            'mail' => 'поща',
+            'push' => 'push',
+            'user_achievement_unlock' => '',
         ],
     ],
 
@@ -67,14 +74,16 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Hастройки',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'тип на теглене на бийтмапове по подразбиране',
+            'all' => 'с видео при наличност',
+            'no_video' => 'без видео',
+            'direct' => 'отвори в osu!direct',
         ],
+
+        'beatmapset_title_show_original' => 'покажете метаданни на beatmap на оригиналния език',
     ],
 
     'playstyles' => [
@@ -114,6 +123,6 @@ return [
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Невалиден или изтекъл линк за потвърждение',
     ],
 ];

@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Zaloguj się, aby kontynuować.',
     'require_verification' => 'Przejdź proces weryfikacji, aby kontynuować.',
     'restricted' => "Nie możesz tego zrobić podczas blokady konta.",
@@ -21,6 +22,7 @@ return [
             'full_bn_required_hybrid' => 'Musisz posiadać pełne uprawnienia nominatora, aby nominować zestawy z beatmapami dla kilku trybów gry.',
             'incorrect_state' => 'Wystąpił błąd podczas wykonywania tej czynności, spróbuj odświeżyć stronę.',
             'owner' => "Nie możesz nominować własnej beatmapy.",
+            'set_metadata' => 'Musisz ustawić gatunek i język przed nominowaniem beatmapy.',
         ],
         'resolve' => [
             'not_owner' => 'Tylko autor wątku i autor beatmapy mogą zakończyć dyskusję.',
@@ -31,6 +33,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "Nie możesz głosować w dyskusji utworzonej przez bota",
             'limit_exceeded' => 'Zaczekaj, zanim zagłosujesz ponownie',
             'owner' => "Nie możesz głosować we własnej dyskusji!",
             'wrong_beatmapset_state' => 'Możesz głosować tylko przy oczekujących beatmapach.',
@@ -52,6 +55,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => 'Tworzenie dyskusji dla tej beatmapy zostało zablokowane.',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => 'Nie możesz zmienić metadanych nominowanej mapy. Skontaktuj się z członkiem BN lub NAT, jeśli uważasz, że są one ustawione nieprawidłowo.',
         ],
     ],
 

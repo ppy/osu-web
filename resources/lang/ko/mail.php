@@ -26,7 +26,7 @@ return [
         'translation' => '다음은 정보 제공을 위해 유저가 번역한 내용입니다:',
 
         'benefit' => [
-            'gift' => '이제 수령인은 osu!direct와 다른 서포터 혜택을 누리실 수 있습니다.',
+            'gift' => '이제 수령인은 osu!direct를 비롯해 다른 서포터 혜택을 누리실 수 있습니다.',
             'self' => '이제 :duration 동안 osu!direct와 다른 서포터 혜택을 누리실 수 있습니다.',
         ],
 
@@ -63,7 +63,7 @@ return [
     'supporter_gift' => [
         'anonymous_gift' => '서포터 태그를 선물해주신 분은 본인을 익명으로 남기셨습니다. 따라서 이 알림에 언급되지 않았습니다.',
         'anonymous_gift_maybe_not' => '뭐... 이미 누군지 눈치챈 것 같기도 하네요^^',
-        'duration' => '선물해주신 분 덕분에 :duration 동안 osu!direct와 다른 osu! 서포터 혜택을 누리실 수 있습니다.',
+        'duration' => '선물해주신 분 덕분에 :duration 동안 osu!direct를 비롯한 다른 osu! 서포터 혜택을 누리실 수 있습니다.',
         'features' => '자세한 기능은 다음 링크를 통해 확인하실 수 있습니다:',
         'gifted' => '누군가가 당신에게 osu! 서포터 태그를 선물했습니다!',
         'subject' => 'osu! 서포터 권한을 선물 받았습니다!',
@@ -81,6 +81,12 @@ return [
         'perform_reset' => ':url 에서 초기화를 진행할 수 있습니다.',
         'reason' => '사유:',
         'subject' => 'osu! 계정 재활성화가 필요합니다',
+    ],
+
+    'user_notification_digest' => [
+        'new' => '구독 중인 항목에 새로운 업데이트가 있습니다.',
+        'settings' => '이메일 알림 설정 변경',
+        'subject' => '새로운 osu! 알림',
     ],
 
     'user_password_updated' => [

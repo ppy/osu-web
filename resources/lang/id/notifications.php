@@ -5,12 +5,12 @@
 
 return [
     'all_read' => 'Semua notifikasi telah dibaca!',
-    'mark_read' => 'Hilangkan semua notifikasi terkait :type',
+    'mark_read' => 'Hapus :type',
     'none' => 'Tidak ada notifikasi',
     'see_all' => 'lihat semua notifikasi',
 
     'filters' => [
-        '_' => 'semua',
+        '_' => 'semua notifikasi',
         'user' => 'profil',
         'beatmapset' => 'beatmap',
         'forum_topic' => 'forum',
@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Postingan baru di ":title" oleh :username',
                 'beatmapset_discussion_post_new_compact' => 'Postingan baru dari :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Postingan baru oleh :username',
+                'beatmapset_discussion_review_new' => 'Terdapat ulasan baru pada ":title" oleh :username yang menyinggung seputar masalah: :problems, saran: :suggestions, dan pujian berupa: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Terdapat ulasan baru oleh :username yang menyinggung seputar masalah: :problems, saran: :suggestions, dan pujian berupa: :praises',
                 'beatmapset_discussion_unlock' => 'Diskusi untuk beatmap ":title" telah dibuka kembali.',
                 'beatmapset_discussion_unlock_compact' => 'Diskusi beatmap telah dibuka',
             ],
@@ -44,19 +46,19 @@ return [
             ],
 
             'beatmapset_state' => [
-                '_' => 'Status beatmap diganti',
+                '_' => 'Perubahan status beatmap',
                 'beatmapset_disqualify' => 'Beatmap ":title" telah didiskualifikasi oleh :username.',
                 'beatmapset_disqualify_compact' => 'Beatmap telah didiskualifikasi',
                 'beatmapset_love' => 'Beatmap ":title" telah diberikan status loved oleh :username.',
                 'beatmapset_love_compact' => 'Status beatmap dipromosikan menjadi loved',
-                'beatmapset_nominate' => 'Beatmap ":title" telah dinominasikan oleh :username.',
-                'beatmapset_nominate_compact' => 'Beatmap telah dinominasi',
+                'beatmapset_nominate' => '":title" telah mendapatkan nominasi',
+                'beatmapset_nominate_compact' => 'Beatmap telah mendapatkan nominasi',
                 'beatmapset_qualify' => 'Beatmap ":title" telah memperoleh jumlah nominasi yang diperlukan untuk proses ranking.',
                 'beatmapset_qualify_compact' => 'Beatmap telah memasuki antrean status ranking',
-                'beatmapset_rank' => '":title" telah berstatus ranked',
-                'beatmapset_rank_compact' => 'Beatmap sekarang berstatus ranked',
+                'beatmapset_rank' => '":title" telah berstatus Ranked',
+                'beatmapset_rank_compact' => 'Beatmap telah berstatus Ranked',
                 'beatmapset_reset_nominations' => 'Masalah yang dikemukakan oleh :username menganulir nominasi sebelumnya pada beatmap ":title" ',
-                'beatmapset_reset_nominations_compact' => 'Proses nominasi diulang',
+                'beatmapset_reset_nominations_compact' => 'Nominasi beatmap dianulir',
             ],
 
             'comment' => [
@@ -64,6 +66,8 @@ return [
 
                 'comment_new' => ':username berkomentar ":content" di topik ":title"',
                 'comment_new_compact' => ':username berkomentar ":content"',
+                'comment_reply' => ':username berkomentar ":content" pada topik ":title"',
+                'comment_reply_compact' => ':username berkomentar ":content"',
             ],
         ],
 
@@ -86,8 +90,10 @@ return [
             'comment' => [
                 '_' => 'Komentar baru',
 
-                'comment_new' => ':username berkomentar ":content" di topik ":title"',
+                'comment_new' => ':username berkomentar ":content" pada topik ":title"',
                 'comment_new_compact' => ':username berkomentar ":content"',
+                'comment_reply' => ':username berkomentar ":content" pada topik ":title"',
+                'comment_reply_compact' => ':username berkomentar ":content"',
             ],
         ],
 
@@ -97,8 +103,10 @@ return [
             'comment' => [
                 '_' => 'Komentar baru',
 
-                'comment_new' => ':username berkomentar ":content" di topik ":title"',
+                'comment_new' => ':username berkomentar ":content" pada topik ":title"',
                 'comment_new_compact' => ':username berkomentar ":content"',
+                'comment_reply' => ':username berkomentar ":content" pada topik ":title"',
+                'comment_reply_compact' => ':username berkomentar ":content"',
             ],
         ],
 
@@ -113,7 +121,7 @@ return [
         ],
 
         'legacy_pm' => [
-            '_' => 'PM Forum Lawas',
+            '_' => 'Forum PM',
 
             'legacy_pm' => [
                 '_' => '',
@@ -128,6 +136,64 @@ return [
                 '_' => 'Medali baru',
                 'user_achievement_unlock' => '":title" Terbuka!',
                 'user_achievement_unlock_compact' => 'Anda berhasil mendapatkan medali ":title"!',
+            ],
+        ],
+    ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => 'Topik diskusi ":title" telah dikunci',
+                'beatmapset_discussion_post_new' => 'Terdapat pembaharuan baru pada topik diskusi ":title"',
+                'beatmapset_discussion_unlock' => 'Topik diskusi ":title" telah kembali dibuka',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => 'Terdapat masalah baru yang dilaporkan pada ":title"',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '":title" telah didiskualifikasi',
+                'beatmapset_love' => '":title" telah dipromosikan ke dalam kategori Loved',
+                'beatmapset_nominate' => '":title" telah mendapatkan nominasi',
+                'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk memasuki antrean status ranking',
+                'beatmapset_rank' => '":title" telah berstatus Ranked',
+                'beatmapset_reset_nominations' => 'Status nominasi pada ":title" telah dianulir',
+            ],
+
+            'comment' => [
+                'comment_new' => 'Terdapat komentar baru pada beatmap ":title"',
+            ],
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => 'Anda mendapatkan pesan baru dari :username',
+            ],
+        ],
+
+        'build' => [
+            'comment' => [
+                'comment_new' => 'Terdapat komentar baru pada riwayat perubahan ":title"',
+            ],
+        ],
+
+        'news_post' => [
+            'comment' => [
+                'comment_new' => 'Terdapat komentar baru pada topik berita ":title"',
+            ],
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => [
+                'forum_topic_reply' => 'Terdapat balasan baru pada ":title"',
+            ],
+        ],
+
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => ':username telah mendapatkan medali baru, ":title"!',
+                'user_achievement_unlock_self' => 'Anda telah mendapatkan medali baru, ":title"!',
             ],
         ],
     ],

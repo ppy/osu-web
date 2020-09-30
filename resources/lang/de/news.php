@@ -8,13 +8,13 @@ return [
         'title_page' => 'osu!news',
 
         'nav' => [
-            'newer' => 'Neuere Posts',
-            'older' => 'Ältere Posts',
+            'newer' => 'Neuere Beiträge',
+            'older' => 'Ältere Beiträge',
         ],
 
         'title' => [
             '_' => 'Neuigkeiten :info',
-            'info' => 'Startseite',
+            'info' => 'startseite',
         ],
     ],
 
@@ -22,8 +22,8 @@ return [
         'by' => 'von :user',
 
         'nav' => [
-            'newer' => 'Neuerer Post',
-            'older' => 'Älterer Post',
+            'newer' => 'Neuerer Beitrag',
+            'older' => 'Älterer Beitrag',
         ],
 
         'title' => [
@@ -43,6 +43,6 @@ return [
 
     'update' => [
         'button' => 'Bearbeiten',
-        'ok' => 'Post bearbeitet.',
+        'ok' => 'Beitrag bearbeitet.',
     ],
 ];

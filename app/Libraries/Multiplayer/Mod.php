@@ -53,6 +53,7 @@ class Mod
     const MANIA_FADEIN = 'FI';
     const MANIA_MIRROR = 'MR';
     const MANIA_RANDOM = 'RD';
+    const MANIA_INVERT = 'IN';
 
     // taiko-specific
     const TAIKO_RANDOM = 'RD';
@@ -160,10 +161,18 @@ class Mod
         self::WIND_UP => [
             'initial_rate' => 'float',
             'final_rate' => 'float',
+            'adjust_pitch' => 'bool',
         ],
         self::WIND_DOWN => [
             'initial_rate' => 'float',
             'final_rate' => 'float',
+            'adjust_pitch' => 'bool',
+        ],
+        self::OSU_GROW => [
+            'start_scale' => 'float',
+        ],
+        self::OSU_DEFLATE => [
+            'start_scale' => 'float',
         ],
     ];
 
@@ -242,6 +251,7 @@ class Mod
                         self::MANIA_FADEIN,
                         self::MANIA_MIRROR,
                         self::MANIA_RANDOM,
+                        self::MANIA_INVERT,
                     ]
                 ),
             ];

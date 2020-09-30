@@ -4,22 +4,24 @@
 .page-extra {
   @top: page-extra;
 
+  --padding: 20px;
+  --gutter: @gutter-profile-page;
+
   .own-layer();
   .default-box-shadow();
-  .at2x-simple('/images/backgrounds/page-extra-footer.png');
+  .at2x-simple('~@images/backgrounds/page-extra-footer.png');
   background-color: @osu-colour-b5;
   background-position: bottom center;
   background-size: contain;
   background-repeat: no-repeat;
   color: #fff;
-  padding: 20px @gutter-profile-page;
+  padding: var(--padding) var(--gutter);
   margin-bottom: 10px;
 
   font-size: @font-size--title-small;
 
   @media @desktop {
-    padding-left: @gutter-profile-page-desktop;
-    padding-right: @gutter-profile-page-desktop;
+    --gutter: @gutter-profile-page-desktop;
   }
 
   &--compact {
@@ -70,6 +72,7 @@
   &__chart {
     height: 250px;
     width: 100%;
+    position: relative;
   }
 
   &__content-overflow-wrapper-inner {
@@ -111,24 +114,6 @@
       margin-right: (-@gutter-profile-page-desktop);
       padding-left: @gutter-profile-page-desktop;
       padding-right: @gutter-profile-page-desktop;
-    }
-  }
-
-  &__subtitle {
-    font-size: 14px;
-    font-style: normal;
-    color: white;
-    margin: 20px 0px;
-
-    &::before {
-      content: ' ';
-      .full-size();
-      width: 4px;
-      height: 12px;
-      margin-top: 2px;
-      background: @osu-colour-h1;
-      margin-left: -15px;
-      .default-border-radius();
     }
   }
 

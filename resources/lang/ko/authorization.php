@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => '계속하려면 로그인해 주세요.',
     'require_verification' => '계속하려면 인증해 주세요.',
     'restricted' => "제한된 상태에서는 할 수 없습니다.",
@@ -16,11 +17,12 @@ return [
             'has_reply' => '답글이 달린 토론은 삭제할 수 없습니다',
         ],
         'nominate' => [
-            'exhausted' => '오늘은 더 이상 지명할 수 없습니다. 내일 다시 시도해주세요.',
-            'full_bn_required' => '완전한 nominator가 되어야만 qualify 지명을 할 수 있습니다.',
-            'full_bn_required_hybrid' => '완전한 nominator가 되어야만 한 게임모드 이상의 비트맵 셋을 지명할 수 있습니다.',
+            'exhausted' => '오늘은 더 이상 추천할 수 없습니다. 내일 다시 시도해주세요.',
+            'full_bn_required' => '완전한 nominator가 되어야만 qualify 추천을 할 수 있습니다.',
+            'full_bn_required_hybrid' => '완전한 nominator가 되어야 한 게임모드 이상의 비트맵 셋을 추천할 수 있습니다.',
             'incorrect_state' => '해당 작업을 수행하는 중 오류가 발생했습니다. 페이지를 새로 고쳐주세요.',
             'owner' => "자신의 비트맵을 추천할 수 없습니다.",
+            'set_metadata' => '추천하려면 먼저 장르와 언어를 지정해야 합니다.',
         ],
         'resolve' => [
             'not_owner' => '게시글 작성자 또는 비트맵 제작자만 토론을 가결할 수 있습니다.',
@@ -31,6 +33,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "봇이 만든 토론에는 투표할 수 없습니다.",
             'limit_exceeded' => '투표를 더 하기 전에 조금 기다려주세요',
             'owner' => "자신이 시작한 토론에는 투표할 수 없습니다.",
             'wrong_beatmapset_state' => 'Pending인 비트맵의 토론에만 투표할 수 있습니다.',
@@ -52,6 +55,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => '이 비트맵은 토론을 할 수 없도록 잠겨 있습니다.',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => '추천된 맵의 메타데이터를 변경할 순 없습니다. 잘못 지정된 것 같으면 BN이나 NAT 멤버에게 알려주세요.',
         ],
     ],
 

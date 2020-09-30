@@ -36,7 +36,7 @@ return [
         'forum_post' => [
             'all' => 'Összes forum',
             'link' => 'Forum keresése',
-            'login_required' => '',
+            'login_required' => 'Jelentkezz be, hogy keresni tudj a fórumon',
             'more_simple' => 'Több forum keresése',
             'title' => 'Forum',
 
@@ -57,7 +57,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => '',
+            'login_required' => 'Jelentkezz be, hogy felhasználokat tudj keresni',
             'more' => ':count talált játékos',
             'more_simple' => 'Több játékos mutatása keresésben',
             'more_hidden' => 'Játékos kereső limitálva van :max játékosra. Próbálj pontosabb lenni.',
@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "vágjunk<br>bele!",
         'action' => 'osu! letöltése',
+
+        'help' => [
+            '_' => 'ha meccs indításakor vagy fiók létrehozásánál problémába ütközöl, :help_forum_link vagy :support_button.',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'Windows rendszerre',
             'macos' => 'macOS rendszerre',

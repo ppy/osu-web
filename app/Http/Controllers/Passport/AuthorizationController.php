@@ -6,7 +6,6 @@
 namespace App\Http\Controllers\Passport;
 
 use Illuminate\Http\Request;
-use Laravel\Passport\Bridge\Scope;
 use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Http\Controllers\AuthorizationController as PassportAuthorizationController;
 use Laravel\Passport\TokenRepository;
@@ -29,19 +28,20 @@ class AuthorizationController extends PassportAuthorizationController
      * @param  \Laravel\Passport\TokenRepository $tokens
      * @return \Illuminate\Http\Response
      */
-    public function authorize(ServerRequestInterface $psrRequest,
-                              Request $request,
-                              ClientRepository $clients,
-                              TokenRepository $tokens)
-    {
-        if (!auth()->check()) {
-            $cancelUrl = presence(request('redirect_uri'));
+    public function authorize(
+        ServerRequestInterface $psrRequest,
+        Request $request,
+        ClientRepository $clients,
+        TokenRepository $tokens
+    ) {
+        $redirectUri = presence(trim($request['redirect_uri']));
 
-            if ($cancelUrl !== null) {
-                // Breaks when url contains hash ("#").
-                $separator = strpos($cancelUrl, '?') === false ? '?' : '&';
-                $cancelUrl .= "{$separator}error=access_denied";
-            }
+        abort_if($redirectUri === null, 400, trans('model_validation.required', ['attribute' => 'redirect_uri']));
+
+        if (!auth()->check()) {
+            // Breaks when url contains hash ("#").
+            $separator = strpos($redirectUri, '?') === false ? '?' : '&';
+            $cancelUrl = "{$redirectUri}{$separator}error=access_denied";
 
             return ext_view('sessions.create', [
                 'cancelUrl' => $cancelUrl,

@@ -49,14 +49,21 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'الحصول على اشعارات عند حدوث مشاكل في الأغاني المؤهلة على الأنماط التالية',
+        'beatmapset_disqualify' => 'تلقي إشعارات عندما تكون الخرائط للأوضاع التالية مرفوضة',
+        'comment_reply' => 'تلقي إشعارات الردود على تعليقاتك',
         'title' => 'الإشعارات',
         'topic_auto_subscribe' => 'تفعيل الإشعارات تلقائيًا حول مواضيع المنتدى الجديدة التي تنشئها',
-        'beatmapset_discussion_qualified_problem' => 'الحصول على اشعارات عند حدوث مشاكل في الأغاني المؤهلة على الأنماط التالية',
 
-        'mail' => [
-            '_' => 'تلقي اشعارات البريد الإلكتروني ل',
+        'options' => [
+            '_' => 'خيارات التوصيل',
             'beatmapset:modding' => 'اقتراحات الأغنية',
+            'channel_message' => 'الرسائل الخاصة',
+            'comment_new' => 'تعليقات جديدة',
             'forum_topic_reply' => 'رد الموضوع',
+            'mail' => 'البريد',
+            'push' => 'دفع',
+            'user_achievement_unlock' => 'تم فتح ميدالية المستخدم',
         ],
     ],
 
@@ -75,6 +82,8 @@ return [
             'no_video' => 'بدون الفيديو',
             'direct' => 'فتح في osu!direct',
         ],
+
+        'beatmapset_title_show_original' => 'إظهار بيانات تعريف الخرائط باللغة الأصلية',
     ],
 
     'playstyles' => [

@@ -2,21 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .fileupload {
-  overflow: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300%;
+  height: 300%;
+  cursor: pointer;
 
-  &__input {
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 300%;
-    height: 300%;
-
-    cursor: pointer;
-
-    &[disabled] {
-      cursor: not-allowed;
-    }
-
+  &[disabled] {
+    cursor: not-allowed;
   }
 }

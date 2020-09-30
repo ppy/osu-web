@@ -84,6 +84,7 @@ return [
         'failed' => 'Nieprawidłowe dane logowania',
         'forgot' => 'Nie pamiętasz hasła?',
         'info' => 'Zaloguj się, aby kontynuować.',
+        'invalid_captcha' => 'Zbyt wiele nieudanych prób logowania - wykonaj captchę, by spróbować ponownie (odśwież stronę, jeżeli captcha nie jest widoczna).',
         'locked_ip' => 'Twój adres IP został zablokowany. Poczekaj kilka minut.',
         'password' => 'Hasło',
         'register' => "Nie posiadasz konta osu!? Utwórz nowe.",
@@ -145,7 +146,6 @@ return [
         'lastvisit_online' => 'Obecnie online',
         'missingtext' => 'Wprowadzona nazwa użytkownika jest błędna lub użytkownik został zablokowany',
         'origin_country' => 'Pochodzi z :country',
-        'page_description' => 'osu! - Wszystko co chcesz wiedzieć o :username!',
         'previous_usernames' => 'poprzednie nazwy użytkownika',
         'plays_with' => 'Gra za pomocą :devices',
         'title' => "Profil :username",
@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'autorstwa :artist',
-                'none' => 'Jeszcze nie ma...',
                 'title' => 'Beatmapy',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'zobacz więcej wydarzeń',
             ],
             'historical' => [
-                'empty' => 'Brak wyników. :(',
                 'title' => 'Historia',
 
                 'monthly_playcounts' => [
@@ -304,10 +302,9 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Pobierz powtórkę',
-                'empty' => 'Brak wyników. :(',
                 'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp.',
                 'pp_weight' => 'ważone :percentage',
-                'view_details' => '',
+                'view_details' => 'Pokaż szczegóły',
                 'title' => 'Wyniki',
 
                 'best' => [

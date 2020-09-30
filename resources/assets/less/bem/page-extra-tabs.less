@@ -6,17 +6,11 @@
   top: @nav2-height--pinned;
   z-index: 1;
 
-  background-color: @osu-colour-b5;
-
-  border-bottom: 1px solid @osu-colour-h1;
-
   @media @mobile {
     top: @navbar-height;
   }
 
   &--profile-page {
-    background-color: @osu-colour-b5;
-    border-bottom-width: 2px;
-    border-bottom-color: @osu-colour-h1;
+    bottom: -2px; // border of page-mode--profile-page-extra
   }
 }

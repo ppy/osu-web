@@ -25,6 +25,7 @@ class VerifyCsrfToken extends BaseVerifier
             $request->session()->flush();
             Auth::logout();
             $request->attributes->set('skip_session', true);
+            $request->attributes->set('csrf', false);
 
             return $next($request);
         }

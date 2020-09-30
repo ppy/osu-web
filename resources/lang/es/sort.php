@@ -6,10 +6,12 @@
 return [
     '_' => 'Ordenar por',
 
+    'all' => 'Todos',
+    'friends' => 'Amigos',
     'last_visit' => 'Activo recientemente',
     'new' => 'Reciente',
     'old' => 'Antiguo',
-    'rank' => 'Rango',
+    'rank' => 'Puesto',
     'top' => 'Mejor',
     'username' => 'Nombre de usuario',
 

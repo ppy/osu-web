@@ -110,7 +110,7 @@ return [
             '_' => 'classifica',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'performance',
         ],
         'store_controller' => [
             '_' => 'osu!store',
@@ -124,6 +124,11 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'base delle conoscenze',
+        ],
+    ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => 'classifica',
         ],
     ],
     'store' => [

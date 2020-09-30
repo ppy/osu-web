@@ -5,7 +5,7 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => 'Só avisando que houve uma nova atualização no beatmap ":title" desde a sua última visita.',
+        'new' => 'Só informando que houve uma nova atualização no beatmap ":title" desde a sua última visita.',
         'subject' => 'Nova atualização no beatmap ":title"',
         'unwatch' => 'Se você não deseja mais ser notificado sobre este beatmap, você pode ou clicar no link "Deixar de observar" encontrado na página acima, ou na página de assinaturas de moding:',
         'visit' => 'Visite a página de discussão aqui:',
@@ -81,6 +81,12 @@ return [
         'perform_reset' => 'Você pode executar o reset a partir de :url',
         'reason' => 'Motivo:',
         'subject' => 'osu! Reativação de conta necessária',
+    ],
+
+    'user_notification_digest' => [
+        'new' => 'Só informando que há novas atualizações em itens que você acompanha.',
+        'settings' => 'Alterar preferências de notificação de e-mail:',
+        'subject' => 'Novas notificações de osu!',
     ],
 
     'user_password_updated' => [

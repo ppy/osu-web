@@ -8,7 +8,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user's ประวัติการมอด",
-        'title_compact' => 'Modding',
+        'title_compact' => 'การวิจารณ์บีทแมพ',
 
         'discussions' => [
             'title_recent' => 'การสนทนาล่าสุด',
@@ -85,6 +85,7 @@ return [
         'failed' => 'เข้าสู่ระบบไม่ถูกต้อง',
         'forgot' => 'ลืมรหัสผ่าน?',
         'info' => 'กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อ',
+        'invalid_captcha' => '',
         'locked_ip' => 'ที่อยู่ IP ของคุณถูกล็อก โปรดรอสักครู่',
         'password' => 'รหัสผ่าน',
         'register' => "ไม่มีแอคเคาท์ Osu! หรอ? สร้างเลยสิ",
@@ -103,7 +104,7 @@ return [
     ],
 
     'anonymous' => [
-        'login_link' => 'คลิก! เพื่อลงชื่อเข้าใช้',
+        'login_link' => 'คลิกเพื่อลงชื่อเข้าใช้',
         'login_text' => 'ลงชื่อเข้าใช้',
         'username' => 'ผู้เยี่ยมชม',
         'error' => 'คุณจะต้องเข้าสู่ระบบเพื่อจะกระทำสิ่งนี้',
@@ -146,7 +147,6 @@ return [
         'lastvisit_online' => 'ออนไลน์ในขณะนี้',
         'missingtext' => 'พิมพ์ผิดหรือเปล่า? (ไม่ก็ผู้ใช้โดนแบน)',
         'origin_country' => 'มาจาก :country',
-        'page_description' => 'osu! - ทุกสิ่งทุกอย่างที่คุณอยากรู้เกี่ยวกับ :username!',
         'previous_usernames' => 'เคยมีชื่อว่า',
         'plays_with' => 'เล่นด้วย :devices',
         'title' => ":username's โปรไฟล์",
@@ -160,13 +160,13 @@ return [
                     'button' => 'อัพโหลดรูปภาพ',
                     'dropzone' => 'วางที่นี่เพื่ออัพโหลด',
                     'dropzone_info' => 'นอกจากนี้คุณยังสามารถวางรูปภาพเพื่ออัปโหลด',
-                    'size_info' => 'รูปภาพหน้าปกควรจะมีขนาด 2800x620',
+                    'size_info' => 'รูปภาพหน้าปกควรจะมีขนาด 2400x620',
                     'too_large' => 'ไฟล์มีขนาดใหญ่เกินไป',
                     'unsupported_format' => 'ไม่รองรับไฟล์นามสกุลนี้',
 
                     'restriction_info' => [
                         '_' => 'อัพโหลดพร้อมแล้ว สำหรับ :link เท่านั้น',
-                        'link' => 'osu!ผู้สนับสนุน',
+                        'link' => 'ผู้สนับสนุน osu!',
                     ],
                 ],
             ],
@@ -188,7 +188,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'โดย :artist',
-                'none' => 'ยังไม่มี... อะ.',
                 'title' => 'บีทแมพ',
 
                 'favourite' => [
@@ -198,7 +197,7 @@ return [
                     'title' => 'สุสานบีทแมพ',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps ที่ชื่นชอบ',
+                    'title' => 'บีทแมพที่ Loved',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
@@ -218,7 +217,6 @@ return [
                 'show_more' => 'ดูอีเว้นท์อื่นๆ เพิ่มเติม',
             ],
             'historical' => [
-                'empty' => 'ไม่มี performance ที่บันทึกไว้. :(',
                 'title' => 'ประวัติ',
 
                 'monthly_playcounts' => [
@@ -305,10 +303,9 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'ดาวน์โหลดรีเพลย์',
-                'empty' => 'ยังไม่มี performance ที่เจ๋งๆบันทึกไว้เลย . :(',
                 'not_ranked' => 'บีทแมพแรงค์เท่านั้นที่ให้พีพี',
                 'pp_weight' => 'weighted :percentage',
-                'view_details' => '',
+                'view_details' => 'ดูรายละเอียดเพิ่มเติม',
                 'title' => 'อันดับ',
 
                 'best' => [
@@ -401,7 +398,7 @@ return [
             'total_score' => 'คะแนนรวมทั้งหมด',
             // modding stats
             'ranked_and_approved_beatmapset_count' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
-            'loved_beatmapset_count' => 'เลิฟแมพ',
+            'loved_beatmapset_count' => 'บีทแมพที่ Loved',
             'unranked_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
             'graveyard_beatmapset_count' => 'สุสานบีทแมพ',
         ],
@@ -420,7 +417,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '',
+        'brick' => 'มุมมองแบบกลุ่มก้อน',
         'card' => 'มุมมองแบบการ์ด',
         'list' => 'มุมมองแบบรายการ',
     ],

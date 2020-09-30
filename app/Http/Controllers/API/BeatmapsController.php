@@ -6,7 +6,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Beatmap;
-use Request;
 
 class BeatmapsController extends Controller
 {
@@ -19,7 +18,7 @@ class BeatmapsController extends Controller
     {
         $beatmap = Beatmap::findOrFail($id);
 
-        return json_item($beatmap, 'Beatmap', ['beatmapset.ratings', 'failtimes']);
+        return json_item($beatmap, 'Beatmap', ['beatmapset.ratings', 'failtimes', 'max_combo']);
     }
 
     public function lookup()
@@ -45,6 +44,6 @@ class BeatmapsController extends Controller
             abort(404);
         }
 
-        return json_item($beatmap, 'Beatmap', ['beatmapset.ratings', 'failtimes']);
+        return json_item($beatmap, 'Beatmap', ['beatmapset.ratings', 'failtimes', 'max_combo']);
     }
 }

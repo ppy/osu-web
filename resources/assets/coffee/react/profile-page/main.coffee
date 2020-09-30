@@ -74,7 +74,7 @@ export class Main extends React.PureComponent
     $.subscribe 'user:page:update.profilePage', @userPageUpdate
     $.subscribe 'profile:showMore.profilePage', @showMore
     $.subscribe 'profile:page:jump.profilePage', @pageJump
-    $(window).on 'throttled-scroll.profilePage', @pageScan
+    $(window).on 'scroll.profilePage', @pageScan
     $(document).on 'turbolinks:before-cache.profilePage', @saveStateToContainer
 
     $(@pages.current).sortable
@@ -186,16 +186,14 @@ export class Main extends React.PureComponent
                       currentMode: @state.currentMode
 
         div
-          className: 'osu-layout__section osu-layout__section--users-extra'
-          div
-            className: 'osu-layout__row'
-            ref: @pages
-            @extraPage name for name in profileOrder
+          className: 'user-profile-pages'
+          ref: @pages
+          @extraPage name for name in profileOrder
 
 
   extraPage: (name) =>
     {extraClass, props, component} = @extraPageParams name
-    topClassName = 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
+    topClassName = 'user-profile-pages__item js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
     topClassName += ' js-sortable--page' if @isSortablePage name
     props.withEdit = @props.withEdit
     props.name = name

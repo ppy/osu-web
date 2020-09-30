@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => '登录以继续。',
     'require_verification' => '请验证以继续。',
     'restricted' => "账户处于限制模式，无法进行该操作。",
@@ -21,6 +22,7 @@ return [
             'full_bn_required_hybrid' => '你必须是一位完整提名者，以提名包含多个游戏模式的谱面。',
             'incorrect_state' => '操作出错了，请尝试刷新页面。',
             'owner' => "不能提名自己的谱面。",
+            'set_metadata' => '您必须在提名之前设置类型和语言。',
         ],
         'resolve' => [
             'not_owner' => '只有楼主和谱面所有者才能标记为已解决。',
@@ -31,6 +33,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "不能对机器人的讨论投票",
             'limit_exceeded' => '在投更多票之前请稍等一会。',
             'owner' => "不能为自己的讨论投票！",
             'wrong_beatmapset_state' => '只能给 pending 谱面的讨论投票。',
@@ -52,6 +55,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => '该谱面因需要探讨而被锁定。',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => '您不能更改已提名的谱面信息。如果您认为其不正确，请联系 BN 或 NAT 进行更改。',
         ],
     ],
 

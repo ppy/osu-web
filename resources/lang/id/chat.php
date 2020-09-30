@@ -15,8 +15,8 @@ return [
             'blocked' => 'Anda sedang diblokir oleh penerima pesan yang Anda tuju',
             'channel_moderated' => 'Kanal percakapan ini sedang berada dalam status termoderasi',
             'friends_only' => 'Penerima pesan yang Anda tuju hanya menerima pesan-pesan masuk dari para pengguna yang ditambahkan sebagai teman',
-            'restricted' => 'Anda saat ini berada dalam kondisi Restricted',
-            'target_restricted' => 'Penerima pesan yang Anda tuju saat ini sedang berada dalam kondisi Restricted',
+            'restricted' => 'Akun Anda saat ini sedang di-restrict',
+            'target_restricted' => 'Penerima pesan yang Anda tuju saat ini sedang di-restrict',
         ],
     ],
     'input' => [

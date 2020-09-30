@@ -84,6 +84,7 @@ return [
         'failed' => 'Hatalı giriş',
         'forgot' => 'Şifrenizi mi unuttunuz?',
         'info' => 'Devam etmek için lütfen giriş yapınız',
+        'invalid_captcha' => 'Captcha geçersiz, sayfayı yenileyip tekrar deneyin.',
         'locked_ip' => 'IP adresiniz kilitli. Lütfen birkaç dakika bekleyin.',
         'password' => 'Şifre',
         'register' => "osu! hesabınız yok mu? Yeni bir tane oluşturun",
@@ -145,7 +146,6 @@ return [
         'lastvisit_online' => 'Şu an çevrimiçi',
         'missingtext' => 'Yazım hatası yapmış olabilirsin! (veya bu kullanıcı banlanmış olabilir)',
         'origin_country' => 'Ülke: :country',
-        'page_description' => 'osu! - :username hakkında bilmek istediğiniz her şey!',
         'previous_usernames' => 'nâm-ı diğer',
         'plays_with' => ':devices ile oynuyor',
         'title' => ":username kullanıcısının profili",
@@ -159,7 +159,7 @@ return [
                     'button' => 'Resim yükle',
                     'dropzone' => 'Yüklemek için dosyayı bırak',
                     'dropzone_info' => 'Yüklemek için resmi buraya da bırakabilirsiniz',
-                    'size_info' => 'Kapak boyutu 2800x620 olmalı',
+                    'size_info' => 'Kapak boyutu 2400x620 olmalı',
                     'too_large' => 'Yüklenen dosya boyutu çok büyük.',
                     'unsupported_format' => 'Desteklenmeyen biçim.',
 
@@ -187,14 +187,13 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => ':artist tarafından',
-                'none' => 'Hiç yok... şimdilik.',
                 'title' => 'Beatmapler',
 
                 'favourite' => [
                     'title' => 'Favori Beatmapler',
                 ],
                 'graveyard' => [
-                    'title' => 'Terk Edilmiş Beatmapler',
+                    'title' => 'Mezarlıktaki Beatmapler',
                 ],
                 'loved' => [
                     'title' => 'Sevilen Beatmapler',
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'daha fazla etkinlik gör',
             ],
             'historical' => [
-                'empty' => 'Performans kaydı yok. :(',
                 'title' => 'Geçmiş',
 
                 'monthly_playcounts' => [
@@ -304,10 +302,9 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Tekrarı İndir',
-                'empty' => 'Henüz kayda değer bir performans kaydı yok. :(',
                 'not_ranked' => 'Sadece dereceli beatmapler pp verir.',
-                'pp_weight' => 'ağırlıklı: yüzde',
-                'view_details' => '',
+                'pp_weight' => ':percentage ağırlıklı',
+                'view_details' => 'Ayrıntıları Göster',
                 'title' => 'Dereceler',
 
                 'best' => [
@@ -402,7 +399,7 @@ return [
             'ranked_and_approved_beatmapset_count' => 'Dereceli ve Onaylanmış Beatmapler',
             'loved_beatmapset_count' => 'Sevilen Beatmapler',
             'unranked_beatmapset_count' => 'Onay Bekleyen Beatmapler',
-            'graveyard_beatmapset_count' => 'Terk Edilmiş Beatmapler',
+            'graveyard_beatmapset_count' => 'Mezarlıktaki Beatmapler',
         ],
     ],
 

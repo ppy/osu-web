@@ -103,8 +103,10 @@ class PaypalController extends Controller
             return response(['message' => $exception->getMessage()], 406);
         } catch (QueryException $exception) {
             // can get multiple cancellations for the same order from paypal.
-            if (is_sql_unique_exception($exception)
-                && $processor->getNotificationType() === NotificationType::REFUND) {
+            if (
+                is_sql_unique_exception($exception)
+                && $processor->getNotificationType() === NotificationType::REFUND
+            ) {
                 return 'ok';
             }
 
@@ -117,7 +119,7 @@ class PaypalController extends Controller
     private function userErrorMessage($e)
     {
         $json = json_decode($e->getData());
-        $key = 'paypal/errors.'.strtolower($json->name);
+        $key = 'paypal/errors.'.strtolower($json->name ?? 'unknown');
         if (!Lang::has($key)) {
             $key = 'paypal/errors.unknown';
         }

@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Spill neste spor automatisk',
     ],
 
     'defaults' => [
@@ -96,6 +96,7 @@ return [
             'country' => 'land',
             'index' => 'prestasjon',
             'kudosu' => 'kudosu',
+            'multiplayer' => 'flerspiller',
             'score' => 'poengsum',
         ],
         'store' => [
@@ -178,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Jeg har glemt kontoinformasjonen min",
             'password' => 'passord',

@@ -32,6 +32,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nytt innlegg ved ":title" av :username',
                 'beatmapset_discussion_post_new_compact' => 'Nytt innlegg av :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nytt innlegg av :username',
+                'beatmapset_discussion_review_new' => 'Ny anmeldelse på ":title" av :username som inneholder problemer: :problems, forslag: :suggestions, ros: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Ny anmeldelse av :username som inneholder problemer: :problems, forslag: :suggestions, ros: :praises',
                 'beatmapset_discussion_unlock' => 'Beatmappen ":title" har blitt låst opp for diskusjon.',
                 'beatmapset_discussion_unlock_compact' => 'Diskusjon var ulåst',
             ],
@@ -65,6 +67,8 @@ return [
 
                 'comment_new' => ':username kommenterte ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterte ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -89,6 +93,8 @@ return [
 
                 'comment_new' => ':username kommenterte ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterte ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -100,6 +106,8 @@ return [
 
                 'comment_new' => ':username kommenterte ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterte ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -129,6 +137,64 @@ return [
                 '_' => 'Ny medalje',
                 'user_achievement_unlock' => '":title" låst opp!',
                 'user_achievement_unlock_compact' => '":title" låst opp!',
+            ],
+        ],
+    ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => 'Diskusjonen om ":title" har blitt låst',
+                'beatmapset_discussion_post_new' => 'Diskusjonen om ":title" har nye oppdateringer',
+                'beatmapset_discussion_unlock' => 'Diskusjonen om ":title" har blitt låst',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => 'Et nytt problem rapportert var rapportert på ":title"',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => ' Beatmap ":title" har nye kommentarer',
+            ],
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => 'Du fått en ny melding fra :username',
+            ],
+        ],
+
+        'build' => [
+            'comment' => [
+                'comment_new' => 'Endringslogg ":title" har nye kommentarer',
+            ],
+        ],
+
+        'news_post' => [
+            'comment' => [
+                'comment_new' => 'Nyheter ":title" har nye kommentarer',
+            ],
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => [
+                'forum_topic_reply' => 'Det finnes nye svar i ":title"',
+            ],
+        ],
+
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => ':username har låst opp en ny medalje, ":title"!',
+                'user_achievement_unlock_self' => 'Du har låst opp en ny medalje, ":title"!',
             ],
         ],
     ],

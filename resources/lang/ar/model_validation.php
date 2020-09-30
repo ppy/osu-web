@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute تجاوز الحد المطلوب - يمكن ان يصل حد :limit حروف فقط.',
     'wrong_confirmation' => 'التأكيد لا يتطابق.',
 
-    'beatmap_discussion_post' => [
-        'discussion_locked' => 'المناقشة مقفلة.',
-        'first_post' => 'لا يمكن حذف منشور البداية.',
-
-        'attributes' => [
-            'message' => 'الرسالة',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'الطابع الزمني المحدد ولكن الخريطة مفقودة.',
         'beatmapset_no_hype' => "الخريطة لان يمكن ان تُشاد.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'الطابع الزمني المحدد أبعد من طول الخريطة.',
             'negative' => "الطابع الزمني لا يمكن أن يكون سلبيا.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'المناقشة مقفلة.',
+        'first_post' => 'لا يمكن حذف منشور البداية.',
+
+        'attributes' => [
+            'message' => 'الرسالة',
         ],
     ],
 
@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'كلمة المرور يجب أن لا تحتوي على اسم المستخدم.',
         'email_already_used' => 'البريد الإلكتروني مستخدم مسبقاََ.',
+        'email_not_allowed' => '',
         'invalid_country' => 'الدولة ليست في قاعدة البيانات.',
         'invalid_discord' => 'اِسم خلاف غير صالح.',
         'invalid_email' => "لا يبدو وكأنه بريد الكتروني صالح.",

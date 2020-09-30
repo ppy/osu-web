@@ -4,8 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Kirjaudu sisään jatkaaksesi.',
-    'require_verification' => '',
+    'require_verification' => 'Vahvista jatkaaksesi.',
     'restricted' => "Et voi tehdä tätä rajoitettuna.",
     'silenced' => "Et voi tehdä tätä mykistettynä.",
     'unauthorized' => 'Pääsy evätty.',
@@ -21,6 +22,7 @@ return [
             'full_bn_required_hybrid' => '',
             'incorrect_state' => 'Virhe toimintoa suorittaessa, kokeile sivun päivittämistä.',
             'owner' => "Omaa beatmappia ei voi suositella.",
+            'set_metadata' => '',
         ],
         'resolve' => [
             'not_owner' => 'Vain aiheen aloittaja sekä beatmapin omistaja voivat ratkaista keskustelun.',
@@ -31,6 +33,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "",
             'limit_exceeded' => 'Odota hetki ennen uusien äänien antamista',
             'owner' => "Omia keskusteluja ei voi äänestää.",
             'wrong_beatmapset_state' => 'Voit äänestää vain vireillä olevien beatmappien keskusteluissa.',
@@ -39,7 +42,7 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'Voit poistaa vaan omia viestejä.',
             'resolved' => '',
             'system_generated' => '',
         ],
@@ -52,6 +55,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => '',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => '',
         ],
     ],
 

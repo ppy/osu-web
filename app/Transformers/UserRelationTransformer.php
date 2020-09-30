@@ -19,12 +19,12 @@ class UserRelationTransformer extends TransformerAbstract
             'target_id' => $userRelation->zebra_id,
             'relation_type' => $userRelation->friend ? 'friend' : 'block',
             // mutual is a bit derpy, it only applies to friends
-            'mutual' => $userRelation->mutual,
+            'mutual' => (bool) $userRelation->mutual,
         ];
     }
 
     public function includeTarget(UserRelation $userRelation)
     {
-        return $this->item($userRelation->target, new UserCompactTransformer);
+        return $this->item($userRelation->target, new UserCompactTransformer());
     }
 }

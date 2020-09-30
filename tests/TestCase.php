@@ -5,10 +5,16 @@
 
 namespace Tests;
 
+use App\Http\Middleware\AuthApi;
+use App\Models\Beatmapset;
+use App\Models\OAuth\Client;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Testing\Fakes\MailFake;
 use Laravel\Passport\Token;
+use League\OAuth2\Server\ResourceServer;
+use Mockery;
 use Queue;
 use ReflectionMethod;
 use ReflectionProperty;
@@ -48,23 +54,41 @@ class TestCase extends BaseTestCase
         });
     }
 
-    protected function actAsScopedUser(?User $user, array $scopes = ['*'], $driver = 'api')
+    /**
+     * Act as a User with OAuth scope permissions.
+     * This is for tests that will run the request middleware stack.
+     *
+     * @param User|null $user User to act as, or null for guest.
+     * @param array|null $scopes OAuth token scopes.
+     * @param string $driver Auth driver to use.
+     * @return void
+     */
+    protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], $driver = null)
     {
-        $guard = app('auth')->guard($driver);
-        if ($user !== null) {
-            $guard->setUser($user);
+        // create valid token
+        $client = factory(Client::class)->create();
+        $token = $client->tokens()->create([
+            'expires_at' => now()->addDays(1),
+            'id' => uniqid(),
+            'revoked' => false,
+            'scopes' => $scopes,
+            'user_id' => optional($user)->getKey(),
+        ]);
 
-            $token = Token::unguarded(function () use ($scopes, $user) {
-                return new Token([
-                    'scopes' => $scopes,
-                    'user_id' => $user->user_id,
-                ]);
+        // mock the minimal number of things.
+        // this skips the need to form a request with all the headers.
+        $mock = Mockery::mock(ResourceServer::class);
+        $mock->shouldReceive('validateAuthenticatedRequest')
+            ->andReturnUsing(function ($request) use ($token) {
+                return $request->withAttribute('oauth_client_id', $token->client->id)
+                    ->withAttribute('oauth_access_token_id', $token->id)
+                    ->withAttribute('oauth_user_id', $token->user_id);
             });
 
-            $user->withAccessToken($token);
-        }
+        app()->instance(ResourceServer::class, $mock);
+        $this->withHeader('Authorization', 'Bearer tests_using_this_do_not_verify_this_header_because_of_the_mock');
 
-        app('auth')->shouldUse($driver);
+        $this->actAsUserWithToken($token, $driver);
     }
 
     protected function actAsUser(?User $user, ?bool $verified = null, $driver = null)
@@ -80,11 +104,29 @@ class TestCase extends BaseTestCase
         }
     }
 
-    protected function actAsUserWithToken(User $user, Token $token, $driver = 'api')
+    /**
+     * This is for tests that will skip the request middleware stack.
+     *
+     * @param Token $token OAuth token.
+     * @param string $driver Auth driver to use.
+     * @return void
+     */
+    protected function actAsUserWithToken(Token $token, $driver = null)
     {
         $guard = app('auth')->guard($driver);
-        $guard->setUser($user);
-        $user->withAccessToken($token);
+        $user = $token->user;
+
+        if ($user !== null) {
+            // guard doesn't accept null user.
+            $guard->setUser($user);
+            $user->withAccessToken($token);
+        }
+
+        // This is for test that do not make actual requests;
+        // tests that make requests will override this value with a new one
+        // and the token gets resolved in middleware.
+        request()->attributes->set(AuthApi::REQUEST_OAUTH_TOKEN_KEY, $token);
+
         app('auth')->shouldUse($driver);
     }
 
@@ -93,6 +135,15 @@ class TestCase extends BaseTestCase
         $this->actAsUser($user, true);
 
         return $this;
+    }
+
+    protected function clearMailFake()
+    {
+        $mailer = app('mailer');
+        if ($mailer instanceof MailFake) {
+            $this->invokeSetProperty($mailer, 'mailables', []);
+            $this->invokeSetProperty($mailer, 'queuedMailables', []);
+        }
     }
 
     protected function createUserWithGroup($groupIdentifier, array $attributes = []): ?User
@@ -111,6 +162,19 @@ class TestCase extends BaseTestCase
         }, glob("{$path}/*{$suffix}"));
     }
 
+    protected function makeBeatmapsetDiscussionPostParams(Beatmapset $beatmapset, string $messageType)
+    {
+        return [
+            'beatmapset_id' => $beatmapset->getKey(),
+            'beatmap_discussion' => [
+                'message_type' => $messageType,
+            ],
+            'beatmap_discussion_post' => [
+                'message' => 'Hello',
+            ],
+        ];
+    }
+
     protected function invokeMethod($obj, string $name, array $params = [])
     {
         $method = new ReflectionMethod($obj, $name);
@@ -127,6 +191,14 @@ class TestCase extends BaseTestCase
         return $property->getValue($obj);
     }
 
+    protected function invokeSetProperty($obj, string $name, $value)
+    {
+        $property = new ReflectionProperty($obj, $name);
+        $property->setAccessible(true);
+
+        $property->setValue($obj, $value);
+    }
+
     protected function normalizeHTML($html)
     {
         return str_replace('<br />', "<br />\n", str_replace("\n", '', preg_replace("/>\s*</s", '><', trim($html))));
@@ -137,5 +209,16 @@ class TestCase extends BaseTestCase
         collect(Queue::pushedJobs())->flatten(1)->each(function ($job) {
             $job['job']->handle();
         });
+
+        // clear queue jobs after running
+        // FIXME: this won't work if a job queues another job and you want to run that job.
+        $this->invokeSetProperty(app('queue'), 'jobs', []);
+    }
+
+    protected function withInterOpHeader($url)
+    {
+        return $this->withHeaders([
+            'X-LIO-Signature' => hash_hmac('sha1', $url, config('osu.legacy.shared_interop_secret')),
+        ]);
     }
 }

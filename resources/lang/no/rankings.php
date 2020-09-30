@@ -4,15 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => 'filtrert etter land',
+    'countries' => [
+        'all' => 'Alle',
+        'title' => 'Land',
+    ],
+
+    'filter' => [
+        'title' => 'Vis',
+
+        'variant' => [
+            'title' => 'Variant',
+        ],
     ],
 
     'type' => [
-        'performance' => 'Prestasjon',
         'charts' => 'Rampelyset',
-        'score' => 'Poengsum',
         'country' => 'Land',
+        'multiplayer' => 'flerspiller',
+        'performance' => 'Prestasjon',
+        'score' => 'Poengsum',
     ],
 
     'spotlight' => [

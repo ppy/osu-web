@@ -14,7 +14,7 @@ return [
     'common' => [
         'closing' => 'Saygılarımızla,',
         'hello' => 'Selam :user,',
-        'report' => 'Eğer bu değişim istemediğseniz, lütfen ACİLEN bu e-maile cevap yazın.',
+        'report' => 'Eğer böyle bir değişiklik talep etmediyseniz lütfen DERHAL bu e-postayı yanıtlayın.',
     ],
 
     'donation_thanks' => [
@@ -31,7 +31,7 @@ return [
         ],
 
         'support' => [
-            '_' => 'osu!\'ya karşı olan :support \'un için çokça teşekkür ederiz!.',
+            '_' => 'osu!\'ya vermiş olduğun :support için çok teşekkür ederiz!',
             'first' => 'destek',
             'repeat' => 'sürekli destek',
         ],
@@ -81,6 +81,12 @@ return [
         'perform_reset' => 'Sıfırlama işlemini şuradan gerçekleştirebilirsin: :url',
         'reason' => 'Sebep:',
         'subject' => 'osu! Hesabının Yeniden Doğrulanması Gerekli',
+    ],
+
+    'user_notification_digest' => [
+        'new' => 'Sadece sana son girdiğinden beri izlediğin ögelerde yeni güncellemeler olduğunu bildiriyoruz.',
+        'settings' => 'E-posta bildirim tercihlerini değiştirin:',
+        'subject' => 'Yeni osu! bildirimleri',
     ],
 
     'user_password_updated' => [

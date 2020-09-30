@@ -28,6 +28,6 @@ class ArtistAlbumTransformer extends TransformerAbstract
 
     public function includeTracks(ArtistAlbum $album)
     {
-        return $this->collection($album->tracks, new ArtistTrackTransformer);
+        return $this->collection($album->tracks, new ArtistTrackTransformer());
     }
 }

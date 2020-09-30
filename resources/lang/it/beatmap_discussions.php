@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Nessuno dei post riguarda il mio problema',
         'notice' => 'Ci sono già dei post verso :timestamp (:existing_timestamps). Controlla prima di postare.',
+        'unsaved' => ':count in questa revisione',
     ],
 
     'reply' => [
@@ -64,14 +65,17 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => 'Visualizza il post della recensione',
-        'go_to_child' => 'Visualizza discussione',
+        'block_count' => ':used / :max blocchi usati',
+        'go_to_parent' => 'Visualizza il Post della Revisione',
+        'go_to_child' => 'Visualizza Discussione',
         'validation' => [
+            'block_too_large' => 'ogni blocco può contenere fino a :limit caratteri',
+            'external_references' => 'la revisione contiene riferimenti a dei problemi che non appartengono a questa revisione',
             'invalid_block_type' => 'tipo di blocco non valido',
-            'invalid_document' => 'recensione non valida',
-            'minimum_issues' => 'la recensione deve contenere almeno :count problema|la recensione deve contenere almeno :count problemi',
+            'invalid_document' => 'revisione non valida',
+            'minimum_issues' => 'la revisione deve contenere almeno :count problema|la revisione deve contenere almeno :count problemi',
             'missing_text' => 'il blocco non ha testo',
-            'too_many_blocks' => 'le recensioni possono contenere solo :count paragrafo/problema|le recensioni possono contenere fino a :count paragrafi/problemi',
+            'too_many_blocks' => 'le revisioni possono contenere solo :count paragrafo/problema|le revisioni possono contenere fino a :count paragrafi/problemi',
         ],
     ],
 

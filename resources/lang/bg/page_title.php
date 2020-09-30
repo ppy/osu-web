@@ -5,133 +5,138 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'админ',
     ],
     'admin_forum' => [
-        '_' => '',
+        '_' => 'админ',
     ],
     'admin_store' => [
-        '_' => '',
+        '_' => 'админ',
     ],
     'error' => [
         'error' => [
-            '400' => '',
-            '404' => '',
-            '403' => '',
-            '401' => '',
-            '401-verification' => '',
-            '405' => '',
-            '422' => '',
-            '500' => '',
-            '503' => '',
+            '400' => 'невалидна заявка',
+            '404' => 'липсва',
+            '403' => 'забранен',
+            '401' => 'неоторизиран',
+            '401-verification' => 'потвърждение на акаунта',
+            '405' => 'липсва',
+            '422' => 'невалидна заявка',
+            '500' => 'нещо се счупи',
+            '503' => 'профилактика',
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => 'форум',
         'topic_watches_controller' => [
-            'index' => '',
+            'index' => 'главно табло',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
-            'verify_link' => '',
+            'edit' => 'главно табло',
+            'verify_link' => 'потвърждение на акаунта',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'препоръчани изпълнители',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'бийтмап дискусии',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'бийтмап дискусии',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'бийтмап пакети',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'гласове от бийтмап дискусии',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'бийтмап история',
         ],
         'beatmapset_watches_controller' => [
-            'index' => '',
+            'index' => 'главно табло',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => 'бийтмап дискусия',
+            'index' => 'списък с бийтмапове',
+            'show' => 'бийтмап инфо',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'списък на промените',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'чат',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'коментари',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => 'конкурси',
         ],
         'friends_controller' => [
-            'index' => '',
+            'index' => 'главно табло',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'групи',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
-            'testflight' => '',
+            'get_download' => 'изтегли',
+            'index' => 'главно табло',
+            'search' => 'търсене',
+            'support_the_game' => 'подкрепи играта',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'информация',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'живи потоци',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'мачове',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'новини',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'история на известията',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'въстановяване на парола',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'класиране',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'изпълнение',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'osu!store',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => 'турнири',
         ],
         'users_controller' => [
-            '_' => '',
-            'disabled' => '',
+            '_' => 'инфо на играча',
+            'disabled' => 'известие',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'база с познания',
+        ],
+    ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => 'класиране',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'osu!store',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'modder инфо',
         ],
     ],
 ];

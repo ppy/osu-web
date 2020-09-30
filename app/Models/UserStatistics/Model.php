@@ -20,6 +20,7 @@ abstract class Model extends BaseModel
     protected $primaryKey = 'user_id';
 
     public $timestamps = false;
+    public $incrementing = false;
 
     const UPDATED_AT = 'last_update';
 
@@ -68,13 +69,19 @@ abstract class Model extends BaseModel
         return $this->count300 + $this->count100 + $this->count50;
     }
 
-    public static function getClass($modeStr)
+    public static function getClass($modeStr, $variant = null)
     {
         if (!Beatmap::isModeValid($modeStr)) {
             throw new ClassNotFoundException();
         }
 
-        return get_class_namespace(static::class).'\\'.studly_case($modeStr);
+        if (!Beatmap::isVariantValid($modeStr, $variant)) {
+            throw new ClassNotFoundException();
+        }
+
+        $variant = $variant === null ? '' : "_{$variant}";
+
+        return get_class_namespace(static::class).'\\'.studly_case("{$modeStr}{$variant}");
     }
 
     public static function getMode(): string
@@ -86,9 +93,9 @@ abstract class Model extends BaseModel
     {
         $bestClass = Best\Model::getClassByString(static::getMode());
 
-        $instance = new static;
+        $instance = new static();
         $statsTable = $instance->getTable();
-        $bestTable = (new $bestClass)->getTable();
+        $bestTable = (new $bestClass())->getTable();
 
         $instance->getConnection()->update(
             "UPDATE {$statsTable} SET accuracy_count = 0, accuracy_total = 0, ranked_score = (SELECT COALESCE(SUM(score), 0) FROM (SELECT MAX(score) AS score FROM {$bestTable} WHERE user_id = {$user->getKey()} GROUP BY beatmap_id) s) WHERE user_id = {$user->getKey()}"

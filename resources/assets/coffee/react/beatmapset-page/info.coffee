@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { BBCodeEditor } from 'bbcode-editor'
+import BbcodeEditor from 'bbcode-editor'
 import { Modal } from 'modal'
 import * as React from 'react'
 import { a, button, div, h3, span, i, textarea } from 'react-dom-factories'
@@ -12,7 +12,8 @@ export class Info extends React.Component
   constructor: (props) ->
     super props
 
-    @overlay = React.createRef()
+    @overlayRef = React.createRef()
+    @chartAreaRef = React.createRef()
 
     @state =
       isBusy: false
@@ -35,7 +36,7 @@ export class Info extends React.Component
   # see Modal#hideModal
   dismissEditor: (e) =>
     @setState isEditingDescription: false if e.button == 0 &&
-                                  e.target == @overlay.current &&
+                                  e.target == @overlayRef.current &&
                                   @clickEndTarget == @clickStartTarget
 
 
@@ -98,7 +99,7 @@ export class Info extends React.Component
 
 
   renderChart: ->
-    return if !@props.beatmapset.is_scoreable || @props.beatmap.playcount < 1
+    return if @props.beatmap.playcount < 1
 
     unless @_failurePointsChart?
       options =
@@ -107,10 +108,11 @@ export class Info extends React.Component
           y: d3.scaleLinear()
         modifiers: ['beatmap-success-rate']
 
-      @_failurePointsChart = new StackedBarChart @refs.chartArea, options
-      $(window).on 'throttled-resize.beatmapsetPageInfo', @_failurePointsChart.resize
+      @_failurePointsChart = new StackedBarChart @chartAreaRef.current, options
+      $(window).on 'resize.beatmapsetPageInfo', @_failurePointsChart.resize
 
     @_failurePointsChart.loadData @props.beatmap.failtimes
+    @_failurePointsChart.reattach @chartAreaRef.current
 
 
   renderEditMetadataButton: =>
@@ -152,10 +154,10 @@ export class Info extends React.Component
             onClick: @dismissEditor
             onMouseDown: @handleClickStart
             onMouseUp: @handleClickEnd
-            ref: @overlay
+            ref: @overlayRef
 
-            div className: 'beatmapset-description-editor__container osu-page',
-              el BBCodeEditor,
+            div className: 'osu-page',
+              el BbcodeEditor,
                 modifiers: ['beatmapset-description-editor']
                 disabled: @state.isBusy
                 onChange: @onEditorChange
@@ -226,42 +228,36 @@ export class Info extends React.Component
               '...' if tagsOverload
 
       div className: 'beatmapset-info__box beatmapset-info__box--success-rate',
-        if !@props.beatmapset.is_scoreable
+        if @props.beatmap.playcount > 0
+          percentage = _.round((@props.beatmap.passcount / @props.beatmap.playcount) * 100, 1)
+          div className: 'beatmap-success-rate',
+            h3
+              className: 'beatmap-success-rate__header'
+              osu.trans 'beatmapsets.show.info.success-rate'
+
+            div className: 'bar bar--beatmap-success-rate',
+              div
+                className: 'bar__fill'
+                style:
+                  width: "#{percentage}%"
+
+            div
+              className: 'beatmap-success-rate__percentage'
+              title: "#{osu.formatNumber(@props.beatmap.passcount)} / #{osu.formatNumber(@props.beatmap.playcount)}"
+              'data-tooltip-position': 'bottom center'
+              style:
+                marginLeft: "#{percentage}%"
+              "#{percentage}%"
+
+            h3
+              className: 'beatmap-success-rate__header'
+              osu.trans 'beatmapsets.show.info.points-of-failure'
+
+            div
+              className: 'beatmap-success-rate__chart'
+              ref: @chartAreaRef
+        else
           div className: 'beatmap-success-rate',
             div
               className: 'beatmap-success-rate__empty'
-              osu.trans 'beatmapsets.show.info.unranked'
-        else
-          if @props.beatmap.playcount > 0
-            percentage = _.round((@props.beatmap.passcount / @props.beatmap.playcount) * 100, 1)
-            div className: 'beatmap-success-rate',
-              h3
-                className: 'beatmap-success-rate__header'
-                osu.trans 'beatmapsets.show.info.success-rate'
-
-              div className: 'bar bar--beatmap-success-rate',
-                div
-                  className: 'bar__fill'
-                  style:
-                    width: "#{percentage}%"
-
-              div
-                className: 'beatmap-success-rate__percentage'
-                title: "#{osu.formatNumber(@props.beatmap.passcount)} / #{osu.formatNumber(@props.beatmap.playcount)}"
-                'data-tooltip-position': 'bottom center'
-                style:
-                  marginLeft: "#{percentage}%"
-                "#{percentage}%"
-
-              h3
-                className: 'beatmap-success-rate__header'
-                osu.trans 'beatmapsets.show.info.points-of-failure'
-
-              div
-                className: 'beatmap-success-rate__chart'
-                ref: 'chartArea'
-          else
-            div className: 'beatmap-success-rate',
-              div
-                className: 'beatmap-success-rate__empty'
-                osu.trans 'beatmapsets.show.info.no_scores'
+              osu.trans 'beatmapsets.show.info.no_scores'

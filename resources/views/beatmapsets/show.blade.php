@@ -11,7 +11,7 @@
 @endif
 @extends('master', [
     'pageDescription' => $beatmapset->toMetaDescription(),
-    'titlePrepend' => "{$beatmapset->artist} - {$beatmapset->title}",
+    'titlePrepend' => "{$beatmapset->getDisplayArtist(auth()->user())} - {$beatmapset->getDisplayTitle(auth()->user())}",
     'extraFooterLinks' => $extraFooterLinks ?? [],
 ])
 
@@ -24,10 +24,6 @@
 
     <script id="json-beatmapset" type="application/json">
         {!! json_encode($set) !!}
-    </script>
-
-    <script id="json-countries" type="application/json">
-        {!! json_encode($countries) !!}
     </script>
 
     <script id="json-comments-beatmapset-{{ $beatmapset->getKey() }}" type="application/json">

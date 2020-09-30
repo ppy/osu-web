@@ -4,14 +4,25 @@
 .mobile-menu-tab {
   .reset-input();
   .link-plain();
+
+  --height: 40px;
   flex: none;
-  width: 40px;
   color: @osu-colour-l3;
-  height: $width;
+  width: var(--height);
+  height: var(--height);
+  position: relative;
+  --hover-line-margin: 25%;
 
   &--user {
+    --avatar-spacing: 8px;
     margin-right: auto;
-    padding: 8px;
+    padding: var(--avatar-spacing);
+    flex: 1;
+    max-width: max-content;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    --hover-line-margin: var(--avatar-spacing);
   }
 
   &:hover,
@@ -22,13 +33,21 @@
       content: '';
       display: block;
       position: absolute;
-      width: 50%;
       height: 4px;
       border-radius: 10000px;
       background-color: @osu-colour-h1;
-      left: 25%;
+      left: var(--hover-line-margin);
+      right: $left;
       bottom: -2px;
       z-index: 1; // inside z-index--nav-bar
     }
+  }
+
+  &__avatar {
+    height: calc(var(--height) - var(--avatar-spacing) * 2);
+    width: $height;
+    margin-right: var(--avatar-spacing);
+    position: relative;
+    flex: none;
   }
 }

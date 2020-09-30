@@ -21,7 +21,7 @@ class PasswordResetController extends Controller
 
         $this->middleware('guest');
         $this->middleware('throttle:60,10');
-        $this->middleware('throttle:20,1440,password-reset-');
+        $this->middleware('throttle:20,1440,password-reset:');
     }
 
     public function destroy()
@@ -86,7 +86,7 @@ class PasswordResetController extends Controller
             ]], 422);
         }
 
-        $params = get_params(request(), 'user', ['password', 'password_confirmation']);
+        $params = get_params(request()->all(), 'user', ['password', 'password_confirmation']);
         $user->validatePasswordConfirmation();
 
         if ($user->update($params)) {

@@ -24,7 +24,7 @@ class BeatmapsetSearch extends RecordSearch
     {
         parent::__construct(
             Beatmapset::esIndexName(),
-            $params ?? new BeatmapsetSearchParams,
+            $params ?? new BeatmapsetSearchParams(),
             Beatmapset::class
         );
     }
@@ -36,14 +36,14 @@ class BeatmapsetSearch extends RecordSearch
     {
         static $partialMatchFields = ['artist', 'artist.*', 'artist_unicode', 'creator', 'title', 'title.raw', 'title.*', 'title_unicode', 'tags^0.5'];
 
-        $query = new BoolQuery;
+        $query = new BoolQuery();
 
         if (present($this->params->queryString)) {
             $terms = explode(' ', $this->params->queryString);
 
             // the subscoping is not necessary but prevents unintentional accidents when combining other matchers
             $query->must(
-                (new BoolQuery)
+                (new BoolQuery())
                     // results must contain at least one of the terms and boosted by containing all of them,
                     // or match the id of the beatmapset.
                     ->shouldMatch(1)
@@ -60,7 +60,7 @@ class BeatmapsetSearch extends RecordSearch
         $this->addExtraFilter($query);
         $this->addStatusFilter($query);
 
-        $nested = new BoolQuery;
+        $nested = new BoolQuery();
         $this->addModeFilter($nested);
         $this->addPlayedFilter($query, $nested);
         $this->addRankFilter($nested);
@@ -89,13 +89,18 @@ class BeatmapsetSearch extends RecordSearch
 
     public function records()
     {
-        return $this->response()->records()->with('beatmaps')->get();
+        return $this
+            ->response()
+            ->records()
+            ->with(['beatmaps' => function ($q) {
+                return $q->withMaxCombo();
+            }])->get();
     }
 
     private function addBlacklistFilter($query)
     {
         static $fields = ['artist', 'source', 'tags'];
-        $bool = new BoolQuery;
+        $bool = new BoolQuery();
 
         foreach ($fields as $field) {
             $bool->mustNot([
@@ -195,7 +200,7 @@ class BeatmapsetSearch extends RecordSearch
     // statuses are non scoring for the query context.
     private function addStatusFilter($mainQuery)
     {
-        $query = new BoolQuery;
+        $query = new BoolQuery();
 
         switch ($this->params->status) {
             case 'any':
@@ -228,8 +233,10 @@ class BeatmapsetSearch extends RecordSearch
                 $query->must(['match' => ['approved' => Beatmapset::STATES['graveyard']]]);
                 break;
             case 'mine':
-                $maps = model_pluck($this->params->user->beatmapsets(), 'beatmapset_id');
-                $query->must(['ids' => ['type' => 'beatmaps', 'values' => $maps]]);
+                if ($this->params->user !== null) {
+                    $maps = model_pluck($this->params->user->beatmapsets(), 'beatmapset_id');
+                }
+                $query->must(['ids' => ['type' => 'beatmaps', 'values' => $maps ?? []]]);
                 break;
             default: // null, etc
                 $query->should([
@@ -237,7 +244,7 @@ class BeatmapsetSearch extends RecordSearch
                     ['match' => ['approved' => Beatmapset::STATES['approved']]],
                     ['match' => ['approved' => Beatmapset::STATES['loved']]],
                 ]);
-            break;
+                break;
         }
 
         $mainQuery->filter($query);

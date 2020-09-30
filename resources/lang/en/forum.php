@@ -75,6 +75,8 @@ return [
     'topic' => [
         'deleted' => 'deleted topic',
         'go_to_latest' => 'view latest post',
+        'has_replied' => 'You have replied to this topic',
+        'in_forum' => 'in :forum',
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'last reply by :user',
         'new_topic' => 'New topic',

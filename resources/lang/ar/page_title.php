@@ -110,10 +110,10 @@ return [
             '_' => 'التصنيف',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'الأداء',
         ],
         'store_controller' => [
-            '_' => 'متجر!osu',
+            '_' => 'osu!store',
         ],
         'tournaments_controller' => [
             '_' => 'البطولات',
@@ -126,8 +126,13 @@ return [
             '_' => 'قاعدة المعارف',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => 'التصنيف',
+        ],
+    ],
     'store' => [
-        '_' => 'متجر!osu',
+        '_' => 'osu!store',
     ],
     'users' => [
         'modding_history_controller' => [

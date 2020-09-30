@@ -15,9 +15,13 @@
     "
     data-topic-id="{{ $topic->topic_id }}"
 >
-    <div class="forum-item-stripe u-forum--before-bg"><span class="fas fa-angle-right"></span></div>
+    <div class="forum-item-stripe u-forum--before-bg"><span class="u-relative fas fa-angle-right"></span></div>
 
     <div class="forum-topic-entry__col forum-topic-entry__col--icon">
+        @if (isset($topicReplyStatus[$topic->getKey()]))
+            <span class="forum-topic-entry__replied" title="{{ trans('forum.topic.has_replied') }}"></span>
+        @endif
+
         <a
             class="
                 forum-topic-entry__icon
@@ -56,17 +60,30 @@
             </a>
 
             <div>
-                {!! trans('forum.topic.started_by', [
-                    'user' => tag('span', [
-                        'class' => 'forum-topic-entry__user-icon',
-                        'style' => user_color_style($topic->topic_first_poster_colour, 'background-color'),
-                    ]).' '.link_to_user(
-                        $topic->topic_poster,
-                        $topic->topic_first_poster_name,
-                        null,
-                        ['forum-topic-entry__link']
-                    )
-                ]) !!}
+                @if ($includeForumName ?? false)
+                    <span class="forum-topic-entry__detail">
+                        {!! trans('forum.topic.in_forum', [
+                            'forum' => link_to(
+                                route('forum.forums.show', $topic->forum),
+                                $topic->forum->forum_name
+                            ),
+                        ]) !!}
+                    </span>
+                @endif
+
+                <span class="forum-topic-entry__detail">
+                    {!! trans('forum.topic.started_by', [
+                        'user' => tag('span', [
+                            'class' => 'forum-topic-entry__user-icon',
+                            'style' => user_color_style($topic->topic_first_poster_colour, 'background-color'),
+                        ]).' '.link_to_user(
+                            $topic->topic_poster,
+                            $topic->topic_first_poster_name,
+                            null,
+                            []
+                        )
+                    ]) !!}
+                </span>
             </div>
         </div>
 
@@ -121,7 +138,7 @@
                         $topic->topic_last_poster_id,
                         $topic->topic_last_poster_name,
                         null,
-                        ['forum-topic-entry__link']
+                        []
                     )]
                 ) !!}
             </div>

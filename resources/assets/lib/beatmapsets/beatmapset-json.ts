@@ -12,15 +12,28 @@ interface BeatmapsetCovers {
   slimcover: string;
 }
 
+interface BeatmapsetNominations {
+  current: number;
+  required: number;
+  required_hype: number;
+}
+
+export type BeatmapsetStatus =
+  'graveyard' | 'wip' | 'pending' | 'ranked' | 'approved' | 'qualified' | 'loved';
+
 // TODO: incomplete
 export interface BeatmapsetJson {
   artist: string;
+  artist_unicode: string | null;
   beatmaps?: BeatmapJson[];
   covers: BeatmapsetCovers;
   creator: string;
   genre: GenreJson;
   id: number;
   language: LanguageJson;
+  nominations?: BeatmapsetNominations;
+  status: BeatmapsetStatus;
   title: string;
+  title_unicode: string | null;
   user_id: number;
 }

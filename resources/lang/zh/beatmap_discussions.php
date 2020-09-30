@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => '在这个时间点上没有相关的讨论记录。',
         'notice' => '在 :timestamp 附近（:existing_timestamps）有讨论记录，发表前请检查。',
+        'unsaved' => '',
     ],
 
     'reply' => [
@@ -64,9 +65,12 @@ return [
     ],
 
     'review' => [
+        'block_count' => ':used / :max 块已使用',
         'go_to_parent' => '查看审阅帖',
         'go_to_child' => '查看讨论',
         'validation' => [
+            'block_too_large' => '每块只能包含最多 :limit 个字符',
+            'external_references' => '审阅包含不属于此审阅的 issues 的引用',
             'invalid_block_type' => '板块类型无效',
             'invalid_document' => '审阅无效',
             'minimum_issues' => '审阅时必须提出最少 :count 个 issue |审阅时必须提出最少 :count 个 issue',
@@ -83,7 +87,7 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '常规（当前难度）',
+        'general' => '常规',
         'general_all' => '常规（所有难度）',
     ],
 

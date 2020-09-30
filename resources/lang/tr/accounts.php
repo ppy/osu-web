@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Lütfen avatarınızın :link\'e göre uygun olduğundan emin olunuz.<br/>Bu, onun <strong>her yaştan kişiye uygun olmasını</strong> yani çıplaklık, küfür veya müsthecen içeriğe yer vermemelidir.',
+            'rules' => 'Avatarının :link\'na uyduğundan emin ol.<br/>Bu avatarının <strong>her yaş grubuna</strong> uygun olması gerektiği anlamına gelir. Yani çıplaklık, küfür veya müstehcen içerik olmamalıdır.',
             'rules_link' => 'topluluk kuralları',
         ],
 
@@ -49,19 +49,26 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'belirtilen modlardaki nitelikli maplerin yeni sorunlarında bildirim al ',
+        'beatmapset_disqualify' => 'belirtilen modlardaki beatmapler diskalifiye olduğunda bildirim al',
+        'comment_reply' => 'yorumlarınıza yapılan yanıtlar için bildirim al',
         'title' => 'Bildirimler',
-        'topic_auto_subscribe' => 'bu beatmap için oluşturduğunuz yeni forum konularında bildirimleri otomatik olarak etkinleştirin',
-        'beatmapset_discussion_qualified_problem' => 'Doğrulanmış beatmapler\'in belirtilen modlardaki yeni sorunlarının bildirimlerini al',
+        'topic_auto_subscribe' => 'oluşturduğunuz yeni forum başlıklarında bildirimleri otomatik olarak etkinleştir',
 
-        'mail' => [
-            '_' => 'Bunun için bildirim al',
-            'beatmapset:modding' => 'beatmap modding',
-            'forum_topic_reply' => 'Konuya cevap ver',
+        'options' => [
+            '_' => 'bildirim seçenekleri',
+            'beatmapset:modding' => 'beatmap modlama',
+            'channel_message' => 'özel sohbet mesajları',
+            'comment_new' => 'yeni yorumlar',
+            'forum_topic_reply' => 'konu yanıtı',
+            'mail' => 'posta',
+            'push' => 'anlık',
+            'user_achievement_unlock' => 'kullanıcı madalyası açıldı',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => 'istek yetkilendirildi',
+        'authorized_clients' => 'izin verilen istemciler',
         'own_clients' => 'size ait istemciler',
         'title' => 'OAuth',
     ],
@@ -73,8 +80,10 @@ return [
             '_' => 'varsayılan beatmap indirme tipi',
             'all' => 'eğer varsa video ile beraber',
             'no_video' => 'video olmadan',
-            'direct' => 'osu!direkt\'de aç',
+            'direct' => 'osu!direct\'de aç',
         ],
+
+        'beatmapset_title_show_original' => 'beatmap metaverisini orijinal dilinde göster',
     ],
 
     'playstyles' => [
@@ -93,9 +102,9 @@ return [
 
     'security' => [
         'current_session' => 'şu anki',
-        'end_session' => 'Oturumu sona erdir',
+        'end_session' => 'Oturumu Sonlandır',
         'end_session_confirmation' => 'Bu oturumunuzu o cihazda hemen sonlandırır. Emin misiniz?',
-        'last_active' => 'En son aktivite:',
+        'last_active' => 'Son etkinlik:',
         'title' => 'Güvenlik',
         'web_sessions' => 'web oturumları',
     ],
@@ -109,7 +118,7 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => 'Bu pencereyi kapatabilirsiniz',
+        'text' => 'Şimdi bu sekmeyi/pencereyi kapatabilirsiniz',
         'title' => 'Doğrulama tamamlandı',
     ],
 

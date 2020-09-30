@@ -10,18 +10,9 @@ return [
     'too_long' => ':attribute의 최대 길이를 초과 했습니다 - :limit자 까지만 쓸 수 있습니다.',
     'wrong_confirmation' => '확인란이 일치하지 않습니다.',
 
-    'beatmap_discussion_post' => [
-        'discussion_locked' => '토론이 잠겨있습니다.',
-        'first_post' => '시작글은 삭제할 수 없습니다.',
-
-        'attributes' => [
-            'message' => '메시지',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => '타임스탬프가 지정되어 있지만, 비트맵이 빠져있습니다.',
-        'beatmapset_no_hype' => "Hype가 불가능합니다.",
+        'beatmapset_no_hype' => "Hype를 할 수 없습니다.",
         'hype_requires_null_beatmap' => 'Hype는 반드시 일반 (모든 난이도) 섹션에서 이루어져야 합니다.',
         'invalid_beatmap_id' => '난이도가 올바르지 않습니다.',
         'invalid_beatmapset_id' => '비트맵이 올바르지 않습니다.',
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => '지정된 타임스탬프는 비트맵 길이를 벗어납니다.',
             'negative' => "타임스탬프는 음수가 될 수 없습니다.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => '토론이 잠겨있습니다.',
+        'first_post' => '첫 게시글은 삭제할 수 없습니다.',
+
+        'attributes' => [
+            'message' => '메시지',
         ],
     ],
 
@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => '비밀번호는 유저 이름을 포함할 수 없습니다.',
         'email_already_used' => '이미 사용중인 이메일 주소입니다.',
+        'email_not_allowed' => '',
         'invalid_country' => '해당하는 국가가 데이터베이스에 존재하지 않습니다.',
         'invalid_discord' => 'Discord 유저 이름이 올바르지 않습니다.',
         'invalid_email' => "이메일 주소가 잘못되었습니다.",

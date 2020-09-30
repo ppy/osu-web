@@ -96,6 +96,7 @@ return [
             'country' => 'země',
             'index' => 'výkon',
             'kudosu' => 'kudosu',
+            'multiplayer' => '',
             'score' => 'skóre',
         ],
         'store' => [
@@ -178,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Zapomněl jsem své údaje",
             'password' => 'heslo',

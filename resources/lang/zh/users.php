@@ -84,6 +84,7 @@ return [
         'failed' => '登录失败',
         'forgot' => '忘记密码？',
         'info' => '请登录以继续',
+        'invalid_captcha' => '验证码无效，请刷新页面后重试。',
         'locked_ip' => 'IP 已被锁定，请稍等几分钟',
         'password' => '密码',
         'register' => "没有 osu! 账户？现在就注册一个！",
@@ -145,7 +146,6 @@ return [
         'lastvisit_online' => '当前在线',
         'missingtext' => '未找到用户！（或者该用户已经被 ban）',
         'origin_country' => '来自 :country',
-        'page_description' => 'osu! - 你想知道的关于 :username 的一切!',
         'previous_usernames' => '曾用名',
         'plays_with' => '惯用 :devices',
         'title' => ":username 的个人资料",
@@ -159,7 +159,7 @@ return [
                     'button' => '上传图片',
                     'dropzone' => '拖拽到此处',
                     'dropzone_info' => '将图片拖动到这里也可以上传',
-                    'size_info' => '图片大小最好是 2800x620 像素',
+                    'size_info' => '图片大小最好是 2400x620 像素',
                     'too_large' => '上传的图片过大。',
                     'unsupported_format' => '不支持的格式。',
 
@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'by :artist',
-                'none' => '暂时没有...',
                 'title' => '谱面',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => '查看更多事件',
             ],
             'historical' => [
-                'empty' => '没有游戏记录。:(',
                 'title' => '历史记录',
 
                 'monthly_playcounts' => [
@@ -304,10 +302,9 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => '下载回放',
-                'empty' => '还没有上传过成绩。 :(',
                 'not_ranked' => '只有 ranked 谱面才能得到 pp。',
                 'pp_weight' => '权重：:percentage',
-                'view_details' => '',
+                'view_details' => '查看详情',
                 'title' => '成绩',
 
                 'best' => [

@@ -6,17 +6,23 @@
 return [
     'countries' => [
         'all' => 'All',
+        'title' => 'Country',
     ],
 
     'filter' => [
         'title' => 'Show',
+
+        'variant' => [
+            'title' => 'Variant',
+        ],
     ],
 
     'type' => [
-        'performance' => 'performance',
         'charts' => 'spotlights',
-        'score' => 'score',
         'country' => 'country',
+        'multiplayer' => 'multiplayer',
+        'performance' => 'performance',
+        'score' => 'score',
     ],
 
     'spotlight' => [

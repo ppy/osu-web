@@ -31,6 +31,16 @@
     }
   }
 
+  &.js-account-edit-avatar--start {
+    position: relative;
+
+    // placeholder to prevent triggering dragleave when entring child element
+    &::after {
+      .full-size();
+      content: '';
+    }
+  }
+
   &__avatar {
     .default-border-radius();
     .own-layer();
@@ -56,6 +66,10 @@
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
+
+    @media @desktop {
+      position: relative;
+    }
 
     &--inline {
       margin: 5px 10px;
@@ -104,6 +118,10 @@
     flex-wrap: wrap;
     margin: -5px -10px;
 
+    @media @desktop {
+      position: relative;
+    }
+
     &--vertical {
       flex-direction: column;
     }
@@ -133,28 +151,22 @@
   &__drop-overlay {
     .full-size();
     .center-content();
+    text-align: center;
     padding: 10px;
     opacity: 0;
     color: #fff;
-
-    &::before {
-      .full-size();
-      content: ' ';
-      background-color: #000;
-      opacity: 0;
-      transition: all 120ms;
-
-      .@{top}.js-account-edit-avatar--start & {
-        opacity: 0.5;
-      }
-
-      .@{top}.js-account-edit-avatar--hover & {
-        opacity: 0.7;
-      }
-    }
+    background-color: rgba(0, 0, 0, var(--bg-opacity));
+    transition: all 120ms;
+    --bg-opacity: 0;
 
     .@{top}.js-account-edit-avatar--start & {
       opacity: 1;
+      --bg-opacity: 0.5;
+    }
+
+    // higher priority than --start
+    .@{top}.js-account-edit-avatar--hover & {
+      --bg-opacity: 0.7;
     }
   }
 

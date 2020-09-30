@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute ultrapassou tamanho máximo - deve ser até :limit caracteres.',
     'wrong_confirmation' => 'Confirmação não confere.',
 
-    'beatmap_discussion_post' => [
-        'discussion_locked' => 'Discussão está trancada.',
-        'first_post' => 'Não é possível excluir a publicação inicial.',
-
-        'attributes' => [
-            'message' => 'A mensagem',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Marcação de tempo é especificada mas beatmap está faltando.',
         'beatmapset_no_hype' => "Beatmap não pode ser hypado.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Marcação de tempo especificada ultrapassa a duração do beatmap.',
             'negative' => "Marcação de tempo não pode ser negativa.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Discussão está trancada.',
+        'first_post' => 'Não é possível excluir a publicação inicial.',
+
+        'attributes' => [
+            'message' => 'A mensagem',
         ],
     ],
 
@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Senha não deve conter seu nome de usuário.',
         'email_already_used' => 'Email já utilizado.',
+        'email_not_allowed' => '',
         'invalid_country' => 'País não presente no banco de dados.',
         'invalid_discord' => 'Nome de usuário do Discord inválido.',
         'invalid_email' => "Não parece ser um email válido.",

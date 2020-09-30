@@ -47,7 +47,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
         $sort = $request['sort'] ?? null;
 
-        if ($this->user !== null) {
+        if (priv_check_user($this->user, 'BeatmapsetAdvancedSearch')->can()) {
             $this->queryString = es_query_escape_with_caveats($this->requestQuery);
             $status = presence($request['s'] ?? null);
             $this->status = static::LEGACY_STATUS_MAP[$status] ?? $status;
@@ -195,7 +195,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
         // use relevant mode when sorting on nested field
         if (starts_with($sort->field, 'beatmaps.')) {
-            $sortFilter = new BoolQuery;
+            $sortFilter = new BoolQuery();
 
             if (!$this->includeConverts) {
                 $sortFilter->filter(['term' => ['beatmaps.convert' => false]]);

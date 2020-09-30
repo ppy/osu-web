@@ -4,20 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => ':attribute specificat/ă este invalidă.',
     'not_negative' => ':attribute nu poate fi negativ.',
     'required' => ':attribute este necesar.',
     'too_long' => ':attribute depășește lungimea maximă - poate fi doar până la :limit de caractere.',
     'wrong_confirmation' => 'Confirmarea nu se potrivește.',
-
-    'beatmap_discussion_post' => [
-        'discussion_locked' => 'Discuția este închisă.',
-        'first_post' => 'Nu se poate șterge postarea de pornire.',
-
-        'attributes' => [
-            'message' => 'Mesajul',
-        ],
-    ],
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Marcajul de timp este specificat dar beatmapul lipsește.',
@@ -33,7 +24,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Acest beatmap este momentan blocat pentru discuții și nu poate fi hyped",
             'guest' => 'Trebuie să fii autentificat pentru a acorda un hype.',
             'hyped' => 'Deja ai acordat un hype acestui beatmap.',
             'limit_exceeded' => 'Ți-ai folosit deja tot hype-ul.',
@@ -47,9 +38,18 @@ return [
         ],
     ],
 
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Discuția este închisă.',
+        'first_post' => 'Nu se poate șterge postarea de pornire.',
+
+        'attributes' => [
+            'message' => 'Mesajul',
+        ],
+    ],
+
     'comment' => [
         'deleted_parent' => 'Nu este permis să răspunzi la un comentariu șters.',
-        'top_only' => '',
+        'top_only' => 'Nu poți fixa un comentariu răspuns.',
 
         'attributes' => [
             'message' => 'Mesajul',
@@ -57,7 +57,7 @@ return [
     ],
 
     'follow' => [
-        'invalid' => '',
+        'invalid' => ':attribute specificat/ă este invalidă.',
     ],
 
     'forum' => [
@@ -76,7 +76,7 @@ return [
             'only_quote' => 'Răspunsul tău conţine doar un citat.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Postează corp',
             ],
         ],
 
@@ -89,7 +89,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => 'Opțiunile duplicate nu sunt permise.',
             'grace_period_expired' => 'Nu poți edita un sondaj după mai mult de :limit ore',
-            'hiding_results_forever' => '',
+            'hiding_results_forever' => 'Nu se pot ascunde rezultatele unui sondaj care nu se termină.',
             'invalid_max_options' => 'Opțiunea per utilizator nu poate depăși numărul de opțiuni disponibile.',
             'minimum_one_selection' => 'Este necesar cel puțin o opțiune per utilizator.',
             'minimum_two_options' => 'Este nevoie de cel puțin două opțiuni.',
@@ -108,12 +108,12 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
-            'url' => '',
+            'too_many' => 'Ai depășit numărul maxim de aplicații OAuth permise.',
+            'url' => 'Te rog introdu un URL valid.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Numele aplicației',
+                'redirect' => 'URL-ul Callback al Aplicației',
             ],
         ],
     ],
@@ -121,10 +121,11 @@ return [
     'user' => [
         'contains_username' => 'Parola nu poate conține numele de utilizator.',
         'email_already_used' => 'Adresa de e-mail este deja folosită.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Țara nu se află în baza de date.',
         'invalid_discord' => 'Nume de utilizator Discord invalid.',
         'invalid_email' => "Nu pare să fie o adresă de e-mail validă.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Nume de utilizator Twitter invalid.',
         'too_short' => 'Parola nouă este prea scurtă.',
         'unknown_duplicate' => 'Numele de utilizator sau adresa de e-mail sunt deja folosite.',
         'username_available_in' => 'Acest nume de utilizator va fi disponibil pentru utilizare în :duration.',
@@ -160,7 +161,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason nu este valid pentru acest tip de raportare.',
         'self' => "Nu te poți raporta pe tine însuți!",
     ],
 

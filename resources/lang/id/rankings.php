@@ -4,15 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => 'disortir berdasarkan negara',
+    'countries' => [
+        'all' => 'Semua',
+        'title' => 'Negara',
+    ],
+
+    'filter' => [
+        'title' => 'Tampilkan',
+
+        'variant' => [
+            'title' => 'Varian',
+        ],
     ],
 
     'type' => [
-        'performance' => 'Performa',
         'charts' => 'Spotlights',
-        'score' => 'Skor',
         'country' => 'Negara',
+        'multiplayer' => 'multiplayer',
+        'performance' => 'Performa',
+        'score' => 'Skor',
     ],
 
     'spotlight' => [

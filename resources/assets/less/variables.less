@@ -3,6 +3,9 @@
 
 @import "app";
 
+@fa-weight-regular: 400;
+@fa-weight-solid: 900;
+
 @font-grade: Venera, sans-serif;
 @font-content: Inter, sans-serif;
 @font-default: Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
@@ -77,7 +80,7 @@
 // here be z-indexes
 @z-index--header-bg: -1;
 
-@z-index--body-background: 0;
+@z-index--body-background: -1;
 
 @z-index--beatmapset-header: 1;
 @z-index--contest-header: 1;
@@ -92,6 +95,7 @@
 @z-index--profile-page-cover-selector: 5;
 @z-index--profile-previous-usernames: 10;
 @z-index--profile-tournament-banner: 11;
+@z-index--beatmap-discussion-editor-insertion-menu: 100;
 @z-index--simple-menu: 101;
 @z-index--simple-menu-hover-object: 102;
 @z-index--admin-menu: 499;
@@ -232,6 +236,9 @@
 @forum-topic-new-topic-button--width: 150px;
 @forum-topic-entry--main-margin: 40px;
 
+@forum-topic-nav-item--gutter: 2px;
+@forum-topic-nav-item--gutter-desktop: 3px;
+
 @beatmap-discussion--avatar-size: 40px;
 @beatmap-discussion--reply-padding: (20px + @beatmap-discussion--avatar-size);
 @beatmap-discussion--timestamp-width: 110px;
@@ -243,6 +250,8 @@
 @beatmap-discussion--color-resolved: @osu-colour-lime-3;
 @beatmap-discussion--color-review: @osu-colour-c2;
 @beatmap-discussion--color-suggestion: @osu-colour-orange-3;
+
+@beatmap-score--hsl-perfect: var(--hsl-lime-1);
 
 @beatmappack-listing--gutter: 20px;
 

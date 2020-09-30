@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Новий пост в ":title" вiд :username',
                 'beatmapset_discussion_post_new_compact' => 'Нова публікація від :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Нова публікація від :username',
+                'beatmapset_discussion_review_new' => 'Новий відгук на ":title" від :username, що містить проблеми: :problems, пропозиції: :suggestions, похвали: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Новий відгук від :username, що містить проблеми: :problems, пропозиції: :suggestions, похвали: :praises',
                 'beatmapset_discussion_unlock' => 'Карта ":title" розблокована для обговорень.',
                 'beatmapset_discussion_unlock_compact' => 'Обговорення відкрито',
             ],
@@ -64,6 +66,8 @@ return [
 
                 'comment_new' => ':username прокоментував ":content" у ":title"',
                 'comment_new_compact' => ':username прокоментував ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -88,6 +92,8 @@ return [
 
                 'comment_new' => ':username прокоментував ":content" на ":title"',
                 'comment_new_compact' => ':username прокоментував ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -99,6 +105,8 @@ return [
 
                 'comment_new' => ':username прокоментував ":content" на ":title"',
                 'comment_new_compact' => ':username прокоментував ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -128,6 +136,64 @@ return [
                 '_' => 'Нова медаль',
                 'user_achievement_unlock' => 'Розблоковано ":title"!',
                 'user_achievement_unlock_compact' => 'Розблоковано ":title"!',
+            ],
+        ],
+    ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_unlock' => '',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => '',
+            ],
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => 'Ви отримали нове повідомлення від :username',
+            ],
+        ],
+
+        'build' => [
+            'comment' => [
+                'comment_new' => '',
+            ],
+        ],
+
+        'news_post' => [
+            'comment' => [
+                'comment_new' => '',
+            ],
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '',
+            ],
+        ],
+
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => '',
+                'user_achievement_unlock_self' => '',
             ],
         ],
     ],

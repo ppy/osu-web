@@ -110,7 +110,7 @@ return [
             '_' => '순위',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => '퍼포먼스',
         ],
         'store_controller' => [
             '_' => 'osu!store',
@@ -124,6 +124,11 @@ return [
         ],
         'wiki_controller' => [
             '_' => '지식 창고',
+        ],
+    ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => '순위',
         ],
     ],
     'store' => [

@@ -48,12 +48,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => 'aprovado há :timeago',
-            'loved' => 'loved há :timeago',
-            'qualified' => 'qualificado há :timeago',
-            'ranked' => 'classificado há :timeago',
-            'submitted' => 'submetido há :timeago',
-            'updated' => 'atualizado há :timeago',
+            'approved' => 'aprovado :timeago',
+            'loved' => 'loved :timeago',
+            'qualified' => 'qualificado :timeago',
+            'ranked' => 'ranqueado :timeago',
+            'submitted' => 'enviado :timeago',
+            'updated' => 'atualizado :timeago',
         ],
 
         'favourites' => [
@@ -93,7 +93,6 @@ return [
             'source' => 'Fonte',
             'success-rate' => 'Taxa de Sucesso',
             'tags' => 'Tags',
-            'unranked' => 'Beatmap não ranqueado',
         ],
 
         'scoreboard' => [
@@ -115,6 +114,7 @@ return [
                 'rank' => 'Rank',
                 'score_total' => 'Pontuação Total',
                 'score' => 'Pontuação',
+                'time' => 'Tempo',
             ],
 
             'no_scores' => [

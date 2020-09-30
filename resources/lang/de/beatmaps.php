@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Hier tippen um auf General zu posten (:version)',
             'generalAll' => 'Hier tippen um auf General zu posten (Alle Schwierigkeitsstufen)',
+            'review' => 'Tippe hier, um eine Rezension zu posten',
             'timeline' => 'Hier tippen um auf die Timeline zu posten (:version)',
         ],
 
@@ -69,7 +70,7 @@ return [
             'hype' => 'Hype!',
             'mapper_note' => 'Anmerkung',
             'nomination_reset' => 'Nominierung zurücksetzen',
-            'praise' => 'Loben',
+            'praise' => 'Lob',
             'problem' => 'Problem',
             'review' => 'Bewertung',
             'suggestion' => 'Vorschlag',
@@ -77,7 +78,7 @@ return [
 
         'mode' => [
             'events' => 'Verlauf',
-            'general' => 'Allgemein',
+            'general' => 'Allgemein :scope',
             'reviews' => 'Rezensionen',
             'timeline' => 'Timeline',
             'scopes' => [
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'Strg-C im Editor und in deine Nachricht einfügen, um eine Timestamp hinzuzufügen!',
             'title' => 'Neue Diskussion',
             'unpin' => 'Lösen',
+        ],
+
+        'review' => [
+            'new' => 'Neue Rezension',
+            'embed' => [
+                'delete' => 'Löschen',
+                'missing' => '[DISKUSSION GELÖSCHT]',
+                'unlink' => 'Verknüpfung aufheben',
+                'unsaved' => 'Nicht gespeichert',
+                'timestamp' => [
+                    'all-diff' => 'Beiträge zu "Alle Schwierigkeitsstufen" können nicht mit einem Zeitstempel versehen werden.',
+                    'diff' => 'Falls dieser/dieses :type mit einem Zeitstempel beginnt, wird er/es unter Timeline angezeigt.',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => 'absatz einfügen',
+                'praise' => 'lob einfügen',
+                'problem' => 'problem einfügen',
+                'suggestion' => 'vorschlag einfügen',
+            ],
         ],
 
         'show' => [
@@ -180,7 +201,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Bist du dir sicher? Der Nominierungsprozess wird durch das neue Problem zurückgesetzt.',
-            'disqualify' => 'Bist du sicher? Das wird die Beatmap von der Qualifiezierung entfernen und den Nominierungsprozess zurücksetzen.',
+            'disqualify' => 'Bist du sicher? Dadurch wird die Beatmap aus der Qualifizierung entfernt und der Nominierungsprozess zurückgesetzt.',
         ],
     ],
 
@@ -198,7 +219,7 @@ return [
                 'status' => 'Kategorien',
                 'genre' => 'Genre',
                 'language' => 'Sprache',
-                'extra' => 'extra',
+                'extra' => 'Extra',
                 'rank' => 'Erreichter Rang',
                 'played' => 'Gespielt',
             ],
@@ -215,7 +236,7 @@ return [
                 'nominations' => 'Nominierungen',
             ],
             'supporter_filter_quote' => [
-                '_' => 'Du benötigst einen aktiven :link, um nach :filters zu filtern',
+                '_' => 'Du benötigst ein aktives :link, um nach :filters zu filtern',
                 'link_text' => 'osu!supporter-Tag',
             ],
         ],
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip-Hop',
         'electronic' => 'Electronic',
+        'metal' => 'Metal',
+        'classical' => 'Klassik',
+        'folk' => 'Folk',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '4K',
@@ -279,6 +304,7 @@ return [
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
         'TD' => 'Touch-Gerät',
+        'V2' => 'Score V2',
     ],
     'language' => [
         'any' => 'Alle',
@@ -291,8 +317,11 @@ return [
         'korean' => 'Koreanisch',
         'spanish' => 'Spanisch',
         'swedish' => 'Schwedisch',
+        'russian' => 'Russisch',
+        'polish' => 'Polnisch',
         'instrumental' => 'Instrumental',
         'other' => 'Andere',
+        'unspecified' => 'Nicht angegeben',
     ],
     'played' => [
         'any' => 'Alle',
@@ -317,5 +346,12 @@ return [
     'panel' => [
         'playcount' => 'Anzahl der Spiele: :count',
         'favourites' => 'Favoriten: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Alle',
+        ],
     ],
 ];

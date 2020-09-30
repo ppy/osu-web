@@ -12,7 +12,7 @@ interface Props {
   beatmaps: BeatmapJsonExtended[];
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapJsonExtended;
-  currentDiscussions: BeatmapDiscussion[];
+  currentDiscussions: BeatmapsetDiscussionJson[];
   currentUser: UserJSON;
   pinned?: boolean;
   setPinned?: (sticky: boolean) => void;
@@ -46,7 +46,7 @@ export default class NewReview extends React.Component<Props, State> {
 
   componentDidMount(): void {
     this.setTop();
-    $(window).on('throttled-resize.new-review', this.setTop);
+    $(window).on('resize.new-review', this.setTop);
   }
 
   componentWillUnmount(): void {

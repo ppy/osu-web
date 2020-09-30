@@ -93,7 +93,6 @@ return [
             'source' => 'Sumber',
             'success-rate' => 'Tingkat Keberhasilan',
             'tags' => 'Tag',
-            'unranked' => 'Beatmap ini tidak berstatus Ranked.',
         ],
 
         'scoreboard' => [
@@ -109,12 +108,13 @@ return [
                 'accuracy' => 'Akurasi',
                 'combo' => 'Kombo Maks',
                 'miss' => 'Miss',
-                'mods' => 'Mods',
-                'player' => 'Pengguna',
+                'mods' => 'Mod',
+                'player' => 'Pemain',
                 'pp' => 'pp',
                 'rank' => 'Peringkat',
                 'score_total' => 'Jumlah Skor',
                 'score' => 'Skor',
+                'time' => 'Waktu',
             ],
 
             'no_scores' => [

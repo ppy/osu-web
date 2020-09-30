@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'confirmation' => 'Naozaj chcete pokračovať?',
@@ -29,22 +14,31 @@ return [
         'last_word_connector' => ', a ',
     ],
 
+    'badges' => [
+        'new' => 'NOVÉ',
+    ],
+
     'buttons' => [
-        'admin' => '',
+        'admin' => 'Administrátor',
+        'authorise' => '',
+        'authorising' => '',
         'back_to_previous' => 'Návrat do predchádzajúceho stavu',
         'back_to_top' => 'Naspäť hore',
         'cancel' => 'Zrušiť',
         'change' => 'zmeniť',
+        'clear' => '',
         'click_to_copy' => 'kliknite pre skopírovanie do schránky',
         'click_to_copy_copied' => 'skopírované do schránky!',
-        'collapse' => '',
+        'close' => 'Zavrieť',
+        'collapse' => 'zbaliť',
         'delete' => 'Odstrániť',
         'edit' => 'Upraviť',
-        'expand' => '',
+        'expand' => 'rozbaliť',
         'hide' => 'skryť',
         'permalink' => 'trvalý odkaz',
-        'permalink_copied' => 'odkaz bol skopírovaný',
+        'pin' => 'pripnúť',
         'post' => 'Príspevok',
+        'read_more' => '',
         'reply' => 'Odpovedať',
         'reply_reopen' => 'Odpovedať a znova otvoriť',
         'reply_resolve' => 'Odpovedať a archivovať',
@@ -55,9 +49,18 @@ return [
         'search' => 'Hľadať',
         'see_more' => 'zobraziť viacej',
         'show' => 'zobraziť',
+        'show_deleted' => '',
+        'show_less' => '',
         'show_more' => 'zobraziť viac',
-        'show_more_options' => '',
+        'show_more_options' => 'zobraziť viac možností',
+        'unpin' => '',
+        'update' => 'Aktualizácia',
         'upload_image' => 'nahrať obrázok',
+
+        'watch' => [
+            'to_0' => 'Nesledovať',
+            'to_1' => 'Sledovať',
+        ],
     ],
 
     'count' => [
@@ -69,7 +72,13 @@ return [
         'minute_short_unit' => 'min',
         'minutes' => ':count minúta|:count minúty',
         'months' => ':count mesiac|:count mesiace',
+        'notifications' => '',
+        'plus_others' => '',
+        'post' => '',
         'second_short_unit' => 'sek',
+        'star_priority' => '',
+        'update' => '',
+        'view' => '',
         'years' => ':count rok|:count roky',
     ],
 
@@ -101,6 +110,10 @@ return [
         'target' => 'tu vložte súbor pre nahratie',
     ],
 
+    'input' => [
+        'search' => 'hľadať...',
+    ],
+
     'pagination' => [
         'previous' => 'predošlé',
         'next' => 'ďalej',
@@ -115,6 +128,21 @@ return [
         'count_miss' => 'Miss',
     ],
 
+    'scoreboard_time' => [
+        'd' => '',
+        'dd' => '',
+        'h' => '',
+        'hh' => '',
+        'M' => '',
+        'm' => '',
+        'MM' => '',
+        'mm' => '',
+        'past' => '',
+        's' => '',
+        'y' => '',
+        'yy' => '',
+    ],
+
     'time' => [
         'days_ago' => 'pred:count dňom|pred:counts dňami',
         'hours_ago' => 'pred:count hodinou|pred:count hodinami',
@@ -124,5 +152,10 @@ return [
 
     'title' => [
         'notice' => 'Oznámenie',
+    ],
+
+    'wrong_user' => [
+        '_' => '',
+        'logout_link' => '',
     ],
 ];

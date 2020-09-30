@@ -49,14 +49,21 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => '次のモードのQualifiedビートマップで新しい問題の通知を受け取る',
+        'beatmapset_disqualify' => '次のモードのビートマップがDisqualifiedになった場合に通知を受け取る',
+        'comment_reply' => 'コメントへの返信の通知を受け取る',
         'title' => '通知',
         'topic_auto_subscribe' => '作成した新しいフォーラムトピックに関する通知を自動的に有効にします',
-        'beatmapset_discussion_qualified_problem' => '次のモードのQualifiedビートマップで新しい問題の通知を受け取る',
 
-        'mail' => [
-            '_' => '次のメール通知を受け取る：',
+        'options' => [
+            '_' => '配送設定',
             'beatmapset:modding' => 'ビートマップmodding',
-            'forum_topic_reply' => 'トピックの返信',
+            'channel_message' => 'プライベートチャットメッセージ',
+            'comment_new' => '新しいコメント',
+            'forum_topic_reply' => 'トピックへの返信',
+            'mail' => 'メール',
+            'push' => 'プッシュ通知',
+            'user_achievement_unlock' => 'ユーザーメダルのアンロック',
         ],
     ],
 
@@ -75,6 +82,8 @@ return [
             'no_video' => '動画なし',
             'direct' => 'osu!directで開く',
         ],
+
+        'beatmapset_title_show_original' => 'ビートマップのメタデータを元の言語で表示',
     ],
 
     'playstyles' => [

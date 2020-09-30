@@ -26,6 +26,7 @@ return [
         'back_to_top' => 'Terug naar boven',
         'cancel' => 'Annuleer',
         'change' => 'wijzigen',
+        'clear' => 'Wissen',
         'click_to_copy' => 'klik om naar klembord te kopiëren',
         'click_to_copy_copied' => 'gekopiëerd naar klembord!',
         'close' => 'Sluiten',
@@ -37,7 +38,7 @@ return [
         'permalink' => 'permalink',
         'pin' => 'vastzetten',
         'post' => 'Post',
-        'read_more' => '',
+        'read_more' => 'lees meer',
         'reply' => 'Beantwoord',
         'reply_reopen' => 'Beantwoord en Heropen',
         'reply_resolve' => 'Beantwoord en Los op',
@@ -125,6 +126,21 @@ return [
         'count_geki' => 'MAX',
         'count_katu' => '200',
         'count_miss' => 'Mis',
+    ],
+
+    'scoreboard_time' => [
+        'd' => '%d Dag',
+        'dd' => '%d Dagen',
+        'h' => '%d Uur',
+        'hh' => '%d Uren',
+        'M' => '%d Maand',
+        'm' => '%d min',
+        'MM' => '%d Maanden',
+        'mm' => '%d min',
+        'past' => '%s',
+        's' => '%d sec',
+        'y' => '%d Jaar',
+        'yy' => '%d Jaar',
     ],
 
     'time' => [

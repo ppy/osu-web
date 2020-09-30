@@ -84,6 +84,7 @@ return [
         'failed' => 'Λάθος σύνδεση',
         'forgot' => 'Ξεχάσατε τον κωδικό σας;',
         'info' => '',
+        'invalid_captcha' => '',
         'locked_ip' => 'η διεύθυνση IP σας είναι κλειδωμένη. Παρακαλώ περιμένετε λίγα λεπτά.',
         'password' => 'Κωδικός',
         'register' => "Δεν έχετε λογαριασμό στο osu!; Φτιάξτε ένα νέο",
@@ -145,7 +146,6 @@ return [
         'lastvisit_online' => '',
         'missingtext' => 'Ίσως να κάνατε κάποιο ορθογραφικό λάθος! (ή ο χρήστης είναι banned)',
         'origin_country' => 'Από :country',
-        'page_description' => 'osu! - Όλα όσα θέλεις να ξέρεις για τον :username!',
         'previous_usernames' => 'προηγουμένως γνωστός ως',
         'plays_with' => 'Παίζει με :devices',
         'title' => "Το προφίλ του :username",
@@ -159,7 +159,7 @@ return [
                     'button' => 'Ανεβάστε εικόνα',
                     'dropzone' => 'Αφήστε εδώ για να ανεβεί',
                     'dropzone_info' => 'Μπορείτε επίσης να σύρετε την εικόνα σας εδώ για να ανεβεί',
-                    'size_info' => 'Το μέγεθος του εξωφύλλου πρέπει να είναι 2800x620',
+                    'size_info' => 'Το μέγεθος του εξωφύλλου πρέπει να είναι 2400x620',
                     'too_large' => 'Το αρχείο είναι πολύ μεγάλο.',
                     'unsupported_format' => 'Μη υποστηριζόμενη μορφή.',
 
@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'από :artist',
-                'none' => 'Κανένα... ακόμα.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => '',
             ],
             'historical' => [
-                'empty' => 'Κανένα ρεκόρ επίδοσης. :(',
                 'title' => 'Ιστορικό',
 
                 'monthly_playcounts' => [
@@ -304,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Λήψη Επανάληψης',
-                'empty' => 'Καμία εκπληκτική επίδοση ακόμα. :(',
                 'not_ranked' => 'Μόνο τα ranked beatmaps δίνουν pp.',
                 'pp_weight' => 'σταθμισμένo :percentage',
                 'view_details' => '',

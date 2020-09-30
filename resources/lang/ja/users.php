@@ -84,6 +84,7 @@ return [
         'failed' => 'ログインに失敗しました',
         'forgot' => 'パスワードを忘れましたか？',
         'info' => 'ログインして続行してください',
+        'invalid_captcha' => 'Captcha が無効です。ページを更新して再度お試し下さい。',
         'locked_ip' => 'あなたのIPアドレスはロックされています。数分後もう一度お試しください。',
         'password' => 'パスワード',
         'register' => "osu!アカウントを持っていませんか？新しいアカウントを作るにはこちらから",
@@ -145,7 +146,6 @@ return [
         'lastvisit_online' => '現在オンライン',
         'missingtext' => '打ち間違いがないか確認してください！（ユーザーが削除されている可能性もあります）',
         'origin_country' => '所在国 :country',
-        'page_description' => 'osu! - :usernameについていろいろ！',
         'previous_usernames' => '以前の名前',
         'plays_with' => '使用デバイス :devices',
         'title' => ":usernameのプロフィール",
@@ -159,7 +159,7 @@ return [
                     'button' => '画像のアップロード',
                     'dropzone' => 'ここにドロップしてアップロード',
                     'dropzone_info' => 'ここにドラッグ＆ドロップでアップロードが可能です。',
-                    'size_info' => '推奨の画像サイズは2800x620です',
+                    'size_info' => '推奨の画像サイズは2400x620です',
                     'too_large' => 'アップロードファイルが大きすぎます。',
                     'unsupported_format' => 'サポートされていないフォーマットです。',
 
@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'by :artist',
-                'none' => 'まだ、空っぽ。',
                 'title' => 'ビートマップ',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => '他のイベントを見る',
             ],
             'historical' => [
-                'empty' => 'パフォーマンスの記録がありません。',
                 'title' => '履歴',
 
                 'monthly_playcounts' => [
@@ -304,10 +302,9 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'リプレイをダウンロード',
-                'empty' => 'まだ記録がありません！',
                 'not_ranked' => 'Rankedビートマップのみがppを与えます。',
                 'pp_weight' => '割合 :percentage',
-                'view_details' => '',
+                'view_details' => '詳細の表示',
                 'title' => 'ランク',
 
                 'best' => [

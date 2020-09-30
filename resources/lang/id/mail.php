@@ -83,6 +83,12 @@ return [
         'subject' => 'Pengaktifan Ulang Akun osu! Dibutuhkan',
     ],
 
+    'user_notification_digest' => [
+        'new' => 'Kami ingin memberi tahu Anda bahwa saat ini terdapat perkembangan baru pada topik-topik yang telah Anda ikuti sebelumnya.',
+        'settings' => 'Ubah preferensi penerimaan notifikasi:',
+        'subject' => 'Notifikasi baru terkait osu!',
+    ],
+
     'user_password_updated' => [
         'confirmation' => 'Email ini hanya konfirmasi bahwa kata sandi akun osu! kamu telah diubah.',
         'subject' => 'Konfirmasi perubahan kata sandi osu!',

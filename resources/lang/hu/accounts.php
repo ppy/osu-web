@@ -49,14 +49,21 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'Értesítések kérése minősített beatmapok problémáival kapcsolatban a következő módokból',
+        'beatmapset_disqualify' => 'Értesíts akkor, ha a beatmap következő modjai diszkvalifikálva lettek',
+        'comment_reply' => 'értesítések küldése a kommentjeidre érkezett válaszokról',
         'title' => 'Értesítések',
         'topic_auto_subscribe' => 'az általad létrehozott új fórum témák értesítéseinek automatikus bekapcsolása',
-        'beatmapset_discussion_qualified_problem' => 'Értesítések kérése minősített beatmapok problémáival kapcsolatban a következő módokból',
 
-        'mail' => [
-            '_' => 'e-mail értesítések kérése',
-            'beatmapset:modding' => 'beatmap modolás',
-            'forum_topic_reply' => 'Válasz a témára',
+        'options' => [
+            '_' => 'Szállítási lehetőségek',
+            'beatmapset:modding' => 'Beatmap szerkesztése',
+            'channel_message' => 'Privát üzenetek',
+            'comment_new' => 'Új megjegyzések',
+            'forum_topic_reply' => 'Válaszolj erre a témára',
+            'mail' => 'e-mail',
+            'push' => 'Elöjövő',
+            'user_achievement_unlock' => 'Medál feloldva',
         ],
     ],
 
@@ -75,6 +82,8 @@ return [
             'no_video' => 'Videó nélkül',
             'direct' => 'Megnyitás osu!direct-ben',
         ],
+
+        'beatmapset_title_show_original' => 'A beatmap metaadatai megjelenítése eredeti nyelven',
     ],
 
     'playstyles' => [

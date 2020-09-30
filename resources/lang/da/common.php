@@ -26,6 +26,7 @@ return [
         'back_to_top' => 'Tilbage til toppen',
         'cancel' => 'Annullér',
         'change' => 'ændr',
+        'clear' => '',
         'click_to_copy' => 'klik for at kopiere til udklipsholderen',
         'click_to_copy_copied' => 'kopieret til udklipsholderen!',
         'close' => 'Luk',
@@ -125,6 +126,21 @@ return [
         'count_geki' => 'MAX',
         'count_katu' => '200',
         'count_miss' => 'Miss',
+    ],
+
+    'scoreboard_time' => [
+        'd' => '',
+        'dd' => '',
+        'h' => '',
+        'hh' => '',
+        'M' => '',
+        'm' => '',
+        'MM' => '',
+        'mm' => '',
+        'past' => '',
+        's' => '',
+        'y' => '',
+        'yy' => '',
     ],
 
     'time' => [

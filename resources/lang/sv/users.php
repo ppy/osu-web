@@ -84,7 +84,8 @@ return [
         'failed' => 'Felaktig inloggning',
         'forgot' => 'Glömt ditt lösenord?',
         'info' => 'Vänligen logga in för att fortsätta',
-        'locked_ip' => 'din IP adress är låst. Var vänlig vänta några minuter.',
+        'invalid_captcha' => 'Captcha ogiltig, uppdatera sidan och försök igen.',
+        'locked_ip' => 'din IP-adress är låst. Var vänlig vänta några minuter.',
         'password' => 'Lösenord',
         'register' => "Har du inget osu! konto? Skapa ett nytt",
         'remember' => 'Kom ihåg denna dator',
@@ -92,7 +93,7 @@ return [
         'username' => 'Användarnamn',
 
         'beta' => [
-            'main' => 'Beta åtkomst är för nuvarande begränsad till privilegierade användare.',
+            'main' => 'Beta-åtkomst är för nuvarande begränsad till privilegierade användare.',
             'small' => '(osu!supportrar kommer att komma in snart)',
         ],
     ],
@@ -136,16 +137,15 @@ return [
     ],
     'show' => [
         'age' => ':age år gammal',
-        'change_avatar' => 'byt din profilbild!',
+        'change_avatar' => 'byt din avatar!',
         'first_members' => 'Här sedan början',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Gick med :date',
         'lastvisit' => 'Senast sedd :date',
         'lastvisit_online' => 'Online just nu',
-        'missingtext' => 'Du kanske har stavat fel! (eller så är användaren bannad)',
+        'missingtext' => 'Du kanske har stavat fel! (eller så är användaren bannlyst)',
         'origin_country' => 'Från :country',
-        'page_description' => 'osu! - Allting du någonsin hade velat veta om :username!',
         'previous_usernames' => 'tidigare känd som',
         'plays_with' => 'Spelar med :devices',
         'title' => ":username's profil",
@@ -157,10 +157,10 @@ return [
                 'upload' => [
                     'broken_file' => 'Misslyckades med att processa bilden. Verifiera uppladdad bild och försök igen.',
                     'button' => 'Ladda upp bild',
-                    'dropzone' => 'Släpp här för att ladda upp',
-                    'dropzone_info' => 'Du kan också släppa din bild här för att ladda upp',
-                    'size_info' => 'Omslagets storlek bör vara 2800x620',
-                    'too_large' => 'Uppladdad bild är för stor.',
+                    'dropzone' => 'Släpp här för att ladda upp den',
+                    'dropzone_info' => 'Du kan också släppa din bild här för att ladda upp den',
+                    'size_info' => 'Omslagets storlek bör vara 2400x620',
+                    'too_large' => 'Den uppladdade filen är för stor.',
                     'unsupported_format' => 'Formatet stöds ej.',
 
                     'restriction_info' => [
@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'av :artist',
-                'none' => 'Inga... än.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'se fler händelser',
             ],
             'historical' => [
-                'empty' => 'Inga prestanda uppgifter. :(',
                 'title' => 'Historisk',
 
                 'monthly_playcounts' => [
@@ -304,10 +302,9 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Ladda ner Repris',
-                'empty' => 'Inga fantastiska prestationsrekord än. :(',
                 'not_ranked' => 'Endast rankade beatmaps ger pp.',
                 'pp_weight' => 'vägd :percentage',
-                'view_details' => '',
+                'view_details' => 'Se Detaljer',
                 'title' => 'Ranker',
 
                 'best' => [

@@ -93,7 +93,6 @@ return [
             'source' => 'Kilde',
             'success-rate' => 'Succesrate',
             'tags' => 'Tags',
-            'unranked' => 'Ikke-ranked beatmap',
         ],
 
         'scoreboard' => [
@@ -115,6 +114,7 @@ return [
                 'rank' => 'Rang',
                 'score_total' => 'Total Score',
                 'score' => 'Score',
+                'time' => '',
             ],
 
             'no_scores' => [

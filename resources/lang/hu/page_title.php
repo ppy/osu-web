@@ -5,133 +5,138 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'admin_forum' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'admin_store' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'error' => [
         'error' => [
-            '400' => '',
-            '404' => '',
-            '403' => '',
-            '401' => '',
-            '401-verification' => '',
-            '405' => '',
-            '422' => '',
-            '500' => '',
-            '503' => '',
+            '400' => 'Érvénytelen lekérés',
+            '404' => 'Hiányzó',
+            '403' => 'Tiltott',
+            '401' => 'Jogtalan',
+            '401-verification' => 'Fiók hitelesítése',
+            '405' => 'hiányzó',
+            '422' => 'Érvénytelen lekérés',
+            '500' => 'Valami nincs rendben',
+            '503' => 'karbantartás',
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => 'fórum',
         'topic_watches_controller' => [
-            'index' => '',
+            'index' => 'írányítópult',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
-            'verify_link' => '',
+            'edit' => 'irányítópult',
+            'verify_link' => 'Fiók hitelesítése',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'kiemelt előadók',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'beatmap beszélgetési posztok',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'beatmap beszélgetések',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'beatmap csomagok',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'beatmap beszélgetési szavazatok',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'beatmap előzmények',
         ],
         'beatmapset_watches_controller' => [
-            'index' => '',
+            'index' => 'irányítópult',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => 'beatmap beszélgetések',
+            'index' => 'beatmapes listák',
+            'show' => 'beatmap információk',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'változási napló',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'chat',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'hozzászolások',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => 'versenyek',
         ],
         'friends_controller' => [
-            'index' => '',
+            'index' => 'irányítópult',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'csoportok',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
-            'testflight' => '',
+            'get_download' => 'letöltés',
+            'index' => 'irányítópult',
+            'search' => 'keresés',
+            'support_the_game' => 'játék támogatása',
+            'testflight' => 'teszt',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'információ',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'élő közvetítések',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'találatok',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'újdonságok',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'értesítési előzmények',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'jelszó visszaállítása',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'rangsorolás',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'teljesítmény',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'osu!bolt',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => 'bajnokságok',
         ],
         'users_controller' => [
-            '_' => '',
-            'disabled' => '',
+            '_' => 'játékos információi',
+            'disabled' => 'értesítés',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'tudásbázis',
+        ],
+    ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => 'rangsorolás',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'osu!bolt',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'modding információ',
         ],
     ],
 ];

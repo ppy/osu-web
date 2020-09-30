@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => '次のトラックを自動的に再生',
     ],
 
     'defaults' => [
@@ -96,6 +96,7 @@ return [
             'country' => '国別',
             'index' => 'パフォーマンス',
             'kudosu' => 'kudosu',
+            'multiplayer' => 'マルチプレイヤー',
             'score' => 'スコア',
         ],
         'store' => [
@@ -178,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'サインイン / 登録',
+
         'login' => [
             'forgot' => "ログイン情報を忘れた",
             'password' => 'パスワード',

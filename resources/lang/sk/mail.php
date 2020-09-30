@@ -1,53 +1,109 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'beatmapset_update_notice' => [
-        'subject' => 'Nová aktualizácia pre beatmapu ":title"',
+        'new' => '',
+        'subject' => '',
+        'unwatch' => '',
+        'visit' => '',
+    ],
+
+    'common' => [
+        'closing' => '',
+        'hello' => 'Ahoj :user,',
+        'report' => '',
     ],
 
     'donation_thanks' => [
-        'subject' => 'Díky, osu! ťa <3luje',
+        'benefit_more' => '',
+        'feedback' => "",
+        'keep_free' => '',
+        'keep_running' => '',
+        'subject' => '',
+        'translation' => '',
+
+        'benefit' => [
+            'gift' => '',
+            'self' => '',
+        ],
+
+        'support' => [
+            '_' => '',
+            'first' => 'podpora',
+            'repeat' => '',
+        ],
     ],
 
     'forum_new_reply' => [
-        'subject' => '[osu!] Nová odpoveď na tému ":title"',
+        'new' => '',
+        'subject' => '',
+        'unwatch' => '',
+        'visit' => '',
     ],
 
     'password_reset' => [
-        'subject' => 'obnovenie osu! účtu',
+        'code' => '',
+        'requested' => '',
+        'subject' => '',
     ],
 
     'store_payment_completed' => [
-        'subject' => 'Obdržali sme tvoju osu!store objednávku!',
+        'prepare_shipping' => '',
+        'processing' => '',
+        'questions' => "",
+        'shipping' => '',
+        'subject' => '',
+        'thank_you' => '',
+        'total' => 'Spolu',
+    ],
+
+    'supporter_gift' => [
+        'anonymous_gift' => '',
+        'anonymous_gift_maybe_not' => '',
+        'duration' => '',
+        'features' => '',
+        'gifted' => '',
+        'subject' => '',
     ],
 
     'user_email_updated' => [
-        'subject' => 'potvrdenie zmeny osu! emailu',
+        'changed_to' => '',
+        'check' => '',
+        'sent' => '',
+        'subject' => '',
+    ],
+
+    'user_force_reactivation' => [
+        'main' => '',
+        'perform_reset' => '',
+        'reason' => 'Dôvod:',
+        'subject' => '',
+    ],
+
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => '',
     ],
 
     'user_password_updated' => [
-        'subject' => 'potvrdenie zmeny osu! hesla',
+        'confirmation' => '',
+        'subject' => '',
     ],
 
     'user_verification' => [
-        'subject' => 'overenie osu! účtu',
+        'code' => '',
+        'code_hint' => '',
+        'link' => '',
+        'report' => '',
+        'subject' => '',
+
+        'action_from' => [
+            '_' => '',
+            'unknown_country' => '',
+        ],
     ],
 ];

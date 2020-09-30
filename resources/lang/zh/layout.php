@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => '自动播放下一曲目',
     ],
 
     'defaults' => [
@@ -96,6 +96,7 @@ return [
             'country' => '国家和地区',
             'index' => '表现',
             'kudosu' => 'kudosu',
+            'multiplayer' => '多人游戏',
             'score' => '得分',
         ],
         'store' => [
@@ -178,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '登录/注册',
+
         'login' => [
             'forgot' => "我忘记了我的登录信息",
             'password' => '密码',
@@ -192,7 +195,7 @@ return [
 
         'register' => [
             'download' => '下载',
-            'info' => '点击下方的注册按钮以成为 osu! 大家庭中的一员！',
+            'info' => '立刻下载 osu! 并且注册帐号吧！',
             'title' => "没有账号？",
         ],
     ],

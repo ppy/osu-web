@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute elérte a maximális hosszt - csak :limit karakter hosszú lehet.',
     'wrong_confirmation' => 'A megerősítés nem egyezik.',
 
-    'beatmap_discussion_post' => [
-        'discussion_locked' => 'A megbeszélés zárolva van.',
-        'first_post' => 'Nem lehet a kezdő posztot törölni.',
-
-        'attributes' => [
-            'message' => 'Az üzenet',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Időbélyeg meg van adva, de a beatmap hiányzik.',
         'beatmapset_no_hype' => "A beatmap-et nem lehet hype-olni.",
@@ -33,7 +24,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Ez a beatmap jelenleg nem elérhető kommentelésre és hypolásra",
             'guest' => 'A hype-oláshoz bejelentkezve kell lenned.',
             'hyped' => 'Már hype-oltad ezt a beatmap-et.',
             'limit_exceeded' => 'Az összes hype-odat elhasználtad.',
@@ -47,9 +38,18 @@ return [
         ],
     ],
 
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'A megbeszélés zárolva van.',
+        'first_post' => 'Nem lehet a kezdő posztot törölni.',
+
+        'attributes' => [
+            'message' => 'Az üzenet',
+        ],
+    ],
+
     'comment' => [
         'deleted_parent' => 'Törölt hozzászólásokra nem lehet válaszolni.',
-        'top_only' => '',
+        'top_only' => 'Visszajátszási kommentek kitűzése nem engedélyezett.',
 
         'attributes' => [
             'message' => 'Az üzenet',
@@ -76,7 +76,7 @@ return [
             'only_quote' => 'A válaszod csak egy idézetet tartalmaz.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Poszt felület',
             ],
         ],
 
@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'A jelszó nem tartalmazhat felhasználónevet.',
         'email_already_used' => 'Ez az e-mail cím már használatban van.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Az ország nincs az adatbázisban.',
         'invalid_discord' => 'Érvénytelen Discord felhasználónév.',
         'invalid_email' => "Nem úgy néz ki, hogy ez érvényes e-mail cím lenne.",
@@ -160,7 +161,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => 'ez a jelentés nem megfelelő, ehhez a jelentés fajtához.:reason.',
         'self' => "Nem jelentheted magadat!",
     ],
 

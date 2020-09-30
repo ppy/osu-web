@@ -7,7 +7,7 @@ use App\Models\Forum\AuthOption;
 use App\Models\User;
 
 $factory->defineAs(App\Models\Forum\Forum::class, 'parent', function (Faker\Generator $faker) {
-    return  [
+    return [
         'forum_name' => $faker->catchPhrase,
         'forum_desc' => $faker->realtext(80),
         'forum_type' => 0,
@@ -17,7 +17,7 @@ $factory->defineAs(App\Models\Forum\Forum::class, 'parent', function (Faker\Gene
 });
 
 $factory->defineAs(App\Models\Forum\Forum::class, 'child', function (Faker\Generator $faker) {
-    return  [
+    return [
         'forum_name' => $faker->catchPhrase,
         'forum_desc' => $faker->realtext(80),
         'forum_type' => 1,
@@ -27,11 +27,13 @@ $factory->defineAs(App\Models\Forum\Forum::class, 'child', function (Faker\Gener
 });
 
 $factory->define(App\Models\Forum\Topic::class, function (Faker\Generator $faker) {
-    $u = User::orderByRaw('RAND()')->first();
+    return [
+        'topic_poster' => function (array &$self) {
+            $factoryUser = factory(User::class)->create();
+            $self['topic_first_poster_name'] = $factoryUser->username;
 
-    return  [
-        'topic_poster' => $u->user_id,
-        'topic_first_poster_name' => $u->username,
+            return $factoryUser->getKey();
+        },
         'topic_title' => $faker->catchPhrase,
         'topic_views' => rand(0, 99999),
         'topic_approved' => 1,
@@ -40,11 +42,13 @@ $factory->define(App\Models\Forum\Topic::class, function (Faker\Generator $faker
 });
 
 $factory->define(App\Models\Forum\Post::class, function (Faker\Generator $faker) {
-    $u = User::orderByRaw('RAND()')->first();
+    return [
+        'poster_id' => function (array &$self) {
+            $factoryUser = factory(User::class)->create();
+            $self['post_username'] = $factoryUser->username;
 
-    return  [
-        'poster_id' => $u->user_id,
-        'post_username' => $u->username,
+            return $factoryUser->getKey();
+        },
         'post_subject' => $faker->catchPhrase,
         'post_text' => $faker->realtext(300),
         'post_time' => Carbon\Carbon::createFromTimestamp(rand(1451606400, time())), // random time between 01/01/2016 12am and now

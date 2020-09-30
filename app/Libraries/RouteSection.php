@@ -112,6 +112,10 @@ class RouteSection
         ],
         'multiplayer' => [
             '_' => 'multiplayer',
+
+            'rooms_controller' => [
+                '_' => 'rankings',
+            ],
         ],
         'multiplayer_rooms_playlist' => [
             '_' => 'multiplayer',
@@ -131,7 +135,6 @@ class RouteSection
     ];
 
     private $default;
-    private $override;
 
     public function getCurrent($key = null)
     {

@@ -75,6 +75,8 @@ return [
     'topic' => [
         'deleted' => 'slettet emne',
         'go_to_latest' => 'vis nyeste innlegg',
+        'has_replied' => '',
+        'in_forum' => '',
         'latest_post' => ':when av :user',
         'latest_reply_by' => 'siste svar av :user',
         'new_topic' => 'Nytt emne',

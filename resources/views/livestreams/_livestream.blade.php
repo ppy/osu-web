@@ -10,7 +10,7 @@
         ></div>
 
         <p class="livestream-item__text livestream-item__text--name">
-            {{ $stream->user['display_name'] }}
+            {{ $stream->data['user_name'] }}
         </p>
 
         <p class="livestream-item__text livestream-item__text--detail">

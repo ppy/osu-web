@@ -1,2 +1,4 @@
 *
+!.composer-auth.json.example
 !.gitignore
+!.my.cnf.example

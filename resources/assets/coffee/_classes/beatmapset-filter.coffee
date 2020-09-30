@@ -106,8 +106,6 @@ class @BeatmapsetFilter
   ]
 
   @queryParamsFromFilters: (filters) ->
-    return {} if !currentUser.id?
-
     charParams = {}
 
     for own key, value of filters

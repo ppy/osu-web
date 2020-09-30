@@ -84,6 +84,7 @@ return [
         'failed' => 'Conectare incorectă',
         'forgot' => 'Ți-ai uitat parola?',
         'info' => 'Pentru a continua, vă rugam să vă autentificaţi',
+        'invalid_captcha' => '',
         'locked_ip' => 'adresa ta IP este blocată. Te rugăm să aștepți câteva minute.',
         'password' => 'Parolă',
         'register' => "Nu ai un cont osu!? Fă-ți unul nou",
@@ -145,7 +146,6 @@ return [
         'lastvisit_online' => 'Momentat online',
         'missingtext' => 'S-ar putea să fi făcut o greșeală de scriere! (sau este posibil ca utilizatorul să fi fost restricționat)',
         'origin_country' => 'Din :country',
-        'page_description' => 'osu! - Tot ce ai dorit vreodată să știi despre :username!',
         'previous_usernames' => 'cunoscut anterior ca',
         'plays_with' => 'Joacă cu :devices',
         'title' => "Profilul lui :username",
@@ -159,7 +159,7 @@ return [
                     'button' => 'Încarcă imaginea',
                     'dropzone' => 'Plasați fișiere aici pentru a le încărca',
                     'dropzone_info' => 'Poți, de asemenea, să-ți plasezi imaginea aici pentru a o încărca',
-                    'size_info' => 'Dimensiunea coperții trebuie să fie de 2800x620',
+                    'size_info' => 'Dimensiunea coperții trebuie să fie de 2400x620',
                     'too_large' => 'Fișierul încărcat este prea mare.',
                     'unsupported_format' => 'Format nesuportat.',
 
@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'de :artist',
-                'none' => 'Nici unul... încă.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'vedeți mai multe evenimente',
             ],
             'historical' => [
-                'empty' => 'Nicio înregistrare de performanță. :(',
                 'title' => 'Istoric',
 
                 'monthly_playcounts' => [
@@ -304,10 +302,9 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Descarcă replay-ul',
-                'empty' => 'Nicio performanță uimitoare nu a fost înregistrată încă. :(',
                 'not_ranked' => 'Numai beatmaps clasate acordă pp.',
                 'pp_weight' => 'ponderat :percentage',
-                'view_details' => '',
+                'view_details' => 'Vezi detalii',
                 'title' => 'Clasamente',
 
                 'best' => [
@@ -419,7 +416,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '',
+        'brick' => 'Vedere brick',
         'card' => 'Vedere card',
         'list' => 'Vedere listă',
     ],

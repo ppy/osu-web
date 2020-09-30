@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Żaden z tych postów nie jest istotny',
         'notice' => 'Istnieją posty dotyczące :timestamp (:existing_timestamps). Sprawdź je przed opublikowaniem posta.',
+        'unsaved' => '',
     ],
 
     'reply' => [
@@ -64,9 +65,12 @@ return [
     ],
 
     'review' => [
+        'block_count' => 'użyto :used z :max bloków',
         'go_to_parent' => 'Zobacz recenzję',
         'go_to_child' => 'Zobacz dyskusję',
         'validation' => [
+            'block_too_large' => 'każdy blok może zawierać do :limit znaków',
+            'external_references' => 'recenzja zawiera odniesienia do problemów, które do niej nie należą',
             'invalid_block_type' => 'nieprawidłowy typ bloku',
             'invalid_document' => 'nieprawidłowa recenzja',
             'minimum_issues' => 'recenzja musi zawierać przynajmniej :count problem|recenzja musi zawierać przynajmniej :count problemy|recenzja musi zawierać przynajmniej :count problemów',

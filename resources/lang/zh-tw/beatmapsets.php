@@ -7,7 +7,7 @@ return [
     'availability' => [
         'disabled' => '該圖譜現在無法下載。',
         'parts-removed' => '因作者或第三方版權擁有者的要求，故該圖譜已經下架。',
-        'more-info' => '點擊這裡查看更多訊息。',
+        'more-info' => '點擊這裡查看更多資訊。',
     ],
 
     'index' => [
@@ -93,7 +93,6 @@ return [
             'source' => '來源',
             'success-rate' => '成功率',
             'tags' => '標籤',
-            'unranked' => '未進榜圖譜',
         ],
 
         'scoreboard' => [
@@ -102,7 +101,7 @@ return [
             'friend' => '好友排行榜',
             'global' => '世界排行榜',
             'supporter-link' => '點擊 <a href=":link">這裡</a> 來查看你可以得到的精彩功能！',
-            'supporter-only' => '你需要成為贊助者才能查看國內/區內與好友排名！',
+            'supporter-only' => '你需要成為贊助者才能查看國內與好友排名！',
             'title' => '排行榜',
 
             'headers' => [
@@ -115,6 +114,7 @@ return [
                 'rank' => '排行榜',
                 'score_total' => '總分',
                 'score' => '得分',
+                'time' => '時間',
             ],
 
             'no_scores' => [

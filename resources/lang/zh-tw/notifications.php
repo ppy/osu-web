@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => ':username發布了主題為:title的新貼文',
                 'beatmapset_discussion_post_new_compact' => ':username 的新主題',
                 'beatmapset_discussion_post_new_compact_empty' => ':username 的新主題',
+                'beatmapset_discussion_review_new' => '',
+                'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => '討論於 ":title" 已解鎖',
                 'beatmapset_discussion_unlock_compact' => '討論已被解鎖',
             ],
@@ -64,6 +66,8 @@ return [
 
                 'comment_new' => ':username 在「:title」中評論了 「:content」',
                 'comment_new_compact' => ':username 評論了 「:content」',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -88,6 +92,8 @@ return [
 
                 'comment_new' => ':username 在「:title」中評論了 「:content」',
                 'comment_new_compact' => ':username 評論了 「:content」',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -99,6 +105,8 @@ return [
 
                 'comment_new' => ':username 在「:title」中評論了 「:content」',
                 'comment_new_compact' => ':username 評論了 「:content」',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -128,6 +136,64 @@ return [
                 '_' => '新成就',
                 'user_achievement_unlock' => '解鎖「:title」！',
                 'user_achievement_unlock_compact' => '解鎖「:title」！',
+            ],
+        ],
+    ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_unlock' => '',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => '',
+            ],
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => '',
+            ],
+        ],
+
+        'build' => [
+            'comment' => [
+                'comment_new' => '',
+            ],
+        ],
+
+        'news_post' => [
+            'comment' => [
+                'comment_new' => '',
+            ],
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '',
+            ],
+        ],
+
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => '',
+                'user_achievement_unlock_self' => '',
             ],
         ],
     ],

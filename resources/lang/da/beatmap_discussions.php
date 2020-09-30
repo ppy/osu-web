@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Ingen af opslagene angår mine bekymringer',
         'notice' => 'Der er opslag omkring :timestamp (:existing_timestamps). Vær venlig at tjekke dem inden du slår noget op.',
+        'unsaved' => '',
     ],
 
     'reply' => [
@@ -64,9 +65,12 @@ return [
     ],
 
     'review' => [
+        'block_count' => '',
         'go_to_parent' => 'Vis Anmeldelses-opslag',
         'go_to_child' => 'Vis Diskussion',
         'validation' => [
+            'block_too_large' => '',
+            'external_references' => '',
             'invalid_block_type' => 'ugyldig block type',
             'invalid_document' => 'ugyldig vurdering',
             'minimum_issues' => 'vurdering skal som minimum indeholde :count fejl|vurdering skal som minimum indholde :count fejl',

@@ -5,35 +5,35 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => '',
+        'new' => 'Dáváme vám vědět, že od vaší poslední návštěvy došlo k aktualizaci beatmapy „:title“.',
         'subject' => 'Nová aktualizace pro beatmapu ":title"',
-        'unwatch' => '',
+        'unwatch' => 'Pokud již nechcete sledovat tuto beatmapu, můžete kliknout na odkaz "Přestat sledovat", který je nalezitelný na výše uvedené stránce, nebo na módovací stránce sledovaní:',
         'visit' => 'Navštivte stránku diskuze:',
     ],
 
     'common' => [
         'closing' => 'S pozdravem,',
         'hello' => 'Ahoj :user,',
-        'report' => '',
+        'report' => 'Okamžitě odpovězte prosím na tento e-mail, pokud jste o tuto změnu nepožádali.',
     ],
 
     'donation_thanks' => [
         'benefit_more' => 'Více výhod pro podporovatele se budou přidávat!',
         'feedback' => "",
         'keep_free' => '',
-        'keep_running' => '',
+        'keep_running' => 'Tvoje podpora udržuje osu! po dobu :minutes! Možná se to nezdá jako mnoho, ale to všechno se sčítá :).',
         'subject' => 'Díky, osu! tě <3luje',
         'translation' => '',
 
         'benefit' => [
             'gift' => '',
-            'self' => '',
+            'self' => 'Nyní máte přístup k osu!direct a mnoha dalším výhodám supporter tagu, po dobu :duration.',
         ],
 
         'support' => [
-            '_' => '',
+            '_' => 'Mnohokrát děkujeme za :support vůči osu!.',
             'first' => 'podpora',
-            'repeat' => '',
+            'repeat' => 'trvalou podporu',
         ],
     ],
 
@@ -81,6 +81,12 @@ return [
         'perform_reset' => 'Můžete provést resetování z :url',
         'reason' => 'Důvod:',
         'subject' => 'osu! Vyžadována reaktivace účtu',
+    ],
+
+    'user_notification_digest' => [
+        'new' => '',
+        'settings' => '',
+        'subject' => '',
     ],
 
     'user_password_updated' => [

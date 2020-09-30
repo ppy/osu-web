@@ -4,8 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Devam etmek için lütfen giriş yapın.',
-    'require_verification' => 'Devam etmek için lütfen hesabınızı doğrulatınız.',
+    'require_verification' => 'Devam etmek için lütfen doğrulama işlemini tamamlayın.',
     'restricted' => "Kısıtlanmışken bunu yapamazsınız.",
     'silenced' => "Susturulmuşken bunu yapamazsınız.",
     'unauthorized' => 'Erişim engellendi.',
@@ -17,20 +18,22 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Bugünkü aday gösterme sınırınıza ulaştınız, lütfen yarın tekrar deneyin.',
-            'full_bn_required' => 'Bu niteleme oylamasını yapmak için tam bir nominatör olmanız gerekmektedir.',
-            'full_bn_required_hybrid' => 'Birden fazla oyun modu olan beatmap setlerini oylamak için tam bir nominatör olmanız gerekmektedir.',
+            'full_bn_required' => 'Bu niteliklendirme aday gösterimini gerçekleştirebilmeniz için asil aday gösterici olmanız gerekmektedir.',
+            'full_bn_required_hybrid' => 'Birden fazla oyun modu içeren beatmap setlerini aday gösterebilmeniz için asil aday gösterici olmanız gerekmektedir.',
             'incorrect_state' => 'Bu işlemi gerçekleştirirken hata oluştu, sayfayı yenilemeyi deneyin.',
             'owner' => "Kendi beatmapinizi aday gösteremezsiniz.",
+            'set_metadata' => 'Aday göstermeden önce türü ve dili ayarlamalısınız.',
         ],
         'resolve' => [
             'not_owner' => 'Yalnızca başlık sahibi ile beatmap sahibi bir tartışmayı sonlandırabilir.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Sadece beatmap sahibi ya da nominatör/QAT grup üyesi mapper notu gönderebilir.',
+            'mapper_note_wrong_user' => 'Yalnızca beatmap sahibi ya da aday gösterici/NAT grup üyesi mapper notu gönderebilir.',
         ],
 
         'vote' => [
+            'bot' => "Bot tarafından açılan tartışmada oy kullanılamaz",
             'limit_exceeded' => 'Lütfen daha fazla oy vermeden önce bir süre bekleyin',
             'owner' => "Kendi tartışmanıza oy veremezsiniz.",
             'wrong_beatmapset_state' => 'Yalnızca beklemede olan beatmaplerin tartışmalarında oy kullanabilirsiniz.',
@@ -39,14 +42,14 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => 'Sadece kendi paylaşımlarını silebilirsin.',
-            'resolved' => 'Çözümlenmiş bir tartışmanın paylaşımını silinemez.',
-            'system_generated' => 'Otomatikman oluşan paylaşımlar silinemez.',
+            'not_owner' => 'Yalnızca kendi gönderilerinizi silebilirsiniz.',
+            'resolved' => 'Çözülmüş bir tartışmanın gönderisini silemezsiniz.',
+            'system_generated' => 'Otomatik olarak oluşturulan gönderiler silinemez.',
         ],
 
         'edit' => [
             'not_owner' => 'Gönderileri yalnızca gönderen düzenleyebilir.',
-            'resolved' => 'Çözümlenmiş bir tartışmanın paylaşımını değiştirilemez.',
+            'resolved' => 'Çözülmüş bir tartışmanın gönderisini düzenleyemezsiniz.',
             'system_generated' => 'Otomatik olarak oluşturulmuş gönderiler düzenlenemez.',
         ],
 
@@ -55,10 +58,16 @@ return [
         ],
     ],
 
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => 'Aday gösterilen bir mapin metaverisini değiştiremezsiniz. Hatalı ayarlandığını düşünüyorsanız bir BN ya da NAT üyesiyle iletişime geçiniz.',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Sizi engelleyen ya da sizin engellediğiniz bir kullanıcıya mesaj gönderemezsiniz.',
-        'friends_only' => 'Kullanıcı kendi arkadaş listede bulunmayan kişilerden gelen mesajları engelliyor.',
-        'moderated' => 'Kanal şu anda denetleniyor.',
+        'friends_only' => 'Kullanıcı arkadaş listesinde bulunmayan kişilerden gelen mesajları engelliyor.',
+        'moderated' => 'Bu kanal şu anda modere ediliyor.',
         'no_access' => 'Bu kanala erişiminiz yok.',
         'restricted' => 'Susturulmuş, kısıtlanmış ya da banlanmış iken mesaj gönderemezsiniz.',
     ],
@@ -75,7 +84,7 @@ return [
 
     'forum' => [
         'moderate' => [
-            'no_permission' => 'Bu forumu yönetme izniniz yok.',
+            'no_permission' => 'Bu forumu modere etme yetkiniz yok.',
         ],
 
         'post' => [
@@ -144,7 +153,7 @@ return [
                 'not_owner' => 'Yalnızca başlık sahibi kapağı değiştirebilir.',
             ],
             'store' => [
-                'forum_not_allowed' => 'Bu forum konu kapak fotoğrafları kabul etmemektedir.',
+                'forum_not_allowed' => 'Bu forum kapak resmi kabul etmemektedir.',
             ],
         ],
 

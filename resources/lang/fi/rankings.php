@@ -4,15 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => '',
+    'countries' => [
+        'all' => '',
+        'title' => '',
+    ],
+
+    'filter' => [
+        'title' => '',
+
+        'variant' => [
+            'title' => '',
+        ],
     ],
 
     'type' => [
-        'performance' => 'Suorituskyky',
         'charts' => 'Valokeilassa',
-        'score' => 'Piste',
         'country' => 'Maa',
+        'multiplayer' => '',
+        'performance' => 'Suorituskyky',
+        'score' => 'Piste',
     ],
 
     'spotlight' => [
@@ -29,7 +39,7 @@ return [
         'play_count' => 'Pelikerrat',
         'performance' => 'Suorituskyky',
         'total_score' => 'Kokonaispisteet',
-        'ranked_score' => 'Pisteet (hyväksytyt)',
+        'ranked_score' => 'Tilastoidut pisteet',
         'average_score' => 'Keskim. pisteet',
         'average_performance' => 'Keskim. PP',
         'ss' => '',

@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'None of the posts address my concern',
         'notice' => 'There are posts around :timestamp (:existing_timestamps). Please check them before posting.',
+        'unsaved' => ':count in this review',
     ],
 
     'reply' => [
@@ -64,6 +65,7 @@ return [
     ],
 
     'review' => [
+        'block_count' => ':used / :max blocks used',
         'go_to_parent' => 'View Review Post',
         'go_to_child' => 'View Discussion',
         'validation' => [

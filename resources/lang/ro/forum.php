@@ -75,6 +75,8 @@ return [
     'topic' => [
         'deleted' => 'subiect șters',
         'go_to_latest' => 'vezi cea mai recentă postare',
+        'has_replied' => 'Ai răspuns în acest topic',
+        'in_forum' => 'in :forum',
         'latest_post' => ':when de :user',
         'latest_reply_by' => 'ultima replică de :user',
         'new_topic' => 'Postează un subiect nou',
@@ -236,10 +238,10 @@ return [
         'lock' => [
             'is_locked' => 'Acest subiect este închis și nu se pot adăuga răspunsuri',
             'to_0' => 'Deblochează subiectul',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Deblochează topicul?',
             'to_0_done' => 'Subiectul a fost deblocat',
             'to_1' => 'Blochează subiectul',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Blochează topicul?',
             'to_1_done' => 'Subiectul a fost blocat',
         ],
 
@@ -249,13 +251,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Anulează fixarea subiectului',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Nu mai fixa topicul?',
             'to_0_done' => 'Subiectul nu mai este fixat',
             'to_1' => 'Fixează subiectul',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Fixează topicul?',
             'to_1_done' => 'Subiectul a fost fixat',
             'to_2' => 'Fixează subiectul și marchează-l ca un anunț',
-            'to_2_confirm' => '',
+            'to_2_confirm' => 'Fixează topicul și marchează-l ca anunț?',
             'to_2_done' => 'Subiectul a fost fixat și marcat ca un anunț',
         ],
 

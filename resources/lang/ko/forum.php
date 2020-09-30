@@ -45,7 +45,7 @@ return [
     'post' => [
         'confirm_destroy' => '정말 이 글을 삭제할까요?',
         'confirm_restore' => '정말 이 글을 복원할까요?',
-        'edited' => '마지막으로 :user님이 :when에 수정하여 총 :count회 수정되었습니다.',
+        'edited' => ':user 님이 마지막으로 :when에 수정하여 총 :count_delimited회 수정되었습니다.',
         'posted_at' => ':when에 게시됨',
 
         'actions' => [
@@ -56,7 +56,7 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '새로운 회신',
+                'reply' => '새 답글 작성',
             ],
         ],
 
@@ -75,6 +75,8 @@ return [
     'topic' => [
         'deleted' => '삭제된 주제',
         'go_to_latest' => '최근에 올라온 글 보기',
+        'has_replied' => '이 주제에 답글을 달았습니다.',
+        'in_forum' => ':forum 에서',
         'latest_post' => ':when by :user',
         'latest_reply_by' => ':user님이 마지막 답변 작성',
         'new_topic' => '새 주제글 작성',
@@ -94,11 +96,11 @@ return [
             'submit' => '게시하기',
 
             'necropost' => [
-                'default' => '이 주제는 조금 오래된 글입니다. 정말 그래야 할 사유가 있는 경우에만 작성해 주세요.',
+                'default' => '이 주제는 오래된 글입니다. 마땅한 사유가 있는 경우에만 작성해 주세요.',
 
                 'new_topic' => [
-                    '_' => "이 주제는 조금 오래된 글입니다. 정말 여기에 작성해야 할 사유가 없다면, :create해 주세요.",
-                    'create' => '새로운 주제글 작성',
+                    '_' => "이 주제는 오래된 글입니다. 마땅한 사유가 있는 경우에만 :create해 주세요.",
+                    'create' => '새로운 주제글을 작성',
                 ],
             ],
 

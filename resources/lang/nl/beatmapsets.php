@@ -93,7 +93,6 @@ return [
             'source' => 'Bron',
             'success-rate' => 'Slagingspercentage',
             'tags' => 'Labels',
-            'unranked' => 'Unranked beatmap',
         ],
 
         'scoreboard' => [
@@ -115,6 +114,7 @@ return [
                 'rank' => 'Rank',
                 'score_total' => 'Totale Score',
                 'score' => 'Score',
+                'time' => 'Datum',
             ],
 
             'no_scores' => [

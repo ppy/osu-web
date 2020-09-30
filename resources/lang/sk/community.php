@@ -1,68 +1,67 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'support' => [
-        'header' => [
-            // size in font-size
-            'big_description' => 'Máš rád osu!? <br/>
-                                Podporte vývojárov osu! :D',
-            'small_description' => '',
-            'support_button' => 'Chcem podporiť osu!',
+        'convinced' => [
+            'title' => 'Presvedčili ste ma! :D',
+            'support' => 'podpor osu!',
+            'gift' => 'alebo daruj supporter tag iným hráčom',
+            'instructions' => 'klikni na srdiečko pre presunutie do osu!store',
         ],
+        'why-support' => [
+            'title' => 'Prečo by som mal podporovať osu!? Kam peniaze idú?',
 
-        'dev_quote' => 'osu! je úplne free-to-play hra, ale jej prevádzka rozhodne nie je zadarmo. 
-        Medzi náklady na prevádzku serveru a udržovánie vysokej kvality mezinárodného spojenia, časom stráveným udržováním systému a komunity, 
-        poskytováním cien pre súťaže, odpovedaním na otázky z podpory a zvyčajne udržováním ľudí šťastných, osu! konzumuje mohutnú sumu penazí!
-        Oh, a nezabudnite, že to všetko robíme bez nejakých reklam alebo partnerstva s hlúpymi toolbarmi a podobne!
-            <br/><br/>osu! je nakoniec z velkej časti riadene mnou. Pravdepodobne ma poznáte pod prezývkou "peppy".
-            Musel som skončiť svoju pôvodnú prácu aby som s osu! udržal krok,
-            a aj tak sa mi nie vždy podarí udržať štandardy o ktoré sa snažím.
-            Rád by som ponúkol svoje srdečné ďakujem tým všetkým, ktorí doteraz osu! podporovali,
-            a aj všetkým ktorí sa rozhodnú naďalej pokračovať v podpore tejto úžasnej hry a komunity do budúcna :).',
-
-        'supporter_status' => [
-            'contribution' => 'Ďakujeme za tvoju podporu! Zatiaľ si prispel celkovo :dollars cez :tags zakúpených supporter tagov!',
-            'gifted' => ':giftedTags z vaších nákupov bolo darovaných (celkovo :giftedDollars darovaných), jak štedré!',
-            'not_yet' => "Zatiaľ nemáš supporter tag :(",
-            'title' => 'Aktuálny status podporovateľa',
-            'valid_until' => 'Tvoj momentálny supporter tag je platný do :date!',
-            'was_valid_until' => 'Tvoj supporter tag bol platný do :date.',
-        ],
-
-        'why_support' => [
-            'title' => 'Prečo by som mal podporiť osu!?',
-            'blocks' => [
-                'dev' => 'Vytvorené a udržované prevažne jedným týpkom v Austrálií',
-                'time' => 'Zaberá to toľko veľa času pre funkciu, že sa to už nedá nazvať "koníčkom".',
-                'ads' => 'Nikde nie sú reklamy. <br/><br/>
-                        Narozdiel od 99.95% internetových stránok, my nemáme zisk z dávaní vecí pred tvojou tvárou.',
-                'goodies' => 'Dostaneš ďalšie extra výhody!',
+            'team' => [
+                'title' => 'Podpor tím',
+                'description' => '',
+            ],
+            'infra' => [
+                'title' => 'Infraštruktúra Servera',
+                'description' => '',
+            ],
+            'featured-artists' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'ads' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'tournaments' => [
+                'title' => 'Oficiálne turnaje',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'bounty-program' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
             ],
         ],
-
         'perks' => [
             'title' => 'Oh? Čo dostanem?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'rýchly a jednoduchý prístup k vyhľadaniu beatmap bez opúšťania hry.',
+            ],
+
+            'friend_ranking' => [
+                'title' => 'Rebríček priateľov',
+                'description' => "",
+            ],
+
+            'country_ranking' => [
+                'title' => 'Rebríček krajiny',
+                'description' => '',
+            ],
+
+            'mod_filtering' => [
+                'title' => '',
+                'description' => '',
             ],
 
             'auto_downloads' => [
@@ -82,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => 'Prispôsobenie',
-                'description' => 'Prispôsobte si svôj profil pridaním plne upraviteľnéj uživatelskej stránky.',
+                'description' => "Prispôsobte si svôj profil pridaním plne upraviteľnéj uživatelskej stránky.",
             ],
 
             'beatmap_filters' => [
@@ -120,22 +119,30 @@ return [
                 'description' => 'Schopnosť vidieť hodnotenie mapy podľa štátu / priateľov / módov.',
             ],
 
-            'feel_special' => [
-                'title' => 'Cíť sa špecialne',
-                'description' => 'Hrejivý pocit z toho, že ste pomohli zaistiť hladký chod osu!!',
-            ],
-
-            'more_to_come' => [
-                'title' => 'A oveľa viac ešte pribudne',
+            'more_favourites' => [
+                'title' => '',
                 'description' => '',
             ],
-        ],
+            'more_friends' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'more_beatmaps' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'friend_filtering' => [
+                'title' => '',
+                'description' => '',
+            ],
 
-        'convinced' => [
-            'title' => 'Presvedčili ste ma! :D',
-            'support' => 'podpor osu!',
-            'gift' => 'alebo daruj supporter tag iným hráčom',
-            'instructions' => 'klikni na srdiečko pre presunutie do osu!store',
+        ],
+        'supporter_status' => [
+            'contribution' => 'Ďakujeme za tvoju podporu! Zatiaľ si prispel celkovo :dollars cez :tags zakúpených supporter tagov!',
+            'gifted' => ":giftedTags z vaších nákupov bolo darovaných (celkovo :giftedDollars darovaných), jak štedré!",
+            'not_yet' => "Zatiaľ nemáš supporter tag :(",
+            'valid_until' => 'Tvoj momentálny supporter tag je platný do :date!',
+            'was_valid_until' => 'Tvoj supporter tag bol platný do :date.',
         ],
     ],
 ];

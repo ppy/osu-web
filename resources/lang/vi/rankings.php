@@ -4,15 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => '',
+    'countries' => [
+        'all' => '',
+        'title' => 'Quốc gia',
+    ],
+
+    'filter' => [
+        'title' => '',
+
+        'variant' => [
+            'title' => '',
+        ],
     ],
 
     'type' => [
-        'performance' => 'Performance',
         'charts' => 'Tiêu điểm',
-        'score' => 'Điểm',
         'country' => 'Quốc Gia',
+        'multiplayer' => '',
+        'performance' => 'Performance',
+        'score' => 'Điểm',
     ],
 
     'spotlight' => [

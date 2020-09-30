@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Speel het volgende lied automatisch',
     ],
 
     'defaults' => [
@@ -96,6 +96,7 @@ return [
             'country' => 'land',
             'index' => 'prestaties',
             'kudosu' => 'kudosu',
+            'multiplayer' => 'multiplayer',
             'score' => 'score',
         ],
         'store' => [
@@ -178,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'inloggen / registreren',
+
         'login' => [
             'forgot' => "Ik ben mij gegevens vergeten",
             'password' => 'wachtwoord',

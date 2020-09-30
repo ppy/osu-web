@@ -6,6 +6,7 @@
     <div
         class="
             login-box__content
+            {{ captcha_enabled() ? 'login-box__content--captcha' : '' }}
             js-click-menu
             js-nav2--centered-popup
             js-nav2--login-box
@@ -41,6 +42,13 @@
                 />
             </div>
 
+            @if (captcha_enabled())
+                <div class="login-box__row">
+                    <div class='js-captcha--container'></div>
+                </div>
+                @include('objects._captcha_script')
+            @endif
+
             <div class="login-box__row login-box__row--error js-login-form--error"></div>
 
             <div class="login-box__row">
@@ -52,7 +60,7 @@
             <div class="login-box__row login-box__row--actions">
                 <div class="login-box__action">
                     <button
-                        class="btn-osu-big btn-osu-big--nav-popup"
+                        class="btn-osu-big btn-osu-big--nav-popup js-captcha--submit-button"
                         data-disable-with="{{ trans('users.login.button_posting') }}"
                     >
                         <div class="btn-osu-big__content">

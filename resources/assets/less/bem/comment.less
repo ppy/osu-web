@@ -14,6 +14,7 @@
   margin-top: @_spacing;
   font-size: @font-size--normal-2;
   border-bottom: 0 solid @osu-colour-b6;
+  position: relative;
 
   &--top {
     border-bottom-width: 1px;
@@ -134,12 +135,9 @@
     }
   }
 
-  &__link {
-    .link-default();
-  }
-
   &__main {
     display: flex;
+    position: relative;
 
     &--deleted {
       opacity: 0.5;
@@ -152,6 +150,7 @@
     .@{_top}__main--clip & {
       height: calc(var(--line-height) * var(--clip-lines));
       overflow: hidden;
+      position: relative;
 
       &::after {
         display: block;
@@ -223,10 +222,6 @@
 
     &--info {
       font-weight: normal;
-    }
-
-    &--username-link {
-      .link-default();
     }
 
     &--pinned {

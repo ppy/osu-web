@@ -26,6 +26,7 @@ return [
         'back_to_top' => 'Tillbaka till toppen',
         'cancel' => 'Avbryt',
         'change' => 'ändra',
+        'clear' => 'Rensa',
         'click_to_copy' => 'klicka för att kopiera till urklipp',
         'click_to_copy_copied' => 'kopierad till urklipp!',
         'close' => 'Stäng',
@@ -37,7 +38,7 @@ return [
         'permalink' => 'permalänk',
         'pin' => 'fäst',
         'post' => 'Lägg upp',
-        'read_more' => '',
+        'read_more' => 'läs mer',
         'reply' => 'Svara',
         'reply_reopen' => 'Svara och öppna igen',
         'reply_resolve' => 'Svara och Lös',
@@ -125,6 +126,21 @@ return [
         'count_geki' => 'MAX',
         'count_katu' => '200',
         'count_miss' => 'Miss',
+    ],
+
+    'scoreboard_time' => [
+        'd' => '%d d',
+        'dd' => '%d d',
+        'h' => '%d tim',
+        'hh' => '%d tim',
+        'M' => '%d mån',
+        'm' => '%d min',
+        'MM' => '%d mån',
+        'mm' => '%d min',
+        'past' => '%s',
+        's' => '%d sek',
+        'y' => '%d år',
+        'yy' => '%d år',
     ],
 
     'time' => [

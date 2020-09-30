@@ -10,7 +10,7 @@ return [
     'title' => 'osu! Форум',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Змяніць вокладку',
 
         'create' => [
             '_' => 'Усталяваць фонавы відарыс',
@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => 'Апошні допіс',
 
         'index' => [
             'title' => '',
@@ -75,6 +75,8 @@ return [
     'topic' => [
         'deleted' => 'выдаленая тэма',
         'go_to_latest' => 'праглядзець апошні допіс',
+        'has_replied' => '',
+        'in_forum' => '',
         'latest_post' => ':when ад :user',
         'latest_reply_by' => 'апошні адказ ад :user',
         'new_topic' => 'Новая тэма',
@@ -86,7 +88,7 @@ return [
         'started_by_verbose' => 'пачата :user',
 
         'create' => [
-            'close' => '',
+            'close' => 'Закрыць',
             'preview' => 'Перадпрагляд',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -239,7 +241,7 @@ return [
             'to_0_confirm' => '',
             'to_0_done' => 'Тэма была адкрыта',
             'to_1' => 'Закрыць тэму',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Закрыць тэму?',
             'to_1_done' => 'Тэма была закрыта',
         ],
 
@@ -252,7 +254,7 @@ return [
             'to_0_confirm' => '',
             'to_0_done' => 'Тэма была адмацавана',
             'to_1' => 'Замацаваць тэму',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Замацаваць тэму?',
             'to_1_done' => 'Тэма была замацавана',
             'to_2' => 'Замацаваць тэму і пазначыць як апавяшчэнне',
             'to_2_confirm' => '',
@@ -291,10 +293,10 @@ return [
                 'vote' => 'Галасаваць',
 
                 'button' => [
-                    'change_vote' => '',
+                    'change_vote' => 'Змяніць голас',
                     'edit' => '',
                     'view_results' => '',
-                    'vote' => '',
+                    'vote' => 'Галасаваць',
                 ],
 
                 'detail' => [

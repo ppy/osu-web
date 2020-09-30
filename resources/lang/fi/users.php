@@ -84,6 +84,7 @@ return [
         'failed' => 'Väärät kirjautumistiedot',
         'forgot' => 'Unohditko salasanasi?',
         'info' => 'Kirjaudu sisään jatkaaksesi',
+        'invalid_captcha' => '',
         'locked_ip' => 'IP-osoitteesi on lukittu. Ole hyvä ja odota muutama minuutti.',
         'password' => 'Salasana',
         'register' => "Eikö sinulla ole osu!-tiliä? Tee yksi",
@@ -145,7 +146,6 @@ return [
         'lastvisit_online' => 'Tällä hetkellä paikalla',
         'missingtext' => 'Taisit tehdä kirjoitusvirheen! (tai käyttäjällä on porttikielto)',
         'origin_country' => 'Maasta :country',
-        'page_description' => 'osu! - Kaikki mitä olet koskaan halunnut tietää :username:sta!',
         'previous_usernames' => 'tunnettiin aiemmin nimellä',
         'plays_with' => 'Pelityylinä :devices',
         'title' => ":username:n profiili",
@@ -159,7 +159,7 @@ return [
                     'button' => 'Lataa kuva',
                     'dropzone' => 'Pudota tiedosto tähän ladataksesi',
                     'dropzone_info' => 'Voit myös lähettää kuvan pudottamalla sen tähän',
-                    'size_info' => 'Kansikuvan kuuluisi olla 2800x620 pikseliä',
+                    'size_info' => 'Kansikuvan kuuluisi olla 2400x620 pikseliä',
                     'too_large' => 'Lähetetty tiedosto on liian iso.',
                     'unsupported_format' => 'Tiedostomuotoa ei tueta.',
 
@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'artistilta :artist',
-                'none' => 'Ei yhtään... vielä.',
                 'title' => 'Beatmapit',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => '',
             ],
             'historical' => [
-                'empty' => 'Tuloksia ei löydy. :(',
                 'title' => 'Historialliset',
 
                 'monthly_playcounts' => [
@@ -304,7 +302,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Lataa Replay',
-                'empty' => 'Loistavia suorituksia ei ole vielä. :(',
                 'not_ranked' => 'Vain hyväksytyt beatmapit antavat pp:tä.',
                 'pp_weight' => 'painotettu :percentage',
                 'view_details' => '',
@@ -393,7 +390,7 @@ return [
             'medals' => 'Mitalit',
             'play_count' => 'Pelikertoja',
             'play_time' => 'Pelattu aika',
-            'ranked_score' => 'Tilastopisteet',
+            'ranked_score' => 'Tilastoidut pisteet',
             'replays_watched_by_others' => 'Muiden Katsomat Uusinnat',
             'score_ranks' => 'Luokitukset',
             'total_hits' => 'Osumat',

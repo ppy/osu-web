@@ -26,6 +26,7 @@ return [
         'back_to_top' => '回到顶部',
         'cancel' => '取消',
         'change' => '更改',
+        'clear' => '清空',
         'click_to_copy' => '点击以复制到剪贴板',
         'click_to_copy_copied' => '已经复制到剪贴板！',
         'close' => '关闭',
@@ -37,7 +38,7 @@ return [
         'permalink' => '静态链接',
         'pin' => '置顶',
         'post' => '发表',
-        'read_more' => '',
+        'read_more' => '阅读更多',
         'reply' => '回复',
         'reply_reopen' => '回复并重新打开',
         'reply_resolve' => '回复并标记为已解决',
@@ -125,6 +126,21 @@ return [
         'count_geki' => 'MAX',
         'count_katu' => '200',
         'count_miss' => 'Miss',
+    ],
+
+    'scoreboard_time' => [
+        'd' => '%d 天前',
+        'dd' => '%d 天前',
+        'h' => '%d 小时前',
+        'hh' => '%d 小时前',
+        'M' => '%d 月前',
+        'm' => '%d 分钟前',
+        'MM' => '%d 月前',
+        'mm' => '%d 分钟前',
+        'past' => '%s',
+        's' => '%d 秒前',
+        'y' => '%d 年前',
+        'yy' => '%d 年前',
     ],
 
     'time' => [

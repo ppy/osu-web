@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute přesáhl maximální délku - může mít maximálně :limit znaků.',
     'wrong_confirmation' => 'Potvrzení se neshoduje.',
 
-    'beatmap_discussion_post' => [
-        'discussion_locked' => 'Diskuze je uzamčená.',
-        'first_post' => 'Počáteční příspěvek nelze odstranit.',
-
-        'attributes' => [
-            'message' => 'Zpráva',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Časová sekvence je specifikována, ale chybí beatmapa.',
         'beatmapset_no_hype' => "Tato beatmapa nemůže být nadchnutá.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Upřesněná sekvence času přesahuje délku beatmapy.',
             'negative' => "Časová sekvence nemůže být záporná.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Diskuze je uzamčená.',
+        'first_post' => 'Počáteční příspěvek nelze odstranit.',
+
+        'attributes' => [
+            'message' => 'Zpráva',
         ],
     ],
 
@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Heslo nesmí obsahovat uživatelské jméno.',
         'email_already_used' => 'E-mailová adresa už byla použita.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Stát není v databázi.',
         'invalid_discord' => 'Discord uživatelské jmeno je neplatné.',
         'invalid_email' => "Vypadá to na neplatnou e-mailovou adresu.",

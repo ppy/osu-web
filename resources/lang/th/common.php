@@ -21,11 +21,12 @@ return [
     'buttons' => [
         'admin' => 'ผู้ดูแล',
         'authorise' => 'อนุญาต',
-        'authorising' => '',
+        'authorising' => 'กำลังอนุญาต...',
         'back_to_previous' => 'กลับไปยังตำแหน่งก่อนหน้านี้',
         'back_to_top' => 'กลับไปด้านบน',
         'cancel' => 'ยกเลิก',
         'change' => 'เปลี่ยน',
+        'clear' => 'ล้าง',
         'click_to_copy' => 'คลิกเพื่อคัดลอกไปยังคลิปบอร์ด',
         'click_to_copy_copied' => 'คัดลอกไปยังคลิปบอร์ดแล้ว',
         'close' => 'ปิด',
@@ -37,7 +38,7 @@ return [
         'permalink' => 'ลิงก์ถาวร',
         'pin' => 'ปักหมุด',
         'post' => 'โพสต์',
-        'read_more' => '',
+        'read_more' => 'อ่านเพิ่มเติม',
         'reply' => 'ตอบกลับ',
         'reply_reopen' => 'ตอบกลับ และเปิดใหม่',
         'reply_resolve' => 'ตอบกลับ และแก้ไข',
@@ -54,7 +55,7 @@ return [
         'show_more_options' => 'แสดงตัวเลือกเพิ่มเติม',
         'unpin' => 'ยกเลิกการปักหมุด',
         'update' => 'อัปเดต',
-        'upload_image' => 'อัพโหลดรูปภาพ',
+        'upload_image' => 'อัปโหลดรูปภาพ',
 
         'watch' => [
             'to_0' => 'เลิกติดตาม',
@@ -63,22 +64,22 @@ return [
     ],
 
     'count' => [
-        'badges' => ':count เหรียญ|:count เหรียญ',
-        'days' => ':count วัน|:count วัน',
+        'badges' => ':count_delimited เหรียญ|:count_delimited เหรียญ',
+        'days' => ':count_delimited วัน|:count_delimited วัน',
         'hour_short_unit' => 'ชั่วโมง|ชั่วโมง',
         'hours' => ':count ชั่วโมง|:count ชั่วโมง',
         'item' => ':count อัน|:count อัน',
         'minute_short_unit' => 'นาที|นาที',
         'minutes' => ':count_delimited นาที|:count_delimited นาที',
-        'months' => ':count เดือน|:count เดือน',
+        'months' => ':count_delimited เดือน|:count_delimited เดือน',
         'notifications' => ':count_delimited แต้ม|:count_delimited แต้มทั้งหมด',
-        'plus_others' => '',
-        'post' => '',
+        'plus_others' => 'อีก + :count_delimited อัน!|อีก + :count_delimited อัน!',
+        'post' => ':count_delimited โพสต์|:count_delimited โพสต์',
         'second_short_unit' => 'วินาที|วินาที',
-        'star_priority' => '',
-        'update' => '',
-        'view' => '',
-        'years' => ':count ปี|:count ปี',
+        'star_priority' => ':count_delimited ดาวความสำคัญ|:count_delimited ดาวความสำคัญ',
+        'update' => ':count_delimited อัพเดต|:count_delimited อัพเดต',
+        'view' => ':count_delimited วิว|:count_delimited วิว',
+        'years' => ':count_delimited ปี|:count_delimited ปี',
     ],
 
     'countdown' => [
@@ -106,7 +107,7 @@ return [
     ],
 
     'dropzone' => [
-        'target' => 'วางที่นี่เพื่ออัพโหลด',
+        'target' => 'วางที่นี่เพื่ออัปโหลด',
     ],
 
     'input' => [
@@ -127,9 +128,24 @@ return [
         'count_miss' => 'Miss',
     ],
 
+    'scoreboard_time' => [
+        'd' => '%d วัน',
+        'dd' => '%d วัน',
+        'h' => '%d ชั่วโมง',
+        'hh' => '%d ชั่วโมง',
+        'M' => '%d เดือน',
+        'm' => '%d นาที',
+        'MM' => '%d เดือน',
+        'mm' => '%d นาที',
+        'past' => '',
+        's' => '%d วินาที',
+        'y' => '%d ปี',
+        'yy' => '%d ปี',
+    ],
+
     'time' => [
-        'days_ago' => ':count วันที่แล้ว|:count วันที่แล้ว',
-        'hours_ago' => ':count ชั่วโมงที่แล้ว|:count ชั่วโมงที่แล้ว',
+        'days_ago' => ':count_delimited วันที่แล้ว|:count_delimited วันที่แล้ว',
+        'hours_ago' => ':count_delimited ชั่วโมงที่แล้ว|:count_delimited ชั่วโมงที่แล้ว',
         'now' => 'ขณะนี้',
         'remaining' => 'เวลาที่เหลือ',
     ],

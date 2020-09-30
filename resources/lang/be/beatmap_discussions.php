@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Ні адзін з допісаў не вырашае маю праблему',
         'notice' => 'Існуюць допісы між :timestamp (:existing_timestamps). Праверце іх перш, чым размяшчаць.',
+        'unsaved' => '',
     ],
 
     'reply' => [
@@ -64,9 +65,12 @@ return [
     ],
 
     'review' => [
+        'block_count' => '',
         'go_to_parent' => 'Пабачыць адказ',
         'go_to_child' => 'Пабачыць абмеркаванне',
         'validation' => [
+            'block_too_large' => '',
+            'external_references' => '',
             'invalid_block_type' => 'недапушчальны тып блоку',
             'invalid_document' => 'недапушчальны адказ',
             'minimum_issues' => 'адказ павінен утрымліваць як мінімум :count праблему|адказ павінен утрымліваць як мінімум :count праблемы|адказ павінен утрымліваць як мінімум :count праблем',

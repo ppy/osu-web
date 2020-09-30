@@ -93,7 +93,6 @@ return [
             'source' => 'Крыніца',
             'success-rate' => 'Шанц поспеху',
             'tags' => 'Тэгі',
-            'unranked' => 'Unranked бітмапа',
         ],
 
         'scoreboard' => [
@@ -115,6 +114,7 @@ return [
                 'rank' => 'Ранг',
                 'score_total' => 'Усяго ачкоў',
                 'score' => 'Ачкі',
+                'time' => '',
             ],
 
             'no_scores' => [

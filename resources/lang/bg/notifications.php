@@ -4,19 +4,19 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => '',
-    'mark_read' => '',
-    'none' => '',
-    'see_all' => '',
+    'all_read' => 'Всички известия са прочетени!',
+    'mark_read' => 'Изчисти :type',
+    'none' => 'Няма известия',
+    'see_all' => 'виж всички известия',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'build' => '',
-        'channel' => '',
+        '_' => 'всички',
+        'user' => 'профил',
+        'beatmapset' => 'бийтмапове',
+        'forum_topic' => 'форум',
+        'news_post' => 'новини',
+        'build' => 'версии',
+        'channel' => 'чат',
     ],
 
     'item' => [
@@ -25,34 +25,36 @@ return [
 
             'beatmapset_discussion' => [
                 '_' => 'Бийтмап дискусия',
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_lock_compact' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_post_new_empty' => '',
+                'beatmapset_discussion_lock' => 'Бийтмапът ":title" бе заключен за дискусии',
+                'beatmapset_discussion_lock_compact' => 'Дискусията бе заключена',
+                'beatmapset_discussion_post_new' => 'Нова публикация на ":title" от :username": ":content"',
+                'beatmapset_discussion_post_new_empty' => 'Нова публикация на ":title" от :username',
                 'beatmapset_discussion_post_new_compact' => 'Нова публикация от :username',
-                'beatmapset_discussion_post_new_compact_empty' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_post_new_compact_empty' => 'Нова публикация от :username',
+                'beatmapset_discussion_review_new' => 'Ново ревю на ":title" от :username, съдържащ проблеми: :problems, предложения: :suggestions, похвали: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Ново ревю от :username, съдържащ проблеми: :problems, предложения: :suggestions, похвали: :praises',
+                'beatmapset_discussion_unlock' => 'Бийтмапът ":title" бе отключен за дискусии',
                 'beatmapset_discussion_unlock_compact' => 'Дискусията бе отключена',
             ],
 
             'beatmapset_problem' => [
-                '_' => '',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_empty' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
-                'beatmapset_discussion_qualified_problem_compact_empty' => '',
+                '_' => 'Проблем на квалифициран бийтмап',
+                'beatmapset_discussion_qualified_problem' => 'Докладвано от :username на":title": ":content"',
+                'beatmapset_discussion_qualified_problem_empty' => 'Докладвано от :username на":title"',
+                'beatmapset_discussion_qualified_problem_compact' => 'Докладвано от :username: ":content"',
+                'beatmapset_discussion_qualified_problem_compact_empty' => 'Докладвано от :username',
             ],
 
             'beatmapset_state' => [
                 '_' => 'Промяна в статуса на бийтмапа',
                 'beatmapset_disqualify' => '":title" бе дисквалифициран',
                 'beatmapset_disqualify_compact' => 'Бийтмапът бе дисквалифициран',
-                'beatmapset_love' => '',
-                'beatmapset_love_compact' => '',
+                'beatmapset_love' => '":title" бе повишен до обичан',
+                'beatmapset_love_compact' => 'Бийтмапът бе повишен до обичан',
                 'beatmapset_nominate' => '":title" бе номиниран',
                 'beatmapset_nominate_compact' => 'Бийтмапът бе номиниран',
                 'beatmapset_qualify' => '":title" получи достатъчно номинации и влезе в опашката за класиране',
-                'beatmapset_qualify_compact' => '',
+                'beatmapset_qualify_compact' => 'Бийтмапът влезе на опашката за класиране',
                 'beatmapset_rank' => '":title" бе класиран',
                 'beatmapset_rank_compact' => 'Бийтмапът бе класиран',
                 'beatmapset_reset_nominations' => 'Номинацията на ":title" бе анулирана',
@@ -64,6 +66,8 @@ return [
 
                 'comment_new' => ':username коментира ":content" в темата ":title"',
                 'comment_new_compact' => ':username коментира ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -88,6 +92,8 @@ return [
 
                 'comment_new' => ':username коментира ":content" в темата ":title"',
                 'comment_new_compact' => ':username коментира ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -99,6 +105,8 @@ return [
 
                 'comment_new' => ':username коментира ":content" в темата ":title"',
                 'comment_new_compact' => ':username коментира ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -106,14 +114,14 @@ return [
             '_' => 'Тема на форума',
 
             'forum_topic_reply' => [
-                '_' => '',
+                '_' => 'Нов форум отговор',
                 'forum_topic_reply' => ':username отговори в темата ":title"',
                 'forum_topic_reply_compact' => ':username отговори',
             ],
         ],
 
         'legacy_pm' => [
-            '_' => '',
+            '_' => 'Стар форум за ЛС',
 
             'legacy_pm' => [
                 '_' => '',
@@ -127,7 +135,65 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Нов медал',
                 'user_achievement_unlock' => 'Отключихте ":title"!',
-                'user_achievement_unlock_compact' => '',
+                'user_achievement_unlock_compact' => 'Отключихте ":title"!',
+            ],
+        ],
+    ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_unlock' => '',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => '',
+            ],
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => '',
+            ],
+        ],
+
+        'build' => [
+            'comment' => [
+                'comment_new' => '',
+            ],
+        ],
+
+        'news_post' => [
+            'comment' => [
+                'comment_new' => '',
+            ],
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '',
+            ],
+        ],
+
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => '',
+                'user_achievement_unlock_self' => '',
             ],
         ],
     ],

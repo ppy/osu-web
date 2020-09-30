@@ -3,6 +3,7 @@
 
 @polyfills ?= new Polyfills
 
+Turbolinks.start()
 Turbolinks.setProgressBarDelay(0)
 
 Lang.setLocale(@currentLocale)
@@ -30,14 +31,15 @@ $(document).on 'turbolinks:load', ->
 
 # ensure currentUser is updated early enough.
 @currentUserObserver ?= new CurrentUserObserver
-@throttledWindowEvents ?= new ThrottledWindowEvents
 @syncHeight ?= new SyncHeight
 @stickyHeader ?= new StickyHeader
 
 @accountEdit ?= new AccountEdit
 @accountEditAvatar ?= new AccountEditAvatar
 @accountEditBlocklist ?= new AccountEditBlocklist
+@bbcodePreview ?= new BbcodePreview
 @beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
+@captcha ?= new _exported.Captcha
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
 @clickMenu ?= new _exported.ClickMenu
@@ -50,7 +52,6 @@ $(document).on 'turbolinks:load', ->
 @forumAutoClick ?= new ForumAutoClick
 @forumCover ?= new ForumCover
 @forumPoll ?= new _exported.ForumPoll(@)
-@forumPostPreview ?= new ForumPostPreview
 @forumTopicTitle ?= new ForumTopicTitle
 @forumTopicWatchAjax ?= new ForumTopicWatchAjax
 @gallery ?= new Gallery
@@ -61,7 +62,7 @@ $(document).on 'turbolinks:load', ->
 @mobileToggle ?= new _exported.MobileToggle
 @navButton ?= new NavButton
 @osuAudio ?= new _exported.OsuAudio
-@osuLayzr ?= new OsuLayzr
+@osuLayzr ?= new _exported.OsuLayzr
 @postPreview ?= new PostPreview
 @scale ?= new Scale
 @search ?= new Search
@@ -76,7 +77,7 @@ $(document).on 'turbolinks:load', ->
 @formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
-@forumTopicReply ?= new ForumTopicReply({ @forum, @forumPostPreview, @stickyFooter })
+@forumTopicReply ?= new ForumTopicReply({ @bbcodePreview, @forum, @stickyFooter })
 @nav2 ?= new Nav2(@clickMenu)
 @osuEnchant ?= new _exported.Enchant(@, @turbolinksReload)
 @twitchPlayer ?= new TwitchPlayer(@turbolinksReload)

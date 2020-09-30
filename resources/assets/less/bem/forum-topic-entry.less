@@ -12,6 +12,7 @@
   padding: 7px 0 7px @forum-item-overflow;
   color: @osu-colour-c2;
   transition: @forum-item-animate;
+  position: relative;
 
   &:hover {
     background-color: @forum-item-background-color-hover;
@@ -39,16 +40,14 @@
       display: flex;
       align-items: center;
       flex-direction: column;
+      align-self: center;
+      position: relative;
     }
 
     &--last-link {
-      .link-default();
+      .link-plain();
       font-size: 14px; // icon size
       width: 30px;
-
-      .link-hover({
-        text-decoration: none;
-      });
     }
 
     &--main {
@@ -95,6 +94,10 @@
     font-weight: 600;
   }
 
+  &__detail + &__detail {
+    padding-left: 10px;
+  }
+
   &__icon {
     .center-content();
     min-width: 46px;
@@ -135,10 +138,6 @@
     }
   }
 
-  &__link {
-    .link-default();
-  }
-
   &__lock {
     color: @osu-colour-c2;
     font-size: 10px; // icon size
@@ -150,6 +149,22 @@
       top: 0;
       right: 100%;
       margin-right: 5px;
+    }
+  }
+
+  &__replied {
+    --diameter: 6px;
+    position: absolute;
+    width: var(--diameter);
+    height: var(--diameter);
+    border-radius: 50%;
+    background-color: hsl(var(--hsl-h1));
+    top: calc(100% + 2px);
+    right: calc(50% - var(--diameter) / 2);
+
+    @media @desktop {
+      top: calc(50% - var(--diameter) / 2);
+      right: calc(100% + 2px);
     }
   }
 

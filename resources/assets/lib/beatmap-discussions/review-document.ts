@@ -4,15 +4,15 @@
 import * as markdown from 'remark-parse';
 import { Node as SlateNode } from 'slate';
 import * as unified from 'unified';
-import { Node as UnistNode } from 'unist';
-import { BeatmapDiscussionReview } from '../interfaces/beatmap-discussion-review';
+import type { Node as UnistNode } from 'unist';
+import { BeatmapDiscussionReview, PersistedDocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 
 interface ParsedDocumentNode extends UnistNode {
   children: SlateNode[];
 }
 
-export function parseFromJson(json: string, discussions: Record<number, BeatmapDiscussion>) {
+export function parseFromJson(json: string, discussions: Record<number, BeatmapsetDiscussionJson>) {
   let srcDoc: BeatmapDiscussionReview;
 
   try {
@@ -60,9 +60,10 @@ export function parseFromJson(json: string, discussions: Record<number, BeatmapD
         break;
       case 'embed':
         // embed
-        const discussion = block.discussion_id && discussions[block.discussion_id];
+        const existingEmbedBlock = block as PersistedDocumentIssueEmbed;
+        const discussion = existingEmbedBlock.discussion_id && discussions[existingEmbedBlock.discussion_id];
         if (!discussion) {
-          console.error('unknown/external discussion referenced', block.discussion_id);
+          console.error('unknown/external discussion referenced', existingEmbedBlock.discussion_id);
           break;
         }
         doc.push({
@@ -72,7 +73,7 @@ export function parseFromJson(json: string, discussions: Record<number, BeatmapD
           }],
           discussionId: discussion.id,
           discussionType: discussion.message_type,
-          timestamp: discussion.timestamp,
+          timestamp: BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp),
           type: 'embed',
         });
         break;
@@ -114,7 +115,7 @@ function squash(items: SlateNode[], currentMarks?: {bold: boolean, italic: boole
       flat = flat.concat(squash(item.children, newMarks));
     } else {
       const newItem: SlateNode = {
-        text: item.value || '',
+        text: (item.value as string) || '',
       };
 
       if (newMarks.bold) {

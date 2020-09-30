@@ -15,16 +15,16 @@ return [
         'beatmap_information' => 'Página del mapa',
         'delete' => 'eliminar',
         'deleted' => 'Eliminado por :editor :delete_time',
-        'deny_kudosu' => 'denegar kudosu',
+        'deny_kudosu' => 'negar kudosu',
         'edit' => 'editar',
         'edited' => 'Última edición por :editor :update_time',
         'kudosu_denied' => 'Negado de obtener kudosu.',
         'message_placeholder_deleted_beatmap' => 'Esta dificultad ha sido eliminada, por lo que ya no puede ser discutida.',
         'message_placeholder_locked' => 'La discusión para este mapa ha sido desactivada.',
-        'message_placeholder_silenced' => "No puedes publicar una discusión mientras estés silenciado.",
+        'message_placeholder_silenced' => "No puede publicar una discusión mientras esté silenciado.",
         'message_type_select' => 'Seleccionar tipo de comentario',
         'reply_notice' => 'Presione enter para responder.',
-        'reply_placeholder' => 'Escribe tu respuesta aquí',
+        'reply_placeholder' => 'Escriba su respuesta aquí',
         'require-login' => 'Inicia sesión para publicar o responder',
         'resolved' => 'Resuelto',
         'restore' => 'restaurar',
@@ -32,12 +32,12 @@ return [
         'title' => 'Discusiones',
 
         'collapse' => [
-            'all-collapse' => 'Desplegar todo',
+            'all-collapse' => 'Contraer todo',
             'all-expand' => 'Expandir todo',
         ],
 
         'empty' => [
-            'empty' => '¡Sin discusiones aún!',
+            'empty' => '¡Aún no hay discusiones!',
             'hidden' => 'Ninguna discusión coincide con el filtro seleccionado.',
         ],
 
@@ -49,7 +49,7 @@ return [
 
             'prompt' => [
                 'lock' => 'Razón del bloqueo',
-                'unlock' => '¿Estás seguro que deseas desbloquear?',
+                'unlock' => '¿Seguro que desea desbloquearla?',
             ],
         ],
 
@@ -59,16 +59,17 @@ return [
         ],
 
         'message_placeholder' => [
-            'general' => 'Escribe aquí para publicar en General (:version)',
-            'generalAll' => 'Escribe aquí para publicar en General (Todas las dificultades)',
-            'timeline' => 'Escribe aquí para publicar en la Línea de tiempo (:version)',
+            'general' => 'Escriba aquí para publicar en General (:version)',
+            'generalAll' => 'Escriba aquí para publicar en General (Todas las dificultades)',
+            'review' => 'Escriba aquí para publicar una revisión',
+            'timeline' => 'Escriba aquí para publicar en la Línea de tiempo (:version)',
         ],
 
         'message_type' => [
             'disqualify' => 'Descalificación',
             'hype' => '¡Hype!',
             'mapper_note' => 'Nota',
-            'nomination_reset' => 'Reinicio de nominación',
+            'nomination_reset' => 'Restablecimiento de nominación',
             'praise' => 'Elogio',
             'problem' => 'Problema',
             'review' => 'Revisión',
@@ -87,11 +88,31 @@ return [
         ],
 
         'new' => [
-            'pin' => 'Fijar',
+            'pin' => 'Anclar',
             'timestamp' => 'Marca de tiempo',
             'timestamp_missing' => '¡Usa Ctrl+C en el modo de edición y pega tu mensaje para agregar una marca de tiempo!',
-            'title' => 'Nueva Discusión',
-            'unpin' => 'Dejar de fijar',
+            'title' => 'Nueva discusión',
+            'unpin' => 'Desanclar',
+        ],
+
+        'review' => [
+            'new' => 'Nueva revisión',
+            'embed' => [
+                'delete' => 'Eliminar',
+                'missing' => '[DISCUSIÓN ELIMINADA]',
+                'unlink' => 'Desvincular',
+                'unsaved' => 'No guardado',
+                'timestamp' => [
+                    'all-diff' => 'Las publicaciones en "Todas las dificultades" no pueden tener marcas de tiempo.',
+                    'diff' => 'Si el comentario de :type empieza con una marca de tiempo, se mostrará en la Línea de tiempo.',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => 'insertar párrafo',
+                'praise' => 'insertar elogio',
+                'problem' => 'insertar problema',
+                'suggestion' => 'insertar sugerencia',
+            ],
         ],
 
         'show' => [
@@ -124,8 +145,8 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => 'No hay votos negativos',
-                'up' => 'Aún no hay votos',
+                'down' => 'Aún no hay votos negativos',
+                'up' => 'Aún no hay votos positivos',
             ],
             'latest' => [
                 'down' => 'Últimos votos negativos',
@@ -137,13 +158,13 @@ return [
     'hype' => [
         'button' => '¡Hypear este mapa!',
         'button_done' => '¡Hypeado!',
-        'confirm' => "¿Estás seguro? Esto usará uno de tus :n Hype restantes y no se puede deshacer.",
+        'confirm' => "¿Está seguro? Esto usará uno de sus :n hype restantes y no puede deshacerse.",
         'explanation' => '¡Hypea este mapa para hacerlo más visible para la nominación y la clasificación!',
         'explanation_guest' => '¡Inicia sesión y hypea este mapa para hacerlo más visible para la nominación y la clasificación!',
         'new_time' => "Obtendrás otro hype :new_time.",
         'remaining' => 'Te quedan :remaining Hypes.',
         'required_text' => 'Hype: :current/:required',
-        'section_title' => 'Tren del Hype',
+        'section_title' => 'Tren del hype',
         'title' => 'Hype',
     ],
 
@@ -159,8 +180,8 @@ return [
         'disqualified_at' => 'Descalificado :time_ago (:reason).',
         'disqualified_no_reason' => 'motivo no especificado',
         'disqualify' => 'Descalificar',
-        'incorrect_state' => 'Error al realizar esa acción, intente actualizando la página.',
-        'love' => 'Amor',
+        'incorrect_state' => 'Error al realizar esa acción, intente actualizar la página.',
+        'love' => 'Amar',
         'love_confirm' => '¿Te gusta este mapa?',
         'nominate' => 'Nominar',
         'nominate_confirm' => '¿Nominar este mapa?',
@@ -170,28 +191,28 @@ return [
         'qualified_soon' => 'Se estima que se clasificará pronto, si no se encuentran problemas.',
         'required_text' => 'Nominaciones: :current/:required',
         'reset_message_deleted' => 'eliminado',
-        'title' => 'Estado de Nominación',
+        'title' => 'Estado de nominación',
         'unresolved_issues' => 'Todavía hay problemas sin resolver que deben abordarse primero.',
 
         'reset_at' => [
-            'nomination_reset' => 'El proceso de nominación se ha reiniciado :time_ago por :user a causa del nuevo problema :discussion (:message).',
+            'nomination_reset' => 'El proceso de nominación se ha restablecido :time_ago por :user a causa del nuevo problema :discussion (:message).',
             'disqualify' => 'Descalificado :time_ago por :user a causa del nuevo problema :discussion (:message).',
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '¿Estás seguro? Publicar un nuevo problema reiniciará todas las nominaciones.',
+            'nomination_reset' => '¿Está seguro? Publicar un nuevo problema restablecerá el proceso de nominación.',
             'disqualify' => '¿Está seguro? Esto eliminará el mapa de la calificación y restablecerá el proceso de nominación.',
         ],
     ],
 
     'listing' => [
         'search' => [
-            'prompt' => 'escribe en palabras clave...',
+            'prompt' => 'escriba en palabras clave...',
             'login_required' => 'Inicie sesión para buscar.',
             'options' => 'Más opciones de búsqueda',
             'supporter_filter' => 'Filtrar por :filters requiere un tag activo de osu!supporter',
             'not-found' => 'no hay resultados',
-            'not-found-quote' => '...nop, nada encontrado.',
+            'not-found-quote' => '... nop, nada encontrado.',
             'filters' => [
                 'general' => 'General',
                 'mode' => 'Modo',
@@ -199,7 +220,7 @@ return [
                 'genre' => 'Género',
                 'language' => 'Idioma',
                 'extra' => 'Adicional',
-                'rank' => 'Rango conseguido',
+                'rank' => 'Rango obtenido',
                 'played' => 'Jugado',
             ],
             'sorting' => [
@@ -225,14 +246,14 @@ return [
         'converts' => 'Incluir mapas convertidos',
     ],
     'mode' => [
-        'any' => 'Cualquiera',
+        'any' => 'Todos',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
         'fruits' => 'osu!catch',
         'mania' => 'osu!mania',
     ],
     'status' => [
-        'any' => 'Cualquiera',
+        'any' => 'Cualquier',
         'approved' => 'Aprobados',
         'favourites' => 'Favoritos',
         'graveyard' => 'Abandonados',
@@ -244,16 +265,20 @@ return [
         'ranked' => 'Clasificados',
     ],
     'genre' => [
-        'any' => 'Cualquiera',
-        'unspecified' => 'Sin especificar',
-        'video-game' => 'Videojuego',
-        'anime' => 'Anime',
-        'rock' => 'Rock',
-        'pop' => 'Pop',
-        'other' => 'Otro',
-        'novelty' => 'Novedad',
-        'hip-hop' => 'Hip Hop',
-        'electronic' => 'Electrónica',
+        'any' => 'Cualquier',
+        'unspecified' => 'no especificado',
+        'video-game' => 'videojuego',
+        'anime' => 'anime',
+        'rock' => 'rock',
+        'pop' => 'pop',
+        'other' => 'otro',
+        'novelty' => 'novedad',
+        'hip-hop' => 'hip hop',
+        'electronic' => 'electrónica',
+        'metal' => 'metal',
+        'classical' => 'clásica',
+        'folk' => 'folk',
+        'jazz' => 'jazz',
     ],
     'mods' => [
         '4K' => '4K',
@@ -279,24 +304,28 @@ return [
         'SD' => 'Muerte Súbita',
         'SO' => 'Spun Out',
         'TD' => 'Dispositivo touch',
+        'V2' => 'Puntuación V2',
     ],
     'language' => [
         'any' => 'Cualquiera',
-        'english' => 'Inglés',
-        'chinese' => 'Chino',
-        'french' => 'Francés',
-        'german' => 'Alemán',
-        'italian' => 'Italiano',
-        'japanese' => 'Japonés',
-        'korean' => 'Coreano',
-        'spanish' => 'Español',
-        'swedish' => 'Sueco',
-        'instrumental' => 'Instrumental',
-        'other' => 'Otro',
+        'english' => 'inglés',
+        'chinese' => 'chino',
+        'french' => 'francés',
+        'german' => 'alemán',
+        'italian' => 'italiano',
+        'japanese' => 'japonés',
+        'korean' => 'coreano',
+        'spanish' => 'español',
+        'swedish' => 'sueco',
+        'russian' => 'ruso',
+        'polish' => 'polaco',
+        'instrumental' => 'instrumental',
+        'other' => 'otro',
+        'unspecified' => 'no especificado',
     ],
     'played' => [
-        'any' => 'Cualquiera',
-        'played' => 'Jugado',
+        'any' => 'Cualquier',
+        'played' => 'Ya jugado',
         'unplayed' => 'No jugado',
     ],
     'extra' => [
@@ -304,7 +333,7 @@ return [
         'storyboard' => 'Contiene storyboard',
     ],
     'rank' => [
-        'any' => 'Cualquiera',
+        'any' => 'Cualquier',
         'XH' => 'SS Plateada',
         'X' => 'SS',
         'SH' => 'S Plateada',
@@ -317,5 +346,12 @@ return [
     'panel' => [
         'playcount' => 'Veces jugado: :count',
         'favourites' => 'Favoritos: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Todas',
+        ],
     ],
 ];

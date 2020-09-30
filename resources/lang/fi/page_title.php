@@ -5,19 +5,19 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'ylläpitäjä',
     ],
     'admin_forum' => [
-        '_' => '',
+        '_' => 'ylläpitäjä',
     ],
     'admin_store' => [
-        '_' => '',
+        '_' => 'ylläpitäjä',
     ],
     'error' => [
         'error' => [
-            '400' => '',
-            '404' => '',
-            '403' => '',
+            '400' => 'virheellinen pyyntö',
+            '404' => 'puuttuu',
+            '403' => 'kielletty',
             '401' => '',
             '401-verification' => '',
             '405' => '',
@@ -123,6 +123,11 @@ return [
             'disabled' => '',
         ],
         'wiki_controller' => [
+            '_' => '',
+        ],
+    ],
+    'multiplayer' => [
+        'rooms_controller' => [
             '_' => '',
         ],
     ],

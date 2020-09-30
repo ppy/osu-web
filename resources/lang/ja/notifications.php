@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => '通知は全て既読となりました！',
+    'all_read' => '通知は全て既読です！',
     'mark_read' => '消去 :type',
     'none' => '通知なし',
     'see_all' => 'すべての通知を見る',
@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => ':username による「:title」への新しい投稿',
                 'beatmapset_discussion_post_new_compact' => ':username による新しい投稿: 「:content」',
                 'beatmapset_discussion_post_new_compact_empty' => ':username による新しい投稿',
+                'beatmapset_discussion_review_new' => ':usernameが「:title」に問題：:problems、提案：:suggestions、称賛：:praisesを含む、新しいレビューを投稿しました。',
+                'beatmapset_discussion_review_new_compact' => ':usernameが問題：:problems、提案：:suggestions、称賛：:praisesを含む、新しいレビューを投稿しました。',
                 'beatmapset_discussion_unlock' => 'ビートマップ「:title」ディスカッションのためにロック解除されました。',
                 'beatmapset_discussion_unlock_compact' => 'ディスカッションはアンロックされました。',
             ],
@@ -64,6 +66,8 @@ return [
 
                 'comment_new' => ':usernameが「:title」でコメント「:content」',
                 'comment_new_compact' => ':usernameがコメント「:content」',
+                'comment_reply' => ':usernameが「:title」に「:content」を返信しました',
+                'comment_reply_compact' => ':usernameが「:content」に返信しました',
             ],
         ],
 
@@ -88,6 +92,8 @@ return [
 
                 'comment_new' => ':usernameが「:title」でコメント「:content」',
                 'comment_new_compact' => ':usernameがコメント「:content」',
+                'comment_reply' => ':usernameが「:title」に「:content」を返信しました',
+                'comment_reply_compact' => ':usernameが「:content」に返信しました',
             ],
         ],
 
@@ -99,6 +105,8 @@ return [
 
                 'comment_new' => ':usernameが「:title」でコメント「:content」',
                 'comment_new_compact' => ':usernameがコメント「:content」',
+                'comment_reply' => ':usernameが「:title」に「:content」を返信しました',
+                'comment_reply_compact' => ':usernameが「:content」に返信しました',
             ],
         ],
 
@@ -128,6 +136,64 @@ return [
                 '_' => '新しいメダル',
                 'user_achievement_unlock' => ':title をアンロック！',
                 'user_achievement_unlock_compact' => ':title をアンロック！',
+            ],
+        ],
+    ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => 'ディスカッション「:title」はロックされています',
+                'beatmapset_discussion_post_new' => 'ディスカッション「:title」に新しい更新があります',
+                'beatmapset_discussion_unlock' => 'ディスカッション「:title」のロックが解除されました',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '新しい問題が「:title」で報告されました',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '「:title」はdisqualifyされました',
+                'beatmapset_love' => '「:title」はlovedになりました',
+                'beatmapset_nominate' => '「:title」はノミネートされました',
+                'beatmapset_qualify' => '「:title」は十分なノミネートを獲得し、ランキングキューに入りました',
+                'beatmapset_rank' => '「:title」はrankedされました',
+                'beatmapset_reset_nominations' => '「:title」のノミネーションがリセットされました',
+            ],
+
+            'comment' => [
+                'comment_new' => 'ビートマップ「:title」に新しいコメントがあります',
+            ],
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => ':usernameから新しいメッセージを受信しました',
+            ],
+        ],
+
+        'build' => [
+            'comment' => [
+                'comment_new' => '更新履歴「:title」に新しいコメントがあります',
+            ],
+        ],
+
+        'news_post' => [
+            'comment' => [
+                'comment_new' => 'ニュース「:title」に新しいコメントがあります',
+            ],
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '「:title」に新しい返信があります',
+            ],
+        ],
+
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => ':usernameが新しいメダル「:title」をアンロックしました！',
+                'user_achievement_unlock_self' => '新しいメダル「:title」をアンロックしました！',
             ],
         ],
     ],

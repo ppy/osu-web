@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'authorizations' => [
@@ -33,13 +18,24 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'odstránené',
+        'none_found' => 'Nenašli sa žiadne diskusie, zodpovedajúci zadaným požiadavkám.',
         'title' => 'Diskusie ohľadom Beatmapy',
 
         'form' => [
             '_' => 'Hľadať',
             'deleted' => 'Zahrnúť odstránené diskusie',
+            'only_unresolved' => 'Ukázať iba nevyriešené diskusie',
             'types' => 'Typy správ',
             'username' => 'Meno Uživateľa',
+
+            'beatmapset_status' => [
+                '_' => 'Status beatmapy',
+                'all' => 'Všetko',
+                'disqualified' => 'Diskvalifikovaný',
+                'never_qualified' => 'Nikdy kvalifikovaný',
+                'qualified' => 'Kvalifikovaný',
+                'ranked' => 'Hodnotené',
+            ],
 
             'user' => [
                 'label' => 'Používateľ',
@@ -58,12 +54,28 @@ return [
     'nearby_posts' => [
         'confirm' => 'Žiadny z príspevkov nerieši môj problém',
         'notice' => 'Príspevky okolo času :timestamp (:existing_timestamps) už existujú. Prosím, skontrolujte ich pred prispievaním.',
+        'unsaved' => '',
     ],
 
     'reply' => [
         'open' => [
             'guest' => 'Prosím, prihláste sa, aby ste mohli odpovedať',
             'user' => 'Odpoveď',
+        ],
+    ],
+
+    'review' => [
+        'block_count' => '',
+        'go_to_parent' => 'Zobraziť recenziu',
+        'go_to_child' => 'Nová diskusia',
+        'validation' => [
+            'block_too_large' => '',
+            'external_references' => '',
+            'invalid_block_type' => 'neplatný typ bloku',
+            'invalid_document' => 'neplatná recenzia',
+            'minimum_issues' => 'kontrola musí obsahovať minimálne :count problémov|kontrola musí obsahovať minimálne :count problémov',
+            'missing_text' => 'v bloku nie je žiadny text',
+            'too_many_blocks' => 'recenzie môžu obsahovať iba :count odsekov/vydaní|recenzie môžu obsahovať iba :count odsekov/čísel',
         ],
     ],
 
@@ -74,10 +86,9 @@ return [
         ],
     ],
 
-    'user' => [
-        'admin' => 'administrátor',
-        'bng' => 'nominátor',
-        'owner' => 'mapper',
+    'timestamp_display' => [
+        'general' => 'všeobecné',
+        'general_all' => 'všeobecné (všetky)',
     ],
 
     'user_filter' => [

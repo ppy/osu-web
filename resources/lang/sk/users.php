@@ -1,36 +1,21 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => 'Odstránený užívateľ',
+    'deleted' => 'Odstránený používateľ',
 
     'beatmapset_activities' => [
-        'title' => ":user's Modding História",
-        'title_compact' => '',
+        'title' => ":user-ova Modovacia História",
+        'title_compact' => 'Modovanie',
 
         'discussions' => [
             'title_recent' => 'Nedávno zahájená diskusia',
         ],
 
         'events' => [
-            'title_recent' => 'Posledné udalosti',
+            'title_recent' => 'Nedávne udalosti',
         ],
 
         'posts' => [
@@ -64,33 +49,59 @@ return [
         'send_message' => 'poslať správu',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => 'e-mail',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => 'pravidlá komunity',
+                'tos' => 'zmluvné podmienky',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'Prihlásiť sa',
-        'locked_ip' => 'vaša IP adresa je zamknutá. Prosím počkajte niekoľko minút.',
-        'username' => 'Používateľské meno',
-        'password' => 'Heslo',
         'button' => 'Prihlásiť sa',
         'button_posting' => 'Prihlasuje sa...',
+        'email_login_disabled' => '',
+        'failed' => 'Nesprávne prihlásenie',
+        'forgot' => 'Zabudli ste heslo?',
+        'info' => 'Prosím prihláste sa pre pokračovanie',
+        'invalid_captcha' => '',
+        'locked_ip' => 'vaša IP adresa je zamknutá. Prosím počkajte niekoľko minút.',
+        'password' => 'Heslo',
+        'register' => "Nemáš osu! účet? Vytvor si nový",
         'remember' => 'Pamätať si tento počítač',
         'title' => 'Pre pokračovanie sa prosím prihláste',
-        'failed' => 'Nesprávne prihlásenie',
-        'register' => "Nemáš osu! účet? Vytvor si nový",
-        'forgot' => 'Zabudli ste heslo?',
+        'username' => 'Používateľské meno',
+
         'beta' => [
             'main' => 'Beta prístup je momentálne obmedzený pre oprávnených užívateľov.',
             'small' => '(osu!supporters sa dostanú dnu skorej)',
         ],
-
-        'here' => 'tu', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
         'title' => ':username\'s príspevky',
     ],
 
-    'signup' => [
-        '_' => 'Registrácia',
-    ],
     'anonymous' => [
         'login_link' => 'klikni pre prihlásenie',
         'login_text' => 'prihlásiť sa',
@@ -121,8 +132,8 @@ return [
         ],
     ],
     'restricted_banner' => [
-        'title' => 'Tvoj účet bol obmedzený!',
-        'message' => 'Zatial čo si v obmedzenom režime, nebudeš môcť komunikovať s ostatnými hráčmi a tvoje skóre budu viditelné iba pre teba. Toto je obvykle výsledkom automatického procesu, ktorý by sa mal sám vyriešit najneskôr do 24 hodin. Pokial si praješ odvolat tvoje obmedzenie, prosím <a href="mailto:accounts@ppy.sh">kontaktujte podporu</a>.',
+        'title' => 'Tvoj účet bol zablokovaný!',
+        'message' => 'Zatial čo si v zablokovanom režime, nebudeš môcť komunikovať s ostatnými hráčmi a tvoje skóre budu viditeľné iba pre teba. Toto je obvykle výsledkom automatického procesu, ktorý by sa mal vyriešit do 24 hodín. Pokiaľ si praješ odvolať tvoj blokovaný režim, prosím <a href="mailto:accounts@ppy.sh">kontaktuj podporu</a>.',
     ],
     'show' => [
         'age' => ':age rokov',
@@ -130,27 +141,32 @@ return [
         'first_members' => 'Od samého začiatku',
         'is_developer' => 'osu!vývojár',
         'is_supporter' => 'osu!supporter',
-        'joined_at' => 'Pripojil sa :date',
+        'joined_at' => 'Registroval sa :date',
         'lastvisit' => 'Naposledy videný :date',
-        'missingtext' => 'Možno si sa prepísal! (alebo bol používateľ zabanovaný)',
-        'origin_country' => 'Z :country',
-        'page_description' => 'osu! - Všetko čo ste kedy chceli vedieť o :username!',
+        'lastvisit_online' => 'Práve teraz',
+        'missingtext' => 'Možno si spravil chybu! (alebo je hľadaný používateľ zabanovaný)',
+        'origin_country' => 'Štát :country',
         'previous_usernames' => 'v minulosti známy ako',
         'plays_with' => 'Hrá s :devices',
-        'title' => "profil užívateľa :username",
+        'title' => "profil používateľa :username",
 
         'edit' => [
             'cover' => [
-                'button' => 'Zmeniť pokrytie profilu',
-                'defaults_info' => 'Viac možnosti pokrytia bude dostupných v budúcnosti',
+                'button' => 'Zmeniť pozadie profilu',
+                'defaults_info' => 'Viac možností pozadia bude dostupných v budúcnosti',
                 'upload' => [
-                    'broken_file' => 'Spracovanie obrázku zlyhalo. Over si obrázok a skús to znova.',
+                    'broken_file' => 'Spracovanie obrázku zlyhalo. Skontroluj si obrázok a skús to znova.',
                     'button' => 'Nahrať obrázok',
                     'dropzone' => 'Tu vložte pre nahratie',
                     'dropzone_info' => 'Taktiež môžeš tu pretiahnuť pre nahranie',
-                    'size_info' => 'Veľkosť pokrytia by mala byť 2800x620',
+                    'size_info' => 'Veľkosť pokrytia by mala byť 2400x620',
                     'too_large' => 'Nahraný súbor je príliš veľký.',
                     'unsupported_format' => 'Nepodporovaný formát.',
+
+                    'restriction_info' => [
+                        '_' => 'Nahrávanie je k dispozícií len pre :link',
+                        'link' => 'osu!supporteri',
+                    ],
                 ],
             ],
 
@@ -161,17 +177,16 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 sledujúci |:count sledujúcich',
+            'none' => 'žiadne',
             'unranked' => 'Žiadne posledné údaje o hraní',
 
             'achievements' => [
                 'achieved-on' => 'Dosiahnuté :date',
-                'locked' => '',
+                'locked' => 'Nedosiahnuté',
                 'title' => 'Úspechy',
             ],
             'beatmaps' => [
-                'by_artist' => '',
-                'none' => 'Zatiaľ žiadne...',
+                'by_artist' => 'od :artist',
                 'title' => 'Beatmapy',
 
                 'favourite' => [
@@ -190,13 +205,22 @@ return [
                     'title' => 'Čakajúce Beatmapy',
                 ],
             ],
+            'discussions' => [
+                'title' => 'Diskusie',
+                'title_longer' => 'Nedávne diskusie',
+                'show_more' => 'pozri ďalšie diskusie',
+            ],
+            'events' => [
+                'title' => 'Udalosti',
+                'title_longer' => 'Nedávne udalosti',
+                'show_more' => 'pozri ďalšie udalosti',
+            ],
             'historical' => [
-                'empty' => 'Žiadne výkonnostné rekordy. :(',
                 'title' => 'História',
 
                 'monthly_playcounts' => [
                     'title' => 'Herná História',
-                    'count_label' => '',
+                    'count_label' => 'Hier',
                 ],
                 'most_played' => [
                     'count' => 'odohraný čas',
@@ -208,7 +232,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'História Pozretých Replayov',
-                    'count_label' => '',
+                    'count_label' => 'Počet zhliadnutích hier',
                 ],
             ],
             'kudosu' => [
@@ -254,23 +278,33 @@ return [
                         'revoke' => 'Odopreté Kudosu od :giver za príspevok :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => 'Na základe toho, koľko používateľ prispel do moderácie mapy. Pozri :link pre viac informácii.',
+                    'link' => 'táto stránka',
+                ],
             ],
             'me' => [
                 'title' => 'ja!',
             ],
             'medals' => [
                 'empty' => "Tento užívateľ zatiaľ žiadne neobdržal. ;_;",
-                'recent' => '',
+                'recent' => 'Najnovšie',
                 'title' => 'Medaile',
+            ],
+            'posts' => [
+                'title' => 'Príspevky',
+                'title_longer' => 'Nedávne príspevky',
+                'show_more' => 'pozri ďalšie príspevky',
             ],
             'recent_activity' => [
                 'title' => 'Nedávne',
             ],
             'top_ranks' => [
                 'download_replay' => 'Stiahnuť Záznam',
-                'empty' => 'Zatial žiadné záznamy o úžasnom výkone. :(',
                 'not_ranked' => 'Iba hodnotené beatmapy ti dajú pp.',
-                'pp_weight' => '',
+                'pp_weight' => 'odvážené :percentage',
+                'view_details' => '',
                 'title' => 'Umiestnenia',
 
                 'best' => [
@@ -279,6 +313,13 @@ return [
                 'first' => [
                     'title' => 'Umiestnenie na prvom mieste',
                 ],
+            ],
+            'votes' => [
+                'given' => 'Počet hlasov (posledné 3 mesiace)',
+                'received' => 'Získané hlasy (posledné 3 mesiace)',
+                'title' => 'Hlasy',
+                'title_longer' => 'Nedávne hlasy',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Stav Účtu',
@@ -303,11 +344,6 @@ return [
             ],
         ],
 
-        'header_title' => [
-            '_' => '',
-            'info' => '',
-        ],
-
         'info' => [
             'discord' => '',
             'interests' => 'Záujmy',
@@ -326,10 +362,15 @@ return [
             'title' => 'Užívateľ nebol nájdený! ;_;',
         ],
         'page' => [
-            'button' => '',
+            'button' => 'Upraviť profilovú stránku',
             'description' => '<strong>ja!</strong> je osobná prispôsobiteľná plocha na tvojom profile.',
             'edit_big' => 'Uprav ma!',
             'placeholder' => 'Tu napíš obsah stránky',
+
+            'restriction_info' => [
+                '_' => 'Musíš byť :link aby si mohol využívať túto funkciu.',
+                'link' => 'osu!supporter',
+            ],
         ],
         'post_count' => [
             '_' => 'Prispel :link',
@@ -337,16 +378,16 @@ return [
         ],
         'rank' => [
             'country' => 'Štátna pozícia pre :mode',
-            'country_simple' => '',
+            'country_simple' => 'Umiestnenie v krajine',
             'global' => 'Globálna pozícia pre :mode',
-            'global_simple' => '',
+            'global_simple' => 'Celkové umiestnenie',
         ],
         'stats' => [
             'hit_accuracy' => 'Presnosť Zásahov',
             'level' => 'Úroveň :level',
-            'level_progress' => '',
+            'level_progress' => 'Percentá do ďalšieho levelu',
             'maximum_combo' => 'Maximálne Kombo',
-            'medals' => '',
+            'medals' => 'Medaily',
             'play_count' => 'Počet Zahraní',
             'play_time' => 'Celkový počet hrania',
             'ranked_score' => 'Hodnotené Skóre',
@@ -354,9 +395,16 @@ return [
             'score_ranks' => 'Umiestnenie Podľa Skóre',
             'total_hits' => 'Celkových Zásahov',
             'total_score' => 'Celkové Skóre',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Hodnotené a Schválené Beatmapy',
+            'loved_beatmapset_count' => 'Obľúbené beatmapy',
+            'unranked_beatmapset_count' => 'Čakajúce Beatmapy',
+            'graveyard_beatmapset_count' => 'Irelevantné beatmapy',
         ],
     ],
+
     'status' => [
+        'all' => 'Všetko',
         'online' => 'Online',
         'offline' => 'Offline',
     ],
@@ -365,5 +413,11 @@ return [
     ],
     'verify' => [
         'title' => 'Overenie Účtu',
+    ],
+
+    'view_mode' => [
+        'brick' => '',
+        'card' => 'Karty',
+        'list' => 'Zoznam',
     ],
 ];

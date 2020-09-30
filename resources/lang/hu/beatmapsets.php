@@ -93,7 +93,6 @@ return [
             'source' => 'Forrás',
             'success-rate' => 'Teljesítési arány',
             'tags' => 'Címkék',
-            'unranked' => 'Rangsorolatlan beatmap',
         ],
 
         'scoreboard' => [
@@ -115,6 +114,7 @@ return [
                 'rank' => 'Rang',
                 'score_total' => 'Összpontszám',
                 'score' => 'Pontszám',
+                'time' => 'Idő',
             ],
 
             'no_scores' => [

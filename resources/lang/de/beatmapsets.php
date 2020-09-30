@@ -6,7 +6,7 @@
 return [
     'availability' => [
         'disabled' => 'Diese Beatmap steht momentan nicht zum Herunterladen zur Verfügung.',
-        'parts-removed' => 'Teile dieser Beatmap wurden auf Anfrage eines Rechteinhabers entfernt.',
+        'parts-removed' => 'Teile dieser Beatmap wurden auf Anfrage des Erstellers oder eines Rechteinhabers entfernt.',
         'more-info' => 'Siehe hier für mehr Informationen.',
     ],
 
@@ -61,7 +61,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Wenn du es genossen hast diese Karte zu spielen, dann hype diese Karte, um beim Fortschritt zum <strong>Ranked</strong>-Status beizutragen.',
+            'action' => 'Wenn du es dir Spaß gemacht hat, diese Map zu spielen, dann hype sie, um bei ihrem Fortschritt zum <strong>Ranked</strong>-Status zu helfen.',
 
             'current' => [
                 '_' => 'Die Map ist zurzeit :status.',
@@ -93,7 +93,6 @@ return [
             'source' => 'Quelle',
             'success-rate' => 'Erfolgsrate',
             'tags' => 'Tags',
-            'unranked' => 'Unranked beatmap',
         ],
 
         'scoreboard' => [
@@ -102,7 +101,7 @@ return [
             'friend' => 'Freundesrangliste',
             'global' => 'Globale Rangliste',
             'supporter-link' => '<a href=":link">Hier</a> klicken, um alle tollen Features zu entdecken!',
-            'supporter-only' => 'Du musst Supporter sein, um Freundes- und Länderranglisten zu sehen!',
+            'supporter-only' => 'Du musst Supporter sein, um Freundes- und Landesranglisten zu sehen!',
             'title' => 'Ranglisten',
 
             'headers' => [
@@ -115,6 +114,7 @@ return [
                 'rank' => 'Rang',
                 'score_total' => 'Gesamtpunktzahl',
                 'score' => 'Punktzahl',
+                'time' => 'Zeit',
             ],
 
             'no_scores' => [

@@ -95,8 +95,8 @@ return [
             ],
 
             'speedy_downloads' => [
-                'title' => 'Download Veloce',
-                'description' => 'Restrizioni di downlaod più leggere, specialmente quando usi l\'osu!direct.',
+                'title' => 'Download Rapidi',
+                'description' => 'Restrizioni più leggere sui download, specialmente quando si utilizza osu!direct.',
             ],
 
             'change_username' => [
@@ -133,7 +133,7 @@ return [
             ],
             'friend_filtering' => [
                 'title' => 'Classifiche con Amici',
-                'description' => 'Competi con i tuoi amici e guarda come ti classifichi rispetto a loro!*<br/><br/><small>* non ancora disponibile sul nuovo sito, comingsoon(tm)</small>',
+                'description' => 'Competi con i tuoi amici e guarda come ti classifichi rispetto a loro!',
             ],
 
         ],

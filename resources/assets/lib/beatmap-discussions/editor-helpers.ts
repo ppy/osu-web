@@ -1,18 +1,33 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { Editor, Text, Transforms } from 'slate';
-import { Node as SlateNode } from 'slate';
+import {
+  BeatmapDiscussionReview,
+  BeatmapReviewDiscussionType,
+  DocumentIssueEmbed,
+} from 'interfaces/beatmap-discussion-review';
+import { Editor, Element as SlateElement, Node as SlateNode, Range as SlateRange, Text, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
-import { BeatmapDiscussionReview, DocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 
-export const slateDocumentIsEmpty = (doc: SlateNode[]): boolean => {
+export const blockCount = (input: SlateElement[]) => input.length;
+
+export const slateDocumentIsEmpty = (doc: SlateElement[]): boolean => {
   return doc.length === 0 || (
       doc.length === 1 &&
       doc[0].type === 'paragraph' &&
       doc[0].children.length === 1 &&
       doc[0].children[0].text === ''
     );
+};
+
+export const insideEmbed = (editor: ReactEditor) => {
+  if (editor.selection) {
+    const parent = SlateNode.parent(editor, SlateRange.start(editor.selection).path);
+
+    return parent.type === 'embed';
+  }
+
+  return false;
 };
 
 export const isFormatActive = (editor: ReactEditor, format: string) => {
@@ -31,10 +46,13 @@ export const toggleFormat = (editor: ReactEditor, format: string) => {
   );
 };
 
-export const serializeSlateDocument = (input: SlateNode[]) => {
+export const slateDocumentContainsNewProblem = (input: SlateElement[]) =>
+  input.some((node) => node.type === 'embed' && node.discussionType === 'problem' && !node.discussionId);
+
+export const serializeSlateDocument = (input: SlateElement[]) => {
   const review: BeatmapDiscussionReview = [];
 
-  input.forEach((node: SlateNode) => {
+  input.forEach((node) => {
     switch (node.type) {
       case 'paragraph':
         const childOutput: string[] = [];
@@ -43,20 +61,20 @@ export const serializeSlateDocument = (input: SlateNode[]) => {
           italic: false,
         };
 
-        node.children.forEach((child: SlateNode) => {
+        node.children.forEach((child) => {
           if (child.text !== '') {
             if (currentMarks.bold !== (child.bold ?? false)) {
-              currentMarks.bold = child.bold ?? false;
+              currentMarks.bold = (child.bold as boolean) ?? false;
               childOutput.push('**');
             }
 
             if (currentMarks.italic !== (child.italic ?? false)) {
-              currentMarks.italic = child.italic ?? false;
+              currentMarks.italic = (child.italic as boolean) ?? false;
               childOutput.push('*');
             }
           }
 
-          childOutput.push(child.text.replace('*', '\\*'));
+          childOutput.push((child.text as string).replace('*', '\\*'));
         });
 
         // ensure closing of open tags
@@ -76,16 +94,21 @@ export const serializeSlateDocument = (input: SlateNode[]) => {
         break;
 
       case 'embed':
-        const doc: DocumentIssueEmbed = {
-          beatmap_id: node.beatmapId,
-          discussion_type: node.discussionType,
-          text: node.children[0].text,
-          timestamp: node.timestamp ? BeatmapDiscussionHelper.parseTimestamp(node.timestamp) : null,
-          type: 'embed',
-        };
+        let doc: DocumentIssueEmbed;
 
         if (node.discussionId) {
-          doc.discussion_id = node.discussionId;
+          doc = {
+            discussion_id: node.discussionId as number,
+            type: 'embed',
+          };
+        } else {
+          doc = {
+            beatmap_id: node.beatmapId as number,
+            discussion_type: node.discussionType as BeatmapReviewDiscussionType,
+            text: node.children[0].text as string,
+            timestamp: node.timestamp ? BeatmapDiscussionHelper.parseTimestamp(node.timestamp as string) : null,
+            type: 'embed',
+          };
         }
 
         review.push(doc);

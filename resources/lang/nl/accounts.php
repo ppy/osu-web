@@ -49,14 +49,21 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'ontvang meldingen voor nieuw probleem op gekwalificeerde beatmaps van de volgende modes',
+        'beatmapset_disqualify' => 'ontvang meldingen voor wanneer beatmaps van de volgende modes zijn gediskwalificeerd',
+        'comment_reply' => 'ontvang meldingen voor reacties op uw reacties',
         'title' => 'Meldingen',
         'topic_auto_subscribe' => 'automatisch meldingen inschakelen op nieuwe forum onderwerpen die u maakt',
-        'beatmapset_discussion_qualified_problem' => 'ontvang meldingen voor nieuw probleem op gekwalificeerde beatmaps van de volgende modes',
 
-        'mail' => [
-            '_' => 'e-mailnotificaties ontvangen voor',
+        'options' => [
+            '_' => 'verzend methodes',
             'beatmapset:modding' => 'beatmap modding',
+            'channel_message' => 'privéberichten',
+            'comment_new' => 'nieuwe reacties',
             'forum_topic_reply' => 'topic antwoord',
+            'mail' => 'e-mail',
+            'push' => 'push',
+            'user_achievement_unlock' => 'medaille verdiend',
         ],
     ],
 
@@ -75,6 +82,8 @@ return [
             'no_video' => 'zonder video',
             'direct' => 'open in osu!direct',
         ],
+
+        'beatmapset_title_show_original' => 'beatmap metadata in originele taal weergeven',
     ],
 
     'playstyles' => [

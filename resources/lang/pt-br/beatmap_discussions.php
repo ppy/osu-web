@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Nenhuma das postagens corresponde ao que procuro',
         'notice' => 'Existem postagens próximas de :timestamp (:existing_timestamps). Por favor, visualize-as antes de postar.',
+        'unsaved' => ':count nesta revisão',
     ],
 
     'reply' => [
@@ -64,9 +65,12 @@ return [
     ],
 
     'review' => [
+        'block_count' => ':used / :max blocos usados',
         'go_to_parent' => 'Ver Publicação de Revisão',
         'go_to_child' => 'Ver Discussão',
         'validation' => [
+            'block_too_large' => 'cada bloco só pode conter até :limit caracteres',
+            'external_references' => 'revisão contém referências a problemas que não pertencem a esta revisão',
             'invalid_block_type' => 'tipo de bloco inválido',
             'invalid_document' => 'revisão inválida',
             'minimum_issues' => 'revisão deve conter um mínimo de :count problema|revisão deve conter um mínimo de :count problemas',

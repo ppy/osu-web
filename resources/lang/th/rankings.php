@@ -4,15 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => 'คัดกรองตามประเทศ',
+    'countries' => [
+        'all' => 'ทั่วโลก',
+        'title' => 'ประเทศ',
+    ],
+
+    'filter' => [
+        'title' => 'แสดง',
+
+        'variant' => [
+            'title' => 'ประเภท',
+        ],
     ],
 
     'type' => [
-        'performance' => 'ประสิทธิภาพ',
-        'charts' => 'สปอตไลต์',
-        'score' => 'คะแนน',
+        'charts' => 'โดดเด่น',
         'country' => 'ประเทศ',
+        'multiplayer' => 'โหมดผู้เล่นหลายคน',
+        'performance' => 'ประสิทธิภาพ',
+        'score' => 'คะแนน',
     ],
 
     'spotlight' => [
@@ -27,11 +37,11 @@ return [
         'active_users' => 'จำนวนผู้เล่นที่ยังมีความเคลื่อนไหวอยู่',
         'country' => 'ประเทศ',
         'play_count' => 'จำนวนครั้งที่เล่น',
-        'performance' => 'ค่าศักยภาพ',
+        'performance' => 'ประสิทธิภาพ​',
         'total_score' => 'คะแนนรวมทั้งหมด',
         'ranked_score' => 'คะแนนที่แรงค์',
         'average_score' => 'คะแนนเฉลี่ย',
-        'average_performance' => 'ค่าศักยภาพเฉลี่ย',
+        'average_performance' => 'ค่าประสิทธิภาพเฉลี่ย',
         'ss' => 'SS',
         's' => 'S',
         'a' => 'A',

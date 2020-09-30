@@ -13,11 +13,11 @@ const localesPath = path.resolve(buildPath, 'locales');
 const messagesPath = path.resolve(buildPath, 'messages.json');
 
 function extractLanguages() {
-  console.log('Extracting localizations...')
+  console.log('Extracting localizations...');
   const messages = getAllMesssages();
 
   const languages = new Map();
-  for (const key in messages) {
+  for (const key of Object.keys(messages)) {
     const index = key.indexOf('.');
     const language = key.substring(0, index);
     if (!languages.has(language)) {
@@ -35,19 +35,17 @@ function getAllMesssages() {
   return JSON.parse(content);
 }
 
-function generateTranslations()
-{
+function generateTranslations() {
   spawnSync('php', ['artisan', 'lang:js', '--json', messagesPath], { stdio: 'inherit' });
 }
 
-function writeTranslations(languages)
-{
+function writeTranslations(languages) {
   for (const lang of languages.keys()) {
     const json = languages.get(lang);
     delete json[`${lang}.mail`];
     const jsonString = JSON.stringify(json);
     const filename = path.resolve(localesPath, `${lang}.js`);
-    const script = `(function() { 'use strict'; Object.assign(Lang.messages, ${jsonString}); })();`;
+    const script = `(function() { 'use strict'; if (window.LangMessages === undefined) window.LangMessages = { messages: {}}; Object.assign(LangMessages, ${jsonString}); })();`;
 
     fs.writeFileSync(filename, script);
     console.log(`Created: ${filename}`);
@@ -60,12 +58,6 @@ fs.mkdirSync(localesPath, {recursive: true});
 
 generateTranslations();
 writeTranslations(extractLanguages());
-
-// copy lang.js
-fs.copyFileSync(
-  path.resolve(__dirname, 'vendor/mariuzzo/laravel-js-localization/lib/lang.min.js'),
-  path.resolve(buildPath, 'lang.js')
-);
 
 // cleanup
 fs.unlinkSync(messagesPath);

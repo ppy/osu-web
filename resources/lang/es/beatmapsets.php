@@ -89,11 +89,10 @@ return [
             'genre' => 'Género',
             'language' => 'Idioma',
             'no_scores' => 'Los datos todavía están siendo calculados...',
-            'points-of-failure' => 'Puntos de Fracaso',
+            'points-of-failure' => 'Puntos de fracaso',
             'source' => 'Fuente',
             'success-rate' => 'Tasa de éxito',
             'tags' => 'Etiquetas',
-            'unranked' => 'Mapa no clasificado',
         ],
 
         'scoreboard' => [
@@ -101,8 +100,8 @@ return [
             'country' => 'Clasificación Nacional',
             'friend' => 'Clasificación entre Amigos',
             'global' => 'Clasificación Global',
-            'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
-            'supporter-only' => '¡Necesitas ser un osu!supporter para acceder a las clasificaciones nacionales y entre amigos!',
+            'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las características de lujo que ofrece!',
+            'supporter-only' => '¡Debe ser un osu!supporter para acceder a las clasificaciones nacionales y entre amigos!',
             'title' => 'Tabla de puntuaciones',
 
             'headers' => [
@@ -115,6 +114,7 @@ return [
                 'rank' => 'Puesto',
                 'score_total' => 'Puntuación total',
                 'score' => 'Puntuación',
+                'time' => 'Tiempo',
             ],
 
             'no_scores' => [
@@ -131,17 +131,17 @@ return [
         ],
 
         'stats' => [
-            'cs' => 'Tamaño del Círculo',
-            'cs-mania' => 'Cantidad de Teclas',
+            'cs' => 'Tamaño del círculo',
+            'cs-mania' => 'Cantidad de teclas',
             'drain' => 'Drenado de HP',
             'accuracy' => 'Precisión',
             'ar' => 'Velocidad de aproximación',
-            'stars' => 'Estrellas de Dificultad',
+            'stars' => 'Estrellas de dificultad',
             'total_length' => 'Duración (Duración del drenaje: :hit_length)',
             'bpm' => 'BPM',
-            'count_circles' => 'Número de Círculos',
-            'count_sliders' => 'Número de Deslizadores',
-            'user-rating' => 'Valoración de los Usuarios',
+            'count_circles' => 'Número de círculos',
+            'count_sliders' => 'Número de deslizadores',
+            'user-rating' => 'Valoración de los usuarios',
             'rating-spread' => 'Desglose de valoraciones',
             'nominations' => 'Nominaciones',
             'playcount' => 'Veces jugado',

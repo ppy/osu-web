@@ -10,7 +10,7 @@ return [
     'title' => 'osu! форум',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Редактиране на обложката',
 
         'create' => [
             '_' => 'Задай изображение за корицата',
@@ -25,10 +25,10 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => 'Последна публикация',
 
         'index' => [
-            'title' => '',
+            'title' => 'Индекс на форума',
         ],
 
         'topics' => [
@@ -56,13 +56,13 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Нов отговор',
             ],
         ],
 
         'info' => [
             'post_count' => ':count_delimited публикация|:count_delimited публикации',
-            'topic_starter' => '',
+            'topic_starter' => 'Тема на автора',
         ],
     ],
 
@@ -75,6 +75,8 @@ return [
     'topic' => [
         'deleted' => 'изтрита тема',
         'go_to_latest' => 'виж най-новата публикация',
+        'has_replied' => '',
+        'in_forum' => '',
         'latest_post' => ':when от :user',
         'latest_reply_by' => 'последният отговор от :user',
         'new_topic' => 'Създай нова тема',
@@ -86,7 +88,7 @@ return [
         'started_by_verbose' => 'започнато от :user',
 
         'create' => [
-            'close' => '',
+            'close' => 'Затвори',
             'preview' => 'Преглед',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -167,7 +169,7 @@ return [
 
             'poll' => [
                 'hide_results' => 'Скрий резултатите от анкетата.',
-                'hide_results_info' => '',
+                'hide_results_info' => 'Ще бъдат показани само след приключването на анкетата.',
                 'length' => 'Остави анкетата отворена за',
                 'length_days_suffix' => 'дни',
                 'length_info' => 'Оставете празно за безкрайна анкета',
@@ -236,10 +238,10 @@ return [
         'lock' => [
             'is_locked' => 'Тази тема е заключена и не може да се отговаря на нея',
             'to_0' => 'Отключи тема',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Отключи темата?',
             'to_0_done' => 'Темата бе отключена',
             'to_1' => 'Заключи тема',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Заключи темата?',
             'to_1_done' => 'Темата бе заключена',
         ],
 
@@ -249,19 +251,19 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Разкачи прикрепената тема',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Откачи темата?',
             'to_0_done' => 'Темата бе разкачена',
             'to_1' => 'Закачи темата',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Закачи темата?',
             'to_1_done' => 'Темата бе закачена',
             'to_2' => 'Закачи темата и я отбележи като уведомление',
-            'to_2_confirm' => '',
+            'to_2_confirm' => 'Закачи темата и я отбележи като уведомление?',
             'to_2_done' => 'Темата бе закачена и я отбелязана като уведомление',
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Покажи изтритите публикации',
+            'hide' => 'Скрий изтритите публикации',
         ],
 
         'show' => [
@@ -286,21 +288,21 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
-                'edit_warning' => '',
+                'edit' => 'Редакция на анкетата',
+                'edit_warning' => 'Редактирането на анкетата ще анулира текущите резултати!',
                 'vote' => 'Гласувай',
 
                 'button' => [
-                    'change_vote' => '',
-                    'edit' => '',
-                    'view_results' => '',
-                    'vote' => '',
+                    'change_vote' => 'Промяна на глас',
+                    'edit' => 'Редактирай анкетата',
+                    'view_results' => 'Прескочи до резултатите',
+                    'vote' => 'Гласувай',
                 ],
 
                 'detail' => [
                     'end_time' => 'Гласуването затваря в :time',
                     'ended' => 'Гласуването приключи в :time',
-                    'results_hidden' => '',
+                    'results_hidden' => 'Резултатите ще бъдат показани след края на анкетата.',
                     'total' => 'Общ брой гласове: :count',
                 ],
             ],

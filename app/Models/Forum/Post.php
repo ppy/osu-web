@@ -106,6 +106,13 @@ class Post extends Model implements AfterCommit
         $this->attributes['bbcode_bitfield'] = $bbcode->bitfield;
     }
 
+    public function getPostEditUserAttribute($value)
+    {
+        if ($value !== 0) {
+            return $value;
+        }
+    }
+
     public function setPostTimeAttribute($value)
     {
         $this->attributes['post_time'] = get_timestamp_or_zero($value);
@@ -241,8 +248,12 @@ class Post extends Model implements AfterCommit
     {
         $this->validationErrors()->reset();
 
-        if (!$this->skipBodyPresenceCheck && !present($this->post_text)) {
-            $this->validationErrors()->add('post_text', 'required');
+        if (!$this->skipBodyPresenceCheck) {
+            if (trim_unicode($this->post_text) === '') {
+                $this->validationErrors()->add('post_text', 'required');
+            } elseif (trim_unicode(BBCodeFromDB::removeBlockQuotes($this->post_text)) === '') {
+                $this->validationErrors()->add('base', '.only_quote');
+            }
         }
 
         if ($this->isDirty('post_text') && mb_strlen($this->body_raw) > config('osu.forum.max_post_length')) {
@@ -256,10 +267,6 @@ class Post extends Model implements AfterCommit
 
                 return false;
             }
-        }
-
-        if (empty(trim(BBCodeFromDB::removeBlockQuotes($this->post_text)))) {
-            $this->validationErrors()->add('base', '.only_quote');
         }
 
         return $this->validationErrors()->isEmpty();
@@ -286,8 +293,7 @@ class Post extends Model implements AfterCommit
     public function isBeatmapsetPost()
     {
         if ($this->topic !== null) {
-            return
-                $this->getKey() === $this->topic->topic_first_post_id &&
+            return $this->getKey() === $this->topic->topic_first_post_id &&
                 $this->topic->beatmapset()->exists();
         }
     }

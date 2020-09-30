@@ -126,6 +126,12 @@ return [
             '_' => '',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => 'xếp hạng
+',
+        ],
+    ],
     'store' => [
         '_' => '',
     ],

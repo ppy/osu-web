@@ -6,6 +6,7 @@
 namespace App\Transformers;
 
 use App\Models\Beatmap;
+use App\Models\DeletedUser;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Score\Model as ScoreModel;
 
@@ -18,7 +19,7 @@ class ScoreTransformer extends TransformerAbstract
         'rank_global',
         'weight',
         'user',
-        'multiplayer',
+        'match',
     ];
 
     public function transform($score)
@@ -49,6 +50,7 @@ class ScoreTransformer extends TransformerAbstract
         if ($score instanceof ScoreModel) {
             $ret['mode'] = $score->getMode();
             $ret['mode_int'] = Beatmap::modeInt($score->getMode());
+            $ret['replay'] = $score->best->replay ?? false;
         }
 
         if ($score instanceof ScoreBest) {
@@ -58,15 +60,13 @@ class ScoreTransformer extends TransformerAbstract
         return $ret;
     }
 
-    public function includeMultiplayer($score)
+    public function includeMatch($score)
     {
-        return $this->item($score, function ($score) {
-            return [
-                'slot' => $score->slot,
-                'team' => $score->team,
-                'pass' => $score->pass,
-            ];
-        });
+        return $this->primitive([
+            'slot' => $score->slot,
+            'team' => $score->team,
+            'pass' => $score->pass,
+        ]);
     }
 
     public function includeRankCountry($score)
@@ -90,12 +90,12 @@ class ScoreTransformer extends TransformerAbstract
             $score->beatmap->playmode = Beatmap::MODES[$score->getMode()];
         }
 
-        return $this->item($score->beatmap, new BeatmapTransformer);
+        return $this->item($score->beatmap, new BeatmapTransformer());
     }
 
     public function includeBeatmapset($score)
     {
-        return $this->item($score->beatmap->beatmapset, new BeatmapsetCompactTransformer);
+        return $this->item($score->beatmap->beatmapset, new BeatmapsetCompactTransformer());
     }
 
     public function includeWeight($score)
@@ -114,6 +114,8 @@ class ScoreTransformer extends TransformerAbstract
 
     public function includeUser($score)
     {
-        return $this->item($score->user, new UserCompactTransformer);
+        $user = $score->user ?? new DeletedUser(['user_id' => $score->user_id]);
+
+        return $this->item($user, new UserCompactTransformer());
     }
 }

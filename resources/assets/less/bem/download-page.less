@@ -4,23 +4,27 @@
 .download-page {
   @number-width: 30px;
   @number-margin-right: 5px;
+  @_step-gutter: 10px;
 
   display: flex;
   flex-grow: 1;
   justify-content: space-between;
 
-  padding: 40px 20px;
+  padding: 30px 10px;
   flex-direction: column;
-  align-items: center;
+  position: relative;
 
   @media @desktop {
-    padding: 40px @gutter-v2-desktop;
+    padding-left: (@gutter-v2-desktop - @_step-gutter);
+    padding-right: $padding-left;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 
-  &__accent {
+  &::before {
+    content: '';
     position: absolute;
     bottom: 0;
     left: 0;
@@ -29,16 +33,19 @@
     background-color: @osu-colour-h1;
   }
 
-  &__link {
-    .link-default();
+  &__help {
+    padding: @_step-gutter;
+    padding-top: (@_step-gutter * 2); // extra spacing
+    width: 100%;
+    flex: none;
+    font-size: @font-size--normal;
   }
 
   &__step {
-    width: 220px;
-    padding-bottom: 20px;
+    margin: @_step-gutter;
 
     @media @desktop {
-      padding-bottom: 0;
+      width: 220px;
     }
   }
 
@@ -50,6 +57,7 @@
     color: #fff;
     font-weight: 700;
     margin-right: @number-margin-right;
+    flex: none;
   }
 
   &__text {
@@ -63,7 +71,7 @@
     &--title {
       .center-content();
       font-size: @font-size--title-small-4;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
   }
 }

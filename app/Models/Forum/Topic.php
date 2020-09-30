@@ -128,7 +128,7 @@ class Topic extends Model implements AfterCommit
         ]);
         $topic->forum()->associate($forum);
 
-        $topic->getConnection()->transaction(function () use ($forum, $topic, $params, $poll) {
+        $topic->getConnection()->transaction(function () use ($topic, $params, $poll) {
             $topic->saveOrExplode();
             $topic->addPostOrExplode($params['user'], $params['body'], false);
 
@@ -421,7 +421,7 @@ class Topic extends Model implements AfterCommit
 
     public function setTopicTitleAttribute($value)
     {
-        $this->attributes['topic_title'] = preg_replace('/(^\s+|\s+$)/u', '', $value);
+        $this->attributes['topic_title'] = trim_unicode($value);
     }
 
     public function save(array $options = [])

@@ -53,7 +53,7 @@ class NotificationsBundle
         ];
 
         if ($this->unreadOnly) {
-            $response['unread_count'] = $this->user->userNotifications()->where('is_read', false)->count();
+            $response['unread_count'] = $this->user->userNotifications()->hasPushDelivery()->where('is_read', false)->count();
         }
 
         return $response;
@@ -67,7 +67,7 @@ class NotificationsBundle
             return;
         }
 
-        $query = $this->user->userNotifications()->with('notification')->whereHas('notification', function ($q) use ($objectId, $objectType, $category) {
+        $query = $this->user->userNotifications()->with('notification')->hasPushDelivery()->whereHas('notification', function ($q) use ($objectId, $objectType, $category) {
             $names = Notification::namesInCategory($category);
             $q
                 ->where('notifiable_type', $objectType)
@@ -102,8 +102,7 @@ class NotificationsBundle
         $heads = $this->getStackHeads($type);
 
         $heads->each(function ($row) {
-            $category = Notification::nameToCategory($row->name);
-            $this->fillStacks($row->notifiable_type, $row->notifiable_id, $category);
+            $this->fillStacks($row->notifiable_type, $row->notifiable_id, $row->category);
         });
 
         $last = $heads->last();
@@ -123,7 +122,7 @@ class NotificationsBundle
     private function getTotalNotificationCount(?string $type = null)
     {
         $query = Notification::whereHas('userNotifications', function ($q) {
-            $q->where('user_id', $this->user->getKey());
+            $q->hasPushDelivery()->where('user_id', $this->user->getKey());
             if ($this->unreadOnly) {
                 $q->where('is_read', false);
             }
@@ -139,7 +138,7 @@ class NotificationsBundle
     private function getStackHeads(?string $type = null)
     {
         $heads = Notification::whereHas('userNotifications', function ($q) {
-            $q->where('user_id', $this->user->getKey());
+            $q->hasPushDelivery()->where('user_id', $this->user->getKey());
             if ($this->unreadOnly) {
                 $q->where('is_read', false);
             }
@@ -187,7 +186,7 @@ class NotificationsBundle
         ];
 
         return [
-            'category' => Notification::nameToCategory($last->name),
+            'category' => $last->category,
             'cursor' => $cursor,
             'name' => $last->name,
             'object_type' => $last->notifiable_type,

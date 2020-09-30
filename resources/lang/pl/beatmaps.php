@@ -21,7 +21,7 @@ return [
         'kudosu_denied' => 'Odmówiono uzyskania kudosu.',
         'message_placeholder_deleted_beatmap' => 'Ten poziom trudności został usunięty, więc nie można umieszczać w nim postów.',
         'message_placeholder_locked' => 'Tworzenie dyskusji dla tej beatmapy zostało wyłączone.',
-        'message_placeholder_silenced' => "Nie możesz zamieścić dyskusji, kiedy jesteś wyciszony.",
+        'message_placeholder_silenced' => "Nie możesz zamieszczać dyskusji podczas uciszenia.",
         'message_type_select' => 'Wybierz typ komentarza',
         'reply_notice' => 'Naciśnij Enter, aby odpowiedzieć.',
         'reply_placeholder' => 'Napisz tutaj swoją odpowiedź',
@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Utwórz post w ogólnej dyskusji (:version)',
             'generalAll' => 'Utwórz post w ogólnej dyskusji (wszystkie poziomy trudności)',
+            'review' => 'Pisz tutaj, by zamieścić recenzję',
             'timeline' => 'Utwórz post dla osi czasu (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'Naciśnij Ctrl+C w edytorze i wklej swoją wiadomość, aby dodać znacznik czasu!',
             'title' => 'Nowa dyskusja',
             'unpin' => 'Odepnij',
+        ],
+
+        'review' => [
+            'new' => 'Nowa recenzja',
+            'embed' => [
+                'delete' => 'Usuń',
+                'missing' => '[DYSKUSJA USUNIĘTA]',
+                'unlink' => 'Usuń powiązanie',
+                'unsaved' => 'Niezapisana',
+                'timestamp' => [
+                    'all-diff' => 'Posty dla wszystkich poziomów trudności nie mogą zawierać znaczników czasu.',
+                    'diff' => 'Jeżeli ten post typu „:type” rozpoczyna się od znacznika czasu, zostanie on wyświetlony w zakładce osi czasu.',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => 'wstaw akapit',
+                'praise' => 'wstaw pochwałę',
+                'problem' => 'wstaw problem',
+                'suggestion' => 'wstaw sugestię',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Oryginalny',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Muzyka elektroniczna',
+        'metal' => 'Metal',
+        'classical' => 'Muzyka klasyczna',
+        'folk' => 'Muzyka folkowa',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '4K',
@@ -279,6 +304,7 @@ return [
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
         'TD' => 'Urządzenie dotykowe',
+        'V2' => 'Score V2',
     ],
     'language' => [
         'any' => 'Jakikolwiek',
@@ -291,8 +317,11 @@ return [
         'korean' => 'Koreański',
         'spanish' => 'Hiszpański',
         'swedish' => 'Szwedzki',
+        'russian' => 'Rosyjski',
+        'polish' => 'Polski',
         'instrumental' => 'Instrumentalny',
         'other' => 'Inny',
+        'unspecified' => 'Nieokreślony',
     ],
     'played' => [
         'any' => 'Jakikolwiek',
@@ -317,5 +346,12 @@ return [
     'panel' => [
         'playcount' => 'Liczba zagrań: :count',
         'favourites' => 'Liczba polubień: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Wszystkie',
+        ],
     ],
 ];

@@ -96,6 +96,7 @@ return [
             'country' => 'χώρα',
             'index' => 'επίδοση',
             'kudosu' => 'kudosu',
+            'multiplayer' => '',
             'score' => 'βαθμολογία',
         ],
         'store' => [
@@ -178,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Έχω ξεχάσει τα στοιχεία μου",
             'password' => 'κωδικός',

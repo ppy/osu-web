@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Reproduzir a próxima faixa automaticamente',
     ],
 
     'defaults' => [
@@ -96,6 +96,7 @@ return [
             'country' => 'país',
             'index' => 'desempenho',
             'kudosu' => 'kudosu',
+            'multiplayer' => 'multiplayer',
             'score' => 'pontuação',
         ],
         'store' => [
@@ -178,10 +179,12 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'entrar / registrar',
+
         'login' => [
             'forgot' => "Esqueci as minhas credenciais",
             'password' => 'senha',
-            'title' => 'Inicie a sessão para continuar',
+            'title' => 'Conecte-se para continuar',
             'username' => 'nome de usuário',
 
             'error' => [

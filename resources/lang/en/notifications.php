@@ -66,6 +66,8 @@ return [
 
                 'comment_new' => ':username commented ":content" on ":title"',
                 'comment_new_compact' => ':username commented ":content"',
+                'comment_reply' => ':username replied ":content" on ":title"',
+                'comment_reply_compact' => ':username replied ":content"',
             ],
         ],
 
@@ -90,6 +92,8 @@ return [
 
                 'comment_new' => ':username commented ":content" on ":title"',
                 'comment_new_compact' => ':username commented ":content"',
+                'comment_reply' => ':username replied ":content" on ":title"',
+                'comment_reply_compact' => ':username replied ":content"',
             ],
         ],
 
@@ -101,6 +105,8 @@ return [
 
                 'comment_new' => ':username commented ":content" on ":title"',
                 'comment_new_compact' => ':username commented ":content"',
+                'comment_reply' => ':username replied ":content" on ":title"',
+                'comment_reply_compact' => ':username replied ":content"',
             ],
         ],
 
@@ -130,6 +136,64 @@ return [
                 '_' => 'New medal',
                 'user_achievement_unlock' => 'Unlocked ":title"!',
                 'user_achievement_unlock_compact' => 'Unlocked ":title"!',
+            ],
+        ],
+    ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => 'The discussion on ":title" has been locked',
+                'beatmapset_discussion_post_new' => 'The discussion on ":title" has new updates',
+                'beatmapset_discussion_unlock' => 'The discussion on ":title" has been unlocked',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => 'A new problem was reported on ":title"',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '":title" has been disqualified',
+                'beatmapset_love' => '":title" was promoted to loved',
+                'beatmapset_nominate' => '":title" has been nominated',
+                'beatmapset_qualify' => '":title" has gained enough nominations and entered the ranking queue',
+                'beatmapset_rank' => '":title" has been ranked',
+                'beatmapset_reset_nominations' => 'Nomination of ":title" has been reset',
+            ],
+
+            'comment' => [
+                'comment_new' => 'Beatmap ":title" has new comments',
+            ],
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => 'You\'ve received a new message from :username',
+            ],
+        ],
+
+        'build' => [
+            'comment' => [
+                'comment_new' => 'Changelog ":title" has new comments',
+            ],
+        ],
+
+        'news_post' => [
+            'comment' => [
+                'comment_new' => 'News ":title" has new comments',
+            ],
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => [
+                'forum_topic_reply' => 'There are new replies in ":title"',
+            ],
+        ],
+
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => ':username has unlocked a new medal, ":title"!',
+                'user_achievement_unlock_self' => 'You\'ve unlocked a new medal, ":title"!',
             ],
         ],
     ],

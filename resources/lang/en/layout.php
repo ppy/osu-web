@@ -96,6 +96,7 @@ return [
             'country' => 'country',
             'index' => 'performance',
             'kudosu' => 'kudosu',
+            'multiplayer' => 'multiplayer',
             'score' => 'score',
         ],
         'store' => [
@@ -178,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'sign in / register',
+
         'login' => [
             'forgot' => "I've forgotten my details",
             'password' => 'password',

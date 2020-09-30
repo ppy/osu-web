@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nueva publicación en ":title" por :username',
                 'beatmapset_discussion_post_new_compact' => 'Nueva publicación por :username: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nueva publicación por :username',
+                'beatmapset_discussion_review_new' => 'Nueva revisión en ":title" por :username que contiene problemas: :problems, sugerencias: :suggestions, elogios: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Nueva revisión por :username que contiene problemas: :problems, sugerencias: :suggestions, elogios: :praises',
                 'beatmapset_discussion_unlock' => 'La discusión en ":title" se ha desbloqueado',
                 'beatmapset_discussion_unlock_compact' => 'La discusión se ha desbloqueado',
             ],
@@ -55,8 +57,8 @@ return [
                 'beatmapset_qualify_compact' => 'El mapa ingresó a la cola de clasificación',
                 'beatmapset_rank' => '":title" ha sido clasificado',
                 'beatmapset_rank_compact' => 'El mapa fue clasificado',
-                'beatmapset_reset_nominations' => 'La nominación de ":title" ha sido reiniciada',
-                'beatmapset_reset_nominations_compact' => 'La nominación fue reiniciada',
+                'beatmapset_reset_nominations' => 'La nominación de ":title" ha sido restablecida',
+                'beatmapset_reset_nominations_compact' => 'La nominación fue restablecida',
             ],
 
             'comment' => [
@@ -64,6 +66,8 @@ return [
 
                 'comment_new' => ':username comentó ":content" en ":title"',
                 'comment_new_compact' => ':username comentó ":content"',
+                'comment_reply' => ':username respondió ":content" en ":title"',
+                'comment_reply_compact' => ':username respondió ":content"',
             ],
         ],
 
@@ -88,6 +92,8 @@ return [
 
                 'comment_new' => ':username comentó ":content" en ":title"',
                 'comment_new_compact' => ':username comentó ":content"',
+                'comment_reply' => ':username respondió ":content" en ":title"',
+                'comment_reply_compact' => ':username respondió ":content"',
             ],
         ],
 
@@ -99,6 +105,8 @@ return [
 
                 'comment_new' => ':username comentó ":content" en ":title"',
                 'comment_new_compact' => ':username comentó ":content"',
+                'comment_reply' => ':username respondió ":content" en ":title"',
+                'comment_reply_compact' => ':username respondió ":content"',
             ],
         ],
 
@@ -128,6 +136,64 @@ return [
                 '_' => 'Nueva medalla',
                 'user_achievement_unlock' => '¡Desbloqueado ":title"!',
                 'user_achievement_unlock_compact' => '¡Desbloqueado ":title"!',
+            ],
+        ],
+    ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => 'La discusión en ":title" se ha cerrado',
+                'beatmapset_discussion_post_new' => 'La discusión en ":title" tiene nuevas actualizaciones',
+                'beatmapset_discussion_unlock' => 'La discusión en ":title" se ha desbloqueado',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => 'Se informó de un nuevo problema en ":title"',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '":title" ha sido descalificado',
+                'beatmapset_love' => '":title" fue promovido a amado',
+                'beatmapset_nominate' => '":title" ha sido nominado',
+                'beatmapset_qualify' => '":title" ha ganado suficientes nominaciones e ingresó a la cola de clasificación',
+                'beatmapset_rank' => '":title" ha sido clasificado',
+                'beatmapset_reset_nominations' => 'La nominación de ":title" ha sido restablecida',
+            ],
+
+            'comment' => [
+                'comment_new' => 'El mapa ":title" tiene nuevos comentarios',
+            ],
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => 'Ha recibido un nuevo mensaje de :username',
+            ],
+        ],
+
+        'build' => [
+            'comment' => [
+                'comment_new' => 'El registro de cambios ":title" tiene nuevos comentarios',
+            ],
+        ],
+
+        'news_post' => [
+            'comment' => [
+                'comment_new' => 'La novedad ":title" tiene nuevos comentarios',
+            ],
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => [
+                'forum_topic_reply' => 'Hay nuevas respuestas en ":title"',
+            ],
+        ],
+
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => '¡:username ha desbloqueado una nueva medalla, ":title"!',
+                'user_achievement_unlock_self' => '¡Ha desbloqueado una nueva medalla, ":title"!',
             ],
         ],
     ],

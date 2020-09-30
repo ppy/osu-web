@@ -17,10 +17,10 @@ return [
 
     'panel' => [
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'lataa',
+            'video' => 'lataa videon kanssa',
+            'no_video' => 'lataa ilman videota',
+            'direct' => 'avaa osu!directissä',
         ],
     ],
 
@@ -79,7 +79,7 @@ return [
 
             'report' => [
                 '_' => '',
-                'button' => '',
+                'button' => 'Ilmoita Ongelma',
                 'link' => '',
             ],
         ],
@@ -93,7 +93,6 @@ return [
             'source' => 'Lähde',
             'success-rate' => 'Läpäisyprosentti',
             'tags' => 'Tunnisteet',
-            'unranked' => 'Beatmap ei ole hyväksytyssä tilassa',
         ],
 
         'scoreboard' => [
@@ -115,6 +114,7 @@ return [
                 'rank' => 'Sijoitus',
                 'score_total' => 'Kokonaispisteet',
                 'score' => 'Pisteet',
+                'time' => 'Aika',
             ],
 
             'no_scores' => [
@@ -151,10 +151,10 @@ return [
             'ranked' => '',
             'approved' => '',
             'loved' => '',
-            'qualified' => '',
-            'wip' => '',
+            'qualified' => 'Esihyväksytty',
+            'wip' => 'Työn alla',
             'pending' => '',
-            'graveyard' => '',
+            'graveyard' => 'Hautausmaa',
         ],
     ],
 ];

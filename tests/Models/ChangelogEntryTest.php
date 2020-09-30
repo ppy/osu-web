@@ -13,7 +13,7 @@ class ChangelogEntryTest extends TestCase
 {
     public function testMessageHTMLVisibility()
     {
-        $entry = new ChangelogEntry;
+        $entry = new ChangelogEntry();
 
         $entry->message = 'Hidden';
         $this->assertSame(null, $entry->messageHTML());
@@ -66,5 +66,88 @@ class ChangelogEntryTest extends TestCase
         $converted = ChangelogEntry::convertLegacy($legacy);
         $this->assertSame($message, $converted->title);
         $this->assertNull($converted->messageHTML());
+    }
+
+    public function testGuessCategoryCapitalise()
+    {
+        $data = [
+            'repository' => ['full_name' => ''],
+            'pull_request' => [
+                'labels' => [
+                    ['name' => 'forum'],
+                ],
+            ],
+        ];
+
+        $this->assertSame('Forum', ChangelogEntry::guessCategory($data));
+    }
+
+    public function testGuessCategoryDashToSpace()
+    {
+        $data = [
+            'repository' => ['full_name' => ''],
+            'pull_request' => [
+                'labels' => [
+                    ['name' => 'beatmapset-discussion'],
+                ],
+            ],
+        ];
+
+        $this->assertSame('Beatmapset Discussion', ChangelogEntry::guessCategory($data));
+    }
+
+    public function testGuessCategoryMixedDashAndSpaceNoConversion()
+    {
+        $data = [
+            'repository' => ['full_name' => ''],
+            'pull_request' => [
+                'labels' => [
+                    ['name' => 'beatmapset - discussion'],
+                ],
+            ],
+        ];
+
+        $this->assertSame('Beatmapset - Discussion', ChangelogEntry::guessCategory($data));
+    }
+
+    public function testGuessCategoryPrefixRemoval()
+    {
+        $data = [
+            'repository' => ['full_name' => ''],
+            'pull_request' => [
+                'labels' => [
+                    ['name' => 'area:forum'],
+                ],
+            ],
+        ];
+
+        $this->assertSame('Forum', ChangelogEntry::guessCategory($data));
+    }
+
+    public function testIsPrivate()
+    {
+        $data = [
+            'repository' => ['full_name' => ''],
+            'pull_request' => [
+                'labels' => [
+                    ['name' => 'javascript'],
+                    ['name' => 'area:forum'],
+                ],
+            ],
+        ];
+
+        $this->assertFalse(ChangelogEntry::isPrivate($data));
+
+        $data = [
+            'repository' => ['full_name' => ''],
+            'pull_request' => [
+                'labels' => [
+                    ['name' => 'javascript'],
+                    ['name' => 'dependencies'],
+                ],
+            ],
+        ];
+
+        $this->assertTrue(ChangelogEntry::isPrivate($data));
     }
 }

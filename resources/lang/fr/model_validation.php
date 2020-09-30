@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute dépasse la longeur maximale - elle est de :limit caractères.',
     'wrong_confirmation' => 'La confirmation ne correspond pas.',
 
-    'beatmap_discussion_post' => [
-        'discussion_locked' => 'La discussion est verrouillée.',
-        'first_post' => 'Impossible de supprimer le post de départ.',
-
-        'attributes' => [
-            'message' => 'Le message',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'L\'horodatage est correct, mais la beatmap est introuvable.',
         'beatmapset_no_hype' => "Cette beatmap ne peut pas être hypée.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'L\'horodotage spécifié dépasse la longueur de la beatmap',
             'negative' => "L'horodotage ne peut pas être négatif",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'La discussion est verrouillée.',
+        'first_post' => 'Impossible de supprimer le message de départ.',
+
+        'attributes' => [
+            'message' => 'Le message',
         ],
     ],
 
@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Le mot de passe ne doit pas contenir de nom d\'utilisateur.',
         'email_already_used' => 'Adresse email déjà utilisée.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Le pays n\'est pas dans la base de données.',
         'invalid_discord' => 'Nom d\'utilisateur Discord invalide.',
         'invalid_email' => "Ça ne semble pas être une adresse email valide.",

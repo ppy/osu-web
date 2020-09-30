@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Aucun des posts ne parle de mon problème',
         'notice' => 'Il y a des posts pour :timestamp (:existing_timestamps). Merci de les vérifier avant de poster.',
+        'unsaved' => ':count dans cette revue',
     ],
 
     'reply' => [
@@ -64,14 +65,17 @@ return [
     ],
 
     'review' => [
+        'block_count' => ':used / :max blocs utilisés',
         'go_to_parent' => 'Voir l\'avis',
         'go_to_child' => 'Voir la discussion',
         'validation' => [
+            'block_too_large' => 'chaque bloc peut contenir jusqu\'à :limit caractères',
+            'external_references' => 'l\'avis contient des références à des problèmes qui n\'appartiennent pas à cet avis',
             'invalid_block_type' => 'type de bloc invalide',
-            'invalid_document' => 'revue invalide',
-            'minimum_issues' => 'la revue doit contenir un minimum de :count problèmes|la revue doit contenir un minimum de :count problèmes',
+            'invalid_document' => 'avis invalide',
+            'minimum_issues' => 'l\'avis doit contenir un minimum de :count problèmes|l\'avis doit contenir un minimum de :count problèmes',
             'missing_text' => 'le bloc manque du texte',
-            'too_many_blocks' => 'les revues ne doivent contenir que :count paragraphes/problème|les revues doivent contenir jusqu\'à :count paragraphes/problèmes',
+            'too_many_blocks' => 'les avis ne doivent contenir que :count paragraphes/problème|les revues doivent contenir jusqu\'à :count paragraphes/problèmes',
         ],
     ],
 
@@ -89,6 +93,6 @@ return [
 
     'user_filter' => [
         'everyone' => 'Tout le monde',
-        'label' => 'Filtre par utilisateur',
+        'label' => 'Filtrer par utilisateur',
     ],
 ];

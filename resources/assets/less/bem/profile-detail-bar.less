@@ -9,6 +9,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: @osu-colour-b4;
+  position: relative;
 
   @media @desktop {
     padding: 10px @gutter-profile-page-desktop;
@@ -17,12 +18,10 @@
 
   &__column {
     display: flex;
-    width: 100%;
     padding: 5px;
     flex-wrap: wrap;
 
     @media @desktop {
-      width: auto;
       margin: -5px;
       padding: 0;
       flex-wrap: nowrap;
@@ -42,6 +41,7 @@
     flex: none;
     margin: 5px;
     display: flex;
+    position: relative;
 
     &--level {
       .center-content();
@@ -64,7 +64,7 @@
     height: calc(100% + 10px);
     width: 50px;
     font-size: @font-size--large;
-    background-image: url('/images/backgrounds/level-hexagon.svg');
+    background-image: url('~@images/backgrounds/level-hexagon.svg');
     background-position: center;
     background-repeat: no-repeat;
   }

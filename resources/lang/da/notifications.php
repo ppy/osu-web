@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nyt opslag på ":title" af :username',
                 'beatmapset_discussion_post_new_compact' => 'Nyt oplsag af :username: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nyt oplsag af :username',
+                'beatmapset_discussion_review_new' => '',
+                'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => 'Diskussion på ":title" er blevet åbnet',
                 'beatmapset_discussion_unlock_compact' => 'Diskussion er blevet åbnet',
             ],
@@ -64,6 +66,8 @@ return [
 
                 'comment_new' => ':username kommenterede ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterede ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -88,6 +92,8 @@ return [
 
                 'comment_new' => ':username kommenterede ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterede ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -99,6 +105,8 @@ return [
 
                 'comment_new' => ':username kommenterede ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterede ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -128,6 +136,64 @@ return [
                 '_' => 'Ny medalje',
                 'user_achievement_unlock' => 'Optjent ":title"!',
                 'user_achievement_unlock_compact' => 'Opnået ":title"!',
+            ],
+        ],
+    ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_unlock' => '',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => '',
+            ],
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => '',
+            ],
+        ],
+
+        'build' => [
+            'comment' => [
+                'comment_new' => '',
+            ],
+        ],
+
+        'news_post' => [
+            'comment' => [
+                'comment_new' => '',
+            ],
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '',
+            ],
+        ],
+
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => '',
+                'user_achievement_unlock_self' => '',
             ],
         ],
     ],

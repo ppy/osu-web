@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "pusťme se<br>do toho!",
         'action' => 'Stáhnout osu!',
+
+        'help' => [
+            '_' => '',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'pro Windows',
             'macos' => 'pro macOS',

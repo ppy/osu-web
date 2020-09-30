@@ -7,6 +7,7 @@
   @_marker-radius-profile-page: 10px;
   @_line-width: 3px;
   @_line-width-profile-page: 2px;
+  .full-size();
 
   &__axis {
     font-family: inherit;
@@ -28,6 +29,7 @@
     border: @_line-width solid @pink-darker;
     top: (-@_marker-radius);
     left: (-@_marker-radius);
+    position: relative;
 
     .@{_top}--profile-page & {
       .circle(@_marker-radius-profile-page * 2);
@@ -66,10 +68,6 @@
     display: flex;
     flex-direction: column;
 
-    .@{_top}--status-page & {
-      background-color: @pink-darker;
-    }
-
     &[data-float=right] {
       left: auto;
       right: 0;
@@ -84,16 +82,10 @@
         color: @osu-colour-l1;
         order: 1;
       }
-      .@{_top}--status-page & {
-        color: #fff;
-      }
     }
 
     &--y {
       .@{_top}--profile-page & {
-        color: #fff;
-      }
-      .@{_top}--status-page & {
         color: #fff;
       }
     }

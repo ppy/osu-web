@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => '지금 작성하는 토론과 연관된 토론이 없습니다',
         'notice' => ':timestamp (:existing_timestamps)주위에 달린 답글이 있습니다. 포스팅하기 전에 한 번 확인해보세요.',
+        'unsaved' => '이 리뷰에서 :count개',
     ],
 
     'reply' => [
@@ -64,20 +65,23 @@ return [
     ],
 
     'review' => [
+        'block_count' => ':used / :max 블록 사용됨',
         'go_to_parent' => '평가 글 보기',
         'go_to_child' => '토론 글 보기',
         'validation' => [
-            'invalid_block_type' => '잘못된 블럭 종류',
+            'block_too_large' => '각 문단은 최대 :limit자까지 입력할 수 있습니다.',
+            'external_references' => '이 리뷰는 관련 없는 이슈 참조를 포함하고 있습니다.',
+            'invalid_block_type' => '잘못된 블록 종류',
             'invalid_document' => '잘못된 리뷰',
             'minimum_issues' => '리뷰는 최소한 :count개의 이슈를 포함해야 합니다',
-            'missing_text' => '블럭이 텍스트를 포함하고 있지 않음',
+            'missing_text' => '블록이 텍스트를 포함하고 있지 않음',
             'too_many_blocks' => '리뷰는 최대 :count개의 문단 및 이슈를 포함할 수 있습니다.',
         ],
     ],
 
     'system' => [
         'resolved' => [
-            'true' => ':user님이 토론을 끝마쳤습니다',
+            'true' => ':user 님이 해결함으로 표시함.',
             'false' => ':user님이 토론을 재개했습니다',
         ],
     ],

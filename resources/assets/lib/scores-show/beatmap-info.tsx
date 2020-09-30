@@ -8,7 +8,7 @@ import { route } from 'laroute';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';
-import { getDiffRating } from 'utils/beatmap-helper';
+import { getArtist, getDiffRating, getTitle } from 'utils/beatmap-helper';
 
 interface Props {
   beatmap: BeatmapJsonExtended;
@@ -23,10 +23,10 @@ const BeatmapInfo = (props: Props) => {
     <div className='score-beatmap'>
       <h1 className='score-beatmap__title'>
         <a className='score-beatmap__link-plain' href={beatmapUrl}>
-          {beatmapset.title}
+          {getTitle(beatmapset)}
           {' '}
           <span className='score-beatmap__artist'>
-            {osu.trans('scores.show.beatmap.by', { artist: beatmapset.artist })}
+            {osu.trans('scores.show.beatmap.by', { artist: getArtist(beatmapset) })}
           </span>
         </a>
       </h1>

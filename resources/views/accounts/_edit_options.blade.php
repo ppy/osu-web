@@ -21,7 +21,6 @@
                 <form
                     class="account-edit-entry__checkboxes account-edit-entry__checkboxes--vertical js-account-edit"
                     data-account-edit-auto-submit="1"
-                    data-skip-ajax-error-popup="1"
                     data-account-edit-type="radio"
                     data-url="{{ route('account.options') }}"
                     data-field="user_profile_customization[beatmapset_download]"
@@ -58,6 +57,30 @@
                         </label>
                     @endforeach
                 </form>
+            </div>
+        </div>
+
+        <div class="account-edit__input-group">
+            <div
+                class="account-edit-entry account-edit-entry--no-label js-account-edit js-user-preferences-update"
+                data-account-edit-auto-submit="1"
+                data-url="{{ route('account.options') }}"
+            >
+                <label class="account-edit-entry__checkbox">
+                    @include('objects._switch', [
+                        'additionalClass'=> 'js-account-edit__input',
+                        'checked' => $customization->beatmapset_title_show_original,
+                        'name' => 'user_profile_customization[beatmapset_title_show_original]',
+                    ])
+
+                    <span class="account-edit-entry__checkbox-label">
+                        {{ trans('accounts.options.beatmapset_title_show_original') }}
+                    </span>
+
+                    <div class="account-edit-entry__checkbox-status">
+                        @include('accounts._edit_entry_status')
+                    </div>
+                </label>
             </div>
         </div>
     </div>

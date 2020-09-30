@@ -4,15 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => 'ülkeye göre filtrelenmiş',
+    'countries' => [
+        'all' => 'Hepsi',
+        'title' => 'Ülke',
+    ],
+
+    'filter' => [
+        'title' => 'Göster',
+
+        'variant' => [
+            'title' => 'Tür',
+        ],
     ],
 
     'type' => [
-        'performance' => 'Performans',
         'charts' => 'Öne Çıkanlar',
-        'score' => 'Skor',
         'country' => 'Ülke',
+        'multiplayer' => 'Çok Oyunculu',
+        'performance' => 'Performans',
+        'score' => 'Skor',
     ],
 
     'spotlight' => [

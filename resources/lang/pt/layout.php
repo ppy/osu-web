@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Reproduzir a próxima faixa automaticamente',
     ],
 
     'defaults' => [
@@ -96,6 +96,7 @@ return [
             'country' => 'país',
             'index' => 'desempenho',
             'kudosu' => 'kudosu',
+            'multiplayer' => 'multijogador',
             'score' => 'pontuação',
         ],
         'store' => [
@@ -178,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Esqueci-me dos meus detalhes",
             'password' => 'palavra-passe',

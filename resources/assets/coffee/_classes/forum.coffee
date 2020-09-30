@@ -19,12 +19,14 @@ class @Forum
     @_postsProgress = document.getElementsByClassName('js-forum__posts-progress')
     @posts = document.getElementsByClassName('js-forum-post')
     @loadMoreLinks = document.getElementsByClassName('js-forum-posts-show-more')
+    @throttledBoot = _.throttle @boot, 100
 
     @maxPosts = 250
 
-    $(document).on 'turbolinks:load osu:page:change', @boot
+    $(document).on 'turbolinks:load', @throttledBoot
+    $.subscribe 'osu:page:change', @throttledBoot
 
-    $(window).on 'throttled-scroll', @refreshCounter
+    $(window).on 'scroll', @refreshCounter
     $(document).on 'click', '.js-forum-posts-show-more', @showMore
     $(document).on 'click', '.js-post-url', @postUrlClick
     $(document).on 'submit', '.js-forum-posts-jump-to', @jumpToSubmit
@@ -193,8 +195,17 @@ class @Forum
 
 
   toggleDeleted: =>
-    Turbolinks.visit osu.updateQueryString @postUrlN(@currentPostPosition),
-      with_deleted: +!@showDeleted()
+    return if !@showDeleted()? # you don't see this option unless you're a moderator, anyway
+
+    $.ajax laroute.route('account.options'),
+      method: 'PUT'
+      data:
+        user_profile_customization:
+          forum_posts_show_deleted: !@showDeleted()
+    .done (user) =>
+      $.publish 'user:update', user
+      Turbolinks.visit @postUrlN(@currentPostPosition)
+
 
   initialScrollTo: =>
     return if location.hash != '' ||
@@ -206,19 +217,14 @@ class @Forum
 
 
   postUrlClick: (e) =>
-      e.preventDefault()
+    e.preventDefault()
 
-      id = $(e.target).closest('.js-forum-post').attr('data-post-id')
-      @scrollTo id
+    id = $(e.target).closest('.js-forum-post').attr('data-post-id')
+    @scrollTo id
 
 
   postUrlN: (postN) ->
-    url = "#{document.location.pathname}?n=#{postN}"
-
-    if @showDeleted() == false
-      url += "&with_deleted=0"
-
-    url
+    "#{document.location.pathname}?n=#{postN}"
 
 
   showMore: (e) =>

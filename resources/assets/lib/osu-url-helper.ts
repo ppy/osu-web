@@ -3,6 +3,7 @@
 
 import * as laroute from 'laroute';
 import * as _ from 'lodash';
+import { TurbolinksLocation } from 'turbolinks';
 
 export default class OsuUrlHelper {
   private static internalUrls = [
@@ -16,11 +17,13 @@ export default class OsuUrlHelper {
     'help',
     'home',
     'legal',
+    'multiplayer',
     'oauth',
     'rankings',
     'session',
     'store',
     'users',
+    'wiki',
   ].join('|');
 
   static beatmapDownloadDirect(id: string | number): string {

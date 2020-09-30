@@ -4,15 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => 'filtré par pays',
+    'countries' => [
+        'all' => 'Tous',
+        'title' => 'Pays',
+    ],
+
+    'filter' => [
+        'title' => 'Afficher',
+
+        'variant' => [
+            'title' => 'Variante',
+        ],
     ],
 
     'type' => [
-        'performance' => 'Performance',
         'charts' => 'Charts',
-        'score' => 'Score',
         'country' => 'Pays',
+        'multiplayer' => 'multijoueur',
+        'performance' => 'Performance',
+        'score' => 'Score',
     ],
 
     'spotlight' => [

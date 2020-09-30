@@ -1,12 +1,13 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Mods } from 'mods'
+import Mod from 'mod'
 import { PlayDetailMenu } from 'play-detail-menu'
 import { createElement as el, PureComponent } from 'react'
 import * as React from 'react'
 import { a, button, div, i, img, small, span } from 'react-dom-factories'
 import { hasMenu } from 'score-helper'
+import { getArtist, getTitle } from 'utils/beatmap-helper'
 
 osu = window.osu
 bn = 'play-detail'
@@ -39,11 +40,11 @@ export class PlayDetail extends PureComponent
           a
             href: laroute.route('beatmaps.show', beatmap: score.beatmap.id, mode: score.mode)
             className: "#{bn}__title u-ellipsis-overflow"
-            score.beatmapset.title
+            getTitle(score.beatmapset)
             ' '
             small
               className: "#{bn}__artist"
-              osu.trans('users.show.extra.beatmaps.by_artist', artist: score.beatmapset.artist)
+              osu.trans('users.show.extra.beatmaps.by_artist', artist: getArtist(score.beatmapset))
           div
             className: "#{bn}__beatmap-and-time"
             span
@@ -82,7 +83,7 @@ export class PlayDetail extends PureComponent
                   percentage: "#{osu.formatNumber(Math.round(score.weight.percentage))}%"
         div
           className: "#{bn}__score-detail #{bn}__score-detail--mods"
-          el Mods, mods: score.mods, modifiers: ['profile-page']
+          el(Mod, key: mod, mod: mod) for mod in score.mods
 
         div
           className: "#{bn}__pp"

@@ -31,6 +31,12 @@ class @UserLogin
     e.stopPropagation()
     $('.js-login-form--error').text(osu.xhrErrorMessage(xhr))
 
+    # Timeout here is to let ujs events fire first, so that the disabling of the submit button
+    # in captcha.reset() happens _after_ the button has been re-enabled
+    Timeout.set 0, =>
+      captcha.trigger() if (xhr?.responseJSON?.captcha_triggered)
+      captcha.reset()
+
 
   loginSuccess: (_event, data) =>
     toClick = @clickAfterLogin
@@ -46,6 +52,7 @@ class @UserLogin
       $('.js-user-login--menu')[0]?.click()
       $('.js-user-header').replaceWith data.header
       $('.js-user-header-popup').html data.header_popup
+      captcha.untrigger()
 
       osu.executeAction toClick
 

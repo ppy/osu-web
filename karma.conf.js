@@ -50,19 +50,17 @@ function readWebpackConfig() {
   return value;
 }
 
+process.env.SKIP_MANIFEST = true;
 webpackConfig = readWebpackConfig();
-webpackConfig['plugins'].push(new ExitOnErrorWebpackPlugin());
-webpackConfig['mode'] = 'development';
-webpackConfig['devtool'] = 'inline-source-map';
+webpackConfig.plugins.push(new ExitOnErrorWebpackPlugin());
+webpackConfig.mode = 'development';
+webpackConfig.devtool = 'inline-source-map';
 delete webpackConfig.optimization; // karma doesn't work with splitChunks...or runtimeChunk
 delete webpackConfig.entry; // test runner doesn't use the entry points
 
 const testIndex = './tests/karma/index.ts';
 
 const files = [
-  './public/js/vendor.js',
-  './public/js/app-deps.js',
-  './public/js/locales/en.js',
   './tests/karma/globals.js', // shims for tests
   testIndex,
 ];
@@ -70,7 +68,7 @@ const files = [
 const preprocessors = {};
 preprocessors[testIndex] = ['webpack', 'sourcemap'];
 
-module.exports = function (config) {
+module.exports = function(config) {
   config.set({
     autoWatch: true,
     basePath: '.',
@@ -78,8 +76,8 @@ module.exports = function (config) {
     colors: true,
     concurrency: Infinity,
     exclude: [],
-    frameworks: ['jasmine'],
     files: files,
+    frameworks: ['jasmine'],
     logLevel: config.LOG_INFO,
     mime: { 'text/x-typescript': ['ts', 'tsx'] },
     port: 9876,
@@ -89,7 +87,7 @@ module.exports = function (config) {
     webpack: webpackConfig,
     webpackMiddleware: {
       noInfo: true,
-      stats: 'errors-only'
+      stats: 'errors-only',
     },
   });
 };

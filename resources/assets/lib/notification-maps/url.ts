@@ -51,6 +51,7 @@ export function urlSingular(item: Notification) {
     case 'channel_message':
       return route('chat.index', { sendto: item.sourceUserId });
     case 'comment_new':
+    case 'comment_reply':
       return route('comments.show', { comment: item.details.commentId });
     case 'forum_topic_reply':
       return route('forum.posts.show', { post: item.details.postId });

@@ -153,9 +153,7 @@
 
 <div class="osu-layout__row osu-layout__row--page">
     {!! Form::open(['route' => 'admin.store.orders.ship', 'method' => 'post', 'data-remote' => true]) !!}
-    <div class="big-button">
-        <button type="submit" class="btn-osu btn-osu-default">Ship all tracked orders</button>
-    </div>
+    <button type="submit" class="btn-osu-big btn-osu-big--store-action">Ship all tracked orders</button>
     {!! Form::close() !!}
 </div>
 @stop

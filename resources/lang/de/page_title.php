@@ -60,7 +60,7 @@ return [
         ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap-diskussion',
-            'index' => 'beatmap-liste',
+            'index' => 'beatmap-auflistung',
             'show' => 'beatmap-info',
         ],
         'changelog_controller' => [
@@ -110,7 +110,7 @@ return [
             '_' => 'rangliste',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'performance',
         ],
         'store_controller' => [
             '_' => 'osu!store',
@@ -124,6 +124,11 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'Hilfebereich',
+        ],
+    ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => 'rangliste',
         ],
     ],
     'store' => [

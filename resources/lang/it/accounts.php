@@ -9,7 +9,7 @@ return [
         'username' => 'nome utente',
 
         'avatar' => [
-            'title' => 'Avatar',
+            'title' => 'Immagine di profilo',
             'rules' => 'Assicurati che la tua immagine di profilo aderisca alle :link.<br/>Questo significa che deve essere <strong>adatto a tutte le età</strong>. (vedi: niente nudità, profanità o contenuti provocanti)',
             'rules_link' => 'regole della comunità',
         ],
@@ -49,14 +49,21 @@ return [
     ],
 
     'notifications' => [
-        'title' => 'Notifiche',
-        'topic_auto_subscribe' => 'attiva le notifiche sui nuovi topic del forum che crei',
         'beatmapset_discussion_qualified_problem' => 'ricevi notifiche per nuovi problemi sulle beatmap qualificate delle seguenti modalità',
+        'beatmapset_disqualify' => 'ricevi notifiche quando le beatmap delle seguenti modalità vengono squalificate',
+        'comment_reply' => 'ricevi notifiche per le risposte ai tuoi commenti',
+        'title' => 'Notifiche',
+        'topic_auto_subscribe' => 'attiva automaticamente le notifiche sui nuovi topic del forum che crei',
 
-        'mail' => [
-            '_' => 'ricevi notifiche via mail per',
+        'options' => [
+            '_' => 'opzioni di notifica',
             'beatmapset:modding' => 'modding delle beatmap',
-            'forum_topic_reply' => 'risposte ai topic',
+            'channel_message' => 'messaggi privati',
+            'comment_new' => 'nuovi commenti',
+            'forum_topic_reply' => 'risposta al topic',
+            'mail' => 'mail',
+            'push' => 'push',
+            'user_achievement_unlock' => 'medaglie sbloccate',
         ],
     ],
 
@@ -75,6 +82,8 @@ return [
             'no_video' => 'senza video',
             'direct' => 'apri in osu!direct',
         ],
+
+        'beatmapset_title_show_original' => 'mostra i metadati della beatmap in lingua originale',
     ],
 
     'playstyles' => [

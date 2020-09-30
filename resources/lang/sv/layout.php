@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Spela nästa spår automatiskt',
     ],
 
     'defaults' => [
@@ -96,6 +96,7 @@ return [
             'country' => 'land',
             'index' => 'prestanda',
             'kudosu' => 'kudosu',
+            'multiplayer' => 'flerspelarläge',
             'score' => 'poäng',
         ],
         'store' => [
@@ -179,6 +180,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'logga in / registrera',
+
         'login' => [
             'forgot' => "Jag har glömt mina detaljer",
             'password' => 'lösenord',

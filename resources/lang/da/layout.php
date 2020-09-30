@@ -96,6 +96,7 @@ return [
             'country' => 'land',
             'index' => 'præstation',
             'kudosu' => 'kudosu',
+            'multiplayer' => '',
             'score' => 'score',
         ],
         'store' => [
@@ -178,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Jeg har glemt min login-info",
             'password' => 'adgangskode',

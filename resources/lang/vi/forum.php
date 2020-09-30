@@ -75,6 +75,8 @@ return [
     'topic' => [
         'deleted' => 'chủ đề đã xóa',
         'go_to_latest' => 'xem bài viết mới nhất',
+        'has_replied' => 'Bạn đã trả lời topic này',
+        'in_forum' => '',
         'latest_post' => ':when bởi :user',
         'latest_reply_by' => 'trả lời cuối bởi :user',
         'new_topic' => 'Đăng một chủ đề mới',

@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Không bài đăng nào đề cập đến vấn đề của tôi',
         'notice' => 'Có một vài bài đăng vào khoảng :timestamp (:existing_timestamps). Hãy xem chúng trước khi đăng.',
+        'unsaved' => '',
     ],
 
     'reply' => [
@@ -64,9 +65,12 @@ return [
     ],
 
     'review' => [
+        'block_count' => '',
         'go_to_parent' => '',
         'go_to_child' => 'Xem cuộc thảo luận',
         'validation' => [
+            'block_too_large' => '',
+            'external_references' => '',
             'invalid_block_type' => '',
             'invalid_document' => '',
             'minimum_issues' => '',

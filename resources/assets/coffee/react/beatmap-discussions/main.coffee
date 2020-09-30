@@ -10,6 +10,7 @@ import { BackToTop } from 'back-to-top'
 import * as React from 'react'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
+import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
 import { div } from 'react-dom-factories'
 import NewReview from 'beatmap-discussions/new-review'
 import * as BeatmapHelper from 'utils/beatmap-helper'
@@ -33,17 +34,19 @@ export class Main extends React.PureComponent
     # FIXME: update url handler to recognize this instead
     @focusNewDiscussion = document.location.hash == '#new'
 
-    if !@restoredState
+    if @restoredState
+      @state.readPostIds = new Set(@state.readPostIdsArray)
+    else
       beatmapset = props.initial.beatmapset
-      reviewsEnabled = props.initial.reviews_enabled ? false
+      reviewsConfig = props.initial.reviews_config
       showDeleted = true
-      readPostIds = []
+      readPostIds = new Set
 
       for discussion in beatmapset.discussions
         for post in discussion?.posts ? []
-          readPostIds.push post.id if post?
+          readPostIds.add(post.id) if post?
 
-      @state = {beatmapset, currentUser, readPostIds, reviewsEnabled, showDeleted}
+      @state = {beatmapset, currentUser, readPostIds, reviewsConfig, showDeleted}
 
     # Current url takes priority over saved state.
     query = @queryFromLocation(@state.beatmapset.discussions)
@@ -115,7 +118,7 @@ export class Main extends React.PureComponent
         currentBeatmap: @currentBeatmap()
         currentDiscussions: @currentDiscussions()
         currentFilter: @state.currentFilter
-        reviewsEnabled: @state.reviewsEnabled
+        reviewsEnabled: @state.reviewsConfig.enabled
 
       if @state.currentMode == 'events'
         div
@@ -132,40 +135,42 @@ export class Main extends React.PureComponent
             value: @discussions()
             el BeatmapsContext.Provider,
               value: @beatmaps()
+              el ReviewEditorConfigContext.Provider,
+                value: @state.reviewsConfig
 
-              if @state.currentMode == 'reviews'
-                el NewReview,
+                if @state.currentMode == 'reviews'
+                  el NewReview,
+                    beatmapset: @state.beatmapset
+                    beatmaps: @beatmaps()
+                    currentBeatmap: @currentBeatmap()
+                    currentDiscussions: @currentDiscussions()
+                    currentUser: @state.currentUser
+                    pinned: @state.pinnedNewDiscussion
+                    setPinned: @setPinnedNewDiscussion
+                    stickTo: @modeSwitcherRef
+                else
+                  el NewDiscussion,
+                    beatmapset: @state.beatmapset
+                    currentUser: @state.currentUser
+                    currentBeatmap: @currentBeatmap()
+                    currentDiscussions: @currentDiscussions()
+                    innerRef: @newDiscussionRef
+                    mode: @state.currentMode
+                    pinned: @state.pinnedNewDiscussion
+                    setPinned: @setPinnedNewDiscussion
+                    stickTo: @modeSwitcherRef
+                    autoFocus: @focusNewDiscussion
+
+                el Discussions,
                   beatmapset: @state.beatmapset
-                  beatmaps: @beatmaps()
                   currentBeatmap: @currentBeatmap()
                   currentDiscussions: @currentDiscussions()
+                  currentFilter: @state.currentFilter
                   currentUser: @state.currentUser
-                  pinned: @state.pinnedNewDiscussion
-                  setPinned: @setPinnedNewDiscussion
-                  stickTo: @modeSwitcherRef
-              else
-                el NewDiscussion,
-                  beatmapset: @state.beatmapset
-                  currentUser: @state.currentUser
-                  currentBeatmap: @currentBeatmap()
-                  currentDiscussions: @currentDiscussions()
-                  innerRef: @newDiscussionRef
                   mode: @state.currentMode
-                  pinned: @state.pinnedNewDiscussion
-                  setPinned: @setPinnedNewDiscussion
-                  stickTo: @modeSwitcherRef
-                  autoFocus: @focusNewDiscussion
-
-              el Discussions,
-                beatmapset: @state.beatmapset
-                currentBeatmap: @currentBeatmap()
-                currentDiscussions: @currentDiscussions()
-                currentFilter: @state.currentFilter
-                currentUser: @state.currentUser
-                mode: @state.currentMode
-                readPostIds: @state.readPostIds
-                showDeleted: @state.showDeleted
-                users: @users()
+                  readPostIds: @state.readPostIds
+                  showDeleted: @state.showDeleted
+                  users: @users()
 
       el BackToTop
 
@@ -359,7 +364,7 @@ export class Main extends React.PureComponent
       newState.selectedUserId = null
 
     newState.callback = =>
-      $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
+      $.publish 'beatmapset-discussions:highlight', discussionId: discussion.id
 
       target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
 
@@ -394,9 +399,15 @@ export class Main extends React.PureComponent
 
 
   markPostRead: (_e, {id}) =>
-    return if _.includes @state.readPostIds, id
+    return if @state.readPostIds.has(id)
 
-    @setState readPostIds: @state.readPostIds.concat(id)
+    newSet = new Set(@state.readPostIds)
+    if Array.isArray(id)
+      newSet.add(i) for i in id
+    else
+      newSet.add(id)
+
+    @setState readPostIds: newSet
 
 
   queryFromLocation: (discussions = @state.beatmapsetDiscussion.beatmap_discussions) =>
@@ -404,6 +415,8 @@ export class Main extends React.PureComponent
 
 
   saveStateToContainer: =>
+    # This is only so it can be stored with JSON.stringify.
+    @state.readPostIdsArray = Array.from(@state.readPostIds)
     @props.container.dataset.beatmapsetDiscussionState = JSON.stringify(@state)
 
 

@@ -110,7 +110,7 @@ return [
             '_' => '排名',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => '表现',
         ],
         'store_controller' => [
             '_' => 'osu! 商店',
@@ -124,6 +124,11 @@ return [
         ],
         'wiki_controller' => [
             '_' => '知识库',
+        ],
+    ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => '排名',
         ],
     ],
     'store' => [

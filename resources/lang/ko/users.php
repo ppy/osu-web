@@ -84,6 +84,7 @@ return [
         'failed' => '계정 정보가 올바르지 않습니다',
         'forgot' => '비밀번호를 잊어버리셨나요?',
         'info' => '계속 하시려면 로그인 해주세요',
+        'invalid_captcha' => 'Captcha가 올바르지 않습니다. 페이지를 새로 고친 후 다시 시도해주세요.',
         'locked_ip' => 'IP 주소가 잠겨있습니다. 잠시 기다려주세요.',
         'password' => 'Password',
         'register' => "osu!계정이 없으신가요? 새로 하나 만들어보세요",
@@ -145,7 +146,6 @@ return [
         'lastvisit_online' => '현재 온라인',
         'missingtext' => '오타가 있는 것 같은데요! (또는 차단된 사용자일 수 있습니다)',
         'origin_country' => ':country에 거주',
-        'page_description' => 'osu! - :username님에 대해 궁금했던 모든 것!',
         'previous_usernames' => '이전 사용자명',
         'plays_with' => '플레이 장비: :devices',
         'title' => ":username님의 프로필",
@@ -158,13 +158,13 @@ return [
                     'broken_file' => '이미지 처리 실패. 업로드하려는 이미지를 확인하시고 다시 시도해주세요.',
                     'button' => '이미지 업로드',
                     'dropzone' => '업로드하려면 여기에 끌어놓으세요',
-                    'dropzone_info' => '이쪽에 이미지를 끌어놓아 업로드할수도 있습니다',
-                    'size_info' => '표지 크기는 2800x620 이여야 합니다',
+                    'dropzone_info' => '여기에 이미지를 끌어놓아 업로드할 수도 있습니다.',
+                    'size_info' => '표지 크기는 2400x640 이여야 합니다.',
                     'too_large' => '업로드된 파일이 너무 큽니다.',
                     'unsupported_format' => '지원되지 않는 확장자입니다.',
 
                     'restriction_info' => [
-                        '_' => '업로드는 :link만 가능합니다',
+                        '_' => '업로드는 :link만 가능합니다.',
                         'link' => 'osu! 서포터',
                     ],
                 ],
@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'by :artist',
-                'none' => '아직... 없네요...',
                 'title' => '비트맵',
 
                 'favourite' => [
@@ -200,7 +199,7 @@ return [
                     'title' => 'Loved 비트맵',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked / Approved 된 비트맵',
+                    'title' => 'Ranked 및 Approved 상태의 비트맵',
                 ],
                 'unranked' => [
                     'title' => 'Pending 비트맵',
@@ -217,7 +216,6 @@ return [
                 'show_more' => '이벤트 더 보기',
             ],
             'historical' => [
-                'empty' => '기록된 플레이가 없습니다. :(',
                 'title' => '통계',
 
                 'monthly_playcounts' => [
@@ -304,10 +302,9 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => '리플레이 다운로드',
-                'empty' => '아직 이렇다 할 플레이 기록이 없네요. :(',
                 'not_ranked' => '랭크된 비트맵만 pp를 줍니다.',
                 'pp_weight' => '가중치 :percentage',
-                'view_details' => '',
+                'view_details' => '자세히 보기',
                 'title' => '랭크',
 
                 'best' => [
@@ -326,7 +323,7 @@ return [
             ],
             'account_standing' => [
                 'title' => '계정 상태',
-                'bad_standing' => "<strong>:username</strong>님의 계정이 룰을 위반하였습니다 :(",
+                'bad_standing' => "<strong>:username</strong> 님이 규칙을 위반하셨습니다. :(",
                 'remaining_silence' => '<strong>:username</strong> 님은 :duration 후에 말할 수 있습니다.',
 
                 'recent_infringements' => [

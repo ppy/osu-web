@@ -91,8 +91,8 @@ class ArtistsController extends Controller
         return ext_view('artists.show', [
             'artist' => $artist,
             'links' => $links,
-            'albums' => json_collection($albums, new ArtistAlbumTransformer, ['tracks']),
-            'tracks' => json_collection($tracks, new ArtistTrackTransformer),
+            'albums' => json_collection($albums, new ArtistAlbumTransformer(), ['tracks']),
+            'tracks' => json_collection($tracks, new ArtistTrackTransformer()),
             'images' => $images,
         ]);
     }

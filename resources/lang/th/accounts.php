@@ -5,7 +5,7 @@
 
 return [
     'edit' => [
-        'title_compact' => 'ตั้งค่า',
+        'title_compact' => 'การตั้งค่า',
         'username' => 'ชื่อผู้ใช้',
 
         'avatar' => [
@@ -49,20 +49,27 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'ได้รับการแจ้งเตือนเกียวกับปัญหาของ Qualified beatmaps กับโหมดต่อไปนี้',
+        'beatmapset_disqualify' => 'ได้รับการแจ้งเตือนเมื่อบีทแมพในโหมดที่ท่านเลือกถูกตัดสิทธิ์',
+        'comment_reply' => '',
         'title' => 'การแจ้งเตือน',
         'topic_auto_subscribe' => 'เปิดการแจ้งเตือนอัตโนมัติในกระทู้ที่คุณสร้างขึ้น',
-        'beatmapset_discussion_qualified_problem' => 'ได้รับการแจ้งเตือนเกียวกับปัญหาของ Qualified beatmaps กับโหมดต่อไปนี้',
 
-        'mail' => [
-            '_' => 'รับการแจ้งเตือนทางอีเมล',
-            'beatmapset:modding' => 'beatmap modding',
-            'forum_topic_reply' => 'ตอบหัวข้อ',
+        'options' => [
+            '_' => 'วิธีการรับการแจ้งเตือน',
+            'beatmapset:modding' => 'การวิจารณ์บีทแมพ',
+            'channel_message' => 'ข้อความส่วนตัว',
+            'comment_new' => 'คอมเมนต์ใหม่',
+            'forum_topic_reply' => 'ข้อความตอบกลับในกระทู้',
+            'mail' => 'อีเมล',
+            'push' => 'ส่งการแจ้งเตือน',
+            'user_achievement_unlock' => 'ผู้เล่นได้ปลดล็อกเหรียญตรา',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => 'ตัวรับที่ได้รับการยืนยัน',
-        'own_clients' => 'own clients',
+        'authorized_clients' => 'client ที่ได้รับการยืนยัน',
+        'own_clients' => 'client ของตนเอง',
         'title' => 'OAuth',
     ],
 
@@ -70,11 +77,13 @@ return [
         'title' => 'ตัวเลือก',
 
         'beatmapset_download' => [
-            '_' => 'ประเภทการดาวน์โหลด Beatmap เริ่มต้น',
+            '_' => 'ประเภทการดาวน์โหลดบีทแมพเริ่มต้น',
             'all' => 'พร้อมวิดีโอ ถ้าใช้ได้',
             'no_video' => 'โดยที่ไม่มีวิดีโอ',
             'direct' => 'เปิดใน osu!direct',
         ],
+
+        'beatmapset_title_show_original' => 'แสดงข้อมูลของ บีทแมพ ในภาษาดั้งเดิม',
     ],
 
     'playstyles' => [
@@ -93,24 +102,24 @@ return [
 
     'security' => [
         'current_session' => 'ปัจจุบัน',
-        'end_session' => 'เซสชันสิ้นสุด',
+        'end_session' => 'สิ้นสุดเซสชัน',
         'end_session_confirmation' => 'ขั้นตอนนี้จะสิ้นสุดเซสชันของคุณในอุปกรณ์นั้นทันที คุณแน่ใจไหม?',
         'last_active' => 'ใช้งานล่าสุด:',
         'title' => 'ความปลอดภัย',
-        'web_sessions' => 'เซสชันของเว็บ',
+        'web_sessions' => 'เซสชั่นของเว็บ',
     ],
 
     'update_email' => [
-        'update' => 'อัพเดต',
+        'update' => 'อัปเดต',
     ],
 
     'update_password' => [
-        'update' => 'อัพเดต',
+        'update' => 'อัปเดต',
     ],
 
     'verification_completed' => [
         'text' => 'ตอนนี้คุณสามารถปิดแท็บ/หน้าต่างนี้ได้',
-        'title' => 'การยืนยันตนสำเร็จ',
+        'title' => 'การยืนยันตัวตนสำเร็จ',
     ],
 
     'verification_invalid' => [

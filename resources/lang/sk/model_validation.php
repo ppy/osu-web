@@ -1,33 +1,14 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid' => '',
     'not_negative' => ':attribute nemôže byť negatívny.',
     'required' => ':attribute je vyžadovaný.',
     'too_long' => ':attribute presiahol maximálnu dĺžku - môže mať maximálne :limit znakov.',
     'wrong_confirmation' => 'Potvrdenie sa nezhoduje.',
-
-    'beatmap_discussion_post' => [
-        'discussion_locked' => 'Diskusia je uzamknutá.',
-        'first_post' => 'Počiatočný príspevok sa nedá odstrániť.',
-    ],
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Časová sekvencia je špecifikovaná, ale chýba beatmapa.',
@@ -37,7 +18,13 @@ return [
         'invalid_beatmapset_id' => 'Bola zadaná neplatná beatmapa.',
         'locked' => 'Diskusia je uzamknutá.',
 
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
+
         'hype' => [
+            'discussion_locked' => "",
             'guest' => 'Musíš byť prihláseny k nadšeniu.',
             'hyped' => 'Túto beatmapu si už nadchol.',
             'limit_exceeded' => 'Použil si všetky svoje nadšenia.',
@@ -51,8 +38,26 @@ return [
         ],
     ],
 
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Diskusia je uzamknutá.',
+        'first_post' => 'Počiatočný príspevok sa nedá odstrániť.',
+
+        'attributes' => [
+            'message' => '',
+        ],
+    ],
+
     'comment' => [
         'deleted_parent' => 'Odpovedať na odstránený komentár nie je povolené.',
+        'top_only' => '',
+
+        'attributes' => [
+            'message' => 'Správa',
+        ],
+    ],
+
+    'follow' => [
+        'invalid' => '',
     ],
 
     'forum' => [
@@ -69,15 +74,30 @@ return [
             'beatmapset_post_no_delete' => 'Mazanie metadát beatmapy nie je povolené.',
             'beatmapset_post_no_edit' => 'Editovanie metadát beatmapy nie je povolené.',
             'only_quote' => '',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Duplikované možnosti nie su povolené.',
             'grace_period_expired' => '',
+            'hiding_results_forever' => '',
             'invalid_max_options' => 'Možnosť jedného použivatela by nemala presiahnúť hodnotu povolených možností.',
             'minimum_one_selection' => 'Minimálne jedná možnosť na používatela je vyžadovaná.',
             'minimum_two_options' => 'Sú vyžadované aspoň dve možnosti.',
             'too_many_options' => 'Bol prekročený limit povolených možností.',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -86,12 +106,26 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => 'Názov aplikácie',
+                'redirect' => '',
+            ],
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Heslo nemôže obsahovať užívateľské meno.',
         'email_already_used' => 'E-mailová adresa už bola použitá.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Krajina nie je v databáze.',
         'invalid_discord' => 'Nesprávne užívateľské meno na Discorde.',
         'invalid_email' => "Vyzerá to na neplatnú e-mailovú adresu.",
+        'invalid_twitter' => '',
         'too_short' => 'Nové heslo je príliš krátke.',
         'unknown_duplicate' => 'Užívateľské meno alebo e-mailová adresa sa už používa.',
         'username_available_in' => 'Toto užívateľské meno bude k dispozícií za :duration.',
@@ -110,7 +144,14 @@ return [
         'wrong_password_confirmation' => 'Zadané heslá sa nezhodujú.',
         'too_long' => 'Prekročila sa maximálna dĺžka - maximálna dĺžka je :limit znakov.',
 
+        'attributes' => [
+            'username' => 'Meno Uživateľa',
+            'user_email' => 'E-mailová adrEsa',
+            'password' => 'Heslo',
+        ],
+
         'change_username' => [
+            'restricted' => '',
             'supporter_required' => [
                 '_' => 'Musíš mať :link pre zmenu mena!',
                 'link_text' => 'podporiť osu!',
@@ -120,6 +161,16 @@ return [
     ],
 
     'user_report' => [
+        'reason_not_valid' => '',
         'self' => "",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => 'Cena',
+            ],
+        ],
     ],
 ];

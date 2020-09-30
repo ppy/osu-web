@@ -11,14 +11,11 @@
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/nanaya/slack-php"
-    },
-    {
-      "type": "vcs",
       "url": "https://github.com/nanaya/xsolla-sdk-php"
     }
   ],
   "require": {
+    "anhskohbo/no-captcha": "^3.2",
     "chaseconey/laravel-datadog-helper": ">=1.2.0",
     "doctrine/dbal": "*",
     "egulias/email-validator": "*",
@@ -35,12 +32,9 @@
     "laravel/tinker": "*",
     "laravelcollective/html": "*",
     "league/commonmark": ">=0.16.0",
-    "league/commonmark-ext-autolink": "^1.0",
-    "league/commonmark-ext-table": "*",
     "league/flysystem-aws-s3-v3": "*",
     "league/fractal": "*",
     "league/html-to-markdown": "*",
-    "maknz/slack": "dev-laravel-any",
     "mariuzzo/laravel-js-localization": "*",
     "mpociot/laravel-apidoc-generator": "*",
     "paypal/rest-api-sdk-php": "*",
@@ -51,11 +45,14 @@
   },
   "require-dev": {
     "beyondcode/laravel-query-detector": "*",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
     "filp/whoops": "*",
     "fzaninotto/faker": "*",
     "laravel/dusk": "*",
     "mockery/mockery": "*",
     "phpunit/phpunit": "*",
+    "slevomat/coding-standard": "^6.4",
+    "squizlabs/php_codesniffer": "^3.5",
     "symfony/css-selector": "*",
     "symfony/dom-crawler": "*"
   },

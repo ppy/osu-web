@@ -6,6 +6,7 @@
 namespace App\Models\Multiplayer;
 
 use App\Exceptions\InvariantException;
+use App\Libraries\DbCursorHelper;
 use App\Models\Chat\Channel;
 use App\Models\Model;
 use App\Models\User;
@@ -24,7 +25,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $name
  * @property int $participant_count
  * @property \Illuminate\Database\Eloquent\Collection $playlist PlaylistItem
- * @property \Illuminate\Database\Eloquent\Collection $scores RoomScore
+ * @property \Illuminate\Database\Eloquent\Collection $scores Score
  * @property \Carbon\Carbon $starts_at
  * @property \Carbon\Carbon|null $updated_at
  * @property int $user_id
@@ -33,11 +34,64 @@ class Room extends Model
 {
     use SoftDeletes;
 
+    const SORTS = [
+        'ended' => [
+            ['column' => 'ends_at', 'order' => 'desc', 'type' => 'time'],
+            ['column' => 'id', 'order' => 'desc', 'type' => 'int'],
+        ],
+        'created' => [
+            ['column' => 'id', 'order' => 'desc', 'type' => 'int'],
+        ],
+    ];
+
     protected $table = 'multiplayer_rooms';
     protected $dates = ['starts_at', 'ends_at'];
     protected $attributes = [
         'participant_count' => 0,
     ];
+
+    public static function search($params, $preloads = null, $includes = null)
+    {
+        $query = static::query();
+
+        $mode = presence(get_string($params['mode'] ?? null));
+        $user = $params['user'];
+        $sort = 'created';
+
+        switch ($mode) {
+            case 'ended':
+                $query->ended();
+                $sort = 'ended';
+                break;
+            case 'participated':
+                $query->hasParticipated($user);
+                break;
+            case 'owned':
+                $query->startedBy($user);
+                break;
+            default:
+                $query->active();
+        }
+
+        $category = presence(get_string($params['category'] ?? null)) ?? 'any';
+        if ($category !== 'any') {
+            $query->where('category', $category);
+        }
+
+        $cursorHelper = new DbCursorHelper(static::SORTS, $sort);
+        $cursor = $cursorHelper->prepare($params['cursor'] ?? null);
+
+        $query->cursorSort($cursorHelper->getSort(), $cursor);
+
+        foreach ($preloads ?? [] as $preload) {
+            $query->with($preload);
+        }
+
+        $limit = clamp(get_int($params['limit'] ?? 250), 1, 250);
+        $query->limit($limit);
+
+        return json_collection($query->get(), 'Multiplayer\Room', $includes ?? []);
+    }
 
     public function channel()
     {
@@ -56,12 +110,12 @@ class Room extends Model
 
     public function scores()
     {
-        return $this->hasMany(RoomScore::class);
+        return $this->hasMany(Score::class);
     }
 
     public function userHighScores()
     {
-        return $this->hasMany(RoomUserHighScore::class);
+        return $this->hasMany(UserScoreAggregate::class);
     }
 
     public function scopeActive($query)
@@ -82,7 +136,7 @@ class Room extends Model
             'id',
             // SoftDelete scope is ignored, fixed in 5.8:
             // https://github.com/laravel/framework/pull/26198
-            RoomScore::withoutTrashed()->where('user_id', $user->getKey())->select('room_id')
+            Score::withoutTrashed()->where('user_id', $user->getKey())->select('room_id')
         );
     }
 
@@ -110,13 +164,13 @@ class Room extends Model
     public function calculateMissingTopScores()
     {
         // just run through all the users, UserScoreAggregate::new will calculate and persist if necessary.
-        $users = User::whereIn('user_id', RoomScore::where('room_id', $this->getKey())->select('user_id'));
+        $users = User::whereIn('user_id', Score::where('room_id', $this->getKey())->select('user_id'));
         $users->each(function ($user) {
             UserScoreAggregate::new($user, $this);
         });
     }
 
-    public function completePlay(RoomScore $score, array $params)
+    public function completePlay(Score $score, array $params)
     {
         priv_check_user($score->user, 'MultiplayerScoreSubmit')->ensureCan();
 
@@ -196,7 +250,8 @@ class Room extends Model
             }
         });
 
-        return $this;
+        // to load db-level default attributes
+        return $this->fresh();
     }
 
     public function startPlay(User $user, PlaylistItem $playlistItem)
@@ -218,7 +273,7 @@ class Room extends Model
 
             $agg->updateUserAttempts();
 
-            return RoomScore::start([
+            return Score::start([
                 'user_id' => $user->getKey(),
                 'room_id' => $this->getKey(),
                 'playlist_item_id' => $playlistItem->getKey(),
@@ -229,17 +284,7 @@ class Room extends Model
 
     public function topScores()
     {
-        $userIdsQuery = User::default()
-            ->whereIn('user_id', RoomScore::where('room_id', $this->getKey())->select('user_id'))
-            ->select('user_id');
-
-        return UserScoreAggregate::where('room_id', $this->getKey())
-            ->where('completed', '>', 0)
-            ->whereIn('user_id', $userIdsQuery)
-            ->orderBy('total_score', 'desc')
-            ->orderBy('updated_at', 'asc')
-            ->orderBy('id', 'asc')
-            ->with('user.country');
+        return $this->userHighScores()->forRanking()->with('user.country');
     }
 
     private function assertValidCompletePlay()
@@ -276,7 +321,8 @@ class Room extends Model
             throw new InvariantException('Room has already ended.');
         }
 
-        if ($this->max_attempts !== null
+        if (
+            $this->max_attempts !== null
             && $playlistItem->scores()->where('user_id', $user->getKey())->count() >= $this->max_attempts
         ) {
             throw new InvariantException('You have reached the maximum number of tries allowed.');

@@ -5,10 +5,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Multiplayer\Match;
+use App\Models\Match\Match;
 use App\Models\User;
-use App\Transformers\Multiplayer\EventTransformer;
-use App\Transformers\Multiplayer\MatchTransformer;
+use App\Transformers\Match\EventTransformer;
 use App\Transformers\UserCompactTransformer;
 
 class MatchesController extends Controller
@@ -25,12 +24,7 @@ class MatchesController extends Controller
             'before' => request('before'),
         ]);
 
-        $matchJson = json_item(
-            $match,
-            new MatchTransformer
-        );
-
-        return ext_view('multiplayer.match', compact('match', 'matchJson', 'eventsJson'));
+        return ext_view('matches.index', compact('match', 'eventsJson'));
     }
 
     public function history($matchId)
@@ -85,17 +79,18 @@ class MatchesController extends Controller
 
         $users = json_collection(
             $users,
-            new UserCompactTransformer,
+            new UserCompactTransformer(),
             'country'
         );
 
         $events = json_collection(
             $events,
-            new EventTransformer,
-            ['game.beatmap.beatmapset', 'game.scores.multiplayer']
+            new EventTransformer(),
+            ['game.beatmap.beatmapset', 'game.scores.match']
         );
 
         return [
+            'match' => json_item($match, 'Match\Match'),
             'events' => $events,
             'users' => $users,
             'latest_event_id' => $match->events()->select('event_id')->last()->getKey(),

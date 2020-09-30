@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Keiner dieser Beiträge behandelt mein Anliegen.',
         'notice' => 'Es gibt bereits Beiträge in der Nähe von :timestamp (:existing_timestamps). Bitte überprüfe sie, bevor du diesen absendest.',
+        'unsaved' => ':count in dieser Bewertung',
     ],
 
     'reply' => [
@@ -64,9 +65,12 @@ return [
     ],
 
     'review' => [
+        'block_count' => ':used / :max Blöcke verwendet',
         'go_to_parent' => 'Rezensionsbeitrag anzeigen',
         'go_to_child' => 'Diskussion anzeigen',
         'validation' => [
+            'block_too_large' => 'jeder block darf höchstens :limit zeichen enthalten',
+            'external_references' => 'rezension enthält verweise auf probleme, die nicht zu dieser rezension gehören',
             'invalid_block_type' => 'ungültiger Block-Typ',
             'invalid_document' => 'ungültige Rezension',
             'minimum_issues' => 'Rezension muss ein Minimum von :count Problem beinhalten|Rezensionen müssen ein Minimum von :count Problemen beinhalten',

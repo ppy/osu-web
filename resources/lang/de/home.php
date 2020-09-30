@@ -41,8 +41,8 @@ return [
             'title' => 'Forum',
 
             'label' => [
-                'forum' => 'in Foren suchen',
-                'forum_children' => 'Subforen einbeziehen',
+                'forum' => 'in foren suchen',
+                'forum_children' => 'subforen einbeziehen',
                 'topic_id' => 'Thread #',
                 'username' => 'autor',
             ],
@@ -50,7 +50,7 @@ return [
 
         'mode' => [
             'all' => 'alle',
-            'beatmapset' => 'Beatmap',
+            'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
             'user' => 'spieler',
             'wiki_page' => 'wiki',
@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "lass uns<br>loslegen!",
         'action' => 'osu! herunterladen',
+
+        'help' => [
+            '_' => 'wenn du Probleme mit dem Starten des Spiels oder der Registrierung deines Accounts hast, :help_forum_link oder :support_button.',
+            'help_forum_link' => 'schau im Forum',
+            'support_button' => 'kontaktiere den Support',
+        ],
+
         'os' => [
             'windows' => 'für Windows',
             'macos' => 'für macOS',
@@ -93,8 +100,8 @@ return [
             'beatmaps' => [
                 'title' => 'hol\' dir beatmaps',
                 'description' => [
-                    '_' => ':browse durch die enorme Bibliothek an von Nutzern erstellten Beatmaps und fang an zu spielen!',
-                    'browse' => 'stöbern',
+                    '_' => ':browse durch die enorme bibliothek an von nutzern erstellten beatmaps und fang an zu spielen!',
+                    'browse' => 'stöbere',
                 ],
             ],
         ],

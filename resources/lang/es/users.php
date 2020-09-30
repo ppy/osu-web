@@ -50,7 +50,7 @@ return [
     ],
 
     'disabled' => [
-        'title' => '¡Oh, oh! Parece que tu cuenta ha sido desactivada.',
+        'title' => '¡Oh, oh! Parece que su cuenta ha sido desactivada.',
         'warning' => "En el caso de que haya roto una regla, tenga en cuenta que generalmente hay un período de espera de un mes durante el cual no consideraremos ninguna solicitud de amnistía. Después de este período, puede contactar con nosotros si lo considera necesario. Tenga en cuenta que la creación de nuevas cuentas después de haber tenido una desactivada resultará en una <strong>extensión de este período de espera de un mes</strong>. Por favor, también tenga en cuenta que por <strong>cada cuenta que cree, estará violando más reglas</strong>. ¡Le sugerimos que no siga este camino!",
 
         'if_mistake' => [
@@ -84,6 +84,7 @@ return [
         'failed' => 'Inicio de sesión incorrecto',
         'forgot' => '¿Olvidaste tu contraseña?',
         'info' => 'Por favor, inicie sesión para continuar',
+        'invalid_captcha' => 'Demasiados intentos fallidos de inicio de sesión, complete el captcha e inténtelo de nuevo. (Actualice la página si el captcha no está visible)',
         'locked_ip' => 'Tu dirección IP está bloqueada. Espera unos minutos.',
         'password' => 'Contraseña',
         'register' => "¿No tienes una cuenta de osu!? Crea una nueva",
@@ -107,7 +108,7 @@ return [
         'username' => 'Invitado',
         'error' => 'Necesitas haber iniciado sesión para hacer esto.',
     ],
-    'logout_confirm' => '¿Estás seguro de que quieres cerrar la sesión? :(',
+    'logout_confirm' => '¿Seguro que desea cerrar la sesión? :(',
     'report' => [
         'button_text' => 'Reportar',
         'comments' => 'Comentarios Adicionales',
@@ -131,7 +132,7 @@ return [
         ],
     ],
     'restricted_banner' => [
-        'title' => '¡Tu cuenta ha sido restringida!',
+        'title' => '¡Su cuenta ha sido restringida!',
         'message' => 'Mientras estás restringido, no podrás interactuar con otros jugadores y tus puntuaciones solo las podrás ver tú. Esto es, normalmente, el resultado de un proceso automatizado, y se levanta normalmente dentro de 24 horas. Si deseas apelar a tu restricción, por favor <a href="mailto:accounts@ppy.sh">contacta con el soporte</a>.',
     ],
     'show' => [
@@ -141,11 +142,10 @@ return [
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Se unió en :date',
-        'lastvisit' => 'Visto por última vez :date',
+        'lastvisit' => 'Visto :date',
         'lastvisit_online' => 'Actualmente en línea',
         'missingtext' => '¡Es posible que hayas cometido un error tipográfico! (o el usuario puede haber sido baneado)',
         'origin_country' => 'De :country',
-        'page_description' => 'osu! - ¡Todo lo que siempre quisiste saber acerca de :username!',
         'previous_usernames' => 'antes conocido como',
         'plays_with' => 'Juega con :devices',
         'title' => "Perfil de :username",
@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'por :artist',
-                'none' => 'Ninguno... aún.',
                 'title' => 'Mapas',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'ver más eventos',
             ],
             'historical' => [
-                'empty' => 'Sin récords de rendimiento. :(',
                 'title' => 'Histórico',
 
                 'monthly_playcounts' => [
@@ -226,11 +224,11 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'veces jugadas',
-                    'title' => 'Mapas Más Jugados',
+                    'title' => 'Mapas más jugados',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisión: :percentage',
-                    'title' => 'Jugadas Recientes (24h)',
+                    'title' => 'Jugadas recientes (24 h)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Historial de repeticiones vistas',
@@ -248,41 +246,41 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Recibido :amount de revocación de negación de kudosu de la publicación de modding de :post',
+                            'give' => 'Recibió :amount de revocación de negación de kudosu por la publicación de modding :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Denegado :amount de la publicación de modding de :post',
+                            'reset' => 'Se le negó :amount por la publicación de modding :post',
                         ],
 
                         'delete' => [
-                            'reset' => 'Perdido :amount por eliminación de la publicación de modding de :post',
+                            'reset' => 'Perdió :amount por la eliminación de la publicación de modding de :post',
                         ],
 
                         'restore' => [
-                            'give' => 'Recibido :amount por la restauración de la publicación de modding de :post',
+                            'give' => 'Recibió :amount por la restauración de la publicación de modding de :post',
                         ],
 
                         'vote' => [
-                            'give' => 'Recibido :amount por obtención de votos en la publicación de modding de :post',
-                            'reset' => 'Perdido :amount por perder votos en la publicación de modding de :post',
+                            'give' => 'Recibió :amount por obtención de votos en la publicación de modding de :post',
+                            'reset' => 'Perdió :amount por perder votos en la publicación de modding de :post',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Recibido :amount por recálculo de votos en la publicación de modding de :post',
-                            'reset' => 'Perdido :amount por recálculo de votos en la publicación de modding de :post',
+                            'give' => 'Recibió :amount por recálculo de votos en la publicación de modding de :post',
+                            'reset' => 'Perdió :amount por recálculo de votos en la publicación de modding de :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'Recibido :amount de :giver por una publicación en :post',
+                        'give' => 'Recibió :amount de :giver por una publicación en :post',
                         'reset' => 'Kudosu reiniciado por :giver por la publicación :post',
-                        'revoke' => 'Kudosu denegado por :giver por la publicación :post',
+                        'revoke' => 'Se le negó kudosu por :giver por la publicación :post',
                     ],
                 ],
 
                 'total_info' => [
-                    '_' => 'Basado en qué tanto ha colaborado el usuario a la moderación de mapas. Vea :link para más información.',
+                    '_' => 'Según la contribución que el usuario ha hecho al modding de mapas. Vea :link para más información.',
                     'link' => 'esta página',
                 ],
             ],
@@ -303,18 +301,17 @@ return [
                 'title' => 'Reciente',
             ],
             'top_ranks' => [
-                'download_replay' => 'Descargar Repetición',
-                'empty' => 'No hay records de rendimiento impresionantes aún. :(',
+                'download_replay' => 'Descargar repetición',
                 'not_ranked' => 'Sólo los mapas clasificados dan pp.',
                 'pp_weight' => 'valorado :percentage',
-                'view_details' => '',
+                'view_details' => 'Ver detalles',
                 'title' => 'Rangos',
 
                 'best' => [
-                    'title' => 'Mejores Rendimientos',
+                    'title' => 'Mejor rendimiento',
                 ],
                 'first' => [
-                    'title' => 'Primeros Lugares',
+                    'title' => 'Primeros lugares',
                 ],
             ],
             'votes' => [
@@ -376,8 +373,8 @@ return [
             ],
         ],
         'post_count' => [
-            '_' => 'Contribuyó en :link',
-            'count' => ':count publicación en el foro|:count publicaciones en el foro',
+            '_' => 'Contribuyó con :link',
+            'count' => ':count_delimited publicación en el foro|:count_delimited publicaciones en el foro',
         ],
         'rank' => [
             'country' => 'Rank nacional para :mode',
@@ -419,8 +416,8 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => 'Vista de bloques',
-        'card' => 'Vista de tarjetas',
-        'list' => 'Visualizar en lista',
+        'brick' => 'Vista de bloque',
+        'card' => 'Vista de tarjeta',
+        'list' => 'Vista de lista',
     ],
 ];

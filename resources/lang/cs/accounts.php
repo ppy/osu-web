@@ -49,14 +49,21 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => '',
+        'beatmapset_disqualify' => '',
+        'comment_reply' => '',
         'title' => 'Oznámení',
         'topic_auto_subscribe' => 'automaticky povolit oznámení o nových tématech fóra, které vytvoříte',
-        'beatmapset_discussion_qualified_problem' => '',
 
-        'mail' => [
+        'options' => [
             '_' => '',
             'beatmapset:modding' => '',
-            'forum_topic_reply' => 'odpoveď témata',
+            'channel_message' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mail' => '',
+            'push' => '',
+            'user_achievement_unlock' => '',
         ],
     ],
 
@@ -67,14 +74,16 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Možnosti',
 
         'beatmapset_download' => [
             '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 's videem, je-li k dispozici',
+            'no_video' => 'bez videa',
+            'direct' => 'otevřít v osu!direct',
         ],
+
+        'beatmapset_title_show_original' => '',
     ],
 
     'playstyles' => [

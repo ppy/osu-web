@@ -51,15 +51,19 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'receive notifications for new problem on qualified beatmaps of following modes',
         'beatmapset_disqualify' => 'receive notifications for when beatmaps of following modes are disqualified',
+        'comment_reply' => 'receive notifications for replies to your comments',
         'title' => 'Notifications',
         'topic_auto_subscribe' => 'automatically enable notifications on new forum topics that you create',
 
         'options' => [
             '_' => 'delivery options',
             'beatmapset:modding' => 'beatmap modding',
+            'channel_message' => 'private chat messages',
+            'comment_new' => 'new comments',
             'forum_topic_reply' => 'topic reply',
             'mail' => 'mail',
             'push' => 'push',
+            'user_achievement_unlock' => 'user medal unlocked',
         ],
     ],
 
@@ -78,6 +82,8 @@ return [
             'no_video' => 'without video',
             'direct' => 'open in osu!direct',
         ],
+
+        'beatmapset_title_show_original' => 'show beatmap metadata in original language',
     ],
 
     'playstyles' => [

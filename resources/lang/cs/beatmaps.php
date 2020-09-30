@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Piště zde pro odeslání příspěvku do Obecné (:version)',
             'generalAll' => 'Piště zde pro odeslání příspěvku do Obecné (Všechny obtížnosti)',
+            'review' => '',
             'timeline' => 'Piště zde pro zařazení příspěvku do Časové osy (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'ctrl-c v režimu úprav a vložte do zprávy pro přidání časové sekvence!',
             'title' => 'Nová diskuze',
             'unpin' => 'Odepnout',
+        ],
+
+        'review' => [
+            'new' => '',
+            'embed' => [
+                'delete' => 'Smazat',
+                'missing' => '[DISKUZE SMAZÁNA]',
+                'unlink' => 'Odpojit',
+                'unsaved' => 'Neuloženo',
+                'timestamp' => [
+                    'all-diff' => '',
+                    'diff' => '',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => '',
+                'praise' => '',
+                'problem' => '',
+                'suggestion' => '',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Novinka',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Elektronická',
+        'metal' => '',
+        'classical' => '',
+        'folk' => '',
+        'jazz' => '',
     ],
     'mods' => [
         '4K' => '',
@@ -279,6 +304,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
+        'V2' => '',
     ],
     'language' => [
         'any' => '',
@@ -291,8 +317,11 @@ return [
         'korean' => 'Korejské',
         'spanish' => 'Španělské',
         'swedish' => 'Švédské',
+        'russian' => '',
+        'polish' => '',
         'instrumental' => 'Instrumentální',
         'other' => 'Jiné',
+        'unspecified' => '',
     ],
     'played' => [
         'any' => 'Jakékoliv',
@@ -317,5 +346,12 @@ return [
     'panel' => [
         'playcount' => 'Počet zahrání: :count',
         'favourites' => 'V oblíbených: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '',
+            '7k' => '',
+            'all' => '',
+        ],
     ],
 ];

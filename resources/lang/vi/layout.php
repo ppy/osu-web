@@ -96,6 +96,7 @@ return [
             'country' => 'quốc gia',
             'index' => 'performance',
             'kudosu' => 'kudosu',
+            'multiplayer' => '',
             'score' => 'điểm',
         ],
         'store' => [
@@ -178,6 +179,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Quên mật khẩu",
             'password' => 'password',

@@ -84,6 +84,7 @@ return [
         'failed' => 'Неверный вход',
         'forgot' => 'Забыли пароль?',
         'info' => 'Пожалуйста, войдите в аккаунт, чтобы продолжить',
+        'invalid_captcha' => 'Неверная капча, перезагрузите страницу и попробуйте снова.',
         'locked_ip' => 'Ваш IP адрес заблокирован. Попробуйте через несколько минут.',
         'password' => 'Пароль',
         'register' => "У вас всё ещё нет аккаунта в osu!? Создайте новый",
@@ -145,7 +146,6 @@ return [
         'lastvisit_online' => 'Сейчас в сети',
         'missingtext' => 'Возможно, вы сделали опечатку! (или игрок заблокирован)',
         'origin_country' => 'Проживает в :country',
-        'page_description' => 'osu! - Всё, что вы хотели знать о :username!',
         'previous_usernames' => 'ранее известный как',
         'plays_with' => 'Играет с :devices',
         'title' => "Профиль :username",
@@ -159,7 +159,7 @@ return [
                     'button' => 'Загрузить изображение',
                     'dropzone' => 'Перетащите для загрузки',
                     'dropzone_info' => 'Вы также можете перетащить изображение сюда для загрузки',
-                    'size_info' => 'Размер обложки должен быть равен 2800x620',
+                    'size_info' => 'Размер обложки должен быть равен 2400x620',
                     'too_large' => 'Загруженное изображение слишком большое.',
                     'unsupported_format' => 'Неподдерживаемый формат.',
 
@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'от :artist',
-                'none' => 'Ничего… пока что.',
                 'title' => 'Карты',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'посмотреть больше событий',
             ],
             'historical' => [
-                'empty' => 'Пока записей нет :(',
                 'title' => 'Хронология',
 
                 'monthly_playcounts' => [
@@ -304,17 +302,16 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Скачать повтор',
-                'empty' => 'Пока рекордов нет :(',
                 'not_ranked' => 'Очки производительности выдаются только за прохождение рейтинговых карт.',
                 'pp_weight' => 'взвешено: :percentage',
-                'view_details' => '',
+                'view_details' => 'Подробнее',
                 'title' => 'Рейтинги',
 
                 'best' => [
                     'title' => 'Лучшие результаты',
                 ],
                 'first' => [
-                    'title' => 'Рекорды',
+                    'title' => 'Первые места',
                 ],
             ],
             'votes' => [
@@ -325,7 +322,7 @@ return [
                 'vote_count' => ':count_delimited голос|:count_delimited голоса|:count_delimited голосов',
             ],
             'account_standing' => [
-                'title' => 'Состояние аккаунта',
+                'title' => 'Нарушения',
                 'bad_standing' => "с аккаунтом <strong>:username</strong> не всё хорошо :(",
                 'remaining_silence' => 'пользователю <strong>:username</strong> можно будет говорить через :duration.',
 

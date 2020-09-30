@@ -84,6 +84,7 @@ return [
         'failed' => 'Identifiants incorrects',
         'forgot' => 'Mot de passe oublié ?',
         'info' => 'Veuillez vous connecter pour continuer',
+        'invalid_captcha' => 'Captcha invalide, rafraîchissez la page et retentez.',
         'locked_ip' => 'votre adresse IP est bloquée. Merci d\'attendre quelques minutes.',
         'password' => 'Mot de passe',
         'register' => "Vous n'avez pas de compte osu! ? Inscrivez-vous maintenant ici",
@@ -145,7 +146,6 @@ return [
         'lastvisit_online' => 'Actuellement en ligne',
         'missingtext' => 'Vous avez peut-être fait une faute de frappe ! (ou l\'utilisateur est banni)',
         'origin_country' => 'De :country',
-        'page_description' => 'osu! - Tout ce que vous devez savoir à propos de :username!',
         'previous_usernames' => 'Anciennement connu en tant que',
         'plays_with' => 'Joue avec :devices',
         'title' => "Profil de :username",
@@ -159,7 +159,7 @@ return [
                     'button' => 'Mettre en ligne l\'image',
                     'dropzone' => 'Déplacez ici pour uploader',
                     'dropzone_info' => 'Vous pouvez aussi glisser-déposer l\'image ici pour la mettre en ligne',
-                    'size_info' => 'La taille de la bannière devrait être de 2800x620',
+                    'size_info' => 'La taille de la bannière devrait être de 2400x620',
                     'too_large' => 'Le fichier est trop volumineux.',
                     'unsupported_format' => 'Format non supporté.',
 
@@ -187,7 +187,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'par :artist',
-                'none' => 'Aucune... pour le moment.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -217,7 +216,6 @@ return [
                 'show_more' => 'voir plus d\'événements',
             ],
             'historical' => [
-                'empty' => 'Aucune performance enregistrée. :(',
                 'title' => 'Historique',
 
                 'monthly_playcounts' => [
@@ -304,10 +302,9 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Télécharger le replay',
-                'empty' => 'Pas de première place. :(',
                 'not_ranked' => 'Seules les beatmaps classées accordent des pp.',
                 'pp_weight' => 'pondéré :percentage',
-                'view_details' => '',
+                'view_details' => 'Voir les détails',
                 'title' => 'Classements',
 
                 'best' => [

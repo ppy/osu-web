@@ -29,10 +29,10 @@ return [
             'username' => 'Kullanıcı adı',
 
             'beatmapset_status' => [
-                '_' => 'Beatmap durumu',
+                '_' => 'Beatmap Durumu',
                 'all' => 'Tümü',
                 'disqualified' => 'Diskalifiye edildi',
-                'never_qualified' => 'Nitelikli Değildi',
+                'never_qualified' => 'Niteliklendirilmedi',
                 'qualified' => 'Nitelikli',
                 'ranked' => 'Dereceli',
             ],
@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Bu gönderilerin hiçbiri sorunumla ilgili değil',
         'notice' => ':timestamp (:existing_timestamp) civarında gönderilmiş mesajlar var. Göndermeden önce lütfen onlara bir göz atın.',
+        'unsaved' => 'bu incelemede :count',
     ],
 
     'reply' => [
@@ -64,9 +65,12 @@ return [
     ],
 
     'review' => [
+        'block_count' => ':used / :max blok kullanıldı',
         'go_to_parent' => 'İnceleme paylaşımını görüntüle',
         'go_to_child' => 'Tartışmayı görüntüle',
         'validation' => [
+            'block_too_large' => 'her blok en fazla :limit karakter içerebilir',
+            'external_references' => 'inceleme, bu incelemeye ait olmayan sorunlara referanslar içeriyor',
             'invalid_block_type' => 'geçersiz blok türü',
             'invalid_document' => 'geçersiz gözden geçirme',
             'minimum_issues' => 'gözden geçirme asgari :count sayıda sorun içermelidir|gözden geçirme asgari :count sayıda sorun içermelidir',

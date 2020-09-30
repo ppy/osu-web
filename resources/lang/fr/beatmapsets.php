@@ -93,7 +93,6 @@ return [
             'source' => 'Source',
             'success-rate' => 'Taux de réussite',
             'tags' => 'Tags',
-            'unranked' => 'Beatmap non classée',
         ],
 
         'scoreboard' => [
@@ -115,6 +114,7 @@ return [
                 'rank' => 'Rang',
                 'score_total' => 'Score total',
                 'score' => 'Score',
+                'time' => 'Temps',
             ],
 
             'no_scores' => [

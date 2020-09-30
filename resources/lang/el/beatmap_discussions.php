@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Καμία δημοσίευση δεν απαντάει στο ερώτημά μου',
         'notice' => 'Υπάρχουν αναρτήσεις περίπου :timestamp (:existing_timestamps). Παρακαλώ να τις ελέγξετε πριν αναρτήσετε.',
+        'unsaved' => '',
     ],
 
     'reply' => [
@@ -64,9 +65,12 @@ return [
     ],
 
     'review' => [
+        'block_count' => '',
         'go_to_parent' => '',
         'go_to_child' => '',
         'validation' => [
+            'block_too_large' => '',
+            'external_references' => '',
             'invalid_block_type' => '',
             'invalid_document' => '',
             'minimum_issues' => '',

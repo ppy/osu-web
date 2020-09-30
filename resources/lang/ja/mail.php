@@ -85,6 +85,12 @@ return [
         'subject' => 'osu! アカウントの再アクティベーションが必要です',
     ],
 
+    'user_notification_digest' => [
+        'new' => '購読中のアイテムに新しい更新があったことをお知らせします。',
+        'settings' => '電子メール通知の設定',
+        'subject' => '新しいosu!の通知',
+    ],
+
     'user_password_updated' => [
         'confirmation' => 'これはosu! パスワードが変更されたことを確認するだけです。',
         'subject' => 'パスワード変更の確認',

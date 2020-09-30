@@ -4,20 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => 'Вызначыны няпрявільны :attribute.',
     'not_negative' => ':attribute не можа быць адмоўным.',
     'required' => ':attribute ёсць неабходны.',
     'too_long' => ':attribute максімальная колькасць сімвалаў перавышана - абмежаванне на :limit сімвалаў.',
     'wrong_confirmation' => 'Пацверджання не супадае.',
-
-    'beatmap_discussion_post' => [
-        'discussion_locked' => 'Абмеркаванне закрыта.',
-        'first_post' => 'Нельга выдаліць пачатковы допіс.',
-
-        'attributes' => [
-            'message' => 'Паведамленне',
-        ],
-    ],
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Пазнака часу вызначана, але бітмапа не знойдзена.',
@@ -33,7 +24,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Дадзеная карта у бягучы момант зачынена для абмеркавання і не можа быць хайпанута",
             'guest' => 'Каб хайпаваць, трэба ўвайсці.',
             'hyped' => 'Вы ўжо надалі хайп гэтай бітмапе.',
             'limit_exceeded' => 'Вы ўжо скарысталі ўвесь свой хайп.',
@@ -47,9 +38,18 @@ return [
         ],
     ],
 
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Абмеркаванне закрыта.',
+        'first_post' => 'Нельга выдаліць пачатковы допіс.',
+
+        'attributes' => [
+            'message' => 'Паведамленне',
+        ],
+    ],
+
     'comment' => [
         'deleted_parent' => 'Нельга адказваць на выдалены каментарый.',
-        'top_only' => '',
+        'top_only' => 'Нельга замацоўваць адказы на каментары.',
 
         'attributes' => [
             'message' => 'Паведамленне',
@@ -108,12 +108,12 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
-            'url' => '',
+            'too_many' => 'Перавышана максімальна дазволеная колькасць прыклад OAuth.',
+            'url' => 'Калі ласка, увядзіце сапраўдны URL.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Назва праграмы',
+                'redirect' => 'Callback URL Прыкладання',
             ],
         ],
     ],
@@ -121,10 +121,11 @@ return [
     'user' => [
         'contains_username' => 'Пароль не павінен змяшчаць імя карыстальніка.',
         'email_already_used' => 'Эл. пошта ўжо выкарыстоўваецца.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Краіны няма ў базедадзеных.',
         'invalid_discord' => 'Няправільнае імя карыстальніка Discord.',
         'invalid_email' => "Не падобна на дзейны адрас эл. пошты.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Няправільнае імя карыстальніка Twitter.',
         'too_short' => 'Новы пароль надта кароткі.',
         'unknown_duplicate' => 'Імя карыстальніка або адрас эл. пошты ўжо выкарыстоўваюцца.',
         'username_available_in' => 'Гэтае імя карыстальніка будзе даступнае для выкарыстоўвання ў :duration.',
@@ -160,7 +161,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason не падыходзіць для дадзенага тыпу дакладу.',
         'self' => "Вы не можаце паскардзіцца на самога сябе!",
     ],
 

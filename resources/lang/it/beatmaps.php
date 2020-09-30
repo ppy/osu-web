@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Scrivi qui per postare in Generale (:version)',
             'generalAll' => 'Scrivi qui per postare in Generale (Tutte le difficoltà)',
+            'review' => 'Scrivi qui per postare una revisione',
             'timeline' => 'Scrivi qui per postare nella Linea Temporale (:version)',
         ],
 
@@ -71,14 +72,14 @@ return [
             'nomination_reset' => 'Resetta Nomina',
             'praise' => 'Elogio',
             'problem' => 'Problema',
-            'review' => 'Recensione',
+            'review' => 'Revisione',
             'suggestion' => 'Suggerimento',
         ],
 
         'mode' => [
             'events' => 'Cronologia',
             'general' => ':scope Generale',
-            'reviews' => 'Recensioni',
+            'reviews' => 'Revisioni',
             'timeline' => 'Linea Temporale',
             'scopes' => [
                 'general' => 'Questa difficoltà',
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'fai ctrl-c nell\'editor ed incolla nel tuo messaggio per aggiungere un timestamp!',
             'title' => 'Nuova Discussione',
             'unpin' => 'Non fissare',
+        ],
+
+        'review' => [
+            'new' => 'Nuova revisione',
+            'embed' => [
+                'delete' => 'Elimina',
+                'missing' => '[DISCUSSIONE ELIMINATA]',
+                'unlink' => 'Dissocia',
+                'unsaved' => 'Non salvato',
+                'timestamp' => [
+                    'all-diff' => 'I post su "Tutte le difficoltà" non possono avere un timestamp.',
+                    'diff' => 'Se questo :type inizia con un timestamp, sarà mostrato nella Timeline.',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => 'inserisci paragrafo',
+                'praise' => 'inserisci elogio',
+                'problem' => 'inserisci problema',
+                'suggestion' => 'inserisci suggerimento',
+            ],
         ],
 
         'show' => [
@@ -156,7 +177,7 @@ return [
         'delete_own_confirm' => 'Sei sicuro? La beatmap verrà eliminata e sarai reindirizzato al tuo profilo.',
         'delete_other_confirm' => 'Sei sicuro? La beatmap verrà eliminata e sarai reindirizzato al profilo del creatore.',
         'disqualification_prompt' => 'Ragioni della squalifica?',
-        'disqualified_at' => 'squalificata :time_ago',
+        'disqualified_at' => 'Squalificata :time_ago (:reason).',
         'disqualified_no_reason' => 'nessuna motivazione specificata',
         'disqualify' => 'Squalifica',
         'incorrect_state' => 'Errore nel eseguire quell\'azione, prova a ricaricare la pagina.',
@@ -208,7 +229,7 @@ return [
                 'difficulty' => 'Difficoltà',
                 'favourites' => 'Preferiti',
                 'updated' => 'Aggiornato',
-                'ranked' => 'Classificata',
+                'ranked' => 'Rankata',
                 'rating' => 'Valutazione',
                 'plays' => 'Giocate',
                 'relevance' => 'Pertinenza',
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Novità',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Elettronica',
+        'metal' => 'Metal',
+        'classical' => 'Classico',
+        'folk' => 'Folk',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '4K',
@@ -279,6 +304,7 @@ return [
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
         'TD' => '',
+        'V2' => 'Score V2',
     ],
     'language' => [
         'any' => 'Qualsiasi',
@@ -291,8 +317,11 @@ return [
         'korean' => 'Coreano',
         'spanish' => 'Spagnolo',
         'swedish' => 'Svedese',
+        'russian' => 'Russo',
+        'polish' => 'Polacco',
         'instrumental' => 'Strumentale',
         'other' => 'Altro',
+        'unspecified' => 'Non specificato',
     ],
     'played' => [
         'any' => 'Qualsiasi',
@@ -315,7 +344,14 @@ return [
         'D' => 'D',
     ],
     'panel' => [
-        'playcount' => 'Numero partite: :count',
+        'playcount' => 'Volte giocata: :count',
         'favourites' => 'Preferiti: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Tutte',
+        ],
     ],
 ];

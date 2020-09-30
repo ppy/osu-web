@@ -4,15 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => 'filtrováno podle země',
+    'countries' => [
+        'all' => '',
+        'title' => '',
+    ],
+
+    'filter' => [
+        'title' => '',
+
+        'variant' => [
+            'title' => '',
+        ],
     ],
 
     'type' => [
-        'performance' => 'Výkon',
         'charts' => 'Výběry',
-        'score' => 'Skóre',
         'country' => 'Stát',
+        'multiplayer' => '',
+        'performance' => 'Výkon',
+        'score' => 'Skóre',
     ],
 
     'spotlight' => [

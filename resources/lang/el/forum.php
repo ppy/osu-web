@@ -75,6 +75,8 @@ return [
     'topic' => [
         'deleted' => 'διαγραμμένο θέμα',
         'go_to_latest' => 'δείτε την πιο πρόσφατη δημοσίευση',
+        'has_replied' => '',
+        'in_forum' => '',
         'latest_post' => ':when από τον :user',
         'latest_reply_by' => 'τελευταία απάντηση από τον :user',
         'new_topic' => 'Δημοσιεύστε νέο θέμα',

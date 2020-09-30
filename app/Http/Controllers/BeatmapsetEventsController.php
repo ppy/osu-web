@@ -9,6 +9,13 @@ use App\Libraries\ModdingHistoryEventsBundle;
 
 class BeatmapsetEventsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('require-scopes:public', ['only' => ['index']]);
+
+        return parent::__construct();
+    }
+
     public function index()
     {
         $bundle = ModdingHistoryEventsBundle::forListing(null, request()->all());
@@ -16,6 +23,10 @@ class BeatmapsetEventsController extends Controller
         $paginator = $bundle->getPaginator();
         $params = $bundle->getParams();
 
-        return ext_view('beatmapset_events.index', compact('paginator', 'params', 'jsonChunks'));
+        if (is_api_request()) {
+            return $jsonChunks;
+        } else {
+            return ext_view('beatmapset_events.index', compact('paginator', 'params', 'jsonChunks'));
+        }
     }
 }

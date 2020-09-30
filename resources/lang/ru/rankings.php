@@ -4,15 +4,25 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => 'отфильтровано по стране',
+    'countries' => [
+        'all' => 'Все',
+        'title' => 'Страна',
+    ],
+
+    'filter' => [
+        'title' => 'Показать',
+
+        'variant' => [
+            'title' => 'Вариативно',
+        ],
     ],
 
     'type' => [
-        'performance' => 'по производительности',
         'charts' => 'по чартам',
-        'score' => 'по очкам',
         'country' => 'по странам',
+        'multiplayer' => 'мультиплеер',
+        'performance' => 'по производительности',
+        'score' => 'по очкам',
     ],
 
     'spotlight' => [

@@ -20,7 +20,7 @@ return [
             'all' => 'ladda ner',
             'video' => 'ladda ner med video',
             'no_video' => 'ladda ner utan video',
-            'direct' => 'öppna i osu!direkt',
+            'direct' => 'öppna i osu!direct',
         ],
     ],
 
@@ -53,7 +53,7 @@ return [
             'qualified' => 'kvalificerat :timeago',
             'ranked' => 'rankad :timeago',
             'submitted' => 'skickad :timeago',
-            'updated' => 'senast uppdaterad :timeago',
+            'updated' => 'senast uppdaterat :timeago',
         ],
 
         'favourites' => [
@@ -93,7 +93,6 @@ return [
             'source' => 'Källa',
             'success-rate' => 'Genomsnittig Succe',
             'tags' => 'Taggar',
-            'unranked' => 'Ej rankad beatmap',
         ],
 
         'scoreboard' => [
@@ -115,6 +114,7 @@ return [
                 'rank' => 'Rank',
                 'score_total' => 'Total Poäng',
                 'score' => 'Poäng',
+                'time' => 'Tid',
             ],
 
             'no_scores' => [
