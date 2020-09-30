@@ -8,7 +8,9 @@ const url = new URL("{{ rtrim(config('app.docs_url') ?: config('app.url'), '/') 
 
 let params = {
 @foreach($route['queryParameters'] as $attribute => $parameter)
+@if ($parameter['value'] !== '--skip--')
     "{{ $attribute }}": "{{ $parameter['value'] }}",
+@endif
 @endforeach
 };
 Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
