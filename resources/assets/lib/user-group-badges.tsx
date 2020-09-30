@@ -8,17 +8,28 @@ import UserGroupBadge from 'user-group-badge';
 interface Props {
   groups: GroupJSON[];
   modifiers?: string[];
+  short?: boolean;
   wrapper: string; // FIXME: temporary?
 }
 
 export default function UserGroupBadges(props: Props) {
-  const { groups, modifiers, wrapper } = props;
+  const {
+    groups = [],
+    modifiers,
+    short = false,
+    wrapper,
+  } = props;
+
+  let mainGroupWasSet = false;
 
   return (
     <>
       {groups.map((group) => {
+        const className = short && mainGroupWasSet ? `${wrapper} u-hidden-narrow` : wrapper;
+        mainGroupWasSet = true;
+
         return (
-          <span className={wrapper} key={group.identifier}>
+          <span className={className} key={group.identifier}>
             <UserGroupBadge group={group} modifiers={modifiers} />
           </span>
         );
