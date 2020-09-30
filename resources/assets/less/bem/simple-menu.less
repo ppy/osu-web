@@ -42,6 +42,8 @@
     bottom: 100%;
     margin-bottom: 10px;
     right: 0;
+    padding-left: @_padding-vertical;
+    padding-right: $padding-left;
   }
 
   &--forum-topic-watch {
@@ -114,7 +116,8 @@
     .@{_top}--forum-topic-moderation & {
       flex-direction: row;
       flex-wrap: wrap;
-      max-width: calc(100vw - (2 * @forum-topic-nav-item--gutter));
+      // hopefully 25px is enough to account for scrollbar (when exists)
+      max-width: calc(100vw - (2 * @forum-topic-nav-item--gutter + 2 * @_padding-vertical + 25px));
       width: max-content;
     }
 
