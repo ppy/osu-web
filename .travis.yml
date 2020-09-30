@@ -72,6 +72,8 @@ jobs:
       script: ./bin/phpunit.sh
 
     - name: browser tests
+      env:
+        - APP_URL=http://localhost
       addons:
         chrome: stable
         <<: *addons
