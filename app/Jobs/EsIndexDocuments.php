@@ -5,7 +5,8 @@
 
 namespace App\Jobs;
 
-use App\Libraries\MorphMap;
+use App\Libraries\Elasticsearch\Indexable;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -24,8 +25,12 @@ class EsIndexDocuments implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($type, array $ids)
+    public function __construct(string $type, array $ids)
     {
+        if (!new $type() instanceof Indexable) {
+            throw new Exception("{$type} is not indexable.");
+        }
+
         $this->type = $type;
         $this->ids = $ids;
     }
