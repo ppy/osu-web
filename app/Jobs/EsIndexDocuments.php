@@ -5,6 +5,7 @@
 
 namespace App\Jobs;
 
+use App\Libraries\Elasticsearch\Es;
 use App\Libraries\Elasticsearch\Indexable;
 use Exception;
 use Illuminate\Bus\Queueable;
@@ -45,9 +46,15 @@ class EsIndexDocuments implements ShouldQueue
         $dummy = new $this->type();
 
         $models = $this->type::esIndexingQuery()->whereIn($dummy->getKeyName(), $this->ids)->get();
-        foreach ($models as $model) {
-            // TODO: change to batch
-            $model->esIndexDocument();
+        $actions = Es::generateBulkActions($models);
+        if (!empty($actions)) {
+            // TODO: handling response would be nice =)
+            Es::getClient()->bulk([
+                'index' => $this->type::esIndexName(),
+                'type' => $this->type::esType(),
+                'body' => $actions,
+                'client' => ['timeout' => 0],
+            ]);
         }
     }
 }
