@@ -10,7 +10,5 @@ Lang._getPluralForm = (count, locale) => {
     locale = 'pt';
   }
 
-  const form = Lang._origGetPluralForm(count, locale);
-
-  return form;
+  return Lang._origGetPluralForm(count, locale);
 };
