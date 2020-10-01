@@ -28,14 +28,14 @@ export default class RootDataStore {
 
   constructor() {
     // TODO: needs re-re-refactoring
-    this.beatmapsetStore = new BeatmapsetStore(this);
+    this.beatmapsetStore = new BeatmapsetStore();
     this.beatmapsetSearch = new BeatmapsetSearch(this.beatmapsetStore);
-    this.clientStore = new ClientStore(this);
-    this.commentableMetaStore = new CommentableMetaStore(this);
-    this.commentStore = new CommentStore(this);
+    this.clientStore = new ClientStore();
+    this.commentableMetaStore = new CommentableMetaStore();
+    this.commentStore = new CommentStore();
     this.notificationStore = new NotificationStore();
-    this.ownClientStore = new OwnClientStore(this);
-    this.userStore = new UserStore(this);
+    this.ownClientStore = new OwnClientStore();
+    this.userStore = new UserStore();
     this.channelStore = new ChannelStore(this.userStore);
 
     this.uiState = new UIStateStore(this);

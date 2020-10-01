@@ -7,7 +7,7 @@ import { Dictionary, orderBy } from 'lodash';
 import { action, observable } from 'mobx';
 import { Comment, CommentSort } from 'models/comment';
 import { OwnClient } from 'models/oauth/own-client';
-import Store from 'stores/store';
+import RootDataStore from 'stores/root-data-store';
 
 interface AccountUIState {
   client: OwnClient | null;
@@ -41,7 +41,7 @@ const defaultCommentsUIState: CommentsUIState = {
   userFollow: false,
 };
 
-export default class UIStateStore extends Store {
+export default class UIStateStore {
   @observable account: AccountUIState = {
     client: null,
     isCreatingNewClient: false,
@@ -54,6 +54,9 @@ export default class UIStateStore extends Store {
   @observable comments = Object.assign({}, defaultCommentsUIState);
 
   private orderedCommentsByParentId: Dictionary<Comment[]> = {};
+
+  constructor(protected root: RootDataStore) {
+  }
 
   exportCommentsUIState() {
     return {
