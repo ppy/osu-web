@@ -12,46 +12,35 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
 
 class EsIndexDocumentBulk implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable;
 
+    protected $className;
     protected $ids;
-    protected $type;
 
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct(string $type, array $ids)
+    public function __construct(string $className, array $ids)
     {
-        if (!new $type() instanceof Indexable) {
-            throw new Exception("{$type} is not indexable.");
+        if (!new $className() instanceof Indexable) {
+            throw new Exception("{$className} is not indexable.");
         }
 
-        $this->type = $type;
+        $this->className = $className;
         $this->ids = $ids;
     }
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
     public function handle()
     {
-        $dummy = new $this->type();
+        $dummy = new $this->className();
 
-        $models = $this->type::esIndexingQuery()->whereIn($dummy->getKeyName(), $this->ids)->get();
+        $models = $this->className::esIndexingQuery()->whereIn($dummy->getKeyName(), $this->ids)->get();
         $actions = Es::generateBulkActions($models);
         if (!empty($actions)) {
             // TODO: handling response would be nice =)
             Es::getClient()->bulk([
-                'index' => $this->type::esIndexName(),
-                'type' => $this->type::esType(),
+                'index' => $this->className::esIndexName(),
+                'type' => $this->className::esType(),
                 'body' => $actions,
                 'client' => ['timeout' => 0],
             ]);
