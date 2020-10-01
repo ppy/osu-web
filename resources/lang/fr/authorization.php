@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Que diriez-vous de jouer un peu d\'osu! à la place ?',
     'require_login' => 'Merci de vous connecter pour continuer.',
     'require_verification' => 'Veuillez vous vérifier pour continuer.',
     'restricted' => "Action impossible quand votre compte est restreint.",
