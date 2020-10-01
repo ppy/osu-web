@@ -121,7 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Lösenord får inte innehålla användarnamn.',
         'email_already_used' => 'E-postadress används redan.',
-        'email_not_allowed' => '',
+        'email_not_allowed' => 'E-postadress inte tillåten.',
         'invalid_country' => 'Land finns inte i databasen.',
         'invalid_discord' => 'Discordanvändarnamn ogiltigt.',
         'invalid_email' => "Verkar inte som att det är en giltig e-postadress.",
