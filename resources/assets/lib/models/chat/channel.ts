@@ -47,6 +47,10 @@ export default class Channel {
     }
   }
 
+  get lastMessage(): Message | undefined {
+    return this.messages[this.messages.length - 1];
+  }
+
   @computed
   get minMessageId() {
     const id = this.messages[0]?.messageId;

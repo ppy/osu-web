@@ -211,8 +211,7 @@ export default class ChannelStore {
       // TODO: need to mark again in case the marker has moved?
 
       // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
-      const lastSentMessage = channel.messages[channel.messages.length - 1];
-      if (lastSentMessage && lastSentMessage.sender.id === window.currentUser.id) {
+      if (channel.lastMessage?.sender.id === window.currentUser.id) {
         return;
       }
 
