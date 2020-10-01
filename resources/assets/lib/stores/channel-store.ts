@@ -23,10 +23,10 @@ import { action, computed, observable, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
-import Store from 'stores/store';
+import UserStore from 'stores/user-store';
 
 @dispatchListener
-export default class ChannelStore extends Store {
+export default class ChannelStore {
   @observable channels = observable.map<number, Channel>();
   private api = new ChatAPI();
   private markingAsRead: Record<number, number> = {};
@@ -82,6 +82,9 @@ export default class ChannelStore extends Store {
 
       return a.lastMessageId > b.lastMessageId ? -1 : 1;
     });
+  }
+
+  constructor(protected userStore: UserStore) {
   }
 
   @action
@@ -262,7 +265,7 @@ export default class ChannelStore extends Store {
   @action
   private handleChatChannelNewMessages(dispatchedAction: ChatChannelNewMessages) {
     const messages = dispatchedAction.json.map((json) => {
-      if (json.sender != null) this.root.userStore.getOrCreate(json.sender_id, json.sender);
+      if (json.sender != null) this.userStore.getOrCreate(json.sender_id, json.sender);
       return Message.fromJSON(json);
     });
 

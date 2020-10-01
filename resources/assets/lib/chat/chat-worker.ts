@@ -12,7 +12,8 @@ import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { transaction } from 'mobx';
 import Message from 'models/chat/message';
-import RootDataStore from 'stores/root-data-store';
+import ChannelStore from 'stores/channel-store';
+import UserStore from 'stores/user-store';
 import ChatAPI from './chat-api';
 import { MessageJSON } from './chat-api-responses';
 
@@ -27,7 +28,7 @@ export default class ChatWorker implements DispatchListener {
   private updateXHR: boolean = false;
   private windowIsActive: boolean = true;
 
-  constructor(private rootDataStore: RootDataStore) {
+  constructor(private channelStore: ChannelStore, private userStore: UserStore) {
     this.api = new ChatAPI();
   }
 
@@ -45,7 +46,7 @@ export default class ChatWorker implements DispatchListener {
     }
     this.updateXHR = true;
 
-    const maxMessageId = this.rootDataStore.channelStore.maxMessageId;
+    const maxMessageId = this.channelStore.maxMessageId;
 
     this.api.getUpdates(maxMessageId, this.lastHistoryId)
       .then((updateJson) => {
@@ -60,7 +61,7 @@ export default class ChatWorker implements DispatchListener {
 
         transaction(() => {
           updateJson.messages.forEach((message: MessageJSON) => {
-            if (message.sender != null) this.rootDataStore.userStore.getOrCreate(message.sender_id, message.sender);
+            if (message.sender != null) this.userStore.getOrCreate(message.sender_id, message.sender);
             const newMessage = Message.fromJSON(message);
             dispatch(new ChatMessageAddAction(newMessage));
           });

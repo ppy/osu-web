@@ -8,10 +8,10 @@ import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import { clamp } from 'lodash';
 import { action, computed, observable } from 'mobx';
-import Store from 'stores/store';
+import ChannelStore from 'stores/channel-store';
 
 @dispatchListener
-export default class ChatStateStore extends Store {
+export default class ChatStateStore {
   @observable autoScroll = false;
   @observable lastReadId = -1;
   @observable selected = 0;
@@ -19,7 +19,10 @@ export default class ChatStateStore extends Store {
 
   @computed
   get selectedChannel() {
-    return this.root.channelStore.get(this.selected);
+    return this.channelStore.get(this.selected);
+  }
+
+  constructor(protected channelStore: ChannelStore) {
   }
 
   @action
@@ -45,13 +48,13 @@ export default class ChatStateStore extends Store {
 
   @action
   private focusChannelAtIndex(index: number) {
-    const channelList = this.root.channelStore.channelList;
+    const channelList = this.channelStore.channelList;
     if (channelList.length === 0) {
       return;
     }
 
     const nextIndex = clamp(index, 0, channelList.length - 1);
-    const channel = this.root.channelStore.channelList[nextIndex];
+    const channel = this.channelStore.channelList[nextIndex];
 
     this.selectChannel(channel.channelId);
   }
@@ -68,14 +71,14 @@ export default class ChatStateStore extends Store {
 
   @action
   private handleWindowFocusAction() {
-    this.root.channelStore.markAsRead(this.selected);
+    this.channelStore.markAsRead(this.selected);
   }
 
   @action
   private selectChannel(channelId: number) {
     if (this.selected === channelId) return;
 
-    const channelStore = this.root.channelStore;
+    const channelStore = this.channelStore;
     const channel = channelStore.get(channelId);
     if (channel == null) {
       console.error(`Trying to switch to non-existent channel ${channelId}`);
@@ -94,7 +97,7 @@ export default class ChatStateStore extends Store {
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
     channelStore.loadChannel(channelId).then(() => {
-      this.root.channelStore.markAsRead(channelId);
+      this.channelStore.markAsRead(channelId);
     });
 
     dispatch(new ChatChannelSwitchedAction(channel));
