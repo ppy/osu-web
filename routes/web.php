@@ -444,7 +444,6 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'requir
 Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], function () {
     Route::post('generate-notification', 'LegacyInterOpController@generateNotification');
     Route::post('index-beatmapset/{beatmapset}', 'LegacyInterOpController@indexBeatmapset');
-    Route::post('index-documents', 'LegacyInterOpController@indexDocuments');
     Route::post('/refresh-beatmapset-cache/{beatmapset}', 'LegacyInterOpController@refreshBeatmapsetCache');
     Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'LegacyInterOpController@userAchievement')->name('user-achievement');
     Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
@@ -456,6 +455,10 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::post('user-recalculate-ranked-scores/{user}', 'LegacyInterOpController@userRecalculateRankedScores');
     Route::get('/news', 'LegacyInterOpController@news');
     Route::apiResource('users', 'InterOp\UsersController', ['only' => ['store']]);
+
+    Route::group(['as' => 'indexing.', 'prefix' => 'indexing'], function () {
+        Route::apiResource('bulk', 'InterOp\Indexing\BulkController', ['only' => ['store']]);
+    });
 
     Route::group(['as' => 'user-groups.'], function () {
         Route::post('user-group', 'InterOp\UserGroupsController@store')->name('store');

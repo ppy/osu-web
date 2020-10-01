@@ -7,12 +7,10 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\Handler as ExceptionHandler;
 use App\Jobs\EsIndexDocument;
-use App\Jobs\EsIndexDocumentBulk;
 use App\Jobs\Notifications\ForumTopicReply;
 use App\Jobs\Notifications\UserAchievementUnlock;
 use App\Jobs\RegenerateBeatmapsetCover;
 use App\Libraries\Chat;
-use App\Libraries\MorphMap;
 use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\UserBestScoresCheck;
 use App\Models\Achievement;
@@ -68,27 +66,6 @@ class LegacyInterOpController extends Controller
         }
 
         dispatch(new EsIndexDocument($beatmapset));
-
-        return response(null, 204);
-    }
-
-    public function indexDocuments()
-    {
-        // TODO: limited to these for now.
-        static $allowedTypes = ['beatmapset', 'user'];
-
-        $params = request()->all();
-
-        foreach ($params as $type => $paramIds) {
-            if (!in_array($type, $allowedTypes, true)) {
-                continue;
-            }
-
-            $ids = get_param_value($paramIds, 'int[]');
-            $className = MorphMap::getClass($type);
-
-            dispatch(new EsIndexDocumentBulk($className, $ids));
-        }
 
         return response(null, 204);
     }
