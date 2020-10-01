@@ -16,16 +16,18 @@ class EsIndexDocuments implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $batches;
+    protected $ids;
+    protected $type;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(array $batches)
+    public function __construct($type, array $ids)
     {
-        $this->batches = $batches;
+        $this->type = $type;
+        $this->ids = $ids;
     }
 
     /**
@@ -35,21 +37,12 @@ class EsIndexDocuments implements ShouldQueue
      */
     public function handle()
     {
-        static $allowedTypes = ['beatmapset', 'user'];
+        $dummy = new $this->type();
 
-        foreach ($this->batches as $type => $ids) {
-            if (!in_array($type, $allowedTypes, true)) {
-                continue;
-            }
-
-            $class = MorphMap::getClass($type);
-            $dummy = new $class();
-
-            $models = $class::esIndexingQuery()->whereIn($dummy->getKeyName(), $ids)->get();
-            foreach ($models as $model) {
-                // TODO: change to batch
-                $model->esIndexDocument();
-            }
+        $models = $this->type::esIndexingQuery()->whereIn($dummy->getKeyName(), $this->ids)->get();
+        foreach ($models as $model) {
+            // TODO: change to batch
+            $model->esIndexDocument();
         }
     }
 }
