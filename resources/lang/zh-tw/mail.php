@@ -7,7 +7,7 @@ return [
     'beatmapset_update_notice' => [
         'new' => '',
         'subject' => '圖譜“:title”有更新',
-        'unwatch' => '',
+        'unwatch' => '如果您不想再關注這張圖譜的話，可以點擊 “取消關注” 鏈接在頁面的下方，或者在摸圖關注頁面中：',
         'visit' => '',
     ],
 
@@ -21,7 +21,7 @@ return [
         'benefit_more' => '將來還會有更多贊助者獨享的功能!',
         'feedback' => "如果您有任何問題或建議，請直接回覆這封郵件。我會盡快回復的！",
         'keep_free' => '',
-        'keep_running' => '',
+        'keep_running' => '您的支持可讓 osu! 持續運行大概 :minutes！雖然看起來沒有太多，但有大家的支持會更長久 :)。',
         'subject' => '非常感謝，osu! 愛你哦~',
         'translation' => '以下為社群提供的翻譯，僅供參考:',
 
@@ -77,7 +77,7 @@ return [
     ],
 
     'user_force_reactivation' => [
-        'main' => '',
+        'main' => '由於近期您的帳號有可疑的行爲或者使用了太弱的密碼，已被暫時停用。因此我們需要您設定一個新的密碼。請確保使用足夠強的密碼。',
         'perform_reset' => '您可以點擊此連結來重設密碼:url',
         'reason' => '原因:',
         'subject' => '您需要重新驗證您的 osu! 帳戶',
