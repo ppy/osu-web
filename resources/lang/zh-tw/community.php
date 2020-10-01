@@ -90,7 +90,7 @@ return [
             ],
 
             'yellow_fellow' => [
-                'title' => '高亮用戶名',
+                'title' => '高亮使用者名稱',
                 'description' => '聊天時，用戶名會變成亮黃色。',
             ],
 

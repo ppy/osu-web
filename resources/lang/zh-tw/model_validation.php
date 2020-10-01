@@ -119,7 +119,7 @@ return [
     ],
 
     'user' => [
-        'contains_username' => '密碼不能包含用戶名。',
+        'contains_username' => '密碼不能包含使用者名稱。',
         'email_already_used' => '郵箱已被使用。',
         'email_not_allowed' => '',
         'invalid_country' => '國家或地區未被數據庫收錄。',
@@ -136,7 +136,7 @@ return [
         'username_no_space_userscore_mix' => '請在下劃線和空格間選一個，不要混用！',
         'username_no_spaces' => "用戶名不能以空格開頭或結束。",
         'username_not_allowed' => '不允許使用該用戶名。',
-        'username_too_short' => '用戶名太短。',
+        'username_too_short' => '使用者名稱太短。',
         'username_too_long' => '用戶名太長。',
         'weak' => '弱密碼。',
         'wrong_current_password' => '密碼不正確.',

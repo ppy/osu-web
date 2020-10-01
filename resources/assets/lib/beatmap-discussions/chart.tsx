@@ -29,13 +29,17 @@ export default function Chart(props: Props) {
       ]);
       className += ' js-beatmap-discussion--jump';
 
+      const relativeTimestamp = discussion.timestamp < props.duration
+        ? discussion.timestamp / props.duration
+        : 1;
+
       items.push((
         <a
           key={discussion.id}
           href={BeatmapDiscussionHelper.url({ discussion })}
           className={className}
           style={{
-            left: `${100 * discussion.timestamp / props.duration}%`,
+            left: `${100 * relativeTimestamp}%`,
           }}
           title={BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)}
           data-tooltip-position='bottom center'

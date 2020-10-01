@@ -843,7 +843,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     public function requiredNominationCount()
     {
-        return 2;
+        return $this->isHybridSet()
+            ? $this->playmodes()->count() * config('osu.beatmapset.required_nominations_hybrid')
+            : config('osu.beatmapset.required_nominations');
     }
 
     public function currentNominationCount()
@@ -1153,6 +1155,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable
     public function validationErrorsTranslationPrefix()
     {
         return 'beatmapset';
+    }
+
+    public function isHybridSet(): bool
+    {
+        return $this->playmodes()->count() > 1;
     }
 
     public function isValid()

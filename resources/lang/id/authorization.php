@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Mengapa Anda tidak mencoba untuk bermain osu! terlebih dahulu?',
     'require_login' => 'Silakan masuk untuk melanjutkan.',
     'require_verification' => 'Silakan verifikasi untuk melanjutkan.',
     'restricted' => "Tidak dapat melakukan hal itu saat dibatasi.",
