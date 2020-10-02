@@ -43,6 +43,18 @@ export default class Message {
     });
   }
 
+  // FIXME: parser that creates entries in user store shouldn't be in this class?
+  @action
+  static parseJSON(json: MessageJSON[]): Message[] {
+    return json.map((messageJson) => {
+      if (messageJson.sender != null) {
+        core.dataStore.userStore.getOrCreate(messageJson.sender_id, messageJson.sender);
+      }
+
+      return Message.fromJSON(messageJson);
+    });
+  }
+
   @action
   persist(): Message {
     this.persisted = true;

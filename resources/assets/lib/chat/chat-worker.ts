@@ -60,11 +60,8 @@ export default class ChatWorker implements DispatchListener {
         }
 
         transaction(() => {
-          updateJson.messages.forEach((message: MessageJSON) => {
-            if (message.sender != null) this.userStore.getOrCreate(message.sender_id, message.sender);
-            const newMessage = Message.fromJSON(message);
-            dispatch(new ChatMessageAddAction(newMessage));
-          });
+          const messages = Message.parseJSON(updateJson.messages);
+          messages.forEach((message) => dispatch(new ChatMessageAddAction(message)));
 
           let newHistoryId: number | null = null;
           const silencedUserIds = new Set<number>();
