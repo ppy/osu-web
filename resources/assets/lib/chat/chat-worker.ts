@@ -5,6 +5,7 @@ import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
+import { maxBy } from 'lodash';
 import { transaction } from 'mobx';
 import ChannelStore from 'stores/channel-store';
 import ChatAPI from './chat-api';
@@ -52,17 +53,7 @@ export default class ChatWorker implements DispatchListener {
         }
 
         transaction(() => {
-          let newHistoryId: number | null = null;
-
-          updateJson.silences.forEach((silence) => {
-            if (newHistoryId == null) {
-              newHistoryId = silence.id;
-            } else {
-              if (silence.id > newHistoryId) {
-                newHistoryId = silence.id;
-              }
-            }
-          });
+          const newHistoryId = maxBy(updateJson.silences, 'id')?.id;
 
           if (newHistoryId != null) {
             this.lastHistoryId = newHistoryId;
