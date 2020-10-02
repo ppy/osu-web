@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatChannelDeletedAction, ChatChannelSwitchedAction, ChatMessageSendAction } from 'actions/chat-actions';
+import { ChatChannelSwitchedAction, ChatMessageSendAction } from 'actions/chat-actions';
 import ChatNewConversationAdded from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
@@ -24,6 +24,12 @@ export default class ChatStateStore {
   }
 
   constructor(protected channelStore: ChannelStore) {
+    channelStore.channels.observe((changes) => {
+      // refocus channels if any gets removed
+      if (changes.type === 'delete') {
+        this.refocusSelectedChannel();
+      }
+    });
   }
 
   @action
@@ -34,9 +40,7 @@ export default class ChatStateStore {
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof ChatChannelDeletedAction) {
-      this.handleChatChannelDeletedAction();
-    } else if (dispatchedAction instanceof ChatMessageSendAction) {
+    if (dispatchedAction instanceof ChatMessageSendAction) {
       this.autoScroll = true;
     } else if (dispatchedAction instanceof ChatNewConversationAdded) {
       this.handleChatNewConversationAdded(dispatchedAction);
@@ -51,8 +55,7 @@ export default class ChatStateStore {
   selectChannel(channelId: number) {
     if (this.selected === channelId) return;
 
-    const channelStore = this.channelStore;
-    const channel = channelStore.get(channelId);
+    const channel = this.channelStore.get(channelId);
     if (channel == null) {
       console.error(`Trying to switch to non-existent channel ${channelId}`);
       return;
@@ -65,11 +68,11 @@ export default class ChatStateStore {
     }
 
     this.selected = channelId;
-    this.selectedIndex = channelStore.channelList.indexOf(channel);
+    this.selectedIndex = this.channelStore.channelList.indexOf(channel);
     this.lastReadId = channel.lastReadId ?? -1;
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
-    channelStore.loadChannel(channelId).then(() => {
+    this.channelStore.loadChannel(channelId).then(() => {
       this.channelStore.markAsRead(channelId);
     });
 
@@ -90,11 +93,6 @@ export default class ChatStateStore {
   }
 
   @action
-  private handleChatChannelDeletedAction() {
-    this.focusChannelAtIndex(this.selectedIndex);
-  }
-
-  @action
   private handleChatNewConversationAdded(dispatchedAction: ChatNewConversationAdded) {
     // TODO: currently only the current window triggers the action, but this should be updated
     // to ignore unfocused windows once new conversation added messages start getting triggered over the websocket.
@@ -104,5 +102,17 @@ export default class ChatStateStore {
   @action
   private handleWindowFocusAction() {
     this.channelStore.markAsRead(this.selected);
+  }
+
+  @action
+  /**
+   * Keeps the current channel in focus, unless deleted, then focus on next channel.
+   */
+  private refocusSelectedChannel() {
+    if (this.selectedChannel != null) {
+      this.selectChannel(this.selectedChannel.channelId);
+    } else {
+      this.focusChannelAtIndex(this.selectedIndex);
+    }
   }
 }

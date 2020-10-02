@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import {
-  ChatChannelDeletedAction,
   ChatChannelLoadEarlierMessages,
   ChatChannelNewMessages,
   ChatChannelPartAction,
@@ -225,6 +224,7 @@ export default class ChannelStore {
     this.removePublicMessagesFromUserIds(silencedUserIds);
   }
 
+  @action
   updateWithPresence(presence: PresenceJSON) {
     // update channel list
     presence.forEach((json) => {
@@ -238,16 +238,9 @@ export default class ChannelStore {
       }
 
       if (!presence.find((json) => json.channel_id === channel.channelId)) {
-        this.delete(channel.channelId);
+        this.channels.delete(channel.channelId);
       }
     });
-  }
-
-  @action
-  private delete(channelId: number) {
-    if (this.channels.delete(channelId)) {
-      dispatch(new ChatChannelDeletedAction(channelId));
-    }
   }
 
   @action
@@ -296,7 +289,7 @@ export default class ChannelStore {
       this.api.partChannel(dispatchedAction.channelId, window.currentUser.id);
     }
 
-    this.delete(dispatchedAction.channelId);
+    this.channels.delete(dispatchedAction.channelId);
   }
 
   @action

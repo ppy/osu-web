@@ -7,11 +7,6 @@ import Message from 'models/chat/message';
 import { ChannelType, MessageJSON } from '../chat/chat-api-responses';
 import DispatcherAction from './dispatcher-action';
 
-export class ChatChannelDeletedAction implements DispatcherAction {
-  constructor(readonly channelId: number) {
-  }
-}
-
 export class ChatChannelLoadEarlierMessages implements DispatcherAction {
   constructor(readonly channelId: number) {
   }
