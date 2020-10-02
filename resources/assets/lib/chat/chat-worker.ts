@@ -59,10 +59,9 @@ export default class ChatWorker implements DispatchListener {
 
         transaction(() => {
           const messages = Message.parseJSON(updateJson.messages);
-          messages.forEach((message) => dispatch(new ChatMessageAddAction(message)));
-
           let newHistoryId: number | null = null;
           const silencedUserIds = new Set<number>();
+
           updateJson.silences.forEach((silence) => {
             silencedUserIds.add(silence.user_id);
 
@@ -75,11 +74,12 @@ export default class ChatWorker implements DispatchListener {
             }
           });
 
-          dispatch(new UserSilenceAction(silencedUserIds));
           if (newHistoryId != null) {
             this.lastHistoryId = newHistoryId;
           }
 
+          messages.forEach((message) => dispatch(new ChatMessageAddAction(message)));
+          dispatch(new UserSilenceAction(silencedUserIds));
           dispatch(new ChatPresenceUpdateAction(updateJson.presence));
         });
       })
