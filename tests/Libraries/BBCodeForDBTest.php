@@ -48,6 +48,20 @@ class BBCodeForDBTest extends TestCase
         $this->assertSame($expectedOutput, $output);
     }
 
+    public function testProfileMismatchId()
+    {
+        $user = factory(User::class)->create();
+        $emptyBbcode = new BBCodeForDB();
+        $name = $emptyBbcode->extraEscapes($user->username);
+
+        $source = "[profile={$user->getKey()}]x[/profile]";
+        $expectedOutput = "[profile={$user->getKey()}:1]{$name}[/profile:1]";
+
+        $output = (new BBCodeForDB($source))->generate();
+
+        $this->assertSame($expectedOutput, $output);
+    }
+
     public function testProfileInvalidUser()
     {
         $source = '[profile]a[/profile]'; // name is too short to match any users

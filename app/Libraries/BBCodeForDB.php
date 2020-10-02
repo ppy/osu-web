@@ -224,30 +224,43 @@ class BBCodeForDB
 
     public function parseProfile($text)
     {
-        return preg_replace_callback(
-            "#\[profile(?:=(?<id>[0-9]+))?\](?<name>.+?)\[/profile\]#",
-            function ($m) {
-                if (present($m['id'])) {
-                    $id = $m['id'];
-                    $name = $this->extraEscapes($m['name']);
-                } else {
-                    $user = User::lookup($m['name'], null, true);
+        preg_match_all('#\[profile(?:=(?<id>[0-9]+))?\](?<name>.+?)\[/profile\]#', $text, $tags);
 
-                    if ($user === null) {
-                        $name = $this->extraEscapes($m['name']);
+        $users = User
+            ::whereIn('user_id', $tags['id'])
+            ->orWhereIn('username', $tags['name'])
+            ->orWhereIn('username_clean', $tags['name'])
+            ->get();
 
-                        return "[profile:{$this->uid}]{$name}[/profile:{$this->uid}]";
-                    }
+        $usersBy = [];
 
-                    $id = $user->getKey();
-                    $name = $this->extraEscapes($user->username);
-                }
+        foreach ($users as $user) {
+            foreach (['user_id', 'username', 'username_clean'] as $key) {
+                $usersBy[$key][mb_strtolower($user->$key)] = $user;
+            }
+        }
 
+        for ($i = 0; $i < count($tags[0]); $i++) {
+            $tag = presence($tags[0][$i]);
+            $name = $tags['name'][$i];
+            $nameNormalized = mb_strtolower($name);
+            $id = presence($tags['id'][$i]);
 
-                return "[profile={$id}:{$this->uid}]{$name}[/profile:{$this->uid}]";
-            },
-            $text
-        );
+            $user = $usersBy['user_id'][$id] ?? $usersBy['username'][$nameNormalized] ?? $usersBy['username_clean'][$nameNormalized] ?? null;
+
+            if ($user === null || !$user->hasProfile()) {
+                $idText = '';
+            } else {
+                $idText = "={$user->getKey()}";
+                $name = $user->username;
+            }
+
+            $name = $this->extraEscapes($name);
+
+            $text = str_replace($tag, "[profile{$idText}:{$this->uid}]{$name}[/profile:{$this->uid}]", $text);
+        }
+
+        return $text;
     }
 
     // this is quite different and much more dumb than the one in phpbb
