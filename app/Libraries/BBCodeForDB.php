@@ -240,7 +240,9 @@ class BBCodeForDB
             }
         }
 
-        for ($i = 0; $i < count($tags[0]); $i++) {
+        $count = count($tags[0]);
+
+        for ($i = 0; $i < $count; $i++) {
             $tag = presence($tags[0][$i]);
             $name = $tags['name'][$i];
             $nameNormalized = mb_strtolower($name);
