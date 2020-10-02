@@ -13,9 +13,7 @@ import DispatchListener from 'dispatch-listener';
 import { transaction } from 'mobx';
 import Message from 'models/chat/message';
 import ChannelStore from 'stores/channel-store';
-import UserStore from 'stores/user-store';
 import ChatAPI from './chat-api';
-import { MessageJSON } from './chat-api-responses';
 
 @dispatchListener
 export default class ChatWorker implements DispatchListener {
@@ -28,7 +26,7 @@ export default class ChatWorker implements DispatchListener {
   private updateXHR: boolean = false;
   private windowIsActive: boolean = true;
 
-  constructor(private channelStore: ChannelStore, private userStore: UserStore) {
+  constructor(private channelStore: ChannelStore) {
     this.api = new ChatAPI();
   }
 
