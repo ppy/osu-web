@@ -84,8 +84,6 @@ export default class ChatStateStore {
     this.channelStore.loadChannel(channelId).then(() => {
       this.channelStore.markAsRead(channelId);
     });
-
-    dispatch(new ChatChannelSwitchedAction(channel));
   }
 
   @action
