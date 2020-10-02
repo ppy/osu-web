@@ -224,7 +224,7 @@ export default class ChannelStore {
   @action
   removePublicMessagesFromUser(userIds: Set<number>) {
     this.nonPmChannels.forEach((channel) => {
-      channel.messages = channel.messages.filter((message) => !userIds.has(message.senderId));
+      channel.removeMessagesFromUserIds(userIds);
     });
   }
 
