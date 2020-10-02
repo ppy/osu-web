@@ -1,12 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatChannelSwitchedAction, ChatMessageSendAction } from 'actions/chat-actions';
+import { ChatMessageSendAction } from 'actions/chat-actions';
 import ChatNewConversationAdded from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { WindowFocusAction } from 'actions/window-focus-actions';
-import { dispatch, dispatchListener } from 'app-dispatcher';
+import { dispatchListener } from 'app-dispatcher';
 import { clamp } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import ChannelStore from 'stores/channel-store';
@@ -15,8 +15,17 @@ import ChannelStore from 'stores/channel-store';
 export default class ChatStateStore {
   @observable autoScroll = false;
   @observable lastReadId = -1;
-  @observable selected = 0;
+  @observable selectedBoxed = observable.box(0);
   private selectedIndex = 0;
+
+  @computed
+  get selected() {
+    return this.selectedBoxed.get();
+  }
+
+  set selected(value: number) {
+    this.selectedBoxed.set(value);
+  }
 
   @computed
   get selectedChannel() {
