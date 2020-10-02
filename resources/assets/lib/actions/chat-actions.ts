@@ -37,11 +37,6 @@ export class ChatChannelSwitchedAction implements DispatcherAction {
   }
 }
 
-export class ChatMessageAddAction implements DispatcherAction {
-  constructor(readonly message: Message) {
-  }
-}
-
 export class ChatMessageSendAction implements DispatcherAction {
   constructor(readonly message: Message) {
   }
