@@ -58,7 +58,15 @@
                 data-label="{{ $group->short_name }}"
                 title="{{ $group->group_name }}"
                 style="{!! css_group_colour($group) !!}"
-            ></div>
+            >
+                @if ($group->playmodes && count($group->playmodes) > 0)
+                    <div class="user-group-badge__modes">
+                        @foreach($group->playmodes as $mode)
+                            <i class="fal fa-extra-mode-{{ \App\Models\Beatmap::modeStr($mode) }}"></i>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
         </div>
     @endif
 

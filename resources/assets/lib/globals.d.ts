@@ -62,6 +62,7 @@ interface OsuCommon {
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
   diffColour: (difficultyRating?: string | null) => React.CSSProperties;
   groupColour: (group?: GroupJSON) => React.CSSProperties;
+  intToPlaymode: (modeInt: number) => string;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
   link: (url: string, text: string, options?: { classNames?: string[]; isRemote?: boolean }) => string;

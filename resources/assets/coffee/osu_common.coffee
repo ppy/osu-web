@@ -123,6 +123,18 @@
     JSON.parse JSON.stringify(object ? null)
 
 
+  intToPlaymode: (mode) ->
+    switch (mode)
+      when 0
+        'osu'
+      when 1
+        'taiko'
+      when 2
+        'fruits'
+      when 3
+        'mania'
+
+
   isInputElement: (el) ->
     el.tagName in ['INPUT', 'SELECT', 'TEXTAREA'] || el.isContentEditable
 

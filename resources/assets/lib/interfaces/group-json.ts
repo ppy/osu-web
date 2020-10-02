@@ -6,5 +6,6 @@ export default interface GroupJSON {
   id: number;
   identifier: string;
   name: string;
+  playmodes?: number[];
   short_name: string;
 }

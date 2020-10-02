@@ -18,6 +18,7 @@ class GroupTransformer extends TransformerAbstract
             'short_name' => $group->short_name,
             'description' => $group->group_desc,
             'colour' => $group->colour,
+            'playmodes' => $group->playmodes,
         ];
     }
 }

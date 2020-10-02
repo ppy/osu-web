@@ -33,6 +33,9 @@ class Group extends Model implements AfterCommit
     protected $table = 'phpbb_groups';
     protected $primaryKey = 'group_id';
     public $timestamps = false;
+    protected $casts = [
+        'has_playmode' => 'boolean',
+    ];
 
     public function scopeVisible($query)
     {

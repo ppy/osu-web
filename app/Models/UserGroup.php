@@ -18,6 +18,9 @@ class UserGroup extends Model
     protected $table = 'phpbb_user_group';
     public $timestamps = false;
     protected $primaryKeys = ['user_id', 'group_id'];
+    protected $casts = [
+        'playmodes' => 'array',
+    ];
 
     public function group()
     {

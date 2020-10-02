@@ -16,12 +16,25 @@ export default function UserGroupBadge({group, modifiers}: Props) {
 
   const style = osu.groupColour(group);
 
+  const playModes: JSX.Element[] = [];
+  group.playmodes?.forEach((mode) => {
+    playModes.push(
+      <i className={`fal fa-extra-mode-${osu.intToPlaymode(mode)}`} key={mode} />,
+    );
+  });
+
   return (
     <div
       className={osu.classWithModifiers('user-group-badge', modifiers)}
       data-label={group.short_name}
       style={style}
       title={group.name}
-    />
+    >
+      {playModes.length > 0 &&
+        <div className={'user-group-badge__modes'}>
+          {playModes}
+        </div>
+      }
+    </div>
   );
 }

@@ -1380,6 +1380,10 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             foreach (array_unique($ids) as $id) {
                 $group = app('groups')->byId($id);
 
+                if ($group->has_playmode) {
+                    $group['playmodes'] = $this->userGroups->where('group_id', $id)->first()->playmodes;
+                }
+
                 if (optional($group)->display_order !== null) {
                     $groups[] = $group;
                 }
