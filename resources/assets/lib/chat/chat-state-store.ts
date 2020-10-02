@@ -1,7 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatChannelDeletedAction, ChatChannelSelectAction, ChatChannelSwitchedAction, ChatMessageSendAction } from 'actions/chat-actions';
+import { ChatChannelDeletedAction, ChatChannelSwitchedAction, ChatMessageSendAction } from 'actions/chat-actions';
+import ChatNewConversationAdded from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { WindowFocusAction } from 'actions/window-focus-actions';
@@ -35,10 +36,10 @@ export default class ChatStateStore {
   handleDispatchAction(dispatchedAction: DispatcherAction) {
     if (dispatchedAction instanceof ChatChannelDeletedAction) {
       this.handleChatChannelDeletedAction();
-    } else if (dispatchedAction instanceof ChatChannelSelectAction) {
-      this.handleChatChannelSelectAction(dispatchedAction);
     } else if (dispatchedAction instanceof ChatMessageSendAction) {
       this.autoScroll = true;
+    } else if (dispatchedAction instanceof ChatNewConversationAdded) {
+      this.handleChatNewConversationAdded(dispatchedAction);
     } else if (dispatchedAction instanceof UserLogoutAction) {
       this.flushStore();
     } else if (dispatchedAction instanceof WindowFocusAction) {
@@ -47,35 +48,7 @@ export default class ChatStateStore {
   }
 
   @action
-  private focusChannelAtIndex(index: number) {
-    const channelList = this.channelStore.channelList;
-    if (channelList.length === 0) {
-      return;
-    }
-
-    const nextIndex = clamp(index, 0, channelList.length - 1);
-    const channel = this.channelStore.channelList[nextIndex];
-
-    this.selectChannel(channel.channelId);
-  }
-
-  @action
-  private handleChatChannelDeletedAction() {
-    this.focusChannelAtIndex(this.selectedIndex);
-  }
-
-  @action
-  private handleChatChannelSelectAction(dispatchedAction: ChatChannelSelectAction) {
-    this.selectChannel(dispatchedAction.channelId);
-  }
-
-  @action
-  private handleWindowFocusAction() {
-    this.channelStore.markAsRead(this.selected);
-  }
-
-  @action
-  private selectChannel(channelId: number) {
+  selectChannel(channelId: number) {
     if (this.selected === channelId) return;
 
     const channelStore = this.channelStore;
@@ -101,5 +74,35 @@ export default class ChatStateStore {
     });
 
     dispatch(new ChatChannelSwitchedAction(channel));
+  }
+
+  @action
+  private focusChannelAtIndex(index: number) {
+    const channelList = this.channelStore.channelList;
+    if (channelList.length === 0) {
+      return;
+    }
+
+    const nextIndex = clamp(index, 0, channelList.length - 1);
+    const channel = this.channelStore.channelList[nextIndex];
+
+    this.selectChannel(channel.channelId);
+  }
+
+  @action
+  private handleChatChannelDeletedAction() {
+    this.focusChannelAtIndex(this.selectedIndex);
+  }
+
+  @action
+  private handleChatNewConversationAdded(dispatchedAction: ChatNewConversationAdded) {
+    // TODO: currently only the current window triggers the action, but this should be updated
+    // to ignore unfocused windows once new conversation added messages start getting triggered over the websocket.
+    this.selectChannel(dispatchedAction.channelId);
+  }
+
+  @action
+  private handleWindowFocusAction() {
+    this.channelStore.markAsRead(this.selected);
   }
 }

@@ -32,11 +32,6 @@ export class ChatChannelJoinAction implements DispatcherAction {
   }
 }
 
-export class ChatChannelSelectAction implements DispatcherAction {
-  constructor(readonly channelId: number) {
-  }
-}
-
 export class ChatChannelSwitchedAction implements DispatcherAction {
   constructor(readonly channel: Channel) {
   }

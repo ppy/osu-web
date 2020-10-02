@@ -6,10 +6,10 @@ import {
   ChatChannelLoadEarlierMessages,
   ChatChannelNewMessages,
   ChatChannelPartAction,
-  ChatChannelSelectAction,
   ChatMessageSendAction,
   ChatMessageUpdateAction,
 } from 'actions/chat-actions';
+import ChatNewConversationAdded from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
@@ -322,7 +322,7 @@ export default class ChannelStore {
         runInAction(() => {
           this.channels.delete(message.channelId);
           const newChannel = this.addNewConversation(response.channel, response.message);
-          dispatch(new ChatChannelSelectAction(newChannel.channelId));
+          dispatch(new ChatNewConversationAdded(newChannel.channelId));
         });
       } else {
         const response = await this.api.sendMessage(message);

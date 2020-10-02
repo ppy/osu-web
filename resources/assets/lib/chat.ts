@@ -1,8 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatChannelSelectAction } from 'actions/chat-actions';
-import { dispatch } from 'app-dispatcher';
 import { PresenceJSON, SendToJSON } from 'chat/chat-api-responses';
 import MainView from 'chat/main-view';
 import * as _ from 'lodash';
@@ -45,7 +43,7 @@ reactTurbolinks.register('chat', MainView, () => {
   }
 
   if (initialChannel != null) {
-    dispatch(new ChatChannelSelectAction(initialChannel));
+    dataStore.uiState.chat.selectChannel(initialChannel);
   }
 
   return {
