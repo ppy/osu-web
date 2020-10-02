@@ -4,7 +4,7 @@
 
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
-import { ChannelType, MessageJSON, PresenceJSON } from '../chat/chat-api-responses';
+import { ChannelType, MessageJSON } from '../chat/chat-api-responses';
 import DispatcherAction from './dispatcher-action';
 
 export class ChatChannelDeletedAction implements DispatcherAction {
@@ -54,10 +54,5 @@ export class ChatMessageSendAction implements DispatcherAction {
 
 export class ChatMessageUpdateAction implements DispatcherAction {
   constructor(readonly message: Message, readonly json: MessageJSON | null) {
-  }
-}
-
-export class ChatPresenceUpdateAction implements DispatcherAction {
-  constructor(readonly presence: PresenceJSON) {
   }
 }

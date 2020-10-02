@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatChannelSelectAction, ChatPresenceUpdateAction } from 'actions/chat-actions';
+import { ChatChannelSelectAction } from 'actions/chat-actions';
 import { dispatch } from 'app-dispatcher';
 import { PresenceJSON, SendToJSON } from 'chat/chat-api-responses';
 import MainView from 'chat/main-view';
@@ -14,7 +14,7 @@ const presence: PresenceJSON = osu.parseJson('json-presence');
 
 if (!_.isEmpty(presence)) {
   // initial population of channel/presence data
-  dispatch(new ChatPresenceUpdateAction(presence));
+  dataStore.channelStore.updateWithPresence(presence);
 }
 
 reactTurbolinks.register('chat', MainView, () => {

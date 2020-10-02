@@ -1,17 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import {
-  ChatMessageAddAction,
-  ChatPresenceUpdateAction,
-} from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
-import UserSilenceAction from 'actions/user-silence-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
-import { dispatch, dispatchListener } from 'app-dispatcher';
+import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { transaction } from 'mobx';
-import Message from 'models/chat/message';
 import ChannelStore from 'stores/channel-store';
 import ChatAPI from './chat-api';
 
@@ -58,13 +52,9 @@ export default class ChatWorker implements DispatchListener {
         }
 
         transaction(() => {
-          const messages = Message.parseJSON(updateJson.messages);
           let newHistoryId: number | null = null;
-          const silencedUserIds = new Set<number>();
 
           updateJson.silences.forEach((silence) => {
-            silencedUserIds.add(silence.user_id);
-
             if (newHistoryId == null) {
               newHistoryId = silence.id;
             } else {
@@ -78,9 +68,7 @@ export default class ChatWorker implements DispatchListener {
             this.lastHistoryId = newHistoryId;
           }
 
-          messages.forEach((message) => dispatch(new ChatMessageAddAction(message)));
-          dispatch(new UserSilenceAction(silencedUserIds));
-          dispatch(new ChatPresenceUpdateAction(updateJson.presence));
+          this.channelStore.updateWithJson(updateJson);
         });
       })
       .catch((err) => {

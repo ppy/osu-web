@@ -167,7 +167,7 @@ export default class Channel {
   }
 
   @action
-  updatePresence = (json: ChannelJsonExtended) => {
+  updatePresence(json: ChannelJsonExtended) {
     this.updateWithJson(json);
     this.lastReadId = json.last_read_id;
   }

@@ -7,17 +7,14 @@ import {
   ChatChannelNewMessages,
   ChatChannelPartAction,
   ChatChannelSelectAction,
-  ChatMessageAddAction,
   ChatMessageSendAction,
   ChatMessageUpdateAction,
-  ChatPresenceUpdateAction,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
-import UserSilenceAction from 'actions/user-silence-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import ChatAPI from 'chat/chat-api';
-import { ChannelJSON, MessageJSON, PresenceJSON } from 'chat/chat-api-responses';
+import { ChannelJSON, GetUpdatesJSON, MessageJSON, PresenceJSON } from 'chat/chat-api-responses';
 import { maxBy } from 'lodash';
 import { action, computed, observable, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
@@ -144,16 +141,10 @@ export default class ChannelStore {
       this.handleChatChannelPartAction(dispatchedAction);
     } else if (dispatchedAction instanceof ChatMessageSendAction) {
       this.handleChatMessageSendAction(dispatchedAction);
-    } else if (dispatchedAction instanceof ChatMessageAddAction) {
-      this.getOrCreate(dispatchedAction.message.channelId).addMessages(dispatchedAction.message);
     } else if (dispatchedAction instanceof ChatMessageUpdateAction) {
       const channel: Channel = this.getOrCreate(dispatchedAction.message.channelId);
       channel.updateMessage(dispatchedAction.message, dispatchedAction.json);
       channel.resortMessages();
-    } else if (dispatchedAction instanceof ChatPresenceUpdateAction) {
-      this.updatePresence(dispatchedAction.presence);
-    } else if (dispatchedAction instanceof UserSilenceAction) {
-      this.removePublicMessagesFromUser(dispatchedAction.userIds);
     } else if (dispatchedAction instanceof UserLogoutAction) {
       this.flushStore();
     }
@@ -222,9 +213,33 @@ export default class ChannelStore {
   }
 
   @action
-  removePublicMessagesFromUser(userIds: Set<number>) {
-    this.nonPmChannels.forEach((channel) => {
-      channel.removeMessagesFromUserIds(userIds);
+  updateWithJson(updateJson: GetUpdatesJSON) {
+    this.updateWithPresence(updateJson.presence);
+
+    const messages = Message.parseJSON(updateJson.messages);
+    // messages for channels that have been left is a payload problem.
+    messages.forEach((message) => this.get(message.channelId)?.addMessages(message));
+
+    // TODO: convert silence handling back to action when updating through websocket is figured out.
+    const silencedUserIds = new Set<number>(updateJson.silences.map((json) => json.user_id));
+    this.removePublicMessagesFromUserIds(silencedUserIds);
+  }
+
+  updateWithPresence(presence: PresenceJSON) {
+    // update channel list
+    presence.forEach((json) => {
+      this.getOrCreate(json.channel_id).updatePresence(json);
+    });
+
+    // remove parted channels
+    this.channels.forEach((channel) => {
+      if (channel.newPmChannel) {
+        return;
+      }
+
+      if (!presence.find((json) => json.channel_id === channel.channelId)) {
+        this.delete(channel.channelId);
+      }
     });
   }
 
@@ -319,20 +334,9 @@ export default class ChannelStore {
   }
 
   @action
-  private updatePresence(presence: PresenceJSON) {
-    presence.forEach((json) => {
-      this.getOrCreate(json.channel_id).updatePresence(json);
-    });
-
-    // remove parted channels
-    this.channels.forEach((channel) => {
-      if (channel.newPmChannel) {
-        return;
-      }
-
-      if (!presence.find((json) => json.channel_id === channel.channelId)) {
-        this.delete(channel.channelId);
-      }
+  private removePublicMessagesFromUserIds(userIds: Set<number>) {
+    this.nonPmChannels.forEach((channel) => {
+      channel.removeMessagesFromUserIds(userIds);
     });
   }
 }
