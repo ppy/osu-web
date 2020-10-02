@@ -285,7 +285,7 @@ export default class ChannelStore {
   }
 
   @action
-  private async handleChatMessageSendAction(dispatchedAction: ChatMessageAddAction) {
+  private async handleChatMessageSendAction(dispatchedAction: ChatMessageSendAction) {
     const message = dispatchedAction.message;
     const channel = this.getOrCreate(message.channelId);
     channel.addMessages(message, true);
