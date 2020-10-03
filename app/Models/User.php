@@ -14,6 +14,7 @@ use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\UsernameValidation;
 use App\Models\Forum\TopicWatch;
 use App\Models\OAuth\Client;
+use App\Traits\Memoizes;
 use App\Traits\UserAvatar;
 use App\Traits\Validatable;
 use Cache;
@@ -170,7 +171,7 @@ use Request;
 class User extends Model implements AuthenticatableContract, HasLocalePreference
 {
     use Elasticsearch\UserTrait, Store\UserTrait;
-    use Authenticatable, HasApiTokens, Reportable, UserAvatar, UserScoreable, Validatable;
+    use Authenticatable, HasApiTokens, Memoizes, Reportable, UserAvatar, UserScoreable, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
@@ -215,8 +216,6 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         'user_twitter' => 255,
         'user_website' => 200,
     ];
-
-    protected $memoized = [];
 
     private $validateCurrentPassword = false;
     private $validatePasswordConfirmation = false;
@@ -873,19 +872,17 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function isSilenced()
     {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+        return $this->memoize(__FUNCTION__, function () {
             if ($this->isRestricted()) {
                 return true;
             }
 
             $lastBan = $this->accountHistories()->bans()->first();
 
-            $this->memoized[__FUNCTION__] = $lastBan !== null &&
+            return $lastBan !== null &&
                 $lastBan->period !== 0 &&
                 $lastBan->endTime()->isFuture();
-        }
-
-        return $this->memoized[__FUNCTION__];
+        });
     }
 
     /**
@@ -906,11 +903,9 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function groupIds()
     {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
-            $this->memoized[__FUNCTION__] = $this->userGroups->pluck('group_id')->toArray();
-        }
-
-        return $this->memoized[__FUNCTION__];
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->userGroups->pluck('group_id')->toArray();
+        });
     }
 
     // check if a user is in a specific group, by ID
@@ -1366,11 +1361,11 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function visibleGroups()
     {
-        if ($this->isBot()) {
-            return [app('groups')->byIdentifier('bot')];
-        }
+        return $this->memoize(__FUNCTION__, function () {
+            if ($this->isBot()) {
+                return [app('groups')->byIdentifier('bot')];
+            }
 
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
             $ids = $this->groupIds();
             array_unshift($ids, $this->defaultGroup()->getKey());
 
@@ -1387,10 +1382,8 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
                 return $a->display_order - $b->display_order;
             });
 
-            $this->memoized[__FUNCTION__] = $groups;
-        }
-
-        return $this->memoized[__FUNCTION__];
+            return $groups;
+        });
     }
 
     public function hasBlocked(self $user)
@@ -1410,7 +1403,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function remainingHype()
     {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+        return $this->memoize(__FUNCTION__, function () {
             $hyped = $this
                 ->beatmapDiscussions()
                 ->withoutTrashed()
@@ -1418,15 +1411,13 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
                 ->where('created_at', '>', Carbon::now()->subWeek())
                 ->count();
 
-            $this->memoized[__FUNCTION__] = config('osu.beatmapset.user_weekly_hype') - $hyped;
-        }
-
-        return $this->memoized[__FUNCTION__];
+            return config('osu.beatmapset.user_weekly_hype') - $hyped;
+        });
     }
 
     public function newHypeTime()
     {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+        return $this->memoize(__FUNCTION__, function () {
             $earliestWeeklyHype = $this
                 ->beatmapDiscussions()
                 ->withoutTrashed()
@@ -1435,23 +1426,19 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
                 ->orderBy('created_at')
                 ->first();
 
-            $this->memoized[__FUNCTION__] = $earliestWeeklyHype === null ? null : $earliestWeeklyHype->created_at->addWeek();
-        }
-
-        return $this->memoized[__FUNCTION__];
+            return $earliestWeeklyHype === null ? null : $earliestWeeklyHype->created_at->addWeek();
+        });
     }
 
     public function title()
     {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+        return $this->memoize(__FUNCTION__, function () {
             if ($this->user_rank !== 0 && $this->user_rank !== null) {
                 $title = $this->rank->rank_title;
             }
 
-            $this->memoized[__FUNCTION__] = $title ?? null;
-        }
-
-        return $this->memoized[__FUNCTION__];
+            return $title ?? null;
+        });
     }
 
     public function hasProfile()
@@ -1506,7 +1493,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function supportLength()
     {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+        return $this->memoize(__FUNCTION__, function () {
             $supportLength = 0;
 
             foreach ($this->supporterTagPurchases as $support) {
@@ -1517,10 +1504,8 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
                 }
             }
 
-            $this->memoized[__FUNCTION__] = $supportLength;
-        }
-
-        return $this->memoized[__FUNCTION__];
+            return $supportLength;
+        });
     }
 
     public function supportLevel()
@@ -1718,7 +1703,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function playCount()
     {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+        return $this->memoize(__FUNCTION__, function () {
             $unionQuery = null;
 
             foreach (Beatmap::MODES as $key => $_value) {
@@ -1731,15 +1716,13 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
                 }
             }
 
-            $this->memoized[__FUNCTION__] = $unionQuery->get()->sum('playcount');
-        }
-
-        return $this->memoized[__FUNCTION__];
+            return $unionQuery->get()->sum('playcount');
+        });
     }
 
     public function lastPlayed()
     {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+        return $this->memoize(__FUNCTION__, function () {
             $unionQuery = null;
 
             foreach (Beatmap::MODES as $key => $_value) {
@@ -1754,10 +1737,8 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
             $lastPlayed = $unionQuery->get()->max('last_played') ?? 0;
 
-            $this->memoized[__FUNCTION__] = Carbon::parse($lastPlayed);
-        }
-
-        return $this->memoized[__FUNCTION__];
+            return Carbon::parse($lastPlayed);
+        });
     }
 
     /**
@@ -1780,9 +1761,9 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function profileCustomization()
     {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+        return $this->memoize(__FUNCTION__, function () {
             try {
-                $this->memoized[__FUNCTION__] = $this
+                return $this
                     ->userProfileCustomization()
                     ->firstOrCreate([]);
             } catch (Exception $ex) {
@@ -1793,9 +1774,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
                 throw $ex;
             }
-        }
-
-        return $this->memoized[__FUNCTION__];
+        });
     }
 
     public function profileBeatmapsetsRankedAndApproved()
