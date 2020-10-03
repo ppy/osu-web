@@ -331,8 +331,9 @@ return [
     ],
     'bundled' => [
         'any' => 'Any',
-        'can_bundle' => 'Can Bundle',
-        'bundled' => 'Currently Bundled',
+        'currently' => 'Currently',
+        'previously' => 'Previously',
+        'never' => 'Never',
     ],
     'extra' => [
         'video' => 'Has Video',

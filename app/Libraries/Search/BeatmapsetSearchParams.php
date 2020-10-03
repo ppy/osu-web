@@ -10,7 +10,7 @@ use App\Models\Beatmap;
 
 class BeatmapsetSearchParams extends SearchParams
 {
-    const BUNDLED_STATES = ['bundled', 'can_bundle'];
+    const BUNDLED_STATES = ['currently', 'previously', 'never'];
     const PLAYED_STATES = ['played', 'unplayed'];
     const STATUSES_NO_CACHE = ['favourites', 'mine'];
 

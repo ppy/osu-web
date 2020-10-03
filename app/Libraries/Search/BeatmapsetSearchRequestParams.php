@@ -20,7 +20,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
     const AVAILABLE_GENERAL = ['recommended', 'converts'];
     const AVAILABLE_PLAYED = ['any', 'played', 'unplayed'];
     const AVAILABLE_RANKS = ['XH', 'X', 'SH', 'S', 'A', 'B', 'C', 'D'];
-    const AVAILABLE_BUNDLED = ['any', 'can_bundle', 'bundled'];
+    const AVAILABLE_BUNDLED = ['any', 'currently', 'previously', 'never'];
 
     const LEGACY_STATUS_MAP = [
         '0' => 'ranked',

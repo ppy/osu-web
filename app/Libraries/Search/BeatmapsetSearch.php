@@ -127,8 +127,17 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addBundledFilter($query)
     {
-        if ($this->params->bundledFilter !== null) {
-            $query->filter(['term' => [$this->params->bundledFilter => true]]);
+        switch ($this->params->bundledFilter) {
+            case 'currently':
+                $query->filter(['term' => ['bundled' => true]]);
+                break;
+            case 'previously':
+                $query->filter(['term' => ['bundled' => false]]);
+                $query->filter(['term' => ['can_bundle' => true]]);
+                break;
+            case 'never':
+                $query->filter(['term' => ['can_bundle' => false]]);
+                break;
         }
     }
 
