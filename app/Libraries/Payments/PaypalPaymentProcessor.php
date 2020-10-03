@@ -145,21 +145,15 @@ class PaypalPaymentProcessor extends PaymentProcessor
             // Order number can come from anywhere when paypal is involved /tableflip.
             // Attempt to find order number, else fallback to paypal's parent transaction ID for refunds,
             //  since the IPN might not include the invoice id.
-            if ($this->getNotificationType() === NotificationType::REFUND) {
-                if ($this->getOrderNumber() === null) {
-                    return Order::withPayments()
-                        ->wherePaymentTransactionId($this['parent_txn_id'], Order::PROVIDER_PAYPAL)
-                        ->first();
-                } else {
-                    return Order::withPayments()
-                        ->whereOrderNumber($this->getOrderNumber())
-                        ->first();
-                }
-            } else {
+            if ($this->getNotificationType() === NotificationType::REFUND && $this->getOrderNumber() === null) {
                 return Order::withPayments()
-                    ->whereOrderNumber($this->getOrderNumber())
+                    ->wherePaymentTransactionId($this['parent_txn_id'], Order::PROVIDER_PAYPAL)
                     ->first();
             }
+
+            return Order::withPayments()
+                ->whereOrderNumber($this->getOrderNumber())
+                ->first();
         });
     }
 
