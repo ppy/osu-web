@@ -18,6 +18,8 @@
 
 // This builds the tests into a single bundle.
 
+import '../../resources/assets/build/locales/en';
+
 // Doesn't work when specified in karma config for some reason.
 import '../../resources/assets/app';
 

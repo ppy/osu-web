@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '代わりにosu!で遊んでみてはどうですか？',
     'require_login' => '続行するにはログインが必要です。',
     'require_verification' => '続行するには認証が必要です。',
     'restricted' => "制限されている間は実行できません。",
@@ -32,7 +33,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "",
+            'bot' => "ボットによるディスカッションに投票できません",
             'limit_exceeded' => '再度評価するには少し間を置いてください。',
             'owner' => "自分のディスカッションは評価できません。",
             'wrong_beatmapset_state' => 'Pendingビートマップはディスカッションでのみ評価できます。',

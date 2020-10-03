@@ -12,7 +12,7 @@ interface Props {
   beatmaps: BeatmapJsonExtended[];
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapJsonExtended;
-  currentDiscussions: BeatmapDiscussion[];
+  currentDiscussions: BeatmapsetDiscussionJson[];
   currentUser: UserJSON;
   pinned?: boolean;
   setPinned?: (sticky: boolean) => void;

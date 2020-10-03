@@ -14,6 +14,7 @@ use Illuminate\Queue\SerializesModels;
 class CheckBeatmapsetCovers implements ShouldQueue
 {
     use InteractsWithQueue, Queueable, SerializesModels;
+
     protected $beatmapset;
 
     /**

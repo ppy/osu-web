@@ -96,8 +96,7 @@ class UserRecalculateRankCounts extends Command
     {
         $class = Best::class.'\\'.get_class_basename(get_class($stats));
         $counts = $class::where('user_id', '=', $stats->user_id)
-            ->accurateRankCounts()
-            [$stats->user_id] ?? [];
+            ->accurateRankCounts()[$stats->user_id] ?? [];
 
         return $this->map($counts);
     }

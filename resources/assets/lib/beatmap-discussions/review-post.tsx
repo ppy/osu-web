@@ -46,7 +46,7 @@ export class ReviewPost extends React.Component<Props> {
                 <div className='beatmapset-discussion-message' {...props}/>
               </div>;
             },
-            timestamp: (props) => <a className='beatmapset-discussion-message__timestamp' {...props}/>,
+            timestamp: (props) => <a className='beatmap-discussion-timestamp-decoration' {...props}/>,
           }}
         />
     );

@@ -199,7 +199,7 @@ return [
                     'title' => 'Loved 비트맵',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked / Approved 된 비트맵',
+                    'title' => 'Ranked 및 Approved 상태의 비트맵',
                 ],
                 'unranked' => [
                     'title' => 'Pending 비트맵',

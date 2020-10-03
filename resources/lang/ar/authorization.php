@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'الرجاء تسجيل الدخول للمضي قدما.',
     'require_verification' => 'الرجاء التحقق للمضي قدما.',
     'restricted' => "لا يمكنك فعل ذلك بينما تكون مقيدًا.",
@@ -32,7 +33,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "",
+            'bot' => "لا يمكن التصويت على مناقشة أجراها بوت",
             'limit_exceeded' => 'الرجاء الانتظار لفترة قبل الإدلاء بأصوات أكثر',
             'owner' => "لا يمكنك التصويت في المناقشة الخاصة بك.",
             'wrong_beatmapset_state' => 'يمكن فقط التصويت على المناقشات للخرائط في حالة الانتظار.',

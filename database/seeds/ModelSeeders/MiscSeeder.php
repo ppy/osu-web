@@ -15,7 +15,6 @@ class MiscSeeder extends Seeder
     public function run()
     {
         try {
-
             //DELETE TABLES
             DB::table('osu_genres')->delete();
             DB::table('osu_languages')->delete();

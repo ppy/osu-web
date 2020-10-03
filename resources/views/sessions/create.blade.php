@@ -44,6 +44,13 @@
                 />
             </div>
 
+            @if (captcha_enabled())
+                <div class="dialog-form__row">
+                    <div class="js-captcha--container"></div>
+                </div>
+                @include('objects._captcha_script')
+            @endif
+
             <div class="dialog-form__row dialog-form__row--error js-login-form--error">
             </div>
 
@@ -62,7 +69,7 @@
 
             <div class="dialog-form__row dialog-form__row--buttons">
                 <button
-                    class="dialog-form__button"
+                    class="dialog-form__button js-captcha--submit-button"
                     data-disable-with="{{ trans('users.login.button_posting') }}"
                 >
                     {{ trans('users.login._') }}

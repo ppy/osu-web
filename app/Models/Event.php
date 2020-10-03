@@ -244,7 +244,7 @@ class Event extends Model
         app('sentry')->getClient()->captureMessage(
             'Failed parsing event',
             null,
-            (new Scope)
+            (new Scope())
                 ->setExtra('reason', $reason)
                 ->setExtra('event', $this->toArray())
         );

@@ -22,7 +22,7 @@ return [
         'kudosu_gain' => 'Keskustelu :discussion käyttäjältä :user sai tarpeeksi ääniä kudosua varten.',
         'kudosu_lost' => 'Keskustelu :discussion käyttäjältä :user menetti ääniä ja annettu kudosu on poistettu.',
         'kudosu_recalculate' => 'Keskustelun :discussion kudosu on uudelleenlaskettu.',
-        'language_edit' => '',
+        'language_edit' => 'Kieli :old muutettu kieleen :new.',
         'love' => ':user rakastaa',
         'nominate' => 'Käyttäjän :user suosittelema.',
         'nomination_reset' => 'Uusi ongelma :discussion (:text) nollasi suositukset.',

@@ -29,7 +29,7 @@ class ContestEntryTransformer extends TransformerAbstract
             return [
                 'actual_name' => $entry->name,
                 'user_id' => $entry->user_id,
-                'username' => ($entry->user ?? (new \App\Models\DeletedUser))->username,
+                'username' => ($entry->user ?? (new \App\Models\DeletedUser()))->username,
                 'votes' => (int) $entry->votes_count,
             ];
         });

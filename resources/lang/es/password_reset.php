@@ -36,7 +36,7 @@ return [
         'username' => 'Ingresa correo electrónico o nombre de usuario',
 
         'support' => [
-            '_' => '¿Necesitas asistencia? Contáctanos a través de nuestro :button.',
+            '_' => '¿Necesita asistencia? Contáctenos a través de nuestro :button.',
             'button' => 'sistema de soporte',
         ],
     ],

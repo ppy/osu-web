@@ -11,6 +11,6 @@ class OsuHashManager extends HashManager
 {
     public function createBcryptDriver()
     {
-        return new OsuHasher;
+        return new OsuHasher();
     }
 }

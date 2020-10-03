@@ -241,12 +241,18 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             ->count();
 
         switch ($changesToDate) {
-            case 0: return 0;
-            case 1: return 8;
-            case 2: return 16;
-            case 3: return 32;
-            case 4: return 64;
-            default: return 100;
+            case 0:
+                return 0;
+            case 1:
+                return 8;
+            case 2:
+                return 16;
+            case 3:
+                return 32;
+            case 4:
+                return 64;
+            default:
+                return 100;
         }
     }
 
@@ -412,10 +418,13 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         // An interactive graph of the formula can be found at https://www.desmos.com/calculator/s7bxytxbbt
 
         return $this->user_lastvisit
-                ->addDays(intval(
+            ->addDays(
+                intval(
                     $minDays +
                     1580 * (1 - pow(M_E, $playCount * $expMod * -1 / 5900)) +
-                    ($playCount * $linMod * 8 / 5900)));
+                    ($playCount * $linMod * 8 / 5900)
+                )
+            );
     }
 
     public function validateChangeUsername(string $username, string $type = 'paid')
@@ -471,6 +480,50 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         if ($change !== null) {
             return static::lookup($change->user_id, 'id');
         }
+    }
+
+    public function addToGroup(Group $group, ?self $actor = null): void
+    {
+        if ($this->isGroup($group)) {
+            return;
+        }
+
+        $this->getConnection()->transaction(function () use ($actor, $group) {
+            $this->userGroups()->create(['group_id' => $group->getKey()]);
+            UserGroupEvent::logUserAdd($actor, $this, $group);
+        });
+    }
+
+    public function removeFromGroup(Group $group, ?self $actor = null): void
+    {
+        if (!$this->isGroup($group)) {
+            return;
+        }
+
+        $this->getConnection()->transaction(function () use ($actor, $group) {
+            $this->userGroups()->where(['group_id' => $group->getKey()])->delete();
+            UserGroupEvent::logUserRemove($actor, $this, $group);
+
+            if ($this->group_id === $group->getKey()) {
+                $this->setDefaultGroup(app('groups')->byIdentifier('default'));
+            }
+        });
+    }
+
+    public function setDefaultGroup(Group $group, ?self $actor = null): void
+    {
+        if (!$this->isGroup($group)) {
+            $this->addToGroup($group, $actor);
+        }
+
+        $this->getConnection()->transaction(function () use ($actor, $group) {
+            $this->update([
+                'group_id' => $group->getKey(),
+                'user_colour' => $group->group_colour,
+                'user_rank' => $group->group_rank,
+            ]);
+            UserGroupEvent::logUserSetDefault($actor, $this, $group);
+        });
     }
 
     public function getCountryAcronymAttribute($value)
@@ -943,8 +996,8 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function favouriteBeatmapsets()
     {
-        $favouritesTable = (new FavouriteBeatmapset)->getTable();
-        $beatmapsetsTable = (new Beatmapset)->getTable();
+        $favouritesTable = (new FavouriteBeatmapset())->getTable();
+        $beatmapsetsTable = (new Beatmapset())->getTable();
 
         return Beatmapset::select("{$beatmapsetsTable}.*")
             ->join($favouritesTable, "{$favouritesTable}.beatmapset_id", '=', "{$beatmapsetsTable}.beatmapset_id")
@@ -1403,8 +1456,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function hasProfile()
     {
-        return
-            $this->user_id !== null
+        return $this->user_id !== null
             && !$this->isRestricted()
             && $this->group_id !== app('groups')->byIdentifier('no_profile')->getKey();
     }
@@ -1848,14 +1900,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         }
 
         if ($this->isDirty('user_email') && present($this->user_email)) {
-            $emailValidator = new EmailValidator;
-            if (!$emailValidator->isValid($this->user_email, new NoRFCWarningsValidation)) {
-                $this->validationErrors()->add('user_email', '.invalid_email');
-            }
-
-            if (static::where('user_id', '<>', $this->getKey())->where('user_email', '=', $this->user_email)->exists()) {
-                $this->validationErrors()->add('user_email', '.email_already_used');
-            }
+            $this->isValidEmail();
         }
 
         if ($this->isDirty('country_acronym') && present($this->country_acronym)) {
@@ -1893,7 +1938,39 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             }
         }
 
+        if ($this->isDirty('group_id') && app('groups')->byId($this->group_id) === null) {
+            $this->validationErrors()->add('group_id', 'invalid');
+        }
+
         return $this->validationErrors()->isEmpty();
+    }
+
+    public function isValidEmail()
+    {
+        $emailValidator = new EmailValidator();
+        if (!$emailValidator->isValid($this->user_email, new NoRFCWarningsValidation())) {
+            $this->validationErrors()->add('user_email', '.invalid_email');
+
+            // no point validating further if address isn't valid.
+            return false;
+        }
+
+        $banlist = DB::table('phpbb_banlist')->where('ban_end', '>=', now()->timestamp)->orWhere('ban_end', 0);
+        foreach (model_pluck($banlist, 'ban_email') as $check) {
+            if (preg_match('#^'.str_replace('\*', '.*?', preg_quote($check, '#')).'$#i', $this->user_email)) {
+                $this->validationErrors()->add('user_email', '.email_not_allowed');
+
+                return false;
+            }
+        }
+
+        if (static::where('user_id', '<>', $this->getKey())->where('user_email', '=', $this->user_email)->exists()) {
+            $this->validationErrors()->add('user_email', '.email_already_used');
+
+            return false;
+        }
+
+        return true;
     }
 
     public function preferredLocale()

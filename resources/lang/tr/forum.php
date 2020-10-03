@@ -62,7 +62,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited gönderi',
-            'topic_starter' => 'Konu Başlığı',
+            'topic_starter' => 'Konuyu Başlatan',
         ],
     ],
 
@@ -76,6 +76,7 @@ return [
         'deleted' => 'silinmiş konu',
         'go_to_latest' => 'son yazılan mesajı göster',
         'has_replied' => 'Bu konuyu yanıtladınız',
+        'in_forum' => ':forum da',
         'latest_post' => ':user tarafından :when',
         'latest_reply_by' => 'son cevap :user tarafından',
         'new_topic' => 'Yeni konu aç',
@@ -274,9 +275,9 @@ return [
                 'do' => 'Bu isteği destekle',
 
                 'info' => [
-                    '_' => 'Bu bir: özellik isteğidir. Özellik istekleri aşağıdakiler tarafından oylanabilir: destek Personeli.',
-                    'feature_request' => 'özellik isteği',
-                    'supporters' => 'destek Personeli',
+                    '_' => 'Bu bir :feature_request. Özellik talepleri :supporters tarafından oylanabilir.',
+                    'feature_request' => 'özellik talebi',
+                    'supporters' => 'supporter\'lar',
                 ],
 
                 'user' => [

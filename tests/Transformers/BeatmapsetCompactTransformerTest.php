@@ -64,7 +64,7 @@ class BeatmapsetCompactTransformerTest extends TestCase
     public function propertyPermissionsDataProvider()
     {
         $data = [];
-        $transformer = new BeatmapsetCompactTransformer;
+        $transformer = new BeatmapsetCompactTransformer();
         foreach ($transformer->getPermissions() as $property => $permission) {
             if ($permission === 'IsNotOAuth') {
                 $data[] = [$property];

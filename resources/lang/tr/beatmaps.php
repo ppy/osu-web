@@ -49,7 +49,7 @@ return [
 
             'prompt' => [
                 'lock' => 'Kilitleme sebebi',
-                'unlock' => 'Kilidi açmak istediğinizden emin misiniz?',
+                'unlock' => 'Tartışmanın kilidini açmak istediğine emin misin?',
             ],
         ],
 
@@ -256,7 +256,7 @@ return [
         'any' => 'Hepsi',
         'approved' => 'Onaylı',
         'favourites' => 'Favoriler',
-        'graveyard' => 'Mezarlık',
+        'graveyard' => 'Mezarlıkta',
         'leaderboard' => 'Liderlik tablosu olanlar',
         'loved' => 'Sevilen',
         'mine' => 'Benim haritalarım',
@@ -319,7 +319,7 @@ return [
         'swedish' => 'İsveççe',
         'russian' => 'Rusça',
         'polish' => 'Lehçe',
-        'instrumental' => 'Enstrümental',
+        'instrumental' => 'Enstrümantal',
         'other' => 'Diğer',
         'unspecified' => 'Belirtilmemiş',
     ],

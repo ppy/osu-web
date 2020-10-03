@@ -153,7 +153,7 @@ class UsersController extends Controller
                 app('sentry')->getClient()->captureMessage(
                     'User registered from unknown country: '.$countryCode,
                     null,
-                    (new Scope)
+                    (new Scope())
                         ->setExtra('country', $countryCode)
                         ->setExtra('ip', $ip)
                         ->setExtra('user_id', $registration->user()->getKey())

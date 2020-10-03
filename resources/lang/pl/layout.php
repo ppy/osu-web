@@ -179,7 +179,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'zaloguj się / utwórz konto',
 
         'login' => [
             'forgot' => "Nie pamiętam swoich danych logowania",

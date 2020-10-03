@@ -31,7 +31,7 @@ class PlaylistItemTransformer extends TransformerAbstract
     {
         return $this->item(
             $item->beatmap,
-            new BeatmapCompactTransformer
+            new BeatmapCompactTransformer()
         );
     }
 }

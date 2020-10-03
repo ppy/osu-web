@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Pro pokračování se prosím přihlašte.',
     'require_verification' => '',
     'restricted' => "Toto nelze provést, když jste omezeni.",

@@ -147,9 +147,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable
     ];
     const HYPEABLE_STATES = [-1, 0, 3];
 
-    const RANKED_PER_DAY = 8;
-    const MINIMUM_DAYS_FOR_RANKING = 7;
-
     public static function coverSizes()
     {
         $shapes = ['cover', 'card', 'list', 'slimcover'];
@@ -538,7 +535,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             $this->previous_queue_duration = ($this->queued_at ?? $this->approved_date)->diffinSeconds();
             $this->queued_at = null;
         } elseif ($this->isPending() && $state === 'qualified') {
-            $maxAdjustment = (static::MINIMUM_DAYS_FOR_RANKING - 1) * 24 * 3600;
+            $maxAdjustment = (config('osu.beatmapset.minimum_days_for_rank') - 1) * 24 * 3600;
             $adjustment = min($this->previous_queue_duration, $maxAdjustment);
             $this->queued_at = $currentTime->copy()->subSeconds($adjustment);
         }
@@ -855,7 +852,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     public function requiredNominationCount()
     {
-        return 2;
+        return $this->isHybridSet()
+            ? $this->playmodes()->count() * config('osu.beatmapset.required_nominations_hybrid')
+            : config('osu.beatmapset.required_nominations');
     }
 
     public function currentNominationCount()
@@ -890,9 +889,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             ->withModesForRanking($modes)
             ->where('queued_at', '<', $this->queued_at)
             ->count();
-        $days = ceil($queueSize / static::RANKED_PER_DAY);
+        $days = ceil($queueSize / config('osu.beatmapset.rank_per_day'));
 
-        $minDays = static::MINIMUM_DAYS_FOR_RANKING - $this->queued_at->diffInDays();
+        $minDays = config('osu.beatmapset.minimum_days_for_rank') - $this->queued_at->diffInDays();
         $days = max($minDays, $days);
 
         return $days > 0 ? Carbon::now()->addDays($days) : null;
@@ -1106,7 +1105,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     public function getDisplayArtist(?User $user)
     {
-        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization;
+        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
         if ($profileCustomization->beatmapset_title_show_original) {
             return presence($this->artist_unicode) ?? $this->artist;
         }
@@ -1116,7 +1115,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     public function getDisplayTitle(?User $user)
     {
-        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization;
+        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
         if ($profileCustomization->beatmapset_title_show_original) {
             return presence($this->title_unicode) ?? $this->title;
         }
@@ -1165,6 +1164,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable
     public function validationErrorsTranslationPrefix()
     {
         return 'beatmapset';
+    }
+
+    public function isHybridSet(): bool
+    {
+        return $this->playmodes()->count() > 1;
     }
 
     public function isValid()

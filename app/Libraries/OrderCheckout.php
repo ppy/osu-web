@@ -8,7 +8,6 @@ namespace App\Libraries;
 use App\Exceptions\InvariantException;
 use App\Libraries\Payments\InvalidOrderStateException;
 use App\Models\Store\Order;
-use App\Models\User;
 use DB;
 use Request;
 

@@ -47,7 +47,7 @@ class Groups
                 'short_name' => $id,
             ]);
 
-            $this->reset();
+            $this->resetCache();
 
             return $this->byIdentifier($id);
         }
@@ -92,11 +92,7 @@ class Groups
     public function resetCache()
     {
         cache()->put('groups_local_cache_version', hrtime(true));
-    }
 
-    private function reset()
-    {
-        $this->resetCache();
         $this->groups = null;
         $this->groupsById = null;
         $this->groupsByIdentifier = null;

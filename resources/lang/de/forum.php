@@ -76,6 +76,7 @@ return [
         'deleted' => 'gelöschter thread',
         'go_to_latest' => 'letzten beitrag anschauen',
         'has_replied' => 'Du hast auf diesen Thread geantwortet',
+        'in_forum' => 'in :forum',
         'latest_post' => ':when von :user',
         'latest_reply_by' => 'letzte antwort von :user',
         'new_topic' => 'Neuen Thread erstellen',
