@@ -64,6 +64,7 @@
     "@types/jasmine": "^3.3.13",
     "@types/jquery": "^3.3.0",
     "@types/lodash": "^4.14.151",
+    "@types/photoswipe": "^4.1.0",
     "@types/react": "^16.8.4",
     "@types/react-dom": "^16.0.11",
     "autoprefixer": "^9.8.6",

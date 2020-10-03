@@ -18,8 +18,8 @@ import 'jquery-ui/ui/widgets/sortable.js';
 import 'jquery-ui/ui/keycode.js';
 import 'blueimp-file-upload/js/jquery.fileupload.js';
 
-import 'photoswipe/dist/photoswipe.js';
-import 'photoswipe/dist/photoswipe-ui-default.js';
+import * as PhotoSwipe from 'photoswipe';
+import * as PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default';
 // tslint:enable: ordered-imports
 
 import Lang from 'lang.js';
@@ -33,6 +33,8 @@ declare global {
     Lang: Lang;
     LangMessages: unknown;
     moment: any;
+    PhotoSwipe: any;
+    PhotoSwipeUI_Default: any;
     Turbolinks: Turbolinks;
   }
 }
@@ -42,4 +44,6 @@ window.jQuery = $;
 window.LangMessages ??= {};
 window.Lang = new Lang({ messages: window.LangMessages });
 window.moment = moment;
+window.PhotoSwipe = PhotoSwipe;
+window.PhotoSwipeUI_Default = PhotoSwipeUI_Default;
 window.Turbolinks = Turbolinks;

@@ -523,6 +523,11 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.6.0.tgz#7d4411bf5157339337d7cff864d9ff45f177b499"
   integrity sha512-mikldZQitV94akrc4sCcSjtJfsTKt4p+e/s0AGscVA6XArQ9kFclP+ZiYUMnq987rc6QlYxXv/EivqlfSLxpKA==
 
+"@types/photoswipe@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@types/photoswipe/-/photoswipe-4.1.0.tgz#212ad2b05d67828b24d424a01cb6fbb0735d37db"
+  integrity sha512-SWcWlJH8exQ/yijUNQn5pJdSrcsfPwyBmksBPa4NLNaUr4rhaC7YOGcrNSoIAC9LByoEbTIKWQpFVtHjomTTLA==
+
 "@types/prop-types@*":
   version "15.7.1"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.1.tgz#f1a11e7babb0c3cad68100be381d1e064c68f1f6"
