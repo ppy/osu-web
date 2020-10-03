@@ -141,30 +141,26 @@ class PaypalPaymentProcessor extends PaymentProcessor
      */
     protected function getOrder()
     {
-        if (!isset($this->order)) {
+        return $this->memoize(__FUNCTION__, function () {
             // Order number can come from anywhere when paypal is involved /tableflip.
             // Attempt to find order number, else fallback to paypal's parent transaction ID for refunds,
             //  since the IPN might not include the invoice id.
             if ($this->getNotificationType() === NotificationType::REFUND) {
                 if ($this->getOrderNumber() === null) {
-                    $order = Order::withPayments()
+                    return Order::withPayments()
                         ->wherePaymentTransactionId($this['parent_txn_id'], Order::PROVIDER_PAYPAL)
                         ->first();
                 } else {
-                    $order = Order::withPayments()
+                    return Order::withPayments()
                         ->whereOrderNumber($this->getOrderNumber())
                         ->first();
                 }
             } else {
-                $order = Order::withPayments()
+                return Order::withPayments()
                     ->whereOrderNumber($this->getOrderNumber())
                     ->first();
             }
-
-            $this->order = [$order];
-        }
-
-        return $this->order[0];
+        });
     }
 
     private function isPaymentOrPending()
