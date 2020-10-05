@@ -29,17 +29,12 @@ export default class Channel {
   @observable users: number[] = [];
 
   @computed
-  get exists(): boolean {
-    return this.channelId > 0;
-  }
-
-  @computed
   get hasEarlierMessages() {
     return this.firstMessageId !== this.minMessageId;
   }
 
   @computed
-  get isUnread(): boolean {
+  get isUnread() {
     if (this.lastReadId != null) {
       return this.lastMessageId > this.lastReadId;
     } else {
@@ -59,7 +54,7 @@ export default class Channel {
   }
 
   @computed
-  get pmTarget(): number | undefined {
+  get pmTarget() {
     if (this.type !== 'PM') {
       return;
     }
@@ -91,7 +86,7 @@ export default class Channel {
     });
   }
 
-  static newPM(target: User): Channel {
+  static newPM(target: User) {
     const channel = new Channel(-1);
     channel.newPmChannel = true;
     channel.type = 'PM';
