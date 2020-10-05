@@ -27,12 +27,12 @@ export default class ChannelStore {
   private markingAsRead: Record<number, number> = {};
 
   @computed
-  get channelList(): Channel[] {
+  get channelList() {
     return [...this.nonPmChannels, ...this.pmChannels];
   }
 
   @computed
-  get maxMessageId(): number {
+  get maxMessageId() {
     const channelArray = Array.from(this.channels.toJS().values());
     const max = maxBy(channelArray, 'lastMessageId');
 
@@ -40,7 +40,7 @@ export default class ChannelStore {
   }
 
   @computed
-  get nonPmChannels(): Channel[] {
+  get nonPmChannels() {
     const sortedChannels: Channel[] = [];
     this.channels.forEach((channel) => {
       if (channel.type !== 'PM' && channel.metaLoaded) {
@@ -58,7 +58,7 @@ export default class ChannelStore {
   }
 
   @computed
-  get pmChannels(): Channel[] {
+  get pmChannels() {
     const sortedChannels: Channel[] = [];
     this.channels.forEach((channel) => {
       if (channel.newPmChannel || (channel.type === 'PM' && channel.metaLoaded)) {
@@ -91,7 +91,7 @@ export default class ChannelStore {
     return channel;
   }
 
-  findPM(userId: number): Channel | null {
+  findPM(userId: number) {
     if (userId === core.currentUser?.id) {
       return null;
     }
@@ -114,12 +114,12 @@ export default class ChannelStore {
     this.channels.clear();
   }
 
-  get(channelId: number): Channel | undefined {
+  get(channelId: number) {
     return this.channels.get(channelId);
   }
 
   @action
-  getOrCreate(channelId: number): Channel {
+  getOrCreate(channelId: number) {
     let channel = this.channels.get(channelId);
 
     if (!channel) {
