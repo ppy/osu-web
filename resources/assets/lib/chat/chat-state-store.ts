@@ -48,14 +48,14 @@ export default class ChatStateStore {
     this.autoScroll = false;
   }
 
-  handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof ChatMessageSendAction) {
+  handleDispatchAction(event: DispatcherAction) {
+    if (event instanceof ChatMessageSendAction) {
       this.autoScroll = true;
-    } else if (dispatchedAction instanceof ChatNewConversationAdded) {
-      this.handleChatNewConversationAdded(dispatchedAction);
-    } else if (dispatchedAction instanceof UserLogoutAction) {
+    } else if (event instanceof ChatNewConversationAdded) {
+      this.handleChatNewConversationAdded(event);
+    } else if (event instanceof UserLogoutAction) {
       this.flushStore();
-    } else if (dispatchedAction instanceof WindowFocusAction) {
+    } else if (event instanceof WindowFocusAction) {
       this.handleWindowFocusAction();
     }
   }
@@ -100,10 +100,10 @@ export default class ChatStateStore {
   }
 
   @action
-  private handleChatNewConversationAdded(dispatchedAction: ChatNewConversationAdded) {
+  private handleChatNewConversationAdded(event: ChatNewConversationAdded) {
     // TODO: currently only the current window triggers the action, but this should be updated
     // to ignore unfocused windows once new conversation added messages start getting triggered over the websocket.
-    this.selectChannel(dispatchedAction.channelId);
+    this.selectChannel(event.channelId);
   }
 
   @action

@@ -130,17 +130,17 @@ export default class ChannelStore {
     return channel;
   }
 
-  handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof ChatChannelLoadEarlierMessages) {
-      this.handleChatChannelLoadEarlierMessages(dispatchedAction);
-    } else if (dispatchedAction instanceof ChatChannelPartAction) {
-      this.handleChatChannelPartAction(dispatchedAction);
-    } else if (dispatchedAction instanceof ChatMessageSendAction) {
-      this.handleChatMessageSendAction(dispatchedAction);
-    } else if (dispatchedAction instanceof ChatMessageUpdateAction) {
-      this.handleChatMessageUpdateAction(dispatchedAction);
-    } else if (dispatchedAction instanceof UserLogoutAction) {
-      this.handleUserLogoutAction(dispatchedAction);
+  handleDispatchAction(event: DispatcherAction) {
+    if (event instanceof ChatChannelLoadEarlierMessages) {
+      this.handleChatChannelLoadEarlierMessages(event);
+    } else if (event instanceof ChatChannelPartAction) {
+      this.handleChatChannelPartAction(event);
+    } else if (event instanceof ChatMessageSendAction) {
+      this.handleChatMessageSendAction(event);
+    } else if (event instanceof ChatMessageUpdateAction) {
+      this.handleChatMessageUpdateAction(event);
+    } else if (event instanceof UserLogoutAction) {
+      this.handleUserLogoutAction(event);
     }
   }
 
@@ -240,8 +240,8 @@ export default class ChannelStore {
   }
 
   @action
-  private async handleChatChannelLoadEarlierMessages(dispatchedAction: ChatChannelLoadEarlierMessages) {
-    const channelId = dispatchedAction.channelId;
+  private async handleChatChannelLoadEarlierMessages(event: ChatChannelLoadEarlierMessages) {
+    const channelId = event.channelId;
     const channel = this.get(channelId);
 
     if (channel == null || !channel.hasEarlierMessages || channel.loadingEarlierMessages) {
@@ -280,17 +280,17 @@ export default class ChannelStore {
   }
 
   @action
-  private handleChatChannelPartAction(dispatchedAction: ChatChannelPartAction) {
-    if (dispatchedAction.channelId !== -1) {
-      this.api.partChannel(dispatchedAction.channelId, window.currentUser.id);
+  private handleChatChannelPartAction(event: ChatChannelPartAction) {
+    if (event.channelId !== -1) {
+      this.api.partChannel(event.channelId, window.currentUser.id);
     }
 
-    this.channels.delete(dispatchedAction.channelId);
+    this.channels.delete(event.channelId);
   }
 
   @action
-  private async handleChatMessageSendAction(dispatchedAction: ChatMessageSendAction) {
-    const message = dispatchedAction.message;
+  private async handleChatMessageSendAction(event: ChatMessageSendAction) {
+    const message = event.message;
     const channel = this.getOrCreate(message.channelId);
     channel.addMessages(message, true);
 
@@ -323,14 +323,14 @@ export default class ChannelStore {
   }
 
   @action
-  private handleChatMessageUpdateAction(dispatchedAction: ChatMessageUpdateAction) {
-    const channel = this.getOrCreate(dispatchedAction.message.channelId);
-    channel.updateMessage(dispatchedAction.message, dispatchedAction.json);
+  private handleChatMessageUpdateAction(event: ChatMessageUpdateAction) {
+    const channel = this.getOrCreate(event.message.channelId);
+    channel.updateMessage(event.message, event.json);
     channel.resortMessages();
   }
 
   @action
-  private handleUserLogoutAction(dispatchedAction: UserLogoutAction) {
+  private handleUserLogoutAction(event: UserLogoutAction) {
     this.flushStore();
   }
 
