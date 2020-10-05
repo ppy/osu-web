@@ -11,6 +11,7 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapDiscussionVote;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
+use App\Transformers\UserTransformer;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -134,11 +135,12 @@ class ModdingHistoryEventsBundle
                     'recentlyReceivedKudosu' => static::KUDOSU_PER_PAGE,
                 ];
 
+                $transformer = new UserTransformer();
+                $transformer->mode = $this->user->playmode;
                 $array['user'] = json_item(
                     $this->user,
-                    'User',
+                    $transformer,
                     [
-                        "statistics:mode({$this->user->playmode})",
                         'active_tournament_banner',
                         'badges',
                         'follower_count',
@@ -147,6 +149,7 @@ class ModdingHistoryEventsBundle
                         'loved_beatmapset_count',
                         'previous_usernames',
                         'ranked_and_approved_beatmapset_count',
+                        'statistics',
                         'statistics.rank',
                         'support_level',
                         'unranked_beatmapset_count',

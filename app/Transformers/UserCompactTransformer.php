@@ -8,10 +8,11 @@ namespace App\Transformers;
 use App\Models\Beatmap;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
-use League\Fractal;
 
 class UserCompactTransformer extends TransformerAbstract
 {
+    public $mode;
+
     protected $availableIncludes = [
         'account_history',
         'active_tournament_banner',
@@ -258,12 +259,10 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->primitive($user->profileBeatmapsetsRankedAndApproved()->count());
     }
 
-    public function includeRankHistory(User $user, Fractal\ParamBag $params)
+    public function includeRankHistory(User $user)
     {
-        $mode = $params->get('mode')[0];
-
         $rankHistoryData = $user->rankHistories()
-            ->where('mode', Beatmap::modeInt($mode))
+            ->where('mode', Beatmap::modeInt($this->mode))
             ->first();
 
         return $rankHistoryData === null
@@ -279,16 +278,14 @@ class UserCompactTransformer extends TransformerAbstract
         );
     }
 
-    public function includeScoresFirstCount(User $user, Fractal\ParamBag $params)
+    public function includeScoresFirstCount(User $user)
     {
-        $mode = $params->get('mode')[0];
-
-        return $this->primitive($user->scoresFirst($mode, true)->visibleUsers()->count());
+        return $this->primitive($user->scoresFirst($this->mode, true)->visibleUsers()->count());
     }
 
-    public function includeStatistics(User $user, Fractal\ParamBag $params)
+    public function includeStatistics(User $user)
     {
-        $stats = $user->statistics($params->get('mode')[0]);
+        $stats = $user->statistics($this->mode);
 
         return $this->item($stats, new UserStatisticsTransformer());
     }
