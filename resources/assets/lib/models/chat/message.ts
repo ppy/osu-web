@@ -9,15 +9,15 @@ import * as moment from 'moment';
 import core from 'osu-core-singleton';
 
 export default class Message {
-  @observable channelId: number = -1;
-  @observable content: string = '';
-  @observable errored: boolean = false;
-  @observable isAction: boolean = false;
+  @observable channelId = -1;
+  @observable content = '';
+  @observable errored = false;
+  @observable isAction = false;
   @observable messageId: number | string = -1;
-  @observable persisted: boolean = false;
-  @observable senderId: number = -1;
-  @observable timestamp: string = moment().toISOString();
-  @observable uuid: string = osu.uuid();
+  @observable persisted = false;
+  @observable senderId = -1;
+  @observable timestamp = moment().toISOString();
+  @observable uuid = osu.uuid();
 
   @computed
   get sender() {
@@ -25,7 +25,7 @@ export default class Message {
   }
 
   @computed
-  get parsedContent(): string {
+  get parsedContent() {
     return osu.linkify(_.escape(this.content), true);
   }
 
@@ -45,7 +45,7 @@ export default class Message {
 
   // FIXME: parser that creates entries in user store shouldn't be in this class?
   @action
-  static parseJSON(json: MessageJSON[]): Message[] {
+  static parseJSON(json: MessageJSON[]) {
     return json.map((messageJson) => {
       if (messageJson.sender != null) {
         core.dataStore.userStore.getOrCreate(messageJson.sender_id, messageJson.sender);
@@ -56,7 +56,7 @@ export default class Message {
   }
 
   @action
-  persist(): Message {
+  persist() {
     this.persisted = true;
 
     return this;

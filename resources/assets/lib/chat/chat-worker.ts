@@ -14,12 +14,12 @@ import ChatAPI from './chat-api';
 export default class ChatWorker implements DispatchListener {
   private api: ChatAPI;
   private lastHistoryId: number | null = null;
-  private pollingEnabled: boolean = true;
-  private pollTime: number = 1000;
-  private pollTimeIdle: number = 5000;
+  private pollingEnabled = true;
+  private pollTime = 1000;
+  private pollTimeIdle = 5000;
   private updateTimerId?: number;
-  private updateXHR: boolean = false;
-  private windowIsActive: boolean = true;
+  private updateXHR = false;
+  private windowIsActive = true;
 
   constructor(private channelStore: ChannelStore) {
     this.api = new ChatAPI();
