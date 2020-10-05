@@ -5,7 +5,7 @@ import { FlagCountry } from 'flag-country'
 import * as React from 'react'
 import { a, div, h1, span } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
-import UserGroupBadge from 'user-group-badge'
+import UserGroupBadges from 'user-group-badges'
 el = React.createElement
 
 
@@ -53,11 +53,7 @@ export class HeaderInfo extends React.PureComponent
                   span
                     key: i
                     className: 'fas fa-heart'
-            for group in @props.user.groups
-              span
-                className: "#{bn}__icon"
-                key: group.id
-                el UserGroupBadge, group: group, modifiers: ['profile-page']
+            el UserGroupBadges, groups: @props.user.groups, modifiers: ['profile-page'], wrapper: "#{bn}__icon"
           div className: "#{bn}__icons #{bn}__icons--flag",
             if @props.user.country?.code?
               a

@@ -284,29 +284,36 @@ export class Main extends React.PureComponent
       # skip if filtering users
       continue if @state.selectedUserId? && d.user_id != @state.selectedUserId
 
-      filters = ['total']
+      filters = total: true
 
       if d.deleted_at?
-        filters.push 'deleted'
+        filters.deleted = true
       else if d.message_type == 'hype'
-        filters.push 'hype'
-        filters.push 'praises'
+        filters.hype = true
+        filters.praises = true
       else if d.message_type == 'praise'
-        filters.push 'praises'
+        filters.praises = true
       else if d.can_be_resolved
         if d.resolved
-          filters.push 'resolved'
+          filters.resolved = true
         else
-          filters.push 'pending'
+          filters.pending = true
 
       if d.user_id == @state.currentUser.id
-        filters.push 'mine'
+        filters.mine = true
 
       if d.message_type == 'mapper_note'
-        filters.push 'mapperNotes'
+        filters.mapperNotes = true
 
-      for filter in filters
+      # the value should always be true
+      for own filter, _isSet of filters
         byFilter[filter][mode][d.id] = d
+
+      if filters.pending && d.parent_id?
+        parentDiscussion = @discussions()[d.parent_id]
+
+        if parentDiscussion? && parentDiscussion.message_type == 'review'
+          byFilter.pending.reviews[parentDiscussion.id] = parentDiscussion
 
       byMode[mode].push d
 
