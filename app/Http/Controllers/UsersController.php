@@ -406,6 +406,7 @@ class UsersController extends Controller
      * account_history                      | |
      * active_tournament_banner             | |
      * badges                               | |
+     * beatmap_playcounts_count             | |
      * favourite_beatmapset_count           | |
      * follower_count                       | |
      * graveyard_beatmapset_count           | |
@@ -419,6 +420,7 @@ class UsersController extends Controller
      * replays_watched_counts               | |
      * scores_best_count                    | For specified mode.
      * scores_first_count                   | For specified mode.
+     * scores_recent_count                  | For specified mode.
      * statistics                           | For specified mode. Inluces `rank` and `variants` attributes.
      * support_level                        | |
      * unranked_beatmapset_count            | |
@@ -461,6 +463,7 @@ class UsersController extends Controller
             'account_history',
             'active_tournament_banner',
             'badges',
+            'beatmap_playcounts_count',
             'favourite_beatmapset_count',
             'follower_count',
             'graveyard_beatmapset_count',
@@ -475,6 +478,7 @@ class UsersController extends Controller
             'replays_watched_counts',
             'scores_best_count',
             'scores_first_count',
+            'scores_recent_count',
             'statistics',
             'statistics.rank',
             'statistics.variants',

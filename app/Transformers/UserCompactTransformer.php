@@ -17,6 +17,7 @@ class UserCompactTransformer extends TransformerAbstract
         'account_history',
         'active_tournament_banner',
         'badges',
+        'beatmap_playcounts_count',
         'blocks',
         'country',
         'cover',
@@ -43,6 +44,7 @@ class UserCompactTransformer extends TransformerAbstract
         'replays_watched_counts',
         'scores_best_count',
         'scores_first_count',
+        'scores_recent_count',
         'statistics',
         'support_level',
         'unranked_beatmapset_count',
@@ -115,6 +117,11 @@ class UserCompactTransformer extends TransformerAbstract
             $user->badges()->orderBy('awarded', 'DESC')->get(),
             new UserBadgeTransformer()
         );
+    }
+
+    public function includeBeatmapPlaycountsCount(User $user)
+    {
+        return $this->primitive($user->beatmapPlaycounts()->count());
     }
 
     public function includeBlocks(User $user)
@@ -287,6 +294,11 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeScoresFirstCount(User $user)
     {
         return $this->primitive($user->scoresFirst($this->mode, true)->visibleUsers()->count());
+    }
+
+    public function includeScoresRecentCount(User $user)
+    {
+        return $this->primitive($user->scores($this->mode, true)->includeFails(false)->count());
     }
 
     public function includeStatistics(User $user)
