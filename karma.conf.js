@@ -50,6 +50,7 @@ function readWebpackConfig() {
   return value;
 }
 
+process.env.SKIP_MANIFEST = true;
 webpackConfig = readWebpackConfig();
 webpackConfig.plugins.push(new ExitOnErrorWebpackPlugin());
 webpackConfig.mode = 'development';
@@ -60,9 +61,6 @@ delete webpackConfig.entry; // test runner doesn't use the entry points
 const testIndex = './tests/karma/index.ts';
 
 const files = [
-  './public/js/vendor.js',
-  './public/js/app-deps.js',
-  './public/js/locales/en.js',
   './tests/karma/globals.js', // shims for tests
   testIndex,
 ];

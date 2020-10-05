@@ -51,7 +51,7 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'Értesítések kérése minősített beatmapok problémáival kapcsolatban a következő módokból',
         'beatmapset_disqualify' => 'Értesíts akkor, ha a beatmap következő modjai diszkvalifikálva lettek',
-        'comment_reply' => '',
+        'comment_reply' => 'értesítések küldése a kommentjeidre érkezett válaszokról',
         'title' => 'Értesítések',
         'topic_auto_subscribe' => 'az általad létrehozott új fórum témák értesítéseinek automatikus bekapcsolása',
 

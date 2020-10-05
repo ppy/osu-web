@@ -128,6 +128,8 @@
   &__icons {
     display: flex;
     margin: -2px;
+    flex-wrap: wrap;
+    align-items: flex-end;
 
     &--flag {
       margin: 0;
@@ -169,11 +171,7 @@
 
   &__title {
     font-size: @font-size--title-small-4;
-    padding: 0 0 15px;
+    padding: 0 0 5px;
     line-height: normal;
-
-    @media @desktop {
-      padding-bottom: 5px;
-    }
   }
 }

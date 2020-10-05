@@ -84,7 +84,7 @@ return [
         'failed' => 'Nieprawidłowe dane logowania',
         'forgot' => 'Nie pamiętasz hasła?',
         'info' => 'Zaloguj się, aby kontynuować.',
-        'invalid_captcha' => '',
+        'invalid_captcha' => 'Zbyt wiele nieudanych prób logowania - wykonaj captchę, by spróbować ponownie (odśwież stronę, jeżeli captcha nie jest widoczna).',
         'locked_ip' => 'Twój adres IP został zablokowany. Poczekaj kilka minut.',
         'password' => 'Hasło',
         'register' => "Nie posiadasz konta osu!? Utwórz nowe.",

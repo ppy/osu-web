@@ -6,8 +6,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserClient;
-use Auth;
-use Request;
 
 class ClientVerificationsController extends Controller
 {

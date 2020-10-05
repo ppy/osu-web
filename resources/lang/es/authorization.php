@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '¿Qué tal si en vez de eso jugamos un poco de osu!?',
     'require_login' => 'Por favor, inicia sesión para continuar.',
     'require_verification' => 'Por favor verifica para proceder.',
     'restricted' => "No puede hacer eso mientras esté restringido.",

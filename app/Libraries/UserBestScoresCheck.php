@@ -113,6 +113,6 @@ class UserBestScoresCheck
         return $search
             ->sort(new Sort('score_id', 'asc'))
             ->size(static::BATCH_SIZE)
-            ->query((new BoolQuery)->filter(['term' => ['user_id' => $this->user->getKey()]]));
+            ->query((new BoolQuery())->filter(['term' => ['user_id' => $this->user->getKey()]]));
     }
 }

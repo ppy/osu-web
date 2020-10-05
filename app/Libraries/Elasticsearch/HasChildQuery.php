@@ -14,7 +14,7 @@ class HasChildQuery extends HasSearch implements Queryable
 
     public function __construct(string $type, string $name)
     {
-        parent::__construct(new EmptySearchParams);
+        parent::__construct(new EmptySearchParams());
 
         $this->name = $name;
         $this->type = $type;

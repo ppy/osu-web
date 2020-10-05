@@ -6,7 +6,6 @@
 namespace App\Http\Controllers\Passport;
 
 use Illuminate\Http\Request;
-use Laravel\Passport\Bridge\Scope;
 use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Http\Controllers\AuthorizationController as PassportAuthorizationController;
 use Laravel\Passport\TokenRepository;
@@ -29,11 +28,12 @@ class AuthorizationController extends PassportAuthorizationController
      * @param  \Laravel\Passport\TokenRepository $tokens
      * @return \Illuminate\Http\Response
      */
-    public function authorize(ServerRequestInterface $psrRequest,
-                              Request $request,
-                              ClientRepository $clients,
-                              TokenRepository $tokens)
-    {
+    public function authorize(
+        ServerRequestInterface $psrRequest,
+        Request $request,
+        ClientRepository $clients,
+        TokenRepository $tokens
+    ) {
         $redirectUri = presence(trim($request['redirect_uri']));
 
         abort_if($redirectUri === null, 400, trans('model_validation.required', ['attribute' => 'redirect_uri']));

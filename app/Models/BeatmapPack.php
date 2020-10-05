@@ -59,8 +59,8 @@ class BeatmapPack extends Model
 
     public function beatmapsets()
     {
-        $setsTable = (new Beatmapset)->getTable();
-        $itemsTable = (new BeatmapPackItem)->getTable();
+        $setsTable = (new Beatmapset())->getTable();
+        $itemsTable = (new BeatmapPackItem())->getTable();
 
         return Beatmapset::query()
             ->join($itemsTable, "{$itemsTable}.beatmapset_id", '=', "{$setsTable}.beatmapset_id")

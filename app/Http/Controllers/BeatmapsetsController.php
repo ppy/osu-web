@@ -277,7 +277,7 @@ class BeatmapsetsController extends Controller
         return [
             'beatmapsets' => json_collection(
                 $records,
-                new BeatmapsetTransformer,
+                new BeatmapsetTransformer(),
                 'beatmaps.max_combo'
             ),
             'cursor' => $search->getSortCursor(),

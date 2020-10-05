@@ -27,7 +27,7 @@ return [
 
     'spotlight' => [
         'end_date' => 'Data de Término',
-        'map_count' => 'Contagem do Map',
+        'map_count' => 'Contagem de Map',
         'participants' => 'Participantes',
         'start_date' => 'Data de Ínicio',
     ],

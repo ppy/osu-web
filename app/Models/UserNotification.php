@@ -82,7 +82,7 @@ class UserNotification extends Model
                 ->whereIn('name', $names);
         }
 
-        $instance = new static;
+        $instance = new static();
         $tableName = $instance->getTable();
         // force mysql optimizer to optimize properly with a fake multi-table update
         // https://dev.mysql.com/doc/refman/8.0/en/subquery-optimization.html

@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Паролата не може да съдържа в себе си потребителското име.',
         'email_already_used' => 'Този имейл адрес вече се използва.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Страната не е в базата данни.',
         'invalid_discord' => 'Потребителското име за Discord е невалидно.',
         'invalid_email' => "Това не изглежда да е валиден имейл адрес.",

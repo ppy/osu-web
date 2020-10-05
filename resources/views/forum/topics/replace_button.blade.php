@@ -17,6 +17,8 @@
 @endphp
 Timeout.set(0, function() {
     $('.js-forum-topic-{{ $type }}--extra[data-topic-id={{ $topic->topic_id }}]').remove();
+    $('.js-forum-topic-{{ $type }}--state[data-topic-id={{ $topic->topic_id }}]')
+        .attr('data-topic-{{ $type }}', '{{ $stateText }}');
     $('.js-forum-topic-{{ $type }}[data-topic-id={{ $topic->topic_id }}]')
         .replaceWith({!! json_encode(view(
             'forum.topics._'.$type,

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 $factory->define(App\Models\Contest::class, function (Faker\Generator $faker) {
-    return  [
+    return [
         'name' => function () use ($faker) {
             return $faker->sentence();
         },

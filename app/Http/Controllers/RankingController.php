@@ -102,16 +102,14 @@ class RankingController extends Controller
      *
      * Returns [Rankings](#rankings)
      *
-     * ### Route Parameters
+     * @urlParam mode required [GameMode](#gamemode). Example: mania
+     * @urlParam type required [RankingType](#rankingtype). Example: performance
      *
-     * Field  | Status   | Type
-     * -------| ---------| -----------------
-     * mode   | required | [GameMode](#gamemode)
-     * type   | required | [RankingType](#rankingtype)
-     *
-     * @authenticated
-     *
-     * @queryParam spotlight The id of the spotlight if `type` is `charts`
+     * @queryParam country Filter ranking by country code. Only available for `type` of `performance`. Example: JP
+     * @queryParam cursor [Cursor](#cursor). No-example
+     * @queryParam filter Either `all` (default) or `friends`. Example: all
+     * @queryParam spotlight The id of the spotlight if `type` is `charts`. Ranking for latest spotlight will be returned if not specified. No-example
+     * @queryParam variant Filter ranking to specified mode variant. For `mode` of `mania`, it's either `4k` or `7k`. Only available for `type` of `performance`. Example: 4k
      */
     public function index($mode, $type)
     {
@@ -128,7 +126,7 @@ class RankingController extends Controller
                 ->orderBy('performance', 'desc');
         } else {
             $class = UserStatistics\Model::getClass($mode, $this->params['variant']);
-            $table = (new $class)->getTable();
+            $table = (new $class())->getTable();
             $stats = $class
                 ::with(['user', 'user.country'])
                 ->whereHas('user', function ($userQuery) {

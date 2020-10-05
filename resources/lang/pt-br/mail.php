@@ -85,7 +85,7 @@ return [
 
     'user_notification_digest' => [
         'new' => 'Só informando que há novas atualizações em itens que você acompanha.',
-        'settings' => 'Alterar preferências de notificação de e-mail:',
+        'settings' => 'Alterar preferências de notificação de email:',
         'subject' => 'Novas notificações de osu!',
     ],
 

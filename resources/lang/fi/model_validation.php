@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Salasana ei saa sisältää käyttäjätunnusta.',
         'email_already_used' => 'Tämä sähköpostiosoite on jo käytössä.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Maata ei ole tietokannassa.',
         'invalid_discord' => 'Virheellinen Discord käyttäjänimi.',
         'invalid_email' => "Ei näytä kelvolliselta sähköpostiosoitteelta.",

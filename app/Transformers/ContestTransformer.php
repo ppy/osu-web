@@ -44,6 +44,6 @@ class ContestTransformer extends TransformerAbstract
 
     public function includeEntries(Contest $contest)
     {
-        return $this->collection($contest->entriesByType(Auth::user()), new ContestEntryTransformer);
+        return $this->collection($contest->entriesByType(Auth::user()), new ContestEntryTransformer());
     }
 }

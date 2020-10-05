@@ -232,10 +232,10 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ])
             ->assertSuccessful()
             ->assertJsonFragment(
-              [
-                  'user_id' => $this->user->getKey(),
-                  'message' => $timestampedIssueText,
-              ]
+                [
+                    'user_id' => $this->user->getKey(),
+                    'message' => $timestampedIssueText,
+                ]
             )
             // ensure timestamp was parsed correctly
             ->assertJsonFragment(
@@ -244,10 +244,10 @@ class BeatmapDiscussionsControllerTest extends TestCase
                 ]
             )
             ->assertJsonFragment(
-              [
-                  'user_id' => $this->user->getKey(),
-                  'message' => $issueText,
-              ]
+                [
+                    'user_id' => $this->user->getKey(),
+                    'message' => $issueText,
+                ]
             );
 
         // ensure 3 discussions/posts are created - one for the review and one for each embedded problem
@@ -285,7 +285,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
     private function bngUserGroup($user)
     {
-        $table = (new UserGroup)->getTable();
+        $table = (new UserGroup())->getTable();
 
         $conditions = [
             'user_id' => $user->user_id,
