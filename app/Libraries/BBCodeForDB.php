@@ -360,6 +360,7 @@ class BBCodeForDB
         $text = $this->parseList($text);
 
         $text = $this->parseBlockSimple($text);
+        $text = $this->parseProfile($text);
         $text = $this->parseImage($text);
         $text = $this->parseInlineSimple($text);
         $text = $this->parseHeading($text);
@@ -369,7 +370,6 @@ class BBCodeForDB
         $text = $this->parseSize($text);
         $text = $this->parseColour($text);
         $text = $this->parseYoutube($text);
-        $text = $this->parseProfile($text);
 
         $text = $this->parseSmiley($text);
         $text = $this->parseLinks($text);
