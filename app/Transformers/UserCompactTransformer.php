@@ -41,6 +41,7 @@ class UserCompactTransformer extends TransformerAbstract
         'previous_usernames',
         'ranked_and_approved_beatmapset_count',
         'replays_watched_counts',
+        'scores_best_count',
         'scores_first_count',
         'statistics',
         'support_level',
@@ -276,6 +277,11 @@ class UserCompactTransformer extends TransformerAbstract
             $user->replaysWatchedCounts,
             new UserReplaysWatchedCountTransformer()
         );
+    }
+
+    public function includeScoresBestCount(User $user)
+    {
+        return $this->primitive(count($user->beatmapBestScoreIds($this->mode)));
     }
 
     public function includeScoresFirstCount(User $user)

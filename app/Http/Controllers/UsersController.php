@@ -417,6 +417,7 @@ class UsersController extends Controller
      * rank_history                         | For specified mode.
      * ranked_and_approved_beatmapset_count | |
      * replays_watched_counts               | |
+     * scores_best_count                    | For specified mode.
      * scores_first_count                   | For specified mode.
      * statistics                           | For specified mode. Inluces `rank` and `variants` attributes.
      * support_level                        | |
@@ -472,6 +473,7 @@ class UsersController extends Controller
             'rank_history',
             'ranked_and_approved_beatmapset_count',
             'replays_watched_counts',
+            'scores_best_count',
             'scores_first_count',
             'statistics',
             'statistics.rank',
