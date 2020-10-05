@@ -22,7 +22,7 @@ class EsIndexDocumentBulk implements ShouldQueue
 
     public function __construct(string $className, array $ids)
     {
-        if (!new $className() instanceof Indexable) {
+        if (!is_a($className, Indexable::class, true)) {
             throw new Exception("{$className} is not indexable.");
         }
 
