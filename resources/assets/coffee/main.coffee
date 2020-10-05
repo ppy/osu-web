@@ -54,7 +54,6 @@ $(document).on 'turbolinks:load', ->
 @forumPoll ?= new _exported.ForumPoll(@)
 @forumTopicTitle ?= new ForumTopicTitle
 @forumTopicWatchAjax ?= new ForumTopicWatchAjax
-@gallery ?= new Gallery
 @globalDrag ?= new GlobalDrag
 @landingGraph ?= new LandingGraph
 @localtime ?= new _exported.Localtime
