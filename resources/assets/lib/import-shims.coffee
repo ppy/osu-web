@@ -17,7 +17,6 @@ import OsuLayzr from 'osu-layzr'
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
-import GalleryContest from 'gallery-contest'
 import WindowVHPatcher from 'window-vh-patcher'
 import TurbolinksReload from 'turbolinks-reload'
 import OsuUrlHelper from 'osu-url-helper'
@@ -34,7 +33,6 @@ window._exported = {
   ClickMenu
   Enchant
   ForumPoll
-  GalleryContest
   Localtime
   MobileToggle
   OsuAudio
