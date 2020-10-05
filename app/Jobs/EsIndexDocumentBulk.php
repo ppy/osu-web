@@ -34,16 +34,19 @@ class EsIndexDocumentBulk implements ShouldQueue
     {
         $dummy = new $this->className();
 
-        $models = $this->className::esIndexingQuery()->whereIn($dummy->getKeyName(), $this->ids)->get();
-        $actions = Es::generateBulkActions($models);
-        if (!empty($actions)) {
-            // TODO: handling response would be nice =)
-            Es::getClient()->bulk([
-                'index' => $this->className::esIndexName(),
-                'type' => $this->className::esType(),
-                'body' => $actions,
-                'client' => ['timeout' => 0],
-            ]);
+        $chunks = array_chunk($this->ids, Es::CHUNK_SIZE);
+        foreach ($chunks as $chunk) {
+            $models = $this->className::esIndexingQuery()->whereIn($dummy->getKeyName(), $chunk)->get();
+            $actions = Es::generateBulkActions($models);
+            if (!empty($actions)) {
+                // TODO: handling response would be nice =)
+                Es::getClient()->bulk([
+                    'index' => $this->className::esIndexName(),
+                    'type' => $this->className::esType(),
+                    'body' => $actions,
+                    'client' => ['timeout' => 0],
+                ]);
+            }
         }
     }
 }

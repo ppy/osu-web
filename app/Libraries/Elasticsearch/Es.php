@@ -10,6 +10,9 @@ use Elasticsearch\ClientBuilder;
 
 class Es
 {
+    // default size to use for chunk/chunkById.
+    public const CHUNK_SIZE = 1000;
+
     public static function generateBulkActions($models)
     {
         $actions = [];
