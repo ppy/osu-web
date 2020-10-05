@@ -138,11 +138,9 @@ export default class ChannelStore {
     } else if (dispatchedAction instanceof ChatMessageSendAction) {
       this.handleChatMessageSendAction(dispatchedAction);
     } else if (dispatchedAction instanceof ChatMessageUpdateAction) {
-      const channel: Channel = this.getOrCreate(dispatchedAction.message.channelId);
-      channel.updateMessage(dispatchedAction.message, dispatchedAction.json);
-      channel.resortMessages();
+      this.handleChatMessageUpdateAction(dispatchedAction);
     } else if (dispatchedAction instanceof UserLogoutAction) {
-      this.flushStore();
+      this.handleUserLogoutAction(dispatchedAction);
     }
   }
 
@@ -322,6 +320,18 @@ export default class ChannelStore {
     } catch {
       dispatch(new ChatMessageUpdateAction(message, null));
     }
+  }
+
+  @action
+  private handleChatMessageUpdateAction(dispatchedAction: ChatMessageUpdateAction) {
+    const channel = this.getOrCreate(dispatchedAction.message.channelId);
+    channel.updateMessage(dispatchedAction.message, dispatchedAction.json);
+    channel.resortMessages();
+  }
+
+  @action
+  private handleUserLogoutAction(dispatchedAction: UserLogoutAction) {
+    this.flushStore();
   }
 
   @action
