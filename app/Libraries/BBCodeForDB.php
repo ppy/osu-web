@@ -226,40 +226,42 @@ class BBCodeForDB
     {
         preg_match_all('#\[profile(?:=(?<id>[0-9]+))?\](?<name>.+?)\[/profile\]#', $text, $tags);
 
-        $users = User
-            ::whereIn('user_id', $tags['id'])
-            ->orWhereIn('username', $tags['name'])
-            ->orWhereIn('username_clean', $tags['name'])
-            ->get();
-
-        $usersBy = [];
-
-        foreach ($users as $user) {
-            foreach (['user_id', 'username', 'username_clean'] as $key) {
-                $usersBy[$key][mb_strtolower($user->$key)] = $user;
-            }
-        }
-
         $count = count($tags[0]);
 
-        for ($i = 0; $i < $count; $i++) {
-            $tag = presence($tags[0][$i]);
-            $name = $tags['name'][$i];
-            $nameNormalized = mb_strtolower($name);
-            $id = presence($tags['id'][$i]);
+        if ($count > 0) {
+            $users = User
+                ::whereIn('user_id', $tags['id'])
+                ->orWhereIn('username', $tags['name'])
+                ->orWhereIn('username_clean', $tags['name'])
+                ->get();
 
-            $user = $usersBy['user_id'][$id] ?? $usersBy['username'][$nameNormalized] ?? $usersBy['username_clean'][$nameNormalized] ?? null;
+            $usersBy = [];
 
-            if ($user === null || !$user->hasProfile()) {
-                $idText = '';
-            } else {
-                $idText = "={$user->getKey()}";
-                $name = $user->username;
+            foreach ($users as $user) {
+                foreach (['user_id', 'username', 'username_clean'] as $key) {
+                    $usersBy[$key][mb_strtolower($user->$key)] = $user;
+                }
             }
 
-            $name = $this->extraEscapes($name);
+            for ($i = 0; $i < $count; $i++) {
+                $tag = presence($tags[0][$i]);
+                $name = $tags['name'][$i];
+                $nameNormalized = mb_strtolower($name);
+                $id = presence($tags['id'][$i]);
 
-            $text = str_replace($tag, "[profile{$idText}:{$this->uid}]{$name}[/profile:{$this->uid}]", $text);
+                $user = $usersBy['user_id'][$id] ?? $usersBy['username'][$nameNormalized] ?? $usersBy['username_clean'][$nameNormalized] ?? null;
+
+                if ($user === null || !$user->hasProfile()) {
+                    $idText = '';
+                } else {
+                    $idText = "={$user->getKey()}";
+                    $name = $user->username;
+                }
+
+                $name = $this->extraEscapes($name);
+
+                $text = str_replace($tag, "[profile{$idText}:{$this->uid}]{$name}[/profile:{$this->uid}]", $text);
+            }
         }
 
         return $text;
