@@ -3,7 +3,6 @@
 
 import {
   ChatChannelLoadEarlierMessages,
-  ChatChannelNewMessages,
   ChatChannelPartAction,
   ChatMessageSendAction,
   ChatMessageUpdateAction,
@@ -134,8 +133,6 @@ export default class ChannelStore {
   handleDispatchAction(dispatchedAction: DispatcherAction) {
     if (dispatchedAction instanceof ChatChannelLoadEarlierMessages) {
       this.handleChatChannelLoadEarlierMessages(dispatchedAction);
-    } else if (dispatchedAction instanceof ChatChannelNewMessages) {
-      this.handleChatChannelNewMessages(dispatchedAction);
     } else if (dispatchedAction instanceof ChatChannelPartAction) {
       this.handleChatChannelPartAction(dispatchedAction);
     } else if (dispatchedAction instanceof ChatMessageSendAction) {
@@ -155,8 +152,9 @@ export default class ChannelStore {
       return Promise.resolve();
     }
 
+    // current imlementation should always have this loaded already,
+    // but future versions may skip having all the initial metadata on chat load.
     if (!channel.metaLoaded) {
-      console.debug(`loading metadata for channel ${channel.channelId}`);
       channel.loading = true;
       const json = await this.api.getChannel(channel.channelId);
       channel.updateWithJson(json);
@@ -170,7 +168,7 @@ export default class ChannelStore {
 
     try {
       const response = await this.api.getMessages(channelId);
-      dispatch(new ChatChannelNewMessages(channelId, response));
+      this.handleChatChannelNewMessages(channelId, response);
     } finally {
       runInAction(() => {
         channel.loading = false;
@@ -261,7 +259,7 @@ export default class ChannelStore {
 
     try {
       const response = await this.api.getMessages(channel.channelId, { until });
-      dispatch(new ChatChannelNewMessages(channelId, response));
+      this.handleChatChannelNewMessages(channelId, response);
     } finally {
       runInAction(() => {
         channel.loadingEarlierMessages = false;
@@ -270,15 +268,15 @@ export default class ChannelStore {
   }
 
   @action
-  private handleChatChannelNewMessages(dispatchedAction: ChatChannelNewMessages) {
-    const messages = dispatchedAction.json.map((json) => {
-      if (json.sender != null) this.userStore.getOrCreate(json.sender_id, json.sender);
-      return Message.fromJSON(json);
+  private handleChatChannelNewMessages(channelId: number, json: MessageJSON[]) {
+    const messages = json.map((messageJson) => {
+      if (messageJson.sender != null) this.userStore.getOrCreate(messageJson.sender_id, messageJson.sender);
+      return Message.fromJSON(messageJson);
     });
 
     if (messages.length === 0) return;
 
-    const channel = this.getOrCreate(dispatchedAction.channelId);
+    const channel = this.getOrCreate(channelId);
     channel.addMessages(messages);
     channel.loaded = true;
   }
