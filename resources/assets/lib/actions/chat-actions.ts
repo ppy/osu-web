@@ -2,9 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 // tslint:disable:max-classes-per-file
 
+import DispatcherAction from 'actions/dispatcher-action';
+import { MessageJSON } from 'chat/chat-api-responses';
 import Message from 'models/chat/message';
-import { ChannelType, MessageJSON } from '../chat/chat-api-responses';
-import DispatcherAction from './dispatcher-action';
 
 export class ChatChannelLoadEarlierMessages implements DispatcherAction {
   constructor(readonly channelId: number) {
@@ -13,11 +13,6 @@ export class ChatChannelLoadEarlierMessages implements DispatcherAction {
 
 export class ChatChannelPartAction implements DispatcherAction {
   constructor(readonly channelId: number) {
-  }
-}
-
-export class ChatChannelJoinAction implements DispatcherAction {
-  constructor(readonly channelId: number, readonly name: string, readonly type: ChannelType, readonly icon?: string) {
   }
 }
 
