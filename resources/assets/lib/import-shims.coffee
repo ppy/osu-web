@@ -8,6 +8,7 @@ import ClickMenu from 'click-menu'
 import Fade from 'fade'
 import Enchant from 'enchant'
 import ForumPoll from 'forum-poll'
+import Gallery from 'gallery'
 import * as laroute from 'laroute'
 import Localtime from 'localtime'
 import MobileToggle from 'mobile-toggle'
@@ -25,6 +26,8 @@ import OsuUrlHelper from 'osu-url-helper'
 window.Promise ?= Promise
 
 window.Fade = Fade
+
+window.gallery ?= new Gallery
 
 window._exported = {
   Captcha

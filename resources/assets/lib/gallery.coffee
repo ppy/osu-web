@@ -1,7 +1,10 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-class @Gallery
+import PhotoSwipe from 'photoswipe'
+import PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default'
+
+export default class Gallery
   constructor: ->
     @container = document.getElementsByClassName('pswp')
 
