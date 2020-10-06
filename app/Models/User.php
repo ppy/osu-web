@@ -10,6 +10,7 @@ use App\Exceptions\ModelNotSavedException;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
+use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\UsernameValidation;
 use App\Models\Forum\TopicWatch;
@@ -167,7 +168,7 @@ use Request;
  * @property string|null $username_previous
  * @property int|null $userpage_post_id
  */
-class User extends Model implements AuthenticatableContract, HasLocalePreference
+class User extends Model implements AuthenticatableContract, HasLocalePreference, Indexable
 {
     use Elasticsearch\UserTrait, Store\UserTrait;
     use Authenticatable, HasApiTokens, Reportable, UserAvatar, UserScoreable, Validatable;
