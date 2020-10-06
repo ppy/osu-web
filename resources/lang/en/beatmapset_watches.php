@@ -8,6 +8,11 @@ return [
         'description' => 'These are the beatmap discussions you are following. You will be notified when there are new posts or updates.',
         'title_compact' => 'modding watchlist',
 
+        'counts' => [
+            'total' => 'Discussions watched',
+            'unread' => 'Discussions with new replies',
+        ],
+
         'table' => [
             'empty' => 'No beatmap discussions watched.',
             'open_issues' => 'Open issues',
