@@ -67,4 +67,29 @@ class LocaleTest extends TestCase
         $this->assertSame('', trans('key_1.empty_empty'));
         $this->assertSame('', trans('key_1.empty_missing'));
     }
+
+    /**
+     * @dataProvider availableLocalesProvider
+     */
+    public function testCorrespondingLocaleFile($locale)
+    {
+        $this->assertTrue(unmix("js/locales/{$locale}.js") !== null);
+    }
+
+    /**
+     * @dataProvider availableLocalesProvider
+     */
+    public function testCorrespondingMomentLocaleFile($locale)
+    {
+        $momentLocale = locale_for_moment($locale);
+
+        $this->assertTrue(unmix("js/moment-locales/{$momentLocale}.js") !== null);
+    }
+
+    public function availableLocalesProvider()
+    {
+        return array_map(function ($locale) {
+            return [$locale];
+        }, config('app.available_locales'));
+    }
 }

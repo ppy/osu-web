@@ -58,7 +58,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
     public function getNotificationType()
     {
-        static $ignored_statuses = ['new_case'];
+        static $ignored_statuses = ['masspay', 'new_case'];
         static $payment_statuses = ['Completed'];
         static $refund_statuses = ['Refunded', 'Reversed', 'Canceled_Reversal'];
         static $pending_statuses = ['Pending'];

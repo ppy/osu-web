@@ -8,6 +8,7 @@ import ClickMenu from 'click-menu'
 import Fade from 'fade'
 import Enchant from 'enchant'
 import ForumPoll from 'forum-poll'
+import Gallery from 'gallery'
 import * as laroute from 'laroute'
 import Localtime from 'localtime'
 import MobileToggle from 'mobile-toggle'
@@ -16,7 +17,6 @@ import OsuLayzr from 'osu-layzr'
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
-import GalleryContest from 'gallery-contest'
 import WindowVHPatcher from 'window-vh-patcher'
 import TurbolinksReload from 'turbolinks-reload'
 import OsuUrlHelper from 'osu-url-helper'
@@ -26,12 +26,13 @@ window.Promise ?= Promise
 
 window.Fade = Fade
 
+window.gallery ?= new Gallery
+
 window._exported = {
   Captcha
   ClickMenu
   Enchant
   ForumPoll
-  GalleryContest
   Localtime
   MobileToggle
   OsuAudio

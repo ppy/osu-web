@@ -9,6 +9,7 @@ use App\Jobs\EsIndexDocument;
 use App\Jobs\MarkNotificationsRead;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\BBCodeFromDB;
+use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
 use App\Models\DeletedUser;
@@ -55,7 +56,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $topic_id
  * @property User $user
  */
-class Post extends Model implements AfterCommit
+class Post extends Model implements AfterCommit, Indexable
 {
     use Elasticsearch\PostTrait, SoftDeletes, Validatable;
 

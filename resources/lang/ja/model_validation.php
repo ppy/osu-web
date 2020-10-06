@@ -122,7 +122,7 @@ return [
     'user' => [
         'contains_username' => 'ユーザー名を含んだパスワードは使用できません。',
         'email_already_used' => '既に使用されているメールアドレスです。',
-        'email_not_allowed' => '',
+        'email_not_allowed' => 'メールアドレスが許可されていません。',
         'invalid_country' => 'データベースに存在しない国です。',
         'invalid_discord' => 'Discordのユーザー名が無効です。',
         'invalid_email' => "無効なメールアドレスです。",

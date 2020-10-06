@@ -38,24 +38,7 @@ trait EsIndexableModel
         $count = 0;
 
         $baseQuery->chunkById($batchSize, function ($models) use ($options, &$count, $progress) {
-            $actions = [];
-
-            foreach ($models as $model) {
-                $next = $model;
-                // bulk API am speshul.
-                $metadata = [
-                    '_id' => $model->getEsId(),
-                    'routing' => $model->esRouting(),
-                ];
-
-                if (!$model->esShouldIndex()) {
-                    $actions[] = ['delete' => $metadata];
-                } else {
-                    // index requires action and metadata followed by data on the next line.
-                    $actions[] = ['index' => $metadata];
-                    $actions[] = $model->toEsJson();
-                }
-            }
+            $actions = Es::generateBulkActions($models);
 
             if ($actions !== []) {
                 $result = Es::getClient()->bulk([
