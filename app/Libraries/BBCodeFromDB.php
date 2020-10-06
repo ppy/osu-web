@@ -214,11 +214,12 @@ class BBCodeFromDB
 
     public function parseProfile($text)
     {
-        preg_match_all("#\[profile:{$this->uid}\](?<id>.*?)\[/profile:{$this->uid}\]#", $text, $users, PREG_SET_ORDER);
+        preg_match_all("#\[profile(?:=(?<id>[0-9]+))?:{$this->uid}\](?<name>.*?)\[/profile:{$this->uid}\]#", $text, $users, PREG_SET_ORDER);
 
         foreach ($users as $user) {
-            $username = html_entity_decode_better($user['id']);
-            $userLink = link_to_user($username, $username, null);
+            $username = html_entity_decode_better($user['name']);
+            $userId = presence($user['id']) ?? $username;
+            $userLink = link_to_user($userId, $username, null);
             $text = str_replace($user[0], $userLink, $text);
         }
 

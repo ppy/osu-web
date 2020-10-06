@@ -121,7 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Le mot de passe ne doit pas contenir de nom d\'utilisateur.',
         'email_already_used' => 'Adresse email déjà utilisée.',
-        'email_not_allowed' => '',
+        'email_not_allowed' => 'Adresse e-mail non autorisée.',
         'invalid_country' => 'Le pays n\'est pas dans la base de données.',
         'invalid_discord' => 'Nom d\'utilisateur Discord invalide.',
         'invalid_email' => "Ça ne semble pas être une adresse email valide.",
