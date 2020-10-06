@@ -113,27 +113,26 @@ export default class ChatOrchestrator implements DispatchListener {
     }
   }
 
-  loadChannel(channelId: number): Promise<void> {
+  async loadChannel(channelId: number) {
     const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
 
     if (channel.loading) {
-      return Promise.resolve();
+      return;
     }
 
     channel.loading = true;
 
-    return this.api.getMessages(channelId)
-      .then((messages) => {
-        transaction(() => {
-          this.addMessages(channelId, messages);
-          channel.loading = false;
-          channel.loaded = true;
-        });
-      })
-      .catch((err) => {
+    try {
+      const messages = await this.api.getMessages(channelId);
+      transaction(() => {
+        this.addMessages(channelId, messages);
         channel.loading = false;
-        console.debug('loadChannel error', err);
+        channel.loaded = true;
       });
+    } catch (err) {
+      channel.loading = false;
+      console.debug('loadChannel error', err);
+    }
   }
 
   loadChannelEarlierMessages(channelId: number) {
@@ -207,7 +206,7 @@ export default class ChatOrchestrator implements DispatchListener {
     }
 
     if (action.shouldSync && action.channelId !== -1) {
-      return this.api.partChannel(action.channelId, window.currentUser.id)
+      this.api.partChannel(action.channelId, window.currentUser.id)
         .catch((err) => {
           console.debug('leaveChannel error', err);
         });
