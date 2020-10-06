@@ -1441,17 +1441,14 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->memoized[__FUNCTION__];
     }
 
-    public function title()
+    public function title(): ?string
     {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
-            if ($this->user_rank !== 0 && $this->user_rank !== null) {
-                $title = $this->rank->rank_title;
-            }
+        return optional($this->rank)->rank_title;
+    }
 
-            $this->memoized[__FUNCTION__] = $title ?? null;
-        }
-
-        return $this->memoized[__FUNCTION__];
+    public function titleUrl(): ?string
+    {
+        return optional($this->rank)->url;
     }
 
     public function hasProfile()
