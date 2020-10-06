@@ -13,6 +13,7 @@ export const categoryToIcons: IconsMap = {
   comment: ['fas fa-comment'],
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
+  user_achievement_unlock: ['fas fa-medal'],
 };
 
 export const nameToIcons: IconsMap = {
