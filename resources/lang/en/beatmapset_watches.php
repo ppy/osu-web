@@ -9,8 +9,8 @@ return [
         'title_compact' => 'modding watchlist',
 
         'counts' => [
-            'total' => 'Discussions watched',
-            'unread' => 'Discussions with new replies',
+            'total' => 'Beatmaps watched',
+            'unread' => 'Beatmaps with new activity',
         ],
 
         'table' => [
