@@ -202,7 +202,7 @@ export default class ChatOrchestrator implements DispatchListener {
 
     if (action.shouldSync && action.channelId !== -1) {
       try {
-        this.api.partChannel(action.channelId, window.currentUser.id)
+        this.api.partChannel(action.channelId, window.currentUser.id);
       } catch (err) {
         console.debug('leaveChannel error', err);
       }
