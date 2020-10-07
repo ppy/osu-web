@@ -269,7 +269,10 @@ export default class ChannelStore {
 
   @action
   private handleChatChannelNewMessages(channelId: number, json: MessageJSON[]) {
-    const messages = this.parseMessageJson(json);
+    const messages = json.map((messageJson) => {
+      if (messageJson.sender != null) this.userStore.getOrCreate(messageJson.sender_id, messageJson.sender);
+      return Message.fromJSON(messageJson);
+    });
 
     if (messages.length === 0) return;
 
@@ -333,13 +336,6 @@ export default class ChannelStore {
   @action
   private handleUserLogoutAction(event: UserLogoutAction) {
     this.flushStore();
-  }
-
-  private parseMessageJson(json: MessageJSON[]) {
-    return json.map((messageJson) => {
-      if (messageJson.sender != null) this.userStore.getOrCreate(messageJson.sender_id, messageJson.sender);
-      return Message.fromJSON(messageJson);
-    });
   }
 
   @action
