@@ -433,10 +433,10 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return (new ChangeUsername($this, $username, $type))->validate();
     }
 
-    public static function lookup($usernameOrId, $type = null, $findAll = false)
+    public static function lookup($usernameOrId, $type = null, $findAll = false): ?self
     {
         if (!present($usernameOrId)) {
-            return;
+            return null;
         }
 
         switch ($type) {
@@ -462,7 +462,13 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             $user->where('user_type', 0)->where('user_warnings', 0);
         }
 
-        return $user->first();
+        $user = $user->first();
+
+        if ($user !== null && $user->hasProfile()) {
+            return $user;
+        }
+
+        return null;
     }
 
     public static function lookupWithHistory($usernameOrId, $type = null, $findAll = false)
@@ -1458,8 +1464,12 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     public function hasProfile()
     {
         return $this->user_id !== null
-            && !$this->isRestricted()
             && $this->group_id !== app('groups')->byIdentifier('no_profile')->getKey();
+    }
+
+    public function hasProfileVisible()
+    {
+        return $this->hasProfile() && !$this->isRestricted();
     }
 
     public function updatePage($text)
