@@ -13,7 +13,7 @@ import { UserLogoutAction } from 'actions/user-login-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import ChatAPI from 'chat/chat-api';
 import { ChannelJSON, GetUpdatesJSON, MessageJSON, PresenceJSON } from 'chat/chat-api-responses';
-import { maxBy } from 'lodash';
+import { groupBy, maxBy } from 'lodash';
 import { action, computed, observable, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
@@ -211,9 +211,11 @@ export default class ChannelStore {
   updateWithJson(updateJson: GetUpdatesJSON) {
     this.updateWithPresence(updateJson.presence);
 
-    const messages = this.parseMessageJson(updateJson.messages);
-    // messages for channels that have been left is a payload problem.
-    messages.forEach((message) => this.get(message.channelId)?.addMessages(message));
+    const groups = groupBy(updateJson.messages, 'channel_id');
+    for (const key of Object.keys(groups)) {
+      const channelId = parseInt(key, 10);
+      this.handleChatChannelNewMessages(channelId, groups[channelId]);
+    }
 
     // TODO: convert silence handling back to action when updating through websocket is figured out.
     const silencedUserIds = new Set<number>(updateJson.silences.map((json) => json.user_id));
