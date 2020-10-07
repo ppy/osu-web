@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Traits\Memoizes;
 use Carbon\Carbon;
 
 /**
@@ -32,7 +33,7 @@ use Carbon\Carbon;
  */
 class Artist extends Model
 {
-    private static $memoized = [];
+    use Memoizes;
 
     public function label()
     {
@@ -51,23 +52,25 @@ class Artist extends Model
 
     public function hasNewTracks()
     {
-        if (!array_key_exists('recentlyUpdatedArtists', self::$memoized)) {
-            self::$memoized['recentlyUpdatedArtists'] =
-                cache_remember_mutexed('recentlyUpdatedArtists', 300, [], function () {
-                    return ArtistTrack::where('created_at', '>', Carbon::now()->subMonth(1))
-                        ->select('artist_id')
-                        ->groupBy('artist_id')
-                        ->get()
-                        ->pluck('artist_id')
-                        ->toArray();
-                });
-        }
-
-        return in_array($this->id, self::$memoized['recentlyUpdatedArtists'], true);
+        return in_array($this->id, static::recentlyUpdatedArtists(), true);
     }
 
     public function url()
     {
         return route('artists.show', $this);
+    }
+
+    private static function recentlyUpdatedArtists()
+    {
+        return static::memoizeStatic(__FUNCTION__, function () {
+            return cache_remember_mutexed('recentlyUpdatedArtists', 300, [], function () {
+                return ArtistTrack::where('created_at', '>', Carbon::now()->subMonth(1))
+                    ->select('artist_id')
+                    ->groupBy('artist_id')
+                    ->get()
+                    ->pluck('artist_id')
+                    ->toArray();
+            });
+        });
     }
 }
