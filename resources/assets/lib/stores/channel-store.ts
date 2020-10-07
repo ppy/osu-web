@@ -211,7 +211,7 @@ export default class ChannelStore {
   updateWithJson(updateJson: GetUpdatesJSON) {
     this.updateWithPresence(updateJson.presence);
 
-    const messages = Message.parseJSON(updateJson.messages);
+    const messages = this.parseMessageJson(updateJson.messages);
     // messages for channels that have been left is a payload problem.
     messages.forEach((message) => this.get(message.channelId)?.addMessages(message));
 
@@ -267,10 +267,7 @@ export default class ChannelStore {
 
   @action
   private handleChatChannelNewMessages(channelId: number, json: MessageJSON[]) {
-    const messages = json.map((messageJson) => {
-      if (messageJson.sender != null) this.userStore.getOrCreate(messageJson.sender_id, messageJson.sender);
-      return Message.fromJSON(messageJson);
-    });
+    const messages = this.parseMessageJson(json);
 
     if (messages.length === 0) return;
 
@@ -334,6 +331,13 @@ export default class ChannelStore {
   @action
   private handleUserLogoutAction(event: UserLogoutAction) {
     this.flushStore();
+  }
+
+  private parseMessageJson(json: MessageJSON[]) {
+    return json.map((messageJson) => {
+      if (messageJson.sender != null) this.userStore.getOrCreate(messageJson.sender_id, messageJson.sender);
+      return Message.fromJSON(messageJson);
+    });
   }
 
   @action
