@@ -4,6 +4,7 @@
 import { BigButton } from 'big-button'
 import * as React from 'react'
 import { a, button, div, p, span } from 'react-dom-factories'
+import { StringWithComponent } from 'string-with-component'
 el = React.createElement
 
 bn = 'beatmap-discussion-nomination'
@@ -259,12 +260,22 @@ export class Nominations extends React.PureComponent
         osu.trans 'beatmaps.discussions.status-messages.wip'
       when 'qualified'
         rankingETA = @props.beatmapset.nominations.ranking_eta
+        date =
+          if rankingETA?
+            moment(rankingETA).format(dateFormat)
+          else
+            osu.trans 'beatmaps.nominations.rank_estimate.soon'
 
-        if rankingETA?
-          osu.trans 'beatmaps.nominations.qualified',
-            date: moment(rankingETA).format(dateFormat)
-        else
-          osu.trans 'beatmaps.nominations.qualified_soon'
+        el StringWithComponent,
+          mappings:
+            ':date': date
+            ':position': @props.beatmapset.nominations.ranking_queue_position
+            ':queue': a
+              href: laroute.route('wiki.show', page: 'Beatmap_ranking_procedure/Ranking_queue')
+              key: 'queue'
+              target: '_blank'
+              osu.trans 'beatmaps.nominations.rank_estimate.queue'
+          pattern: osu.trans 'beatmaps.nominations.rank_estimate._'
       else
         null
 

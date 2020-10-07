@@ -18,6 +18,7 @@ use App\Jobs\Notifications\BeatmapsetRank;
 use App\Jobs\RemoveBeatmapsetBestScores;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\Commentable;
+use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
@@ -91,7 +92,7 @@ use Illuminate\Database\QueryException;
  * @property bool $video
  * @property \Illuminate\Database\Eloquent\Collection $watches BeatmapsetWatch
  */
-class Beatmapset extends Model implements AfterCommit, Commentable
+class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 {
     use CommentableDefaults, Elasticsearch\BeatmapsetTrait, SoftDeletes, Validatable;
 
@@ -868,7 +869,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         return $this->playmodes()->count();
     }
 
-    public function rankingETA()
+    public function rankingQueueStatus()
     {
         if (!$this->isQualified()) {
             return;
@@ -885,7 +886,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         $minDays = config('osu.beatmapset.minimum_days_for_rank') - $this->queued_at->diffInDays();
         $days = max($minDays, $days);
 
-        return $days > 0 ? Carbon::now()->addDays($days) : null;
+        return [
+            'eta' => $days > 0 ? Carbon::now()->addDays($days) : null,
+            'position' => $queueSize + 1,
+        ];
     }
 
     public function disqualificationEvent()

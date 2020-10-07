@@ -18,8 +18,6 @@ import 'jquery-ui/ui/widgets/sortable.js';
 import 'jquery-ui/ui/keycode.js';
 import 'blueimp-file-upload/js/jquery.fileupload.js';
 
-import 'photoswipe/dist/photoswipe.js';
-import 'photoswipe/dist/photoswipe-ui-default.js';
 // tslint:enable: ordered-imports
 
 import Lang from 'lang.js';
