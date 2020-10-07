@@ -274,7 +274,9 @@ export default class ChannelStore {
 
     if (messages.length === 0) return;
 
-    const channel = this.getOrCreate(channelId);
+    const channel = this.channels.get(channelId);
+    if (channel == null) return;
+
     channel.addMessages(messages);
     channel.loaded = true;
   }
