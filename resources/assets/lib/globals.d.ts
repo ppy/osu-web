@@ -62,13 +62,14 @@ interface OsuCommon {
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
   diffColour: (difficultyRating?: string | null) => React.CSSProperties;
   groupColour: (group?: GroupJSON) => React.CSSProperties;
-  intToPlaymode: (modeInt: number) => string;
+  intToPlaymode: (int: number) => string;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
   link: (url: string, text: string, options?: { classNames?: string[]; isRemote?: boolean }) => string;
   linkify: (text: string, newWindow?: boolean) => string;
   navigate: (url: string, keepScroll?: boolean, action?: object) => void;
   parseJson: (id: string, remove?: boolean) => any;
+  playmodeToInt: (playmode: string) => number;
   popup: (message: string, type: string) => void;
   popupShowing: () => boolean;
   presence: (str?: string | null) => string | null;

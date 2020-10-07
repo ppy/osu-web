@@ -123,8 +123,8 @@
     JSON.parse JSON.stringify(object ? null)
 
 
-  intToPlaymode: (mode) ->
-    switch (mode)
+  intToPlaymode: (int) ->
+    switch (int)
       when 0
         'osu'
       when 1
@@ -272,6 +272,18 @@
 
     $(document).one 'turbolinks:load', ->
       window.scrollTo position[0], position[1]
+
+
+  playmodeToInt: (playmode) ->
+    switch (playmode)
+      when 'osu'
+        0
+      when 'taiko'
+        1
+      when 'fruits'
+        2
+      when 'mania'
+        3
 
 
   popup: (message, type = 'info') ->

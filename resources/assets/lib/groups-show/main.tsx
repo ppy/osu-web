@@ -9,6 +9,7 @@ import { UserList } from 'user-list';
 interface Group {
   group_desc?: string;
   group_name: string;
+  has_playmode: boolean;
 }
 
 interface Props {
@@ -23,7 +24,7 @@ export class Main extends React.PureComponent<Props> {
         <HeaderV4 theme='friends' />
 
         <div className='osu-page osu-page--users'>
-          <UserList users={this.props.users} title={this.props.group.group_name} />
+          <UserList playmodeFilter={this.props.group.has_playmode} users={this.props.users} title={this.props.group.group_name} />
         </div>
       </div>
     );

@@ -250,6 +250,7 @@ return [
         'converts' => 'Include converted beatmaps',
     ],
     'mode' => [
+        'all' => 'All',
         'any' => 'Any',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

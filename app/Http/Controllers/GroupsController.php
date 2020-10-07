@@ -21,7 +21,7 @@ class GroupsController extends Controller
             ->orderBy('username', 'asc')
             ->get();
 
-        $groupJson = $group->only('group_name', 'group_desc');
+        $groupJson = $group->only('group_name', 'group_desc', 'has_playmode');
         $usersJson = json_collection($users, 'UserCompact', [
             'cover',
             'country',
