@@ -109,30 +109,25 @@ export default class ChatWorker implements DispatchListener {
     const channelId = message.channelId;
     const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
 
-    if (channel.newChannel) {
-      const users = channel.users.slice();
-      const userId = users.find((user) => {
-        return user !== currentUser.id;
-      });
+    try {
+      if (channel.newChannel) {
+        const users = channel.users.slice();
+        const userId = users.find((user) => {
+          return user !== currentUser.id;
+        });
 
-      if (!userId) {
-        console.debug('sendMessage:: userId not found?? this shouldn\'t happen');
-        return;
-      }
+        if (!userId) {
+          console.debug('sendMessage:: userId not found?? this shouldn\'t happen');
+          return;
+        }
 
-      try {
         const response = await this.api.newConversation(userId, message);
         transaction(() => {
           this.rootDataStore.channelStore.channels.delete(channelId);
           this.rootDataStore.channelStore.addNewConversation(response.channel, response.message);
           dispatch(new ChatChannelSwitchAction(response.channel.channel_id));
         });
-      } catch {
-        message.errored = true;
-        dispatch(new ChatMessageUpdateAction(message));
-      }
-    } else {
-      try {
+      } else {
         const response = await this.api.sendMessage(message);
         if (response) {
           message.messageId = response.message_id;
@@ -140,10 +135,10 @@ export default class ChatWorker implements DispatchListener {
           message.errored = true;
         }
         dispatch(new ChatMessageUpdateAction(message));
-      } catch {
-        message.errored = true;
-        dispatch(new ChatMessageUpdateAction(message));
       }
+    } catch {
+      message.errored = true;
+      dispatch(new ChatMessageUpdateAction(message));
     }
   }
 
