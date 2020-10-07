@@ -52,7 +52,7 @@ export default class ChatOrchestrator implements DispatchListener {
       return;
     }
 
-    transaction(() => {
+    transaction(async () => {
       if (channelStore.getOrCreate(uiState.selected).type !== 'NEW') {
         // don't disable autoScroll if we're 'switching' away from the 'new chat' screen
         //   e.g. keep autoScroll enabled to jump to the newly sent message when restarting an old conversation
@@ -64,12 +64,10 @@ export default class ChatOrchestrator implements DispatchListener {
         if (channel.loaded) {
           this.markAsRead(channelId);
         } else {
-          this.loadChannel(channelId)
-            .then(() => {
-              if (this.windowIsActive) {
-                this.markAsRead(channelId);
-              }
-            });
+          await this.loadChannel(channelId);
+          if (this.windowIsActive) {
+            this.markAsRead(channelId);
+          }
         }
       }
 
@@ -135,7 +133,7 @@ export default class ChatOrchestrator implements DispatchListener {
     }
   }
 
-  loadChannelEarlierMessages(channelId: number) {
+  async loadChannelEarlierMessages(channelId: number) {
     const channel = this.rootDataStore.channelStore.get(channelId);
 
     if (channel == null || !channel.hasEarlierMessages || channel.loadingEarlierMessages) {
@@ -144,16 +142,14 @@ export default class ChatOrchestrator implements DispatchListener {
 
     channel.loadingEarlierMessages = true;
 
-    this.api.getMessages(channel.channelId, { until: channel.minMessageId })
-      .then((messages) => {
-        transaction(() => {
-          this.addMessages(channelId, messages);
-        });
-      }).catch((err) => {
-        console.debug('loadChannelEarlierMessages error', err);
-      }).always(() => {
-        channel.loadingEarlierMessages = false;
-      });
+    try {
+      const messages = await this.api.getMessages(channel.channelId, { until: channel.minMessageId });
+      this.addMessages(channelId, messages);
+    } catch (err) {
+      console.debug('loadChannelEarlierMessages error', err);
+    } finally {
+      channel.loadingEarlierMessages = false;
+    }
   }
 
   markAsRead(channelId: number) {
@@ -167,7 +163,7 @@ export default class ChatOrchestrator implements DispatchListener {
       return;
     }
 
-    const currentTimeout = window.setTimeout(() => {
+    const currentTimeout = window.setTimeout(async () => {
       // allow next debounce to be queued again
       if (this.markingAsRead[channelId] === currentTimeout) {
         delete this.markingAsRead[channelId];
@@ -183,19 +179,18 @@ export default class ChatOrchestrator implements DispatchListener {
         return;
       }
 
-      this.api.markAsRead(channel.channelId, lastReadId)
-        .then(() => {
-          channel.lastReadId = lastReadId;
-        })
-        .catch((err) => {
-          console.debug('markAsRead error', err);
-        });
+      try {
+        await this.api.markAsRead(channel.channelId, lastReadId);
+        channel.lastReadId = lastReadId;
+      } catch (err) {
+        console.debug('markAsRead error', err);
+      }
     }, 1000);
 
     this.markingAsRead[channelId] = currentTimeout;
   }
 
-  private handleChatChannelPartAction(action: ChatChannelPartAction) {
+  private async handleChatChannelPartAction(action: ChatChannelPartAction) {
     const channelStore = this.rootDataStore.channelStore;
     const channel = channelStore.get(action.channelId);
     const index = channel != null ? channelStore.channelList.indexOf(channel) : null;
@@ -206,10 +201,11 @@ export default class ChatOrchestrator implements DispatchListener {
     }
 
     if (action.shouldSync && action.channelId !== -1) {
-      this.api.partChannel(action.channelId, window.currentUser.id)
-        .catch((err) => {
-          console.debug('leaveChannel error', err);
-        });
+      try {
+        this.api.partChannel(action.channelId, window.currentUser.id)
+      } catch (err) {
+        console.debug('leaveChannel error', err);
+      }
     }
   }
 
