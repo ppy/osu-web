@@ -136,9 +136,10 @@ export default class ChatWorker implements DispatchListener {
         }
         dispatch(new ChatMessageUpdateAction(message));
       }
-    } catch {
+    } catch (error) {
       message.errored = true;
       dispatch(new ChatMessageUpdateAction(message));
+      osu.ajaxError(error);
     }
   }
 
