@@ -126,12 +126,12 @@ export default class ChatOrchestrator implements DispatchListener {
       const messages = await this.api.getMessages(channelId);
       transaction(() => {
         this.addMessages(channelId, messages);
-        channel.loading = false;
         channel.loaded = true;
       });
     } catch (err) {
-      channel.loading = false;
       console.debug('loadChannel error', err);
+    } finally {
+      channel.loading = false;
     }
   }
 
@@ -147,12 +147,12 @@ export default class ChatOrchestrator implements DispatchListener {
     this.api.getMessages(channel.channelId, { until: channel.minMessageId })
       .then((messages) => {
         transaction(() => {
-          channel.loadingEarlierMessages = false;
           this.addMessages(channelId, messages);
         });
       }).catch((err) => {
-        channel.loadingEarlierMessages = false;
         console.debug('loadChannelEarlierMessages error', err);
+      }).always(() => {
+        channel.loadingEarlierMessages = false;
       });
   }
 
