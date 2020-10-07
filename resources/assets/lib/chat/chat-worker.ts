@@ -105,7 +105,7 @@ export default class ChatWorker implements DispatchListener {
     return this.windowIsActive ? this.pollTime : this.pollTimeIdle;
   }
 
-  sendMessage(message: Message) {
+  async sendMessage(message: Message) {
     const channelId = message.channelId;
     const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
 
@@ -120,32 +120,30 @@ export default class ChatWorker implements DispatchListener {
         return;
       }
 
-      this.api.newConversation(userId, message)
-        .then((response) => {
-          transaction(() => {
-            this.rootDataStore.channelStore.channels.delete(channelId);
-            this.rootDataStore.channelStore.addNewConversation(response.channel, response.message);
-            dispatch(new ChatChannelSwitchAction(response.channel.channel_id));
-          });
-        })
-        .catch(() => {
-          message.errored = true;
-          dispatch(new ChatMessageUpdateAction(message));
+      try {
+        const response = await this.api.newConversation(userId, message);
+        transaction(() => {
+          this.rootDataStore.channelStore.channels.delete(channelId);
+          this.rootDataStore.channelStore.addNewConversation(response.channel, response.message);
+          dispatch(new ChatChannelSwitchAction(response.channel.channel_id));
         });
+      } catch {
+        message.errored = true;
+        dispatch(new ChatMessageUpdateAction(message));
+      }
     } else {
-      this.api.sendMessage(message)
-        .then((updateJson) => {
-          if (updateJson) {
-            message.messageId = updateJson.message_id;
-          } else {
-            message.errored = true;
-          }
-          dispatch(new ChatMessageUpdateAction(message));
-        })
-        .catch(() => {
+      try {
+        const response = await this.api.sendMessage(message);
+        if (response) {
+          message.messageId = response.message_id;
+        } else {
           message.errored = true;
-          dispatch(new ChatMessageUpdateAction(message));
-        });
+        }
+        dispatch(new ChatMessageUpdateAction(message));
+      } catch {
+        message.errored = true;
+        dispatch(new ChatMessageUpdateAction(message));
+      }
     }
   }
 
