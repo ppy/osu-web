@@ -164,7 +164,7 @@ export class UserList extends React.PureComponent<Props> {
           )}
 
           <div className='user-list__toolbar'>
-            {this.props.playmodeFilter != null && (
+            {this.props.playmodeFilter && (
               <div className='user-list__toolbar-row'>
                 <div className='user-list__toolbar-item'>{this.renderPlaymodeFilter()}</div>
               </div>
