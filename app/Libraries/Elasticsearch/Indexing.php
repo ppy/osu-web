@@ -49,7 +49,7 @@ class Indexing
         }
 
         foreach ($indices as $index) {
-            $actions[] = ['add' => ['index' => $index, 'alias' => $alias]];
+            $actions[] = ['add' => ['index' => $index, 'alias' => $alias, 'is_write_index' => true]];
         }
 
         return Es::getClient()->indices()->updateAliases([
