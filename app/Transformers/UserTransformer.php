@@ -50,6 +50,7 @@ class UserTransformer extends UserCompactTransformer
             'profile_order' => $profileCustomization->extras_order,
             'skype' => $user->user_msnm,
             'title' => $user->title(),
+            'title_url' => $user->titleUrl(),
             'twitter' => $user->user_twitter,
             'website' => $user->user_website,
         ]);

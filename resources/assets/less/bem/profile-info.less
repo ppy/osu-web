@@ -157,6 +157,7 @@
   &__previous-usernames {
     transform: translateY(-0.3em);
     display: inline-block;
+    pointer-events: none;
 
     @media @desktop {
       transform: translateY(-0.7em);
@@ -170,6 +171,8 @@
   }
 
   &__title {
+    .link-white();
+    align-self: flex-start;
     font-size: @font-size--title-small-4;
     padding: 0 0 5px;
     line-height: normal;
