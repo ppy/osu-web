@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 <div class="forum-post-info">
-    @if ($user->hasProfile())
+    @if ($user->hasProfileVisible())
         @if ($user->user_avatar)
             <div class="forum-post-info__row forum-post-info__row--avatar">
                 <a
