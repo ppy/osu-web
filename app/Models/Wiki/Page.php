@@ -50,14 +50,6 @@ class Page implements WikiObject
         return strtolower(str_replace(['-', '/', '_'], ' ', $path));
     }
 
-    public static function searchIndexConfig($params = [])
-    {
-        return array_merge([
-            'index' => static::esIndexName(),
-            'type' => '_doc',
-        ], $params);
-    }
-
     public static function fromEs($hit)
     {
         $source = $hit->source();
@@ -176,11 +168,12 @@ class Page implements WikiObject
     {
         $this->log('delete document');
 
-        return Es::getClient()->delete(static::searchIndexConfig([
+        return Es::getClient()->delete([
+            'client' => ['ignore' => 404],
             'id' => $this->pagePath(),
             'index' => $options['index'] ?? static::esIndexName(),
-            'client' => ['ignore' => 404],
-        ]));
+            'type' => '_doc',
+        ]);
     }
 
     public function esIndexDocument(array $options = [])
@@ -191,11 +184,12 @@ class Page implements WikiObject
             $this->log('index document');
         }
 
-        return Es::getClient()->index(static::searchIndexConfig([
+        return Es::getClient()->index([
+            'body' => $this->source,
             'id' => $this->pagePath(),
             'index' => $options['index'] ?? static::esIndexName(),
-            'body' => $this->source,
-        ]));
+            'type' => '_doc',
+        ]);
     }
 
     public function esFetch()
