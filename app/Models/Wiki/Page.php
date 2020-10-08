@@ -54,7 +54,7 @@ class Page implements WikiObject
     {
         return array_merge([
             'index' => static::esIndexName(),
-            'type' => static::esType(),
+            'type' => '_doc',
         ], $params);
     }
 
