@@ -1437,15 +1437,14 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         });
     }
 
-    public function title()
+    public function title(): ?string
     {
-        return $this->memoize(__FUNCTION__, function () {
-            if ($this->user_rank !== 0 && $this->user_rank !== null) {
-                $title = $this->rank->rank_title;
-            }
+        return optional($this->rank)->rank_title;
+    }
 
-            return $title ?? null;
-        });
+    public function titleUrl(): ?string
+    {
+        return optional($this->rank)->url;
     }
 
     public function hasProfile()
