@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddHasPlaymodeToPhpbbGroups extends Migration
+class AddHasPlaymodesToPhpbbGroups extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddHasPlaymodeToPhpbbGroups extends Migration
     public function up()
     {
         Schema::table('phpbb_groups', function (Blueprint $table) {
-            $table->boolean('has_playmode')->default(0);
+            $table->boolean('has_playmodes')->default(0);
         });
     }
 
@@ -26,7 +26,7 @@ class AddHasPlaymodeToPhpbbGroups extends Migration
     public function down()
     {
         Schema::table('phpbb_groups', function (Blueprint $table) {
-            $table->dropColumn('has_playmode');
+            $table->dropColumn('has_playmodes');
         });
     }
 }

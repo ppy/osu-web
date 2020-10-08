@@ -34,7 +34,7 @@ class Group extends Model implements AfterCommit
     protected $primaryKey = 'group_id';
     public $timestamps = false;
     protected $casts = [
-        'has_playmode' => 'boolean',
+        'has_playmodes' => 'boolean',
     ];
 
     public function scopeVisible($query)
