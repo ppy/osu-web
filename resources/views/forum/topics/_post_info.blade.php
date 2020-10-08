@@ -67,6 +67,13 @@
                     </div>
                 @endif
             </div>
+            @if ($group->playmodes && count($group->playmodes) > 0)
+                <div class="forum-post-info__row forum-post-info__row--group-badge-playmodes">
+                    @foreach($group->playmodes as $mode)
+                        <i class="fal fa-extra-mode-{{ \App\Models\Beatmap::modeStr($mode) }}"></i>
+                    @endforeach
+                </div>
+            @endif
         </div>
     @endif
 
