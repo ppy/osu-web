@@ -51,14 +51,14 @@
               "prefix"
             ],
             "type": "custom",
-            "tokenizer": "whitespace"
+            "tokenizer": "username_whitespace"
           },
           "whitespace": {
             "filter": [
               "lowercase"
             ],
             "type": "custom",
-            "tokenizer": "whitespace"
+            "tokenizer": "username_whitespace"
           },
           "username_lower": {
             "filter": [
@@ -73,6 +73,15 @@
             "type": "edge_ngram",
             "min_gram": "2",
             "max_gram": "20"
+          }
+        },
+        "tokenizer": {
+          "username_whitespace": {
+            "type": "char_group",
+            "tokenize_on_chars": [
+              "whitespace",
+              "_"
+            ]
           }
         }
       },
