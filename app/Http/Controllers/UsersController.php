@@ -72,7 +72,7 @@ class UsersController extends Controller
         // it'll show the card of the non-restricted user.
         $user = User::lookup($id) ?? UserNotFound::instance();
 
-        return json_item($user, 'UserCompact', ['cover', 'country']);
+        return json_item($user, 'UserCompact', ['cover', 'country', 'groups']);
     }
 
     public function disabled()
