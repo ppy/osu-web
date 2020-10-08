@@ -98,15 +98,17 @@ export class ReportReportable extends React.PureComponent<Props & React.Detailed
             ) : osu.trans(`report.${groupKey}.button`)
           }
         </button>
-        <ReportForm
-          completed={this.state.completed}
-          disabled={this.state.disabled}
-          onClose={this.onFormClose}
-          onSubmit={this.onSubmit}
-          title={osu.trans(`report.${groupKey}.title`, { username: `<strong>${user.username}</strong>` })}
-          visible={this.state.showingForm}
-          visibleOptions={availableOptions[groupKey]}
-        />
+        {this.state.showingForm && (
+          <ReportForm
+            completed={this.state.completed}
+            disabled={this.state.disabled}
+            onClose={this.onFormClose}
+            onSubmit={this.onSubmit}
+            title={osu.trans(`report.${groupKey}.title`, { username: `<strong>${user.username}</strong>` })}
+            visible={true}
+            visibleOptions={availableOptions[groupKey]}
+          />
+        )}
       </>
     );
   }

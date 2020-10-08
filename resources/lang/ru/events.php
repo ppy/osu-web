@@ -20,9 +20,9 @@ return [
     'username_change' => '<strong>:previousUsername</strong> сменил свой ник на <strong><em>:user</strong></em>!',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
-        'ranked' => '',
+        'approved' => 'одобренные',
+        'loved' => 'любимые',
+        'qualified' => 'квалифицированные',
+        'ranked' => 'рейтинговые',
     ],
 ];

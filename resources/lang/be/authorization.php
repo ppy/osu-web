@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Каб працягнуць, увайдзіце.',
     'require_verification' => 'Калі ласка, каб працягнуць, пацвердзіце верыфікацыю.',
     'restricted' => "Нельга рабіць гэта падчас абмежавання.",

@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 use App\Models\LoginAttempt;
+use Illuminate\Support\HtmlString;
 
 /*
  * Like array_search but returns null if not found instead of false.
@@ -433,17 +434,8 @@ function locale_for_moment($locale)
         return 'zh-cn';
     }
 
-    return $locale;
-}
-
-function locale_for_timeago($locale)
-{
-    if ($locale === 'zh') {
-        return 'zh-CN';
-    }
-
-    if ($locale === 'zh-tw') {
-        return 'zh-TW';
+    if ($locale === 'no') {
+        return 'nb';
     }
 
     return $locale;
@@ -835,6 +827,7 @@ function link_to_user($id, $username = null, $color = null, $classNames = null)
         $color ?? ($color = $id->user_colour);
         $id = $id->getKey();
     }
+    $id = e($id);
     $username = e($username);
     $style = user_color_style($color, 'color');
 
@@ -1665,4 +1658,34 @@ function search_error_message(?Exception $e): ?string
     $text = trans($key);
 
     return $text === $key ? trans('errors.search.default') : $text;
+}
+
+/**
+ * Gets the path to a versioned resource.
+ *
+ * @param string $resource
+ * @param string $manifest
+ * @return HtmlString
+ *
+ * @throws Exception
+ */
+function unmix(string $resource)
+{
+    static $manifest;
+
+    if (!isset($manifest)) {
+        $manifestPath = public_path('assets/manifest.json');
+
+        if (!file_exists($manifestPath)) {
+            throw new Exception('The manifest does not exist.');
+        }
+
+        $manifest = json_decode(file_get_contents($manifestPath), true);
+    }
+
+    if (!isset($manifest[$resource])) {
+        throw new Exception("resource not defined: {$resource}.");
+    }
+
+    return new HtmlString($manifest[$resource]);
 }

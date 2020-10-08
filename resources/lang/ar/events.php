@@ -20,9 +20,9 @@ return [
     'username_change' => '<strong>:previousUsername</strong> غير اسمه الى <strong><em>:user</strong></em>!',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
-        'ranked' => '',
+        'approved' => 'مقبولة',
+        'loved' => 'محبوبة',
+        'qualified' => 'مؤهلة',
+        'ranked' => 'مصفوفة',
     ],
 ];

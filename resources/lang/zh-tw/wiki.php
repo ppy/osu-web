@@ -10,7 +10,7 @@ return [
         'missing' => '請求的頁面未找到',
         'missing_title' => '未找到',
         'missing_translation' => '請求的頁面沒有當前語言的版本。',
-        'needs_cleanup_or_rewrite' => '',
+        'needs_cleanup_or_rewrite' => '該頁面並沒有達到 osu! wiki 的標準並需要整理或者修正。如果您可以幫助修正，請考慮更新這篇文章！',
         'search' => '在 wiki 中搜索 :link 。',
         'toc' => '目錄',
 

@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Hasło nie może zawierać nazwy użytkownika.',
         'email_already_used' => 'Ten adres e-mail jest już w użyciu.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Kraj nie występuje w bazie danych.',
         'invalid_discord' => 'Nieprawidłowa nazwa użytkownika na Discordzie.',
         'invalid_email' => "To nie wygląda na poprawny adres e-mail.",

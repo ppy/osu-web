@@ -3,7 +3,6 @@
 
 import OsuUrlHelper from 'osu-url-helper';
 import { Eat } from 'remark-parse';
-import { Node } from 'unist';
 
 // plugin to tokenize timestamps
 export function timestampPlugin() {
@@ -13,7 +12,7 @@ export function timestampPlugin() {
     return match < 0 ? match : match + fromIndex;
   }
 
-  function inlineTokenizer(eat: Eat, value: string, silent?: true): Node | boolean | void {
+  function inlineTokenizer(eat: Eat, value: string, silent?: true) {
     const regex = new RegExp(/^((\d{2,}:[0-5]\d[:.]\d{3})( \((?:\d[,|])*\d\))?)/);
     const result = regex.exec(value);
 

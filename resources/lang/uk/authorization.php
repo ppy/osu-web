@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Увійдіть, щоб продовжити.',
     'require_verification' => 'Будь ласка, пройдіть перевірку, щоб продовжити.',
     'restricted' => "Не можна це робити поки ваші права обмежені.",

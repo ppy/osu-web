@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Prosím, prihláste sa, aby ste mohli pokračovať.',
     'require_verification' => 'Prosím overte pre pokračovanie.',
     'restricted' => "Toto nemôžete robiť, kým ste umlčaný.",
