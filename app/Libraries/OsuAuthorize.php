@@ -1662,7 +1662,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($owner->hasProfile()) {
+        if ($owner->hasProfileVisible()) {
             return 'ok';
         } else {
             return $prefix.'no_access';

@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 import Notification from 'models/notification';
 import NotificationStack from 'models/notification-stack';
 import { categoryToIcons } from 'notification-maps/icons';
+import { formatMessageGroup } from 'notification-maps/message';
 import { urlGroup } from 'notification-maps/url';
 import { NotificationContext } from 'notifications-context';
 import NotificationReadButton from 'notifications/notification-read-button';
@@ -41,7 +42,7 @@ export default class ItemGroup extends React.Component<Props, State> {
           expandButton={this.renderExpandButton()}
           icons={categoryToIcons[item.category]}
           item={item}
-          message={item.messageGroup}
+          message={formatMessageGroup(item)}
           modifiers={['group']}
           url={urlGroup(item)}
           withCategory={true}
