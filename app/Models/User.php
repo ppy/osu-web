@@ -473,7 +473,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         }
 
         // don't perform username change history lookup if we're searching by ID
-        if (ctype_digit((string) $usernameOrId)) {
+        if ($type === 'id') {
             return null;
         }
 
