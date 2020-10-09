@@ -12,6 +12,7 @@ namespace App\Models;
  * @property User $user
  * @property int $user_id
  * @property int $user_pending
+ * @property array|null $playmodes
  */
 class UserGroup extends Model
 {
