@@ -156,9 +156,9 @@ return [
                 'beatmapset_disqualify' => '":title" foi desqualificado',
                 'beatmapset_love' => '":title" foi promovido a adorado',
                 'beatmapset_nominate' => '":title" foi nomeado',
-                'beatmapset_qualify' => '',
+                'beatmapset_qualify' => 'A ":title" ganhou nomeações suficientes e entrou para a fila de classificação',
                 'beatmapset_rank' => '":title" foi classificado',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_reset_nominations' => 'A nomeação de ":title" foi reiniciada',
             ],
 
             'comment' => [

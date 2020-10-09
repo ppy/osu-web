@@ -14,6 +14,13 @@ el = React.createElement
 export class Header extends React.Component
   favouritesToShow: 50
 
+
+  constructor: (props) ->
+    super props
+
+    @filteredFavourites = []
+
+
   hasAvailabilityInfo: =>
     @props.beatmapset.availability.download_disabled || @props.beatmapset.availability.more_information?
 
@@ -21,8 +28,14 @@ export class Header extends React.Component
   showFavourites: (event) =>
     target = event.currentTarget
 
-    if @props.favcount < 1 || target._tooltip
+    if @filteredFavourites.length < 1
+      if target._tooltip
+        target._tooltip = false
+        $(target).qtip 'destroy', true
+
       return
+
+    return if target._tooltip
 
     target._tooltip = true
 
@@ -47,6 +60,10 @@ export class Header extends React.Component
         effect: -> $(this).fadeTo(250, 0)
 
   render: ->
+    @filteredFavourites = @props.beatmapset.recent_favourites.filter (f) -> f.id != currentUser.id
+    @filteredFavourites.unshift(currentUser) if @props.hasFavourited
+    @filteredFavourites = @filteredFavourites[...@favouritesToShow]
+
     favouriteButton =
       if @props.hasFavourited
         action: 'unfavourite'
@@ -102,16 +119,16 @@ export class Header extends React.Component
               className: 'user-list-popup user-list-popup__template'
               style:
                 display: 'none'
-              @props.beatmapset.recent_favourites.map (user) ->
+              @filteredFavourites.map (user) ->
                 a
                   href: laroute.route('users.show', user: user.id)
                   className: 'js-usercard user-list-popup__user'
                   key: user.id
                   'data-user-id': user.id
                   el UserAvatar, user: user, modifiers: ['full']
-              if @props.favcount > @favouritesToShow
+              if @props.favcount > @filteredFavourites.length
                 div className: 'user-list-popup__remainder-count',
-                  osu.transChoice 'common.count.plus_others', @props.favcount - @favouritesToShow
+                  osu.transChoice 'common.count.plus_others', @props.favcount - @filteredFavourites.length
 
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--title'

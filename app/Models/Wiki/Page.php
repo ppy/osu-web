@@ -111,7 +111,7 @@ class Page implements WikiObject
     {
         $searchPath = static::cleanupPath($path);
 
-        $localeQuery = [
+        $currentLocaleQuery =
             ['constant_score' => [
                 'boost' => 1000,
                 'filter' => [
@@ -119,20 +119,22 @@ class Page implements WikiObject
                         'locale' => $locale ?? app()->getLocale(),
                     ],
                 ],
-            ]],
+            ]];
+
+        $fallbackLocaleQuery =
             ['constant_score' => [
                 'filter' => [
                     'match' => [
                         'locale' => config('app.fallback_locale'),
                     ],
                 ],
-            ]],
-        ];
+            ]];
 
         $query = (new BoolQuery())
             ->must(['match' => ['path_clean' => es_query_and_words($searchPath)]])
             ->must(['exists' => ['field' => 'page']])
-            ->should($localeQuery)
+            ->should($currentLocaleQuery)
+            ->should($fallbackLocaleQuery)
             ->shouldMatch(1);
 
         $search = (new BasicSearch(static::esIndexName(), 'wiki_searchpath'))

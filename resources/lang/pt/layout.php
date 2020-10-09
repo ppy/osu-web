@@ -179,7 +179,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'iniciar sessão / registar',
 
         'login' => [
             'forgot' => "Esqueci-me dos meus detalhes",

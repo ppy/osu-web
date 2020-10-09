@@ -434,17 +434,8 @@ function locale_for_moment($locale)
         return 'zh-cn';
     }
 
-    return $locale;
-}
-
-function locale_for_timeago($locale)
-{
-    if ($locale === 'zh') {
-        return 'zh-CN';
-    }
-
-    if ($locale === 'zh-tw') {
-        return 'zh-TW';
+    if ($locale === 'no') {
+        return 'nb';
     }
 
     return $locale;
@@ -836,6 +827,7 @@ function link_to_user($id, $username = null, $color = null, $classNames = null)
         $color ?? ($color = $id->user_colour);
         $id = $id->getKey();
     }
+    $id = e($id);
     $username = e($username);
     $style = user_color_style($color, 'color');
 

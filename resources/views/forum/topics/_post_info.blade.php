@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 <div class="forum-post-info">
-    @if ($user->hasProfile())
+    @if ($user->hasProfileVisible())
         @if ($user->user_avatar)
             <div class="forum-post-info__row forum-post-info__row--avatar">
                 <a
@@ -29,9 +29,18 @@
         >{{ $user->username }}</a>
 
         @if ($user->title() !== null)
-            <div class="forum-post-info__row forum-post-info__row--title">
-                {{ $user->title() }}
-            </div>
+            @if ($user->titleUrl() !== null)
+                <a
+                    class="forum-post-info__row forum-post-info__row--title"
+                    href="{{ $user->titleUrl() }}"
+                >
+                    {{ $user->title() }}
+                </a>
+            @else
+                <div class="forum-post-info__row forum-post-info__row--title">
+                    {{ $user->title() }}
+                </div>
+            @endif
         @endif
     @else
         <span class="forum-post-info__row forum-post-info__row--username">

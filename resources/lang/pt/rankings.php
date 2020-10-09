@@ -28,7 +28,7 @@ return [
 
     'spotlight' => [
         'end_date' => 'Data final',
-        'map_count' => 'Contador de mapas',
+        'map_count' => 'Nº de mapas',
         'participants' => 'Participantes',
         'start_date' => 'Data de início',
     ],
@@ -37,7 +37,7 @@ return [
         'accuracy' => 'Precisão',
         'active_users' => 'Utilizadores ativos',
         'country' => 'País',
-        'play_count' => 'Contador de partidas',
+        'play_count' => 'Nº de partidas',
         'performance' => 'Desempenho',
         'total_score' => 'Pontuação total',
         'ranked_score' => 'Pontuação classificada',

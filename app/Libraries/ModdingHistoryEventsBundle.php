@@ -11,16 +11,18 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapDiscussionVote;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
+use App\Traits\Memoizes;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ModdingHistoryEventsBundle
 {
+    use Memoizes;
+
     const KUDOSU_PER_PAGE = 5;
 
     protected $isModerator;
     protected $isKudosuModerator;
-    protected $memoized = [];
     protected $searchParams;
 
     private $params;
@@ -156,15 +158,6 @@ class ModdingHistoryEventsBundle
 
             return $array;
         });
-    }
-
-    protected function memoize(string $key, callable $callable)
-    {
-        if (!array_key_exists($key, $this->memoized)) {
-            $this->memoized[$key] = $callable();
-        }
-
-        return $this->memoized[$key];
     }
 
     private function getBeatmaps()
