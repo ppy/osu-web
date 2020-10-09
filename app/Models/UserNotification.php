@@ -5,8 +5,8 @@
 
 namespace App\Models;
 
+use App\Events\NotificationDeleteEvent;
 use App\Events\NotificationReadEvent;
-use App\Exceptions\InvariantException;
 use DB;
 
 class UserNotification extends Model
@@ -19,6 +19,80 @@ class UserNotification extends Model
     protected $casts = [
         'is_read' => 'boolean',
     ];
+
+    public static function deleteByIds(User $user, array $params)
+    {
+        $ids = [];
+        $identities = [];
+        foreach ($params as $param) {
+            $identity = get_params($param, null, [
+                'category',
+                'id:int',
+                'object_id:int',
+                'object_type',
+            ]);
+
+            if (isset($identity['id'])) {
+                $ids[] = $identity['id'];
+                $identities[] = $identity;
+            }
+        }
+
+        $now = now();
+        $unreadCountQuery = $user
+            ->userNotifications()
+            ->hasPushDelivery()
+            ->where('is_read', false)
+            ->whereIn('notification_id', $ids)
+            ->where('created_at', '<=', $now);
+        $unreadCountInitial = $unreadCountQuery->count();
+        $deleteCount = $user
+            ->userNotifications()
+            ->whereIn('notification_id', $ids)
+            ->where('created_at', '<=', $now)
+            ->delete();
+
+        if ($deleteCount > 0) {
+            $unreadCountCurrent = $unreadCountQuery->count();
+            $readCount = $unreadCountInitial - $unreadCountCurrent;
+
+            event(new NotificationDeleteEvent($user->getKey(), [
+                'notifications' => $identities,
+                'read_count' => $readCount,
+                'timestamp' => $now,
+            ]));
+        }
+    }
+
+    public static function deleteByNotificationIdentifier(User $user, array $params)
+    {
+        $notificationIdsQuery = Notification::byIdentifier($params)->select('id');
+
+        $now = now();
+        $unreadCountQuery = $user
+            ->userNotifications()
+            ->hasPushDelivery()
+            ->where('is_read', false)
+            ->whereIn('notification_id', $notificationIdsQuery)
+            ->where('created_at', '<=', $now);
+        $unreadCountInitial = $unreadCountQuery->count();
+        $deleteCount = $user
+            ->userNotifications()
+            ->whereIn('notification_id', $notificationIdsQuery)
+            ->where('created_at', '<=', $now)
+            ->delete();
+
+        if ($deleteCount > 0) {
+            $unreadCountCurrent = $unreadCountQuery->count();
+            $readCount = $unreadCountInitial - $unreadCountCurrent;
+
+            event(new NotificationDeleteEvent($user->getKey(), [
+                'notifications' => [$params],
+                'read_count' => $readCount,
+                'timestamp' => $now,
+            ]));
+        }
+    }
 
     public static function deliveryMask(string $type): int
     {
@@ -56,31 +130,7 @@ class UserNotification extends Model
 
     public static function markAsReadByNotificationIdentifier(User $user, array $params)
     {
-        $params = get_params($params, null, [
-            'category',
-            'object_id:int',
-            'object_type',
-        ]);
-
-        $category = presence($params['category'] ?? null);
-        $objectId = $params['object_id'] ?? null;
-        $objectType = presence($params['object_type'] ?? null);
-
-        $notifications = Notification::query();
-        if ($objectType !== null) {
-            $notifications->where('notifiable_type', $objectType);
-        }
-
-        if ($objectId !== null && $category !== null) {
-            if ($objectType === null) {
-                throw new InvariantException('object_type is required.');
-            }
-
-            $names = Notification::namesInCategory($category);
-            $notifications
-                ->where('notifiable_id', $objectId)
-                ->whereIn('name', $names);
-        }
+        $notifications = Notification::byIdentifier($params);
 
         $instance = new static();
         $tableName = $instance->getTable();

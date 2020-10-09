@@ -198,6 +198,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
         Route::get('notifications/endpoint', 'NotificationsController@endpoint')->name('notifications.endpoint');
         Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
+        Route::delete('notifications', 'NotificationsController@batchDestroy');
 
         Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');
 
