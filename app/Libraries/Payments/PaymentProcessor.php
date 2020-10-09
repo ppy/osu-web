@@ -157,7 +157,7 @@ abstract class PaymentProcessor implements \ArrayAccess
         $this->sandboxAssertion();
 
         $order = $this->getOrder();
-        $order->update(['transaction_id' => $this->getTransactionId()]);
+        optional($order)->update(['transaction_id' => $this->getTransactionId()]);
 
         if (!$this->validateTransaction()) {
             $this->throwValidationFailed(new PaymentProcessorException($this->validationErrors()));
