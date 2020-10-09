@@ -60,6 +60,12 @@ class Group extends Model implements AfterCommit
         return $value;
     }
 
+    public function isProbationary(): bool
+    {
+        // TODO: move this to a DB field or something if other groups end up needing 'probation'
+        return $this->identifier === 'bng_limited';
+    }
+
     public function isVisible(): bool
     {
         return $this->group_type === 1;

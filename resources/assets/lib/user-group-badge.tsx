@@ -9,12 +9,16 @@ interface Props {
   modifiers?: string[];
 }
 
-export default function UserGroupBadge({group, modifiers}: Props) {
+export default function UserGroupBadge({group, modifiers = []}: Props) {
   if (group == null) {
     return null;
   }
 
   const style = osu.groupColour(group);
+
+  if (group.is_probationary) {
+    modifiers.push('probationary');
+  }
 
   const playModes: JSX.Element[] = [];
   group.playmodes?.forEach((mode) => {

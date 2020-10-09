@@ -5,6 +5,7 @@ export default interface GroupJSON {
   colour: string;
   id: number;
   identifier: string;
+  is_probationary: boolean;
   name: string;
   playmodes?: number[];
   short_name: string;

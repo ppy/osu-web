@@ -19,6 +19,7 @@ class GroupTransformer extends TransformerAbstract
             'description' => $group->group_desc,
             'colour' => $group->colour,
             'playmodes' => $group->playmodes,
+            'is_probationary' => $group->isProbationary(),
         ];
     }
 }
