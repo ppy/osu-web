@@ -5,9 +5,8 @@ import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { CommentableMetaJSON } from 'interfaces/comment-json';
 import { action, observable } from 'mobx';
-import Store from 'stores/store';
 
-export default class CommentableMetaStore extends Store {
+export default class CommentableMetaStore {
   @observable meta = observable.map<string | null, CommentableMetaJSON>();
 
   @action

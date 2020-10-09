@@ -18,10 +18,10 @@ import { action, computed, observable } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
-import Store from 'stores/store';
+import UserStore from './user-store';
 
 @dispatchListener
-export default class ChannelStore extends Store {
+export default class ChannelStore {
   @observable channels = observable.map<number, Channel>();
   lastHistoryId: number | null = null;
   @observable loaded: boolean = false;
@@ -77,6 +77,9 @@ export default class ChannelStore extends Store {
 
       return a.lastMessageId > b.lastMessageId ? -1 : 1;
     });
+  }
+
+  constructor(protected userStore: UserStore) {
   }
 
   @action
