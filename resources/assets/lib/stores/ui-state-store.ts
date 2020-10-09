@@ -1,13 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import ChatStateStore from 'chat/chat-state-store';
 import { CommentBundleJSON } from 'interfaces/comment-json';
 import { Dictionary, orderBy } from 'lodash';
 import { action, observable } from 'mobx';
 import { Comment, CommentSort } from 'models/comment';
 import { OwnClient } from 'models/oauth/own-client';
-import RootDataStore from './root-data-store';
+import CommentStore from 'stores/comment-store';
 
 interface AccountUIState {
   client: OwnClient | null;
@@ -48,14 +47,12 @@ export default class UIStateStore {
     newClientVisible: false,
   };
 
-  chat = new ChatStateStore(this.root.channelStore);
-
   // only for the currently visible page
   @observable comments = Object.assign({}, defaultCommentsUIState);
 
   private orderedCommentsByParentId: Dictionary<Comment[]> = {};
 
-  constructor(protected root: RootDataStore) {
+  constructor(protected commentStore: CommentStore) {
   }
 
   exportCommentsUIState() {
@@ -151,7 +148,7 @@ export default class UIStateStore {
 
   private populateOrderedCommentsForParentId(parentId: number) {
     if (this.orderedCommentsByParentId[parentId] == null) {
-      const comments = this.root.commentStore.getRepliesByParentId(parentId);
+      const comments = this.commentStore.getRepliesByParentId(parentId);
       this.orderedCommentsByParentId[parentId] = this.orderComments(comments);
     }
   }
