@@ -251,7 +251,7 @@ class BBCodeForDB
 
                 $user = $usersBy['user_id'][$id] ?? $usersBy['username'][$nameNormalized] ?? $usersBy['username_clean'][$nameNormalized] ?? null;
 
-                if ($user === null || !$user->hasProfile()) {
+                if ($user === null || !$user->hasProfileVisible()) {
                     $idText = '';
                 } else {
                     $idText = "={$user->getKey()}";
