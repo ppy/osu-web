@@ -478,6 +478,11 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             return $user;
         }
 
+        // don't perform username change history lookup if we're searching by ID
+        if ($type === 'id') {
+            return null;
+        }
+
         $change = UsernameChangeHistory::visible()
             ->where('username_last', $usernameOrId)
             ->orderBy('change_id', 'desc')
