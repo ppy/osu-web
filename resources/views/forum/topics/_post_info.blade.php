@@ -29,9 +29,18 @@
         >{{ $user->username }}</a>
 
         @if ($user->title() !== null)
-            <div class="forum-post-info__row forum-post-info__row--title">
-                {{ $user->title() }}
-            </div>
+            @if ($user->titleUrl() !== null)
+                <a
+                    class="forum-post-info__row forum-post-info__row--title"
+                    href="{{ $user->titleUrl() }}"
+                >
+                    {{ $user->title() }}
+                </a>
+            @else
+                <div class="forum-post-info__row forum-post-info__row--title">
+                    {{ $user->title() }}
+                </div>
+            @endif
         @endif
     @else
         <span class="forum-post-info__row forum-post-info__row--username">
