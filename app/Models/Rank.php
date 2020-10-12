@@ -11,6 +11,7 @@ namespace App\Models;
  * @property int $rank_min
  * @property int $rank_special
  * @property string $rank_title
+ * @property string|null $url
  */
 class Rank extends Model
 {

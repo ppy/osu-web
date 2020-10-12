@@ -456,6 +456,10 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::get('/news', 'LegacyInterOpController@news');
     Route::apiResource('users', 'InterOp\UsersController', ['only' => ['store']]);
 
+    Route::group(['as' => 'indexing.', 'prefix' => 'indexing'], function () {
+        Route::apiResource('bulk', 'InterOp\Indexing\BulkController', ['only' => ['store']]);
+    });
+
     Route::group(['as' => 'user-groups.'], function () {
         Route::post('user-group', 'InterOp\UserGroupsController@store')->name('store');
         Route::delete('user-group', 'InterOp\UserGroupsController@destroy')->name('destroy');

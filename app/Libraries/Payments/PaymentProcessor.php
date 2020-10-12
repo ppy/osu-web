@@ -11,17 +11,17 @@ use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ModelNotSavedException;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
+use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use DB;
 use Exception;
 
 abstract class PaymentProcessor implements \ArrayAccess
 {
-    use Validatable;
+    use Memoizes, Validatable;
 
     protected $params;
     protected $signature;
-    protected $order; // Stores memoized result in array, not to be used directly otherwise.
 
     public function __construct(array $params, PaymentSignature $signature)
     {
@@ -323,15 +323,11 @@ abstract class PaymentProcessor implements \ArrayAccess
      */
     protected function getOrder()
     {
-        if (!isset($this->order)) {
-            $this->order = [
-                Order::withPayments()
-                    ->whereOrderNumber($this->getOrderNumber())
-                    ->first(),
-            ];
-        }
-
-        return $this->order[0];
+        return $this->memoize(__FUNCTION__, function () {
+            return Order::withPayments()
+                ->whereOrderNumber($this->getOrderNumber())
+                ->first();
+        });
     }
 
     /**
