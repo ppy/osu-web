@@ -67,7 +67,7 @@ class PaypalController extends Controller
         $command = new PaypalCreatePayment($order);
         $link = $command->getApprovalLink();
         // getId() is only available after the payment is created which getApprovalLink() calls.
-        $order->update(['tracking_code' => $command->getPayment()->getId()]);
+        $order->update(['reference' => $command->getPayment()->getId()]);
 
         return $link;
     }

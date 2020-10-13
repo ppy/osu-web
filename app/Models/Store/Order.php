@@ -233,6 +233,21 @@ class Order extends Model
         return (float) $total;
     }
 
+    public function setTransactionIdAttribute($value)
+    {
+        // TODO: migrate to always using provider and reference instead of transaction_id.
+        $this->attributes['transaction_id'] = $value;
+
+        $split = static::splitTransactionId($value);
+        $this->provider = $split[0] ?? null;
+
+        $reference = $split[1] ?? null;
+        // For Paypal we're going to use the PAYID number for reference instead of the IPN txn_id
+        if ($this->provider !== static::PROVIDER_PAYPAL && $reference !== 'failed') {
+            $this->reference = $reference;
+        }
+    }
+
     public function requiresShipping()
     {
         foreach ($this->items as $i) {
