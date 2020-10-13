@@ -6,6 +6,7 @@ import { action, computed, observable } from 'mobx';
 import NotificationStack from 'models/notification-stack';
 import { NotificationContextData } from 'notifications-context';
 import { NotificationCursor } from 'notifications/notification-cursor';
+import NotificationDeletable from 'notifications/notification-deletable';
 import { NotificationIdentity } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
 import { NotificationResolver } from 'notifications/notification-resolver';
@@ -32,30 +33,31 @@ export function getValidName(value: unknown) {
   return names[0];
 }
 
-export default class NotificationType implements NotificationReadable {
+export default class NotificationType implements NotificationReadable, NotificationDeletable {
   @observable cursor?: NotificationCursor | null;
+  @observable isDeleting = false;
   @observable isLoading = false;
   @observable isMarkingAsRead = false;
   @observable stacks = new Map<string, NotificationStack>();
   @observable total = 0;
-
-  @computed get isEmpty() {
-    return this.total <= 0;
-  }
-
-  @computed get hasVisibleNotifications() {
-    return (this.total > 0 && this.stacks.size > 0) || this.name === 'legacy_pm';
-  }
 
   @computed get hasMore() {
     // undefined means not loaded yet.
     return this.cursor !== null && this.stackNotificationCount < this.total;
   }
 
+  @computed get hasVisibleNotifications() {
+    return (this.total > 0 && this.stacks.size > 0) || this.name === 'legacy_pm';
+  }
+
   get identity(): NotificationIdentity {
     return {
       objectType: this.name,
     };
+  }
+
+  @computed get isEmpty() {
+    return this.total <= 0;
   }
 
   @computed get stackNotificationCount() {

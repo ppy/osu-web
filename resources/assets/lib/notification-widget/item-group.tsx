@@ -8,6 +8,7 @@ import { categoryToIcons } from 'notification-maps/icons';
 import { formatMessageGroup } from 'notification-maps/message';
 import { urlGroup } from 'notification-maps/url';
 import { NotificationContext } from 'notifications-context';
+import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
@@ -37,10 +38,12 @@ export default class ItemGroup extends React.Component<Props, State> {
       <div className='notification-popup-item-group'>
         <Item
           canMarkAsRead={this.props.stack.canMarkAsRead}
+          delete={this.handleDelete}
           markRead={this.handleMarkAsRead}
           markingAsRead={this.props.stack.isMarkingAsRead}
           expandButton={this.renderExpandButton()}
           icons={categoryToIcons[item.category]}
+          isDeleting={this.props.stack.isDeleting}
           item={item}
           message={formatMessageGroup(item)}
           modifiers={['group']}
@@ -51,6 +54,10 @@ export default class ItemGroup extends React.Component<Props, State> {
         {this.renderItems()}
       </div>
     );
+  }
+
+  private handleDelete = () => {
+    this.props.stack.delete();
   }
 
   private handleMarkAsRead = () => {
@@ -110,6 +117,7 @@ export default class ItemGroup extends React.Component<Props, State> {
           <div className='notification-popup-item-group__collapse'>
             {this.renderShowLess()}
             <NotificationReadButton isMarkingAsRead={this.props.stack.isMarkingAsRead} onMarkAsRead={this.handleMarkAsRead} />
+            <NotificationDeleteButton isDeleting={this.props.stack.isDeleting} onDelete={this.handleDelete} />
           </div>
         </div>
       </div>

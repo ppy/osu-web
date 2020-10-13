@@ -7,13 +7,15 @@ import { computed, observable } from 'mobx';
 import NotificationDetails, { newEmptyNotificationDetails } from 'models/notification-details';
 import { categoryFromName, categoryGroupKey } from 'notification-maps/category';
 import { displayType } from 'notification-maps/type';
+import NotificationDeletable from 'notifications/notification-deletable';
 import { NotificationIdentity } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
 import core from 'osu-core-singleton';
 
-export default class Notification implements NotificationReadable {
+export default class Notification implements NotificationReadable, NotificationDeletable {
   createdAtJson?: string;
   details: NotificationDetails = newEmptyNotificationDetails();
+  @observable isDeleting = false;
   @observable isMarkingAsRead = false;
   @observable isRead = false;
   name?: string;

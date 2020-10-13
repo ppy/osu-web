@@ -10,6 +10,7 @@ import * as React from 'react';
 import Item from './item';
 
 interface Props {
+  showDeleteButton?: boolean;
   stack: NotificationStack;
 }
 
@@ -21,10 +22,12 @@ export default class ItemSingular extends React.Component<Props> {
 
     return (
       <Item
-        markRead={this.handleMarkAsRead}
-        markingAsRead={item.isMarkingAsRead}
+        delete={this.handleDelete}
+        isDeleting={item.isDeleting}
         icons={nameToIcons[item.name || '']}
         item={item}
+        markRead={this.handleMarkAsRead}
+        markingAsRead={item.isMarkingAsRead}
         message={formatMessage(item)}
         modifiers={['one']}
         url={urlSingular(item)}
@@ -32,6 +35,10 @@ export default class ItemSingular extends React.Component<Props> {
         withCoverImage={true}
       />
     );
+  }
+
+  private handleDelete = () => {
+    this.props.stack.deleteItem(this.props.stack.first);
   }
 
   private handleMarkAsRead = () => {
