@@ -33,8 +33,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Database\Eloquent\Collection $items OrderItem
  * @property string|null $last_tracking_state
  * @property int $order_id
+ * @property string|null $provider
  * @property \Carbon\Carbon|null $paid_at
  * @property \Illuminate\Database\Eloquent\Collection $payments Payment
+ * @property string|null $reference
  * @property \Carbon\Carbon|null $shipped_at
  * @property float|null $shipping
  * @property mixed $status
