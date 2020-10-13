@@ -57,7 +57,7 @@ class Score extends Model
 
     public function getEnabledModsAttribute($value)
     {
-        return $this->_getEnabledMods($value | $this->game->getAttributes()['mods']);
+        return $this->_getEnabledMods($value | ($this->game->getAttributes()['mods'] ?? 0));
     }
 
     public function getScoringType()
