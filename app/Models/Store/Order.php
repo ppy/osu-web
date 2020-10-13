@@ -71,6 +71,11 @@ class Order extends Model
     protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
     public $macros = ['itemsQuantities'];
 
+    protected static function splitTransactionId($value)
+    {
+        return explode('-', $value, 2);
+    }
+
     public function items()
     {
         return $this->hasMany(OrderItem::class);
@@ -178,7 +183,7 @@ class Order extends Model
             return;
         }
 
-        return explode('-', $this->transaction_id)[0];
+        return static::splitTransactionId($this->transaction_id)[0];
     }
 
     public function getPaymentStatusText()
@@ -211,7 +216,7 @@ class Order extends Model
             return null;
         }
 
-        return explode('-', $this->transaction_id)[1] ?? null;
+        return static::splitTransactionId($this->transaction_id)[1] ?? null;
     }
 
     public function getSubtotal($forShipping = false)
