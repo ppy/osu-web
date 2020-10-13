@@ -35,7 +35,7 @@ class Score extends Model
     }
 
     protected $table = 'game_scores';
-    protected $primaryKey = null;
+    protected $primaryKeys = ['game_id', 'slot'];
     protected $hidden = ['frame', 'game_id'];
     public $timestamps = false;
 
