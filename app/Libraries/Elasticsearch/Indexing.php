@@ -38,11 +38,6 @@ class Indexing
     {
         $oldIndices = static::getOldIndices($alias);
 
-        // updateAliases doesn't work if the alias doesn't exist :D
-        if (count($oldIndices) === 0) {
-            return Es::getClient()->indices()->putAlias(['index' => $indices, 'name' => $alias]);
-        }
-
         $actions = [];
         foreach ($oldIndices as $oldIndex) {
             $actions[] = ['remove' => ['index' => $oldIndex, 'alias' => $alias]];
