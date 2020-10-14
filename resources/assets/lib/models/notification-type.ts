@@ -75,6 +75,11 @@ export default class NotificationType implements NotificationReadable, Notificat
   }
 
   @action
+  delete() {
+    this.resolver.delete(this);
+  }
+
+  @action
   loadMore(context: NotificationContextData) {
     if (this.cursor === null) { return; }
 
