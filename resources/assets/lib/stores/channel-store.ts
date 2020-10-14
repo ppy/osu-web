@@ -3,6 +3,7 @@
 
 import {
   ChatChannelPartAction,
+  ChatChannelSwitchAction,
   ChatMessageAddAction,
   ChatMessageSendAction,
   ChatMessageUpdateAction,
@@ -12,9 +13,10 @@ import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import UserSilenceAction from 'actions/user-silence-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
+import ChatAPI from 'chat/chat-api';
 import { ChannelJSON, MessageJSON, PresenceJSON } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { action, computed, observable, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
@@ -25,6 +27,8 @@ export default class ChannelStore {
   @observable channels = observable.map<number, Channel>();
   lastHistoryId: number | null = null;
   @observable loaded: boolean = false;
+
+  private api = new ChatAPI();
 
   @computed
   get channelList(): Channel[] {
@@ -96,6 +100,8 @@ export default class ChannelStore {
     const channel = this.getOrCreate(json.channel_id);
     channel.updateWithJson(json);
     channel.lastReadId = message.message_id;
+
+    return channel;
   }
 
   findPM(userId: number): Channel | null {
@@ -143,7 +149,7 @@ export default class ChannelStore {
     if (event instanceof ChatMessageSendAction) {
       this.getOrCreate(event.message.channelId).addMessages(event.message, true);
     } else if (event instanceof ChatMessageAddAction) {
-      this.getOrCreate(event.message.channelId).addMessages(event.message);
+      this.handleChatMessageSendAction(event);
     } else if (event instanceof ChatMessageUpdateAction) {
       const channel: Channel = this.getOrCreate(event.message.channelId);
       channel.updateMessage(event.message, event.json);
@@ -187,5 +193,38 @@ export default class ChannelStore {
     });
 
     this.loaded = true;
+  }
+
+  private async handleChatMessageSendAction(event: ChatMessageAddAction) {
+    const message = event.message;
+    const channel = this.getOrCreate(message.channelId);
+    channel.addMessages(message, true);
+
+    try {
+      if (channel.newChannel) {
+        const users = channel.users.slice();
+        const userId = users.find((user) => {
+          return user !== currentUser.id;
+        });
+
+        if (userId == null) {
+          console.debug('sendMessage:: userId not found?? this shouldn\'t happen');
+          return;
+        }
+
+        const response = await this.api.newConversation(userId, message);
+        runInAction(() => {
+          this.channels.delete(message.channelId);
+          const newChannel = this.addNewConversation(response.channel, response.message);
+          dispatch(new ChatChannelSwitchAction(newChannel.channelId));
+        });
+      } else {
+        const response = await this.api.sendMessage(message);
+        dispatch(new ChatMessageUpdateAction(message, response));
+      }
+    } catch (error) {
+      dispatch(new ChatMessageUpdateAction(message, null));
+      osu.ajaxError(error);
+    }
   }
 }

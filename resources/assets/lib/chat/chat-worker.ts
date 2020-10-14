@@ -2,10 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import {
-  ChatChannelSwitchAction,
   ChatMessageAddAction,
-  ChatMessageSendAction,
-  ChatMessageUpdateAction,
   ChatPresenceUpdateAction,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
@@ -34,9 +31,7 @@ export default class ChatWorker implements DispatchListener {
   }
 
   handleDispatchAction(action: DispatcherAction) {
-    if (action instanceof ChatMessageSendAction) {
-      this.sendMessage(action.message);
-    } else if (action instanceof WindowFocusAction) {
+    if (action instanceof WindowFocusAction) {
       this.windowIsActive = true;
     } else if (action instanceof WindowBlurAction) {
       this.windowIsActive = false;
@@ -103,38 +98,6 @@ export default class ChatWorker implements DispatchListener {
 
   pollingTime(): number {
     return this.windowIsActive ? this.pollTime : this.pollTimeIdle;
-  }
-
-  async sendMessage(message: Message) {
-    const channelId = message.channelId;
-    const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
-
-    try {
-      if (channel.newChannel) {
-        const users = channel.users.slice();
-        const userId = users.find((user) => {
-          return user !== currentUser.id;
-        });
-
-        if (!userId) {
-          console.debug('sendMessage:: userId not found?? this shouldn\'t happen');
-          return;
-        }
-
-        const response = await this.api.newConversation(userId, message);
-        transaction(() => {
-          this.rootDataStore.channelStore.channels.delete(channelId);
-          this.rootDataStore.channelStore.addNewConversation(response.channel, response.message);
-          dispatch(new ChatChannelSwitchAction(response.channel.channel_id));
-        });
-      } else {
-        const response = await this.api.sendMessage(message);
-        dispatch(new ChatMessageUpdateAction(message, response));
-      }
-    } catch (error) {
-      dispatch(new ChatMessageUpdateAction(message, null));
-      osu.ajaxError(error);
-    }
   }
 
   startPolling() {
