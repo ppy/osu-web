@@ -76,6 +76,16 @@ class Notification extends Model
         'details' => 'array',
     ];
 
+    public static function scrubIdentity(array $identity)
+    {
+        return get_params($identity, null, [
+            'category',
+            'id:int',
+            'object_id:int',
+            'object_type',
+        ]);
+    }
+
     public static function namesInCategory($category)
     {
         static $categories = [];
@@ -93,17 +103,11 @@ class Notification extends Model
         return $categories[$category] ?? [$category];
     }
 
-    public function scopeByIdentifier($query, array $params)
+    public function scopeByIdentity($query, array $params)
     {
-        $params = get_params($params, null, [
-                'category',
-                'object_id:int',
-                'object_type',
-        ]);
-
-        $category = presence($params['category'] ?? null);
+        $category = $params['category'] ?? null;
         $objectId = $params['object_id'] ?? null;
-        $objectType = presence($params['object_type'] ?? null);
+        $objectType = $params['object_type'] ?? null;
 
         if ($objectType !== null) {
             $query->where('notifiable_type', $objectType);

@@ -20,74 +20,59 @@ class UserNotification extends Model
         'is_read' => 'boolean',
     ];
 
-    public static function deleteByIds(User $user, array $params)
+    public static function bulkDelete(User $user, array $params)
     {
-        $ids = [];
-        $identities = [];
-        foreach ($params as $param) {
-            $identity = get_params($param, null, [
-                'category',
-                'id:int',
-                'object_id:int',
-                'object_type',
-            ]);
+        if (is_array($params['notifications'] ?? null)) {
+            $notificationIds = [];
+            $identities = [];
+            foreach ($params['notifications'] as $param) {
+                $identity = Notification::scrubIdentity($param);
 
-            if (isset($identity['id'])) {
-                $ids[] = $identity['id'];
-                $identities[] = $identity;
+                if (isset($identity['id'])) {
+                    $notificationIds[] = $identity['id'];
+                    $identities[] = $identity;
+                }
             }
+        } else {
+            $params = Notification::scrubIdentity($params);
+            $notificationIds = Notification::byIdentity($params)->select('id');
+            $identities = [$params];
         }
 
         $now = now();
-        $unreadCountQuery = $user
+        // obtain and filter valid notification ids
+        $notificationIds = $user
             ->userNotifications()
-            ->hasPushDelivery()
-            ->where('is_read', false)
-            ->whereIn('notification_id', $ids)
-            ->where('created_at', '<=', $now);
-        $unreadCountInitial = $unreadCountQuery->count();
-        $deleteCount = $user
-            ->userNotifications()
-            ->whereIn('notification_id', $ids)
+            ->whereIn('notification_id', $notificationIds)
             ->where('created_at', '<=', $now)
-            ->delete();
+            ->pluck('notification_id')
+            ->all();
 
-        if ($deleteCount > 0) {
+        if (count($notificationIds) > 0) {
+            $unreadCountQuery = $user
+                ->userNotifications()
+                ->hasPushDelivery()
+                ->where('is_read', false)
+                ->whereIn('notification_id', $notificationIds);
+            $unreadCountInitial = $unreadCountQuery->count();
+            $user
+                ->userNotifications()
+                ->whereIn('notification_id', $notificationIds)
+                ->delete();
+
             $unreadCountCurrent = $unreadCountQuery->count();
             $readCount = $unreadCountInitial - $unreadCountCurrent;
+
+            $remainingNotificationIds = static
+                ::whereIn('notification_id', $notificationIds)
+                ->pluck('notification_id')
+                ->all();
+            $orphanNotificationIds = array_diff($notificationIds, $remainingNotificationIds);
+
+            Notification::whereIn('id', $orphanNotificationIds)->delete();
 
             event(new NotificationDeleteEvent($user->getKey(), [
                 'notifications' => $identities,
-                'read_count' => $readCount,
-                'timestamp' => $now,
-            ]));
-        }
-    }
-
-    public static function deleteByNotificationIdentifier(User $user, array $params)
-    {
-        $notificationIdsQuery = Notification::byIdentifier($params)->select('id');
-
-        $now = now();
-        $unreadCountQuery = $user
-            ->userNotifications()
-            ->hasPushDelivery()
-            ->where('is_read', false)
-            ->whereIn('notification_id', $notificationIdsQuery)
-            ->where('created_at', '<=', $now);
-        $unreadCountInitial = $unreadCountQuery->count();
-        $deleteCount = $user
-            ->userNotifications()
-            ->whereIn('notification_id', $notificationIdsQuery)
-            ->where('created_at', '<=', $now)
-            ->delete();
-
-        if ($deleteCount > 0) {
-            $unreadCountCurrent = $unreadCountQuery->count();
-            $readCount = $unreadCountInitial - $unreadCountCurrent;
-
-            event(new NotificationDeleteEvent($user->getKey(), [
-                'notifications' => [$params],
                 'read_count' => $readCount,
                 'timestamp' => $now,
             ]));
@@ -103,13 +88,7 @@ class UserNotification extends Model
     {
         $ids = [];
         $identities = array_map(function ($param) use (&$ids) {
-            $identity = get_params($param, null, [
-                'category',
-                'id:int',
-                'object_id:int',
-                'object_type',
-            ]);
-
+            $identity = Notification::scrubIdentity($param);
             $ids[] = $identity['id'] ?? null;
 
             return $identity;
@@ -130,7 +109,8 @@ class UserNotification extends Model
 
     public static function markAsReadByNotificationIdentifier(User $user, array $params)
     {
-        $notifications = Notification::byIdentifier($params);
+        $params = Notification::scrubIdentity($params);
+        $notifications = Notification::byIdentity($params);
 
         $instance = new static();
         $tableName = $instance->getTable();
