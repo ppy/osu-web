@@ -20,7 +20,7 @@ class UserNotification extends Model
         'is_read' => 'boolean',
     ];
 
-    public static function bulkDelete(User $user, array $params)
+    public static function batchDestroy(User $user, array $params)
     {
         if (is_array($params['notifications'] ?? null)) {
             $notificationIds = [];

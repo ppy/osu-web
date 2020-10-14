@@ -12,7 +12,7 @@ use Tests\TestCase;
 
 class UserNotificationTest extends TestCase
 {
-    public function testDeleteOnlyDeleteOrphanNotification()
+    public function testBatchDestroyOnlyDeleteOrphanNotification()
     {
         $userA = factory(User::class)->create();
         $userB = factory(User::class)->create();
@@ -32,7 +32,7 @@ class UserNotificationTest extends TestCase
         $initialNotificationCount = Notification::count();
         $initialUserNotificationCount = UserNotification::count();
 
-        UserNotification::bulkDelete($userA, [
+        UserNotification::batchDestroy($userA, [
             'notifications' => [
                 ['id' => $notification->getKey()],
             ],
@@ -44,7 +44,7 @@ class UserNotificationTest extends TestCase
         $this->assertTrue(Notification::where('id', $notification->getKey())->exists());
     }
 
-    public function testDeleteByIds()
+    public function testBatchDestroyByIds()
     {
         $user = factory(User::class)->create();
 
@@ -64,7 +64,7 @@ class UserNotificationTest extends TestCase
         $initialNotificationCount = Notification::count();
         $initialUserNotificationCount = UserNotification::count();
 
-        UserNotification::bulkDelete($user, [
+        UserNotification::batchDestroy($user, [
             'notifications' => [
                 ['id' => $notificationA->getKey()],
             ],
@@ -78,7 +78,7 @@ class UserNotificationTest extends TestCase
         $this->assertTrue(Notification::where('id', $notificationB->getKey())->exists());
     }
 
-    public function testDeleteByNotificationIdentyByStack()
+    public function testBatchDestroyByNotificationIdentyByStack()
     {
         $user = factory(User::class)->create();
 
@@ -116,7 +116,7 @@ class UserNotificationTest extends TestCase
         $initialUserNotificationCount = UserNotification::count();
         $initialNotificationCount = Notification::count();
 
-        UserNotification::bulkDelete($user, [
+        UserNotification::batchDestroy($user, [
             'category' => $notificationA->category,
             'object_type' => $notificationA->notifiable_type,
             'object_id' => $notificationA->notifiable_id,
@@ -130,7 +130,7 @@ class UserNotificationTest extends TestCase
         $this->assertTrue(Notification::where('id', $notificationC->getKey())->exists());
     }
 
-    public function testDeleteByNotificationIdentityByObjectType()
+    public function testBatchDestroyByNotificationIdentityByObjectType()
     {
         $user = factory(User::class)->create();
 
@@ -165,7 +165,7 @@ class UserNotificationTest extends TestCase
         $initialUserNotificationCount = UserNotification::count();
         $initialNotificationCount = Notification::count();
 
-        UserNotification::bulkDelete($user, [
+        UserNotification::batchDestroy($user, [
             'object_type' => $notificationA->notifiable_type,
         ]);
 
