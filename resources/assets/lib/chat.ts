@@ -5,14 +5,14 @@ import { ChatChannelSwitchAction } from 'actions/chat-actions';
 import { dispatch } from 'app-dispatcher';
 import { PresenceJSON, SendToJSON } from 'chat/chat-api-responses';
 import MainView from 'chat/main-view';
-import * as _ from 'lodash';
+import { isEmpty } from 'lodash';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 
 const dataStore = core.dataStore;
 const presence: PresenceJSON = osu.parseJson('json-presence');
 
-if (!_.isEmpty(presence)) {
+if (!isEmpty(presence)) {
   // initial population of channel/presence data
   dataStore.channelStore.updatePresence(presence);
 }
@@ -21,7 +21,7 @@ reactTurbolinks.register('chat', MainView, () => {
   let initialChannel: number | undefined;
   const sendTo: SendToJSON = osu.parseJson('json-sendto');
 
-  if (!_.isEmpty(sendTo)) {
+  if (!isEmpty(sendTo)) {
     const target = dataStore.userStore.getOrCreate(sendTo.target.id, sendTo.target); // pre-populate userStore with target
     let channel = dataStore.channelStore.findPM(target.id);
 
