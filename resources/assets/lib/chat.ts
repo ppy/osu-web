@@ -1,5 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
+
+import { ChatChannelSwitchAction } from 'actions/chat-actions';
+import { dispatch } from 'app-dispatcher';
 import { PresenceJSON, SendToJSON } from 'chat/chat-api-responses';
 import MainView from 'chat/main-view';
 import * as _ from 'lodash';
@@ -22,7 +25,7 @@ reactTurbolinks.register('chat', MainView, () => {
     const target = dataStore.userStore.getOrCreate(sendTo.target.id, sendTo.target); // pre-populate userStore with target
     let channel = dataStore.channelStore.findPM(target.id);
 
-    if (channel) {
+    if (channel != null) {
       initialChannel = channel.channelId;
     } else if (!target.is(core.currentUser)) {
       channel = Channel.newPM(target);
@@ -42,9 +45,12 @@ reactTurbolinks.register('chat', MainView, () => {
     }
   }
 
+  if (initialChannel != null) {
+    dispatch(new ChatChannelSwitchAction(initialChannel));
+  }
+
   return {
     dataStore: core.dataStore,
-    initialChannel,
     worker: core.chatWorker,
   };
 });
