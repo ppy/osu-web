@@ -20,7 +20,6 @@ import { MessageJSON } from './chat-api-responses';
 @dispatchListener
 export default class ChatOrchestrator implements DispatchListener {
   private api: ChatAPI;
-  private markingAsRead: Record<number, number> = {};
   private windowIsActive: boolean = true;
 
   constructor(private rootDataStore: RootDataStore) {
@@ -59,11 +58,11 @@ export default class ChatOrchestrator implements DispatchListener {
 
       if (!channel.newPmChannel) {
         if (channel.loaded) {
-          this.markAsRead(channelId);
+          this.rootDataStore.channelStore.markAsRead(channelId);
         } else {
           await this.loadChannel(channelId);
           if (this.windowIsActive) {
-            this.markAsRead(channelId);
+            this.rootDataStore.channelStore.markAsRead(channelId);
           }
         }
       }
@@ -95,7 +94,7 @@ export default class ChatOrchestrator implements DispatchListener {
     } else if (action instanceof WindowFocusAction) {
       this.windowIsActive = true;
       if (this.rootDataStore.channelStore.loaded) {
-        this.markAsRead(this.rootDataStore.chatState.selected);
+        this.rootDataStore.channelStore.markAsRead(this.rootDataStore.chatState.selected);
       }
     } else if (action instanceof WindowBlurAction) {
       this.windowIsActive = false;
@@ -103,25 +102,7 @@ export default class ChatOrchestrator implements DispatchListener {
   }
 
   async loadChannel(channelId: number) {
-    const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
-
-    if (channel.loading) {
-      return;
-    }
-
-    channel.loading = true;
-
-    try {
-      const messages = await this.api.getMessages(channelId);
-      transaction(() => {
-        this.addMessages(channelId, messages);
-        channel.loaded = true;
-      });
-    } catch (err) {
-      console.debug('loadChannel error', err);
-    } finally {
-      channel.loading = false;
-    }
+    this.rootDataStore.channelStore.loadChannel(channelId);
   }
 
   async loadChannelEarlierMessages(channelId: number) {
@@ -141,44 +122,6 @@ export default class ChatOrchestrator implements DispatchListener {
     } finally {
       channel.loadingEarlierMessages = false;
     }
-  }
-
-  markAsRead(channelId: number) {
-    if (this.markingAsRead[channelId] != null) {
-      return;
-    }
-
-    const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
-
-    if (!channel.isUnread) {
-      return;
-    }
-
-    const currentTimeout = window.setTimeout(async () => {
-      // allow next debounce to be queued again
-      if (this.markingAsRead[channelId] === currentTimeout) {
-        delete this.markingAsRead[channelId];
-      }
-
-      const lastReadId = channel.lastMessageId;
-
-      // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
-      const lastSentMessage = channel.messages[channel.messages.length - 1];
-      if (lastSentMessage && lastSentMessage.sender.id === window.currentUser.id) {
-        channel.lastReadId = lastReadId;
-
-        return;
-      }
-
-      try {
-        await this.api.markAsRead(channel.channelId, lastReadId);
-        channel.lastReadId = lastReadId;
-      } catch (err) {
-        console.debug('markAsRead error', err);
-      }
-    }, 1000);
-
-    this.markingAsRead[channelId] = currentTimeout;
   }
 
   private async handleChatChannelPartAction(action: ChatChannelPartAction) {

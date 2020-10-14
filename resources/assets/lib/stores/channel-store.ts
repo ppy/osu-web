@@ -12,8 +12,7 @@ import { UserLogoutAction } from 'actions/user-login-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import ChatAPI from 'chat/chat-api';
 import { ChannelJSON, GetUpdatesJSON, MessageJSON, PresenceJSON } from 'chat/chat-api-responses';
-import * as _ from 'lodash';
-import { groupBy } from 'lodash';
+import { groupBy, isEmpty, maxBy } from 'lodash';
 import { action, computed, observable, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
@@ -26,6 +25,7 @@ export default class ChannelStore {
   @observable loaded: boolean = false;
 
   private api = new ChatAPI();
+  private markingAsRead: Record<number, number> = {};
 
   @computed
   get channelList(): Channel[] {
@@ -35,7 +35,7 @@ export default class ChannelStore {
   @computed
   get maxMessageId(): number {
     const channelArray = Array.from(this.channels.toJS().values());
-    const max = _.maxBy(channelArray, 'lastMessageId');
+    const max = maxBy(channelArray, 'lastMessageId');
 
     return max == null ? -1 : max.lastMessageId;
   }
@@ -85,7 +85,7 @@ export default class ChannelStore {
 
   @action
   addMessages(channelId: number, messages: Message[]) {
-    if (_.isEmpty(messages)) {
+    if (isEmpty(messages)) {
       return;
     }
 
@@ -151,6 +151,66 @@ export default class ChannelStore {
     } else if (event instanceof UserLogoutAction) {
       this.flushStore();
     }
+  }
+
+  @action
+  async loadChannel(channelId: number) {
+    const channel = this.getOrCreate(channelId);
+    if (channel.loading || channel.newPmChannel) {
+      return;
+    }
+
+    // TODO:
+    // current imlementation should always have this loaded already,
+    // but future versions may skip having all the initial metadata on chat load.
+
+    if (channel.loaded) {
+      return;
+    }
+
+    channel.loading = true;
+
+    try {
+      const response = await this.api.getMessages(channelId);
+      this.handleChatChannelNewMessages(channelId, response);
+    } finally {
+      runInAction(() => {
+        channel.loading = false;
+      });
+    }
+  }
+
+  @action
+  async markAsRead(channelId: number) {
+    const channel = this.get(channelId);
+
+    if (channel == null || !channel.isUnread) {
+      return;
+    }
+
+    if (this.markingAsRead[channelId] != null) {
+      return;
+    }
+
+    channel.markAsRead();
+
+    const currentTimeout = window.setTimeout(() => {
+      // allow next debounce to be queued again
+      if (this.markingAsRead[channelId] === currentTimeout) {
+        delete this.markingAsRead[channelId];
+      }
+
+      // TODO: need to mark again in case the marker has moved?
+
+      // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
+      if (channel.lastMessage?.sender.id === window.currentUser.id) {
+        return;
+      }
+
+      this.api.markAsRead(channel.channelId, channel.lastMessageId);
+    }, 1000);
+
+    this.markingAsRead[channelId] = currentTimeout;
   }
 
   @action

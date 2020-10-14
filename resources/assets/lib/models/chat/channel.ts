@@ -27,6 +27,11 @@ export default class Channel {
   @observable users: number[] = [];
 
   @computed
+  get hasEarlierMessages() {
+    return this.firstMessageId !== this.minMessageId;
+  }
+
+  @computed
   get isUnread(): boolean {
     if (this.lastReadId != null) {
       return this.lastMessageId > this.lastReadId;
@@ -36,13 +41,8 @@ export default class Channel {
   }
 
   @computed
-  get exists(): boolean {
-    return this.channelId > 0;
-  }
-
-  @computed
-  get hasEarlierMessages() {
-    return this.firstMessageId !== this.minMessageId;
+  get lastMessage(): Message | undefined {
+    return this.messages[this.messages.length - 1];
   }
 
   @computed
@@ -115,6 +115,11 @@ export default class Channel {
         this.lastMessageId = lastMessageId;
       }
     });
+  }
+
+  @action
+  markAsRead() {
+    this.lastReadId = this.lastMessageId;
   }
 
   @action
