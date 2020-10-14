@@ -139,20 +139,20 @@ export default class ChannelStore {
     return channel;
   }
 
-  handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof ChatMessageSendAction) {
-      this.getOrCreate(dispatchedAction.message.channelId).addMessages(dispatchedAction.message, true);
-    } else if (dispatchedAction instanceof ChatMessageAddAction) {
-      this.getOrCreate(dispatchedAction.message.channelId).addMessages(dispatchedAction.message);
-    } else if (dispatchedAction instanceof ChatMessageUpdateAction) {
-      const channel: Channel = this.getOrCreate(dispatchedAction.message.channelId);
-      channel.updateMessage(dispatchedAction.message, dispatchedAction.json);
+  handleDispatchAction(event: DispatcherAction) {
+    if (event instanceof ChatMessageSendAction) {
+      this.getOrCreate(event.message.channelId).addMessages(event.message, true);
+    } else if (event instanceof ChatMessageAddAction) {
+      this.getOrCreate(event.message.channelId).addMessages(event.message);
+    } else if (event instanceof ChatMessageUpdateAction) {
+      const channel: Channel = this.getOrCreate(event.message.channelId);
+      channel.updateMessage(event.message, event.json);
       channel.resortMessages();
-    } else if (dispatchedAction instanceof ChatPresenceUpdateAction) {
-      this.updatePresence(dispatchedAction.presence);
-    } else if (dispatchedAction instanceof UserSilenceAction) {
-      this.removePublicMessagesFromUser(dispatchedAction.userIds);
-    } else if (dispatchedAction instanceof UserLogoutAction) {
+    } else if (event instanceof ChatPresenceUpdateAction) {
+      this.updatePresence(event.presence);
+    } else if (event instanceof UserSilenceAction) {
+      this.removePublicMessagesFromUser(event.userIds);
+    } else if (event instanceof UserLogoutAction) {
       this.flushStore();
     }
   }
