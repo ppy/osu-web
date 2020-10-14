@@ -118,6 +118,11 @@ export default class Channel {
   }
 
   @action
+  removeMessagesFromUserIds(userIds: Set<number>) {
+    this.messages = this.messages.filter((message) => !userIds.has(message.senderId));
+  }
+
+  @action
   resortMessages() {
     this.messages = _(this.messages).sortBy('timestamp').uniqBy('messageId').value();
   }

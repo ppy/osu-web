@@ -1,33 +1,27 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import {
-  ChatMessageAddAction,
-  ChatPresenceUpdateAction,
-} from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
-import UserSilenceAction from 'actions/user-silence-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
-import { dispatch, dispatchListener } from 'app-dispatcher';
+import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
+import { maxBy } from 'lodash';
 import { transaction } from 'mobx';
-import Message from 'models/chat/message';
 import RootDataStore from 'stores/root-data-store';
 import ChatAPI from './chat-api';
-import { MessageJSON } from './chat-api-responses';
 
 @dispatchListener
 export default class ChatWorker implements DispatchListener {
-  private api: ChatAPI;
-  private pollingEnabled: boolean = true;
-  private pollTime: number = 1000;
-  private pollTimeIdle: number = 5000;
+  private api = new ChatAPI();
+  private lastHistoryId: number | null = null;
+  private pollingEnabled = true;
+  private pollTime = 1000;
+  private pollTimeIdle = 5000;
   private updateTimerId?: number;
-  private updateXHR: boolean = false;
-  private windowIsActive: boolean = true;
+  private updateXHR = false;
+  private windowIsActive = true;
 
   constructor(private rootDataStore: RootDataStore) {
-    this.api = new ChatAPI();
   }
 
   handleDispatchAction(action: DispatcherAction) {
@@ -42,12 +36,12 @@ export default class ChatWorker implements DispatchListener {
     if (this.updateXHR) {
       return;
     }
+
     this.updateXHR = true;
 
     const maxMessageId = this.rootDataStore.channelStore.maxMessageId;
-    const lastHistoryId = this.rootDataStore.channelStore.lastHistoryId;
 
-    this.api.getUpdates(maxMessageId, lastHistoryId)
+    this.api.getUpdates(maxMessageId, this.lastHistoryId)
       .then((updateJson) => {
         this.updateXHR = false;
         if (this.pollingEnabled) {
@@ -59,32 +53,13 @@ export default class ChatWorker implements DispatchListener {
         }
 
         transaction(() => {
-          updateJson.messages.forEach((message: MessageJSON) => {
-            const newMessage = Message.fromJSON(message);
-            newMessage.sender = this.rootDataStore.userStore.getOrCreate(message.sender_id, message.sender);
-            dispatch(new ChatMessageAddAction(newMessage));
-          });
+          const newHistoryId = maxBy(updateJson.silences, 'id')?.id;
 
-          let newHistoryId: number | null = null;
-          const silencedUserIds = new Set<number>();
-          updateJson.silences.forEach((silence) => {
-            silencedUserIds.add(silence.user_id);
-
-            if (newHistoryId == null) {
-              newHistoryId = silence.id;
-            } else {
-              if (silence.id > newHistoryId) {
-                newHistoryId = silence.id;
-              }
-            }
-          });
-
-          dispatch(new UserSilenceAction(silencedUserIds));
           if (newHistoryId != null) {
-            this.rootDataStore.channelStore.lastHistoryId = newHistoryId;
+            this.lastHistoryId = newHistoryId;
           }
 
-          dispatch(new ChatPresenceUpdateAction(updateJson.presence));
+          this.rootDataStore.channelStore.updateWithJson(updateJson);
         });
       })
       .catch((err) => {
