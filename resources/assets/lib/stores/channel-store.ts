@@ -11,7 +11,6 @@ import {
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
-import UserSilenceAction from 'actions/user-silence-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import ChatAPI from 'chat/chat-api';
 import { ChannelJSON, GetUpdatesJSON, MessageJSON, PresenceJSON } from 'chat/chat-api-responses';
@@ -156,8 +155,6 @@ export default class ChannelStore {
       channel.resortMessages();
     } else if (event instanceof ChatPresenceUpdateAction) {
       this.updateWithPresence(event.presence);
-    } else if (event instanceof UserSilenceAction) {
-      this.removePublicMessagesFromUser(event.userIds);
     } else if (event instanceof UserLogoutAction) {
       this.flushStore();
     }
@@ -166,13 +163,6 @@ export default class ChannelStore {
   @action
   partChannel(channelId: number) {
     this.channels.delete(channelId);
-  }
-
-  @action
-  removePublicMessagesFromUser(userIds: Set<number>) {
-    this.nonPmChannels.forEach((channel) => {
-      channel.messages = channel.messages.filter((message) => !userIds.has(message.sender.id));
-    });
   }
 
   @action
