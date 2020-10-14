@@ -7,7 +7,7 @@ import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { maxBy } from 'lodash';
 import { transaction } from 'mobx';
-import RootDataStore from 'stores/root-data-store';
+import ChannelStore from 'stores/channel-store';
 import ChatAPI from './chat-api';
 
 @dispatchListener
@@ -21,7 +21,7 @@ export default class ChatWorker implements DispatchListener {
   private updateXHR = false;
   private windowIsActive = true;
 
-  constructor(private rootDataStore: RootDataStore) {
+  constructor(private channelStore: ChannelStore) {
   }
 
   handleDispatchAction(action: DispatcherAction) {
@@ -39,7 +39,7 @@ export default class ChatWorker implements DispatchListener {
 
     this.updateXHR = true;
 
-    const maxMessageId = this.rootDataStore.channelStore.maxMessageId;
+    const maxMessageId = this.channelStore.maxMessageId;
 
     this.api.getUpdates(maxMessageId, this.lastHistoryId)
       .then((updateJson) => {
@@ -59,7 +59,7 @@ export default class ChatWorker implements DispatchListener {
             this.lastHistoryId = newHistoryId;
           }
 
-          this.rootDataStore.channelStore.updateWithJson(updateJson);
+          this.channelStore.updateWithJson(updateJson);
         });
       })
       .catch((err) => {
