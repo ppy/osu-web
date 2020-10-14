@@ -49,6 +49,7 @@ export class Nominations extends React.PureComponent
         div className: "#{bn}__items-grouping",
           div className: "#{bn}__item", @discussionLockButton()
           div className: "#{bn}__item", @loveButton()
+          div className: "#{bn}__item", @removeFromLovedButton()
           div className: "#{bn}__item", @deleteButton()
 
 
@@ -154,6 +155,27 @@ export class Nominations extends React.PureComponent
     params = method: 'PUT'
 
     @xhr.nominate = $.ajax(url, params)
+      .done (response) =>
+        $.publish 'beatmapsetDiscussions:update', beatmapset: response
+      .fail osu.ajaxError
+      .always LoadingOverlay.hide
+
+
+  removeFromLoved: =>
+    reason = osu.presence(prompt(osu.trans('beatmaps.nominations.remove_from_loved_prompt')))
+
+    return unless reason?
+
+    LoadingOverlay.show()
+
+    @xhr.removeFromLoved?.abort()
+
+    url = laroute.route('beatmapsets.remove-from-loved', beatmapset: @props.beatmapset.id)
+    params =
+      method: 'PUT'
+      data: { reason }
+
+    @xhr.removeFromLoved = $.ajax(url, params)
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
       .fail osu.ajaxError
@@ -462,6 +484,17 @@ export class Nominations extends React.PureComponent
       modifiers: ['pink']
       props:
         onClick: @love
+
+
+  removeFromLovedButton: =>
+    return null unless @props.beatmapset.current_user_attributes?.can_remove_from_loved
+
+    el BigButton,
+      text: osu.trans 'beatmaps.nominations.remove_from_loved'
+      icon: 'fas fa-heart-broken'
+      modifiers: ['danger']
+      props:
+        onClick: @removeFromLoved
 
 
   deleteButton: =>
