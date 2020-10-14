@@ -146,7 +146,7 @@ export default class ChannelStore {
       this.getOrCreate(dispatchedAction.message.channelId).addMessages(dispatchedAction.message);
     } else if (dispatchedAction instanceof ChatMessageUpdateAction) {
       const channel: Channel = this.getOrCreate(dispatchedAction.message.channelId);
-      channel.updateMessage(dispatchedAction.message);
+      channel.updateMessage(dispatchedAction.message, dispatchedAction.json);
       channel.resortMessages();
     } else if (dispatchedAction instanceof ChatPresenceUpdateAction) {
       this.updatePresence(dispatchedAction.presence);

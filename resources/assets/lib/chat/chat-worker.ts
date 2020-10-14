@@ -129,16 +129,10 @@ export default class ChatWorker implements DispatchListener {
         });
       } else {
         const response = await this.api.sendMessage(message);
-        if (response) {
-          message.messageId = response.message_id;
-        } else {
-          message.errored = true;
-        }
-        dispatch(new ChatMessageUpdateAction(message));
+        dispatch(new ChatMessageUpdateAction(message, response));
       }
     } catch (error) {
-      message.errored = true;
-      dispatch(new ChatMessageUpdateAction(message));
+      dispatch(new ChatMessageUpdateAction(message, null));
       osu.ajaxError(error);
     }
   }
