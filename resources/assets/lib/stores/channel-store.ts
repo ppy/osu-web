@@ -108,13 +108,12 @@ export default class ChannelStore {
       return null;
     }
 
-    // tslint:disable-next-line:prefer-const browsers that support ES6 but not const in for...of
-    for (let [, channel] of this.channels) {
+    for (const [, channel] of this.channels) {
       if (channel.type !== 'PM') {
         continue;
       }
 
-      if (channel.users.some((user) => user === userId)) {
+      if (channel.users.includes(userId)) {
         return channel;
       }
     }
