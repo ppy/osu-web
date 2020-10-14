@@ -256,6 +256,7 @@ export default class ChannelStore {
       }
     } catch (error) {
       dispatch(new ChatMessageUpdateAction(message, null));
+      // FIXME: this seems like the wrong place to tigger an error popup.
       osu.ajaxError(error);
     }
   }
