@@ -59,7 +59,7 @@ export default class ChatOrchestrator implements DispatchListener {
       }
       const channel = channelStore.getOrCreate(channelId);
 
-      if (!channel.newChannel) {
+      if (!channel.newPmChannel) {
         if (channel.loaded) {
           this.markAsRead(channelId);
         } else {

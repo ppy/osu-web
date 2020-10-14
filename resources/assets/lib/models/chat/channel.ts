@@ -22,7 +22,7 @@ export default class Channel {
   @observable metaLoaded: boolean = false;
   @observable moderated: boolean = false;
   @observable name: string = '';
-  @observable newChannel: boolean = false;
+  @observable newPmChannel = false;
   @observable type: ChannelType = 'NEW';
   @observable users: number[] = [];
 
@@ -82,7 +82,7 @@ export default class Channel {
 
   static newPM(target: User): Channel {
     const channel = new Channel(-1);
-    channel.newChannel = true;
+    channel.newPmChannel = true;
     channel.type = 'PM';
     channel.name = target.username;
     channel.icon = target.avatarUrl;

@@ -64,15 +64,15 @@ export default class ChannelStore {
   get pmChannels(): Channel[] {
     const sortedChannels: Channel[] = [];
     this.channels.forEach((channel) => {
-      if (channel.newChannel || (channel.type === 'PM' && channel.metaLoaded)) {
+      if (channel.newPmChannel || (channel.type === 'PM' && channel.metaLoaded)) {
         sortedChannels.push(channel);
       }
     });
 
     return sortedChannels.sort((a, b) => {
       // so 'new' channels always end up on top
-      if (a.newChannel) return -1;
-      if (b.newChannel) return 1;
+      if (a.newPmChannel) return -1;
+      if (b.newPmChannel) return 1;
 
       if (a.lastMessageId === b.lastMessageId) {
         return 0;
@@ -187,7 +187,7 @@ export default class ChannelStore {
 
     // remove parted channels
     this.channels.forEach((channel) => {
-      if (channel.newChannel) {
+      if (channel.newPmChannel) {
         return;
       }
 
@@ -222,7 +222,7 @@ export default class ChannelStore {
     channel.addMessages(message, true);
 
     try {
-      if (channel.newChannel) {
+      if (channel.newPmChannel) {
         const users = channel.users.slice();
         const userId = users.find((user) => {
           return user !== currentUser.id;
