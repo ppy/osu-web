@@ -6,7 +6,6 @@ import {
   ChatChannelSwitchAction,
   ChatMessageSendAction,
   ChatMessageUpdateAction,
-  ChatPresenceUpdateAction,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
@@ -149,8 +148,6 @@ export default class ChannelStore {
       const channel: Channel = this.getOrCreate(event.message.channelId);
       channel.updateMessage(event.message, event.json);
       channel.resortMessages();
-    } else if (event instanceof ChatPresenceUpdateAction) {
-      this.updateWithPresence(event.presence);
     } else if (event instanceof UserLogoutAction) {
       this.flushStore();
     }

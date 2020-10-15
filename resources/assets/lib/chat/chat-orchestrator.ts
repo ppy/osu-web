@@ -5,7 +5,6 @@ import {
   ChatChannelLoadEarlierMessages,
   ChatChannelPartAction,
   ChatChannelSwitchAction,
-  ChatPresenceUpdateAction,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
@@ -93,8 +92,6 @@ export default class ChatOrchestrator implements DispatchListener {
       this.loadChannelEarlierMessages(action.channelId);
     } else if (action instanceof ChatChannelPartAction) {
       this.handleChatChannelPartAction(action);
-    } else if (action instanceof ChatPresenceUpdateAction) {
-      this.handleChatPresenceUpdateAction();
     } else if (action instanceof WindowFocusAction) {
       this.windowIsActive = true;
       if (this.rootDataStore.channelStore.loaded) {
@@ -200,15 +197,6 @@ export default class ChatOrchestrator implements DispatchListener {
       } catch (err) {
         console.debug('leaveChannel error', err);
       }
-    }
-  }
-
-  // ensure a channel is selected if available
-  private handleChatPresenceUpdateAction() {
-    const channelStore = this.rootDataStore.channelStore;
-    const channel = channelStore.get(this.rootDataStore.chatState.selected);
-    if (channel == null) {
-      this.focusChannelAtIndex(0);
     }
   }
 }
