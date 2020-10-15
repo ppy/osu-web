@@ -10,8 +10,8 @@ import ChannelStore from 'stores/channel-store';
 
 @dispatchListener
 export default class ChatStateStore {
-  @observable autoScroll: boolean = false;
-  @observable lastReadId: number = -1;
+  @observable autoScroll = false;
+  @observable lastReadId = -1;
   @observable selectedBoxed = observable.box(0);
 
   @computed
