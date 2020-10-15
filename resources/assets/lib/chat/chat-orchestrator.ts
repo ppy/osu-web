@@ -5,7 +5,6 @@ import {
   ChatChannelLoadEarlierMessages,
   ChatChannelPartAction,
   ChatChannelSwitchAction,
-  ChatMessageAddAction,
   ChatPresenceUpdateAction,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';

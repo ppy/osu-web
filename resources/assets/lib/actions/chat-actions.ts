@@ -20,11 +20,6 @@ export class ChatChannelSwitchAction implements DispatcherAction {
   }
 }
 
-export class ChatMessageAddAction implements DispatcherAction {
-  constructor(public message: Message) {
-  }
-}
-
 export class ChatMessageSendAction implements DispatcherAction {
   constructor(public message: Message) {
   }

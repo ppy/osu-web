@@ -4,7 +4,6 @@
 import {
   ChatChannelPartAction,
   ChatChannelSwitchAction,
-  ChatMessageAddAction,
   ChatMessageSendAction,
   ChatMessageUpdateAction,
   ChatPresenceUpdateAction,
@@ -145,8 +144,6 @@ export default class ChannelStore {
 
   handleDispatchAction(event: DispatcherAction) {
     if (event instanceof ChatMessageSendAction) {
-      this.getOrCreate(event.message.channelId).addMessages(event.message, true);
-    } else if (event instanceof ChatMessageAddAction) {
       this.handleChatMessageSendAction(event);
     } else if (event instanceof ChatMessageUpdateAction) {
       const channel: Channel = this.getOrCreate(event.message.channelId);
@@ -216,7 +213,7 @@ export default class ChannelStore {
   }
 
   @action
-  private async handleChatMessageSendAction(event: ChatMessageAddAction) {
+  private async handleChatMessageSendAction(event: ChatMessageSendAction) {
     const message = event.message;
     const channel = this.getOrCreate(message.channelId);
     channel.addMessages(message, true);
