@@ -61,6 +61,11 @@ export default class Channel {
     return this.users.find((userId: number) => userId !== currentUser.id);
   }
 
+  @computed
+  get transient() {
+    return this.type === 'NEW';
+  }
+
   constructor(channelId: number) {
     this.channelId = channelId;
   }
