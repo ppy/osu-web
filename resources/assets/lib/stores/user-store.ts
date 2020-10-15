@@ -6,9 +6,8 @@ import { UserLogoutAction } from 'actions/user-login-actions';
 import UserJSON from 'interfaces/user-json';
 import { action, observable } from 'mobx';
 import User from 'models/user';
-import Store from 'stores/store';
 
-export default class UserStore extends Store {
+export default class UserStore {
   @observable users = observable.map<number, User>();
 
   @action

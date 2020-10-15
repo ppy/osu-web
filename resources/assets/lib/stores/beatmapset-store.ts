@@ -5,9 +5,8 @@ import DispatcherAction from 'actions/dispatcher-action';
 import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import { action, observable } from 'mobx';
-import Store from 'stores/store';
 
-export class BeatmapsetStore extends Store {
+export class BeatmapsetStore {
   // store json for now to make it easier to work with existing coffeescript.
   @observable beatmapsets = observable.map<number, BeatmapsetJson>();
 

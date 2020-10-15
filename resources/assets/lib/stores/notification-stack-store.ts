@@ -13,7 +13,7 @@ import NotificationStack, { idFromJson } from 'models/notification-stack';
 import NotificationType, { Name as NotificationTypeName  } from 'models/notification-type';
 import { categoryFromName } from 'notification-maps/category';
 import { NotificationEventMoreLoaded, NotificationEventNew, NotificationEventRead } from 'notifications/notification-events';
-import { fromJson, NotificationIdentity, resolveIdentityType, resolveStackId } from 'notifications/notification-identity';
+import { fromJson, NotificationIdentity, resolveStackId } from 'notifications/notification-identity';
 import { NotificationResolver } from 'notifications/notification-resolver';
 import NotificationStore from './notification-store';
 
@@ -122,16 +122,10 @@ export default class NotificationStackStore implements DispatchListener {
 
   @action
   handleNotificationEventRead(event: NotificationEventRead) {
-    if (event.data.length === 0) return;
-    const first = event.data[0];
-    const identityType = resolveIdentityType(first);
-
-    if (identityType === 'stack') {
-      const stack = this.getStack(first);
-      if (stack != null) {
-        stack.isRead = true;
-      }
-    }
+    // Base stack store (this class) shows read notifications so nothing
+    // needs to be handled here as the per-Notification-model read marking
+    // is done by NotificationStore.
+    return;
   }
 
   orderedStacksOfType(name: NotificationTypeName) {
