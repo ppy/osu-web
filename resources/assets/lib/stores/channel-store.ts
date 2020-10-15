@@ -208,11 +208,6 @@ export default class ChannelStore {
   }
 
   @action
-  partChannel(channelId: number) {
-    this.channels.delete(channelId);
-  }
-
-  @action
   updateWithJson(updateJson: GetUpdatesJSON) {
     this.updateWithPresence(updateJson.presence);
 
