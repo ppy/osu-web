@@ -156,14 +156,15 @@ abstract class PaymentProcessor implements \ArrayAccess
     {
         $this->sandboxAssertion();
 
+        $order = $this->getOrder();
+        optional($order)->update(['transaction_id' => $this->getTransactionId()]);
+
         if (!$this->validateTransaction()) {
             $this->throwValidationFailed(new PaymentProcessorException($this->validationErrors()));
         }
 
-        DB::connection('mysql-store')->transaction(function () {
+        DB::connection('mysql-store')->transaction(function () use ($order) {
             try {
-                $order = $this->getOrder();
-
                 // FIXME: less hacky
                 if ($order->tracking_code === Order::PENDING_ECHECK) {
                     $order->tracking_code = Order::ECHECK_CLEARED;

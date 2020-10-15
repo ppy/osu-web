@@ -130,7 +130,7 @@ class EsIndexDocuments extends Command
 
         if ($alias !== $indexName) {
             $this->info("Aliasing {$alias} to {$indexName}");
-            Indexing::updateAlias($alias, [$indexName]);
+            Indexing::updateAlias($alias, $indexName);
             $this->line('');
         }
     }
