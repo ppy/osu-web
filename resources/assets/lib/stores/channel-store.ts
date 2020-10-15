@@ -113,7 +113,7 @@ export default class ChannelStore {
 
   @action
   flushStore() {
-    this.channels = observable.map<number, Channel>();
+    this.channels.clear();
     this.loaded = false;
   }
 
