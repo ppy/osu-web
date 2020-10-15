@@ -43,6 +43,7 @@ export class NotificationResolver {
     .then(action(() => {
       dispatch(new NotificationEventDelete([deletable.identity], 0));
     }))
+    .catch(osu.ajaxError)
     .always(action(() => deletable.isDeleting = false));
   }
 
