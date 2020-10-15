@@ -12,6 +12,7 @@ class BeatmapsetEventTransformer extends TransformerAbstract
     protected $availableIncludes = [
         'beatmapset',
         'discussion',
+        'nomination_modes',
     ];
 
     protected $defaultIncludes = [
@@ -54,6 +55,15 @@ class BeatmapsetEventTransformer extends TransformerAbstract
             $event->beatmapDiscussion,
             new BeatmapDiscussionTransformer()
         );
+    }
+
+    public function includeNominationModes(BeatmapsetEvent $event)
+    {
+        if ($event->type !== BeatmapsetEvent::NOMINATE) {
+            return;
+        }
+
+        return $this->primitive($event->nominationModes);
     }
 
     public function includeUserId(BeatmapsetEvent $event)

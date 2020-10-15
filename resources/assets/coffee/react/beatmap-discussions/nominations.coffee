@@ -3,7 +3,7 @@
 
 import { BigButton } from 'big-button'
 import * as React from 'react'
-import { a, button, div, p, span } from 'react-dom-factories'
+import { a, div, i, span } from 'react-dom-factories'
 import { StringWithComponent } from 'string-with-component'
 el = React.createElement
 
@@ -54,18 +54,34 @@ export class Nominations extends React.PureComponent
 
 
   renderLights: (lightsOn, lightsTotal) ->
-    lightsOff = lightsTotal - lightsOn
-
     div className: "#{bn}__lights",
       _.times lightsOn, (n) ->
         div
           key: n
-          className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-on'
+          className: 'bar bar--beatmapset-hype bar--beatmapset-hype-on'
 
-      _.times (lightsOff), (n) ->
+      _.times (lightsTotal - lightsOn), (n) ->
         div
           key: lightsOn + n
-          className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-off'
+          className: 'bar bar--beatmapset-hype bar--beatmapset-hype-off'
+
+
+  # nominations = { 'current': { 'osu': 1, 'taiko': 0, ... }, 'required': { 'osu': 2, 'taiko': 2, ... }, ... };
+  renderLightsForNominations: (nominations = {}) ->
+    div className: "#{bn}__lights",
+      _.map nominations.required, (requiredLights, mode) ->
+        el React.Fragment, key: mode,
+          _.times nominations.current[mode], (n) ->
+            div
+              key: n
+              className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-on'
+              i className: "fal fa-extra-mode-#{mode}"
+
+          _.times (requiredLights - nominations.current[mode]), (n) ->
+            div
+              key: nominations.current[mode] + n
+              className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-off'
+              i className: "fal fa-extra-mode-#{mode}"
 
 
   delete: =>
@@ -335,8 +351,15 @@ export class Nominations extends React.PureComponent
           className: "#{bn}__title"
           osu.trans 'beatmaps.nominations.title'
         span null,
-          " #{nominations.current} / #{nominations.required}"
-      @renderLights(nominations.current, nominations.required)
+          if nominations.hybrid_mode
+            " #{_.sum(_.values(nominations.current))} / #{_.sum(_.values(nominations.required))}"
+          else
+            " #{nominations.current} / #{nominations.required}"
+
+      if nominations.hybrid_mode
+        @renderLightsForNominations(nominations)
+      else
+        @renderLights(nominations.current, nominations.required)
 
 
   disqualificationMessage: =>

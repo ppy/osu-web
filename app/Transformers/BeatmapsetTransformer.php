@@ -34,10 +34,7 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
             'is_scoreable' => $beatmapset->isScoreable(),
             'last_updated' => json_time($beatmapset->last_update),
             'legacy_thread_url' => $beatmapset->thread_id !== 0 ? route('forum.topics.show', $beatmapset->thread_id) : null,
-            'nominations' => [
-                'current' => $beatmapset->nominations,
-                'required' => $beatmapset->requiredNominationCount(),
-            ],
+            'nominations' => $beatmapset->nominationsMeta(),
             'ranked' => $beatmapset->approved,
             'ranked_date' => json_time($beatmapset->approved_date),
             'source' => $beatmapset->source,

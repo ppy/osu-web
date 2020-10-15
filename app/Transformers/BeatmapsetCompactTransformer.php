@@ -163,10 +163,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             return;
         }
 
-        $result = [
-            'required' => $beatmapset->requiredNominationCount(),
-            'current' => $beatmapset->currentNominationCount(),
-        ];
+        $result = $beatmapset->nominationsMeta();
 
         if ($beatmapset->isPending()) {
             $currentUser = Auth::user();

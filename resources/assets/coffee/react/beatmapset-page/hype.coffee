@@ -54,7 +54,7 @@ export class Hype extends React.PureComponent
             state = if i < @props.beatmapset.hype.current then 'on' else 'off-light'
             div
               key: i
-              className: "bar bar--beatmapset-nomination bar--beatmapset-nomination-#{state}"
+              className: "bar bar--beatmapset-hype bar--beatmapset-hype-#{state}"
 
         div
           className: "#{bn}__button"

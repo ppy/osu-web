@@ -9,6 +9,24 @@
   height: @bar-size;
   position: relative;
 
+  &--beatmapset-hype {
+    .default-border-radius();
+    height: 5px;
+    margin: 5px 2.5px;
+  }
+
+  &--beatmapset-hype-off {
+    background-color: @osu-colour-b6;
+  }
+
+  &--beatmapset-hype-off-light {
+    background-color: #ddd;
+  }
+
+  &--beatmapset-hype-on {
+    background-color: @osu-colour-lime-3;
+  }
+
   &--beatmap-rating {
     height: 5px;
     background-color: @green;
@@ -26,13 +44,17 @@
   }
 
   &--beatmapset-nomination {
-    .default-border-radius();
-    height: 5px;
+    border-radius: 10000px;
+    height: 20px;
     margin: 5px 2.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &--beatmapset-nomination-off {
     background-color: @osu-colour-b6;
+    color: @osu-colour-f1;
   }
 
   &--beatmapset-nomination-off-light {
@@ -41,6 +63,7 @@
 
   &--beatmapset-nomination-on {
     background-color: @osu-colour-lime-3;
+    color: @osu-colour-b6;
   }
 
   &--double {

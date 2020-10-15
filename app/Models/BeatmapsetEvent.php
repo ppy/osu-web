@@ -247,6 +247,15 @@ class BeatmapsetEvent extends Model
         return $this->comment['beatmap_discussion_id'] ?? null;
     }
 
+    public function getNominationModesAttribute()
+    {
+        if ($this->type !== self::NOMINATE) {
+            return null;
+        }
+
+        return $this->comment['modes'] ?? ['legacy'];
+    }
+
     public function beatmapDiscussion()
     {
         return $this->belongsTo(BeatmapDiscussion::class, 'beatmap_discussion_id');
