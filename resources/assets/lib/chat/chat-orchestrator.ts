@@ -11,10 +11,8 @@ import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { clamp } from 'lodash';
 import { transaction } from 'mobx';
-import Message from 'models/chat/message';
 import RootDataStore from 'stores/root-data-store';
 import ChatAPI from './chat-api';
-import { MessageJSON } from './chat-api-responses';
 
 @dispatchListener
 export default class ChatOrchestrator implements DispatchListener {
@@ -24,19 +22,6 @@ export default class ChatOrchestrator implements DispatchListener {
   constructor(private rootDataStore: RootDataStore) {
     this.rootDataStore = rootDataStore;
     this.api = new ChatAPI();
-  }
-
-  addMessages(channelId: number, messages: MessageJSON[]) {
-    const newMessages: Message[] = [];
-
-    transaction(() => {
-      messages.forEach((json: MessageJSON) => {
-        const newMessage = Message.fromJSON(json);
-        newMessages.push(newMessage);
-      });
-
-      this.rootDataStore.channelStore.addMessages(channelId, newMessages);
-    });
   }
 
   changeChannel(channelId: number) {
@@ -59,7 +44,7 @@ export default class ChatOrchestrator implements DispatchListener {
         if (channel.loaded) {
           this.rootDataStore.channelStore.markAsRead(channelId);
         } else {
-          await this.loadChannel(channelId);
+          await this.rootDataStore.channelStore.loadChannel(channelId);
           if (this.windowIsActive) {
             this.rootDataStore.channelStore.markAsRead(channelId);
           }
@@ -96,10 +81,6 @@ export default class ChatOrchestrator implements DispatchListener {
     } else if (action instanceof WindowBlurAction) {
       this.windowIsActive = false;
     }
-  }
-
-  async loadChannel(channelId: number) {
-    this.rootDataStore.channelStore.loadChannel(channelId);
   }
 
   private async handleChatChannelPartAction(action: ChatChannelPartAction) {
