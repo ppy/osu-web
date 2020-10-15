@@ -61,15 +61,13 @@ export default class ConversationView extends React.Component<Props> {
     $(window).on('scroll', _.throttle(this.onScroll, 1000));
   }
 
-  componentDidUpdate = (prevProps?: Props, prevState?: {}, snapshot?: Snapshot) => {
+  componentDidUpdate(prevProps?: Props, prevState?: {}, snapshot?: Snapshot) {
     const chatView = this.chatViewRef.current;
     if (!chatView) {
       return;
     }
 
-    const dataStore = this.dataStore;
-    const channel = dataStore.channelStore.channels.get(dataStore.chatState.selected);
-    if (!channel?.loaded) {
+    if (!this.currentChannel?.loaded) {
       return;
     }
 
@@ -82,7 +80,7 @@ export default class ConversationView extends React.Component<Props> {
       this.didSwitchChannel = false;
     } else {
       snapshot = snapshot ?? blankSnapshot();
-      const prepending = this.firstMessage !== this.currentChannel?.messages[0];
+      const prepending = this.firstMessage !== this.currentChannel.messages[0];
 
       if (prepending && this.chatViewRef.current != null) {
         const chatEl = this.chatViewRef.current;
@@ -95,7 +93,7 @@ export default class ConversationView extends React.Component<Props> {
       }
     }
 
-    this.firstMessage = channel.messages[0];
+    this.firstMessage = this.currentChannel.messages[0];
   }
 
   getSnapshotBeforeUpdate() {
@@ -110,14 +108,12 @@ export default class ConversationView extends React.Component<Props> {
   }
 
   noCanSendMessage(): React.ReactNode {
-    const channel = this.currentChannel;
-
-    if (channel == null) {
+    if (this.currentChannel == null) {
       // this shouldn't happen...
       return;
     }
 
-    if (channel.type === 'PM' || channel.transient) {
+    if (this.currentChannel.type === 'PM' || this.currentChannel.transient) {
       return (
         <div>
           <div className='chat-conversation__cannot-message'>{osu.trans('chat.cannot_send.user')}</div>
@@ -129,7 +125,7 @@ export default class ConversationView extends React.Component<Props> {
           </ul>
         </div>
       );
-    } else if (channel.type === 'GROUP') {
+    } else if (this.currentChannel.type === 'GROUP') {
       return (
         <div>
           <div className='chat-conversation__cannot-message'>{osu.trans('chat.cannot_send.channel')}</div>
