@@ -88,6 +88,7 @@ export class NotificationResolver {
     .then(action(() => {
       dispatch(new NotificationEventRead([readable.identity], 0));
     }))
+    .catch(osu.ajaxError)
     .always(action(() => readable.isMarkingAsRead = false));
   }
 
@@ -126,6 +127,7 @@ export class NotificationResolver {
     .then(action(() => {
       dispatch(new NotificationEventRead(identities, 0));
     }))
+    .catch(osu.ajaxError)
     .always(action(() => notifications.forEach((notification) => notification.isMarkingAsRead = false)));
   }
 }
