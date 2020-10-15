@@ -136,6 +136,8 @@ export default class ChannelStore {
   handleDispatchAction(event: DispatcherAction) {
     if (event instanceof ChatChannelLoadEarlierMessages) {
       this.handleChatChannelLoadEarlierMessages(event);
+    } else if (event instanceof ChatChannelPartAction) {
+      this.handleChatChannelPartAction(event);
     } else if (event instanceof ChatMessageSendAction) {
       this.handleChatMessageSendAction(event);
     } else if (event instanceof ChatMessageUpdateAction) {
@@ -240,7 +242,7 @@ export default class ChannelStore {
       }
 
       if (!presence.find((json) => json.channel_id === channel.channelId)) {
-        dispatch(new ChatChannelPartAction(channel.channelId, false));
+        this.channels.delete(channel.channelId);
       }
     });
 
@@ -287,6 +289,15 @@ export default class ChannelStore {
 
     channel.addMessages(messages);
     channel.loaded = true;
+  }
+
+  @action
+  private handleChatChannelPartAction(event: ChatChannelPartAction) {
+    if (event.channelId !== -1) {
+      this.api.partChannel(event.channelId, window.currentUser.id);
+    }
+
+    this.channels.delete(event.channelId);
   }
 
   @action
