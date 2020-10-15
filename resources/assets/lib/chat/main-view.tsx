@@ -1,8 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatChannelSwitchAction } from 'actions/chat-actions';
-import { dispatch } from 'app-dispatcher';
 import HeaderV4 from 'header-v4';
 import { Img2x } from 'img2x';
 import { observer, Provider } from 'mobx-react';
@@ -15,20 +13,11 @@ import InputBox from './input-box';
 
 interface Props {
   dataStore: RootDataStore;
-  initialChannel?: number;
   worker: ChatWorker;
 }
 
 @observer
-export default class MainView extends React.Component<Props, any> {
-  constructor(props: Props) {
-    super(props);
-
-    if (this.props.initialChannel) {
-      dispatch(new ChatChannelSwitchAction(this.props.initialChannel));
-    }
-  }
-
+export default class MainView extends React.Component<Props> {
   componentDidMount() {
     $('html').addClass('osu-layout--mobile-app');
     this.props.worker.startPolling();
