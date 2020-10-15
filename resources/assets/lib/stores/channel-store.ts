@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import {
-  ChatChannelLoadEarlierMessages,
   ChatChannelPartAction,
   ChatMessageSendAction,
   ChatMessageUpdateAction,
@@ -134,9 +133,7 @@ export default class ChannelStore {
   }
 
   handleDispatchAction(event: DispatcherAction) {
-    if (event instanceof ChatChannelLoadEarlierMessages) {
-      this.handleChatChannelLoadEarlierMessages(event);
-    } else if (event instanceof ChatChannelPartAction) {
+    if (event instanceof ChatChannelPartAction) {
       this.handleChatChannelPartAction(event);
     } else if (event instanceof ChatMessageSendAction) {
       this.handleChatMessageSendAction(event);
@@ -170,6 +167,31 @@ export default class ChannelStore {
     } finally {
       runInAction(() => {
         channel.loading = false;
+      });
+    }
+  }
+
+  @action
+  async loadChannelEarlierMessages(channelId: number) {
+    const channel = this.get(channelId);
+
+    if (channel == null || !channel.hasEarlierMessages || channel.loadingEarlierMessages) {
+      return;
+    }
+
+    channel.loadingEarlierMessages = true;
+    let until: number | undefined;
+    // FIXME: nullable id instead?
+    if (channel.minMessageId > 0) {
+      until = channel.minMessageId;
+    }
+
+    try {
+      const response = await this.api.getMessages(channel.channelId, { until });
+      this.handleChatChannelNewMessages(channelId, response);
+    } finally {
+      runInAction(() => {
+        channel.loadingEarlierMessages = false;
       });
     }
   }
@@ -240,32 +262,6 @@ export default class ChannelStore {
     });
 
     this.loaded = true;
-  }
-
-  @action
-  private async handleChatChannelLoadEarlierMessages(event: ChatChannelLoadEarlierMessages) {
-    const channelId = event.channelId;
-    const channel = this.get(channelId);
-
-    if (channel == null || !channel.hasEarlierMessages || channel.loadingEarlierMessages) {
-      return;
-    }
-
-    channel.loadingEarlierMessages = true;
-    let until: number | undefined;
-    // FIXME: nullable id instead?
-    if (channel.minMessageId > 0) {
-      until = channel.minMessageId;
-    }
-
-    try {
-      const response = await this.api.getMessages(channel.channelId, { until });
-      this.handleChatChannelNewMessages(channelId, response);
-    } finally {
-      runInAction(() => {
-        channel.loadingEarlierMessages = false;
-      });
-    }
   }
 
   @action

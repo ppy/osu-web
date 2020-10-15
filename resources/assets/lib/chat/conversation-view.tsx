@@ -1,8 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatChannelLoadEarlierMessages } from 'actions/chat-actions';
-import { dispatch } from 'app-dispatcher';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import { computed, observe } from 'mobx';
@@ -268,6 +266,6 @@ export default class ConversationView extends React.Component<Props> {
 
   private loadEarlierMessages = () => {
     if (this.currentChannel == null) return;
-    dispatch(new ChatChannelLoadEarlierMessages(this.currentChannel.channelId));
+    this.dataStore.channelStore.loadChannelEarlierMessages(this.currentChannel.channelId);
   }
 }
