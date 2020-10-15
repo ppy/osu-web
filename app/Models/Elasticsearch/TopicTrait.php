@@ -30,11 +30,6 @@ trait TopicTrait
         return Post::esSchemaFile();
     }
 
-    public static function esType()
-    {
-        return Post::esType();
-    }
-
     public function esRouting()
     {
         // Post and Topic should have the same routing for relationships to work.

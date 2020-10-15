@@ -30,11 +30,6 @@ trait PostTrait
         return config_path('schemas/posts.json');
     }
 
-    public static function esType()
-    {
-        return 'posts';
-    }
-
     public function esRouting()
     {
         // Post and Topic should have the same routing for relationships to work.
