@@ -122,7 +122,7 @@ export default class InputBox extends React.Component<any, any> implements Dispa
     }
 
     const message = new Message();
-    message.channelId = currentUser.id;
+    message.senderId = currentUser.id;
     message.channelId = this.props.dataStore.chatState.selected;
     message.content = messageText;
 
