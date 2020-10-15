@@ -141,11 +141,9 @@ export default class ChannelStore {
     } else if (event instanceof ChatMessageSendAction) {
       this.handleChatMessageSendAction(event);
     } else if (event instanceof ChatMessageUpdateAction) {
-      const channel: Channel = this.getOrCreate(event.message.channelId);
-      channel.updateMessage(event.message, event.json);
-      channel.resortMessages();
+      this.handleChatMessageUpdateAction(event);
     } else if (event instanceof UserLogoutAction) {
-      this.flushStore();
+      this.handleUserLogoutAction(event);
     }
   }
 
@@ -333,6 +331,18 @@ export default class ChannelStore {
       // FIXME: this seems like the wrong place to tigger an error popup.
       osu.ajaxError(error);
     }
+  }
+
+  @action
+  private handleChatMessageUpdateAction(event: ChatMessageUpdateAction) {
+    const channel = this.getOrCreate(event.message.channelId);
+    channel.updateMessage(event.message, event.json);
+    channel.resortMessages();
+  }
+
+  @action
+  private handleUserLogoutAction(event: UserLogoutAction) {
+    this.flushStore();
   }
 
   @action
