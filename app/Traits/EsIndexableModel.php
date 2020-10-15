@@ -43,7 +43,7 @@ trait EsIndexableModel
             if ($actions !== []) {
                 $result = Es::getClient()->bulk([
                     'index' => $options['index'] ?? static::esIndexName(),
-                    'type' => static::esType(),
+                    'type' => '_doc',
                     'body' => $actions,
                     'client' => ['timeout' => 0],
                 ]);
@@ -76,7 +76,7 @@ trait EsIndexableModel
     {
         $document = array_merge([
             'index' => static::esIndexName(),
-            'type' => static::esType(),
+            'type' => '_doc',
             'routing' => $this->esRouting(),
             'id' => $this->getEsId(),
             'client' => ['ignore' => 404],
@@ -93,7 +93,7 @@ trait EsIndexableModel
 
         $document = array_merge([
             'index' => static::esIndexName(),
-            'type' => static::esType(),
+            'type' => '_doc',
             'routing' => $this->esRouting(),
             'id' => $this->getEsId(),
             'body' => $this->toEsJson(),
