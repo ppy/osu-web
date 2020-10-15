@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import {
-  ChatChannelLoadEarlierMessages,
   ChatChannelPartAction,
   ChatChannelSwitchAction,
 } from 'actions/chat-actions';
@@ -87,8 +86,6 @@ export default class ChatOrchestrator implements DispatchListener {
   handleDispatchAction(action: DispatcherAction) {
     if (action instanceof ChatChannelSwitchAction) {
       this.changeChannel(action.channelId);
-    } else if (action instanceof ChatChannelLoadEarlierMessages) {
-      this.loadChannelEarlierMessages(action.channelId);
     } else if (action instanceof ChatChannelPartAction) {
       this.handleChatChannelPartAction(action);
     } else if (action instanceof WindowFocusAction) {
@@ -103,25 +100,6 @@ export default class ChatOrchestrator implements DispatchListener {
 
   async loadChannel(channelId: number) {
     this.rootDataStore.channelStore.loadChannel(channelId);
-  }
-
-  async loadChannelEarlierMessages(channelId: number) {
-    const channel = this.rootDataStore.channelStore.get(channelId);
-
-    if (channel == null || !channel.hasEarlierMessages || channel.loadingEarlierMessages) {
-      return;
-    }
-
-    channel.loadingEarlierMessages = true;
-
-    try {
-      const messages = await this.api.getMessages(channel.channelId, { until: channel.minMessageId });
-      this.addMessages(channelId, messages);
-    } catch (err) {
-      console.debug('loadChannelEarlierMessages error', err);
-    } finally {
-      channel.loadingEarlierMessages = false;
-    }
   }
 
   private async handleChatChannelPartAction(action: ChatChannelPartAction) {

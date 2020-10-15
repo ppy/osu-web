@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import {
+  ChatChannelLoadEarlierMessages,
   ChatChannelPartAction,
   ChatChannelSwitchAction,
   ChatMessageSendAction,
@@ -84,15 +85,6 @@ export default class ChannelStore {
   }
 
   @action
-  addMessages(channelId: number, messages: Message[]) {
-    if (isEmpty(messages)) {
-      return;
-    }
-
-    this.getOrCreate(channelId).addMessages(messages);
-  }
-
-  @action
   addNewConversation(json: ChannelJSON, message: MessageJSON) {
     const channel = this.getOrCreate(json.channel_id);
     channel.updateWithJson(json);
@@ -142,7 +134,9 @@ export default class ChannelStore {
   }
 
   handleDispatchAction(event: DispatcherAction) {
-    if (event instanceof ChatMessageSendAction) {
+    if (event instanceof ChatChannelLoadEarlierMessages) {
+      this.handleChatChannelLoadEarlierMessages(event);
+    } else if (event instanceof ChatMessageSendAction) {
       this.handleChatMessageSendAction(event);
     } else if (event instanceof ChatMessageUpdateAction) {
       const channel: Channel = this.getOrCreate(event.message.channelId);
@@ -251,6 +245,32 @@ export default class ChannelStore {
     });
 
     this.loaded = true;
+  }
+
+  @action
+  private async handleChatChannelLoadEarlierMessages(event: ChatChannelLoadEarlierMessages) {
+    const channelId = event.channelId;
+    const channel = this.get(channelId);
+
+    if (channel == null || !channel.hasEarlierMessages || channel.loadingEarlierMessages) {
+      return;
+    }
+
+    channel.loadingEarlierMessages = true;
+    let until: number | undefined;
+    // FIXME: nullable id instead?
+    if (channel.minMessageId > 0) {
+      until = channel.minMessageId;
+    }
+
+    try {
+      const response = await this.api.getMessages(channel.channelId, { until });
+      this.handleChatChannelNewMessages(channelId, response);
+    } finally {
+      runInAction(() => {
+        channel.loadingEarlierMessages = false;
+      });
+    }
   }
 
   @action
