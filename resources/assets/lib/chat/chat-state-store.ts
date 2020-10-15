@@ -33,13 +33,13 @@ export default class ChatStateStore {
     this.autoScroll = false;
   }
 
-  handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof ChatChannelSwitchAction) {
-      this.lastReadId = this.channelStore.getOrCreate(dispatchedAction.channelId).lastReadId || -1;
-    } else if (dispatchedAction instanceof ChatMessageSendAction) {
-      this.lastReadId = this.channelStore.getOrCreate(dispatchedAction.message.channelId).lastMessageId || -1;
+  handleDispatchAction(event: DispatcherAction) {
+    if (event instanceof ChatChannelSwitchAction) {
+      this.lastReadId = this.channelStore.getOrCreate(event.channelId).lastReadId || -1;
+    } else if (event instanceof ChatMessageSendAction) {
+      this.lastReadId = this.channelStore.getOrCreate(event.message.channelId).lastMessageId || -1;
       this.autoScroll = true;
-    } else if (dispatchedAction instanceof UserLogoutAction) {
+    } else if (event instanceof UserLogoutAction) {
       this.flushStore();
     }
   }
