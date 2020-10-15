@@ -2,10 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { ChatChannelLoadEarlierMessages } from 'actions/chat-actions';
-import { dispatch, dispatchListener } from 'app-dispatcher';
+import { dispatch } from 'app-dispatcher';
 import { route } from 'laroute';
 import * as _ from 'lodash';
-import { computed } from 'mobx';
+import { computed, observe } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
@@ -15,9 +15,6 @@ import { Spinner } from 'spinner';
 import RootDataStore from 'stores/root-data-store';
 import { StringWithComponent } from 'string-with-component';
 import { UserAvatar } from 'user-avatar';
-import { ChatChannelSwitchAction } from '../actions/chat-actions';
-import DispatcherAction from '../actions/dispatcher-action';
-import DispatchListener from '../dispatch-listener';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
 
@@ -34,8 +31,7 @@ const blankSnapshot = (): Snapshot => ({ chatHeight: 0, chatTop: 0 });
 
 @inject('dataStore')
 @observer
-@dispatchListener
-export default class ConversationView extends React.Component<Props> implements DispatchListener {
+export default class ConversationView extends React.Component<Props> {
   private assumeHasBacklog: boolean = false;
   private chatViewRef = React.createRef<HTMLDivElement>();
   private readonly dataStore: RootDataStore;
@@ -45,13 +41,19 @@ export default class ConversationView extends React.Component<Props> implements 
 
   @computed
   get currentChannel() {
-    return this.dataStore.channelStore.channels.get(this.dataStore.chatState.selected);
+    return this.dataStore.chatState.selectedChannel;
   }
 
   constructor(props: Props) {
     super(props);
 
     this.dataStore = props.dataStore!;
+
+    observe(this.dataStore.chatState.selectedBoxed, (change) => {
+      if (change.newValue !== change.oldValue) {
+        this.didSwitchChannel = true;
+      }
+    });
   }
 
   componentDidMount() {
@@ -105,12 +107,6 @@ export default class ConversationView extends React.Component<Props> implements 
     }
 
     return snapshot;
-  }
-
-  handleDispatchAction(action: DispatcherAction) {
-    if (action instanceof ChatChannelSwitchAction) {
-      this.didSwitchChannel = true;
-    }
   }
 
   noCanSendMessage(): React.ReactNode {

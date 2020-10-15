@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controller';
-import ChatOrchestrator from 'chat/chat-orchestrator';
 import ChatWorker from 'chat/chat-worker';
 import CurrentUser from 'interfaces/current-user';
 import UserJSON from 'interfaces/user-json';
@@ -19,7 +18,6 @@ declare global {
 // will this replace main.coffee eventually?
 export default class OsuCore {
   beatmapsetSearchController: BeatmapsetSearchController;
-  chatOrchestrator: ChatOrchestrator;
   chatWorker: ChatWorker;
   dataStore: RootDataStore;
   userLoginObserver: UserLoginObserver;
@@ -32,7 +30,6 @@ export default class OsuCore {
     // TODO: requires dynamic imports to lazy load modules.
     this.dataStore = new RootDataStore();
     this.chatWorker = new ChatWorker(this.dataStore.channelStore);
-    this.chatOrchestrator = new ChatOrchestrator(this.dataStore);
     this.userLoginObserver = new UserLoginObserver(this.window);
     this.windowFocusObserver = new WindowFocusObserver(this.window);
 
