@@ -6,9 +6,8 @@ import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
 import { ClientJSON } from 'interfaces/client-json';
 import { action, observable } from 'mobx';
 import { Client } from 'models/oauth/client';
-import Store from 'stores/store';
 
-export default class ClientStore extends Store {
+export default class ClientStore {
   @observable clients = new Map<number, Client>();
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {

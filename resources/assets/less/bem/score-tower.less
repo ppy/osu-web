@@ -12,8 +12,14 @@
 
   &__item {
     margin: 5px;
-    &--dimmed {
-      opacity: 0.25;
+
+    &--missed {
+      filter: grayscale(1);
+      opacity: 0.1;
+    }
+
+    &--passed {
+      opacity: 0.4;
     }
   }
 }

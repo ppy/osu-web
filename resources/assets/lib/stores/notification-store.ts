@@ -7,6 +7,8 @@ import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { action, observable } from 'mobx';
 import Notification from 'models/notification';
+import { NotificationEventRead } from 'notifications/notification-events';
+import { NotificationIdentity, resolveIdentityType, resolveStackId } from 'notifications/notification-identity';
 import NotificationStackStore from './notification-stack-store';
 import WidgetNotificationStackStore from './widget-notification-stack-store';
 
@@ -32,8 +34,60 @@ export default class NotificationStore implements DispatchListener {
 
   @action
   handleDispatchAction(dispatched: DispatcherAction) {
-    if (dispatched instanceof UserLoginAction || dispatched instanceof UserLogoutAction) {
+    if (dispatched instanceof NotificationEventRead) {
+      this.handleNotificationEventRead(dispatched);
+    } else if (dispatched instanceof UserLoginAction || dispatched instanceof UserLogoutAction) {
       this.flushStore();
     }
+  }
+
+  @action
+  handleNotificationEventRead(event: NotificationEventRead) {
+    const first = event.data[0];
+    if (first == null) return;
+
+    const identityType = resolveIdentityType(first);
+
+    switch (identityType) {
+      case 'type':
+        this.markReadByType(first);
+        break;
+
+      case 'stack':
+        this.markReadByStack(first);
+        break;
+
+      case 'notification':
+        event.data.forEach(this.markReadById);
+        break;
+    }
+  }
+
+  private markReadById = (identity: NotificationIdentity) => {
+    if (identity.id == null) return;
+
+    const notification = this.get(identity.id);
+
+    if (notification != null) {
+      notification.isRead = true;
+    }
+  }
+
+  private markReadByStack(identity: NotificationIdentity) {
+    const stackId = resolveStackId(identity);
+
+    this.notifications.forEach((notification) => {
+      if (notification.stackId === stackId) {
+        notification.isRead = true;
+      }
+    });
+  }
+
+  private markReadByType(identity: NotificationIdentity) {
+    this.notifications.forEach((notification) => {
+      if (identity.objectType == null || notification.objectType === identity.objectType) {
+        notification.isRead = true;
+      }
+    });
   }
 }
