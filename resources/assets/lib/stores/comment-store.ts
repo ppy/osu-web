@@ -7,9 +7,8 @@ import { CommentJSON } from 'interfaces/comment-json';
 import { Dictionary } from 'lodash';
 import { action, observable } from 'mobx';
 import { Comment } from 'models/comment';
-import Store from 'stores/store';
 
-export default class CommentStore extends Store {
+export default class CommentStore {
   @observable comments = observable.map<number, Comment>();
   @observable userVotes = new Set<number>();
   private groupedByParentId: Dictionary<Comment[]> = {};

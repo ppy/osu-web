@@ -65,36 +65,27 @@ export default class WidgetNotificationStackStore extends NotificationStackStore
   }
 
   private handleNotificationRead = (identity: NotificationIdentity) => {
-    if (resolveIdentityType(identity) !== 'notification') return;
+    if (identity.id == null) return;
 
-    const notification = this.notificationStore.get(identity.id ?? 0);
     const stack = this.getStack(identity);
     const type = this.getOrCreateType(identity);
-    // TODO; check if notification and stackNotification is necessary;
-    const stackNotification = stack?.notifications.get(identity.id ?? 0);
-    if (notification != null) {
-      if (!notification.isRead) {
-        stack?.remove(notification);
-        type.total--;
 
-        this.total--;
-        notification.isRead = true;
-      }
-
-      return;
-    }
+    const stackNotification = stack?.notifications.get(identity.id);
 
     if (stackNotification == null) {
-      // notification may not have been loaded yet.
-      // not known anywhere, skip
-      if (stack == null || identity.id == null) return;
-
-      // notification is past cursor, update counts
-      if (identity.id < (stack.cursor?.id ?? 0)) {
+      // Notification may not have been loaded yet.
+      // Update counts if stack is loaded but the notification is past
+      // the cursor (which is descending).
+      if (stack != null && identity.id < (stack.cursor?.id ?? 0)) {
         this.total--;
         stack.total--;
         type.total--;
       }
+    } else {
+      stack?.remove(stackNotification);
+      type.total--;
+
+      this.total--;
     }
   }
 
@@ -113,7 +104,6 @@ export default class WidgetNotificationStackStore extends NotificationStackStore
 
     this.deletedStacks.add(key);
 
-    stack.isRead = true;
     this.allStacks.delete(key);
     this.total -= stack.total;
 
@@ -138,7 +128,6 @@ export default class WidgetNotificationStackStore extends NotificationStackStore
 
   private typeRead(type: NotificationType) {
     type.stacks.forEach((stack) => {
-      stack.isRead = true;
       this.allType.removeStack(stack);
     });
 
