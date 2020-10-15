@@ -93,10 +93,6 @@ export default class ChatOrchestrator implements DispatchListener {
       this.loadChannelEarlierMessages(action.channelId);
     } else if (action instanceof ChatChannelPartAction) {
       this.handleChatChannelPartAction(action);
-    } else if (action instanceof ChatMessageAddAction) {
-      if (this.windowIsActive && this.rootDataStore.channelStore.loaded) {
-        this.markAsRead(this.rootDataStore.chatState.selected);
-      }
     } else if (action instanceof ChatPresenceUpdateAction) {
       this.handleChatPresenceUpdateAction();
     } else if (action instanceof WindowFocusAction) {
