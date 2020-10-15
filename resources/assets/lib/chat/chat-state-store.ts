@@ -5,22 +5,32 @@ import { ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-act
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { dispatchListener } from 'app-dispatcher';
-import { action, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import ChannelStore from 'stores/channel-store';
 
 @dispatchListener
 export default class ChatStateStore {
   @observable autoScroll: boolean = false;
   @observable lastReadId: number = -1;
-  @observable selected: number = -1;
+  @observable selectedBoxed = observable.box(0);
+
+  @computed
+  get selected() {
+    return this.selectedBoxed.get();
+  }
+
+  set selected(value: number) {
+    this.selectedBoxed.set(value);
+  }
 
   constructor(protected channelStore: ChannelStore) {
   }
 
   @action
   flushStore() {
-    this.selected = -1;
+    this.selected = 0;
     this.lastReadId = -1;
+    this.autoScroll = false;
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
