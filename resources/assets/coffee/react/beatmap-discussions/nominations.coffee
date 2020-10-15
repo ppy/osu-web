@@ -305,7 +305,7 @@ export class Nominations extends React.PureComponent
   hypeBar: =>
     return null unless @props.beatmapset.can_be_hyped
 
-    requiredHype = @props.beatmapset.nominations.required_hype
+    requiredHype = @props.beatmapset.hype.required
     hypeRaw = @props.currentDiscussions.totalHype
     hype = _.min([requiredHype, hypeRaw])
 
@@ -320,7 +320,7 @@ export class Nominations extends React.PureComponent
 
 
   nominationBar: =>
-    requiredHype = @props.beatmapset.nominations.required_hype
+    requiredHype = @props.beatmapset.hype?.required
     hypeRaw = @props.currentDiscussions.totalHype
     mapCanBeNominated = @props.beatmapset.status == 'pending' && hypeRaw >= requiredHype
     mapIsQualified = @props.beatmapset.status == 'qualified'
@@ -432,7 +432,7 @@ export class Nominations extends React.PureComponent
 
 
   nominationButton: =>
-    requiredHype = @props.beatmapset.nominations.required_hype
+    requiredHype = @props.beatmapset.hype?.required
     hypeRaw = @props.currentDiscussions.totalHype
     mapCanBeNominated = @props.beatmapset.status == 'pending' && hypeRaw >= requiredHype
 

@@ -49,6 +49,10 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             'covers' => $beatmapset->allCoverURLs(),
             'creator' => $beatmapset->creator,
             'favourite_count' => $beatmapset->favourite_count,
+            'hype' => in_array($beatmapset->status(), ['wip', 'pending', 'qualified']) ? [
+                'current' => $beatmapset->hype,
+                'required' => $beatmapset->requiredHype(),
+            ] : null,
             'id' => $beatmapset->beatmapset_id,
             'play_count' => $beatmapset->play_count,
             'preview_url' => $beatmapset->previewURL(),
@@ -160,7 +164,6 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         }
 
         $result = [
-            'required_hype' => $beatmapset->requiredHype(),
             'required' => $beatmapset->requiredNominationCount(),
             'current' => $beatmapset->currentNominationCount(),
         ];
