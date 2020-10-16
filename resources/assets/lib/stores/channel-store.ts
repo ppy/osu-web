@@ -312,10 +312,10 @@ export default class ChannelStore {
         });
       } else {
         const response = await this.api.sendMessage(message);
-        channel.updateMessage(message, response);
+        channel.afterSendMesssage(message, response);
       }
     } catch (error) {
-      channel.updateMessage(message, null);
+      channel.afterSendMesssage(message, null);
       // FIXME: this seems like the wrong place to tigger an error popup.
       osu.ajaxError(error);
     }
