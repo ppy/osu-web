@@ -13,11 +13,11 @@ export default class Message {
   @observable content: string = '';
   @observable errored: boolean = false;
   @observable isAction: boolean = false;
-  @observable messageId: number | string = -1;
+  @observable messageId: number | string = osu.uuid();
   @observable persisted: boolean = false;
   @observable senderId = -1;
   @observable timestamp: string = moment().toISOString();
-  @observable uuid: string = osu.uuid();
+  @observable uuid = this.messageId;
 
   @computed
   get parsedContent(): string {

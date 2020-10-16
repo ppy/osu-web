@@ -146,7 +146,6 @@ export default class Channel {
       message.messageId = json.message_id;
       message.persist();
     } else {
-      message.messageId = message.uuid; // prevent from being culled by uniq sort thing
       message.errored = true;
       // delay and retry?
     }
