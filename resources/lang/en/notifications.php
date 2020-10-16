@@ -136,6 +136,7 @@ return [
                 '_' => 'New medal',
                 'user_achievement_unlock' => 'Unlocked ":title"!',
                 'user_achievement_unlock_compact' => 'Unlocked ":title"!',
+                'user_achievement_unlock_group' => 'Medals unlocked!',
             ],
         ],
     ],

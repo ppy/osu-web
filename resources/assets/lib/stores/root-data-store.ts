@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetSearch } from 'beatmaps/beatmapset-search';
+import ChatStateStore from 'chat/chat-state-store';
 import { CommentBundleJSON } from 'interfaces/comment-json';
 import { action } from 'mobx';
 import { BeatmapsetStore } from './beatmapset-store';
@@ -18,6 +19,7 @@ export default class RootDataStore {
   beatmapsetSearch: BeatmapsetSearch;
   beatmapsetStore: BeatmapsetStore;
   channelStore: ChannelStore;
+  chatState: ChatStateStore;
   clientStore: ClientStore;
   commentableMetaStore: CommentableMetaStore;
   commentStore: CommentStore;
@@ -28,16 +30,17 @@ export default class RootDataStore {
 
   constructor() {
     // TODO: needs re-re-refactoring
-    this.uiState = new UIStateStore(this);
-    this.beatmapsetStore = new BeatmapsetStore(this);
+    this.beatmapsetStore = new BeatmapsetStore();
     this.beatmapsetSearch = new BeatmapsetSearch(this.beatmapsetStore);
-    this.clientStore = new ClientStore(this);
-    this.commentableMetaStore = new CommentableMetaStore(this);
-    this.commentStore = new CommentStore(this);
-    this.channelStore = new ChannelStore(this);
+    this.clientStore = new ClientStore();
+    this.commentableMetaStore = new CommentableMetaStore();
+    this.commentStore = new CommentStore();
     this.notificationStore = new NotificationStore();
-    this.ownClientStore = new OwnClientStore(this);
-    this.userStore = new UserStore(this);
+    this.ownClientStore = new OwnClientStore();
+    this.userStore = new UserStore();
+    this.channelStore = new ChannelStore(this.userStore);
+    this.chatState = new ChatStateStore(this.channelStore);
+    this.uiState = new UIStateStore(this.commentStore);
   }
 
   @action

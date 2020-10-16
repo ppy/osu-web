@@ -38,11 +38,9 @@ export class HeaderInfo extends React.PureComponent
           className: "#{bn}__name"
           span className: 'u-ellipsis-pre-overflow', @props.user.username
           div className: "#{bn}__previous-usernames", @previousUsernames()
-        # hard space if no title
-        span
-          className: "#{bn}__title"
-          style: color: @props.user.profile_colour
-          @props.user.title ? '\u00A0'
+
+        @renderTitle() if @props.user.title?
+
         div className: "#{bn}__icon-group",
           div className: "#{bn}__icons",
             if @props.user.is_supporter
@@ -70,6 +68,16 @@ export class HeaderInfo extends React.PureComponent
         className: 'profile-info__bar hidden-xs'
         style:
           backgroundColor: @props.user.profile_colour
+
+
+  renderTitle: ->
+    element = if @props.user.title_url? then a else span
+
+    element
+      className: "#{bn}__title"
+      href: @props.user.title_url
+      style: color: @props.user.profile_colour
+      @props.user.title
 
 
   previousUsernames: =>

@@ -1,6 +1,6 @@
 {
   "mappings": {
-    "beatmaps": {
+    "_doc": {
       "dynamic": false,
       "properties": {
         "approved": {

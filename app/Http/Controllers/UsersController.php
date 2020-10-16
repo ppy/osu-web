@@ -69,9 +69,7 @@ class UsersController extends Controller
 
     public function card($id)
     {
-        // FIXME: if there's a username with the id of a restricted user,
-        // it'll show the card of the non-restricted user.
-        $user = User::lookup($id) ?? UserNotFound::instance();
+        $user = $this->lookupUser($id) ?? UserNotFound::instance();
 
         return json_item($user, 'UserCompact', ['cover', 'country']);
     }
@@ -433,13 +431,9 @@ class UsersController extends Controller
      */
     public function show($id, $mode = null)
     {
-        // Find matching id or username
-        // If no user is found, search for a previous username
-        // only if parameter is not a number (assume number is an id lookup).
+        $user = $this->lookupUser($id);
 
-        $user = User::lookupWithHistory($id, null, true);
-
-        if ($user === null || !priv_check('UserShow', $user)->can()) {
+        if ($user === null) {
             if (is_json_request()) {
                 abort(404);
             }
@@ -574,6 +568,20 @@ class UsersController extends Controller
         } catch (ModelNotSavedException $e) {
             return error_popup($e->getMessage());
         }
+    }
+
+    // Find matching id or username
+    // If no user is found, search for a previous username
+    // only if parameter is not a number (assume number is an id lookup).
+    private function lookupUser($id)
+    {
+        $user = User::lookupWithHistory($id, null, true);
+
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
+            return null;
+        }
+
+        return $user;
     }
 
     private function parsePaginationParams()
