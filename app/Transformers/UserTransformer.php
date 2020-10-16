@@ -39,8 +39,6 @@ class UserTransformer extends UserCompactTransformer
                 'total' => $user->osu_kudostotal,
                 'available' => $user->osu_kudosavailable,
             ],
-            // deprecated, now always returns null. Remove when no API consumer is using it.
-            'lastfm' => null,
             'location' => $user->user_from,
             'max_blocks' => $user->maxBlocks(),
             'max_friends' => $user->maxFriends(),
