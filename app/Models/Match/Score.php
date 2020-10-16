@@ -30,10 +30,12 @@ use App\Traits\Scoreable;
  */
 class Score extends Model
 {
-    use Scoreable;
+    use Scoreable {
+        getEnabledModsAttribute as private _getEnabledMods;
+    }
 
     protected $table = 'game_scores';
-    protected $primaryKey = null;
+    protected $primaryKeys = ['game_id', 'slot'];
     protected $hidden = ['frame', 'game_id'];
     public $timestamps = false;
 
@@ -51,6 +53,11 @@ class Score extends Model
     public function gameModeString()
     {
         return Beatmap::modeStr($this->game->play_mode);
+    }
+
+    public function getEnabledModsAttribute($value)
+    {
+        return $this->_getEnabledMods($value | ($this->game->getAttributes()['mods'] ?? 0));
     }
 
     public function getScoringType()
