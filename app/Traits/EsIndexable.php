@@ -14,12 +14,11 @@ trait EsIndexable
 
     abstract public static function esSchemaFile();
 
-    abstract public static function esType();
-
     public static function esCreateIndex(string $name = null)
     {
         // TODO: allow overriding of certain settings (shards, replicas, etc)?
         $params = [
+            'include_type_name' => 'true',
             'index' => $name ?? static::esIndexName(),
             'body' => static::esSchemaConfig(),
         ];
@@ -29,7 +28,7 @@ trait EsIndexable
 
     public static function esMappings()
     {
-        return static::esSchemaConfig()['mappings'][static::esType()]['properties'];
+        return static::esSchemaConfig()['mappings']['_doc']['properties'];
     }
 
     public static function esSchemaConfig()

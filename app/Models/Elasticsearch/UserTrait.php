@@ -33,11 +33,6 @@ trait UserTrait
         return config_path('schemas/users.json');
     }
 
-    public static function esType()
-    {
-        return 'users';
-    }
-
     public function toEsJson()
     {
         $mappings = $this->esFilterFields();

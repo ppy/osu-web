@@ -123,8 +123,6 @@ use Request;
  * @property int $user_last_privmsg
  * @property int $user_last_search
  * @property int $user_last_warning
- * @property string $user_lastfm
- * @property string $user_lastfm_session
  * @property int $user_lastmark
  * @property string $user_lastpage
  * @property int $user_lastpost_time
@@ -684,11 +682,6 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     public function setUserTwitterAttribute($value)
     {
         $this->attributes['user_twitter'] = ltrim($value, '@');
-    }
-
-    public function getUserLastfmAttribute($value)
-    {
-        return presence($value);
     }
 
     public function getUserDiscordAttribute($value)

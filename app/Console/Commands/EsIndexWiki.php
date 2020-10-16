@@ -68,7 +68,7 @@ class EsIndexWiki extends Command
 
         $this->reindex();
 
-        Indexing::updateAlias($alias, [$this->indexName]);
+        Indexing::updateAlias($alias, $this->indexName);
 
         $this->updateSitemap();
 
