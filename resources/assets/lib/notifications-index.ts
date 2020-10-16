@@ -7,7 +7,7 @@ import { Main } from 'notifications-index/main';
 import { NotificationEventMoreLoaded } from 'notifications/notification-events';
 
 reactTurbolinks.registerPersistent('notifications-index', Main, true, (container: HTMLElement) => {
-  const bundle = osu.parseJson('json-notifications') as NotificationBundleJson;
+  const bundle = osu.parseJson<NotificationBundleJson>('json-notifications');
   dispatch(new NotificationEventMoreLoaded(bundle, { isWidget: false }));
 
   return {};

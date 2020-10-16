@@ -10,7 +10,7 @@ import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 
 const dataStore = core.dataStore;
-const presence: PresenceJSON = osu.parseJson('json-presence');
+const presence = osu.parseJson<PresenceJSON>('json-presence');
 
 if (!isEmpty(presence)) {
   // initial population of channel/presence data
