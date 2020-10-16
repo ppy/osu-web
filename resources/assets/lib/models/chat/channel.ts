@@ -3,7 +3,7 @@
 
 import { ChannelJSON, ChannelJsonExtended, ChannelType, MessageJSON } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
-import { action, computed, observable, transaction } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import User from 'models/user';
 import Message from './message';
 
@@ -98,28 +98,26 @@ export default class Channel {
 
   @action
   addMessages(messages: Message | Message[], skipSort: boolean = false) {
-    transaction(() => {
-      this.messages = this.messages.concat(messages);
+    this.messages = this.messages.concat(messages);
 
-      if (!skipSort) {
-        this.resortMessages();
-      }
+    if (!skipSort) {
+      this.resortMessages();
+    }
 
-      const lastMessage = _(([] as Message[]).concat(messages))
-        .filter((message) => typeof message.messageId === 'number')
-        .maxBy('messageId');
-      let lastMessageId;
+    const lastMessage = _(([] as Message[]).concat(messages))
+      .filter((message) => typeof message.messageId === 'number')
+      .maxBy('messageId');
+    let lastMessageId;
 
-      // The type check is redundant due to the filter above.
-      if (lastMessage != null && typeof lastMessage.messageId === 'number') {
-        lastMessageId = lastMessage.messageId;
-      } else {
-        lastMessageId = -1;
-      }
-      if (lastMessageId > this.lastMessageId) {
-        this.lastMessageId = lastMessageId;
-      }
-    });
+    // The type check is redundant due to the filter above.
+    if (lastMessage != null && typeof lastMessage.messageId === 'number') {
+      lastMessageId = lastMessage.messageId;
+    } else {
+      lastMessageId = -1;
+    }
+    if (lastMessageId > this.lastMessageId) {
+      this.lastMessageId = lastMessageId;
+    }
   }
 
   @action
