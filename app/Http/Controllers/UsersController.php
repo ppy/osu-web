@@ -19,6 +19,7 @@ use App\Models\Log;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
+use App\Transformers\UserTransformer;
 use Auth;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
 use Illuminate\Cache\RateLimiter;
@@ -403,6 +404,7 @@ class UsersController extends Controller
      * account_history                      | |
      * active_tournament_banner             | |
      * badges                               | |
+     * beatmap_playcounts_count             | |
      * favourite_beatmapset_count           | |
      * follower_count                       | |
      * graveyard_beatmapset_count           | |
@@ -414,7 +416,9 @@ class UsersController extends Controller
      * rank_history                         | For specified mode.
      * ranked_and_approved_beatmapset_count | |
      * replays_watched_counts               | |
+     * scores_best_count                    | For specified mode.
      * scores_first_count                   | For specified mode.
+     * scores_recent_count                  | For specified mode.
      * statistics                           | For specified mode. Inluces `rank` and `variants` attributes.
      * support_level                        | |
      * unranked_beatmapset_count            | |
@@ -450,11 +454,10 @@ class UsersController extends Controller
         }
 
         $userIncludes = [
-            "scores_first_count:mode({$currentMode})",
-            "statistics:mode({$currentMode})",
             'account_history',
             'active_tournament_banner',
             'badges',
+            'beatmap_playcounts_count',
             'favourite_beatmapset_count',
             'follower_count',
             'graveyard_beatmapset_count',
@@ -463,10 +466,14 @@ class UsersController extends Controller
             'monthly_playcounts',
             'page',
             'previous_usernames',
+            'rankHistory',
+            'rank_history',
             'ranked_and_approved_beatmapset_count',
-            "rankHistory:mode({$currentMode})",
-            "rank_history:mode({$currentMode})",
             'replays_watched_counts',
+            'scores_best_count',
+            'scores_first_count',
+            'scores_recent_count',
+            'statistics',
             'statistics.rank',
             'statistics.variants',
             'support_level',
@@ -479,9 +486,11 @@ class UsersController extends Controller
             $userIncludes[] = 'account_history.supporting_url';
         }
 
+        $transformer = new UserTransformer();
+        $transformer->mode = $currentMode;
         $userArray = json_item(
             $user,
-            'User',
+            $transformer,
             $userIncludes
         );
 
