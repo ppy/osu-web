@@ -133,11 +133,6 @@ export default class Channel {
   }
 
   @action
-  resortMessages() {
-    this.messages = _(this.messages).sortBy('timestamp').uniqBy('messageId').value();
-  }
-
-  @action
   setInputText(message: string) {
     this.inputText = message;
   }
@@ -157,6 +152,8 @@ export default class Channel {
       message.errored = true;
       // delay and retry?
     }
+
+    this.resortMessages();
   }
 
   @action
@@ -179,5 +176,10 @@ export default class Channel {
     this.lastMessageId = _.max([this.lastMessageId, json.last_message_id]) ?? -1;
 
     this.metaLoaded = true;
+  }
+
+  @action
+  private resortMessages() {
+    this.messages = _(this.messages).sortBy('timestamp').uniqBy('messageId').value();
   }
 }

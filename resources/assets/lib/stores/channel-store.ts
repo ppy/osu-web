@@ -4,7 +4,6 @@
 import {
   ChatChannelPartAction,
   ChatMessageSendAction,
-  ChatMessageUpdateAction,
 } from 'actions/chat-actions';
 import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
@@ -137,8 +136,6 @@ export default class ChannelStore {
       this.handleChatChannelPartAction(event);
     } else if (event instanceof ChatMessageSendAction) {
       this.handleChatMessageSendAction(event);
-    } else if (event instanceof ChatMessageUpdateAction) {
-      this.handleChatMessageUpdateAction(event);
     } else if (event instanceof UserLogoutAction) {
       this.handleUserLogoutAction(event);
     }
@@ -315,20 +312,13 @@ export default class ChannelStore {
         });
       } else {
         const response = await this.api.sendMessage(message);
-        dispatch(new ChatMessageUpdateAction(message, response));
+        channel.updateMessage(message, response);
       }
     } catch (error) {
-      dispatch(new ChatMessageUpdateAction(message, null));
+      channel.updateMessage(message, null);
       // FIXME: this seems like the wrong place to tigger an error popup.
       osu.ajaxError(error);
     }
-  }
-
-  @action
-  private handleChatMessageUpdateAction(event: ChatMessageUpdateAction) {
-    const channel = this.getOrCreate(event.message.channelId);
-    channel.updateMessage(event.message, event.json);
-    channel.resortMessages();
   }
 
   @action
