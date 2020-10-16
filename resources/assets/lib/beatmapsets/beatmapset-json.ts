@@ -1,9 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapJson from 'interfaces/beatmap-json';
+import GameMode from 'interfaces/game-mode';
 import GenreJson from 'interfaces/genre-json';
 import LanguageJson from 'interfaces/language-json';
-import BeatmapJson from '../interfaces/beatmap-json';
 
 interface BeatmapsetCovers {
   card: string;
@@ -12,11 +13,30 @@ interface BeatmapsetCovers {
   slimcover: string;
 }
 
-interface BeatmapsetNominations {
-  current: number;
-  required: number;
+interface BaseNominationsInterface {
+  hybrid_mode: boolean;
+  nominated?: boolean;
   required_hype: number;
 }
+
+interface NominationsInterface extends BaseNominationsInterface {
+  current: number;
+  hybrid_mode: false;
+  required: number;
+}
+
+interface HybridNominationsInterface extends BaseNominationsInterface {
+  current: {
+    [mode in GameMode]?: number;
+  };
+  hybrid_mode: true;
+  required: {
+    [mode in GameMode]?: number;
+  };
+}
+
+export type BeatmapsetNominations =
+  NominationsInterface | HybridNominationsInterface;
 
 export type BeatmapsetStatus =
   'graveyard' | 'wip' | 'pending' | 'ranked' | 'approved' | 'qualified' | 'loved';
@@ -29,6 +49,10 @@ export interface BeatmapsetJson {
   covers: BeatmapsetCovers;
   creator: string;
   genre: GenreJson;
+  hype?: {
+    current: number;
+    required: number;
+  };
   id: number;
   language: LanguageJson;
   nominations?: BeatmapsetNominations;

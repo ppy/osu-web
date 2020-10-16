@@ -629,8 +629,16 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return true;
     }
 
-    public function nominate(User $user)
+    public function nominate(User $user, $playmodes)
     {
+        if (!$this->isHybridSet()) {
+            $playmodes = null;
+        } else {
+            $playmodes = array_values(array_intersect(array_keys(Beatmap::MODES), $playmodes));
+//            die(json_encode($playmodes));
+            // validate stuff here
+        }
+
         if (!$this->isPending()) {
             $message = trans('beatmaps.nominations.incorrect_state');
         }
@@ -651,14 +659,37 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             ];
         }
 
-        DB::transaction(function () use ($user) {
+        DB::transaction(function () use ($user, $playmodes) {
             $nomination = $this->nominationsSinceReset()->where('user_id', $user->user_id);
             if (!$nomination->exists()) {
-                $this->events()->create(['type' => BeatmapsetEvent::NOMINATE, 'user_id' => $user->user_id]);
-                if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
-                    $this->qualify($user);
+                $event = [
+                    'type' => BeatmapsetEvent::NOMINATE,
+                    'user_id' => $user->user_id,
+                ];
+                if ($playmodes !== null) {
+                    $event['comment'] = ['modes' => $playmodes];
+                }
+                $this->events()->create($event);
+                if ($this->isHybridSet()) {
+                    $currentNominations = $this->currentNominationCount();
+                    $requiredNominations = $this->requiredNominationCount();
+                    $modesSatisfied = 0;
+                    foreach ($requiredNominations as $mode => $count) {
+                        if ($currentNominations[$mode] >= $count) {
+                            $modesSatisfied++;
+                        }
+                    }
+                    if ($modesSatisfied >= $this->playmodeCount()) {
+                        $this->qualify($user);
+                    } else {
+                        (new BeatmapsetNominate($this, $user))->dispatch();
+                    }
                 } else {
-                    (new BeatmapsetNominate($this, $user))->dispatch();
+                    if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
+                        $this->qualify($user);
+                    } else {
+                        (new BeatmapsetNominate($this, $user))->dispatch();
+                    }
                 }
             }
             $this->refreshCache();
@@ -1211,7 +1242,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     {
         return $this->update([
             'hype' => $this->freshHype(),
-            'nominations' => $this->currentNominationCount(),
+            'nominations' => $this->isHybridSet() ? array_sum(array_values($this->currentNominationCount())) : $this->currentNominationCount(),
         ]);
     }
 

@@ -1404,6 +1404,32 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         });
     }
 
+    public function nominationModes()
+    {
+        if (!$this->isNAT() && !$this->isBNG()) {
+            return;
+        }
+
+        $modes = [
+            'full' => [],
+            'limited' => [],
+        ];
+
+        if ($this->isNAT()) {
+            $modes['full'] = $this->userGroups()->where('group_id', app('groups')->byIdentifier('nat')->group_id)->first()->playmodes;
+        } else {
+            if ($this->isFullBN()) {
+                $modes['full'] = $this->userGroups()->where('group_id', app('groups')->byIdentifier('bng')->group_id)->first()->playmodes;
+            }
+
+            if ($this->isLimitedBN()) {
+                $modes['limited'] = $this->userGroups()->where('group_id', app('groups')->byIdentifier('bng_limited')->group_id)->first()->playmodes;
+            }
+        }
+
+        return $modes;
+    }
+
     public function hasBlocked(self $user)
     {
         return $this->blocks->where('user_id', $user->user_id)->count() > 0;

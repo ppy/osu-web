@@ -38,6 +38,7 @@ class UserCompactTransformer extends TransformerAbstract
         'is_silenced',
         'loved_beatmapset_count',
         'monthly_playcounts',
+        'nomination_modes',
         'page',
         'previous_usernames',
         'ranked_and_approved_beatmapset_count',
@@ -233,6 +234,11 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeLovedBeatmapsetCount(User $user)
     {
         return $this->primitive($user->profileBeatmapsetsLoved()->count());
+    }
+
+    public function includeNominationModes(User $user)
+    {
+        return $this->primitive($user->nominationModes());
     }
 
     public function includeMonthlyPlaycounts(User $user)
