@@ -22,7 +22,6 @@
     "total": 20,
     "available": 10
   },
-  "lastfm": null,
   "location": null,
   "max_blocks": 50,
   "max_friends": 500,
@@ -172,7 +171,6 @@ interests        | string?                            | |
 join_date        | Timestamp                          | |
 kudosu.available | number                             | |
 kudosu.total     | number                             | |
-lastfm           | string?                            | |
 location         | string?                            | |
 max_blocks       | number                             | maximum number of users allowed to be blocked
 max_friends      | number                             | maximum number of friends allowed to be added

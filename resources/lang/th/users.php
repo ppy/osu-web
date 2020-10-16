@@ -348,7 +348,6 @@ return [
         'info' => [
             'discord' => 'ดิสคอร์ด',
             'interests' => 'สิ่งที่สนใจ',
-            'lastfm' => 'Last.fm',
             'location' => 'ตำแหน่งปัจจุบัน',
             'occupation' => 'อาชีพ',
             'skype' => 'Skype',

@@ -347,7 +347,6 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Érdekeltségek',
-            'lastfm' => 'Last.fm',
             'location' => 'Tartózkodási hely',
             'occupation' => 'Foglalkozás',
             'skype' => '',

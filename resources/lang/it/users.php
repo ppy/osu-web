@@ -348,7 +348,6 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
         'info' => [
             'discord' => '',
             'interests' => 'Interessi',
-            'lastfm' => 'Last.fm',
             'location' => 'Posizione Attuale',
             'occupation' => 'Occupazione',
             'skype' => '',

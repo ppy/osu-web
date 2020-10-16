@@ -347,7 +347,6 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Вподобання',
-            'lastfm' => 'Last.fm',
             'location' => 'Поточне місцезнаходження',
             'occupation' => 'Рід занять',
             'skype' => '',
