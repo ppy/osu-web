@@ -32,7 +32,7 @@ env:
     - CACHE_DRIVER=redis
     - CACHE_DRIVER_LOCAL=array
     - DB_USERNAME=root
-    - ES_VERSION=6.6.0 ES_DOWNLOAD_URL=https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ES_VERSION}.zip
+    - ES_VERSION=6.8.12 ES_DOWNLOAD_URL=https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ES_VERSION}.zip
     - GITHUB_TOKEN=98cbc568911ef1e060a3a31623f2c80c1786d5ff
     - NOTIFICATION_ENDPOINT=ws://127.0.0.1:3000
     - NOTIFICATION_SERVER_LISTEN_PORT=3000
