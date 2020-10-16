@@ -86,7 +86,7 @@ export default class ChannelStore {
   addNewConversation(json: ChannelJSON, message: MessageJSON) {
     const channel = this.getOrCreate(json.channel_id);
     channel.updateWithJson(json);
-    channel.lastReadId = message.message_id;
+    this.handleChatChannelNewMessages(channel.channelId, [message]);
 
     return channel;
   }
