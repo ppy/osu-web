@@ -290,7 +290,7 @@ export default class ChannelStore {
   private async handleChatMessageSendAction(event: ChatMessageSendAction) {
     const message = event.message;
     const channel = this.getOrCreate(message.channelId);
-    channel.addMessages(message, true);
+    channel.addMessages([message], true);
 
     try {
       if (channel.newPmChannel) {

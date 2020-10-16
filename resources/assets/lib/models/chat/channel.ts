@@ -97,14 +97,14 @@ export default class Channel {
   }
 
   @action
-  addMessages(messages: Message | Message[], skipSort: boolean = false) {
-    this.messages = this.messages.concat(messages);
+  addMessages(messages: Message[], skipSort: boolean = false) {
+    this.messages.push(...messages);
 
     if (!skipSort) {
       this.resortMessages();
     }
 
-    const lastMessage = _(([] as Message[]).concat(messages))
+    const lastMessage = _(messages)
       .filter((message) => typeof message.messageId === 'number')
       .maxBy('messageId');
     let lastMessageId;
