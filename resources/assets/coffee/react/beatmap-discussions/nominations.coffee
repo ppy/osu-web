@@ -172,7 +172,7 @@ export class Nominations extends React.PureComponent
 
     url = laroute.route('beatmapsets.remove-from-loved', beatmapset: @props.beatmapset.id)
     params =
-      method: 'PUT'
+      method: 'DELETE'
       data: { reason }
 
     @xhr.removeFromLoved = $.ajax(url, params)
