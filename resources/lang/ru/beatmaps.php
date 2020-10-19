@@ -187,12 +187,16 @@ return [
         'nominate_confirm' => 'Номинировать эту карту?',
         'nominated_by' => 'номинирована :users',
         'not_enough_hype' => "Недостаточно хайпа.",
-        'qualified' => 'Если проблем больше нет, карта получит статус «Рейтинговая» примерно :date.',
-        'qualified_soon' => 'Если проблем больше нет, карта скоро получит статус «Рейтинговая».',
         'required_text' => 'Номинаций: :current/:required',
         'reset_message_deleted' => 'удалено',
         'title' => 'Статус номинации',
         'unresolved_issues' => 'Ещё остались нерешенные проблемы, которые необходимо решить в первую очередь.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => ':user сбросил прогресс номинаций :time_ago из-за новой проблемы :discussion (:message).',

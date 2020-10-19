@@ -187,12 +187,16 @@ return [
         'nominate_confirm' => '이 비트맵을 추천하시겠습니까?',
         'nominated_by' => ':users 님이 추천함',
         'not_enough_hype' => "Hype 수가 부족합니다.",
-        'qualified' => '문제가 발견되지 않으면 :date에 랭크됩니다.',
-        'qualified_soon' => '문제가 발견되지 않으면 곧 랭크됩니다.',
         'required_text' => '추천 수: :current/:required',
         'reset_message_deleted' => '삭제됨',
         'title' => '추천 상태',
         'unresolved_issues' => '먼저 해결되지 않은 토론을 마무리지어야 합니다.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => ':time_ago 전 :user님이 추천 상태를 초기화시켰습니다. :discussion (:message)',

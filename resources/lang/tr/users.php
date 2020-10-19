@@ -347,7 +347,6 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'İlgi Alanları',
-            'lastfm' => 'Last.fm',
             'location' => 'Mevcut Konum',
             'occupation' => 'Meslek',
             'skype' => '',

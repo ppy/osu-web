@@ -187,12 +187,16 @@ return [
         'nominate_confirm' => '提名这张谱面？',
         'nominated_by' => '由 :users 提名',
         'not_enough_hype' => "没有足够的推荐。",
-        'qualified' => '如果没有问题，预计将于 :date 被 Ranked 。',
-        'qualified_soon' => '如果没有问题，预计不久将被 Ranked 。',
         'required_text' => '提名数: :current/:required',
         'reset_message_deleted' => '已删除',
         'title' => '提名状态',
         'unresolved_issues' => '仍然有需解决的问题 。',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => '由于 :user 提出的新问题 :discussion（:message），提名过程于 :time_ago 被重置。',

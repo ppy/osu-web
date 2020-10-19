@@ -136,6 +136,7 @@ return [
                 '_' => '新しいメダル',
                 'user_achievement_unlock' => ':title をアンロック！',
                 'user_achievement_unlock_compact' => ':title をアンロック！',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],

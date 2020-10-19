@@ -136,6 +136,7 @@ return [
                 '_' => 'Ny medalj',
                 'user_achievement_unlock' => 'Upplåst ":title"!',
                 'user_achievement_unlock_compact' => 'Upplåst ":title"!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],

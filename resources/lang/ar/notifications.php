@@ -136,6 +136,7 @@ return [
                 '_' => 'ميدالية جديدة',
                 'user_achievement_unlock' => 'تم فتح !:title',
                 'user_achievement_unlock_compact' => 'تم فتح ":title"!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],

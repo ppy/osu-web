@@ -22,7 +22,7 @@ return [
         'message_placeholder_deleted_beatmap' => 'ระดับความยากนี้ถูกลบแล้วจึงไม่ควรถูกสนทนาถึง',
         'message_placeholder_locked' => 'การสนทนาสำหรับบีทแมพนี้ถูกปิดใช้งาน',
         'message_placeholder_silenced' => "ไม่สามารถโพสต์การสนทนาในขณะที่โดนเงียบ",
-        'message_type_select' => 'เลือกประเภทคอมเมนต์',
+        'message_type_select' => 'เลือกประเภทความคิดเห็น',
         'reply_notice' => 'กด Enter เพื่อตอบกลับ',
         'reply_placeholder' => 'พิมพ์คำตอบกลับที่นี่',
         'require-login' => 'กรุณาเข้าสู่ระบบเพื่อโพสต์หรือตอบกลับ',
@@ -187,12 +187,16 @@ return [
         'nominate_confirm' => 'เสนอชื่อบีทแมพนี้?',
         'nominated_by' => 'เสนอชื่อโดย :users',
         'not_enough_hype' => "ไม่มี Hype เพียงพอ",
-        'qualified' => 'คาดการณ์ว่าจะถูกจัดอันดับในเร็วๆนี้ ถ้าไม่พบปัญหาใดๆ',
-        'qualified_soon' => 'คาดการณ์ว่าจะถูกจัดอันดับในเร็วๆนี้ ถ้าไม่พบปัญหาใดๆ',
         'required_text' => 'การเสนอชื่อ: :current/:required',
         'reset_message_deleted' => 'ถูกลบไปแล้ว',
         'title' => 'ข้อมูลการเสนอชื่อ',
         'unresolved_issues' => 'ยังมีปัญหาที่ต้องแก้ไขให้เสร็จก่อน',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'การเสนอชื่อถูกรีเซ็ตเมื่อ :time_ago โดยผู้ใช้ :user ที่มีปัญหาใหม่ :discussion (:message)',
@@ -261,7 +265,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'แมพของฉัน',
         'pending' => 'รอดำเนินการ & WIP',
-        'qualified' => 'ผ่านเกณฑ์',
+        'qualified' => 'Qualified',
         'ranked' => 'จัดอันดับแล้ว',
     ],
     'genre' => [
