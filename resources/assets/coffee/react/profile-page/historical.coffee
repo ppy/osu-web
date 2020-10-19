@@ -55,8 +55,7 @@ export class Historical extends React.PureComponent
       h3
         className: 'title title--page-extra-small'
         osu.trans('users.show.extra.historical.most_played.title')
-        if @props.beatmapPlaycounts?.length == 0
-          span className: 'title__count', osu.formatNumber(0)
+        span className: 'title__count', osu.formatNumber(@props.user.beatmap_playcounts_count)
 
       if (@props.beatmapPlaycounts?.length ? 0) != 0
         el React.Fragment, null,
@@ -80,8 +79,7 @@ export class Historical extends React.PureComponent
       h3
         className: 'title title--page-extra-small'
         osu.trans('users.show.extra.historical.recent_plays.title')
-        if @props.scoresRecent?.length == 0
-          span className: 'title__count', osu.formatNumber(0)
+        span className: 'title__count', osu.formatNumber(@props.user.scores_recent_count)
 
       if (@props.scoresRecent?.length ? 0) != 0
         el React.Fragment, null,
