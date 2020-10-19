@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\Notification\BatchIdentities;
 use App\Libraries\NotificationsBundle;
 use App\Models\UserNotification;
 
@@ -24,7 +25,10 @@ class NotificationsController extends Controller
 
     public function batchDestroy()
     {
-        UserNotification::batchDestroy(auth()->user(), request()->all());
+        UserNotification::batchDestroy(
+            auth()->user(),
+            BatchIdentities::fromParams(request()->all())
+        );
 
         return response(null, 204);
     }
@@ -112,13 +116,10 @@ class NotificationsController extends Controller
      */
     public function markRead()
     {
-        $params = request()->all();
-
-        if (isset($params['notifications'])) {
-            UserNotification::markAsReadByIds(auth()->user(), $params['notifications']);
-        } else {
-            UserNotification::markAsReadByNotificationIdentifier(auth()->user(), $params);
-        }
+        UserNotification::batchMarkAsRead(
+            auth()->user(),
+            BatchIdentities::fromParams(request()->all())
+        );
 
         return response(null, 204);
     }

@@ -76,16 +76,6 @@ class Notification extends Model
         'details' => 'array',
     ];
 
-    public static function scrubIdentity(array $identity)
-    {
-        return get_params($identity, null, [
-            'category',
-            'id:int',
-            'object_id:int',
-            'object_type',
-        ]);
-    }
-
     public static function namesInCategory($category)
     {
         static $categories = [];

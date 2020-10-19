@@ -5,6 +5,7 @@
 
 namespace Tests\Models;
 
+use App\Libraries\Notification\BatchIdentities;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
@@ -32,11 +33,11 @@ class UserNotificationTest extends TestCase
         $initialNotificationCount = Notification::count();
         $initialUserNotificationCount = UserNotification::count();
 
-        UserNotification::batchDestroy($userA, [
+        UserNotification::batchDestroy($userA, BatchIdentities::fromParams([
             'notifications' => [
                 ['id' => $notification->getKey()],
             ],
-        ]);
+        ]));
 
         $this->assertSame(UserNotification::count(), $initialUserNotificationCount - 1);
         $this->assertSame(Notification::count(), $initialNotificationCount);
@@ -64,11 +65,11 @@ class UserNotificationTest extends TestCase
         $initialNotificationCount = Notification::count();
         $initialUserNotificationCount = UserNotification::count();
 
-        UserNotification::batchDestroy($user, [
+        UserNotification::batchDestroy($user, BatchIdentities::fromParams([
             'notifications' => [
                 ['id' => $notificationA->getKey()],
             ],
-        ]);
+        ]));
 
         $this->assertSame(UserNotification::count(), $initialUserNotificationCount - 1);
         $this->assertSame(Notification::count(), $initialNotificationCount - 1);
@@ -116,11 +117,11 @@ class UserNotificationTest extends TestCase
         $initialUserNotificationCount = UserNotification::count();
         $initialNotificationCount = Notification::count();
 
-        UserNotification::batchDestroy($user, [
+        UserNotification::batchDestroy($user, BatchIdentities::fromParams([
             'category' => $notificationA->category,
             'object_type' => $notificationA->notifiable_type,
             'object_id' => $notificationA->notifiable_id,
-        ]);
+        ]));
 
         $this->assertSame(UserNotification::count(), $initialUserNotificationCount - 2);
         $this->assertSame(Notification::count(), $initialNotificationCount - 2);
@@ -165,9 +166,9 @@ class UserNotificationTest extends TestCase
         $initialUserNotificationCount = UserNotification::count();
         $initialNotificationCount = Notification::count();
 
-        UserNotification::batchDestroy($user, [
+        UserNotification::batchDestroy($user, BatchIdentities::fromParams([
             'object_type' => $notificationA->notifiable_type,
-        ]);
+        ]));
 
         $this->assertSame(UserNotification::count(), $initialUserNotificationCount - 2);
         $this->assertSame(Notification::count(), $initialNotificationCount - 2);

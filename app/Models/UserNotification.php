@@ -7,7 +7,7 @@ namespace App\Models;
 
 use App\Events\NotificationDeleteEvent;
 use App\Events\NotificationReadEvent;
-use DB;
+use App\Libraries\Notification\BatchIdentities;
 
 class UserNotification extends Model
 {
@@ -20,24 +20,10 @@ class UserNotification extends Model
         'is_read' => 'boolean',
     ];
 
-    public static function batchDestroy(User $user, array $params)
+    public static function batchDestroy(User $user, BatchIdentities $batchIdentities)
     {
-        if (is_array($params['notifications'] ?? null)) {
-            $notificationIds = [];
-            $identities = [];
-            foreach ($params['notifications'] as $param) {
-                $identity = Notification::scrubIdentity($param);
-
-                if (isset($identity['id'])) {
-                    $notificationIds[] = $identity['id'];
-                    $identities[] = $identity;
-                }
-            }
-        } else {
-            $params = Notification::scrubIdentity($params);
-            $notificationIds = Notification::byIdentity($params)->select('id');
-            $identities = [$params];
-        }
+        $notificationIds = $batchIdentities->getNotificationIds();
+        $identities = $batchIdentities->getIdentities();
 
         $now = now();
         // obtain and filter valid notification ids
@@ -79,20 +65,10 @@ class UserNotification extends Model
         }
     }
 
-    public static function deliveryMask(string $type): int
+    public static function batchMarkAsRead(User $user, BatchIdentities $batchIdentities)
     {
-        return 1 << self::DELIVERY_OFFSETS[$type];
-    }
-
-    public static function markAsReadByIds(User $user, array $params)
-    {
-        $ids = [];
-        $identities = array_map(function ($param) use (&$ids) {
-            $identity = Notification::scrubIdentity($param);
-            $ids[] = $identity['id'] ?? null;
-
-            return $identity;
-        }, $params);
+        $ids = $batchIdentities->getNotificationIds();
+        $identities = $batchIdentities->getIdentities();
 
         $now = now();
         $count = $user
@@ -107,28 +83,9 @@ class UserNotification extends Model
         }
     }
 
-    public static function markAsReadByNotificationIdentifier(User $user, array $params)
+    public static function deliveryMask(string $type): int
     {
-        $params = Notification::scrubIdentity($params);
-        $notifications = Notification::byIdentity($params);
-
-        $instance = new static();
-        $tableName = $instance->getTable();
-        // force mysql optimizer to optimize properly with a fake multi-table update
-        // https://dev.mysql.com/doc/refman/8.0/en/subquery-optimization.html
-        $itemsQuery = $instance->getConnection()
-            ->table(DB::raw("{$tableName}, (SELECT 1) dummy"))
-            ->where('user_id', $user->getKey())
-            ->where('is_read', false)
-            ->whereIn('notification_id', $notifications->select('id'));
-        // raw builder doesn't have model scope magic.
-        $instance->scopeHasPushDelivery($itemsQuery);
-
-        $now = now();
-        $count = $itemsQuery->update(['is_read' => true, 'updated_at' => $now]);
-        if ($count > 0) {
-            event(new NotificationReadEvent($user->getKey(), ['notifications' => [$params], 'read_count' => $count, 'timestamp' => $now]));
-        }
+        return 1 << self::DELIVERY_OFFSETS[$type];
     }
 
     public function isDelivery(string $type): bool
