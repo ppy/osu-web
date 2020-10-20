@@ -28,6 +28,7 @@ return [
         'nomination_reset' => 'New problem :discussion (:text) triggered a nomination reset.',
         'qualify' => 'This beatmap has reached the required number of nominations and has been qualified.',
         'rank' => 'Ranked.',
+        'remove_from_loved' => 'Removed from Loved by :user. (:text)',
     ],
 
     'index' => [
@@ -66,5 +67,6 @@ return [
         'nomination_reset' => 'Nomination resetting',
         'qualify' => 'Qualification',
         'rank' => 'Ranking',
+        'remove_from_loved' => 'Loved removal',
     ],
 ];
