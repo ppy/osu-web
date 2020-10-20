@@ -90,7 +90,7 @@ abstract class Model extends BaseModel
         // Maybe references:
         // - https://dev.mysql.com/doc/relnotes/mysql/8.0/en/news-8-0-22.html#mysqld-8-0-22-optimizer
         // - https://dev.mysql.com/doc/refman/8.0/en/type-conversion.html
-        return $query->whereRaw('`rank` <> CONVERT(? USING latin1)', ['F']);
+        return $query->whereRaw("`rank` <> 'F'");
     }
 
     public function scopeVisibleUsers($query)
