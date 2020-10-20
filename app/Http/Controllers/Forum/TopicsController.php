@@ -320,6 +320,7 @@ class TopicsController extends Controller
         $canEditPoll = $poll->canEdit() && priv_check('ForumTopicPollEdit', $topic)->can();
 
         $featureVotes = $this->groupFeatureVotes($topic);
+        $noindex = !$topic->esShouldIndex();
 
         return ext_view(
             "forum.topics.{$template}",
@@ -333,6 +334,7 @@ class TopicsController extends Controller
                 'featureVotes',
                 'firstPostPosition',
                 'firstPostId',
+                'noindex',
                 'topic',
                 'userCanModerate',
                 'showDeleted'

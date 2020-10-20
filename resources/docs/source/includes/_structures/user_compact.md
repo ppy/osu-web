@@ -39,6 +39,7 @@ Field                                | Type
 account_history                      | [UserAccountHistory](#usercompact-useraccounthistory)[]
 active_tournament_banner             | [UserCompact.ProfileBanner](#usercompact-profilebanner)
 badges                               | [UserBadge](#usercompact-userbadge)[]
+beatmap_playcounts_count             | number
 blocks                               | |
 country                              | |
 cover                                | |
@@ -63,7 +64,9 @@ page                                 | |
 previous_usernames                   | |
 ranked_and_approved_beatmapset_count | |
 replays_watched_counts               | |
-scores_first_count                   | |
+scores_best_count                    | number
+scores_first_count                   | number
+scores_recent_count                  | number
 statistics                           | |
 support_level                        | |
 unranked_beatmapset_count            | |
