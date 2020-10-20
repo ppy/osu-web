@@ -82,6 +82,8 @@ abstract class Model extends BaseModel
         // mysql to coerce the value to the column's character set. Presumably. The writer of this
         // comment isn't sure either why this works.
         //
+        // Also note the error only happens when using prepared statement with binding value.
+        //
         // Original error:
         // General error: 1267 Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,COERCIBLE) for operation '<>'
         //
