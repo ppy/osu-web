@@ -41,6 +41,11 @@ export default class Channel {
   }
 
   @computed
+  get firstMessage() {
+    return this.messages.length > 0 ? this.messages[0] : undefined;
+  }
+
+  @computed
   get hasEarlierMessages() {
     return this.firstMessageId !== this.minMessageId;
   }
