@@ -34,7 +34,7 @@ export default class WidgetNotificationStackStore extends NotificationStackStore
 
   @action
   handleNotificationEventRead(event: NotificationEventRead) {
-    this.removeFromEvent(event);
+    this.removeByEvent(event);
   }
 
   @action

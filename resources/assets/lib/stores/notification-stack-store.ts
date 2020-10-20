@@ -85,7 +85,7 @@ export default class NotificationStackStore implements DispatchListener {
 
   @action
   handleNotificationEventDelete(event: NotificationEventDelete) {
-    this.removeFromEvent(event);
+    this.removeByEvent(event);
   }
 
   @action
@@ -141,7 +141,7 @@ export default class NotificationStackStore implements DispatchListener {
   }
 
   @action
-  removeFromEvent(event: NotificationEventDelete | NotificationEventRead) {
+  removeByEvent(event: NotificationEventDelete | NotificationEventRead) {
     if (event.data.length === 0) return;
 
     // identity types currently aren't mixed in the event,
