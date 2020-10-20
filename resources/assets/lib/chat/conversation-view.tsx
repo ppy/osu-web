@@ -80,7 +80,10 @@ export default class ConversationView extends React.Component<Props> implements 
       this.didSwitchChannel = false;
     } else {
       snapshot = snapshot ?? blankSnapshot();
-      const prepending = this.firstMessage !== this.currentChannel?.messages[0];
+      const currentChannelFirstMessage = (this.currentChannel != null && this.currentChannel.messages.length > 0)
+        ? this.currentChannel?.messages[0]
+        : null;
+      const prepending = this.firstMessage !== currentChannelFirstMessage;
 
       if (prepending && this.chatViewRef.current != null) {
         const chatEl = this.chatViewRef.current;
@@ -93,7 +96,7 @@ export default class ConversationView extends React.Component<Props> implements 
       }
     }
 
-    this.firstMessage = channel.messages[0];
+    this.firstMessage = channel.messages.length > 0 ? channel.messages[0] : undefined;
   }
 
   getSnapshotBeforeUpdate() {
