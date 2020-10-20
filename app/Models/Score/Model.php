@@ -78,9 +78,12 @@ abstract class Model extends BaseModel
         // It's when having more conditions like `Score\Osu::where('user_id', 1)->where('rank', '<>', 'F')`
         // then mysql spits out error.
         //
+        // One alternative is using CONVERT: `whereRaw('`rank` <> CONVERT(? USING latin1)', ['F'])`.
         // The character set for CONVERT() doesn't actually matter - doing this at all allows
         // mysql to coerce the value to the column's character set. Presumably. The writer of this
         // comment isn't sure either why this works.
+        //
+        // Skipping variable binding altogether and using literal query also works (used here).
         //
         // Also note the error only happens when using prepared statement with binding value.
         //
