@@ -142,9 +142,10 @@ export default class NotificationStackStore implements DispatchListener {
 
   @action
   removeFromEvent(event: NotificationEventDelete | NotificationEventRead) {
+    if (event.data.length === 0) return;
+
     // identity types currently aren't mixed in the event,
     // so readCount can be applied for the whole group.
-    if (event.data.length === 0) return;
     const first = event.data[0];
     const identityType = resolveIdentityType(first);
 
