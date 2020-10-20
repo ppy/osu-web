@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\Forum\Topic;
 
