@@ -19,6 +19,10 @@ import NotificationStore from './notification-store';
 
 @dispatchListener
 export default class NotificationStackStore implements DispatchListener {
+  @observable readonly legacyPm = new LegacyPmNotification();
+  @observable readonly types = new Map<string | null, NotificationType>();
+  private deletedStacks = new Set<string>();
+  private readonly resolver = new NotificationResolver();
 
   get allStacks() {
     return this.allType.stacks;
@@ -39,10 +43,6 @@ export default class NotificationStackStore implements DispatchListener {
   set total(value: number) {
     this.allType.total = value;
   }
-  @observable readonly legacyPm = new LegacyPmNotification();
-  @observable readonly types = new Map<string | null, NotificationType>();
-  private deletedStacks = new Set<string>();
-  private readonly resolver = new NotificationResolver();
 
   constructor(protected notificationStore: NotificationStore) {
     // 'all' type should always exist; makes testing deterministic.
