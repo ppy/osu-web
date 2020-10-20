@@ -39,12 +39,12 @@ export default class ItemGroup extends React.Component<Props, State> {
         <Item
           canMarkAsRead={this.props.stack.canMarkAsRead}
           delete={this.handleDelete}
-          markRead={this.handleMarkAsRead}
-          markingAsRead={this.props.stack.isMarkingAsRead}
           expandButton={this.renderExpandButton()}
           icons={categoryToIcons[item.category]}
           isDeleting={this.props.stack.isDeleting}
+          isMarkingAsRead={this.props.stack.isMarkingAsRead}
           item={item}
+          markRead={this.handleMarkAsRead}
           message={formatMessageGroup(item)}
           modifiers={['group']}
           url={urlGroup(item)}

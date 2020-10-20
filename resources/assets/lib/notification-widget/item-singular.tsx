@@ -23,11 +23,11 @@ export default class ItemSingular extends React.Component<Props> {
     return (
       <Item
         delete={this.handleDelete}
-        isDeleting={item.isDeleting}
         icons={nameToIcons[item.name || '']}
+        isDeleting={item.isDeleting}
+        isMarkingAsRead={item.isMarkingAsRead}
         item={item}
         markRead={this.handleMarkAsRead}
-        markingAsRead={item.isMarkingAsRead}
         message={formatMessage(item)}
         modifiers={['one']}
         url={urlSingular(item)}

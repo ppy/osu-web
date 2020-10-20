@@ -14,8 +14,8 @@ interface Props {
   expandButton?: React.ReactNode;
   icons?: string[];
   isDeleting?: boolean;
+  isMarkingAsRead?: boolean;
   item: Notification;
-  markingAsRead?: boolean;
   markRead?: () => void;
   message: string;
   modifiers: string[];
@@ -142,7 +142,7 @@ export default class Item extends React.Component<Props> {
 
     return (
       <NotificationReadButton
-        isMarkingAsRead={this.props.markingAsRead ?? this.props.item.isMarkingAsRead}
+        isMarkingAsRead={this.props.isMarkingAsRead ?? this.props.item.isMarkingAsRead}
         modifiers={['fancy']}
         onMarkAsRead={this.props.markRead}
       />
