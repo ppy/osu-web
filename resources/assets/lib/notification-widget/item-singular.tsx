@@ -10,7 +10,6 @@ import * as React from 'react';
 import Item from './item';
 
 interface Props {
-  showDeleteButton?: boolean;
   stack: NotificationStack;
 }
 
