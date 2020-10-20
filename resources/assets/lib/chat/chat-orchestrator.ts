@@ -29,12 +29,10 @@ export default class ChatOrchestrator implements DispatchListener {
   }
 
   addMessages(channelId: number, messages: MessageJSON[]) {
-    const newMessages: Message[] = [];
-
     transaction(() => {
-      messages.forEach((json: MessageJSON) => {
-        const newMessage = Message.fromJSON(json);
-        newMessages.push(newMessage);
+      const newMessages = messages.map((json: MessageJSON) => {
+        if (json.sender != null) this.rootDataStore.userStore.getOrCreate(json.sender_id, json.sender);
+        return Message.fromJSON(json);
       });
 
       this.rootDataStore.channelStore.addMessages(channelId, newMessages);
