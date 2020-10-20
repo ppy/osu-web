@@ -149,7 +149,7 @@ export default class Worker {
     }
 
     if (isNotificationEventDeleteJson(eventData)) {
-      // ignore read events that occured before the bundle is loaded
+      // ignore delete events that occured before the bundle is loaded
       const timestamp = new Date(eventData.data.timestamp);
       if (this.firstLoadedAt != null && timestamp > this.firstLoadedAt) {
         dispatch(NotificationEventDelete.fromJson(eventData));
