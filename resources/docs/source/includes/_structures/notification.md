@@ -39,6 +39,7 @@ Name                                                                           |
 [beatmapset_love](#notification-beatmapset_love)                               | Beatmap was promoted to loved
 [beatmapset_nominate](#notification-beatmapset_nominate)                       | Beatmap was nominated
 [beatmapset_qualify](#notification-beatmapset_qualify)                         | Beatmap has gained enough nominations and entered the ranking queue
+[beatmapset_remove_from_loved](#notification-beatmapset_remove_from_loved)     | Beatmap was removed from Loved
 [beatmapset_reset_nominations](#notification-beatmapset_reset_nominations)     | Nomination of beatmap was reset
 [channel_message](#notification-channel_message)                               | Someone sent chat message
 [forum_topic_reply](#notification-forum_topic_reply)                           | Someone replied on forum topic
@@ -164,6 +165,24 @@ Field          | Type   | Description
 object_id      | number | Beatmapset id
 object_type    | string | `beatmapset`
 source_user_id | number | User whom beatmapset nomination triggered qualification
+
+Details object:
+
+Field     | Type   | Description
+--------- | ------ | ----------------------------
+title     | string | Beatmap title
+cover_url | string | Beatmap cover
+username  | string | Username of `source_user_id`
+
+<div id="notification-beatmapset_remove_from_loved" data-unique="notification-beatmapset_remove_from_loved"></div>
+
+#### `beatmapset_remove_from_loved`
+
+Field          | Type   | Description
+-------------- | ------ | --------------------------------------
+object_id      | number | Beatmapset id
+object_type    | string | `beatmapset`
+source_user_id | number | User who removed beatmapset from Loved
 
 Details object:
 

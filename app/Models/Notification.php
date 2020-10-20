@@ -36,6 +36,7 @@ class Notification extends Model
     const BEATMAPSET_NOMINATE = 'beatmapset_nominate';
     const BEATMAPSET_QUALIFY = 'beatmapset_qualify';
     const BEATMAPSET_RANK = 'beatmapset_rank';
+    const BEATMAPSET_REMOVE_FROM_LOVED = 'beatmapset_remove_from_loved';
     const BEATMAPSET_RESET_NOMINATIONS = 'beatmapset_reset_nominations';
     const CHANNEL_MESSAGE = 'channel_message';
     const COMMENT_NEW = 'comment_new';
@@ -53,6 +54,7 @@ class Notification extends Model
         self::BEATMAPSET_NOMINATE => 'beatmapset_state',
         self::BEATMAPSET_QUALIFY => 'beatmapset_state',
         self::BEATMAPSET_RANK => 'beatmapset_state',
+        self::BEATMAPSET_REMOVE_FROM_LOVED => 'beatmapset_state',
         self::BEATMAPSET_RESET_NOMINATIONS => 'beatmapset_state',
         self::CHANNEL_MESSAGE => 'channel',
         self::COMMENT_NEW => 'comment',
