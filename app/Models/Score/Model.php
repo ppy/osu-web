@@ -74,8 +74,8 @@ abstract class Model extends BaseModel
 
         // FIXME: on mysql 8.0.22, character set (coercibility?) difference causes query error.
         //
-        // The error itself doesn't manifest if only doing `Score\Osu::where('rank', '<>' 'F')`.
-        // It's when having more conditions like `Score\Osu::where('user_id', 1)->where('rank', '<>' 'F')`
+        // The error itself doesn't manifest if only doing `Score\Osu::where('rank', '<>', 'F')`.
+        // It's when having more conditions like `Score\Osu::where('user_id', 1)->where('rank', '<>', 'F')`
         // then mysql spits out error.
         //
         // The character set for CONVERT() doesn't actually matter - doing this at all allows
