@@ -141,6 +141,7 @@ export default class Channel {
   updateMessage(message: Message, json: MessageJSON | null) {
     if (json != null) {
       message.messageId = json.message_id;
+      message.timestamp = json.timestamp;
       message.persist();
     } else {
       message.messageId = message.uuid; // prevent from being culled by uniq sort thing
