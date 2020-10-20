@@ -123,7 +123,7 @@ export default class Event extends React.PureComponent<Props> {
       text = BeatmapDiscussionHelper.format(this.props.event.comment, { newlines: false });
     }
 
-    if (this.props.event.type === 'discussion_lock') {
+    if (this.props.event.type === 'discussion_lock' || this.props.event.type === 'remove_from_loved') {
       text = BeatmapDiscussionHelper.format(this.props.event.comment.reason, { newlines: false });
     }
 
