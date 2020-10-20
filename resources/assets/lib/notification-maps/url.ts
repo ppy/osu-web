@@ -36,6 +36,7 @@ export function urlSingular(item: Notification) {
     case 'beatmapset_love':
     case 'beatmapset_nominate':
     case 'beatmapset_qualify':
+    case 'beatmapset_remove_from_loved':
     case 'beatmapset_reset_nominations':
       return route('beatmapsets.discussion', { beatmapset: item.objectId });
     case 'beatmapset_discussion_post_new':
