@@ -1373,15 +1373,12 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
                 return [app('groups')->byIdentifier('bot')];
             }
 
-            $ids = $this->groupIds();
-            array_unshift($ids, $this->defaultGroup()->getKey());
-
             $groups = [];
-            foreach (array_unique($ids) as $id) {
-                $group = app('groups')->byId($id);
+            foreach ($this->userGroups as $userGroup) {
+                $group = clone app('groups')->byId($userGroup->group_id);
 
                 if ($group && $group->has_playmodes) {
-                    $group['playmodes'] = $this->userGroups->where('group_id', $id)->first()->playmodes;
+                    $group['playmodes'] = $userGroup->playmodes;
                 }
 
                 if (optional($group)->display_order !== null) {
@@ -1390,6 +1387,15 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             }
 
             usort($groups, function ($a, $b) {
+                // if the user has a default group, always show it first
+                if ($a->group_id === $this->group_id) {
+                    return -1;
+                }
+                if ($b->group_id === $this->group_id) {
+                    return 1;
+                }
+
+                // otherwise, sort by display order
                 return $a->display_order - $b->display_order;
             });
 
