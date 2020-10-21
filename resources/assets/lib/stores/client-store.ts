@@ -3,7 +3,7 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
-import { ClientJSON } from 'interfaces/client-json';
+import { ClientJson } from 'interfaces/client-json';
 import { action, observable } from 'mobx';
 import { Client } from 'models/oauth/client';
 
@@ -17,7 +17,7 @@ export default class ClientStore {
     }
   }
 
-  initialize(data: ClientJSON[]) {
+  initialize(data: ClientJson[]) {
     for (const item of data) {
       const client = new Client(item);
       this.clients.set(client.id, client);

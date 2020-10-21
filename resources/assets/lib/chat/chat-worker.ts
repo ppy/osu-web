@@ -17,7 +17,7 @@ import { transaction } from 'mobx';
 import Message from 'models/chat/message';
 import RootDataStore from 'stores/root-data-store';
 import ChatAPI from './chat-api';
-import { MessageJSON } from './chat-api-responses';
+import { MessageJson } from './chat-api-responses';
 
 @dispatchListener
 export default class ChatWorker implements DispatchListener {
@@ -64,8 +64,8 @@ export default class ChatWorker implements DispatchListener {
         }
 
         transaction(() => {
-          updateJson.messages.forEach((message: MessageJSON) => {
-            const newMessage = Message.fromJSON(message);
+          updateJson.messages.forEach((message: MessageJson) => {
+            const newMessage = Message.fromJson(message);
             newMessage.sender = this.rootDataStore.userStore.getOrCreate(message.sender_id, message.sender);
             dispatch(new ChatMessageAddAction(newMessage));
           });
