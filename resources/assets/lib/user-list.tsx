@@ -280,7 +280,7 @@ export class UserList extends React.PureComponent<Props> {
     if (this.props.playmodeFilter && this.state.playMode !== 'all') {
       users = users.filter((user) => {
         if (user.groups && user.groups.length > 0) {
-          return _.find(user.groups, (group) => group.playmodes && (group.playmodes as PlayModeFilter[]).includes(this.state.playMode)) !== undefined;
+          return _.some(user.groups, (group) => group.playmodes && (group.playmodes as PlayModeFilter[]).includes(this.state.playMode));
         } else {
           return false;
         }
