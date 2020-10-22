@@ -1376,18 +1376,16 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             $groups = [];
             foreach ($this->userGroups as $userGroup) {
                 $cachedGroup = app('groups')->byId($userGroup->group_id);
-                if (!$cachedGroup) {
+                if (!$cachedGroup || $cachedGroup->display_order === null) {
                     continue;
                 }
 
-                $group = clone $cachedGroup;
-
-                if ($group && $group->has_playmodes) {
+                if ($cachedGroup->has_playmodes) {
+                    $group = clone $cachedGroup;
                     $group['playmodes'] = $userGroup->playmodes;
-                }
-
-                if (optional($group)->display_order !== null) {
                     $groups[] = $group;
+                } else {
+                    $groups[] = $cachedGroup;
                 }
             }
 
