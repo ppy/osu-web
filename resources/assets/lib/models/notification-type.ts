@@ -13,7 +13,7 @@ import { NotificationResolver } from 'notifications/notification-resolver';
 export type Name = null | 'beatmapset' | 'build' | 'channel' | 'forum_topic' | 'news_post' | 'user';
 const names: Name[] = [null, 'beatmapset', 'build', 'channel', 'forum_topic', 'news_post', 'user'];
 
-export const TYPES = [
+export const TYPES: { type: Name }[] = [
   { type: null },
   { type: 'user' },
   { type: 'beatmapset' },
