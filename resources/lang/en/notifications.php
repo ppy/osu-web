@@ -8,6 +8,7 @@ return [
     'mark_read' => 'Clear :type',
     'none' => 'No notifications',
     'see_all' => 'see all notifications',
+    'see_channel' => 'go to chat',
 
     'filters' => [
         '_' => 'all',

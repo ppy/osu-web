@@ -3,6 +3,7 @@
 
 import { route } from 'laroute';
 import * as _ from 'lodash';
+import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { Name, TYPES } from 'models/notification-type';
 import { NotificationContext } from 'notifications-context';
@@ -16,24 +17,33 @@ import Stack from './stack';
 
 interface Props {
   extraClasses?: string;
+  only?: Name;
 }
 
 interface State {
   hasError: boolean;
 }
 
+const linkMap: Record<string, string> = {
+  channel: 'chat.index',
+  null: 'notifications.index',
+};
+
 @observer
 export default class Main extends React.Component<Props, State> {
-  readonly links = TYPES.map((obj) => {
-    const type = obj.type;
-    return { title: osu.trans(`notifications.filters.${type ?? '_'}`), data: { 'data-type': type }, type };
-  });
-
   readonly state = {
     hasError: false,
   };
 
-  private readonly controller = new NotificationController(core.dataStore.notificationStore, { isWidget: true }, null);
+  private readonly controller = new NotificationController(core.dataStore.notificationStore, { isWidget: true }, this.props.only ?? null);
+
+  @computed
+  get links() {
+    return TYPES.map((obj) => {
+      const type = obj.type;
+      return { title: osu.trans(`notifications.filters.${type ?? '_'}`), data: { 'data-type': type }, type };
+    });
+  }
 
   static getDerivedStateFromError(error: Error) {
     // tslint:disable-next-line: no-console
@@ -100,6 +110,8 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private renderFilters() {
+    if (this.props.only != null) return null;
+
     return (
       <div className='notification-popup__filters'>
         {this.links.map(this.renderFilter)}
@@ -108,9 +120,11 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private renderHistoryLink() {
+    const linkName = linkMap[this.props.only ?? 'null'];
+
     return (
-      <a className='notification-popup__filter' href={route('notifications.index')}>
-        {osu.trans('notifications.see_all')}
+      <a className='notification-popup__filter' href={route(linkName)}>
+        {osu.trans(`notifications.see_${this.props.only ?? 'all'}`)}
       </a>
     );
   }

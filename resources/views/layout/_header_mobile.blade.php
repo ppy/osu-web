@@ -76,16 +76,16 @@
                         <span class="fas fa-search"></span>
                     </button>
 
-                    <a
+                    <button
                         class="mobile-menu-tab js-click-menu js-react--chat-icon"
+                        data-click-menu-target="mobile-chat-notification"
                         data-chat-icon="{{ json_encode(['type' => 'mobile']) }}"
-                        href="{{ route('chat.index') }}"
                     >
                         <span class="notification-icon notification-icon--mobile">
                             <i class="fas fa-comment-alt"></i>
                             <span class="notification-icon__count">...</span>
                         </span>
-                    </a>
+                    </button>
 
                     <button class="mobile-menu-tab js-click-menu js-react--notification-icon"
                         data-click-menu-target="mobile-notification"
@@ -110,6 +110,13 @@
             @if (isset($user))
                 <div class="mobile-menu__item mobile-menu__item--search js-click-menu js-react--quick-search" data-click-menu-id="mobile-search">
                 </div>
+
+                <div
+                    class="mobile-menu__item js-click-menu js-react--notification-widget"
+                    data-click-menu-id="mobile-chat-notification"
+                    data-notification-widget="{{ json_encode(['only' => 'channel']) }}"
+                    data-visibility="hidden"
+                ></div>
 
                 <div
                     class="mobile-menu__item js-click-menu js-react--notification-widget"
