@@ -206,10 +206,9 @@ class BeatmapsetSearch extends RecordSearch
             case 'any':
                 break;
             case 'ranked':
-                $query->should([
-                    ['match' => ['approved' => Beatmapset::STATES['ranked']]],
-                    ['match' => ['approved' => Beatmapset::STATES['approved']]],
-                ]);
+                $query
+                    ->should(['match' => ['approved' => Beatmapset::STATES['ranked']]])
+                    ->should(['match' => ['approved' => Beatmapset::STATES['approved']]]);
                 break;
             case 'loved':
                 $query->must(['match' => ['approved' => Beatmapset::STATES['loved']]]);
@@ -219,15 +218,12 @@ class BeatmapsetSearch extends RecordSearch
                 $query->must(['ids' => ['type' => 'beatmaps', 'values' => $favs]]);
                 break;
             case 'qualified':
-                $query->should([
-                    ['match' => ['approved' => Beatmapset::STATES['qualified']]],
-                ]);
+                $query->should(['match' => ['approved' => Beatmapset::STATES['qualified']]]);
                 break;
             case 'pending':
-                $query->should([
-                    ['match' => ['approved' => Beatmapset::STATES['wip']]],
-                    ['match' => ['approved' => Beatmapset::STATES['pending']]],
-                ]);
+                $query
+                    ->should(['match' => ['approved' => Beatmapset::STATES['wip']]])
+                    ->should(['match' => ['approved' => Beatmapset::STATES['pending']]]);
                 break;
             case 'graveyard':
                 $query->must(['match' => ['approved' => Beatmapset::STATES['graveyard']]]);
@@ -239,11 +235,10 @@ class BeatmapsetSearch extends RecordSearch
                 $query->must(['ids' => ['type' => 'beatmaps', 'values' => $maps ?? []]]);
                 break;
             default: // null, etc
-                $query->should([
-                    ['match' => ['approved' => Beatmapset::STATES['ranked']]],
-                    ['match' => ['approved' => Beatmapset::STATES['approved']]],
-                    ['match' => ['approved' => Beatmapset::STATES['loved']]],
-                ]);
+                $query
+                    ->should(['match' => ['approved' => Beatmapset::STATES['ranked']]])
+                    ->should(['match' => ['approved' => Beatmapset::STATES['approved']]])
+                    ->should(['match' => ['approved' => Beatmapset::STATES['loved']]]);
                 break;
         }
 

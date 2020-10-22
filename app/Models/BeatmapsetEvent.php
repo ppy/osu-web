@@ -22,6 +22,7 @@ class BeatmapsetEvent extends Model
 {
     const NOMINATE = 'nominate';
     const LOVE = 'love';
+    const REMOVE_FROM_LOVED = 'remove_from_loved';
     const QUALIFY = 'qualify';
     const DISQUALIFY = 'disqualify';
     const APPROVE = 'approve';
@@ -193,6 +194,7 @@ class BeatmapsetEvent extends Model
                     static::LOVE,
                     static::NOMINATION_RESET,
                     static::DISQUALIFY,
+                    static::REMOVE_FROM_LOVED,
 
                     static::KUDOSU_GAIN,
                     static::KUDOSU_LOST,

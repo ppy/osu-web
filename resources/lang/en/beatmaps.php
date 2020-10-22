@@ -187,6 +187,8 @@ return [
         'nominate_confirm' => 'Nominate this beatmap?',
         'nominated_by' => 'nominated by :users',
         'not_enough_hype' => "There isn't enough hype.",
+        'remove_from_loved' => 'Remove from Loved',
+        'remove_from_loved_prompt' => 'Reason for removing from Loved:',
         'required_text' => 'Nominations: :current/:required',
         'reset_message_deleted' => 'deleted',
         'title' => 'Nomination Status',

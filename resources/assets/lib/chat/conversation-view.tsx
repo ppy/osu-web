@@ -45,7 +45,7 @@ export default class ConversationView extends React.Component<Props> implements 
 
   @computed
   get currentChannel() {
-    return this.dataStore.channelStore.channels.get(this.dataStore.uiState.chat.selected);
+    return this.dataStore.channelStore.channels.get(this.dataStore.chatState.selected);
   }
 
   constructor(props: Props) {
@@ -66,7 +66,7 @@ export default class ConversationView extends React.Component<Props> implements 
     }
 
     const dataStore = this.dataStore;
-    const channel = dataStore.channelStore.channels.get(dataStore.uiState.chat.selected);
+    const channel = dataStore.channelStore.channels.get(dataStore.chatState.selected);
     if (!channel?.loaded) {
       return;
     }
@@ -80,20 +80,20 @@ export default class ConversationView extends React.Component<Props> implements 
       this.didSwitchChannel = false;
     } else {
       snapshot = snapshot ?? blankSnapshot();
-      const prepending = this.firstMessage !== this.currentChannel?.messages[0];
+      const prepending = this.firstMessage !== this.currentChannel?.firstMessage;
 
       if (prepending && this.chatViewRef.current != null) {
         const chatEl = this.chatViewRef.current;
         const newHeight = chatEl.scrollHeight;
         chatEl.scrollTo(chatEl.scrollLeft, snapshot.chatTop + (newHeight - snapshot.chatHeight));
       } else {
-        if (this.dataStore.uiState.chat.autoScroll) {
+        if (this.dataStore.chatState.autoScroll) {
           this.scrollToBottom();
         }
       }
     }
 
-    this.firstMessage = channel.messages[0];
+    this.firstMessage = channel.firstMessage;
   }
 
   getSnapshotBeforeUpdate() {
@@ -149,7 +149,7 @@ export default class ConversationView extends React.Component<Props> implements 
   onScroll = () => {
     const chatView = this.chatViewRef.current;
     if (chatView) {
-      this.dataStore.uiState.chat.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
+      this.dataStore.chatState.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
     }
   }
 
@@ -168,7 +168,7 @@ export default class ConversationView extends React.Component<Props> implements 
 
     _.each(channel.messages, (message: Message, key: number) => {
       // check if the last read indicator needs to be shown
-      if (!unreadMarkerShown && message.messageId > this.dataStore.uiState.chat.lastReadId && message.sender.id !== currentUser.id) {
+      if (!unreadMarkerShown && message.messageId > this.dataStore.chatState.lastReadId && message.sender.id !== currentUser.id) {
         unreadMarkerShown = true;
 
         // If the unread marker is the first element in this conversation, it most likely means that the unread cursor

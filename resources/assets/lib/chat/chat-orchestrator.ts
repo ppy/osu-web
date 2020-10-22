@@ -45,7 +45,7 @@ export default class ChatOrchestrator implements DispatchListener {
   }
 
   changeChannel(channelId: number) {
-    const uiState = this.rootDataStore.uiState.chat;
+    const uiState = this.rootDataStore.chatState;
     const channelStore = this.rootDataStore.channelStore;
 
     if (channelId === uiState.selected && !channelStore.getOrCreate(channelId).loaded) {
@@ -97,14 +97,14 @@ export default class ChatOrchestrator implements DispatchListener {
       this.handleChatChannelPartAction(action);
     } else if (action instanceof ChatMessageAddAction) {
       if (this.windowIsActive && this.rootDataStore.channelStore.loaded) {
-        this.markAsRead(this.rootDataStore.uiState.chat.selected);
+        this.markAsRead(this.rootDataStore.chatState.selected);
       }
     } else if (action instanceof ChatPresenceUpdateAction) {
       this.handleChatPresenceUpdateAction();
     } else if (action instanceof WindowFocusAction) {
       this.windowIsActive = true;
       if (this.rootDataStore.channelStore.loaded) {
-        this.markAsRead(this.rootDataStore.uiState.chat.selected);
+        this.markAsRead(this.rootDataStore.chatState.selected);
       }
     } else if (action instanceof WindowBlurAction) {
       this.windowIsActive = false;
@@ -196,7 +196,7 @@ export default class ChatOrchestrator implements DispatchListener {
     const index = channel != null ? channelStore.channelList.indexOf(channel) : null;
     channelStore.partChannel(action.channelId);
 
-    if (this.rootDataStore.uiState.chat.selected === channel?.channelId) {
+    if (this.rootDataStore.chatState.selected === channel?.channelId) {
       this.focusChannelAtIndex(index ?? 0);
     }
 
@@ -212,7 +212,7 @@ export default class ChatOrchestrator implements DispatchListener {
   // ensure a channel is selected if available
   private handleChatPresenceUpdateAction() {
     const channelStore = this.rootDataStore.channelStore;
-    const channel = channelStore.get(this.rootDataStore.uiState.chat.selected);
+    const channel = channelStore.get(this.rootDataStore.chatState.selected);
     if (channel == null) {
       this.focusChannelAtIndex(0);
     }

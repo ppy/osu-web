@@ -18,9 +18,8 @@ export class TopRanks extends React.PureComponent
         h3
           className: 'title title--page-extra-small'
           osu.trans('users.show.extra.top_ranks.best.title')
-          if @props.scoresBest?.length == 0
-            span className: 'title__count',
-              osu.formatNumber(0)
+          span className: 'title__count',
+            osu.formatNumber(@props.user.scores_best_count)
 
         @renderScores 'scoresBest', 'best'
 
