@@ -20,7 +20,7 @@ export default function User({ user, modifiers = [] }: { modifiers?: string[], u
 
       <div className='user-search-card__details'>
         <div className='user-search-card__col  user-search-card__col--flag'>
-          <FlagCountry country={user.country} modifiers={['inline']} />
+          <FlagCountry country={user.country} modifiers={['dynamic', 'wrapped']} />
         </div>
 
         <a className='user-search-card__col user-search-card__col--username clickable-row-link' href={url}>
