@@ -8,7 +8,7 @@ interface Props {
   modifiers?: string[];
 }
 
-export function FlagCountry({country, modifiers}: Props) {
+export default function FlagCountry({country, modifiers}: Props) {
   if (country == null || country.code == null) {
     return null;
   }

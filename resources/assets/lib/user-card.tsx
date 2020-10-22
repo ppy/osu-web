@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BlockButton } from 'block-button';
-import { FlagCountry } from 'flag-country';
+import FlagCountry from 'flag-country';
 import { FriendButton } from 'friend-button';
 import UserJSON from 'interfaces/user-json';
 import { route } from 'laroute';
