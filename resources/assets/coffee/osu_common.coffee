@@ -262,18 +262,6 @@
       window.scrollTo position[0], position[1]
 
 
-  playmodeToInt: (playmode) ->
-    switch (playmode)
-      when 'osu'
-        0
-      when 'taiko'
-        1
-      when 'fruits'
-        2
-      when 'mania'
-        3
-
-
   popup: (message, type = 'info') ->
     $popup = $('#popup-container')
     $alert = $('.popup-clone').clone()
