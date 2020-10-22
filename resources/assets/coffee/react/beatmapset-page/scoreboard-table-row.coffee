@@ -49,7 +49,7 @@ export class ScoreboardTableRow extends React.PureComponent
               type: 'performance'
             el FlagCountry,
               country: score.user.country
-              modifiers: ['dynamic', 'flat', 'wrapped']
+              modifiers: ['flat']
 
       td className: cell,
         a

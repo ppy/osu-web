@@ -30,7 +30,6 @@
                         <span class="landing-nav__locale-flag">
                             @include('objects._country_flag', [
                                 'countryCode' => locale_flag(App::getLocale()),
-                                'modifiers' => ['small', 'wrapped'],
                             ])
                         </span>
 
@@ -60,7 +59,6 @@
                                     <span class="landing-nav__locale-flag">
                                         @include('objects._country_flag', [
                                             'countryCode' => locale_flag($locale),
-                                            'modifiers' => ['small', 'wrapped'],
                                         ])
                                     </span>
 

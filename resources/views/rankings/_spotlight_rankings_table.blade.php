@@ -41,6 +41,7 @@
                         @include('objects._country_flag', [
                             'countryName' => $score->user->country->name,
                             'countryCode' => $score->user->country->acronym,
+                            'modifiers' => ['medium'],
                         ])
                         <a
                             href="{{ route('users.show', ['user' => $score->user_id, 'mode' => $mode]) }}"

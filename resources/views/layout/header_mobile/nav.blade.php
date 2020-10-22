@@ -54,7 +54,7 @@
         <span class="navbar-mobile-item__locale-flag">
             @include('objects._country_flag', [
                 'countryCode' => locale_flag(App::getLocale()),
-                'modifiers' => ['small', 'flat', 'wrapped'],
+                'modifiers' => ['small', 'flat'],
             ])
         </span>
 
@@ -73,7 +73,7 @@
                     <span class="navbar-mobile-item__locale-flag">
                         @include('objects._country_flag', [
                             'countryCode' => locale_flag($locale),
-                            'modifiers' => ['small', 'flat', 'wrapped'],
+                            'modifiers' => ['small', 'flat'],
                         ])
                     </span>
 

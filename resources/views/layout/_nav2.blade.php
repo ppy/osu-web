@@ -95,7 +95,7 @@
                 <span class="nav-button__locale-current-flag">
                     @include('objects._country_flag', [
                         'countryCode' => locale_flag(App::getLocale()),
-                        'modifiers' => ['dynamic', 'flat', 'wrapped'],
+                        'modifiers' => ['flat'],
                     ])
                 </span>
             </button>
@@ -124,7 +124,7 @@
                                     <span class="nav2-locale-item__flag">
                                         @include('objects._country_flag', [
                                             'countryCode' => locale_flag($locale),
-                                            'modifiers' => ['dynamic', 'flat', 'wrapped'],
+                                            'modifiers' => ['flat'],
                                         ])
                                     </span>
 

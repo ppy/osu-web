@@ -33,7 +33,7 @@
                                     <span class="user-session-list-session__icon">
                                         @include('objects._country_flag', [
                                             'countryCode' => $session['country']['code'],
-                                            'modifiers' => ['dynamic', 'flat', 'wrapped'],
+                                            'modifiers' => ['flat'],
                                         ])
                                     </span>
 

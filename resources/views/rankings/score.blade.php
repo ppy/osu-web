@@ -45,7 +45,7 @@
                                 @include('objects._country_flag', [
                                     'countryName' => $score->user->country->name,
                                     'countryCode' => $score->user->country->acronym,
-                                    'modifiers' => ['wrapped'],
+                                    'modifiers' => ['medium'],
                                 ])
                             </a>
                             <a

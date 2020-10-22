@@ -55,7 +55,7 @@ export ScoreTop = (props) ->
               type: 'performance'
             el FlagCountry,
               country: props.score.user.country
-              modifiers: ['dynamic', 'flat', 'wrapped']
+              modifiers: ['flat']
 
       div className: "#{bn}__wrapping-container #{bn}__wrapping-container--right",
         div className: "#{bn}__stats",

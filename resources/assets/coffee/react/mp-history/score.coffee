@@ -36,7 +36,7 @@ export class Score extends React.Component
               mode: @props.mode
               country: user.country?.code
               type: 'performance'
-            el FlagCountry, country: user.country
+            el FlagCountry, country: user.country, modifiers: ['medium']
 
         div className: 'mp-history-player-score__info-box mp-history-player-score__info-box--stats',
           div className: 'mp-history-player-score__stat-row mp-history-player-score__stat-row--first',
