@@ -5,8 +5,10 @@
   .default-box-shadow();
   .default-border-radius();
 
-  height: 20px;
-  width: 30px;
+  --height: 20px;
+  --width-height-ratio: calc(70 / 47);
+  height: var(--height);
+  width: calc(var(--height) * var(--width-height-ratio));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -22,12 +24,11 @@
   &--inline {
     width: 100%;
     height: auto;
-    padding-bottom: 66.67%;
+    padding-bottom: calc(100% / var(--width-height-ratio));
   }
 
   &--small-box {
-    width: 19px;
-    height: 13px;
+    --height: 13px;
     border-radius: 0;
     box-shadow: none;
     background-color: transparent;
