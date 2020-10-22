@@ -1,15 +1,25 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import { div } from 'react-dom-factories'
+import * as React from 'react';
 
-export FlagCountry = ({country, modifiers}) ->
-  return null if !country?.code?
+interface Props {
+  country?: Country;
+  modifiers?: string[];
+}
 
-  blockClass = osu.classWithModifiers('flag-country', modifiers)
+export function FlagCountry({country, modifiers}: Props) {
+  if (country == null || country.code == null) {
+    return null;
+  }
 
-  div
-    className: blockClass
-    title: country.name
-    style:
-      backgroundImage: "url('/images/flags/#{country.code}.png')"
+  return (
+    <div
+      className={osu.classWithModifiers('flag-country', modifiers)}
+      title={country.name}
+      style={{
+        backgroundImage: `url('/images/flags/${country.code}.png')`,
+      }}
+    />
+  );
+}
