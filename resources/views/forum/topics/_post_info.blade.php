@@ -69,7 +69,7 @@
                 'type' => 'performance',
                 'country' => $user->country->getKey(),
             ])}}">
-                @include('objects._country_flag', [
+                @include('objects._flag_country', [
                     'countryCode' => $user->country->getKey(),
                     'countryName' => $user->country->name,
                     'modifiers' => ['medium'],

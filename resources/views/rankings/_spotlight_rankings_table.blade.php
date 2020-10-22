@@ -38,7 +38,7 @@
                 </td>
                 <td class="ranking-page-table__column">
                     <div class="ranking-page-table__user-link">
-                        @include('objects._country_flag', [
+                        @include('objects._flag_country', [
                             'countryName' => $score->user->country->name,
                             'countryCode' => $score->user->country->acronym,
                             'modifiers' => ['medium'],

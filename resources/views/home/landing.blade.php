@@ -28,7 +28,7 @@
                 <div class="landing-nav__locale-menu-link">
                     <span class="landing-nav__link js-menu" data-menu-target="landing--locale">
                         <span class="landing-nav__locale-flag">
-                            @include('objects._country_flag', [
+                            @include('objects._flag_country', [
                                 'countryCode' => locale_flag(App::getLocale()),
                             ])
                         </span>
@@ -57,7 +57,7 @@
                                     </span>
 
                                     <span class="landing-nav__locale-flag">
-                                        @include('objects._country_flag', [
+                                        @include('objects._flag_country', [
                                             'countryCode' => locale_flag($locale),
                                         ])
                                     </span>

@@ -52,7 +52,7 @@
         </span>
 
         <span class="navbar-mobile-item__locale-flag">
-            @include('objects._country_flag', [
+            @include('objects._flag_country', [
                 'countryCode' => locale_flag(App::getLocale()),
                 'modifiers' => ['small', 'flat'],
             ])
@@ -71,7 +71,7 @@
                     data-method="POST"
                 >
                     <span class="navbar-mobile-item__locale-flag">
-                        @include('objects._country_flag', [
+                        @include('objects._flag_country', [
                             'countryCode' => locale_flag($locale),
                             'modifiers' => ['small', 'flat'],
                         ])

@@ -44,7 +44,7 @@
                                     'type' => 'performance',
                                     'country' => $score->country->acronym,
                             ])}}">
-                                @include('objects._country_flag', [
+                                @include('objects._flag_country', [
                                     'countryCode' => $score->country->acronym,
                                     'modifiers' => ['medium'],
                                 ])

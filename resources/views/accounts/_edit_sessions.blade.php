@@ -31,7 +31,7 @@
                                 <span class="user-session-list-session__last-active">{{trans('accounts.security.last_active')}} {!! timeago($session['last_visit']) !!}</span>
                                 <span class="user-session-list-session__ip" title="{{$session['ip']}}">
                                     <span class="user-session-list-session__icon">
-                                        @include('objects._country_flag', [
+                                        @include('objects._flag_country', [
                                             'countryCode' => $session['country']['code'],
                                             'modifiers' => ['flat'],
                                         ])

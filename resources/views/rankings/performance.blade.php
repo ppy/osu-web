@@ -46,7 +46,7 @@
                                     'variant' => $variant,
                                 ]) }}"
                             >
-                                @include('objects._country_flag', [
+                                @include('objects._flag_country', [
                                     'countryName' => $score->user->country->name,
                                     'countryCode' => $score->user->country->acronym,
                                     'modifiers' => ['medium'],

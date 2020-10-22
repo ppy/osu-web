@@ -93,7 +93,7 @@
                 data-click-menu-target="nav2-locale-popup"
             >
                 <span class="nav-button__locale-current-flag">
-                    @include('objects._country_flag', [
+                    @include('objects._flag_country', [
                         'countryCode' => locale_flag(App::getLocale()),
                         'modifiers' => ['flat'],
                     ])
@@ -122,7 +122,7 @@
                             >
                                 <span class="nav2-locale-item">
                                     <span class="nav2-locale-item__flag">
-                                        @include('objects._country_flag', [
+                                        @include('objects._flag_country', [
                                             'countryCode' => locale_flag($locale),
                                             'modifiers' => ['flat'],
                                         ])
