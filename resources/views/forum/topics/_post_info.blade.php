@@ -69,12 +69,10 @@
                 'type' => 'performance',
                 'country' => $user->country->getKey(),
             ])}}">
-                <img
-                    class="flag-country"
-                    src="{{ flag_path($user->country->getKey()) }}"
-                    alt="{{ $user->country->getKey() }}"
-                    title="{{ $user->country->name }}"
-                />
+                @include('objects._country_flag', [
+                    'countryCode' => $user->country->getKey(),
+                    'countryName' => $user->country->name,
+                ])
             </a>
         </div>
     @endif
