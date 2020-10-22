@@ -9,3 +9,10 @@ name            | string | |
 short_name      | string | Short name of the group for display.
 description     | string | |
 colour          | string | |
+
+
+If [Group](#group) is returned as part of a [User](#user) object, it may also contain:
+
+Field           | Type     | Description
+----------------|----------|------------------------------------------------------------
+playmodes       | string[] | [GameModes](#gamemode) which the member is responsible for, e.g. in the case of BN/NAT
