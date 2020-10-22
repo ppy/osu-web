@@ -27,8 +27,8 @@
                 <td class="ranking-page-table__column">
                     <div class="ranking-page-table__user-link">
                         @include('objects._country_flag', [
-                            'country_name' => $score->user->country->name,
-                            'country_code' => $score->user->country->acronym,
+                            'countryName' => $score->user->country->name,
+                            'countryCode' => $score->user->country->acronym,
                         ])
                         <a
                             href="{{ route('users.show', ['user' => $score->user_id, 'mode' => $mode]) }}"

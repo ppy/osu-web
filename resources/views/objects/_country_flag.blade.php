@@ -3,8 +3,8 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 <span class="{{ class_with_modifiers('flag-country', $modifiers ?? []) }}"
-    @if (isset($country_name))
-        title="{{$country_name}}"
+    @if (isset($countryName))
+        title="{{ $countryName }}"
     @endif
-    style="background-image: url('/images/flags/{{$country_code}}.png');"
+    style="background-image: url('/images/flags/{{ $countryCode }}.png');"
 ></span>
