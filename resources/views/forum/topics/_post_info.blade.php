@@ -72,6 +72,7 @@
                 @include('objects._country_flag', [
                     'countryCode' => $user->country->getKey(),
                     'countryName' => $user->country->name,
+                    'modifiers' => ['wrapped'],
                 ])
             </a>
         </div>
