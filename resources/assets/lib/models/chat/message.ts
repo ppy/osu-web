@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { MessageJSON } from 'chat/chat-api-responses';
+import { MessageJson } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
 import { action, computed, observable } from 'mobx';
 import User from 'models/user';
@@ -28,7 +28,7 @@ export default class Message {
     this.sender = new User(-1); // placeholder user
   }
 
-  static fromJSON(json: MessageJSON): Message {
+  static fromJson(json: MessageJson): Message {
     const message = Object.create(Message.prototype);
     return Object.assign(message, {
       channelId: json.channel_id,

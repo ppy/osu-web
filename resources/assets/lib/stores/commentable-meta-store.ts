@@ -3,11 +3,11 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
-import { CommentableMetaJSON } from 'interfaces/comment-json';
+import { CommentableMetaJson } from 'interfaces/comment-json';
 import { action, observable } from 'mobx';
 
 export default class CommentableMetaStore {
-  @observable meta = observable.map<string | null, CommentableMetaJSON>();
+  @observable meta = observable.map<string | null, CommentableMetaJson>();
 
   @action
   flushStore() {
@@ -27,13 +27,13 @@ export default class CommentableMetaStore {
   }
 
   @action
-  initialize(meta: CommentableMetaJSON[] | undefined | null) {
+  initialize(meta: CommentableMetaJson[] | undefined | null) {
     this.flushStore();
-    this.updateWithJSON(meta);
+    this.updateWithJson(meta);
   }
 
   @action
-  updateWithJSON(data: CommentableMetaJSON[] | undefined | null) {
+  updateWithJson(data: CommentableMetaJson[] | undefined | null) {
     if (data == null) { return; }
     for (const json of data) {
       const key = json.type != null && json.id != null ? `${json.type}-${json.id}` : null;

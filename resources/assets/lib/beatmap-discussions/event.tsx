@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { kebabCase } from 'lodash';
 import * as React from 'react';
@@ -13,7 +13,7 @@ interface Props {
   event: BeatmapsetEventJson;
   mode: 'discussions' | 'profile';
   time?: string;
-  users: Record<string, UserJSON>;
+  users: Record<string, UserJson>;
 }
 
 export default class Event extends React.PureComponent<Props> {
