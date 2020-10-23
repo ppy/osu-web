@@ -760,9 +760,23 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     |
     */
 
-    public function isNAT()
+    public function inGroupWithPlaymode($groupIdentifier, $playmode = null)
     {
-        return $this->isGroup(app('groups')->byIdentifier('nat'));
+        $group = app('groups')->byIdentifier($groupIdentifier);
+        $isGroup = $this->isGroup($group);
+
+        if ($isGroup === false || $playmode === null) {
+            return $isGroup;
+        }
+
+        $groupModes = $this->userGroups()->where('group_id', $group->group_id)->first()->playmodes;
+
+        return in_array($playmode, $groupModes, true);
+    }
+
+    public function isNAT($mode = null)
+    {
+        return $this->inGroupWithPlaymode('nat', $mode);
     }
 
     public function isAdmin()
@@ -775,19 +789,19 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->isGroup(app('groups')->byIdentifier('gmt'));
     }
 
-    public function isBNG()
+    public function isBNG($mode = null)
     {
-        return $this->isFullBN() || $this->isLimitedBN();
+        return $this->isFullBN($mode) || $this->isLimitedBN($mode);
     }
 
-    public function isFullBN()
+    public function isFullBN($mode = null)
     {
-        return $this->isGroup(app('groups')->byIdentifier('bng'));
+        return $this->inGroupWithPlaymode('bng', $mode);
     }
 
-    public function isLimitedBN()
+    public function isLimitedBN($mode = null)
     {
-        return $this->isGroup(app('groups')->byIdentifier('bng_limited'));
+        return $this->inGroupWithPlaymode('bng_limited', $mode);
     }
 
     public function isDev()
