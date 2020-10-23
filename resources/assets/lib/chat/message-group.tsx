@@ -15,14 +15,15 @@ interface Props {
 export default class MessageGroup extends React.Component<Props, any> {
   render(): React.ReactNode {
     const messages = this.props.messages;
-    const sender = messages[0].sender;
 
-    if (_.isEmpty(messages)) {
+    if (messages.length === 0) {
       return;
     }
 
+    const sender = messages[0].sender;
+
     let className = 'chat-message-group';
-    if (messages[0] && sender.id === currentUser.id) {
+    if (sender.id === currentUser.id) {
       className += ' chat-message-group--own';
     }
 
