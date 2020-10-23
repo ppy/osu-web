@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import { action, observable } from 'mobx';
 
 export default class User {
@@ -21,7 +21,7 @@ export default class User {
     this.id = id;
   }
 
-  static fromJSON(json: UserJSON): User {
+  static fromJson(json: UserJson): User {
     const user = Object.create(User.prototype);
     return Object.assign(user, {
       avatarUrl: json.avatar_url,
@@ -38,7 +38,7 @@ export default class User {
     });
   }
 
-  is(user: User | UserJSON | null) {
+  is(user: User | UserJson | null) {
     if (user == null) return false;
     return user.id === this.id;
   }
@@ -50,7 +50,7 @@ export default class User {
   /**
    * Compatibility so existing UserAvatar component can be used as-is.
    */
-  toJSON() {
+  toJson() {
     return {
       avatar_url: this.avatarUrl,
       country_code: this.countryCode,
@@ -66,7 +66,7 @@ export default class User {
   }
 
   @action
-  updateFromJSON(json: UserJSON) {
+  updateFromJson(json: UserJson) {
     this.username = json.username;
     this.avatarUrl = json.avatar_url;
     this.profileColour = json.profile_colour ?? '';

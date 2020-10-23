@@ -2,15 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderV4 from 'header-v4';
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import UserCardTypeContext from 'user-card-type-context';
 import { UserList } from 'user-list';
 
 interface Props {
-  friends: UserJSON[];
-  user: UserJSON;
+  friends: UserJson[];
+  user: UserJson;
 }
 
 export class Main extends React.PureComponent<Props> {
