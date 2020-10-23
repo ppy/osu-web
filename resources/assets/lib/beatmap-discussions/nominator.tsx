@@ -18,6 +18,7 @@ interface Props {
 }
 
 interface State {
+  loading: boolean;
   selectedModes: GameMode[];
   visible: boolean;
 }
@@ -35,6 +36,7 @@ export class Nominator extends React.PureComponent<Props, State> {
     super(props);
 
     this.state = {
+      loading: false,
       selectedModes: [],
       visible: false,
     };
@@ -46,6 +48,7 @@ export class Nominator extends React.PureComponent<Props, State> {
 
   hideNominationModal = () => {
     this.setState({
+      loading: false,
       selectedModes: [],
       visible: false,
     });
@@ -62,20 +65,22 @@ export class Nominator extends React.PureComponent<Props, State> {
   nominate = () => {
     this.xhr?.abort();
 
-    const url = route('beatmapsets.nominate', {beatmapset: this.props.beatmapset.id});
-    const params = {
-      data: {
-        playmodes: this.state.selectedModes,
-      },
-      method: 'PUT',
-    };
+    this.setState({loading: true}, () => {
+      const url = route('beatmapsets.nominate', {beatmapset: this.props.beatmapset.id});
+      const params = {
+        data: {
+          playmodes: this.state.selectedModes,
+        },
+        method: 'PUT',
+      };
 
-    this.xhr = $.ajax(url, params)
-      .done((response) => {
-        $.publish('beatmapsetDiscussions:update', {beatmapset: response});
-      })
-      .fail(osu.ajaxError)
-      .always(this.hideNominationModal);
+      this.xhr = $.ajax(url, params)
+        .done((response) => {
+          $.publish('beatmapsetDiscussions:update', {beatmapset: response});
+        })
+        .fail(osu.ajaxError)
+        .always(this.hideNominationModal);
+    });
   }
 
   render(): React.ReactNode {
@@ -162,9 +167,9 @@ export class Nominator extends React.PureComponent<Props, State> {
           <div className={`${this.bn}__buttons`}>
             <BigButton
               text={osu.trans('beatmaps.nominations.nominate')}
-              icon='fas fa-thumbs-up'
+              icon={this.state.loading ? 'fas fa-circle-notch fa-spin' : 'fas fa-thumbs-up'}
               props={{
-                disabled: this.hybridMode() && this.state.selectedModes.length < 1,
+                disabled: (this.hybridMode() && this.state.selectedModes.length < 1) || this.state.loading,
                 onClick: this.nominate,
               }}
             />
@@ -172,6 +177,7 @@ export class Nominator extends React.PureComponent<Props, State> {
               text={osu.trans('common.buttons.cancel')}
               icon='fas fa-times'
               props={{
+                disabled: this.state.loading,
                 onClick: this.hideNominationModal,
               }}
             />
