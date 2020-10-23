@@ -187,12 +187,16 @@ return [
         'nominate_confirm' => 'Diese Beatmap nominieren?',
         'nominated_by' => 'Nominiert von :users',
         'not_enough_hype' => "Nicht ausreichend Hype vorhanden.",
-        'qualified' => 'Die Beatmap wird voraussichtlich am :date ranked, wenn keine Probleme gefunden werden.',
-        'qualified_soon' => 'Die Beatmap wird bald ranked, wenn keine Probleme gefunden werden.',
         'required_text' => 'Nominierungen: :current/:required',
         'reset_message_deleted' => 'gelöscht',
         'title' => 'Nominierungsstatus',
         'unresolved_issues' => 'Es existieren noch Vorschläge/Probleme, die gelöst werden müssen.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Nominierungsprozess zurückgesetzt vor :time_ago von :user mit dem Problem :discussion (:message).',

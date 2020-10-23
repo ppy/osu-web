@@ -12,7 +12,7 @@ import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import UserSilenceAction from 'actions/user-silence-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
-import { ChannelJSON, MessageJSON, PresenceJSON } from 'chat/chat-api-responses';
+import { ChannelJson, MessageJson, PresenceJson } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
 import { action, computed, observable } from 'mobx';
 import Channel from 'models/chat/channel';
@@ -92,7 +92,7 @@ export default class ChannelStore {
   }
 
   @action
-  addNewConversation(json: ChannelJSON, message: MessageJSON) {
+  addNewConversation(json: ChannelJson, message: MessageJson) {
     const channel = this.getOrCreate(json.channel_id);
     channel.updateWithJson(json);
     channel.lastReadId = message.message_id;
@@ -170,7 +170,7 @@ export default class ChannelStore {
   }
 
   @action
-  updatePresence(presence: PresenceJSON) {
+  updatePresence(presence: PresenceJson) {
     presence.forEach((json) => {
       this.getOrCreate(json.channel_id).updatePresence(json);
     });

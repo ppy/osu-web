@@ -1,9 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import GroupJSON from './group-json';
+import GroupJson from './group-json';
 
-export default interface UserJSON {
+export default interface UserJson {
   avatar_url: string;
   country?: Country;
   country_code: string; // TODO: country object?
@@ -11,7 +11,7 @@ export default interface UserJSON {
   current_mode_rank?: number;
   default_group: string;
   follower_count?: number;
-  groups?: GroupJSON[];
+  groups?: GroupJson[];
   id: number;
   is_active: boolean;
   is_bot: boolean;

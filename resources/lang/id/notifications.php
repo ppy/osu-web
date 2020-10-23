@@ -136,6 +136,7 @@ return [
                 '_' => 'Medali baru',
                 'user_achievement_unlock' => '":title" Terbuka!',
                 'user_achievement_unlock_compact' => 'Anda berhasil mendapatkan medali ":title"!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],

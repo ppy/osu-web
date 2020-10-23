@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { CommentJSON } from 'interfaces/comment-json';
+import { CommentJson } from 'interfaces/comment-json';
 import { computed } from 'mobx';
 
 export type CommentSort = 'new' | 'old' | 'top';
@@ -24,7 +24,7 @@ export class Comment {
   userId: number;
   votesCount: number;
 
-  constructor(json: CommentJSON) {
+  constructor(json: CommentJson) {
     this.commentableId = json.commentable_id;
     this.commentableType = json.commentable_type;
     this.createdAt = json.created_at;

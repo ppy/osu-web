@@ -187,12 +187,16 @@ return [
         'nominate_confirm' => 'Suosittele tätä beatmappia?',
         'nominated_by' => 'suositellut :users',
         'not_enough_hype' => "",
-        'qualified' => 'Arvioidaan hyväksyttävän :date, mikäli ongelmia ei löydy.',
-        'qualified_soon' => 'Arvioidaan hyväksyttävän pian, mikäli ongelmia ei löydy.',
         'required_text' => 'Suositukset: :current/:required',
         'reset_message_deleted' => 'poistettu',
         'title' => 'Suositusten Tila',
         'unresolved_issues' => 'Vanhat ongelmat on ratkaistava ensin.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Suositteluprosessi nollaantui :time_ago sitten käyttäjän :user uuden ongelman vuoksi :discussion (:message).',

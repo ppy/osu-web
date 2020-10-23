@@ -4,7 +4,7 @@
 import { BlockButton } from 'block-button';
 import FlagCountry from 'flag-country';
 import { FriendButton } from 'friend-button';
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
@@ -20,7 +20,7 @@ interface Props {
   activated: boolean;
   mode: ViewMode;
   modifiers: string[];
-  user?: UserJSON;
+  user?: UserJson;
 }
 
 interface State {
@@ -35,7 +35,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     modifiers: [],
   };
 
-  static userLoading: UserJSON = {
+  static userLoading: UserJson = {
     avatar_url: '',
     country_code: '',
     cover: {},

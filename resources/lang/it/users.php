@@ -133,8 +133,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Il tuo account è stato limitato!',
-        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Solitamente questo è il risultato di un processo automatico e verrà risolto preferibilmente entro 24 ore. Se desideri fare appello alla tua restrizione, <a
-href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
+        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Solitamente questo è il risultato di un processo automatico e verrà risolto preferibilmente entro 24 ore. Se desideri fare appello alla tua restrizione, <a href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
     ],
     'show' => [
         'age' => ':age anni',
@@ -348,7 +347,6 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
         'info' => [
             'discord' => '',
             'interests' => 'Interessi',
-            'lastfm' => 'Last.fm',
             'location' => 'Posizione Attuale',
             'occupation' => 'Occupazione',
             'skype' => '',
