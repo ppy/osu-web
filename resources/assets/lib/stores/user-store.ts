@@ -3,7 +3,7 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import { action, observable } from 'mobx';
 import User from 'models/user';
 
@@ -20,7 +20,7 @@ export default class UserStore {
   }
 
   @action
-  getOrCreate(userId: number, props?: UserJSON): User {
+  getOrCreate(userId: number, props?: UserJson): User {
     let user = this.users.get(userId);
 
     // TODO: update from props if newer?
@@ -29,7 +29,7 @@ export default class UserStore {
     }
 
     if (props) {
-      user = User.fromJSON(props);
+      user = User.fromJson(props);
     } else {
       user = new User(userId);
     }
@@ -50,10 +50,10 @@ export default class UserStore {
   }
 
   @action
-  updateWithJSON(data: UserJSON[] | undefined | null) {
+  updateWithJson(data: UserJson[] | undefined | null) {
     if (data == null) { return; }
     for (const json of data) {
-      const user = User.fromJSON(json);
+      const user = User.fromJson(json);
       this.users.set(user.id, user);
     }
   }

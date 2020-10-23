@@ -78,7 +78,7 @@ return [
         'help' => [
             '_' => '',
             'help_forum_link' => '',
-            'support_button' => '',
+            'support_button' => '聯絡支援團隊',
         ],
 
         'os' => [

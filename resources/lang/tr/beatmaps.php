@@ -187,12 +187,16 @@ return [
         'nominate_confirm' => 'Beatmap aday gösterilsin mi?',
         'nominated_by' => ':users tarafından aday gösterildi',
         'not_enough_hype' => "Yeterince gaz yok.",
-        'qualified' => 'Eğer bir sorun bulunmazsa, :date tarihinde dereceli olacağı tahmin ediliyor.',
-        'qualified_soon' => 'Eğer bir sorun bulunmazsa, yakında dereceli olacağı tahmin ediliyor.',
         'required_text' => 'Aday Göstermeler: :current/:required',
         'reset_message_deleted' => 'silindi',
         'title' => 'Adaylık Durumu',
         'unresolved_issues' => 'Halen çözülmesi gereken sorunlar mevcut.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Adaylık süreci :time_ago :user tarafından yeni :discussion (:message) sorunu sebebiyle sıfırlandı.',

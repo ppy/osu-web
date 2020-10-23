@@ -187,12 +187,16 @@ return [
         'nominate_confirm' => '¿Nominar este mapa?',
         'nominated_by' => 'nominado por :users',
         'not_enough_hype' => "No hay suficiente hype.",
-        'qualified' => 'Se estima que se clasificará el :date, si no se encuentran problemas.',
-        'qualified_soon' => 'Se estima que se clasificará pronto, si no se encuentran problemas.',
         'required_text' => 'Nominaciones: :current/:required',
         'reset_message_deleted' => 'eliminado',
         'title' => 'Estado de nominación',
         'unresolved_issues' => 'Todavía hay problemas sin resolver que deben abordarse primero.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'El proceso de nominación se ha restablecido :time_ago por :user a causa del nuevo problema :discussion (:message).',

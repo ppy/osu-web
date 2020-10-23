@@ -8,16 +8,16 @@ return [
         'title' => '',
 
         'beatmap' => [
-            'by' => '',
+            'by' => '作曲者 :artist',
         ],
 
         'player' => [
-            'by' => '',
-            'submitted_on' => '',
+            'by' => '玩家',
+            'submitted_on' => '達成時間',
 
             'rank' => [
-                'country' => '',
-                'global' => '',
+                'country' => '全國排名',
+                'global' => '世界排名',
             ],
         ],
     ],

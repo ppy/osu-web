@@ -17,7 +17,7 @@ import { transaction } from 'mobx';
 import Message from 'models/chat/message';
 import RootDataStore from 'stores/root-data-store';
 import ChatAPI from './chat-api';
-import { MessageJSON } from './chat-api-responses';
+import { MessageJson } from './chat-api-responses';
 
 @dispatchListener
 export default class ChatOrchestrator implements DispatchListener {
@@ -30,12 +30,12 @@ export default class ChatOrchestrator implements DispatchListener {
     this.api = new ChatAPI();
   }
 
-  addMessages(channelId: number, messages: MessageJSON[]) {
+  addMessages(channelId: number, messages: MessageJson[]) {
     const newMessages: Message[] = [];
 
     transaction(() => {
-      messages.forEach((json: MessageJSON) => {
-        const newMessage = Message.fromJSON(json);
+      messages.forEach((json: MessageJson) => {
+        const newMessage = Message.fromJson(json);
         newMessage.sender = this.rootDataStore.userStore.getOrCreate(json.sender_id, json.sender);
         newMessages.push(newMessage);
       });

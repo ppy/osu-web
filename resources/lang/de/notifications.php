@@ -136,6 +136,7 @@ return [
                 '_' => 'Neue Medaille',
                 'user_achievement_unlock' => '":title" freigeschaltet!',
                 'user_achievement_unlock_compact' => '":title" freigeschaltet!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],

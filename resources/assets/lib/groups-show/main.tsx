@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderV4 from 'header-v4';
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import { UserList } from 'user-list';
 
@@ -13,7 +13,7 @@ interface Group {
 
 interface Props {
   group: Group;
-  users: UserJSON[];
+  users: UserJson[];
 }
 
 export class Main extends React.PureComponent<Props> {

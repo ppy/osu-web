@@ -2,9 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import GameMode from 'interfaces/game-mode';
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 
-export default interface UserJSONExtended extends UserJSON {
+export default interface UserJsonExtended extends UserJson {
   country: Country;
   cover: Cover;
   is_admin: boolean;
