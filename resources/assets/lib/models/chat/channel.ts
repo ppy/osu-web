@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChannelJSON, ChannelJsonExtended, ChannelType, MessageJSON } from 'chat/chat-api-responses';
+import { ChannelJson, ChannelJsonExtended, ChannelType, MessageJson } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
 import { action, computed, observable, transaction } from 'mobx';
 import User from 'models/user';
@@ -41,13 +41,18 @@ export default class Channel {
   }
 
   @computed
+  get firstMessage() {
+    return this.messages.length > 0 ? this.messages[0] : undefined;
+  }
+
+  @computed
   get hasEarlierMessages() {
     return this.firstMessageId !== this.minMessageId;
   }
 
   @computed
   get minMessageId() {
-    const id = this.messages[0]?.messageId;
+    const id = this.messages.length > 0 ? this.messages[0].messageId : undefined;
 
     return typeof id === 'number' ? id : -1;
   }
@@ -65,7 +70,7 @@ export default class Channel {
     this.channelId = channelId;
   }
 
-  static fromJSON(json: ChannelJsonExtended): Channel {
+  static fromJson(json: ChannelJsonExtended): Channel {
     const channel = Object.create(Channel.prototype);
     return Object.assign(channel, {
       channelId: json.channel_id,
@@ -138,7 +143,7 @@ export default class Channel {
   }
 
   @action
-  updateMessage(message: Message, json: MessageJSON | null) {
+  updateMessage(message: Message, json: MessageJson | null) {
     if (json != null) {
       message.messageId = json.message_id;
       message.timestamp = json.timestamp;
@@ -157,7 +162,7 @@ export default class Channel {
   }
 
   @action
-  updateWithJson(json: ChannelJSON) {
+  updateWithJson(json: ChannelJson) {
     this.name = json.name;
     this.description = json.description;
     this.type = json.type;

@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import UserRelationJson from 'interfaces/user-relation-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
@@ -12,7 +12,7 @@ import UserCardTypeContext from 'user-card-type-context';
 interface Props {
   mode: ViewMode;
   modifiers: string[];
-  user: UserJSON;
+  user: UserJson;
 }
 
 export default class UserCardBrick extends React.PureComponent<Props> {

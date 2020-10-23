@@ -11,7 +11,7 @@ import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import ChatAPI from 'chat/chat-api';
-import { ChannelJSON, GetUpdatesJSON, MessageJSON, PresenceJSON } from 'chat/chat-api-responses';
+import { ChannelJson, GetUpdatesJson, MessageJson, PresenceJson } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
 import { groupBy } from 'lodash';
 import { action, computed, observable, runInAction } from 'mobx';
@@ -93,7 +93,7 @@ export default class ChannelStore {
   }
 
   @action
-  addNewConversation(json: ChannelJSON, message: MessageJSON) {
+  addNewConversation(json: ChannelJson, message: MessageJson) {
     const channel = this.getOrCreate(json.channel_id);
     channel.updateWithJson(json);
     channel.lastReadId = message.message_id;
@@ -159,7 +159,7 @@ export default class ChannelStore {
   }
 
   @action
-  updateWithJson(updateJson: GetUpdatesJSON) {
+  updateWithJson(updateJson: GetUpdatesJson) {
     this.updateWithPresence(updateJson.presence);
 
     const groups = groupBy(updateJson.messages, 'channel_id');
@@ -174,7 +174,7 @@ export default class ChannelStore {
   }
 
   @action
-  updateWithPresence(presence: PresenceJSON) {
+  updateWithPresence(presence: PresenceJson) {
     presence.forEach((json) => {
       this.getOrCreate(json.channel_id).updatePresence(json);
     });
@@ -194,10 +194,10 @@ export default class ChannelStore {
   }
 
   @action
-  private handleChatChannelNewMessages(channelId: number, json: MessageJSON[]) {
+  private handleChatChannelNewMessages(channelId: number, json: MessageJson[]) {
     const messages = json.map((messageJson) => {
       if (messageJson.sender != null) this.userStore.getOrCreate(messageJson.sender_id, messageJson.sender);
-      return Message.fromJSON(messageJson);
+      return Message.fromJson(messageJson);
     });
 
     if (messages.length === 0) return;
