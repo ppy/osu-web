@@ -187,12 +187,16 @@ return [
         'nominate_confirm' => 'Nominera denna beatmap?',
         'nominated_by' => 'nominerad av :users',
         'not_enough_hype' => "Det finns inte tillräckligt med hype.",
-        'qualified' => 'Beräknad tid när den är rankad är :date, om inga fel hittas.',
-        'qualified_soon' => 'Beräknat att den rankas snart, om inga fel hittas.',
         'required_text' => 'Nomineringar: :current/:required',
         'reset_message_deleted' => 'raderad',
         'title' => 'Nominering Status',
         'unresolved_issues' => 'Det finns fortfarande olösta problem som måste tas hand om först.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Nomineringsprocessen återställdes :time_ago av :user med ett nytt problem :discussion (:message).',

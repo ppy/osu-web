@@ -136,6 +136,7 @@ return [
                 '_' => 'Huy chương mới',
                 'user_achievement_unlock' => 'Đã mở khóa ":title"!',
                 'user_achievement_unlock_compact' => '',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],

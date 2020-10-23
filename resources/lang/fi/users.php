@@ -347,7 +347,6 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Kiinnostuksen kohteet',
-            'lastfm' => 'Last.fm',
             'location' => 'Tämänhetkinen sijainti',
             'occupation' => 'Ammatti',
             'skype' => '',

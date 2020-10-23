@@ -136,6 +136,7 @@ return [
                 '_' => 'Nová medaile',
                 'user_achievement_unlock' => 'Odemčeno ":title"\'!',
                 'user_achievement_unlock_compact' => 'Odemčeno ":title"\'!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],
