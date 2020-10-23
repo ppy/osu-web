@@ -13,6 +13,10 @@ return [
     ],
 
     'scopes' => [
+        'chat' => [
+            'write' => 'Send private messages as you',
+        ],
+
         'identify' => 'Identify you and read your public profile.',
 
         'friends' => [
