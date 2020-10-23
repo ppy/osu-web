@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
 import { action, computed, observable } from 'mobx';
@@ -38,7 +38,7 @@ interface SearchResultBeatmapset extends SearchResultSummary {
 }
 
 interface SearchResultUser extends SearchResultSummary {
-  users: UserJSON[];
+  users: UserJson[];
 }
 
 const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];

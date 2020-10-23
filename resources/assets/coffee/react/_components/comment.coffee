@@ -497,7 +497,7 @@ export class Comment extends React.PureComponent
 
 
   userFor: (comment) =>
-    user = userStore.get(comment.userId)?.toJSON()
+    user = userStore.get(comment.userId)?.toJson()
 
     if user?
       user

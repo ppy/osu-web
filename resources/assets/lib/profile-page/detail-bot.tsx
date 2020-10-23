@@ -2,11 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { FriendButton } from 'friend-button';
-import UserJSONExtended from 'interfaces/user-json-extended';
+import UserJsonExtended from 'interfaces/user-json-extended';
 import * as React from 'react';
 
 interface Props {
-  user: UserJSONExtended;
+  user: UserJsonExtended;
 }
 
 export default function DetailBot({ user }: Props) {

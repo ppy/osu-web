@@ -3,7 +3,7 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
-import { OwnClientJSON } from 'interfaces/own-client-json';
+import { OwnClientJson } from 'interfaces/own-client-json';
 import { action, observable } from 'mobx';
 import { OwnClient as Client } from 'models/oauth/own-client';
 
@@ -17,14 +17,14 @@ export default class OwnClientStore {
     }
   }
 
-  initialize(data: OwnClientJSON[]) {
+  initialize(data: OwnClientJson[]) {
     for (const item of data) {
       this.updateWithJson(item);
     }
   }
 
   @action
-  updateWithJson(json: OwnClientJSON) {
+  updateWithJson(json: OwnClientJson) {
     const client = new Client(json);
     this.clients.set(client.id, client);
 
