@@ -4,11 +4,6 @@
 import Message from 'models/chat/message';
 import DispatcherAction from './dispatcher-action';
 
-export class ChatChannelPartAction implements DispatcherAction {
-  constructor(public channelId: number, public shouldSync = true) {
-  }
-}
-
 export class ChatMessageSendAction implements DispatcherAction {
   constructor(public message: Message) {
   }

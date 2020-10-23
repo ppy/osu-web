@@ -1,8 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatChannelPartAction } from 'actions/chat-actions';
-import { dispatch } from 'app-dispatcher';
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
@@ -57,7 +55,7 @@ export default class ConversationListItem extends React.Component<Props> {
   }
 
   private part = () => {
-    dispatch(new ChatChannelPartAction(this.props.channelId));
+    this.dataStore.channelStore.partChannel(this.props.channelId);
   }
 
   private switch = () => {

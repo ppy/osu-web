@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import {
-  ChatChannelPartAction,
   ChatMessageSendAction,
 } from 'actions/chat-actions';
 import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
@@ -132,9 +131,7 @@ export default class ChannelStore {
   }
 
   handleDispatchAction(event: DispatcherAction) {
-    if (event instanceof ChatChannelPartAction) {
-      this.handleChatChannelPartAction(event);
-    } else if (event instanceof ChatMessageSendAction) {
+    if (event instanceof ChatMessageSendAction) {
       this.handleChatMessageSendAction(event);
     } else if (event instanceof UserLogoutAction) {
       this.handleUserLogoutAction(event);
@@ -227,6 +224,15 @@ export default class ChannelStore {
   }
 
   @action
+  partChannel(channelId: number) {
+    if (channelId > 0) {
+      this.api.partChannel(channelId, window.currentUser.id);
+    }
+
+    this.channels.delete(channelId);
+  }
+
+  @action
   updateWithJson(updateJson: GetUpdatesJSON) {
     this.updateWithPresence(updateJson.presence);
 
@@ -275,15 +281,6 @@ export default class ChannelStore {
 
     channel.addMessages(messages);
     channel.loaded = true;
-  }
-
-  @action
-  private handleChatChannelPartAction(event: ChatChannelPartAction) {
-    if (event.channelId !== -1) {
-      this.api.partChannel(event.channelId, window.currentUser.id);
-    }
-
-    this.channels.delete(event.channelId);
   }
 
   @action
