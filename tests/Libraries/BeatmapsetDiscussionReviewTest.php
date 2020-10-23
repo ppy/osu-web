@@ -584,19 +584,19 @@ class BeatmapsetDiscussionReviewTest extends TestCase
 
     public function testUpdateDocumentWithNewIssueShouldResetNominations()
     {
-        $gmtUser = factory(User::class)->states('gmt')->create();
+        $natUser = factory(User::class)->states('nat')->create();
         $beatmapset = factory(Beatmapset::class)->create([
             'discussion_enabled' => true,
             'approved' => Beatmapset::STATES['pending'],
         ]);
         $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        $review = $this->setUpPraiseOnlyReview($beatmapset, $gmtUser);
+        $review = $this->setUpPraiseOnlyReview($beatmapset, $natUser);
 
         // ensure qualified beatmap is pending
         $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
 
         // ensure beatmapset has a nomination
-        $beatmapset->nominate($gmtUser);
+        $beatmapset->nominate($natUser);
         $this->assertSame($beatmapset->nominations, 1);
 
         // ensure we have a user watching, otherwise no notifications will be sent
@@ -610,7 +610,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             'text' => 'whee',
         ];
 
-        BeatmapsetDiscussionReview::update($review, $document, $gmtUser);
+        BeatmapsetDiscussionReview::update($review, $document, $natUser);
 
         $beatmapset->refresh();
 

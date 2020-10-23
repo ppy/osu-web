@@ -106,8 +106,9 @@ class BeatmapsetTest extends TestCase
         $nominator = factory(User::class)->create();
         $nominator->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng_limited')->getKey()]);
 
-        $this->expectException(AuthorizationException::class);
-        priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
+        $this->assertFalse($beatmapset->isQualified());
+        $beatmapset->nominate($nominator);
+        $this->assertFalse($beatmapset->isQualified());
     }
 
     public function testNominateWithDefaultMetadata()
@@ -229,7 +230,7 @@ class BeatmapsetTest extends TestCase
 
         $count = $beatmapset->requiredNominationCount() - $beatmapset->currentNominationCount() - 1;
         for ($i = 0; $i < $count; $i++) {
-            $beatmapset->nominate(factory(User::class)->create());
+            $beatmapset->nominate(factory(User::class)->create(), Beatmap::modeStr($beatmapset->beatmaps->first()->playmode));
         }
     }
 
