@@ -68,7 +68,7 @@ return [
                 'comment_new' => ':username ezt kommentálta: ":content" ezen: ":title"',
                 'comment_new_compact' => ':username ezt kommentálta: ":content"',
                 'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply_compact' => ':username ezt válaszolta: ":content"',
             ],
         ],
 
@@ -94,7 +94,7 @@ return [
                 'comment_new' => ':username ezt kommentálta: ":content" ezen: ":title"',
                 'comment_new_compact' => ':username ezt kommentálta: ":content"',
                 'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply_compact' => ':username ezt válaszolta: ":content"',
             ],
         ],
 
@@ -107,7 +107,7 @@ return [
                 'comment_new' => ':username ezt kommentálta: ":content" ezen: ":title"',
                 'comment_new_compact' => ':username ezt kommentálta: ":content"',
                 'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply_compact' => ':username ezt válaszolta: ":content"',
             ],
         ],
 
@@ -137,6 +137,7 @@ return [
                 '_' => 'Új medál',
                 'user_achievement_unlock' => 'Feloldottad ":title"!',
                 'user_achievement_unlock_compact' => 'Feloldottad":title"!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],
@@ -154,8 +155,8 @@ return [
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
+                'beatmapset_disqualify' => '":title" dalt diszkvalifikálták',
+                'beatmapset_love' => '":title" dalt kedvelt kategóriába került',
                 'beatmapset_nominate' => '',
                 'beatmapset_qualify' => '',
                 'beatmapset_rank' => '',

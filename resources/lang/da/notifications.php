@@ -136,6 +136,7 @@ return [
                 '_' => 'Ny medalje',
                 'user_achievement_unlock' => 'Optjent ":title"!',
                 'user_achievement_unlock_compact' => 'Opnået ":title"!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],

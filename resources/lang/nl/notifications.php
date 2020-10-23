@@ -136,6 +136,7 @@ return [
                 '_' => 'Nieuwe medaille',
                 'user_achievement_unlock' => '":title" ontgrendeld!',
                 'user_achievement_unlock_compact' => '":title" ontgrendeld!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],

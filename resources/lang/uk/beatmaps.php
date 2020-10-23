@@ -187,12 +187,16 @@ return [
         'nominate_confirm' => 'Номінувати цю карту?',
         'nominated_by' => 'номінована :users',
         'not_enough_hype' => "Недостатньо хайпа.",
-        'qualified' => 'Якщо більше не буде проблем, то карта отримає ранговий статус приблизно :date.',
-        'qualified_soon' => 'Якщо більше не буде проблем, то карта отримає ранговий статус дуже скоро.',
         'required_text' => 'Номінації: :current/:required',
         'reset_message_deleted' => 'видалено',
         'title' => 'Статус номінації',
         'unresolved_issues' => 'Є ще деякі проблеми, які потребують вирішення.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => ':user скинув прогрес номінації :time_ago через нову проблему :discussion (:message).',

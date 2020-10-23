@@ -136,6 +136,7 @@ return [
                 '_' => '新奖章',
                 'user_achievement_unlock' => '解锁 ":title"！',
                 'user_achievement_unlock_compact' => '您已解锁 ":title" 成就！',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],

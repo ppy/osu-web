@@ -187,12 +187,16 @@ return [
         'nominate_confirm' => 'Đề cử (nominate) beatmap này?',
         'nominated_by' => 'Được :users đề cử',
         'not_enough_hype' => "",
-        'qualified' => 'Dự tính sẽ xếp hạng (rank) vào :date, nếu không tìm thấy vấn đề gì.',
-        'qualified_soon' => 'Dự tính sẽ sớm được xếp hạng (rank), nếu không tìm thấy vấn đề gì.',
         'required_text' => 'Trạng thái đề cử: :current/:required',
         'reset_message_deleted' => 'đã xóa',
         'title' => 'Trạng Thái Đề Cử',
         'unresolved_issues' => 'Vẫn còn một số vấn đề chưa giải quyết cần được xem lại trước.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Quá trình đề cử (nomination) thiết lập lại vào :time_ago bởi :user với vấn đề mới :discussion (:message).',

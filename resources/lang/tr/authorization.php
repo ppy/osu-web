@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Bunun yerine biraz osu! oynamaya ne dersiniz?',
     'require_login' => 'Devam etmek için lütfen giriş yapın.',
     'require_verification' => 'Devam etmek için lütfen doğrulama işlemini tamamlayın.',
     'restricted' => "Kısıtlanmışken bunu yapamazsınız.",
