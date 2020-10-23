@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { FlagCountry } from 'flag-country';
+import FlagCountry from 'flag-country';
 import { FriendButton } from 'friend-button';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
@@ -20,7 +20,7 @@ export default function User({ user, modifiers = [] }: { modifiers?: string[], u
 
       <div className='user-search-card__details'>
         <div className='user-search-card__col  user-search-card__col--flag'>
-          <FlagCountry country={user.country} modifiers={['inline']} />
+          <FlagCountry country={user.country} />
         </div>
 
         <a className='user-search-card__col user-search-card__col--username clickable-row-link' href={url}>

@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BlockButton } from 'block-button';
-import { FlagCountry } from 'flag-country';
+import FlagCountry from 'flag-country';
 import { FriendButton } from 'friend-button';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
@@ -198,7 +198,7 @@ export class UserCard extends React.PureComponent<Props, State> {
           className='user-card__icon user-card__icon--flag'
           href={route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}
         >
-          <FlagCountry country={this.user.country} modifiers={['full']} />
+          <FlagCountry country={this.user.country} />
         </a>
 
         {

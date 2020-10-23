@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { FlagCountry } from 'flag-country'
+import FlagCountry from 'flag-country'
 import { route } from 'laroute'
 import Mod from 'mod'
 import * as React from 'react'
@@ -55,7 +55,7 @@ export ScoreTop = (props) ->
               type: 'performance'
             el FlagCountry,
               country: props.score.user.country
-              modifiers: ['scoreboard', 'small-box', 'wrapped']
+              modifiers: ['flat']
 
       div className: "#{bn}__wrapping-container #{bn}__wrapping-container--right",
         div className: "#{bn}__stats",

@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { FlagCountry } from 'flag-country'
+import FlagCountry from 'flag-country'
 import * as React from 'react'
 import { a, div, h1, span } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
@@ -61,7 +61,7 @@ export class HeaderInfo extends React.PureComponent
                   country: @props.user.country.code,
                   type: 'performance'
                 span className: "#{bn}__flag-flag",
-                  el FlagCountry, country: @props.user.country, modifiers: ['full']
+                  el FlagCountry, country: @props.user.country
                 span className: "#{bn}__flag-text",
                   @props.user.country.name
       div
