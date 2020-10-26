@@ -7,7 +7,6 @@ namespace Tests\Controllers\Chat;
 
 use App\Models\Chat;
 use App\Models\User;
-use App\Models\UserAccountHistory;
 use App\Models\UserRelation;
 use Faker;
 use Tests\TestCase;
@@ -154,11 +153,7 @@ class ChatControllerTest extends TestCase
 
     public function testCreatePMWhenSilenced() // fail
     {
-        // TODO: convert $this->silencedUser to use afterCreatingState after upgrading to Laraval 5.6
-        $silencedUser = factory(User::class)->create();
-        $silencedUser->accountHistories()->save(
-            factory(UserAccountHistory::class)->states('silence')->make()
-        );
+        $silencedUser = factory(User::class)->states('silenced')->create();
 
         $this->actAsScopedUser($silencedUser, ['*']);
         $this->json(
