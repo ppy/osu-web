@@ -12,6 +12,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Testing\Fakes\MailFake;
+use Laravel\Passport\Passport;
 use Laravel\Passport\Token;
 use League\OAuth2\Server\ResourceServer;
 use Mockery;
@@ -135,6 +136,18 @@ class TestCase extends BaseTestCase
         $this->actAsUser($user, true);
 
         return $this;
+    }
+
+    protected function createAllowedScopesDataProvider(array $allowedScopes)
+    {
+        $data = Passport::scopes()->pluck('id')->map(function ($scope) use ($allowedScopes) {
+            return [[$scope], in_array($scope, $allowedScopes)];
+        })->all();
+
+        // scopeless tokens should fail in general.
+        $data[] = [[], false];
+
+        return $data;
     }
 
     protected function clearMailFake()

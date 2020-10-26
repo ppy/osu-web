@@ -25,17 +25,27 @@ class ChatControllerTest extends TestCase
     }
 
     //region POST /chat/new - Create New PM
-    public function testCreatePM() // success
+
+    /**
+     * @dataProvider createPMDataProvider
+     */
+    public function testCreatePM($scopes, $allowed)
     {
-        $this->actAsScopedUser($this->user, ['*']);
-        $this->json(
+        $this->actAsScopedUser($this->user, $scopes);
+        $response = $this->json(
             'POST',
             route('api.chat.new'),
             [
                 'target_id' => $this->anotherUser->user_id,
                 'message' => self::$faker->sentence(),
             ]
-        )->assertStatus(200);
+        );
+
+        if ($allowed) {
+            $response->assertSuccessful();
+        } else {
+            $response->assertForbidden();
+        }
     }
 
     public function testCreatePMWhenAlreadyExists() // success
@@ -467,6 +477,11 @@ class ChatControllerTest extends TestCase
     }
 
     //endregion
+
+    public function createPMDataProvider()
+    {
+        return $this->createAllowedScopesDataProvider(['*', 'chat.write']);
+    }
 
     protected function setUp(): void
     {
