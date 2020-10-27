@@ -380,7 +380,14 @@ class LegacyInterOpController extends Controller
     public function userSessionsDestroy($userId)
     {
         SessionStore::destroy($userId);
-        OAuth\Token::where('user_id', $userId)->get()->each->revoke();
+        OAuth\Token
+            ::where('user_id', $userId)
+            ->with('refreshToken')
+            ->get()
+            ->each(function ($token) {
+                $token->revoke();
+                optional($token->refreshToken)->revoke();
+            });
 
         return ['success' => true];
     }

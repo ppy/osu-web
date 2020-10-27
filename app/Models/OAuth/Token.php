@@ -6,6 +6,7 @@
 namespace App\Models\OAuth;
 
 use App\Events\UserSessionEvent;
+use Laravel\Passport\RefreshToken;
 use Laravel\Passport\Token as PassportToken;
 
 class Token extends PassportToken
