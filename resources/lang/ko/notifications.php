@@ -136,6 +136,7 @@ return [
                 '_' => '새 메달',
                 'user_achievement_unlock' => '":title" 해제!',
                 'user_achievement_unlock_compact' => '":title" 달성!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],

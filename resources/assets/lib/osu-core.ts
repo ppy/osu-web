@@ -4,7 +4,7 @@
 import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controller';
 import ChatWorker from 'chat/chat-worker';
 import CurrentUser from 'interfaces/current-user';
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import RootDataStore from 'stores/root-data-store';
 import UserLoginObserver from 'user-login-observer';
 import WindowFocusObserver from './window-focus-observer';
@@ -51,7 +51,7 @@ export default class OsuCore {
     return window.currentUser.id != null ? window.currentUser : null;
   }
 
-  private setUser = (event: JQuery.Event, user: UserJSON) => {
+  private setUser = (event: JQuery.Event, user: UserJson) => {
     this.dataStore.userStore.getOrCreate(user.id, user);
   }
 }

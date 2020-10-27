@@ -1,14 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { PresenceJSON, SendToJSON } from 'chat/chat-api-responses';
+import { PresenceJson, SendToJson } from 'chat/chat-api-responses';
 import MainView from 'chat/main-view';
 import { isEmpty } from 'lodash';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 
 const dataStore = core.dataStore;
-const presence: PresenceJSON = osu.parseJson('json-presence');
+const presence = osu.parseJson<PresenceJson>('json-presence');
 
 if (!isEmpty(presence)) {
   // initial population of channel/presence data
@@ -17,7 +17,7 @@ if (!isEmpty(presence)) {
 
 reactTurbolinks.register('chat', MainView, () => {
   let initialChannel: number | undefined;
-  const sendTo: SendToJSON = osu.parseJson('json-sendto');
+  const sendTo: SendToJson = osu.parseJson('json-sendto');
 
   if (!isEmpty(sendTo)) {
     const target = dataStore.userStore.getOrCreate(sendTo.target.id, sendTo.target); // pre-populate userStore with target

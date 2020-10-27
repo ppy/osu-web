@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import User from 'models/user';
 import OsuCore from 'osu-core';
 
@@ -24,7 +24,7 @@ describe('OsuCore user:update subscriber testing thing', () => {
   it('user:update should update the user store from a JSON value', () => {
     const core = new OsuCore(window);
 
-    const json: UserJSON = {
+    const json: UserJson = {
       avatar_url: '',
       country_code: '',
       cover: {},
@@ -40,7 +40,7 @@ describe('OsuCore user:update subscriber testing thing', () => {
       username: 'foo',
     };
 
-    const user = User.fromJSON(json);
+    const user = User.fromJson(json);
 
     $.publish('user:update', json);
 
