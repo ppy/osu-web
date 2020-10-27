@@ -136,6 +136,7 @@ return [
                 '_' => 'Nuova medaglia',
                 'user_achievement_unlock' => 'Sbloccato ":title"!',
                 'user_achievement_unlock_compact' => 'Sbloccato ":title"!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],

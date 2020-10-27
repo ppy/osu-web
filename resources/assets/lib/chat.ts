@@ -10,11 +10,11 @@ import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 
 const dataStore = core.dataStore;
-const presence: PresenceJson = osu.parseJson('json-presence');
+const presence = osu.parseJson<PresenceJson>('json-presence');
 
 if (!isEmpty(presence)) {
   // initial population of channel/presence data
-  dataStore.channelStore.updatePresence(presence);
+  dataStore.channelStore.updateWithPresence(presence);
 }
 
 reactTurbolinks.register('chat', MainView, () => {

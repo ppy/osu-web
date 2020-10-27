@@ -21,7 +21,7 @@ return [
 
         'translation' => [
             'legal' => 'Questa traduzione è stata fornita solo per comodità. La :default è l\'unica versione giuridicamente vincolante di questo testo.',
-            'outdated' => 'Questa pagina contiene una traduzione obsoleta del contenuto originale. Controlla la :default per informazioni più accurate (e considera di aggiornare la traduzione se sei in grado di aiutare)!',
+            'outdated' => 'Questa pagina contiene una traduzione obsoleta del contenuto originale. Controlla la :default per informazioni più accurate (e aggiorna la traduzione se puoi)!',
 
             'default' => 'versione Inglese',
         ],

@@ -136,6 +136,7 @@ return [
                 '_' => 'Новая медаль',
                 'user_achievement_unlock' => 'Адкрыта ":title"!',
                 'user_achievement_unlock_compact' => 'Адкрыта ":title"!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],
