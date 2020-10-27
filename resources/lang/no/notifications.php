@@ -137,6 +137,7 @@ return [
                 '_' => 'Ny medalje',
                 'user_achievement_unlock' => '":title" låst opp!',
                 'user_achievement_unlock_compact' => '":title" låst opp!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],

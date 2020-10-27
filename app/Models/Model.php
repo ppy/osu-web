@@ -71,8 +71,8 @@ abstract class Model extends BaseModel
 
     public function refresh()
     {
-        if (isset($this->memoized)) {
-            $this->memoized = [];
+        if (method_exists($this, 'resetMemoized')) {
+            $this->resetMemoized();
         }
 
         return parent::refresh();

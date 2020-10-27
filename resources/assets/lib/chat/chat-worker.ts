@@ -17,7 +17,7 @@ import { transaction } from 'mobx';
 import Message from 'models/chat/message';
 import RootDataStore from 'stores/root-data-store';
 import ChatAPI from './chat-api';
-import { MessageJSON } from './chat-api-responses';
+import { MessageJson } from './chat-api-responses';
 
 @dispatchListener
 export default class ChatWorker implements DispatchListener {
@@ -64,8 +64,8 @@ export default class ChatWorker implements DispatchListener {
         }
 
         transaction(() => {
-          updateJson.messages.forEach((message: MessageJSON) => {
-            const newMessage = Message.fromJSON(message);
+          updateJson.messages.forEach((message: MessageJson) => {
+            const newMessage = Message.fromJson(message);
             newMessage.sender = this.rootDataStore.userStore.getOrCreate(message.sender_id, message.sender);
             dispatch(new ChatMessageAddAction(newMessage));
           });
@@ -105,47 +105,41 @@ export default class ChatWorker implements DispatchListener {
     return this.windowIsActive ? this.pollTime : this.pollTimeIdle;
   }
 
-  sendMessage(message: Message) {
+  async sendMessage(message: Message) {
     const channelId = message.channelId;
     const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
 
-    if (channel.newChannel) {
-      const users = channel.users.slice();
-      const userId = users.find((user) => {
-        return user !== currentUser.id;
-      });
+    try {
+      if (channel.newChannel) {
+        const users = channel.users.slice();
+        const userId = users.find((user) => {
+          return user !== currentUser.id;
+        });
 
-      if (!userId) {
-        console.debug('sendMessage:: userId not found?? this shouldn\'t happen');
-        return;
+        if (!userId) {
+          console.debug('sendMessage:: userId not found?? this shouldn\'t happen');
+          return;
+        }
+
+        const response = await this.api.newConversation(userId, message);
+        transaction(() => {
+          this.rootDataStore.channelStore.channels.delete(channelId);
+          this.rootDataStore.channelStore.addNewConversation(response.channel, response.message);
+          dispatch(new ChatChannelSwitchAction(response.channel.channel_id));
+        });
+      } else {
+        const response = await this.api.sendMessage(message);
+        if (response) {
+          message.messageId = response.message_id;
+        } else {
+          message.errored = true;
+        }
+        dispatch(new ChatMessageUpdateAction(message));
       }
-
-      this.api.newConversation(userId, message.content, message.isAction)
-        .then((response) => {
-          transaction(() => {
-            this.rootDataStore.channelStore.channels.delete(channelId);
-            this.rootDataStore.channelStore.addNewConversation(response.channel, response.message);
-            dispatch(new ChatChannelSwitchAction(response.channel.channel_id));
-          });
-        })
-        .catch(() => {
-          message.errored = true;
-          dispatch(new ChatMessageUpdateAction(message));
-        });
-    } else {
-      this.api.sendMessage(channelId, message.content, message.isAction)
-        .then((updateJson) => {
-          if (updateJson) {
-            message.messageId = updateJson.message_id;
-          } else {
-            message.errored = true;
-          }
-          dispatch(new ChatMessageUpdateAction(message));
-        })
-        .catch(() => {
-          message.errored = true;
-          dispatch(new ChatMessageUpdateAction(message));
-        });
+    } catch (error) {
+      message.errored = true;
+      dispatch(new ChatMessageUpdateAction(message));
+      osu.ajaxError(error);
     }
   }
 

@@ -30,9 +30,13 @@
                             <div class="user-session-list-session__details">
                                 <span class="user-session-list-session__last-active">{{trans('accounts.security.last_active')}} {!! timeago($session['last_visit']) !!}</span>
                                 <span class="user-session-list-session__ip" title="{{$session['ip']}}">
-                                    <span class="user-session-list-session__icon flag-country flag-country--small-box"
-                                        style="background-image: url('/images/flags/{{$session['country']['code']}}.png');"
-                                    ></span>
+                                    <span class="user-session-list-session__icon">
+                                        @include('objects._flag_country', [
+                                            'countryCode' => $session['country']['code'],
+                                            'modifiers' => ['flat'],
+                                        ])
+                                    </span>
+
                                     {{$session['country']['name']}}
                                 </span>
                                 <button

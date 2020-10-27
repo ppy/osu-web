@@ -12,16 +12,16 @@ import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import UserSilenceAction from 'actions/user-silence-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
-import { ChannelJSON, MessageJSON, PresenceJSON } from 'chat/chat-api-responses';
+import { ChannelJson, MessageJson, PresenceJson } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
 import { action, computed, observable } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
-import Store from 'stores/store';
+import UserStore from './user-store';
 
 @dispatchListener
-export default class ChannelStore extends Store {
+export default class ChannelStore {
   @observable channels = observable.map<number, Channel>();
   lastHistoryId: number | null = null;
   @observable loaded: boolean = false;
@@ -79,6 +79,9 @@ export default class ChannelStore extends Store {
     });
   }
 
+  constructor(protected userStore: UserStore) {
+  }
+
   @action
   addMessages(channelId: number, messages: Message[]) {
     if (_.isEmpty(messages)) {
@@ -89,7 +92,7 @@ export default class ChannelStore extends Store {
   }
 
   @action
-  addNewConversation(json: ChannelJSON, message: MessageJSON) {
+  addNewConversation(json: ChannelJson, message: MessageJson) {
     const channel = this.getOrCreate(json.channel_id);
     channel.updateWithJson(json);
     channel.lastReadId = message.message_id;
@@ -167,7 +170,7 @@ export default class ChannelStore extends Store {
   }
 
   @action
-  updatePresence(presence: PresenceJSON) {
+  updatePresence(presence: PresenceJson) {
     presence.forEach((json) => {
       this.getOrCreate(json.channel_id).updatePresence(json);
     });

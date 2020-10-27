@@ -1,6 +1,6 @@
 {
   "mappings": {
-    "posts": {
+    "_doc": {
       "dynamic": false,
       "properties": {
         "forum_id": {

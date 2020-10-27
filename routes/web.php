@@ -74,6 +74,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('beatmapsets/{beatmapset}/discussion-unlock', 'BeatmapsetsController@discussionUnlock')->name('beatmapsets.discussion-unlock');
     Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download')->name('beatmapsets.download');
     Route::put('beatmapsets/{beatmapset}/love', 'BeatmapsetsController@love')->name('beatmapsets.love');
+    Route::delete('beatmapsets/{beatmapset}/love', 'BeatmapsetsController@removeFromLoved')->name('beatmapsets.remove-from-loved');
     Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
     Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
@@ -455,6 +456,10 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::post('user-recalculate-ranked-scores/{user}', 'LegacyInterOpController@userRecalculateRankedScores');
     Route::get('/news', 'LegacyInterOpController@news');
     Route::apiResource('users', 'InterOp\UsersController', ['only' => ['store']]);
+
+    Route::group(['as' => 'indexing.', 'prefix' => 'indexing'], function () {
+        Route::apiResource('bulk', 'InterOp\Indexing\BulkController', ['only' => ['store']]);
+    });
 
     Route::group(['as' => 'user-groups.'], function () {
         Route::post('user-group', 'InterOp\UserGroupsController@store')->name('store');

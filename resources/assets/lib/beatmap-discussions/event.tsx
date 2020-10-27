@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { kebabCase } from 'lodash';
 import * as React from 'react';
@@ -13,7 +13,7 @@ interface Props {
   event: BeatmapsetEventJson;
   mode: 'discussions' | 'profile';
   time?: string;
-  users: Record<string, UserJSON>;
+  users: Record<string, UserJson>;
 }
 
 export default class Event extends React.PureComponent<Props> {
@@ -123,7 +123,7 @@ export default class Event extends React.PureComponent<Props> {
       text = BeatmapDiscussionHelper.format(this.props.event.comment, { newlines: false });
     }
 
-    if (this.props.event.type === 'discussion_lock') {
+    if (this.props.event.type === 'discussion_lock' || this.props.event.type === 'remove_from_loved') {
       text = BeatmapDiscussionHelper.format(this.props.event.comment.reason, { newlines: false });
     }
 

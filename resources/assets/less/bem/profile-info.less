@@ -74,13 +74,10 @@
   }
 
   &__flag-flag {
-    align-self: stretch;
-    .@{_top}__flag--country & {
-      width: 45px;
+    font-size: 30px; // icon size
 
-      @media @desktop {
-        width: 30px;
-      }
+    @media @desktop {
+      font-size: 20px; // icon size
     }
   }
 
@@ -157,6 +154,7 @@
   &__previous-usernames {
     transform: translateY(-0.3em);
     display: inline-block;
+    pointer-events: none;
 
     @media @desktop {
       transform: translateY(-0.7em);
@@ -170,6 +168,8 @@
   }
 
   &__title {
+    .link-white();
+    align-self: flex-start;
     font-size: @font-size--title-small-4;
     padding: 0 0 5px;
     line-height: normal;

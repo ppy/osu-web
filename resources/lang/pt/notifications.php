@@ -136,6 +136,7 @@ return [
                 '_' => 'Nova medalha',
                 'user_achievement_unlock' => 'Desbloqueaste ":title"!',
                 'user_achievement_unlock_compact' => 'Desbloqueaste ":title"!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],

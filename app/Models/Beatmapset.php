@@ -15,9 +15,11 @@ use App\Jobs\Notifications\BeatmapsetLove;
 use App\Jobs\Notifications\BeatmapsetNominate;
 use App\Jobs\Notifications\BeatmapsetQualify;
 use App\Jobs\Notifications\BeatmapsetRank;
+use App\Jobs\Notifications\BeatmapsetRemoveFromLoved;
 use App\Jobs\RemoveBeatmapsetBestScores;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\Commentable;
+use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
@@ -91,7 +93,7 @@ use Illuminate\Database\QueryException;
  * @property bool $video
  * @property \Illuminate\Database\Eloquent\Collection $watches BeatmapsetWatch
  */
-class Beatmapset extends Model implements AfterCommit, Commentable
+class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 {
     use CommentableDefaults, Elasticsearch\BeatmapsetTrait, SoftDeletes, Validatable;
 
@@ -685,6 +687,28 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             dispatch((new CheckBeatmapsetCovers($this))->onQueue('beatmap_high'));
 
             (new BeatmapsetLove($this, $user))->dispatch();
+        });
+
+        return [
+            'result' => true,
+        ];
+    }
+
+    public function removeFromLoved(User $user, string $reason)
+    {
+        if (!$this->isLoved()) {
+            return [
+                'result' => false,
+                'message' => trans('beatmaps.nominations.incorrect_state'),
+            ];
+        }
+
+        $this->getConnection()->transaction(function () use ($user, $reason) {
+            BeatmapsetEvent::log(BeatmapsetEvent::REMOVE_FROM_LOVED, $user, $this, compact('reason'))->saveOrExplode();
+
+            $this->setApproved('pending', $user);
+
+            (new BeatmapsetRemoveFromLoved($this, $user))->dispatch();
         });
 
         return [

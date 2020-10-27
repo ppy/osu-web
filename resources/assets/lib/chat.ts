@@ -1,28 +1,31 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
-import { PresenceJSON, SendToJSON } from 'chat/chat-api-responses';
+
+import { ChatChannelSwitchAction } from 'actions/chat-actions';
+import { dispatch } from 'app-dispatcher';
+import { PresenceJson, SendToJson } from 'chat/chat-api-responses';
 import MainView from 'chat/main-view';
-import * as _ from 'lodash';
+import { isEmpty } from 'lodash';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 
 const dataStore = core.dataStore;
-const presence: PresenceJSON = osu.parseJson('json-presence');
+const presence = osu.parseJson<PresenceJson>('json-presence');
 
-if (!_.isEmpty(presence)) {
+if (!isEmpty(presence)) {
   // initial population of channel/presence data
   dataStore.channelStore.updatePresence(presence);
 }
 
 reactTurbolinks.register('chat', MainView, () => {
   let initialChannel: number | undefined;
-  const sendTo: SendToJSON = osu.parseJson('json-sendto');
+  const sendTo: SendToJson = osu.parseJson('json-sendto');
 
-  if (!_.isEmpty(sendTo)) {
+  if (!isEmpty(sendTo)) {
     const target = dataStore.userStore.getOrCreate(sendTo.target.id, sendTo.target); // pre-populate userStore with target
     let channel = dataStore.channelStore.findPM(target.id);
 
-    if (channel) {
+    if (channel != null) {
       initialChannel = channel.channelId;
     } else if (!target.is(core.currentUser)) {
       channel = Channel.newPM(target);
@@ -42,9 +45,12 @@ reactTurbolinks.register('chat', MainView, () => {
     }
   }
 
+  if (initialChannel != null) {
+    dispatch(new ChatChannelSwitchAction(initialChannel));
+  }
+
   return {
     dataStore: core.dataStore,
-    initialChannel,
     worker: core.chatWorker,
   };
 });

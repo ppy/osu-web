@@ -353,11 +353,6 @@ function es_records($results, $class)
     return $records;
 }
 
-function flag_path($country)
-{
-    return '/images/flags/'.$country.'.png';
-}
-
 function get_valid_locale($requestedLocale)
 {
     if (in_array($requestedLocale, config('app.available_locales'), true)) {
@@ -827,6 +822,7 @@ function link_to_user($id, $username = null, $color = null, $classNames = null)
         $color ?? ($color = $id->user_colour);
         $id = $id->getKey();
     }
+    $id = e($id);
     $username = e($username);
     $style = user_color_style($color, 'color');
 

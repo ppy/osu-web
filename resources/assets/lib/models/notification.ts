@@ -45,21 +45,6 @@ export default class Notification implements NotificationReadable {
     };
   }
 
-  @computed get messageGroup() {
-    if (this.objectType === 'channel') {
-      const replacements = {
-        title: this.title,
-        username: this.details.username,
-      };
-
-      const key = `notifications.item.${this.objectType}.${this.category}.${this.details.type}.${this.name}_group`;
-
-      return osu.trans(key, replacements);
-    }
-
-    return this.title;
-  }
-
   @computed get stackId() {
     return `${this.objectType}-${this.objectId}-${this.category}`;
   }

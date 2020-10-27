@@ -347,7 +347,6 @@ return [
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Zainteresowania',
-            'lastfm' => 'Last.fm',
             'location' => 'Obecna lokalizacja',
             'occupation' => 'Zajęcia',
             'skype' => 'Skype',

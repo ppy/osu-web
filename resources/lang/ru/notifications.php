@@ -136,6 +136,7 @@ return [
                 '_' => 'Новая медаль',
                 'user_achievement_unlock' => 'Разблокировано ":title"!',
                 'user_achievement_unlock_compact' => 'Разблокировано: «:title»!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],

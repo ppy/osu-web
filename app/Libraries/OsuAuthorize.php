@@ -821,8 +821,9 @@ class OsuAuthorize
     {
         $prefix = 'chat.';
 
-        $this->ensureLoggedIn($user);
+        $this->ensureSessionVerified($user);
         $this->ensureCleanRecord($user, $prefix);
+        // This check becomes useless when min_plays_allow_verified_bypass is enabled.
         $this->ensureHasPlayed($user);
 
         if (!$this->doCheckUser($user, 'ChatChannelRead', $channel)->can()) {
@@ -1662,7 +1663,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($owner->hasProfile()) {
+        if ($owner->hasProfileVisible()) {
             return 'ok';
         } else {
             return $prefix.'no_access';
@@ -1773,5 +1774,20 @@ class OsuAuthorize
         }
 
         throw new AuthorizationException('play_more');
+    }
+
+    /**
+     * Ensure User is logged in and verified.
+     *
+     * @param User|null $user
+     * @throws AuthorizationException
+     */
+    public function ensureSessionVerified(?User $user)
+    {
+        $this->ensureLoggedIn($user);
+
+        if (!$user->isSessionVerified()) {
+            throw new AuthorizationException('require_verification');
+        }
     }
 }
