@@ -22,6 +22,14 @@ class Token extends PassportToken
         return $this->hasOne(RefreshToken::class, 'access_token_id');
     }
 
+    public function revokeRecursive()
+    {
+        $result = $this->revoke();
+        optional($this->refreshToken)->revoke();
+
+        return $result;
+    }
+
     public function revoke()
     {
         $saved = parent::revoke();

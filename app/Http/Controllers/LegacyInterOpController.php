@@ -384,10 +384,8 @@ class LegacyInterOpController extends Controller
             ::where('user_id', $userId)
             ->with('refreshToken')
             ->get()
-            ->each(function ($token) {
-                $token->revoke();
-                optional($token->refreshToken)->revoke();
-            });
+            ->each
+            ->revokeRecursive();
 
         return ['success' => true];
     }

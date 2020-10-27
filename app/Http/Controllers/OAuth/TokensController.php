@@ -34,8 +34,7 @@ class TokensController extends Controller
         $token = request()->get(AuthApi::REQUEST_OAUTH_TOKEN_KEY);
 
         if ($token !== null) {
-            $token->revoke();
-            optional($token->refreshToken)->revoke();
+            $token->revokeRecursive();
         }
 
         return response(null, 204);
