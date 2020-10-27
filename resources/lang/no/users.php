@@ -347,7 +347,6 @@ return [
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Interesser',
-            'lastfm' => 'Last.fm',
             'location' => 'Nåværende Plassering',
             'occupation' => 'Yrke',
             'skype' => 'Skype',

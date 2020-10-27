@@ -347,7 +347,6 @@ return [
         'info' => [
             'discord' => '디스코드',
             'interests' => '관심 분야',
-            'lastfm' => 'Last.fm',
             'location' => '거주지',
             'occupation' => '직업',
             'skype' => '스카이프',

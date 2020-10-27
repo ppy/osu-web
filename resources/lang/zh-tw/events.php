@@ -21,8 +21,8 @@ return [
 
     'beatmapset_status' => [
         'approved' => '已批准',
-        'loved' => '',
-        'qualified' => '',
+        'loved' => 'loved',
+        'qualified' => '已核可',
         'ranked' => '',
     ],
 ];

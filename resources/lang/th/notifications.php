@@ -31,14 +31,14 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'โพสใหม่ บน :title โดย :username',
                 'beatmapset_discussion_post_new_compact' => 'โพสต์ใหม่โดย :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'โพสใหม่โดย :username',
-                'beatmapset_discussion_review_new' => 'รีวิวใหม่บน ":title" โดย :username มีปัญหาอยู่ :problems ปัญหา, คำแนะนำอยู่ :suggestions คำแนะนำ, คำชม :praises คำชม  ',
-                'beatmapset_discussion_review_new_compact' => 'รีวิวโดย :username มีปัญหาอยู่ :problems ปัญหา, คำแนะนำอยู่ :suggestions คำแนะนำ, คำชม :praises คำชม  ',
+                'beatmapset_discussion_review_new' => 'บทวิจารณ์ใหม่บน ":title" โดย :username มีปัญหาอยู่ :problems ปัญหา, คำแนะนำอยู่ :suggestions คำแนะนำ, คำชม :praises คำชม  ',
+                'beatmapset_discussion_review_new_compact' => 'บทวิจารณ์โดย :username มีปัญหาอยู่ :problems ปัญหา, คำแนะนำอยู่ :suggestions คำแนะนำ, คำชม :praises คำชม  ',
                 'beatmapset_discussion_unlock' => 'Beatmap ":title" ได้ถูกเปิดการใช้งานในการสนทนาแล้ว',
                 'beatmapset_discussion_unlock_compact' => 'การสนทนาได้ถูกปลดล๊อค',
             ],
 
             'beatmapset_problem' => [
-                '_' => 'ปัญหา Beatmap ที่ผ่านการรับรอง',
+                '_' => 'ปัญหา Beatmap ที่ Qualified',
                 'beatmapset_discussion_qualified_problem' => 'รายงานโดย :username บน :title :content',
                 'beatmapset_discussion_qualified_problem_empty' => 'รายงานโดย :username บน :title ',
                 'beatmapset_discussion_qualified_problem_compact' => 'รายงานโดย :username บน :content ',
@@ -53,8 +53,8 @@ return [
                 'beatmapset_love_compact' => 'Beatmap โปรโมทเป็น Loved',
                 'beatmapset_nominate' => 'Beatmap ":title" ได้ถูกเสนอชื่อโดย :username',
                 'beatmapset_nominate_compact' => 'Beatmap นี้ได้รับการจัดอันดับแล้ว',
-                'beatmapset_qualify' => 'Beatmap ":title" ได้มีการเสนอชื่อมากเพียงพอที่จะขึ้นการจัดอันดับแล้ว',
-                'beatmapset_qualify_compact' => 'Beatmap ได้ถูกเข้าคิวมาจัดอันดับ',
+                'beatmapset_qualify' => '":title" ได้รับการเสนอชื่อเพียงพอที่จะเข้าคิวจัดอันดับ',
+                'beatmapset_qualify_compact' => 'Beatmap ได้เข้าคิวจัดอันดับ',
                 'beatmapset_rank' => '":title" ได้ถูกแรงค์แล้ว',
                 'beatmapset_rank_compact' => 'Beatmap ได้รับการจัดอันดับ',
                 'beatmapset_reset_nominations' => 'ปัญหานี้โพสต์โดย :username รีเซ็ทการเสนอชื่อของ beatmap ":title" ',
@@ -66,8 +66,8 @@ return [
 
                 'comment_new' => ':username ได้แสดงความคิดเห็น ":content" บน ":title"',
                 'comment_new_compact' => ':username ได้แสดงความคิดเห็น ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username ได้ตอบกลับ ":content" บน ":title"',
+                'comment_reply_compact' => ':username ได้ตอบกลับ ":content"',
             ],
         ],
 
@@ -92,8 +92,8 @@ return [
 
                 'comment_new' => ':username ได้แสดงความคิดเห็น ":content" บน ":title"',
                 'comment_new_compact' => ':username ได้แสดงความคิดเห็น ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username ได้ตอบกลับ ":content" บน ":title"',
+                'comment_reply_compact' => ':username ได้ตอบกลับ ":content"',
             ],
         ],
 
@@ -105,8 +105,8 @@ return [
 
                 'comment_new' => ':username ได้แสดงความคิดเห็น ":content" บน ":title"',
                 'comment_new_compact' => ':username ได้แสดงความคิดเห็น ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username ได้ตอบกลับ ":content" บน ":title"',
+                'comment_reply_compact' => ':username ได้ตอบกลับ ":content"',
             ],
         ],
 
@@ -136,6 +136,7 @@ return [
                 '_' => 'เหรียญตราใหม่',
                 'user_achievement_unlock' => 'ปลดล๊อค ":title"!',
                 'user_achievement_unlock_compact' => 'ปลดล๊อค ":title"!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],
@@ -153,16 +154,16 @@ return [
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_disqualify' => '":title" ได้ถูกยกเลิกสถานะ Qualified',
+                'beatmapset_love' => '":title" ได้ถูกเปลี่ยนเป็น loved',
+                'beatmapset_nominate' => '":title" ได้ถูกเสนอชื่อ',
+                'beatmapset_qualify' => '":title" ได้รับการเสนอชื่อเพียงพอที่จะเข้าคิวจัดอันดับ',
+                'beatmapset_rank' => '":title" ได้ถูก ranked แล้ว',
+                'beatmapset_reset_nominations' => 'การเสนอชื่อของ ":title" ได้ถูกรีเซ็ทแล้ว',
             ],
 
             'comment' => [
-                'comment_new' => ' บีทแมพ ":title" มีคอมเมนต์ใหม่',
+                'comment_new' => ' บีทแมพ ":title" มีความคิดเห็นใหม่',
             ],
         ],
 
@@ -174,13 +175,13 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => 'บันทึกการเปลี่ยนแปลง ":title" มีคอมเมนต์ใหม่',
+                'comment_new' => 'บันทึกการเปลี่ยนแปลง ":title" มีความคิดเห็นใหม่',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => 'ข่าว ":title" มีคอมเมนต์ใหม่',
+                'comment_new' => 'ข่าว ":title" มีความคิดเห็นใหม่',
             ],
         ],
 

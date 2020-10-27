@@ -66,8 +66,8 @@ return [
 
                 'comment_new' => 'Użytkownik :username napisał komentarz pod „:title”: „:content”',
                 'comment_new_compact' => 'Użytkownik :username napisał komentarz: „:content”',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username odpowiedział: ":content" na ":title"',
+                'comment_reply_compact' => 'Użytkownik :username odpowiedział: „:content”',
             ],
         ],
 
@@ -92,7 +92,7 @@ return [
 
                 'comment_new' => 'Użytkownik :username napisał komentarz pod „:title”: „:content”',
                 'comment_new_compact' => 'Użytkownik :username napisał komentarz: „:content”',
-                'comment_reply' => '',
+                'comment_reply' => ':username odpowiedział: ":content" na ":title"',
                 'comment_reply_compact' => '',
             ],
         ],
@@ -106,7 +106,7 @@ return [
                 'comment_new' => 'Użytkownik :username napisał komentarz pod „:title”: „:content”',
                 'comment_new_compact' => 'Użytkownik :username napisał komentarz: „:content”',
                 'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply_compact' => 'Użytkownik :username odpowiedział: „:content”',
             ],
         ],
 
@@ -136,6 +136,7 @@ return [
                 '_' => 'Nowy medal',
                 'user_achievement_unlock' => 'Odblokowano medal „:title”!',
                 'user_achievement_unlock_compact' => 'Odblokowano medal „:title”!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],

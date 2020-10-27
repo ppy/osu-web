@@ -136,6 +136,7 @@ return [
                 '_' => 'Yeni madalya',
                 'user_achievement_unlock' => '":title" \'ın kilidi açıldı!',
                 'user_achievement_unlock_compact' => '":title" \'ın kilidi açıldı!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],
