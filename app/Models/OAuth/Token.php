@@ -5,6 +5,7 @@
 
 namespace App\Models\OAuth;
 
+use App\Events\UserSessionEvent;
 use Laravel\Passport\Token as PassportToken;
 
 class Token extends PassportToken
@@ -18,6 +19,17 @@ class Token extends PassportToken
     public function refreshToken()
     {
         return $this->hasOne(RefreshToken::class, 'access_token_id');
+    }
+
+    public function revoke()
+    {
+        $saved = parent::revoke();
+
+        if ($saved && $this->user_id !== null) {
+            event(UserSessionEvent::newLogout($this->user_id, ["oauth:{$this->getKey()}"]));
+        }
+
+        return $saved;
     }
 
     public function user()

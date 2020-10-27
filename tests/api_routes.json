@@ -808,6 +808,16 @@
         "scopes": []
     },
     {
+        "uri": "api/v2/oauth/tokens/current",
+        "method": "DELETE",
+        "controller": "App\\Http\\Controllers\\OAuth\\TokensController@destroyCurrent",
+        "middlewares": [
+            "require-scopes",
+            "auth"
+        ],
+        "scopes": []
+    },
+    {
         "uri": "api/v2/news",
         "method": "GET",
         "controller": "App\\Http\\Controllers\\NewsController@index",
