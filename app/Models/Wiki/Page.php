@@ -166,7 +166,7 @@ class Page implements WikiObject
             return [];
         }
 
-        $query =(new BoolQuery())
+        $query = (new BoolQuery())
             ->must(['term' => ['path.keyword' => $this->path]])
             ->must(['exists' => ['field' => 'page']]);
         $search = (new BasicSearch(static::esIndexName(), 'wiki_searchlocales'))
