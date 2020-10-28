@@ -7,7 +7,7 @@ namespace App\Transformers;
 
 use App\Models\Group;
 
-class GroupTransformer extends TransformerAbstract
+class UserGroupTransformer extends TransformerAbstract
 {
     public function transform(Group $group)
     {
