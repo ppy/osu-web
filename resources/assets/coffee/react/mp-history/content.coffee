@@ -63,7 +63,7 @@ export class Content extends React.PureComponent
       div
         className: 'mp-history-events'
         ref: @eventsRef
-        for event, i in @props.events
+        for event in @props.events
           if event.detail.type == 'other'
             continue if !event.game? || (!event.game.end_time? && event.game.id != @props.currentGameId)
 
@@ -72,7 +72,7 @@ export class Content extends React.PureComponent
               key: event.id
               el Game,
                 event: event
-                teamScores: @teamScores i
+                teamScores: @teamScores event.game
                 users: @props.users
           else
             div
@@ -95,14 +95,12 @@ export class Content extends React.PureComponent
             loading: @props.isAutoloading || @props.loadingNext
 
 
-  teamScores: (eventIndex) =>
-    game = @props.events[eventIndex].game
-
+  teamScores: (game) =>
     return if !game?
 
     @scoresCache ?= {}
 
-    if !@scoresCache[eventIndex]?
+    if !@scoresCache[game.id]?
       scores =
         blue: 0
         red: 0
@@ -113,6 +111,6 @@ export class Content extends React.PureComponent
         continue if !score.match.pass
         scores[score.match.team] += score.score
 
-      @scoresCache[eventIndex] = scores
+      @scoresCache[game.id] = scores
 
-    @scoresCache[eventIndex]
+    @scoresCache[game.id]
