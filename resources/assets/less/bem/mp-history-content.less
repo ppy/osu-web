@@ -2,16 +2,47 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .mp-history-content {
+  @_event-max-width: 640px;
+  @_events-group-padding-y: 15px;
+  @_item-padding-y: 10px;
+
+  margin: -@_item-padding-y 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  font-size: @font-size--normal;
-  padding: 0;
-
-  margin-bottom: 20px;
-  color: @osu-colour-c1;
 
   &__autoload-label {
     margin-bottom: 5px;
+  }
+
+  &__item {
+    margin: @_item-padding-y 0;
+
+    &--event {
+      background-color: @osu-colour-b4;
+      align-self: center;
+      width: 100%;
+      max-width: @_event-max-width;
+      margin: 0;
+      padding: 2px 0;
+    }
+
+    &--event-open {
+      border-radius: @border-radius-base @border-radius-base 0 0;
+      padding-top: @_events-group-padding-y;
+      margin-top: @_item-padding-y;
+    }
+
+    &--event-close {
+      border-radius: 0 0 @border-radius-base @border-radius-base;
+      padding-bottom: @_events-group-padding-y;
+      margin-bottom: @_item-padding-y;
+    }
+
+    &--more {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: @font-size--normal;
+    }
   }
 }

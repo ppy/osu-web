@@ -6,6 +6,7 @@ import { Game } from './game'
 import * as React from 'react'
 import { button, div, h3 } from 'react-dom-factories'
 import { ShowMoreLink } from 'show-more-link'
+import { classWithModifiers } from 'utils/css'
 
 el = React.createElement
 
@@ -13,78 +14,86 @@ export class Content extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @eventsRef = React.createRef()
+    @pageRef = React.createRef()
 
 
   getSnapshotBeforeUpdate: (prevProps, prevState) =>
-    snapshot = {}
+    snapshot =
+      scrollToLastEvent: prevProps.isAutoloading && @props.isAutoloading && osu.bottomPageDistance() < 10
 
-    if prevProps.events?.length > 0 && @props.events?.length > 0
-      # events are prepended, use previous first entry as reference
-      if prevProps.events[0].id > @props.events[0].id
-        snapshot.reference =
-          # firstChild to avoid calculating based on ever-changing padding
-          @eventsRef.current.children[0].firstChild
-      # events are appended, use previous last entry as reference
-      else if _.last(prevProps.events).id < _.last(@props.events).id
-        snapshot.reference =
-          _.last(@eventsRef.current.children).firstChild
+    if !snapshot.scrollToLastEvent
+      if prevProps.events?.length > 0 && @props.events?.length > 0
+        # This is to allow events to be added without moving currently
+        # visible events on viewport.
+        #
+        # When prepending, bottom position should be the reference as top
+        # will be pushed by new events.
+        if prevProps.events[0].id > @props.events[0].id
+          snapshot.referenceFunc = => @pageRef.current.getBoundingClientRect().bottom
+        else
+          snapshot.referenceFunc = => @pageRef.current.getBoundingClientRect().top
 
-    if snapshot.reference?
-      snapshot.referenceTop = snapshot.reference.getBoundingClientRect().top
-
-    if osu.bottomPageDistance() < 10 && prevProps.isAutoloading && @props.isAutoloading
-      snapshot.scrollToLastEvent = true
+        snapshot.referencePrev = snapshot.referenceFunc()
 
     snapshot
 
 
   componentDidUpdate: (prevProps, prevState, snapshot) =>
     if snapshot.scrollToLastEvent
-      $(window).stop().scrollTo @eventsRef.current.scrollHeight, 500
-    else if snapshot.reference?
-      currentScrollReferenceTop = snapshot.reference.getBoundingClientRect().top
-      currentDocumentScrollTop = window.pageYOffset
-      targetDocumentScrollTop = currentDocumentScrollTop + currentScrollReferenceTop - snapshot.referenceTop
-      window.scrollTo window.pageXOffset, targetDocumentScrollTop
+      $(window).stop().scrollTo @pageRef.current.scrollHeight, 500
+    else if snapshot.referenceFunc?
+      referenceCurrent = snapshot.referenceFunc()
+      documentScrollTopCurrent = window.pageYOffset
+      documentScrollTopTarget = documentScrollTopCurrent + referenceCurrent - snapshot.referencePrev
+      window.scrollTo window.pageXOffset, documentScrollTopTarget
 
 
   render: =>
-    div className: 'osu-page osu-page--mp-history',
-      h3 null, @props.match.name
+    inEvent = false
+    eventsGroupOpen = div className: classWithModifiers('mp-history-content__item', ['event', 'event-open'])
+    eventsGroupClose = div className: classWithModifiers('mp-history-content__item', ['event', 'event-close'])
+
+    div className: 'mp-history-content', ref: @pageRef,
+      h3 className: 'mp-history-content__item', @props.match.name
+
       if @props.hasPrevious
-        div className: 'mp-history-content',
+        div className: 'mp-history-content__item mp-history-content__item--more',
           el ShowMoreLink,
             callback: @props.loadPrevious
             direction: 'up'
             hasMore: true
             loading: @props.loadingPrevious
 
-      div
-        className: 'mp-history-events'
-        ref: @eventsRef
-        for event in @props.events
-          if event.detail.type == 'other'
-            continue if !event.game? || (!event.game.end_time? && event.game.id != @props.currentGameId)
+      for event in @props.events
+        if event.detail.type == 'other'
+          continue if !event.game? || (!event.game.end_time? && event.game.id != @props.currentGameId)
 
-            div
-              className: 'mp-history-events__game'
-              key: event.id
+          el React.Fragment, key: event.id,
+            if inEvent
+              inEvent = false
+              eventsGroupClose
+
+            div className: 'mp-history-content__item',
               el Game,
                 event: event
                 teamScores: @teamScores event.game
                 users: @props.users
-          else
-            div
-              className: 'mp-history-events__event'
-              key: event.id
+        else
+          el React.Fragment, key: event.id,
+            if !inEvent
+              inEvent = true
+              eventsGroupOpen
+
+            div className: 'mp-history-content__item mp-history-content__item--event',
               el Event,
                 event: event
                 users: @props.users
                 key: event.id
 
+      eventsGroupClose if inEvent
+
       if @props.hasNext
-        div className: 'mp-history-content',
+        div className: 'mp-history-content__item mp-history-content__item--more',
           if @props.isAutoloading
             div
               className: 'mp-history-content__autoload-label'
