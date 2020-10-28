@@ -89,11 +89,17 @@ class MatchesController extends Controller
             ['game.beatmap.beatmapset', 'game.scores.match']
         );
 
+        $eventEndIds = $match
+            ->events()
+            ->selectRaw('MIN(event_id) first_event_id, MAX(event_id) latest_event_id')
+            ->first();
+
         return [
             'match' => json_item($match, 'Match\Match'),
             'events' => $events,
             'users' => $users,
-            'latest_event_id' => $match->events()->select('event_id')->last()->getKey(),
+            'first_event_id' => $eventEndIds->first_event_id ?? 0,
+            'latest_event_id' => $eventEndIds->latest_event_id ?? 0,
             'current_game_id' => optional($match->currentGame())->getKey(),
         ];
     }
