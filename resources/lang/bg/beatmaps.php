@@ -187,6 +187,8 @@ return [
         'nominate_confirm' => 'Номинирай този бийтмап?',
         'nominated_by' => 'номиниран от :users',
         'not_enough_hype' => "Няма достатъчно надъхвания.",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Номинации: :current/:required',
         'reset_message_deleted' => 'изтрито',
         'title' => 'Статус на Номиниране',

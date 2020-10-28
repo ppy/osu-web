@@ -57,6 +57,8 @@ return [
                 'beatmapset_qualify_compact' => 'Бийтмапът влезе на опашката за класиране',
                 'beatmapset_rank' => '":title" бе класиран',
                 'beatmapset_rank_compact' => 'Бийтмапът бе класиран',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'Номинацията на ":title" бе анулирана',
                 'beatmapset_reset_nominations_compact' => 'Номинацията бе анулирана',
             ],
@@ -159,6 +161,7 @@ return [
                 'beatmapset_nominate' => '',
                 'beatmapset_qualify' => '',
                 'beatmapset_rank' => '',
+                'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => '',
             ],
 

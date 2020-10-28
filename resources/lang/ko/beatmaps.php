@@ -187,15 +187,17 @@ return [
         'nominate_confirm' => '이 비트맵을 추천하시겠습니까?',
         'nominated_by' => ':users 님이 추천함',
         'not_enough_hype' => "Hype 수가 부족합니다.",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => '추천 수: :current/:required',
         'reset_message_deleted' => '삭제됨',
         'title' => '추천 상태',
         'unresolved_issues' => '먼저 해결되지 않은 토론을 마무리지어야 합니다.',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
-            'soon' => '',
+            '_' => '이 맵에 아무런 문제가 발견되지 않으면 :date 에 랭크될 예정입니다. :queue의 #:position번째 순서입니다.',
+            'queue' => '랭킹 대기열',
+            'soon' => '곧',
         ],
 
         'reset_at' => [

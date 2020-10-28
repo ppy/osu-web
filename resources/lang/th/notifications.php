@@ -24,7 +24,7 @@ return [
             '_' => 'Beatmap',
 
             'beatmapset_discussion' => [
-                '_' => 'พูดคุยบีทแมพ',
+                '_' => 'การสนทนาบีทแมพ',
                 'beatmapset_discussion_lock' => 'Beatmap ":title" ได้ถูกปิดการใช้งานการสนทนา',
                 'beatmapset_discussion_lock_compact' => 'การสนทนาได้ถูกล็อกไว้',
                 'beatmapset_discussion_post_new' => ':username ได้เขียนข้อความใหม่ใน ":title" การสนทนาของ beatmap',
@@ -57,6 +57,8 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmap ได้เข้าคิวจัดอันดับ',
                 'beatmapset_rank' => '":title" ได้ถูกแรงค์แล้ว',
                 'beatmapset_rank_compact' => 'Beatmap ได้รับการจัดอันดับ',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'ปัญหานี้โพสต์โดย :username รีเซ็ทการเสนอชื่อของ beatmap ":title" ',
                 'beatmapset_reset_nominations_compact' => 'การเสนอชื่อถูกรีเซ็ท',
             ],
@@ -159,6 +161,7 @@ return [
                 'beatmapset_nominate' => '":title" ได้ถูกเสนอชื่อ',
                 'beatmapset_qualify' => '":title" ได้รับการเสนอชื่อเพียงพอที่จะเข้าคิวจัดอันดับ',
                 'beatmapset_rank' => '":title" ได้ถูก ranked แล้ว',
+                'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => 'การเสนอชื่อของ ":title" ได้ถูกรีเซ็ทแล้ว',
             ],
 

@@ -28,6 +28,7 @@ return [
         'nomination_reset' => '新問題 :discussion 導致提名被重置。',
         'qualify' => '這張圖譜已經達到所需的提名數量，並已經 qualified。',
         'rank' => '進榜',
+        'remove_from_loved' => '',
     ],
 
     'index' => [
@@ -66,5 +67,6 @@ return [
         'nomination_reset' => '被取消提名',
         'qualify' => 'Qualification',
         'rank' => 'Ranking',
+        'remove_from_loved' => '',
     ],
 ];

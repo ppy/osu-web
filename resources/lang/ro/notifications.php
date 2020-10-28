@@ -57,6 +57,8 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmap-ul a intrat în ranking queue',
                 'beatmapset_rank' => ':title a fost premiat',
                 'beatmapset_rank_compact' => 'Beatmap-ul a fost premiat',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'Nominația ":title" a fost resetată',
                 'beatmapset_reset_nominations_compact' => 'Nominația a fost resetată',
             ],
@@ -159,6 +161,7 @@ return [
                 'beatmapset_nominate' => '”:title” a fost nominat',
                 'beatmapset_qualify' => '”:title” a primit suficiente nominații și a intrat în lista de așteptare pentru clasament',
                 'beatmapset_rank' => '”:title” a fost clasat',
+                'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => 'Nominația ”:title” a fost resetată',
             ],
 

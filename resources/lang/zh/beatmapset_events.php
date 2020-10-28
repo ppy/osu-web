@@ -28,6 +28,7 @@ return [
         'nomination_reset' => '新问题 :discussion（:text）导致提名被重置。',
         'qualify' => '这张谱面已经有了足够数量的提名并已经 Qualified。',
         'rank' => 'Ranked.',
+        'remove_from_loved' => '',
     ],
 
     'index' => [
@@ -66,5 +67,6 @@ return [
         'nomination_reset' => '重置提名',
         'qualify' => '审核通过',
         'rank' => '被 Ranked',
+        'remove_from_loved' => '',
     ],
 ];

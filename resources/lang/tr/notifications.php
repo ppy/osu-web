@@ -57,6 +57,8 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmap derecelendirme sırasına girdi',
                 'beatmapset_rank' => '":title" dereceli oldu',
                 'beatmapset_rank_compact' => 'Beatmap dereceli oldu',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => '":title" setinin aday gösterimi sıfırlandı',
                 'beatmapset_reset_nominations_compact' => 'Aday gösterim sıfırlandı',
             ],
@@ -159,6 +161,7 @@ return [
                 'beatmapset_nominate' => '":title" aday gösterildi',
                 'beatmapset_qualify' => '":title" yeterli aday gösterimi aldı ve derecelendirme sırasına girdi',
                 'beatmapset_rank' => '":title" dereceli oldu',
+                'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => '":title" setinin aday gösterimi sıfırlandı',
             ],
 

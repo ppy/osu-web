@@ -187,6 +187,8 @@ return [
         'nominate_confirm' => 'Κάντε nominate αυτό το beatmap;',
         'nominated_by' => 'nominated από :users',
         'not_enough_hype' => "",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Υποψηφιότητες :current/:required',
         'reset_message_deleted' => 'διαγράφηκε',
         'title' => 'Κατάσταση Υποψηφιότητας',
