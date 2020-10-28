@@ -162,6 +162,10 @@ class Page implements WikiObject
 
     public function otherLocales()
     {
+        if (!$this->isVisible()) {
+            return [];
+        }
+
         $search = (new BasicSearch(static::esIndexName(), 'wiki_searchlocales'))
             ->source('locale')
             ->sort(new Sort('locale.keyword', 'asc'))
