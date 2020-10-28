@@ -14,7 +14,7 @@ const presence = osu.parseJson<PresenceJson>('json-presence');
 
 if (!isEmpty(presence)) {
   // initial population of channel/presence data
-  dataStore.channelStore.updatePresence(presence);
+  dataStore.channelStore.updateWithPresence(presence);
 }
 
 reactTurbolinks.register('chat', MainView, () => {
