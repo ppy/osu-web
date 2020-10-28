@@ -29,7 +29,7 @@ export class Main extends React.Component
 
 
   componentDidMount: =>
-    @timeouts.autoload = Timeout.set REFRESH_TIMEOUT, @autoload
+    @delayedAutoload()
 
 
   render: =>
