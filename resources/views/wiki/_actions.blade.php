@@ -3,8 +3,8 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $availableLocales = $page->availableLocales();
-    $showLocalesMenu = count($availableLocales) > 1;
+    $otherLocales = $page->otherLocales();
+    $showLocalesMenu = count($otherLocales) > 0;
 @endphp
 <div class="header-buttons">
     <div class="header-buttons__item">
@@ -64,7 +64,7 @@
                     data-click-menu-id="wiki-locales"
                 >
                     <div class="simple-menu__content">
-                        @foreach ($availableLocales as $locale)
+                        @foreach ($otherLocales as $locale)
                             <a class="simple-menu__item" href="{{ wiki_url($page->path, $locale) }}">
                                 <span class="nav2-locale-item nav2-locale-item--no-padding">
                                     <span class="nav2-locale-item__flag">

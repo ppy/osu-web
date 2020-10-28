@@ -160,7 +160,7 @@ class Page implements WikiObject
         $this->defaultSubtitle = array_pop($defaultTitles);
     }
 
-    public function availableLocales()
+    public function otherLocales()
     {
         $search = (new BasicSearch(static::esIndexName(), 'wiki_searchlocales'))
             ->source('locale')
@@ -170,9 +170,15 @@ class Page implements WikiObject
             ]);
         $response = $search->response();
 
-        return array_map(function ($hit) {
-            return $hit['_source']['locale'] ?? null;
-        }, $response->hits());
+        $locales = [];
+        foreach ($response->hits() as $hit) {
+            $locale = $hit['_source']['locale'] ?? null;
+            if ($locale !== null && $locale !== $this->locale) {
+                $locales[] = $locale;
+            }
+        }
+
+        return $locales;
     }
 
     public function editUrl()
