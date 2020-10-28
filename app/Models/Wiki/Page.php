@@ -166,12 +166,13 @@ class Page implements WikiObject
             return [];
         }
 
+        $query =(new BoolQuery())
+            ->must(['term' => ['path.keyword' => $this->path]])
+            ->must(['exists' => ['field' => 'page']]);
         $search = (new BasicSearch(static::esIndexName(), 'wiki_searchlocales'))
             ->source('locale')
             ->sort(new Sort('locale.keyword', 'asc'))
-            ->query([
-                'term' => ['path.keyword' => $this->path],
-            ]);
+            ->query($query);
         $response = $search->response();
 
         $locales = [];
