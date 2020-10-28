@@ -28,7 +28,7 @@ return [
         'nomination_reset' => 'Um novo problema :discussion (:text) acionou um reinício de nomeação.',
         'qualify' => 'Este beatmap atingiu o número necessário de nomeações e foi qualificado.',
         'rank' => 'Classificado.',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Removido de Adorado por :user. (:text)',
     ],
 
     'index' => [
@@ -67,6 +67,6 @@ return [
         'nomination_reset' => 'Reiniciação da nomeação',
         'qualify' => 'Qualificação',
         'rank' => 'Classificação',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Adorado removido',
     ],
 ];

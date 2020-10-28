@@ -28,7 +28,7 @@ return [
         'nomination_reset' => 'Yeni sorun :discussion (:text) bir adaylık sıfırlamasını tetikledi.',
         'qualify' => 'Bu beatmap gerekli aday gösterilme miktarına ulaştı ve nitelikli oldu.',
         'rank' => 'Dereceli.',
-        'remove_from_loved' => '',
+        'remove_from_loved' => ':user tarafından Sevilenlerden çıkarıldı (:text)',
     ],
 
     'index' => [
@@ -67,6 +67,6 @@ return [
         'nomination_reset' => 'Adaylık Sıfırlama',
         'qualify' => 'Adaylık',
         'rank' => 'Sıralama',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Sevilenlerden çıkarma',
     ],
 ];

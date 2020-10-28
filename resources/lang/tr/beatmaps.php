@@ -187,17 +187,17 @@ return [
         'nominate_confirm' => 'Beatmap aday gösterilsin mi?',
         'nominated_by' => ':users tarafından aday gösterildi',
         'not_enough_hype' => "Yeterince gaz yok.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Sevilenlerden Çıkar',
+        'remove_from_loved_prompt' => 'Sevilenlerden çıkarılma sebebi:',
         'required_text' => 'Aday Göstermeler: :current/:required',
         'reset_message_deleted' => 'silindi',
         'title' => 'Adaylık Durumu',
         'unresolved_issues' => 'Halen çözülmesi gereken sorunlar mevcut.',
 
         'rank_estimate' => [
-            '_' => 'Bu haritanın sıralandığı tahmin ediliyor: sorun bulunmazsa tarih.  Sıradaki #: konumdur.',
-            'queue' => '',
-            'soon' => '',
+            '_' => 'Herhangi bir sorun bulunmazsa mapin tahminen dereceli olacağı vakit :date. :queue :position. sırada bulunuyor.',
+            'queue' => 'derecelendirme sırası',
+            'soon' => 'çok yakın',
         ],
 
         'reset_at' => [
