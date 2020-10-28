@@ -187,12 +187,16 @@ return [
         'nominate_confirm' => 'Номинирай този бийтмап?',
         'nominated_by' => 'номиниран от :users',
         'not_enough_hype' => "Няма достатъчно надъхвания.",
-        'qualified' => 'Очаква се да бъде класиран :date, ако няма открити проблеми.',
-        'qualified_soon' => 'Очаква се да бъде класиран скоро, ако няма открити проблеми.',
         'required_text' => 'Номинации: :current/:required',
         'reset_message_deleted' => 'изтрито',
         'title' => 'Статус на Номиниране',
         'unresolved_issues' => 'Все още има нерешени проблеми, те трябва да бъдат проверени първо.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Номинационният процес е бил нулиран :time_ago от :user заради нов проблем :discussion (:message).',

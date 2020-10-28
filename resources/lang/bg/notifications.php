@@ -136,6 +136,7 @@ return [
                 '_' => 'Нов медал',
                 'user_achievement_unlock' => 'Отключихте ":title"!',
                 'user_achievement_unlock_compact' => 'Отключихте ":title"!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],

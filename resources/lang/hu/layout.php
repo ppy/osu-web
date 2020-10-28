@@ -179,7 +179,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'bejelentkezés / regisztráció',
 
         'login' => [
             'forgot' => "Elfelejtettem az adataimat",

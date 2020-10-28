@@ -5,7 +5,7 @@ import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controlle
 import ChatOrchestrator from 'chat/chat-orchestrator';
 import ChatWorker from 'chat/chat-worker';
 import CurrentUser from 'interfaces/current-user';
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import RootDataStore from 'stores/root-data-store';
 import UserLoginObserver from 'user-login-observer';
 import WindowFocusObserver from './window-focus-observer';
@@ -31,7 +31,7 @@ export default class OsuCore {
     // should probably figure how to conditionally or lazy initialize these so they don't all init when not needed.
     // TODO: requires dynamic imports to lazy load modules.
     this.dataStore = new RootDataStore();
-    this.chatWorker = new ChatWorker(this.dataStore);
+    this.chatWorker = new ChatWorker(this.dataStore.channelStore);
     this.chatOrchestrator = new ChatOrchestrator(this.dataStore);
     this.userLoginObserver = new UserLoginObserver(this.window);
     this.windowFocusObserver = new WindowFocusObserver(this.window);
@@ -54,7 +54,7 @@ export default class OsuCore {
     return window.currentUser.id != null ? window.currentUser : null;
   }
 
-  private setUser = (event: JQuery.Event, user: UserJSON) => {
+  private setUser = (event: JQuery.Event, user: UserJson) => {
     this.dataStore.userStore.getOrCreate(user.id, user);
   }
 }

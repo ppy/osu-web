@@ -136,6 +136,7 @@ return [
                 '_' => 'Medalie nouă',
                 'user_achievement_unlock' => 'Deblocat ":title"!',
                 'user_achievement_unlock_compact' => 'Deblocat ":title"!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],

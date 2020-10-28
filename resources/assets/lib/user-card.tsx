@@ -2,9 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BlockButton } from 'block-button';
-import { FlagCountry } from 'flag-country';
+import FlagCountry from 'flag-country';
 import { FriendButton } from 'friend-button';
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
@@ -21,7 +21,7 @@ interface Props {
   activated: boolean;
   mode: ViewMode;
   modifiers: string[];
-  user?: UserJSON;
+  user?: UserJson;
 }
 
 interface State {
@@ -36,7 +36,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     modifiers: [],
   };
 
-  static userLoading: UserJSON = {
+  static userLoading: UserJson = {
     avatar_url: '',
     country_code: '',
     cover: {},
@@ -200,7 +200,7 @@ export class UserCard extends React.PureComponent<Props, State> {
           className='user-card__icon user-card__icon--flag'
           href={route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}
         >
-          <FlagCountry country={this.user.country} modifiers={['full']} />
+          <FlagCountry country={this.user.country} />
         </a>
 
         {

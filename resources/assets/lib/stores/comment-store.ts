@@ -3,7 +3,7 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
-import { CommentJSON } from 'interfaces/comment-json';
+import { CommentJson } from 'interfaces/comment-json';
 import { Dictionary } from 'lodash';
 import { action, observable } from 'mobx';
 import { Comment } from 'models/comment';
@@ -43,10 +43,10 @@ export default class CommentStore {
   }
 
   @action
-  initialize(comments: CommentJSON[] | undefined | null, votes: number[] | undefined | null) {
+  initialize(comments: CommentJson[] | undefined | null, votes: number[] | undefined | null) {
     this.flushStore();
     this.addVoted(votes);
-    this.updateWithJSON(comments);
+    this.updateWithJson(comments);
   }
 
   @action
@@ -55,7 +55,7 @@ export default class CommentStore {
   }
 
   @action
-  updateWithJSON(data: CommentJSON[] | undefined | null) {
+  updateWithJson(data: CommentJson[] | undefined | null) {
     if (data == null) { return; }
 
     for (const json of data) {

@@ -187,12 +187,16 @@ return [
         'nominate_confirm' => 'Nomineer deze beatmap?',
         'nominated_by' => 'genomineerd door :gebruikers',
         'not_enough_hype' => "Er is niet genoeg hype.",
-        'qualified' => 'Naar schatting gerankt op :date, als er geen problemen optreden.',
-        'qualified_soon' => 'Naar schatting binnenkort gerankt, als er geen problemen optreden.',
         'required_text' => 'Nimonaties: :current/:required',
         'reset_message_deleted' => 'verwijderd',
         'title' => 'Nominatiestatus',
         'unresolved_issues' => 'Er zijn nog steeds onopgeloste problemen die eerst moeten worden aangepakt.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Nominatieprocess :time_ago gereset door :user met nieuw probleem :discussion (:message).',

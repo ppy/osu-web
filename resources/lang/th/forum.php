@@ -76,7 +76,7 @@ return [
         'deleted' => 'ลบกระทู้',
         'go_to_latest' => 'ดูโพสต์ล่าสุด',
         'has_replied' => 'คุณได้ตอบกลับการสนทนานี้',
-        'in_forum' => '',
+        'in_forum' => 'ใน :forum',
         'latest_post' => ':when โดย :user',
         'latest_reply_by' => 'ตอบกลับล่าสุดโดย :user',
         'new_topic' => 'สร้างกระทู้ใหม่',

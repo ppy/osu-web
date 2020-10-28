@@ -3,7 +3,7 @@
 
 import GameMode from './game-mode';
 
-export default interface GroupJSON {
+export default interface GroupJson {
   colour: string;
   id: number;
   identifier: string;

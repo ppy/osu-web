@@ -1,6 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+type GroupJson = import('interfaces/group-json').default;
+
 // interfaces for using process.env
 interface Process {
   env: ProcessEnv;
@@ -61,13 +63,12 @@ interface OsuCommon {
   ajaxError: (xhr: JQueryXHR) => void;
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
   diffColour: (difficultyRating?: string | null) => React.CSSProperties;
-  groupColour: (group?: GroupJSON) => React.CSSProperties;
+  groupColour: (group?: GroupJson) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
   link: (url: string, text: string, options?: { classNames?: string[]; isRemote?: boolean }) => string;
   linkify: (text: string, newWindow?: boolean) => string;
   navigate: (url: string, keepScroll?: boolean, action?: object) => void;
-  parseJson: (id: string, remove?: boolean) => any;
   popup: (message: string, type: string) => void;
   popupShowing: () => boolean;
   presence: (str?: string | null) => string | null;
@@ -85,6 +86,7 @@ interface OsuCommon {
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
   isDesktop(): boolean;
   isMobile(): boolean;
+  parseJson<T = any>(id: string, remove?: boolean): T;
   updateQueryString(url: string | null, params: { [key: string]: string | null | undefined }): string;
 }
 
