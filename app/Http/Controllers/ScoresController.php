@@ -17,6 +17,8 @@ class ScoresController extends Controller
         $this->middleware('auth', ['except' => [
             'show',
         ]]);
+
+        $this->middleware('require-scopes:public');
     }
 
     public function download($mode, $id)
