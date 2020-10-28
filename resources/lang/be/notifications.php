@@ -57,6 +57,8 @@ return [
                 'beatmapset_qualify_compact' => 'Бітмапа далучылася да чаргі рэйтынгу',
                 'beatmapset_rank' => '":title" была ранкавана',
                 'beatmapset_rank_compact' => 'Бітмапа была ранкавана',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'Праблема, якую размясціў :username выклікала скід намінацыі бітмапы ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Намінацыя была скінута',
             ],
@@ -159,6 +161,7 @@ return [
                 'beatmapset_nominate' => '',
                 'beatmapset_qualify' => '',
                 'beatmapset_rank' => '',
+                'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => '',
             ],
 

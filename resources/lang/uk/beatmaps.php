@@ -187,6 +187,8 @@ return [
         'nominate_confirm' => 'Номінувати цю карту?',
         'nominated_by' => 'номінована :users',
         'not_enough_hype' => "Недостатньо хайпа.",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Номінації: :current/:required',
         'reset_message_deleted' => 'видалено',
         'title' => 'Статус номінації',

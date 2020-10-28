@@ -57,6 +57,8 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmapa została zakwalifikowana',
                 'beatmapset_rank' => 'Beatmapa „:title” uzyskała status rankingowy',
                 'beatmapset_rank_compact' => 'Beatmapa uzyskała status rankingowy',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'Nominacja beatmapy „:title” została zresetowana',
                 'beatmapset_reset_nominations_compact' => 'Nominacja została zresetowana',
             ],
@@ -159,6 +161,7 @@ return [
                 'beatmapset_nominate' => 'Beatmapa „:title” została nominowana',
                 'beatmapset_qualify' => 'Beatmapa „:title” uzyskała wystarczającą liczbę nominacji i została zakwalifikowana',
                 'beatmapset_rank' => 'Beatmapa „:title” uzyskała status rankingowy',
+                'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => '',
             ],
 

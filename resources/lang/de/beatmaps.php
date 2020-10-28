@@ -187,15 +187,17 @@ return [
         'nominate_confirm' => 'Diese Beatmap nominieren?',
         'nominated_by' => 'Nominiert von :users',
         'not_enough_hype' => "Nicht ausreichend Hype vorhanden.",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Nominierungen: :current/:required',
         'reset_message_deleted' => 'gelöscht',
         'title' => 'Nominierungsstatus',
         'unresolved_issues' => 'Es existieren noch Vorschläge/Probleme, die gelöst werden müssen.',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
-            'soon' => '',
+            '_' => 'Diese Map wird voraussichtlich (am) :date ranked. Sie befindet sich aktuell an Position :position der :queue.',
+            'queue' => 'Warteschlange',
+            'soon' => 'bald',
         ],
 
         'reset_at' => [

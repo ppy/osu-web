@@ -28,6 +28,7 @@ return [
         'nomination_reset' => 'اثارت المشكلة :discussion (:text) اِعادة تعيين الترشيح.',
         'qualify' => 'هذه الخريطة وصلت إلى العدد المطلوب من الترشيحات وتأهلت.',
         'rank' => 'مصفوفة.',
+        'remove_from_loved' => '',
     ],
 
     'index' => [
@@ -66,5 +67,6 @@ return [
         'nomination_reset' => 'إعادة تعيين الترشيح',
         'qualify' => 'المؤهل',
         'rank' => 'الترتيب',
+        'remove_from_loved' => '',
     ],
 ];

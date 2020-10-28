@@ -28,6 +28,7 @@ return [
         'nomination_reset' => 'Vấn đề mới :discussion đã khiến cho đề cử bị hoàn lại.',
         'qualify' => 'Beatmap này đã đạt được số đề cử (nominations) cần thiết và đã qualified.',
         'rank' => 'Đã được xếp hạng (Ranked).',
+        'remove_from_loved' => '',
     ],
 
     'index' => [
@@ -66,5 +67,6 @@ return [
         'nomination_reset' => 'Đặt lại đề cử',
         'qualify' => 'Qualification',
         'rank' => 'Xếp hạng',
+        'remove_from_loved' => '',
     ],
 ];
