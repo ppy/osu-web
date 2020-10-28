@@ -3,18 +3,18 @@
 
 import {
   ChatChannelPartAction,
-  ChatMessageAddAction,
+  ChatChannelSwitchAction,
   ChatMessageSendAction,
   ChatMessageUpdateAction,
-  ChatPresenceUpdateAction,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
-import UserSilenceAction from 'actions/user-silence-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
-import { ChannelJson, MessageJson, PresenceJson } from 'chat/chat-api-responses';
+import ChatAPI from 'chat/chat-api';
+import { ChannelJson, GetUpdatesJson, MessageJson, PresenceJson } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { groupBy } from 'lodash';
+import { action, computed, observable, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
@@ -23,8 +23,9 @@ import UserStore from './user-store';
 @dispatchListener
 export default class ChannelStore {
   @observable channels = observable.map<number, Channel>();
-  lastHistoryId: number | null = null;
   @observable loaded: boolean = false;
+
+  private api = new ChatAPI();
 
   @computed
   get channelList(): Channel[] {
@@ -61,15 +62,15 @@ export default class ChannelStore {
   get pmChannels(): Channel[] {
     const sortedChannels: Channel[] = [];
     this.channels.forEach((channel) => {
-      if (channel.newChannel || (channel.type === 'PM' && channel.metaLoaded)) {
+      if (channel.newPmChannel || (channel.type === 'PM' && channel.metaLoaded)) {
         sortedChannels.push(channel);
       }
     });
 
     return sortedChannels.sort((a, b) => {
       // so 'new' channels always end up on top
-      if (a.newChannel) return -1;
-      if (b.newChannel) return 1;
+      if (a.newPmChannel) return -1;
+      if (b.newPmChannel) return 1;
 
       if (a.lastMessageId === b.lastMessageId) {
         return 0;
@@ -96,6 +97,8 @@ export default class ChannelStore {
     const channel = this.getOrCreate(json.channel_id);
     channel.updateWithJson(json);
     channel.lastReadId = message.message_id;
+
+    return channel;
   }
 
   findPM(userId: number): Channel | null {
@@ -103,13 +106,12 @@ export default class ChannelStore {
       return null;
     }
 
-    // tslint:disable-next-line:prefer-const browsers that support ES6 but not const in for...of
-    for (let [, channel] of this.channels) {
+    for (const [, channel] of this.channels) {
       if (channel.type !== 'PM') {
         continue;
       }
 
-      if (channel.users.some((user) => user === userId)) {
+      if (channel.users.includes(userId)) {
         return channel;
       }
     }
@@ -139,20 +141,14 @@ export default class ChannelStore {
     return channel;
   }
 
-  handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof ChatMessageSendAction) {
-      this.getOrCreate(dispatchedAction.message.channelId).addMessages(dispatchedAction.message, true);
-    } else if (dispatchedAction instanceof ChatMessageAddAction) {
-      this.getOrCreate(dispatchedAction.message.channelId).addMessages(dispatchedAction.message);
-    } else if (dispatchedAction instanceof ChatMessageUpdateAction) {
-      const channel: Channel = this.getOrCreate(dispatchedAction.message.channelId);
-      channel.updateMessage(dispatchedAction.message);
+  handleDispatchAction(event: DispatcherAction) {
+    if (event instanceof ChatMessageSendAction) {
+      this.handleChatMessageSendAction(event);
+    } else if (event instanceof ChatMessageUpdateAction) {
+      const channel: Channel = this.getOrCreate(event.message.channelId);
+      channel.updateMessage(event.message, event.json);
       channel.resortMessages();
-    } else if (dispatchedAction instanceof ChatPresenceUpdateAction) {
-      this.updatePresence(dispatchedAction.presence);
-    } else if (dispatchedAction instanceof UserSilenceAction) {
-      this.removePublicMessagesFromUser(dispatchedAction.userIds);
-    } else if (dispatchedAction instanceof UserLogoutAction) {
+    } else if (event instanceof UserLogoutAction) {
       this.flushStore();
     }
   }
@@ -163,21 +159,29 @@ export default class ChannelStore {
   }
 
   @action
-  removePublicMessagesFromUser(userIds: Set<number>) {
-    this.nonPmChannels.forEach((channel) => {
-      channel.messages = channel.messages.filter((message) => !userIds.has(message.sender.id));
-    });
+  updateWithJson(updateJson: GetUpdatesJson) {
+    this.updateWithPresence(updateJson.presence);
+
+    const groups = groupBy(updateJson.messages, 'channel_id');
+    for (const key of Object.keys(groups)) {
+      const channelId = parseInt(key, 10);
+      this.handleChatChannelNewMessages(channelId, groups[channelId]);
+    }
+
+    // TODO: convert silence handling back to action when updating through websocket is figured out.
+    const silencedUserIds = new Set<number>(updateJson.silences.map((json) => json.user_id));
+    this.removePublicMessagesFromUserIds(silencedUserIds);
   }
 
   @action
-  updatePresence(presence: PresenceJson) {
+  updateWithPresence(presence: PresenceJson) {
     presence.forEach((json) => {
       this.getOrCreate(json.channel_id).updatePresence(json);
     });
 
     // remove parted channels
     this.channels.forEach((channel) => {
-      if (channel.newChannel) {
+      if (channel.newPmChannel) {
         return;
       }
 
@@ -187,5 +191,63 @@ export default class ChannelStore {
     });
 
     this.loaded = true;
+  }
+
+  @action
+  private handleChatChannelNewMessages(channelId: number, json: MessageJson[]) {
+    const messages = json.map((messageJson) => {
+      if (messageJson.sender != null) this.userStore.getOrCreate(messageJson.sender_id, messageJson.sender);
+      return Message.fromJson(messageJson);
+    });
+
+    if (messages.length === 0) return;
+
+    const channel = this.channels.get(channelId);
+    if (channel == null) return;
+
+    channel.addMessages(messages);
+    channel.loaded = true;
+  }
+
+  @action
+  private async handleChatMessageSendAction(event: ChatMessageSendAction) {
+    const message = event.message;
+    const channel = this.getOrCreate(message.channelId);
+    channel.addMessages(message, true);
+
+    try {
+      if (channel.newPmChannel) {
+        const users = channel.users.slice();
+        const userId = users.find((user) => {
+          return user !== currentUser.id;
+        });
+
+        if (userId == null) {
+          console.debug('sendMessage:: userId not found?? this shouldn\'t happen');
+          return;
+        }
+
+        const response = await this.api.newConversation(userId, message);
+        runInAction(() => {
+          this.channels.delete(message.channelId);
+          const newChannel = this.addNewConversation(response.channel, response.message);
+          dispatch(new ChatChannelSwitchAction(newChannel.channelId));
+        });
+      } else {
+        const response = await this.api.sendMessage(message);
+        dispatch(new ChatMessageUpdateAction(message, response));
+      }
+    } catch (error) {
+      dispatch(new ChatMessageUpdateAction(message, null));
+      // FIXME: this seems like the wrong place to tigger an error popup.
+      osu.ajaxError(error);
+    }
+  }
+
+  @action
+  private removePublicMessagesFromUserIds(userIds: Set<number>) {
+    this.nonPmChannels.forEach((channel) => {
+      channel.removeMessagesFromUserIds(userIds);
+    });
   }
 }
