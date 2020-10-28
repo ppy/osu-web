@@ -6,7 +6,16 @@
   margin: 0 -5px 0 auto;
 
   &__item {
+    position: relative;
     margin: 5px;
     display: flex;
+  }
+
+  &__item-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    // manually calculated for roughly twice the actual button padding
+    padding-top: 20px;
   }
 }
