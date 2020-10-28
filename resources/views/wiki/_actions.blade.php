@@ -5,6 +5,8 @@
 @php
     $otherLocales = $page->otherLocales();
     $showLocalesMenu = count($otherLocales) > 0;
+
+    $currentLocale = $page->isVisible() ? $page->locale : $page->requestedLocale;
 @endphp
 <div class="header-buttons">
     <div class="header-buttons__item">
@@ -41,12 +43,12 @@
             <span class="btn-osu-big__content">
                 <span class="btn-osu-big__icon-inline btn-osu-big__icon-inline--left">
                     @include('objects._flag_country', [
-                        'countryCode' => locale_flag($page->locale),
+                        'countryCode' => locale_flag($currentLocale),
                         'modifiers' => ['flat'],
                     ])
                 </span>
 
-                {{ locale_name($page->locale) }}
+                {{ locale_name($currentLocale) }}
 
                 @if ($showLocalesMenu)
                     <span class="btn-osu-big__icon-inline btn-osu-big__icon-inline--right">
