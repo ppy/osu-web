@@ -62,16 +62,19 @@ class ScoresController extends Controller
             ->visibleUsers()
             ->findOrFail($id);
 
-        return ext_view('scores.show', [
-            'score' => $score,
-            'scoreJson' => json_item($score, 'Score', [
-                'beatmap.max_combo',
-                'beatmapset',
-                'rank_country',
-                'rank_global',
-                'user.cover',
-                'user.country',
-            ]),
+        $scoreJson = json_item($score, 'Score', [
+            'beatmap.max_combo',
+            'beatmapset',
+            'rank_country',
+            'rank_global',
+            'user.cover',
+            'user.country',
         ]);
+
+        if (is_json_request()) {
+            return $scoreJson;
+        }
+
+        return ext_view('scores.show', compact('score', 'scoreJson'));
     }
 }
