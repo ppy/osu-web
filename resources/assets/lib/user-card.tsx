@@ -13,6 +13,7 @@ import { ReportReportable } from 'report-reportable';
 import { Spinner } from 'spinner';
 import { SupporterIcon } from 'supporter-icon';
 import UserCardBrick from 'user-card-brick';
+import UserGroupBadges from 'user-group-badges';
 
 export type ViewMode = 'brick' | 'card' | 'list';
 
@@ -116,6 +117,7 @@ export class UserCard extends React.PureComponent<Props, State> {
               {this.renderIcons()}
               <div className='user-card__username'>
                 <div className='u-ellipsis-pre-overflow'>{this.user.username}</div>
+                <div className='user-card__group-badges'><UserGroupBadges groups={this.user.groups} short={true} wrapper='user-card__group-badge' /></div>
               </div>
               {this.renderListModeIcons()}
             </div>
