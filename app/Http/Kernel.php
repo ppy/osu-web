@@ -23,7 +23,6 @@ class Kernel extends HttpKernel
             Middleware\DisableSessionCookiesForAPI::class,
             Middleware\StartSession::class,
             Middleware\AuthApi::class,
-            'throttle:60,1,api:',
             Middleware\SetLocale::class,
             Middleware\CheckUserBanStatus::class,
         ],

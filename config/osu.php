@@ -6,6 +6,12 @@ return [
         'icon_prefix' => env('USER_ACHIEVEMENT_ICON_PREFIX', 'https://assets.ppy.sh/user-achievements/'),
     ],
 
+    'api' => [
+        // changing the throttle rate doesn't reset any existing timers,
+        // changing the prefix key is the only way to invalidate them.
+        'throttle' => env('API_THROTTLE', '60,1,api'),
+    ],
+
     'avatar' => [
         'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
         'default' => env('DEFAULT_AVATAR', '/images/layout/avatar-guest.png'),

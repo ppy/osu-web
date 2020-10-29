@@ -23,6 +23,9 @@ abstract class Controller extends BaseController
 
     public function __construct()
     {
+        if (is_api_request()) {
+            $this->middleware('throttle:'.config('osu.api.throttle').':');
+        }
     }
 
     protected function formatValidationErrors(Validator $validator)
