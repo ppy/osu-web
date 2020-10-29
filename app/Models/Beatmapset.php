@@ -644,6 +644,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             $message = trans('beatmaps.nominations.unresolved_issues');
         }
 
+        // ensure each playmode has at least one "full" nominator
         if (!$this->isHybridNominationMode()) {
             $playmodes = null;
             if (!$user->isFullBN() && !$user->isNAT()) {
@@ -943,7 +944,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             $currentNominations[Beatmap::modeStr($playmode)] = 0;
         }
 
-        $nominations = $this->nominationsSinceReset;
+        $nominations = $this->fresh()->nominationsSinceReset;
         foreach ($nominations as $nomination) {
             foreach ($nomination->nominationModes as $nomMode) {
                 $currentNominations[$nomMode] = $currentNominations[$nomMode] ?? 0;

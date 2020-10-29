@@ -296,7 +296,7 @@ class BeatmapsetTest extends TestCase
         $this->fillNominationsExceptLastForMode($beatmapset, 'bng_limited', 'osu');
         $this->fillNominationsExceptLastForMode($beatmapset, 'bng_limited', 'taiko');
 
-        $result = $beatmapset->nominate($user, ['osu', 'taiko']);
+        $result = $beatmapset->fresh()->nominate($user, ['osu', 'taiko']);
 
         $this->assertFalse($result['result']);
         $this->assertSame($result['message'], trans('beatmapsets.nominate.full_bn_required'));
