@@ -107,6 +107,7 @@ export class Content extends React.PureComponent
   teamScores: (game) =>
     return if !game?
 
+    # this only caches ended games which scores shouldn't change ever.
     @scoresCache ?= {}
 
     if !@scoresCache[game.id]?
