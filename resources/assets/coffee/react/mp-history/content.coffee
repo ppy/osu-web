@@ -11,12 +11,6 @@ import { classWithModifiers } from 'utils/css'
 el = React.createElement
 
 export class Content extends React.PureComponent
-  constructor: (props) ->
-    super props
-
-    @pageRef = React.createRef()
-
-
   getSnapshotBeforeUpdate: (prevProps, prevState) =>
     snapshot =
       scrollToLastEvent: prevProps.isAutoloading && @props.isAutoloading && osu.bottomPageDistance() < 10
@@ -25,16 +19,12 @@ export class Content extends React.PureComponent
       if prevProps.events?.length > 0 && @props.events?.length > 0
         # This is to allow events to be added without moving currently
         # visible events on viewport.
-        #
-        # When prepending, bottom position should be the reference as top
-        # will be pushed by new events.
         if prevProps.events[0].id > @props.events[0].id
-          snapshot.referenceFunc = => @pageRef.current.getBoundingClientRect().bottom
+          snapshot.referenceFunc = -> document.body.scrollHeight
         else
-          snapshot.referenceFunc = => @pageRef.current.getBoundingClientRect().top
+          snapshot.referenceFunc = -> 0
 
         snapshot.referencePrev = snapshot.referenceFunc()
-
     snapshot
 
 
@@ -53,7 +43,7 @@ export class Content extends React.PureComponent
     eventsGroupOpen = div className: classWithModifiers('mp-history-content__item', ['event', 'event-open'])
     eventsGroupClose = div className: classWithModifiers('mp-history-content__item', ['event', 'event-close'])
 
-    div className: 'mp-history-content', ref: @pageRef,
+    div className: 'mp-history-content',
       h3 className: 'mp-history-content__item', @props.match.name
 
       if @props.hasPrevious
