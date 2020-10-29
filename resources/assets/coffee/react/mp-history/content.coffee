@@ -40,7 +40,7 @@ export class Content extends React.PureComponent
 
   componentDidUpdate: (prevProps, prevState, snapshot) =>
     if snapshot.scrollToLastEvent
-      $(window).stop().scrollTo @pageRef.current.scrollHeight, 500
+      $(window).stop().scrollTo document.body.scrollHeight, 500
     else if snapshot.referenceFunc?
       referenceCurrent = snapshot.referenceFunc()
       documentScrollTopCurrent = window.pageYOffset
