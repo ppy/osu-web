@@ -771,7 +771,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
         $groupModes = $this->userGroups()->where('group_id', $group->group_id)->first()->playmodes;
 
-        return in_array($playmode, $groupModes, true);
+        return in_array($playmode, $groupModes ?? [], true);
     }
 
     public function isNAT($mode = null)

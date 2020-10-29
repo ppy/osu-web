@@ -646,19 +646,18 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
         if (!$this->isHybridNominationMode()) {
             $playmodes = null;
-            if (!$user->isFullBN()) {
+            if (!$user->isFullBN() && !$user->isNAT()) {
                 if ($this->requiresFullBNNomination(null)) {
                     $message = trans('beatmapsets.nominate.full_bn_required');
                 }
             }
         } else {
-            $playmodes = array_values(array_intersect(array_keys(Beatmap::MODES), $playmodes));
-
-            if (empty($playmodes)) {
+            if (!is_array($playmodes) || empty($playmodes)) {
                 $message = trans('beatmapsets.nominate.hybrid_requires_modes');
             } else {
+                $playmodes = array_values(array_intersect($this->playmodesStr(), $playmodes));
                 foreach ($playmodes as $mode) {
-                    if (!$user->isFullBN($mode)) {
+                    if (!$user->isFullBN($mode) && !$user->isNAT($mode)) {
                         if (!$user->isLimitedBN($mode)) {
                             $message = trans('beatmapsets.nominate.incorrect_mode', ['mode' => $mode]);
                             break;
@@ -666,6 +665,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
                         if ($this->requiresFullBNNomination($mode)) {
                             $message = trans('beatmapsets.nominate.full_bn_required');
+                            break;
                         }
                     }
                 }
@@ -990,6 +990,16 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function playmodeCount()
     {
         return $this->playmodes()->count();
+    }
+
+    public function playmodesStr()
+    {
+        return array_map(
+            static function ($ele) {
+                return Beatmap::modeStr($ele);
+            },
+            $this->beatmaps->pluck('playmode')->unique()->values()->toArray()
+        );
     }
 
     public function rankingQueueStatus()
