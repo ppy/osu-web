@@ -68,25 +68,34 @@ abstract class Model extends BaseModel
             $limit = config('osu.beatmaps.max-scores');
             $newQuery = (clone $query)->with('user')->limit($limit * 3);
 
-            $baseResult = $newQuery->get();
-
             $result = [];
-            $users = [];
+            $offset = 0;
+            $baseResultCount = 0;
 
-            foreach ($baseResult as $entry) {
-                if (isset($users[$entry->user_id])) {
-                    continue;
-                }
+            while (true) {
+                $baseResult = $newQuery->offset($offset)->get();
+                $baseResultCount = count($baseResult);
 
-                if (count($result) >= $limit) {
+                if ($baseResultCount === 0) {
                     break;
                 }
 
-                $users[$entry->user_id] = true;
-                $result[] = $entry;
+                $offset += $baseResultCount;
+
+                foreach ($baseResult as $entry) {
+                    if (isset($result[$entry->user_id])) {
+                        continue;
+                    }
+
+                    $result[$entry->user_id] = $entry;
+
+                    if (count($result) >= $limit) {
+                        break 2;
+                    }
+                }
             }
 
-            return $result;
+            return array_values($result);
         };
     }
 
