@@ -23,6 +23,7 @@ class Kernel extends HttpKernel
             Middleware\DisableSessionCookiesForAPI::class,
             Middleware\StartSession::class,
             Middleware\AuthApi::class,
+            'api-throttle:60,1',
             Middleware\SetLocale::class,
             Middleware\CheckUserBanStatus::class,
         ],
@@ -51,6 +52,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'api-throttle' => Middleware\ApiThrottleRequests::class,
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'check-user-restricted' => Middleware\CheckUserRestricted::class,
