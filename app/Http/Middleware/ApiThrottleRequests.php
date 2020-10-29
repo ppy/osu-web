@@ -6,17 +6,16 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Routing\Middleware\ThrottleRequests;
-use RuntimeException;
 
 class ApiThrottleRequests extends ThrottleRequests
 {
     protected function resolveRequestSignature($request)
     {
         $token = oauth_token();
-        if ($token === null) {
-            throw new RuntimeException('missing oauth token');
+        if ($token !== null) {
+            return sha1($token->getKey());
         }
 
-        return sha1($token->getKey());
+        return parent::resolveRequestSignature($request);
     }
 }
