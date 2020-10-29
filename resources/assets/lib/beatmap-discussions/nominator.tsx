@@ -167,7 +167,8 @@ export class Nominator extends React.PureComponent<Props, State> {
           <div className={`${this.bn}__buttons`}>
             <BigButton
               text={osu.trans('beatmaps.nominations.nominate')}
-              icon={this.state.loading ? 'fas fa-circle-notch fa-spin' : 'fas fa-thumbs-up'}
+              icon='fas fa-thumbs-up'
+              isBusy={this.state.loading}
               props={{
                 disabled: (this.hybridMode() && this.state.selectedModes.length < 1) || this.state.loading,
                 onClick: this.nominate,
