@@ -5,9 +5,9 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Routing\Middleware\ThrottleRequests;
+use Illuminate\Routing\Middleware\ThrottleRequests as ThrottleRequestsBase;
 
-class ApiThrottleRequests extends ThrottleRequests
+class ThrottleRequests extends ThrottleRequestsBase
 {
     protected function resolveRequestSignature($request)
     {
