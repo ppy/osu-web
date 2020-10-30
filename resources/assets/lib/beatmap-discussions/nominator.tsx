@@ -152,17 +152,20 @@ export class Nominator extends React.PureComponent<Props, State> {
     return (
       <Modal visible={this.state.visible} onClose={this.hideNominationModal}>
         <div className={`${this.bn}`}>
-          <div className={`${this.bn}__header`}>Nominate Beatmap?</div>
+          <div className={`${this.bn}__header`}>{osu.trans('beatmapsets.nominate.dialog.header')}</div>
           {!this.hybridMode() &&
-          <div className={`${this.bn}__group`}>Are you sure you want to nominate this Beatmap?</div>
+          <div className={`${this.bn}__group`}>{osu.trans('beatmapsets.nominate.dialog.confirmation')}</div>
           }
           {this.hybridMode() &&
-          <div>
-            <div>Nominate for which modes?</div>
-            <div className={`${this.bn}__group`} ref={this.checkboxContainerRef}>
+          <>
+            {osu.trans('beatmapsets.nominate.dialog.which_modes')}
+            <div className={`${this.bn}__checkboxes`} ref={this.checkboxContainerRef}>
               {renderPlaymodes}
             </div>
-          </div>
+            <div className={`${this.bn}__warn`}>
+              {osu.trans('beatmapsets.nominate.dialog.hybrid_warning')}
+            </div>
+          </>
           }
           <div className={`${this.bn}__buttons`}>
             <BigButton
