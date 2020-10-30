@@ -255,6 +255,23 @@ class BeatmapsetTest extends TestCase
         $this->assertTrue($beatmapset->fresh()->isPending());
     }
 
+    public function testHybridNominateWithPlaymodePermissionTooMany(): void
+    {
+        $user = $this->createGroupUserWithPlaymodes('bng', ['osu']);
+        $beatmapset = $this->createHybridBeatmapset(null, ['osu', 'taiko']);
+
+        $this->fillNominationsExceptLastForMode($beatmapset, 'bng', 'osu');
+
+        $result = $beatmapset->nominate($this->createGroupUserWithPlaymodes('bng', ['osu']), ['osu']);
+        $this->assertTrue($result['result']);
+
+        $result = $beatmapset->fresh()->nominate($user, ['osu']);
+
+        $this->assertFalse($result['result']);
+        $this->assertSame($result['message'], trans('beatmaps.nominations.too_many'));
+        $this->assertTrue($beatmapset->fresh()->isPending());
+    }
+
     public function testHybridNominateWithPlaymodePermissionMultipleModes(): void
     {
         $user = $this->createGroupUserWithPlaymodes('bng', ['osu', 'taiko']);

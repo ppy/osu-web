@@ -28,6 +28,7 @@ return [
         'hybrid_requires_modes' => 'A hybrid beatmapset requires you to select at least one playmode to nominate for.',
         'incorrect_mode' => 'You do not have permission to nominate for mode: :mode',
         'full_bn_required' => 'You must be a full nominator to perform this qualifying nomination.',
+        'too_many' => 'Nomination requirement already fulfilled.',
 
         'dialog' => [
             'confirmation' => 'Are you sure you want to nominate this Beatmap?',

@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import { BeatmapsetJson, HybridNominationsInterface } from 'beatmapsets/beatmapset-json';
 import { BigButton } from 'big-button';
 import GameMode from 'interfaces/game-mode';
 import UserJSONExtended from 'interfaces/user-json-extended';
@@ -9,6 +9,7 @@ import { route } from 'laroute';
 import * as _ from 'lodash';
 import { Modal } from 'modal';
 import * as React from 'react';
+import { modes as GameModes } from 'utils/beatmap-helper';
 
 interface Props {
   beatmapset: BeatmapsetJson;
@@ -56,6 +57,24 @@ export class Nominator extends React.PureComponent<Props, State> {
 
   hybridMode = () => this.props.beatmapset.nominations?.hybrid_mode;
 
+  hybridNominationsMet = (mode: GameMode) => {
+    if (
+      !this.props.beatmapset.nominations?.hybrid_mode ||
+      !this.props.beatmapset.nominations.required[mode]
+    ) {
+      return false;
+    }
+
+    const req = this.props.beatmapset.nominations.required[mode];
+    const curr = this.props.beatmapset.nominations.current[mode] || 0;
+
+    if (!req) {
+      return false;
+    }
+
+    return curr >= req;
+  }
+
   mapCanBeNominated = () => {
     const requiredHype = this.props.beatmapset.hype?.required;
 
@@ -93,7 +112,7 @@ export class Nominator extends React.PureComponent<Props, State> {
   }
 
   renderButton = () => {
-    if (!this.mapCanBeNominated() || !this.userCanNominate()) {
+    if (!this.mapCanBeNominated() || !this.userHasNominatePermission()) {
       return;
     }
 
@@ -118,55 +137,18 @@ export class Nominator extends React.PureComponent<Props, State> {
         </div>
       );
     } else {
-      return button(this.props.beatmapset.nominations?.nominated);
+      return button(this.props.beatmapset.nominations?.nominated || !this.userCanNominate());
     }
   }
 
   renderModal = () => {
-    const userNominatable = this.userNominatableModes();
-
-    let renderPlaymodes;
-    if (this.hybridMode()) {
-      const playmodes = _.keys(this.props.beatmapset.nominations?.required);
-      renderPlaymodes = _.map(playmodes, (mode: GameMode) =>
-        (
-          <label className={osu.classWithModifiers('osu-switch-v2', userNominatable[mode] === undefined ? ['disabled'] : [])} key={mode}>
-            <input
-              className='osu-switch-v2__input'
-              type='checkbox'
-              name='nomination_modes'
-              onChange={this.updateCheckboxes}
-              value={mode}
-              checked={this.state.selectedModes.includes(mode)}
-              disabled={userNominatable[mode] === undefined}
-            />
-            <span className='osu-switch-v2__content'/>
-            <div className={osu.classWithModifiers(`${this.bn}__label`, userNominatable[mode] === undefined ? ['disabled'] : [])}>
-              <i className={`fal fa-extra-mode-${mode}`}/>{` ${mode}`}
-            </div>
-          </label>
-        ),
-      );
-    }
+    const content = this.hybridMode() ? this.modalContentHybrid() : this.modalContentNormal();
 
     return (
       <Modal visible={this.state.visible} onClose={this.hideNominationModal}>
         <div className={`${this.bn}`}>
           <div className={`${this.bn}__header`}>{osu.trans('beatmapsets.nominate.dialog.header')}</div>
-          {!this.hybridMode() &&
-          <div className={`${this.bn}__group`}>{osu.trans('beatmapsets.nominate.dialog.confirmation')}</div>
-          }
-          {this.hybridMode() &&
-          <>
-            {osu.trans('beatmapsets.nominate.dialog.which_modes')}
-            <div className={`${this.bn}__checkboxes`} ref={this.checkboxContainerRef}>
-              {renderPlaymodes}
-            </div>
-            <div className={`${this.bn}__warn`}>
-              {osu.trans('beatmapsets.nominate.dialog.hybrid_warning')}
-            </div>
-          </>
-          }
+          {content}
           <div className={`${this.bn}__buttons`}>
             <BigButton
               text={osu.trans('beatmaps.nominations.nominate')}
@@ -198,12 +180,34 @@ export class Nominator extends React.PureComponent<Props, State> {
     this.setState({selectedModes: checkedBoxes as GameMode[]});
   }
 
-  userCanNominate = () => !this.userIsOwner() && (this.props.currentUser.is_admin || this.props.currentUser.is_bng || this.props.currentUser.is_nat);
+  userCanNominate = () => {
+    if (!this.userHasNominatePermission()) {
+      return false;
+    }
+
+    if (this.hybridMode()) {
+      const userNominatable = this.userNominatableModes();
+
+      return _.some(GameModes, (mode) => {
+        if (
+          (this.props.beatmapset.nominations as HybridNominationsInterface)?.required[mode] !== undefined &&
+          userNominatable[mode] !== undefined &&
+          !this.hybridNominationsMet(mode)
+        ) {
+          return true;
+        }
+      });
+    }
+
+    return true;
+  }
+
+  userHasNominatePermission = () => !this.userIsOwner() && (this.props.currentUser.is_admin || this.props.currentUser.is_bng || this.props.currentUser.is_nat);
 
   userIsOwner = () => this.props.currentUser?.id === this.props.beatmapset.user_id;
 
   userNominatableModes = () => {
-    if (!this.mapCanBeNominated() || !this.userCanNominate()) {
+    if (!this.mapCanBeNominated() || !this.userHasNominatePermission()) {
       return {};
     }
 
@@ -228,5 +232,53 @@ export class Nominator extends React.PureComponent<Props, State> {
     }
 
     return modes;
+  }
+
+  private modalContentHybrid = () => {
+    const userNominatable = this.userNominatableModes();
+
+    let renderPlaymodes;
+    const playmodes = _.keys(this.props.beatmapset.nominations?.required);
+
+    renderPlaymodes = _.map(playmodes, (mode: GameMode) => {
+      const disabled = userNominatable[mode] === undefined || this.hybridNominationsMet(mode);
+      return (
+        <label
+          className={osu.classWithModifiers('osu-switch-v2', disabled ? ['disabled'] : [])}
+          key={mode}
+        >
+          <input
+            className='osu-switch-v2__input'
+            type='checkbox'
+            name='nomination_modes'
+            onChange={this.updateCheckboxes}
+            value={mode}
+            checked={this.state.selectedModes.includes(mode)}
+            disabled={disabled}
+          />
+          <span className='osu-switch-v2__content'/>
+          <div
+            className={osu.classWithModifiers(`${this.bn}__label`, disabled ? ['disabled'] : [])}>
+            <i className={`fal fa-extra-mode-${mode}`}/> {osu.trans(`beatmaps.mode.${mode}`)}
+          </div>
+        </label>
+      );
+    });
+
+    return (
+      <>
+        {osu.trans('beatmapsets.nominate.dialog.which_modes')}
+        <div className={`${this.bn}__checkboxes`} ref={this.checkboxContainerRef}>
+          {renderPlaymodes}
+        </div>
+        <div className={`${this.bn}__warn`}>
+          {osu.trans('beatmapsets.nominate.dialog.hybrid_warning')}
+        </div>
+      </>
+    );
+  }
+
+  private modalContentNormal() {
+    return osu.trans('beatmapsets.nominate.dialog.confirmation');
   }
 }

@@ -19,13 +19,13 @@ interface BaseNominationsInterface {
   required_hype: number;
 }
 
-interface NominationsInterface extends BaseNominationsInterface {
+export interface NominationsInterface extends BaseNominationsInterface {
   current: number;
   hybrid_mode: false;
   required: number;
 }
 
-interface HybridNominationsInterface extends BaseNominationsInterface {
+export interface HybridNominationsInterface extends BaseNominationsInterface {
   current: {
     [mode in GameMode]?: number;
   };
