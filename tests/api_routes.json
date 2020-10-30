@@ -6,7 +6,7 @@
         "middlewares": [
             "require-scopes",
             "require-scopes:public",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": [
             "public"
@@ -19,7 +19,7 @@
         "middlewares": [
             "require-scopes",
             "require-scopes:public",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": [
             "public"
@@ -31,7 +31,7 @@
         "controller": "App\\Http\\Controllers\\Beatmapsets\\FavouritesController@store",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "auth"
         ],
         "scopes": []
@@ -42,7 +42,7 @@
         "controller": "App\\Http\\Controllers\\CommentsController@index",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -52,7 +52,7 @@
         "controller": "App\\Http\\Controllers\\CommentsController@index",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -62,7 +62,7 @@
         "controller": "App\\Http\\Controllers\\CommentsController@store",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "auth"
         ],
         "scopes": []
@@ -73,7 +73,7 @@
         "controller": "App\\Http\\Controllers\\CommentsController@show",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -83,7 +83,7 @@
         "controller": "App\\Http\\Controllers\\CommentsController@show",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -93,7 +93,7 @@
         "controller": "App\\Http\\Controllers\\CommentsController@update",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "auth"
         ],
         "scopes": []
@@ -104,7 +104,7 @@
         "controller": "App\\Http\\Controllers\\CommentsController@update",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "auth"
         ],
         "scopes": []
@@ -115,7 +115,7 @@
         "controller": "App\\Http\\Controllers\\CommentsController@destroy",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "auth"
         ],
         "scopes": []
@@ -126,7 +126,7 @@
         "controller": "App\\Http\\Controllers\\CommentsController@voteStore",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "auth"
         ],
         "scopes": []
@@ -137,7 +137,7 @@
         "controller": "App\\Http\\Controllers\\CommentsController@voteDestroy",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "auth"
         ],
         "scopes": []
@@ -149,7 +149,7 @@
         "middlewares": [
             "require-scopes",
             "auth",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -160,7 +160,7 @@
         "middlewares": [
             "require-scopes",
             "auth",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -171,7 +171,7 @@
         "middlewares": [
             "require-scopes",
             "auth",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -182,7 +182,7 @@
         "middlewares": [
             "require-scopes",
             "auth",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -193,7 +193,7 @@
         "middlewares": [
             "require-scopes",
             "auth",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -204,7 +204,7 @@
         "middlewares": [
             "require-scopes",
             "auth",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -215,7 +215,7 @@
         "middlewares": [
             "require-scopes",
             "auth",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -226,7 +226,7 @@
         "middlewares": [
             "require-scopes",
             "auth",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -237,7 +237,7 @@
         "middlewares": [
             "require-scopes",
             "auth",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -248,7 +248,7 @@
         "middlewares": [
             "require-scopes",
             "auth",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -259,7 +259,7 @@
         "middlewares": [
             "require-scopes",
             "auth",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -270,7 +270,7 @@
         "middlewares": [
             "require-scopes",
             "auth",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -281,7 +281,7 @@
         "middlewares": [
             "require-scopes",
             "auth",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -292,7 +292,7 @@
         "middlewares": [
             "require-scopes",
             "auth",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -302,7 +302,7 @@
         "controller": "App\\Http\\Controllers\\ChangelogController@build",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -312,7 +312,7 @@
         "controller": "App\\Http\\Controllers\\ChangelogController@build",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -322,7 +322,7 @@
         "controller": "App\\Http\\Controllers\\ChangelogController@index",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -332,7 +332,7 @@
         "controller": "App\\Http\\Controllers\\ChangelogController@index",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -342,7 +342,7 @@
         "controller": "App\\Http\\Controllers\\ChangelogController@show",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -352,7 +352,7 @@
         "controller": "App\\Http\\Controllers\\ChangelogController@show",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -530,7 +530,7 @@
         "controller": "App\\Http\\Controllers\\ReportsController@store",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "auth"
         ],
         "scopes": []
@@ -575,7 +575,7 @@
         "controller": "App\\Http\\Controllers\\SeasonalBackgroundsController@index",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -585,7 +585,7 @@
         "controller": "App\\Http\\Controllers\\SeasonalBackgroundsController@index",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -595,8 +595,9 @@
         "controller": "App\\Http\\Controllers\\ScoresController@download",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
-            "auth"
+            "throttle:1200,1,api:",
+            "auth",
+            "throttle:10,1,api-scores-download:"
         ],
         "scopes": []
     },
@@ -606,8 +607,9 @@
         "controller": "App\\Http\\Controllers\\ScoresController@download",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
-            "auth"
+            "throttle:1200,1,api:",
+            "auth",
+            "throttle:10,1,api-scores-download:"
         ],
         "scopes": []
     },
@@ -617,7 +619,7 @@
         "controller": "App\\Http\\Controllers\\BeatmapsController@scores",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "require-scopes:public"
         ],
         "scopes": [
@@ -630,7 +632,7 @@
         "controller": "App\\Http\\Controllers\\BeatmapsController@scores",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "require-scopes:public"
         ],
         "scopes": [
@@ -691,7 +693,7 @@
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@search",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "require-scopes:public"
         ],
         "scopes": [
@@ -704,7 +706,7 @@
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@search",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "require-scopes:public"
         ],
         "scopes": [
@@ -741,7 +743,7 @@
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@download",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -751,7 +753,7 @@
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@download",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -761,7 +763,7 @@
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@show",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "require-scopes:public"
         ],
         "scopes": [
@@ -774,7 +776,7 @@
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@show",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "require-scopes:public"
         ],
         "scopes": [
@@ -789,7 +791,7 @@
             "require-scopes",
             "auth",
             "require-scopes:friends.read",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": [
             "friends.read"
@@ -803,7 +805,7 @@
             "require-scopes",
             "auth",
             "require-scopes:friends.read",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": [
             "friends.read"
@@ -817,7 +819,7 @@
             "require-scopes",
             "auth",
             "require-scopes:identify",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": [
             "identify"
@@ -831,7 +833,7 @@
             "require-scopes",
             "auth",
             "require-scopes:identify",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": [
             "identify"
@@ -844,7 +846,7 @@
         "middlewares": [
             "require-scopes",
             "auth",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -855,7 +857,7 @@
         "middlewares": [
             "require-scopes",
             "auth",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -865,7 +867,7 @@
         "controller": "App\\Http\\Controllers\\NewsController@index",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "require-scopes:public"
         ],
         "scopes": [
@@ -878,7 +880,7 @@
         "controller": "App\\Http\\Controllers\\NewsController@index",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "require-scopes:public"
         ],
         "scopes": [
@@ -891,7 +893,7 @@
         "controller": "App\\Http\\Controllers\\NewsController@show",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "require-scopes:public"
         ],
         "scopes": [
@@ -904,7 +906,7 @@
         "controller": "App\\Http\\Controllers\\NewsController@show",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "require-scopes:public"
         ],
         "scopes": [
@@ -917,7 +919,7 @@
         "controller": "App\\Http\\Controllers\\NotificationsController@index",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "auth"
         ],
         "scopes": []
@@ -928,7 +930,7 @@
         "controller": "App\\Http\\Controllers\\NotificationsController@index",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "auth"
         ],
         "scopes": []
@@ -939,7 +941,7 @@
         "controller": "App\\Http\\Controllers\\NotificationsController@markRead",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "auth"
         ],
         "scopes": []
@@ -950,7 +952,7 @@
         "controller": "App\\Http\\Controllers\\RankingController@index",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "require-scopes:public"
         ],
         "scopes": [
@@ -963,7 +965,7 @@
         "controller": "App\\Http\\Controllers\\RankingController@index",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "require-scopes:public"
         ],
         "scopes": [
@@ -976,7 +978,7 @@
         "controller": "App\\Http\\Controllers\\SpotlightsController@index",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "require-scopes:public"
         ],
         "scopes": [
@@ -989,7 +991,7 @@
         "controller": "App\\Http\\Controllers\\SpotlightsController@index",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:",
+            "throttle:1200,1,api:",
             "require-scopes:public"
         ],
         "scopes": [
@@ -1003,7 +1005,7 @@
         "middlewares": [
             "require-scopes",
             "require-scopes:public",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": [
             "public"
@@ -1016,7 +1018,7 @@
         "middlewares": [
             "require-scopes",
             "require-scopes:public",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": [
             "public"
@@ -1029,7 +1031,7 @@
         "middlewares": [
             "require-scopes",
             "require-scopes:public",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": [
             "public"
@@ -1042,7 +1044,7 @@
         "middlewares": [
             "require-scopes",
             "require-scopes:public",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": [
             "public"
@@ -1055,7 +1057,7 @@
         "middlewares": [
             "require-scopes",
             "require-scopes:public",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": [
             "public"
@@ -1068,7 +1070,7 @@
         "middlewares": [
             "require-scopes",
             "require-scopes:public",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": [
             "public"
@@ -1081,7 +1083,7 @@
         "middlewares": [
             "require-scopes",
             "require-scopes:public",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": [
             "public"
@@ -1094,7 +1096,7 @@
         "middlewares": [
             "require-scopes",
             "require-scopes:public",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": [
             "public"
@@ -1107,7 +1109,7 @@
         "middlewares": [
             "require-scopes",
             "require-scopes:public",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": [
             "public"
@@ -1120,7 +1122,7 @@
         "middlewares": [
             "require-scopes",
             "require-scopes:public",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": [
             "public"
@@ -1132,7 +1134,7 @@
         "controller": "App\\Http\\Controllers\\WikiController@show",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     },
@@ -1142,7 +1144,7 @@
         "controller": "App\\Http\\Controllers\\WikiController@show",
         "middlewares": [
             "require-scopes",
-            "throttle:60,1,api:"
+            "throttle:1200,1,api:"
         ],
         "scopes": []
     }
