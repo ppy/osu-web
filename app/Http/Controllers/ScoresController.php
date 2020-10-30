@@ -17,6 +17,10 @@ class ScoresController extends Controller
         $this->middleware('auth', ['except' => [
             'show',
         ]]);
+
+        if (is_api_request()) {
+            $this->middleware('throttle:'.config('osu.api.throttle.scores_download').':');
+        }
     }
 
     public function download($mode, $id)

@@ -9,7 +9,10 @@ return [
     'api' => [
         // changing the throttle rate doesn't reset any existing timers,
         // changing the prefix key is the only way to invalidate them.
-        'throttle' => env('API_THROTTLE', '60,1,api'),
+        'throttle' => [
+            'global' => env('API_THROTTLE_GLOBAL', '1200,1,api'),
+            'scores_download' => env('API_THROTTLE_SCORES_DOWNLOAD', '10,1,api-scores-download'),
+        ],
     ],
 
     'avatar' => [
