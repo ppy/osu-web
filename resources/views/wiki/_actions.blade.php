@@ -59,28 +59,26 @@
         </a>
 
         @if ($showLocalesMenu)
-            <div class="header-buttons__item-menu">
-                <div
-                    class="simple-menu simple-menu--wiki-locales js-click-menu"
-                    data-visibility="hidden"
-                    data-click-menu-id="wiki-locales"
-                >
-                    <div class="simple-menu__content">
-                        @foreach ($otherLocales as $locale)
-                            <a class="simple-menu__item" href="{{ wiki_url($page->path, $locale) }}">
-                                <span class="nav2-locale-item nav2-locale-item--no-padding">
-                                    <span class="nav2-locale-item__flag">
-                                        @include('objects._flag_country', [
-                                            'countryCode' => locale_flag($locale),
-                                            'modifiers' => ['flat'],
-                                        ])
-                                    </span>
-
-                                    {{ locale_name($locale) }}
+            <div
+                class="simple-menu simple-menu--wiki-locales js-click-menu"
+                data-visibility="hidden"
+                data-click-menu-id="wiki-locales"
+            >
+                <div class="simple-menu__content">
+                    @foreach ($otherLocales as $locale)
+                        <a class="simple-menu__item" href="{{ wiki_url($page->path, $locale) }}">
+                            <span class="nav2-locale-item nav2-locale-item--no-padding">
+                                <span class="nav2-locale-item__flag">
+                                    @include('objects._flag_country', [
+                                        'countryCode' => locale_flag($locale),
+                                        'modifiers' => ['flat'],
+                                    ])
                                 </span>
-                            </a>
-                        @endforeach
-                    </div>
+
+                                {{ locale_name($locale) }}
+                            </span>
+                        </a>
+                    @endforeach
                 </div>
             </div>
         @endif
