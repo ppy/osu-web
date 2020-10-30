@@ -28,6 +28,7 @@ return [
         'nomination_reset' => 'Novo problema :discussion reiniciou a contagem de nomeação.',
         'qualify' => 'Este beatmap alcançou o número de nomeações necessárias e se tornou qualificado.',
         'rank' => 'Ranqueado.',
+        'remove_from_loved' => '',
     ],
 
     'index' => [
@@ -66,5 +67,6 @@ return [
         'nomination_reset' => 'Redefinir Nomeação',
         'qualify' => 'Qualificações',
         'rank' => 'Classificação',
+        'remove_from_loved' => '',
     ],
 ];

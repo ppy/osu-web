@@ -8,6 +8,8 @@ namespace App\Models;
 use App\Libraries\Transactions\AfterCommit;
 
 /**
+ * @property string $colour
+ * @property int $display_order
  * @property string $group_avatar
  * @property int $group_avatar_height
  * @property int $group_avatar_type
@@ -27,12 +29,18 @@ use App\Libraries\Transactions\AfterCommit;
  * @property int $group_receive_pm
  * @property int $group_sig_chars
  * @property int $group_type
+ * @property bool $has_playmodes
+ * @property string $identifier
+ * @property string $short_name
  */
 class Group extends Model implements AfterCommit
 {
     protected $table = 'phpbb_groups';
     protected $primaryKey = 'group_id';
     public $timestamps = false;
+    protected $casts = [
+        'has_playmodes' => 'boolean',
+    ];
 
     public function scopeVisible($query)
     {
@@ -50,6 +58,12 @@ class Group extends Model implements AfterCommit
         }
 
         return $value;
+    }
+
+    public function isProbationary(): bool
+    {
+        // TODO: move this to a DB field or something if other groups end up needing 'probation'
+        return $this->identifier === 'bng_limited';
     }
 
     public function isVisible(): bool

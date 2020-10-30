@@ -20,7 +20,7 @@ return [
     'type' => [
         'charts' => 'Öne Çıkanlar',
         'country' => 'Ülke',
-        'multiplayer' => 'Çok Oyunculu',
+        'multiplayer' => 'çok oyunculu',
         'performance' => 'Performans',
         'score' => 'Skor',
     ],

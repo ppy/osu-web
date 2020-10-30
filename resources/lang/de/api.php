@@ -6,7 +6,7 @@
 return [
     'error' => [
         'chat' => [
-            'empty' => 'Leere Nachricht kann nicht gesendet werden.',
+            'empty' => 'Du kannst keine leeren Nachrichten senden.',
             'limit_exceeded' => 'Du sendest zu viele Nachrichten! Bitte warte kurz, bevor du es erneut versuchst.',
             'too_long' => 'Die Nachricht, die du versuchst zu senden, ist zu lang.',
         ],
