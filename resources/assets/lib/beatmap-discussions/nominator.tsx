@@ -258,7 +258,8 @@ export class Nominator extends React.PureComponent<Props, State> {
           />
           <span className='osu-switch-v2__content'/>
           <div
-            className={osu.classWithModifiers(`${this.bn}__label`, disabled ? ['disabled'] : [])}>
+            className={osu.classWithModifiers(`${this.bn}__label`, disabled ? ['disabled'] : [])}
+          >
             <i className={`fal fa-extra-mode-${mode}`}/> {osu.trans(`beatmaps.mode.${mode}`)}
           </div>
         </label>
