@@ -28,6 +28,7 @@ return [
         'nomination_reset' => 'Nieuw probleem: discussie (: tekst) veroorzaakte een nominatie reset.',
         'qualify' => 'Deze beatmap heeft het benodigde aantal nominaties bereikt en is nu gekwalificeerd.',
         'rank' => 'Ranked.',
+        'remove_from_loved' => '',
     ],
 
     'index' => [
@@ -66,5 +67,6 @@ return [
         'nomination_reset' => 'Nominatie opnieuw instellen',
         'qualify' => 'Kwalificatie',
         'rank' => 'Postitionering',
+        'remove_from_loved' => '',
     ],
 ];
