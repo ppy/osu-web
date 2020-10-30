@@ -1371,19 +1371,32 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
                 return [app('groups')->byIdentifier('bot')];
             }
 
-            $ids = $this->groupIds();
-            array_unshift($ids, $this->defaultGroup()->getKey());
-
             $groups = [];
-            foreach (array_unique($ids) as $id) {
-                $group = app('groups')->byId($id);
+            foreach ($this->userGroups as $userGroup) {
+                $cachedGroup = app('groups')->byId($userGroup->group_id);
+                if (!$cachedGroup || $cachedGroup->display_order === null) {
+                    continue;
+                }
 
-                if (optional($group)->display_order !== null) {
+                if ($cachedGroup->has_playmodes) {
+                    $group = clone $cachedGroup;
+                    $group['playmodes'] = $userGroup->playmodes;
                     $groups[] = $group;
+                } else {
+                    $groups[] = $cachedGroup;
                 }
             }
 
             usort($groups, function ($a, $b) {
+                // if the user has a default group, always show it first
+                if ($a->group_id === $this->group_id) {
+                    return -1;
+                }
+                if ($b->group_id === $this->group_id) {
+                    return 1;
+                }
+
+                // otherwise, sort by display order
                 return $a->display_order - $b->display_order;
             });
 
