@@ -57,6 +57,8 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmap er gået ind i ranking ventelisten',
                 'beatmapset_rank' => '":title" er blevet ranked',
                 'beatmapset_rank_compact' => 'Beatmap blev ranked',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'Nominering af ":title" blev nulstillet',
                 'beatmapset_reset_nominations_compact' => 'Nominering blev nulstillet',
             ],
@@ -159,6 +161,7 @@ return [
                 'beatmapset_nominate' => '',
                 'beatmapset_qualify' => '',
                 'beatmapset_rank' => '',
+                'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => '',
             ],
 

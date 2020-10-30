@@ -28,6 +28,7 @@ return [
         'nomination_reset' => 'Nytt problem :discussion (:text) utløste en tilbakestilling av nominasjonen.',
         'qualify' => 'Dette beatmappet har nådd det nødvendige antallet med nominasjoner og har nå blitt kvalifisert.',
         'rank' => 'Rangert.',
+        'remove_from_loved' => '',
     ],
 
     'index' => [
@@ -66,5 +67,6 @@ return [
         'nomination_reset' => 'Nominasjon nullstilling',
         'qualify' => 'Kvalifikasjon',
         'rank' => 'Rangering',
+        'remove_from_loved' => '',
     ],
 ];

@@ -187,6 +187,8 @@ return [
         'nominate_confirm' => '確定要提名這張圖譜？',
         'nominated_by' => '被 :users 提名',
         'not_enough_hype' => "沒有足夠的推薦。",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => '提名數: :current/:required',
         'reset_message_deleted' => '已刪除',
         'title' => '提名狀態',

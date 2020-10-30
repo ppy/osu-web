@@ -28,6 +28,7 @@ return [
         'nomination_reset' => 'Neues Problem :discussion hat die Nominierung zurückgesetzt.',
         'qualify' => 'Diese Beatmap hat die erforderliche Anzahl an Nominierungen erreicht und wurde qualifiziert.',
         'rank' => 'Ranked.',
+        'remove_from_loved' => '',
     ],
 
     'index' => [
@@ -66,5 +67,6 @@ return [
         'nomination_reset' => 'Nominierung zurücksetzten',
         'qualify' => 'Qualifikation',
         'rank' => 'Ranking',
+        'remove_from_loved' => '',
     ],
 ];

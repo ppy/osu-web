@@ -187,15 +187,17 @@ return [
         'nominate_confirm' => 'このビートマップをノミネートしますか？',
         'nominated_by' => ':usersがノミネート',
         'not_enough_hype' => "Hypeが足りません",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'ノミネート数: :current/:required',
         'reset_message_deleted' => '削除済み',
         'title' => 'ノミネートのステータス',
         'unresolved_issues' => 'まだ未解決の問題があります。',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
-            'soon' => '',
+            '_' => 'このマップは、問題が見つからなければ :date にrankedされると推定されます。:queue 内の #:position ',
+            'queue' => 'ランキングキュー',
+            'soon' => '間もなく',
         ],
 
         'reset_at' => [

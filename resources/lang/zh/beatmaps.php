@@ -187,15 +187,17 @@ return [
         'nominate_confirm' => '提名这张谱面？',
         'nominated_by' => '由 :users 提名',
         'not_enough_hype' => "没有足够的推荐。",
+        'remove_from_loved' => '从 Loved 中移除',
+        'remove_from_loved_prompt' => '从 Loved 中移除的原因：',
         'required_text' => '提名数: :current/:required',
         'reset_message_deleted' => '已删除',
         'title' => '提名状态',
         'unresolved_issues' => '仍然有需解决的问题 。',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
-            'soon' => '',
+            '_' => '如果没有问题，该谱面将于 :date ranked。位于 :queue 中的第 :position 位。',
+            'queue' => 'ranking 队列',
+            'soon' => '不久后',
         ],
 
         'reset_at' => [

@@ -28,6 +28,7 @@ return [
         'nomination_reset' => 'Ένα νέο πρόβλημα :discussion (:text) ξεκίνησε μια επαναφορά της διαδικασίας υποψηφιότητας.',
         'qualify' => 'Αυτό το beatmap έχει φτάσει των απαραίτητο αριθμό nominations και είναι πλέον qualified.',
         'rank' => 'Ranked.',
+        'remove_from_loved' => '',
     ],
 
     'index' => [
@@ -66,5 +67,6 @@ return [
         'nomination_reset' => 'Επαναφορά διορισμού',
         'qualify' => 'Προσόντα',
         'rank' => 'Κατάταξη',
+        'remove_from_loved' => '',
     ],
 ];
