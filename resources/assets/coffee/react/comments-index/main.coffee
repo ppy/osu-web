@@ -36,15 +36,19 @@ export class Main extends React.Component
       el Observer, null, () =>
         comments = uiState.comments.topLevelCommentIds.map (id) -> store.comments.get(id)
         div className: 'osu-page osu-page--comments',
-          for comment in comments
-            el Comment,
-              key: comment.id
-              comment: comment
-              expandReplies: false
-              showCommentableMeta: true
-              linkParent: true
-              depth: 0
-              modifiers: ['dark']
+          if comments.length < 1
+            div className: 'comments__text',
+              osu.trans 'comments.index.no_comments'
+          else
+            for comment in comments
+              el Comment,
+                key: comment.id
+                comment: comment
+                expandReplies: false
+                showCommentableMeta: true
+                linkParent: true
+                depth: 0
+                modifiers: ['dark']
 
           div ref: @pagination
 

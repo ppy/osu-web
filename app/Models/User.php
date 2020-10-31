@@ -1251,6 +1251,11 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         );
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function follows()
     {
         return $this->hasMany(Follow::class);

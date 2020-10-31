@@ -140,6 +140,12 @@ class CommentBundle
     public function countForPaginator()
     {
         $query = $this->commentsQuery();
+
+        if ($this->params->authorId !== null)
+        {
+            $query->where('user_id', $this->params->authorId);
+        }
+
         if (!$this->includeDeleted) {
             $query->withoutTrashed();
         }
@@ -166,6 +172,11 @@ class CommentBundle
         }
 
         $query->with('commentable')->cursorSort($sort, $cursor ?? null);
+
+        if ($this->params->authorId !== null)
+        {
+            $query->where('user_id', $this->params->authorId);
+        }
 
         if (!$this->includeDeleted) {
             $query->whereNull('deleted_at');
