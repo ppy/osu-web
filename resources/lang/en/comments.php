@@ -36,7 +36,7 @@ return [
 
     'index' => [
         'nav_title' => 'listing',
-        'no_comments' => 'no comments found...'
+        'no_comments' => 'no comments found...',
     ],
 
     'placeholder' => [

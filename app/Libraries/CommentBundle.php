@@ -141,8 +141,7 @@ class CommentBundle
     {
         $query = $this->commentsQuery();
 
-        if ($this->params->authorId !== null)
-        {
+        if ($this->params->authorId !== null) {
             $query->where('user_id', $this->params->authorId);
         }
 
@@ -173,8 +172,7 @@ class CommentBundle
 
         $query->with('commentable')->cursorSort($sort, $cursor ?? null);
 
-        if ($this->params->authorId !== null)
-        {
+        if ($this->params->authorId !== null) {
             $query->where('user_id', $this->params->authorId);
         }
 
