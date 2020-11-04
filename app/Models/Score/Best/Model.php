@@ -71,6 +71,9 @@ abstract class Model extends BaseModel
             $result = [];
             $offset = 0;
             $baseResultCount = 0;
+            $finalize = function (array $result) {
+                return array_values($result);
+            };
 
             while (true) {
                 $baseResult = $newQuery->offset($offset)->get();
@@ -90,12 +93,12 @@ abstract class Model extends BaseModel
                     $result[$entry->user_id] = $entry;
 
                     if (count($result) >= $limit) {
-                        break 2;
+                        return $finalize($result);
                     }
                 }
             }
 
-            return array_values($result);
+            return $finalize($result);
         };
     }
 
