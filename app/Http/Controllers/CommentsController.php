@@ -81,12 +81,12 @@ class CommentsController extends Controller
     {
         $params = request()->all();
 
-        $authorId = $params['author_id'] ?? null;
+        $userId = $params['user_id'] ?? null;
 
-        if ($authorId !== null) {
-            $author = User::lookup($authorId, 'id', true);
+        if ($userId !== null) {
+            $user = User::lookup($userId, 'id', true);
 
-            if ($author === null || !priv_check('UserShow', $author)->can()) {
+            if ($user === null || !priv_check('UserShow', $user)->can()) {
                 abort(404);
             }
         }

@@ -12,7 +12,7 @@ class CommentBundleParams
     const DEFAULT_PAGE = 1;
     const DEFAULT_LIMIT = 50;
 
-    public $authorId;
+    public $userId;
     public $commentableId;
     public $commentableType;
     public $parentId;
@@ -25,7 +25,7 @@ class CommentBundleParams
 
     public function __construct($params, $user)
     {
-        $this->authorId = null;
+        $this->userId = null;
         $this->parentId = null;
         $this->cursor = null;
         $this->limit = static::DEFAULT_LIMIT;
@@ -37,8 +37,8 @@ class CommentBundleParams
 
     public function setAll($params)
     {
-        if (array_key_exists('author_id', $params)) {
-            $this->authorId = get_int($params['author_id']);
+        if (array_key_exists('user_id', $params)) {
+            $this->userId = get_int($params['user_id']);
         }
 
         if (array_key_exists('parent_id', $params)) {
@@ -75,8 +75,8 @@ class CommentBundleParams
             'cursor' => $this->cursor === null ? null : $this->cursorRaw,
         ];
 
-        if ($this->authorId !== null) {
-            $params['author_id'] = $this->authorId;
+        if ($this->userId !== null) {
+            $params['user_id'] = $this->userId;
         }
 
         if ($this->parentId !== null) {
