@@ -49,14 +49,6 @@ class UserNotification extends Model
             $unreadCountCurrent = $unreadCountQuery->count();
             $readCount = $unreadCountInitial - $unreadCountCurrent;
 
-            $remainingNotificationIds = static
-                ::whereIn('notification_id', $notificationIds)
-                ->pluck('notification_id')
-                ->all();
-            $orphanNotificationIds = array_diff($notificationIds, $remainingNotificationIds);
-
-            Notification::whereIn('id', $orphanNotificationIds)->delete();
-
             event(new NotificationDeleteEvent($user->getKey(), [
                 'notifications' => $identities,
                 'read_count' => $readCount,

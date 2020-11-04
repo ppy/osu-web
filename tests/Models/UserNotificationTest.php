@@ -13,38 +13,6 @@ use Tests\TestCase;
 
 class UserNotificationTest extends TestCase
 {
-    public function testBatchDestroyOnlyDeleteOrphanNotification()
-    {
-        $userA = factory(User::class)->create();
-        $userB = factory(User::class)->create();
-
-        $notification = factory(Notification::class)->create();
-
-        $userNotificationA = factory(UserNotification::class)->create([
-            'notification_id' => $notification->getKey(),
-            'user_id' => $userA->getKey(),
-        ]);
-
-        $userNotificationB = factory(UserNotification::class)->create([
-            'notification_id' => $notification->getKey(),
-            'user_id' => $userB->getKey(),
-        ]);
-
-        $initialNotificationCount = Notification::count();
-        $initialUserNotificationCount = UserNotification::count();
-
-        UserNotification::batchDestroy($userA, BatchIdentities::fromParams([
-            'notifications' => [
-                ['id' => $notification->getKey()],
-            ],
-        ]));
-
-        $this->assertSame(UserNotification::count(), $initialUserNotificationCount - 1);
-        $this->assertSame(Notification::count(), $initialNotificationCount);
-        $this->assertNull(UserNotification::find($userNotificationA->getKey()));
-        $this->assertTrue(Notification::where('id', $notification->getKey())->exists());
-    }
-
     public function testBatchDestroyByIds()
     {
         $user = factory(User::class)->create();
@@ -62,7 +30,6 @@ class UserNotificationTest extends TestCase
             'user_id' => $user->getKey(),
         ]);
 
-        $initialNotificationCount = Notification::count();
         $initialUserNotificationCount = UserNotification::count();
 
         UserNotification::batchDestroy($user, BatchIdentities::fromParams([
@@ -72,11 +39,8 @@ class UserNotificationTest extends TestCase
         ]));
 
         $this->assertSame(UserNotification::count(), $initialUserNotificationCount - 1);
-        $this->assertSame(Notification::count(), $initialNotificationCount - 1);
         $this->assertNull(UserNotification::find($userNotificationA->getKey()));
-        $this->assertNull(Notification::find($notificationA->getKey()));
         $this->assertTrue(UserNotification::where('id', $userNotificationB->getKey())->exists());
-        $this->assertTrue(Notification::where('id', $notificationB->getKey())->exists());
     }
 
     public function testBatchDestroyByNotificationIdentyByStack()
@@ -115,7 +79,6 @@ class UserNotificationTest extends TestCase
         ]);
 
         $initialUserNotificationCount = UserNotification::count();
-        $initialNotificationCount = Notification::count();
 
         UserNotification::batchDestroy($user, BatchIdentities::fromParams([
             'category' => $notificationA->category,
@@ -124,11 +87,9 @@ class UserNotificationTest extends TestCase
         ]));
 
         $this->assertSame(UserNotification::count(), $initialUserNotificationCount - 2);
-        $this->assertSame(Notification::count(), $initialNotificationCount - 2);
         $this->assertNull(UserNotification::find($userNotificationA->getKey()));
         $this->assertNull(UserNotification::find($userNotificationB->getKey()));
         $this->assertTrue(UserNotification::where('id', $userNotificationC->getKey())->exists());
-        $this->assertTrue(Notification::where('id', $notificationC->getKey())->exists());
     }
 
     public function testBatchDestroyByNotificationIdentityByObjectType()
@@ -164,20 +125,15 @@ class UserNotificationTest extends TestCase
         ]);
 
         $initialUserNotificationCount = UserNotification::count();
-        $initialNotificationCount = Notification::count();
 
         UserNotification::batchDestroy($user, BatchIdentities::fromParams([
             'object_type' => $notificationA->notifiable_type,
         ]));
 
         $this->assertSame(UserNotification::count(), $initialUserNotificationCount - 2);
-        $this->assertSame(Notification::count(), $initialNotificationCount - 2);
         $this->assertNull(UserNotification::find($userNotificationA->getKey()));
-        $this->assertNull(Notification::find($notificationA->getKey()));
         $this->assertNull(UserNotification::find($userNotificationB->getKey()));
-        $this->assertNull(Notification::find($notificationB->getKey()));
         $this->assertTrue(UserNotification::where('id', $userNotificationC->getKey())->exists());
-        $this->assertTrue(Notification::where('id', $notificationC->getKey())->exists());
     }
 
     /**
