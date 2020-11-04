@@ -3,6 +3,7 @@
 
 .mp-history-events {
   @_event-max-width: 640px;
+  @_event-padding-y: 15px;
 
   .event() {
     background-color: @osu-colour-b4;
@@ -13,7 +14,7 @@
 
   .event-end() {
     border-radius: 0 0 @border-radius-base @border-radius-base;
-    padding-bottom: 15px;
+    padding-bottom: @_event-padding-y;
     margin-bottom: 20px;
   }
 
@@ -22,13 +23,12 @@
 
     &:first-child,
     :not(&) + & {
-      padding-top: 20px;
+      padding-top: @_event-padding-y;
       border-radius: @border-radius-base @border-radius-base 0 0;
     }
 
     &:last-child {
       .event-end();
-      padding-bottom: 20px;
     }
   }
 
