@@ -29,7 +29,7 @@ export class Main extends React.Component
 
 
   componentDidMount: =>
-    @timeouts.autoload = Timeout.set REFRESH_TIMEOUT, @autoload
+    @delayedAutoload()
 
 
   render: =>
@@ -56,8 +56,18 @@ export class Main extends React.Component
     Timeout.clear timeout for _name, timeout of @timeouts
 
 
+  isOngoing: =>
+    !@state.match.end_time?
+
+
+  hasLatest: =>
+    lastEvent = _.last(@state.events)
+
+    lastEvent? && lastEvent.id == @state.latestEventId
+
+
   isAutoloading: =>
-    @state.latestEventId == _.last(@state.events)?.id
+    @isOngoing() && @hasLatest()
 
 
   autoload: =>
@@ -71,7 +81,7 @@ export class Main extends React.Component
 
 
   hasNext: =>
-    !@state.match.end_time?
+    @isOngoing() || !@hasLatest()
 
 
   loadNext: =>
@@ -118,7 +128,9 @@ export class Main extends React.Component
 
 
   hasPrevious: =>
-    @state.events[0].detail.type != 'match-created'
+    firstEvent = @state.events[0]
+
+    firstEvent? && firstEvent.id != @props.events.first_event_id
 
 
   loadPrevious: =>

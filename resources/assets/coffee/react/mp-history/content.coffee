@@ -5,7 +5,8 @@ import { Event } from './event'
 import { Game } from './game'
 import * as React from 'react'
 import { button, div, h3 } from 'react-dom-factories'
-import { Spinner } from 'spinner'
+import { ShowMoreLink } from 'show-more-link'
+
 el = React.createElement
 
 export class Content extends React.PureComponent
@@ -53,14 +54,11 @@ export class Content extends React.PureComponent
       h3 null, @props.match.name
       if @props.hasPrevious
         div className: 'mp-history-content',
-          if @props.loadingPrevious
-            el Spinner
-          else
-            button
-              className: 'mp-history-content__show-more'
-              type: 'button'
-              onClick: @props.loadPrevious
-              osu.trans 'common.buttons.show_more'
+          el ShowMoreLink,
+            callback: @props.loadPrevious
+            direction: 'up'
+            hasMore: true
+            loading: @props.loadingPrevious
 
       div
         className: 'mp-history-events'
@@ -88,19 +86,13 @@ export class Content extends React.PureComponent
       if @props.hasNext
         div className: 'mp-history-content',
           if @props.isAutoloading
-            div className: 'mp-history-content__spinner',
-              div
-                className: 'mp-history-content__spinner-label'
-                osu.trans 'matches.match.in_progress_spinner_label'
-              el Spinner
-          else if @props.loadingNext
-            el Spinner
-          else
-            button
-              className: 'mp-history-content__show-more'
-              type: 'button'
-              onClick: @props.loadNext
-              osu.trans 'common.buttons.show_more'
+            div
+              className: 'mp-history-content__autoload-label'
+              osu.trans 'matches.match.in_progress_spinner_label'
+          el ShowMoreLink,
+            callback: @props.loadNext
+            hasMore: true
+            loading: @props.isAutoloading || @props.loadingNext
 
 
   teamScores: (eventIndex) =>
