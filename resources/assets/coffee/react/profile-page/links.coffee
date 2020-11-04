@@ -52,7 +52,7 @@ export class Links extends React.PureComponent
   textMapping =
     comments_count: (val, user) ->
       count = osu.transChoice 'users.show.comments_count.count', val
-      url = "#{laroute.route('comments.index')}?author_id=#{user.id}"
+      url = laroute.route('comments.index', user_id: user.id)
 
       html:
         osu.trans 'users.show.comments_count._', link: rowValue(count, href: url)
