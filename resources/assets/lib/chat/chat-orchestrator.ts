@@ -5,8 +5,6 @@ import {
   ChatChannelLoadEarlierMessages,
   ChatChannelPartAction,
   ChatChannelSwitchAction,
-  ChatMessageAddAction,
-  ChatPresenceUpdateAction,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
@@ -17,7 +15,7 @@ import { transaction } from 'mobx';
 import Message from 'models/chat/message';
 import RootDataStore from 'stores/root-data-store';
 import ChatAPI from './chat-api';
-import { MessageJSON } from './chat-api-responses';
+import { MessageJson } from './chat-api-responses';
 
 @dispatchListener
 export default class ChatOrchestrator implements DispatchListener {
@@ -30,14 +28,11 @@ export default class ChatOrchestrator implements DispatchListener {
     this.api = new ChatAPI();
   }
 
-  addMessages(channelId: number, messages: MessageJSON[]) {
-    const newMessages: Message[] = [];
-
+  addMessages(channelId: number, messages: MessageJson[]) {
     transaction(() => {
-      messages.forEach((json: MessageJSON) => {
-        const newMessage = Message.fromJSON(json);
-        newMessage.sender = this.rootDataStore.userStore.getOrCreate(json.sender_id, json.sender);
-        newMessages.push(newMessage);
+      const newMessages = messages.map((json: MessageJson) => {
+        if (json.sender != null) this.rootDataStore.userStore.getOrCreate(json.sender_id, json.sender);
+        return Message.fromJson(json);
       });
 
       this.rootDataStore.channelStore.addMessages(channelId, newMessages);
@@ -60,7 +55,7 @@ export default class ChatOrchestrator implements DispatchListener {
       }
       const channel = channelStore.getOrCreate(channelId);
 
-      if (!channel.newChannel) {
+      if (!channel.newPmChannel) {
         if (channel.loaded) {
           this.markAsRead(channelId);
         } else {
@@ -95,12 +90,6 @@ export default class ChatOrchestrator implements DispatchListener {
       this.loadChannelEarlierMessages(action.channelId);
     } else if (action instanceof ChatChannelPartAction) {
       this.handleChatChannelPartAction(action);
-    } else if (action instanceof ChatMessageAddAction) {
-      if (this.windowIsActive && this.rootDataStore.channelStore.loaded) {
-        this.markAsRead(this.rootDataStore.chatState.selected);
-      }
-    } else if (action instanceof ChatPresenceUpdateAction) {
-      this.handleChatPresenceUpdateAction();
     } else if (action instanceof WindowFocusAction) {
       this.windowIsActive = true;
       if (this.rootDataStore.channelStore.loaded) {
@@ -206,15 +195,6 @@ export default class ChatOrchestrator implements DispatchListener {
       } catch (err) {
         console.debug('leaveChannel error', err);
       }
-    }
-  }
-
-  // ensure a channel is selected if available
-  private handleChatPresenceUpdateAction() {
-    const channelStore = this.rootDataStore.channelStore;
-    const channel = channelStore.get(this.rootDataStore.chatState.selected);
-    if (channel == null) {
-      this.focusChannelAtIndex(0);
     }
   }
 }

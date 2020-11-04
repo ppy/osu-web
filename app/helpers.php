@@ -353,11 +353,6 @@ function es_records($results, $class)
     return $records;
 }
 
-function flag_path($country)
-{
-    return '/images/flags/'.$country.'.png';
-}
-
 function get_valid_locale($requestedLocale)
 {
     if (in_array($requestedLocale, config('app.available_locales'), true)) {

@@ -58,7 +58,22 @@
                 data-label="{{ $group->short_name }}"
                 title="{{ $group->group_name }}"
                 style="{!! css_group_colour($group) !!}"
-            ></div>
+            >
+                @if ($group->playmodes && count($group->playmodes) > 0)
+                    <div class="user-group-badge__modes">
+                        @foreach($group->playmodes as $mode)
+                            <i class="fal fa-extra-mode-{{$mode}}"></i>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+            @if ($group->playmodes && count($group->playmodes) > 0)
+                <div class="forum-post-info__row forum-post-info__row--group-badge-playmodes">
+                    @foreach($group->playmodes as $mode)
+                        <i class="fal fa-extra-mode-{{$mode}}"></i>
+                    @endforeach
+                </div>
+            @endif
         </div>
     @endif
 
@@ -69,12 +84,11 @@
                 'type' => 'performance',
                 'country' => $user->country->getKey(),
             ])}}">
-                <img
-                    class="flag-country"
-                    src="{{ flag_path($user->country->getKey()) }}"
-                    alt="{{ $user->country->getKey() }}"
-                    title="{{ $user->country->name }}"
-                />
+                @include('objects._flag_country', [
+                    'countryCode' => $user->country->getKey(),
+                    'countryName' => $user->country->name,
+                    'modifiers' => ['medium'],
+                ])
             </a>
         </div>
     @endif

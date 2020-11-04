@@ -187,12 +187,18 @@ return [
         'nominate_confirm' => 'Nominare questa beatmap?',
         'nominated_by' => 'nominata da :users',
         'not_enough_hype' => "Non c'è abbastanza hype.",
-        'qualified' => 'La classificazione è prevista per il :date, se non viene trovato alcun problema.',
-        'qualified_soon' => 'Sarà rankata a breve, se non viene trovato alcun problema.',
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Nomine: :current/:required',
         'reset_message_deleted' => 'eliminato',
         'title' => 'Stato nomine',
         'unresolved_issues' => 'Ci sono ancora dei problemi irrisolti che vanno prima sistemati.',
+
+        'rank_estimate' => [
+            '_' => 'È stimato che questa mappa verrà rankata in data :date se non vengono trovati problemi. È in posizione #:position nella :queue.',
+            'queue' => 'coda di ranking',
+            'soon' => 'molto vicina',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Processo di nomina azzerato :time_ago da :user con il nuovo problema :discussion (:message).',

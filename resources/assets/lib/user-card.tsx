@@ -2,9 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BlockButton } from 'block-button';
-import { FlagCountry } from 'flag-country';
+import FlagCountry from 'flag-country';
 import { FriendButton } from 'friend-button';
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
@@ -13,6 +13,7 @@ import { ReportReportable } from 'report-reportable';
 import { Spinner } from 'spinner';
 import { SupporterIcon } from 'supporter-icon';
 import UserCardBrick from 'user-card-brick';
+import UserGroupBadges from 'user-group-badges';
 
 export type ViewMode = 'brick' | 'card' | 'list';
 
@@ -20,7 +21,7 @@ interface Props {
   activated: boolean;
   mode: ViewMode;
   modifiers: string[];
-  user?: UserJSON;
+  user?: UserJson;
 }
 
 interface State {
@@ -35,7 +36,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     modifiers: [],
   };
 
-  static userLoading: UserJSON = {
+  static userLoading: UserJson = {
     avatar_url: '',
     country_code: '',
     cover: {},
@@ -116,6 +117,7 @@ export class UserCard extends React.PureComponent<Props, State> {
               {this.renderIcons()}
               <div className='user-card__username'>
                 <div className='u-ellipsis-pre-overflow'>{this.user.username}</div>
+                <div className='user-card__group-badges'><UserGroupBadges groups={this.user.groups} short={true} wrapper='user-card__group-badge' /></div>
               </div>
               {this.renderListModeIcons()}
             </div>
@@ -198,7 +200,7 @@ export class UserCard extends React.PureComponent<Props, State> {
           className='user-card__icon user-card__icon--flag'
           href={route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}
         >
-          <FlagCountry country={this.user.country} modifiers={['full']} />
+          <FlagCountry country={this.user.country} />
         </a>
 
         {

@@ -469,4 +469,4 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     });
 });
 
-Route::fallback('FallbackController@index');
+Route::any('{catchall}', 'FallbackController@index')->where('catchall', '.*')->fallback();

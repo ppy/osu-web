@@ -51,7 +51,7 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'ได้รับการแจ้งเตือนเกียวกับปัญหาของ Qualified beatmaps กับโหมดต่อไปนี้',
         'beatmapset_disqualify' => 'ได้รับการแจ้งเตือนเมื่อบีทแมพในโหมดที่ท่านเลือกถูกตัดสิทธิ์',
-        'comment_reply' => '',
+        'comment_reply' => 'รับการแจ้งเตือนสำหรับการตอบกลับความคิดเห็นของคุณ',
         'title' => 'การแจ้งเตือน',
         'topic_auto_subscribe' => 'เปิดการแจ้งเตือนอัตโนมัติในกระทู้ที่คุณสร้างขึ้น',
 
@@ -59,7 +59,7 @@ return [
             '_' => 'วิธีการรับการแจ้งเตือน',
             'beatmapset:modding' => 'การวิจารณ์บีทแมพ',
             'channel_message' => 'ข้อความส่วนตัว',
-            'comment_new' => 'คอมเมนต์ใหม่',
+            'comment_new' => 'ความคิดเห็นใหม่',
             'forum_topic_reply' => 'ข้อความตอบกลับในกระทู้',
             'mail' => 'อีเมล',
             'push' => 'ส่งการแจ้งเตือน',

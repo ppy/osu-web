@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { CommentBundleJSON } from 'interfaces/comment-json';
+import { CommentBundleJson } from 'interfaces/comment-json';
 import { Dictionary, orderBy } from 'lodash';
 import { action, observable } from 'mobx';
 import { Comment, CommentSort } from 'models/comment';
@@ -76,7 +76,7 @@ export default class UIStateStore {
   }
 
   @action
-  initializeWithCommentBundleJSON(commentBundle: CommentBundleJSON) {
+  initializeWithCommentBundleJson(commentBundle: CommentBundleJson) {
     this.comments.hasMoreComments = {};
     this.comments.hasMoreComments[commentBundle.has_more_id] = commentBundle.has_more;
     this.comments.currentSort = commentBundle.sort as CommentSort;
@@ -94,7 +94,7 @@ export default class UIStateStore {
   }
 
   @action
-  updateFromCommentsAdded(commentBundle: CommentBundleJSON) {
+  updateFromCommentsAdded(commentBundle: CommentBundleJson) {
     this.comments.hasMoreComments[commentBundle.has_more_id] = commentBundle.has_more;
     if (commentBundle.top_level_count && commentBundle.total) {
       this.comments.topLevelCount = commentBundle.top_level_count;
@@ -114,7 +114,7 @@ export default class UIStateStore {
   }
 
   @action
-  updateFromCommentsNew(commentBundle: CommentBundleJSON) {
+  updateFromCommentsNew(commentBundle: CommentBundleJson) {
     if (commentBundle.top_level_count && commentBundle.total) {
       this.comments.topLevelCount = commentBundle.top_level_count;
       this.comments.total = commentBundle.total;
@@ -131,7 +131,7 @@ export default class UIStateStore {
   }
 
   @action
-  updateFromCommentUpdated(commentBundle: CommentBundleJSON) {
+  updateFromCommentUpdated(commentBundle: CommentBundleJson) {
     this.updatePinnedCommentIds(commentBundle);
   }
 
@@ -153,7 +153,7 @@ export default class UIStateStore {
     }
   }
 
-  private updatePinnedCommentIds(commentBundle: CommentBundleJSON) {
+  private updatePinnedCommentIds(commentBundle: CommentBundleJson) {
     if (commentBundle.pinned_comments != null) {
       this.comments.pinnedCommentIds = commentBundle.pinned_comments.map((x) => x.id);
     }

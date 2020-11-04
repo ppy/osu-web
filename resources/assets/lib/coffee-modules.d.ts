@@ -39,10 +39,6 @@ declare module 'big-button' {
   class BigButton extends React.PureComponent<Props> {}
 }
 
-declare module 'flag-country' {
-  class FlagCountry extends React.PureComponent<any> {}
-}
-
 declare module 'friend-button' {
   class FriendButton extends React.PureComponent<any> {}
 }
