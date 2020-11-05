@@ -187,6 +187,8 @@ return [
         'nominate_confirm' => 'Nominér dette beatmap?',
         'nominated_by' => 'nomineret af :users',
         'not_enough_hype' => "Der er ikke nok hype.",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Nomineringer: :current/:required',
         'reset_message_deleted' => 'slettet',
         'title' => 'Nomineringstatus',

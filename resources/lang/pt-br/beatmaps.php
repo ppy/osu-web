@@ -187,15 +187,17 @@ return [
         'nominate_confirm' => 'Nomear este beatmap?',
         'nominated_by' => 'nomeado por :users',
         'not_enough_hype' => "Não há hype suficiente.",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Nomeações: :current/:required',
         'reset_message_deleted' => 'excluído',
         'title' => 'Estado de nomeação',
         'unresolved_issues' => 'Ainda há problemas não resolvidos que precisam de uma resposta.',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
-            'soon' => '',
+            '_' => 'Este mapa é estimado a ser ranqueado em :date se nenhum problema for encontrado. É o #:position na :queue.',
+            'queue' => 'fila de ranqueamento',
+            'soon' => 'em breve',
         ],
 
         'reset_at' => [

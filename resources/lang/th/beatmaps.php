@@ -187,6 +187,8 @@ return [
         'nominate_confirm' => 'เสนอชื่อบีทแมพนี้?',
         'nominated_by' => 'เสนอชื่อโดย :users',
         'not_enough_hype' => "ไม่มี Hype เพียงพอ",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'การเสนอชื่อ: :current/:required',
         'reset_message_deleted' => 'ถูกลบไปแล้ว',
         'title' => 'ข้อมูลการเสนอชื่อ',
@@ -195,7 +197,7 @@ return [
         'rank_estimate' => [
             '_' => '',
             'queue' => '',
-            'soon' => '',
+            'soon' => 'เร็ว ๆ นี้',
         ],
 
         'reset_at' => [

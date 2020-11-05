@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Bitte stelle sicher, dass sich dein Avatar an :link hält.<br/>Das heißt, er muss <strong>für alle Altersklassen geeignet</strong> sein. Z.B. keine Nacktheit, Obszönität oder anstößiger Inhalt.',
+            'rules' => 'Bitte stelle sicher, dass sich dein Avatar an :link hält.<br/>Das heißt, er muss <strong>für alle Altersklassen geeignet</strong> sein und darf keine Nacktheit oder anstößige Inhalte enthalten.',
             'rules_link' => 'die Community-Regeln',
         ],
 
@@ -51,9 +51,9 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'erhalte benachrichtigungen für neue probleme auf qualifizierten beatmaps der folgenden modi',
         'beatmapset_disqualify' => 'erhalte benachrichtigungen, wenn beatmaps der folgenden modi disqualifiziert werden',
-        'comment_reply' => 'werde über Antworten auf deine Kommentare benachrichtigt',
+        'comment_reply' => 'erhalte benachrichtigungen für antworten auf deine kommentare',
         'title' => 'Benachrichtigungen',
-        'topic_auto_subscribe' => 'automatisch benachrichtigungen zu neuen forenthreads, die du erstellst, aktivieren',
+        'topic_auto_subscribe' => 'automatisch benachrichtigungen zu den von dir erstellten forenthreads aktivieren',
 
         'options' => [
             '_' => 'zustelloptionen',
@@ -77,7 +77,7 @@ return [
         'title' => 'Optionen',
 
         'beatmapset_download' => [
-            '_' => 'standard-beatmap-download-typ',
+            '_' => 'bevorzuge beatmap-download',
             'all' => 'mit video, falls verfügbar',
             'no_video' => 'ohne video',
             'direct' => 'in osu!direct öffnen',
@@ -106,7 +106,7 @@ return [
         'end_session_confirmation' => 'Das wird deine Sitzung auf diesem Gerät sofort beenden. Bist du sicher?',
         'last_active' => 'Zuletzt aktiv:',
         'title' => 'Sicherheit',
-        'web_sessions' => 'sitzungen',
+        'web_sessions' => 'web-sitzungen',
     ],
 
     'update_email' => [

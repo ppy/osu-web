@@ -22,7 +22,7 @@ class FallbackController extends Controller
 
     public function index()
     {
-        if (is_api_request()) {
+        if (is_json_request()) {
             return response([], 404);
         }
 

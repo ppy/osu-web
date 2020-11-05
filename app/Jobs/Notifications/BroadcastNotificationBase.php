@@ -26,6 +26,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
     protected $name;
     protected $source;
+    protected $timestamp;
 
     public static function getBaseKey(Notification $notification): string
     {
@@ -147,7 +148,11 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
     public function getTimestamp()
     {
-        return now();
+        if ($this->timestamp === null) {
+            $this->timestamp = now();
+        }
+
+        return $this->timestamp;
     }
 
     public function handle()
@@ -167,7 +172,11 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         $pushReceiverIds = [];
         $notification->getConnection()->transaction(function () use ($deliverySettings, $notification, &$pushReceiverIds) {
             foreach ($deliverySettings as $userId => $delivery) {
-                $userNotification = $notification->userNotifications()->create(['delivery' => $delivery, 'user_id' => $userId]);
+                $userNotification = $notification->userNotifications()->create([
+                    'delivery' => $delivery,
+                    'user_id' => $userId,
+                    'created_at' => $this->getTimestamp(),
+                ]);
                 $userNotification->isPush() && $pushReceiverIds[] = $userId;
             }
         });
