@@ -29,8 +29,6 @@ class TokensControllerTest extends TestCase
     {
         $token = factory(Token::class)->create(['user_id' => null]);
 
-        $this->actAsUserWithToken($token);
-
         $this
             ->actingWithToken($token)
             ->json('DELETE', route('api.oauth.tokens.current'))
