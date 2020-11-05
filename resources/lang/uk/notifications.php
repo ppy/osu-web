@@ -57,6 +57,8 @@ return [
                 'beatmapset_qualify_compact' => 'Карта увійшла до черги рейтингу',
                 'beatmapset_rank' => '":title" оцінено',
                 'beatmapset_rank_compact' => 'Карта була ранкнута',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'Проблема опублікована :username викликала скидання процесу номінації карти ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Номінацію було скинуто',
             ],
@@ -159,6 +161,7 @@ return [
                 'beatmapset_nominate' => '":title" було номіновано',
                 'beatmapset_qualify' => '":title" отримав достатню кількість номінацій і увійшов до черги рейтингу',
                 'beatmapset_rank' => '":title" було оцінено',
+                'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => 'Номінація ":title" була скинута',
             ],
 

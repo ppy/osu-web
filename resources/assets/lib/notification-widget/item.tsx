@@ -4,14 +4,19 @@
 import { observer } from 'mobx-react';
 import Notification from 'models/notification';
 import { NotificationContext } from 'notifications-context';
+import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
-import { WithMarkReadProps } from './with-mark-read';
 
-interface Props extends WithMarkReadProps {
+interface Props {
+  canMarkAsRead?: boolean;
+  delete?: () => void;
   expandButton?: React.ReactNode;
   icons?: string[];
+  isDeleting?: boolean;
+  isMarkingAsRead?: boolean;
   item: Notification;
+  markRead?: () => void;
   message: string;
   modifiers: string[];
   url: string;
@@ -39,6 +44,7 @@ export default class Item extends React.Component<Props> {
             {this.renderExpandButton()}
           </div>
           {this.renderMarkAsReadButton()}
+          {this.renderDeleteButton()}
         </div>
         {this.renderUnreadStripe()}
       </div>
@@ -107,6 +113,20 @@ export default class Item extends React.Component<Props> {
     });
   }
 
+  private renderDeleteButton() {
+    if (this.context.isWidget) {
+      return null;
+    }
+
+    return (
+      <NotificationDeleteButton
+        isDeleting={this.props.isDeleting ?? this.props.item.isDeleting}
+        modifiers={['fancy']}
+        onDelete={this.props.delete}
+      />
+    );
+  }
+
   private renderExpandButton() {
     if (this.props.expandButton == null) {
       return null;
@@ -122,7 +142,7 @@ export default class Item extends React.Component<Props> {
 
     return (
       <NotificationReadButton
-        isMarkingAsRead={this.props.markingAsRead ?? this.props.item.isMarkingAsRead}
+        isMarkingAsRead={this.props.isMarkingAsRead ?? this.props.item.isMarkingAsRead}
         modifiers={['fancy']}
         onMarkAsRead={this.props.markRead}
       />

@@ -72,7 +72,7 @@ return [
         'minute_short_unit' => 'นาที|นาที',
         'minutes' => ':count_delimited นาที|:count_delimited นาที',
         'months' => ':count_delimited เดือน|:count_delimited เดือน',
-        'notifications' => ':count_delimited แต้ม|:count_delimited แต้มทั้งหมด',
+        'notifications' => ':count_delimited การแจ้งเตือน|:count_delimited การแจ้งเตือนทั้งหมด',
         'plus_others' => 'อีก + :count_delimited อัน!|อีก + :count_delimited อัน!',
         'post' => ':count_delimited โพสต์|:count_delimited โพสต์',
         'second_short_unit' => 'วินาที|วินาที',

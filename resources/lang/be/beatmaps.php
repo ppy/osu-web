@@ -187,6 +187,8 @@ return [
         'nominate_confirm' => 'Намінаваць гэту бітмапу?',
         'nominated_by' => 'намінавана :users',
         'not_enough_hype' => "",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Намінацыі: :current/:required',
         'reset_message_deleted' => 'выдалена',
         'title' => 'Стан намінацыі',
