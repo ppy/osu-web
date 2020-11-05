@@ -20,7 +20,7 @@ return [
             ],
             'infra' => [
                 'title' => 'Sunucu Altyapısı',
-                'description' => 'Katkılar, websitesini, çok oyunculu servisleri, çevrimiçi sıralamaları vb. sürdürmek için doğrudan sunuculara gider.',
+                'description' => 'Web sitesinin, çok oyunculu servislerin, çevrimiçi sıralamaların, vs. çalışabilmesi için yapılan katkılar doğrudan sunuculara gider.',
             ],
             'featured-artists' => [
                 'title' => 'Featured Artist\'ler',
@@ -66,7 +66,7 @@ return [
 
             'auto_downloads' => [
                 'title' => 'Otomatik İndirme',
-                'description' => 'Multiplayer oynarken, başkalarını izlerken veya chatteki linklere tıkladığınızda mapleri otomatik indirir!',
+                'description' => 'Çok oyunculu oyunlardayken, başkalarını seyrederken, veya sohbetteki linklere tıkladığınızda beatmapler otomatik olarak indirilir!',
             ],
 
             'upload_more' => [

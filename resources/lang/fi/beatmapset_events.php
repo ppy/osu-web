@@ -28,6 +28,7 @@ return [
         'nomination_reset' => 'Uusi ongelma :discussion (:text) nollasi suositukset.',
         'qualify' => 'Tämä beatmap sai vaaditun määrän suosituksia hyväksymisvaihetta varten.',
         'rank' => 'Hyväksytty.',
+        'remove_from_loved' => '',
     ],
 
     'index' => [
@@ -66,5 +67,6 @@ return [
         'nomination_reset' => 'Äänestyksen resetointi',
         'qualify' => 'Hyväksyntä',
         'rank' => 'Luokittelu',
+        'remove_from_loved' => '',
     ],
 ];

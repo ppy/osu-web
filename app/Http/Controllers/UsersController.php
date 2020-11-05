@@ -71,7 +71,7 @@ class UsersController extends Controller
     {
         $user = $this->lookupUser($id) ?? UserNotFound::instance();
 
-        return json_item($user, 'UserCompact', ['cover', 'country']);
+        return json_item($user, 'UserCompact', ['cover', 'country', 'groups']);
     }
 
     public function disabled()

@@ -187,6 +187,8 @@ return [
         'nominate_confirm' => 'Nominera denna beatmap?',
         'nominated_by' => 'nominerad av :users',
         'not_enough_hype' => "Det finns inte tillräckligt med hype.",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Nomineringar: :current/:required',
         'reset_message_deleted' => 'raderad',
         'title' => 'Nominering Status',
@@ -194,8 +196,8 @@ return [
 
         'rank_estimate' => [
             '_' => '',
-            'queue' => '',
-            'soon' => '',
+            'queue' => 'rankkö',
+            'soon' => 'snart',
         ],
 
         'reset_at' => [

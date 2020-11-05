@@ -57,6 +57,8 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmap staat in de ranked wachtlijst',
                 'beatmapset_rank' => '":title" is geranked',
                 'beatmapset_rank_compact' => 'Beatmap was geranked',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'Probleem geplaatst door :username reset nominatie van beatmap ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Nominatie is gereset',
             ],
@@ -159,6 +161,7 @@ return [
                 'beatmapset_nominate' => '":title" is genomineerd',
                 'beatmapset_qualify' => '":title" heeft genoeg nominaties gekregen en de rij van rangen ingevoerd',
                 'beatmapset_rank' => '":title" is gerangschikt',
+                'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => 'Nominatie van ":title" is gereset',
             ],
 

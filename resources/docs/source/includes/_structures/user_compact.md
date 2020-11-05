@@ -48,7 +48,7 @@ favourite_beatmapset_count           | number
 follower_count                       | number
 friends                              | |
 graveyard_beatmapset_count           | number
-groups                               | [Group](#group)[]
+groups                               | [UserGroup](#usergroup)[]
 is_admin                             | boolean
 is_bng                               | boolean
 is_full_bn                           | boolean
