@@ -12,8 +12,8 @@ import Notification from 'models/notification';
 import NotificationStack, { idFromJson } from 'models/notification-stack';
 import NotificationType, { Name as NotificationTypeName  } from 'models/notification-type';
 import { categoryFromName } from 'notification-maps/category';
-import { NotificationEventMoreLoaded, NotificationEventNew, NotificationEventRead } from 'notifications/notification-events';
-import { fromJson, NotificationIdentity, resolveStackId } from 'notifications/notification-identity';
+import { NotificationEventDelete, NotificationEventMoreLoaded, NotificationEventNew, NotificationEventRead } from 'notifications/notification-events';
+import { fromJson, NotificationIdentity, resolveIdentityType, resolveStackId } from 'notifications/notification-identity';
 import { NotificationResolver } from 'notifications/notification-resolver';
 import NotificationStore from './notification-store';
 
@@ -21,6 +21,7 @@ import NotificationStore from './notification-store';
 export default class NotificationStackStore implements DispatchListener {
   @observable readonly legacyPm = new LegacyPmNotification();
   @observable readonly types = new Map<string | null, NotificationType>();
+  private deletedStacks = new Set<string>();
   private readonly resolver = new NotificationResolver();
 
   get allStacks() {
@@ -69,7 +70,9 @@ export default class NotificationStackStore implements DispatchListener {
 
   @action
   handleDispatchAction(dispatched: DispatcherAction) {
-    if (dispatched instanceof NotificationEventNew) {
+    if (dispatched instanceof NotificationEventDelete) {
+      this.handleNotificationEventDelete(dispatched);
+    } else if (dispatched instanceof NotificationEventNew) {
       this.handleNotificationEventNew(dispatched);
     } else if (dispatched instanceof NotificationEventMoreLoaded) {
       this.handleNotificationEventMoreLoaded(dispatched);
@@ -78,6 +81,11 @@ export default class NotificationStackStore implements DispatchListener {
     } else if (dispatched instanceof UserLoginAction || dispatched instanceof UserLogoutAction) {
       this.flushStore();
     }
+  }
+
+  @action
+  handleNotificationEventDelete(event: NotificationEventDelete) {
+    this.removeByEvent(event);
   }
 
   @action
@@ -132,6 +140,30 @@ export default class NotificationStackStore implements DispatchListener {
     return this.stacksOfType(name).sort((x, y) => y.displayOrder - x.displayOrder);
   }
 
+  @action
+  removeByEvent(event: NotificationEventDelete | NotificationEventRead) {
+    if (event.data.length === 0) return;
+
+    // identity types currently aren't mixed in the event,
+    // so readCount can be applied for the whole group.
+    const first = event.data[0];
+    const identityType = resolveIdentityType(first);
+
+    switch (identityType) {
+      case 'type':
+        this.removeByType(first, event.readCount);
+        break;
+
+      case 'stack':
+        this.removeByStack(first, event.readCount);
+        break;
+
+      case 'notification':
+        event.data.forEach(this.removeByNotification);
+        break;
+    }
+  }
+
   /**
    * Returns stacks of a specified notifiable type.
    * Because this is neither computed nor observable, in order to use this within an observer,
@@ -161,6 +193,76 @@ export default class NotificationStackStore implements DispatchListener {
     bundle.types?.forEach((json) => this.updateWithTypeJson(json));
     bundle.stacks?.forEach((json) => this.updateWithStackJson(json));
     bundle.notifications?.forEach((json) => this.updateWithNotificationJson(json));
+  }
+
+  private removeByNotification = (identity: NotificationIdentity) => {
+    if (identity.id == null) return;
+
+    const stack = this.getStack(identity);
+    const type = this.getOrCreateType(identity);
+
+    const stackNotification = stack?.notifications.get(identity.id);
+
+    if (stackNotification == null) {
+      // Notification may not have been loaded yet.
+      // Update counts if stack is loaded but the notification is past
+      // the cursor (which is descending).
+      if (stack != null && identity.id < (stack.cursor?.id ?? 0)) {
+        this.total--;
+        stack.total--;
+        type.total--;
+      }
+    } else {
+      stack?.remove(stackNotification);
+      type.total--;
+
+      this.total--;
+    }
+  }
+
+  private removeByStack(identity: NotificationIdentity, readCount: number) {
+    const stack = this.getStack(identity);
+    const key = resolveStackId(identity);
+
+    if (stack == null) {
+      if (!this.deletedStacks.has(key)) {
+        this.deletedStacks.add(key);
+        this.total -= readCount;
+      }
+
+      return;
+    }
+
+    this.deletedStacks.add(key);
+
+    this.allStacks.delete(key);
+    this.total -= stack.total;
+
+    const type = this.getOrCreateType(identity);
+    type.removeStack(stack);
+  }
+
+  private removeByType(identity: NotificationIdentity, readCount: number) {
+    const type = this.getOrCreateType(identity);
+
+    if (type.name === null) {
+      for (const [key, value] of this.types) {
+        if (key === null) continue;
+        this.removeType(value);
+      }
+
+      type.total = 0;
+    } else {
+      this.removeType(type);
+    }
+  }
+
+  private removeType(type: NotificationType) {
+    type.stacks.forEach((stack) => {
+      this.allType.removeStack(stack);
+    });
+
+    this.types.delete(type.name);
   }
 
   private updateWithNotificationJson(json: NotificationJson) {
