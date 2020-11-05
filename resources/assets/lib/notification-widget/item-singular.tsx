@@ -21,10 +21,12 @@ export default class ItemSingular extends React.Component<Props> {
 
     return (
       <Item
-        markRead={this.handleMarkAsRead}
-        markingAsRead={item.isMarkingAsRead}
+        delete={this.handleDelete}
         icons={nameToIcons[item.name || '']}
+        isDeleting={item.isDeleting}
+        isMarkingAsRead={item.isMarkingAsRead}
         item={item}
+        markRead={this.handleMarkAsRead}
         message={formatMessage(item)}
         modifiers={['one']}
         url={urlSingular(item)}
@@ -32,6 +34,10 @@ export default class ItemSingular extends React.Component<Props> {
         withCoverImage={true}
       />
     );
+  }
+
+  private handleDelete = () => {
+    this.props.stack.deleteItem(this.props.stack.first);
   }
 
   private handleMarkAsRead = () => {
