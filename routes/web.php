@@ -415,7 +415,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'requir
         //  GET /api/v2/me/download-quota-check
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck');
 
-        Route::delete('oauth/tokens/current', 'OAuth\TokensController@destroyCurrent');
+        Route::delete('oauth/tokens/current', 'OAuth\TokensController@destroyCurrent')->name('oauth.tokens.current');
 
         Route::apiResource('news', 'NewsController', ['only' => ['index', 'show']]);
 

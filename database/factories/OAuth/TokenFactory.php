@@ -16,6 +16,7 @@ $factory->define(Token::class, function (Faker\Generator $faker) {
         'client_id' => function () {
             return factory(Client::class)->create()->getKey();
         },
+        'scopes' => ['public'],
         'revoked' => false,
         'expires_at' => function () {
             return now()->addDay();

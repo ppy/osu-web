@@ -11,6 +11,8 @@ use Laravel\Passport\Token as PassportToken;
 
 class Token extends PassportToken
 {
+    public $timestamps = true;
+
     public function isClientCredentials()
     {
         // explicitly no user_id.
