@@ -237,7 +237,7 @@ class UsersController extends Controller
      * ----- | ----------------------------- | ---------------------------------
      * users | [UserCompact](#usercompact)[] | Includes: country, cover, groups.
      *
-     * @queryParam ids[] User id to be returned. Specify once for each user id requested. Example: 1
+     * @queryParam ids[] User id to be returned. Specify once for each user id requested. Up to 50 users can be requested at once. Example: 1
      *
      * @response {
      *   "users": [
@@ -258,7 +258,7 @@ class UsersController extends Controller
 
         if (isset($params['ids'])) {
             $users = User
-                ::whereIn('user_id', $params['ids'])
+                ::whereIn('user_id', array_slice($params['ids'], 0, 50))
                 ->default()
                 ->with(UserCompactTransformer::CARD_INCLUDES_PRELOAD)
                 ->get();
