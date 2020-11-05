@@ -1054,6 +1054,24 @@
         ]
     },
     {
+        "uri": "api/v2/users",
+        "method": "GET",
+        "controller": "App\\Http\\Controllers\\UsersController@index",
+        "middlewares": [
+            "require-scopes"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/users",
+        "method": "HEAD",
+        "controller": "App\\Http\\Controllers\\UsersController@index",
+        "middlewares": [
+            "require-scopes"
+        ],
+        "scopes": []
+    },
+    {
         "uri": "api/v2/wiki/{page?}",
         "method": "GET",
         "controller": "App\\Http\\Controllers\\WikiController@show",
