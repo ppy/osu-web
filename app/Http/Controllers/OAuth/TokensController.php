@@ -6,7 +6,6 @@
 namespace App\Http\Controllers\OAuth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Middleware\AuthApi;
 
 /**
  * @group OAuth Tokens
@@ -31,7 +30,7 @@ class TokensController extends Controller
      */
     public function destroyCurrent()
     {
-        $token = request()->get(AuthApi::REQUEST_OAUTH_TOKEN_KEY);
+        $token = oauth_token();
 
         if ($token !== null) {
             $token->revokeRecursive();
