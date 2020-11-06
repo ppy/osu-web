@@ -225,7 +225,7 @@ export default class ConversationView extends React.Component<Props> {
           <UserAvatar user={{id: 0, avatar_url: channel.icon}} />
         </div>
         <div className='chat-conversation__chat-label'>
-          {channel.type === 'PM' ? (
+          {channel.pmTarget != null ? (
             <StringWithComponent
               pattern={osu.trans('chat.talking_with')}
               // TODO: rework this once the user class situation is resolved
