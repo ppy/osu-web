@@ -813,10 +813,10 @@
         "controller": "App\\Http\\Controllers\\OAuth\\TokensController@destroyCurrent",
         "middlewares": [
             "require-scopes",
-            "require-scopes:none"
+            "require-scopes:any"
         ],
         "scopes": [
-            "none"
+            "any"
         ]
     },
     {
