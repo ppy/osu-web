@@ -20,6 +20,7 @@ export default class ItemCompact extends React.Component<Props> {
   render() {
     return (
       <Item
+        delete={this.handleDelete}
         markRead={this.handleMarkAsRead}
         icons={nameToIconsCompact[this.props.item.name || '']}
         item={this.props.item}
@@ -30,6 +31,10 @@ export default class ItemCompact extends React.Component<Props> {
         withCoverImage={this.props.item.name === 'user_achievement_unlock'}
       />
     );
+  }
+
+  private handleDelete = () => {
+    this.props.stack.deleteItem(this.props.item);
   }
 
   private handleMarkAsRead = () => {

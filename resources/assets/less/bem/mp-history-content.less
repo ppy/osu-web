@@ -3,27 +3,15 @@
 
 .mp-history-content {
   display: flex;
-  justify-content: center;
-  font-size: 12px;
-  line-height: 1;
-  padding: 10px;
+  flex-direction: column;
+  align-items: center;
+  font-size: @font-size--normal;
+  padding: 0;
 
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   color: @osu-colour-c1;
 
-  &__show-more {
-    .reset-input();
-
-    cursor: pointer;
-
-    text-align: center;
-  }
-
-  &__spinner {
-    text-align: center;
-  }
-
-  &__spinner-label {
-    padding-bottom: 15px;
+  &__autoload-label {
+    margin-bottom: 5px;
   }
 }

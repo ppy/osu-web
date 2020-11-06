@@ -19,6 +19,7 @@ use App\Models\Log;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
+use App\Transformers\UserCompactTransformer;
 use App\Transformers\UserTransformer;
 use Auth;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
@@ -71,7 +72,7 @@ class UsersController extends Controller
     {
         $user = $this->lookupUser($id) ?? UserNotFound::instance();
 
-        return json_item($user, 'UserCompact', ['cover', 'country', 'groups']);
+        return json_item($user, 'UserCompact', UserCompactTransformer::CARD_INCLUDES);
     }
 
     public function disabled()
@@ -221,6 +222,51 @@ class UsersController extends Controller
         $perPage = $this->sanitizedLimitParam();
 
         return $this->getExtra($this->user, $page, [], $perPage, $this->offset);
+    }
+
+    /**
+     * Get Users
+     *
+     * Returns list of users.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * Field | Type                          | Description
+     * ----- | ----------------------------- | ---------------------------------
+     * users | [UserCompact](#usercompact)[] | Includes: country, cover, groups.
+     *
+     * @queryParam ids[] User id to be returned. Specify once for each user id requested. Up to 50 users can be requested at once. Example: 1
+     *
+     * @response {
+     *   "users": [
+     *     {
+     *       "id": 1,
+     *       "other": "attributes..."
+     *     },
+     *     {
+     *       "id": 2,
+     *       "other": "attributes..."
+     *     }
+     *   ]
+     * }
+     */
+    public function index()
+    {
+        $params = get_params(request()->all(), null, ['ids:int[]']);
+
+        if (isset($params['ids'])) {
+            $users = User
+                ::whereIn('user_id', array_slice($params['ids'], 0, 50))
+                ->default()
+                ->with(UserCompactTransformer::CARD_INCLUDES_PRELOAD)
+                ->get();
+        }
+
+        return [
+            'users' => json_collection($users ?? [], 'UserCompact', UserCompactTransformer::CARD_INCLUDES),
+        ];
     }
 
     public function posts($id)
