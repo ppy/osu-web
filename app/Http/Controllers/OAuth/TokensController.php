@@ -16,7 +16,7 @@ class TokensController extends Controller
     {
         parent::__construct();
 
-        $this->middleware('require-scopes:none', ['only' => ['destroyCurrent']]);
+        $this->middleware('require-scopes:any', ['only' => ['destroyCurrent']]);
     }
 
     /**
