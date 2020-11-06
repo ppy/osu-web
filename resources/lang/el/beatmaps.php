@@ -187,12 +187,18 @@ return [
         'nominate_confirm' => 'Κάντε nominate αυτό το beatmap;',
         'nominated_by' => 'nominated από :users',
         'not_enough_hype' => "",
-        'qualified' => 'Εκτιμάται ότι θα γίνει ranked στις :date, εάν δεν βρεθεί κάποιο πρόβλημα.',
-        'qualified_soon' => 'Εκτιμάται ότι θα γίνει ranked σύντομα, εάν δεν βρεθεί κάποιο πρόβλημα.',
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Υποψηφιότητες :current/:required',
         'reset_message_deleted' => 'διαγράφηκε',
         'title' => 'Κατάσταση Υποψηφιότητας',
         'unresolved_issues' => 'Εξακολουθούν να υπάρχουν άλυτα ζητήματα που πρέπει να αντιμετωπιστούν πρώτα.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Επαναφορά διεργασίας υποψηφιότητας :time_ago από :user με νέο πρόβλημα :discussion (:message).',

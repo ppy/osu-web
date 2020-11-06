@@ -187,12 +187,18 @@ return [
         'nominate_confirm' => 'Намінаваць гэту бітмапу?',
         'nominated_by' => 'намінавана :users',
         'not_enough_hype' => "",
-        'qualified' => 'Калі больш няма праблем, то бітмапа атрымае статус ракнутой прыблізна :date.',
-        'qualified_soon' => 'Калі больш няма праблем, то бітмапа атрымае статус ракнутой вельмі хутка.',
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Намінацыі: :current/:required',
         'reset_message_deleted' => 'выдалена',
         'title' => 'Стан намінацыі',
         'unresolved_issues' => 'Усё яшчэ ёсць нявырашаныя праблемы, якія трэбы вырашыць у першую чаргу.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => ':user скінуў прагрэс намінацый :time_ago з-за новай праблемы :discussion (:message).',

@@ -10,10 +10,12 @@ use App\Exceptions\ModelNotSavedException;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
+use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\UsernameValidation;
 use App\Models\Forum\TopicWatch;
 use App\Models\OAuth\Client;
+use App\Traits\Memoizes;
 use App\Traits\UserAvatar;
 use App\Traits\Validatable;
 use Cache;
@@ -121,8 +123,6 @@ use Request;
  * @property int $user_last_privmsg
  * @property int $user_last_search
  * @property int $user_last_warning
- * @property string $user_lastfm
- * @property string $user_lastfm_session
  * @property int $user_lastmark
  * @property string $user_lastpage
  * @property int $user_lastpost_time
@@ -167,10 +167,10 @@ use Request;
  * @property string|null $username_previous
  * @property int|null $userpage_post_id
  */
-class User extends Model implements AuthenticatableContract, HasLocalePreference
+class User extends Model implements AuthenticatableContract, HasLocalePreference, Indexable
 {
     use Elasticsearch\UserTrait, Store\UserTrait;
-    use Authenticatable, HasApiTokens, Reportable, UserAvatar, UserScoreable, Validatable;
+    use Authenticatable, HasApiTokens, Memoizes, Reportable, UserAvatar, UserScoreable, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
@@ -216,8 +216,6 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         'user_website' => 200,
     ];
 
-    protected $memoized = [];
-
     private $validateCurrentPassword = false;
     private $validatePasswordConfirmation = false;
     public $password = null;
@@ -241,12 +239,18 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             ->count();
 
         switch ($changesToDate) {
-            case 0: return 0;
-            case 1: return 8;
-            case 2: return 16;
-            case 3: return 32;
-            case 4: return 64;
-            default: return 100;
+            case 0:
+                return 0;
+            case 1:
+                return 8;
+            case 2:
+                return 16;
+            case 3:
+                return 32;
+            case 4:
+                return 64;
+            default:
+                return 100;
         }
     }
 
@@ -412,10 +416,13 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         // An interactive graph of the formula can be found at https://www.desmos.com/calculator/s7bxytxbbt
 
         return $this->user_lastvisit
-                ->addDays(intval(
+            ->addDays(
+                intval(
                     $minDays +
                     1580 * (1 - pow(M_E, $playCount * $expMod * -1 / 5900)) +
-                    ($playCount * $linMod * 8 / 5900)));
+                    ($playCount * $linMod * 8 / 5900)
+                )
+            );
     }
 
     public function validateChangeUsername(string $username, string $type = 'paid')
@@ -423,10 +430,10 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return (new ChangeUsername($this, $username, $type))->validate();
     }
 
-    public static function lookup($usernameOrId, $type = null, $findAll = false)
+    public static function lookup($usernameOrId, $type = null, $findAll = false): ?self
     {
         if (!present($usernameOrId)) {
-            return;
+            return null;
         }
 
         switch ($type) {
@@ -452,7 +459,13 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             $user->where('user_type', 0)->where('user_warnings', 0);
         }
 
-        return $user->first();
+        $user = $user->first();
+
+        if ($user !== null && $user->hasProfile()) {
+            return $user;
+        }
+
+        return null;
     }
 
     public static function lookupWithHistory($usernameOrId, $type = null, $findAll = false)
@@ -463,6 +476,11 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             return $user;
         }
 
+        // don't perform username change history lookup if we're searching by ID
+        if ($type === 'id') {
+            return null;
+        }
+
         $change = UsernameChangeHistory::visible()
             ->where('username_last', $usernameOrId)
             ->orderBy('change_id', 'desc')
@@ -471,6 +489,50 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         if ($change !== null) {
             return static::lookup($change->user_id, 'id');
         }
+    }
+
+    public function addToGroup(Group $group, ?self $actor = null): void
+    {
+        if ($this->isGroup($group)) {
+            return;
+        }
+
+        $this->getConnection()->transaction(function () use ($actor, $group) {
+            $this->userGroups()->create(['group_id' => $group->getKey()]);
+            UserGroupEvent::logUserAdd($actor, $this, $group);
+        });
+    }
+
+    public function removeFromGroup(Group $group, ?self $actor = null): void
+    {
+        if (!$this->isGroup($group)) {
+            return;
+        }
+
+        $this->getConnection()->transaction(function () use ($actor, $group) {
+            $this->userGroups()->where(['group_id' => $group->getKey()])->delete();
+            UserGroupEvent::logUserRemove($actor, $this, $group);
+
+            if ($this->group_id === $group->getKey()) {
+                $this->setDefaultGroup(app('groups')->byIdentifier('default'));
+            }
+        });
+    }
+
+    public function setDefaultGroup(Group $group, ?self $actor = null): void
+    {
+        if (!$this->isGroup($group)) {
+            $this->addToGroup($group, $actor);
+        }
+
+        $this->getConnection()->transaction(function () use ($actor, $group) {
+            $this->update([
+                'group_id' => $group->getKey(),
+                'user_colour' => $group->group_colour,
+                'user_rank' => $group->group_rank,
+            ]);
+            UserGroupEvent::logUserSetDefault($actor, $this, $group);
+        });
     }
 
     public function getCountryAcronymAttribute($value)
@@ -620,11 +682,6 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     public function setUserTwitterAttribute($value)
     {
         $this->attributes['user_twitter'] = ltrim($value, '@');
-    }
-
-    public function getUserLastfmAttribute($value)
-    {
-        return presence($value);
     }
 
     public function getUserDiscordAttribute($value)
@@ -820,19 +877,17 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function isSilenced()
     {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+        return $this->memoize(__FUNCTION__, function () {
             if ($this->isRestricted()) {
                 return true;
             }
 
             $lastBan = $this->accountHistories()->bans()->first();
 
-            $this->memoized[__FUNCTION__] = $lastBan !== null &&
+            return $lastBan !== null &&
                 $lastBan->period !== 0 &&
                 $lastBan->endTime()->isFuture();
-        }
-
-        return $this->memoized[__FUNCTION__];
+        });
     }
 
     /**
@@ -853,11 +908,9 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function groupIds()
     {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
-            $this->memoized[__FUNCTION__] = $this->userGroups->pluck('group_id')->toArray();
-        }
-
-        return $this->memoized[__FUNCTION__];
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->userGroups->pluck('group_id')->toArray();
+        });
     }
 
     // check if a user is in a specific group, by ID
@@ -943,8 +996,8 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function favouriteBeatmapsets()
     {
-        $favouritesTable = (new FavouriteBeatmapset)->getTable();
-        $beatmapsetsTable = (new Beatmapset)->getTable();
+        $favouritesTable = (new FavouriteBeatmapset())->getTable();
+        $beatmapsetsTable = (new Beatmapset())->getTable();
 
         return Beatmapset::select("{$beatmapsetsTable}.*")
             ->join($favouritesTable, "{$favouritesTable}.beatmapset_id", '=', "{$beatmapsetsTable}.beatmapset_id")
@@ -1313,31 +1366,42 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function visibleGroups()
     {
-        if ($this->isBot()) {
-            return [app('groups')->byIdentifier('bot')];
-        }
-
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
-            $ids = $this->groupIds();
-            array_unshift($ids, $this->defaultGroup()->getKey());
+        return $this->memoize(__FUNCTION__, function () {
+            if ($this->isBot()) {
+                return [app('groups')->byIdentifier('bot')];
+            }
 
             $groups = [];
-            foreach (array_unique($ids) as $id) {
-                $group = app('groups')->byId($id);
+            foreach ($this->userGroups as $userGroup) {
+                $cachedGroup = app('groups')->byId($userGroup->group_id);
+                if (!$cachedGroup || $cachedGroup->display_order === null) {
+                    continue;
+                }
 
-                if (optional($group)->display_order !== null) {
+                if ($cachedGroup->has_playmodes) {
+                    $group = clone $cachedGroup;
+                    $group['playmodes'] = $userGroup->playmodes;
                     $groups[] = $group;
+                } else {
+                    $groups[] = $cachedGroup;
                 }
             }
 
             usort($groups, function ($a, $b) {
+                // if the user has a default group, always show it first
+                if ($a->group_id === $this->group_id) {
+                    return -1;
+                }
+                if ($b->group_id === $this->group_id) {
+                    return 1;
+                }
+
+                // otherwise, sort by display order
                 return $a->display_order - $b->display_order;
             });
 
-            $this->memoized[__FUNCTION__] = $groups;
-        }
-
-        return $this->memoized[__FUNCTION__];
+            return $groups;
+        });
     }
 
     public function hasBlocked(self $user)
@@ -1357,7 +1421,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function remainingHype()
     {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+        return $this->memoize(__FUNCTION__, function () {
             $hyped = $this
                 ->beatmapDiscussions()
                 ->withoutTrashed()
@@ -1365,15 +1429,13 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
                 ->where('created_at', '>', Carbon::now()->subWeek())
                 ->count();
 
-            $this->memoized[__FUNCTION__] = config('osu.beatmapset.user_weekly_hype') - $hyped;
-        }
-
-        return $this->memoized[__FUNCTION__];
+            return config('osu.beatmapset.user_weekly_hype') - $hyped;
+        });
     }
 
     public function newHypeTime()
     {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+        return $this->memoize(__FUNCTION__, function () {
             $earliestWeeklyHype = $this
                 ->beatmapDiscussions()
                 ->withoutTrashed()
@@ -1382,31 +1444,29 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
                 ->orderBy('created_at')
                 ->first();
 
-            $this->memoized[__FUNCTION__] = $earliestWeeklyHype === null ? null : $earliestWeeklyHype->created_at->addWeek();
-        }
-
-        return $this->memoized[__FUNCTION__];
+            return $earliestWeeklyHype === null ? null : $earliestWeeklyHype->created_at->addWeek();
+        });
     }
 
-    public function title()
+    public function title(): ?string
     {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
-            if ($this->user_rank !== 0 && $this->user_rank !== null) {
-                $title = $this->rank->rank_title;
-            }
+        return optional($this->rank)->rank_title;
+    }
 
-            $this->memoized[__FUNCTION__] = $title ?? null;
-        }
-
-        return $this->memoized[__FUNCTION__];
+    public function titleUrl(): ?string
+    {
+        return optional($this->rank)->url;
     }
 
     public function hasProfile()
     {
-        return
-            $this->user_id !== null
-            && !$this->isRestricted()
+        return $this->user_id !== null
             && $this->group_id !== app('groups')->byIdentifier('no_profile')->getKey();
+    }
+
+    public function hasProfileVisible()
+    {
+        return $this->hasProfile() && !$this->isRestricted();
     }
 
     public function updatePage($text)
@@ -1454,7 +1514,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function supportLength()
     {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+        return $this->memoize(__FUNCTION__, function () {
             $supportLength = 0;
 
             foreach ($this->supporterTagPurchases as $support) {
@@ -1465,10 +1525,8 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
                 }
             }
 
-            $this->memoized[__FUNCTION__] = $supportLength;
-        }
-
-        return $this->memoized[__FUNCTION__];
+            return $supportLength;
+        });
     }
 
     public function supportLevel()
@@ -1666,7 +1724,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function playCount()
     {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+        return $this->memoize(__FUNCTION__, function () {
             $unionQuery = null;
 
             foreach (Beatmap::MODES as $key => $_value) {
@@ -1679,15 +1737,13 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
                 }
             }
 
-            $this->memoized[__FUNCTION__] = $unionQuery->get()->sum('playcount');
-        }
-
-        return $this->memoized[__FUNCTION__];
+            return $unionQuery->get()->sum('playcount');
+        });
     }
 
     public function lastPlayed()
     {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+        return $this->memoize(__FUNCTION__, function () {
             $unionQuery = null;
 
             foreach (Beatmap::MODES as $key => $_value) {
@@ -1702,10 +1758,8 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
             $lastPlayed = $unionQuery->get()->max('last_played') ?? 0;
 
-            $this->memoized[__FUNCTION__] = Carbon::parse($lastPlayed);
-        }
-
-        return $this->memoized[__FUNCTION__];
+            return Carbon::parse($lastPlayed);
+        });
     }
 
     /**
@@ -1728,9 +1782,9 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function profileCustomization()
     {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+        return $this->memoize(__FUNCTION__, function () {
             try {
-                $this->memoized[__FUNCTION__] = $this
+                return $this
                     ->userProfileCustomization()
                     ->firstOrCreate([]);
             } catch (Exception $ex) {
@@ -1741,9 +1795,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
                 throw $ex;
             }
-        }
-
-        return $this->memoized[__FUNCTION__];
+        });
     }
 
     public function profileBeatmapsetsRankedAndApproved()
@@ -1848,14 +1900,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         }
 
         if ($this->isDirty('user_email') && present($this->user_email)) {
-            $emailValidator = new EmailValidator;
-            if (!$emailValidator->isValid($this->user_email, new NoRFCWarningsValidation)) {
-                $this->validationErrors()->add('user_email', '.invalid_email');
-            }
-
-            if (static::where('user_id', '<>', $this->getKey())->where('user_email', '=', $this->user_email)->exists()) {
-                $this->validationErrors()->add('user_email', '.email_already_used');
-            }
+            $this->isValidEmail();
         }
 
         if ($this->isDirty('country_acronym') && present($this->country_acronym)) {
@@ -1893,7 +1938,39 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             }
         }
 
+        if ($this->isDirty('group_id') && app('groups')->byId($this->group_id) === null) {
+            $this->validationErrors()->add('group_id', 'invalid');
+        }
+
         return $this->validationErrors()->isEmpty();
+    }
+
+    public function isValidEmail()
+    {
+        $emailValidator = new EmailValidator();
+        if (!$emailValidator->isValid($this->user_email, new NoRFCWarningsValidation())) {
+            $this->validationErrors()->add('user_email', '.invalid_email');
+
+            // no point validating further if address isn't valid.
+            return false;
+        }
+
+        $banlist = DB::table('phpbb_banlist')->where('ban_end', '>=', now()->timestamp)->orWhere('ban_end', 0);
+        foreach (model_pluck($banlist, 'ban_email') as $check) {
+            if (preg_match('#^'.str_replace('\*', '.*?', preg_quote($check, '#')).'$#i', $this->user_email)) {
+                $this->validationErrors()->add('user_email', '.email_not_allowed');
+
+                return false;
+            }
+        }
+
+        if (static::where('user_id', '<>', $this->getKey())->where('user_email', '=', $this->user_email)->exists()) {
+            $this->validationErrors()->add('user_email', '.email_already_used');
+
+            return false;
+        }
+
+        return true;
     }
 
     public function preferredLocale()

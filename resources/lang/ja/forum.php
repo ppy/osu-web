@@ -76,7 +76,7 @@ return [
         'deleted' => '削除されたトピック',
         'go_to_latest' => '最新の投稿を見る',
         'has_replied' => 'このトピックに返信しました',
-        'in_forum' => '',
+        'in_forum' => ':forum',
         'latest_post' => ':when by :user',
         'latest_reply_by' => '最新の投稿 by :user',
         'new_topic' => 'トピックの新規作成',

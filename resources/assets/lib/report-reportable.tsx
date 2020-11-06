@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { Dictionary } from 'lodash';
 import * as React from 'react';
@@ -13,7 +13,7 @@ interface Props {
   onFormClose: () => void;
   reportableId: string;
   reportableType: string;
-  user: UserJSON;
+  user: UserJson;
 }
 
 interface ReportData {
@@ -98,15 +98,17 @@ export class ReportReportable extends React.PureComponent<Props & React.Detailed
             ) : osu.trans(`report.${groupKey}.button`)
           }
         </button>
-        <ReportForm
-          completed={this.state.completed}
-          disabled={this.state.disabled}
-          onClose={this.onFormClose}
-          onSubmit={this.onSubmit}
-          title={osu.trans(`report.${groupKey}.title`, { username: `<strong>${user.username}</strong>` })}
-          visible={this.state.showingForm}
-          visibleOptions={availableOptions[groupKey]}
-        />
+        {this.state.showingForm && (
+          <ReportForm
+            completed={this.state.completed}
+            disabled={this.state.disabled}
+            onClose={this.onFormClose}
+            onSubmit={this.onSubmit}
+            title={osu.trans(`report.${groupKey}.title`, { username: `<strong>${user.username}</strong>` })}
+            visible={true}
+            visibleOptions={availableOptions[groupKey]}
+          />
+        )}
       </>
     );
   }

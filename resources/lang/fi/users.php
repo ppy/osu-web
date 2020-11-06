@@ -347,7 +347,6 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Kiinnostuksen kohteet',
-            'lastfm' => 'Last.fm',
             'location' => 'Tämänhetkinen sijainti',
             'occupation' => 'Ammatti',
             'skype' => '',
@@ -390,7 +389,7 @@ return [
             'medals' => 'Mitalit',
             'play_count' => 'Pelikertoja',
             'play_time' => 'Pelattu aika',
-            'ranked_score' => 'Tilastopisteet',
+            'ranked_score' => 'Tilastoidut pisteet',
             'replays_watched_by_others' => 'Muiden Katsomat Uusinnat',
             'score_ranks' => 'Luokitukset',
             'total_hits' => 'Osumat',

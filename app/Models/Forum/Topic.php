@@ -9,6 +9,7 @@ use App\Exceptions\ModelNotSavedException;
 use App\Jobs\EsIndexDocument;
 use App\Jobs\UpdateUserForumCache;
 use App\Libraries\BBCodeForDB;
+use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
 use App\Models\Elasticsearch;
@@ -72,7 +73,7 @@ use Illuminate\Database\QueryException;
  * @property \Illuminate\Database\Eloquent\Collection $userTracks TopicTrack
  * @property \Illuminate\Database\Eloquent\Collection $watches TopicWatch
  */
-class Topic extends Model implements AfterCommit
+class Topic extends Model implements AfterCommit, Indexable
 {
     use Elasticsearch\TopicTrait, SoftDeletes, Validatable;
 

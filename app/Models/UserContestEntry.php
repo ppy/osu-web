@@ -38,7 +38,7 @@ class UserContestEntry extends Model
 
     public static function upload(UploadedFile $file, $user, $contest = null)
     {
-        $entry = new static;
+        $entry = new static();
 
         DB::transaction(function () use ($entry, $file, $user, $contest) {
             $entry->save(); // get id

@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Password may not contain username.',
         'email_already_used' => 'Email address already used.',
+        'email_not_allowed' => 'Email address not allowed.',
         'invalid_country' => 'Country not in database.',
         'invalid_discord' => 'Discord username invalid.',
         'invalid_email' => "Doesn't seem to be a valid email address.",

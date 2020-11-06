@@ -50,14 +50,14 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'Értesítések kérése minősített beatmapok problémáival kapcsolatban a következő módokból',
-        'beatmapset_disqualify' => 'Értesíts akkor, ha a beatmap következő modjai diszkvalifikálva lettek',
-        'comment_reply' => '',
+        'beatmapset_disqualify' => 'értesíts, ha a következő játékmódok egy beatmapje diszkvalifikálva lett',
+        'comment_reply' => 'értesítések küldése a kommentjeidre érkezett válaszokról',
         'title' => 'Értesítések',
         'topic_auto_subscribe' => 'az általad létrehozott új fórum témák értesítéseinek automatikus bekapcsolása',
 
         'options' => [
             '_' => 'Szállítási lehetőségek',
-            'beatmapset:modding' => 'Beatmap szerkesztése',
+            'beatmapset:modding' => 'beatmap modolás',
             'channel_message' => 'Privát üzenetek',
             'comment_new' => 'Új megjegyzések',
             'forum_topic_reply' => 'Válaszolj erre a témára',

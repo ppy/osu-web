@@ -39,7 +39,8 @@ class CheckUserBanStatus
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->check()
+        if (
+            $this->auth->check()
             && ($this->auth->user()->isBanned() || $this->auth->user()->isLoginBlocked())
         ) {
             logout();

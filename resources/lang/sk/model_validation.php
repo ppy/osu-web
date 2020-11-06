@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Heslo nemôže obsahovať užívateľské meno.',
         'email_already_used' => 'E-mailová adresa už bola použitá.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Krajina nie je v databáze.',
         'invalid_discord' => 'Nesprávne užívateľské meno na Discorde.',
         'invalid_email' => "Vyzerá to na neplatnú e-mailovú adresu.",

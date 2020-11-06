@@ -10,10 +10,9 @@ if [ -z "${OSU_SKIP_CACHE_PERMISSION_OVERRIDE:-}" ]; then
 fi
 
 if [ -f composer.phar ]; then
-  php composer.phar self-update
+  php composer.phar self-update --1
 else
-  curl -sL https://getcomposer.org/installer > composer-installer
-  php composer-installer
+  curl -sL https://getcomposer.org/composer-1.phar > composer.phar
 fi
 
 # dummy user, no privilege github token to avoid github api limit

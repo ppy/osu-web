@@ -1,8 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserJSON from 'interfaces/user-json';
+import GameMode from 'interfaces/game-mode';
+import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
+import * as _ from 'lodash';
 import * as moment from 'moment';
 import * as React from 'react';
 import { Sort } from 'sort';
@@ -10,24 +12,28 @@ import { ViewMode } from 'user-card';
 import { UserCards } from 'user-cards';
 
 type Filter = 'all' | 'online' | 'offline';
+type PlayModeFilter = 'all' | GameMode;
 type SortMode = 'last_visit' | 'rank' | 'username';
 
 const filters: Filter[] = ['all', 'online', 'offline'];
+const playModes: PlayModeFilter[] = ['all', 'osu', 'taiko', 'fruits', 'mania'];
 const sortModes: SortMode[] = ['last_visit', 'rank', 'username'];
 const viewModes: ViewMode[] = ['card', 'list', 'brick'];
 
 interface Props {
+  playmodeFilter?: boolean;
   title?: string;
-  users: UserJSON[];
+  users: UserJson[];
 }
 
 interface State {
   filter: Filter;
+  playMode: PlayModeFilter;
   sortMode: SortMode;
   viewMode: ViewMode;
 }
 
-function rankSortDescending(x: UserJSON, y: UserJSON) {
+function rankSortDescending(x: UserJson, y: UserJson) {
   if (x.current_mode_rank != null && y.current_mode_rank != null) {
     return x.current_mode_rank > y.current_mode_rank ? 1 : -1;
   } else if (x.current_mode_rank === null) {
@@ -37,13 +43,14 @@ function rankSortDescending(x: UserJSON, y: UserJSON) {
   }
 }
 
-function usernameSortAscending(x: UserJSON, y: UserJSON) {
+function usernameSortAscending(x: UserJson, y: UserJson) {
   return x.username.localeCompare(y.username);
 }
 
 export class UserList extends React.PureComponent<Props> {
   readonly state: State = {
     filter: this.filterFromUrl,
+    playMode: this.playmodeFromUrl,
     sortMode: this.sortFromUrl,
     viewMode: this.viewFromUrl,
   };
@@ -55,6 +62,16 @@ export class UserList extends React.PureComponent<Props> {
       filters,
       url.searchParams.get('filter'),
       currentUser?.user_preferences?.user_list_filter,
+    );
+  }
+
+  private get playmodeFromUrl() {
+    const url = new URL(location.href);
+
+    return this.getAllowedQueryStringValue(
+      playModes,
+      url.searchParams.get('mode'),
+      'all',
     );
   }
 
@@ -128,6 +145,14 @@ export class UserList extends React.PureComponent<Props> {
     this.setState({ filter: key }, this.saveOptions);
   }
 
+  playmodeSelected = (event: React.SyntheticEvent) => {
+    const value = (event.currentTarget as HTMLElement).dataset.value;
+    const url = osu.updateQueryString(null, { mode: value });
+
+    Turbolinks.controller.advanceHistory(url);
+    this.setState({ playMode: value });
+  }
+
   render(): React.ReactNode {
     return (
       <>
@@ -139,8 +164,15 @@ export class UserList extends React.PureComponent<Props> {
           )}
 
           <div className='user-list__toolbar'>
-            <div className='user-list__toolbar-item'>{this.renderSorter()}</div>
-            <div className='user-list__toolbar-item'>{this.renderViewMode()}</div>
+            {this.props.playmodeFilter && (
+              <div className='user-list__toolbar-row'>
+                <div className='user-list__toolbar-item'>{this.renderPlaymodeFilter()}</div>
+              </div>
+            )}
+            <div className='user-list__toolbar-row'>
+              <div className='user-list__toolbar-item'>{this.renderSorter()}</div>
+              <div className='user-list__toolbar-item'>{this.renderViewMode()}</div>
+            </div>
           </div>
 
           <div className='user-list__items'>
@@ -244,14 +276,51 @@ export class UserList extends React.PureComponent<Props> {
 
   private getFilteredUsers(filter: Filter) {
     // TODO: should be cached or something
+    let users = this.props.users.slice();
+    if (this.props.playmodeFilter && this.state.playMode !== 'all') {
+      users = users.filter((user) => {
+        if (user.groups && user.groups.length > 0) {
+          return user.groups.some((group) => group.playmodes && (group.playmodes as PlayModeFilter[]).includes(this.state.playMode));
+        } else {
+          return false;
+        }
+      });
+    }
+
     switch (filter) {
       case 'online':
-        return this.props.users.filter((user) => user.is_online);
+        return users.filter((user) => user.is_online);
       case 'offline':
-        return this.props.users.filter((user) => !user.is_online);
+        return users.filter((user) => !user.is_online);
       default:
-        return this.props.users;
+        return users;
     }
+  }
+
+  private renderPlaymodeFilter() {
+    const playmodeButtons = playModes.map((mode) => {
+      return (
+        <button
+          className={osu.classWithModifiers('user-list__view-mode', this.state.playMode === mode ? ['active'] : [])}
+          data-value={mode}
+          title={osu.trans(`beatmaps.mode.${mode}`)}
+          onClick={this.playmodeSelected}
+          key={mode}
+        >
+          {mode === 'all' ?
+            <span>{osu.trans('beatmaps.mode.all')}</span>
+            :
+            <span className={`fal fa-extra-mode-${mode}`}/>
+          }
+        </button>
+      );
+    });
+
+    return (
+      <div className='user-list__view-modes'>
+        <span className='user-list__view-mode-title'>{osu.trans('users.filtering.by_game_mode')}</span> {playmodeButtons}
+      </div>
+    );
   }
 
   private saveOptions() {
@@ -268,6 +337,6 @@ export class UserList extends React.PureComponent<Props> {
         user_list_sort: this.state.sortMode,
         user_list_view: this.state.viewMode,
       } },
-    }).done((user: UserJSON) => $.publish('user:update', user));
+    }).done((user: UserJson) => $.publish('user:update', user));
   }
 }

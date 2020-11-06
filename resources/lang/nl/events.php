@@ -20,9 +20,9 @@ return [
     'username_change' => '<strong>:previousUsername</strong> noemt zichzelf vanaf nu <strong><em>:user</strong></em>!',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
-        'ranked' => '',
+        'approved' => 'goedgekeurd',
+        'loved' => 'geliefd',
+        'qualified' => 'gekwalificeerd',
+        'ranked' => 'gerankt',
     ],
 ];

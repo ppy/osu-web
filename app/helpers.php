@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 use App\Models\LoginAttempt;
+use Illuminate\Support\HtmlString;
 
 /*
  * Like array_search but returns null if not found instead of false.
@@ -199,6 +200,7 @@ function cleanup_cookies()
 
     $domains = [$host, ''];
 
+    // phpcs:ignore
     while (count($hostParts) > 1) {
         array_shift($hostParts);
         $domains[] = implode('.', $hostParts);
@@ -351,11 +353,6 @@ function es_records($results, $class)
     return $records;
 }
 
-function flag_path($country)
-{
-    return '/images/flags/'.$country.'.png';
-}
-
 function get_valid_locale($requestedLocale)
 {
     if (in_array($requestedLocale, config('app.available_locales'), true)) {
@@ -432,17 +429,8 @@ function locale_for_moment($locale)
         return 'zh-cn';
     }
 
-    return $locale;
-}
-
-function locale_for_timeago($locale)
-{
-    if ($locale === 'zh') {
-        return 'zh-CN';
-    }
-
-    if ($locale === 'zh-tw') {
-        return 'zh-TW';
+    if ($locale === 'no') {
+        return 'nb';
     }
 
     return $locale;
@@ -834,6 +822,7 @@ function link_to_user($id, $username = null, $color = null, $classNames = null)
         $color ?? ($color = $id->user_colour);
         $id = $id->getKey();
     }
+    $id = e($id);
     $username = e($username);
     $style = user_color_style($color, 'color');
 
@@ -858,12 +847,18 @@ function link_to_user($id, $username = null, $color = null, $classNames = null)
 function issue_icon($issue)
 {
     switch ($issue) {
-        case 'added': return 'fas fa-cogs';
-        case 'assigned': return 'fas fa-user';
-        case 'confirmed': return 'fas fa-exclamation-triangle';
-        case 'resolved': return 'far fa-check-circle';
-        case 'duplicate': return 'fas fa-copy';
-        case 'invalid': return 'far fa-times-circle';
+        case 'added':
+            return 'fas fa-cogs';
+        case 'assigned':
+            return 'fas fa-user';
+        case 'confirmed':
+            return 'fas fa-exclamation-triangle';
+        case 'resolved':
+            return 'far fa-check-circle';
+        case 'duplicate':
+            return 'fas fa-copy';
+        case 'invalid':
+            return 'far fa-times-circle';
     }
 }
 
@@ -1057,7 +1052,7 @@ function base62_encode($input)
     $remaining = $input;
 
     do {
-        $output = $numbers[($remaining % $base)].$output;
+        $output = $numbers[$remaining % $base].$output;
         $remaining = floor($remaining / $base);
     } while ($remaining > 0);
 
@@ -1202,20 +1197,18 @@ function fast_imagesize($url)
 
 function get_arr($input, $callback)
 {
-    if (!is_array($input)) {
-        return;
-    }
+    if (is_array($input)) {
+        $result = [];
+        foreach ($input as $value) {
+            $casted = call_user_func($callback, $value);
 
-    $result = [];
-    foreach ($input as $value) {
-        $casted = call_user_func($callback, $value);
-
-        if ($casted !== null) {
-            $result[] = $casted;
+            if ($casted !== null) {
+                $result[] = $casted;
+            }
         }
-    }
 
-    return $result;
+        return $result;
+    }
 }
 
 function get_bool($string)
@@ -1321,7 +1314,7 @@ function deltree($dir)
 {
     $files = array_diff(scandir($dir), ['.', '..']);
     foreach ($files as $file) {
-        (is_dir("$dir/$file")) ? deltree("$dir/$file") : unlink("$dir/$file");
+        is_dir("$dir/$file") ? deltree("$dir/$file") : unlink("$dir/$file");
     }
 
     return rmdir($dir);
@@ -1405,7 +1398,7 @@ function array_rand_val($array)
 function model_pluck($builder, $key, $class = null)
 {
     if ($class) {
-        $selectKey = (new $class)->qualifyColumn($key);
+        $selectKey = (new $class())->qualifyColumn($key);
     }
 
     $result = [];
@@ -1467,7 +1460,7 @@ function parse_time_to_carbon($value)
 
 function format_duration_for_display($seconds)
 {
-    return floor($seconds / 60).':'.str_pad(($seconds % 60), 2, '0', STR_PAD_LEFT);
+    return floor($seconds / 60).':'.str_pad($seconds % 60, 2, '0', STR_PAD_LEFT);
 }
 
 // Converts a standard image url to a retina one
@@ -1518,15 +1511,18 @@ function first_paragraph($html, $split_on = "\n")
     $text = strip_tags($html);
     $match_pos = strpos($text, $split_on);
 
-    return ($match_pos === false) ? $text : substr($text, 0, $match_pos);
+    return $match_pos === false ? $text : substr($text, 0, $match_pos);
 }
 
 function build_icon($prefix)
 {
     switch ($prefix) {
-        case 'add': return 'plus';
-        case 'fix': return 'wrench';
-        case 'misc': return 'question';
+        case 'add':
+            return 'plus';
+        case 'fix':
+            return 'wrench';
+        case 'misc':
+            return 'question';
     }
 }
 
@@ -1655,4 +1651,34 @@ function search_error_message(?Exception $e): ?string
     $text = trans($key);
 
     return $text === $key ? trans('errors.search.default') : $text;
+}
+
+/**
+ * Gets the path to a versioned resource.
+ *
+ * @param string $resource
+ * @param string $manifest
+ * @return HtmlString
+ *
+ * @throws Exception
+ */
+function unmix(string $resource)
+{
+    static $manifest;
+
+    if (!isset($manifest)) {
+        $manifestPath = public_path('assets/manifest.json');
+
+        if (!file_exists($manifestPath)) {
+            throw new Exception('The manifest does not exist.');
+        }
+
+        $manifest = json_decode(file_get_contents($manifestPath), true);
+    }
+
+    if (!isset($manifest[$resource])) {
+        throw new Exception("resource not defined: {$resource}.");
+    }
+
+    return new HtmlString($manifest[$resource]);
 }

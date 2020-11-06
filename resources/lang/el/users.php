@@ -347,7 +347,6 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Ενδιαφέροντα',
-            'lastfm' => 'Last.fm',
             'location' => 'Τρέχουσα Τοποθεσία',
             'occupation' => 'Ενασχόληση',
             'skype' => '',

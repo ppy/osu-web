@@ -187,12 +187,18 @@ return [
         'nominate_confirm' => 'Nominovat tuto beatmapu?',
         'nominated_by' => 'nominováno od :users',
         'not_enough_hype' => "",
-        'qualified' => 'Předpokládané datum zhodnocení této mapy je :date, pokud se nenaleznou žádné chyby.',
-        'qualified_soon' => 'Již brzy bude tato mapa hodnocená, pokud se nenaleznou žádné chyby.',
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Nominace: :current/:required',
         'reset_message_deleted' => 'odstraněno',
         'title' => 'Stav nominace',
         'unresolved_issues' => 'Existují stále nevyřešené problémy, které musí být řešeny jako první.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Proces nominace byl resetován před :time_ago nominátorem :user, kvůli nalezení nového problému :discussion (:message).',

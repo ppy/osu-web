@@ -63,7 +63,7 @@ class @BeatmapDiscussionHelper
     text = _.escape text
     text = text.trim()
     text = @discussionLinkify text
-    text = @linkTimestamp text, ["#{blockName}__timestamp"]
+    text = @linkTimestamp text, ['beatmap-discussion-timestamp-decoration']
 
     if options.newlines ? true
       # replace newlines with <br>
@@ -107,14 +107,6 @@ class @BeatmapDiscussionHelper
       problem: 'fas fa-exclamation-circle'
       review: 'fas fa-tasks'
       suggestion: 'far fa-circle'
-
-    # used for svg since it doesn't seem to have ::before pseudo-element
-    iconText:
-      mapperNote: ['far', '&#xf249;']
-      praise: ['fas', '&#xf004;']
-      problem: ['fas', '&#xf06a;']
-      resolved: ['far', '&#xf058;']
-      suggestion: ['far', '&#xf111;']
 
 
   @nearbyDiscussions: (discussions, timestamp) =>

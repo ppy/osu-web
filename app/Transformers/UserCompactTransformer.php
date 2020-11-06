@@ -8,14 +8,28 @@ namespace App\Transformers;
 use App\Models\Beatmap;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
-use League\Fractal;
 
 class UserCompactTransformer extends TransformerAbstract
 {
+    const CARD_INCLUDES = [
+        'country',
+        'cover',
+        'groups',
+    ];
+
+    const CARD_INCLUDES_PRELOAD = [
+        'country',
+        'userGroups',
+        'userProfileCustomization',
+    ];
+
+    public $mode;
+
     protected $availableIncludes = [
         'account_history',
         'active_tournament_banner',
         'badges',
+        'beatmap_playcounts_count',
         'blocks',
         'country',
         'cover',
@@ -40,7 +54,9 @@ class UserCompactTransformer extends TransformerAbstract
         'previous_usernames',
         'ranked_and_approved_beatmapset_count',
         'replays_watched_counts',
+        'scores_best_count',
         'scores_first_count',
+        'scores_recent_count',
         'statistics',
         'support_level',
         'unranked_beatmapset_count',
@@ -104,15 +120,20 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeActiveTournamentBanner(User $user)
     {
-        return $this->item($user->profileBanners()->active(), new ProfileBannerTransformer);
+        return $this->item($user->profileBanners()->active(), new ProfileBannerTransformer());
     }
 
     public function includeBadges(User $user)
     {
         return $this->collection(
             $user->badges()->orderBy('awarded', 'DESC')->get(),
-            new UserBadgeTransformer
+            new UserBadgeTransformer()
         );
+    }
+
+    public function includeBeatmapPlaycountsCount(User $user)
+    {
+        return $this->primitive($user->beatmapPlaycounts()->count());
     }
 
     public function includeBlocks(User $user)
@@ -127,7 +148,7 @@ class UserCompactTransformer extends TransformerAbstract
     {
         return $user->country === null
             ? $this->primitive(null)
-            : $this->item($user->country, new CountryTransformer);
+            : $this->item($user->country, new CountryTransformer());
     }
 
     public function includeCover(User $user)
@@ -173,7 +194,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeGroups(User $user)
     {
-        return $this->collection($user->visibleGroups(), new GroupTransformer);
+        return $this->collection($user->visibleGroups(), new UserGroupTransformer());
     }
 
     public function includeIsAdmin(User $user)
@@ -230,7 +251,7 @@ class UserCompactTransformer extends TransformerAbstract
     {
         return $this->collection(
             $user->monthlyPlaycounts,
-            new UserMonthlyPlaycountTransformer
+            new UserMonthlyPlaycountTransformer()
         );
     }
 
@@ -258,39 +279,45 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->primitive($user->profileBeatmapsetsRankedAndApproved()->count());
     }
 
-    public function includeRankHistory(User $user, Fractal\ParamBag $params)
+    public function includeRankHistory(User $user)
     {
-        $mode = $params->get('mode')[0];
-
         $rankHistoryData = $user->rankHistories()
-            ->where('mode', Beatmap::modeInt($mode))
+            ->where('mode', Beatmap::modeInt($this->mode))
             ->first();
 
         return $rankHistoryData === null
             ? $this->primitive(null)
-            : $this->item($rankHistoryData, new RankHistoryTransformer);
+            : $this->item($rankHistoryData, new RankHistoryTransformer());
     }
 
     public function includeReplaysWatchedCounts(User $user)
     {
         return $this->collection(
             $user->replaysWatchedCounts,
-            new UserReplaysWatchedCountTransformer
+            new UserReplaysWatchedCountTransformer()
         );
     }
 
-    public function includeScoresFirstCount(User $user, Fractal\ParamBag $params)
+    public function includeScoresBestCount(User $user)
     {
-        $mode = $params->get('mode')[0];
-
-        return $this->primitive($user->scoresFirst($mode, true)->visibleUsers()->count());
+        return $this->primitive(count($user->beatmapBestScoreIds($this->mode)));
     }
 
-    public function includeStatistics(User $user, Fractal\ParamBag $params)
+    public function includeScoresFirstCount(User $user)
     {
-        $stats = $user->statistics($params->get('mode')[0]);
+        return $this->primitive($user->scoresFirst($this->mode, true)->visibleUsers()->count());
+    }
 
-        return $this->item($stats, new UserStatisticsTransformer);
+    public function includeScoresRecentCount(User $user)
+    {
+        return $this->primitive($user->scores($this->mode, true)->includeFails(false)->count());
+    }
+
+    public function includeStatistics(User $user)
+    {
+        $stats = $user->statistics($this->mode);
+
+        return $this->item($stats, new UserStatisticsTransformer());
     }
 
     public function includeSupportLevel(User $user)

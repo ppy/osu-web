@@ -2,13 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import Event from './event';
 
 interface Props {
   events: BeatmapsetEventJson[];
-  users: Record<string, UserJSON>;
+  users: Record<string, UserJson>;
 }
 
 export default class Events extends React.PureComponent<Props> {

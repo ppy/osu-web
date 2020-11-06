@@ -4,6 +4,7 @@
 import { BigButton } from 'big-button'
 import * as React from 'react'
 import { a, button, div, p, span } from 'react-dom-factories'
+import { StringWithComponent } from 'string-with-component'
 el = React.createElement
 
 bn = 'beatmap-discussion-nomination'
@@ -48,6 +49,7 @@ export class Nominations extends React.PureComponent
         div className: "#{bn}__items-grouping",
           div className: "#{bn}__item", @discussionLockButton()
           div className: "#{bn}__item", @loveButton()
+          div className: "#{bn}__item", @removeFromLovedButton()
           div className: "#{bn}__item", @deleteButton()
 
 
@@ -159,6 +161,27 @@ export class Nominations extends React.PureComponent
       .always LoadingOverlay.hide
 
 
+  removeFromLoved: =>
+    reason = osu.presence(prompt(osu.trans('beatmaps.nominations.remove_from_loved_prompt')))
+
+    return unless reason?
+
+    LoadingOverlay.show()
+
+    @xhr.removeFromLoved?.abort()
+
+    url = laroute.route('beatmapsets.remove-from-loved', beatmapset: @props.beatmapset.id)
+    params =
+      method: 'DELETE'
+      data: { reason }
+
+    @xhr.removeFromLoved = $.ajax(url, params)
+      .done (response) =>
+        $.publish 'beatmapsetDiscussions:update', beatmapset: response
+      .fail osu.ajaxError
+      .always LoadingOverlay.hide
+
+
   focusHypeInput: =>
     hypeMessage = $('.js-hype--explanation')
     flashClass = 'js-flash-border--on'
@@ -259,12 +282,22 @@ export class Nominations extends React.PureComponent
         osu.trans 'beatmaps.discussions.status-messages.wip'
       when 'qualified'
         rankingETA = @props.beatmapset.nominations.ranking_eta
+        date =
+          if rankingETA?
+            moment(rankingETA).format(dateFormat)
+          else
+            osu.trans 'beatmaps.nominations.rank_estimate.soon'
 
-        if rankingETA?
-          osu.trans 'beatmaps.nominations.qualified',
-            date: moment(rankingETA).format(dateFormat)
-        else
-          osu.trans 'beatmaps.nominations.qualified_soon'
+        el StringWithComponent,
+          mappings:
+            ':date': date
+            ':position': @props.beatmapset.nominations.ranking_queue_position
+            ':queue': a
+              href: laroute.route('wiki.show', page: 'Beatmap_ranking_procedure/Ranking_queue')
+              key: 'queue'
+              target: '_blank'
+              osu.trans 'beatmaps.nominations.rank_estimate.queue'
+          pattern: osu.trans 'beatmaps.nominations.rank_estimate._'
       else
         null
 
@@ -451,6 +484,17 @@ export class Nominations extends React.PureComponent
       modifiers: ['pink']
       props:
         onClick: @love
+
+
+  removeFromLovedButton: =>
+    return null unless @props.beatmapset.current_user_attributes?.can_remove_from_loved
+
+    el BigButton,
+      text: osu.trans 'beatmaps.nominations.remove_from_loved'
+      icon: 'fas fa-heart-broken'
+      modifiers: ['danger']
+      props:
+        onClick: @removeFromLoved
 
 
   deleteButton: =>

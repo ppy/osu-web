@@ -59,8 +59,8 @@ class BeatmapPack extends Model
 
     public function beatmapsets()
     {
-        $setsTable = (new Beatmapset)->getTable();
-        $itemsTable = (new BeatmapPackItem)->getTable();
+        $setsTable = (new Beatmapset())->getTable();
+        $itemsTable = (new BeatmapPackItem())->getTable();
 
         return Beatmapset::query()
             ->join($itemsTable, "{$itemsTable}.beatmapset_id", '=', "{$setsTable}.beatmapset_id")
@@ -128,24 +128,5 @@ class BeatmapPack extends Model
             'completed' => $completed ?? false,
             'beatmapset_ids' => $completedBeatmapsetIds ?? [],
         ];
-    }
-
-    public function downloadUrl()
-    {
-        return $this->downloadUrls()[0];
-    }
-
-    private function downloadUrls()
-    {
-        $array = [];
-        foreach (explode(',', $this->url) as $url) {
-            preg_match('@^https?://(?<host>[^/]+)@i', $url, $matches);
-            $array[] = [
-                'url' => $url,
-                'host' => $matches['host'],
-            ];
-        }
-
-        return $array;
     }
 }

@@ -193,7 +193,7 @@ return [
                     'title' => 'Favori Beatmapler',
                 ],
                 'graveyard' => [
-                    'title' => 'Terk Edilmiş Beatmapler',
+                    'title' => 'Mezarlıktaki Beatmapler',
                 ],
                 'loved' => [
                     'title' => 'Sevilen Beatmapler',
@@ -347,7 +347,6 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'İlgi Alanları',
-            'lastfm' => 'Last.fm',
             'location' => 'Mevcut Konum',
             'occupation' => 'Meslek',
             'skype' => '',
@@ -399,7 +398,7 @@ return [
             'ranked_and_approved_beatmapset_count' => 'Dereceli ve Onaylanmış Beatmapler',
             'loved_beatmapset_count' => 'Sevilen Beatmapler',
             'unranked_beatmapset_count' => 'Onay Bekleyen Beatmapler',
-            'graveyard_beatmapset_count' => 'Terk Edilmiş Beatmapler',
+            'graveyard_beatmapset_count' => 'Mezarlıktaki Beatmapler',
         ],
     ],
 

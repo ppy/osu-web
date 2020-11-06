@@ -66,6 +66,8 @@ class PaypalController extends Controller
         $order = Order::where('user_id', Auth::user()->user_id)->processing()->findOrFail($orderId);
         $command = new PaypalCreatePayment($order);
         $link = $command->getApprovalLink();
+        // getId() is only available after the payment is created which getApprovalLink() calls.
+        $order->update(['reference' => $command->getPayment()->getId()]);
 
         return $link;
     }
@@ -103,8 +105,10 @@ class PaypalController extends Controller
             return response(['message' => $exception->getMessage()], 406);
         } catch (QueryException $exception) {
             // can get multiple cancellations for the same order from paypal.
-            if (is_sql_unique_exception($exception)
-                && $processor->getNotificationType() === NotificationType::REFUND) {
+            if (
+                is_sql_unique_exception($exception)
+                && $processor->getNotificationType() === NotificationType::REFUND
+            ) {
                 return 'ok';
             }
 

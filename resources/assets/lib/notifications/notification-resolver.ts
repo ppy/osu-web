@@ -8,15 +8,44 @@ import { debounce } from 'lodash';
 import { action } from 'mobx';
 import Notification from 'models/notification';
 import { NotificationContextData } from 'notifications-context';
+import NotificationDeletable from 'notifications/notification-deletable';
 import { NotificationIdentity, toJson } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
 import { NotificationCursor } from './notification-cursor';
-import { NotificationEventMoreLoaded, NotificationEventRead } from './notification-events';
+import { NotificationEventDelete, NotificationEventMoreLoaded, NotificationEventRead } from './notification-events';
 
 // I don't know what to name this
 export class NotificationResolver {
+  private debouncedDeleteByIds = debounce(this.deleteByIds, 500);
   private debouncedSendQueuedMarkedAsRead = debounce(this.sendQueuedMarkedAsRead, 500);
+  private deleteByIdsQueue = new Map<number, Notification>();
   private queuedMarkedAsRead = new Map<number, Notification>();
+
+  @action
+  delete(deletable: NotificationDeletable) {
+    deletable.isDeleting = true;
+
+    // single notifications are batched, also it's annoying if they get removed
+    // from display while the user is clicking.
+    if (deletable instanceof Notification) {
+      this.deleteByIdsQueue.set(deletable.id, deletable);
+
+      this.debouncedDeleteByIds();
+      return;
+    }
+
+    $.ajax({
+      data: toJson(deletable.identity),
+      dataType: 'json',
+      method: 'DELETE',
+      url: route('notifications.index'),
+    })
+    .then(action(() => {
+      dispatch(new NotificationEventDelete([deletable.identity], 0));
+    }))
+    .catch(osu.ajaxError)
+    .always(action(() => deletable.isDeleting = false));
+  }
 
   @action
   loadMore(identity: NotificationIdentity, context: NotificationContextData, cursor?: NotificationCursor) {
@@ -60,7 +89,27 @@ export class NotificationResolver {
     .then(action(() => {
       dispatch(new NotificationEventRead([readable.identity], 0));
     }))
+    .catch(osu.ajaxError)
     .always(action(() => readable.isMarkingAsRead = false));
+  }
+
+  private deleteByIds() {
+    if (this.deleteByIdsQueue.size === 0) return;
+
+    const notifications = [...this.deleteByIdsQueue.values()];
+    const identities = notifications.map((notification) => notification.identity);
+    this.deleteByIdsQueue.clear();
+
+    $.ajax({
+      data: { notifications: identities.map(toJson) },
+      dataType: 'json',
+      method: 'DELETE',
+      url: route('notifications.index'),
+    })
+    .then(action(() => {
+      dispatch(new NotificationEventDelete(identities, 0));
+    }))
+    .always(action(() => notifications.forEach((notification) => notification.isDeleting = false)));
   }
 
   private sendQueuedMarkedAsRead() {
@@ -79,6 +128,7 @@ export class NotificationResolver {
     .then(action(() => {
       dispatch(new NotificationEventRead(identities, 0));
     }))
+    .catch(osu.ajaxError)
     .always(action(() => notifications.forEach((notification) => notification.isMarkingAsRead = false)));
   }
 }

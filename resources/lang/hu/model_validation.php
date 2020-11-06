@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'A jelszó nem tartalmazhat felhasználónevet.',
         'email_already_used' => 'Ez az e-mail cím már használatban van.',
+        'email_not_allowed' => 'Nem megengedett e-mail cím.',
         'invalid_country' => 'Az ország nincs az adatbázisban.',
         'invalid_discord' => 'Érvénytelen Discord felhasználónév.',
         'invalid_email' => "Nem úgy néz ki, hogy ez érvényes e-mail cím lenne.",

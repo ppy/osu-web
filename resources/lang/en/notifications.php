@@ -5,6 +5,7 @@
 
 return [
     'all_read' => 'All notifications read!',
+    'delete' => 'Delete :type',
     'mark_read' => 'Clear :type',
     'none' => 'No notifications',
     'see_all' => 'see all notifications',
@@ -57,6 +58,8 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmap entered ranking queue',
                 'beatmapset_rank' => '":title" has been ranked',
                 'beatmapset_rank_compact' => 'Beatmap was ranked',
+                'beatmapset_remove_from_loved' => '":title" was removed from Loved',
+                'beatmapset_remove_from_loved_compact' => 'Beatmap was removed from Loved',
                 'beatmapset_reset_nominations' => 'Nomination of ":title" has been reset',
                 'beatmapset_reset_nominations_compact' => 'Nomination was reset',
             ],
@@ -136,6 +139,7 @@ return [
                 '_' => 'New medal',
                 'user_achievement_unlock' => 'Unlocked ":title"!',
                 'user_achievement_unlock_compact' => 'Unlocked ":title"!',
+                'user_achievement_unlock_group' => 'Medals unlocked!',
             ],
         ],
     ],
@@ -158,6 +162,7 @@ return [
                 'beatmapset_nominate' => '":title" has been nominated',
                 'beatmapset_qualify' => '":title" has gained enough nominations and entered the ranking queue',
                 'beatmapset_rank' => '":title" has been ranked',
+                'beatmapset_remove_from_loved' => '":title" was removed from Loved',
                 'beatmapset_reset_nominations' => 'Nomination of ":title" has been reset',
             ],
 

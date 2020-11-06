@@ -54,7 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Жоден з постів не вирішує про мою проблему',
         'notice' => 'Є повідомлення між :timestamp (:existing_timestamps). Перевірте їх перед публікацією.',
-        'unsaved' => '',
+        'unsaved' => ':count в цьому відгуку',
     ],
 
     'reply' => [

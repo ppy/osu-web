@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'รหัสผ่านต้องไม่ประกอบด้วยชื่อผู้ใช้',
         'email_already_used' => 'อีเมลนี้ถูกใช้ไปแล้ว',
+        'email_not_allowed' => 'ที่อยู่อีเมลไม่ได้รับการอนุญาติ',
         'invalid_country' => 'ประเทศไม่ได้อยู่ในฐานข้อมูล',
         'invalid_discord' => 'ชื่อผู้ใช้ Discord ไม่ถูกต้อง',
         'invalid_email' => "เหมือนกับว่ามันไม่ใช่ที่อยู่อีเมล",

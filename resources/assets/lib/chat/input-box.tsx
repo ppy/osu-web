@@ -23,7 +23,7 @@ export default class InputBox extends React.Component<any, any> implements Dispa
   @computed
   get currentChannel() {
     const dataStore: RootDataStore = this.props.dataStore;
-    return dataStore.channelStore.get(dataStore.uiState.chat.selected);
+    return dataStore.channelStore.get(dataStore.chatState.selected);
   }
 
   private inputBoxRef = React.createRef<HTMLTextAreaElement>();
@@ -122,8 +122,8 @@ export default class InputBox extends React.Component<any, any> implements Dispa
     }
 
     const message = new Message();
-    message.sender = this.props.dataStore.userStore.getOrCreate(currentUser.id);
-    message.channelId = this.props.dataStore.uiState.chat.selected;
+    message.senderId = currentUser.id;
+    message.channelId = this.props.dataStore.chatState.selected;
     message.content = messageText;
 
     // Technically we don't need to check command here, but doing so in case we add more commands

@@ -13,9 +13,7 @@
         'id' => 'product-form',
         'class' => 'osu-page osu-page--store',
     ]) !!}
-        <div class="product-box product-box--header" {!! background_image($product->header_image) !!}>
-            <div>{!! markdown($product->header_description, 'store-product') !!}</div>
-        </div>
+        <div class="product-box product-box--header" {!! background_image($product->header_image) !!}></div>
 
         <div class="store-page">
             <h1 class="store-text store-text--title">{{ $product->name }}</h1>

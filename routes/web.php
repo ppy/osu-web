@@ -74,6 +74,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('beatmapsets/{beatmapset}/discussion-unlock', 'BeatmapsetsController@discussionUnlock')->name('beatmapsets.discussion-unlock');
     Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download')->name('beatmapsets.download');
     Route::put('beatmapsets/{beatmapset}/love', 'BeatmapsetsController@love')->name('beatmapsets.love');
+    Route::delete('beatmapsets/{beatmapset}/love', 'BeatmapsetsController@removeFromLoved')->name('beatmapsets.remove-from-loved');
     Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
     Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
@@ -198,6 +199,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
         Route::get('notifications/endpoint', 'NotificationsController@endpoint')->name('notifications.endpoint');
         Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
+        Route::delete('notifications', 'NotificationsController@batchDestroy');
 
         Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');
 
@@ -435,6 +437,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'requir
         Route::get('users/{user}/recent_activity', 'UsersController@recentActivity');
         //  GET /api/v2/users/:user_id/:mode [osu, taiko, fruits, mania]
         Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
+        Route::resource('users', 'UsersController', ['only' => ['index']]);
 
         Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
     });
@@ -455,6 +458,16 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::post('user-recalculate-ranked-scores/{user}', 'LegacyInterOpController@userRecalculateRankedScores');
     Route::get('/news', 'LegacyInterOpController@news');
     Route::apiResource('users', 'InterOp\UsersController', ['only' => ['store']]);
+
+    Route::group(['as' => 'indexing.', 'prefix' => 'indexing'], function () {
+        Route::apiResource('bulk', 'InterOp\Indexing\BulkController', ['only' => ['store']]);
+    });
+
+    Route::group(['as' => 'user-groups.'], function () {
+        Route::post('user-group', 'InterOp\UserGroupsController@store')->name('store');
+        Route::delete('user-group', 'InterOp\UserGroupsController@destroy')->name('destroy');
+        Route::post('user-default-group', 'InterOp\UserGroupsController@setDefault')->name('store-default');
+    });
 });
 
-Route::fallback('FallbackController@index');
+Route::any('{catchall}', 'FallbackController@index')->where('catchall', '.*')->fallback();

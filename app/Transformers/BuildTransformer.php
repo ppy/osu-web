@@ -50,12 +50,12 @@ class BuildTransformer extends TransformerAbstract
             $entries = collect([ChangelogEntry::placeholder()]);
         }
 
-        return $this->collection($entries, new ChangelogEntryTransformer);
+        return $this->collection($entries, new ChangelogEntryTransformer());
     }
 
     public function includeUpdateStream(Build $build)
     {
-        return $this->item($build->updateStream, new UpdateStreamTransformer);
+        return $this->item($build->updateStream, new UpdateStreamTransformer());
     }
 
     public function includeVersions(Build $build)

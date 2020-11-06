@@ -23,18 +23,4 @@ class EventServiceProvider extends ServiceProvider
         Listeners\Fulfillments\PaymentSubscribers::class,
         Listeners\Fulfillments\ValidationSubscribers::class,
     ];
-
-    /**
-     * Register any other events for your application.
-     *
-     * @param \Illuminate\Contracts\Events\Dispatcher $events
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        parent::boot();
-
-        //
-    }
 }

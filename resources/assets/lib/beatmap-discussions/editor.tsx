@@ -31,7 +31,7 @@ import { ReviewEditorConfigContext } from './review-editor-config-context';
 import { SlateContext } from './slate-context';
 
 interface CacheInterface {
-  draftEmbeds?: SlateNode[];
+  draftEmbeds?: SlateElement[];
   sortedBeatmaps?: BeatmapJsonExtended[];
 }
 
@@ -39,9 +39,9 @@ interface Props {
   beatmaps: Record<number, BeatmapJsonExtended>;
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapJsonExtended;
-  currentDiscussions: BeatmapDiscussion[];
-  discussion?: BeatmapDiscussion;
-  discussions: Record<number, BeatmapDiscussion>;
+  currentDiscussions: BeatmapsetDiscussionJson[];
+  discussion?: BeatmapsetDiscussionJson;
+  discussions: Record<number, BeatmapsetDiscussionJson>;
   document?: string;
   editing: boolean;
   editMode?: boolean;
@@ -52,7 +52,7 @@ interface Props {
 interface State {
   blockCount: number;
   posting: boolean;
-  value: SlateNode[];
+  value: SlateElement[];
 }
 
 interface TimestampRange extends Range {
@@ -84,7 +84,7 @@ export default class Editor extends React.Component<Props, State> {
     this.insertMenuRef = React.createRef();
     this.localStorageKey = `newDiscussion-${this.props.beatmapset.id}`;
 
-    let initialValue: SlateNode[] = this.emptyDocTemplate;
+    let initialValue: SlateElement[] = this.emptyDocTemplate;
 
     if (props.editMode) {
       initialValue = this.valueFromProps();
@@ -176,7 +176,7 @@ export default class Editor extends React.Component<Props, State> {
     return ranges;
   }
 
-  onChange = (value: SlateNode[]) => {
+  onChange = (value: SlateElement[]) => {
     if (!this.props.editMode) {
       const content = JSON.stringify(value);
 
@@ -356,8 +356,7 @@ export default class Editor extends React.Component<Props, State> {
     }
 
     if (props.leaf.timestamp) {
-      // TODO: fix this nested stuff
-      return <span className='beatmapset-discussion-message' {...props.attributes}><span className={'beatmapset-discussion-message__timestamp'}>{children}</span></span>;
+      return <span className='beatmap-discussion-timestamp-decoration' {...props.attributes}>{children}</span>;
     }
 
     return (
@@ -442,7 +441,8 @@ export default class Editor extends React.Component<Props, State> {
           }
 
           // clear invalid beatmapId references (for pasted embed content)
-          if (node.beatmapId && (!this.props.beatmaps[node.beatmapId] || this.props.beatmaps[node.beatmapId].deleted_at)) {
+          const beatmapId = node.beatmapId as number | undefined;
+          if (beatmapId && (!this.props.beatmaps[beatmapId] || this.props.beatmaps[beatmapId].deleted_at)) {
             Transforms.setNodes(editor, {beatmapId: null}, {at: path});
           }
         }

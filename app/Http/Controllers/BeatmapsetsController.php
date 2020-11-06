@@ -215,6 +215,22 @@ class BeatmapsetsController extends Controller
         return $beatmapset->defaultDiscussionJson();
     }
 
+    public function removeFromLoved($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        priv_check('BeatmapsetLove')->ensureCan();
+
+        $result = $beatmapset->removeFromLoved(Auth::user(), request('reason'));
+        if (!$result['result']) {
+            return error_popup($result['message']);
+        }
+
+        BeatmapsetWatch::markRead($beatmapset, Auth::user());
+
+        return $beatmapset->defaultDiscussionJson();
+    }
+
     public function update($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
@@ -277,7 +293,7 @@ class BeatmapsetsController extends Controller
         return [
             'beatmapsets' => json_collection(
                 $records,
-                new BeatmapsetTransformer,
+                new BeatmapsetTransformer(),
                 'beatmaps.max_combo'
             ),
             'cursor' => $search->getSortCursor(),

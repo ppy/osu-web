@@ -5,7 +5,11 @@
 
 namespace App\Models;
 
+use App\Libraries\Transactions\AfterCommit;
+
 /**
+ * @property string $colour
+ * @property int $display_order
  * @property string $group_avatar
  * @property int $group_avatar_height
  * @property int $group_avatar_type
@@ -25,12 +29,18 @@ namespace App\Models;
  * @property int $group_receive_pm
  * @property int $group_sig_chars
  * @property int $group_type
+ * @property bool $has_playmodes
+ * @property string $identifier
+ * @property string $short_name
  */
-class Group extends Model
+class Group extends Model implements AfterCommit
 {
     protected $table = 'phpbb_groups';
     protected $primaryKey = 'group_id';
     public $timestamps = false;
+    protected $casts = [
+        'has_playmodes' => 'boolean',
+    ];
 
     public function scopeVisible($query)
     {
@@ -50,11 +60,39 @@ class Group extends Model
         return $value;
     }
 
+    public function isProbationary(): bool
+    {
+        // TODO: move this to a DB field or something if other groups end up needing 'probation'
+        return $this->identifier === 'bng_limited';
+    }
+
+    public function isVisible(): bool
+    {
+        return $this->group_type === 1;
+    }
+
     public function users()
     {
         // 'cuz hasManyThrough is derp
         $userIds = UserGroup::where('group_id', $this->group_id)->pluck('user_id');
 
         return User::whereIn('user_id', $userIds);
+    }
+
+    public function rename(string $name, ?User $actor = null): void
+    {
+        if ($this->group_name === $name) {
+            return;
+        }
+
+        $this->getConnection()->transaction(function () use ($actor, $name) {
+            UserGroupEvent::logGroupRename($actor, $this, $this->group_name, $name);
+            $this->update(['group_name' => $name]);
+        });
+    }
+
+    public function afterCommit()
+    {
+        app('groups')->resetCache();
     }
 }

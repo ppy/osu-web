@@ -13,7 +13,7 @@ class ChangelogEntryTest extends TestCase
 {
     public function testMessageHTMLVisibility()
     {
-        $entry = new ChangelogEntry;
+        $entry = new ChangelogEntry();
 
         $entry->message = 'Hidden';
         $this->assertSame(null, $entry->messageHTML());

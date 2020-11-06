@@ -198,7 +198,7 @@ class Beatmap extends Model
     {
         $mods = BeatmapDifficultyAttrib::NO_MODS;
         $attrib = BeatmapDifficultyAttrib::MAX_COMBO;
-        $attribTable = (new BeatmapDifficultyAttrib)->tableName();
+        $attribTable = (new BeatmapDifficultyAttrib())->tableName();
         $mode = $this->qualifyColumn('playmode');
         $id = $this->qualifyColumn('beatmap_id');
 

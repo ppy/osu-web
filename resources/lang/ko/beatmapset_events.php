@@ -23,11 +23,12 @@ return [
         'kudosu_lost' => '토론 :discussion에서 :user 님이 표를 잃어 획득한 kudosu가 사라졌습니다.',
         'kudosu_recalculate' => '토론 :discussion에서 kudosu 획득량이 재조정되었습니다.',
         'language_edit' => '언어가 :old에서 :new 으(로) 변경되었습니다.',
-        'love' => ':user님에게 Loved 받음',
+        'love' => ':user 님에게 Loved 받음',
         'nominate' => ':user 님이 추천함.',
         'nomination_reset' => '새로운 문제 :discussion (:text)가 추천 상태를 초기화시켰습니다.',
         'qualify' => '이 비트맵은 충분한 추천을 받았고 qualified 상태로 전환되었습니다.',
         'rank' => 'Ranked.',
+        'remove_from_loved' => '',
     ],
 
     'index' => [
@@ -51,7 +52,7 @@ return [
         'discussion_post_delete' => '토론 답글 삭제',
         'discussion_post_restore' => '토론 답글 복원',
         'discussion_restore' => '토론 복원',
-        'disqualify' => '실격',
+        'disqualify' => 'Disqualification',
         'genre_edit' => '장르 수정',
         'issue_reopen' => '토론 재개',
         'issue_resolve' => '토론 해결',
@@ -64,7 +65,8 @@ return [
         'love' => '러브',
         'nominate' => '추천',
         'nomination_reset' => '추천 초기화',
-        'qualify' => '자격',
+        'qualify' => 'Qualification',
         'rank' => '랭킹',
+        'remove_from_loved' => '',
     ],
 ];

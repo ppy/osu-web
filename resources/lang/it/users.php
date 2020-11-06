@@ -84,7 +84,7 @@ return [
         'failed' => 'Login non corretto',
         'forgot' => 'Hai dimenticato la tua password?',
         'info' => 'Accedi per continuare',
-        'invalid_captcha' => '',
+        'invalid_captcha' => 'Troppi tentativi di accesso falliti, completa il captcha e riprova. (Ricarica la pagina se il captcha non è visibile)',
         'locked_ip' => 'il tuo indirizzo IP è bloccato. Aspetta qualche minuto per favore.',
         'password' => 'Password',
         'register' => "Non hai un account di osu!? Fanne uno nuovo",
@@ -133,8 +133,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Il tuo account è stato limitato!',
-        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Solitamente questo è il risultato di un processo automatico e verrà risolto preferibilmente entro 24 ore. Se desideri fare appello alla tua restrizione, <a
-href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
+        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Solitamente questo è il risultato di un processo automatico e verrà risolto preferibilmente entro 24 ore. Se desideri fare appello alla tua restrizione, <a href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
     ],
     'show' => [
         'age' => ':age anni',
@@ -348,7 +347,6 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
         'info' => [
             'discord' => '',
             'interests' => 'Interessi',
-            'lastfm' => 'Last.fm',
             'location' => 'Posizione Attuale',
             'occupation' => 'Occupazione',
             'skype' => '',

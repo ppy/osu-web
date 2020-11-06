@@ -20,9 +20,9 @@ return [
     'username_change' => '<strong>:previousUsername</strong> 將名字改為 <strong><em>:user</strong></em>！',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
+        'approved' => '已批准',
+        'loved' => 'loved',
+        'qualified' => '已核可',
         'ranked' => '',
     ],
 ];

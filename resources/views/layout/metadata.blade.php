@@ -61,18 +61,20 @@
     </style>
 @endif
 
-<link rel="stylesheet" media="all" href="{{ mix("css/app.css") }}" data-turbolinks-track="reload">
+<link rel="stylesheet" media="all" href="{{ unmix('css/app.css') }}" data-turbolinks-track="reload">
 
 <script>
     var currentLocale = {!! json_encode(App::getLocale()) !!};
     var fallbackLocale = {!! json_encode(config('app.fallback_locale')) !!};
 </script>
 
-<script src="{{ mix("js/vendor.js") }}" data-turbolinks-track="reload"></script>
+<script src="{{ unmix('js/runtime.js') }}" data-turbolinks-track="reload"></script>
+<script src="{{ unmix('js/vendor.js') }}" data-turbolinks-track="reload"></script>
+
 @if(config('services.sentry.public_dsn') !== '')
     <script src="https://browser.sentry-cdn.com/5.1.0/bundle.min.js" crossorigin="anonymous"></script>
     <script>
-        Sentry.init({
+        typeof Sentry !== 'undefined' && Sentry.init({
             debug: {!! json_encode(config('app.debug')) !!},
             dsn: {!! json_encode(config('services.sentry.public_dsn')) !!},
             ignoreErrors: [
@@ -93,17 +95,17 @@
         });
     </script>
 @endif
-<script src="{{ mix("js/app-deps.js") }}" data-turbolinks-track="reload"></script>
-<script src="{{ mix('/js/locales/'.app()->getLocale().'.js') }}" data-turbolinks-track="reload"></script>
+
+<script src="{{ unmix('js/locales/'.app()->getLocale().'.js') }}" data-turbolinks-track="reload"></script>
 @if (config('app.fallback_locale') !== app()->getLocale())
-    <script src="{{ mix('/js/locales/'.config('app.fallback_locale').'.js') }}" data-turbolinks-track="reload"></script>
+    <script src="{{ unmix('js/locales/'.config('app.fallback_locale').'.js') }}" data-turbolinks-track="reload"></script>
 @endif
 
-<script src="{{ mix("js/commons.js") }}" data-turbolinks-track="reload"></script>
-<script src="{{ mix("js/app.js") }}" data-turbolinks-track="reload"></script>
+<script src="{{ unmix('js/commons.js') }}" data-turbolinks-track="reload"></script>
+<script src="{{ unmix('js/app.js') }}" data-turbolinks-track="reload"></script>
 
 @if (($momentLocale = locale_for_moment(Lang::getLocale())) !== null)
-    <script src="/vendor/js/moment-locales/{{ $momentLocale }}.js" data-turbolinks-track="reload"></script>
+    <script src="{{ unmix("js/moment-locales/{$momentLocale}.js") }}" data-turbolinks-track="reload"></script>
 @endif
 
 @if (isset($atom))

@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Members by game mode',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Your account hasn't been used in a long time.",
@@ -347,7 +351,6 @@ return [
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Interests',
-            'lastfm' => 'Last.fm',
             'location' => 'Current Location',
             'occupation' => 'Occupation',
             'skype' => 'Skype',

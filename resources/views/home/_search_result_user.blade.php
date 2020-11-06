@@ -4,5 +4,5 @@
 --}}
 <div class="js-react--user-cards"
      data-modifiers="{{ json_encode(['search']) }}"
-     data-users="{{ json_encode(json_collection($search->data(), 'UserCompact', ['cover', 'country'])) }}">
+     data-users="{{ json_encode(json_collection($search->data(), 'UserCompact', ['cover', 'country', 'groups'])) }}">
 </div>

@@ -84,8 +84,8 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
-        'settings' => '',
+        'new' => 'Vogliamo solo farti sapere che ci sono nuovi aggiornamenti agli elementi che hai scelto di guardare.',
+        'settings' => 'Per cambiare le preferenze di notifiche sull\'email:',
         'subject' => 'Nuove notifiche di osu!',
     ],
 

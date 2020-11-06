@@ -199,7 +199,7 @@ return [
                     'title' => 'Loved 비트맵',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked / Approved 된 비트맵',
+                    'title' => 'Ranked 및 Approved 상태의 비트맵',
                 ],
                 'unranked' => [
                     'title' => 'Pending 비트맵',
@@ -347,7 +347,6 @@ return [
         'info' => [
             'discord' => '디스코드',
             'interests' => '관심 분야',
-            'lastfm' => 'Last.fm',
             'location' => '거주지',
             'occupation' => '직업',
             'skype' => '스카이프',

@@ -15,9 +15,11 @@ use App\Jobs\Notifications\BeatmapsetLove;
 use App\Jobs\Notifications\BeatmapsetNominate;
 use App\Jobs\Notifications\BeatmapsetQualify;
 use App\Jobs\Notifications\BeatmapsetRank;
+use App\Jobs\Notifications\BeatmapsetRemoveFromLoved;
 use App\Jobs\RemoveBeatmapsetBestScores;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\Commentable;
+use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
@@ -91,7 +93,7 @@ use Illuminate\Database\QueryException;
  * @property bool $video
  * @property \Illuminate\Database\Eloquent\Collection $watches BeatmapsetWatch
  */
-class Beatmapset extends Model implements AfterCommit, Commentable
+class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 {
     use CommentableDefaults, Elasticsearch\BeatmapsetTrait, SoftDeletes, Validatable;
 
@@ -142,9 +144,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         'loved' => 4,
     ];
     const HYPEABLE_STATES = [-1, 0, 3];
-
-    const RANKED_PER_DAY = 8;
-    const MINIMUM_DAYS_FOR_RANKING = 7;
 
     public static function coverSizes()
     {
@@ -529,7 +528,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             $this->previous_queue_duration = ($this->queued_at ?? $this->approved_date)->diffinSeconds();
             $this->queued_at = null;
         } elseif ($this->isPending() && $state === 'qualified') {
-            $maxAdjustment = (static::MINIMUM_DAYS_FOR_RANKING - 1) * 24 * 3600;
+            $maxAdjustment = (config('osu.beatmapset.minimum_days_for_rank') - 1) * 24 * 3600;
             $adjustment = min($this->previous_queue_duration, $maxAdjustment);
             $this->queued_at = $currentTime->copy()->subSeconds($adjustment);
         }
@@ -695,6 +694,28 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         ];
     }
 
+    public function removeFromLoved(User $user, string $reason)
+    {
+        if (!$this->isLoved()) {
+            return [
+                'result' => false,
+                'message' => trans('beatmaps.nominations.incorrect_state'),
+            ];
+        }
+
+        $this->getConnection()->transaction(function () use ($user, $reason) {
+            BeatmapsetEvent::log(BeatmapsetEvent::REMOVE_FROM_LOVED, $user, $this, compact('reason'))->saveOrExplode();
+
+            $this->setApproved('pending', $user);
+
+            (new BeatmapsetRemoveFromLoved($this, $user))->dispatch();
+        });
+
+        return [
+            'result' => true,
+        ];
+    }
+
     public function rank()
     {
         if (!$this->isQualified()) {
@@ -846,7 +867,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     public function requiredNominationCount()
     {
-        return 2;
+        return $this->isHybridSet()
+            ? $this->playmodes()->count() * config('osu.beatmapset.required_nominations_hybrid')
+            : config('osu.beatmapset.required_nominations');
     }
 
     public function currentNominationCount()
@@ -869,7 +892,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         return $this->playmodes()->count();
     }
 
-    public function rankingETA()
+    public function rankingQueueStatus()
     {
         if (!$this->isQualified()) {
             return;
@@ -881,12 +904,15 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             ->withModesForRanking($modes)
             ->where('queued_at', '<', $this->queued_at)
             ->count();
-        $days = ceil($queueSize / static::RANKED_PER_DAY);
+        $days = ceil($queueSize / config('osu.beatmapset.rank_per_day'));
 
-        $minDays = static::MINIMUM_DAYS_FOR_RANKING - $this->queued_at->diffInDays();
+        $minDays = config('osu.beatmapset.minimum_days_for_rank') - $this->queued_at->diffInDays();
         $days = max($minDays, $days);
 
-        return $days > 0 ? Carbon::now()->addDays($days) : null;
+        return [
+            'eta' => $days > 0 ? Carbon::now()->addDays($days) : null,
+            'position' => $queueSize + 1,
+        ];
     }
 
     public function disqualificationEvent()
@@ -1097,7 +1123,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     public function getDisplayArtist(?User $user)
     {
-        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization;
+        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
         if ($profileCustomization->beatmapset_title_show_original) {
             return presence($this->artist_unicode) ?? $this->artist;
         }
@@ -1107,7 +1133,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     public function getDisplayTitle(?User $user)
     {
-        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization;
+        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
         if ($profileCustomization->beatmapset_title_show_original) {
             return presence($this->title_unicode) ?? $this->title;
         }
@@ -1156,6 +1182,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable
     public function validationErrorsTranslationPrefix()
     {
         return 'beatmapset';
+    }
+
+    public function isHybridSet(): bool
+    {
+        return $this->playmodes()->count() > 1;
     }
 
     public function isValid()

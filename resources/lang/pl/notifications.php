@@ -57,6 +57,8 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmapa została zakwalifikowana',
                 'beatmapset_rank' => 'Beatmapa „:title” uzyskała status rankingowy',
                 'beatmapset_rank_compact' => 'Beatmapa uzyskała status rankingowy',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'Nominacja beatmapy „:title” została zresetowana',
                 'beatmapset_reset_nominations_compact' => 'Nominacja została zresetowana',
             ],
@@ -66,8 +68,8 @@ return [
 
                 'comment_new' => 'Użytkownik :username napisał komentarz pod „:title”: „:content”',
                 'comment_new_compact' => 'Użytkownik :username napisał komentarz: „:content”',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username odpowiedział: ":content" na ":title"',
+                'comment_reply_compact' => 'Użytkownik :username odpowiedział: „:content”',
             ],
         ],
 
@@ -92,7 +94,7 @@ return [
 
                 'comment_new' => 'Użytkownik :username napisał komentarz pod „:title”: „:content”',
                 'comment_new_compact' => 'Użytkownik :username napisał komentarz: „:content”',
-                'comment_reply' => '',
+                'comment_reply' => ':username odpowiedział: ":content" na ":title"',
                 'comment_reply_compact' => '',
             ],
         ],
@@ -106,7 +108,7 @@ return [
                 'comment_new' => 'Użytkownik :username napisał komentarz pod „:title”: „:content”',
                 'comment_new_compact' => 'Użytkownik :username napisał komentarz: „:content”',
                 'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply_compact' => 'Użytkownik :username odpowiedział: „:content”',
             ],
         ],
 
@@ -136,6 +138,7 @@ return [
                 '_' => 'Nowy medal',
                 'user_achievement_unlock' => 'Odblokowano medal „:title”!',
                 'user_achievement_unlock_compact' => 'Odblokowano medal „:title”!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],
@@ -149,20 +152,21 @@ return [
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => 'Zgłoszono nowy problem z beatmapą „:title”',
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
+                'beatmapset_disqualify' => 'Beatmapa „:title” została zdyskwalifikowana',
+                'beatmapset_love' => 'Beatmapa „:title” uzyskała status ulubionej społeczności',
+                'beatmapset_nominate' => 'Beatmapa „:title” została nominowana',
+                'beatmapset_qualify' => 'Beatmapa „:title” uzyskała wystarczającą liczbę nominacji i została zakwalifikowana',
+                'beatmapset_rank' => 'Beatmapa „:title” uzyskała status rankingowy',
+                'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => '',
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'W beatmapie „:title” pojawiły się nowe komentarze',
             ],
         ],
 

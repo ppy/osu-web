@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model as BaseModel;
 abstract class Model extends BaseModel
 {
     use MacroableModel;
+
     protected $connection = 'mysql';
     protected $guarded = [];
 
@@ -70,8 +71,8 @@ abstract class Model extends BaseModel
 
     public function refresh()
     {
-        if (isset($this->memoized)) {
-            $this->memoized = [];
+        if (method_exists($this, 'resetMemoized')) {
+            $this->resetMemoized();
         }
 
         return parent::refresh();

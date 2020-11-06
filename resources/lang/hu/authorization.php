@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Kérlek jelentkezz be a folytatáshoz.',
     'require_verification' => 'Kérlek, hagyd jóvá a folytatáshoz.',
     'restricted' => "Felfüggesztett állapotban erre nem vagy képes.",
@@ -32,7 +33,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "",
+            'bot' => "A bot által létrehozott megbszélésre nem szavazhatsz",
             'limit_exceeded' => 'Kérlek várj egy keveset újabb szavazat leadása előtt',
             'owner' => "Nem szavazhatsz a saját posztodra.",
             'wrong_beatmapset_state' => 'Csak függő beatmap beszélgetéseken lehet szavazni.',

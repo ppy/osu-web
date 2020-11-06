@@ -11,7 +11,6 @@
   @background-overlay-fade--offline: osu-hsla(@osu-colour-b5, 0.7);
   @card-border-radius: 10px;
   @card-item-spacing: 10px;
-  @flag-width: @user-card-icon-size * 1.5;
   @flag-gutter: 6px;
   @fade-duration: 220ms;
 
@@ -212,6 +211,16 @@
     }
   }
 
+  &__group-badge {
+    margin-left: 2px;
+  }
+
+  &__group-badges {
+    display: flex;
+    margin-left: 3px;
+    pointer-events: auto;
+  }
+
   &__icon {
     display: flex;
     pointer-events: auto;
@@ -233,8 +242,7 @@
     }
 
     &--flag {
-      height: @user-card-icon-size;
-      width: @flag-width;
+      font-size: @user-card-icon-size; // icon size
     }
 
     &--menu {
@@ -350,6 +358,10 @@
   }
 
   &__username {
+    pointer-events: auto;
+  }
+
+  &__username-row {
     display: flex;
     align-items: center;
     min-width: 0;

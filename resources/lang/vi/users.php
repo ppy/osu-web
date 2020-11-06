@@ -347,7 +347,6 @@ return [
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Sở Thích',
-            'lastfm' => 'Last.fm',
             'location' => 'Vị Trí Hiện Tại',
             'occupation' => 'Nghề Nghiệp',
             'skype' => 'Skype',

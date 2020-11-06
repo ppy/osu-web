@@ -120,13 +120,14 @@ return [
 
     'user' => [
         'contains_username' => 'Nama pengguna tidak diperbolehkan untuk berada di dalam kata sandi.',
-        'email_already_used' => 'Alamat email sudah digunakan.',
+        'email_already_used' => 'Alamat email ini sudah digunakan sebelumnya.',
+        'email_not_allowed' => 'Alamat email ini tidak diperbolehkan.',
         'invalid_country' => 'Negara tidak ada dalam basis data.',
         'invalid_discord' => 'Nama pengguna Discord tidak valid.',
         'invalid_email' => "Tampaknya bukan alamat email yang valid.",
         'invalid_twitter' => 'Nama pengguna Twitter tidak valid.',
         'too_short' => 'Kata sandi baru terlalu pendek.',
-        'unknown_duplicate' => 'Nama pengguna atau alamat email sudah digunakan.',
+        'unknown_duplicate' => 'Nama pengguna atau alamat email ini sudah digunakan sebelumnya.',
         'username_available_in' => 'Nama pengguna ini akan tersedia untuk digunakan dalam :duration.',
         'username_available_soon' => 'Nama pengguna ini dapat digunakan sekarang!',
         'username_invalid_characters' => 'Nama pengguna yang diminta mengandung karakter yang tidak valid.',

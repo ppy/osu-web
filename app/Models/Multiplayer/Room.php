@@ -321,7 +321,8 @@ class Room extends Model
             throw new InvariantException('Room has already ended.');
         }
 
-        if ($this->max_attempts !== null
+        if (
+            $this->max_attempts !== null
             && $playlistItem->scores()->where('user_id', $user->getKey())->count() >= $this->max_attempts
         ) {
             throw new InvariantException('You have reached the maximum number of tries allowed.');

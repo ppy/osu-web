@@ -32,7 +32,7 @@ class UserAccountHistoryTransformer extends TransformerAbstract
     public function includeActor(UserAccountHistory $h)
     {
         if ($h->actor !== null) {
-            return $this->item($h->actor, new UserCompactTransformer);
+            return $this->item($h->actor, new UserCompactTransformer());
         }
     }
 

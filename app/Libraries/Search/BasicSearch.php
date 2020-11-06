@@ -15,7 +15,7 @@ class BasicSearch extends Search
      */
     public function __construct(string $index, string $loggingTag = null)
     {
-        parent::__construct($index, new EmptySearchParams);
+        parent::__construct($index, new EmptySearchParams());
 
         $this->loggingTag = $loggingTag;
     }

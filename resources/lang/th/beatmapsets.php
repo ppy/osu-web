@@ -50,7 +50,7 @@ return [
         'details_date' => [
             'approved' => 'อนุมัติ :timeago',
             'loved' => 'loved เมื่อ :timeago',
-            'qualified' => 'ผ่านเกณฑ์ :timeago',
+            'qualified' => 'qualified :timeago',
             'ranked' => 'จัดอันดับแล้วเมื่อ :timeago',
             'submitted' => 'ส่งเมื่อ :timeago',
             'updated' => 'อัพเดทครั้งล่าสุดเมื่อ :timeago',
@@ -68,13 +68,13 @@ return [
 
                 'status' => [
                     'pending' => 'อยู่ระหว่างดำเนินการ',
-                    'qualified' => 'ผ่านเกณฑ์',
+                    'qualified' => 'qualified',
                     'wip' => 'อยู่ระหว่างดำเนินการ',
                 ],
             ],
 
             'disqualify' => [
-                '_' => 'ถ้าคุณพบปัญหากับบีทแมพนี้ ให้คุณปัดตกวาระการผ่านเกณฑ์ของบีทแมพนี้ไป :link',
+                '_' => 'ถ้าคุณพบปัญหากับบีทแมพนี้ ให้คุณยกเลิกสถานะ Qualified ของบีทแมพนี้ไป :link',
             ],
 
             'report' => [
@@ -151,7 +151,7 @@ return [
             'ranked' => 'จัดอันดับแล้ว',
             'approved' => 'อนุมัติ',
             'loved' => 'Loved',
-            'qualified' => 'ผ่านเกณฑ์',
+            'qualified' => 'Qualified',
             'wip' => 'WIP',
             'pending' => 'อยู่ระหว่างดำเนินการ',
             'graveyard' => 'สุสาน',
