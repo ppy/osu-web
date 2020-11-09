@@ -70,6 +70,7 @@ class UserNotification extends Model
             $tableName = $instance->getTable();
             // force mysql optimizer to optimize properly with a fake multi-table update
             // https://dev.mysql.com/doc/refman/8.0/en/subquery-optimization.html
+            // FIXME: this is supposedly fixed by mysql 8.0.22
             $itemsQuery = $instance->getConnection()
                 ->table(DB::raw("{$tableName}, (SELECT 1) dummy"))
                 ->where('user_id', $user->getKey())
