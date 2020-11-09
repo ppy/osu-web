@@ -115,6 +115,10 @@ class CommentBundle
             'cursor' => $this->params->cursorHelper->next($comments),
         ];
 
+        if ($this->params->userId !== null) {
+            $result['user'] = json_item(User::find($this->params->userId), 'UserCompact');
+        }
+
         if ($this->params->parentId === 0 || $this->params->parentId === null) {
             $result['top_level_count'] = $this->commentsQuery()->whereNull('parent_id')->count();
             $result['total'] = $this->commentsQuery()->count();

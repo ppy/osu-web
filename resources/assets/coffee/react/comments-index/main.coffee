@@ -6,7 +6,7 @@ import HeaderV4 from 'header-v4'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
-import { button, div, h1, p, span } from 'react-dom-factories'
+import { a, button, div, h1, p, span } from 'react-dom-factories'
 
 el = React.createElement
 
@@ -36,6 +36,13 @@ export class Main extends React.Component
       el Observer, null, () =>
         comments = uiState.comments.topLevelCommentIds.map (id) -> store.comments.get(id)
         div className: 'osu-page osu-page--comments',
+          if @props.user?
+            a
+              className: 'comments__title-user-listing'
+              href: laroute.route('users.show', user: @props.user.id),
+                osu.trans 'comments.title_user_listing',
+                  user: @props.user.username
+
           if comments.length < 1
             div className: 'comments__text',
               osu.trans 'comments.index.no_comments'
@@ -53,10 +60,20 @@ export class Main extends React.Component
           div ref: @pagination
 
 
-  headerLinks: ->
-    [
+  headerLinks: =>
+    links = [
       {
         title: osu.trans 'comments.index.nav_title'
         url: laroute.route('comments.index')
       }
     ]
+
+    if @props.user?
+      links.push(
+        {
+          title: @props.user.username
+          url: laroute.route('comments.index', user_id: @props.user.id)
+        }
+      )
+
+    return links
