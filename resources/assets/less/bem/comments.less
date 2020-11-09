@@ -60,7 +60,7 @@
   }
 
   &__text {
-    .default-gutter-v2();
+    .default-gutter();
   }
 
   &__title {
@@ -76,7 +76,8 @@
   &__title-user-listing {
     .default-gutter();
     display: flex;
-    padding: @_header-spacing 0;
+    padding-top: @_header-spacing;
+    padding-bottom: @_header-spacing;
     font-size: @font-size--title;
   }
 }
