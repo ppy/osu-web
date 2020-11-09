@@ -21,12 +21,12 @@
     "egulias/email-validator": "*",
     "elasticsearch/elasticsearch": "^6.7.0",
     "ezyang/htmlpurifier": "*",
-    "firebase/php-jwt": "^5.2",
+    "firebase/php-jwt": "5.0.0",
     "graham-campbell/github": "*",
     "guzzlehttp/guzzle": "*",
     "itsgoingd/clockwork": ">=3.0",
     "jenssegers/agent": "*",
-    "laravel/framework": "6.18.26",
+    "laravel/framework": "6.8.0",
     "laravel/helpers": "^1.1",
     "laravel/passport": "*",
     "laravel/slack-notification-channel": "^2.0",
@@ -88,10 +88,7 @@
   "config": {
     "preferred-install": "dist",
     "sort-packages": true,
-    "optimize-autoloader": true,
-    "platform": {
-      "php": "7.3.0"
-    }
+    "optimize-autoloader": true
   },
   "extra": {
     "laravel": {
