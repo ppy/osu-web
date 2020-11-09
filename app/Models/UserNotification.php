@@ -8,6 +8,8 @@ namespace App\Models;
 use App\Events\NotificationDeleteEvent;
 use App\Events\NotificationReadEvent;
 use App\Libraries\Notification\BatchIdentities;
+use DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class UserNotification extends Model
 {
@@ -63,12 +65,29 @@ class UserNotification extends Model
         $identities = $batchIdentities->getIdentities();
 
         $now = now();
-        $count = $user
-            ->userNotifications()
-            ->hasPushDelivery()
-            ->where('is_read', false)
-            ->whereIn('notification_id', $ids)
-            ->update(['is_read' => true, 'updated_at' => $now]);
+        if ($ids instanceof Builder) {
+            $instance = new static();
+            $tableName = $instance->getTable();
+            // force mysql optimizer to optimize properly with a fake multi-table update
+            // https://dev.mysql.com/doc/refman/8.0/en/subquery-optimization.html
+            // FIXME: this is supposedly fixed by mysql 8.0.22
+            $itemsQuery = $instance->getConnection()
+                ->table(DB::raw("{$tableName}, (SELECT 1) dummy"))
+                ->where('user_id', $user->getKey())
+                ->where('is_read', false)
+                ->whereIn('notification_id', $ids);
+            // raw builder doesn't have model scope magic.
+            $instance->scopeHasPushDelivery($itemsQuery);
+
+            $count = $itemsQuery->update(['is_read' => true, 'updated_at' => $now]);
+        } else {
+            $count = $user
+                ->userNotifications()
+                ->hasPushDelivery()
+                ->where('is_read', false)
+                ->whereIn('notification_id', $ids)
+                ->update(['is_read' => true, 'updated_at' => $now]);
+        }
 
         if ($count > 0) {
             event(new NotificationReadEvent($user->getKey(), ['notifications' => $identities, 'read_count' => $count, 'timestamp' => $now]));
