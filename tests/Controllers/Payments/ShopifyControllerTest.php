@@ -135,7 +135,8 @@ class ShopifyControllerTest extends TestCase
         return $this->json('POST', $this->url, $this->payload, $headers);
     }
 
-    private function setShopifyPayload(array $params) {
+    private function setShopifyPayload(array $params)
+    {
         $this->payload = array_merge([
             'id' => 1,
             'order_number' => 1,
