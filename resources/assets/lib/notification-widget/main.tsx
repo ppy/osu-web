@@ -49,9 +49,11 @@ export default class Main extends React.Component<Props, State> {
         <div className={blockClass}>
           <div className='notification-popup__scroll-container'>
             {this.renderFilters()}
-            <div className='notification-popup__filters'>
+            <div className='notification-popup__buttons'>
               {this.renderHistoryLink()}
-              {this.renderMarkAsReadButton()}
+              <div className='notification-popup__clear-button'>
+                {this.renderMarkAsReadButton()}
+              </div>
             </div>
             {this.renderLegacyPm()}
             <div className='notification-stacks'>
@@ -109,7 +111,7 @@ export default class Main extends React.Component<Props, State> {
 
   private renderHistoryLink() {
     return (
-      <a className='notification-popup__filter' href={route('notifications.index')}>
+      <a href={route('notifications.index')}>
         {osu.trans('notifications.see_all')}
       </a>
     );

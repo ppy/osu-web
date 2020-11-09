@@ -187,15 +187,17 @@ return [
         'nominate_confirm' => '¿Nominar este mapa?',
         'nominated_by' => 'nominado por :users',
         'not_enough_hype' => "No hay suficiente hype.",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Nominaciones: :current/:required',
         'reset_message_deleted' => 'eliminado',
         'title' => 'Estado de nominación',
         'unresolved_issues' => 'Todavía hay problemas sin resolver que deben abordarse primero.',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
-            'soon' => '',
+            '_' => 'Se estima que este mapa se clasificará :date si no se encuentran problemas. Es el número :position en la :queue.',
+            'queue' => 'cola de clasificación',
+            'soon' => 'pronto',
         ],
 
         'reset_at' => [

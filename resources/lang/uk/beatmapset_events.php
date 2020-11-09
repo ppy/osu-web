@@ -28,6 +28,7 @@ return [
         'nomination_reset' => 'Через нову проблему в :discussion (:text) статус номінації був скинутий.',
         'qualify' => 'Ця карта була номінована достатню кількість разів для кваліфікації.',
         'rank' => 'Рейтинговий.',
+        'remove_from_loved' => '',
     ],
 
     'index' => [
@@ -66,5 +67,6 @@ return [
         'nomination_reset' => 'Скинути номінацію',
         'qualify' => 'Кваліфікація',
         'rank' => 'Рейтинг',
+        'remove_from_loved' => '',
     ],
 ];

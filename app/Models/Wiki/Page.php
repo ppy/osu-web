@@ -8,6 +8,8 @@ namespace App\Models\Wiki;
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Es;
+use App\Libraries\Elasticsearch\Sort;
+use App\Libraries\LocaleMeta;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
@@ -157,6 +159,32 @@ class Page implements WikiObject
         $defaultTitles = explode('/', str_replace('_', ' ', $this->path));
         $this->defaultTitle = array_pop($defaultTitles);
         $this->defaultSubtitle = array_pop($defaultTitles);
+    }
+
+    public function otherLocales()
+    {
+        if (!$this->isVisible()) {
+            return [];
+        }
+
+        $query = (new BoolQuery())
+            ->must(['term' => ['path.keyword' => $this->path]])
+            ->must(['exists' => ['field' => 'page']]);
+        $search = (new BasicSearch(static::esIndexName(), 'wiki_searchlocales'))
+            ->source('locale')
+            ->sort(new Sort('locale.keyword', 'asc'))
+            ->query($query);
+        $response = $search->response();
+
+        $locales = [];
+        foreach ($response->hits() as $hit) {
+            $locale = $hit['_source']['locale'] ?? null;
+            if ($locale !== null && $locale !== $this->locale && LocaleMeta::sanitizeCode($locale) !== null) {
+                $locales[] = $locale;
+            }
+        }
+
+        return $locales;
     }
 
     public function editUrl()

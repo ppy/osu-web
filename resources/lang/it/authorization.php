@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Che ne dici invece, di giocare un pò di più a osu!?',
     'require_login' => 'Per favore effettua il login per poter procedere.',
     'require_verification' => 'Per favore, esegui la verifica prima di procedere.',
     'restricted' => "Non puoi farlo mentre sei limitato.",
@@ -13,7 +13,7 @@ return [
 
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Non è possibile rimuovere l\'Hype.',
+            'is_hype' => 'Non è possibile annullare l\'hyping.',
             'has_reply' => 'Impossibile eliminare una discussione con risposte',
         ],
         'nominate' => [

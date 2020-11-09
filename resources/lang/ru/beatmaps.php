@@ -187,15 +187,17 @@ return [
         'nominate_confirm' => 'Номинировать эту карту?',
         'nominated_by' => 'номинирована :users',
         'not_enough_hype' => "Недостаточно хайпа.",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Номинаций: :current/:required',
         'reset_message_deleted' => 'удалено',
         'title' => 'Статус номинации',
         'unresolved_issues' => 'Ещё остались нерешенные проблемы, которые необходимо решить в первую очередь.',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
-            'soon' => '',
+            '_' => 'Эта карта будет ранкнута :date, если не будет найдено проблем. Она #:position в :queue.',
+            'queue' => 'очереди ранка',
+            'soon' => 'скоро',
         ],
 
         'reset_at' => [

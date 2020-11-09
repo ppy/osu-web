@@ -60,7 +60,7 @@ class RequireScopes
             }
         } else {
             foreach ($scopes as $scope) {
-                if (!$token->can($scope)) {
+                if ($scope !== 'any' && !$token->can($scope)) {
                     throw new MissingScopeException([$scope], 'A required scope is missing.');
                 }
             }

@@ -7,7 +7,7 @@ namespace App\Transformers;
 
 use App\Models\Group;
 
-class GroupTransformer extends TransformerAbstract
+class UserGroupTransformer extends TransformerAbstract
 {
     public function transform(Group $group)
     {
@@ -18,6 +18,8 @@ class GroupTransformer extends TransformerAbstract
             'short_name' => $group->short_name,
             'description' => $group->group_desc,
             'colour' => $group->colour,
+            'playmodes' => $group->playmodes,
+            'is_probationary' => $group->isProbationary(),
         ];
     }
 }

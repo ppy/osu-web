@@ -199,6 +199,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
         Route::get('notifications/endpoint', 'NotificationsController@endpoint')->name('notifications.endpoint');
         Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
+        Route::delete('notifications', 'NotificationsController@batchDestroy');
 
         Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');
 
@@ -414,6 +415,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'requir
         //  GET /api/v2/me/download-quota-check
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck');
 
+        Route::delete('oauth/tokens/current', 'OAuth\TokensController@destroyCurrent')->name('oauth.tokens.current');
+
         Route::apiResource('news', 'NewsController', ['only' => ['index', 'show']]);
 
         // Notifications
@@ -436,6 +439,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'requir
         Route::get('users/{user}/recent_activity', 'UsersController@recentActivity');
         //  GET /api/v2/users/:user_id/:mode [osu, taiko, fruits, mania]
         Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
+        Route::resource('users', 'UsersController', ['only' => ['index']]);
 
         Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
     });
@@ -468,4 +472,4 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     });
 });
 
-Route::fallback('FallbackController@index');
+Route::any('{catchall}', 'FallbackController@index')->where('catchall', '.*')->fallback();

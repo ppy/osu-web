@@ -8,6 +8,10 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
+        - name: Use Composer v1
+          uses: shivammathur/setup-php@v2
+          with:
+            tools: composer:v1
         - name: Get composer cache directory
           id: composercache
           run: echo "::set-output name=dir::$(composer config cache-files-dir)"
