@@ -512,7 +512,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     public function removeFromGroup(Group $group, ?self $actor = null): void
     {
         $isGroup = $this->isGroup($group, false);
-        $isGroupPending = !$isGroup && $this->isGroupPending($group, false);
+        $isGroupPending = !$isGroup && $this->isGroupPending($group);
 
         if (!$isGroup && !$isGroupPending) {
             return;
@@ -944,9 +944,9 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return in_array($group->getKey(), $this->groupIds()['active'], true) && (!$checkToken || $this->token() === null);
     }
 
-    public function isGroupPending($group, $checkToken = true)
+    public function isGroupPending($group)
     {
-        return in_array($group->getKey(), $this->groupIds()['pending'], true) && (!$checkToken || $this->token() === null);
+        return in_array($group->getKey(), $this->groupIds()['pending'], true);
     }
 
     public function badges()
