@@ -511,7 +511,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function removeFromGroup(Group $group, ?self $actor = null): void
     {
-        $userGroup = $this->findUserGroup($group);
+        $userGroup = $this->findUserGroup($group, false);
 
         if ($userGroup === null) {
             return;
