@@ -938,7 +938,17 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         });
     }
 
-    // check if a user is in a specific group, by ID
+
+    /**
+     * Check if a user is in a specific group.
+     *
+     * This will always return false when used for authorization check of user authenticated using OAuth.
+     *
+     * @param Group $group
+     * @param bool $forAuthCheck Whether or not the function is called for authorization check. Default true.
+     *
+     * @return bool
+     */
     public function isGroup($group, $forAuthCheck = true)
     {
         return in_array($group->getKey(), $this->groupIds()['active'], true) && (!$forAuthCheck || $this->token() === null);
