@@ -493,7 +493,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function addToGroup(Group $group, ?self $actor = null): void
     {
-        if ($this->isGroup($group, false)) {
+        if ($this->findUserGroup($group, true) !== null) {
             return;
         }
 
@@ -511,15 +511,14 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function removeFromGroup(Group $group, ?self $actor = null): void
     {
-        $isGroup = $this->isGroup($group, false);
-        $isGroupPending = !$isGroup && $this->isGroupPending($group);
+        $userGroup = $this->findUserGroup($group);
 
-        if (!$isGroup && !$isGroupPending) {
+        if ($userGroup === null) {
             return;
         }
 
-        $this->getConnection()->transaction(function () use ($actor, $group, $isGroupPending) {
-            $this->userGroups()->where(['group_id' => $group->getKey()])->delete();
+        $this->getConnection()->transaction(function () use ($actor, $group, $userGroup) {
+            $userGroup->delete();
 
             if ($this->group_id === $group->getKey()) {
                 $this->setDefaultGroup(app('groups')->byIdentifier('default'));
@@ -528,7 +527,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             $this->unsetRelation('userGroups');
             $this->resetMemoized();
 
-            if (!$isGroupPending) {
+            if (!$userGroup->user_pending) {
                 UserGroupEvent::logUserRemove($actor, $this, $group);
             }
         });
@@ -536,9 +535,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function setDefaultGroup(Group $group, ?self $actor = null): void
     {
-        if (!$this->isGroup($group, false)) {
-            $this->addToGroup($group, $actor);
-        }
+        $this->addToGroup($group, $actor);
 
         $this->getConnection()->transaction(function () use ($actor, $group) {
             $this->update([
@@ -939,24 +936,29 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     }
 
 
+    public function findUserGroup($group, $activeOnly)
+    {
+        $groupId = $group->getKey();
+
+        foreach ($this->userGroups as $userGroup) {
+            if ($userGroup->group_id === $groupId && (!$activeOnly || $userGroup->user_pending)) {
+                return $userGroup;
+            }
+        }
+    }
+
     /**
      * Check if a user is in a specific group.
      *
-     * This will always return false when used for authorization check of user authenticated using OAuth.
+     * This will always return false when called on user authenticated using OAuth.
      *
      * @param Group $group
-     * @param bool $forAuthCheck Whether or not the function is called for authorization check. Default true.
      *
      * @return bool
      */
-    public function isGroup($group, $forAuthCheck = true)
+    public function isGroup($group)
     {
-        return in_array($group->getKey(), $this->groupIds()['active'], true) && (!$forAuthCheck || $this->token() === null);
-    }
-
-    public function isGroupPending($group)
-    {
-        return in_array($group->getKey(), $this->groupIds()['pending'], true);
+        return $this->findUserGroup($group, true) !== null && $this->token() === null;
     }
 
     public function badges()
