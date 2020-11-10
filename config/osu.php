@@ -122,6 +122,11 @@ return [
     'notification' => [
         'endpoint' => presence(env('NOTIFICATION_ENDPOINT'), '/home/notifications/feed'),
         'queue_name' => presence(env('NOTIFICATION_QUEUE'), 'notification'),
+
+        'cleanup' => [
+            'keep_days' => get_int(env('NOTIFICATION_CLEANUP_KEEP_DAYS')) ?? 180,
+            'max_delete_per_run' => get_int(env('NOTIFICATION_CLEANUP_MAX_DELETE')) ?? 50000,
+        ],
     ],
     'oauth' => [
         'retain_expired_tokens_days' => abs(get_int(env('OAUTH_RETAIN_EXPIRED_TOKENS_DAYS'))) ?? 30,
