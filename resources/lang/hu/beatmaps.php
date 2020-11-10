@@ -187,6 +187,8 @@ return [
         'nominate_confirm' => 'Nominálod ezt a beatmapot?',
         'nominated_by' => 'nominálva :users által',
         'not_enough_hype' => "Nincs elég hype.",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Nominálások: :current/:required',
         'reset_message_deleted' => 'törölve',
         'title' => 'Nominálási Állapot',

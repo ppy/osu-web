@@ -7,6 +7,7 @@ const mapperGroup: Readonly<GroupJson> = Object.freeze({
   colour: 'hsl(200, 60%, 50%)',
   id: -1,
   identifier: 'mapper',
+  is_probationary: false,
   name: 'Beatmap Mapper',
   short_name: 'MAP',
 });

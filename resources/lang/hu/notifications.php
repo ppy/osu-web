@@ -58,6 +58,8 @@ return [
                 'beatmapset_qualify_compact' => 'A beatmap rankolási sorba lépett',
                 'beatmapset_rank' => ':title rankedelt lett',
                 'beatmapset_rank_compact' => 'A beatmap rankedelt lett',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'Rankolás elutasítva ezen: ":title"',
                 'beatmapset_reset_nominations_compact' => 'Rankolás elutasítva',
             ],
@@ -160,6 +162,7 @@ return [
                 'beatmapset_nominate' => '',
                 'beatmapset_qualify' => '',
                 'beatmapset_rank' => '',
+                'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => '',
             ],
 

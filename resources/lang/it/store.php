@@ -106,8 +106,8 @@ return [
         'name' => 'Nome',
 
         'stock' => [
-            'out' => 'Attualmente non disponibile :(. Controlla più tardi.',
-            'out_with_alternative' => 'Questo tipo non è attualmente disponibile :(. Prova con un altro tipo o controlla più tardi.',
+            'out' => 'Questo elemento è attualmente esaurito. Controlla più tardi!',
+            'out_with_alternative' => 'Sfortunatamente questo elemento è esaurito. Usa il menu a discesa per sceglierne un altro tipo oppure controlla più tardi!',
         ],
 
         'add_to_cart' => 'Aggiungi al carrello',

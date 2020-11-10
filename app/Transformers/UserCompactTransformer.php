@@ -11,6 +11,18 @@ use App\Models\UserProfileCustomization;
 
 class UserCompactTransformer extends TransformerAbstract
 {
+    const CARD_INCLUDES = [
+        'country',
+        'cover',
+        'groups',
+    ];
+
+    const CARD_INCLUDES_PRELOAD = [
+        'country',
+        'userGroups',
+        'userProfileCustomization',
+    ];
+
     public $mode;
 
     protected $availableIncludes = [
@@ -182,7 +194,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeGroups(User $user)
     {
-        return $this->collection($user->visibleGroups(), new GroupTransformer());
+        return $this->collection($user->visibleGroups(), new UserGroupTransformer());
     }
 
     public function includeIsAdmin(User $user)
