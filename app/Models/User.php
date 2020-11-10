@@ -939,9 +939,9 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     }
 
     // check if a user is in a specific group, by ID
-    public function isGroup($group, $checkToken = true)
+    public function isGroup($group, $forAuthCheck = true)
     {
-        return in_array($group->getKey(), $this->groupIds()['active'], true) && (!$checkToken || $this->token() === null);
+        return in_array($group->getKey(), $this->groupIds()['active'], true) && (!$forAuthCheck || $this->token() === null);
     }
 
     public function isGroupPending($group)
