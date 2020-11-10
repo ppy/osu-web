@@ -159,7 +159,7 @@ export default class ConversationView extends React.Component<Props> {
     _.each(channel.messages, (message: Message, key: number) => {
       // check if the last read indicator needs to be shown
       // when messageId is a uuid, comparison will always be false.
-      if (!unreadMarkerShown && message.messageId > this.dataStore.chatState.lastReadId && message.sender.id !== currentUser.id) {
+      if (!unreadMarkerShown && message.messageId > (channel.lastReadId ?? -1) && message.sender.id !== currentUser.id) {
         unreadMarkerShown = true;
 
         // If the unread marker is the first element in this conversation, it most likely means that the unread cursor

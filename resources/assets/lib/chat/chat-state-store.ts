@@ -14,7 +14,6 @@ import ChannelStore from 'stores/channel-store';
 @dispatchListener
 export default class ChatStateStore {
   @observable autoScroll = false;
-  @observable lastReadId = -1;
   @observable selectedBoxed = observable.box(0);
   private selectedIndex = 0;
 
@@ -44,7 +43,6 @@ export default class ChatStateStore {
   @action
   flushStore() {
     this.selected = 0;
-    this.lastReadId = -1;
     this.autoScroll = false;
   }
 
@@ -78,7 +76,6 @@ export default class ChatStateStore {
 
     this.selected = channelId;
     this.selectedIndex = this.channelStore.channelList.indexOf(channel);
-    this.lastReadId = channel.lastReadId ?? -1;
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
     this.channelStore.loadChannel(channelId).then(() => {
