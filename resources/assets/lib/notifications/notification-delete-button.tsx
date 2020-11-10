@@ -6,20 +6,20 @@ import * as React from 'react';
 import { Spinner } from 'spinner';
 
 interface Props {
-  isMarkingAsRead: boolean;
+  isDeleting: boolean;
   modifiers: string[];
-  onMarkAsRead?: () => void;
+  onDelete?: () => void;
   text?: string;
 }
 
 @observer
-export default class NotificationReadButton extends React.Component<Props> {
+export default class NotificationDeleteButton extends React.Component<Props> {
   static defaultProps = {
     modifiers: [],
   };
 
   render() {
-    if (this.props.isMarkingAsRead) {
+    if (this.props.isDeleting) {
       return (
         <div className={osu.classWithModifiers('notification-action-button', this.props.modifiers)}>
           <span className='notification-action-button__text'>{this.props.text}</span>
@@ -33,11 +33,11 @@ export default class NotificationReadButton extends React.Component<Props> {
         <button
           type='button'
           className={osu.classWithModifiers('notification-action-button', this.props.modifiers)}
-          onClick={this.props.onMarkAsRead}
+          onClick={this.props.onDelete}
         >
           <span className='notification-action-button__text'>{this.props.text}</span>
           <div className='notification-action-button__icon'>
-            <span className='fas fa-check' />
+            <span className='fas fa-trash' />
           </div>
         </button>
       );
