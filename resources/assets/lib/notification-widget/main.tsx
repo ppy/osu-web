@@ -15,6 +15,11 @@ import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
 import Stack from './stack';
 
+interface Link {
+  title: string;
+  type: Name;
+}
+
 interface Props {
   extraClasses?: string;
   only?: Name;
@@ -41,7 +46,7 @@ export default class Main extends React.Component<Props, State> {
   get links() {
     return TYPES.map((obj) => {
       const type = obj.type;
-      return { title: osu.trans(`notifications.filters.${type ?? '_'}`), data: { 'data-type': type }, type };
+      return { title: osu.trans(`notifications.filters.${type ?? '_'}`), type };
     });
   }
 
@@ -89,7 +94,7 @@ export default class Main extends React.Component<Props, State> {
     this.controller.loadMore();
   }
 
-  private renderFilter = (link: any) => {
+  private renderFilter = (link: Link) => {
     const type = core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: link.type });
     const isSameFilter = link.type === this.controller.currentFilter;
 
