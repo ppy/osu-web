@@ -146,7 +146,7 @@ export default class ChannelStore {
     }
 
     // TODO:
-    // current imlementation should always have this loaded already,
+    // current implementation should always have this loaded already,
     // but future versions may skip having all the initial metadata on chat load.
 
     if (channel.loaded) {
