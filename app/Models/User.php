@@ -941,7 +941,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         $groupId = $group->getKey();
 
         foreach ($this->userGroups as $userGroup) {
-            if ($userGroup->group_id === $groupId && (!$activeOnly || $userGroup->user_pending)) {
+            if ($userGroup->group_id === $groupId && (!$activeOnly || !$userGroup->user_pending)) {
                 return $userGroup;
             }
         }
