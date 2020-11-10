@@ -5,7 +5,7 @@ import { route } from 'laroute';
 import * as _ from 'lodash';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
-import { Name, TYPES } from 'models/notification-type';
+import NotificationType, { Name, TYPES } from 'models/notification-type';
 import { NotificationContext } from 'notifications-context';
 import LegacyPm from 'notifications/legacy-pm';
 import NotificationController from 'notifications/notification-controller';
@@ -41,11 +41,11 @@ export default class Main extends React.Component<Props, State> {
   };
 
   private readonly controller = new NotificationController(core.dataStore.notificationStore, { isWidget: true }, this.props.only ?? null);
+  private readonly typeNames = TYPES.filter((x) => x.type !== 'channel').map((x) => x.type); // FIXME: temporary
 
   @computed
   get links() {
-    return TYPES.map((obj) => {
-      const type = obj.type;
+    return this.typeNames.map((type) => {
       return { title: osu.trans(`notifications.filters.${type ?? '_'}`), type };
     });
   }
@@ -81,6 +81,17 @@ export default class Main extends React.Component<Props, State> {
     );
   }
 
+  private getTotal(type: NotificationType) {
+    if (type.name == null) {
+      return this.typeNames.reduce((acc, current) => {
+        if (current == null) return acc;
+        return acc + core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: current }).total;
+      }, 0);
+    }
+
+    return type.total;
+  }
+
   private handleFilterClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const type = ((event.currentTarget as HTMLButtonElement).dataset.type ?? null) as Name;
     this.controller.navigateTo(type);
@@ -110,7 +121,7 @@ export default class Main extends React.Component<Props, State> {
         onClick={this.handleFilterClick}
         {...data}
       >
-        <span className='notification-popup__filter-count'>{type.total}</span>
+        <span className='notification-popup__filter-count'>{this.getTotal(type)}</span>
         <span>{link.title}</span>
       </button>
     );
@@ -176,6 +187,7 @@ export default class Main extends React.Component<Props, State> {
     const nodes: React.ReactNode[] = [];
     for (const stack of this.controller.stacks) {
       if (!stack.hasVisibleNotifications) continue;
+      if (stack.objectType === 'channel') continue; // FIXME: temporary
 
       nodes.push(<Stack key={stack.id} stack={stack} />);
     }
