@@ -59,9 +59,11 @@ export default class Main extends React.Component<Props, State> {
         <div className={blockClass}>
           <div className='notification-popup__scroll-container'>
             {this.renderFilters()}
-            <div className='notification-popup__filters'>
+            <div className='notification-popup__buttons'>
               {this.renderHistoryLink()}
-              {this.renderMarkAsReadButton()}
+              <div className='notification-popup__clear-button'>
+                {this.renderMarkAsReadButton()}
+              </div>
             </div>
             {this.renderLegacyPm()}
             <div className='notification-stacks'>

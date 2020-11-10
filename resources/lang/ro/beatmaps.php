@@ -187,12 +187,18 @@ return [
         'nominate_confirm' => 'Nominalizezi acest beatmap?',
         'nominated_by' => 'nominalizat de :users',
         'not_enough_hype' => "Nu este suficient hype.",
-        'qualified' => 'Estimat pentru a fi clasat pe :date, dacă nu sunt găsite probleme.',
-        'qualified_soon' => 'Estimat să fie clasat în curând, dacă nu sunt găsite probleme.',
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Nominalizări: :current/:required',
         'reset_message_deleted' => 'șters',
         'title' => 'Statutul de nominalizare',
         'unresolved_issues' => 'Încă există probleme nerezolvate care trebuie să fie abordate mai întâi.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Procesul de nominalizare a fost resetat :time_ago de :user cu noua problemă :discussion (:message).',

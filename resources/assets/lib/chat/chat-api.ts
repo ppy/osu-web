@@ -6,22 +6,22 @@ import Message from 'models/chat/message';
 import * as ApiResponses from './chat-api-responses';
 
 export default class ChatAPI {
-  getMessages(channelId: number, params?: { since?: number; until?: number }): JQuery.jqXHR<ApiResponses.GetMessagesJSON> {
+  getMessages(channelId: number, params?: { since?: number; until?: number }): JQuery.jqXHR<ApiResponses.GetMessagesJson> {
     return $.get(route('chat.channels.messages.index', { channel: channelId, ...params }));
   }
 
-  getUpdates(since: number, lastHistoryId?: number | null): JQuery.jqXHR<ApiResponses.GetUpdatesJSON> {
+  getUpdates(since: number, lastHistoryId?: number | null): JQuery.jqXHR<ApiResponses.GetUpdatesJson> {
     return $.get(route('chat.updates'), { since, history_since: lastHistoryId });
   }
 
-  markAsRead(channelId: number, messageId: number): JQuery.jqXHR<ApiResponses.MarkAsReadJSON> {
+  markAsRead(channelId: number, messageId: number): JQuery.jqXHR<ApiResponses.MarkAsReadJson> {
     return $.ajax({
       type: 'PUT',
       url: route('chat.channels.mark-as-read', {channel: channelId, message: messageId}),
     });
   }
 
-  newConversation(userId: number, message: Message): JQuery.jqXHR<ApiResponses.NewConversationJSON> {
+  newConversation(userId: number, message: Message): JQuery.jqXHR<ApiResponses.NewConversationJson> {
     return $.post(route('chat.new'), {
       is_action: message.isAction,
       message: message.content,

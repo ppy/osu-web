@@ -187,12 +187,18 @@ return [
         'nominate_confirm' => 'Nominować tę beatmapę?',
         'nominated_by' => 'nominowana przez :users',
         'not_enough_hype' => "Beatmapa nie jest wystarczająco nagłośniona.",
-        'qualified' => 'Otrzyma status rankingowy :date, jeżeli nie zostaną wykryte żadne problemy.',
-        'qualified_soon' => 'Wkrótce otrzyma status rankingowy, jeżeli nie zostaną wykryte żadne problemy.',
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Nominacje: :current/:required',
         'reset_message_deleted' => 'usunięta',
         'title' => 'Status nominacji',
         'unresolved_issues' => 'Nadal występują nierozwiązane problemy, do których musisz się odnieść.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => 'wkrótce',
+        ],
 
         'reset_at' => [
             'nomination_reset' => ':user zresetował(a) proces nominacji :time_ago z powodu nowego problemu :discussion (:message).',

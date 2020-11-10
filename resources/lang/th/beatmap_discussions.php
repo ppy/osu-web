@@ -54,7 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'ไม่มีโพสต์ใดกล่าวถึงปัญหาของฉัน',
         'notice' => 'มีโพสต์เมื่อเวลาประมาณ :timestamp (:existing_timestamps). โปรตตรวจสอบก่อนโพสต์',
-        'unsaved' => '',
+        'unsaved' => ':count ในบทวิจารณ์นี้',
     ],
 
     'reply' => [

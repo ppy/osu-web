@@ -6,10 +6,10 @@
 namespace Tests\Models\OAuth;
 
 use App\Models\OAuth\Client;
-use App\Models\OAuth\RefreshToken;
 use App\Models\OAuth\Token;
 use App\Models\User;
 use Laravel\Passport\AuthCode;
+use Laravel\Passport\RefreshToken;
 use Tests\TestCase;
 
 class ClientTest extends TestCase

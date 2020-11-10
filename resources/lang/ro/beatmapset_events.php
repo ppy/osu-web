@@ -28,6 +28,7 @@ return [
         'nomination_reset' => 'O problemă nouă :discussion (:text) a declanșat reluarea unei nominalizări.',
         'qualify' => 'Acest beatmap a atins numărul limită de nominalizări și s-a calificat.',
         'rank' => 'Clasat.',
+        'remove_from_loved' => '',
     ],
 
     'index' => [
@@ -66,5 +67,6 @@ return [
         'nomination_reset' => 'Resetarea nominalizărilor',
         'qualify' => 'Calificare',
         'rank' => 'Clasament',
+        'remove_from_loved' => '',
     ],
 ];

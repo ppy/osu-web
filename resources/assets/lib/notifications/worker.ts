@@ -9,6 +9,8 @@ import { forEach, random } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import core from 'osu-core-singleton';
 import {
+  NotificationEventDelete,
+  NotificationEventDeleteJson,
   NotificationEventLogoutJson,
   NotificationEventMoreLoaded,
   NotificationEventNew,
@@ -33,6 +35,10 @@ interface TimeoutCollection {
 interface XHRLoadingStateCollection {
   [key: string]: boolean;
 }
+
+const isNotificationEventDeleteJson = (arg: any): arg is NotificationEventDeleteJson => {
+  return arg.event === 'delete';
+};
 
 const isNotificationEventLogoutJson = (arg: any): arg is NotificationEventLogoutJson => {
   return arg.event === 'logout';
@@ -142,7 +148,13 @@ export default class Worker {
       return;
     }
 
-    if (isNotificationEventLogoutJson(eventData)) {
+    if (isNotificationEventDeleteJson(eventData)) {
+      // ignore delete events that occured before the bundle is loaded
+      const timestamp = new Date(eventData.data.timestamp);
+      if (this.firstLoadedAt != null && timestamp > this.firstLoadedAt) {
+        dispatch(NotificationEventDelete.fromJson(eventData));
+      }
+    } else if (isNotificationEventLogoutJson(eventData)) {
       this.destroy();
     } else if (isNotificationEventNewJson(eventData)) {
       dispatch(new NotificationEventNew(eventData.data));

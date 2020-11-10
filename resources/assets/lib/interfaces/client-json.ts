@@ -1,12 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserJSON from './user-json';
+import UserJson from './user-json';
 
-export interface ClientJSON {
+export interface ClientJson {
   id: number;
   name: string | null;
   scopes: string[];
-  user: UserJSON;
+  user: UserJson;
   user_id: number;
 }

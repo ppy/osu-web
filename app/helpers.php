@@ -353,11 +353,6 @@ function es_records($results, $class)
     return $records;
 }
 
-function flag_path($country)
-{
-    return '/images/flags/'.$country.'.png';
-}
-
 function get_valid_locale($requestedLocale)
 {
     if (in_array($requestedLocale, config('app.available_locales'), true)) {
@@ -1202,20 +1197,18 @@ function fast_imagesize($url)
 
 function get_arr($input, $callback)
 {
-    if (!is_array($input)) {
-        return;
-    }
+    if (is_array($input)) {
+        $result = [];
+        foreach ($input as $value) {
+            $casted = call_user_func($callback, $value);
 
-    $result = [];
-    foreach ($input as $value) {
-        $casted = call_user_func($callback, $value);
-
-        if ($casted !== null) {
-            $result[] = $casted;
+            if ($casted !== null) {
+                $result[] = $casted;
+            }
         }
-    }
 
-    return $result;
+        return $result;
+    }
 }
 
 function get_bool($string)

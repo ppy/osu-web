@@ -92,11 +92,12 @@
                 class="nav-button nav-button--stadium js-click-menu"
                 data-click-menu-target="nav2-locale-popup"
             >
-                <img
-                    class="nav-button__locale-current-flag"
-                    alt="{{ App::getLocale() }}"
-                    src="{{ flag_path(locale_flag(App::getLocale())) }}"
-                >
+                <span class="nav-button__locale-current-flag">
+                    @include('objects._flag_country', [
+                        'countryCode' => locale_flag(App::getLocale()),
+                        'modifiers' => ['flat'],
+                    ])
+                </span>
             </button>
 
             <div class="nav-click-popup">
@@ -120,11 +121,12 @@
                                 @endif
                             >
                                 <span class="nav2-locale-item">
-                                    <img
-                                        src="{{ flag_path(locale_flag($locale)) }}"
-                                        alt="{{ $locale }}"
-                                        class="nav2-locale-item__flag"
-                                    >
+                                    <span class="nav2-locale-item__flag">
+                                        @include('objects._flag_country', [
+                                            'countryCode' => locale_flag($locale),
+                                            'modifiers' => ['flat'],
+                                        ])
+                                    </span>
 
                                     {{ locale_name($locale) }}
                                 </span>

@@ -94,7 +94,7 @@ return [
                 'description' => 'postępuj zgodnie z instrukcjami w grze, aby się zarejestrować bądź zalogować',
             ],
             'download' => [
-                'title' => 'pobierz grę',
+                'title' => 'zainstaluj grę',
                 'description' => 'kliknij przycisk powyżej, aby pobrać instalator, a następnie uruchom go!',
             ],
             'beatmaps' => [
