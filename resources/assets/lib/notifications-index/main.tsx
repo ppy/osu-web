@@ -6,7 +6,7 @@ import HeaderLink from 'interfaces/header-link';
 import { route } from 'laroute';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
-import { Name as NotificationTypeName, TYPES } from 'models/notification-type';
+import { Name as NotificationTypeName, typeNames } from 'models/notification-type';
 import Stack from 'notification-widget/stack';
 import { NotificationContext, NotificationContextData } from 'notifications-context';
 import LegacyPm from 'notifications/legacy-pm';
@@ -25,11 +25,11 @@ export class Main extends React.Component {
 
   @computed
   get links(): HeaderLink[] {
-    return TYPES.map((obj) => ({
-      active: this.controller.currentFilter === obj.type,
-      data: { 'data-type': obj.type },
-      title: osu.trans(`notifications.filters.${obj.type ?? '_'}`),
-      url: route('notifications.index', { type: obj.type }),
+    return typeNames.map((name) => ({
+      active: this.controller.currentFilter === name,
+      data: { 'data-type': name },
+      title: osu.trans(`notifications.filters.${name ?? '_'}`),
+      url: route('notifications.index', { type: name }),
     }));
   }
 

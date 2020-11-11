@@ -12,25 +12,16 @@ import NotificationReadable from 'notifications/notification-readable';
 import { NotificationResolver } from 'notifications/notification-resolver';
 
 export type Name = null | 'beatmapset' | 'build' | 'channel' | 'forum_topic' | 'news_post' | 'user';
-const names: Name[] = [null, 'beatmapset', 'build', 'channel', 'forum_topic', 'news_post', 'user'];
-
-export const TYPES: { type: Name }[] = [
-  { type: null },
-  { type: 'user' },
-  { type: 'beatmapset' },
-  { type: 'forum_topic' },
-  { type: 'news_post' },
-  { type: 'build' },
-  { type: 'channel' },
-];
+// List is in the order they appear on the notification filter.
+export const typeNames: Name[] = [null, 'user', 'beatmapset', 'forum_topic', 'news_post', 'build', 'channel'];
 
 export function getValidName(value: unknown) {
   const casted = value as Name;
-  if (names.indexOf(casted) > -1) {
+  if (typeNames.indexOf(casted) > -1) {
     return casted;
   }
 
-  return names[0];
+  return typeNames[0];
 }
 
 export default class NotificationType implements NotificationReadable, NotificationDeletable {

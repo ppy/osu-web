@@ -3,7 +3,7 @@
 
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
-import { TYPES } from 'models/notification-type';
+import { typeNames } from 'models/notification-type';
 import Worker from 'notifications/worker';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -18,7 +18,7 @@ export default class NotificationIcon extends React.Component<Props> {
   @computed
   private get unreadCount() {
     // TODO: need a better way of propagating the exclusion list to this (but it's global anyway?)
-    const types = TYPES.map((x) => x.type).filter((name) => !(name == null || name === 'channel'));
+    const types = typeNames.filter((name) => !(name == null || name === 'channel'));
     return types.reduce((acc, current) => {
       return acc + core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: current }).total;
     }, 0);

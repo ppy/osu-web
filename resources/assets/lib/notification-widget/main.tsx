@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import NotificationStack from 'models/notification-stack';
-import NotificationType, { Name, TYPES } from 'models/notification-type';
+import NotificationType, { Name, typeNames } from 'models/notification-type';
 import { NotificationContext } from 'notifications-context';
 import LegacyPm from 'notifications/legacy-pm';
 import NotificationController from 'notifications/notification-controller';
@@ -47,7 +47,7 @@ export default class Main extends React.Component<Props, State> {
   };
 
   private readonly controller = new NotificationController(core.dataStore.notificationStore, { isWidget: true }, this.props.only ?? null);
-  private readonly typeNames = TYPES.filter((x) => !this.isExcluded(x.type)).map((x) => x.type);
+  private readonly typeNames = typeNames.filter((name) => !this.isExcluded(name));
 
   @computed
   get links() {
