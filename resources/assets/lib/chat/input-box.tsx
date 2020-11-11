@@ -1,32 +1,46 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-actions';
+import { ChatMessageSendAction } from 'actions/chat-message-send-action';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import { BigButton } from 'big-button';
 import DispatchListener from 'dispatch-listener';
 import * as _ from 'lodash';
-import { computed } from 'mobx';
+import { computed, observe } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import RootDataStore from 'stores/root-data-store';
 
+interface Props {
+  dataStore?: RootDataStore;
+}
+
 @inject('dataStore')
 @observer
 @dispatchListener
-export default class InputBox extends React.Component<any, any> implements DispatchListener {
+export default class InputBox extends React.Component<Props> implements DispatchListener {
+  readonly dataStore: RootDataStore = this.props.dataStore!;
+
+  private inputBoxRef = React.createRef<HTMLTextAreaElement>();
 
   @computed
   get currentChannel() {
-    const dataStore: RootDataStore = this.props.dataStore;
-    return dataStore.channelStore.get(dataStore.chatState.selected);
+    return this.dataStore.chatState.selectedChannel;
   }
 
-  private inputBoxRef = React.createRef<HTMLTextAreaElement>();
+  constructor(props: Props) {
+    super(props);
+
+    observe(this.dataStore.chatState.selectedBoxed, (change) => {
+      if (change.newValue !== change.oldValue && osu.isDesktop()) {
+        this.focusInput();
+      }
+    });
+  }
 
   buttonClicked = () => {
     this.sendMessage(this.currentChannel?.inputText);
@@ -59,10 +73,6 @@ export default class InputBox extends React.Component<any, any> implements Dispa
   handleDispatchAction(action: DispatcherAction) {
     if (action instanceof WindowFocusAction) {
       this.focusInput();
-    } else if (action instanceof ChatChannelSwitchAction) {
-      if (osu.isDesktop()) {
-        this.focusInput();
-      }
     }
   }
 
@@ -123,7 +133,7 @@ export default class InputBox extends React.Component<any, any> implements Dispa
 
     const message = new Message();
     message.senderId = currentUser.id;
-    message.channelId = this.props.dataStore.chatState.selected;
+    message.channelId = this.dataStore.chatState.selected;
     message.content = messageText;
 
     // Technically we don't need to check command here, but doing so in case we add more commands

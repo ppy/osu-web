@@ -3,7 +3,7 @@
 
 import { ChannelJson, ChannelJsonExtended, ChannelType, MessageJson } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
-import { action, computed, observable, transaction } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import User from 'models/user';
 import Message from './message';
 
@@ -27,6 +27,16 @@ export default class Channel {
   @observable users: number[] = [];
 
   @computed
+  get firstMessage() {
+    return this.messages.length > 0 ? this.messages[0] : undefined;
+  }
+
+  @computed
+  get hasEarlierMessages() {
+    return this.firstMessageId !== this.minMessageId;
+  }
+
+  @computed
   get isUnread(): boolean {
     if (this.lastReadId != null) {
       return this.lastMessageId > this.lastReadId;
@@ -36,18 +46,8 @@ export default class Channel {
   }
 
   @computed
-  get exists(): boolean {
-    return this.channelId > 0;
-  }
-
-  @computed
-  get firstMessage() {
-    return this.messages.length > 0 ? this.messages[0] : undefined;
-  }
-
-  @computed
-  get hasEarlierMessages() {
-    return this.firstMessageId !== this.minMessageId;
+  get lastMessage(): Message | undefined {
+    return this.messages[this.messages.length - 1];
   }
 
   @computed
@@ -64,6 +64,11 @@ export default class Channel {
     }
 
     return this.users.find((userId: number) => userId !== currentUser.id);
+  }
+
+  @computed
+  get transient() {
+    return this.type === 'NEW';
   }
 
   constructor(channelId: number) {
@@ -97,39 +102,51 @@ export default class Channel {
   }
 
   @action
-  addMessages(messages: Message | Message[], skipSort: boolean = false) {
-    transaction(() => {
-      this.messages = this.messages.concat(messages);
+  addMessages(messages: Message[], skipSort: boolean = false) {
+    this.messages.push(...messages);
 
-      if (!skipSort) {
-        this.resortMessages();
-      }
+    if (!skipSort) {
+      this.resortMessages();
+    }
 
-      const lastMessage = _(([] as Message[]).concat(messages))
-        .filter((message) => typeof message.messageId === 'number')
-        .maxBy('messageId');
-      let lastMessageId;
+    const lastMessage = _(messages)
+      .filter((message) => typeof message.messageId === 'number')
+      .maxBy('messageId');
+    let lastMessageId;
 
-      // The type check is redundant due to the filter above.
-      if (lastMessage != null && typeof lastMessage.messageId === 'number') {
-        lastMessageId = lastMessage.messageId;
-      } else {
-        lastMessageId = -1;
-      }
-      if (lastMessageId > this.lastMessageId) {
-        this.lastMessageId = lastMessageId;
-      }
-    });
+    // The type check is redundant due to the filter above.
+    if (lastMessage != null && typeof lastMessage.messageId === 'number') {
+      lastMessageId = lastMessage.messageId;
+    } else {
+      lastMessageId = -1;
+    }
+    if (lastMessageId > this.lastMessageId) {
+      this.lastMessageId = lastMessageId;
+    }
+  }
+
+  @action
+  afterSendMesssage(message: Message, json: MessageJson | null) {
+    if (json != null) {
+      message.messageId = json.message_id;
+      message.timestamp = json.timestamp;
+      message.persist();
+    } else {
+      message.errored = true;
+      // delay and retry?
+    }
+
+    this.resortMessages();
+  }
+
+  @action
+  markAsRead() {
+    this.lastReadId = this.lastMessageId;
   }
 
   @action
   removeMessagesFromUserIds(userIds: Set<number>) {
     this.messages = this.messages.filter((message) => !userIds.has(message.senderId));
-  }
-
-  @action
-  resortMessages() {
-    this.messages = _(this.messages).sortBy('timestamp').uniqBy('messageId').value();
   }
 
   @action
@@ -140,19 +157,6 @@ export default class Channel {
   @action
   unload() {
     this.messages = observable([]);
-  }
-
-  @action
-  updateMessage(message: Message, json: MessageJson | null) {
-    if (json != null) {
-      message.messageId = json.message_id;
-      message.timestamp = json.timestamp;
-      message.persist();
-    } else {
-      message.messageId = message.uuid; // prevent from being culled by uniq sort thing
-      message.errored = true;
-      // delay and retry?
-    }
   }
 
   @action
@@ -175,5 +179,10 @@ export default class Channel {
     this.lastMessageId = _.max([this.lastMessageId, json.last_message_id]) ?? -1;
 
     this.metaLoaded = true;
+  }
+
+  @action
+  private resortMessages() {
+    this.messages = _(this.messages).sortBy('timestamp').uniqBy('messageId').value();
   }
 }
