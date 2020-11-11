@@ -21,6 +21,7 @@ interface Link {
 }
 
 interface Props {
+  excludes: Name[];
   extraClasses?: string;
   only?: Name;
 }
@@ -36,12 +37,16 @@ const linkMap: Record<string, string> = {
 
 @observer
 export default class Main extends React.Component<Props, State> {
+  static readonly defaultProps = {
+    excludes: [],
+  };
+
   readonly state = {
     hasError: false,
   };
 
   private readonly controller = new NotificationController(core.dataStore.notificationStore, { isWidget: true }, this.props.only ?? null);
-  private readonly typeNames = TYPES.filter((x) => x.type !== 'channel').map((x) => x.type); // FIXME: temporary
+  private readonly typeNames = TYPES.filter((x) => !this.isExcluded(x.type)).map((x) => x.type);
 
   @computed
   get links() {
@@ -103,6 +108,10 @@ export default class Main extends React.Component<Props, State> {
 
   private handleShowMore = () => {
     this.controller.loadMore();
+  }
+
+  private isExcluded(name: Name) {
+    return this.props.excludes.includes(name);
   }
 
   private renderFilter = (link: Link) => {
@@ -187,7 +196,7 @@ export default class Main extends React.Component<Props, State> {
     const nodes: React.ReactNode[] = [];
     for (const stack of this.controller.stacks) {
       if (!stack.hasVisibleNotifications) continue;
-      if (stack.objectType === 'channel') continue; // FIXME: temporary
+      if (this.isExcluded(stack.objectType)) continue; // FIXME: temporary
 
       nodes.push(<Stack key={stack.id} stack={stack} />);
     }

@@ -171,7 +171,7 @@
                     class="nav-click-popup js-click-menu js-react--notification-widget"
                     data-click-menu-id="nav2-notification-widget"
                     data-visibility="hidden"
-                    data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup']) }}"
+                    data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup', 'excludes' => ['channel']]) }}"
                 ></div>
             </div>
         @endif

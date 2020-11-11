@@ -121,6 +121,7 @@
                 <div
                     class="mobile-menu__item js-click-menu js-react--notification-widget"
                     data-click-menu-id="mobile-notification"
+                    data-notification-widget="{{ json_encode(['excludes' => ['channel']]) }}"
                     data-visibility="hidden"
                 ></div>
             @endif
