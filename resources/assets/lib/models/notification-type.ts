@@ -47,7 +47,7 @@ export default class NotificationType implements NotificationReadable, Notificat
   }
 
   @computed get hasVisibleNotifications() {
-    return (this.total > 0 && this.stacks.size > 0) || this.name === 'legacy_pm';
+    return (this.total > 0 && this.stacks.size > 0);
   }
 
   get identity(): NotificationIdentity {
