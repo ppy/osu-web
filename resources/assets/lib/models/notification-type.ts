@@ -11,9 +11,9 @@ import { NotificationIdentity } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
 import { NotificationResolver } from 'notifications/notification-resolver';
 
-export type Name = null | 'beatmapset' | 'build' | 'channel' | 'forum_topic' | 'news_post' | 'user';
 // List is in the order they appear on the notification filter.
-export const typeNames: Name[] = [null, 'user', 'beatmapset', 'forum_topic', 'news_post', 'build', 'channel'];
+export const typeNames = [null, 'user', 'beatmapset', 'forum_topic', 'news_post', 'build', 'channel'] as const;
+export type Name = (typeof typeNames)[number];
 
 export function getValidName(value: unknown) {
   const casted = value as Name;
