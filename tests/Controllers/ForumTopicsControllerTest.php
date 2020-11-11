@@ -7,9 +7,7 @@ namespace Tests\Controllers;
 
 use App\Models\Forum;
 use App\Models\User;
-use App\Models\UserGroup;
 use App\Models\UserStatistics\Osu as StatisticsOsu;
-use DB;
 use Tests\TestCase;
 
 class ForumTopicsControllerTest extends TestCase
@@ -21,12 +19,13 @@ class ForumTopicsControllerTest extends TestCase
             'forum_id' => $forum->forum_id,
         ]);
         $user = factory(User::class)->create()->fresh();
-        $userGroup = $this->defaultUserGroup($user);
+        $group = app('groups')->byIdentifier('default');
+        $user->setDefaultGroup($group);
         $authOption = Forum\AuthOption::firstOrCreate([
             'auth_option' => 'f_reply',
         ]);
         Forum\Authorize::create([
-            'group_id' => $userGroup->group_id,
+            'group_id' => $group->group_id,
             'forum_id' => $forum->forum_id,
             'auth_option_id' => $authOption->auth_option_id,
             'auth_setting' => 1,
@@ -100,12 +99,13 @@ class ForumTopicsControllerTest extends TestCase
     {
         $forum = factory(Forum\Forum::class, 'child')->create();
         $user = factory(User::class)->create()->fresh();
-        $userGroup = $this->defaultUserGroup($user);
+        $group = app('groups')->byIdentifier('default');
+        $user->setDefaultGroup($group);
         $authOption = Forum\AuthOption::firstOrCreate([
             'auth_option' => 'f_post',
         ]);
         Forum\Authorize::create([
-            'group_id' => $userGroup->group_id,
+            'group_id' => $group->getKey(),
             'forum_id' => $forum->forum_id,
             'auth_option_id' => $authOption->auth_option_id,
             'auth_setting' => 1,
@@ -153,7 +153,8 @@ class ForumTopicsControllerTest extends TestCase
     {
         $forum = factory(Forum\Forum::class, 'child')->create();
         $user = factory(User::class)->create();
-        $userGroup = $this->defaultUserGroup($user);
+        $group = app('groups')->byIdentifier('default');
+        $user->setDefaultGroup($group);
         $initialTitle = 'New topic';
         $topic = Forum\Topic::createNew($forum, [
             'title' => $initialTitle,
@@ -179,7 +180,8 @@ class ForumTopicsControllerTest extends TestCase
     {
         $forum = factory(Forum\Forum::class, 'child')->create();
         $user = factory(User::class)->create();
-        $userGroup = $this->defaultUserGroup($user);
+        $group = app('groups')->byIdentifier('default');
+        $user->setDefaultGroup($group);
         $initialTitle = 'New topic';
         $topic = Forum\Topic::createNew($forum, [
             'title' => $initialTitle,
@@ -206,26 +208,6 @@ class ForumTopicsControllerTest extends TestCase
         // initial user for forum posts and stuff
         // FIXME: this is actually a hidden dependency
         factory(User::class)->create();
-    }
-
-    private function defaultUserGroup($user)
-    {
-        $table = (new UserGroup())->getTable();
-
-        $conditions = [
-            'user_id' => $user->user_id,
-            'group_id' => app('groups')->byIdentifier('default')->getKey(),
-        ];
-
-        $existingUserGroup = UserGroup::where($conditions)->first();
-
-        if ($existingUserGroup !== null) {
-            return $existingUserGroup;
-        }
-
-        DB::table($table)->insert($conditions);
-
-        return UserGroup::where($conditions)->first();
     }
 
     private function addPlaycount($user, $playcount = null)
