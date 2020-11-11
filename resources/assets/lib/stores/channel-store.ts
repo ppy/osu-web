@@ -288,6 +288,7 @@ export default class ChannelStore {
     const message = event.message;
     const channel = this.getOrCreate(message.channelId);
     channel.addMessages([message], true);
+    channel.markAsRead();
 
     try {
       if (channel.newPmChannel) {
