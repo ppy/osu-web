@@ -48,6 +48,7 @@ export default class Main extends React.Component<Props, State> {
 
   private readonly controller = new NotificationController(core.dataStore.notificationStore, { isWidget: true }, this.props.only ?? null);
   private readonly typeNames = typeNames.filter((name) => !this.isExcluded(name));
+  private readonly typeNamesWithoutNull = this.typeNames.filter((name) => name != null);
 
   @computed
   get links() {
@@ -89,8 +90,7 @@ export default class Main extends React.Component<Props, State> {
 
   private getTotal(type: NotificationType) {
     if (type.name == null) {
-      return this.typeNames.reduce((acc, current) => {
-        if (current == null) return acc;
+      return this.typeNamesWithoutNull.reduce((acc, current) => {
         return acc + core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: current }).total;
       }, 0);
     }
@@ -104,7 +104,14 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private handleMarkAsRead = () => {
-    this.controller.type.markTypeAsRead();
+    const type = this.controller.type;
+    if (type.name == null) {
+      for (const name of this.typeNamesWithoutNull) {
+        core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: name }).markTypeAsRead();
+      }
+    } else {
+      type.markTypeAsRead();
+    }
   }
 
   private handleShowMore = () => {
