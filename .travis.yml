@@ -6,7 +6,7 @@ cache:
   yarn: true
 
 os: linux
-dist: bionic
+dist: focal
 
 language: php
 
@@ -15,14 +15,7 @@ php:
 
 services:
   - redis
-
-addons: &addons
-  apt:
-    sources:
-      - sourceline: 'deb http://repo.mysql.com/apt/ubuntu/ bionic mysql-8.0'
-        key_url: 'https://raw.githubusercontent.com/travis-ci/apt-source-safelist/0c2267bff66def573d31a8240ff7d31795e1f6fa/keys/mysql-5.7-trusty.asc'
-    packages:
-      - mysql-community-server
+  - mysql
 
 env:
   global:
