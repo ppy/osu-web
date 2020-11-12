@@ -36,7 +36,7 @@ export class NotificationResolver {
     }
 
     $.ajax({
-      data: toJson(deletable.identity),
+      data: { identities: toJson(deletable.identity) },
       dataType: 'json',
       method: 'DELETE',
       url: route('notifications.index'),
