@@ -142,25 +142,23 @@ export default class NotificationStackStore implements DispatchListener {
 
   @action
   removeByEvent(event: NotificationEventDelete | NotificationEventRead) {
-    if (event.data.length === 0) return;
+    for (const identity of event.data) {
+      const identityType = resolveIdentityType(identity);
 
-    // identity types currently aren't mixed in the event,
-    // so readCount can be applied for the whole group.
-    const first = event.data[0];
-    const identityType = resolveIdentityType(first);
+      switch (identityType) {
+        case 'type':
+          this.removeByType(identity);
+          break;
 
-    switch (identityType) {
-      case 'type':
-        this.removeByType(first, event.readCount);
-        break;
+        case 'stack':
+          // FIXME: can't apply event read count to all now.
+          this.removeByStack(identity, event.readCount);
+          break;
 
-      case 'stack':
-        this.removeByStack(first, event.readCount);
-        break;
-
-      case 'notification':
-        event.data.forEach(this.removeByNotification);
-        break;
+        case 'notification':
+          this.removeByNotification(identity);
+          break;
+      }
     }
   }
 
@@ -242,7 +240,7 @@ export default class NotificationStackStore implements DispatchListener {
     type.removeStack(stack);
   }
 
-  private removeByType(identity: NotificationIdentity, readCount: number) {
+  private removeByType(identity: NotificationIdentity) {
     const type = this.getOrCreateType(identity);
 
     if (type.name === null) {

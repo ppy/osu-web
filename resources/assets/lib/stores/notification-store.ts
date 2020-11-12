@@ -59,31 +59,28 @@ export default class NotificationStore implements DispatchListener {
     });
   }
 
-  private eachByEvent(event: NotificationEventRead | NotificationEventRead, callback: NotificationEachCallback) {
-    const first = event.data[0];
-    if (first == null) return;
+  private eachByEvent(event: NotificationEventDelete | NotificationEventRead, callback: NotificationEachCallback) {
+    for (const identity of event.data) {
+      const identityType = resolveIdentityType(identity);
 
-    const identityType = resolveIdentityType(first);
+      switch (identityType) {
+        case 'type':
+          this.eachByType(identity, callback);
+          break;
 
-    switch (identityType) {
-      case 'type':
-        this.eachByType(first, callback);
-        break;
+        case 'stack':
+          this.eachByStack(identity, callback);
+          break;
 
-      case 'stack':
-        this.eachByStack(first, callback);
-        break;
-
-      case 'notification':
-        event.data.forEach((identity) => {
+        case 'notification':
           if (identity.id == null) return;
           const notification = this.get(identity.id);
 
           if (notification != null) {
             callback(notification);
           }
-        });
-        break;
+          break;
+      }
     }
   }
 
