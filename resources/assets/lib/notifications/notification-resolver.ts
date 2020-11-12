@@ -81,7 +81,7 @@ export class NotificationResolver {
     }
 
     $.ajax({
-      data: toJson(readable.identity),
+      data: { identities: [toJson(readable.identity)] },
       dataType: 'json',
       method: 'POST',
       url: route('notifications.mark-read'),

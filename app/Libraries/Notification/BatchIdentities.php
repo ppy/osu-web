@@ -28,9 +28,18 @@ class BatchIdentities
                 }
             }
         } else {
-            $identity = static::scrubIdentity($params);
-            $obj->notificationIds = Notification::byIdentity($identity)->select('id');
-            $obj->identities = [$identity];
+            $obj->identities = array_map(function ($param) {
+                return static::scrubIdentity($param);
+            }, $params['identities']);
+
+            foreach ($obj->identities as $identity) {
+                $query = Notification::byIdentity($identity)->select('id');
+                if ($obj->notificationIds === null) {
+                    $obj->notificationIds = $query;
+                } else {
+                    $obj->notificationIds->union($query);
+                }
+            }
         }
 
         return $obj;
