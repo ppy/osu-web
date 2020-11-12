@@ -404,7 +404,11 @@ class BeatmapsetTest extends TestCase
         Group::find(app('groups')->byIdentifier($group)->getKey())->update(['has_playmodes' => true]);
         app('groups')->resetCache();
         $user = factory(User::class)->create();
-        $user->userGroups()->create(['group_id' => app('groups')->byIdentifier($group)->getKey(), 'playmodes' => $playmodes]);
+        $user->userGroups()->create([
+            'group_id' => app('groups')->byIdentifier($group)->getKey(),
+            'playmodes' => $playmodes,
+            'user_pending' => 0,
+        ]);
 
         return $user;
     }
