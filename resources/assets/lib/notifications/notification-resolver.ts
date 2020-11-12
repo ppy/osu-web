@@ -9,7 +9,7 @@ import { action } from 'mobx';
 import Notification from 'models/notification';
 import { NotificationContextData } from 'notifications-context';
 import NotificationDeletable from 'notifications/notification-deletable';
-import { NotificationIdentity, toJson, toString } from 'notifications/notification-identity';
+import { NotificationIdentity, resolveIdentityType, toJson, toString } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
 import { NotificationCursor } from './notification-cursor';
 import { NotificationEventDelete, NotificationEventMoreLoaded, NotificationEventRead } from './notification-events';
@@ -71,6 +71,25 @@ export class NotificationResolver {
   queueMarkAsRead(readable: NotificationReadable) {
     readable.isMarkingAsRead = true;
 
+    const identity = readable.identity;
+
+    if (resolveIdentityType(identity) === 'stack') {
+      // stacks can't be queued because we need the read counts in the broadcasted websocket event to be separate.
+      $.ajax({
+        data: { identities: [toJson(readable.identity)] },
+        dataType: 'json',
+        method: 'POST',
+        url: route('notifications.mark-read'),
+      })
+      .then(action(() => {
+        dispatch(new NotificationEventRead([identity], 0));
+      }))
+      .catch(osu.ajaxError)
+      .always(action(() => readable.isMarkingAsRead = false));
+
+      return;
+    }
+
     // single notifications are batched, also it's annoying if they get removed
     // from display while the user is clicking.
     if (readable instanceof Notification) {
@@ -82,7 +101,7 @@ export class NotificationResolver {
       return;
     }
 
-    this.queuedMarkedAsReadIdentities.set(toString(readable.identity), readable);
+    this.queuedMarkedAsReadIdentities.set(toString(identity), readable);
     this.debouncedSendQueuedMarkedAsReadIdentities();
   }
 
