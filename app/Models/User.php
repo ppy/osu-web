@@ -388,7 +388,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     {
         $playCount = $this->playCount();
 
-        $allGroupIds = array_merge([$this->group_id], $this->groupIds());
+        $allGroupIds = array_merge([$this->group_id], $this->groupIds()['active']);
         $allowedGroupIds = array_map(function ($groupIdentifier) {
             return app('groups')->byIdentifier($groupIdentifier)->getKey();
         }, config('osu.user.allowed_rename_groups'));
@@ -493,37 +493,49 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function addToGroup(Group $group, ?self $actor = null): void
     {
-        if ($this->isGroup($group)) {
+        if ($this->findUserGroup($group, true) !== null) {
             return;
         }
 
         $this->getConnection()->transaction(function () use ($actor, $group) {
-            $this->userGroups()->create(['group_id' => $group->getKey()]);
+            $this
+                ->userGroups()
+                ->firstOrNew(['group_id' => $group->getKey()])
+                ->fill(['user_pending' => false])
+                ->save();
+            $this->unsetRelation('userGroups');
+            $this->resetMemoized();
             UserGroupEvent::logUserAdd($actor, $this, $group);
         });
     }
 
     public function removeFromGroup(Group $group, ?self $actor = null): void
     {
-        if (!$this->isGroup($group)) {
+        $userGroup = $this->findUserGroup($group, false);
+
+        if ($userGroup === null) {
             return;
         }
 
-        $this->getConnection()->transaction(function () use ($actor, $group) {
-            $this->userGroups()->where(['group_id' => $group->getKey()])->delete();
-            UserGroupEvent::logUserRemove($actor, $this, $group);
+        $this->getConnection()->transaction(function () use ($actor, $group, $userGroup) {
+            $userGroup->delete();
 
             if ($this->group_id === $group->getKey()) {
                 $this->setDefaultGroup(app('groups')->byIdentifier('default'));
+            }
+
+            $this->unsetRelation('userGroups');
+            $this->resetMemoized();
+
+            if (!$userGroup->user_pending) {
+                UserGroupEvent::logUserRemove($actor, $this, $group);
             }
         });
     }
 
     public function setDefaultGroup(Group $group, ?self $actor = null): void
     {
-        if (!$this->isGroup($group)) {
-            $this->addToGroup($group, $actor);
-        }
+        $this->addToGroup($group, $actor);
 
         $this->getConnection()->transaction(function () use ($actor, $group) {
             $this->update([
@@ -909,14 +921,44 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     public function groupIds()
     {
         return $this->memoize(__FUNCTION__, function () {
-            return $this->userGroups->pluck('group_id')->toArray();
+            $ret = [
+                'active' => [],
+                'pending' => [],
+            ];
+
+            foreach ($this->userGroups as $userGroup) {
+                $key = $userGroup->user_pending ? 'pending' : 'active';
+                $ret[$key][] = $userGroup->group_id;
+            }
+
+            return $ret;
         });
     }
 
-    // check if a user is in a specific group, by ID
+
+    public function findUserGroup($group, $activeOnly)
+    {
+        $groupId = $group->getKey();
+
+        foreach ($this->userGroups as $userGroup) {
+            if ($userGroup->group_id === $groupId && (!$activeOnly || !$userGroup->user_pending)) {
+                return $userGroup;
+            }
+        }
+    }
+
+    /**
+     * Check if a user is in a specific group.
+     *
+     * This will always return false when called on user authenticated using OAuth.
+     *
+     * @param Group $group
+     *
+     * @return bool
+     */
     public function isGroup($group)
     {
-        return in_array($group->getKey(), $this->groupIds(), true) && $this->token() === null;
+        return $this->findUserGroup($group, true) !== null && $this->token() === null;
     }
 
     public function badges()

@@ -102,7 +102,7 @@ export class Main extends React.PureComponent
             if @props.discussions.length == 0
               div className: 'modding-profile-list__empty', osu.trans('beatmap_discussions.index.none_found')
             else
-              for discussion in @props.discussions
+              for discussion in @props.discussions when discussion?
                 div
                   className: 'modding-profile-list__row'
                   key: discussion.id,
