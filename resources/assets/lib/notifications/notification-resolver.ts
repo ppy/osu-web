@@ -9,7 +9,7 @@ import { action } from 'mobx';
 import Notification from 'models/notification';
 import { NotificationContextData } from 'notifications-context';
 import NotificationDeletable from 'notifications/notification-deletable';
-import { NotificationIdentity, toJson } from 'notifications/notification-identity';
+import { NotificationIdentity, toJson, toString } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
 import { NotificationCursor } from './notification-cursor';
 import { NotificationEventDelete, NotificationEventMoreLoaded, NotificationEventRead } from './notification-events';
@@ -18,8 +18,10 @@ import { NotificationEventDelete, NotificationEventMoreLoaded, NotificationEvent
 export class NotificationResolver {
   private debouncedDeleteByIds = debounce(this.deleteByIds, 500);
   private debouncedSendQueuedMarkedAsRead = debounce(this.sendQueuedMarkedAsRead, 500);
+  private debouncedSendQueuedMarkedAsReadIdentities = debounce(this.sendQueuedMarkedAsReadIdentities, 500);
   private deleteByIdsQueue = new Map<number, Notification>();
   private queuedMarkedAsRead = new Map<number, Notification>();
+  private queuedMarkedAsReadIdentities = new Map<string, NotificationReadable>();
 
   @action
   delete(deletable: NotificationDeletable) {
@@ -80,17 +82,8 @@ export class NotificationResolver {
       return;
     }
 
-    $.ajax({
-      data: { identities: [toJson(readable.identity)] },
-      dataType: 'json',
-      method: 'POST',
-      url: route('notifications.mark-read'),
-    })
-    .then(action(() => {
-      dispatch(new NotificationEventRead([readable.identity], 0));
-    }))
-    .catch(osu.ajaxError)
-    .always(action(() => readable.isMarkingAsRead = false));
+    this.queuedMarkedAsReadIdentities.set(toString(readable.identity), readable);
+    this.debouncedSendQueuedMarkedAsReadIdentities();
   }
 
   private deleteByIds() {
@@ -121,6 +114,26 @@ export class NotificationResolver {
 
     $.ajax({
       data: { notifications: identities.map(toJson) },
+      dataType: 'json',
+      method: 'POST',
+      url: route('notifications.mark-read'),
+    })
+    .then(action(() => {
+      dispatch(new NotificationEventRead(identities, 0));
+    }))
+    .catch(osu.ajaxError)
+    .always(action(() => notifications.forEach((notification) => notification.isMarkingAsRead = false)));
+  }
+
+  private sendQueuedMarkedAsReadIdentities() {
+    if (this.queuedMarkedAsReadIdentities.size === 0) return;
+
+    const notifications = [...this.queuedMarkedAsReadIdentities.values()];
+    const identities = notifications.map((notification) => notification.identity);
+    this.queuedMarkedAsReadIdentities.clear();
+
+    $.ajax({
+      data: { identities: identities.map(toJson) },
       dataType: 'json',
       method: 'POST',
       url: route('notifications.mark-read'),
