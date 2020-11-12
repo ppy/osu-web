@@ -651,18 +651,21 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             ];
         }
 
-        DB::transaction(function () use ($user) {
-            $nomination = $this->nominationsSinceReset()->where('user_id', $user->user_id);
-            if (!$nomination->exists()) {
-                $this->events()->create(['type' => BeatmapsetEvent::NOMINATE, 'user_id' => $user->user_id]);
-                if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
-                    $this->qualify($user);
-                } else {
-                    (new BeatmapsetNominate($this, $user))->dispatch();
-                }
+        $nomination = $this->nominationsSinceReset()->where('user_id', $user->user_id);
+        if (!$nomination->exists()) {
+            $this->events()->create(['type' => BeatmapsetEvent::NOMINATE, 'user_id' => $user->user_id]);
+            if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
+                $qualified = $this->getConnection()->transaction(function () use ($user) {
+                    return static::lockForUpdate()->find($this->getKey())->qualify($user);
+                });
+                $this->refresh();
             }
-            $this->refreshCache();
-        });
+
+            if (!($qualified ?? false)) {
+                (new BeatmapsetNominate($this, $user))->dispatch();
+            }
+        }
+        $this->refreshCache();
 
         return [
             'result' => true,

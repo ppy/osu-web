@@ -105,7 +105,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $currentDiscussions = BeatmapDiscussion::count();
         $currentDiscussionPosts = BeatmapDiscussionPost::count();
 
-        $this->user->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng')->getKey()]);
+        $this->user->addToGroup(app('groups')->byIdentifier('bng'));
 
         $this
             ->actingAsVerified($this->user)
@@ -166,7 +166,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     public function testPostStoreNewReplyReopenByNominator()
     {
         $user = factory(User::class)->create();
-        $user->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng')->getKey()]);
+        $user->addToGroup(app('groups')->byIdentifier('bng'));
         $user->statisticsOsu()->create(['playcount' => $this->minPlays]);
         $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => true]);
         $lastDiscussionPosts = BeatmapDiscussionPost::count();

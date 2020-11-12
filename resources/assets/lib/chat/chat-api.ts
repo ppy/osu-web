@@ -29,7 +29,7 @@ export default class ChatAPI {
     });
   }
 
-  partChannel(channelId: number, userId: number) {
+  partChannel(channelId: number, userId: number): JQuery.jqXHR<void> {
     return $.ajax(route('chat.channels.part', {
       channel: channelId,
       user: userId,
@@ -38,7 +38,7 @@ export default class ChatAPI {
     });
   }
 
-  sendMessage(message: Message) {
+  sendMessage(message: Message): JQuery.jqXHR<ApiResponses.SendMessageJson> {
     return $.post(route('chat.channels.messages.store', { channel: message.channelId }), {
       is_action: message.isAction,
       message: message.content,

@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Traits\Validatable;
 use DB;
 use Laravel\Passport\Client as PassportClient;
+use Laravel\Passport\RefreshToken;
 
 class Client extends PassportClient
 {

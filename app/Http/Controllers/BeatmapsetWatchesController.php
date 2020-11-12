@@ -20,9 +20,11 @@ class BeatmapsetWatchesController extends Controller
 
     public function index()
     {
-        return ext_view('beatmapset_watches.index', [
-            'watches' => Auth::user()->beatmapsetWatches()->visible()->paginate(50),
-        ]);
+        $watches = Auth::user()->beatmapsetWatches()->visible()->paginate(50);
+        $totalCount = $watches->total();
+        $unreadCount = Auth::user()->beatmapsetWatches()->visible()->unread()->count();
+
+        return ext_view('beatmapset_watches.index', compact('watches', 'totalCount', 'unreadCount'));
     }
 
     public function update($beatmapsetId)
