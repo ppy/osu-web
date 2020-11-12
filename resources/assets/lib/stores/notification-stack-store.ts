@@ -54,6 +54,7 @@ export default class NotificationStackStore implements DispatchListener {
     this.types.clear();
   }
 
+  @action
   getOrCreateType(identity: NotificationIdentity) {
     let type = this.types.get(identity.objectType);
     if (type == null) {

@@ -28,9 +28,10 @@ class BatchIdentities
                 }
             }
         } else {
+            // TODO: just use array of ids instead of subquery?
             $obj->identities = array_map(function ($param) {
                 return static::scrubIdentity($param);
-            }, $params['identities']);
+            }, $params['identities'] ?? []);
 
             foreach ($obj->identities as $identity) {
                 $query = Notification::byIdentity($identity)->select('id');
