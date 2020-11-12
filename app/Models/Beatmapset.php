@@ -682,45 +682,53 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         }
 
         try {
-            DB::transaction(function () use ($user, $playmodes) {
-                $nomination = $this->nominationsSinceReset()->where('user_id', $user->user_id);
-                if (!$nomination->exists()) {
-                    $event = [
-                        'type' => BeatmapsetEvent::NOMINATE,
-                        'user_id' => $user->user_id,
-                    ];
-                    if ($playmodes !== null) {
-                        $event['comment'] = ['modes' => $playmodes];
-                    }
-                    $this->events()->create($event);
-                    if ($this->isHybridNominationMode()) {
-                        $currentNominations = $this->currentNominationCount();
-                        $requiredNominations = $this->requiredNominationCount();
-                        $modesSatisfied = 0;
-                        foreach ($requiredNominations as $mode => $count) {
-                            if ($currentNominations[$mode] > $count) {
-                                throw new InvariantException(trans('beatmaps.nominations.too_many'));
-                            }
-
-                            if ($currentNominations[$mode] === $count) {
-                                $modesSatisfied++;
-                            }
-                        }
-                        if ($modesSatisfied >= $this->playmodeCount()) {
-                            $this->qualify($user);
-                        } else {
-                            (new BeatmapsetNominate($this, $user))->dispatch();
-                        }
-                    } else {
-                        if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
-                            $this->qualify($user);
-                        } else {
-                            (new BeatmapsetNominate($this, $user))->dispatch();
-                        }
-                    }
-                    $this->refreshCache();
+            $nomination = $this->nominationsSinceReset()->where('user_id', $user->user_id);
+            if (!$nomination->exists()) {
+                $event = [
+                    'type' => BeatmapsetEvent::NOMINATE,
+                    'user_id' => $user->user_id,
+                ];
+                if ($playmodes !== null) {
+                    $event['comment'] = ['modes' => $playmodes];
                 }
-            });
+                $this->events()->create($event);
+
+                if ($this->isHybridNominationMode()) {
+                    $currentNominations = $this->currentNominationCount();
+                    $requiredNominations = $this->requiredNominationCount();
+                    $modesSatisfied = 0;
+                    foreach ($requiredNominations as $mode => $count) {
+                        if ($currentNominations[$mode] > $count) {
+                            throw new InvariantException(trans('beatmaps.nominations.too_many'));
+                        }
+
+                        if ($currentNominations[$mode] === $count) {
+                            $modesSatisfied++;
+                        }
+                    }
+                    if ($modesSatisfied >= $this->playmodeCount()) {
+                        $this->getConnection()->transaction(function () use ($user) {
+                            return static::lockForUpdate()->find($this->getKey())->qualify($user);
+                        });
+                        $this->refresh();
+                    } else {
+                        (new BeatmapsetNominate($this, $user))->dispatch();
+                    }
+                } else {
+                    if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
+                        $qualified = $this->getConnection()->transaction(function () use ($user) {
+                            return static::lockForUpdate()->find($this->getKey())->qualify($user);
+                        });
+                        $this->refresh();
+                    }
+
+                    if (!($qualified ?? false)) {
+                        (new BeatmapsetNominate($this, $user))->dispatch();
+                    }
+                }
+            }
+
+            $this->refreshCache();
 
             return [
                 'result' => true,

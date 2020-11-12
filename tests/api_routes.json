@@ -808,6 +808,18 @@
         "scopes": []
     },
     {
+        "uri": "api/v2/oauth/tokens/current",
+        "method": "DELETE",
+        "controller": "App\\Http\\Controllers\\OAuth\\TokensController@destroyCurrent",
+        "middlewares": [
+            "require-scopes",
+            "require-scopes:any"
+        ],
+        "scopes": [
+            "any"
+        ]
+    },
+    {
         "uri": "api/v2/news",
         "method": "GET",
         "controller": "App\\Http\\Controllers\\NewsController@index",
@@ -1052,6 +1064,24 @@
         "scopes": [
             "public"
         ]
+    },
+    {
+        "uri": "api/v2/users",
+        "method": "GET",
+        "controller": "App\\Http\\Controllers\\UsersController@index",
+        "middlewares": [
+            "require-scopes"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/users",
+        "method": "HEAD",
+        "controller": "App\\Http\\Controllers\\UsersController@index",
+        "middlewares": [
+            "require-scopes"
+        ],
+        "scopes": []
     },
     {
         "uri": "api/v2/wiki/{page?}",

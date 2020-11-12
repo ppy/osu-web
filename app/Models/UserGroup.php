@@ -21,6 +21,7 @@ class UserGroup extends Model
     protected $primaryKeys = ['user_id', 'group_id'];
     protected $casts = [
         'playmodes' => 'array',
+        'user_pending' => 'boolean',
     ];
 
     public function group()

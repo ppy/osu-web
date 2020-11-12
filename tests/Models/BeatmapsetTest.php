@@ -80,7 +80,7 @@ class BeatmapsetTest extends TestCase
         $this->fillNominationsExceptLast($beatmapset, 'bng');
 
         $nominator = factory(User::class)->create();
-        $nominator->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng_limited')->getKey()]);
+        $nominator->addToGroup(app('groups')->byIdentifier('bng_limited'));
 
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
         $beatmapset->nominate($nominator);
@@ -93,7 +93,7 @@ class BeatmapsetTest extends TestCase
         $this->fillNominationsExceptLast($beatmapset, 'nat');
 
         $nominator = factory(User::class)->create();
-        $nominator->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng_limited')->getKey()]);
+        $nominator->addToGroup(app('groups')->byIdentifier('bng_limited'));
 
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
         $beatmapset->nominate($nominator);
@@ -106,7 +106,7 @@ class BeatmapsetTest extends TestCase
         $this->fillNominationsExceptLast($beatmapset, 'bng_limited');
 
         $nominator = factory(User::class)->create();
-        $nominator->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng_limited')->getKey()]);
+        $nominator->addToGroup(app('groups')->byIdentifier('bng_limited'));
 
         $this->assertFalse($beatmapset->isQualified());
         $beatmapset->nominate($nominator);
@@ -119,7 +119,7 @@ class BeatmapsetTest extends TestCase
             'language_id' => Language::UNSPECIFIED,
         ]);
         $nominator = factory(User::class)->create();
-        $nominator->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng')->getKey()]);
+        $nominator->addToGroup(app('groups')->byIdentifier('bng'));
 
         $this->expectException(AuthorizationException::class);
         $this->expectExceptionMessage(trans('authorization.beatmap_discussion.nominate.set_metadata'));
@@ -419,7 +419,7 @@ class BeatmapsetTest extends TestCase
     private function fillNominationsExceptLast(Beatmapset $beatmapset, string $group)
     {
         $user = factory(User::class)->create();
-        $user->userGroups()->create(['group_id' => app('groups')->byIdentifier($group)->getKey()]);
+        $user->addToGroup(app('groups')->byIdentifier($group));
         $beatmapset->nominate($user);
 
         $count = $beatmapset->requiredNominationCount() - $beatmapset->currentNominationCount() - 1;
