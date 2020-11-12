@@ -177,13 +177,13 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   onChange = (value: SlateElement[]) => {
+    // prevent document from becoming empty (and invalid) - ideally this would be handled in `withNormalization`, but that isn't run on every change
+    if (value.length === 0) {
+      value = this.emptyDocTemplate;
+    }
+
     if (!this.props.editMode) {
       const content = JSON.stringify(value);
-
-      // prevent document from becoming empty (and invalid) - ideally this would be handled in `withNormalization`, but that isn't run on every change
-      if (value.length === 0) {
-        value = this.emptyDocTemplate;
-      }
 
       if (slateDocumentIsEmpty(value)) {
         localStorage.removeItem(this.localStorageKey);
