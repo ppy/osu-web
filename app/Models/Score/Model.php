@@ -10,6 +10,7 @@ use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
 use App\Models\User;
 use App\Traits\Scoreable;
+use App\Libraries\ModsHelper;
 
 /**
  * @property Beatmap $beatmap
@@ -100,6 +101,22 @@ abstract class Model extends BaseModel
     {
         return $query->whereHas('user', function ($userQuery) {
             $userQuery->default();
+        });
+    }
+
+    public function scopeWithMods($query, $modsArray)
+    {
+        return $query->where(function ($q) use ($modsArray) {
+            $bitset = ModsHelper::toBitset($modsArray);
+            $preferenceMask = ~ModsHelper::PREFERENCE_MODS_BITSET;
+
+            if (in_array('NM', $modsArray, true)) {
+                $q->orWhereRaw('enabled_mods & ? = 0', [$preferenceMask]);
+            }
+
+            if ($bitset > 0) {
+                $q->orWhereRaw('enabled_mods & ? = ?', [$preferenceMask | $bitset, $bitset]);
+            }
         });
     }
 
