@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { action, computed, observable } from 'mobx';
-import { getValidName, Name as NotificationTypeName } from 'models/notification-type';
+import NotificationType, { getValidName, Name as NotificationTypeName, typeNames } from 'models/notification-type';
 import { NotificationContextData } from 'notifications-context';
 import NotificationStackStore from 'stores/notification-stack-store';
 import NotificationStore from 'stores/notification-store';
@@ -11,6 +11,7 @@ export default class NotificationController {
   @observable currentFilter: NotificationTypeName;
 
   private store: NotificationStackStore;
+  private readonly typeNamesWithoutNull = typeNames.filter((name) => !(name == null || this.isExcluded(name)));
 
   @computed
   get stacks() {
@@ -39,6 +40,16 @@ export default class NotificationController {
     this.store = contextType.isWidget ? notificationStore.unreadStacks : notificationStore.stacks;
   }
 
+  getTotal(type: NotificationType) {
+    if (type.name == null) {
+      return this.typeNamesWithoutNull.reduce((acc, current) => {
+        return acc + this.store.getOrCreateType({ objectType: current }).total;
+      }, 0);
+    }
+
+    return type.total;
+  }
+
   @action
   loadMore() {
     this.type?.loadMore(this.contextType);
@@ -65,5 +76,9 @@ export default class NotificationController {
 
       Turbolinks.controller.advanceHistory(href);
     }
+  }
+
+  private isExcluded(name: NotificationTypeName) {
+    return this.contextType.excludes.includes(name);
   }
 }

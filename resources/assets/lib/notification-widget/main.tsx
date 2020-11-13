@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import NotificationStack from 'models/notification-stack';
-import NotificationType, { Name, typeNames } from 'models/notification-type';
+import { Name, typeNames } from 'models/notification-type';
 import { NotificationContext } from 'notifications-context';
 import LegacyPm from 'notifications/legacy-pm';
 import NotificationController from 'notifications/notification-controller';
@@ -46,7 +46,11 @@ export default class Main extends React.Component<Props, State> {
     hasError: false,
   };
 
-  private readonly controller = new NotificationController(core.dataStore.notificationStore, { isWidget: true }, this.props.only ?? null);
+  private readonly controller = new NotificationController(
+    core.dataStore.notificationStore,
+    { excludes: this.props.excludes, isWidget: true },
+    this.props.only ?? null,
+  );
   private readonly typeNames = typeNames.filter((name) => !this.isExcluded(name));
   private readonly typeNamesWithoutNull = this.typeNames.filter((name) => name != null);
 
@@ -67,7 +71,7 @@ export default class Main extends React.Component<Props, State> {
     const blockClass = `notification-popup u-fancy-scrollbar ${this.props.extraClasses ?? ''}`;
 
     return (
-      <NotificationContext.Provider value={{ isWidget: true }}>
+      <NotificationContext.Provider value={{ excludes: this.props.excludes, isWidget: true }}>
         <div className={blockClass}>
           <div className='notification-popup__scroll-container'>
             {this.renderFilters()}
@@ -86,16 +90,6 @@ export default class Main extends React.Component<Props, State> {
         </div>
       </NotificationContext.Provider>
     );
-  }
-
-  private getTotal(type: NotificationType) {
-    if (type.name == null) {
-      return this.typeNamesWithoutNull.reduce((acc, current) => {
-        return acc + core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: current }).total;
-      }, 0);
-    }
-
-    return type.total;
   }
 
   private handleFilterClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -142,7 +136,7 @@ export default class Main extends React.Component<Props, State> {
         onClick={this.handleFilterClick}
         {...data}
       >
-        <span className='notification-popup__filter-count'>{this.getTotal(type)}</span>
+        <span className='notification-popup__filter-count'>{this.controller.getTotal(type)}</span>
         <span>{link.title}</span>
       </button>
     );
