@@ -49,7 +49,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             'covers' => $beatmapset->allCoverURLs(),
             'creator' => $beatmapset->creator,
             'favourite_count' => $beatmapset->favourite_count,
-            'hype' => in_array($beatmapset->status(), ['wip', 'pending', 'qualified']) ? [
+            'hype' => in_array($beatmapset->status(), ['wip', 'pending', 'qualified'], true) ? [
                 'current' => $beatmapset->hype,
                 'required' => $beatmapset->requiredHype(),
             ] : null,
