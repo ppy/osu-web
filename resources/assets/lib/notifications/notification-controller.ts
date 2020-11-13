@@ -57,6 +57,16 @@ export default class NotificationController {
     this.type?.loadMore(this.contextType);
   }
 
+  markAsRead() {
+    if (this.type.name == null) {
+      for (const name of this.typeNamesWithoutNull) {
+        this.store.getOrCreateType({ objectType: name }).markTypeAsRead();
+      }
+    } else {
+      this.type.markTypeAsRead();
+    }
+  }
+
   @action
   navigateTo(type: NotificationTypeName) {
     this.currentFilter = type;

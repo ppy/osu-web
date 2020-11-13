@@ -50,8 +50,7 @@ export default class Main extends React.Component<Props, State> {
     { excludes: this.props.excludes, isWidget: true },
     this.props.only ?? null,
   );
-  private readonly typeNames = typeNames.filter((name) => !this.isExcluded(name));
-  private readonly typeNamesWithoutNull = this.typeNames.filter((name) => name != null);
+  private readonly typeNames = typeNames.filter((name) => !this.props.excludes.includes(name));
 
   @computed
   get links() {
@@ -97,22 +96,11 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private handleMarkAsRead = () => {
-    const type = this.controller.type;
-    if (type.name == null) {
-      for (const name of this.typeNamesWithoutNull) {
-        core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: name }).markTypeAsRead();
-      }
-    } else {
-      type.markTypeAsRead();
-    }
+    this.controller.markAsRead();
   }
 
   private handleShowMore = () => {
     this.controller.loadMore();
-  }
-
-  private isExcluded(name: Name) {
-    return this.props.excludes.includes(name);
   }
 
   private renderFilter = (link: Link) => {
