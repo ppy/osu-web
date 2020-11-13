@@ -15,7 +15,9 @@ export default class NotificationController {
 
   @computed
   get stacks() {
-    return this.store.orderedStacksOfType(this.currentFilter);
+    return this.store.orderedStacksOfType(this.currentFilter).filter((stack) => {
+      return stack.hasVisibleNotifications && !this.isExcluded(stack.objectType);
+    });
   }
 
   @computed

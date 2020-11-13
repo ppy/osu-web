@@ -5,7 +5,6 @@ import { route } from 'laroute';
 import * as _ from 'lodash';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
-import NotificationStack from 'models/notification-stack';
 import { Name, typeNames } from 'models/notification-type';
 import { NotificationContext } from 'notifications-context';
 import LegacyPm from 'notifications/legacy-pm';
@@ -116,10 +115,6 @@ export default class Main extends React.Component<Props, State> {
     return this.props.excludes.includes(name);
   }
 
-  private isStackVisible(stack: NotificationStack) {
-    return !this.isExcluded(stack.objectType) && stack.hasVisibleNotifications;
-  }
-
   private renderFilter = (link: Link) => {
     const type = core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: link.type });
     const isSameFilter = link.type === this.controller.currentFilter;
@@ -199,12 +194,9 @@ export default class Main extends React.Component<Props, State> {
       return;
     }
 
-    const nodes: React.ReactNode[] = [];
-    for (const stack of this.controller.stacks) {
-      if (!this.isStackVisible(stack)) continue;
-
-      nodes.push(<Stack key={stack.id} stack={stack} />);
-    }
+    const nodes = this.controller.stacks.map((stack) => {
+      return <Stack key={stack.id} stack={stack} />;
+    });
 
     if (nodes.length === 0) {
       const transKey = this.controller.currentFilter == null ? 'notifications.all_read' : 'notifications.none';
