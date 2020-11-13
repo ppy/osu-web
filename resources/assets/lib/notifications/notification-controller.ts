@@ -61,6 +61,7 @@ export default class NotificationController {
     this.type?.loadMore(this.contextType);
   }
 
+  @action
   markCurrentTypeAsRead() {
     if (this.type.name == null) {
       for (const name of this.typeNamesWithoutNull) {

@@ -261,6 +261,7 @@ export default class NotificationStackStore implements DispatchListener {
       this.allType.removeStack(stack);
     });
 
+    type.total = 0;
     this.types.delete(type.name);
   }
 
