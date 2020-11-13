@@ -96,7 +96,7 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private handleMarkAsRead = () => {
-    this.controller.markAsRead();
+    this.controller.markCurrentTypeAsRead();
   }
 
   private handleShowMore = () => {
@@ -104,7 +104,7 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private renderFilter = (link: Link) => {
-    const type = core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: link.type });
+    const type = this.controller.getType(link.type);
     const isSameFilter = link.type === this.controller.currentFilter;
 
     if (type.name !== null && type.isEmpty && !isSameFilter) return null;

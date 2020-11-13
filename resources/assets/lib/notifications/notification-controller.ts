@@ -52,12 +52,16 @@ export default class NotificationController {
     return type.total;
   }
 
+  getType(name: NotificationTypeName) {
+    return this.store.getOrCreateType({ objectType: name });
+  }
+
   @action
   loadMore() {
     this.type?.loadMore(this.contextType);
   }
 
-  markAsRead() {
+  markCurrentTypeAsRead() {
     if (this.type.name == null) {
       for (const name of this.typeNamesWithoutNull) {
         this.store.getOrCreateType({ objectType: name }).markTypeAsRead();

@@ -107,7 +107,7 @@ export class Main extends React.Component {
   }
 
   private handleMarkAsRead = () => {
-    this.controller.type.markTypeAsRead();
+    this.controller.markCurrentTypeAsRead();
   }
 
   private handleShowMore = () => {
