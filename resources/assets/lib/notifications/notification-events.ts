@@ -41,7 +41,6 @@ export interface NotificationEventVerifiedJson {
   event: 'verified';
 }
 
-
 export class NotificationEventMoreLoaded extends DispatcherAction {
   constructor(readonly data: NotificationBundleJson, readonly context: NotificationEventMoreLoadedContext) {
     super();
