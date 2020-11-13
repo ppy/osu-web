@@ -6,11 +6,11 @@
 namespace App\Models\Score;
 
 use App\Exceptions\ClassNotFoundException;
+use App\Libraries\ModsHelper;
 use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
 use App\Models\User;
 use App\Traits\Scoreable;
-use App\Libraries\ModsHelper;
 
 /**
  * @property Beatmap $beatmap
@@ -118,6 +118,13 @@ abstract class Model extends BaseModel
                 $q->orWhereRaw('enabled_mods & ? = ?', [$preferenceMask | $bitset, $bitset]);
             }
         });
+    }
+
+    public function scopeWithoutMods($query, $modsArray)
+    {
+        $bitset = ModsHelper::toBitset($modsArray);
+
+        return $query->whereRaw('enabled_mods & ? = 0', $bitset);
     }
 
     public function beatmap()
