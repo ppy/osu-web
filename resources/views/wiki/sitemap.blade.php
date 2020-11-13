@@ -2,6 +2,10 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    $sitemapUrl = route('wiki.sitemap', ['locale' => $locale]);
+@endphp
+
 @extends('master', [
     'titlePrepend' => trans('layout.header.help.sitemap'),
 ])
@@ -15,7 +19,7 @@
             ],
             [
                 'title' => trans('layout.header.help.sitemap'),
-                'url' => route('wiki.sitemap'),
+                'url' => $sitemapUrl,
             ],
         ],
         'linksBreadcrumb' => true,
@@ -30,7 +34,7 @@
                             type="button"
                             class="btn-osu-big btn-osu-big--rounded-thin"
                             data-remote="true"
-                            data-url="{{ route('wiki.sitemap') }}"
+                            data-url="{{ $sitemapUrl }}"
                             data-method="PUT"
                             title="{{ trans('wiki.show.edit.refresh') }}"
                         >
@@ -38,6 +42,15 @@
                         </button>
                     </div>
                 @endif
+
+                <div class="header-buttons__item">
+                    @include('wiki._locale_menu', [
+                        'contentLocale' => $locale,
+                        'displayLocale' => $locale,
+                        'otherLocales' => config('app.available_locales'),
+                        'path' => 'Sitemap',
+                    ])
+                </div>
             </div>
         @endslot
     @endcomponent
@@ -45,11 +58,7 @@
     <div class="osu-page osu-page--generic">
         <h1>{{ trans('layout.header.help.sitemap') }}</h1>
         <div class="osu-md">
-            <ul class="osu-md__list">
-                @foreach ($sitemap as $key => $value)
-                    @include('wiki._sitemap_section', ['section' => $key, 'sitemap' => $value, 'titles' => $titles])
-                @endforeach
-            </ul>
+            @include('wiki._sitemap_section', $sitemap)
         </div>
     </div>
 @endsection

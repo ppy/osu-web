@@ -883,21 +883,31 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     return $url;
 }
 
-function wiki_url($page = 'Main_Page', $locale = null, $api = null)
+function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
 {
     // FIXME: remove `rawurlencode` workaround when fixed upstream.
     // Reference: https://github.com/laravel/framework/issues/26715
-    $params = ['page' => str_replace('%2F', '/', rawurlencode($page))];
-
-    if (present($locale) && $locale !== App::getLocale()) {
-        $params['locale'] = $locale;
-    }
+    $params = [
+        'path' => $path === null ? 'Main_Page' : str_replace('%2F', '/', rawurlencode($path)),
+        'locale' => $locale ?? App::getLocale(),
+    ];
 
     if ($api ?? is_api_request()) {
-        return route('api.wiki.show', $params);
+        return route('api.wiki.show', $params, $fullUrl);
     }
 
-    return route('wiki.show', $params);
+    if ($params['path'] === 'Sitemap') {
+        return route('wiki.sitemap', $params['locale'], $fullUrl);
+    }
+
+    if (starts_with("{$params['path']}/", 'Legal/')) {
+        $params['path'] = ltrim(substr($params['path'], strlen('Legal')), '/');
+        $route = 'legal';
+    } else {
+        $route = 'wiki.show';
+    }
+
+    return route($route, $params, $fullUrl);
 }
 
 function bbcode($text, $uid, $options = [])
@@ -908,6 +918,11 @@ function bbcode($text, $uid, $options = [])
 function bbcode_for_editor($text, $uid = null)
 {
     return (new App\Libraries\BBCodeFromDB($text, $uid))->toEditor();
+}
+
+function concat_path($paths)
+{
+    return implode('/', array_filter($paths, 'present'));
 }
 
 function proxy_media($url)
@@ -1015,10 +1030,12 @@ function footer_landing_links()
 
 function footer_legal_links()
 {
+    $locale = app()->getLocale();
+
     return [
-        'terms' => route('legal', 'terms'),
-        'privacy' => route('legal', 'privacy'),
-        'copyright' => route('legal', 'copyright'),
+        'terms' => route('legal', ['locale' => $locale, 'path' => 'Terms']),
+        'privacy' => route('legal', ['locale' => $locale, 'path' => 'Privacy']),
+        'copyright' => route('legal', ['locale' => $locale, 'path' => 'Copyright']),
         'server_status' => osu_url('server_status'),
         'source_code' => osu_url('source_code'),
     ];
