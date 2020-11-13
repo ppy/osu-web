@@ -630,72 +630,89 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return true;
     }
 
-    public function nominate(User $user, $playmodes = null)
+    public function nominate(User $user, array $playmodes = [])
     {
-        if (!$this->isPending()) {
-            $message = trans('beatmaps.nominations.incorrect_state');
-        }
-
-        if ($this->hype < $this->requiredHype()) {
-            $message = trans('beatmaps.nominations.not_enough_hype');
-        }
-
-        // check if there are any outstanding issues still
-        if ($this->beatmapDiscussions()->openIssues()->count() > 0) {
-            $message = trans('beatmaps.nominations.unresolved_issues');
-        }
-
-        // ensure each playmode has at least one "full" nominator
-        if (!$this->isHybridNominationMode()) {
-            $playmodes = null;
-            if (!$user->isFullBN() && !$user->isNAT()) {
-                if ($this->requiresFullBNNomination(null)) {
-                    $message = trans('beatmapsets.nominate.full_bn_required');
-                }
+        try {
+            if (!$this->isPending()) {
+                throw new InvariantException(trans('beatmaps.nominations.incorrect_state'));
             }
-        } else {
-            if (!is_array($playmodes) || empty($playmodes)) {
-                $message = trans('beatmapsets.nominate.hybrid_requires_modes');
+
+            if ($this->hype < $this->requiredHype()) {
+                throw new InvariantException(trans('beatmaps.nominations.not_enough_hype'));
+            }
+
+            // check if there are any outstanding issues still
+            if ($this->beatmapDiscussions()->openIssues()->count() > 0) {
+                throw new InvariantException(trans('beatmaps.nominations.unresolved_issues'));
+            }
+
+            if ($this->isLegacyHybridNominationMode()) {
+                // in legacy mode, we check if a user can nominate for _any_ of the beatmapset's playmodes
+                $canNominate = false;
+                $canFullNominate = false;
+                foreach ($this->playmodesStr() as $mode) {
+                    if ($user->isFullBN($mode) || $user->isNAT($mode)) {
+                        $canNominate = true;
+                        $canFullNominate = true;
+                    } else if ($user->isLimitedBN($mode)) {
+                        $canNominate = true;
+                    }
+                }
+
+                if (!$canNominate) {
+                    throw new InvariantException(trans('beatmapsets.nominate.incorrect_mode', ['mode' => implode(', ', $this->playmodesStr())]));
+                }
+
+                if (!$canFullNominate && $this->requiresFullBNNomination()) {
+                    throw new InvariantException(trans('beatmapsets.nominate.full_bn_required'));
+                }
             } else {
-                $playmodes = array_values(array_intersect($this->playmodesStr(), $playmodes));
+                if ($this->isHybridNominationMode()) {
+                    if (empty($playmodes)) {
+                        throw new InvariantException(trans('beatmapsets.nominate.hybrid_requires_modes'));
+                    }
+
+                    $playmodes = array_values(array_intersect($this->playmodesStr(), $playmodes));
+                } else {
+                    // if we're not in hybrid or legacy nomination mode, force playmodes to match the BeatmapSet's
+                    $playmodes = $this->playmodesStr();
+                }
+
                 foreach ($playmodes as $mode) {
                     if (!$user->isFullBN($mode) && !$user->isNAT($mode)) {
                         if (!$user->isLimitedBN($mode)) {
-                            $message = trans('beatmapsets.nominate.incorrect_mode', ['mode' => $mode]);
-                            break;
+                            throw new InvariantException(trans('beatmapsets.nominate.incorrect_mode', ['mode' => $mode]));
                         }
 
                         if ($this->requiresFullBNNomination($mode)) {
-                            $message = trans('beatmapsets.nominate.full_bn_required');
-                            break;
+                            throw new InvariantException(trans('beatmapsets.nominate.full_bn_required'));
                         }
                     }
                 }
             }
-        }
 
-        if (isset($message)) {
-            return [
-                'result' => false,
-                'message' => $message,
-            ];
-        }
-
-        try {
             $nomination = $this->nominationsSinceReset()->where('user_id', $user->user_id);
             if (!$nomination->exists()) {
                 $event = [
                     'type' => BeatmapsetEvent::NOMINATE,
                     'user_id' => $user->user_id,
                 ];
-                if ($playmodes !== null) {
+                if ($this->isHybridNominationMode()) {
                     $event['comment'] = ['modes' => $playmodes];
                 }
                 $this->events()->create($event);
 
-                if ($this->isHybridNominationMode()) {
-                    $currentNominations = $this->currentNominationCount();
-                    $requiredNominations = $this->requiredNominationCount();
+                if ($this->isLegacyHybridNominationMode()) {
+                    $shouldQualify = $this->currentNominationCount() >= $this->requiredNominationCount();
+                } else {
+                    if ($this->isHybridNominationMode()) {
+                        $currentNominations = $this->currentNominationCount();
+                        $requiredNominations = $this->requiredNominationCount();
+                    } else {
+                        $currentNominations = [$this->playmodesStr()[0] => $this->currentNominationCount()];
+                        $requiredNominations = [$this->playmodesStr()[0] => $this->requiredNominationCount()];
+                    }
+
                     $modesSatisfied = 0;
                     foreach ($requiredNominations as $mode => $count) {
                         if ($currentNominations[$mode] > $count) {
@@ -706,25 +723,16 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                             $modesSatisfied++;
                         }
                     }
-                    if ($modesSatisfied >= $this->playmodeCount()) {
-                        $this->getConnection()->transaction(function () use ($user) {
-                            return static::lockForUpdate()->find($this->getKey())->qualify($user);
-                        });
-                        $this->refresh();
-                    } else {
-                        (new BeatmapsetNominate($this, $user))->dispatch();
-                    }
-                } else {
-                    if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
-                        $qualified = $this->getConnection()->transaction(function () use ($user) {
-                            return static::lockForUpdate()->find($this->getKey())->qualify($user);
-                        });
-                        $this->refresh();
-                    }
+                    $shouldQualify = $modesSatisfied >= $this->playmodeCount();
+                }
 
-                    if (!($qualified ?? false)) {
-                        (new BeatmapsetNominate($this, $user))->dispatch();
-                    }
+                if ($shouldQualify) {
+                    $this->getConnection()->transaction(function () use ($user) {
+                        return static::lockForUpdate()->find($this->getKey())->qualify($user);
+                    });
+                    $this->refresh();
+                } else {
+                    (new BeatmapsetNominate($this, $user))->dispatch();
                 }
             }
 
@@ -993,6 +1001,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return $this->nominationsSinceReset()->whereNull('comment')->exists();
     }
 
+    public function isLegacyHybridNominationMode()
+    {
+        return $this->playmodeCount() > 1 && $this->hasLegacyNominations();
+    }
+
     public function isHybridNominationMode()
     {
         return $this->playmodeCount() > 1 && !$this->hasLegacyNominations();
@@ -1084,7 +1097,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             });
     }
 
-    public function requiresFullBNNomination($mode)
+    public function requiresFullBNNomination($mode = null)
     {
         if (!$this->isHybridNominationMode()) {
             return $this->currentNominationCount() === $this->requiredNominationCount() - 1
@@ -1302,7 +1315,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     {
         return $this->update([
             'hype' => $this->freshHype(),
-            'nominations' => $this->isHybridSet() && !$this->hasLegacyNominations() ? array_sum(array_values($this->currentNominationCount())) : $this->currentNominationCount(),
+            'nominations' => $this->isHybridNominationMode() ? array_sum(array_values($this->currentNominationCount())) : $this->currentNominationCount(),
         ]);
     }
 
