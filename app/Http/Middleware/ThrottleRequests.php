@@ -9,6 +9,11 @@ use Illuminate\Routing\Middleware\ThrottleRequests as ThrottleRequestsBase;
 
 class ThrottleRequests extends ThrottleRequestsBase
 {
+    public static function getApiThrottle($group = 'global')
+    {
+        return 'throttle:'.config("osu.api.throttle.{$group}").':';
+    }
+
     protected function resolveRequestSignature($request)
     {
         $token = oauth_token();
