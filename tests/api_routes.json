@@ -614,9 +614,12 @@
         "middlewares": [
             "throttle:1200,1,api:",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/scores/{mode}/{score}/download",
@@ -625,9 +628,36 @@
         "middlewares": [
             "throttle:1200,1,api:",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/scores/{mode}/{score}",
+        "method": "GET",
+        "controller": "App\\Http\\Controllers\\ScoresController@show",
+        "middlewares": [
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/scores/{mode}/{score}",
+        "method": "HEAD",
+        "controller": "App\\Http\\Controllers\\ScoresController@show",
+        "middlewares": [
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/beatmaps/{id}/scores",
