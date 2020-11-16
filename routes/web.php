@@ -386,7 +386,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::apiResource('seasonal-backgrounds', 'SeasonalBackgroundsController', ['only' => ['index']]);
 
         Route::group(['prefix' => 'scores/{mode}', 'as' => 'scores.'], function () {
-            Route::get('{score}/download', 'ScoresController@download')->name('download');
+            Route::get('{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download');
             Route::get('{score}', 'ScoresController@show')->name('show');
         });
 

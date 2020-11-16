@@ -614,6 +614,7 @@
         "middlewares": [
             "throttle:1200,1,api:",
             "require-scopes",
+            "throttle:10,1,api-scores-download:",
             "auth",
             "require-scopes:public"
         ],
@@ -628,6 +629,7 @@
         "middlewares": [
             "throttle:1200,1,api:",
             "require-scopes",
+            "throttle:10,1,api-scores-download:",
             "auth",
             "require-scopes:public"
         ],
@@ -640,6 +642,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\ScoresController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -652,6 +655,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\ScoresController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
