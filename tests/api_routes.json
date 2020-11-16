@@ -922,6 +922,7 @@
         "method": "DELETE",
         "controller": "App\\Http\\Controllers\\OAuth\\TokensController@destroyCurrent",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:any"
         ],
@@ -1201,6 +1202,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\UsersController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []
@@ -1210,6 +1212,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\UsersController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []
