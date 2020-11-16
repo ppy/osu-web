@@ -53,6 +53,10 @@ class RequireScopes
             throw new MissingScopeException(['*'], '* is not allowed with Client Credentials');
         }
 
+        if (in_array('chat.write', $token->scopes, true) && optional($token->user)->isBot() ?? false) {
+            throw new MissingScopeException(['chat.write'], 'Only available to chat bots.');
+        }
+
         if (!$this->requestHasScopedMiddleware(request())) {
             // use a non-existent scope; only '*' should pass.
             if (!$token->can('invalid')) {
