@@ -118,8 +118,6 @@
   }
 
   &__body-row {
-    height: @row-height;
-
     // @passive-row
     &--highlightable {
       .@{_top}--menu-active & {
@@ -129,6 +127,8 @@
   }
 
   &__cell {
+    height: @row-height;
+
     &:first-child {
       // rounded corners for left side
       border-top-left-radius: 5px;
@@ -140,42 +140,6 @@
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
       padding-right: 10px;
-    }
-
-    &--grade {
-      width: 100%;
-      height: @row-height;
-      .center-content();
-    }
-
-    &--mods {
-      padding-left: 5px;
-      width: 1%; // don't let the column expand unless required
-    }
-
-    &--perfect {
-      .cell-color(hsl(@beatmap-score--hsl-perfect), hsl(@beatmap-score--hsl-perfect));
-    }
-
-    &--rank {
-      font-weight: 700;
-      text-align: right;
-    }
-
-    &--score {
-      padding-right: 10px;
-
-      .@{_top}__body-row--first & {
-        font-weight: 700;
-      }
-    }
-
-    &--time {
-      white-space: nowrap;
-    }
-
-    &--zero {
-      color: fade(#fff, 40%);
     }
 
     // when row is selected
@@ -207,6 +171,56 @@
     .row-color(@self-row, fade(@green-dark, 30%));
   }
 
+  &__cell-content {
+    .link-white();
+    .link-plain();
+    display: flex;
+    height: @row-height;
+    align-items: center;
+
+    &--grade {
+      width: 100%;
+      .center-content();
+    }
+
+    &--mods {
+      padding-left: 5px;
+      width: 1%; // don't let the column expand unless required
+    }
+
+    &--perfect {
+      .cell-color(hsl(@beatmap-score--hsl-perfect), hsl(@beatmap-score--hsl-perfect));
+    }
+
+    &--rank {
+      font-weight: 700;
+      justify-content: flex-end;
+    }
+
+    &--score {
+      padding-right: 10px;
+
+      .@{_top}__body-row--first & {
+        font-weight: 700;
+      }
+    }
+
+    &--time {
+      white-space: nowrap;
+    }
+
+    &--user-link {
+      .link-inverted();
+      .link-hover({
+        text-decoration: underline;
+      });
+    }
+
+    &--zero {
+      color: fade(#fff, 40%);
+    }
+  }
+
   &__mods {
     display: flex;
     --mod-height: @mod-height-small;
@@ -230,14 +244,5 @@
     .@{passive-row}:hover & {
       opacity: 1;
     }
-  }
-
-  &__rank {
-    .link-white();
-    .link-plain();
-  }
-
-  &__user-link {
-    .link-inverted();
   }
 }
