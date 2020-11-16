@@ -168,7 +168,7 @@ class TestCase extends BaseTestCase
     protected function createAllowedScopesDataProvider(array $allowedScopes)
     {
         $data = Passport::scopes()->pluck('id')->map(function ($scope) use ($allowedScopes) {
-            return [[$scope], in_array($scope, $allowedScopes)];
+            return [[$scope], in_array($scope, $allowedScopes, true)];
         })->all();
 
         // scopeless tokens should fail in general.
