@@ -4,7 +4,7 @@
 --}}
 
 
-<div class="beatmap-pack-download">
+<div class="beatmap-pack-description">
     @if(Auth::check())
         <a href="{{ $pack->url }}"
             class="beatmap-pack-download__link">{{ trans('beatmappacks.show.download') }}</a>
@@ -12,6 +12,13 @@
         {!! require_login('beatmappacks.require_login._', 'beatmappacks.require_login.link_text') !!}
     @endif
 </div>
+@if ($pack->no_diff_reduction)
+    <div class="beatmap-pack-description">
+        {!! trans('beatmappacks.show.no_diff_reduction._', [
+            'link' => tag('a', ['href' => wiki_url('Game_modifier')], trans('beatmappacks.show.no_diff_reduction.link')),
+        ]) !!}
+    </div>
+@endif
 <ul class="beatmap-pack-items">
     @foreach ($sets as $set)
         @php

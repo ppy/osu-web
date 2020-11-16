@@ -11,6 +11,18 @@ use App\Models\UserProfileCustomization;
 
 class UserCompactTransformer extends TransformerAbstract
 {
+    const CARD_INCLUDES = [
+        'country',
+        'cover',
+        'groups',
+    ];
+
+    const CARD_INCLUDES_PRELOAD = [
+        'country',
+        'userGroups',
+        'userProfileCustomization',
+    ];
+
     public $mode;
 
     protected $availableIncludes = [
