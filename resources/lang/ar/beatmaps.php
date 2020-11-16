@@ -187,6 +187,8 @@ return [
         'nominate_confirm' => 'ترشيح هذه الخريطة؟',
         'nominated_by' => 'تم ترشيحها بواسطة :users',
         'not_enough_hype' => "لا يوجد تشجيع كافي.",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'الترشيحات: :current/:required',
         'reset_message_deleted' => 'حُذفت',
         'title' => 'حالة الترشيح',

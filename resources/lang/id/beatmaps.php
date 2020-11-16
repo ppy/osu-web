@@ -187,15 +187,17 @@ return [
         'nominate_confirm' => 'Nominasikan beatmap ini?',
         'nominated_by' => 'dinominasikan oleh :users',
         'not_enough_hype' => "Beatmap tidak memiliki hype yang cukup.",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Nominasi: :current/:required',
         'reset_message_deleted' => 'dihapus',
         'title' => 'Status Nominasi',
-        'unresolved_issues' => 'Masih ada masalah yang belum terselesaikan yang harus ditangani terlebih dahulu.',
+        'unresolved_issues' => 'Terdapat satu atau lebih masalah yang belum terjawab dan harus ditangani terlebih dahulu.',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
-            'soon' => '',
+            '_' => 'Map ini akan berstatus Ranked pada :date apabila tidak terdapat masalah baru yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue.',
+            'queue' => 'antrian ranking',
+            'soon' => 'segera',
         ],
 
         'reset_at' => [

@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\Forum\Topic;
 
@@ -93,6 +94,30 @@ class Notification extends Model
         }
 
         return $categories[$category] ?? [$category];
+    }
+
+    public function scopeByIdentity($query, array $params)
+    {
+        $category = $params['category'] ?? null;
+        $objectId = $params['object_id'] ?? null;
+        $objectType = $params['object_type'] ?? null;
+
+        if ($objectType !== null) {
+            $query->where('notifiable_type', $objectType);
+        }
+
+        if ($objectId !== null && $category !== null) {
+            if ($objectType === null) {
+                throw new InvariantException('object_type is required.');
+            }
+
+            $names = Notification::namesInCategory($category);
+            $query
+                ->where('notifiable_id', $objectId)
+                ->whereIn('name', $names);
+        }
+
+        return $query;
     }
 
     public function getCategoryAttribute()

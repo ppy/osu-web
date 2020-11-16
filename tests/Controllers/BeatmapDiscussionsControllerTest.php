@@ -11,8 +11,6 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapDiscussionVote;
 use App\Models\Beatmapset;
 use App\Models\User;
-use App\Models\UserGroup;
-use DB;
 use Faker;
 use Tests\TestCase;
 
@@ -265,7 +263,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->user = factory(User::class)->create();
         $this->anotherUser = factory(User::class)->create();
         $this->bngUser = factory(User::class)->create();
-        $this->bngUserGroup($this->bngUser);
+        $this->bngUser->addToGroup(app('groups')->byIdentifier('bng'));
         $this->beatmapset = factory(Beatmapset::class)->create([
             'user_id' => $this->mapper->user_id,
             'discussion_enabled' => true,
@@ -281,25 +279,5 @@ class BeatmapDiscussionsControllerTest extends TestCase
             'beatmap_id' => $this->beatmap->beatmap_id,
             'user_id' => $this->user->user_id,
         ]);
-    }
-
-    private function bngUserGroup($user)
-    {
-        $table = (new UserGroup())->getTable();
-
-        $conditions = [
-            'user_id' => $user->user_id,
-            'group_id' => app('groups')->byIdentifier('bng')->getKey(),
-        ];
-
-        $existingUserGroup = UserGroup::where($conditions)->first();
-
-        if ($existingUserGroup !== null) {
-            return $existingUserGroup;
-        }
-
-        DB::table($table)->insert($conditions);
-
-        return UserGroup::where($conditions)->first();
     }
 }

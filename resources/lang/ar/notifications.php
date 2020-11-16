@@ -57,6 +57,8 @@ return [
                 'beatmapset_qualify_compact' => 'دخلت الخريطة قائمة التصنيف',
                 'beatmapset_rank' => 'اصبحت ":title" مصنفة',
                 'beatmapset_rank_compact' => 'تم تصنيف الخريطة',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'تم اعادة تعيين ترشيحات ":title"',
                 'beatmapset_reset_nominations_compact' => 'تم اعادة ضبط الترشيح',
             ],
@@ -159,6 +161,7 @@ return [
                 'beatmapset_nominate' => 'اصبحت ":title" مرشحة',
                 'beatmapset_qualify' => '":title" حصلت على ترشيحات كافية ودخلت حالة التصنيف',
                 'beatmapset_rank' => 'اصبحت ":title" مصنفة',
+                'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => 'تم اعادة تعيين ترشيحات ":title"',
             ],
 

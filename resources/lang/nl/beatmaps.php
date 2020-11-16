@@ -187,6 +187,8 @@ return [
         'nominate_confirm' => 'Nomineer deze beatmap?',
         'nominated_by' => 'genomineerd door :gebruikers',
         'not_enough_hype' => "Er is niet genoeg hype.",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Nimonaties: :current/:required',
         'reset_message_deleted' => 'verwijderd',
         'title' => 'Nominatiestatus',

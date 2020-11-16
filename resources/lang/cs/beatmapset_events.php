@@ -28,6 +28,7 @@ return [
         'nomination_reset' => 'Nový problém :discussion (:text) způsobil resetování nominace.',
         'qualify' => 'Tato beatmapa získala požadované množství nominací a byla kvalifikována.',
         'rank' => 'Hodnocené.',
+        'remove_from_loved' => '',
     ],
 
     'index' => [
@@ -66,5 +67,6 @@ return [
         'nomination_reset' => 'Resetování nominací',
         'qualify' => 'Kvalifikace',
         'rank' => 'Hodnocení',
+        'remove_from_loved' => '',
     ],
 ];

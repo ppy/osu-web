@@ -57,6 +57,8 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmap har angett rankingkö',
                 'beatmapset_rank' => '":title" har rankats',
                 'beatmapset_rank_compact' => 'Beatmap rankades',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'Nominering av ":title" har återställts',
                 'beatmapset_reset_nominations_compact' => 'Nominering återställdes',
             ],
@@ -159,6 +161,7 @@ return [
                 'beatmapset_nominate' => '":title" har blivit nominerad',
                 'beatmapset_qualify' => '',
                 'beatmapset_rank' => '":title" har blivit rankad',
+                'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => 'Nominering av ":title" har blivit återställd',
             ],
 

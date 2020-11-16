@@ -7,6 +7,28 @@
 @section('content')
     @include('home._user_header_default', ['themeOverride' => 'settings'])
 
+    <div class="osu-page osu-page--info-bar">
+        <div class="grid-items">
+            <div class="counter-box counter-box--info">
+                <div class="counter-box__title">
+                    {{ trans('beatmapset_watches.index.counts.total') }}
+                </div>
+                <div class="counter-box__count">
+                    {{ i18n_number_format($totalCount) }}
+                </div>
+            </div>
+
+            <div class="counter-box counter-box--info">
+                <div class="counter-box__title">
+                    {{ trans('beatmapset_watches.index.counts.unread') }}
+                </div>
+                <div class="counter-box__count">
+                    {{ i18n_number_format($unreadCount) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="osu-page osu-page--full osu-page--generic">
         <div class="beatmapset-watches">
             <div class="beatmapset-watches__description">

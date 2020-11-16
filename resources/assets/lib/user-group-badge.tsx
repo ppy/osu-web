@@ -9,19 +9,32 @@ interface Props {
   modifiers?: string[];
 }
 
-export default function UserGroupBadge({group, modifiers}: Props) {
+export default function UserGroupBadge({group, modifiers = []}: Props) {
   if (group == null) {
     return null;
   }
 
   const style = osu.groupColour(group);
 
+  const badgeModifiers = [...modifiers];
+  if (group.is_probationary) {
+    badgeModifiers.push('probationary');
+  }
+
+  const playModes: JSX.Element[] = (group.playmodes ?? []).map((mode) => <i className={`fal fa-extra-mode-${mode}`} key={mode} />);
+
   return (
     <div
-      className={osu.classWithModifiers('user-group-badge', modifiers)}
+      className={osu.classWithModifiers('user-group-badge', badgeModifiers)}
       data-label={group.short_name}
       style={style}
       title={group.name}
-    />
+    >
+      {playModes.length > 0 &&
+        <div className={'user-group-badge__modes'}>
+          {playModes}
+        </div>
+      }
+    </div>
   );
 }

@@ -187,6 +187,8 @@ return [
         'nominate_confirm' => 'Nominovať túto beatmapu?',
         'nominated_by' => 'nominované od :users',
         'not_enough_hype' => "",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Nominácie :current/:required',
         'reset_message_deleted' => 'vymazané',
         'title' => 'Stav Nominácie',

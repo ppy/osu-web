@@ -57,6 +57,8 @@ return [
                 'beatmapset_qualify_compact' => '',
                 'beatmapset_rank' => '',
                 'beatmapset_rank_compact' => '',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'Το θέμα που δημοσιεύτηκε από τον χρήστη :username επανέφερε το beatmap ":title" σε κατάσταση προς nomination ',
                 'beatmapset_reset_nominations_compact' => '',
             ],
@@ -159,6 +161,7 @@ return [
                 'beatmapset_nominate' => '',
                 'beatmapset_qualify' => '',
                 'beatmapset_rank' => '',
+                'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => '',
             ],
 
