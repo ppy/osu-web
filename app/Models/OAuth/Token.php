@@ -6,12 +6,28 @@
 namespace App\Models\OAuth;
 
 use App\Events\UserSessionEvent;
+use App\Models\User;
 use Laravel\Passport\RefreshToken;
 use Laravel\Passport\Token as PassportToken;
 
 class Token extends PassportToken
 {
     public $timestamps = true;
+
+    /**
+     * Resource owner for the token.
+     *
+     * For client_credentials grants, this is the client that requested the token;
+     * otherwise, it is the user that authorized the token.
+     */
+    public function getResourceOwner(): ?User
+    {
+        if ($this->isClientCredentials()) {
+            return $this->client->user;
+        }
+
+        return $this->user;
+    }
 
     public function isClientCredentials()
     {

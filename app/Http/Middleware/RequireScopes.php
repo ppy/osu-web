@@ -5,6 +5,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\OAuth\Token;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class RequireScopes
         return $next($request);
     }
 
-    protected function validateScopes($token, $scopes)
+    protected function validateScopes(?Token $token, $scopes)
     {
         if ($token === null) {
             throw new AuthenticationException();
@@ -53,7 +54,7 @@ class RequireScopes
             throw new MissingScopeException(['*'], '* is not allowed with Client Credentials');
         }
 
-        if (in_array('chat.write', $token->scopes, true) && optional($token->user)->isBot() ?? false) {
+        if (in_array('chat.write', $token->scopes, true) && !(optional($token->getResourceOwner())->isBot() ?? false)) {
             throw new MissingScopeException(['chat.write'], 'Only available to chat bots.');
         }
 
