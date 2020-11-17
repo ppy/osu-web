@@ -6,6 +6,7 @@
 namespace Tests;
 
 use App\Http\Middleware\RequireScopes;
+use App\Models\OAuth\Client;
 use App\Models\OAuth\Token;
 use App\Models\User;
 use Illuminate\Routing\Route;
@@ -57,6 +58,43 @@ class RequireScopesTest extends TestCase
 
         app(RequireScopes::class)->handle($this->request, $this->next);
         $this->assertTrue(oauth_token()->isClientCredentials());
+    }
+
+    public function testChatWriteScopeDoesNotAllowAuthorizeGrant()
+    {
+        $user = factory(User::class)->states('bot')->create();
+        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+
+        $this->setRequest(['chat.write']);
+        $this->setUser($user, ['chat.write'], $client);
+
+        $this->expectException(MissingScopeException::class);
+
+        app(RequireScopes::class)->handle($this->request, $this->next);
+    }
+
+    /**
+     * @dataProvider chatWriteScopeRequiresClientCredentialsBotAccessDataProvider
+     */
+    public function testChatWriteScopeRequiresClientCredentialsBotAccess($group, $allowed)
+    {
+        $user = factory(User::class);
+        if ($group !== null) {
+            $user->states($group);
+        }
+        $user = $user->create();
+        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+
+        $this->setRequest(['chat.write']);
+        $this->setUser(null, ['chat.write'], $client);
+
+        if ($allowed) {
+            $this->expectNotToPerformAssertions();
+        } else {
+            $this->expectException(MissingScopeException::class);
+        }
+
+        app(RequireScopes::class)->handle($this->request, $this->next);
     }
 
     public function testRequireScopesLayered()
@@ -141,6 +179,18 @@ class RequireScopesTest extends TestCase
         ];
     }
 
+    public function chatWriteScopeRequiresClientCredentialsBotAccessDataProvider()
+    {
+        return [
+            [null, false],
+            ['admin', false],
+            ['bng', false],
+            ['bot', true],
+            ['gmt', false],
+            ['nat', false],
+        ];
+    }
+
     public function userScopesTestDataProvider()
     {
         return [
@@ -190,9 +240,10 @@ class RequireScopesTest extends TestCase
         $this->user = factory(User::class)->create();
     }
 
-    protected function setUser(?User $user, ?array $scopes = null)
+    protected function setUser(?User $user, ?array $scopes = null, $client = null)
     {
         $token = new Token([
+            'client_id' => optional($client)->getKey(),
             'id' => 'notsaved',
             'scopes' => $scopes,
             'user_id' => optional($user)->getKey(),
