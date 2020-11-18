@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetJson, HybridNominationsInterface } from 'beatmapsets/beatmapset-json';
+import { BeatmapsetJson, NominationsInterface } from 'beatmapsets/beatmapset-json';
 import { BigButton } from 'big-button';
 import GameMode from 'interfaces/game-mode';
 import UserJSONExtended from 'interfaces/user-json-extended';
@@ -43,6 +43,15 @@ export class Nominator extends React.PureComponent<Props, State> {
     };
   }
 
+  componentDidMount() {
+    if (!this.hybridMode()) {
+      this.setState({
+        selectedModes: [_.keys(this.props.beatmapset.nominations?.required)[0] as GameMode],
+      });
+    }
+
+  }
+
   componentWillUnmount() {
     this.xhr?.abort();
   }
@@ -50,17 +59,17 @@ export class Nominator extends React.PureComponent<Props, State> {
   hideNominationModal = () => {
     this.setState({
       loading: false,
-      selectedModes: [],
+      selectedModes: this.hybridMode() ? [] : this.state.selectedModes,
       visible: false,
     });
   }
 
-  hybridMode = () => this.props.beatmapset.nominations?.hybrid_mode;
+  hybridMode = () => _.keys(this.props.beatmapset.nominations?.required).length > 1;
 
   hybridNominationsMet = (mode: GameMode) => {
     if (
-      !this.props.beatmapset.nominations?.hybrid_mode ||
-      !this.props.beatmapset.nominations.required[mode]
+      this.props.beatmapset.nominations?.legacy_mode ||
+      !this.props.beatmapset.nominations?.required[mode]
     ) {
       return false;
     }
@@ -190,7 +199,7 @@ export class Nominator extends React.PureComponent<Props, State> {
 
       return _.some(GameModes, (mode) => {
         if (
-          (this.props.beatmapset.nominations as HybridNominationsInterface)?.required[mode] !== undefined &&
+          (this.props.beatmapset.nominations as NominationsInterface)?.required[mode] !== undefined &&
           userNominatable[mode] !== undefined &&
           !this.hybridNominationsMet(mode)
         ) {

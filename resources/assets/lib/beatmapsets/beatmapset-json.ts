@@ -14,29 +14,29 @@ interface BeatmapsetCovers {
 }
 
 interface BaseNominationsInterface {
-  hybrid_mode: boolean;
+  legacy_mode: boolean;
   nominated?: boolean;
   required_hype: number;
 }
 
 export interface NominationsInterface extends BaseNominationsInterface {
-  current: number;
-  hybrid_mode: false;
-  required: number;
-}
-
-export interface HybridNominationsInterface extends BaseNominationsInterface {
   current: {
     [mode in GameMode]?: number;
   };
-  hybrid_mode: true;
+  legacy_mode: false;
   required: {
     [mode in GameMode]?: number;
   };
 }
 
-export type BeatmapsetNominations =
-  NominationsInterface | HybridNominationsInterface;
+export interface LegacyNominationsInterface extends BaseNominationsInterface {
+  current: number;
+  legacy_mode: true;
+  required: number;
+}
+
+export type BeatmapsetNominationsInterface =
+  NominationsInterface | LegacyNominationsInterface;
 
 export type BeatmapsetStatus =
   'graveyard' | 'wip' | 'pending' | 'ranked' | 'approved' | 'qualified' | 'loved';
@@ -55,7 +55,7 @@ export interface BeatmapsetJson {
   };
   id: number;
   language: LanguageJson;
-  nominations?: BeatmapsetNominations;
+  nominations?: BeatmapsetNominationsInterface;
   status: BeatmapsetStatus;
   title: string;
   title_unicode: string | null;

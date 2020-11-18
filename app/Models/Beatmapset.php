@@ -646,7 +646,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                 throw new InvariantException(trans('beatmaps.nominations.unresolved_issues'));
             }
 
-            if ($this->isLegacyHybridNominationMode()) {
+            if ($this->isLegacyNominationMode()) {
                 // in legacy mode, we check if a user can nominate for _any_ of the beatmapset's playmodes
                 $canNominate = false;
                 $canFullNominate = false;
@@ -667,15 +667,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                     throw new InvariantException(trans('beatmapsets.nominate.full_bn_required'));
                 }
             } else {
-                if ($this->isHybridNominationMode()) {
-                    if (empty($playmodes)) {
-                        throw new InvariantException(trans('beatmapsets.nominate.hybrid_requires_modes'));
-                    }
+                $playmodes = array_values(array_intersect($this->playmodesStr(), $playmodes));
 
-                    $playmodes = array_values(array_intersect($this->playmodesStr(), $playmodes));
-                } else {
-                    // if we're not in hybrid or legacy nomination mode, force playmodes to match the BeatmapSet's
-                    $playmodes = $this->playmodesStr();
+                if (empty($playmodes)) {
+                    throw new InvariantException(trans('beatmapsets.nominate.hybrid_requires_modes'));
                 }
 
                 foreach ($playmodes as $mode) {
@@ -697,21 +692,16 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                     'type' => BeatmapsetEvent::NOMINATE,
                     'user_id' => $user->user_id,
                 ];
-                if ($this->isHybridNominationMode()) {
+                if (!$this->isLegacyNominationMode()) {
                     $event['comment'] = ['modes' => $playmodes];
                 }
                 $this->events()->create($event);
 
-                if ($this->isLegacyHybridNominationMode()) {
+                if ($this->isLegacyNominationMode()) {
                     $shouldQualify = $this->currentNominationCount() >= $this->requiredNominationCount();
                 } else {
-                    if ($this->isHybridNominationMode()) {
-                        $currentNominations = $this->currentNominationCount();
-                        $requiredNominations = $this->requiredNominationCount();
-                    } else {
-                        $currentNominations = [$this->playmodesStr()[0] => $this->currentNominationCount()];
-                        $requiredNominations = [$this->playmodesStr()[0] => $this->requiredNominationCount()];
-                    }
+                    $currentNominations = $this->currentNominationCount();
+                    $requiredNominations = $this->requiredNominationCount();
 
                     $modesSatisfied = 0;
                     foreach ($requiredNominations as $mode => $count) {
@@ -947,15 +937,18 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function requiredNominationCount()
     {
-        if (!$this->isHybridNominationMode()) {
-            return $this->isHybridSet()
-                ? $this->playmodes()->count() * config('osu.beatmapset.required_nominations_hybrid')
-                : config('osu.beatmapset.required_nominations');
+        $playmodeCount = $this->playmodeCount();
+        $baseRequirement = $playmodeCount === 1
+            ? config('osu.beatmapset.required_nominations')
+            : config('osu.beatmapset.required_nominations_hybrid');
+
+        if ($this->isLegacyNominationMode()) {
+            return $playmodeCount * $baseRequirement;
         }
 
         $requiredNominations = [];
-        foreach ($this->playmodes() as $playmode) {
-            $requiredNominations[Beatmap::modeStr($playmode)] = config('osu.beatmapset.required_nominations_hybrid');
+        foreach ($this->playmodesStr() as $playmode) {
+            $requiredNominations[$playmode] = $baseRequirement;
         }
 
         return $requiredNominations;
@@ -963,7 +956,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function currentNominationCount()
     {
-        if (!$this->isHybridNominationMode()) {
+        if ($this->isLegacyNominationMode()) {
             return $this->nominationsSinceReset()->count();
         }
 
@@ -980,35 +973,21 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             }
         }
 
-        if (isset($currentNominations['legacy']) || $this->playmodeCount() === 1) {
-            return $nominations->count();
-        }
-
         return $currentNominations;
     }
 
     public function nominationsMeta()
     {
         return [
-            'hybrid_mode' => $this->isHybridNominationMode(),
+            'legacy_mode' => $this->isLegacyNominationMode(),
             'current' => $this->currentNominationCount(),
             'required' => $this->requiredNominationCount(),
         ];
     }
 
-    public function hasLegacyNominations()
+    public function isLegacyNominationMode()
     {
         return $this->nominationsSinceReset()->whereNull('comment')->exists();
-    }
-
-    public function isLegacyHybridNominationMode()
-    {
-        return $this->playmodeCount() > 1 && $this->hasLegacyNominations();
-    }
-
-    public function isHybridNominationMode()
-    {
-        return $this->playmodeCount() > 1 && !$this->hasLegacyNominations();
     }
 
     public function hasNominations()
@@ -1099,7 +1078,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function requiresFullBNNomination($mode = null)
     {
-        if (!$this->isHybridNominationMode()) {
+        if ($this->isLegacyNominationMode()) {
             return $this->currentNominationCount() === $this->requiredNominationCount() - 1
                 && !$this->hasFullBNNomination();
         }
@@ -1315,7 +1294,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     {
         return $this->update([
             'hype' => $this->freshHype(),
-            'nominations' => $this->isHybridNominationMode() ? array_sum(array_values($this->currentNominationCount())) : $this->currentNominationCount(),
+            'nominations' => $this->isLegacyNominationMode() ? $this->currentNominationCount() : array_sum(array_values($this->currentNominationCount())),
         ]);
     }
 
@@ -1332,11 +1311,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function validationErrorsTranslationPrefix()
     {
         return 'beatmapset';
-    }
-
-    public function isHybridSet(): bool
-    {
-        return $this->playmodes()->count() > 1;
     }
 
     public function isValid()
@@ -1373,3 +1347,4 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         });
     }
 }
+

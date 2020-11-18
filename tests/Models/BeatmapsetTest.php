@@ -50,7 +50,7 @@ class BeatmapsetTest extends TestCase
         $otherUser = factory(User::class)->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
-        $result = $beatmapset->nominate($user);
+        $result = $beatmapset->nominate($user, [$beatmapset->playmodesStr()[0]]);
 
         $this->assertTrue($result['result']);
         $this->assertSame($notifications + 1, Notification::count());
@@ -79,13 +79,13 @@ class BeatmapsetTest extends TestCase
     public function testLimitedBNGQualifyingNominationBNGNominated()
     {
         $beatmapset = $this->createBeatmapset();
-        $this->fillNominationsExceptLast($beatmapset, 'bng');
+        $this->fillNominationsExceptLastForMode($beatmapset, 'bng', $beatmapset->playmodesStr()[0]);
 
         $nominator = $this->createGroupUserWithPlaymodes('bng_limited', $beatmapset->playmodesStr());
 
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
 
-        $result = $beatmapset->nominate($nominator);
+        $result = $beatmapset->nominate($nominator, [$beatmapset->playmodesStr()[0]]);
 
         $this->assertTrue($result['result']);
         $this->assertTrue($beatmapset->fresh()->isQualified());
@@ -94,13 +94,13 @@ class BeatmapsetTest extends TestCase
     public function testLimitedBNGQualifyingNominationNATNominated()
     {
         $beatmapset = $this->createBeatmapset();
-        $this->fillNominationsExceptLast($beatmapset, 'nat');
+        $this->fillNominationsExceptLastForMode($beatmapset, 'nat', $beatmapset->playmodesStr()[0]);
 
         $nominator = $this->createGroupUserWithPlaymodes('bng_limited', $beatmapset->playmodesStr());
 
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
 
-        $result = $beatmapset->nominate($nominator);
+        $result = $beatmapset->nominate($nominator, [$beatmapset->playmodesStr()[0]]);
 
         $this->assertTrue($result['result']);
         $this->assertTrue($beatmapset->fresh()->isQualified());
@@ -109,7 +109,7 @@ class BeatmapsetTest extends TestCase
     public function testLimitedBNGQualifyingNominationLimitedBNGNominated()
     {
         $beatmapset = $this->createBeatmapset();
-        $this->fillNominationsExceptLast($beatmapset, 'bng_limited');
+        $this->fillNominationsExceptLastForMode($beatmapset, 'bng_limited', $beatmapset->playmodesStr()[0]);
 
         $nominator = $this->createGroupUserWithPlaymodes('bng_limited', $beatmapset->playmodesStr());
 
@@ -470,25 +470,6 @@ class BeatmapsetTest extends TestCase
         ]);
 
         return $user;
-    }
-
-    /**
-     * Fills a beatmpaset's nominations until one nomination left to qualify.
-     *
-     * @param Beatmapset $beatmapset Beatmapset to fill the nominations for.
-     * @param string $group A least one nomination will be by a user from this group.
-     *
-     * @return void
-     */
-    private function fillNominationsExceptLast(Beatmapset $beatmapset, string $group)
-    {
-        $user = $this->createGroupUserWithPlaymodes($group, $beatmapset->playmodesStr());
-        $beatmapset->nominate($user, $beatmapset->playmodesStr());
-
-        $count = $beatmapset->requiredNominationCount() - $beatmapset->currentNominationCount() - 1;
-        for ($i = 0; $i < $count; $i++) {
-            $beatmapset->nominate(factory(User::class)->create(), $beatmapset->playmodesStr());
-        }
     }
 
     private function fillNominationsExceptLastForMode(Beatmapset $beatmapset, string $group, string $playmode): void

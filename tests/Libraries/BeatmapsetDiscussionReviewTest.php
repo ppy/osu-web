@@ -283,10 +283,11 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         ]);
         $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
 
+        $playmode = $beatmapset->playmodesStr()[0];
         $natUser = factory(User::class)->create();
         $natUser->userGroups()->create([
             'group_id' => app('groups')->byIdentifier('nat')->getKey(),
-            'playmodes' => $beatmapset->playmodesStr(),
+            'playmodes' => [$playmode],
             'user_pending' => 0,
         ]);
 
@@ -294,8 +295,8 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $beatmapset->watches()->create(['user_id' => $watchingUser->getKey()]);
 
         // ensure beatmapset has a nomination
-        $beatmapset->nominate($natUser);
-        $this->assertSame($beatmapset->currentNominationCount(), 1);
+        $beatmapset->nominate($natUser, [$playmode]);
+        $this->assertSame($beatmapset->currentNominationCount()[$playmode], 1);
 
         BeatmapsetDiscussionReview::create(
             $beatmapset,
@@ -316,7 +317,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         // ensure beatmap is still pending
         $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
         // ensure nomination count has been reset
-        $this->assertSame($beatmapset->currentNominationCount(), 0);
+        $this->assertSame($beatmapset->currentNominationCount()[$playmode], 0);
 
         // ensure a nomination reset notification is dispatched
         Queue::assertPushed(BeatmapsetResetNominations::class);
@@ -598,10 +599,11 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         ]);
         $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
 
+        $playmode = $beatmapset->playmodesStr()[0];
         $natUser = factory(User::class)->create();
         $natUser->userGroups()->create([
             'group_id' => app('groups')->byIdentifier('nat')->getKey(),
-            'playmodes' => $beatmapset->playmodesStr(),
+            'playmodes' => [$playmode],
             'user_pending' => 0,
         ]);
 
@@ -610,9 +612,9 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         // ensure qualified beatmap is pending
         $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
 
-        // ensure beatmapset has a nomination
-        $beatmapset->nominate($natUser);
-        $this->assertSame($beatmapset->currentNominationCount(), 1);
+        // ensure beatmapset has a nominationBeatmapsetCompactTransformer.php
+        $beatmapset->nominate($natUser, [$playmode]);
+        $this->assertSame($beatmapset->currentNominationCount()[$playmode], 1);
 
         // ensure we have a user watching, otherwise no notifications will be sent
         $watchingUser = factory(User::class)->create();
@@ -632,7 +634,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         // ensure beatmap is still pending
         $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
         // ensure nomination count has been reset
-        $this->assertSame($beatmapset->currentNominationCount(), 0);
+        $this->assertSame($beatmapset->currentNominationCount()[$playmode], 0);
 
         // ensure a nomination reset notification is dispatched
         Queue::assertPushed(BeatmapsetResetNominations::class);

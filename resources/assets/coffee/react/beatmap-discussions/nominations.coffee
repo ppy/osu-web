@@ -75,20 +75,31 @@ export class Nominations extends React.PureComponent
 
   # nominations = { 'current': { 'osu': 1, 'taiko': 0, ... }, 'required': { 'osu': 2, 'taiko': 2, ... }, ... };
   renderLightsForNominations: (nominations = {}) ->
-    div className: "#{bn}__lights",
-      _.map nominations.required, (requiredLights, mode) ->
-        el React.Fragment, key: mode,
-          _.times nominations.current[mode], (n) ->
-            div
-              key: n
-              className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-on'
-              i className: "fal fa-extra-mode-#{mode}"
+    if nominations?.legacy_mode || !@isHybridMode()
+      if nominations?.legacy_mode
+        current = nominations.current
+        required = nominations.required
+      else
+        mode = _.keys(this.props.beatmapset.nominations?.required)[0]
+        current = nominations.current[mode]
+        required = nominations.required[mode]
 
-          _.times (requiredLights - nominations.current[mode]), (n) ->
-            div
-              key: nominations.current[mode] + n
-              className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-off'
-              i className: "fal fa-extra-mode-#{mode}"
+      @renderLights(current, required)
+    else
+      div className: "#{bn}__lights",
+        _.map nominations.required, (requiredLights, mode) ->
+          el React.Fragment, key: mode,
+            _.times nominations.current[mode], (n) ->
+              div
+                key: n
+                className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-on'
+                i className: "fal fa-extra-mode-#{mode}"
+
+            _.times (requiredLights - nominations.current[mode]), (n) ->
+              div
+                key: nominations.current[mode] + n
+                className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-off'
+                i className: "fal fa-extra-mode-#{mode}"
 
 
   delete: =>
@@ -225,6 +236,10 @@ export class Nominations extends React.PureComponent
       callback: @focusNewDiscussion
 
 
+  isHybridMode: =>
+    _.keys(this.props.beatmapset.nominations?.required).length > 1
+
+
   parseEventData: (event) =>
     user = @props.users[event.user_id]
     discussion = @props.discussions[event.comment.beatmap_discussion_id]
@@ -337,15 +352,12 @@ export class Nominations extends React.PureComponent
           className: "#{bn}__title"
           osu.trans 'beatmaps.nominations.title'
         span null,
-          if nominations.hybrid_mode
-            " #{_.sum(_.values(nominations.current))} / #{_.sum(_.values(nominations.required))}"
-          else
+          if nominations.legacy_mode
             " #{nominations.current} / #{nominations.required}"
+          else
+            " #{_.sum(_.values(nominations.current))} / #{_.sum(_.values(nominations.required))}"
 
-      if nominations.hybrid_mode
-        @renderLightsForNominations(nominations)
-      else
-        @renderLights(nominations.current, nominations.required)
+      @renderLightsForNominations(nominations)
 
 
   disqualificationMessage: =>
