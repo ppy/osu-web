@@ -116,7 +116,7 @@ class TestCase extends BaseTestCase
     protected function actAsUserWithToken(Token $token, $driver = null)
     {
         $guard = app('auth')->guard($driver);
-        $user = $token->user;
+        $user = $token->getResourceOwner();
 
         if ($user !== null) {
             // guard doesn't accept null user.
