@@ -5,9 +5,7 @@
 
 namespace Tests;
 
-use App\Http\Middleware\AuthApi;
 use App\Http\Middleware\RequireScopes;
-use App\Models\OAuth\Client;
 use App\Models\User;
 use Illuminate\Routing\Route;
 use Laravel\Passport\Exceptions\MissingScopeException;
