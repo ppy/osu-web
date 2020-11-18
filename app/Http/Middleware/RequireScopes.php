@@ -46,23 +46,7 @@ class RequireScopes
             throw new AuthenticationException();
         }
 
-        if (empty($token->scopes)) {
-            throw new MissingScopeException([], 'Tokens without scopes are not valid.');
-        }
-
-        if ($token->isClientCredentials() && in_array('*', $token->scopes, true)) {
-            throw new MissingScopeException(['*'], '* is not allowed with Client Credentials');
-        }
-
-        if (in_array('bot', $token->scopes, true)) {
-            if (!$token->isClientCredentials()) {
-                throw new MissingScopeException(['bot'], 'bot is only allowed for client_credentials.');
-            }
-
-            if (!(optional($token->getResourceOwner())->isBot() ?? false)) {
-                throw new MissingScopeException(['bot'], 'bot is only available to chat bots.');
-            }
-        }
+        $token->validateScopes();
 
         if (!$this->requestHasScopedMiddleware(request())) {
             // use a non-existent scope; only '*' should pass.

@@ -7,6 +7,7 @@ namespace App\Models\OAuth;
 
 use App\Events\UserSessionEvent;
 use App\Models\User;
+use Laravel\Passport\Exceptions\MissingScopeException;
 use Laravel\Passport\RefreshToken;
 use Laravel\Passport\Token as PassportToken;
 
@@ -62,6 +63,27 @@ class Token extends PassportToken
     public function scopeValidAt($query, $time)
     {
         return $query->where('revoked', false)->where('expires_at', '>', $time);
+    }
+
+    public function validateScopes()
+    {
+        if (empty($this->scopes)) {
+            throw new MissingScopeException([], 'Tokens without scopes are not valid.');
+        }
+
+        if ($this->isClientCredentials() && in_array('*', $this->scopes, true)) {
+            throw new MissingScopeException(['*'], '* is not allowed with Client Credentials');
+        }
+
+        if (in_array('bot', $this->scopes, true)) {
+            if (!$this->isClientCredentials()) {
+                throw new MissingScopeException(['bot'], 'bot is only allowed for client_credentials.');
+            }
+
+            if (!(optional($this->getResourceOwner())->isBot() ?? false)) {
+                throw new MissingScopeException(['bot'], 'bot is only available to chat bots.');
+            }
+        }
     }
 
     public function user()
