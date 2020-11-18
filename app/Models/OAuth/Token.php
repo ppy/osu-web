@@ -65,6 +65,23 @@ class Token extends PassportToken
         return $query->where('revoked', false)->where('expires_at', '>', $time);
     }
 
+    public function validate()
+    {
+        if (in_array('bot', $this->scopes, true)) {
+            if (count($this->scopes) !== 1) {
+                throw new MissingScopeException(['bot'], 'bot scope is not allowed with other scopes.');
+            }
+
+            if (!$this->isClientCredentials()) {
+                throw new MissingScopeException(['bot'], 'bot scope is only valid for client_credentials tokens.');
+            }
+
+            if (optional($this->getResourceOwner())->isBot() ?? false) {
+                throw new MissingScopeException(['bot'], 'bot scope is only valid for client_credentials tokens.');
+            }
+        }
+    }
+
     public function validateScopes()
     {
         if (empty($this->scopes)) {
