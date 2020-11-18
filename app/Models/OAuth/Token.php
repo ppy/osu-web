@@ -84,7 +84,7 @@ class Token extends PassportToken
                 throw new MissingScopeException(['bot'], 'bot scope is only valid for client_credentials tokens.');
             }
 
-            if (optional($this->getResourceOwner())->isBot() ?? false) {
+            if (optional($this->getResourceOwner())->isBot() !== true) {
                 throw new MissingScopeException(['bot'], 'bot scope is is only valid for chat bots.');
             }
         }
