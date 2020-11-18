@@ -19,13 +19,7 @@ class TokenTest extends TestCase
     {
         $user = factory(User::class)->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
-        $token = $client->tokens()->create([
-            'expires_at' => now()->addDays(1),
-            'id' => uniqid(),
-            'revoked' => false,
-            'scopes' => ['bot', 'public'],
-            'user_id' => null,
-        ]);
+        $token = $this->createToken(null, ['bot', 'public'], $client);
 
         $this->expectException(MissingScopeException::class);
         $this->assertTrue($token->validate());
@@ -43,13 +37,7 @@ class TokenTest extends TestCase
         $user = $user->create();
 
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
-        $token = $client->tokens()->create([
-            'expires_at' => now()->addDays(1),
-            'id' => uniqid(),
-            'revoked' => false,
-            'scopes' => ['bot'],
-            'user_id' => null,
-        ]);
+        $token = $this->createToken(null, ['bot'], $client);
 
         if ($expectedException !== null) {
             $this->expectException($expectedException);
@@ -62,13 +50,7 @@ class TokenTest extends TestCase
     {
         $user = factory(User::class)->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
-        $token = $client->tokens()->create([
-            'expires_at' => now()->addDays(1),
-            'id' => uniqid(),
-            'revoked' => false,
-            'scopes' => ['bot'],
-            'user_id' => null,
-        ]);
+        $token = $this->createToken(null, ['bot'], $client);
 
         $this->actAsUserWithToken($token);
 
@@ -81,13 +63,7 @@ class TokenTest extends TestCase
     {
         $user = factory(User::class)->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
-        $token = $client->tokens()->create([
-            'expires_at' => now()->addDays(1),
-            'id' => uniqid(),
-            'revoked' => false,
-            'scopes' => ['public'],
-            'user_id' => null,
-        ]);
+        $token = $this->createToken(null, ['public'], $client);
 
         $this->actAsUserWithToken($token);
 
@@ -105,13 +81,7 @@ class TokenTest extends TestCase
     {
         $user = factory(User::class)->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
-        $token = $client->tokens()->create([
-            'expires_at' => now()->addDays(1),
-            'id' => uniqid(),
-            'revoked' => false,
-            'scopes' => $scopes,
-            'user_id' => factory(User::class)->create()->getKey(),
-        ]);
+        $token = $this->createToken($user, $scopes, $client);
 
         if ($expectedException !== null) {
             $this->expectException($expectedException);
@@ -129,13 +99,7 @@ class TokenTest extends TestCase
     {
         $user = factory(User::class)->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
-        $token = $client->tokens()->create([
-            'expires_at' => now()->addDays(1),
-            'id' => uniqid(),
-            'revoked' => false,
-            'scopes' => $scopes,
-            'user_id' => null,
-        ]);
+        $token = $this->createToken(null, $scopes, $client);
 
         if ($expectedException !== null) {
             $this->expectException($expectedException);

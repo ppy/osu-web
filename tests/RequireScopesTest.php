@@ -180,17 +180,7 @@ class RequireScopesTest extends TestCase
 
     protected function setUser(?User $user, ?array $scopes = null, $client = null)
     {
-        if ($client === null) {
-            $client = factory(Client::class)->create();
-        }
-
-        $token = $client->tokens()->create([
-            'id' => uniqid(),
-            'revoked' => false,
-            'scopes' => $scopes,
-            'user_id' => optional($user)->getKey(),
-        ]);
-
+        $token = $this->createToken($user, $scopes, $client);
         $this->actAsUserWithToken($token);
     }
 }

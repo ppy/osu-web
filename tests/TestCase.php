@@ -186,6 +186,31 @@ class TestCase extends BaseTestCase
         }
     }
 
+    /**
+     * Creates an OAuth token for the specified authorizing user.
+     *
+     * @param User|null $user The user that authorized the token.
+     * @param array|null $scopes scopes granted
+     * @param Client|null $client The client the token belongs to.
+     * @return Token
+     */
+    protected function createToken(?User $user, ?array $scopes = null, ?Client $client = null)
+    {
+        if ($client === null) {
+            $client = factory(Client::class)->create();
+        }
+
+        $token = $client->tokens()->create([
+            'expires_at' => now()->addDays(1),
+            'id' => uniqid(),
+            'revoked' => false,
+            'scopes' => $scopes,
+            'user_id' => optional($user)->getKey(),
+        ]);
+
+        return $token;
+    }
+
     protected function createUserWithGroup($groupIdentifier, array $attributes = []): ?User
     {
         if ($groupIdentifier === null) {
