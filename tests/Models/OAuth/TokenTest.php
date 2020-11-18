@@ -28,7 +28,34 @@ class TokenTest extends TestCase
         ]);
 
         $this->expectException(MissingScopeException::class);
-        $token->validate();
+        $this->assertTrue($token->validate());
+    }
+
+    /**
+     * @dataProvider botScopeRequiresBotGroupDataProvider
+     */
+    public function testBotScopeRequiresBotGroup($group, $expectedException)
+    {
+        $user = factory(User::class);
+        if ($group !== null) {
+            $user->states($group);
+        }
+        $user = $user->create();
+
+        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+        $token = $client->tokens()->create([
+            'expires_at' => now()->addDays(1),
+            'id' => uniqid(),
+            'revoked' => false,
+            'scopes' => ['bot'],
+            'user_id' => null,
+        ]);
+
+        if ($expectedException !== null) {
+            $this->expectException($expectedException);
+        }
+
+        $this->assertTrue($token->validate());
     }
 
     public function testClientCredentialResourceOwnerBot()
@@ -70,7 +97,7 @@ class TokenTest extends TestCase
     }
 
     /**
-     * @dataProvider testScopesDataProvider
+     * @dataProvider scopesDataProvider
      *
      * @return void
      */
@@ -90,11 +117,11 @@ class TokenTest extends TestCase
             $this->expectException($expectedException);
         }
 
-        $token->validate();
+        $this->assertTrue($token->validate());
     }
 
     /**
-     * @dataProvider testScopesClientCredentialsDataProvider
+     * @dataProvider scopesClientCredentialsDataProvider
      *
      * @return void
      */
@@ -114,7 +141,7 @@ class TokenTest extends TestCase
             $this->expectException($expectedException);
         }
 
-        $token->validate();
+        $this->assertTrue($token->validate());
     }
 
     public function testRevokeRecursive()
@@ -134,7 +161,7 @@ class TokenTest extends TestCase
         Event::assertDispatched(UserSessionEvent::class);
     }
 
-    public function testScopesDataProvider()
+    public function scopesDataProvider()
     {
         return [
             'null is not a valid scope' => [null, MissingScopeException::class],
@@ -143,12 +170,24 @@ class TokenTest extends TestCase
         ];
     }
 
-    public function testScopesClientCredentialsDataProvider()
+    public function scopesClientCredentialsDataProvider()
     {
         return [
             'null is not a valid scope' => [null, MissingScopeException::class],
             'empty scope should fail' => [[], MissingScopeException::class],
             'all scope is not allowed' => [['*'], MissingScopeException::class],
+        ];
+    }
+
+    public function botScopeRequiresBotGroupDataProvider()
+    {
+        return [
+            [null, MissingScopeException::class],
+            ['admin', MissingScopeException::class],
+            ['bng', MissingScopeException::class],
+            ['bot', null],
+            ['gmt', MissingScopeException::class],
+            ['nat', MissingScopeException::class],
         ];
     }
 }

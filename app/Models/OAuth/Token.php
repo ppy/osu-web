@@ -88,6 +88,8 @@ class Token extends PassportToken
                 throw new MissingScopeException(['bot'], 'bot scope is is only valid for chat bots.');
             }
         }
+
+        return true;
     }
 
     public function user()

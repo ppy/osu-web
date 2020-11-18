@@ -51,43 +51,6 @@ class RequireScopesTest extends TestCase
         $this->assertTrue(oauth_token()->isClientCredentials());
     }
 
-    public function testChatWriteScopeDoesNotAllowAuthorizeGrant()
-    {
-        $user = factory(User::class)->states('bot')->create();
-        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
-
-        $this->setRequest(['bot']);
-        $this->setUser($user, ['bot'], $client);
-
-        $this->expectException(MissingScopeException::class);
-
-        app(RequireScopes::class)->handle($this->request, $this->next);
-    }
-
-    /**
-     * @dataProvider chatWriteScopeRequiresClientCredentialsBotAccessDataProvider
-     */
-    public function testChatWriteScopeRequiresClientCredentialsBotAccess($group, $allowed)
-    {
-        $user = factory(User::class);
-        if ($group !== null) {
-            $user->states($group);
-        }
-        $user = $user->create();
-        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
-
-        $this->setRequest(['bot']);
-        $this->setUser(null, ['bot'], $client);
-
-        if ($allowed) {
-            $this->expectNotToPerformAssertions();
-        } else {
-            $this->expectException(MissingScopeException::class);
-        }
-
-        app(RequireScopes::class)->handle($this->request, $this->next);
-    }
-
     public function testRequireScopesLayered()
     {
         $userScopes = ['identify'];
@@ -167,27 +130,6 @@ class RequireScopesTest extends TestCase
             'empty scope should fail' => [[], MissingScopeException::class],
             'public' => [['public'], MissingScopeException::class],
             'all scope is not allowed' => [['*'], MissingScopeException::class],
-        ];
-    }
-
-    public function chatWriteScopeRequiresClientCredentialsBotAccessDataProvider()
-    {
-        return [
-            [null, false],
-            ['admin', false],
-            ['bng', false],
-            ['bot', true],
-            ['gmt', false],
-            ['nat', false],
-        ];
-    }
-
-    public function dP()
-    {
-        return [
-            'null is not a valid scope' => [null, null, MissingScopeException::class],
-            'No scopes' => [null, [], MissingScopeException::class],
-            'Requires specific scope and no scope' => [['identify'], [], MissingScopeException::class],
         ];
     }
 
