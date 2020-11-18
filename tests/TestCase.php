@@ -65,17 +65,10 @@ class TestCase extends BaseTestCase
      * @param string $driver Auth driver to use.
      * @return void
      */
-    protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], $driver = null)
+    protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], ?Client $client = null, $driver = null)
     {
         // create valid token
-        $client = factory(Client::class)->create();
-        $token = $client->tokens()->create([
-            'expires_at' => now()->addDays(1),
-            'id' => uniqid(),
-            'revoked' => false,
-            'scopes' => $scopes,
-            'user_id' => optional($user)->getKey(),
-        ]);
+        $token = $this->createToken($user, $scopes, $client);
 
         // mock the minimal number of things.
         // this skips the need to form a request with all the headers.

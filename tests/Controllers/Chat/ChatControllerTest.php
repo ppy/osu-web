@@ -6,6 +6,7 @@
 namespace Tests\Controllers\Chat;
 
 use App\Models\Chat;
+use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Models\UserRelation;
 use Faker;
@@ -25,9 +26,12 @@ class ChatControllerTest extends TestCase
 
     //region POST /chat/new - Create New PM
 
-    public function testCreatePM()
+    /**
+     * @dataProvider createPmWithAuthorizedGrantDataProvider
+     */
+    public function testCreatePmWithAuthorizedGrant($scopes, $expectedStatus)
     {
-        $this->actAsScopedUser($this->user, ['*']);
+        $this->actAsScopedUser($this->user, $scopes);
         $this->json(
             'POST',
             route('api.chat.new'),
@@ -35,7 +39,42 @@ class ChatControllerTest extends TestCase
                 'target_id' => $this->anotherUser->user_id,
                 'message' => self::$faker->sentence(),
             ]
-        )->assertStatus(200);
+        )->assertStatus($expectedStatus);
+    }
+
+    /**
+     * @dataProvider createPmWithClientCredentialsDataProvider
+     */
+    public function testCreatePmWithClientCredentials($scopes, $expectedStatus)
+    {
+        $client = factory(Client::class)->create(['user_id' => $this->user->getKey()]);
+        $this->actAsScopedUser(null, $scopes, $client);
+        $this->json(
+            'POST',
+            route('api.chat.new'),
+            [
+                'target_id' => $this->anotherUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
+        )->assertStatus($expectedStatus);
+    }
+
+    /**
+     * @dataProvider createPmWithClientCredentialsBotGroupDataProvider
+     */
+    public function testCreatePmWithClientCredentialsBotGroup($scopes, $expectedStatus)
+    {
+        $client = factory(Client::class)->create(['user_id' => $this->user->getKey()]);
+        $this->user->update(['group_id' => app('groups')->byIdentifier('bot')->getKey()]);
+        $this->actAsScopedUser(null, $scopes, $client);
+        $this->json(
+            'POST',
+            route('api.chat.new'),
+            [
+                'target_id' => $this->anotherUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
+        )->assertStatus($expectedStatus);
     }
 
     public function testCreatePMWhenAlreadyExists() // success
@@ -463,6 +502,33 @@ class ChatControllerTest extends TestCase
     }
 
     //endregion
+
+    public function createPmWithAuthorizedGrantDataProvider()
+    {
+        return [
+            [['*'], 200],
+            [['bot'], 403],
+            [['public'], 403],
+        ];
+    }
+
+    public function createPmWithClientCredentialsDataProvider()
+    {
+        return [
+            [['*'], 403],
+            [['bot'], 403],
+            [['public'], 401], // FIXME: why does this 401 instead of 403?
+        ];
+    }
+
+    public function createPmWithClientCredentialsBotGroupDataProvider()
+    {
+        return [
+            [['*'], 403],
+            [['bot'], 200],
+            [['public'], 401],
+        ];
+    }
 
     protected function setUp(): void
     {
