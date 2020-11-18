@@ -69,6 +69,54 @@ class TokenTest extends TestCase
         $this->assertNull(auth()->user());
     }
 
+    /**
+     * @dataProvider testScopesDataProvider
+     *
+     * @return void
+     */
+    public function testScopes($scopes, $expectedException)
+    {
+        $user = factory(User::class)->create();
+        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+        $token = $client->tokens()->create([
+            'expires_at' => now()->addDays(1),
+            'id' => uniqid(),
+            'revoked' => false,
+            'scopes' => $scopes,
+            'user_id' => factory(User::class)->create()->getKey(),
+        ]);
+
+        if ($expectedException !== null) {
+            $this->expectException($expectedException);
+        }
+
+        $token->validate();
+    }
+
+    /**
+     * @dataProvider testScopesClientCredentialsDataProvider
+     *
+     * @return void
+     */
+    public function testScopesClientCredentials($scopes, $expectedException)
+    {
+        $user = factory(User::class)->create();
+        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
+        $token = $client->tokens()->create([
+            'expires_at' => now()->addDays(1),
+            'id' => uniqid(),
+            'revoked' => false,
+            'scopes' => $scopes,
+            'user_id' => null,
+        ]);
+
+        if ($expectedException !== null) {
+            $this->expectException($expectedException);
+        }
+
+        $token->validate();
+    }
+
     public function testRevokeRecursive()
     {
         Event::fake();
@@ -84,5 +132,23 @@ class TokenTest extends TestCase
         $this->assertTrue($refreshToken->fresh()->revoked);
         $this->assertTrue($token->fresh()->revoked);
         Event::assertDispatched(UserSessionEvent::class);
+    }
+
+    public function testScopesDataProvider()
+    {
+        return [
+            'null is not a valid scope' => [null, MissingScopeException::class],
+            'empty scope should fail' => [[], MissingScopeException::class],
+            'all scope is allowed' => [['*'], null],
+        ];
+    }
+
+    public function testScopesClientCredentialsDataProvider()
+    {
+        return [
+            'null is not a valid scope' => [null, MissingScopeException::class],
+            'empty scope should fail' => [[], MissingScopeException::class],
+            'all scope is not allowed' => [['*'], MissingScopeException::class],
+        ];
     }
 }

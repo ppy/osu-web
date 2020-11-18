@@ -80,6 +80,8 @@ class AuthApi
             throw new AuthenticationException('invalid token');
         }
 
+        $token->validate();
+
         $user = $token->getResourceOwner();
 
         if ($token->isClientCredentials() && $psrUserId !== null) {

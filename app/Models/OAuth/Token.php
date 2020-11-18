@@ -67,6 +67,14 @@ class Token extends PassportToken
 
     public function validate()
     {
+        if (empty($this->scopes)) {
+            throw new MissingScopeException([], 'Tokens without scopes are not valid.');
+        }
+
+        if ($this->isClientCredentials() && in_array('*', $this->scopes, true)) {
+            throw new MissingScopeException(['*'], '* is not allowed with Client Credentials');
+        }
+
         if (in_array('bot', $this->scopes, true)) {
             if (count($this->scopes) !== 1) {
                 throw new MissingScopeException(['bot'], 'bot scope is not allowed with other scopes.');
@@ -77,28 +85,7 @@ class Token extends PassportToken
             }
 
             if (optional($this->getResourceOwner())->isBot() ?? false) {
-                throw new MissingScopeException(['bot'], 'bot scope is only valid for client_credentials tokens.');
-            }
-        }
-    }
-
-    public function validateScopes()
-    {
-        if (empty($this->scopes)) {
-            throw new MissingScopeException([], 'Tokens without scopes are not valid.');
-        }
-
-        if ($this->isClientCredentials() && in_array('*', $this->scopes, true)) {
-            throw new MissingScopeException(['*'], '* is not allowed with Client Credentials');
-        }
-
-        if (in_array('bot', $this->scopes, true)) {
-            if (!$this->isClientCredentials()) {
-                throw new MissingScopeException(['bot'], 'bot is only allowed for client_credentials.');
-            }
-
-            if (!(optional($this->getResourceOwner())->isBot() ?? false)) {
-                throw new MissingScopeException(['bot'], 'bot is only available to chat bots.');
+                throw new MissingScopeException(['bot'], 'bot scope is is only valid for chat bots.');
             }
         }
     }

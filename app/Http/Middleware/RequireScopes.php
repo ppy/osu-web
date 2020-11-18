@@ -46,8 +46,6 @@ class RequireScopes
             throw new AuthenticationException();
         }
 
-        $token->validateScopes();
-
         if (!$this->requestHasScopedMiddleware(request())) {
             // use a non-existent scope; only '*' should pass.
             if (!$token->can('invalid')) {
