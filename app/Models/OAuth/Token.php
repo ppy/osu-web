@@ -22,7 +22,7 @@ class Token extends PassportToken
      */
     public function getResourceOwner(): ?User
     {
-        if ($this->isClientCredentials()) {
+        if ($this->isClientCredentials() && $this->scopes === ['bot']) {
             return $this->client->user;
         }
 

@@ -136,10 +136,10 @@
         "middlewares": [
             "require-scopes",
             "auth",
-            "require-scopes:chat.write"
+            "require-scopes:bot"
         ],
         "scopes": [
-          "chat.write"
+          "bot"
         ]
     },
     {

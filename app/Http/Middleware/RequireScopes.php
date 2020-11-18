@@ -54,13 +54,13 @@ class RequireScopes
             throw new MissingScopeException(['*'], '* is not allowed with Client Credentials');
         }
 
-        if (in_array('chat.write', $token->scopes, true)) {
+        if (in_array('bot', $token->scopes, true)) {
             if (!$token->isClientCredentials()) {
-                throw new MissingScopeException(['chat.write'], 'chat.write is only allowed for client_credentials.');
+                throw new MissingScopeException(['bot'], 'bot is only allowed for client_credentials.');
             }
 
             if (!(optional($token->getResourceOwner())->isBot() ?? false)) {
-                throw new MissingScopeException(['chat.write'], 'chat.write is only available to chat bots.');
+                throw new MissingScopeException(['bot'], 'bot is only available to chat bots.');
             }
         }
 

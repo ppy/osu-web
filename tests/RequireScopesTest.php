@@ -65,8 +65,8 @@ class RequireScopesTest extends TestCase
         $user = factory(User::class)->states('bot')->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
 
-        $this->setRequest(['chat.write']);
-        $this->setUser($user, ['chat.write'], $client);
+        $this->setRequest(['bot']);
+        $this->setUser($user, ['bot'], $client);
 
         $this->expectException(MissingScopeException::class);
 
@@ -85,8 +85,8 @@ class RequireScopesTest extends TestCase
         $user = $user->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
 
-        $this->setRequest(['chat.write']);
-        $this->setUser(null, ['chat.write'], $client);
+        $this->setRequest(['bot']);
+        $this->setUser(null, ['bot'], $client);
 
         if ($allowed) {
             $this->expectNotToPerformAssertions();
