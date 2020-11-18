@@ -76,13 +76,18 @@ class AuthApi
             throw new AuthenticationException('invalid client');
         }
 
-        $token = $client->tokens()->where('revoked', false)->where('expires_at', '>', now())->find($psrTokenId);
+        $token = $client->tokens()->validAt(now())->find($psrTokenId);
         if ($token === null) {
             throw new AuthenticationException('invalid token');
         }
 
-        $user = $psrUserId !== null ? User::find($psrUserId) : null;
-        if (optional($user)->getKey() !== $token->user_id) {
+        $user = $token->getResourceOwner();
+
+        if ($token->isClientCredentials() && $psrUserId !== null) {
+            throw new AuthenticationException();
+        }
+
+        if (!$token->isClientCredentials() && $user->getKey() !== $psrUserId) {
             throw new AuthenticationException();
         }
 

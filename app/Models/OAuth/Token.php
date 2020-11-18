@@ -59,6 +59,11 @@ class Token extends PassportToken
         return $saved;
     }
 
+    public function scopeValidAt($query, $time)
+    {
+        return $query->where('revoked', false)->where('expires_at', '>', $time);
+    }
+
     public function user()
     {
         $provider = config('auth.guards.api.provider');
