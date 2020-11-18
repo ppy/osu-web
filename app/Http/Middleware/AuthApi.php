@@ -5,7 +5,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\User;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Laravel\Passport\ClientRepository;
