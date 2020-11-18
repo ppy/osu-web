@@ -50,7 +50,7 @@ class TokenTest extends TestCase
         $this->assertTrue($user->is(auth()->user()));
     }
 
-    public function testClientCredentialResourcePublic()
+    public function testClientCredentialResourceOwnerPublic()
     {
         $user = factory(User::class)->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
