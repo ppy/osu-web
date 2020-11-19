@@ -14,6 +14,7 @@ use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
 use App\Models\DeletedUser;
 use App\Models\Elasticsearch;
+use App\Models\Reportable;
 use App\Models\User;
 use App\Traits\Validatable;
 use Carbon\Carbon;
@@ -58,7 +59,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Post extends Model implements AfterCommit, Indexable
 {
-    use Elasticsearch\PostTrait, SoftDeletes, Validatable;
+    use Elasticsearch\PostTrait, Reportable, SoftDeletes, Validatable;
 
     protected $table = 'phpbb_posts';
     protected $primaryKey = 'post_id';
@@ -346,5 +347,17 @@ class Post extends Model implements AfterCommit, Indexable
         }
 
         (new MarkNotificationsRead($this, $user))->dispatch();
+    }
+
+    public function url()
+    {
+        return route('forum.posts.show', $this);
+    }
+
+    protected function newReportableExtraParams(): array
+    {
+        return [
+            'user_id' => $this->poster_id,
+        ];
     }
 }
