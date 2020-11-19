@@ -35,19 +35,19 @@ export class ScoreboardTableRow extends React.PureComponent
       className: "#{osu.classWithModifiers("#{bn}__body-row", classMods)}",
 
       el @tdLink,
-        modifiers: ['rank'],
+        modifiers: ['rank']
         "##{index+1}"
 
       el @tdLink,
-        modifiers: ['grade'],
+        modifiers: ['grade']
         div className: "score-rank score-rank--tiny score-rank--#{score.rank}"
 
       el @tdLink,
-        modifiers: ['score'],
+        modifiers: ['score']
         osu.formatNumber(score.score)
 
       el @tdLink,
-        modifiers: ['perfect'] if score.accuracy == 1,
+        modifiers: ['perfect'] if score.accuracy == 1
         "#{osu.formatNumber(score.accuracy * 100, 2)}%"
 
       td className: cell,
@@ -70,30 +70,30 @@ export class ScoreboardTableRow extends React.PureComponent
           score.user.username
 
       el @tdLink,
-        modifiers: ['perfect'] if score.max_combo == @props.beatmap.max_combo,
+        modifiers: ['perfect'] if score.max_combo == @props.beatmap.max_combo
         "#{osu.formatNumber(score.max_combo)}x"
 
       for stat in @props.hitTypeMapping
         el @tdLink,
           key: stat[0]
-          modifiers: ['zero'] if score.statistics["count_#{stat[1]}"] == 0,
+          modifiers: ['zero'] if score.statistics["count_#{stat[1]}"] == 0
           osu.formatNumber(score.statistics["count_#{stat[1]}"])
 
       el @tdLink,
-        modifiers: ['zero'] if score.statistics.count_miss == 0,
+        modifiers: ['zero'] if score.statistics.count_miss == 0
         osu.formatNumber(score.statistics.count_miss)
 
       el @tdLink,
-        {},
+        {}
         _.round score.pp
 
       el @tdLink,
-        modifiers: ['time'],
+        modifiers: ['time']
         el ScoreboardTime,
           dateTime: score.created_at
 
       el @tdLink,
-        modifiers: ['mods'],
+        modifiers: ['mods']
         div className: "#{bn}__mods",
           el(Mod, mod: mod, key: mod) for mod in score.mods
 
