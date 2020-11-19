@@ -18,6 +18,7 @@ import EditorDiscussionComponent from './editor-discussion-component';
 import {
   blockCount,
   insideEmbed,
+  insideEmptyNode,
   serializeSlateDocument,
   slateDocumentContainsNewProblem,
   slateDocumentIsEmpty,
@@ -176,6 +177,11 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   onChange = (value: SlateElement[]) => {
+    // prevent document from becoming empty (and invalid) - ideally this would be handled in `withNormalization`, but that isn't run on every change
+    if (value.length === 0) {
+      value = this.emptyDocTemplate;
+    }
+
     if (!this.props.editMode) {
       const content = JSON.stringify(value);
 
@@ -212,6 +218,11 @@ export default class Editor extends React.Component<Props, State> {
       if (insideEmbed(this.slateEditor)) {
         event.preventDefault();
         this.slateEditor.insertText('\n');
+      }
+    } else if (isHotkey('delete', event) || isHotkey('backspace', event)) {
+      if (insideEmptyNode(this.slateEditor)) {
+        event.preventDefault();
+        Transforms.removeNodes(this.slateEditor);
       }
     }
   }

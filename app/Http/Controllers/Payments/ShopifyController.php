@@ -12,7 +12,7 @@ use App\Libraries\Payments\ShopifySignature;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use Carbon\Carbon;
-use Exception;
+use Log;
 use Sentry\State\Scope;
 
 class ShopifyController extends Controller
@@ -32,18 +32,24 @@ class ShopifyController extends Controller
         // X-Shopify-Test
         // X-Shopify-Topic
 
+        $type = $this->getWebookType();
         $orderId = $this->getOrderId();
-        if ($orderId === null) {
-            if ($this->isManualOrder()) {
-                return response([], 204);
-            }
 
-            throw new Exception('missing orderId');
+        if ($orderId === null) {
+            $params = $this->getParams();
+            // just log info that can be used for lookup if necessary.
+            $data = [
+                'shopify_gid' => $params['id'],
+                'shopify_order_number' => $params['order_number'],
+                'webhook_type' => $type,
+            ];
+            Log::info('Shopify callback with missing orderId', $data);
+
+            return response([], 204);
         }
 
         $order = Order::findOrFail($orderId);
 
-        $type = $this->getWebookType();
         switch ($type) {
             case 'orders/cancelled':
                 // FIXME: We're relying on Shopify not sending cancel multiple times otherwise this will explode.

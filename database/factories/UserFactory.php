@@ -64,7 +64,7 @@ foreach (['admin', 'bng', 'bot', 'gmt', 'nat'] as $identifier) {
     });
 
     $factory->afterCreatingState(User::class, $identifier, function ($user) use ($attribs) {
-        $user->userGroups()->create($attribs);
+        $user->userGroups()->create(array_merge($attribs, ['user_pending' => false]));
     });
 }
 
