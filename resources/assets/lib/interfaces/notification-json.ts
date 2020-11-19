@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { Name } from 'models/notification-type';
 import { NotificationCursor } from 'notifications/notification-cursor';
 import { NotificationIdentityJson } from 'notifications/notification-identity';
 
@@ -11,7 +12,7 @@ export default interface NotificationJson {
   is_read: boolean;
   name: string;
   object_id: number;
-  object_type: string;
+  object_type: Name;
   source_user_id?: number;
 }
 
@@ -28,7 +29,7 @@ export interface NotificationStackJson extends NotificationIdentityJson {
   cursor: NotificationCursor | null;
   name: string;
   object_id: number;
-  object_type: string;
+  object_type: Name;
   total: number;
 }
 

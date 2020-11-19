@@ -4,6 +4,7 @@
 import { NotificationStackJson } from 'interfaces/notification-json';
 import { action, computed, observable } from 'mobx';
 import Notification from 'models/notification';
+import { Name } from 'models/notification-type';
 import { categoryFromName } from 'notification-maps/category';
 import { NotificationContextData } from 'notifications-context';
 import { NotificationCursor } from 'notifications/notification-cursor';
@@ -47,7 +48,7 @@ export default class NotificationStack implements NotificationReadable, Notifica
 
   @computed
   get hasVisibleNotifications() {
-    return this.notifications.size > 0 || this.objectType === 'legacy_pm';
+    return this.notifications.size > 0;
   }
 
   @computed
@@ -61,10 +62,6 @@ export default class NotificationStack implements NotificationReadable, Notifica
       objectId: this.objectId,
       objectType: this.objectType,
     };
-  }
-
-  get isLegacyPm() {
-    return this.objectType === 'legacy_pm';
   }
 
   @computed
@@ -83,7 +80,7 @@ export default class NotificationStack implements NotificationReadable, Notifica
 
   constructor(
     readonly objectId: number,
-    readonly objectType: string,
+    readonly objectType: Name,
     readonly category: string,
     readonly resolver: NotificationResolver,
   ) {}
