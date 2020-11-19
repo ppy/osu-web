@@ -127,8 +127,6 @@
   }
 
   &__cell {
-    height: @row-height;
-
     &:first-child {
       // rounded corners for left side
       border-top-left-radius: 5px;
@@ -179,8 +177,8 @@
     align-items: center;
 
     &--grade {
-      width: 100%;
-      .center-content();
+      align-items: center;
+      justify-content: center;
     }
 
     &--mods {
