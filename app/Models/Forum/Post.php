@@ -357,6 +357,7 @@ class Post extends Model implements AfterCommit, Indexable
     protected function newReportableExtraParams(): array
     {
         return [
+            'reason' => 'Spam',
             'user_id' => $this->poster_id,
         ];
     }
