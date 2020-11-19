@@ -204,7 +204,7 @@ class Channel extends Model
             throw new API\ExcessiveChatMessagesException(trans('api.error.chat.limit_exceeded'));
         }
 
-        $content = trim($content);
+        $content = str_replace(["\r", "\n"], ' ', trim($content));
 
         if (mb_strlen($content, 'UTF-8') >= config('osu.chat.message_length_limit')) {
             throw new API\ChatMessageTooLongException(trans('api.error.chat.too_long'));
