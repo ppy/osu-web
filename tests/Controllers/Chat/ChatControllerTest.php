@@ -517,7 +517,7 @@ class ChatControllerTest extends TestCase
         return [
             [['*'], 403],
             [['bot'], 403],
-            [['public'], 401], // FIXME: why does this 401 instead of 403?
+            [['public'], 403],
         ];
     }
 
@@ -526,7 +526,7 @@ class ChatControllerTest extends TestCase
         return [
             [['*'], 403],
             [['bot'], 200],
-            [['public'], 401],
+            [['public'], 403],
         ];
     }
 
