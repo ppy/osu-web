@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import FlagCountry from 'flag-country'
+import { round } from 'lodash'
 import { route } from 'laroute'
 import Mod from 'mod'
 import { PlayDetailMenu } from 'play-detail-menu'
@@ -13,15 +14,6 @@ el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
 export class ScoreboardTableRow extends React.PureComponent
-  tdLink: (props) =>
-    td
-      className: "#{bn}__cell"
-      a
-        className: osu.classWithModifiers("#{bn}__cell-content", props.modifiers)
-        href: props.href ? route('scores.show', mode: @props.score.mode, score: @props.score.best_id)
-        props.children
-
-
   render: () =>
     { activated, index, score } = @props
     classMods = if activated then ['menu-active'] else ['highlightable']
@@ -85,7 +77,7 @@ export class ScoreboardTableRow extends React.PureComponent
 
       el @tdLink,
         {}
-        _.round score.pp
+        round score.pp
 
       el @tdLink,
         modifiers: ['time']
@@ -101,3 +93,12 @@ export class ScoreboardTableRow extends React.PureComponent
         if hasMenu(score)
           el PlayDetailMenu,
             { score }
+
+
+  tdLink: (props) =>
+    td
+      className: "#{bn}__cell"
+      a
+        className: osu.classWithModifiers("#{bn}__cell-content", props.modifiers)
+        href: props.href ? route('scores.show', mode: @props.score.mode, score: @props.score.best_id)
+        props.children
