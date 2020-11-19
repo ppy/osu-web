@@ -19,7 +19,7 @@ export ScoreTop = (props) ->
 
   position = if props.position? then "##{props.position}" else '-'
 
-  div className: "clickable-row #{bn} #{topClasses}",
+  div className: "#{bn} #{topClasses}",
     a
       className: "#{bn}__link-container"
       href: route('scores.show', mode: props.score.mode, score: props.score.best_id)
@@ -27,9 +27,8 @@ export ScoreTop = (props) ->
     div className: "#{bn}__section",
       div className: "#{bn}__wrapping-container #{bn}__wrapping-container--left",
         div className: "#{bn}__position",
-          a
-            className: "clickable-row-link #{bn}__position-number"
-            href: route('scores.show', mode: props.score.mode, score: props.score.best_id)
+          div
+            className: "#{bn}__position-number"
             position
           div className: "score-rank score-rank--tiny score-rank--#{props.score.rank}"
 

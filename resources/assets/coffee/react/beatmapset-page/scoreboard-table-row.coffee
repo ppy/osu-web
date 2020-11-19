@@ -32,10 +32,9 @@ export class ScoreboardTableRow extends React.PureComponent
     cell = "#{bn}__cell"
 
     tr
-      className: "clickable-row #{osu.classWithModifiers("#{bn}__body-row", classMods)}",
+      className: "#{osu.classWithModifiers("#{bn}__body-row", classMods)}",
 
       el @tdLink,
-        href: route('scores.show', mode: score.mode, score: score.best_id)
         modifiers: ['rank'],
         "##{index+1}"
 
