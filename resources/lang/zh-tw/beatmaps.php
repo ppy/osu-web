@@ -252,6 +252,7 @@ return [
         'converts' => '包括轉換圖譜',
     ],
     'mode' => [
+        'all' => '',
         'any' => '所有',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
@@ -324,7 +325,7 @@ return [
         'spanish' => '西班牙語',
         'swedish' => '瑞典語',
         'russian' => '俄語',
-        'polish' => '',
+        'polish' => '波蘭語',
         'instrumental' => '樂器演奏',
         'other' => '其他',
         'unspecified' => '',

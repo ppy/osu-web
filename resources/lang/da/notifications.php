@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Alle notifikationer læst!',
+    'delete' => '',
     'mark_read' => 'Ryd :type',
     'none' => 'Ingen notifikationer',
     'see_all' => 'se alle notifikationer',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'alle',

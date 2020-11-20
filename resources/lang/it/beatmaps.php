@@ -78,7 +78,7 @@ return [
 
         'mode' => [
             'events' => 'Cronologia',
-            'general' => ':scope Generale',
+            'general' => 'Generale :scope',
             'reviews' => 'Revisioni',
             'timeline' => 'Linea Temporale',
             'scopes' => [
@@ -156,11 +156,11 @@ return [
     ],
 
     'hype' => [
-        'button' => 'Beatmap Hype!',
+        'button' => 'Metti hype!',
         'button_done' => 'Hype già messo!',
         'confirm' => "Sei sicuro? Questo utilizzerà uno dei tuoi :n hype rimanenti e non può essere annullato.",
-        'explanation' => 'Lascia hype a questa beatmap per renderla più visibile per la nomina e il ranking!',
-        'explanation_guest' => 'Effettua l\'accesso e lascia hype a questa beatmap per renderla più visibile per la nomina e il raking!',
+        'explanation' => 'Metti hype a questa beatmap per renderla più visibile per la nomina ed il ranking!',
+        'explanation_guest' => 'Effettua l\'accesso e metti hype a questa beatmap per renderla più visibile per la nomina ed il raking!',
         'new_time' => "Riceverai un altro hype :new_time.",
         'remaining' => 'Hai ancora :remaining hype rimanenti.',
         'required_text' => 'Hype: :current/:required',
@@ -187,8 +187,8 @@ return [
         'nominate_confirm' => 'Nominare questa beatmap?',
         'nominated_by' => 'nominata da :users',
         'not_enough_hype' => "Non c'è abbastanza hype.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Rimuovi dalle amate',
+        'remove_from_loved_prompt' => 'Motivo per la rimozione dalle amate:',
         'required_text' => 'Nomine: :current/:required',
         'reset_message_deleted' => 'eliminato',
         'title' => 'Stato nomine',
@@ -252,6 +252,7 @@ return [
         'converts' => 'Includi beatmap convertite',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'Qualsiasi',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

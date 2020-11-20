@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "你的帳號已經一段時間沒有登入了",
@@ -377,7 +381,7 @@ return [
         ],
         'rank' => [
             'country' => ':mode 模式的國內排名',
-            'country_simple' => '國內/區內排行榜',
+            'country_simple' => '國內排名',
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
         ],

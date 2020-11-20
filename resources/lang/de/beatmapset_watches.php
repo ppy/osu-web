@@ -8,6 +8,11 @@ return [
         'description' => 'Dies sind deine beobachteten Diskussionen. Du wirst über neue Beiträge und Updates informiert.',
         'title_compact' => 'beobachtete moddingthreads',
 
+        'counts' => [
+            'total' => '',
+            'unread' => '',
+        ],
+
         'table' => [
             'empty' => 'Du beobachtest keine Diskussionen.',
             'open_issues' => 'Offene Vorschläge/Probleme',

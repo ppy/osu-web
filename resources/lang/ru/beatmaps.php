@@ -252,6 +252,7 @@ return [
         'converts' => 'Включить конвертированные карты',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'Все',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

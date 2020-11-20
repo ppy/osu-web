@@ -28,6 +28,10 @@ return [
             'cleared' => 'ολοκληρώθηκε',
             'not_cleared' => 'δεν ολοκληρώθηκε',
         ],
+        'no_diff_reduction' => [
+            '_' => '',
+            'link' => '',
+        ],
     ],
 
     'mode' => [

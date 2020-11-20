@@ -28,7 +28,7 @@ return [
         'nomination_reset' => 'Masalah baru di :discussion (:text) memicu pengaturan ulang nominasi.',
         'qualify' => 'Beatmap ini telah memperoleh jumlah nominasi yang cukup untuk mendapatkan status Qualified.',
         'rank' => 'Ranked.',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Dilepas dari Loved oleh :user. (:text)',
     ],
 
     'index' => [
@@ -67,6 +67,6 @@ return [
         'nomination_reset' => 'Nominasi ulang',
         'qualify' => 'Kualifikasi',
         'rank' => 'Peringkat',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Pelepasan status Loved',
     ],
 ];

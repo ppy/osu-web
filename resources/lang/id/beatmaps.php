@@ -187,8 +187,8 @@ return [
         'nominate_confirm' => 'Nominasikan beatmap ini?',
         'nominated_by' => 'dinominasikan oleh :users',
         'not_enough_hype' => "Beatmap tidak memiliki hype yang cukup.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Lepas dari Loved',
+        'remove_from_loved_prompt' => 'Alasan pelepasan status Loved:',
         'required_text' => 'Nominasi: :current/:required',
         'reset_message_deleted' => 'dihapus',
         'title' => 'Status Nominasi',
@@ -252,6 +252,7 @@ return [
         'converts' => 'Sertakan beatmap yang dikonversi',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'Semua',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
