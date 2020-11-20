@@ -28,6 +28,9 @@ export default class ForumPostReport extends React.Component<{}, State> {
   render() {
     return (
       <ReportReportable
+        // Manually set key to create new form when reporting for
+        // different post.
+        key={this.state.postId}
         ref={this.reportRef}
         reportableId={this.state.postId}
         reportableType='forum_post'
