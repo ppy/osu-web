@@ -49,7 +49,7 @@ class LocaleMeta
             'flag' => 'FI',
         ],
         'fr' => [
-            'name' => 'Français',
+            'name' => 'français',
             'flag' => 'FR',
         ],
         'hu' => [
@@ -81,7 +81,7 @@ class LocaleMeta
             'flag' => 'NO',
         ],
         'pl' => [
-            'name' => 'Polski',
+            'name' => 'polski',
             'flag' => 'PL',
         ],
         'pt' => [

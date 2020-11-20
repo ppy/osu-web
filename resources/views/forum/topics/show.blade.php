@@ -29,6 +29,7 @@
         'background' => $headerCover,
     ])
 
+    <div class="js-react--forum-post-report hidden"></div>
     <div class="js-forum__topic-user-can-moderate hidden" data-user-can-moderate="{{ $userCanModerate }}"></div>
     <div class="js-forum__topic-first-post-id hidden" data-first-post-id="{{ $firstPostId }}"></div>
 

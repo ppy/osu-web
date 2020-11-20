@@ -8,6 +8,11 @@ return [
         'description' => 'Poniżej znajdują się dyskusje beatmap, które obserwujesz. Otrzymasz powiadomienie, gdy pojawią się nowe posty bądź aktualizacje.',
         'title_compact' => 'obserwowane dyskusje',
 
+        'counts' => [
+            'total' => '',
+            'unread' => '',
+        ],
+
         'table' => [
             'empty' => 'Brak obserwowanych dyskusji beatmap.',
             'open_issues' => 'Nierozwiązane problemy',

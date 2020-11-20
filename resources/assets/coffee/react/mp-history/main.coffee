@@ -33,23 +33,24 @@ export class Main extends React.Component
 
 
   render: =>
-    div className: 'osu-layout__section',
+    el React.Fragment, null,
       el HeaderV4,
         theme: 'mp-history'
 
-      el Content,
-        match: @state.match
-        events: @state.events
-        currentGameId: @state.currentGameId
-        allEventsCount: @state.allEventsCount
-        users: @state.users
-        hasNext: @hasNext()
-        hasPrevious: @hasPrevious()
-        loadingNext: @state.loadingNext
-        loadingPrevious: @state.loadingPrevious
-        loadNext: @loadNext
-        loadPrevious: @loadPrevious
-        isAutoloading: @isAutoloading()
+      div className: 'osu-page osu-page--generic',
+        el Content,
+          match: @state.match
+          events: @state.events
+          currentGameId: @state.currentGameId
+          allEventsCount: @state.allEventsCount
+          users: @state.users
+          hasNext: @hasNext()
+          hasPrevious: @hasPrevious()
+          loadingNext: @state.loadingNext
+          loadingPrevious: @state.loadingPrevious
+          loadNext: @loadNext
+          loadPrevious: @loadPrevious
+          isAutoloading: @isAutoloading()
 
 
   componentWillUnmount: ->

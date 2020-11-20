@@ -2,6 +2,9 @@
 
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
+
+use App\Http\Middleware\ThrottleRequests;
+
 Route::group(['middleware' => ['web']], function () {
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('/beatmapsets/{beatmapset}/covers', 'BeatmapsetsController@covers')->name('beatmapsets.covers');
@@ -199,6 +202,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
         Route::get('notifications/endpoint', 'NotificationsController@endpoint')->name('notifications.endpoint');
         Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
+        Route::delete('notifications', 'NotificationsController@batchDestroy');
 
         Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');
 
@@ -335,7 +339,7 @@ Route::group(['middleware' => ['web']], function () {
 
 // API
 // require-scopes is not in the api group at the moment to reduce the number of things that need immediate fixing.
-Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'require-scopes']], function () {
+Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', ThrottleRequests::getApiThrottle(), 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets'], function () {
             Route::apiResource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
@@ -382,9 +386,9 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'requir
 
         Route::apiResource('seasonal-backgrounds', 'SeasonalBackgroundsController', ['only' => ['index']]);
 
-        Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
-            // GET /api/v2/scores/:mode/:score_id/download
-            Route::get('{mode}/{score}/download', 'ScoresController@download')->name('download');
+        Route::group(['prefix' => 'scores/{mode}', 'as' => 'scores.'], function () {
+            Route::get('{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download');
+            Route::get('{score}', 'ScoresController@show')->name('show');
         });
 
         // Beatmaps
@@ -414,6 +418,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'requir
         //  GET /api/v2/me/download-quota-check
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck');
 
+        Route::delete('oauth/tokens/current', 'OAuth\TokensController@destroyCurrent')->name('oauth.tokens.current');
+
         Route::apiResource('news', 'NewsController', ['only' => ['index', 'show']]);
 
         // Notifications
@@ -436,6 +442,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'requir
         Route::get('users/{user}/recent_activity', 'UsersController@recentActivity');
         //  GET /api/v2/users/:user_id/:mode [osu, taiko, fruits, mania]
         Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
+        Route::resource('users', 'UsersController', ['only' => ['index']]);
 
         Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
     });

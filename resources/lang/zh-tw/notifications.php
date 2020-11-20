@@ -5,9 +5,11 @@
 
 return [
     'all_read' => '已閱畢所有通知！',
+    'delete' => '',
     'mark_read' => '',
     'none' => '沒有通知',
     'see_all' => '查看所有通知',
+    'see_channel' => '',
 
     'filters' => [
         '_' => '全部',

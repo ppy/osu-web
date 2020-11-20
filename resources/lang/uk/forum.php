@@ -76,7 +76,7 @@ return [
         'deleted' => 'видалена тема',
         'go_to_latest' => 'показати останню відповідь',
         'has_replied' => 'Ви відповідали на цю тему',
-        'in_forum' => '',
+        'in_forum' => 'в :forum',
         'latest_post' => ':when від :user',
         'latest_reply_by' => 'остання відповідь від :user',
         'new_topic' => 'Нова тема',

@@ -22,6 +22,7 @@ use App\Models\Event;
 use App\Models\Forum;
 use App\Models\NewsPost;
 use App\Models\Notification;
+use App\Models\OAuth;
 use App\Models\Score\Best;
 use App\Models\User;
 use App\Models\UserStatistics;
@@ -376,9 +377,15 @@ class LegacyInterOpController extends Controller
         return json_item($message, 'Chat/Message', ['sender']);
     }
 
-    public function userSessionsDestroy($id)
+    public function userSessionsDestroy($userId)
     {
-        SessionStore::destroy($id);
+        SessionStore::destroy($userId);
+        OAuth\Token
+            ::where('user_id', $userId)
+            ->with('refreshToken')
+            ->get()
+            ->each
+            ->revokeRecursive();
 
         return ['success' => true];
     }

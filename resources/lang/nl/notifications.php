@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Alle meldingen gelezen!',
+    'delete' => '',
     'mark_read' => 'Wissen :type',
     'none' => 'Geen meldingen',
     'see_all' => 'alle meldingen bekijken',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'alle',

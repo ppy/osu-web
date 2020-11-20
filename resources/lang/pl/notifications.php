@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Wszystkie powiadomienia przeczytane!',
+    'delete' => '',
     'mark_read' => 'Wyczyść :type',
     'none' => 'Brak powiadomień',
     'see_all' => 'zobacz wszystkie powiadomienia',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'wszystkie',
