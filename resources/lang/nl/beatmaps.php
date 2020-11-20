@@ -252,6 +252,7 @@ return [
         'converts' => 'Tel geconverteerde beatmaps mee',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'Alles',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

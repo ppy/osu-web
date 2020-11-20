@@ -9,7 +9,7 @@ return [
 
     'buttons' => [
         'add' => '新增好友',
-        'disabled' => '好友',
+        'disabled' => '粉絲',
         'remove' => '刪除好友',
     ],
 ];

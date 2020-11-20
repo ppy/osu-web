@@ -4,6 +4,10 @@
 import Notification from 'models/notification';
 
 export function displayType(item: Notification) {
+  if (item.name === 'legacy_pm') {
+    return 'legacy_pm';
+  }
+
   if (item.objectType == null || item.objectId == null) {
     return;
   }

@@ -31,6 +31,10 @@ return [
             'cleared' => 'ผ่านแล้ว',
             'not_cleared' => 'ยังไม่ผ่าน',
         ],
+        'no_diff_reduction' => [
+            '_' => '',
+            'link' => '',
+        ],
     ],
 
     'mode' => [

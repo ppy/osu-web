@@ -8,6 +8,11 @@ return [
         'description' => 'Acestea sunt discuțiile beatmap pe care le urmărești. O să fii notificat atunci când apar noi postări sau actualizări.',
         'title_compact' => 'jurnalul modificărilor',
 
+        'counts' => [
+            'total' => '',
+            'unread' => '',
+        ],
+
         'table' => [
             'empty' => 'Nicio discuție beatmap urmărită.',
             'open_issues' => 'Probleme deschise',

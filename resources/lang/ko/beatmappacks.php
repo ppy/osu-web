@@ -31,6 +31,10 @@ return [
             'cleared' => '클리어한 맵',
             'not_cleared' => '클리어 기록 없음',
         ],
+        'no_diff_reduction' => [
+            '_' => '',
+            'link' => '',
+        ],
     ],
 
     'mode' => [

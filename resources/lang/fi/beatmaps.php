@@ -252,6 +252,7 @@ return [
         'converts' => 'Sisällytä muunnetut beatmapit',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'Kaikki',
         'osu' => '',
         'taiko' => '',

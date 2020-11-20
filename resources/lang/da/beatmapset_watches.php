@@ -8,6 +8,11 @@ return [
         'description' => 'Dette er de beatmap diskussioner du følger. Du vil modtage opdateringer når der er nye opslag eller opdateringer.',
         'title_compact' => 'modding watchlist',
 
+        'counts' => [
+            'total' => '',
+            'unread' => '',
+        ],
+
         'table' => [
             'empty' => 'Ingen beatmap-diskussioner fulgt.',
             'open_issues' => 'Åbne problemer',

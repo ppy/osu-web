@@ -187,8 +187,8 @@ return [
         'nominate_confirm' => '이 비트맵을 추천하시겠습니까?',
         'nominated_by' => ':users 님이 추천함',
         'not_enough_hype' => "Hype 수가 부족합니다.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Loved 상태에서 제거',
+        'remove_from_loved_prompt' => 'Loved에서 제거된 이유',
         'required_text' => '추천 수: :current/:required',
         'reset_message_deleted' => '삭제됨',
         'title' => '추천 상태',
@@ -252,6 +252,7 @@ return [
         'converts' => '변환된 비트맵 포함',
     ],
     'mode' => [
+        'all' => '',
         'any' => '모두',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

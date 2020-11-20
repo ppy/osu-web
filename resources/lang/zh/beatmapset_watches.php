@@ -8,6 +8,11 @@ return [
         'description' => '这里是你关注的谱面，你会在它们更新或者有新讨论的时候收到通知。',
         'title_compact' => '谱面关注列表',
 
+        'counts' => [
+            'total' => '',
+            'unread' => '',
+        ],
+
         'table' => [
             'empty' => '没有正在关注的谱面',
             'open_issues' => '待解决的问题',

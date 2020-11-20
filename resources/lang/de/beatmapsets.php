@@ -74,11 +74,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Wenn Du ein Problem mit dieser Beatmap findest, bitte disqualifiziere diese :link.',
+                '_' => 'Wenn du ein Problem mit dieser Beatmap findest, disqualifiziere diese bitte :link.',
             ],
 
             'report' => [
-                '_' => 'Wenn du ein Problem mit dieser Beatmap findest, bitte melde es :link, um das Team zu informieren.',
+                '_' => 'Wenn du ein Problem mit dieser Beatmap findest, melde es bitte :link, um das Team zu informieren.',
                 'button' => 'Problem melden',
                 'link' => 'hier',
             ],

@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Всички известия са прочетени!',
+    'delete' => '',
     'mark_read' => 'Изчисти :type',
     'none' => 'Няма известия',
     'see_all' => 'виж всички известия',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'всички',
@@ -58,7 +60,7 @@ return [
                 'beatmapset_rank' => '":title" бе класиран',
                 'beatmapset_rank_compact' => 'Бийтмапът бе класиран',
                 'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved_compact' => 'Бийтмапът бе премахнат от Обичани',
                 'beatmapset_reset_nominations' => 'Номинацията на ":title" бе анулирана',
                 'beatmapset_reset_nominations_compact' => 'Номинацията бе анулирана',
             ],
@@ -69,7 +71,7 @@ return [
                 'comment_new' => ':username коментира ":content" в темата ":title"',
                 'comment_new_compact' => ':username коментира ":content"',
                 'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply_compact' => ':username отговори в темата ":content"',
             ],
         ],
 
@@ -138,7 +140,7 @@ return [
                 '_' => 'Нов медал',
                 'user_achievement_unlock' => 'Отключихте ":title"!',
                 'user_achievement_unlock_compact' => 'Отключихте ":title"!',
-                'user_achievement_unlock_group' => '',
+                'user_achievement_unlock_group' => 'Медали отключени!',
             ],
         ],
     ],
@@ -161,18 +163,18 @@ return [
                 'beatmapset_nominate' => '',
                 'beatmapset_qualify' => '',
                 'beatmapset_rank' => '',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_remove_from_loved' => '":title" бе премахнат от Обичани',
+                'beatmapset_reset_nominations' => 'Номинацията на ":title" бе анулирана',
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Бийтмап ":title" има нови коментари',
             ],
         ],
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => 'Ти получи ново съобщение от :username',
             ],
         ],
 
@@ -184,20 +186,20 @@ return [
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Новини ":title" има нови коментари ',
             ],
         ],
 
         'forum_topic' => [
             'forum_topic_reply' => [
-                'forum_topic_reply' => '',
+                'forum_topic_reply' => 'Има нови отговори от ":title"',
             ],
         ],
 
         'user' => [
             'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock' => ':username отключи нов медал, ":title"!',
+                'user_achievement_unlock_self' => 'Вие отключихте нов медал, ":title"!',
             ],
         ],
     ],
