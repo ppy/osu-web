@@ -31,6 +31,10 @@ return [
             'cleared' => 'eliminat',
             'not_cleared' => 'neeliminat',
         ],
+        'no_diff_reduction' => [
+            '_' => '',
+            'link' => '',
+        ],
     ],
 
     'mode' => [

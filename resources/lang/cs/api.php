@@ -19,6 +19,6 @@ return [
             'read' => 'Koukněte se, koho sledujete.',
         ],
 
-        'public' => '',
+        'public' => 'Číst veřejná data vaším jménem.',
     ],
 ];

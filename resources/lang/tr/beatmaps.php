@@ -196,7 +196,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Herhangi bir sorun bulunmazsa mapin tahminen dereceli olacağı vakit :date. :queue :position. sırada bulunuyor.',
-            'queue' => 'derecelendirme sırası',
+            'queue' => 'derecelendirme sırasında',
             'soon' => 'çok yakın',
         ],
 
@@ -252,6 +252,7 @@ return [
         'converts' => 'Dönüştürülmüş beatmapleri dahil et',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'Hepsi',
         'osu' => '',
         'taiko' => '',
@@ -350,8 +351,8 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => 'Oynanma sayısı',
-        'favourites' => 'Favoriler',
+        'playcount' => 'Oynanma sayısı: :count',
+        'favourites' => 'Favoriler: :count',
     ],
     'variant' => [
         'mania' => [

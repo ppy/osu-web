@@ -28,7 +28,7 @@ return [
         'nomination_reset' => '새로운 문제 :discussion (:text)가 추천 상태를 초기화시켰습니다.',
         'qualify' => '이 비트맵은 충분한 추천을 받았고 qualified 상태로 전환되었습니다.',
         'rank' => 'Ranked.',
-        'remove_from_loved' => '',
+        'remove_from_loved' => ':user 님에 의해 Loved 상태에서 제거됨 (:text)',
     ],
 
     'index' => [
@@ -67,6 +67,6 @@ return [
         'nomination_reset' => '추천 초기화',
         'qualify' => 'Qualification',
         'rank' => '랭킹',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Loved 상태 제거',
     ],
 ];

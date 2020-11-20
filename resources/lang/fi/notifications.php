@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Kaikki ilmoitukset luettu!',
+    'delete' => '',
     'mark_read' => '',
     'none' => '',
     'see_all' => '',
+    'see_channel' => '',
 
     'filters' => [
         '_' => '',

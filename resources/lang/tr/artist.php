@@ -28,7 +28,7 @@ return [
 
     'songs' => [
         '_' => 'Şarkılar',
-        'count' => ':count şarkı|:count şarkı',
+        'count' => ':count_delimited şarkı|:count_delimited şarkı',
         'exclusive' => 'osu!\'ya özel',
     ],
 

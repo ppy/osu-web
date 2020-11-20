@@ -252,6 +252,7 @@ return [
         'converts' => 'Zahrnúť konvertované beatmapy',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'Akékoľvek',
         'osu' => '',
         'taiko' => '',

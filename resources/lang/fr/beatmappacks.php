@@ -31,6 +31,10 @@ return [
             'cleared' => 'terminé',
             'not_cleared' => 'non terminé',
         ],
+        'no_diff_reduction' => [
+            '_' => '',
+            'link' => '',
+        ],
     ],
 
     'mode' => [

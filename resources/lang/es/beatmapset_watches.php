@@ -8,6 +8,11 @@ return [
         'description' => 'Estas son las discusiones de mapas que estás siguiendo. Se te notificará cuando haya nuevas publicaciones o actualizaciones.',
         'title_compact' => 'lista de seguimiento de modding',
 
+        'counts' => [
+            'total' => '',
+            'unread' => '',
+        ],
+
         'table' => [
             'empty' => 'No estás viendo ninguna discusión de un mapa.',
             'open_issues' => 'Problemas abiertos',

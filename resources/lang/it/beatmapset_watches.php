@@ -8,6 +8,11 @@ return [
         'description' => 'Queste sono le discussioni di beatmap che stai seguendo. Verrai notificato quando ci sono nuovi post o aggiornamenti.',
         'title_compact' => 'lista modding',
 
+        'counts' => [
+            'total' => '',
+            'unread' => '',
+        ],
+
         'table' => [
             'empty' => 'Nessuna discussione di beatmap guardata.',
             'open_issues' => 'Problemi aperti',
