@@ -3,7 +3,6 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import NotificationJson, { NotificationBundleJson } from 'interfaces/notification-json';
-import { NotificationContextData } from 'notifications-context';
 import { fromJson, NotificationIdentity, NotificationIdentityJson } from 'notifications/notification-identity';
 
 // tslint:disable: max-classes-per-file
@@ -25,6 +24,10 @@ export interface NotificationEventDeleteJson {
   event: 'delete';
 }
 
+export interface NotificationEventMoreLoadedContext {
+  isWidget: boolean;
+}
+
 export interface NotificationEventReadJson {
   data: {
     notifications: NotificationIdentityJson[],
@@ -39,7 +42,7 @@ export interface NotificationEventVerifiedJson {
 }
 
 export class NotificationEventMoreLoaded extends DispatcherAction {
-  constructor(readonly data: NotificationBundleJson, readonly context: NotificationContextData) {
+  constructor(readonly data: NotificationBundleJson, readonly context: NotificationEventMoreLoadedContext) {
     super();
   }
 }

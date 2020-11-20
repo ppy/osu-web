@@ -15,6 +15,6 @@ export default class LegacyPmNotification extends Notification {
   }
 
   constructor() {
-    super(-1, 'legacy_pm');
+    super(-1, null);
   }
 }
