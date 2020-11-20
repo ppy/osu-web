@@ -135,11 +135,11 @@
         "controller": "App\\Http\\Controllers\\Chat\\ChatController@newConversation",
         "middlewares": [
             "require-scopes",
-            "auth",
-            "require-scopes:bot"
+            "require-scopes:bot",
+            "auth"
         ],
         "scopes": [
-          "bot"
+            "bot"
         ]
     },
     {
