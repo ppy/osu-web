@@ -988,6 +988,7 @@ function nav_links()
         'getWiki' => wiki_url('Main_Page'),
         'getFaq' => wiki_url('FAQ'),
         'getRules' => wiki_url('Rules'),
+        'getAbuse' => wiki_url('Reporting_Bad_Behaviour/Abuse'),
         'getSupport' => wiki_url('Help_Centre'),
     ];
 
