@@ -9,6 +9,7 @@ import ChatIcon from 'chat-icon'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
 import { CountdownTimer } from 'countdown-timer'
+import ForumPostReport from 'forum-post-report'
 import { FriendButton } from 'friend-button'
 import { LandingNews } from 'landing-news'
 import { keyBy } from 'lodash'
@@ -63,6 +64,8 @@ reactTurbolinks.register 'beatmap-discussion-events', Events, (container) ->
 
 reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
   JSON.parse(el.dataset.beatmapsetPanel)
+
+reactTurbolinks.registerPersistent 'forum-post-report', ForumPostReport
 
 reactTurbolinks.register 'spotlight-select-options', SpotlightSelectOptions, ->
   osu.parseJson 'json-spotlight-select-options'
