@@ -11,6 +11,9 @@
   @handle: 16px;
   @row-height: 1.8em;
 
+  --color: #fff;
+  --zero-color: fade(#fff, 40%);
+
   .cell-color(@color, @highlight) {
     color: @color;
 
@@ -27,7 +30,6 @@
 
   .row-color(@name, @color) {
     .@{activated-row}.@{name} & {
-      color: #fff;
       background-color: @color;
     }
 
@@ -36,7 +38,6 @@
     }
 
     .@{passive-row}.@{name}:hover & {
-      color: #fff;
       background-color: lighten(@color, 20%);
     }
   }
@@ -118,6 +119,14 @@
   }
 
   &__body-row {
+    &:hover {
+      --zero-color: #fff;
+    }
+
+    &--menu-active {
+      --zero-color: #fff;
+    }
+
     // @passive-row
     &--highlightable {
       .@{_top}--menu-active & {
@@ -215,7 +224,7 @@
     }
 
     &--zero {
-      color: fade(#fff, 40%);
+      color: var(--zero-color);
     }
   }
 
