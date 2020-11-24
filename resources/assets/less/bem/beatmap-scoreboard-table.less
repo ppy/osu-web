@@ -4,30 +4,15 @@
 .beatmap-scoreboard-table {
   @_top: beatmap-scoreboard-table;
   @activated-row: ~'@{_top}__body-row--menu-active';
-  @friend-row: ~'@{_top}__body-row--friend';
   @passive-row: ~'@{_top}__body-row--highlightable';
-  @self-row: ~'@{_top}__body-row--self';
 
   @handle: 16px;
   @row-height: 1.8em;
 
   --default-color: #fff;
   --perfect-color: hsl(@beatmap-score--hsl-perfect);
+  --row-background-color: @osu-colour-b5;
   --zero-color: fade(#fff, 40%);
-
-  .row-color(@name, @color) {
-    .@{activated-row}.@{name} & {
-      background-color: @color;
-    }
-
-    .@{passive-row}.@{name} & {
-      background-color: @color;
-    }
-
-    .@{passive-row}.@{name}:hover & {
-      background-color: lighten(@color, 20%);
-    }
-  }
 
   margin-right: -@handle;
   overflow-x: auto;
@@ -106,11 +91,12 @@
   }
 
   &__body-row {
-    &:hover {
-      --zero-color: #fff;
+    &:nth-child(odd) {
+      --row-background-color: @osu-colour-b4;
     }
 
-    &--menu-active {
+    &:hover {
+      --row-background-color: @osu-colour-b3;
       --zero-color: #fff;
     }
 
@@ -120,9 +106,33 @@
         pointer-events: none;
       }
     }
+
+    // need to prioritize over :nth-child
+    &&--friend {
+      --row-background-color: fade(@yellow-dark, 20%);
+
+      &:hover, .@{activated-row}& {
+        --row-background-color: lighten(fade(@yellow-dark, 20%), 20%);
+      }
+    }
+
+    &&--menu-active {
+      --row-background-color: @osu-colour-b3;
+      --zero-color: #fff;
+    }
+
+    &&--self {
+      --row-background-color: fade(@green-dark, 30%);
+
+      &:hover, .@{activated-row}& {
+        --row-background-color: lighten(fade(@green-dark, 30%), 20%);
+      }
+    }
   }
 
   &__cell {
+    background-color: var(--row-background-color);
+
     &:first-child {
       // rounded corners for left side
       border-top-left-radius: 5px;
@@ -135,34 +145,6 @@
       border-bottom-right-radius: 5px;
       padding-right: 10px;
     }
-
-    // when row is selected
-    .@{activated-row} & {
-      color: #fff;
-      background-color: @osu-colour-b3;
-    }
-
-    // when row is not selected
-    .@{passive-row} & {
-      background-color: @osu-colour-b5;
-    }
-
-    .@{passive-row}:nth-child(odd) & {
-      background-color: @osu-colour-b4;
-    }
-
-    // hovering over an unselected row
-    .@{passive-row}:hover & {
-      color: #fff;
-      background-color: @osu-colour-b3;
-    }
-
-    .@{passive-row}:hover:nth-child(odd) & {
-      background-color: @osu-colour-b3;
-    }
-
-    .row-color(@friend-row, fade(@yellow-dark, 20%));
-    .row-color(@self-row, fade(@green-dark, 30%));
   }
 
   &__cell-content {
