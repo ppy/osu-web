@@ -11,22 +11,9 @@
   @handle: 16px;
   @row-height: 1.8em;
 
-  --color: #fff;
+  --default-color: #fff;
+  --perfect-color: hsl(@beatmap-score--hsl-perfect);
   --zero-color: fade(#fff, 40%);
-
-  .cell-color(@color, @highlight) {
-    color: @color;
-
-    && {
-      .@{activated-row} & {
-        color: @highlight;
-      }
-
-      .@{passive-row}:hover & {
-        color: @highlight;
-      }
-    }
-  }
 
   .row-color(@name, @color) {
     .@{activated-row}.@{name} & {
@@ -179,11 +166,15 @@
   }
 
   &__cell-content {
-    .link-white();
     .link-plain();
+    .link-hover({
+      color: var(--default-color);
+    });
+
     display: flex;
     height: @row-height;
     align-items: center;
+    color: var(--default-color);
 
     &--grade {
       align-items: center;
@@ -196,7 +187,7 @@
     }
 
     &--perfect {
-      .cell-color(hsl(@beatmap-score--hsl-perfect), hsl(@beatmap-score--hsl-perfect));
+      --default-color: var(--perfect-color);
     }
 
     &--rank {
@@ -224,7 +215,7 @@
     }
 
     &--zero {
-      color: var(--zero-color);
+      --default-color: var(--zero-color);
     }
   }
 
