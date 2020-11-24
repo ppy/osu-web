@@ -27,6 +27,10 @@ class UserNotification extends Model
         $notificationIds = $batchIdentities->getNotificationIds();
         $identities = $batchIdentities->getIdentities();
 
+        if (empty($notificationIds)) {
+            return;
+        }
+
         $now = now();
         // obtain and filter valid notification ids
         $notificationIds = $user
