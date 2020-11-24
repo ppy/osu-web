@@ -44,13 +44,20 @@ class BatchIdentities
         return $obj;
     }
 
-    public static function scrubIdentities(array $params)
+    public static function scrubIdentities($params)
     {
-        $identities = array_map(function ($param) {
-            return is_array($param) ? static::scrubIdentity($param) : null;
-        }, $params);
+        if (!is_array($params)) {
+            return [];
+        }
 
-        return array_values(array_filter($identities));
+        $identities = [];
+        foreach ($params as $param) {
+            if (is_array($param)) {
+                $identities[] = static::scrubIdentity($param);
+            }
+        }
+
+        return $identities;
     }
 
     public static function scrubIdentity(array $identity)
