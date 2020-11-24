@@ -19,9 +19,9 @@ class BatchIdentities
         if (is_array($params['notifications'] ?? null)) {
             $obj->notificationIds = [];
             $obj->identities = [];
-            foreach ($params['notifications'] as $identity) {
-                $identity = static::scrubIdentity($identity);
 
+            $identities = static::scrubIdentities($params['notifications']);
+            foreach ($identities as $identity) {
                 if (isset($identity['id'])) {
                     $obj->notificationIds[] = $identity['id'];
                     $obj->identities[] = $identity;
@@ -29,9 +29,7 @@ class BatchIdentities
             }
         } else {
             // TODO: just use array of ids instead of subquery?
-            $obj->identities = array_map(function ($param) {
-                return static::scrubIdentity($param);
-            }, $params['identities'] ?? []);
+            $obj->identities = static::scrubIdentities($params['identities'] ?? []);
 
             foreach ($obj->identities as $identity) {
                 $query = Notification::byIdentity($identity)->select('id');
@@ -44,6 +42,15 @@ class BatchIdentities
         }
 
         return $obj;
+    }
+
+    public static function scrubIdentities(array $params)
+    {
+        $identities = array_map(function ($param) {
+            return is_array($param) ? static::scrubIdentity($param) : null;
+        }, $params);
+
+        return array_values(array_filter($identities));
     }
 
     public static function scrubIdentity(array $identity)
