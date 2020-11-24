@@ -44,7 +44,7 @@ class BatchIdentities
         return $obj;
     }
 
-    public static function scrubIdentities($params)
+    public static function scrubIdentities($params): array
     {
         if (!is_array($params)) {
             return [];
