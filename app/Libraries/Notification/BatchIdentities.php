@@ -16,7 +16,7 @@ class BatchIdentities
     {
         $obj = new static();
 
-        if (is_array($params['notifications'] ?? null)) {
+        if ($params['notifications'] ?? null) {
             $obj->notificationIds = [];
             $obj->identities = [];
 
@@ -29,7 +29,7 @@ class BatchIdentities
             }
         } else {
             // TODO: just use array of ids instead of subquery?
-            $obj->identities = static::scrubIdentities($params['identities'] ?? []);
+            $obj->identities = static::scrubIdentities($params['identities'] ?? null);
 
             foreach ($obj->identities as $identity) {
                 $query = Notification::byIdentity($identity)->select('id');
