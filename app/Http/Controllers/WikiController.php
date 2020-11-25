@@ -39,14 +39,18 @@ class WikiController extends Controller
             return ujs_redirect(wiki_url(null, $this->locale()));
         }
 
+        $validLocale = LocaleMeta::isValid($locale);
+
         // if images slip through the markdown processing, redirect them to the correct place
         if (OsuWiki::isImage($path)) {
-            return ujs_redirect(route('wiki.image', concat_path([$locale === 'images' ? null : $locale, $path])));
+            $prependPath = ($locale === 'images' || $validLocale) ? null : $locale;
+
+            return ujs_redirect(route('wiki.image', concat_path([$prependPath, $path])));
         }
 
         // if invalid locale, assume locale to be part of path and
         // actual locale to be either user locale or passed as parameter
-        if (!LocaleMeta::isValid($locale)) {
+        if (!$validLocale) {
             return ujs_redirect(wiki_url(concat_path([$locale, $path]), $this->locale()));
         }
 
