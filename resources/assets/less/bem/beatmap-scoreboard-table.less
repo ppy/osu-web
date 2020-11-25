@@ -12,6 +12,7 @@
   --default-color: #fff;
   --perfect-color: hsl(@beatmap-score--hsl-perfect);
   --row-background-color: @osu-colour-b5;
+  --row-background-color-highlight: @osu-colour-b3;
   --zero-color: fade(#fff, 40%);
 
   margin-right: -@handle;
@@ -95,8 +96,7 @@
       --row-background-color: @osu-colour-b4;
     }
 
-    &:hover {
-      --row-background-color: @osu-colour-b3;
+    &:hover, &--menu-active {
       --zero-color: #fff;
     }
 
@@ -108,30 +108,24 @@
     }
 
     // need to prioritize over :nth-child
-    &&--friend {
+    &--friend {
       --row-background-color: fade(@yellow-dark, 20%);
-
-      &:hover, .@{activated-row}& {
-        --row-background-color: lighten(fade(@yellow-dark, 20%), 20%);
-      }
+      --row-background-color-highlight: lighten(fade(@yellow-dark, 20%), 20%);
     }
 
-    &&--menu-active {
-      --row-background-color: @osu-colour-b3;
-      --zero-color: #fff;
-    }
-
-    &&--self {
+    &--self {
       --row-background-color: fade(@green-dark, 30%);
-
-      &:hover, .@{activated-row}& {
-        --row-background-color: lighten(fade(@green-dark, 30%), 20%);
-      }
+      --row-background-color-highlight: lighten(fade(@green-dark, 30%), 20%);
     }
   }
 
   &__cell {
     background-color: var(--row-background-color);
+
+    .@{_top}__body-row:hover &,
+    .@{activated-row} & {
+      background-color: var(--row-background-color-highlight);
+    }
 
     &:first-child {
       // rounded corners for left side
@@ -159,7 +153,6 @@
     color: var(--default-color);
 
     &--grade {
-      align-items: center;
       justify-content: center;
     }
 
