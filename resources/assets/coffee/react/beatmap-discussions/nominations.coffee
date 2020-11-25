@@ -293,7 +293,7 @@ export class Nominations extends React.PureComponent
             ':date': date
             ':position': @props.beatmapset.nominations.ranking_queue_position
             ':queue': a
-              href: laroute.route('wiki.show', page: 'Beatmap_ranking_procedure/Ranking_queue')
+              href: laroute.route('wiki.show', path: 'Beatmap_ranking_procedure/Ranking_queue', locale: currentLocale)
               key: 'queue'
               target: '_blank'
               osu.trans 'beatmaps.nominations.rank_estimate.queue'

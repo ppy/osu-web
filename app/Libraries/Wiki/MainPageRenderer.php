@@ -31,6 +31,33 @@ class MainPageRenderer extends Renderer
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function render()
+    {
+        $body = OsuMarkdown::parseYamlHeader($this->body);
+        $document = $this->parser->parse($body['document']);
+
+        $this->addClasses($document);
+
+        $page = [
+            'header' => $body['header'],
+            'output' => $this->renderer->renderBlock($document),
+        ];
+
+        return $page;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function renderIndexable()
+    {
+        // returning nothing since the main page isn't searchable anyway
+        return '';
+    }
+
+    /**
      * @param \League\CommonMark\Block\Element\Document $document
      * @return void
      */
@@ -40,6 +67,8 @@ class MainPageRenderer extends Renderer
 
         while ($event = $walker->next()) {
             $node = $event->getNode();
+
+            $this->fixLinks($event, $node);
 
             if ($event->isEntering() || isset($node->data['attributes']['class'])) {
                 continue;
@@ -66,30 +95,15 @@ class MainPageRenderer extends Renderer
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function render()
+    private function fixLinks($event, $node)
     {
-        $body = OsuMarkdown::parseYamlHeader($this->body);
-        $document = $this->parser->parse($body['document']);
+        if (!$event->isEntering() || !($node instanceof Inline\AbstractWebResource)) {
+            return;
+        }
 
-        $this->addClasses($document);
+        // this assumes links are in form /wiki/Path/To/Page
+        $relativeUrl = preg_replace('#^/wiki/#', './', $node->getUrl());
 
-        $page = [
-            'header' => $body['header'],
-            'output' => $this->renderer->renderBlock($document),
-        ];
-
-        return $page;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function renderIndexable()
-    {
-        // returning nothing since the main page isn't searchable anyway
-        return '';
+        $node->setUrl($relativeUrl);
     }
 }
