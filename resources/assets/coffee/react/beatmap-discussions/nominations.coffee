@@ -452,13 +452,6 @@ export class Nominations extends React.PureComponent
         onClick: @focusNewDiscussionWithModeSwitch
 
 
-  mapCanBeNominated: =>
-    requiredHype = @props.beatmapset.hype?.required
-    hypeRaw = @props.currentDiscussions.totalHype
-
-    @props.beatmapset.status == 'pending' && hypeRaw >= requiredHype
-
-
   discussionLockButton: =>
     canModeratePost = BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
 

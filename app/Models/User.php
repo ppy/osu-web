@@ -1462,28 +1462,37 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function nominationModes()
     {
-        if (!$this->isNAT() && !$this->isBNG()) {
-            return;
-        }
-
-        $modes = [
-            'full' => [],
-            'limited' => [],
-        ];
-
-        if ($this->isNAT()) {
-            $modes['full'] = $this->userGroups()->where('group_id', app('groups')->byIdentifier('nat')->group_id)->first()->playmodes;
-        } else {
-            if ($this->isFullBN()) {
-                $modes['full'] = $this->userGroups()->where('group_id', app('groups')->byIdentifier('bng')->group_id)->first()->playmodes;
+        return $this->memoize(__FUNCTION__, function () {
+            if (!$this->isNAT() && !$this->isBNG()) {
+                return;
             }
 
-            if ($this->isLimitedBN()) {
-                $modes['limited'] = $this->userGroups()->where('group_id', app('groups')->byIdentifier('bng_limited')->group_id)->first()->playmodes;
-            }
-        }
+            $modes = [];
 
-        return $modes;
+            if ($this->isNAT()) {
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('nat'), true)->playmodes ?? [];
+                foreach ($playmodes as $playmode) {
+                    $modes[$playmode] = 'full';
+                }
+            } else {
+                if ($this->isFullBN()) {
+                    $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng'), true)->playmodes ?? [];
+                    foreach ($playmodes as $playmode) {
+                        $modes[$playmode] = 'full';
+                    }
+                }
+
+                if ($this->isLimitedBN()) {
+                    $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng_limited'), true)->playmodes ?? [];
+                    foreach ($playmodes as $playmode) {
+                        // prevent 'full' permission from being overwritten - i.e. if a user is accidentally added to both bng/nat and bng_limited for the same playmode
+                        $modes[$playmode] = $modes[$playmode] ?? 'limited';
+                    }
+                }
+            }
+
+            return $modes;
+        });
     }
 
     public function hasBlocked(self $user)

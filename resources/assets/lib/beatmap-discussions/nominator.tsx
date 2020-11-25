@@ -25,10 +25,6 @@ interface State {
   visible: boolean;
 }
 
-type NominationMap = {
-  [mode in GameMode]?: 'full' | 'limited' | undefined;
-};
-
 export class Nominator extends React.PureComponent<Props, State> {
   private bn = 'nomination-dialog';
   private checkboxContainerRef = React.createRef<HTMLDivElement>();
@@ -212,27 +208,7 @@ export class Nominator extends React.PureComponent<Props, State> {
       return {};
     }
 
-    const user = this.props.currentUser;
-    const modes: NominationMap = {};
-
-    if (user.is_nat) {
-      user.groups?.find((group) => group.identifier === 'nat')?.playmodes?.forEach((mode) => {
-        modes[mode] = 'full';
-      });
-    } else {
-      if (user.is_full_bn) {
-        user.groups?.find((group) => group.identifier === 'bng')?.playmodes?.forEach((mode) => {
-          modes[mode] = 'full';
-        });
-      }
-      if (user.is_limited_bn) {
-        user.groups?.find((group) => group.identifier === 'bng_limited')?.playmodes?.forEach((mode) => {
-          modes[mode] = 'limited';
-        });
-      }
-    }
-
-    return modes;
+    return this.props.beatmapset.current_user_attributes?.nomination_modes ?? {};
   }
 
   private modalContentHybrid = () => {

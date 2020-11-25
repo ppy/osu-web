@@ -253,7 +253,7 @@ class BeatmapsetEvent extends Model
             return null;
         }
 
-        return $this->comment['modes'] ?? ['legacy'];
+        return $this->comment['modes'] ?? [];
     }
 
     public function beatmapDiscussion()

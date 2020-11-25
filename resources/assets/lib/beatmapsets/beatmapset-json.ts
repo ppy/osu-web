@@ -37,6 +37,19 @@ export type BeatmapsetNominationsInterface =
 export type BeatmapsetStatus =
   'graveyard' | 'wip' | 'pending' | 'ranked' | 'approved' | 'qualified' | 'loved';
 
+export interface CurrentUserAttributes {
+  can_delete: boolean;
+  can_edit_metadata: boolean;
+  can_hype: boolean;
+  can_hype_reason: string;
+  can_love: boolean;
+  can_remove_from_loved: boolean;
+  is_watching: boolean;
+  new_hype_time: string;
+  nomination_modes: Partial<Record<GameMode, 'full' | 'limited'>>;
+  remaining_hype: number;
+}
+
 // TODO: incomplete
 export interface BeatmapsetJson {
   artist: string;
@@ -44,6 +57,7 @@ export interface BeatmapsetJson {
   beatmaps?: BeatmapJson[];
   covers: BeatmapsetCovers;
   creator: string;
+  current_user_attributes?: CurrentUserAttributes;
   genre: GenreJson;
   hype?: {
     current: number;
