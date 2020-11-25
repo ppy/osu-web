@@ -461,14 +461,18 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::get('/news', 'LegacyInterOpController@news');
     Route::apiResource('users', 'InterOp\UsersController', ['only' => ['store']]);
 
-    Route::group(['as' => 'indexing.', 'prefix' => 'indexing'], function () {
-        Route::apiResource('bulk', 'InterOp\Indexing\BulkController', ['only' => ['store']]);
-    });
+    Route::group(['namespace' => 'InterOp'], function () {
+        Route::post('beatmapsets/{beatmapset}/broadcast-new', 'BeatmapsetsController@broadcastNew');
 
-    Route::group(['as' => 'user-groups.'], function () {
-        Route::post('user-group', 'InterOp\UserGroupsController@store')->name('store');
-        Route::delete('user-group', 'InterOp\UserGroupsController@destroy')->name('destroy');
-        Route::post('user-default-group', 'InterOp\UserGroupsController@setDefault')->name('store-default');
+        Route::group(['as' => 'indexing.', 'prefix' => 'indexing'], function () {
+            Route::apiResource('bulk', 'Indexing\BulkController', ['only' => ['store']]);
+        });
+
+        Route::group(['as' => 'user-groups.'], function () {
+            Route::post('user-group', 'UserGroupsController@store')->name('store');
+            Route::delete('user-group', 'UserGroupsController@destroy')->name('destroy');
+            Route::post('user-default-group', 'UserGroupsController@setDefault')->name('store-default');
+        });
     });
 });
 

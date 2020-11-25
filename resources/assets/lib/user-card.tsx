@@ -3,6 +3,7 @@
 
 import { BlockButton } from 'block-button';
 import FlagCountry from 'flag-country';
+import FollowUserModdingButton from 'follow-user-modding-button';
 import { FriendButton } from 'friend-button';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
@@ -203,19 +204,21 @@ export class UserCard extends React.PureComponent<Props, State> {
           <FlagCountry country={this.user.country} />
         </a>
 
-        {
-          this.props.mode === 'card' && this.user.is_supporter ?
-          <a className='user-card__icon' href={route('support-the-game')}>
-            <SupporterIcon modifiers={['user-card']}/>
-          </a> : null
-        }
-
-        {
-          this.props.mode === 'card' ?
-          <div className='user-card__icon'>
-            <FriendButton userId={this.user.id} modifiers={['user-card']} />
-          </div> : null
-        }
+        {this.props.mode === 'card' && (
+          <>
+            {this.user.is_supporter && (
+              <a className='user-card__icon' href={route('support-the-game')}>
+                <SupporterIcon modifiers={['user-card']}/>
+              </a>
+            )}
+            <div className='user-card__icon'>
+              <FriendButton userId={this.user.id} modifiers={['user-card']} />
+            </div>
+            <div className='user-card__icon'>
+              <FollowUserModdingButton userId={this.user.id} modifiers={['user-card']} />
+            </div>
+          </>
+        )}
       </div>
     );
   }
@@ -233,6 +236,10 @@ export class UserCard extends React.PureComponent<Props, State> {
 
         <div className='user-card__icon'>
           <FriendButton userId={this.user.id} modifiers={['user-list']} />
+        </div>
+
+        <div className='user-card__icon'>
+          <FollowUserModdingButton userId={this.user.id} modifiers={['user-list']} />
         </div>
       </div>
     );
