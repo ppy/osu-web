@@ -8,6 +8,11 @@ return [
         'description' => 'ウォッチ中のディスカッションの一覧です。新しい投稿や更新の時に通知されます。',
         'title_compact' => 'modding ウォッチリスト',
 
+        'counts' => [
+            'total' => '',
+            'unread' => '',
+        ],
+
         'table' => [
             'empty' => 'ウォッチしているビートマップディスカッションがありません',
             'open_issues' => '未解決の問題',

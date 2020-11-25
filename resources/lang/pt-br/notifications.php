@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Todas as notificações foram lidas!',
+    'delete' => '',
     'mark_read' => 'Limpar :type',
     'none' => 'Sem notificações',
     'see_all' => 'ver todas as notificações',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'tudo',
@@ -57,8 +59,8 @@ return [
                 'beatmapset_qualify_compact' => 'O beatmap entrou na fila de ranqueamento',
                 'beatmapset_rank' => '":title" se tornou ranqueado',
                 'beatmapset_rank_compact' => 'O beatmap foi ranqueado',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved' => '":title" foi removido dos Loved',
+                'beatmapset_remove_from_loved_compact' => 'O beatmap foi removido dos Loved',
                 'beatmapset_reset_nominations' => 'Um problema publicado por :username reiniciou a nomeação do beatmap ":title" ',
                 'beatmapset_reset_nominations_compact' => 'A nomeação foi reiniciada',
             ],
@@ -161,7 +163,7 @@ return [
                 'beatmapset_nominate' => '":title" foi nomeado',
                 'beatmapset_qualify' => '":title" ganhou nomeações suficientes e entrou na fila de ranqueamento',
                 'beatmapset_rank' => '":title" foi ranqueado',
-                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved' => '":title" foi removido dos Loved',
                 'beatmapset_reset_nominations' => 'A nomeação de ":title" foi reiniciada',
             ],
 

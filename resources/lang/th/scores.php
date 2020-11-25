@@ -8,7 +8,7 @@ return [
         'title' => ':username บน :title [:version]',
 
         'beatmap' => [
-            'by' => 'จัดทำโดย :artist',
+            'by' => 'โดย :artist',
         ],
 
         'player' => [

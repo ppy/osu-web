@@ -9,7 +9,7 @@ return [
         'online' => 'aktuell <strong>:players</strong> online in <strong>:games</strong> Spielen',
         'peak' => 'Maximum, :count Benutzer online',
         'players' => '<strong>:count</strong> registrierte Spieler',
-        'title' => 'Willkommen',
+        'title' => 'willkommen',
         'see_more_news' => 'mehr Neuigkeiten anzeigen',
 
         'slogan' => [
@@ -76,9 +76,9 @@ return [
         'action' => 'osu! herunterladen',
 
         'help' => [
-            '_' => 'wenn du Probleme mit dem Starten des Spiels oder der Registrierung deines Accounts hast, :help_forum_link oder :support_button.',
-            'help_forum_link' => 'schau im Forum',
-            'support_button' => 'kontaktiere den Support',
+            '_' => 'wenn du probleme mit dem starten des spiels oder der registrierung deines accounts hast, :help_forum_link oder :support_button.',
+            'help_forum_link' => 'schau im hilfeforum nach',
+            'support_button' => 'kontaktiere den support',
         ],
 
         'os' => [

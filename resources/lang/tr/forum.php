@@ -61,7 +61,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => ':count_delimited gönderi',
+            'post_count' => ':count_delimited gönderi|:count_delimited gönderi',
             'topic_starter' => 'Konuyu Başlatan',
         ],
     ],
@@ -89,7 +89,7 @@ return [
 
         'create' => [
             'close' => 'Kapat',
-            'preview' => 'Ön izleme ',
+            'preview' => 'Önizleme ',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Yaz',
@@ -160,7 +160,7 @@ return [
         'create' => [
             'create_poll' => 'Anket Oluşturma',
 
-            'preview' => 'Yazı önizleme',
+            'preview' => 'Gönderi Önizleme',
 
             'create_poll_button' => [
                 'add' => 'Anket oluştur',
@@ -281,7 +281,7 @@ return [
                 ],
 
                 'user' => [
-                    'count' => '{0} oy yok|{1} :count oy|[2,*] :count oy',
+                    'count' => '{0} oy yok|{1} :count_delimited oy|[2,*] :count_delimited oy',
                     'current' => ':votes oyunuz var.',
                     'not_enough' => "Başka oyunuz kalmadı",
                 ],

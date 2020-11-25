@@ -23,7 +23,7 @@ return [
                 'description' => '',
             ],
             'featured-artists' => [
-                'title' => '',
+                'title' => 'Vybraní umělci',
                 'description' => '',
                 'link_text' => '',
             ],
@@ -50,7 +50,7 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => '',
+                'title' => 'Žebříček přátel',
                 'description' => "",
             ],
 
@@ -60,7 +60,7 @@ return [
             ],
 
             'mod_filtering' => [
-                'title' => '',
+                'title' => 'Filtrovat podle módů',
                 'description' => '',
             ],
 
@@ -132,7 +132,7 @@ return [
                 'description' => '',
             ],
             'friend_filtering' => [
-                'title' => '',
+                'title' => 'Žebříček kamarádů',
                 'description' => '',
             ],
 

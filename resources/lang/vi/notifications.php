@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Tất cả các thông báo đã được đọc!',
+    'delete' => '',
     'mark_read' => '',
     'none' => 'Không có thông báo nào',
     'see_all' => 'xem tất cả thông báo',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'tất cả',

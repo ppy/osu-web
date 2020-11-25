@@ -138,7 +138,7 @@ return [
         'status-messages' => [
             'approved' => 'Diese Beatmap wurde am :date approved!',
             'graveyard' => "Diese Beatmap wurde seit dem :date nicht mehr aktualisiert und wurde wahrscheinlich vom Ersteller aufgegeben...",
-            'loved' => 'Diese Beatmap wurde am :date loved!',
+            'loved' => 'Diese Beatmap wurde am :date Loved!',
             'ranked' => 'Diese Beatmap wurde am :date ranked!',
             'wip' => 'Anmerkung: Diese Beatmap ist vom Ersteller als \'Work-In-Progress\' gekennzeichnet',
         ],
@@ -187,8 +187,8 @@ return [
         'nominate_confirm' => 'Diese Beatmap nominieren?',
         'nominated_by' => 'Nominiert von :users',
         'not_enough_hype' => "Nicht ausreichend Hype vorhanden.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Aus Loved entfernen',
+        'remove_from_loved_prompt' => 'Grund fürs Entfernen aus Loved:',
         'required_text' => 'Nominierungen: :current/:required',
         'reset_message_deleted' => 'gelöscht',
         'title' => 'Nominierungsstatus',
@@ -252,6 +252,7 @@ return [
         'converts' => 'Konvertierte Beatmaps miteinbeziehen',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'Alle',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

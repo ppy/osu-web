@@ -30,6 +30,10 @@ return [
             'cleared' => '削除済み',
             'not_cleared' => '未クリア',
         ],
+        'no_diff_reduction' => [
+            '_' => '',
+            'link' => '',
+        ],
     ],
 
     'mode' => [

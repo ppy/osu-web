@@ -31,6 +31,10 @@ return [
             'cleared' => 'cleared',
             'not_cleared' => 'not cleared',
         ],
+        'no_diff_reduction' => [
+            '_' => ':link may not be used to clear this pack.',
+            'link' => 'Difficulty reduction mods',
+        ],
     ],
 
     'mode' => [

@@ -30,6 +30,10 @@ return [
             'cleared' => '玩過',
             'not_cleared' => '未玩',
         ],
+        'no_diff_reduction' => [
+            '_' => '',
+            'link' => '',
+        ],
     ],
 
     'mode' => [

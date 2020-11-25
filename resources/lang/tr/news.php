@@ -13,7 +13,7 @@ return [
         ],
 
         'title' => [
-            '_' => 'Haber :info',
+            '_' => 'haberler',
             'info' => 'anasayfa',
         ],
     ],
@@ -22,12 +22,12 @@ return [
         'by' => ':user tarafından',
 
         'nav' => [
-            'newer' => 'Daha yeni gönderi',
-            'older' => 'Daha eski gönderi',
+            'newer' => 'Sonraki gönderi',
+            'older' => 'Önceki gönderi',
         ],
 
         'title' => [
-            '_' => 'Haber :info',
+            '_' => 'haberler',
             'info' => 'gönder',
         ],
     ],

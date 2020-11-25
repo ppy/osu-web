@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Všetky upozornenia prečítané!',
+    'delete' => '',
     'mark_read' => '',
     'none' => '',
     'see_all' => '',
+    'see_channel' => '',
 
     'filters' => [
         '_' => '',

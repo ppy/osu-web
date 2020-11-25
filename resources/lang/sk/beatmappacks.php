@@ -31,6 +31,10 @@ lebo sa budú beatmapy v osu! zobrazovať nesprávne a nebudú poriadne fungova�
             'cleared' => 'splnené',
             'not_cleared' => 'nesplnené',
         ],
+        'no_diff_reduction' => [
+            '_' => '',
+            'link' => '',
+        ],
     ],
 
     'mode' => [
