@@ -41,7 +41,7 @@ class WikiController extends Controller
 
         // if images slip through the markdown processing, redirect them to the correct place
         if (OsuWiki::isImage($path)) {
-            return ujs_redirect(route('wiki.image', $path));
+            return ujs_redirect(route('wiki.image', concat_path([$locale === 'images' ? null : $locale, $path])));
         }
 
         // if invalid locale, assume locale to be part of path and
