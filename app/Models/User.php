@@ -781,7 +781,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             return $isGroup;
         }
 
-        $groupModes = $this->userGroups()->where('group_id', $group->group_id)->first()->playmodes;
+        $groupModes = $this->findUserGroup($group, true)->playmodes;
 
         return in_array($playmode, $groupModes ?? [], true);
     }

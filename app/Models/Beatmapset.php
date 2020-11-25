@@ -961,11 +961,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         }
 
         $currentNominations = [];
-        foreach ($this->playmodes() as $playmode) {
-            $currentNominations[Beatmap::modeStr($playmode)] = 0;
+        foreach ($this->playmodesStr() as $playmode) {
+            $currentNominations[$playmode] = 0;
         }
 
-        $nominations = $this->fresh()->nominationsSinceReset;
+        $nominations = $this->nominationsSinceReset()->get();
         foreach ($nominations as $nomination) {
             foreach ($nomination->nominationModes as $nomMode) {
                 $currentNominations[$nomMode] = $currentNominations[$nomMode] ?? 0;
@@ -1011,7 +1011,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             static function ($ele) {
                 return Beatmap::modeStr($ele);
             },
-            $this->beatmaps->pluck('playmode')->unique()->values()->toArray()
+            $this->playmodes()->toArray()
         );
     }
 

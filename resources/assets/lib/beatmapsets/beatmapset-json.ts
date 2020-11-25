@@ -20,13 +20,9 @@ interface BaseNominationsInterface {
 }
 
 export interface NominationsInterface extends BaseNominationsInterface {
-  current: {
-    [mode in GameMode]?: number;
-  };
+  current: Partial<Record<GameMode, number>>;
   legacy_mode: false;
-  required: {
-    [mode in GameMode]?: number;
-  };
+  required: Partial<Record<GameMode, number>>;
 }
 
 export interface LegacyNominationsInterface extends BaseNominationsInterface {

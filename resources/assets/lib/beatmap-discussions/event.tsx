@@ -144,7 +144,7 @@ export default class Event extends React.PureComponent<Props> {
     if (eventType === 'nominate' && this.props.event.comment?.modes.length > 0) {
       eventType = `nominate_modes`;
       const nominationModes = this.props.event.comment.modes.map((mode: GameMode) => osu.trans(`beatmaps.mode.${mode}`));
-      params.modes = nominationModes.join(', ');
+      params.modes = osu.transArray(nominationModes);
     }
 
     const key = `beatmapset_events.event.${eventType}`;

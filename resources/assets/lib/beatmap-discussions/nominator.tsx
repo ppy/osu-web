@@ -9,7 +9,8 @@ import { route } from 'laroute';
 import * as _ from 'lodash';
 import { Modal } from 'modal';
 import * as React from 'react';
-import { modes as GameModes } from 'utils/beatmap-helper';
+import { modes as gameModes } from 'utils/beatmap-helper';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   beatmapset: BeatmapsetJson;
@@ -38,18 +39,9 @@ export class Nominator extends React.PureComponent<Props, State> {
 
     this.state = {
       loading: false,
-      selectedModes: [],
+      selectedModes: this.hybridMode() ? [] : [_.keys(this.props.beatmapset.nominations?.required)[0] as GameMode],
       visible: false,
     };
-  }
-
-  componentDidMount() {
-    if (!this.hybridMode()) {
-      this.setState({
-        selectedModes: [_.keys(this.props.beatmapset.nominations?.required)[0] as GameMode],
-      });
-    }
-
   }
 
   componentWillUnmount() {
@@ -155,7 +147,7 @@ export class Nominator extends React.PureComponent<Props, State> {
 
     return (
       <Modal visible={this.state.visible} onClose={this.hideNominationModal}>
-        <div className={`${this.bn}`}>
+        <div className={this.bn}>
           <div className={`${this.bn}__header`}>{osu.trans('beatmapsets.nominate.dialog.header')}</div>
           {content}
           <div className={`${this.bn}__buttons`}>
@@ -185,7 +177,7 @@ export class Nominator extends React.PureComponent<Props, State> {
   showNominationModal = () => this.setState({visible: true});
 
   updateCheckboxes = () => {
-    const checkedBoxes = _.map(this.checkboxContainerRef.current?.querySelectorAll('input[type=checkbox]:checked'), (node: HTMLInputElement) => node.value);
+    const checkedBoxes = _.map(this.checkboxContainerRef.current?.querySelectorAll<HTMLInputElement>('input[type=checkbox]:checked'), (node) => node.value);
     this.setState({selectedModes: checkedBoxes as GameMode[]});
   }
 
@@ -197,7 +189,7 @@ export class Nominator extends React.PureComponent<Props, State> {
     if (this.hybridMode()) {
       const userNominatable = this.userNominatableModes();
 
-      return _.some(GameModes, (mode) => {
+      return _.some(gameModes, (mode) => {
         if (
           (this.props.beatmapset.nominations as NominationsInterface)?.required[mode] !== undefined &&
           userNominatable[mode] !== undefined &&
@@ -253,7 +245,7 @@ export class Nominator extends React.PureComponent<Props, State> {
       const disabled = userNominatable[mode] === undefined || this.hybridNominationsMet(mode);
       return (
         <label
-          className={osu.classWithModifiers('osu-switch-v2', disabled ? ['disabled'] : [])}
+          className={classWithModifiers('osu-switch-v2', { disabled })}
           key={mode}
         >
           <input
@@ -267,7 +259,7 @@ export class Nominator extends React.PureComponent<Props, State> {
           />
           <span className='osu-switch-v2__content'/>
           <div
-            className={osu.classWithModifiers(`${this.bn}__label`, disabled ? ['disabled'] : [])}
+            className={classWithModifiers(`${this.bn}__label`, { disabled })}
           >
             <i className={`fal fa-extra-mode-${mode}`}/> {osu.trans(`beatmaps.mode.${mode}`)}
           </div>
