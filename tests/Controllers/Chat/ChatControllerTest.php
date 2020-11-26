@@ -515,7 +515,6 @@ class ChatControllerTest extends TestCase
     public function createPmWithClientCredentialsDataProvider()
     {
         return [
-            [['*'], 403],
             [['bot'], 403],
             [['public'], 403],
         ];
@@ -524,7 +523,6 @@ class ChatControllerTest extends TestCase
     public function createPmWithClientCredentialsBotGroupDataProvider()
     {
         return [
-            [['*'], 403],
             [['bot'], 200],
             [['public'], 403],
         ];

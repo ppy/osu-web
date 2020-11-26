@@ -19,10 +19,9 @@ class TokenTest extends TestCase
     {
         $user = factory(User::class)->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
-        $token = $this->createToken(null, ['bot', 'public'], $client);
 
         $this->expectException(MissingScopeException::class);
-        $this->assertTrue($token->validate());
+        $this->createToken(null, ['bot', 'public'], $client);
     }
 
     /**
@@ -37,18 +36,19 @@ class TokenTest extends TestCase
         $user = $user->create();
 
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
-        $token = $this->createToken(null, ['bot'], $client);
 
         if ($expectedException !== null) {
             $this->expectException($expectedException);
+        } else {
+            $this->expectNotToPerformAssertions();
         }
 
-        $this->assertTrue($token->validate());
+        $this->createToken(null, ['bot'], $client);
     }
 
     public function testClientCredentialResourceOwnerBot()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('bot')->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
         $token = $this->createToken(null, ['bot'], $client);
 
@@ -61,7 +61,7 @@ class TokenTest extends TestCase
 
     public function testClientCredentialResourceOwnerPublic()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('bot')->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
         $token = $this->createToken(null, ['public'], $client);
 
@@ -81,13 +81,14 @@ class TokenTest extends TestCase
     {
         $user = factory(User::class)->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
-        $token = $this->createToken($user, $scopes, $client);
 
         if ($expectedException !== null) {
             $this->expectException($expectedException);
+        } else {
+            $this->expectNotToPerformAssertions();
         }
 
-        $this->assertTrue($token->validate());
+        $this->createToken($user, $scopes, $client);
     }
 
     /**
@@ -99,13 +100,14 @@ class TokenTest extends TestCase
     {
         $user = factory(User::class)->create();
         $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
-        $token = $this->createToken(null, $scopes, $client);
 
         if ($expectedException !== null) {
             $this->expectException($expectedException);
+        } else {
+            $this->expectNotToPerformAssertions();
         }
 
-        $this->assertTrue($token->validate());
+        $this->createToken(null, $scopes, $client);
     }
 
     public function testRevokeRecursive()
