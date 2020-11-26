@@ -72,6 +72,8 @@ export class Nominator extends React.PureComponent<Props, State> {
     return curr >= req;
   }
 
+  legacyMode = () => this.props.beatmapset.nominations?.legacy_mode;
+
   mapCanBeNominated = () => {
     const requiredHype = this.props.beatmapset.hype?.required;
 
@@ -182,21 +184,21 @@ export class Nominator extends React.PureComponent<Props, State> {
       return false;
     }
 
-    if (this.hybridMode()) {
-      const userNominatable = this.userNominatableModes();
-
-      return _.some(gameModes, (mode) => {
-        if (
-          (this.props.beatmapset.nominations as NominationsInterface)?.required[mode] !== undefined &&
-          userNominatable[mode] !== undefined &&
-          !this.hybridNominationsMet(mode)
-        ) {
-          return true;
-        }
-      });
+    if (this.legacyMode()) {
+      return this.userHasNominatePermission();
     }
 
-    return true;
+    const userNominatable = this.userNominatableModes();
+
+    return _.some(gameModes, (mode) => {
+      if (
+        (this.props.beatmapset.nominations as NominationsInterface)?.required[mode] !== undefined &&
+        userNominatable[mode] !== undefined &&
+        !this.hybridNominationsMet(mode)
+      ) {
+        return true;
+      }
+    });
   }
 
   userHasNominatePermission = () => !this.userIsOwner() && (this.props.currentUser.is_admin || this.props.currentUser.is_bng || this.props.currentUser.is_nat);
