@@ -968,6 +968,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         $nominations = $this->nominationsSinceReset()->get();
         foreach ($nominations as $nomination) {
             foreach ($nomination->nominationModes as $nomMode) {
+                if (!Beatmap::isModeValid($nomMode)) {
+                    continue;
+                }
+
                 $currentNominations[$nomMode] = $currentNominations[$nomMode] ?? 0;
                 $currentNominations[$nomMode]++;
             }
