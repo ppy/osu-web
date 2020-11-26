@@ -15,15 +15,6 @@ use Tests\TestCase;
 
 class TokenTest extends TestCase
 {
-    public function testBotTokenSingleScope()
-    {
-        $user = factory(User::class)->create();
-        $client = factory(Client::class)->create(['user_id' => $user->getKey()]);
-
-        $this->expectException(MissingScopeException::class);
-        $this->createToken(null, ['bot', 'public'], $client);
-    }
-
     /**
      * @dataProvider botScopeRequiresBotGroupDataProvider
      */

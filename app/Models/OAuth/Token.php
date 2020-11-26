@@ -16,6 +16,16 @@ class Token extends PassportToken
     public $timestamps = true;
 
     /**
+     * Whether the token allows resource owner delegation.
+     *
+     * @return bool
+     */
+    public function canDeletage(): bool
+    {
+        return in_array('bot', $this->scopes, true);
+    }
+
+    /**
      * Resource owner for the token.
      *
      * For client_credentials grants, this is the client that requested the token;
@@ -23,7 +33,7 @@ class Token extends PassportToken
      */
     public function getResourceOwner(): ?User
     {
-        if ($this->isClientCredentials() && $this->scopes === ['bot']) {
+        if ($this->isClientCredentials() && $this->canDeletage()) {
             return $this->client->user;
         }
 
@@ -75,17 +85,25 @@ class Token extends PassportToken
             throw new MissingScopeException(['*'], '* is not allowed with Client Credentials');
         }
 
-        if (in_array('bot', $this->scopes, true)) {
-            if (count($this->scopes) !== 1) {
-                throw new MissingScopeException(['bot'], 'bot scope is not allowed with other scopes.');
+        if (in_array('chat.write', $this->scopes, true)) {
+            // only clients owned by bots can request this scope.
+            if (!$this->client->user->isBot()) {
+                throw new MissingScopeException(['chat.write'], 'This scope is only available for chat bots.');
+            }
+
+            // in the case of client credentials, delegation must be enabled on the token.
+            if ($this->isClientCredentials() && !$this->canDeletage()) {
+                throw new MissingScopeException(['chat.write'], 'bot scope required.');
+            }
+        }
+
+        if ($this->canDeletage()) {
+            if (!$this->client->user->isBot()) {
+                throw new MissingScopeException(['not'], 'This scope is only available for chat bots.');
             }
 
             if (!$this->isClientCredentials()) {
                 throw new MissingScopeException(['bot'], 'bot scope is only valid for client_credentials tokens.');
-            }
-
-            if (optional($this->getResourceOwner())->isBot() !== true) {
-                throw new MissingScopeException(['bot'], 'bot scope is is only valid for chat bots.');
             }
         }
 

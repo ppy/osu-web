@@ -16,6 +16,10 @@ return [
         'bot' => 'Act as a chat bot.',
         'identify' => 'Identify you and read your public profile.',
 
+        'chat' => [
+            'write' => 'Send messages on your behalf.',
+        ],
+
         'friends' => [
             'read' => 'See who you are following.',
         ],

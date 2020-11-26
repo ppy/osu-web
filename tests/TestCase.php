@@ -40,7 +40,8 @@ class TestCase extends BaseTestCase
         $data = [];
 
         foreach (Passport::scopes()->pluck('id') as $scope) {
-            if ($scope === 'bot') {
+            // just skip over any scopes that require special conditions for now.
+            if (in_array($scope, ['bot', 'chat.write'], true)) {
                 continue;
             }
 

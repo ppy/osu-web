@@ -6,7 +6,6 @@
 namespace Tests\Transformers;
 
 use App\Models\Comment;
-use Laravel\Passport\Exceptions\MissingScopeException;
 use Tests\TestCase;
 
 class CommentTransformerTest extends TestCase
