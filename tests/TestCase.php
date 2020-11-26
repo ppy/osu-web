@@ -67,6 +67,10 @@ class TestCase extends BaseTestCase
      */
     protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], ?Client $client = null, $driver = null)
     {
+        if ($client === null) {
+            $client = factory(Client::class)->create();
+        }
+
         // create valid token
         $token = $this->createToken($user, $scopes, $client);
 

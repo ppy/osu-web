@@ -6,6 +6,7 @@
 namespace Tests\Transformers;
 
 use App\Models\Comment;
+use Laravel\Passport\Exceptions\MissingScopeException;
 use Tests\TestCase;
 
 class CommentTransformerTest extends TestCase
@@ -17,6 +18,11 @@ class CommentTransformerTest extends TestCase
     {
         $viewer = $this->createUserWithGroup($groupIdentifier);
         $comment = factory(Comment::class)->states('deleted')->create();
+
+        if ($groupIdentifier === null) {
+            $this->expectException(MissingScopeException::class);
+        }
+
         $this->actAsScopedUser($viewer);
 
         $json = json_item($comment, 'Comment');
