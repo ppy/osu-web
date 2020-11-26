@@ -35,6 +35,21 @@ class TestCase extends BaseTestCase
 
     protected $baseUrl = 'http://localhost';
 
+    public function regularOAuthScopesDataProvider()
+    {
+        $data = [];
+
+        foreach (Passport::scopes()->pluck('id') as $scope) {
+            if ($scope === 'bot') {
+                continue;
+            }
+
+            $data[] = [$scope];
+        }
+
+        return $data;
+    }
+
     protected function setUp(): void
     {
         parent::setUp();

@@ -507,7 +507,7 @@ class ChatControllerTest extends TestCase
     {
         return [
             [['*'], 200],
-            [['bot'], 403],
+            // there's no test for bot because the test setup itself is expected to fail when setting the token.
             [['public'], 403],
         ];
     }
@@ -515,7 +515,7 @@ class ChatControllerTest extends TestCase
     public function createPmWithClientCredentialsDataProvider()
     {
         return [
-            [['bot'], 403],
+            // TODO: need to add test that validates auth guard calls Token::validate
             [['public'], 403],
         ];
     }

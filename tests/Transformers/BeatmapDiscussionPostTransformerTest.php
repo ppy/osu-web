@@ -9,6 +9,7 @@ use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\User;
+use Laravel\Passport\Exceptions\MissingScopeException;
 use Tests\TestCase;
 
 class BeatmapDiscussionPostTransformerTest extends TestCase
@@ -25,11 +26,6 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
     public function testWithOAuth($groupIdentifier)
     {
         $viewer = $this->createUserWithGroup($groupIdentifier);
-
-        if ($groupIdentifier === null) {
-            $this->expectException(MissingScopeException::class);
-        }
-
         $this->actAsScopedUser($viewer);
 
         $json = json_item($this->deletedPost, 'BeatmapDiscussionPost');
@@ -61,7 +57,6 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
             ['gmt', true],
             ['nat', true],
             [[], false],
-            [null, false],
         ];
     }
 

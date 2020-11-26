@@ -7,6 +7,7 @@ namespace Tests\Transformers;
 
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
+use Laravel\Passport\Exceptions\MissingScopeException;
 use Tests\TestCase;
 
 class BeatmapTransformerTest extends TestCase
@@ -20,11 +21,6 @@ class BeatmapTransformerTest extends TestCase
     public function testWithOAuth($groupIdentifier)
     {
         $viewer = $this->createUserWithGroup($groupIdentifier);
-
-        if ($groupIdentifier === null) {
-            $this->expectException(MissingScopeException::class);
-        }
-
         $this->actAsScopedUser($viewer);
 
         $json = json_item($this->deletedBeatmap, 'Beatmap');
@@ -57,7 +53,6 @@ class BeatmapTransformerTest extends TestCase
             ['gmt', true],
             ['nat', true],
             [[], false],
-            [null, false],
         ];
     }
 

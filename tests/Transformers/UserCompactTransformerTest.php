@@ -12,11 +12,14 @@ use Tests\TestCase;
 
 class UserCompactTransformerTest extends TestCase
 {
-    public function testFriendsIsNotVisibleWithOAuth()
+    /**
+     * @dataProvider regularOAuthScopesDataProvider
+     */
+    public function testFriendsIsNotVisibleWithOAuth($scopes)
     {
         $viewer = $this->createUserWithGroup([]);
 
-        $this->actAsScopedUser($viewer, Passport::scopes()->pluck('id')->all());
+        $this->actAsScopedUser($viewer, [$scopes]);
 
         $json = json_item($viewer, 'UserCompact', ['friends']);
         $this->assertArrayNotHasKey('friends', $json);
@@ -115,7 +118,6 @@ class UserCompactTransformerTest extends TestCase
             ['gmt', false],
             ['nat', false],
             [[], false],
-            [null, false],
         ];
     }
 

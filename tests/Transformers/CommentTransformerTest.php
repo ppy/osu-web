@@ -18,11 +18,6 @@ class CommentTransformerTest extends TestCase
     {
         $viewer = $this->createUserWithGroup($groupIdentifier);
         $comment = factory(Comment::class)->states('deleted')->create();
-
-        if ($groupIdentifier === null) {
-            $this->expectException(MissingScopeException::class);
-        }
-
         $this->actAsScopedUser($viewer);
 
         $json = json_item($comment, 'Comment');
@@ -59,7 +54,6 @@ class CommentTransformerTest extends TestCase
             ['gmt', true],
             ['nat', true],
             [[], false],
-            [null, false],
         ];
     }
 }

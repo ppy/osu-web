@@ -8,6 +8,7 @@ namespace Tests\Transformers;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
+use Laravel\Passport\Exceptions\MissingScopeException;
 use Tests\TestCase;
 
 class BeatmapsetEventTransformerTest extends TestCase
@@ -25,11 +26,6 @@ class BeatmapsetEventTransformerTest extends TestCase
         ]);
 
         $viewer = $this->createUserWithGroup($groupIdentifier);
-
-        if ($groupIdentifier === null) {
-            $this->expectException(MissingScopeException::class);
-        }
-
         $this->actAsScopedUser($viewer);
 
         $json = json_item($event, 'BeatmapsetEvent');
@@ -85,10 +81,6 @@ class BeatmapsetEventTransformerTest extends TestCase
             [[], BeatmapsetEvent::NOMINATE, true, true],
             [[], BeatmapsetEvent::KUDOSU_ALLOW, false, false],
             [[], BeatmapsetEvent::DISCUSSION_DELETE, false, false],
-
-            [null, BeatmapsetEvent::NOMINATE, true, true],
-            [null, BeatmapsetEvent::KUDOSU_ALLOW, false, false],
-            [null, BeatmapsetEvent::DISCUSSION_DELETE, false, false],
         ];
     }
 
