@@ -92,6 +92,14 @@ class Token extends PassportToken
         return true;
     }
 
+    public function save(array $options = [])
+    {
+        // Forces error if passport tries to issue an invalid client_credentials token.
+        $this->validate();
+
+        return parent::save($options);
+    }
+
     public function user()
     {
         $provider = config('auth.guards.api.provider');
