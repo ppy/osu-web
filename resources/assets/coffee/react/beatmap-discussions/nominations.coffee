@@ -65,12 +65,12 @@ export class Nominations extends React.PureComponent
       _.times lightsOn, (n) ->
         div
           key: n
-          className: 'bar bar--beatmapset-hype bar--beatmapset-hype-on'
+          className: 'bar bar--beatmapset-hype bar--beatmapset-on'
 
       _.times (lightsTotal - lightsOn), (n) ->
         div
           key: lightsOn + n
-          className: 'bar bar--beatmapset-hype bar--beatmapset-hype-off'
+          className: 'bar bar--beatmapset-hype bar--beatmapset-off'
 
 
   # nominations = { 'current': { 'osu': 1, 'taiko': 0, ... }, 'required': { 'osu': 2, 'taiko': 2, ... }, ... };
@@ -92,13 +92,13 @@ export class Nominations extends React.PureComponent
             _.times nominations.current[mode], (n) ->
               div
                 key: n
-                className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-on'
+                className: 'bar bar--beatmapset-nomination bar--beatmapset-on'
                 i className: "fal fa-extra-mode-#{mode}"
 
             _.times (requiredLights - nominations.current[mode]), (n) ->
               div
                 key: nominations.current[mode] + n
-                className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-off'
+                className: 'bar bar--beatmapset-nomination bar--beatmapset-off'
                 i className: "fal fa-extra-mode-#{mode}"
 
 
