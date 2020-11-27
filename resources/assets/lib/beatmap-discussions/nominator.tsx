@@ -131,7 +131,9 @@ export class Nominator extends React.PureComponent<Props, State> {
 
   nominationEvents = () => {
     const nominations: BeatmapsetEvent[] = [];
-    this.props.beatmapset.events?.reverse().every((event) => {
+    const events = this.props.beatmapset.events?.slice();
+
+    events?.reverse().every((event) => {
       if (event.type === 'nomination_reset') {
         return false;
       }
