@@ -1,15 +1,18 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetJson, NominationsInterface } from 'beatmapsets/beatmapset-json';
+import {
+  BeatmapsetEvent,
+  BeatmapsetJson,
+} from 'beatmapsets/beatmapset-json';
 import { BigButton } from 'big-button';
 import GameMode from 'interfaces/game-mode';
+import UserJson from 'interfaces/user-json';
 import UserJSONExtended from 'interfaces/user-json-extended';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import { Modal } from 'modal';
 import * as React from 'react';
-import { modes as gameModes } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
@@ -17,6 +20,7 @@ interface Props {
   currentHype: number;
   currentUser: UserJSONExtended;
   unresolvedIssues: number;
+  users: UserJson[];
 }
 
 interface State {
@@ -44,6 +48,30 @@ export class Nominator extends React.PureComponent<Props, State> {
     this.xhr?.abort();
   }
 
+  hasFullNomination = (mode: GameMode) => {
+    const eventUserIsFullNominator = (event: BeatmapsetEvent, gameMode?: GameMode) => {
+      if (!event.user_id) {
+        return false;
+      }
+
+      return _.some(this.props.users[event.user_id].groups, (group) => {
+        if (gameMode !== undefined) {
+          return (group.identifier === 'bng' || group.identifier === 'nat') && group.playmodes?.includes(gameMode);
+        } else {
+          return (group.identifier === 'bng' || group.identifier === 'nat');
+        }
+      });
+    };
+
+    return _.some(this.nominationEvents(), (event) => {
+      if (this.legacyMode()) {
+        return eventUserIsFullNominator(event);
+      } else {
+        return event.comment?.mode?.includes(mode) && eventUserIsFullNominator(event, mode);
+      }
+    });
+  }
+
   hideNominationModal = () => {
     this.setState({
       loading: false,
@@ -53,24 +81,6 @@ export class Nominator extends React.PureComponent<Props, State> {
   }
 
   hybridMode = () => _.keys(this.props.beatmapset.nominations?.required).length > 1;
-
-  hybridNominationsMet = (mode: GameMode) => {
-    if (
-      this.props.beatmapset.nominations?.legacy_mode ||
-      !this.props.beatmapset.nominations?.required[mode]
-    ) {
-      return false;
-    }
-
-    const req = this.props.beatmapset.nominations.required[mode];
-    const curr = this.props.beatmapset.nominations.current[mode] || 0;
-
-    if (!req) {
-      return false;
-    }
-
-    return curr >= req;
-  }
 
   legacyMode = () => this.props.beatmapset.nominations?.legacy_mode;
 
@@ -99,6 +109,41 @@ export class Nominator extends React.PureComponent<Props, State> {
         .fail(osu.ajaxError)
         .always(this.hideNominationModal);
     });
+  }
+
+  nominationCountMet = (mode: GameMode) => {
+    if (
+      this.props.beatmapset.nominations?.legacy_mode ||
+      !this.props.beatmapset.nominations?.required[mode]
+    ) {
+      return false;
+    }
+
+    const req = this.props.beatmapset.nominations.required[mode];
+    const curr = this.props.beatmapset.nominations.current[mode] || 0;
+
+    if (!req) {
+      return false;
+    }
+
+    return curr >= req;
+  }
+
+  nominationEvents = () => {
+    const nominations: BeatmapsetEvent[] = [];
+    this.props.beatmapset.events?.reverse().every((event) => {
+      if (event.type === 'nomination_reset') {
+        return false;
+      }
+
+      if (event.type === 'nominate') {
+        nominations.push(event);
+      }
+
+      return true;
+    });
+
+    return nominations;
   }
 
   render(): React.ReactNode {
@@ -172,6 +217,21 @@ export class Nominator extends React.PureComponent<Props, State> {
     );
   }
 
+  requiresFullNomination = (mode: GameMode) => {
+    let req;
+    let curr;
+
+    if (this.props.beatmapset.nominations?.legacy_mode) {
+      req = this.props.beatmapset.nominations?.required;
+      curr = this.props.beatmapset.nominations?.current;
+    } else {
+      req = this.props.beatmapset.nominations?.required[mode];
+      curr = this.props.beatmapset.nominations?.current[mode];
+    }
+
+    return (curr === (req ?? 0) - 1) && !this.hasFullNomination(mode);
+  }
+
   showNominationModal = () => this.setState({visible: true});
 
   updateCheckboxes = () => {
@@ -184,21 +244,25 @@ export class Nominator extends React.PureComponent<Props, State> {
       return false;
     }
 
+    let nominationModes;
     if (this.legacyMode()) {
-      return this.userHasNominatePermission();
+      nominationModes = _.uniq(this.props.beatmapset.beatmaps?.map((bm) => bm.mode));
+    } else {
+      nominationModes = Object.keys(this.props.beatmapset.nominations!.required) as GameMode[];
+    }
+
+    return _.some(nominationModes, (mode) => this.userCanNominateMode(mode));
+  }
+
+  userCanNominateMode = (mode: GameMode) => {
+    if (!this.userHasNominatePermission() || this.nominationCountMet(mode)) {
+      return false;
     }
 
     const userNominatable = this.userNominatableModes();
 
-    return _.some(gameModes, (mode) => {
-      if (
-        (this.props.beatmapset.nominations as NominationsInterface)?.required[mode] !== undefined &&
-        userNominatable[mode] !== undefined &&
-        !this.hybridNominationsMet(mode)
-      ) {
-        return true;
-      }
-    });
+    return userNominatable[mode] === 'full' ||
+      (userNominatable[mode] === 'limited' && !this.requiresFullNomination(mode));
   }
 
   userHasNominatePermission = () => !this.userIsOwner() && (this.props.currentUser.is_admin || this.props.currentUser.is_bng || this.props.currentUser.is_nat);
@@ -214,13 +278,11 @@ export class Nominator extends React.PureComponent<Props, State> {
   }
 
   private modalContentHybrid = () => {
-    const userNominatable = this.userNominatableModes();
-
     let renderPlaymodes;
     const playmodes = _.keys(this.props.beatmapset.nominations?.required);
 
     renderPlaymodes = _.map(playmodes, (mode: GameMode) => {
-      const disabled = userNominatable[mode] === undefined || this.hybridNominationsMet(mode);
+      const disabled = !this.userCanNominateMode(mode);
       return (
         <label
           className={classWithModifiers('osu-switch-v2', { disabled })}

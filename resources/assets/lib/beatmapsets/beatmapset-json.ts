@@ -13,6 +13,14 @@ interface BeatmapsetCovers {
   slimcover: string;
 }
 
+export interface BeatmapsetEvent {
+  comment: any; // TODO: fix
+  created_at: string;
+  id: number;
+  type: string;
+  user_id?: number;
+}
+
 interface BaseNominationsInterface {
   legacy_mode: boolean;
   nominated?: boolean;
@@ -58,6 +66,7 @@ export interface BeatmapsetJson {
   covers: BeatmapsetCovers;
   creator: string;
   current_user_attributes?: CurrentUserAttributes;
+  events?: BeatmapsetEvent[];
   genre: GenreJson;
   hype?: {
     current: number;

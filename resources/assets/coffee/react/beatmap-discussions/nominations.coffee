@@ -53,6 +53,7 @@ export class Nominations extends React.PureComponent
               currentHype: @props.currentDiscussions.totalHype
               currentUser: @props.currentUser
               unresolvedIssues: @props.currentDiscussions.unresolvedIssues
+              users: @props.users
         div className: "#{bn}__items-grouping",
           div className: "#{bn}__item", @discussionLockButton()
           div className: "#{bn}__item", @loveButton()
