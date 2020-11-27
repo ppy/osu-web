@@ -6,10 +6,10 @@
 namespace Tests\Models\OAuth;
 
 use App\Events\UserSessionEvent;
+use App\Exceptions\InvalidScopeException;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
-use Laravel\Passport\Exceptions\MissingScopeException;
 use Laravel\Passport\RefreshToken;
 use Tests\TestCase;
 
@@ -121,8 +121,8 @@ class TokenTest extends TestCase
     public function scopesDataProvider()
     {
         return [
-            'null is not a valid scope' => [null, MissingScopeException::class],
-            'empty scope should fail' => [[], MissingScopeException::class],
+            'null is not a valid scope' => [null, InvalidScopeException::class],
+            'empty scope should fail' => [[], InvalidScopeException::class],
             'all scope is allowed' => [['*'], null],
         ];
     }
@@ -130,21 +130,21 @@ class TokenTest extends TestCase
     public function scopesClientCredentialsDataProvider()
     {
         return [
-            'null is not a valid scope' => [null, MissingScopeException::class],
-            'empty scope should fail' => [[], MissingScopeException::class],
-            'all scope is not allowed' => [['*'], MissingScopeException::class],
+            'null is not a valid scope' => [null, InvalidScopeException::class],
+            'empty scope should fail' => [[], InvalidScopeException::class],
+            'all scope is not allowed' => [['*'], InvalidScopeException::class],
         ];
     }
 
     public function botScopeRequiresBotGroupDataProvider()
     {
         return [
-            [null, MissingScopeException::class],
-            ['admin', MissingScopeException::class],
-            ['bng', MissingScopeException::class],
+            [null, InvalidScopeException::class],
+            ['admin', InvalidScopeException::class],
+            ['bng', InvalidScopeException::class],
             ['bot', null],
-            ['gmt', MissingScopeException::class],
-            ['nat', MissingScopeException::class],
+            ['gmt', InvalidScopeException::class],
+            ['nat', InvalidScopeException::class],
         ];
     }
 }

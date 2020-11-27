@@ -9,6 +9,7 @@ use App\Models\OAuth\Token;
 use Illuminate\Http\Request;
 use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Http\Controllers\AuthorizationController as PassportAuthorizationController;
+use Laravel\Passport\Passport;
 use Laravel\Passport\TokenRepository;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -66,7 +67,7 @@ class AuthorizationController extends PassportAuthorizationController
         );
 
         // temporary non-persisted token to validate with.
-        $token = new Token([
+        $token = Passport::token()->forceFill([
             'client_id' => $params['client_id'] ?? null,
             'revoked' => false,
             'scopes' => $scopes,

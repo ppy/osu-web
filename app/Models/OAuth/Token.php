@@ -6,9 +6,8 @@
 namespace App\Models\OAuth;
 
 use App\Events\UserSessionEvent;
-use App\Exceptions\InvariantException;
+use App\Exceptions\InvalidScopeException;
 use App\Models\User;
-use Laravel\Passport\Exceptions\MissingScopeException;
 use Laravel\Passport\RefreshToken;
 use Laravel\Passport\Token as PassportToken;
 
@@ -79,37 +78,36 @@ class Token extends PassportToken
     public function validate()
     {
         if (empty($this->scopes)) {
-            throw new MissingScopeException([], 'Tokens without scopes are not valid.');
+            throw new InvalidScopeException('Tokens without scopes are not valid.');
         }
 
         if ($this->client === null) {
-            // FIXME: need better exception.
-            throw new InvariantException('unauthorized_client');
+            throw new InvalidScopeException('The client is not authorized.', 'unauthorized_client');
         }
 
         if ($this->isClientCredentials() && in_array('*', $this->scopes, true)) {
-            throw new MissingScopeException(['*'], '* is not allowed with Client Credentials');
+            throw new InvalidScopeException('* is not allowed with Client Credentials');
         }
 
         if (in_array('chat.write', $this->scopes, true)) {
             // only clients owned by bots can request this scope.
             if (!$this->client->user->isBot()) {
-                throw new MissingScopeException(['chat.write'], 'This scope is only available for chat bots.');
+                throw new InvalidScopeException('This scope is only available for chat bots.');
             }
 
             // in the case of client credentials, delegation must be enabled on the token.
             if ($this->isClientCredentials() && !$this->canDeletage()) {
-                throw new MissingScopeException(['chat.write'], 'bot scope required.');
+                throw new InvalidScopeException('bot scope required.');
             }
         }
 
         if ($this->canDeletage()) {
             if (!$this->client->user->isBot()) {
-                throw new MissingScopeException(['not'], 'This scope is only available for chat bots.');
+                throw new InvalidScopeException('This scope is only available for chat bots.');
             }
 
             if (!$this->isClientCredentials()) {
-                throw new MissingScopeException(['bot'], 'bot scope is only valid for client_credentials tokens.');
+                throw new InvalidScopeException('bot scope is only valid for client_credentials tokens.');
             }
         }
 
