@@ -67,8 +67,9 @@ class AuthorizationController extends PassportAuthorizationController
 
         // temporary non-persisted token to validate with.
         $token = new Token([
-            'scopes' => $scopes,
+            'client_id' => $params['client_id'] ?? null,
             'revoked' => false,
+            'scopes' => $scopes,
         ]);
         $token->user()->associate(auth()->user());
         $token->validate();

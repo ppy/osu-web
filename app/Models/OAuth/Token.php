@@ -6,6 +6,7 @@
 namespace App\Models\OAuth;
 
 use App\Events\UserSessionEvent;
+use App\Exceptions\InvariantException;
 use App\Models\User;
 use Laravel\Passport\Exceptions\MissingScopeException;
 use Laravel\Passport\RefreshToken;
@@ -79,6 +80,11 @@ class Token extends PassportToken
     {
         if (empty($this->scopes)) {
             throw new MissingScopeException([], 'Tokens without scopes are not valid.');
+        }
+
+        if ($this->client === null) {
+            // FIXME: need better exception.
+            throw new InvariantException('unauthorized_client');
         }
 
         if ($this->isClientCredentials() && in_array('*', $this->scopes, true)) {
