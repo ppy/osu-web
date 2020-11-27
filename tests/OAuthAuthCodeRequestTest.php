@@ -8,7 +8,7 @@ namespace Tests;
 use App\Models\OAuth\Client;
 use App\Models\User;
 
-class AuthCodeRequestTest extends TestCase
+class OAuthAuthCodeRequestTest extends TestCase
 {
     protected $client;
 
