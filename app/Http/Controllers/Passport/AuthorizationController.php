@@ -5,7 +5,6 @@
 
 namespace App\Http\Controllers\Passport;
 
-use App\Models\OAuth\Token;
 use Illuminate\Http\Request;
 use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Http\Controllers\AuthorizationController as PassportAuthorizationController;

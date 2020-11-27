@@ -7,7 +7,6 @@ namespace Tests\Transformers;
 
 use App\Models\Beatmapset;
 use App\Models\User;
-use Laravel\Passport\Exceptions\MissingScopeException;
 use Tests\TestCase;
 
 class BeatmapDiscussionTransformerTest extends TestCase
