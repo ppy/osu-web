@@ -21,10 +21,6 @@ class BeatmapDiscussionTransformerTest extends TestCase
     {
         $viewer = $this->createUserWithGroup($groupIdentifier);
 
-        if ($groupIdentifier === null) {
-            $this->expectException(MissingScopeException::class);
-        }
-
         $this->actAsScopedUser($viewer);
 
         $json = json_item($this->deletedBeatmapDiscussion, 'BeatmapDiscussion');
@@ -57,7 +53,6 @@ class BeatmapDiscussionTransformerTest extends TestCase
             ['gmt', true],
             ['nat', true],
             [[], false],
-            [null, false],
         ];
     }
 
