@@ -188,7 +188,7 @@ return [
         'nominated_by' => 'номинирована :users',
         'not_enough_hype' => "Недостаточно хайпа.",
         'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved_prompt' => 'Причина удаления из Любимых:',
         'required_text' => 'Номинаций: :current/:required',
         'reset_message_deleted' => 'удалено',
         'title' => 'Статус номинации',
@@ -252,7 +252,7 @@ return [
         'converts' => 'Включить конвертированные карты',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Все',
         'any' => 'Все',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Usuń post',
-            'restore' => 'Przywróć post',
             'edit' => 'Edytuj post',
+            'report' => '',
+            'restore' => 'Przywróć post',
         ],
 
         'create' => [

@@ -133,7 +133,7 @@ return [
             ],
             'friend_filtering' => [
                 'title' => '好友排行榜',
-                'description' => '和您的朋友一起競賽，看看你如何超越他們的排名!*<br/><br/><small>*此功能目前尚未在新網站啟用，即將上線(tm)</small>',
+                'description' => '和您的朋友一起競賽，看看你如何超越他們的排名!',
             ],
 
         ],

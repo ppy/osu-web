@@ -252,7 +252,7 @@ return [
         'converts' => '변환된 비트맵 포함',
     ],
     'mode' => [
-        'all' => '',
+        'all' => '전체',
         'any' => '모두',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

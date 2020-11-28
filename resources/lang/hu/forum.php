@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Poszt törlése',
-            'restore' => 'Poszt visszaállítása',
             'edit' => 'Poszt szerkesztése',
+            'report' => '',
+            'restore' => 'Poszt visszaállítása',
         ],
 
         'create' => [

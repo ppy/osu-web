@@ -5,11 +5,11 @@
 
 return [
     'all_read' => 'Lette tutte le notifiche!',
-    'delete' => '',
-    'mark_read' => 'Svuota :type',
+    'delete' => 'Elimina :type',
+    'mark_read' => 'Segna :type come letto',
     'none' => 'Nessuna notifica',
     'see_all' => 'vedi tutte le notifiche',
-    'see_channel' => '',
+    'see_channel' => 'vai alla chat',
 
     'filters' => [
         '_' => 'tutto',

@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => '도움말',
+            'getAbuse' => '',
             'getFaq' => 'FAQ',
             'getRules' => '규칙',
             'getSupport' => '지원 센터',

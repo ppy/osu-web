@@ -9,8 +9,8 @@ return [
         'title_compact' => 'lista de observação de modificações',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Beatmaps vistos',
+            'unread' => 'Beatmaps com nova atividade',
         ],
 
         'table' => [

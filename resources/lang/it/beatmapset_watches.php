@@ -9,12 +9,12 @@ return [
         'title_compact' => 'lista modding',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Beatmap seguite',
+            'unread' => 'Beatmap con nuove attività',
         ],
 
         'table' => [
-            'empty' => 'Nessuna discussione di beatmap guardata.',
+            'empty' => 'Nessuna discussione di beatmap seguita.',
             'open_issues' => 'Problemi aperti',
             'state' => 'Stato',
             'title' => 'Titolo',

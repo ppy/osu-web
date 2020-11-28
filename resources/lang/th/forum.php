@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'ลบโพสต์',
-            'restore' => 'กู้คืนโพสต์',
             'edit' => 'แก้ไขโพสต์',
+            'report' => '',
+            'restore' => 'กู้คืนโพสต์',
         ],
 
         'create' => [

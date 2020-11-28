@@ -5,11 +5,11 @@
 
 return [
     'all_read' => 'Alla aviseringar är lästa!',
-    'delete' => '',
+    'delete' => 'Radera :type',
     'mark_read' => 'Rensa :type',
     'none' => 'Inga aviseringar',
     'see_all' => 'visa alla aviseringar',
-    'see_channel' => '',
+    'see_channel' => 'gå till chatt',
 
     'filters' => [
         '_' => 'alla',

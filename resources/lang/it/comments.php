@@ -23,9 +23,9 @@ return [
     'editor' => [
         'textarea_hint' => [
             '_' => 'Premi invio per :action. Usa shift+enter per andare a capo.',
-            'edit' => 'salva',
-            'new' => 'post',
-            'reply' => 'rispondi',
+            'edit' => 'salvare',
+            'new' => 'postare',
+            'reply' => 'rispondere',
         ],
     ],
 

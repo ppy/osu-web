@@ -5,11 +5,11 @@
 
 return [
     'all_read' => 'Todas as notificações foram lidas!',
-    'delete' => '',
+    'delete' => 'Eliminar :type',
     'mark_read' => 'Limpar :type',
     'none' => 'Sem notificações',
     'see_all' => 'ver todas as notificações',
-    'see_channel' => '',
+    'see_channel' => 'ir para a conversa',
 
     'filters' => [
         '_' => 'todas',

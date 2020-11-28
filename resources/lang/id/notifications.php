@@ -5,11 +5,11 @@
 
 return [
     'all_read' => 'Semua notifikasi telah dibaca!',
-    'delete' => '',
+    'delete' => 'Hapus :type',
     'mark_read' => 'Hapus :type',
     'none' => 'Tidak ada notifikasi',
     'see_all' => 'lihat semua notifikasi',
-    'see_channel' => '',
+    'see_channel' => 'tuju kanal obrolan',
 
     'filters' => [
         '_' => 'semua notifikasi',

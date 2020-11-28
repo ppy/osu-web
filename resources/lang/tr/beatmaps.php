@@ -252,7 +252,7 @@ return [
         'converts' => 'Dönüştürülmüş beatmapleri dahil et',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Hepsi',
         'any' => 'Hepsi',
         'osu' => '',
         'taiko' => '',

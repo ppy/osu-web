@@ -14,6 +14,11 @@ return [
         'title' => 'รายงานคอมเมนท์ของ :username?',
     ],
 
+    'forum_post' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'รายงานผลคะแนน',
         'title' => 'รรายงานผลคะแนนของ :username?',

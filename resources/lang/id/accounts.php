@@ -49,7 +49,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'terima pemberitahuan untuk masalah baru pada qualified beatmap dari mode berikut',
+        'beatmapset_discussion_qualified_problem' => 'terima notifikasi pada saat terdapat masalah baru pada beatmap yang berstatus Qualified pada mode',
         'beatmapset_disqualify' => 'terima notifikasi pada saat terdapat beatmap yang terdiskualifikasi pada mode',
         'comment_reply' => 'terima notifikasi pada saat terdapat balasan baru pada komentar yang Anda kirim',
         'title' => 'Notifikasi',
@@ -77,7 +77,7 @@ return [
         'title' => 'Pengaturan',
 
         'beatmapset_download' => [
-            '_' => 'tipe default pengunduhan beatmap',
+            '_' => 'tipe pengunduhan beatmap default',
             'all' => 'dengan video (apabila tersedia)',
             'no_video' => 'tanpa video',
             'direct' => 'buka melalui osu!direct',
@@ -102,7 +102,7 @@ return [
 
     'security' => [
         'current_session' => 'saat ini',
-        'end_session' => 'Akhisi Sesi',
+        'end_session' => 'Akhiri Sesi',
         'end_session_confirmation' => 'Aksi ini akan langsung mengakhiri sesi anda di perangkat tersebut. Apakah anda yakin?',
         'last_active' => 'Terakhir aktif:',
         'title' => 'Keamanan',

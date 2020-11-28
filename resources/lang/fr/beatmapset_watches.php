@@ -9,8 +9,8 @@ return [
         'title_compact' => 'liste d\'abonnement des modifications',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Beatmaps suivies',
+            'unread' => 'Beatmaps avec une nouvelle activité',
         ],
 
         'table' => [

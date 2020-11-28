@@ -9,8 +9,8 @@ return [
         'title_compact' => 'beobachtete moddingthreads',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Beobachtete Beatmaps',
+            'unread' => 'Beatmaps mit neuer Aktivität',
         ],
 
         'table' => [

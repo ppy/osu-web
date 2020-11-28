@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => '幫助',
+            'getAbuse' => '',
             'getFaq' => '常見問題',
             'getRules' => '規則',
             'getSupport' => '支援服務',

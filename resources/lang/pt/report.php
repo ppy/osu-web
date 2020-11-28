@@ -14,6 +14,11 @@ return [
         'title' => 'Queres denunciar o comentário de :username?',
     ],
 
+    'forum_post' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Denunciar pontuação',
         'title' => 'Denunciar a pontuação de :username?',

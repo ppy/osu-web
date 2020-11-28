@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Gönderiyi sil',
-            'restore' => 'Gönderiyi geri getir',
             'edit' => 'Gönderiyi düzenle',
+            'report' => '',
+            'restore' => 'Gönderiyi geri getir',
         ],
 
         'create' => [

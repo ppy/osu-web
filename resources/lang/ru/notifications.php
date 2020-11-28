@@ -5,11 +5,11 @@
 
 return [
     'all_read' => 'Все уведомления прочтены!',
-    'delete' => '',
+    'delete' => 'Очистить :type',
     'mark_read' => 'Очистить :type',
     'none' => 'Уведомлений нет',
     'see_all' => 'см. все уведомления',
-    'see_channel' => '',
+    'see_channel' => 'перейти в чат',
 
     'filters' => [
         '_' => 'все',
@@ -59,8 +59,8 @@ return [
                 'beatmapset_qualify_compact' => 'Карта вошла в рейтинговую очередь',
                 'beatmapset_rank' => '":title" был оценен',
                 'beatmapset_rank_compact' => 'Карта была оценена',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved' => '":title" был удален из Любимых',
+                'beatmapset_remove_from_loved_compact' => 'Карта была удалена из Любимых',
                 'beatmapset_reset_nominations' => 'Проблема опубликованная :username вызвала сброс процесса номинации карты ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Номинация была сброшена',
             ],
@@ -163,7 +163,7 @@ return [
                 'beatmapset_nominate' => '":title" был номинирован',
                 'beatmapset_qualify' => '":title" получило достаточно номинаций и вступило в очередь ранка',
                 'beatmapset_rank' => '":title" было ранкнуто',
-                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved' => '":title" был удален из Любимых',
                 'beatmapset_reset_nominations' => 'Номинация ":title" была сброшена',
             ],
 
