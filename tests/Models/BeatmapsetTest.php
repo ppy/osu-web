@@ -11,7 +11,6 @@ use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\Genre;
-use App\Models\Group;
 use App\Models\Language;
 use App\Models\Notification;
 use App\Models\User;
