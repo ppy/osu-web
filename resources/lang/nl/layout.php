@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'hulp',
+            'getAbuse' => '',
             'getFaq' => 'faq',
             'getRules' => 'regels',
             'getSupport' => 'ondersteuning',

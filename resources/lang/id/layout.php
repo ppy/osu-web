@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'bantuan',
+            'getAbuse' => '',
             'getFaq' => 'faq',
             'getRules' => 'peraturan',
             'getSupport' => 'beneran, saya butuh bantuan!',

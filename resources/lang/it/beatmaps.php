@@ -252,7 +252,7 @@ return [
         'converts' => 'Includi beatmap convertite',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Qualsiasi',
         'any' => 'Qualsiasi',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

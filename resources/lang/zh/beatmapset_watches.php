@@ -9,8 +9,8 @@ return [
         'title_compact' => '谱面关注列表',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => '已关注谱面',
+            'unread' => '有新活动的谱面',
         ],
 
         'table' => [

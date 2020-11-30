@@ -14,6 +14,11 @@ return [
         'title' => 'Báo cáo bình luận của :username?',
     ],
 
+    'forum_post' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Báo Cáo Điểm',
         'title' => 'Báo cáo điểm của :username?',

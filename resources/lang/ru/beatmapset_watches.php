@@ -9,8 +9,8 @@ return [
         'title_compact' => 'подписки на карты',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Отслеживаемые карты',
+            'unread' => 'Карты с обновлениями',
         ],
 
         'table' => [

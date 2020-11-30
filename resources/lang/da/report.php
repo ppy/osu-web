@@ -14,6 +14,11 @@ return [
         'title' => 'Vil du anmelde :username\'s kommentar?',
     ],
 
+    'forum_post' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Anmeld Score',
         'title' => 'Vil du anmelde :username\'s score?',

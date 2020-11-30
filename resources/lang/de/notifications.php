@@ -5,11 +5,11 @@
 
 return [
     'all_read' => 'Alle Benachrichtigungen gelesen!',
-    'delete' => '',
+    'delete' => ':type löschen',
     'mark_read' => 'Lösche :type',
     'none' => 'Keine Benachrichtigungen',
     'see_all' => 'alle benachrichtigungen ansehen',
-    'see_channel' => '',
+    'see_channel' => 'zum chat gehen',
 
     'filters' => [
         '_' => 'alle',

@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => '게임 모드 별 멤버',
     ],
 
     'force_reactivation' => [

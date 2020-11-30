@@ -9,8 +9,8 @@ return [
         'title_compact' => 'obserwowane dyskusje',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Obserwowane beatmapy',
+            'unread' => 'Beatmapy z nową aktywnością',
         ],
 
         'table' => [

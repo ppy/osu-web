@@ -32,8 +32,8 @@ return [
             'not_cleared' => 'não finalizado',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link não pode ser usado para completar este pacote.',
+            'link' => 'Mods de redução de dificuldade',
         ],
     ],
 

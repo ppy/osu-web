@@ -14,6 +14,11 @@ return [
         'title' => 'Αναφορά του σχολίου του :username;',
     ],
 
+    'forum_post' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Βαθμολογία έκθεσης',
         'title' => 'Αναφορά βαθμολογίας του :username;',

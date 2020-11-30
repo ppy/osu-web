@@ -9,8 +9,8 @@ return [
         'title_compact' => 'notificações de modding',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Beatmaps assistidos',
+            'unread' => 'Beatmaps com nova atividade',
         ],
 
         'table' => [
