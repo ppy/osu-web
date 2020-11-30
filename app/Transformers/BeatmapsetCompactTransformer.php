@@ -179,7 +179,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             if ($currentUser !== null) {
                 $result['nominated'] = $beatmapset->nominationsSinceReset()->where('user_id', $currentUser->user_id)->exists();
             }
-        } elseif ($beatmapset->qualified()) {
+        } elseif ($beatmapset->isQualified()) {
             $queueStatus = $beatmapset->rankingQueueStatus();
 
             $result['ranking_eta'] = json_time($queueStatus['eta']);
