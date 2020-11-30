@@ -1469,25 +1469,24 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
             $modes = [];
 
+            if ($this->isLimitedBN()) {
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng_limited'), true)->playmodes ?? [];
+                foreach ($playmodes as $playmode) {
+                    $modes[$playmode] = 'limited';
+                }
+            }
+
+            if ($this->isFullBN()) {
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng'), true)->playmodes ?? [];
+                foreach ($playmodes as $playmode) {
+                    $modes[$playmode] = 'full';
+                }
+            }
+
             if ($this->isNAT()) {
                 $playmodes = $this->findUserGroup(app('groups')->byIdentifier('nat'), true)->playmodes ?? [];
                 foreach ($playmodes as $playmode) {
                     $modes[$playmode] = 'full';
-                }
-            } else {
-                if ($this->isFullBN()) {
-                    $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng'), true)->playmodes ?? [];
-                    foreach ($playmodes as $playmode) {
-                        $modes[$playmode] = 'full';
-                    }
-                }
-
-                if ($this->isLimitedBN()) {
-                    $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng_limited'), true)->playmodes ?? [];
-                    foreach ($playmodes as $playmode) {
-                        // prevent 'full' permission from being overwritten - i.e. if a user is accidentally added to both bng/nat and bng_limited for the same playmode
-                        $modes[$playmode] = $modes[$playmode] ?? 'limited';
-                    }
                 }
             }
 
