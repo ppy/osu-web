@@ -31,6 +31,10 @@ return [
             'cleared' => 'telah dimainkan',
             'not_cleared' => 'belum dimainkan',
         ],
+        'no_diff_reduction' => [
+            '_' => '',
+            'link' => '',
+        ],
     ],
 
     'mode' => [

@@ -61,7 +61,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Lascia Hype a questa beatmap se ti sei divertito a giocarla per aiutare a renderla <strong>Classificata</strong>.',
+            'action' => 'Metti hype a questa beatmap se ti sei divertito a giocarla per aiutare a renderla <strong>Classificata</strong>.',
 
             'current' => [
                 '_' => 'Questa mappa è attualmente :status.',

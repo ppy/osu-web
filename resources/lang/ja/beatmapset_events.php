@@ -28,7 +28,7 @@ return [
         'nomination_reset' => '新しい問題 :discussion (:text)によりノミネートがリセットされました。',
         'qualify' => 'このビートマップは既に必要なノミネーション数に達しており、Qualifiedされています。',
         'rank' => 'Rankedされました。',
-        'remove_from_loved' => '',
+        'remove_from_loved' => ':userによってLovedから削除されました。(:text)',
     ],
 
     'index' => [
@@ -67,6 +67,6 @@ return [
         'nomination_reset' => 'ノミネーションのリセット',
         'qualify' => 'Qualification',
         'rank' => 'ランキング',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Loved削除',
     ],
 ];

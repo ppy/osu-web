@@ -54,7 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => '在这个时间点上没有相关的讨论记录。',
         'notice' => '在 :timestamp 附近（:existing_timestamps）有讨论记录，发表前请检查。',
-        'unsaved' => '',
+        'unsaved' => '此审阅中有 :count',
     ],
 
     'reply' => [

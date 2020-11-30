@@ -252,6 +252,7 @@ return [
         'converts' => 'Include beatmaps convertite',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'Oricare',
         'osu' => '',
         'taiko' => '',

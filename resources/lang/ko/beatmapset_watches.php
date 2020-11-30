@@ -8,6 +8,11 @@ return [
         'description' => '구독 중인 비트맵 토론 목록을 나타냅니다. 새 글이나 변경사항이 있으면 알림을 받습니다.',
         'title_compact' => '모딩 확인 목록',
 
+        'counts' => [
+            'total' => '',
+            'unread' => '',
+        ],
+
         'table' => [
             'empty' => '현재 구독 중인 비트맵 토론이 없습니다.',
             'open_issues' => '토론 중인 문제',

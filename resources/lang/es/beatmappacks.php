@@ -31,6 +31,10 @@ return [
             'cleared' => 'procesado',
             'not_cleared' => 'no procesado',
         ],
+        'no_diff_reduction' => [
+            '_' => '',
+            'link' => '',
+        ],
     ],
 
     'mode' => [

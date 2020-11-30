@@ -285,7 +285,14 @@ class SanityTest extends DuskTestCase
                 'changelog' => self::$scaffolding['build']->version,
             ],
             'legal' => [
-                'page' => 'terms',
+                'locale' => 'en',
+                'path' => 'Terms',
+            ],
+            'wiki.image' => [
+                'path' => 'shared/mode/osu.png',
+            ],
+            'wiki.sitemap' => [
+                'locale' => 'en',
             ],
         ];
 

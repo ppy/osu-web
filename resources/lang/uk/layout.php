@@ -179,7 +179,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'увійти / зареєструватись',
 
         'login' => [
             'forgot' => "Я все забув",

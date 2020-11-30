@@ -6,12 +6,14 @@
     $url = wiki_url($page->path, $page->requestedLocale);
     $title = $page->title();
 
-    $links = [
-        [
+    $links = [];
+
+    if (!($legal ?? false)) {
+        $links[] = [
             'title' => trans('layout.header.help.index'),
-            'url' => wiki_url('Main_Page'),
-        ],
-    ];
+            'url' => wiki_url('Main_Page', $page->requestedLocale),
+        ];
+    }
 
     $parentTitle = presence($page->subtitle());
     if ($parentTitle !== null) {

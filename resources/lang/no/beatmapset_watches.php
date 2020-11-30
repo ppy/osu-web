@@ -8,6 +8,11 @@ return [
         'description' => 'Dette er beatmapdiskusjonene som du følger. Du vil varsles om nye innlegg eller oppdateringer.',
         'title_compact' => 'modding overvåkningsliste',
 
+        'counts' => [
+            'total' => '',
+            'unread' => '',
+        ],
+
         'table' => [
             'empty' => 'Ingen beatmapdiskusjon overvåket.',
             'open_issues' => 'Åpne problemstillinger',

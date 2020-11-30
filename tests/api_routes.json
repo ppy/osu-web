@@ -4,6 +4,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\BeatmapsetEventsController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -16,6 +17,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\BeatmapsetEventsController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -28,6 +30,7 @@
         "method": "POST",
         "controller": "App\\Http\\Controllers\\Beatmapsets\\FavouritesController@store",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -38,6 +41,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\CommentsController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []
@@ -47,6 +51,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\CommentsController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []
@@ -56,6 +61,7 @@
         "method": "POST",
         "controller": "App\\Http\\Controllers\\CommentsController@store",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -66,6 +72,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\CommentsController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []
@@ -75,6 +82,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\CommentsController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []
@@ -84,6 +92,7 @@
         "method": "PUT",
         "controller": "App\\Http\\Controllers\\CommentsController@update",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -94,6 +103,7 @@
         "method": "PATCH",
         "controller": "App\\Http\\Controllers\\CommentsController@update",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -104,6 +114,7 @@
         "method": "DELETE",
         "controller": "App\\Http\\Controllers\\CommentsController@destroy",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -114,6 +125,7 @@
         "method": "POST",
         "controller": "App\\Http\\Controllers\\CommentsController@voteStore",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -124,6 +136,7 @@
         "method": "DELETE",
         "controller": "App\\Http\\Controllers\\CommentsController@voteDestroy",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -134,6 +147,7 @@
         "method": "POST",
         "controller": "App\\Http\\Controllers\\Chat\\ChatController@newConversation",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -144,6 +158,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\Chat\\ChatController@updates",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -154,6 +169,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\Chat\\ChatController@updates",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -164,6 +180,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\Chat\\ChatController@presence",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -174,6 +191,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\Chat\\ChatController@presence",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -184,6 +202,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\Chat\\Channels\\MessagesController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -194,6 +213,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\Chat\\Channels\\MessagesController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -204,6 +224,7 @@
         "method": "POST",
         "controller": "App\\Http\\Controllers\\Chat\\Channels\\MessagesController@store",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -214,6 +235,7 @@
         "method": "PUT",
         "controller": "App\\Http\\Controllers\\Chat\\ChannelsController@join",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -224,6 +246,7 @@
         "method": "DELETE",
         "controller": "App\\Http\\Controllers\\Chat\\ChannelsController@part",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -234,6 +257,7 @@
         "method": "PUT",
         "controller": "App\\Http\\Controllers\\Chat\\ChannelsController@markAsRead",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -244,6 +268,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\Chat\\ChannelsController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -254,6 +279,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\Chat\\ChannelsController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -264,6 +290,7 @@
         "method": "POST",
         "controller": "App\\Http\\Controllers\\Chat\\ChannelsController@store",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -274,6 +301,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\ChangelogController@build",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []
@@ -283,6 +311,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\ChangelogController@build",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []
@@ -292,6 +321,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\ChangelogController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []
@@ -301,6 +331,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\ChangelogController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []
@@ -310,6 +341,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\ChangelogController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []
@@ -319,6 +351,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\ChangelogController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []
@@ -328,6 +361,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth",
             "require-scopes:public"
@@ -341,6 +375,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth",
             "require-scopes:public"
@@ -354,6 +389,7 @@
         "method": "PUT",
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@join",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -364,6 +400,7 @@
         "method": "DELETE",
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@part",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -374,6 +411,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@leaderboard",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth",
             "require-scopes:public"
@@ -387,6 +425,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@leaderboard",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth",
             "require-scopes:public"
@@ -400,6 +439,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@showUser",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -410,6 +450,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@showUser",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -420,6 +461,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth",
             "require-scopes:public"
@@ -433,6 +475,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth",
             "require-scopes:public"
@@ -446,6 +489,7 @@
         "method": "POST",
         "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@store",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -456,6 +500,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -466,6 +511,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -476,6 +522,7 @@
         "method": "PUT",
         "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@update",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -486,6 +533,7 @@
         "method": "PATCH",
         "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@update",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -496,6 +544,7 @@
         "method": "POST",
         "controller": "App\\Http\\Controllers\\ReportsController@store",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -506,6 +555,7 @@
         "method": "POST",
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@store",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -516,6 +566,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -528,6 +579,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -540,6 +592,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\SeasonalBackgroundsController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []
@@ -549,6 +602,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\SeasonalBackgroundsController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []
@@ -558,26 +612,63 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\ScoresController@download",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
-            "auth"
+            "throttle:10,1,api-scores-download:",
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/scores/{mode}/{score}/download",
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\ScoresController@download",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
-            "auth"
+            "throttle:10,1,api-scores-download:",
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/scores/{mode}/{score}",
+        "method": "GET",
+        "controller": "App\\Http\\Controllers\\ScoresController@show",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/scores/{mode}/{score}",
+        "method": "HEAD",
+        "controller": "App\\Http\\Controllers\\ScoresController@show",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/beatmaps/{id}/scores",
         "method": "GET",
         "controller": "App\\Http\\Controllers\\BeatmapsController@scores",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -590,6 +681,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\BeatmapsController@scores",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -602,6 +694,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\API\\BeatmapsController@lookup",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -614,6 +707,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\API\\BeatmapsController@lookup",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -626,6 +720,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\API\\BeatmapsController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -638,6 +733,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\API\\BeatmapsController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -650,6 +746,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@search",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -662,6 +759,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@search",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -674,6 +772,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\API\\BeatmapsetsController@lookup",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -686,6 +785,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\API\\BeatmapsetsController@lookup",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -698,6 +798,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@download",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []
@@ -707,6 +808,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@download",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []
@@ -716,6 +818,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -728,6 +831,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -740,6 +844,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\FriendsController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth",
             "require-scopes:friends.read"
@@ -753,6 +858,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\FriendsController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth",
             "require-scopes:friends.read"
@@ -766,6 +872,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\UsersController@me",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth",
             "require-scopes:identify"
@@ -779,6 +886,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\UsersController@me",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth",
             "require-scopes:identify"
@@ -792,6 +900,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\HomeController@downloadQuotaCheck",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -802,6 +911,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\HomeController@downloadQuotaCheck",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -812,6 +922,7 @@
         "method": "DELETE",
         "controller": "App\\Http\\Controllers\\OAuth\\TokensController@destroyCurrent",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:any"
         ],
@@ -824,6 +935,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\NewsController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -836,6 +948,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\NewsController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -848,6 +961,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\NewsController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -860,6 +974,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\NewsController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -872,6 +987,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\NotificationsController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -882,6 +998,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\NotificationsController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -892,6 +1009,7 @@
         "method": "POST",
         "controller": "App\\Http\\Controllers\\NotificationsController@markRead",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "auth"
         ],
@@ -902,6 +1020,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\RankingController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -914,6 +1033,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\RankingController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -926,6 +1046,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\SpotlightsController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -938,6 +1059,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\SpotlightsController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -950,6 +1072,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\UsersController@kudosu",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -962,6 +1085,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\UsersController@kudosu",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -974,6 +1098,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\UsersController@scores",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -986,6 +1111,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\UsersController@scores",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -998,6 +1124,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\UsersController@beatmapsets",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -1010,6 +1137,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\UsersController@beatmapsets",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -1022,6 +1150,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\UsersController@recentActivity",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -1034,6 +1163,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\UsersController@recentActivity",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -1046,6 +1176,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\UsersController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -1058,6 +1189,7 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\UsersController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -1070,6 +1202,7 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\UsersController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []
@@ -1079,24 +1212,27 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\UsersController@index",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []
     },
     {
-        "uri": "api/v2/wiki/{page?}",
+        "uri": "api/v2/wiki/{locale}/{path}",
         "method": "GET",
         "controller": "App\\Http\\Controllers\\WikiController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []
     },
     {
-        "uri": "api/v2/wiki/{page?}",
+        "uri": "api/v2/wiki/{locale}/{path}",
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\WikiController@show",
         "middlewares": [
+            "throttle:1200,1,api:",
             "require-scopes"
         ],
         "scopes": []

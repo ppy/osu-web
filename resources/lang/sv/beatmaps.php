@@ -187,8 +187,8 @@ return [
         'nominate_confirm' => 'Nominera denna beatmap?',
         'nominated_by' => 'nominerad av :users',
         'not_enough_hype' => "Det finns inte tillräckligt med hype.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Ta bort från Älskad',
+        'remove_from_loved_prompt' => 'Anledning till borttagandet från Älskad:',
         'required_text' => 'Nomineringar: :current/:required',
         'reset_message_deleted' => 'raderad',
         'title' => 'Nominering Status',
@@ -252,6 +252,7 @@ return [
         'converts' => 'Inkludera konverterade beatmaps',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'Alla',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

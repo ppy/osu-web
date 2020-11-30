@@ -252,6 +252,7 @@ return [
         'converts' => 'Konvertált beatmap-ek tartalmazása',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'Bármelyik',
         'osu' => '',
         'taiko' => '',

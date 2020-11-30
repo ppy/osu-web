@@ -5,9 +5,11 @@
 
 return [
     'all_read' => '¡Todas las notificaciones leídas!',
+    'delete' => '',
     'mark_read' => 'Borrar :type',
     'none' => 'No hay notificaciones',
     'see_all' => 'ver todas las notificaciones',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'todas',
@@ -57,8 +59,8 @@ return [
                 'beatmapset_qualify_compact' => 'El mapa ingresó a la cola de clasificación',
                 'beatmapset_rank' => '":title" ha sido clasificado',
                 'beatmapset_rank_compact' => 'El mapa fue clasificado',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved' => '":title" fue removido de Amados',
+                'beatmapset_remove_from_loved_compact' => 'El mapa fue removido de Amados',
                 'beatmapset_reset_nominations' => 'La nominación de ":title" ha sido restablecida',
                 'beatmapset_reset_nominations_compact' => 'La nominación fue restablecida',
             ],
@@ -161,7 +163,7 @@ return [
                 'beatmapset_nominate' => '":title" ha sido nominado',
                 'beatmapset_qualify' => '":title" ha ganado suficientes nominaciones e ingresó a la cola de clasificación',
                 'beatmapset_rank' => '":title" ha sido clasificado',
-                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved' => '":title" fue removido de Amados',
                 'beatmapset_reset_nominations' => 'La nominación de ":title" ha sido restablecida',
             ],
 

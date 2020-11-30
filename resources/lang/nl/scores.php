@@ -17,7 +17,7 @@ return [
 
             'rank' => [
                 'country' => 'Landelijke Ranglijst',
-                'global' => 'Wereld Ranglijst',
+                'global' => 'Wereldwijde Ranglijst',
             ],
         ],
     ],

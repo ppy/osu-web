@@ -8,6 +8,11 @@ return [
         'description' => 'Seuraat näiden beatmappien keskusteluja. Sinulle huomautetaan uusista viesteistä ja päivityksistä.',
         'title_compact' => 'modiseuranta',
 
+        'counts' => [
+            'total' => '',
+            'unread' => '',
+        ],
+
         'table' => [
             'empty' => 'Ei seurattuja keskusteluja.',
             'open_issues' => 'Avoimet ongelmat',
