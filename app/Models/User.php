@@ -772,9 +772,23 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     |
     */
 
-    public function isNAT()
+    public function inGroupWithPlaymode($groupIdentifier, $playmode = null)
     {
-        return $this->isGroup(app('groups')->byIdentifier('nat'));
+        $group = app('groups')->byIdentifier($groupIdentifier);
+        $isGroup = $this->isGroup($group);
+
+        if ($isGroup === false || $playmode === null) {
+            return $isGroup;
+        }
+
+        $groupModes = $this->findUserGroup($group, true)->playmodes;
+
+        return in_array($playmode, $groupModes ?? [], true);
+    }
+
+    public function isNAT($mode = null)
+    {
+        return $this->inGroupWithPlaymode('nat', $mode);
     }
 
     public function isAdmin()
@@ -787,19 +801,19 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->isGroup(app('groups')->byIdentifier('gmt'));
     }
 
-    public function isBNG()
+    public function isBNG($mode = null)
     {
-        return $this->isFullBN() || $this->isLimitedBN();
+        return $this->isFullBN($mode) || $this->isLimitedBN($mode);
     }
 
-    public function isFullBN()
+    public function isFullBN($mode = null)
     {
-        return $this->isGroup(app('groups')->byIdentifier('bng'));
+        return $this->inGroupWithPlaymode('bng', $mode);
     }
 
-    public function isLimitedBN()
+    public function isLimitedBN($mode = null)
     {
-        return $this->isGroup(app('groups')->byIdentifier('bng_limited'));
+        return $this->inGroupWithPlaymode('bng_limited', $mode);
     }
 
     public function isDev()
@@ -1443,6 +1457,40 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             });
 
             return $groups;
+        });
+    }
+
+    public function nominationModes()
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            if (!$this->isNAT() && !$this->isBNG()) {
+                return;
+            }
+
+            $modes = [];
+
+            if ($this->isLimitedBN()) {
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng_limited'), true)->playmodes ?? [];
+                foreach ($playmodes as $playmode) {
+                    $modes[$playmode] = 'limited';
+                }
+            }
+
+            if ($this->isFullBN()) {
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng'), true)->playmodes ?? [];
+                foreach ($playmodes as $playmode) {
+                    $modes[$playmode] = 'full';
+                }
+            }
+
+            if ($this->isNAT()) {
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('nat'), true)->playmodes ?? [];
+                foreach ($playmodes as $playmode) {
+                    $modes[$playmode] = 'full';
+                }
+            }
+
+            return $modes;
         });
     }
 

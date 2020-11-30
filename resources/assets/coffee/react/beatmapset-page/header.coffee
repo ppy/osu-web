@@ -103,7 +103,11 @@ export class Header extends React.Component
               if @props.beatmapset.status == 'pending'
                 span className: 'beatmapset-header__value', title: osu.trans('beatmapsets.show.stats.nominations'),
                   span className: 'beatmapset-header__value-icon', i className: 'fas fa-thumbs-up'
-                  span className: 'beatmapset-header__value-name', @props.beatmapset.nominations.current
+                  span className: 'beatmapset-header__value-name',
+                    if @props.beatmapset.nominations.legacy_mode
+                      @props.beatmapset.nominations.current
+                    else
+                      _.sum(_.values(@props.beatmapset.nominations.current))
 
               span
                 className: "beatmapset-header__value#{if @props.favcount > 0 then ' beatmapset-header__value--has-favourites' else ''}"
