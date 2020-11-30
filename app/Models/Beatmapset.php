@@ -25,6 +25,7 @@ use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
 use App\Traits\CommentableDefaults;
+use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
@@ -96,7 +97,7 @@ use Illuminate\Database\QueryException;
  */
 class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 {
-    use CommentableDefaults, Elasticsearch\BeatmapsetTrait, SoftDeletes, Validatable;
+    use CommentableDefaults, Elasticsearch\BeatmapsetTrait, Memoizes, SoftDeletes, Validatable;
 
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
@@ -633,6 +634,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function nominate(User $user, array $playmodes = [])
     {
         try {
+            $this->resetMemoized(); // ensure we're not using cached/stale event data
+
             if (!$this->isPending()) {
                 throw new InvariantException(trans('beatmaps.nominations.incorrect_state'));
             }
@@ -696,6 +699,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                     $event['comment'] = ['modes' => $playmodes];
                 }
                 $this->events()->create($event);
+//                $this->resetMemoized(); // clear cached events
 
                 if ($this->isLegacyNominationMode()) {
                     $shouldQualify = $this->currentNominationCount() >= $this->requiredNominationCount();
@@ -726,6 +730,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                 }
             }
 
+            $this->refresh();
             $this->refreshCache();
 
             return [
@@ -982,16 +987,20 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function nominationsMeta()
     {
-        return [
-            'legacy_mode' => $this->isLegacyNominationMode(),
-            'current' => $this->currentNominationCount(),
-            'required' => $this->requiredNominationCount(),
-        ];
+        return $this->memoize(__FUNCTION__, function () {
+            return [
+                'legacy_mode' => $this->isLegacyNominationMode(),
+                'current' => $this->currentNominationCount(),
+                'required' => $this->requiredNominationCount(),
+            ];
+        });
     }
 
     public function isLegacyNominationMode()
     {
-        return $this->nominationsSinceReset()->whereNull('comment')->exists();
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->nominationsSinceReset()->whereNull('comment')->exists();
+        });
     }
 
     public function hasNominations()
@@ -1044,12 +1053,16 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function disqualificationEvent()
     {
-        return $this->events()->disqualifications()->orderBy('created_at', 'desc')->first();
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->events()->disqualifications()->orderBy('created_at', 'desc')->first();
+        });
     }
 
     public function resetEvent()
     {
-        return $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
+        });
     }
 
     public function eventsSinceReset()

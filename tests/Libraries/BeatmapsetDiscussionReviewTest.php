@@ -314,6 +314,8 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             $natUser
         );
 
+        $beatmapset->refresh();
+
         // ensure beatmap is still pending
         $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
         // ensure nomination count has been reset
