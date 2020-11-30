@@ -51,7 +51,7 @@ export class Hype extends React.PureComponent
 
         div className: "#{bn}__lights",
           for i in _.times(@props.beatmapset.hype.required)
-            state = if i < @props.beatmapset.hype.current then 'on' else 'off-light'
+            state = if i < @props.beatmapset.hype.current then 'on' else 'off'
             div
               key: i
               className: "bar bar--beatmapset-hype bar--beatmapset-#{state}"
