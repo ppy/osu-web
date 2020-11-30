@@ -460,7 +460,7 @@ class BeatmapsetTest extends TestCase
 
     private function createGroupUserWithPlaymodes($group = 'bng', $playmodes = ['osu'])
     {
-        Group::find(app('groups')->byIdentifier($group)->getKey())->update(['has_playmodes' => true]);
+        app('groups')->byIdentifier($group)->update(['has_playmodes' => true]);
         app('groups')->resetCache();
         $user = factory(User::class)->create();
         $user->userGroups()->create([
