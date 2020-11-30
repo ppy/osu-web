@@ -25,6 +25,7 @@ return [
         'language_edit' => 'Language changed from :old to :new.',
         'love' => 'Loved by :user.',
         'nominate' => 'Nominated by :user.',
+        'nominate_modes' => 'Nominated by :user (:modes).',
         'nomination_reset' => 'New problem :discussion (:text) triggered a nomination reset.',
         'qualify' => 'This beatmap has reached the required number of nominations and has been qualified.',
         'rank' => 'Ranked.',

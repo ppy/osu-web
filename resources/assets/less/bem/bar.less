@@ -25,22 +25,29 @@
     margin-top: 5px;
   }
 
-  &--beatmapset-nomination {
+  &--beatmapset-off {
+    background-color: @osu-colour-b6;
+    color: @osu-colour-f1;
+  }
+
+  &--beatmapset-on {
+    background-color: @osu-colour-lime-3;
+    color: @osu-colour-b6;
+  }
+
+  &--beatmapset-hype {
     .default-border-radius();
     height: 5px;
     margin: 5px 2.5px;
   }
 
-  &--beatmapset-nomination-off {
-    background-color: @osu-colour-b6;
-  }
-
-  &--beatmapset-nomination-off-light {
-    background-color: #ddd;
-  }
-
-  &--beatmapset-nomination-on {
-    background-color: @osu-colour-lime-3;
+  &--beatmapset-nomination {
+    border-radius: 10000px;
+    height: 20px;
+    margin: 5px 2.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &--double {

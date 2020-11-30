@@ -3,8 +3,10 @@
 
 import { BigButton } from 'big-button'
 import * as React from 'react'
-import { a, button, div, p, span } from 'react-dom-factories'
+import { a, div, i, span } from 'react-dom-factories'
 import { StringWithComponent } from 'string-with-component'
+import { Nominator } from 'beatmap-discussions/nominator'
+
 el = React.createElement
 
 bn = 'beatmap-discussion-nomination'
@@ -45,7 +47,13 @@ export class Nominations extends React.PureComponent
           div className: "#{bn}__item", @feedbackButton()
           div className: "#{bn}__item", @hypeButton()
           div className: "#{bn}__item", @disqualifyButton()
-          div className: "#{bn}__item", @nominationButton()
+          div className: "#{bn}__item",
+            el Nominator,
+              beatmapset: @props.beatmapset
+              currentHype: @props.currentDiscussions.totalHype
+              currentUser: @props.currentUser
+              unresolvedIssues: @props.currentDiscussions.unresolvedIssues
+              users: @props.users
         div className: "#{bn}__items-grouping",
           div className: "#{bn}__item", @discussionLockButton()
           div className: "#{bn}__item", @loveButton()
@@ -54,18 +62,45 @@ export class Nominations extends React.PureComponent
 
 
   renderLights: (lightsOn, lightsTotal) ->
-    lightsOff = lightsTotal - lightsOn
-
     div className: "#{bn}__lights",
       _.times lightsOn, (n) ->
         div
           key: n
-          className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-on'
+          className: 'bar bar--beatmapset-hype bar--beatmapset-on'
 
-      _.times (lightsOff), (n) ->
+      _.times (lightsTotal - lightsOn), (n) ->
         div
           key: lightsOn + n
-          className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-off'
+          className: 'bar bar--beatmapset-hype bar--beatmapset-off'
+
+
+  # nominations = { 'current': { 'osu': 1, 'taiko': 0, ... }, 'required': { 'osu': 2, 'taiko': 2, ... }, ... };
+  renderLightsForNominations: (nominations = {}) ->
+    if nominations?.legacy_mode || !@isHybridMode()
+      if nominations?.legacy_mode
+        current = nominations.current
+        required = nominations.required
+      else
+        mode = _.keys(this.props.beatmapset.nominations?.required)[0]
+        current = nominations.current[mode]
+        required = nominations.required[mode]
+
+      @renderLights(current, required)
+    else
+      div className: "#{bn}__lights",
+        _.map nominations.required, (requiredLights, mode) ->
+          el React.Fragment, key: mode,
+            _.times nominations.current[mode], (n) ->
+              div
+                key: n
+                className: 'bar bar--beatmapset-nomination bar--beatmapset-on'
+                i className: "fal fa-extra-mode-#{mode}"
+
+            _.times (requiredLights - nominations.current[mode]), (n) ->
+              div
+                key: nominations.current[mode] + n
+                className: 'bar bar--beatmapset-nomination bar--beatmapset-off'
+                i className: "fal fa-extra-mode-#{mode}"
 
 
   delete: =>
@@ -144,23 +179,6 @@ export class Nominations extends React.PureComponent
       .always LoadingOverlay.hide
 
 
-  nominate: =>
-    return unless confirm(osu.trans('beatmaps.nominations.nominate_confirm'))
-
-    LoadingOverlay.show()
-
-    @xhr.nominate?.abort()
-
-    url = laroute.route('beatmapsets.nominate', beatmapset: @props.beatmapset.id)
-    params = method: 'PUT'
-
-    @xhr.nominate = $.ajax(url, params)
-      .done (response) =>
-        $.publish 'beatmapsetDiscussions:update', beatmapset: response
-      .fail osu.ajaxError
-      .always LoadingOverlay.hide
-
-
   removeFromLoved: =>
     reason = osu.presence(prompt(osu.trans('beatmaps.nominations.remove_from_loved_prompt')))
 
@@ -219,6 +237,10 @@ export class Nominations extends React.PureComponent
       callback: @focusNewDiscussion
 
 
+  isHybridMode: =>
+    _.keys(this.props.beatmapset.nominations?.required).length > 1
+
+
   parseEventData: (event) =>
     user = @props.users[event.user_id]
     discussion = @props.discussions[event.comment.beatmap_discussion_id]
@@ -256,10 +278,6 @@ export class Nominations extends React.PureComponent
       discussion: parsedEvent.link
       message: parsedEvent.message
       user: osu.link laroute.route('users.show', user: parsedEvent.user.id), parsedEvent.user.username
-
-
-  userCanNominate: =>
-    !@userIsOwner() && (@props.currentUser.is_admin || @props.currentUser.is_bng || @props.currentUser.is_nat)
 
 
   userCanDisqualify: =>
@@ -305,7 +323,7 @@ export class Nominations extends React.PureComponent
   hypeBar: =>
     return null unless @props.beatmapset.can_be_hyped
 
-    requiredHype = @props.beatmapset.nominations.required_hype
+    requiredHype = @props.beatmapset.hype.required
     hypeRaw = @props.currentDiscussions.totalHype
     hype = _.min([requiredHype, hypeRaw])
 
@@ -320,7 +338,7 @@ export class Nominations extends React.PureComponent
 
 
   nominationBar: =>
-    requiredHype = @props.beatmapset.nominations.required_hype
+    requiredHype = @props.beatmapset.hype?.required
     hypeRaw = @props.currentDiscussions.totalHype
     mapCanBeNominated = @props.beatmapset.status == 'pending' && hypeRaw >= requiredHype
     mapIsQualified = @props.beatmapset.status == 'qualified'
@@ -335,8 +353,12 @@ export class Nominations extends React.PureComponent
           className: "#{bn}__title"
           osu.trans 'beatmaps.nominations.title'
         span null,
-          " #{nominations.current} / #{nominations.required}"
-      @renderLights(nominations.current, nominations.required)
+          if nominations.legacy_mode
+            " #{nominations.current} / #{nominations.required}"
+          else
+            " #{_.sum(_.values(nominations.current))} / #{_.sum(_.values(nominations.required))}"
+
+      @renderLightsForNominations(nominations)
 
 
   disqualificationMessage: =>
@@ -429,29 +451,6 @@ export class Nominations extends React.PureComponent
       modifiers: ['warning']
       props:
         onClick: @focusNewDiscussionWithModeSwitch
-
-
-  nominationButton: =>
-    requiredHype = @props.beatmapset.nominations.required_hype
-    hypeRaw = @props.currentDiscussions.totalHype
-    mapCanBeNominated = @props.beatmapset.status == 'pending' && hypeRaw >= requiredHype
-
-    return null unless mapCanBeNominated && @userCanNominate()
-
-    nominationButton = (disabled = false) =>
-      el BigButton,
-        text: osu.trans 'beatmaps.nominations.nominate'
-        icon: 'fas fa-thumbs-up'
-        props:
-          disabled: disabled
-          onClick: @nominate
-
-    if @props.currentDiscussions.unresolvedIssues > 0
-      # wrapper 'cuz putting a title/tooltip on a disabled button is no worky...
-      div title: osu.trans('beatmaps.nominations.unresolved_issues'),
-        nominationButton true
-    else
-      nominationButton @props.beatmapset.nominations.nominated
 
 
   discussionLockButton: =>
