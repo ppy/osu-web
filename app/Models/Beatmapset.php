@@ -699,7 +699,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                     $event['comment'] = ['modes' => $playmodes];
                 }
                 $this->events()->create($event);
-//                $this->resetMemoized(); // clear cached events
 
                 if ($this->isLegacyNominationMode()) {
                     $shouldQualify = $this->currentNominationCount() >= $this->requiredNominationCount();
