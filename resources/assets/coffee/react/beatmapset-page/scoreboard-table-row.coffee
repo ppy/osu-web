@@ -54,12 +54,16 @@ export class ScoreboardTableRow extends React.PureComponent
               country: score.user.country
               modifiers: ['flat']
 
-      td className: cell,
+      td className: "#{cell} u-relative",
         a
           className: "#{bn}__cell-content #{bn}__cell-content--user-link js-usercard"
           'data-user-id': score.user.id
           href: laroute.route 'users.show', user: score.user.id, mode: @props.beatmap.mode
           score.user.username
+
+        a
+          className: "#{bn}__cell-content"
+          href: route('scores.show', mode: @props.score.mode, score: @props.score.best_id)
 
       el @tdLink,
         modifiers: ['perfect'] if score.max_combo == @props.beatmap.max_combo
