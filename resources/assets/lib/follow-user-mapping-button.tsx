@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
-import { without } from 'lodash';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import { classWithModifiers, Modifiers } from 'utils/css';
@@ -13,7 +12,7 @@ interface Props {
 }
 
 interface State {
-  follow: boolean;
+  following: boolean;
   loading: boolean;
 }
 
@@ -28,13 +27,13 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
     super(props);
 
     this.state = {
-      follow: currentUser.follow_user_mapping?.includes(this.props.userId) ?? false,
+      following: currentUser.follow_user_mapping?.includes(this.props.userId) ?? false,
       loading: false,
     };
   }
 
   componentDidMount() {
-    $.subscribe(`followUserMapping:refresh.${this.eventId}`, this.refresh);
+    $.subscribe(`user:followUserMapping:refresh.${this.eventId}`, this.refresh);
   }
 
   componentWillUnmount() {
@@ -47,10 +46,10 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
       return null;
     }
 
-    const title = osu.trans(`follows.mapping.${this.state.follow ? 'to_0' : 'to_1'}`);
+    const title = osu.trans(`follows.mapping.${this.state.following ? 'to_0' : 'to_1'}`);
 
     let blockClass = classWithModifiers(bn, this.props.modifiers);
-    blockClass += classWithModifiers(bn, { friend: this.state.follow }, true);
+    blockClass += classWithModifiers(bn, { friend: this.state.following }, true);
 
     return (
       <div title={title}>
@@ -78,7 +77,7 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
         },
       };
 
-      if (this.state.follow) {
+      if (this.state.following) {
         params.type = 'DELETE';
         params.url = route('follows.destroy');
       } else {
@@ -95,7 +94,7 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
 
   private refresh = () => {
     this.setState({
-      follow: currentUser.follow_user_mapping.includes(this.props.userId),
+      following: currentUser.follow_user_mapping.includes(this.props.userId),
     });
   }
 
@@ -107,12 +106,6 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
   }
 
   private updateData = () => {
-    if (this.state.follow) {
-      currentUser.follow_user_mapping = without(currentUser.follow_user_mapping, this.props.userId);
-    } else {
-      currentUser.follow_user_mapping = currentUser.follow_user_mapping.concat(this.props.userId);
-    }
-
-    $.publish('followUserMapping:refresh');
+    $.publish('user:followUserMapping:update', { following: !this.state.following, userId: this.props.userId });
   }
 }

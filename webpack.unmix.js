@@ -138,6 +138,8 @@ const tsReactComponents = [
   'account-edit',
   'beatmaps',
   'chat',
+  'follows-comment',
+  'follows-mapping',
   'friends-index',
   'groups-show',
   'news-index',

@@ -17,6 +17,8 @@ return [
     ],
 
     'panel' => [
+        'empty' => 'no beatmaps',
+
         'download' => [
             'all' => 'download',
             'video' => 'download with video',
