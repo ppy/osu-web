@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'nápověda',
+            'getAbuse' => '',
             'getFaq' => 'časté dotazy',
             'getRules' => 'pravidla',
             'getSupport' => 'ne, vážně, potřebuji pomoc!',

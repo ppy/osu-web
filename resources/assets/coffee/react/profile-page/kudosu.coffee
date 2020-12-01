@@ -23,7 +23,7 @@ export class Kudosu extends React.Component
             el StringWithComponent,
               mappings:
                 ':link': a
-                  href: laroute.route('wiki.show', page: 'Kudosu')
+                  href: laroute.route('wiki.show', path: 'Kudosu', locale: currentLocale)
                   key: 'link'
                   osu.trans 'users.show.extra.kudosu.total_info.link'
               pattern: osu.trans('users.show.extra.kudosu.total_info._')

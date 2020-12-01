@@ -10,7 +10,7 @@ return [
 
     'cart' => [
         'checkout' => 'Ödeme',
-        'info' => ':count_delimited ürün sepette (:subtotal)|:count_delimited ürün sepette (:subtotal)',
+        'info' => ':count_delimited ürün sepette ($:subtotal)|:count_delimited ürün sepette ($:subtotal)',
         'more_goodies' => 'Ödememi yapmadan önce başka eşyalara göz atmak istiyorum',
         'shipping_fees' => 'kargo ücretleri',
         'title' => 'Alışveriş Sepeti',

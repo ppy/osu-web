@@ -8,6 +8,11 @@ return [
         'description' => 'Estas são as discussões do beatmap que estás a seguir. Serás notificado quando houver novas publicações ou atualizações.',
         'title_compact' => 'lista de observação de modificações',
 
+        'counts' => [
+            'total' => 'Beatmaps vistos',
+            'unread' => 'Beatmaps com nova atividade',
+        ],
+
         'table' => [
             'empty' => 'Sem discussões de beatmap a serem vistas.',
             'open_issues' => 'Problemas em aberto',

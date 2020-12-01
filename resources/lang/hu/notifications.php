@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Összes értesítés elolvasva!',
+    'delete' => '',
     'mark_read' => 'Típus törlése :type',
     'none' => 'Nincsenek értesítések',
     'see_all' => 'összes értesítés megtekintése',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'összes',
@@ -58,8 +60,8 @@ return [
                 'beatmapset_qualify_compact' => 'A beatmap rankolási sorba lépett',
                 'beatmapset_rank' => ':title rankedelt lett',
                 'beatmapset_rank_compact' => 'A beatmap rankedelt lett',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved' => 'Ez a map el lett távolítva a kedvelt kategóriából:title',
+                'beatmapset_remove_from_loved_compact' => 'Ez a beatmap el lett távolítva a kedvelt kategóriából',
                 'beatmapset_reset_nominations' => 'Rankolás elutasítva ezen: ":title"',
                 'beatmapset_reset_nominations_compact' => 'Rankolás elutasítva',
             ],
@@ -69,7 +71,7 @@ return [
 
                 'comment_new' => ':username ezt kommentálta: ":content" ezen: ":title"',
                 'comment_new_compact' => ':username ezt kommentálta: ":content"',
-                'comment_reply' => '',
+                'comment_reply' => ':username ezt válaszolta: ":content" itt: ":title"',
                 'comment_reply_compact' => ':username ezt válaszolta: ":content"',
             ],
         ],
@@ -95,7 +97,7 @@ return [
 
                 'comment_new' => ':username ezt kommentálta: ":content" ezen: ":title"',
                 'comment_new_compact' => ':username ezt kommentálta: ":content"',
-                'comment_reply' => '',
+                'comment_reply' => ':username ezt válaszolta: ":content" itt: ":title"',
                 'comment_reply_compact' => ':username ezt válaszolta: ":content"',
             ],
         ],
@@ -108,7 +110,7 @@ return [
 
                 'comment_new' => ':username ezt kommentálta: ":content" ezen: ":title"',
                 'comment_new_compact' => ':username ezt kommentálta: ":content"',
-                'comment_reply' => '',
+                'comment_reply' => ':username ezt válaszolta: ":content" itt: ":title"',
                 'comment_reply_compact' => ':username ezt válaszolta: ":content"',
             ],
         ],
@@ -139,7 +141,7 @@ return [
                 '_' => 'Új medál',
                 'user_achievement_unlock' => 'Feloldottad ":title"!',
                 'user_achievement_unlock_compact' => 'Feloldottad":title"!',
-                'user_achievement_unlock_group' => '',
+                'user_achievement_unlock_group' => 'Medálok feloldva!',
             ],
         ],
     ],
@@ -160,9 +162,9 @@ return [
                 'beatmapset_disqualify' => '":title" dalt diszkvalifikálták',
                 'beatmapset_love' => '":title" dalt kedvelt kategóriába került',
                 'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_remove_from_loved' => '',
+                'beatmapset_qualify' => '":title" elért annyi szavazatot hogy rankedelési státuszba lépett',
+                'beatmapset_rank' => ':title rankedelt lett',
+                'beatmapset_remove_from_loved' => 'Ez a map el lett távolítva a kedvelt kategóriából:title',
                 'beatmapset_reset_nominations' => '',
             ],
 

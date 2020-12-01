@@ -158,6 +158,11 @@ class LocaleMeta
         return static::find($locale)['flag'];
     }
 
+    public static function isValid($locale)
+    {
+        return isset(static::MAPPINGS[$locale]);
+    }
+
     public static function nameFor($locale)
     {
         return static::find($locale)['name'];

@@ -2,6 +2,9 @@
 
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
+
+use App\Http\Middleware\ThrottleRequests;
+
 Route::group(['middleware' => ['web']], function () {
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('/beatmapsets/{beatmapset}/covers', 'BeatmapsetsController@covers')->name('beatmapsets.covers');
@@ -207,7 +210,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::delete('follows', 'FollowsController@destroy')->name('follows.destroy');
     });
 
-    Route::get('legal/{page}', 'LegalController@show')->name('legal');
+    Route::get('legal/{locale?}/{path?}', 'LegalController@show')->name('legal');
 
     Route::group(['prefix' => 'multiplayer', 'as' => 'multiplayer.', 'namespace' => 'Multiplayer'], function () {
         Route::resource('rooms', 'RoomsController', ['only' => ['show']]);
@@ -252,14 +255,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
     Route::resource('users', 'UsersController', ['only' => 'store']);
 
-    Route::group(['prefix' => 'help'], function () {
-        // help section
-        Route::get('wiki/Sitemap', 'WikiController@sitemap')->name('wiki.sitemap');
-        Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
-        Route::put('wiki/{page}', 'WikiController@update')->where('page', '.+');
-        Route::get('wiki-suggestions', 'WikiController@suggestions')->name('wiki-suggestions');
-        route_redirect('/', 'wiki.show');
-    });
+    Route::get('wiki/{locale}/Sitemap', 'WikiController@sitemap')->name('wiki.sitemap');
+    Route::get('wiki/images/{path}', 'WikiController@image')->name('wiki.image')->where('path', '.+');
+    Route::get('wiki/{locale?}/{path?}', 'WikiController@show')->name('wiki.show')->where('path', '.+');
+    Route::put('wiki/{locale}/{path}', 'WikiController@update')->where('path', '.+');
+    Route::get('wiki-suggestions', 'WikiController@suggestions')->name('wiki-suggestions');
 
     // FIXME: someone split this crap up into proper controllers
     Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
@@ -331,12 +331,12 @@ Route::group(['middleware' => ['web']], function () {
     route_redirect('u/{user}', 'users.show');
     route_redirect('forum', 'forum.forums.index');
     route_redirect('mp/{match}', 'matches.show');
-    route_redirect('wiki/{page?}', 'wiki.show')->where('page', '.+');
+    route_redirect('help/wiki/{path?}', 'wiki.show')->where('path', '.+');
 });
 
 // API
 // require-scopes is not in the api group at the moment to reduce the number of things that need immediate fixing.
-Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'require-scopes']], function () {
+Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', ThrottleRequests::getApiThrottle(), 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets'], function () {
             Route::apiResource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
@@ -383,9 +383,9 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'requir
 
         Route::apiResource('seasonal-backgrounds', 'SeasonalBackgroundsController', ['only' => ['index']]);
 
-        Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
-            // GET /api/v2/scores/:mode/:score_id/download
-            Route::get('{mode}/{score}/download', 'ScoresController@download')->name('download');
+        Route::group(['prefix' => 'scores/{mode}', 'as' => 'scores.'], function () {
+            Route::get('{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download');
+            Route::get('{score}', 'ScoresController@show')->name('show');
         });
 
         // Beatmaps
@@ -441,7 +441,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'requir
         Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
         Route::resource('users', 'UsersController', ['only' => ['index']]);
 
-        Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
+        Route::get('wiki/{locale}/{path}', 'WikiController@show')->name('wiki.show')->where('path', '.+');
     });
 });
 

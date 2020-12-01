@@ -21,17 +21,17 @@ return [
         'benefit_more' => '将来还会有更多的支持者的独有功能！',
         'feedback' => "如果您有什么问题，或者有什么意见的话，您可以直接回复这封邮件。我会尽快回应的！",
         'keep_free' => '正是因为您这样的人的存在，osu! 和 osu! 社区才能够在没有讨厌的广告和强制付款的环境中稳定运行。感谢您的支持！',
-        'keep_running' => '您的捐赠能够维持 osu! 持续运转 :minutes ！虽然这看起来不多，但是江海来源于小流，不是么？',
+        'keep_running' => '您的捐赠能够维持 osu! 持续运转 :minutes！虽然看起来不多，但是江海来源于小流，不是么。:)',
         'subject' => '非常感谢， osu! 爱你哦~',
         'translation' => '以下是社区提供的翻译，仅供参考：',
 
         'benefit' => [
             'gift' => '您的受赠者将会享受到 osu!direct 等其他 osu! 支持者所享有的的特权。',
-            'self' => '您可以在 :duration 内享受 osu!direct 等 osu! 支持者所享有的特权！',
+            'self' => '您现在可以享受 osu!direct 和其他支持者奖励直到 :duration。',
         ],
 
         'support' => [
-            '_' => '感谢您向 osu! 付出的:support ！',
+            '_' => '感谢您向 osu! 付出的:support！',
             'first' => '支持',
             'repeat' => '持续支持',
         ],

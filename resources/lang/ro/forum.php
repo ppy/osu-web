@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Șterge postarea',
-            'restore' => 'Restaurează postarea',
             'edit' => 'Editează postarea',
+            'report' => '',
+            'restore' => 'Restaurează postarea',
         ],
 
         'create' => [

@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Xóa bài viết',
-            'restore' => 'Phục hồi bài viết',
             'edit' => 'Chỉnh sửa bài viết',
+            'report' => '',
+            'restore' => 'Phục hồi bài viết',
         ],
 
         'create' => [

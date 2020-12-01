@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'تم قراءة جميع الإشعارات!',
+    'delete' => '',
     'mark_read' => 'مَحو :type',
     'none' => 'لا إشعارات',
     'see_all' => 'أِظهار جميع الإشعارات',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'الكل',

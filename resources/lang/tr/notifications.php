@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Tüm bildirimler okundu!',
+    'delete' => ':type sil',
     'mark_read' => 'Temizle: :type',
     'none' => 'Bildirim yok',
     'see_all' => 'tüm bildirimleri gör',
+    'see_channel' => 'sohbete git',
 
     'filters' => [
         '_' => 'hepsi',
@@ -127,7 +129,7 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => ':count_delimited okunmamış mesaj.|:count_delimited okunmamış mesajlar.',
+                'legacy_pm' => ':count_delimited okunmamış mesaj.|:count_delimited okunmamış mesaj',
             ],
         ],
 

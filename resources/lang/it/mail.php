@@ -7,7 +7,7 @@ return [
     'beatmapset_update_notice' => [
         'new' => 'Dopo la tua ultima visita, c\'è stato un nuovo aggiornamento nella beatmap ":title".',
         'subject' => 'Nuovo aggiornamento per la beatmap ":title"',
-        'unwatch' => 'Se non desideri più seguire su questa beatmap, puoi cliccare il link "Smetti di guardare" in fondo alla pagina, o tramite la pagina per gli aggiornamenti sul modding:',
+        'unwatch' => 'Se non desideri più seguire questa beatmap, puoi cliccare il link "Smetti di seguire" sopra alla pagina, o tramite la pagina per gli aggiornamenti sul modding:',
         'visit' => 'Visita la pagina della discussione qui:',
     ],
 
@@ -40,7 +40,7 @@ return [
     'forum_new_reply' => [
         'new' => 'Dopo la tua ultima visita, c\'è stato un nuovo aggiornamento in ":title".',
         'subject' => '[osu!] Nuova risposta dal topic ":title"',
-        'unwatch' => 'Se non desideri più seguire questo topic, puoi cliccare il link "Annulla iscrizione al topic" presente al fondo del topic, o tramite la pagina di gestione dei topic a cui sei iscritto:',
+        'unwatch' => 'Se non desideri più seguire questo topic, puoi cliccare il link "Annulla iscrizione al topic" presente in fondo al topic, o tramite la pagina di gestione dei topic a cui sei iscritto:',
         'visit' => 'Passa direttamente all\'ultima risposta utilizzando il seguente link:',
     ],
 

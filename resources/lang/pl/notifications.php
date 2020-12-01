@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Wszystkie powiadomienia przeczytane!',
+    'delete' => 'Usuń :type',
     'mark_read' => 'Wyczyść :type',
     'none' => 'Brak powiadomień',
     'see_all' => 'zobacz wszystkie powiadomienia',
+    'see_channel' => 'przejdź do czatu',
 
     'filters' => [
         '_' => 'wszystkie',
@@ -57,8 +59,8 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmapa została zakwalifikowana',
                 'beatmapset_rank' => 'Beatmapa „:title” uzyskała status rankingowy',
                 'beatmapset_rank_compact' => 'Beatmapa uzyskała status rankingowy',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved' => 'Beatmapa „:title” została usunięta z kategorii ulubionych społeczności',
+                'beatmapset_remove_from_loved_compact' => 'Beatmapa została usunięta z kategorii ulubionych społeczności',
                 'beatmapset_reset_nominations' => 'Nominacja beatmapy „:title” została zresetowana',
                 'beatmapset_reset_nominations_compact' => 'Nominacja została zresetowana',
             ],
@@ -138,7 +140,7 @@ return [
                 '_' => 'Nowy medal',
                 'user_achievement_unlock' => 'Odblokowano medal „:title”!',
                 'user_achievement_unlock_compact' => 'Odblokowano medal „:title”!',
-                'user_achievement_unlock_group' => '',
+                'user_achievement_unlock_group' => 'Odblokowano medale!',
             ],
         ],
     ],
@@ -161,7 +163,7 @@ return [
                 'beatmapset_nominate' => 'Beatmapa „:title” została nominowana',
                 'beatmapset_qualify' => 'Beatmapa „:title” uzyskała wystarczającą liczbę nominacji i została zakwalifikowana',
                 'beatmapset_rank' => 'Beatmapa „:title” uzyskała status rankingowy',
-                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved' => 'Beatmapa „:title” została usunięta z kategorii ulubionych społeczności',
                 'beatmapset_reset_nominations' => '',
             ],
 
