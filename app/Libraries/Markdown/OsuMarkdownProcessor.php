@@ -28,8 +28,8 @@ class OsuMarkdownProcessor
 
     private $relativeUrlRoot;
     private $wikiLocale;
-    private $wikiRelativePath;
-    private $wikiBasePath;
+    private $wikiPathToRoot;
+    private $wikiAbsoluteRootPath;
 
     public function __construct(EnvironmentInterface $environment)
     {
@@ -261,8 +261,8 @@ class OsuMarkdownProcessor
             }
 
             $url = wiki_url($path, $locale, false, false);
-            if (starts_with($url, $this->wikiBasePath)) {
-                $url = $this->wikiRelativePath.substr($url, strlen($this->wikiBasePath));
+            if (starts_with($url, $this->wikiAbsoluteRootPath)) {
+                $url = $this->wikiPathToRoot.substr($url, strlen($this->wikiAbsoluteRootPath));
             }
 
             return "{$url}{$matches['query']}{$matches['hash']}";
@@ -335,17 +335,19 @@ class OsuMarkdownProcessor
             return;
         }
 
-        $this->wikiBasePath = route('wiki.show', ['locale' => $this->wikiLocale], false).'/';
+        $this->wikiAbsoluteRootPath = route('wiki.show', ['locale' => $this->wikiLocale], false).'/';
 
-        if (starts_with($this->relativeUrlRoot, $this->wikiBasePath)) {
-            $relativeFromBase = substr($this->relativeUrlRoot, strlen($this->wikiBasePath));
+        if (starts_with($this->relativeUrlRoot, $this->wikiAbsoluteRootPath)) {
+            $relativeFromBase = substr($this->relativeUrlRoot, strlen($this->wikiAbsoluteRootPath));
             $slashes = substr_count($relativeFromBase, '/');
 
             if ($slashes === 0) {
-                $this->wikiRelativePath = './';
+                $this->wikiPathToRoot = './';
             } else {
-                $this->wikiRelativePath = implode('/', array_fill(0, $slashes, '..')).'/';
+                $this->wikiPathToRoot = implode('/', array_fill(0, $slashes, '..')).'/';
             }
+        } else {
+            $this->wikiPathToRoot = $this->wikiAbsoluteRootPath;
         }
     }
 }
