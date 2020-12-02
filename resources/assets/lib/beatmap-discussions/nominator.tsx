@@ -67,7 +67,7 @@ export class Nominator extends React.PureComponent<Props, State> {
       if (this.legacyMode()) {
         return eventUserIsFullNominator(event);
       } else {
-        return event.comment?.mode?.includes(mode) && eventUserIsFullNominator(event, mode);
+        return event.comment?.modes?.includes(mode) && eventUserIsFullNominator(event, mode);
       }
     });
   }
