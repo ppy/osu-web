@@ -4,6 +4,7 @@
 import {
   BeatmapsetEvent,
   BeatmapsetJson,
+  isBeatmapsetNominationEvent,
 } from 'beatmapsets/beatmapset-json';
 import { BigButton } from 'big-button';
 import GameMode from 'interfaces/game-mode';
@@ -64,10 +65,10 @@ export class Nominator extends React.PureComponent<Props, State> {
     };
 
     return _.some(this.nominationEvents(), (event) => {
-      if (this.legacyMode()) {
-        return eventUserIsFullNominator(event);
+      if (isBeatmapsetNominationEvent(event)) {
+        return event.comment.modes.includes(mode) && eventUserIsFullNominator(event, mode);
       } else {
-        return event.comment?.modes?.includes(mode) && eventUserIsFullNominator(event, mode);
+        return eventUserIsFullNominator(event);
       }
     });
   }
