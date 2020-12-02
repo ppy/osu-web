@@ -30,17 +30,23 @@ interface XHRLoadingStateCollection {
 type ConnectionStatus = 'disconnected' | 'disconnecting' | 'connecting' | 'connected';
 
 export default class SocketWorker {
+  @observable connectionStatus: ConnectionStatus = 'disconnected';
   userId: number | null = null;
   @observable private active: boolean = false;
-  @observable private connectionStatus: ConnectionStatus = 'disconnected';
   private endpoint?: string;
   private timeout: TimeoutCollection = {};
   private ws: WebSocket | null | undefined;
   private xhr: XHRCollection = {};
   @observable private xhrLoadingState: XHRLoadingStateCollection = {};
 
+  @computed
   get isActive() {
     return this.active;
+  }
+
+  @computed
+  get isConnected() {
+    return this.connectionStatus === 'connected';
   }
 
   @computed
