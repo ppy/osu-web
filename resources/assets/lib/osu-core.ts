@@ -5,6 +5,7 @@ import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controlle
 import ChatWorker from 'chat/chat-worker';
 import CurrentUser from 'interfaces/current-user';
 import UserJson from 'interfaces/user-json';
+import SocketWorker from 'socket-worker';
 import RootDataStore from 'stores/root-data-store';
 import UserLoginObserver from 'user-login-observer';
 import WindowFocusObserver from './window-focus-observer';
@@ -20,6 +21,7 @@ export default class OsuCore {
   beatmapsetSearchController: BeatmapsetSearchController;
   chatWorker: ChatWorker;
   dataStore: RootDataStore;
+  socketWorker: SocketWorker;
   userLoginObserver: UserLoginObserver;
   window: Window;
   windowFocusObserver: WindowFocusObserver;
@@ -35,6 +37,8 @@ export default class OsuCore {
 
     this.beatmapsetSearchController = new BeatmapsetSearchController(this.dataStore.beatmapsetSearch);
 
+    this.socketWorker = new SocketWorker();
+
     // script could load before currentUser is set, so wait until page loaded.
     $(document).on('turbolinks:load.osu-core', () => {
       if (window.currentUser != null) {
@@ -44,6 +48,7 @@ export default class OsuCore {
     });
 
     $.subscribe('user:update', this.setUser);
+    $(() => this.socketWorker.setUserId(currentUser.id));
   }
 
   get currentUser() {
@@ -53,5 +58,6 @@ export default class OsuCore {
 
   private setUser = (event: JQuery.Event, user: UserJson) => {
     this.dataStore.userStore.getOrCreate(user.id, user);
+    this.socketWorker.setUserId(user.id);
   }
 }

@@ -80,22 +80,11 @@ reactTurbolinks.register 'comments', CommentsManager, (el) ->
 
   props
 
-socketWorker = new SocketWorker()
-socketNotificationWorker = -> socketWorker.setUserId(currentUser.id)
-$(document).ready socketNotificationWorker
-$.subscribe 'user:update', socketNotificationWorker
-
 reactTurbolinks.registerPersistent 'chat-icon', ChatIcon, true, (el) ->
-  props = (try JSON.parse(el.dataset.chatIcon)) ? {}
-  props.worker = socketWorker
-
-  props
+  (try JSON.parse(el.dataset.chatIcon)) ? {}
 
 reactTurbolinks.registerPersistent 'notification-icon', NotificationIcon, true, (el) ->
-  props = (try JSON.parse(el.dataset.notificationIcon)) ? {}
-  props.worker = socketWorker
-
-  props
+  (try JSON.parse(el.dataset.notificationIcon)) ? {}
 
 reactTurbolinks.registerPersistent 'notification-widget', NotificationWidget, true, (el) ->
   try JSON.parse(el.dataset.notificationWidget)

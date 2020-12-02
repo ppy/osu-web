@@ -5,11 +5,9 @@ import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import SocketWorker from 'socket-worker';
 
 interface Props {
   type?: string;
-  worker: SocketWorker;
 }
 
 @observer
@@ -20,7 +18,7 @@ export default class ChatIcon extends React.Component<Props> {
   }
 
   render() {
-    if (!this.props.worker.isActive) {
+    if (!core.socketWorker.isActive) {
       return null;
     }
 
@@ -49,7 +47,7 @@ export default class ChatIcon extends React.Component<Props> {
   }
 
   private unreadCountDisplay() {
-    if (this.props.worker.isConnected) {
+    if (core.socketWorker.isConnected) {
       return osu.formatNumber(this.unreadCount);
     } else {
       return '...';
