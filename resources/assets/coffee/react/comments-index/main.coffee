@@ -36,12 +36,6 @@ export class Main extends React.Component
       el Observer, null, () =>
         comments = uiState.comments.topLevelCommentIds.map (id) -> store.comments.get(id)
         div className: 'osu-page osu-page--comments',
-          if @props.user?
-            a
-              className: 'comments__title-user-listing'
-              href: laroute.route('users.show', user: @props.user.id),
-                osu.trans 'comments.title_user_listing',
-                  user: @props.user.username
 
           if comments.length < 1
             div className: 'comments__text',
@@ -72,6 +66,10 @@ export class Main extends React.Component
       links.push(
         {
           title: @props.user.username
+          url: laroute.route('users.show', user: @props.user.id)
+        },
+        {
+          title: osu.trans 'comments.index.nav_comments'
           url: laroute.route('comments.index', user_id: @props.user.id)
         }
       )

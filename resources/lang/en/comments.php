@@ -12,7 +12,6 @@ return [
     'load_replies' => 'load replies',
     'replies_count' => ':count_delimited reply|:count_delimited replies',
     'title' => 'Comments',
-    'title_user_listing' => ':user\'s comments',
 
     'commentable_name' => [
         'beatmapset' => 'Beatmap',
@@ -36,6 +35,7 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => 'comments',
         'nav_title' => 'listing',
         'no_comments' => 'no comments found...',
     ],
