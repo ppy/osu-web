@@ -12,7 +12,7 @@ interface Props {
 
 @observer
 export default class ChatIcon extends React.Component<Props> {
-  @observable private hasConnected = false;
+  @observable private hasConnectedOnce = false;
 
   @computed
   private get unreadCount() {
@@ -24,7 +24,7 @@ export default class ChatIcon extends React.Component<Props> {
 
     const disposer = observe(core.socketWorker, 'connectionStatus', (change) => {
       if (change.newValue === 'connected') {
-        this.hasConnected = true;
+        this.hasConnectedOnce = true;
         disposer();
       }
     }, true);
@@ -56,7 +56,7 @@ export default class ChatIcon extends React.Component<Props> {
   }
 
   private unreadCountDisplay() {
-    if (this.hasConnected) {
+    if (this.hasConnectedOnce) {
       return osu.formatNumber(this.unreadCount);
     } else {
       return '...';
