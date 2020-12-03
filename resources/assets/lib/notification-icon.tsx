@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { computed, observable, observe } from 'mobx';
+import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { typeNames } from 'models/notification-type';
 import core from 'osu-core-singleton';
@@ -13,8 +13,6 @@ interface Props {
 
 @observer
 export default class NotificationIcon extends React.Component<Props> {
-  @observable private hasConnectedOnce = false;
-
   @computed
   private get unreadCount() {
     // TODO: need a better way of propagating the exclusion list to this (but it's global anyway?)
@@ -22,17 +20,6 @@ export default class NotificationIcon extends React.Component<Props> {
     return types.reduce((acc, current) => {
       return acc + core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: current }).total;
     }, 0);
-  }
-
-  constructor(props: Props) {
-    super(props);
-
-    const disposer = observe(core.socketWorker, 'connectionStatus', (change) => {
-      if (change.newValue === 'connected') {
-        this.hasConnectedOnce = true;
-        disposer();
-      }
-    }, true);
   }
 
   render() {
@@ -61,7 +48,7 @@ export default class NotificationIcon extends React.Component<Props> {
   }
 
   private unreadCountDisplay() {
-    if (this.hasConnectedOnce) {
+    if (core.socketWorker.hasConnectedOnce) {
       return osu.formatNumber(this.unreadCount);
     } else {
       return '...';

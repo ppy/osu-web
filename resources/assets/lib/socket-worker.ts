@@ -8,7 +8,7 @@ import XHRCollection from 'interfaces/xhr-collection';
 import XHRLoadingStateCollection from 'interfaces/xhr-loading-state-collection';
 import { route } from 'laroute';
 import { forEach, random } from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { action, computed, observable, observe } from 'mobx';
 import { NotificationEventLogoutJson, NotificationEventVerifiedJson } from 'notifications/notification-events';
 import SocketMessageEvent from 'socket-message-event';
 
@@ -28,6 +28,7 @@ type ConnectionStatus = 'disconnected' | 'disconnecting' | 'connecting' | 'conne
 
 export default class SocketWorker {
   @observable connectionStatus: ConnectionStatus = 'disconnected';
+  @observable hasConnectedOnce = false;
   userId: number | null = null;
   @observable private active: boolean = false;
   private endpoint?: string;
@@ -39,6 +40,15 @@ export default class SocketWorker {
   @computed
   get isConnected() {
     return this.connectionStatus === 'connected';
+  }
+
+  constructor() {
+    const disposer = observe(this, 'connectionStatus', (change) => {
+      if (change.newValue === 'connected') {
+        this.hasConnectedOnce = true;
+        disposer();
+      }
+    });
   }
 
   boot() {

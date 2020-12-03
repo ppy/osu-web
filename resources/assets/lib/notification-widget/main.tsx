@@ -125,7 +125,7 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private renderFilters() {
-    if (this.props.only != null || !core.socketWorker.isConnected) return null;
+    if (this.props.only != null || !core.socketWorker.hasConnectedOnce) return null;
 
     return (
       <div className='notification-popup__filters'>
@@ -187,7 +187,7 @@ export default class Main extends React.Component<Props, State> {
 
     if (nodes.length === 0) {
       let transKey = 'notifications.loading';
-      if (!core.socketWorker.isConnected) {
+      if (!core.socketWorker.hasConnectedOnce) {
         transKey = 'notifications.loading';
       } else if (this.controller.currentFilter == null) {
         transKey = 'notifications.all_read';
