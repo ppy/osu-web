@@ -5,6 +5,7 @@ import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controlle
 import ChatWorker from 'chat/chat-worker';
 import CurrentUser from 'interfaces/current-user';
 import UserJson from 'interfaces/user-json';
+import NotificationsWorker from 'notifications/worker';
 import SocketWorker from 'socket-worker';
 import RootDataStore from 'stores/root-data-store';
 import UserLoginObserver from 'user-login-observer';
@@ -21,6 +22,7 @@ export default class OsuCore {
   beatmapsetSearchController: BeatmapsetSearchController;
   chatWorker: ChatWorker;
   dataStore: RootDataStore;
+  notificationsWorker: NotificationsWorker;
   socketWorker: SocketWorker;
   userLoginObserver: UserLoginObserver;
   window: Window;
@@ -38,6 +40,7 @@ export default class OsuCore {
     this.beatmapsetSearchController = new BeatmapsetSearchController(this.dataStore.beatmapsetSearch);
 
     this.socketWorker = new SocketWorker();
+    this.notificationsWorker = new NotificationsWorker(this.socketWorker);
 
     // script could load before currentUser is set, so wait until page loaded.
     $(document).on('turbolinks:load.osu-core', () => {

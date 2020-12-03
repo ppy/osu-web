@@ -1,11 +1,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { dispatch } from 'app-dispatcher';
+import TimeoutCollection from 'interfaces/timeout-collection';
 import XHRCollection from 'interfaces/xhr-collection';
+import XHRLoadingStateCollection from 'interfaces/xhr-loading-state-collection';
 import { route } from 'laroute';
 import { forEach, random } from 'lodash';
 import { action, computed, observable, observe } from 'mobx';
 import { NotificationEventLogoutJson, NotificationEventVerifiedJson } from 'notifications/notification-events';
+import SocketMessageEvent from 'socket-message-event';
 
 const isNotificationEventLogoutJson = (arg: any): arg is NotificationEventLogoutJson => {
   return arg.event === 'logout';
@@ -17,14 +21,6 @@ const isNotificationEventVerifiedJson = (arg: any): arg is NotificationEventVeri
 
 interface NotificationFeedMetaJson {
   url: string;
-}
-
-interface TimeoutCollection {
-  [key: string]: number;
-}
-
-interface XHRLoadingStateCollection {
-  [key: string]: boolean;
 }
 
 type ConnectionStatus = 'disconnected' | 'disconnecting' | 'connecting' | 'connected';
@@ -55,8 +51,7 @@ export default class SocketWorker {
   }
 
   constructor() {
-    observe(this, (change) => {
-      if (change.name !== 'connectionStatus') return;
+    observe(this, 'connectionStatus', (change) => {
       console.debug(change);
     });
   }
@@ -119,9 +114,12 @@ export default class SocketWorker {
     }
 
     if (isNotificationEventLogoutJson(eventData)) {
+      // dispatch UserLogoutAction?
       this.destroy();
     } else if (isNotificationEventVerifiedJson(eventData)) {
       $.publish('user-verification:success');
+    } else {
+      dispatch(new SocketMessageEvent(eventData));
     }
   }
 
@@ -155,22 +153,21 @@ export default class SocketWorker {
       return this.connectWebSocket();
     }
 
-    if (this.isPendingXhr('startWebSocket')) {
+    if (this.xhrLoadingState.startWebSocket) {
       return;
     }
 
     Timeout.clear(this.timeout.startWebSocket);
 
+    this.xhrLoadingState.startWebSocket = true;
+
     return this.xhr.startWebSocket = $.get(route('notifications.endpoint'))
       .done(action((data: NotificationFeedMetaJson) => {
+        this.xhrLoadingState.startWebSocket = false;
         this.endpoint = data.url;
         this.connectWebSocket();
       })).fail(action(() => {
         this.timeout.startWebSocket = Timeout.set(10000, this.startWebSocket);
       }));
-  }
-
-  private isPendingXhr(id: string) {
-    return this.xhrLoadingState[id] === true;
   }
 }
