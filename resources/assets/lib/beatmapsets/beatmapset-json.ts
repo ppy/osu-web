@@ -14,7 +14,7 @@ interface BeatmapsetCovers {
 }
 
 export function isBeatmapsetNominationEvent(x: BeatmapsetEvent): x is BeatmapsetNominationEvent {
-  return x.type === 'nominate' && x.comment != null && Array.isArray(x.comment.modes);
+  return x.type === 'nominate' && Array.isArray(x.comment?.modes);
 }
 
 export interface BeatmapsetNominationEvent extends BeatmapsetEvent {
