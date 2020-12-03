@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { UserLogoutAction } from 'actions/user-login-actions';
 import { dispatch } from 'app-dispatcher';
 import TimeoutCollection from 'interfaces/timeout-collection';
 import XHRCollection from 'interfaces/xhr-collection';
@@ -64,7 +65,22 @@ export default class SocketWorker {
     }
   }
 
-  @action connectWebSocket() {
+  @action
+  setUserId(id: number | null) {
+    if (id === this.userId) {
+      return;
+    }
+
+    if (this.active) {
+      this.destroy();
+    }
+
+    this.userId = id;
+    this.boot();
+  }
+
+  @action
+  private connectWebSocket() {
     if (!this.active || this.endpoint == null || this.ws != null) {
       return;
     }
@@ -87,7 +103,8 @@ export default class SocketWorker {
     this.ws.addEventListener('message', this.handleNewEvent);
   }
 
-  @action destroy() {
+  @action
+  private destroy() {
     this.connectionStatus = 'disconnecting';
 
     this.userId = null;
@@ -103,7 +120,8 @@ export default class SocketWorker {
     this.connectionStatus = 'disconnected';
   }
 
-  @action handleNewEvent = (event: MessageEvent) => {
+  @action
+  private handleNewEvent = (event: MessageEvent) => {
     let eventData: any;
     try {
       eventData = JSON.parse(event.data);
@@ -114,8 +132,8 @@ export default class SocketWorker {
     }
 
     if (isNotificationEventLogoutJson(eventData)) {
-      // dispatch UserLogoutAction?
       this.destroy();
+      dispatch(new UserLogoutAction());
     } else if (isNotificationEventVerifiedJson(eventData)) {
       $.publish('user-verification:success');
     } else {
@@ -123,7 +141,8 @@ export default class SocketWorker {
     }
   }
 
-  @action reconnectWebSocket = () => {
+  @action
+  private reconnectWebSocket = () => {
     this.connectionStatus = 'disconnected';
     if (!this.active) {
       return;
@@ -134,21 +153,8 @@ export default class SocketWorker {
       this.connectWebSocket();
     }));
   }
-
-  @action setUserId(id: number | null) {
-    if (id === this.userId) {
-      return;
-    }
-
-    if (this.active) {
-      this.destroy();
-    }
-
-    this.userId = id;
-    this.boot();
-  }
-
-  @action startWebSocket = () => {
+  @action
+  private startWebSocket = () => {
     if (this.endpoint != null) {
       return this.connectWebSocket();
     }
