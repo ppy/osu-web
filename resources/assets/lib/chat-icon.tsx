@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { computed } from 'mobx';
+import { computed, observable, observe } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -12,16 +12,25 @@ interface Props {
 
 @observer
 export default class ChatIcon extends React.Component<Props> {
+  @observable private hasConnected = false;
+
   @computed
   private get unreadCount() {
     return core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: 'channel' }).total;
   }
 
-  render() {
-    if (!core.socketWorker.isActive) {
-      return null;
-    }
+  constructor(props: Props) {
+    super(props);
 
+    const disposer = observe(core.socketWorker, 'connectionStatus', (change) => {
+      if (change.newValue === 'connected') {
+        this.hasConnected = true;
+        disposer();
+      }
+    }, true);
+  }
+
+  render() {
     return (
       <span className={this.mainClass()}>
         <i className='fas fa-comment-alt' />
@@ -47,7 +56,7 @@ export default class ChatIcon extends React.Component<Props> {
   }
 
   private unreadCountDisplay() {
-    if (core.socketWorker.isConnected) {
+    if (this.hasConnected) {
       return osu.formatNumber(this.unreadCount);
     } else {
       return '...';

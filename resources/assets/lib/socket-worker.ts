@@ -37,11 +37,6 @@ export default class SocketWorker {
   @observable private xhrLoadingState: XHRLoadingStateCollection = {};
 
   @computed
-  get isActive() {
-    return this.active;
-  }
-
-  @computed
   get isConnected() {
     return this.connectionStatus === 'connected';
   }
