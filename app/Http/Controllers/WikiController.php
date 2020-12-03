@@ -105,6 +105,10 @@ class WikiController extends Controller
 
     public function image($path)
     {
+        if (!OsuWiki::isImage($path)) {
+            return response('Invalid file format', 422);
+        }
+
         $image = Wiki\Image::lookupForController($path, Request::url(), Request::header('referer'));
 
         request()->attributes->set('strip_cookies', true);

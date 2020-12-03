@@ -25,6 +25,7 @@ class BeatmapCompactTransformer extends TransformerAbstract
             'difficulty_rating' => $beatmap->difficultyrating,
             'id' => $beatmap->beatmap_id,
             'mode' => $beatmap->mode,
+            'total_length' => $beatmap->total_length,
             'version' => $beatmap->version,
         ];
     }
