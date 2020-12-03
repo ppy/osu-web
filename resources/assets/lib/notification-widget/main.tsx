@@ -126,7 +126,7 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private renderFilters() {
-    if (this.props.only != null) return null;
+    if (this.props.only != null || !core.socketWorker.isConnected) return null;
 
     return (
       <div className='notification-popup__filters'>
@@ -187,12 +187,20 @@ export default class Main extends React.Component<Props, State> {
     });
 
     if (nodes.length === 0) {
-      const transKey = this.controller.currentFilter == null ? 'notifications.all_read' : 'notifications.none';
-      return (
-        <p key='empty' className='notification-popup__empty'>
-          {osu.trans(transKey)}
-        </p>
-      );
+      if (core.socketWorker.isConnected) {
+        const transKey = this.controller.currentFilter == null ? 'notifications.all_read' : 'notifications.none';
+        return (
+          <p key='empty' className='notification-popup__empty'>
+            {osu.trans(transKey)}
+          </p>
+        );
+      } else {
+        return (
+          <p key='empty' className='notification-popup__empty'>
+            {osu.trans('notifications.loading')}
+          </p>
+        );
+      }
     }
 
     return nodes;
