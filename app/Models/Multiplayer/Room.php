@@ -58,6 +58,11 @@ class Room extends Model
         $user = $params['user'];
         $sort = 'created';
 
+        $category = presence(get_string($params['category'] ?? null)) ?? 'any';
+        if ($category !== 'any') {
+            $query->where('category', $category);
+        }
+
         switch ($mode) {
             case 'ended':
                 $query->ended();
@@ -70,12 +75,11 @@ class Room extends Model
                 $query->startedBy($user);
                 break;
             default:
-                $query->active();
-        }
-
-        $category = presence(get_string($params['category'] ?? null)) ?? 'any';
-        if ($category !== 'any') {
-            $query->where('category', $category);
+                if ($category === 'realtime') {
+                    $query->activeRealtime();
+                } else {
+                    $query->active();
+                }
         }
 
         $cursorHelper = new DbCursorHelper(static::SORTS, $sort);
@@ -123,6 +127,13 @@ class Room extends Model
         return $query
             ->where('starts_at', '<', Carbon::now())
             ->where('ends_at', '>', Carbon::now());
+    }
+
+    public function scopeActiveRealtime($query)
+    {
+        return $query
+            ->where('starts_at', '<', Carbon::now())
+            ->whereNull('ends_at');
     }
 
     public function scopeEnded($query)
@@ -206,6 +217,11 @@ class Room extends Model
         $this->max_attempts = get_int($params['max_attempts'] ?? null);
         $this->starts_at = Carbon::parse($params['starts_at'] ?? null);
 
+        $category = $params['category'] ?? null;
+        if ($category === 'realtime') {
+            $this->category = $category;
+        }
+
         if ($params['ends_at'] ?? null !== null) {
             $this->ends_at = Carbon::parse($params['ends_at']);
         } elseif ($params['duration'] ?? null !== null) {
@@ -224,7 +240,13 @@ class Room extends Model
             $playlistItems[] = PlaylistItem::fromJsonParams($item);
         }
 
-        if (count($playlistItems) < 1) {
+        $playlistItemsCount = count($playlistItems);
+
+        if ($this->category === 'realtime' && $playlistItemsCount !== 1) {
+            throw new InvariantException('realtime room must have exactly one playlist item');
+        }
+
+        if ($playlistItemsCount < 1) {
             throw new InvariantException('room must have at least one playlist item');
         }
 
@@ -296,14 +318,22 @@ class Room extends Model
 
     private function assertValidStartGame()
     {
-        foreach (['name', 'starts_at', 'ends_at'] as $field) {
+        foreach (['name', 'starts_at'] as $field) {
             if (!present($this->$field)) {
                 throw new InvariantException("'{$field}' is required");
             }
         }
 
-        if ($this->starts_at->addMinutes(30)->gt($this->ends_at)) {
-            throw new InvariantException("'ends_at' must be at least 30 minutes after 'starts_at'");
+        if ($this->category === 'realtime') {
+            $this->ends_at = null;
+        } else {
+            if (!present($this->ends_at)) {
+                throw new InvariantException("'ends_at' is required");
+            }
+
+            if ($this->starts_at->addMinutes(30)->gt($this->ends_at)) {
+                throw new InvariantException("'ends_at' must be at least 30 minutes after 'starts_at'");
+            }
         }
 
         if ($this->max_attempts !== null) {
