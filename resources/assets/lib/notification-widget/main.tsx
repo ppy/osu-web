@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
-import * as _ from 'lodash';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { Name, typeNames } from 'models/notification-type';
