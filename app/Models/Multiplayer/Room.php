@@ -149,7 +149,7 @@ class Room extends Model
 
     public function hasEnded()
     {
-        return Carbon::now()->gte($this->ends_at);
+        return $this->ends_at !== null && Carbon::now()->gte($this->ends_at);
     }
 
     public function isScoreSubmissionStillAllowed()
