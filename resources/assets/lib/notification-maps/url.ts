@@ -16,6 +16,8 @@ export function urlGroup(item: Notification) {
     }
   } else if (item.name === 'user_achievement_unlock') {
     return userAchievementUrl(item);
+  } else if (item.name === 'user_beatmapset_new') {
+    return `${route('users.show', { user: item.objectId })}#beatmaps`;
   }
 
   switch (item.objectType) {
@@ -58,6 +60,8 @@ export function urlSingular(item: Notification) {
       return route('forum.posts.show', { post: item.details.postId });
     case 'user_achievement_unlock':
       return userAchievementUrl(item);
+    case 'user_beatmapset_new':
+      return route('beatmapsets.show', { beatmapset: item.details.beatmapsetId });
   }
 }
 

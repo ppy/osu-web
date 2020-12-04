@@ -19,6 +19,14 @@ class Follow extends Model
 {
     use Validatable;
 
+    const SUBTYPES = [
+        'comment' => Comment::COMMENTABLES,
+
+        'modding' => [
+            MorphMap::MAP[User::class],
+        ],
+    ];
+
     public function scopeWhereNotifiable($query, $notifiable)
     {
         $query->where([
@@ -69,12 +77,7 @@ class Follow extends Model
             $this->validationErrors()->add('notifiable', 'required');
         }
 
-        if ($this->subtype === 'comment' && !in_array($this->notifiable_type, Comment::COMMENTABLES, true)) {
-            $this->validationErrors()->add('notifiable_type', '.invalid');
-        }
-
-        // FIXME: this should accept other types later.
-        if ($this->subtype !== 'comment') {
+        if (!in_array($this->notifiable_type, static::SUBTYPES[$this->subtype] ?? [], true)) {
             $this->validationErrors()->add('subtype', '.invalid');
         }
 

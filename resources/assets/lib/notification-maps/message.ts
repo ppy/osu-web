@@ -50,8 +50,12 @@ export function formatMessageGroup(item: Notification) {
     return osu.trans(key, replacements);
   }
 
-  if (item.name === 'user_achievement_unlock') {
-    return osu.trans(`notifications.item.${item.displayType}.${item.category}.${item.name}_group`);
+  if (item.name === 'user_achievement_unlock' || item.name === 'user_beatmapset_new') {
+    const replacements = {
+      username: item.details.username,
+    };
+
+    return osu.trans(`notifications.item.${item.displayType}.${item.category}.${item.name}_group`, replacements);
   }
 
   return item.title;
