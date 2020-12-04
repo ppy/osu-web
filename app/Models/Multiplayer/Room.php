@@ -154,8 +154,8 @@ class Room extends Model
 
     public function isScoreSubmissionStillAllowed()
     {
-        // TODO: move grace period to config.
-        return Carbon::now()->lte($this->ends_at->addMinutes(5));
+        // TODO: move grace period to config or use the beatmap's duration
+        return $this->ends_at === null || Carbon::now()->lte($this->ends_at->addMinutes(5));
     }
 
     /**

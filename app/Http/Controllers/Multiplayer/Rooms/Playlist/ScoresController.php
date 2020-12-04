@@ -190,7 +190,6 @@ class ScoresController extends BaseController
     public function update($roomId, $playlistId, $scoreId)
     {
         $room = Room::findOrFail($roomId);
-        // todo: check against room's end time, check within window of start_time + beatmap_length + x
 
         $playlistItem = $room->playlist()
             ->where('id', $playlistId)
