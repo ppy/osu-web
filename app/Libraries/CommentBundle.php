@@ -133,10 +133,16 @@ class CommentBundle
     public function commentsQuery()
     {
         if (isset($this->commentable)) {
-            return $this->commentable->comments();
+            $query = $this->commentable->comments();
         } else {
-            return Comment::select();
+            $query = Comment::select();
         }
+
+        if ($this->params->userId !== null) {
+            $query->where('user_id', $this->params->userId);
+        }
+
+        return $query;
     }
 
     // This is named explictly for the paginator because there's another count
@@ -144,10 +150,6 @@ class CommentBundle
     public function countForPaginator()
     {
         $query = $this->commentsQuery();
-
-        if ($this->params->userId !== null) {
-            $query->where('user_id', $this->params->userId);
-        }
 
         if (!$this->includeDeleted) {
             $query->withoutTrashed();
@@ -175,10 +177,6 @@ class CommentBundle
         }
 
         $query->with('commentable')->cursorSort($sort, $cursor ?? null);
-
-        if ($this->params->userId !== null) {
-            $query->where('user_id', $this->params->userId);
-        }
 
         if (!$this->includeDeleted) {
             $query->whereNull('deleted_at');
