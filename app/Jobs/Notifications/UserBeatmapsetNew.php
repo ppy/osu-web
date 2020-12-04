@@ -41,7 +41,7 @@ class UserBeatmapsetNew extends BroadcastNotificationBase
     public function getListeningUserIds(): array
     {
         return Follow::whereNotifiable($this->beatmapset->user)
-            ->where(['subtype' => 'mapping'])
+            ->where(['subtype' => 'modding'])
             ->pluck('user_id')
             ->all();
     }
