@@ -75,11 +75,7 @@ class Room extends Model
                 $query->startedBy($user);
                 break;
             default:
-                if ($category === 'realtime') {
-                    $query->activeRealtime();
-                } else {
-                    $query->active();
-                }
+                $query->active();
         }
 
         $cursorHelper = new DbCursorHelper(static::SORTS, $sort);
@@ -126,14 +122,9 @@ class Room extends Model
     {
         return $query
             ->where('starts_at', '<', Carbon::now())
-            ->where('ends_at', '>', Carbon::now());
-    }
-
-    public function scopeActiveRealtime($query)
-    {
-        return $query
-            ->where('starts_at', '<', Carbon::now())
-            ->whereNull('ends_at');
+            ->where(function ($q) {
+                $q->where('ends_at', '>', Carbon::now())->orWhereNull('ends_at');
+            });
     }
 
     public function scopeEnded($query)
