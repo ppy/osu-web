@@ -17,7 +17,7 @@ class AddIndexToUserIdOnComments extends Migration
     public function up()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->index('user_id');
+            $table->index(['user_id', DB::raw('created_at DESC'), DB::raw('id DESC')], 'created_at_desc');
         });
     }
 
@@ -29,7 +29,7 @@ class AddIndexToUserIdOnComments extends Migration
     public function down()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->dropIndex('user_id');
+            $table->index([DB::raw('created_at DESC'), DB::raw('id DESC')], 'created_at_desc');
         });
     }
 }
