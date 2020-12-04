@@ -12,7 +12,7 @@ return [
     'new' => 'Recente',
     'old' => 'Vecchio',
     'rank' => 'Rank',
-    'top' => 'In alto',
+    'top' => 'Migliore',
     'username' => 'Nome utente',
 
     'forum_topics' => [

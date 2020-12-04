@@ -5,11 +5,11 @@
 
 return [
     'all_read' => 'Tüm bildirimler okundu!',
-    'delete' => '',
+    'delete' => ':type sil',
     'mark_read' => 'Temizle: :type',
     'none' => 'Bildirim yok',
     'see_all' => 'tüm bildirimleri gör',
-    'see_channel' => '',
+    'see_channel' => 'sohbete git',
 
     'filters' => [
         '_' => 'hepsi',

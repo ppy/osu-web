@@ -43,4 +43,13 @@ class LegalController extends Controller
 
         return ext_view('wiki.show', compact('legal', 'locale', 'page'));
     }
+
+    public function update($locale, $path)
+    {
+        priv_check('WikiPageRefresh')->ensureCan();
+
+        (new Wiki\Page("Legal/{$path}", $locale))->sync(true);
+
+        return ext_view('layout.ujs-reload', [], 'js');
+    }
 }

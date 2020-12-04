@@ -252,7 +252,7 @@ return [
         'converts' => 'Sertakan beatmap yang dikonversi',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Semua',
         'any' => 'Semua',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

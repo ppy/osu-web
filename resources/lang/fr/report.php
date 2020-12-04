@@ -14,6 +14,11 @@ return [
         'title' => 'Signaler le commentaire de :username ?',
     ],
 
+    'forum_post' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Signaler le score',
         'title' => 'Signaler le score de :username ?',

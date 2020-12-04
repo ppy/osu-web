@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Mitglieder nach Spielmodus',
     ],
 
     'force_reactivation' => [

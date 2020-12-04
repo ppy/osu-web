@@ -101,7 +101,7 @@ return [
                 'delete' => '刪除',
                 'missing' => '',
                 'unlink' => '',
-                'unsaved' => '',
+                'unsaved' => '尚未儲存',
                 'timestamp' => [
                     'all-diff' => '',
                     'diff' => '',
@@ -252,7 +252,7 @@ return [
         'converts' => '包括轉換圖譜',
     ],
     'mode' => [
-        'all' => '',
+        'all' => '全部',
         'any' => '所有',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

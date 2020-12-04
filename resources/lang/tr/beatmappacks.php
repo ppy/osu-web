@@ -29,8 +29,8 @@ return [
             'not_cleared' => 'geçilmedi',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link bu paketi tamamlamak için kullanılamaz.',
+            'link' => 'Zorluk düşürme modları',
         ],
     ],
 

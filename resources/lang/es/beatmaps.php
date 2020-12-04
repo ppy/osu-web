@@ -252,8 +252,8 @@ return [
         'converts' => 'Incluir mapas convertidos',
     ],
     'mode' => [
-        'all' => '',
-        'any' => 'Todos',
+        'all' => 'Todos',
+        'any' => 'Cualquier',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
         'fruits' => 'osu!catch',

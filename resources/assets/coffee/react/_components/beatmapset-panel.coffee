@@ -20,12 +20,17 @@ export class BeatmapsetPanel extends React.PureComponent
     # this is actually "beatmapset"
     beatmapset = @props.beatmap
 
-    showHypeCounts = _.includes ['wip', 'pending', 'graveyard'], beatmapset.status
+    showHypeCounts = beatmapset.hype?
     if showHypeCounts
-      currentHype = osu.formatNumber(beatmapset.hype.current)
-      requiredHype = osu.formatNumber(beatmapset.hype.required)
-      currentNominations = osu.formatNumber(beatmapset.nominations.current)
-      requiredNominations = osu.formatNumber(beatmapset.nominations.required)
+      currentHype = osu.formatNumber(beatmapset.hype?.current)
+      requiredHype = osu.formatNumber(beatmapset.hype?.required)
+
+      if beatmapset.nominations.legacy_mode
+        currentNominations = osu.formatNumber beatmapset.nominations.current
+        requiredNominations = osu.formatNumber beatmapset.nominations.required
+      else
+        currentNominations = osu.formatNumber _.sum(_.values(beatmapset.nominations?.current))
+        requiredNominations = osu.formatNumber _.sum(_.values(beatmapset.nominations?.required))
 
     playCount = osu.formatNumber(beatmapset.play_count)
 

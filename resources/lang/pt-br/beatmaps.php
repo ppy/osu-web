@@ -252,7 +252,7 @@ return [
         'converts' => 'Incluir beatmaps convertidos',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Todos',
         'any' => 'Todos',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

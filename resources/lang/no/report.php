@@ -14,6 +14,11 @@ return [
         'title' => 'Rapporter :username sin kommentar?',
     ],
 
+    'forum_post' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Rapporter Spillresultat',
         'title' => 'Rapporter :username\'s spillresultat?',

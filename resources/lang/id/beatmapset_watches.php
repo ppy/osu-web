@@ -9,8 +9,8 @@ return [
         'title_compact' => 'daftar pengamatan modding',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Beatmap-beatmap yang diamati',
+            'unread' => 'Beatmap-beatmap dengan aktivitas baru',
         ],
 
         'table' => [

@@ -32,8 +32,8 @@ return [
             'not_cleared' => 'non terminé',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link ne peut pas être utilisé pour effacer ce pack.',
+            'link' => 'Mods de réduction de la difficulté',
         ],
     ],
 

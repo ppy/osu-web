@@ -1,0 +1,50 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.nomination-dialog {
+  .default-border-radius();
+
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  padding: 20px;
+  font-size: 14px;
+  min-width: 320px;
+  max-width: 480px;
+
+  background-color: @osu-colour-b4;
+  color: @osu-colour-c1;
+
+  &__buttons {
+    display: flex;
+    align-self: flex-end;
+    grid-gap: 10px;
+    margin-top: 20px;
+  }
+
+  &__checkboxes {
+    display: flex;
+    margin: 10px 0;
+    grid-gap: 10px;
+  }
+
+  &__header {
+    margin-bottom: 20px;
+    font-size: @font-size--title;
+  }
+
+  &__label {
+    color: @osu-colour-f1;
+    padding-left: 5px;
+
+    &--disabled {
+      opacity: 0.5;
+    }
+  }
+
+  &__warn {
+    color: @osu-colour-orange-1;
+    padding: 10px 0;
+  }
+}

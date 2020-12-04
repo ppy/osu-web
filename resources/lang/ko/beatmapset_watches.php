@@ -9,8 +9,8 @@ return [
         'title_compact' => '모딩 확인 목록',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => '본 비트맵',
+            'unread' => '새 활동이 있는 비트맵',
         ],
 
         'table' => [

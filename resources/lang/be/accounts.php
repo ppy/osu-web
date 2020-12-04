@@ -51,19 +51,19 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'атрымліваць апавяшчэнні аб новых праблемах кваліфікаваных мап наступных рэжымаў',
         'beatmapset_disqualify' => 'атрымліваць апавяшчэння, калі карты для наступных рэжымаў будуць діскваліфікаваны',
-        'comment_reply' => '',
+        'comment_reply' => 'атрымліваць апавяшчэнні аб адказах на каментарыі',
         'title' => 'Апавяшчэнні',
         'topic_auto_subscribe' => 'аўтаматычна ўключаць апавяшчэнні для вашых тэм з форума',
 
         'options' => [
             '_' => 'спосабы дастаўкі',
             'beatmapset:modding' => 'модынг бітмап',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => 'асабістыя паведамленні',
+            'comment_new' => 'новыя каментарыі',
             'forum_topic_reply' => 'адказы да тэмы',
             'mail' => 'пошта',
             'push' => 'push',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => 'адкрыццё медаля',
         ],
     ],
 

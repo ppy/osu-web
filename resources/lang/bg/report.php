@@ -14,6 +14,11 @@ return [
         'title' => 'Докладване коментара на :username?',
     ],
 
+    'forum_post' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Докладвай резултата',
         'title' => 'Докладване резултата на :username?',

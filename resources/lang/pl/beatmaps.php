@@ -187,16 +187,16 @@ return [
         'nominate_confirm' => 'Nominować tę beatmapę?',
         'nominated_by' => 'nominowana przez :users',
         'not_enough_hype' => "Beatmapa nie jest wystarczająco nagłośniona.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Usuń z ulubionych beatmap społeczności',
+        'remove_from_loved_prompt' => 'Powód usunięcia z ulubionych beatmap społeczności:',
         'required_text' => 'Nominacje: :current/:required',
         'reset_message_deleted' => 'usunięta',
         'title' => 'Status nominacji',
         'unresolved_issues' => 'Nadal występują nierozwiązane problemy, do których musisz się odnieść.',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
+            '_' => 'Ta beatmapa uzyska status rankingowy :date, jeżeli nie zostaną zgłoszone żadne problemy. Obecnie jest ona na :position. miejscu w :queue.',
+            'queue' => 'kolejce rankingowej',
             'soon' => 'wkrótce',
         ],
 
@@ -252,7 +252,7 @@ return [
         'converts' => 'Uwzględnij przekonwertowane beatmapy',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Wszyscy',
         'any' => 'Jakikolwiek',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

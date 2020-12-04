@@ -58,8 +58,8 @@ return [
         'upload_image' => 'carica immagine',
 
         'watch' => [
-            'to_0' => 'Non guardare',
-            'to_1' => 'Guarda',
+            'to_0' => 'Non seguire',
+            'to_1' => 'Segui',
         ],
     ],
 

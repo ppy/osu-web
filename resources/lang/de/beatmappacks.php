@@ -32,8 +32,8 @@ return [
             'not_cleared' => 'nicht geschafft',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link darf zum Absolvieren dieses Pakets nicht verwendet werden.',
+            'link' => 'Schwierigkeitsverringerungsmods',
         ],
     ],
 

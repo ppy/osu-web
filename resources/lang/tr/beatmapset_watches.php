@@ -9,8 +9,8 @@ return [
         'title_compact' => 'modlama izleme listesi',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'İzlenen beatmapler',
+            'unread' => 'Yeni gelişmelere sahip beatmapler',
         ],
 
         'table' => [
