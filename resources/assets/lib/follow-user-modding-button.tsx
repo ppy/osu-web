@@ -22,7 +22,7 @@ const bn = 'user-action-button';
 export default class FollowUserModdingButton extends React.Component<Props, State> {
   private buttonRef = React.createRef<HTMLButtonElement>();
   private eventId = `follow-user-modding-button-${osu.uuid()}`;
-  private xhr: JQueryXHR | null = null;
+  private xhr?: JQueryXHR;
 
   constructor(props: Props) {
     super(props);
