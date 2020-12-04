@@ -5,6 +5,7 @@ import { BeatmapPicker } from './beatmap-picker'
 import { Stats } from './stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
 import { BigButton } from 'big-button'
+import { route } from 'laroute'
 import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
@@ -146,20 +147,7 @@ export class Header extends React.Component
 
           el BeatmapsetMapping, beatmapset: @props.beatmapset
 
-          if currentUser.id? && @hasAvailabilityInfo()
-            div
-              className: 'beatmapset-header__availability-info',
-              if @props.beatmapset.availability.download_disabled
-                osu.trans 'beatmapsets.availability.disabled'
-              else
-                osu.trans 'beatmapsets.availability.parts-removed'
-
-              if @props.beatmapset.availability.more_information?
-                div className: 'beatmapset-header__availability-link',
-                  a
-                    href: @props.beatmapset.availability.more_information
-                    target: '_blank'
-                    osu.trans 'beatmapsets.availability.more-info'
+          @renderAvailabilityInfo()
 
           div
             className: 'beatmapset-header__buttons'
@@ -199,6 +187,30 @@ export class Header extends React.Component
             beatmapset: @props.beatmapset
             beatmap: @props.currentBeatmap
             timeElapsed: @props.timeElapsed
+
+
+  renderAvailabilityInfo: =>
+    if currentUser.id? && @hasAvailabilityInfo()
+      href = if @props.beatmapset.availability.more_information == 'rule_violation'
+               "#{route('wiki.show', locale: currentLocale, path: 'Rules')}#beatmap-submission-rules"
+             else
+               @props.beatmapset.availability.more_information
+
+      div
+        className: 'beatmapset-header__availability-info',
+        if @props.beatmapset.availability.download_disabled
+          osu.trans 'beatmapsets.availability.disabled'
+        else if @props.beatmapset.availability.more_information == 'rule_violation'
+          osu.trans 'beatmapsets.availability.rule_violation'
+        else
+          osu.trans 'beatmapsets.availability.parts-removed'
+
+        if href?
+          div className: 'beatmapset-header__availability-link',
+            a
+              href: href
+              target: '_blank'
+              osu.trans 'beatmapsets.availability.more-info'
 
 
   renderDownloadButtons: =>
