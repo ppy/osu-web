@@ -13,6 +13,17 @@ interface BeatmapsetCovers {
   slimcover: string;
 }
 
+export function isBeatmapsetNominationEvent(x: BeatmapsetEvent): x is BeatmapsetNominationEvent {
+  return x.type === 'nominate' && Array.isArray(x.comment?.modes);
+}
+
+export interface BeatmapsetNominationEvent extends BeatmapsetEvent {
+  comment: {
+    modes: GameMode[];
+  };
+  type: 'nominate';
+}
+
 export interface BeatmapsetEvent {
   comment: any; // TODO: fix
   created_at: string;
