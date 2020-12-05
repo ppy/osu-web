@@ -53,7 +53,7 @@ export class DetailBar extends React.PureComponent
             modifiers: ['profile-page']
             alwaysVisible: true
 
-        if @state.currentUser.id != @props.user.id
+        if @state.currentUser.id? && @state.currentUser.id != @props.user.id
           div className: "#{bn}__entry",
             el FollowUserModdingButton, userId: @props.user.id, modifiers: ['profile-page']
 

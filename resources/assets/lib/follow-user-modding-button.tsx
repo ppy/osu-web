@@ -28,7 +28,7 @@ export default class FollowUserModdingButton extends React.Component<Props, Stat
     super(props);
 
     this.state = {
-      follow: currentUser.follow_user_modding.includes(this.props.userId),
+      follow: currentUser.follow_user_modding?.includes(this.props.userId) ?? false,
       loading: false,
     };
   }
@@ -43,7 +43,7 @@ export default class FollowUserModdingButton extends React.Component<Props, Stat
   }
 
   render() {
-    if (currentUser.id === this.props.userId) {
+    if (currentUser.id == null || currentUser.id === this.props.userId) {
       return null;
     }
 
