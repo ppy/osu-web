@@ -54,7 +54,7 @@ export class ScoreboardTableRow extends React.PureComponent
               country: score.user.country
               modifiers: ['flat']
 
-      td className: cell,
+      td className: "#{cell} u-relative",
         a
           className: "#{bn}__cell-content #{bn}__cell-content--user-link js-usercard"
           'data-user-id': score.user.id
