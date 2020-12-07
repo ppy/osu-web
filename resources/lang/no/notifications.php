@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Alle varsler lest!',
+    'delete' => '',
     'mark_read' => 'Tøm :type',
     'none' => 'Ingen varsler',
     'see_all' => 'se alle varsler',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'alle',

@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'aiuto',
+            'getAbuse' => '',
             'getFaq' => 'domande frequenti',
             'getRules' => 'regole',
             'getSupport' => 'davvero, mi serve aiuto!',

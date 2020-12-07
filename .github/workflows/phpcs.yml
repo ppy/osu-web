@@ -12,6 +12,7 @@ jobs:
           uses: shivammathur/setup-php@v2
           with:
             tools: composer:v1
+            php-version: '7.4'
         - name: Get composer cache directory
           id: composercache
           run: echo "::set-output name=dir::$(composer config cache-files-dir)"

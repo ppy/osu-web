@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Slett innlegg',
-            'restore' => 'Gjenopprett innlegg',
             'edit' => 'Rediger innlegget',
+            'report' => '',
+            'restore' => 'Gjenopprett innlegg',
         ],
 
         'create' => [

@@ -28,7 +28,7 @@ return [
         'nomination_reset' => 'Из-за новой проблемы в :discussion статус номинации был сброшен.',
         'qualify' => 'Эта карта была номинирована достаточное количество раз для квалификации.',
         'rank' => 'Рейтинговая.',
-        'remove_from_loved' => '',
+        'remove_from_loved' => ':user удалил карту из Любимых (:text)',
     ],
 
     'index' => [
@@ -67,6 +67,6 @@ return [
         'nomination_reset' => 'Сброс номинации',
         'qualify' => 'Квалификация',
         'rank' => 'Рейтинг',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Удаление из Любимых',
     ],
 ];

@@ -14,6 +14,11 @@ return [
         'title' => 'Reportar comentário de :username?',
     ],
 
+    'forum_post' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Reportar Pontuação',
         'title' => 'Reportar pontuação de :username ?',

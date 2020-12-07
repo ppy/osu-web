@@ -252,6 +252,7 @@ return [
         'converts' => 'Bao gồm beatmap được chuyển đổi',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'Bất Kì',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

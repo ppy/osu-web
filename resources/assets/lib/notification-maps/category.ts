@@ -42,4 +42,5 @@ export const nameToCategory: CategoryMap = {
   forum_topic_reply: 'forum_topic_reply',
   legacy_pm: 'legacy_pm',
   user_achievement_unlock: 'user_achievement_unlock',
+  user_beatmapset_new: 'user_beatmapset_new',
 };

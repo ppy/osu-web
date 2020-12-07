@@ -16,15 +16,16 @@ export default function UserGroupBadge({group, modifiers = []}: Props) {
 
   const style = osu.groupColour(group);
 
+  const badgeModifiers = [...modifiers];
   if (group.is_probationary) {
-    modifiers.push('probationary');
+    badgeModifiers.push('probationary');
   }
 
   const playModes: JSX.Element[] = (group.playmodes ?? []).map((mode) => <i className={`fal fa-extra-mode-${mode}`} key={mode} />);
 
   return (
     <div
-      className={osu.classWithModifiers('user-group-badge', modifiers)}
+      className={osu.classWithModifiers('user-group-badge', badgeModifiers)}
       data-label={group.short_name}
       style={style}
       title={group.name}

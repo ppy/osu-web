@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => '投稿を削除',
-            'restore' => '投稿を復元',
             'edit' => '投稿を編集',
+            'report' => '',
+            'restore' => '投稿を復元',
         ],
 
         'create' => [

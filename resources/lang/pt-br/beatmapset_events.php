@@ -28,7 +28,7 @@ return [
         'nomination_reset' => 'Novo problema :discussion reiniciou a contagem de nomeação.',
         'qualify' => 'Este beatmap alcançou o número de nomeações necessárias e se tornou qualificado.',
         'rank' => 'Ranqueado.',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Removido dos Loved por :user. (:text)',
     ],
 
     'index' => [
@@ -64,9 +64,9 @@ return [
         'language_edit' => 'Edição de língua',
         'love' => 'Love',
         'nominate' => 'Nomeação',
-        'nomination_reset' => 'Redefinir Nomeação',
+        'nomination_reset' => 'Redefinição de Nomeação',
         'qualify' => 'Qualificações',
         'rank' => 'Classificação',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Remoção de Loved',
     ],
 ];

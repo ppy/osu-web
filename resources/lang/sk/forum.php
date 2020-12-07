@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Odstraniť príspevok',
-            'restore' => 'Obnoviť príspevok',
             'edit' => 'Upraviť príspevok',
+            'report' => '',
+            'restore' => 'Obnoviť príspevok',
         ],
 
         'create' => [

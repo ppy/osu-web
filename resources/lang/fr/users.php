@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Membres par mode de jeu',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Votre compte n'a pas été utilisé depuis longtemps.",

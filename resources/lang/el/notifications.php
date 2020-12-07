@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Όλες οι ειδοποιήσεις διαβάστηκαν!',
+    'delete' => '',
     'mark_read' => '',
     'none' => '',
     'see_all' => '',
+    'see_channel' => '',
 
     'filters' => [
         '_' => '',

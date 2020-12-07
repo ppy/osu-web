@@ -8,6 +8,11 @@ return [
         'description' => 'Bunlar sizin takip ettiğiniz beatmap tartışmaları. Yeni bir gönderi veya güncelleme olduğunda bildirileceksiniz.',
         'title_compact' => 'modlama izleme listesi',
 
+        'counts' => [
+            'total' => 'İzlenen beatmapler',
+            'unread' => 'Yeni gelişmelere sahip beatmapler',
+        ],
+
         'table' => [
             'empty' => 'Takip edilen beatmap tartışması yok.',
             'open_issues' => 'Açık sorunlar',

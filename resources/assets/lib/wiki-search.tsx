@@ -49,7 +49,7 @@ export class WikiSearch extends React.Component {
       if (this.controller.selectedItem == null) {
         this.handleSearch();
       } else {
-        osu.navigate(route('wiki.show', { page: this.controller.selectedItem.path }));
+        osu.navigate(route('wiki.show', { path: this.controller.selectedItem.path, locale: currentLocale }));
       }
     } else if (key === 'ArrowUp' || key === 'ArrowDown') {
       this.keepSelectionInView = true;
@@ -106,7 +106,7 @@ export class WikiSearch extends React.Component {
               this.controller.selectIndex(index);
             };
 
-            const href = route('wiki.show', { page: item.path });
+            const href = route('wiki.show', { path: item.path, locale: currentLocale });
 
             return (
               <a

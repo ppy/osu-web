@@ -9,6 +9,7 @@ use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Es;
 use App\Libraries\Elasticsearch\Sort;
+use App\Libraries\LocaleMeta;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
@@ -24,7 +25,7 @@ class Page implements WikiObject
     use WikiPageTrait;
 
     const CACHE_DURATION = 5 * 60 * 60;
-    const VERSION = 2;
+    const VERSION = 9;
 
     const TEMPLATES = [
         'markdown_page' => 'wiki.show',
@@ -178,7 +179,7 @@ class Page implements WikiObject
         $locales = [];
         foreach ($response->hits() as $hit) {
             $locale = $hit['_source']['locale'] ?? null;
-            if ($locale !== null && $locale !== $this->locale) {
+            if ($locale !== null && $locale !== $this->locale && LocaleMeta::sanitizeCode($locale) !== null) {
                 $locales[] = $locale;
             }
         }

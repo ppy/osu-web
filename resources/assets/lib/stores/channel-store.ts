@@ -2,18 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import {
-  ChatChannelPartAction,
-  ChatChannelSwitchAction,
   ChatMessageSendAction,
-  ChatMessageUpdateAction,
-} from 'actions/chat-actions';
+} from 'actions/chat-message-send-action';
+import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import ChatAPI from 'chat/chat-api';
 import { ChannelJson, GetUpdatesJson, MessageJson, PresenceJson } from 'chat/chat-api-responses';
-import * as _ from 'lodash';
-import { groupBy } from 'lodash';
+import { groupBy, maxBy } from 'lodash';
 import { action, computed, observable, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
@@ -26,6 +23,7 @@ export default class ChannelStore {
   @observable loaded: boolean = false;
 
   private api = new ChatAPI();
+  private markingAsRead: Record<number, number> = {};
 
   @computed
   get channelList(): Channel[] {
@@ -35,7 +33,7 @@ export default class ChannelStore {
   @computed
   get maxMessageId(): number {
     const channelArray = Array.from(this.channels.toJS().values());
-    const max = _.maxBy(channelArray, 'lastMessageId');
+    const max = maxBy(channelArray, 'lastMessageId');
 
     return max == null ? -1 : max.lastMessageId;
   }
@@ -84,19 +82,10 @@ export default class ChannelStore {
   }
 
   @action
-  addMessages(channelId: number, messages: Message[]) {
-    if (_.isEmpty(messages)) {
-      return;
-    }
-
-    this.getOrCreate(channelId).addMessages(messages);
-  }
-
-  @action
   addNewConversation(json: ChannelJson, message: MessageJson) {
     const channel = this.getOrCreate(json.channel_id);
     channel.updateWithJson(json);
-    channel.lastReadId = message.message_id;
+    this.handleChatChannelNewMessages(channel.channelId, [message]);
 
     return channel;
   }
@@ -121,7 +110,7 @@ export default class ChannelStore {
 
   @action
   flushStore() {
-    this.channels = observable.map<number, Channel>();
+    this.channels.clear();
     this.loaded = false;
   }
 
@@ -144,17 +133,102 @@ export default class ChannelStore {
   handleDispatchAction(event: DispatcherAction) {
     if (event instanceof ChatMessageSendAction) {
       this.handleChatMessageSendAction(event);
-    } else if (event instanceof ChatMessageUpdateAction) {
-      const channel: Channel = this.getOrCreate(event.message.channelId);
-      channel.updateMessage(event.message, event.json);
-      channel.resortMessages();
     } else if (event instanceof UserLogoutAction) {
-      this.flushStore();
+      this.handleUserLogoutAction(event);
     }
   }
 
   @action
+  async loadChannel(channelId: number) {
+    const channel = this.getOrCreate(channelId);
+    if (channel.loading || channel.newPmChannel) {
+      return;
+    }
+
+    // TODO:
+    // current implementation should always have this loaded already,
+    // but future versions may skip having all the initial metadata on chat load.
+
+    if (channel.loaded) {
+      return;
+    }
+
+    channel.loading = true;
+
+    try {
+      const response = await this.api.getMessages(channelId);
+      this.handleChatChannelNewMessages(channelId, response);
+    } finally {
+      runInAction(() => {
+        channel.loading = false;
+      });
+    }
+  }
+
+  @action
+  async loadChannelEarlierMessages(channelId: number) {
+    const channel = this.get(channelId);
+
+    if (channel == null || !channel.hasEarlierMessages || channel.loadingEarlierMessages) {
+      return;
+    }
+
+    channel.loadingEarlierMessages = true;
+    let until: number | undefined;
+    // FIXME: nullable id instead?
+    if (channel.minMessageId > 0) {
+      until = channel.minMessageId;
+    }
+
+    try {
+      const response = await this.api.getMessages(channel.channelId, { until });
+      this.handleChatChannelNewMessages(channelId, response);
+    } finally {
+      runInAction(() => {
+        channel.loadingEarlierMessages = false;
+      });
+    }
+  }
+
+  @action
+  async markAsRead(channelId: number) {
+    const channel = this.get(channelId);
+
+    if (channel == null || !channel.isUnread) {
+      return;
+    }
+
+    if (this.markingAsRead[channelId] != null) {
+      return;
+    }
+
+    channel.markAsRead();
+
+    const currentTimeout = window.setTimeout(() => {
+      // allow next debounce to be queued again
+      if (this.markingAsRead[channelId] === currentTimeout) {
+        delete this.markingAsRead[channelId];
+      }
+
+      // TODO: need to mark again in case the marker has moved?
+
+      // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
+      if (channel.lastMessage?.sender.id === window.currentUser.id) {
+        return;
+      }
+
+      this.api.markAsRead(channel.channelId, channel.lastMessageId);
+    }, 1000);
+
+    this.markingAsRead[channelId] = currentTimeout;
+  }
+
+  @action
   partChannel(channelId: number) {
+    if (channelId > 0) {
+      this.api.partChannel(channelId, window.currentUser.id);
+    }
+
     this.channels.delete(channelId);
   }
 
@@ -186,7 +260,7 @@ export default class ChannelStore {
       }
 
       if (!presence.find((json) => json.channel_id === channel.channelId)) {
-        dispatch(new ChatChannelPartAction(channel.channelId, false));
+        this.channels.delete(channel.channelId);
       }
     });
 
@@ -213,7 +287,8 @@ export default class ChannelStore {
   private async handleChatMessageSendAction(event: ChatMessageSendAction) {
     const message = event.message;
     const channel = this.getOrCreate(message.channelId);
-    channel.addMessages(message, true);
+    channel.addMessages([message], true);
+    channel.markAsRead();
 
     try {
       if (channel.newPmChannel) {
@@ -231,17 +306,22 @@ export default class ChannelStore {
         runInAction(() => {
           this.channels.delete(message.channelId);
           const newChannel = this.addNewConversation(response.channel, response.message);
-          dispatch(new ChatChannelSwitchAction(newChannel.channelId));
+          dispatch(new ChatNewConversationAdded(newChannel.channelId));
         });
       } else {
         const response = await this.api.sendMessage(message);
-        dispatch(new ChatMessageUpdateAction(message, response));
+        channel.afterSendMesssage(message, response);
       }
     } catch (error) {
-      dispatch(new ChatMessageUpdateAction(message, null));
+      channel.afterSendMesssage(message, null);
       // FIXME: this seems like the wrong place to tigger an error popup.
       osu.ajaxError(error);
     }
+  }
+
+  @action
+  private handleUserLogoutAction(event: UserLogoutAction) {
+    this.flushStore();
   }
 
   @action

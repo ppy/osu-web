@@ -52,3 +52,7 @@ export function toJson(identity: NotificationIdentity) {
     object_type: identity.objectType,
   };
 }
+
+export function toString(identity: NotificationIdentity) {
+  return `${identity.objectType}-${identity.objectId}-${identity.category}-${identity.id}`;
+}

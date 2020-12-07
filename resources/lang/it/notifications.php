@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Lette tutte le notifiche!',
-    'mark_read' => 'Svuota :type',
+    'delete' => 'Elimina :type',
+    'mark_read' => 'Segna :type come letto',
     'none' => 'Nessuna notifica',
     'see_all' => 'vedi tutte le notifiche',
+    'see_channel' => 'vai alla chat',
 
     'filters' => [
         '_' => 'tutto',
@@ -57,8 +59,8 @@ return [
                 'beatmapset_qualify_compact' => 'La beatmap è entrata nella coda di classificazione',
                 'beatmapset_rank' => '":title" è stata classificata',
                 'beatmapset_rank_compact' => 'La beatmap è stata classificata',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved' => '":title" è stato rimossa da Loved',
+                'beatmapset_remove_from_loved_compact' => 'La beatmap è stata rimossa dalle amate',
                 'beatmapset_reset_nominations' => 'La nomina di ":title" è stata reimpostata',
                 'beatmapset_reset_nominations_compact' => 'La nomina è stata reimpostata',
             ],
@@ -161,7 +163,7 @@ return [
                 'beatmapset_nominate' => '":title" è stata nominata',
                 'beatmapset_qualify' => '":title" ha ottenuto abbastanza nomine ed è entrata nella coda di ranking',
                 'beatmapset_rank' => '":title" è stata rankata',
-                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved' => '":title" è stata rimossa dalle amate',
                 'beatmapset_reset_nominations' => 'La nomina di ":title" è stata resettata',
             ],
 

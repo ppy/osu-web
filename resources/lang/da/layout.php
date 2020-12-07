@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'hjælp',
+            'getAbuse' => '',
             'getFaq' => 'faq',
             'getRules' => 'regler',
             'getSupport' => 'nej, jeg behøver virkelig noget hjælp!',

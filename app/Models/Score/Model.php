@@ -6,6 +6,7 @@
 namespace App\Models\Score;
 
 use App\Exceptions\ClassNotFoundException;
+use App\Libraries\ModsHelper;
 use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
 use App\Models\User;
@@ -103,6 +104,29 @@ abstract class Model extends BaseModel
         });
     }
 
+    public function scopeWithMods($query, $modsArray)
+    {
+        return $query->where(function ($q) use ($modsArray) {
+            $bitset = ModsHelper::toBitset($modsArray);
+            $preferenceMask = ~ModsHelper::PREFERENCE_MODS_BITSET;
+
+            if (in_array('NM', $modsArray, true)) {
+                $q->orWhereRaw('enabled_mods & ? = 0', [$preferenceMask]);
+            }
+
+            if ($bitset > 0) {
+                $q->orWhereRaw('enabled_mods & ? = ?', [$preferenceMask | $bitset, $bitset]);
+            }
+        });
+    }
+
+    public function scopeWithoutMods($query, $modsArray)
+    {
+        $bitset = ModsHelper::toBitset($modsArray);
+
+        return $query->whereRaw('enabled_mods & ? = 0', $bitset);
+    }
+
     public function beatmap()
     {
         return $this->belongsTo(Beatmap::class, 'beatmap_id');
@@ -123,5 +147,10 @@ abstract class Model extends BaseModel
     public function getBestIdAttribute()
     {
         return $this->high_score_id;
+    }
+
+    public function url()
+    {
+        return route('scores.show', ['mode' => static::getMode(), 'score' => $this->getKey()]);
     }
 }

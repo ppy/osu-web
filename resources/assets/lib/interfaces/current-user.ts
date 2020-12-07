@@ -8,6 +8,7 @@ import GameMode from './game-mode';
 
 export default interface CurrentUser extends UserJsonExtended {
   blocks: UserRelationJson[];
+  follow_user_modding: number[];
   follower_count?: number;
   friends: UserRelationJson[];
   groups: GroupJson[];

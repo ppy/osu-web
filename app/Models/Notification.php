@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\Forum\Topic;
 
@@ -41,6 +42,7 @@ class Notification extends Model
     const COMMENT_NEW = 'comment_new';
     const FORUM_TOPIC_REPLY = 'forum_topic_reply';
     const USER_ACHIEVEMENT_UNLOCK = 'user_achievement_unlock';
+    const USER_BEATMAPSET_NEW = 'user_beatmapset_new';
 
     const NAME_TO_CATEGORY = [
         self::BEATMAPSET_DISCUSSION_LOCK => 'beatmapset_discussion',
@@ -59,6 +61,7 @@ class Notification extends Model
         self::COMMENT_NEW => 'comment',
         self::FORUM_TOPIC_REPLY => 'forum_topic_reply',
         self::USER_ACHIEVEMENT_UNLOCK => 'user_achievement_unlock',
+        self::USER_BEATMAPSET_NEW => 'user_modding',
     ];
 
     const NOTIFIABLE_CLASSES = [
@@ -93,6 +96,30 @@ class Notification extends Model
         }
 
         return $categories[$category] ?? [$category];
+    }
+
+    public function scopeByIdentity($query, array $params)
+    {
+        $category = $params['category'] ?? null;
+        $objectId = $params['object_id'] ?? null;
+        $objectType = $params['object_type'] ?? null;
+
+        if ($objectType !== null) {
+            $query->where('notifiable_type', $objectType);
+        }
+
+        if ($objectId !== null && $category !== null) {
+            if ($objectType === null) {
+                throw new InvariantException('object_type is required.');
+            }
+
+            $names = Notification::namesInCategory($category);
+            $query
+                ->where('notifiable_id', $objectId)
+                ->whereIn('name', $names);
+        }
+
+        return $query;
     }
 
     public function getCategoryAttribute()

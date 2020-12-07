@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Alla aviseringar är lästa!',
+    'delete' => 'Radera :type',
     'mark_read' => 'Rensa :type',
     'none' => 'Inga aviseringar',
     'see_all' => 'visa alla aviseringar',
+    'see_channel' => 'gå till chatt',
 
     'filters' => [
         '_' => 'alla',
@@ -57,7 +59,7 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmap har angett rankingkö',
                 'beatmapset_rank' => '":title" har rankats',
                 'beatmapset_rank_compact' => 'Beatmap rankades',
-                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved' => '":title" har tagits bort från Älskad',
                 'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'Nominering av ":title" har återställts',
                 'beatmapset_reset_nominations_compact' => 'Nominering återställdes',

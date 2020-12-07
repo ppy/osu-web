@@ -8,6 +8,11 @@ return [
         'description' => 'Dit zijn de beatmap discussies die je volgt. Je wordt verwittigd bij nieuwe berichten of updates.',
         'title_compact' => 'modding volglijst',
 
+        'counts' => [
+            'total' => '',
+            'unread' => '',
+        ],
+
         'table' => [
             'empty' => 'Geen map discussies aan het volgen.',
             'open_issues' => 'Open problemen',

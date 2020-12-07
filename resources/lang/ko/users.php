@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '게임 모드 별 멤버',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "당신의 계정은 오랫동안 사용되지 않았네요.",

@@ -332,7 +332,7 @@ return [
             'account_standing' => [
                 'title' => 'Account Standing',
                 'bad_standing' => "<strong>:username's</strong> account is not in a good standing :(",
-                'remaining_silence' => '<strong>:username</strong> will be able to speak again in :duration.',
+                'remaining_silence' => '<strong>:username</strong> will be able to speak again :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Recent Infringements',

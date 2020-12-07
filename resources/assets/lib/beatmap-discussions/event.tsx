@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
+import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { kebabCase } from 'lodash';
@@ -138,9 +139,15 @@ export default class Event extends React.PureComponent<Props> {
       ...this.props.event.comment,
     };
 
-    const eventType = this.props.event.type === 'disqualify' && this.discussion == null ? 'disqualify_legacy' : this.props.event.type;
-    const key = `beatmapset_events.event.${eventType}`;
+    let eventType = this.props.event.type === 'disqualify' && this.discussion == null ? 'disqualify_legacy' : this.props.event.type;
 
+    if (eventType === 'nominate' && this.props.event.comment?.modes.length > 0) {
+      eventType = `nominate_modes`;
+      const nominationModes = this.props.event.comment.modes.map((mode: GameMode) => osu.trans(`beatmaps.mode.${mode}`));
+      params.modes = osu.transArray(nominationModes);
+    }
+
+    const key = `beatmapset_events.event.${eventType}`;
     let message = osu.trans(key, params);
 
     // append owner of the event if not already included in main message

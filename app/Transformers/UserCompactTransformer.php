@@ -5,12 +5,25 @@
 
 namespace App\Transformers;
 
+use App\Libraries\MorphMap;
 use App\Models\Beatmap;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
 
 class UserCompactTransformer extends TransformerAbstract
 {
+    const CARD_INCLUDES = [
+        'country',
+        'cover',
+        'groups',
+    ];
+
+    const CARD_INCLUDES_PRELOAD = [
+        'country',
+        'userGroups',
+        'userProfileCustomization',
+    ];
+
     public $mode;
 
     protected $availableIncludes = [
@@ -23,6 +36,7 @@ class UserCompactTransformer extends TransformerAbstract
         'cover',
         'current_mode_rank',
         'favourite_beatmapset_count',
+        'follow_user_modding',
         'follower_count',
         'friends',
         'graveyard_beatmapset_count',
@@ -162,17 +176,27 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->primitive($user->profileBeatmapsetsFavourite()->count());
     }
 
-    public function includeFollowerCount(User $user)
-    {
-        return $this->primitive($user->followerCount());
-    }
-
     public function includeFriends(User $user)
     {
         return $this->collection(
             $user->relations()->friends()->withMutual()->get(),
             new UserRelationTransformer()
         );
+    }
+
+    public function includeFollowUserModding(User $user)
+    {
+        return $this->primitive(
+            $user->follows()->where([
+                'notifiable_type' => MorphMap::getType($user),
+                'subtype' => 'modding',
+            ])->pluck('notifiable_id')
+        );
+    }
+
+    public function includeFollowerCount(User $user)
+    {
+        return $this->primitive($user->followerCount());
     }
 
     public function includeGraveyardBeatmapsetCount(User $user)
