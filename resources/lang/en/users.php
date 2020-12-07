@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Plays with :devices',
         'title' => ":username's profile",
 
+        'comments_count' => [
+            '_' => 'Posted :link',
+            'count' => ':count_delimited comment|:count_delimited comments',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Change Profile Cover',
