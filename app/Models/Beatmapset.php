@@ -939,14 +939,14 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         }
     }
 
-    public function requiredNominationCount()
+    public function requiredNominationCount($summary = false)
     {
         $playmodeCount = $this->playmodeCount();
         $baseRequirement = $playmodeCount === 1
             ? config('osu.beatmapset.required_nominations')
             : config('osu.beatmapset.required_nominations_hybrid');
 
-        if ($this->isLegacyNominationMode()) {
+        if ($summary || $this->isLegacyNominationMode()) {
             return $playmodeCount * $baseRequirement;
         }
 
@@ -995,6 +995,14 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         });
     }
 
+    public function nominationsSummaryMeta()
+    {
+        return [
+            'current' => $this->nominations,
+            'required' => $this->requiredNominationCount(true),
+        ];
+    }
+
     public function isLegacyNominationMode()
     {
         return $this->memoize(__FUNCTION__, function () {
@@ -1014,7 +1022,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function playmodeCount()
     {
-        return $this->playmodes()->count();
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->playmodes()->count();
+        });
     }
 
     public function playmodesStr()
