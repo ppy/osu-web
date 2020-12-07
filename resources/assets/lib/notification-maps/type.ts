@@ -16,5 +16,9 @@ export function displayType(item: Notification) {
     return 'user_achievement';
   }
 
+  if (item.name === 'user_beatmapset_new') {
+    return 'user_modding';
+  }
+
   return item.objectType;
 }
