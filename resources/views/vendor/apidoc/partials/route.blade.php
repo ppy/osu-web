@@ -3,16 +3,23 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 <?php
+    use App\Libraries\RouteScopesHelper;
+
+    $uri = $route['uri'];
     $descriptions = explode("\n---\n", $route['metadata']['description'] ?? '');
 
     $topDescription = $descriptions[0];
     $bottomDescription = $descriptions[1] ?? '';
 
-    $displayUri = substr($route['uri'], strlen('api/v2'));
+    $displayUri = substr($uri, strlen('api/v2'));
+
+    $routeScopesHelper = new RouteScopesHelper();
+    $routeScopesHelper->loadRoutes();
+    $routeScopes = collect($routeScopesHelper->toArray())->keyBy('uri');
 ?>
 <!-- START_{{$route['id']}} -->
 @if($route['metadata']['title'] != '')## {{ $route['metadata']['title']}}
-@else## {{$route['uri']}}@endif
+@else## {{$uri}}@endif
 
 @foreach($settings['languages'] as $language)
 @include("apidoc::partials.example-requests.$language")
@@ -47,6 +54,13 @@
 
 @if($route['metadata']['authenticated'])
 <small class="authenticated">Requires authentication</small>
+@endif
+
+@if(!empty($routeScopes[$uri]['scopes']))
+OAuth scopes required:
+@foreach($routeScopes[$uri]['scopes'] as $scope)
+<small class="authenticated">{{ $scope }}</small>
+@endforeach
 @endif
 
 {!! $topDescription !!}
