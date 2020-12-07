@@ -59,7 +59,7 @@
 @if(!empty($routeScopes[$uri]['scopes']))
 OAuth scopes required:
 @foreach($routeScopes[$uri]['scopes'] as $scope)
-<small class="authenticated">{{ $scope }}</small>
+<small class="scope">{{ $scope }}</small>
 @endforeach
 @endif
 
