@@ -59,7 +59,9 @@ class Room extends Model
         $sort = 'created';
 
         $category = presence(get_string($params['category'] ?? null)) ?? 'any';
-        if ($category !== 'any') {
+        if ($category === 'any') {
+            $query->whereNot('category', 'realtime');
+        } else {
             $query->where('category', $category);
         }
 
