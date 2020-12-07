@@ -60,7 +60,7 @@ class Room extends Model
 
         $category = presence(get_string($params['category'] ?? null)) ?? 'any';
         if ($category === 'any') {
-            $query->whereNot('category', 'realtime');
+            $query->where('category', '<>', 'realtime');
         } else {
             $query->where('category', $category);
         }
