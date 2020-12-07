@@ -160,10 +160,6 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
     public function includeNominations(Beatmapset $beatmapset)
     {
-        if (!in_array($beatmapset->status(), ['wip', 'pending', 'qualified'], true)) {
-            return;
-        }
-
         $result = $beatmapset->nominationsMeta();
 
         if ($beatmapset->isPending()) {
