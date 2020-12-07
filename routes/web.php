@@ -60,7 +60,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
         Route::resource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
-        Route::resource('watches', 'BeatmapsetWatchesController', ['only' => ['index', 'update', 'destroy']]);
+        Route::resource('watches', 'BeatmapsetWatchesController', ['only' => ['update', 'destroy']]);
 
         Route::group(['prefix' => 'discussions', 'as' => 'discussions.'], function () {
             Route::resource('votes', 'BeatmapsetDiscussionVotesController', ['only' => ['index']]);
@@ -134,7 +134,7 @@ Route::group(['middleware' => ['web']], function () {
 
                 Route::resource('topic-covers', 'TopicCoversController', ['only' => ['store', 'update', 'destroy']]);
 
-                Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['index', 'update']]);
+                Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['update']]);
             });
 
             Route::post('forums/mark-as-read', 'ForumsController@markAsRead')->name('forums.mark-as-read');
@@ -207,6 +207,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');
 
         Route::resource('follows', 'FollowsController', ['only' => ['store']]);
+        Route::get('follows/{subtype?}', 'FollowsController@index')->name('follows.index');
         Route::delete('follows', 'FollowsController@destroy')->name('follows.destroy');
     });
 

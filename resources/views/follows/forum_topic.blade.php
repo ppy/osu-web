@@ -7,7 +7,9 @@
 @section('content')
     @include('home._user_header_default', ['themeOverride' => 'settings'])
 
-    <div class="osu-page osu-page--info-bar">
+    <div class="osu-page osu-page--generic osu-page--full">
+        @include('follows._subtypes')
+
         <div class="grid-items">
             <div class="counter-box counter-box--info">
                 <div class="counter-box__title">
@@ -27,13 +29,11 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="osu-page osu-page--forum-topic-watches-list osu-page--full">
-        <div class="forum-list">
+        <div class="forum-list forum-list--compact">
             <ul class="forum-list__items">
                 @include('forum.forums._topics', [
-                    'row' => 'forum.topic_watches._topic',
+                    'row' => 'follows.forum_topic._topic',
                     'topics' => $topics,
                 ])
             </ul>

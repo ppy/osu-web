@@ -4,6 +4,18 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'forum_topic' => [
+        'title' => 'forum topic',
+    ],
+
+    'index' => [
+        'title_compact' => 'watchlists',
+    ],
+
+    'modding' => [
+        'title' => 'modding',
+    ],
+
     'user' => [
         'modding' => [
             'to_0' => 'stop notifying me when this user uploads new beatmap',

@@ -207,6 +207,7 @@ return [
             'friends' => 'Friends',
             'logout' => 'Sign Out',
             'profile' => 'My Profile',
+            'watchlist' => 'Watchlist',
         ],
     ],
 

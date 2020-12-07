@@ -20,6 +20,10 @@
             {{ trans('layout.popup_user.links.friends') }}
         </a>
 
+        <a class="navbar-mobile-item__main" href="{{ route('follows.index', ['subtype' => App\Models\Follow::DEFAULT_SUBTYPE]) }}">
+            {{ trans('layout.popup_user.links.watchlist') }}
+        </a>
+
         <a class="navbar-mobile-item__main" href="{{ route('account.edit') }}">
             {{ trans('layout.popup_user.links.account-edit') }}
         </a>
