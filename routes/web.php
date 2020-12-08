@@ -60,6 +60,8 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
         Route::resource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
+        // keeping old link alive
+        route_redirect('watches', 'follows.index');
         Route::resource('watches', 'BeatmapsetWatchesController', ['only' => ['update', 'destroy']]);
 
         Route::group(['prefix' => 'discussions', 'as' => 'discussions.'], function () {
@@ -134,6 +136,9 @@ Route::group(['middleware' => ['web']], function () {
 
                 Route::resource('topic-covers', 'TopicCoversController', ['only' => ['store', 'update', 'destroy']]);
 
+
+                // keeping old link alive
+                route_redirect('topic-watches', 'follows.index');
                 Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['update']]);
             });
 
