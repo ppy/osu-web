@@ -136,7 +136,6 @@ Route::group(['middleware' => ['web']], function () {
 
                 Route::resource('topic-covers', 'TopicCoversController', ['only' => ['store', 'update', 'destroy']]);
 
-
                 // keeping old link alive
                 route_redirect('topic-watches', 'follows.index');
                 Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['update']]);
