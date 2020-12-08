@@ -377,6 +377,7 @@ export class Comment extends React.PureComponent
   renderVoteButton: =>
     className = osu.classWithModifiers('comment-vote', @props.modifiers)
     className += ' comment-vote--posting' if @state.postingVote
+    className += ' comment-vote--disabled' if !@props.comment.canVote
 
     if @hasVoted()
       className += ' comment-vote--on'
