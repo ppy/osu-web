@@ -37,8 +37,8 @@ export default class FollowUserModdingButton extends React.Component<Props, Stat
     if (follow !== false) followersWithoutSelf -= 1;
 
     this.state = {
-      follow: follow,
-      followersWithoutSelf: followersWithoutSelf,
+      follow,
+      followersWithoutSelf,
       loading: false,
     };
   }
@@ -80,6 +80,10 @@ export default class FollowUserModdingButton extends React.Component<Props, Stat
         </button>
       </div>
     );
+  }
+
+  private followers() {
+    return this.state.followersWithoutSelf + (this.state.follow ? 1 : 0);
   }
 
   private onClick = () => {
@@ -124,23 +128,19 @@ export default class FollowUserModdingButton extends React.Component<Props, Stat
       <span className={`${bn}__counter`}>
         {osu.formatNumber(this.followers())}
       </span>
-    )
+    );
   }
 
   private renderIcon() {
     const icon = this.state.loading
       ? <Spinner />
-      : <i className='fas fa-bell' />
+      : <i className='fas fa-bell' />;
 
     return(
       <span className={`${bn}__icon-container`}>
         {icon}
       </span>
     );
-  }
-
-  private followers() {
-    return this.state.followersWithoutSelf + (this.state.follow ? 1 : 0);
   }
 
   private updateData = () => {
