@@ -28,7 +28,7 @@
     </a>
 
     <a class="simple-menu__item" href="{{ route('follows.index', ['subtype' => App\Models\Follow::DEFAULT_SUBTYPE]) }}">
-        {{ trans('layout.popup_user.links.watchlist') }}
+        {{ trans('layout.popup_user.links.follows') }}
     </a>
 
     <a class="simple-menu__item" href="{{ route('account.edit') }}">

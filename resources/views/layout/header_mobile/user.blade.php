@@ -21,7 +21,7 @@
         </a>
 
         <a class="navbar-mobile-item__main" href="{{ route('follows.index', ['subtype' => App\Models\Follow::DEFAULT_SUBTYPE]) }}">
-            {{ trans('layout.popup_user.links.watchlist') }}
+            {{ trans('layout.popup_user.links.follows') }}
         </a>
 
         <a class="navbar-mobile-item__main" href="{{ route('account.edit') }}">
