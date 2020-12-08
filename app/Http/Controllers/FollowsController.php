@@ -28,8 +28,8 @@ class FollowsController extends Controller
         switch ($subtype) {
             case 'forum_topic':
                 return $this->indexForumTopic();
-            case 'modding':
-                return $this->indexModding();
+            case 'beatmapset_modding':
+                return $this->indexBeatmapsetModding();
             default:
                 return ujs_redirect(route('follows.index', ['subtype' => Follow::DEFAULT_SUBTYPE]));
         }
@@ -75,6 +75,16 @@ class FollowsController extends Controller
         return $params;
     }
 
+    private function indexBeatmapsetModding()
+    {
+        $user = auth()->user();
+        $watches = $user->beatmapsetWatches()->visible()->paginate(50);
+        $totalCount = $watches->total();
+        $unreadCount = $user->beatmapsetWatches()->visible()->unread()->count();
+
+        return ext_view('follows.beatmapset_modding', compact('watches', 'totalCount', 'unreadCount'));
+    }
+
     private function indexForumTopic()
     {
         $user = auth()->user();
@@ -91,15 +101,5 @@ class FollowsController extends Controller
             'follows.forum_topic',
             compact('topics', 'topicReadStatus', 'topicWatchStatus', 'counts')
         );
-    }
-
-    private function indexModding()
-    {
-        $user = auth()->user();
-        $watches = $user->beatmapsetWatches()->visible()->paginate(50);
-        $totalCount = $watches->total();
-        $unreadCount = $user->beatmapsetWatches()->visible()->unread()->count();
-
-        return ext_view('follows.modding', compact('watches', 'totalCount', 'unreadCount'));
     }
 }
