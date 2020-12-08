@@ -21,6 +21,18 @@ class FollowsController extends Controller
         $this->middleware('auth');
     }
 
+    public function destroy()
+    {
+        $params = $this->getParams();
+        $follow = Follow::where($params)->first();
+
+        if ($follow !== null) {
+            $follow->delete();
+        }
+
+        return response([], 204);
+    }
+
     public function index($subtype = null)
     {
         view()->share('subtype', $subtype);
@@ -50,18 +62,6 @@ class FollowsController extends Controller
             if (!is_sql_unique_exception($e)) {
                 throw $e;
             }
-        }
-
-        return response([], 204);
-    }
-
-    public function destroy()
-    {
-        $params = $this->getParams();
-        $follow = Follow::where($params)->first();
-
-        if ($follow !== null) {
-            $follow->delete();
         }
 
         return response([], 204);
