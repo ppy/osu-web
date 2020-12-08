@@ -1358,19 +1358,6 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             ->count();
     }
 
-    public function cacheModdingFollowerCount()
-    {
-        $count = $this->uncachedModdingFollowerCount();
-
-        Cache::put(
-            self::CACHING['modding_follower_count']['key'].':'.$this->user_id,
-            $count,
-            self::CACHING['modding_follower_count']['duration']
-        );
-
-        return $count;
-    }
-
     public function cacheFollowerCount()
     {
         $count = $this->uncachedFollowerCount();
@@ -1384,14 +1371,27 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $count;
     }
 
-    public function moddingFollowerCount()
+    public function cacheModdingFollowerCount()
     {
-        return get_int(Cache::get(self::CACHING['modding_follower_count']['key'].':'.$this->user_id)) ?? $this->cacheModdingFollowerCount();
+        $count = $this->uncachedModdingFollowerCount();
+
+        Cache::put(
+            self::CACHING['modding_follower_count']['key'].':'.$this->user_id,
+            $count,
+            self::CACHING['modding_follower_count']['duration']
+        );
+
+        return $count;
     }
 
     public function followerCount()
     {
         return get_int(Cache::get(self::CACHING['follower_count']['key'].':'.$this->user_id)) ?? $this->cacheFollowerCount();
+    }
+
+    public function moddingFollowerCount()
+    {
+        return get_int(Cache::get(self::CACHING['modding_follower_count']['key'].':'.$this->user_id)) ?? $this->cacheModdingFollowerCount();
     }
 
     public function events()
