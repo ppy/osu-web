@@ -1,0 +1,135 @@
+name: PHP Unit
+
+on: [push, pull_request]
+
+env:
+  APP_ENV: testing
+  APP_KEY: base64:q7U5qyAkedR1F6UhN0SQlUxBpAMDyfHy3NNFkqmiMqA=
+  APP_URL: http://localhost
+  CACHE_DRIVER: redis
+  CACHE_DRIVER_LOCAL: array
+  DB_USERNAME: root
+  GITHUB_TOKEN: 98cbc568911ef1e060a3a31623f2c80c1786d5ff
+  NOTIFICATION_ENDPOINT: ws://127.0.0.1:3000
+  NOTIFICATION_SERVER_LISTEN_PORT: 3000
+  OSU_INSTALL_DEV: 1
+  PAYMENT_SANDBOX: true
+  SESSION_DRIVER: redis
+  SHOPIFY_DOMAIN: notarealdomainortld
+  SHOPIFY_STOREFRONT_TOKEN: notreal
+  SLACK_ENDPOINT: https://myconan.net/null/
+  REDIS_HOST: 127.0.0.1
+  NOTIFICATION_REDIS_HOST: 127.0.0.1
+  DB_HOST: 127.0.0.1
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: mysql:8.0
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+          -e MYSQL_ALLOW_EMPTY_PASSWORD=1
+          --entrypoint sh mysql:8.0 -c "exec docker-entrypoint.sh mysqld --default-authentication-plugin=mysql_native_password"
+
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+
+    steps:
+      - name: Configure sysctl limits
+        run: |
+          sudo swapoff -a
+          sudo sysctl -w vm.swappiness=1
+          sudo sysctl -w fs.file-max=262144
+          sudo sysctl -w vm.max_map_count=262144
+
+      - name: Setup node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+
+      - name: Get composer cache directory
+        id: composercache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composercache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+
+      - uses: actions/cache@v2
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Start Elasticsearch
+        uses: elastic/elastic-github-actions/elasticsearch@master
+        with:
+          stack-version: 6.8.13
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup database
+        run: ./bin/db_setup.sh -h 127.0.0.1
+
+      - name: Setup Composer
+        uses: shivammathur/setup-php@v2
+        with:
+          tools: composer:v2
+          php-version: '7.4'
+
+      - name: Install Composer dependencies
+        run: composer config -g github-oauth.github.com 98cbc568911ef1e060a3a31623f2c80c1786d5ff && composer install --dev --prefer-dist --no-progress --no-suggest
+
+      - name: Install js dependencies
+        run: yarn --frozen-lockfile
+
+      - run: php artisan passport:keys
+
+      - name: Run migrations
+        run: php artisan migrate:fresh --yes
+
+      - name: Setup indices
+        run: |
+          php artisan es:create-search-blacklist
+          php artisan es:index-documents --yes
+          php artisan es:index-wiki --create-only --yes
+
+      - run: yarn lint
+      - run: ./bin/update_licence.sh -nf
+
+      - name: Build js
+        run: yarn prod
+
+      - name: apidoc
+        run: php artisan apidoc:generate
+
+      - name: karma
+        run: yarn karma start --single-run --browsers ChromeHeadless
+
+      - name: Run PHPUnit
+        run: ./bin/phpunit.sh
+
+      - name: Run Dusk
+        env:
+          APP_URL: http://localhost:8000
+        run: ./bin/run_dusk.sh
