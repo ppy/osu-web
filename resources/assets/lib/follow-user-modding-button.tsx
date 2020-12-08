@@ -34,9 +34,7 @@ export default class FollowUserModdingButton extends React.Component<Props, Stat
     const follow = currentUser.follow_user_modding?.includes(this.props.userId) ?? false;
     let followersWithoutSelf = this.props.followers ?? 0;
 
-    if (follow !== false) {
-      followersWithoutSelf -= 1;
-    }
+    if (follow !== false) followersWithoutSelf -= 1;
 
     this.state = {
       follow: follow,
