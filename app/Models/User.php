@@ -204,7 +204,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         'modding_follower_count' => [
             'key' => 'moddingFollowerCount',
             'duration' => 43200, // 12 hours
-        ]
+        ],
     ];
 
     const INACTIVE_DAYS = 180;
