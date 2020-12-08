@@ -10,6 +10,6 @@
 {!! post_url($topic->topic_id, 'unread', false) !!}
 
 {!! trans('mail.forum_new_reply.unwatch') !!}
-{!! route('follows.index', ['type' => 'forum_topic']) !!}
+{!! route('follows.index', ['subtype' => 'forum_topic']) !!}
 
 @include('emails._signature')
