@@ -6,7 +6,7 @@
 return [
     'user' => [
         'modding' => [
-            'disabled' => 'modding followers',
+            'disabled' => 'subscribers',
             'to_0' => 'stop notifying me when this user uploads new beatmap',
             'to_1' => 'notify me when this user uploads new beatmap',
         ],
