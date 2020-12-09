@@ -93,7 +93,7 @@ export default class Main {
   private pagePlayer?: HTMLElement;
   private playerNext?: HTMLElement;
   private playerPrev?: HTMLElement;
-  private setNavigationTimeout?: number;
+  private settingNavigation = false;
   private settings = new Settings(this);
   private state: PlayState = 'paused';
   private timeFormat: TimeFormat = 'minute_minimal';
@@ -386,11 +386,13 @@ export default class Main {
   }
 
   private setNavigation = () => {
-    if (this.setNavigationTimeout != null) {
-      cancelAnimationFrame(this.setNavigationTimeout);
+    if (this.settingNavigation) {
+      return;
     }
 
-    this.setNavigationTimeout = requestAnimationFrame(() => {
+    this.settingNavigation = true;
+
+    window.setTimeout(() => {
       this.playerNext = undefined;
       this.playerPrev = undefined;
 
@@ -421,6 +423,8 @@ export default class Main {
         this.mainPlayer.dataset.audioHasPrev = this.playerPrev == null ? '0' : '1';
         this.mainPlayer.dataset.audioHasNext = this.playerNext == null ? '0' : '1';
       }
+
+      this.settingNavigation = false;
     });
   }
 
