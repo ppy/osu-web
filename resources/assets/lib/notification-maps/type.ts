@@ -17,7 +17,7 @@ export function displayType(item: Notification) {
   }
 
   if (item.name === 'user_beatmapset_new') {
-    return 'user_modding';
+    return 'mapping';
   }
 
   return item.objectType;

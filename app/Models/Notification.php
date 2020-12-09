@@ -61,7 +61,7 @@ class Notification extends Model
         self::COMMENT_NEW => 'comment',
         self::FORUM_TOPIC_REPLY => 'forum_topic_reply',
         self::USER_ACHIEVEMENT_UNLOCK => 'user_achievement_unlock',
-        self::USER_BEATMAPSET_NEW => 'user_modding',
+        self::USER_BEATMAPSET_NEW => 'user_beatmapset_new',
     ];
 
     const NOTIFIABLE_CLASSES = [

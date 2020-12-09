@@ -22,7 +22,7 @@ class Follow extends Model
     const SUBTYPES = [
         'comment' => Comment::COMMENTABLES,
 
-        'modding' => [
+        'mapping' => [
             MorphMap::MAP[User::class],
         ],
     ];
