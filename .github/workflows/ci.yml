@@ -39,6 +39,9 @@ jobs:
           tools: composer:v2
           php-version: '7.4'
 
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Get composer cache directory
         id: composercache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
@@ -62,9 +65,6 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-
-      - name: Checkout
-        uses: actions/checkout@v2
 
       - name: Install Composer dependencies
         run: composer config -g github-oauth.github.com 98cbc568911ef1e060a3a31623f2c80c1786d5ff && composer install --dev --prefer-dist --no-progress --no-suggest
@@ -120,6 +120,9 @@ jobs:
           tools: composer:v2
           php-version: '7.4'
 
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Get composer cache directory
         id: composercache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
@@ -148,9 +151,6 @@ jobs:
         uses: elastic/elastic-github-actions/elasticsearch@master
         with:
           stack-version: 6.8.13
-
-      - name: Checkout
-        uses: actions/checkout@v2
 
       - name: Setup database
         run: ./bin/db_setup.sh -h 127.0.0.1
