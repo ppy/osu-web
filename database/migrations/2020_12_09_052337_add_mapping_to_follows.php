@@ -32,9 +32,13 @@ class AddMappingToFollows extends Migration
      */
     public function down()
     {
+        DB::table('follows')
+            ->where([
+                'subtype' => 'mapping',
+                'notifiable_type' => 'user',
+            ])->update(['subtype' => 'modding']);
         DB::statement("ALTER TABLE follows
                        MODIFY COLUMN subtype
-                       ENUM('comment', 'modding')
-                       NOT NULL");
+                       ENUM('comment', 'modding')");
     }
 }
