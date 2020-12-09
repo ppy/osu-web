@@ -3,6 +3,7 @@
 
 import Notification from 'models/notification';
 
+// FIXME: this mapping is not used anymore as it has been replaced by "filters"/objectType/NotificationType
 export function displayType(item: Notification) {
   if (item.name === 'legacy_pm') {
     return 'legacy_pm';
@@ -14,10 +15,6 @@ export function displayType(item: Notification) {
 
   if (item.name === 'user_achievement_unlock') {
     return 'user_achievement';
-  }
-
-  if (item.name === 'user_beatmapset_new') {
-    return 'user_modding';
   }
 
   return item.objectType;
