@@ -63,12 +63,11 @@ export default class NotificationController {
 
   @action
   markCurrentTypeAsRead() {
+    this.type.markTypeAsRead();
     if (this.type.name == null) {
       for (const name of this.typeNamesWithoutNull) {
         this.store.getOrCreateType({ objectType: name }).markTypeAsRead();
       }
-    } else {
-      this.type.markTypeAsRead();
     }
   }
 
