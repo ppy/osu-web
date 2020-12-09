@@ -133,7 +133,7 @@ return [
             ],
         ],
 
-        'mapping' => [
+        'user' => [
             'user_beatmapset_new' => [
                 '_' => 'New beatmap',
 
@@ -207,7 +207,7 @@ return [
         ],
 
         'user' => [
-            'mapping' => [
+            'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username has created new beatmaps',
             ],
 
