@@ -142,6 +142,7 @@ class Mod
             'overall_difficulty' => 'float',
             'circle_size' => 'float',
             'approach_rate' => 'float',
+            'extended_limits' => 'bool',
         ],
         self::DOUBLETIME => [
             'speed_change' => 'float',
