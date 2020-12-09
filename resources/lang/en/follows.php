@@ -4,16 +4,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'beatmapset_modding' => [
-        'title' => 'modding',
-    ],
-
     'forum_topic' => [
         'title' => 'forum topic',
     ],
 
     'index' => [
         'title_compact' => 'watchlists',
+    ],
+
+    'modding' => [
+        'title' => 'modding',
     ],
 
     'user' => [
