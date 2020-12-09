@@ -74,7 +74,8 @@ class Notification extends Model
     ];
 
     const SUBTYPES = [
-        'comment_new' => 'comment',
+        self::COMMENT_NEW => 'comment',
+        self::USER_BEATMAPSET_NEW => 'mapping',
     ];
 
     protected $casts = [
