@@ -27,6 +27,9 @@ class ApidocRouteHelper
 
         foreach ($routeScopesHelper->toArray() as $route) {
             $key = $this->keyFor($route['uri'], $route['method']);
+            $route['scopes'] = array_filter($route['scopes'], function ($scope) {
+                return $scope !== 'any';
+            });
             $this->routeScopes[$key] = $route;
         }
     }
