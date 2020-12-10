@@ -5,6 +5,8 @@
 
 namespace App\Libraries;
 
+use App\Http\Middleware\RequireScopes;
+
 class ApidocRouteHelper
 {
     private $routeScopes = [];
@@ -51,6 +53,10 @@ class ApidocRouteHelper
 
     public function requiresAuthentication(string $uri, string $method)
     {
+        if ($method === 'GET' && starts_with("{$uri}/", RequireScopes::NO_TOKEN_REQUIRED)) {
+            return false;
+        }
+
         return in_array('require-scopes', $this->routeScopes[$this->keyFor($uri, $method)]['middlewares'], true);
     }
 }
