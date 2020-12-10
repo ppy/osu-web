@@ -317,10 +317,8 @@ class Room extends Model
             }
         }
 
-        if ($this->category === 'realtime') {
-            $this->ends_at = null;
-        } else {
-            if (!present($this->ends_at)) {
+        if ($this->category !== 'realtime') {
+            if ($this->ends_at === null) {
                 throw new InvariantException("'ends_at' is required");
             }
 
