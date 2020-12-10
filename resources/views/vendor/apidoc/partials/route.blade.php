@@ -52,7 +52,7 @@
 @endif
 @endif
 
-@if($route['metadata']['authenticated'])
+@if(in_array('require-scopes', $routeScopes[$uri]['middlewares'], true))
 <small class="authenticated">Requires authentication</small>
 @endif
 
