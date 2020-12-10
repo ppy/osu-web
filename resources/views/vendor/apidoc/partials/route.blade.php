@@ -57,10 +57,11 @@
 @endif
 
 @if(!empty($routeScopes[$uri]['scopes']))
-OAuth scopes required:
-@foreach($routeScopes[$uri]['scopes'] as $scope)
-<small class="scope">{{ $scope }}</small>
-@endforeach
+<span class="scope-list">
+    @foreach($routeScopes[$uri]['scopes'] as $scope)
+        <a class="scope" href="#scopes">{{ $scope }}</a>
+    @endforeach
+</span>
 @endif
 
 {!! $topDescription !!}
