@@ -422,8 +422,6 @@ class UsersController extends Controller
      *
      * See [Get User](#get-user).
      *
-     * @authenticated
-     *
      * @urlParam mode [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
      *
      * @response "See User object section"

@@ -37,8 +37,6 @@ class ScoresController extends BaseController
      *
      * Returns [MultiplayerScores](#multiplayerscores) object.
      *
-     * @authenticated
-     *
      * @urlParam room required Id of the room.
      * @urlParam playlist required Id of the playlist item.
      *
@@ -110,8 +108,6 @@ class ScoresController extends BaseController
      *
      * Returns [MultiplayerScore](#multiplayerscore) object.
      *
-     * @authenticated
-     *
      * @urlParam room required Id of the room.
      * @urlParam playlist required Id of the playlist item.
      * @urlParam score required Id of the score.
@@ -141,8 +137,6 @@ class ScoresController extends BaseController
      * ### Response Format
      *
      * Returns [MultiplayerScore](#multiplayerscore) object.
-     *
-     * @authenticated
      *
      * @urlParam room required Id of the room.
      * @urlParam playlist required Id of the playlist item.
