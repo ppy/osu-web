@@ -11,6 +11,7 @@ use App\Libraries\CommentBundle;
 use App\Libraries\MorphMap;
 use App\Models\Comment;
 use App\Models\Log;
+use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -79,6 +80,16 @@ class CommentsController extends Controller
     public function index()
     {
         $params = request()->all();
+
+        $userId = $params['user_id'] ?? null;
+
+        if ($userId !== null) {
+            $user = User::lookup($userId, 'id', true);
+
+            if ($user === null || !priv_check('UserShow', $user)->can()) {
+                abort(404);
+            }
+        }
 
         $id = $params['commentable_id'] ?? null;
         $type = $params['commentable_type'] ?? null;

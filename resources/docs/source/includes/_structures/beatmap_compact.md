@@ -7,6 +7,7 @@ Field             | Type                  | Description
 difficulty_rating | float                 | |
 id                | integer               | |
 mode              | [GameMode](#gamemode) | |
+total_length      | integer               | |
 version           | string                | |
 
 Optional attributes:
