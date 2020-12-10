@@ -784,7 +784,6 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
-        $this->ensureHasPlayed($user);
 
         if ($user->isModerator()) {
             return 'ok';
