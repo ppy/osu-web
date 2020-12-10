@@ -50,22 +50,22 @@
 @endif
 @endif
 
-@if($helper->requiresAuthentication($uri))
+{!! $topDescription !!}
+
+### HTTP Request
+@foreach($route['methods'] as $method)
+@if($helper->requiresAuthentication($uri, $method))
 <small class="authenticated">Requires authentication</small>
 @endif
 
-@if($helper->hasScopes($uri))
+@if($helper->hasScopes($uri, $method))
 <span class="scope-list">
-    @foreach($helper->getScopes($uri) as $scope)
+    @foreach($helper->getScopes($uri, $method) as $scope)
         <a class="scope" href="#scopes">{{ $scope }}</a>
     @endforeach
 </span>
 @endif
 
-{!! $topDescription !!}
-
-### HTTP Request
-@foreach($route['methods'] as $method)
 `{{$method}} {{ $displayUri }}`
 
 @endforeach

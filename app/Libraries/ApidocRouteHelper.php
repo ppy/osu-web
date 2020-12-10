@@ -7,7 +7,7 @@ namespace App\Libraries;
 
 class ApidocRouteHelper
 {
-    private $routeScopes;
+    private $routeScopes = [];
 
     public static function instance()
     {
@@ -25,21 +25,29 @@ class ApidocRouteHelper
         $routeScopesHelper = new RouteScopesHelper();
         $routeScopesHelper->loadRoutes();
 
-        $this->routeScopes = collect($routeScopesHelper->toArray())->keyBy('uri');
+        foreach ($routeScopesHelper->toArray() as $route) {
+            $key = $this->keyFor($route['uri'], $route['method']);
+            $this->routeScopes[$key] = $route;
+        }
     }
 
-    public function getScopes($uri)
+    public function getScopes(string $uri, string $method)
     {
-        return $this->routeScopes[$uri]['scopes'];
+        return $this->routeScopes[$this->keyFor($uri, $method)]['scopes'];
     }
 
-    public function hasScopes($uri)
+    public function hasScopes(string $uri, string $method)
     {
-        return !empty($this->routeScopes[$uri]['scopes']);
+        return !empty($this->routeScopes[$this->keyFor($uri, $method)]['scopes']);
     }
 
-    public function requiresAuthentication($uri)
+    public static function keyFor(string $uri, string $method)
     {
-        return in_array('require-scopes', $this->routeScopes[$uri]['middlewares'], true);
+        return "{$method}@{$uri}";
+    }
+
+    public function requiresAuthentication(string $uri, string $method)
+    {
+        return in_array('require-scopes', $this->routeScopes[$this->keyFor($uri, $method)]['middlewares'], true);
     }
 }
