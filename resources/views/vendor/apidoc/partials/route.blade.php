@@ -54,17 +54,15 @@
 
 ### HTTP Request
 @foreach($route['methods'] as $method)
-@if($helper->requiresAuthentication($uri, $method))
-<small class="authenticated">Requires authentication</small>
-@endif
 
-@if($helper->hasScopes($uri, $method))
 <span class="scope-list">
+    @if($helper->requiresAuthentication($uri, $method))
+        <span class="authenticated">Requires authentication</span>
+    @endif
     @foreach($helper->getScopes($uri, $method) as $scope)
         <a class="scope" href="#scopes">{{ $scope }}</a>
     @endforeach
 </span>
-@endif
 
 `{{$method}} {{ $displayUri }}`
 

@@ -43,6 +43,8 @@ v1      | _legacy api provided by the old site, will be deprecated soon_
 
 # Authentication
 
+Routes marked with this label <span class="authenticated">Requires authentication</span> require authentication.
+
 osu!api uses OAuth2 to grant access to the API. More information about applications you have registered and granted permissions to can be found [here](#managing-oauth-applications).
 
 The API supports the following grant types:
