@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 <?php
-    use App\Libraries\RouteScopesHelper;
+    use App\Libraries\ApidocRouteHelper;
 
     $uri = $route['uri'];
     $descriptions = explode("\n---\n", $route['metadata']['description'] ?? '');
@@ -13,9 +13,7 @@
 
     $displayUri = substr($uri, strlen('api/v2'));
 
-    $routeScopesHelper = new RouteScopesHelper();
-    $routeScopesHelper->loadRoutes();
-    $routeScopes = collect($routeScopesHelper->toArray())->keyBy('uri');
+    $helper = ApidocRouteHelper::instance();
 ?>
 <!-- START_{{$route['id']}} -->
 @if($route['metadata']['title'] != '')## {{ $route['metadata']['title']}}
@@ -52,13 +50,13 @@
 @endif
 @endif
 
-@if(in_array('require-scopes', $routeScopes[$uri]['middlewares'], true))
+@if($helper->requiresAuthentication($uri))
 <small class="authenticated">Requires authentication</small>
 @endif
 
-@if(!empty($routeScopes[$uri]['scopes']))
+@if($helper->hasScopes($uri))
 <span class="scope-list">
-    @foreach($routeScopes[$uri]['scopes'] as $scope)
+    @foreach($helper->getScopes($uri) as $scope)
         <a class="scope" href="#scopes">{{ $scope }}</a>
     @endforeach
 </span>
