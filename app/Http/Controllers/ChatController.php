@@ -15,7 +15,7 @@ class ChatController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'verify-user']);
 
         return parent::__construct();
     }
