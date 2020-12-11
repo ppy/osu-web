@@ -35,7 +35,7 @@ export default class SocketWorker {
   private timeout: TimeoutCollection = {};
   private ws: WebSocket | null | undefined;
   private xhr: XHRCollection = {};
-  @observable private xhrLoadingState: XHRLoadingStateCollection = {};
+  private xhrLoadingState: XHRLoadingStateCollection = {};
 
   @computed
   get isConnected() {

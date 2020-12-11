@@ -53,7 +53,7 @@ export default class Worker implements DispatchListener {
   private firstLoadedAt?: Date;
   private timeout: TimeoutCollection = {};
   private xhr: XHRCollection = {};
-  @observable private xhrLoadingState: XHRLoadingStateCollection = {};
+  private xhrLoadingState: XHRLoadingStateCollection = {};
 
   constructor(private readonly socketWorker: SocketWorker) {
     observe(this.socketWorker, 'connectionStatus', (change) => {
