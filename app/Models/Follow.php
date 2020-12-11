@@ -19,6 +19,8 @@ class Follow extends Model
 {
     use Validatable;
 
+    const DEFAULT_SUBTYPE = 'forum_topic';
+
     const SUBTYPES = [
         'comment' => Comment::COMMENTABLES,
 

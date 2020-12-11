@@ -204,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Settings',
+            'follows' => 'Watchlists',
             'friends' => 'Friends',
             'logout' => 'Sign Out',
             'profile' => 'My Profile',
