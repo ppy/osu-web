@@ -8,7 +8,7 @@ import XHRCollection from 'interfaces/xhr-collection';
 import XHRLoadingStateCollection from 'interfaces/xhr-loading-state-collection';
 import { route } from 'laroute';
 import { forEach, random } from 'lodash';
-import { action, computed, observable, observe } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import { NotificationEventLogoutJson, NotificationEventVerifiedJson } from 'notifications/notification-events';
 import SocketMessageEvent from 'socket-message-event';
 
@@ -40,15 +40,6 @@ export default class SocketWorker {
   @computed
   get isConnected() {
     return this.connectionStatus === 'connected';
-  }
-
-  constructor() {
-    const disposer = observe(this, 'connectionStatus', (change) => {
-      if (change.newValue === 'connected') {
-        this.hasConnectedOnce = true;
-        disposer();
-      }
-    });
   }
 
   boot() {
@@ -91,6 +82,7 @@ export default class SocketWorker {
     this.ws = new WebSocket(`${this.endpoint}?csrf=${token}`);
     this.ws.addEventListener('open', () => {
       this.connectionStatus = 'connected';
+      this.hasConnectedOnce = true;
     });
     this.ws.addEventListener('close', this.reconnectWebSocket);
     this.ws.addEventListener('message', this.handleNewEvent);
