@@ -27,11 +27,12 @@ return [
         'empty' => 'No mappers watched.',
         'page_title' => 'mapper watchlist',
         'title' => 'mapper',
+
         'to_0' => 'stop notifying me when this user uploads new beatmap',
         'to_1' => 'notify me when this user uploads new beatmap',
     ],
 
     'modding' => [
-        'title' => 'modding',
+        'title' => 'beatmap discussion',
     ],
 ];

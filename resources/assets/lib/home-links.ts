@@ -6,22 +6,22 @@ import { route } from 'laroute';
 export default function homeLinks(active: string) {
   return [
     {
-      active: active === 'home@index',
+      active: active === 'home',
       title: osu.trans('home.user.title'),
       url: route('home'),
     },
     {
-      active: active === 'friends@index',
+      active: active === 'friends.index',
       title: osu.trans('friends.title_compact'),
       url: route('friends.index'),
     },
     {
-      active: active === 'follows@index',
+      active: active === 'follows.index',
       title: osu.trans('follows.index.title_compact'),
-      url: route('follows.index', { subtype: 'comment' }),
+      url: route('follows.index', { subtype: 'forum_topic' }),
     },
     {
-      active: active === 'account@edit',
+      active: active === 'account.edit',
       title: osu.trans('accounts.edit.title_compact'),
       url: route('account.edit'),
     },
