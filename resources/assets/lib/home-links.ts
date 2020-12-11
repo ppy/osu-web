@@ -18,7 +18,7 @@ export default function homeLinks(active: string) {
     {
       active: active === 'follows@index',
       title: osu.trans('follows.index.title_compact'),
-      url: route('follows.index', { subtype: 'comment' }),
+      url: route('follows.index', { subtype: 'forum_topic' }),
     },
     {
       active: active === 'account@edit',
