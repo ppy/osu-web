@@ -84,6 +84,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
+      # Settings for elasticsearch
+      # https://github.com/elastic/elastic-github-actions/tree/master/elasticsearch#usage
       - name: Configure sysctl limits
         run: |
           sudo swapoff -a
