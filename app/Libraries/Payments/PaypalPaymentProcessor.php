@@ -168,7 +168,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
         static $ignored_statuses = ['new_case'];
 
         return in_array($status, $ignored_statuses, true)
-            || $status === 'Processed' && $this['txn_type'] === 'masspay'; // ignore masspay
+            || $this['txn_type'] === 'masspay'; // masspay may have payment_status set.
     }
 
     /**
