@@ -3,9 +3,6 @@
 
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { dispatch } from 'app-dispatcher';
-import TimeoutCollection from 'interfaces/timeout-collection';
-import XHRCollection from 'interfaces/xhr-collection';
-import XHRLoadingStateCollection from 'interfaces/xhr-loading-state-collection';
 import { route } from 'laroute';
 import { forEach, random } from 'lodash';
 import { action, computed, observable } from 'mobx';
@@ -32,10 +29,10 @@ export default class SocketWorker {
   userId: number | null = null;
   @observable private active: boolean = false;
   private endpoint?: string;
-  private timeout: TimeoutCollection = {};
+  private timeout: Record<string, number> = {};
   private ws: WebSocket | null | undefined;
-  private xhr: XHRCollection = {};
-  private xhrLoadingState: XHRLoadingStateCollection = {};
+  private xhr: Record<string, JQueryXHR> = {};
+  private xhrLoadingState: Record<string, boolean> = {};
 
   @computed
   get isConnected() {

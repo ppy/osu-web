@@ -6,9 +6,6 @@ import { UserLogoutAction } from 'actions/user-login-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { NotificationBundleJson } from 'interfaces/notification-json';
-import TimeoutCollection from 'interfaces/timeout-collection';
-import XHRCollection from 'interfaces/xhr-collection';
-import XHRLoadingStateCollection from 'interfaces/xhr-loading-state-collection';
 import { route } from 'laroute';
 import { forEach } from 'lodash';
 import { observable, observe } from 'mobx';
@@ -50,10 +47,10 @@ const isNotificationEventReadJson = (arg: any): arg is NotificationEventReadJson
  */
 @dispatchListener
 export default class Worker implements DispatchListener {
-  private firstLoadedAt?: Date;
-  private timeout: TimeoutCollection = {};
-  private xhr: XHRCollection = {};
-  private xhrLoadingState: XHRLoadingStateCollection = {};
+  private timeout: Record<string, number> = {};
+  private xhr: Record<string, JQueryXHR> = {};
+  private xhrLoadingState: Record<string, boolean> = {};
+
 
   constructor(private readonly socketWorker: SocketWorker) {
     observe(this.socketWorker, 'connectionStatus', (change) => {
