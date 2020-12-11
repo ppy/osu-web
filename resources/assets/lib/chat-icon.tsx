@@ -43,7 +43,7 @@ export default class ChatIcon extends React.Component<Props> {
   }
 
   private unreadCountDisplay() {
-    if (core.socketWorker.hasConnectedOnce) {
+    if (core.notificationsWorker.hasData) {
       return osu.formatNumber(this.unreadCount);
     } else {
       return '...';

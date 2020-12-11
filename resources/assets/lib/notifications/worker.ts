@@ -8,7 +8,7 @@ import DispatchListener from 'dispatch-listener';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import { route } from 'laroute';
 import { forEach } from 'lodash';
-import { observable, observe } from 'mobx';
+import { action, computed, observable, observe } from 'mobx';
 import SocketMessageEvent from 'socket-message-event';
 import SocketWorker from 'socket-worker';
 import {
@@ -47,10 +47,15 @@ const isNotificationEventReadJson = (arg: any): arg is NotificationEventReadJson
  */
 @dispatchListener
 export default class Worker implements DispatchListener {
+  @observable private firstLoadedAt?: Date;
   private timeout: Record<string, number> = {};
   private xhr: Record<string, JQueryXHR> = {};
   private xhrLoadingState: Record<string, boolean> = {};
 
+  @computed
+  get hasData() {
+    return this.firstLoadedAt != null;
+  }
 
   constructor(private readonly socketWorker: SocketWorker) {
     observe(this.socketWorker, 'connectionStatus', (change) => {
@@ -98,6 +103,7 @@ export default class Worker implements DispatchListener {
     forEach(this.timeout, (timeout) => Timeout.clear(timeout));
   }
 
+  @action
   private loadBundle(data: NotificationBootJson) {
     dispatch(new NotificationEventMoreLoaded(data, { isWidget: true }));
     if (this.firstLoadedAt == null) {
