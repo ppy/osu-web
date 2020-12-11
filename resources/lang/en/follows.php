@@ -13,7 +13,7 @@ return [
     ],
 
     'modding' => [
-        'title' => 'modding',
+        'title' => 'beatmap discussion',
     ],
 
     'user' => [

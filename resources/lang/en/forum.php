@@ -127,7 +127,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'forum subscriptions',
+            'title_compact' => 'forum topic watchlist',
 
             'box' => [
                 'total' => 'Topics subscribed',
