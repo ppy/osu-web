@@ -52,7 +52,7 @@ export default class Main extends React.Component<Props, State> {
   }
 
   static getDerivedStateFromError(error: Error) {
-    // tslint:disable-next-line: no-console
+    // eslint-disable-next-line no-console
     console.error(error);
     return { hasError: true };
   }

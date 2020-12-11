@@ -97,7 +97,7 @@ export default class Editor extends React.Component<Props, State> {
         try {
           initialValue = JSON.parse(saved);
         } catch (error) {
-          // tslint:disable-next-line:no-console
+          // eslint-disable-next-line no-console
           console.error('invalid json in localStorage, ignoring');
           localStorage.removeItem(this.localStorageKey);
         }
@@ -164,7 +164,7 @@ export default class Editor extends React.Component<Props, State> {
     const regex = RegExp(BeatmapDiscussionHelper.TIMESTAMP_REGEX, 'g');
     let match;
 
-    // tslint:disable-next-line:no-conditional-assignment
+    // eslint-disable-next-line no-cond-assign
     while ((match = regex.exec(node.text)) !== null) {
       ranges.push({
         anchor: {path, offset: match.index},
