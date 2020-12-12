@@ -155,9 +155,17 @@ export default class Main extends React.Component<Props, State> {
     const type = this.controller.type;
     if (type.isEmpty) return null;
 
+    let isMarkingAsRead = type.isMarkingAsRead;
+
+    if (type.name == null) {
+      for(const name of this.typeNames) {
+        isMarkingAsRead ||= this.controller.getType(name).isMarkingAsRead;
+      }
+    }
+
     return (
       <NotificationReadButton
-        isMarkingAsRead={type.isMarkingAsRead}
+        isMarkingAsRead={isMarkingAsRead}
         onMarkAsRead={this.handleMarkAsRead}
         text={osu.trans('notifications.mark_read', { type: osu.trans(`notifications.filters.${type.name ?? '_'}`) })}
       />
