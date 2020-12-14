@@ -63,6 +63,19 @@
                             {{ trans('store.order.invoice') }}
                         </button>
                     @endif
+
+                    @if ($order->canUserCancel())
+                        <button
+                            class="btn-osu-big btn-osu-big--rounded-thin btn-osu-big--danger"
+                            data-confirm="{{ trans('store.order.cancel_confirm') }}"
+                            data-method="DELETE"
+                            data-url="{{ route('store.orders.destroy', $order) }}"
+                            data-reload-on-success="1"
+                            data-remote="1"
+                        >
+                            {{ trans('store.order.cancel') }}
+                        </button>
+                    @endif
                 </div>
             @endforeach
 

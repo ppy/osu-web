@@ -185,6 +185,11 @@ class Order extends Model
         return static::splitTransactionId($this->transaction_id)[0];
     }
 
+    /**
+     * Payment status that appears on the invoice.
+     *
+     * @return string
+     */
     public function getPaymentStatusText()
     {
         switch ($this->status) {
@@ -316,6 +321,11 @@ class Order extends Model
     public function canCheckout()
     {
         return in_array($this->status, ['incart', 'processing'], true);
+    }
+
+    public function canUserCancel()
+    {
+        return $this->status === 'processing';
     }
 
     public function hasInvoice()
