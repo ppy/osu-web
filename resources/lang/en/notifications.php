@@ -134,6 +134,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => 'New beatmap',
+
+                'user_beatmapset_new' => 'New beatmap ":title" by :username',
+                'user_beatmapset_new_compact' => 'New beatmap ":title"',
+                'user_beatmapset_new_group' => 'New beatmaps by :username',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medals',
 
@@ -142,16 +152,6 @@ return [
                 'user_achievement_unlock' => 'Unlocked ":title"!',
                 'user_achievement_unlock_compact' => 'Unlocked ":title"!',
                 'user_achievement_unlock_group' => 'Medals unlocked!',
-            ],
-        ],
-
-        'user_modding' => [
-            'user_beatmapset_new' => [
-                '_' => 'New beatmap',
-
-                'user_beatmapset_new' => 'New beatmap ":title" by :username',
-                'user_beatmapset_new_compact' => 'New beatmap ":title"',
-                'user_beatmapset_new_group' => 'New beatmaps by :username',
             ],
         ],
     ],
@@ -213,7 +213,7 @@ return [
                 'user_achievement_unlock_self' => 'You\'ve unlocked a new medal, ":title"!',
             ],
 
-            'user_modding' => [
+            'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username has created new beatmaps',
             ],
         ],
