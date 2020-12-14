@@ -16,15 +16,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Represents a Store Order.
  *
- * A user should only have 1 'active cart'.
- * The difference between the 'incart', 'processing' and 'checkout' statuses are:
- * - incart -> order is in cart and can be modified; adding a new item will add to the existing order.
- * - processing -> order is in cart and should not be modified.
- * - checkout -> cart is cleared; adding a new item should create a new cart.
- *
- * The contents of the cart should not be cleared until the payment request is
- *  successfully sent to the payment provider.
- * i.e. it should not be cleared immediately on checking out.
+ * Order states:
+ * - cancelled -> Order is cancelled.
+ * - incart -> Order is a cart and items can be modified. This is the only state which should allow items to be modified.
+ * - processing -> The checkout process for this Order has started.
+ * - checkout -> User-side of the payment approval process is complete; awaiting confirmation from payment processor.
+ * - paid -> Payment confirmed by payment processor.
+ * - shipped -> Physical order dispatched; not available in all cases.
+ * - delivered -> If we receive confirmation that the order was delivered; not available in all cases.
  *
  * @property Address $address
  * @property int|null $address_id
