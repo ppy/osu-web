@@ -76,17 +76,17 @@ class WikiController extends Controller
             return ujs_redirect(wiki_url($path, $locale));
         }
 
-        $page = Wiki\Page::lookupForController($path, $this->locale());
+        $page = Wiki\Page::lookupForController($path, $locale);
 
         if (!$page->isVisible()) {
             $redirectTarget = (new WikiRedirect())->sync()->resolve($path);
             if ($redirectTarget !== null && $redirectTarget !== $path) {
-                return ujs_redirect(wiki_url(ltrim($redirectTarget, '/')));
+                return ujs_redirect(wiki_url(ltrim($redirectTarget, '/'), $locale));
             }
 
-            $correctPath = Wiki\Page::searchPath($path, $this->locale());
+            $correctPath = Wiki\Page::searchPath($path, $locale);
             if ($correctPath !== null && $correctPath !== $path) {
-                return ujs_redirect(wiki_url($correctPath));
+                return ujs_redirect(wiki_url($correctPath, $locale));
             }
 
             $status = 404;

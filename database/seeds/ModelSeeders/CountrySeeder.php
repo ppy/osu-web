@@ -228,7 +228,7 @@ class CountrySeeder extends Seeder
             ['acronym' => 'PM', 'name' => 'Saint Pierre and Miquelon', 'display' => 0],
             ['acronym' => 'PN', 'name' => 'Pitcairn', 'display' => 0],
             ['acronym' => 'PR', 'name' => 'Puerto Rico', 'display' => 0],
-            ['acronym' => 'PS', 'name' => 'Palestinian Territory Occupied', 'display' => 0],
+            ['acronym' => 'PS', 'name' => 'Palestine, State of', 'display' => 0],
             ['acronym' => 'PT', 'name' => 'Portugal', 'display' => 1],
             ['acronym' => 'PW', 'name' => 'Palau', 'display' => 0],
             ['acronym' => 'PY', 'name' => 'Paraguay', 'display' => 1],

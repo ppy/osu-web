@@ -60,7 +60,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
         Route::resource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
-        Route::resource('watches', 'BeatmapsetWatchesController', ['only' => ['index', 'update', 'destroy']]);
+        // keeping old link alive
+        route_redirect('watches', 'follows.index');
+        Route::resource('watches', 'BeatmapsetWatchesController', ['only' => ['update', 'destroy']]);
 
         Route::group(['prefix' => 'discussions', 'as' => 'discussions.'], function () {
             Route::resource('votes', 'BeatmapsetDiscussionVotesController', ['only' => ['index']]);
@@ -134,7 +136,9 @@ Route::group(['middleware' => ['web']], function () {
 
                 Route::resource('topic-covers', 'TopicCoversController', ['only' => ['store', 'update', 'destroy']]);
 
-                Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['index', 'update']]);
+                // keeping old link alive
+                route_redirect('topic-watches', 'follows.index');
+                Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['update']]);
             });
 
             Route::post('forums/mark-as-read', 'ForumsController@markAsRead')->name('forums.mark-as-read');
@@ -207,6 +211,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');
 
         Route::resource('follows', 'FollowsController', ['only' => ['store']]);
+        Route::get('follows/{subtype?}', 'FollowsController@index')->name('follows.index');
         Route::delete('follows', 'FollowsController@destroy')->name('follows.destroy');
     });
 
@@ -462,14 +467,18 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::get('/news', 'LegacyInterOpController@news');
     Route::apiResource('users', 'InterOp\UsersController', ['only' => ['store']]);
 
-    Route::group(['as' => 'indexing.', 'prefix' => 'indexing'], function () {
-        Route::apiResource('bulk', 'InterOp\Indexing\BulkController', ['only' => ['store']]);
-    });
+    Route::group(['namespace' => 'InterOp'], function () {
+        Route::post('beatmapsets/{beatmapset}/broadcast-new', 'BeatmapsetsController@broadcastNew');
 
-    Route::group(['as' => 'user-groups.'], function () {
-        Route::post('user-group', 'InterOp\UserGroupsController@store')->name('store');
-        Route::delete('user-group', 'InterOp\UserGroupsController@destroy')->name('destroy');
-        Route::post('user-default-group', 'InterOp\UserGroupsController@setDefault')->name('store-default');
+        Route::group(['as' => 'indexing.', 'prefix' => 'indexing'], function () {
+            Route::apiResource('bulk', 'Indexing\BulkController', ['only' => ['store']]);
+        });
+
+        Route::group(['as' => 'user-groups.'], function () {
+            Route::post('user-group', 'UserGroupsController@store')->name('store');
+            Route::delete('user-group', 'UserGroupsController@destroy')->name('destroy');
+            Route::post('user-default-group', 'UserGroupsController@setDefault')->name('store-default');
+        });
     });
 });
 

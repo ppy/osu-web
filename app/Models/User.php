@@ -1307,6 +1307,11 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         );
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function follows()
     {
         return $this->hasMany(Follow::class);
@@ -1599,7 +1604,15 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     // TODO: we should rename this to currentUserJson or something.
     public function defaultJson()
     {
-        return json_item($this, 'User', ['blocks', 'friends', 'groups', 'is_admin', 'unread_pm_count', 'user_preferences']);
+        return json_item($this, 'User', [
+            'blocks',
+            'follow_user_modding',
+            'friends',
+            'groups',
+            'is_admin',
+            'unread_pm_count',
+            'user_preferences',
+        ]);
     }
 
     public function supportLength()

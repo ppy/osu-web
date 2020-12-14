@@ -8,6 +8,7 @@ return [
         'disabled' => 'This beatmap is currently not available for download.',
         'parts-removed' => 'Portions of this beatmap have been removed at the request of the creator or a third-party rights holder.',
         'more-info' => 'Check here for more information.',
+        'rule_violation' => 'Some assets contained within this map have been removed after being judged as not being suitable for use in osu!.',
     ],
 
     'index' => [

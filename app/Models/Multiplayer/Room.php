@@ -58,6 +58,13 @@ class Room extends Model
         $user = $params['user'];
         $sort = 'created';
 
+        $category = presence(get_string($params['category'] ?? null)) ?? 'any';
+        if ($category === 'any') {
+            $query->where('category', '<>', 'realtime');
+        } else {
+            $query->where('category', $category);
+        }
+
         switch ($mode) {
             case 'ended':
                 $query->ended();
@@ -71,11 +78,6 @@ class Room extends Model
                 break;
             default:
                 $query->active();
-        }
-
-        $category = presence(get_string($params['category'] ?? null)) ?? 'any';
-        if ($category !== 'any') {
-            $query->where('category', $category);
         }
 
         $cursorHelper = new DbCursorHelper(static::SORTS, $sort);
@@ -122,7 +124,9 @@ class Room extends Model
     {
         return $query
             ->where('starts_at', '<', Carbon::now())
-            ->where('ends_at', '>', Carbon::now());
+            ->where(function ($q) {
+                $q->where('ends_at', '>', Carbon::now())->orWhereNull('ends_at');
+            });
     }
 
     public function scopeEnded($query)
@@ -147,13 +151,13 @@ class Room extends Model
 
     public function hasEnded()
     {
-        return Carbon::now()->gte($this->ends_at);
+        return $this->ends_at !== null && Carbon::now()->gte($this->ends_at);
     }
 
     public function isScoreSubmissionStillAllowed()
     {
-        // TODO: move grace period to config.
-        return Carbon::now()->lte($this->ends_at->addMinutes(5));
+        // TODO: move grace period to config or use the beatmap's duration
+        return $this->ends_at === null || Carbon::now()->lte($this->ends_at->addMinutes(5));
     }
 
     /**
@@ -204,7 +208,12 @@ class Room extends Model
         $this->name = $params['name'] ?? null;
         $this->user_id = $owner->getKey();
         $this->max_attempts = get_int($params['max_attempts'] ?? null);
-        $this->starts_at = Carbon::parse($params['starts_at'] ?? null);
+        $this->starts_at = now();
+
+        $category = $params['category'] ?? null;
+        if ($category === 'realtime') {
+            $this->category = $category;
+        }
 
         if ($params['ends_at'] ?? null !== null) {
             $this->ends_at = Carbon::parse($params['ends_at']);
@@ -224,7 +233,13 @@ class Room extends Model
             $playlistItems[] = PlaylistItem::fromJsonParams($item);
         }
 
-        if (count($playlistItems) < 1) {
+        $playlistItemsCount = count($playlistItems);
+
+        if ($this->category === 'realtime' && $playlistItemsCount !== 1) {
+            throw new InvariantException('realtime room must have exactly one playlist item');
+        }
+
+        if ($playlistItemsCount < 1) {
             throw new InvariantException('room must have at least one playlist item');
         }
 
@@ -296,14 +311,20 @@ class Room extends Model
 
     private function assertValidStartGame()
     {
-        foreach (['name', 'starts_at', 'ends_at'] as $field) {
+        foreach (['name'] as $field) {
             if (!present($this->$field)) {
                 throw new InvariantException("'{$field}' is required");
             }
         }
 
-        if ($this->starts_at->addMinutes(30)->gt($this->ends_at)) {
-            throw new InvariantException("'ends_at' must be at least 30 minutes after 'starts_at'");
+        if ($this->category !== 'realtime') {
+            if ($this->ends_at === null) {
+                throw new InvariantException("'ends_at' is required");
+            }
+
+            if ($this->starts_at->addMinutes(30)->gt($this->ends_at)) {
+                throw new InvariantException("'ends_at' must be at least 30 minutes after 'starts_at'");
+            }
         }
 
         if ($this->max_attempts !== null) {

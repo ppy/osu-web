@@ -30,6 +30,7 @@ class UserTransformer extends UserCompactTransformer
         $profileCustomization = $this->userProfileCustomization($user);
 
         return array_merge($result, [
+            'comments_count' => $user->comments()->count(),
             'cover_url' => $profileCustomization->cover()->url(),
             'discord' => $user->user_discord,
             'has_supported' => $user->hasSupported(),
