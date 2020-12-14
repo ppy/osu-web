@@ -4,6 +4,10 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
+isTurbolinksPermanent = (element) =>
+  element.dataset.turbolinksPermanent? && element.id != ''
+
+
 export class ReactTurbolinks
   constructor: (@components = {}) ->
     @documentReady = false
@@ -35,17 +39,24 @@ export class ReactTurbolinks
 
   deleteLoadedMarker: =>
     @allTargets ({ target }) =>
-      delete target.dataset.reactTurbolinksLoaded if target.dataset.reactTurbolinksLoaded?
+      if !isTurbolinksPermanent(target) && target.dataset.reactTurbolinksLoaded?
+        delete target.dataset.reactTurbolinksLoaded
 
 
   destroy: =>
     @allTargets ({ target, component }) =>
-      if target.dataset.reactTurbolinksLoaded == '1' && !component.persistent
+      if !isTurbolinksPermanent(target) && target.dataset.reactTurbolinksLoaded == '1' && !component.persistent
         ReactDOM.unmountComponentAtNode target
 
 
   destroyPersisted: =>
-    ReactDOM.unmountComponentAtNode(target) while target = @targets.pop()
+    for target, i in @targets
+      return if isTurbolinksPermanent(target) && document.body.contains(target)
+
+      ReactDOM.unmountComponentAtNode(target)
+      @targets[i] = null
+
+    @targets = t for t in @targets.slice() when t?
 
 
   onBeforeCache: =>
