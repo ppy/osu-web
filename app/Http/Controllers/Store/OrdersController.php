@@ -22,10 +22,7 @@ class OrdersController extends Controller
     public function destroy($id)
     {
         $order = auth()->user()->orders()->findOrFail($id);
-
-        if ($order->canUserCancel()) {
-            $order->cancel();
-        }
+        $order->cancel(auth()->user());
 
         return response(null, 204);
     }

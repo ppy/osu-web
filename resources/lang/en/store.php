@@ -71,6 +71,7 @@ return [
     'order' => [
         'cancel' => 'Cancel Order',
         'cancel_confirm' => 'This order will be cancelled and payment will not be accepted for it. The payment provider might not release funds any reserved funds immediately. Are you sure?',
+        'cancel_not_allowed' => 'This order cannot be cancelled at this time.',
         'invoice' => 'View Invoice',
         'no_orders' => 'No orders to view.',
         'paid_on' => 'Order placed :date',

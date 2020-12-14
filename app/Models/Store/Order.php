@@ -5,6 +5,7 @@
 
 namespace App\Models\Store;
 
+use App\Exceptions\InvariantException;
 use App\Exceptions\OrderNotModifiableException;
 use App\Models\Country;
 use App\Models\SupporterTag;
@@ -403,8 +404,18 @@ class Order extends Model
         $this->saveOrExplode();
     }
 
-    public function cancel()
+    public function cancel(?User $user = null)
     {
+        if ($this->status === 'cancelled') {
+            return;
+        }
+
+        // TODO: Payment processors should set a context variable flagging the user check to be skipped.
+        // This is currently only fine because the Orders controller requires auth.
+        if ($user !== null && $this->user_id === $user->getKey() && !$this->canUserCancel()) {
+            throw new InvariantException(trans('store.order.cancel_not_allowed'));
+        }
+
         $this->status = 'cancelled';
         $this->saveOrExplode();
     }
