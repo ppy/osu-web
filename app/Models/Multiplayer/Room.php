@@ -208,7 +208,7 @@ class Room extends Model
         $this->name = $params['name'] ?? null;
         $this->user_id = $owner->getKey();
         $this->max_attempts = get_int($params['max_attempts'] ?? null);
-        $this->starts_at = Carbon::parse($params['starts_at'] ?? null);
+        $this->starts_at = now();
 
         $category = $params['category'] ?? null;
         if ($category === 'realtime') {
@@ -311,7 +311,7 @@ class Room extends Model
 
     private function assertValidStartGame()
     {
-        foreach (['name', 'starts_at'] as $field) {
+        foreach (['name'] as $field) {
             if (!present($this->$field)) {
                 throw new InvariantException("'{$field}' is required");
             }
