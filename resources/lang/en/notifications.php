@@ -6,6 +6,7 @@
 return [
     'all_read' => 'All notifications read!',
     'delete' => 'Delete :type',
+    'loading' => 'Loading unread notifications...',
     'mark_read' => 'Clear :type',
     'none' => 'No notifications',
     'see_all' => 'see all notifications',
