@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => '삭제',
-            'restore' => '복원',
             'edit' => '수정',
+            'report' => '',
+            'restore' => '복원',
         ],
 
         'create' => [

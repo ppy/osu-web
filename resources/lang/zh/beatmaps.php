@@ -252,6 +252,7 @@ return [
         'converts' => '包括转谱',
     ],
     'mode' => [
+        'all' => '全部',
         'any' => '所有',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

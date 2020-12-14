@@ -5,9 +5,11 @@
 
 return [
     'all_read' => '通知は全て既読です！',
+    'delete' => '',
     'mark_read' => '消去 :type',
     'none' => '通知なし',
     'see_all' => 'すべての通知を見る',
+    'see_channel' => '',
 
     'filters' => [
         '_' => '全て',
@@ -57,8 +59,8 @@ return [
                 'beatmapset_qualify_compact' => 'ビートマップがランキングのキューに入りました',
                 'beatmapset_rank' => '「:title」はrankedされました。',
                 'beatmapset_rank_compact' => 'ビートマップがrankedされました。',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved' => '「:title」はlovedから削除されました',
+                'beatmapset_remove_from_loved_compact' => 'ビートマップはlovedから削除されました',
                 'beatmapset_reset_nominations' => ':usernameの問題点投稿によりビートマップ「:title」のノミネーションがリセットされました。 ',
                 'beatmapset_reset_nominations_compact' => 'ノミネーションがリセットされました。',
             ],
@@ -161,7 +163,7 @@ return [
                 'beatmapset_nominate' => '「:title」はノミネートされました',
                 'beatmapset_qualify' => '「:title」は十分なノミネートを獲得し、ランキングキューに入りました',
                 'beatmapset_rank' => '「:title」はrankedされました',
-                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved' => '「:title」はlovedから削除されました',
                 'beatmapset_reset_nominations' => '「:title」のノミネーションがリセットされました',
             ],
 

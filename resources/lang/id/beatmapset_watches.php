@@ -8,6 +8,11 @@ return [
         'description' => 'Berikut adalah diskusi beatmap yang Anda amati. Anda akan diberitahu jika ada pembaruan atau kiriman terbaru.',
         'title_compact' => 'daftar pengamatan modding',
 
+        'counts' => [
+            'total' => 'Beatmap-beatmap yang diamati',
+            'unread' => 'Beatmap-beatmap dengan aktivitas baru',
+        ],
+
         'table' => [
             'empty' => 'Tidak ada diskusi beatmap yang diamati.',
             'open_issues' => 'Masalah yang ditemukan',

@@ -587,16 +587,6 @@ class OsuAuthorize
             return $prefix.'exhausted';
         }
 
-        if ($user->isLimitedBN()) {
-            if ($beatmapset->playmodeCount() > 1) {
-                return $prefix.'full_bn_required_hybrid';
-            }
-
-            if ($beatmapset->requiresFullBNNomination()) {
-                return $prefix.'full_bn_required';
-            }
-        }
-
         return 'ok';
     }
 
@@ -1127,7 +1117,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($forum->moderator_groups !== null && !empty(array_intersect($user->groupIds(), $forum->moderator_groups))) {
+        if ($forum->moderator_groups !== null && !empty(array_intersect($user->groupIds()['active'], $forum->moderator_groups))) {
             return 'ok';
         }
 

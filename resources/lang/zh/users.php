@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '成员按游戏模式筛选',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "您已经很长时间没有使用您的账户了。",

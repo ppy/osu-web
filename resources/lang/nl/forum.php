@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Verwijder bericht',
-            'restore' => 'Herstel bericht',
             'edit' => 'Bewerk bericht',
+            'report' => '',
+            'restore' => 'Herstel bericht',
         ],
 
         'create' => [

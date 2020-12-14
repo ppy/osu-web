@@ -12,3 +12,4 @@ reactTurbolinks.registerPersistent 'comments-index', CommentsManager, true, ->
   core.dataStore.uiState.initializeWithCommentBundleJson(commentBundle)
 
   component: Main
+  user: commentBundle.user

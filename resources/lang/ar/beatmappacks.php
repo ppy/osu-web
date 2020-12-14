@@ -31,6 +31,10 @@ return [
             'cleared' => 'ممحو',
             'not_cleared' => 'غير ممحو',
         ],
+        'no_diff_reduction' => [
+            '_' => '',
+            'link' => '',
+        ],
     ],
 
     'mode' => [

@@ -14,6 +14,11 @@ return [
         'title' => 'Rapporteer :username\'s reactie?',
     ],
 
+    'forum_post' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Rapporteer Score',
         'title' => 'Rapporteer :username\'s score?',

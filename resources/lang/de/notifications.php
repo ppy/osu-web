@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Alle Benachrichtigungen gelesen!',
+    'delete' => ':type löschen',
     'mark_read' => 'Lösche :type',
     'none' => 'Keine Benachrichtigungen',
     'see_all' => 'alle benachrichtigungen ansehen',
+    'see_channel' => 'zum chat gehen',
 
     'filters' => [
         '_' => 'alle',
@@ -49,16 +51,16 @@ return [
                 '_' => 'Beatmap-Status geändert',
                 'beatmapset_disqualify' => '":title" wurde disqualifiziert',
                 'beatmapset_disqualify_compact' => 'Beatmap wurde disqualifiziert',
-                'beatmapset_love' => '":title" hat loved-Status erlangt',
-                'beatmapset_love_compact' => 'Beatmap hat loved-Status erlangt',
+                'beatmapset_love' => '":title" hat Loved-Status erlangt',
+                'beatmapset_love_compact' => 'Beatmap hat Loved-Status erlangt',
                 'beatmapset_nominate' => '":title" wurde nominiert',
                 'beatmapset_nominate_compact' => 'Beatmap wurde nominiert',
                 'beatmapset_qualify' => '":title" hat genug Nominierungen erhalten und wurde in die Ranglisten-Warteschlange aufgenommen',
                 'beatmapset_qualify_compact' => 'Beatmap wurde in die Ranglisten-Warteschlange aufgenommen',
                 'beatmapset_rank' => '":title" wurde ranked',
                 'beatmapset_rank_compact' => 'Beatmap wurde ranked',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved' => '":title" hat Loved-Status verloren',
+                'beatmapset_remove_from_loved_compact' => 'Beatmap hat Loved-Status verloren',
                 'beatmapset_reset_nominations' => 'Nominierung von ":title" wurde zurückgesetzt',
                 'beatmapset_reset_nominations_compact' => 'Nominierung wurde zurückgesetzt',
             ],
@@ -157,11 +159,11 @@ return [
 
             'beatmapset_state' => [
                 'beatmapset_disqualify' => '":title" wurde disqualifiziert',
-                'beatmapset_love' => '":title" hat loved-Status erlangt',
+                'beatmapset_love' => '":title" hat Loved-Status erlangt',
                 'beatmapset_nominate' => '":title" wurde nominiert',
                 'beatmapset_qualify' => '":title" hat genug Nominierungen erhalten und wurde in die Ranglisten-Warteschlange aufgenommen',
                 'beatmapset_rank' => '":title" wurde ranked',
-                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved' => '":title" hat Loved-Status verloren',
                 'beatmapset_reset_nominations' => 'Nominierung von ":title" wurde zurückgesetzt',
             ],
 

@@ -5,6 +5,7 @@ import NotificationJson from 'interfaces/notification-json';
 import { camelCase, forEach } from 'lodash';
 import { computed, observable } from 'mobx';
 import NotificationDetails, { newEmptyNotificationDetails } from 'models/notification-details';
+import { Name } from 'models/notification-type';
 import { categoryFromName, categoryGroupKey } from 'notification-maps/category';
 import { displayType } from 'notification-maps/type';
 import NotificationDeletable from 'notifications/notification-deletable';
@@ -59,7 +60,7 @@ export default class Notification implements NotificationReadable, NotificationD
     return this.details.title;
   }
 
-  constructor(readonly id: number, readonly objectType: string) {}
+  constructor(readonly id: number, readonly objectType: Name) {}
 
   static fromJson(json: NotificationJson): Notification {
     const obj = new Notification(json.id, json.object_type);

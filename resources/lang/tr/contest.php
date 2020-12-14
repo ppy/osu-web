@@ -48,8 +48,8 @@ return [
     ],
     'vote' => [
         'list' => 'oylar',
-        'count' => ':count oy|:count oy',
-        'points' => ':count puan|:count puan',
+        'count' => ':count_delimited oy|:count_delimited oy',
+        'points' => ':count_delimited puan|:count_delimited puan',
     ],
     'dates' => [
         'ended' => ':date tarihinde sona erdi',

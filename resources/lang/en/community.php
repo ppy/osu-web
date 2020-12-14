@@ -129,7 +129,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Upload More Beatmaps',
-                'description' => 'How many non-ranked beatmaps you can have at once is calculated from a base value plus an additional bonus for each ranked beatmap you currently have (up to a limit).<br/><br/>Normally this is :base plus :bonus per ranked beatmap (up to :bonus_max). With supporter, this increases to :supporter_base plus :supporter_bonus per ranked beatmap (up to :supporter_bonus_max).',
+                'description' => 'How many pending beatmaps you can have at once is calculated from a base value plus an additional bonus for each ranked beatmap you currently have (up to a limit).<br/><br/>Normally this is :base plus :bonus per ranked beatmap (up to :bonus_max). With supporter, this increases to :supporter_base plus :supporter_bonus per ranked beatmap (up to :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Friend Leaderboards',

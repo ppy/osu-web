@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Toate notificările citite!',
+    'delete' => '',
     'mark_read' => 'Curăță :type',
     'none' => 'Nicio notificare',
     'see_all' => 'vedeți toate notificările',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'tot',

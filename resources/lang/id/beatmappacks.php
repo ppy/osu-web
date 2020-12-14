@@ -31,6 +31,10 @@ return [
             'cleared' => 'telah dimainkan',
             'not_cleared' => 'belum dimainkan',
         ],
+        'no_diff_reduction' => [
+            '_' => 'Anda tidak boleh menggunakan :link untuk dapat membuka medali yang terhubung dengan paket beatmap ini.',
+            'link' => 'mod-mod yang mempermudah permainan (EZ, NF, atau HT)',
+        ],
     ],
 
     'mode' => [

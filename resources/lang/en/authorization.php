@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
-            'full_bn_required' => 'You must be a full nominator to perform this qualifying nomination.',
-            'full_bn_required_hybrid' => 'You must be a full nominator to nominate beatmap sets with more than one game mode.',
             'incorrect_state' => 'Error performing that action, try refreshing the page.',
             'owner' => "Can't nominate own beatmap.",
             'set_metadata' => 'You must set the genre and language before nominating.',

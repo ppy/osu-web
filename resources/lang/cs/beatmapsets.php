@@ -48,12 +48,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
+            'approved' => 'schváleno :timeago',
             'loved' => '',
-            'qualified' => '',
+            'qualified' => 'kvalifikováno :timeago',
             'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'submitted' => 'odesláno :timeago',
+            'updated' => 'naposledy aktualizováno :timeago',
         ],
 
         'favourites' => [
@@ -74,11 +74,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => '',
+                '_' => 'Pokud najdete problém s touto mapou, diskvalifikujte ji prosím :link.',
             ],
 
             'report' => [
-                '_' => '',
+                '_' => 'Pokud najdete problém s touto mapou, nahlaste jej :link k upozornění týmu.',
                 'button' => 'Nahlásit problém',
                 'link' => 'zde',
             ],
@@ -114,7 +114,7 @@ return [
                 'rank' => 'Umístění',
                 'score_total' => 'Celkové skóre',
                 'score' => 'Skóre',
-                'time' => '',
+                'time' => 'Čas',
             ],
 
             'no_scores' => [

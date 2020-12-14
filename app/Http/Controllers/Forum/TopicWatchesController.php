@@ -6,7 +6,6 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Models\Forum\Topic;
-use App\Models\Forum\TopicTrack;
 use App\Models\Forum\TopicWatch;
 use Auth;
 
@@ -17,23 +16,6 @@ class TopicWatchesController extends Controller
         parent::__construct();
 
         $this->middleware('auth');
-    }
-
-    public function index()
-    {
-        $topics = Topic::watchedByUser(Auth::user())->paginate(50);
-        $topicReadStatus = TopicTrack::readStatus(Auth::user(), $topics);
-        $topicWatchStatus = TopicWatch::watchStatus(Auth::user(), $topics);
-
-        $counts = [
-            'total' => $topics->total(),
-            'unread' => TopicWatch::unreadCount(Auth::user()),
-        ];
-
-        return ext_view(
-            'forum.topic_watches.index',
-            compact('topics', 'topicReadStatus', 'topicWatchStatus', 'counts')
-        );
     }
 
     public function update($topicId)

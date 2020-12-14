@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Medlemmar efter spelläge',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Ditt konto har inte använts på länge.",

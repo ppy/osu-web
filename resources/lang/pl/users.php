@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Według trybu gry',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Brak aktywności przez długi czas.",

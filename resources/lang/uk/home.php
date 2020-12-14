@@ -76,7 +76,7 @@ return [
         'action' => 'Завантажити osu!',
 
         'help' => [
-            '_' => '',
+            '_' => 'якщо у вас виникла проблема з запуском гри чи реєстрацією облікового запису, :help_forum_link або :support_button.',
             'help_forum_link' => '',
             'support_button' => '',
         ],

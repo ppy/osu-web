@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Semua notifikasi telah dibaca!',
+    'delete' => 'Hapus :type',
     'mark_read' => 'Hapus :type',
     'none' => 'Tidak ada notifikasi',
     'see_all' => 'lihat semua notifikasi',
+    'see_channel' => 'tuju kanal obrolan',
 
     'filters' => [
         '_' => 'semua notifikasi',
@@ -47,7 +49,7 @@ return [
 
             'beatmapset_state' => [
                 '_' => 'Perubahan status beatmap',
-                'beatmapset_disqualify' => 'Beatmap ":title" telah didiskualifikasi oleh :username.',
+                'beatmapset_disqualify' => 'Beatmap ":title" telah didiskualifikasi',
                 'beatmapset_disqualify_compact' => 'Beatmap telah didiskualifikasi',
                 'beatmapset_love' => 'Beatmap ":title" telah diberikan status loved oleh :username.',
                 'beatmapset_love_compact' => 'Status beatmap dipromosikan menjadi loved',
@@ -57,8 +59,8 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmap telah memasuki antrian ranking',
                 'beatmapset_rank' => '":title" telah berstatus Ranked',
                 'beatmapset_rank_compact' => 'Beatmap telah berstatus Ranked',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved' => '":title" telah dilepas dari Loved',
+                'beatmapset_remove_from_loved_compact' => 'Beatmap telah dilepas dari Loved',
                 'beatmapset_reset_nominations' => 'Masalah yang dikemukakan oleh :username menganulir nominasi sebelumnya pada beatmap ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Nominasi beatmap dianulir',
             ],
@@ -161,7 +163,7 @@ return [
                 'beatmapset_nominate' => '":title" telah mendapatkan nominasi',
                 'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk memasuki antrian ranking',
                 'beatmapset_rank' => '":title" telah berstatus Ranked',
-                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved' => ':title telah dilepas dari Loved',
                 'beatmapset_reset_nominations' => 'Status nominasi pada ":title" telah dianulir',
             ],
 

@@ -186,10 +186,11 @@ class BeatmapsetsController extends Controller
     public function nominate($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
+        $params = get_params(request()->all(), null, ['playmodes:string[]']);
 
         priv_check('BeatmapsetNominate', $beatmapset)->ensureCan();
 
-        $nomination = $beatmapset->nominate(Auth::user());
+        $nomination = $beatmapset->nominate(Auth::user(), $params['playmodes'] ?? []);
         if (!$nomination['result']) {
             return error_popup($nomination['message']);
         }

@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Slet opslag',
-            'restore' => 'Gendan opslag',
             'edit' => 'Rediger opslag',
+            'report' => '',
+            'restore' => 'Gendan opslag',
         ],
 
         'create' => [

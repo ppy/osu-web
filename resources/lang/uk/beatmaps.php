@@ -187,17 +187,17 @@ return [
         'nominate_confirm' => 'Номінувати цю карту?',
         'nominated_by' => 'номінована :users',
         'not_enough_hype' => "Недостатньо хайпа.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Вилучено з категорії Loved',
+        'remove_from_loved_prompt' => 'Причина вилучення від категорії Loved:',
         'required_text' => 'Номінації: :current/:required',
         'reset_message_deleted' => 'видалено',
         'title' => 'Статус номінації',
         'unresolved_issues' => 'Є ще деякі проблеми, які потребують вирішення.',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
-            'soon' => '',
+            '_' => 'Ця карта стане рейтинговою :date, якщо ніяких проблем не буде знайдено. Вона #:position в #:queue.',
+            'queue' => 'рейтинговому списку',
+            'soon' => 'скоро',
         ],
 
         'reset_at' => [
@@ -252,6 +252,7 @@ return [
         'converts' => 'показувати конвертовані карти',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'Всі',
         'osu' => '',
         'taiko' => '',
