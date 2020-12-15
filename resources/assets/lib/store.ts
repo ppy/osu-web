@@ -114,6 +114,7 @@ export class Store {
       window.location.href = checkout.webUrl;
     } else {
       osu.popup(osu.trans('store.order.shopify_expired'), 'info');
+      LoadingOverlay.hide();
     }
   }
 
