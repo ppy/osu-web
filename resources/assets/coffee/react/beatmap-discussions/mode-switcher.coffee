@@ -22,8 +22,7 @@ export class ModeSwitcher extends React.PureComponent
 
 
   render: =>
-    modes = ['generalAll', 'general', 'timeline', 'events']
-    modes.unshift('reviews') if @props.reviewsEnabled
+    modes = ['reviews', 'generalAll', 'general', 'timeline', 'events']
 
     [
       div

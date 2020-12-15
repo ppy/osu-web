@@ -257,8 +257,6 @@ class BeatmapDiscussionsControllerTest extends TestCase
     {
         parent::setUp();
 
-        config()->set('osu.beatmapset.discussion_review_enabled', true);
-
         $this->mapper = factory(User::class)->create();
         $this->user = factory(User::class)->create();
         $this->anotherUser = factory(User::class)->create();

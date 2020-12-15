@@ -23,7 +23,6 @@ class BeatmapsetDiscussionReview
     public static function config()
     {
         return [
-            'enabled' => config('osu.beatmapset.discussion_review_enabled'),
             'max_blocks' => config('osu.beatmapset.discussion_review_max_blocks'),
         ];
     }
