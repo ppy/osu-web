@@ -65,7 +65,6 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
     let blockClass = classWithModifiers(bn, this.props.modifiers);
     blockClass += classWithModifiers(bn, { friend: this.state.follow }, true);
 
-
     const disabled = this.state.loading || currentUserProfile;
 
     return (
