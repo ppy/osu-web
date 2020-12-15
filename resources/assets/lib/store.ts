@@ -110,8 +110,11 @@ export class Store {
     LoadingOverlay.show.flush();
 
     const checkout = await client.checkout.fetch(checkoutId);
-
-    window.location.href = checkout.webUrl;
+    if (checkout != null) {
+      window.location.href = checkout.webUrl;
+    } else {
+      osu.popup(osu.trans('store.order.shopify_expired'), 'info');
+    }
   }
 
   private collectShopifyItems() {

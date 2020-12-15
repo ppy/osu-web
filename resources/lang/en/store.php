@@ -76,6 +76,7 @@ return [
         'no_orders' => 'No orders to view.',
         'paid_on' => 'Order placed :date',
         'resume' => 'Resume Checkout',
+        'shopify_expired' => 'The checkout link for this order has expired.',
 
         'item' => [
             'display_name' => [

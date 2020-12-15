@@ -45,7 +45,7 @@
                                 <span class="store-order__item-quantity">x{{ $item->quantity }}</span>
                         @endforeach
                     </ul>
-                    @if ($order->isShopify())
+                    @if ($order->isShopify() && $order->status !== 'cancelled')
                         <button
                             class="js-store-resume-checkout btn-osu-big btn-osu-big--rounded-thin"
                             data-order-id="{{ $order->getKey() }}"
