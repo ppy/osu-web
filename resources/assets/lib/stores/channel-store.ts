@@ -230,10 +230,6 @@ export default class ChannelStore {
     }
 
     this.channels.delete(channelId);
-
-    if (this.channels.size <= 0) {
-      this.loaded = false;
-    }
   }
 
   @action
