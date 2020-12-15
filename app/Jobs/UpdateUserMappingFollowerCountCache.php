@@ -10,7 +10,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class UpdateUserModdingFollowerCountCache implements ShouldQueue
+class UpdateUserMappingFollowerCountCache implements ShouldQueue
 {
     use InteractsWithQueue, Queueable;
 
@@ -33,6 +33,6 @@ class UpdateUserModdingFollowerCountCache implements ShouldQueue
      */
     public function handle()
     {
-        User::find($this->userId)->cacheModdingFollowerCount();
+        User::find($this->userId)->cacheMappingFollowerCount();
     }
 }

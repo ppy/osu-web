@@ -23,7 +23,7 @@ interface State {
 
 const bn = 'user-action-button';
 
-export default class FollowUserModdingButton extends React.Component<Props, State> {
+export default class FollowUserMappingButton extends React.Component<Props, State> {
   private buttonRef = React.createRef<HTMLButtonElement>();
   private eventId = `follow-user-modding-button-${osu.uuid()}`;
   private xhr?: JQueryXHR;
@@ -59,8 +59,8 @@ export default class FollowUserModdingButton extends React.Component<Props, Stat
 
     const currentUserProfile = currentUser.id === this.props.userId;
 
-    let title = osu.trans(`follows.user.modding.${this.state.follow ? 'to_0' : 'to_1'}`);
-    if (currentUserProfile) title = osu.trans(`follows.user.modding.disabled`);
+    let title = osu.trans(`follows.user.mapping.${this.state.follow ? 'to_0' : 'to_1'}`);
+    if (currentUserProfile) title = osu.trans(`follows.user.mapping.disabled`);
 
     let blockClass = classWithModifiers(bn, this.props.modifiers);
     blockClass += classWithModifiers(bn, { friend: this.state.follow }, true);

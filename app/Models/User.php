@@ -201,7 +201,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             'key' => 'followerCount',
             'duration' => 43200, // 12 hours
         ],
-        'modding_follower_count' => [
+        'mapping_follower_count' => [
             'key' => 'moddingFollowerCount',
             'duration' => 43200, // 12 hours
         ],
@@ -1351,10 +1351,10 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return UserRelation::where('zebra_id', $this->user_id)->where('friend', 1)->count();
     }
 
-    public function uncachedModdingFollowerCount()
+    public function uncachedMappingFollowerCount()
     {
         return Follow::where('notifiable_id', $this->user_id)
-            ->where('subtype', 'modding')
+            ->where('subtype', 'mapping')
             ->count();
     }
 
@@ -1371,14 +1371,14 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $count;
     }
 
-    public function cacheModdingFollowerCount()
+    public function cacheMappingFollowerCount()
     {
-        $count = $this->uncachedModdingFollowerCount();
+        $count = $this->uncachedMappingFollowerCount();
 
         Cache::put(
-            self::CACHING['modding_follower_count']['key'].':'.$this->user_id,
+            self::CACHING['mapping_follower_count']['key'].':'.$this->user_id,
             $count,
-            self::CACHING['modding_follower_count']['duration']
+            self::CACHING['mapping_follower_count']['duration']
         );
 
         return $count;
@@ -1389,9 +1389,9 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return get_int(Cache::get(self::CACHING['follower_count']['key'].':'.$this->user_id)) ?? $this->cacheFollowerCount();
     }
 
-    public function moddingFollowerCount()
+    public function mappingFollowerCount()
     {
-        return get_int(Cache::get(self::CACHING['modding_follower_count']['key'].':'.$this->user_id)) ?? $this->cacheModdingFollowerCount();
+        return get_int(Cache::get(self::CACHING['mapping_follower_count']['key'].':'.$this->user_id)) ?? $this->cacheMappingFollowerCount();
     }
 
     public function events()

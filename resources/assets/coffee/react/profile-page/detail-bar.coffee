@@ -54,10 +54,10 @@ export class DetailBar extends React.PureComponent
             alwaysVisible: true
 
         div className: "#{bn}__entry",
-          el FollowUserModdingButton,
+          el FollowUserMappingButton,
             userId: @props.user.id
             showFollowerCounter: true
-            followers: @props.user.modding_follower_count
+            followers: @props.user.mapping_follower_count
             modifiers: ['profile-page']
             alwaysVisible: true
 

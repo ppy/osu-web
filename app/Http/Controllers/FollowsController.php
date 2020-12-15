@@ -6,7 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Jobs\UpdateUserModdingFollowerCountCache;
+use App\Jobs\UpdateUserMappingFollowerCountCache;
 use App\Models\Follow;
 use Exception;
 
@@ -36,8 +36,8 @@ class FollowsController extends Controller
             }
         }
 
-        if ($params['subtype'] === 'modding') {
-            dispatch(new UpdateUserModdingFollowerCountCache($params['notifiable_id']));
+        if ($params['subtype'] === 'mapping') {
+            dispatch(new UpdateUserMappingFollowerCountCache($params['notifiable_id']));
         }
 
         return response([], 204);
@@ -52,8 +52,8 @@ class FollowsController extends Controller
             $follow->delete();
         }
 
-        if ($follow->subtype === 'modding') {
-            dispatch(new UpdateUserModdingFollowerCountCache($follow->notifiable_id));
+        if ($follow->subtype === 'mapping') {
+            dispatch(new UpdateUserMappingFollowerCountCache($follow->notifiable_id));
         }
 
         return response([], 204);
