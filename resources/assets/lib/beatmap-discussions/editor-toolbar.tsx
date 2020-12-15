@@ -106,7 +106,7 @@ export class EditorToolbar extends React.Component {
         return this.hide();
       }
 
-      for (const p of Editor.positions(this.context, { at: this.context.selection, unit: 'block' })) {
+      for (const p of Editor.positions(this.context, { at: this.context.selection ?? undefined, unit: 'block' })) {
         const block = Node.parent(this.context, p.path);
 
         if (block.type === 'embed') {
