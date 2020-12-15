@@ -3,7 +3,7 @@
 
 import { Rank } from './rank'
 import { BlockButton } from 'block-button'
-import FollowUserModdingButton from 'follow-user-modding-button'
+import FollowUserMappingButton from 'follow-user-mapping-button'
 import { FriendButton } from 'friend-button'
 import * as React from 'react'
 import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-factories'
@@ -52,7 +52,7 @@ export class DetailBar extends React.PureComponent
             followers: @props.user.follower_count
             modifiers: ['profile-page']
             alwaysVisible: true
-
+            
         div className: "#{bn}__entry",
           el FollowUserMappingButton,
             userId: @props.user.id
