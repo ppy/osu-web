@@ -92,9 +92,9 @@ export class Store {
     if (event.target == null) { return; }
 
     const target = event.target as HTMLElement;
-    const { provider, providerReference } = target.dataset;
+    const { provider, providerReference, status } = target.dataset;
 
-    if (provider === 'shopify') {
+    if (provider === 'shopify' && status !== 'cancelled') {
       if (providerReference != null) {
         this.resumeShopifyCheckout(providerReference);
       } else {

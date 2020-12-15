@@ -45,12 +45,13 @@
                                 <span class="store-order__item-quantity">x{{ $item->quantity }}</span>
                         @endforeach
                     </ul>
-                    @if ($order->isShopify() && $order->status !== 'cancelled')
+                    @if ($order->isShopify())
                         <button
                             class="js-store-resume-checkout btn-osu-big btn-osu-big--rounded-thin"
                             data-order-id="{{ $order->getKey() }}"
                             data-provider="{{ $order->getPaymentProvider() }}"
                             data-provider-reference="{{ $order->getProviderReference() }}"
+                            data-status="{{ $order->status }}"
                         >
                             {{ $order->status === 'processing' ? trans('store.order.resume') : trans('store.order.invoice') }}
                         </button>
@@ -59,6 +60,7 @@
                             class="js-store-resume-checkout btn-osu-big btn-osu-big--rounded-thin"
                             data-order-id="{{ $order->getKey() }}"
                             data-provider="{{ $order->getPaymentProvider() }}"
+                            data-status="{{ $order->status }}"
                         >
                             {{ trans('store.order.invoice') }}
                         </button>
