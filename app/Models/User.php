@@ -1606,7 +1606,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     {
         return json_item($this, 'User', [
             'blocks',
-            'follow_user_modding',
+            'follow_user_mapping',
             'friends',
             'groups',
             'is_admin',

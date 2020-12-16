@@ -13,6 +13,7 @@ const bn = 'beatmap-discussion-editor-toolbar';
 
 export class EditorToolbar extends React.Component {
   static contextType = SlateContext;
+  context!: React.ContextType<typeof SlateContext>;
   ref = React.createRef<HTMLDivElement>();
   scrollContainer: HTMLElement | undefined;
   private scrollTimer: number | undefined;
@@ -105,7 +106,7 @@ export class EditorToolbar extends React.Component {
         return this.hide();
       }
 
-      for (const p of Editor.positions(this.context, { at: this.context.selection, unit: 'block' })) {
+      for (const p of Editor.positions(this.context, { at: this.context.selection ?? undefined, unit: 'block' })) {
         const block = Node.parent(this.context, p.path);
 
         if (block.type === 'embed') {
