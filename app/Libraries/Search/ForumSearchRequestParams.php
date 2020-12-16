@@ -50,13 +50,13 @@ class ForumSearchRequestParams extends ForumSearchParams
                 break;
             case 'relevance':
                 $this->sorts[] = new Sort('_score', $order);
-                $this->sorts[] = new Sort('_id', $order);
                 break;
             default:
                 $validSort = false;
         }
 
         if ($validSort) {
+            $this->sorts[] = new Sort('_id', $order);
             $this->sortField = $field;
             $this->sortOrder = $order;
         }
