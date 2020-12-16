@@ -107,7 +107,6 @@ reactTurbolinks.register 'user-card', UserCard, (el) ->
   user: if el.dataset.isCurrentUser then currentUser else try JSON.parse(el.dataset.user)
 
 reactTurbolinks.register 'user-card-store', UserCardStore, (el) ->
-  container: el
   user: JSON.parse(el.dataset.user)
 
 reactTurbolinks.register 'user-card-tooltip', UserCardTooltip, (el) ->
