@@ -12,7 +12,7 @@
         <div class="user-home-beatmapset__title-container">
             @foreach ($beatmapset->playmodesStr() as $playmode)
                 <div class="user-home-beatmapset__playmode-icon">
-                    <span class="fas fa-extra-mode-{{$playmode}}"></span>
+                    <span class="fal fa-extra-mode-{{$playmode}}"></span>
                 </div>
             @endforeach
 
