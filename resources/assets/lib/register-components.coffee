@@ -21,6 +21,7 @@ import QuickSearch from 'quick-search/main'
 import QuickSearchButton from 'quick-search-button'
 import QuickSearchWorker from 'quick-search/worker'
 import RankingFilter from 'ranking-filter'
+import SocketWorker from 'socket-worker'
 import { SpotlightSelectOptions } from 'spotlight-select-options'
 import { UserCard } from 'user-card'
 import { UserCardStore } from 'user-card-store'
@@ -79,22 +80,11 @@ reactTurbolinks.register 'comments', CommentsManager, (el) ->
 
   props
 
-notificationWorker = new NotificationWorker()
-resetNotificationWorker = -> notificationWorker.setUserId(currentUser.id)
-$(document).ready resetNotificationWorker
-$.subscribe 'user:update', resetNotificationWorker
-
 reactTurbolinks.registerPersistent 'chat-icon', ChatIcon, true, (el) ->
-  props = (try JSON.parse(el.dataset.chatIcon)) ? {}
-  props.worker = notificationWorker
-
-  props
+  (try JSON.parse(el.dataset.chatIcon)) ? {}
 
 reactTurbolinks.registerPersistent 'notification-icon', NotificationIcon, true, (el) ->
-  props = (try JSON.parse(el.dataset.notificationIcon)) ? {}
-  props.worker = notificationWorker
-
-  props
+  (try JSON.parse(el.dataset.notificationIcon)) ? {}
 
 reactTurbolinks.registerPersistent 'notification-widget', NotificationWidget, true, (el) ->
   try JSON.parse(el.dataset.notificationWidget)

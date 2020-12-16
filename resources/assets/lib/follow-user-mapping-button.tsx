@@ -19,22 +19,22 @@ interface State {
 
 const bn = 'user-action-button';
 
-export default class FollowUserModdingButton extends React.Component<Props, State> {
+export default class FollowUserMappingButton extends React.Component<Props, State> {
   private buttonRef = React.createRef<HTMLButtonElement>();
-  private eventId = `follow-user-modding-button-${osu.uuid()}`;
+  private eventId = `follow-user-mapping-button-${osu.uuid()}`;
   private xhr?: JQueryXHR;
 
   constructor(props: Props) {
     super(props);
 
     this.state = {
-      follow: currentUser.follow_user_modding?.includes(this.props.userId) ?? false,
+      follow: currentUser.follow_user_mapping?.includes(this.props.userId) ?? false,
       loading: false,
     };
   }
 
   componentDidMount() {
-    $.subscribe(`followUserModding:refresh.${this.eventId}`, this.refresh);
+    $.subscribe(`followUserMapping:refresh.${this.eventId}`, this.refresh);
   }
 
   componentWillUnmount() {
@@ -47,7 +47,7 @@ export default class FollowUserModdingButton extends React.Component<Props, Stat
       return null;
     }
 
-    const title = osu.trans(`follows.user.modding.${this.state.follow ? 'to_0' : 'to_1'}`);
+    const title = osu.trans(`follows.mapping.${this.state.follow ? 'to_0' : 'to_1'}`);
 
     let blockClass = classWithModifiers(bn, this.props.modifiers);
     blockClass += classWithModifiers(bn, { friend: this.state.follow }, true);
@@ -73,7 +73,7 @@ export default class FollowUserModdingButton extends React.Component<Props, Stat
           follow: {
             notifiable_id: this.props.userId,
             notifiable_type: 'user',
-            subtype: 'modding',
+            subtype: 'mapping',
           },
         },
       };
@@ -95,7 +95,7 @@ export default class FollowUserModdingButton extends React.Component<Props, Stat
 
   private refresh = () => {
     this.setState({
-      follow: currentUser.follow_user_modding.includes(this.props.userId),
+      follow: currentUser.follow_user_mapping.includes(this.props.userId),
     });
   }
 
@@ -108,11 +108,11 @@ export default class FollowUserModdingButton extends React.Component<Props, Stat
 
   private updateData = () => {
     if (this.state.follow) {
-      currentUser.follow_user_modding = without(currentUser.follow_user_modding, this.props.userId);
+      currentUser.follow_user_mapping = without(currentUser.follow_user_mapping, this.props.userId);
     } else {
-      currentUser.follow_user_modding = currentUser.follow_user_modding.concat(this.props.userId);
+      currentUser.follow_user_mapping = currentUser.follow_user_mapping.concat(this.props.userId);
     }
 
-    $.publish('followUserModding:refresh');
+    $.publish('followUserMapping:refresh');
   }
 }

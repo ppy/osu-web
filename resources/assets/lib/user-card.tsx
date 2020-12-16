@@ -3,7 +3,7 @@
 
 import { BlockButton } from 'block-button';
 import FlagCountry from 'flag-country';
-import FollowUserModdingButton from 'follow-user-modding-button';
+import FollowUserMappingButton from 'follow-user-mapping-button';
 import { FriendButton } from 'friend-button';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
@@ -215,7 +215,7 @@ export class UserCard extends React.PureComponent<Props, State> {
               <FriendButton userId={this.user.id} modifiers={['user-card']} />
             </div>
             <div className='user-card__icon'>
-              <FollowUserModdingButton userId={this.user.id} modifiers={['user-card']} />
+              <FollowUserMappingButton userId={this.user.id} modifiers={['user-card']} />
             </div>
           </>
         )}
@@ -239,7 +239,7 @@ export class UserCard extends React.PureComponent<Props, State> {
         </div>
 
         <div className='user-card__icon'>
-          <FollowUserModdingButton userId={this.user.id} modifiers={['user-list']} />
+          <FollowUserMappingButton userId={this.user.id} modifiers={['user-list']} />
         </div>
       </div>
     );

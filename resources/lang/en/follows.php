@@ -4,10 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'user' => [
-        'modding' => [
-            'to_0' => 'stop notifying me when this user uploads new beatmap',
-            'to_1' => 'notify me when this user uploads new beatmap',
-        ],
+    'forum_topic' => [
+        'title' => 'forum topic',
+    ],
+
+    'index' => [
+        'title_compact' => 'watchlists',
+    ],
+
+    'mapping' => [
+        'to_0' => 'stop notifying me when this user uploads new beatmap',
+        'to_1' => 'notify me when this user uploads new beatmap',
+    ],
+
+    'modding' => [
+        'title' => 'beatmap discussion',
     ],
 ];
