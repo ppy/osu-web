@@ -175,8 +175,18 @@ function class_with_modifiers(string $className, ?array $modifiers = null)
 {
     $class = $className;
 
-    foreach ($modifiers ?? [] as $modifier) {
-        $class .= " {$className}--{$modifier}";
+    if ($modifiers !== null) {
+        if (isset($modifiers[0])) {
+            foreach ($modifiers as $modifier) {
+                $class .= " {$className}--{$modifier}";
+            }
+        } else {
+            foreach ($modifiers as $modifier => $enabled) {
+                if ($enabled === true) {
+                    $class .= " {$className}--{$modifier}";
+                }
+            }
+        }
     }
 
     return $class;
