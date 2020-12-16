@@ -255,6 +255,9 @@ class SanityTest extends DuskTestCase
     public function bindParams(Browser $browser, \Illuminate\Routing\Route $route)
     {
         $paramOverrides = [
+            'beatmapsets.discussions.show' => [
+                static::$scaffolding['beatmap_discussion']->getKey(),
+            ],
             'forum.topics.create' => [
                 'forum_id' => self::$scaffolding['forum']->getKey(),
             ],
