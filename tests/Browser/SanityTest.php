@@ -256,7 +256,7 @@ class SanityTest extends DuskTestCase
     {
         $paramOverrides = [
             'beatmapsets.discussions.show' => [
-                static::$scaffolding['beatmap_discussion']->getKey(),
+                'discussion' => static::$scaffolding['beatmap_discussion']->getKey(),
             ],
             'forum.topics.create' => [
                 'forum_id' => self::$scaffolding['forum']->getKey(),
