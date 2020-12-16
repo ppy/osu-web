@@ -151,7 +151,7 @@ export class Post extends React.PureComponent
   messageViewer: =>
     [controller, key, deleteModel] =
       if @props.type == 'reply'
-        ['beatmap-discussion-posts', 'beatmap_discussion_post', @props.post]
+        ['beatmapsets.discussions.posts', 'post', @props.post]
       else
         ['beatmap-discussions', 'beatmap_discussion', @props.discussion]
 
@@ -299,7 +299,7 @@ export class Post extends React.PureComponent
     @setState posting: true
 
     @xhr.updatePost?.abort()
-    @xhr.updatePost = $.ajax laroute.route('beatmap-discussion-posts.update', beatmap_discussion_post: @props.post.id),
+    @xhr.updatePost = $.ajax laroute.route('beatmapsets.discussions.posts.update', post: @props.post.id),
       method: 'PUT'
       data:
         beatmap_discussion_post:

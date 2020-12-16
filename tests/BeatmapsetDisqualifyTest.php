@@ -157,7 +157,7 @@ class BeatmapsetDisqualifyTest extends TestCase
     {
         return $this
             ->actingAsVerified($this->sender)
-            ->post(route('beatmap-discussion-posts.store'), [
+            ->post(route('beatmapsets.discussions.posts.store'), [
                 'beatmapset_id' => $this->beatmapset->beatmapset_id,
                 'beatmap_discussion' => [
                     'message_type' => 'problem',

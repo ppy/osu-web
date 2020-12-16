@@ -162,7 +162,7 @@ export class NewReply extends React.PureComponent
                when 'reply_reopen' then false
                else null
 
-    @postXhr = $.ajax laroute.route('beatmap-discussion-posts.store'),
+    @postXhr = $.ajax laroute.route('beatmapsets.discussions.posts.store'),
       method: 'POST'
       data:
         beatmap_discussion_id: @props.discussion.id
