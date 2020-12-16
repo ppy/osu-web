@@ -115,7 +115,7 @@ export default class Event extends React.PureComponent<Props> {
         url = BeatmapDiscussionHelper.url({ discussion: this.discussion });
         text = firstPostMessage != null ? BeatmapDiscussionHelper.previewMessage(firstPostMessage) : '[no preview]';
       } else {
-        url = route('beatmap-discussions.show', { beatmap_discussion: this.discussionId });
+        url = route('beatmapsets.discussions.show', { discussion: this.discussionId });
         text = osu.trans('beatmapset_events.item.discussion_deleted');
       }
 

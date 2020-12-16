@@ -66,10 +66,17 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('watches', 'BeatmapsetWatchesController', ['only' => ['update', 'destroy']]);
 
         Route::group(['prefix' => 'discussions', 'as' => 'discussions.'], function () {
+            Route::put('{discussion}/vote', 'BeatmapDiscussionsController@vote')->name('vote');
+            Route::post('{discussion}/restore', 'BeatmapDiscussionsController@restore')->name('restore');
+            Route::post('{discussion}/deny-kudosu', 'BeatmapDiscussionsController@denyKudosu')->name('deny-kudosu');
+            Route::post('{discussion}/allow-kudosu', 'BeatmapDiscussionsController@allowKudosu')->name('allow-kudosu');
+
             Route::post('posts/{post}/restore', 'BeatmapDiscussionPostsController@restore')->name('posts.restore');
             Route::resource('posts', 'BeatmapDiscussionPostsController', ['only' => ['destroy', 'index', 'store', 'update']]);
             Route::resource('votes', 'BeatmapsetDiscussionVotesController', ['only' => ['index']]);
         });
+
+        Route::resource('discussions', 'BeatmapDiscussionsController', ['only' => ['destroy', 'index', 'show']]);
 
         Route::group(['namespace' => 'Beatmapsets'], function () {
             Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);

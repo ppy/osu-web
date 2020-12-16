@@ -153,7 +153,7 @@ export class Post extends React.PureComponent
       if @props.type == 'reply'
         ['beatmapsets.discussions.posts', 'post', @props.post]
       else
-        ['beatmap-discussions', 'beatmap_discussion', @props.discussion]
+        ['beatmapsets.discussions', 'discussion', @props.discussion]
 
     div className: "#{bn}__message-container",
       if @props.discussion.message_type == 'review' && @props.type == 'discussion'
@@ -240,7 +240,7 @@ export class Post extends React.PureComponent
             if @props.discussion.can_grant_kudosu
               a
                 className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
-                href: laroute.route('beatmap-discussions.deny-kudosu', beatmap_discussion: @props.discussion.id)
+                href: laroute.route('beatmapsets.discussions.deny-kudosu', discussion: @props.discussion.id)
                 'data-remote': true
                 'data-method': 'POST'
                 'data-confirm': osu.trans('common.confirmation')
@@ -248,7 +248,7 @@ export class Post extends React.PureComponent
             else if @props.discussion.kudosu_denied
               a
                 className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
-                href: laroute.route('beatmap-discussions.allow-kudosu', beatmap_discussion: @props.discussion.id)
+                href: laroute.route('beatmapsets.discussions.allow-kudosu', discussion: @props.discussion.id)
                 'data-remote': true
                 'data-method': 'POST'
                 'data-confirm': osu.trans('common.confirmation')
