@@ -118,7 +118,6 @@ export class Main extends React.PureComponent
         currentBeatmap: @currentBeatmap()
         currentDiscussions: @currentDiscussions()
         currentFilter: @state.currentFilter
-        reviewsEnabled: @state.reviewsConfig.enabled
 
       if @state.currentMode == 'events'
         div
