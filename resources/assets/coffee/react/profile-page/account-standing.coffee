@@ -3,7 +3,7 @@
 
 import { ExtraHeader } from './extra-header'
 import * as React from 'react'
-import { a, div, span, h3, table, thead, tbody, tr, th, td, time } from 'react-dom-factories'
+import { a, div, span, h3, table, thead, tbody, tr, th, td } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'profile-extra-recent-infringements'
@@ -61,11 +61,8 @@ export class AccountStanding extends React.PureComponent
         key: i
 
         td
-          className: "#{bn}__table-cell #{bn}__table-cell--date"
-          time
-            className: "timeago"
-            dateTime: event.timestamp
-            moment(event.timestamp).fromNow()
+          className: "#{bn}__table-cell #{bn}__table-cell--date", dangerouslySetInnerHTML:
+            __html: osu.timeago(event.timestamp)
 
         td
           className: "#{bn}__table-cell #{bn}__table-cell--action"
