@@ -27,6 +27,7 @@ interface Props {
 
 export default class EditorIssueTypeSelector extends React.Component<Props> {
   static contextType = SlateContext;
+  context!: React.ContextType<typeof SlateContext>;
 
   render(): React.ReactNode {
     const menuOptions: MenuItem[] = selectableTypes.map((type) => {

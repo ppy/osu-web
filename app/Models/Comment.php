@@ -161,7 +161,7 @@ class Comment extends Model
                 $this->commentable_type === null ||
                 $this->commentable_id === null ||
                 !$this->commentable()->exists()
-            )
+            ) && !$this->isDirty('deleted_at')
         ) {
             $this->validationErrors()->add('commentable', 'required');
         }
