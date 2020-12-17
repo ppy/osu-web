@@ -22,19 +22,9 @@ class ApidocRouteHelper
         return $instance;
     }
 
-    public static function keyFor(array $route)
+    private static function keyFor(array $route)
     {
-        [$method, $uri] = static::destructure($route);
-
-        return "{$method}@{$uri}";
-    }
-
-    private static function destructure(array $route)
-    {
-        $uri = $route['uri'];
-        $method = $route['method'] ?? $route['methods'][0];
-
-        return [$method, $uri];
+        return RouteScopesHelper::keyForMethods($route).'@'.$route['uri'];
     }
 
     private function __construct()
@@ -43,11 +33,18 @@ class ApidocRouteHelper
         $routeScopesHelper->loadRoutes();
 
         foreach ($routeScopesHelper->toArray() as $route) {
-            $key = static::keyFor($route);
+            // apidoc doesn't contain HEAD.
+            if (in_array('HEAD', $route['methods'], true)) {
+                $route['methods'] = array_filter($route['methods'], function ($method) {
+                    return $method !== 'HEAD';
+                });
+            }
+
             $route['scopes'] = array_filter($route['scopes'], function ($scope) {
                 return $scope !== 'any';
             });
-            $this->routeScopes[$key] = $route;
+
+            $this->routeScopes[static::keyFor($route)] = $route;
         }
     }
 
@@ -58,9 +55,10 @@ class ApidocRouteHelper
 
     public function requiresAuthentication(array $route)
     {
-        [$method, $uri] = static::destructure($route);
-
-        if ($method === 'GET' && starts_with("{$uri}/", RequireScopes::NO_TOKEN_REQUIRED)) {
+        if (
+            in_array('GET', $route['methods'], true)
+            && starts_with("{$route['uri']}/", RequireScopes::NO_TOKEN_REQUIRED)
+        ) {
             return false;
         }
 

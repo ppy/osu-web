@@ -52,10 +52,6 @@
 
 {!! $topDescription !!}
 
-### HTTP Request
-@foreach($route['methods'] as $method)
-`{{$method}} {{ $displayUri }}`
-
 <span class="scope-list">
     @if($helper->requiresAuthentication($route))
         <span class="authenticated">Requires authentication</span>
@@ -64,6 +60,10 @@
         <a class="scope" href="#scopes">{{ $scope }}</a>
     @endforeach
 </span>
+
+### HTTP Request
+@foreach($route['methods'] as $method)
+`{{$method}} {{ $displayUri }}`
 
 @endforeach
 @if(count($route['urlParameters']))
