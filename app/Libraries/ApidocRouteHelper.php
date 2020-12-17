@@ -22,13 +22,28 @@ class ApidocRouteHelper
         return $instance;
     }
 
+    public static function keyFor(array $route)
+    {
+        [$method, $uri] = static::destructure($route);
+
+        return "{$method}@{$uri}";
+    }
+
+    private static function destructure(array $route)
+    {
+        $uri = $route['uri'];
+        $method = $route['method'] ?? $route['methods'][0];
+
+        return [$method, $uri];
+    }
+
     private function __construct()
     {
         $routeScopesHelper = new RouteScopesHelper();
         $routeScopesHelper->loadRoutes();
 
         foreach ($routeScopesHelper->toArray() as $route) {
-            $key = $this->keyFor($route['uri'], $route['method']);
+            $key = static::keyFor($route);
             $route['scopes'] = array_filter($route['scopes'], function ($scope) {
                 return $scope !== 'any';
             });
@@ -36,27 +51,19 @@ class ApidocRouteHelper
         }
     }
 
-    public function getScopes(string $uri, string $method)
+    public function getScopes(array $route)
     {
-        return $this->routeScopes[$this->keyFor($uri, $method)]['scopes'];
+        return $this->routeScopes[static::keyFor($route)]['scopes'];
     }
 
-    public function hasScopes(string $uri, string $method)
+    public function requiresAuthentication(array $route)
     {
-        return !empty($this->routeScopes[$this->keyFor($uri, $method)]['scopes']);
-    }
+        [$method, $uri] = static::destructure($route);
 
-    public static function keyFor(string $uri, string $method)
-    {
-        return "{$method}@{$uri}";
-    }
-
-    public function requiresAuthentication(string $uri, string $method)
-    {
         if ($method === 'GET' && starts_with("{$uri}/", RequireScopes::NO_TOKEN_REQUIRED)) {
             return false;
         }
 
-        return in_array('require-scopes', $this->routeScopes[$this->keyFor($uri, $method)]['middlewares'], true);
+        return in_array('require-scopes', $this->routeScopes[static::keyFor($route)]['middlewares'], true);
     }
 }
