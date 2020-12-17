@@ -1119,18 +1119,6 @@ body {
   max-width: 150px;
   margin: 10px auto;
 }
-.authenticated {
-  padding: 1px 10px;
-  margin-right: 5px;
-  text-shadow: none;
-  font-size: smaller;
-  font-weight: bold;
-  white-space: nowrap;
-  color: #fff;
-  border-radius: 9px;
-  background-color: #3a87ad;
-  width: max-content;
-}
 .scope {
   padding: 1px 10px;
   margin-right: 5px;
@@ -1143,6 +1131,9 @@ body {
   background-color: #87ad3a;
   width: max-content;
   text-decoration: none;
+}
+.scope--auth {
+  background-color: #3a87ad;
 }
 .scope-list {
   display: flex;
