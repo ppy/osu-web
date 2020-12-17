@@ -11,6 +11,14 @@ class RouteScopesHelper
 {
     public $routes;
 
+    public static function keyForMethods(array $route)
+    {
+        $methods = $route['methods'];
+        sort($methods);
+
+        return implode('|', $methods);
+    }
+
     // fills in any missing require-scopes:
     public function fillMissingMiddlewares()
     {
