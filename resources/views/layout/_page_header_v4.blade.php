@@ -17,8 +17,8 @@
 <div class="
     header-v4
     {{ isset($theme) ? "header-v4--{$theme}" : '' }}
-    {{ ((auth()->check() && auth()->user()->isRestricted())
-        || (auth()->user()->isSilenced() && $currentActive === 'account_controller.edit'))
+    {{ (auth()->check() && (auth()->user()->isRestricted()
+        || (auth()->user()->isSilenced() && $currentActive === 'account_controller.edit')))
         ? 'header-v4--restricted'
         : ''
     }}
