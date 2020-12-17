@@ -201,6 +201,10 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             'key' => 'followerCount',
             'duration' => 43200, // 12 hours
         ],
+        'mapping_follower_count' => [
+            'key' => 'moddingFollowerCount',
+            'duration' => 43200, // 12 hours
+        ],
     ];
 
     const INACTIVE_DAYS = 180;
@@ -1347,6 +1351,13 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return UserRelation::where('zebra_id', $this->user_id)->where('friend', 1)->count();
     }
 
+    public function uncachedMappingFollowerCount()
+    {
+        return Follow::where('notifiable_id', $this->user_id)
+            ->where('subtype', 'mapping')
+            ->count();
+    }
+
     public function cacheFollowerCount()
     {
         $count = $this->uncachedFollowerCount();
@@ -1360,9 +1371,27 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $count;
     }
 
+    public function cacheMappingFollowerCount()
+    {
+        $count = $this->uncachedMappingFollowerCount();
+
+        Cache::put(
+            self::CACHING['mapping_follower_count']['key'].':'.$this->user_id,
+            $count,
+            self::CACHING['mapping_follower_count']['duration']
+        );
+
+        return $count;
+    }
+
     public function followerCount()
     {
         return get_int(Cache::get(self::CACHING['follower_count']['key'].':'.$this->user_id)) ?? $this->cacheFollowerCount();
+    }
+
+    public function mappingFollowerCount()
+    {
+        return get_int(Cache::get(self::CACHING['mapping_follower_count']['key'].':'.$this->user_id)) ?? $this->cacheMappingFollowerCount();
     }
 
     public function events()
