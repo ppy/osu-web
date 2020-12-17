@@ -1121,7 +1121,6 @@ body {
 }
 .scope {
   padding: 1px 10px;
-  margin-right: 5px;
   text-shadow: none;
   font-size: smaller;
   font-weight: bold;
@@ -1132,8 +1131,14 @@ body {
   width: max-content;
   text-decoration: none;
 }
+.scope--lazer {
+  background-color: #ba6436;
+}
 .scope--oauth {
   background-color: #3a87ad;
+}
+.scope-list .scope {
+  margin-right: 5px;
 }
 .scope-list {
   display: flex;

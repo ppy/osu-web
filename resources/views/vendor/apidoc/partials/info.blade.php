@@ -43,7 +43,7 @@ v1      | _legacy api provided by the old site, will be deprecated soon_
 
 # Authentication
 
-Routes marked with the <span class="scope scope--oauth">OAuth</span> label require a valid OAuth2 token for access.
+Routes marked with the <a class="scope scope--oauth" name="scope-oauth">OAuth</a> label require a valid OAuth2 token for access.
 
 More information about applications you have registered and granted permissions to can be found [here](#managing-oauth-applications).
 
@@ -251,13 +251,23 @@ You must replace <code>@{{token}}</code> with your OAuth2 token.
 
 The following scopes are currently supported:
 
-Name          | Description
---------------|-------------------------------
-identify      | Allows reading of the public profile of the authorizing user (`/me`).
-friends.read  | Allows reading of the authorizing user's friend list.
-public        | Allows reading of publicly available data on behalf of the authorizing user.
+@php
+$scopeDescriptions = [
+    'identify' => 'Allows reading of the public profile of the authorizing user (`/me`).',
+    'friends.read' => 'Allows reading of the authorizing user\'s friend list.',
+    'public' => 'Allows reading of publicly available data on behalf of the authorizing user.',
+];
+@endphp
+
+Name   | Description
+-------|-------------------------------
+@foreach ($scopeDescriptions as $scope => $description)
+<a class="scope scope--{{ $scope }}"name="scope-{{ $scope }}">{{ $scope }}</a> | {{ $description }}
+@endforeach
 
 `identify` is the default scope for the [Authorization Code Grant](#authorization-code-grant) and always implicitly provided. The [Client Credentials Grant](#client-credentials-grant) does not currently have any default scopes.
+
+Routes marked with <a class="scope scope--lazer" name="scope-lazer">lazer</a> are intended for use by the [osu!lazer](https://github.com/ppy/osu) client and not currently available for use with Authorization Code or Client Credentials grants.
 
 
 ## Managing OAuth applications

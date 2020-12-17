@@ -40,16 +40,27 @@ class ApidocRouteHelper
                 });
             }
 
+            if (empty($route['scopes'])) {
+                $route['scopes'][] = 'lazer'; // not osu!lazer to make the css handling simpler.
+            }
+
             $route['scopes'] = array_filter($route['scopes'], function ($scope) {
                 return $scope !== 'any';
             });
+
+            // anything that will list scopes will require OAuth.
+            array_unshift($route['scopes'], 'OAuth');
 
             $this->routeScopes[static::keyFor($route)] = $route;
         }
     }
 
-    public function getScopes(array $route)
+    public function getScopeTags(array $route)
     {
+        if (!$this->requiresAuthentication($route)) {
+            return [];
+        }
+
         return $this->routeScopes[static::keyFor($route)]['scopes'];
     }
 

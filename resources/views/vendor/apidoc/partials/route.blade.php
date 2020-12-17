@@ -53,12 +53,9 @@
 {!! $topDescription !!}
 
 <span class="scope-list">
-    @if($helper->requiresAuthentication($route))
-        <span class="scope scope--oauth">OAuth</span>
-        @foreach($helper->getScopes($route) as $scope)
-            <a class="scope" href="#scopes">{{ $scope }}</a>
-        @endforeach
-    @endif
+    @foreach($helper->getScopeTags($route) as $scope)
+        <a class="scope scope--{{ strtolower($scope) }}" href="#scope-{{ strtolower($scope) }}">{{ $scope }}</a>
+    @endforeach
 </span>
 
 ### HTTP Request
