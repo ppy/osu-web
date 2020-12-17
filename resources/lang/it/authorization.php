@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => 'Che ne dici di giocare un po\' ad osu!?',
     'require_login' => 'Per favore effettua il login per poter procedere.',
     'require_verification' => 'Per favore, esegui la verifica prima di procedere.',
     'restricted' => "Non puoi farlo mentre sei limitato.",
@@ -12,7 +13,7 @@ return [
 
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Non è possibile rimuovere l\'Hype.',
+            'is_hype' => 'Non è possibile annullare l\'hyping.',
             'has_reply' => 'Impossibile eliminare una discussione con risposte',
         ],
         'nominate' => [
@@ -32,6 +33,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "Non puoi votare in una discussione creata da un bot",
             'limit_exceeded' => 'Per favore attendi un po\' prima di esprimere altri voti',
             'owner' => "Non puoi votare la tua discussione.",
             'wrong_beatmapset_state' => 'Puoi votare solo su discussioni di beatmap in sospeso.',
@@ -165,7 +167,7 @@ return [
             'edit' => [
                 'locked' => 'La tua userpage è bloccata.',
                 'not_owner' => 'Puoi modificare solo la tua pagina utente.',
-                'require_supporter_tag' => 'è necessario avere la tag osu!supporter.',
+                'require_supporter_tag' => 'è necessario avere il tag osu!supporter.',
             ],
         ],
     ],

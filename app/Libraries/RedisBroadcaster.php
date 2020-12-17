@@ -34,7 +34,9 @@ class RedisBroadcaster extends LaravelRedisBroadcaster
 
         $connection->eval(
             $this->broadcastMultipleChannelsScript(),
-            0, $payload, ...$this->formatChannels($channels)
+            0,
+            $payload,
+            ...$this->formatChannels($channels)
         );
     }
 

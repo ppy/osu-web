@@ -6,7 +6,6 @@
 namespace App\Http\Controllers\Chat;
 
 use App\Libraries\Chat;
-use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
@@ -210,27 +209,14 @@ class ChatController extends Controller
      * @bodyParam is_action boolean required whether the message is an action
      *
      * @response {
-     *   "new_channel_id": 1234,
-     *   "presence": [
-     *     {
-     *       "channel_id": 5,
-     *       "name": "#osu",
-     *       "description": "The official osu! channel (english only).",
-     *       "type": "public",
-     *       "last_read_id": 9150005005,
-     *       "last_message_id": 9150005005
-     *     },
+     *   "channel": [
      *     {
      *       "channel_id": 1234,
-     *       "type": "PM",
      *       "name": "peppy",
-     *       "icon": "https://a.ppy.sh/2?1519081077.png",
-     *       "users": [
-     *         2,
-     *         102
-     *       ],
-     *       "last_read_id": 9150001235,
-     *       "last_message_id": 9150001234
+     *       "description": "",
+     *       "type": "PM",
+     *       "last_read_id": 9150005005,
+     *       "last_message_id": 9150005005
      *     }
      *   ],
      *   "message": {
@@ -251,28 +237,38 @@ class ChatController extends Controller
      *       "is_online": true,
      *       "is_supporter": true
      *     }
-     *   }
+     *   },
+     *   "new_channel_id": 1234,
      * }
      */
     public function newConversation()
     {
         $params = request()->all();
+        $target = User::lookup(get_int($params['target_id'] ?? null), 'id');
+        if ($target === null) {
+            abort(422, 'target user not found');
+        }
 
+        /** @var Message $message */
         $message = Chat::sendPrivateMessage(
             auth()->user(),
-            get_int($params['target_id'] ?? null),
+            $target,
             presence($params['message'] ?? null),
             get_bool($params['is_action'] ?? null)
         );
 
+        $channelJson = json_item($message->channel, 'Chat\Channel', ['first_message_id', 'last_message_id', 'users']);
+        $channelJson['icon'] = $target->user_avatar;
+        $channelJson['name'] = $target->username;
+
         return [
-            'new_channel_id' => $message->channel_id,
+            'channel' => $channelJson,
             'message' => json_item(
                 $message,
                 'Chat/Message',
                 ['sender']
             ),
-            'presence' => self::presence(),
+            'new_channel_id' => $message->channel_id,
         ];
     }
 }

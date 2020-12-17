@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'تم قراءة جميع الإشعارات!',
+    'delete' => '',
     'mark_read' => 'مَحو :type',
     'none' => 'لا إشعارات',
     'see_all' => 'أِظهار جميع الإشعارات',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'الكل',
@@ -57,6 +59,8 @@ return [
                 'beatmapset_qualify_compact' => 'دخلت الخريطة قائمة التصنيف',
                 'beatmapset_rank' => 'اصبحت ":title" مصنفة',
                 'beatmapset_rank_compact' => 'تم تصنيف الخريطة',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'تم اعادة تعيين ترشيحات ":title"',
                 'beatmapset_reset_nominations_compact' => 'تم اعادة ضبط الترشيح',
             ],
@@ -66,6 +70,8 @@ return [
 
                 'comment_new' => 'علق :username ":content" على ":title"',
                 'comment_new_compact' => 'علق :username ":content"',
+                'comment_reply' => ':username رد ":content" على ":title"',
+                'comment_reply_compact' => ':username رد ":content"',
             ],
         ],
 
@@ -90,6 +96,8 @@ return [
 
                 'comment_new' => 'علق :username ":content" في ":title"',
                 'comment_new_compact' => 'علق:username ":content"',
+                'comment_reply' => ':username رد ":content" على ":title"',
+                'comment_reply_compact' => ':username رد ":content"',
             ],
         ],
 
@@ -101,6 +109,8 @@ return [
 
                 'comment_new' => 'علق :username ":content" في ":title"',
                 'comment_new_compact' => 'علق :username ":content"',
+                'comment_reply' => ':username رد ":content" على ":title"',
+                'comment_reply_compact' => ':username رد ":content"',
             ],
         ],
 
@@ -130,18 +140,36 @@ return [
                 '_' => 'ميدالية جديدة',
                 'user_achievement_unlock' => 'تم فتح !:title',
                 'user_achievement_unlock_compact' => 'تم فتح ":title"!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => 'المناقشة حول ":title" تحتوي على تحديثات جديدة',
-            'beatmapset_discussion_lock' => 'تم اقفال المناقشة على ":title"',
-            'beatmapset_discussion_unlock' => 'تم فتح قفل المناقشة على ":title"',
-            'beatmapset_problem' => 'تم الإبلاغ عن مشكلة جديدة على ":title"',
-            'beatmapset_state' => 'لقد تغيرت حالة ":title"',
-            'comment' => ' الخريطة ":title" تحتوي على تعليقات جديدة',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => 'تم اقفال المناقشة على ":title"',
+                'beatmapset_discussion_post_new' => 'المناقشة حول ":title" تحتوي على تحديثات جديدة',
+                'beatmapset_discussion_unlock' => 'تم فتح قفل المناقشة على ":title"',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => 'تم الإبلاغ عن مشكلة جديدة على ":title"',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => 'حُرِمَت ":title" من التأهُل',
+                'beatmapset_love' => 'اصبحت ":title" محبوبة',
+                'beatmapset_nominate' => 'اصبحت ":title" مرشحة',
+                'beatmapset_qualify' => '":title" حصلت على ترشيحات كافية ودخلت حالة التصنيف',
+                'beatmapset_rank' => 'اصبحت ":title" مصنفة',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_reset_nominations' => 'تم اعادة تعيين ترشيحات ":title"',
+            ],
+
+            'comment' => [
+                'comment_new' => ' الخريطة ":title" تحتوي على تعليقات جديدة',
+            ],
         ],
 
         'channel' => [
@@ -151,20 +179,28 @@ return [
         ],
 
         'build' => [
-            'comment' => 'سجل ":title" يحتوي على تعليقات جديدة',
+            'comment' => [
+                'comment_new' => 'سجل ":title" يحتوي على تعليقات جديدة',
+            ],
         ],
 
         'news_post' => [
-            'comment' => 'الأخبار ":title" تحتوي على تعليقات جديدة',
+            'comment' => [
+                'comment_new' => 'الأخبار ":title" تحتوي على تعليقات جديدة',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => 'هناك ردود جديدة في ":title"',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => 'هناك ردود جديدة في ":title"',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => ':username فتح ميدالية جديدة، ":title"!',
-            'user_achievement_unlock_self' => 'لقد فتحت ميدالية جديدة، ":title"!',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => ':username فتح ميدالية جديدة، ":title"!',
+                'user_achievement_unlock_self' => 'لقد فتحت ميدالية جديدة، ":title"!',
+            ],
         ],
     ],
 ];

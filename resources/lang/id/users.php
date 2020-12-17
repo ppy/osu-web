@@ -35,9 +35,9 @@ return [
         'banner_text' => 'Anda telah memblokir pengguna ini.',
         'blocked_count' => 'pengguna yang diblokir (:count)',
         'hide_profile' => 'Sembunyikan profil',
-        'not_blocked' => 'Pengguna tidak diblokir.',
+        'not_blocked' => 'Pengguna ini tidak diblokir.',
         'show_profile' => 'tampilkan profil',
-        'too_many' => 'Batas blokir tercapai.',
+        'too_many' => 'Batas pemblokiran tercapai.',
         'button' => [
             'block' => 'Blokir',
             'unblock' => 'Buka Blokir',
@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Pengguna berdasarkan mode permainan',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Akun Anda telah lama tidak digunakan.",
@@ -84,6 +88,7 @@ return [
         'failed' => 'Gagal masuk',
         'forgot' => 'Lupa kata sandi?',
         'info' => 'Silahkan sign in untuk melanjutkan',
+        'invalid_captcha' => 'Captcha tidak valid. Harap muat ulang halaman.',
         'locked_ip' => 'Alamat IP Anda dikunci. Mohon tunggu beberapa menit.',
         'password' => 'Kata Sandi',
         'register' => "Belum memiliki akun osu!? Buat yang baru sekarang",
@@ -132,7 +137,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Akun Anda telah dibatasi!',
-        'message' => 'Selama akun Anda berada dalam pembatasan, Anda tidak dapat berinteraksi dengan para pengguna lain dan skor-skor yang telah Anda raih hanya akan dapat dilihat oleh diri Anda sendiri. Hal ini pada umumnya merupakan efek samping dari proses yang dilakukan oleh sistem secara otomatis dan akan diangkat dalam 24 jam apabila Anda memang tidak melakukan pelanggaran terhadap aturan-aturan yang berlaku. Jika Anda ingin mengajukan banding atas pembatasan Anda, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
+        'message' => 'Selama akun Anda di-restrict, Anda tidak dapat berinteraksi dengan para pengguna lain dan skor-skor yang telah Anda raih hanya akan dapat dilihat oleh diri Anda sendiri. Hal ini pada umumnya merupakan efek samping dari proses yang dilakukan oleh sistem secara otomatis dan akan diangkat dalam 24 jam apabila Anda memang terbukti tidak melakukan pelanggaran apapun terhadap aturan-aturan yang berlaku. Jika Anda ingin mengajukan banding atas status akun Anda, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
     ],
     'show' => [
         'age' => ':age tahun',
@@ -143,7 +148,7 @@ return [
         'joined_at' => 'Bergabung :date',
         'lastvisit' => 'Terakhir terlihat :date',
         'lastvisit_online' => 'Saat ini online',
-        'missingtext' => 'Mungkin Anda salah ketik! (atau pengguna mungkin telah diblokir)',
+        'missingtext' => 'Mungkin Anda salah ketik! (atau pengguna yang Anda hendak tuju mungkin telah di-ban sebelumnya)',
         'origin_country' => 'Dari :country',
         'previous_usernames' => 'dulu dikenal sebagai',
         'plays_with' => 'Bermain menggunakan :devices',
@@ -186,7 +191,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'oleh :artist',
-                'none' => 'Saat ini belum ada...',
                 'title' => 'Beatmap',
 
                 'favourite' => [
@@ -216,7 +220,6 @@ return [
                 'show_more' => 'lihat lebih banyak aktivitas',
             ],
             'historical' => [
-                'empty' => 'Tidak ada catatan performa terbaru. :(',
                 'title' => 'Historis',
 
                 'monthly_playcounts' => [
@@ -303,7 +306,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Unduh Replay',
-                'empty' => 'Belum ada catatan performa yang mendapat peringkat pertama. :(',
                 'not_ranked' => 'Hanya beatmap Ranked yang dapat memberikan pp.',
                 'pp_weight' => 'terbobotkan sejumlah :percentage',
                 'view_details' => 'Lihat Rincian',
@@ -326,7 +328,7 @@ return [
             'account_standing' => [
                 'title' => 'Kondisi Akun',
                 'bad_standing' => "Akun <strong>:username</strong> tidak dalam kondisi baik :(",
-                'remaining_silence' => '<strong>:username</strong> akan dapat berbicara lagi dalam :duration.',
+                'remaining_silence' => '<strong>:username</strong> akan dapat kembali berbicara dalam :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Pelanggaran Terbaru',
@@ -338,8 +340,8 @@ return [
                     'actor' => 'oleh :username',
 
                     'actions' => [
-                        'restriction' => 'Blokir',
-                        'silence' => 'Bungkam',
+                        'restriction' => 'Ban',
+                        'silence' => 'Silence',
                         'note' => 'Catatan',
                     ],
                 ],
@@ -349,7 +351,6 @@ return [
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Minat',
-            'lastfm' => 'Last.fm',
             'location' => 'Lokasi Saat Ini',
             'occupation' => 'Pekerjaan',
             'skype' => 'Skype',

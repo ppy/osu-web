@@ -28,6 +28,7 @@ return [
         'nomination_reset' => 'Un nuevo problema :discussion (:text) ha restablecido las nominaciones.',
         'qualify' => 'Este mapa ha alcanzado el número requerido de nominaciones y ha sido calificado.',
         'rank' => 'Clasificado.',
+        'remove_from_loved' => 'Removido de Amados por :user. (:text)',
     ],
 
     'index' => [
@@ -66,5 +67,6 @@ return [
         'nomination_reset' => 'Restablecimiento de nominación',
         'qualify' => 'Calificación',
         'rank' => 'Clasificación',
+        'remove_from_loved' => 'Remoción de Amados',
     ],
 ];

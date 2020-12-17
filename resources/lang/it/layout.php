@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => 'Riproduci automaticamente la traccia successiva',
+        'autoplay' => 'Riproduci in automatico la traccia successiva',
     ],
 
     'defaults' => [
@@ -77,7 +77,8 @@ return [
         ],
         'help' => [
             '_' => 'aiuto',
-            'getFaq' => 'domande comuni',
+            'getAbuse' => '',
+            'getFaq' => 'domande frequenti',
             'getRules' => 'regole',
             'getSupport' => 'davvero, mi serve aiuto!',
             'getWiki' => 'wiki',
@@ -117,7 +118,7 @@ return [
         ],
         'help' => [
             '_' => 'Aiuto e Comunità',
-            'faq' => 'Domande Comuni',
+            'faq' => 'Domande Frequenti',
             'forum' => 'Forum della Comunità',
             'livestreams' => 'Live',
             'report' => 'Segnala un problema',
@@ -179,6 +180,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'accedi / registrati',
+
         'login' => [
             'forgot' => "Ho dimenticato i miei dati",
             'password' => 'password',

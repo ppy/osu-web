@@ -93,7 +93,6 @@ return [
             'source' => 'Źródło',
             'success-rate' => 'Wskaźnik ukończonych zagrań',
             'tags' => 'Tagi',
-            'unranked' => 'Nierankingowa beatmapa',
         ],
 
         'scoreboard' => [

@@ -62,7 +62,7 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmapler',
-            'artists' => 'seçkin sanatçılar',
+            'artists' => 'featured artist\'ler',
             'index' => 'listeleme',
             'packs' => 'paketler',
         ],
@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'yardım',
+            'getAbuse' => '',
             'getFaq' => 'sss',
             'getRules' => 'kurallar',
             'getSupport' => 'hayır, gerçekten, yardıma ihtiyacım var!',
@@ -96,7 +97,7 @@ return [
             'country' => 'ülke',
             'index' => 'performans',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'Çok Oyunculu',
+            'multiplayer' => 'çok oyunculu',
             'score' => 'skor',
         ],
         'store' => [
@@ -179,6 +180,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'giriş yap / kayıt ol',
+
         'login' => [
             'forgot' => "Bilgilerimi unuttum",
             'password' => 'şifre',

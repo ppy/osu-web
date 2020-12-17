@@ -51,10 +51,12 @@
             <i class="fas fa-chevron-down"></i>
         </span>
 
-        <span
-            class="navbar-mobile-item__locale-flag"
-            style="background-image: url('{{ flag_path(locale_flag(App::getLocale())) }}')"
-        ></span>
+        <span class="navbar-mobile-item__locale-flag">
+            @include('objects._flag_country', [
+                'countryCode' => locale_flag(App::getLocale()),
+                'modifiers' => ['small', 'flat'],
+            ])
+        </span>
 
         {{ locale_name(App::getLocale()) }}
     </button>
@@ -68,10 +70,12 @@
                     data-remote="1"
                     data-method="POST"
                 >
-                    <span
-                        class="navbar-mobile-item__locale-flag"
-                        style="background-image: url('{{ flag_path(locale_flag($locale)) }}')"
-                    ></span>
+                    <span class="navbar-mobile-item__locale-flag">
+                        @include('objects._flag_country', [
+                            'countryCode' => locale_flag($locale),
+                            'modifiers' => ['small', 'flat'],
+                        ])
+                    </span>
 
                     {{ locale_name($locale) }}
                 </a>

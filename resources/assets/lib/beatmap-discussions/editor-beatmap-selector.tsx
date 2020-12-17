@@ -17,6 +17,7 @@ interface Props {
 
 export default class EditorBeatmapSelector extends React.Component<Props> {
   static contextType = SlateContext;
+  context!: React.ContextType<typeof SlateContext>;
 
   render(): React.ReactNode {
     const menuOptions: MenuItem[] = [];
@@ -43,7 +44,7 @@ export default class EditorBeatmapSelector extends React.Component<Props> {
         disabled={this.props.disabled}
         menuOptions={menuOptions}
         onSelect={this.select}
-        selected={this.props.element.beatmapId?.toString()}
+        selected={(this.props.element.beatmapId as number)?.toString()}
       />
     );
   }

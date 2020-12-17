@@ -1,19 +1,21 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserJSON from 'interfaces/user-json';
 import { route } from 'laroute';
 import { Dictionary } from 'lodash';
 import * as React from 'react';
 import { ReportForm } from 'report-form';
 
-interface Props {
+type ReactButton = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
+type ReactButtonWithoutRef = Pick<ReactButton, Exclude<keyof ReactButton, 'ref'>>;
+
+interface Props extends ReactButtonWithoutRef {
   baseKey?: string;
   icon: boolean;
   onFormClose: () => void;
   reportableId: string;
   reportableType: string;
-  user: UserJSON;
+  user: { username: string };
 }
 
 interface ReportData {
@@ -30,10 +32,11 @@ interface State {
 const availableOptions: Dictionary<string[]> = {
   beatmapset_discussion_post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
   comment: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
+  forum_post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
   scores: ['Cheating', 'Other'],
 };
 
-export class ReportReportable extends React.PureComponent<Props & React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, State> {
+export class ReportReportable extends React.PureComponent<Props, State> {
   static defaultProps = {
     icon: false,
     onFormClose: () => { /** nothing */ },
@@ -41,7 +44,7 @@ export class ReportReportable extends React.PureComponent<Props & React.Detailed
 
   private timeout?: number;
 
-  constructor(props: Props & React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>) {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -87,7 +90,7 @@ export class ReportReportable extends React.PureComponent<Props & React.Detailed
 
     return (
       <>
-        <button key='button' onClick={this.showForm} {...attribs}>
+        <button key='button' onClick={this.onShowFormButtonClick} {...attribs}>
           {
             icon ? (
               <span className='textual-button textual-button--inline'>
@@ -98,24 +101,30 @@ export class ReportReportable extends React.PureComponent<Props & React.Detailed
             ) : osu.trans(`report.${groupKey}.button`)
           }
         </button>
-        <ReportForm
-          completed={this.state.completed}
-          disabled={this.state.disabled}
-          onClose={this.onFormClose}
-          onSubmit={this.onSubmit}
-          title={osu.trans(`report.${groupKey}.title`, { username: `<strong>${user.username}</strong>` })}
-          visible={this.state.showingForm}
-          visibleOptions={availableOptions[groupKey]}
-        />
+        {this.state.showingForm && (
+          <ReportForm
+            completed={this.state.completed}
+            disabled={this.state.disabled}
+            onClose={this.onFormClose}
+            onSubmit={this.onSubmit}
+            title={osu.trans(`report.${groupKey}.title`, { username: `<strong>${user.username}</strong>` })}
+            visible={true}
+            visibleOptions={availableOptions[groupKey]}
+          />
+        )}
       </>
     );
   }
 
-  showForm = (e: React.MouseEvent<HTMLElement>) => {
+  showForm = () => {
+    Timeout.clear(this.timeout);
+    this.setState({ disabled: false, showingForm: true });
+  }
+
+  private onShowFormButtonClick = (e: React.MouseEvent<HTMLElement>) => {
     if (e.button !== 0) { return; }
     e.preventDefault();
 
-    Timeout.clear(this.timeout);
-    this.setState({ disabled: false, showingForm: true });
+    this.showForm();
   }
 }

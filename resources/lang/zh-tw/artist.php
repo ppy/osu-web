@@ -8,7 +8,7 @@ return [
     'title' => '精選藝術家',
 
     'admin' => [
-        'hidden' => '當前藝術家已被隱藏',
+        'hidden' => '此藝術家已被隱藏',
     ],
 
     'beatmaps' => [
@@ -28,7 +28,7 @@ return [
 
     'songs' => [
         '_' => '樂曲',
-        'count' => ':count 首音樂',
+        'count' => ':count_delimited 首音樂|:count_delimited 首音樂',
         'exclusive' => 'osu! 獨享',
     ],
 

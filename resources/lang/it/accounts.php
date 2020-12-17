@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Immagine di profilo',
-            'rules' => 'Assicurati che la tua immagine di profilo aderisca alle :link.<br/>Questo significa che deve essere <strong>adatto a tutte le età</strong>. (vedi: niente nudità, profanità o contenuti provocanti)',
+            'rules' => 'Assicurati che la tua immagine di profilo aderisca alle :link.<br/>Questo significa che deve essere <strong>adatto a tutte le età</strong> (ad esempio: niente nudità, profanità o contenuti provocanti).',
             'rules_link' => 'regole della comunità',
         ],
 
@@ -50,7 +50,8 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'ricevi notifiche per nuovi problemi sulle beatmap qualificate delle seguenti modalità',
-        'beatmapset_disqualify' => 'ricevi notifiche quando per quando le beatmap delle seguenti modalità vengono squalificate',
+        'beatmapset_disqualify' => 'ricevi notifiche quando le beatmap delle seguenti modalità vengono squalificate',
+        'comment_reply' => 'ricevi notifiche per le risposte ai tuoi commenti',
         'title' => 'Notifiche',
         'topic_auto_subscribe' => 'attiva automaticamente le notifiche sui nuovi topic del forum che crei',
 

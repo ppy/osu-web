@@ -185,14 +185,20 @@ return [
         'love_confirm' => '이 비트맵이 마음에 드시나요?',
         'nominate' => '추천',
         'nominate_confirm' => '이 비트맵을 추천하시겠습니까?',
-        'nominated_by' => ':users님이 추천함',
+        'nominated_by' => ':users 님이 추천함',
         'not_enough_hype' => "Hype 수가 부족합니다.",
-        'qualified' => '문제가 발견되지 않으면 :date에 랭크됩니다.',
-        'qualified_soon' => '문제가 발견되지 않으면 곧 랭크됩니다.',
+        'remove_from_loved' => 'Loved 상태에서 제거',
+        'remove_from_loved_prompt' => 'Loved에서 제거된 이유',
         'required_text' => '추천 수: :current/:required',
         'reset_message_deleted' => '삭제됨',
         'title' => '추천 상태',
         'unresolved_issues' => '먼저 해결되지 않은 토론을 마무리지어야 합니다.',
+
+        'rank_estimate' => [
+            '_' => '이 맵에 아무런 문제가 발견되지 않으면 :date 에 랭크될 예정입니다. :queue의 #:position번째 순서입니다.',
+            'queue' => '랭킹 대기열',
+            'soon' => '곧',
+        ],
 
         'reset_at' => [
             'nomination_reset' => ':time_ago 전 :user님이 추천 상태를 초기화시켰습니다. :discussion (:message)',
@@ -246,6 +252,7 @@ return [
         'converts' => '변환된 비트맵 포함',
     ],
     'mode' => [
+        'all' => '전체',
         'any' => '모두',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

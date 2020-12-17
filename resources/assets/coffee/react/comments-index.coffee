@@ -8,7 +8,8 @@ import { Main } from './comments-index/main'
 
 reactTurbolinks.registerPersistent 'comments-index', CommentsManager, true, ->
   commentBundle = osu.parseJson('json-index')
-  core.dataStore.updateWithCommentBundleJSON(commentBundle)
-  core.dataStore.uiState.initializeWithCommentBundleJSON(commentBundle)
+  core.dataStore.updateWithCommentBundleJson(commentBundle)
+  core.dataStore.uiState.initializeWithCommentBundleJson(commentBundle)
 
   component: Main
+  user: commentBundle.user

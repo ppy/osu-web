@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Niciuna dintre aceste postări nu mă preocupă',
         'notice' => 'Există postări în jurul :timestamp (:existing_timestamps). Te rugăm să verifici înainte de a posta.',
+        'unsaved' => ':count în această recenzie',
     ],
 
     'reply' => [
@@ -64,7 +65,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max blocuri folosite',
         'go_to_parent' => 'Vezi review-ul utilizatorului',
         'go_to_child' => 'Vezi Discuția',
         'validation' => [

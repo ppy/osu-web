@@ -50,7 +50,8 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'modtag notifikationer for nye problemer på kvalificerede beatmaps for de følgende spileltilstande',
-        'beatmapset_disqualify' => '',
+        'beatmapset_disqualify' => 'modtag notifikationer når beatmaps af følgende modes bliver diskvalificeret',
+        'comment_reply' => 'modtag notifikationer når der bliver svaret på dine kommentarer',
         'title' => 'Notifikationer',
         'topic_auto_subscribe' => 'aktiver automatisk notifikationer på nye forum emner du opretter',
 

@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { FormErrors } from 'form-errors';
-import { OwnClientJSON } from 'interfaces/own-client-json';
+import { OwnClientJson } from 'interfaces/own-client-json';
 import { route } from 'laroute';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
@@ -47,7 +47,7 @@ export class NewClient extends React.Component {
       data: this.state,
       method: 'POST',
       url: route('oauth.clients.store'),
-    }).then((data: OwnClientJSON) => {
+    }).then((data: OwnClientJson) => {
       const client = store.updateWithJson(data);
       uiState.account.newClientVisible = false;
       uiState.account.client = client;
@@ -60,7 +60,6 @@ export class NewClient extends React.Component {
   render() {
     const link = (
       <a
-        className='oauth-client-details__link'
         href={`${process.env.DOCS_URL}#terms-of-use`}
         key='link'
       >

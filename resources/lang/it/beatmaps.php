@@ -78,7 +78,7 @@ return [
 
         'mode' => [
             'events' => 'Cronologia',
-            'general' => ':scope Generale',
+            'general' => 'Generale :scope',
             'reviews' => 'Revisioni',
             'timeline' => 'Linea Temporale',
             'scopes' => [
@@ -156,11 +156,11 @@ return [
     ],
 
     'hype' => [
-        'button' => 'Beatmap Hype!',
+        'button' => 'Metti hype!',
         'button_done' => 'Hype già messo!',
         'confirm' => "Sei sicuro? Questo utilizzerà uno dei tuoi :n hype rimanenti e non può essere annullato.",
-        'explanation' => 'Lascia hype a questa beatmap per renderla più visibile per la nomina e il ranking!',
-        'explanation_guest' => 'Effettua l\'accesso e lascia hype a questa beatmap per renderla più visibile per la nomina e il raking!',
+        'explanation' => 'Metti hype a questa beatmap per renderla più visibile per la nomina ed il ranking!',
+        'explanation_guest' => 'Effettua l\'accesso e metti hype a questa beatmap per renderla più visibile per la nomina ed il raking!',
         'new_time' => "Riceverai un altro hype :new_time.",
         'remaining' => 'Hai ancora :remaining hype rimanenti.',
         'required_text' => 'Hype: :current/:required',
@@ -177,7 +177,7 @@ return [
         'delete_own_confirm' => 'Sei sicuro? La beatmap verrà eliminata e sarai reindirizzato al tuo profilo.',
         'delete_other_confirm' => 'Sei sicuro? La beatmap verrà eliminata e sarai reindirizzato al profilo del creatore.',
         'disqualification_prompt' => 'Ragioni della squalifica?',
-        'disqualified_at' => 'squalificata :time_ago',
+        'disqualified_at' => 'Squalificata :time_ago (:reason).',
         'disqualified_no_reason' => 'nessuna motivazione specificata',
         'disqualify' => 'Squalifica',
         'incorrect_state' => 'Errore nel eseguire quell\'azione, prova a ricaricare la pagina.',
@@ -187,12 +187,18 @@ return [
         'nominate_confirm' => 'Nominare questa beatmap?',
         'nominated_by' => 'nominata da :users',
         'not_enough_hype' => "Non c'è abbastanza hype.",
-        'qualified' => 'La classificazione è prevista per il :date, se non viene trovato alcun problema.',
-        'qualified_soon' => 'Sarà rankata a breve, se non viene trovato alcun problema.',
+        'remove_from_loved' => 'Rimuovi dalle amate',
+        'remove_from_loved_prompt' => 'Motivo per la rimozione dalle amate:',
         'required_text' => 'Nomine: :current/:required',
         'reset_message_deleted' => 'eliminato',
         'title' => 'Stato nomine',
         'unresolved_issues' => 'Ci sono ancora dei problemi irrisolti che vanno prima sistemati.',
+
+        'rank_estimate' => [
+            '_' => 'È stimato che questa mappa verrà rankata in data :date se non vengono trovati problemi. È in posizione #:position nella :queue.',
+            'queue' => 'coda di ranking',
+            'soon' => 'molto vicina',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Processo di nomina azzerato :time_ago da :user con il nuovo problema :discussion (:message).',
@@ -229,7 +235,7 @@ return [
                 'difficulty' => 'Difficoltà',
                 'favourites' => 'Preferiti',
                 'updated' => 'Aggiornato',
-                'ranked' => 'Classificata',
+                'ranked' => 'Rankata',
                 'rating' => 'Valutazione',
                 'plays' => 'Giocate',
                 'relevance' => 'Pertinenza',
@@ -246,6 +252,7 @@ return [
         'converts' => 'Includi beatmap convertite',
     ],
     'mode' => [
+        'all' => 'Qualsiasi',
         'any' => 'Qualsiasi',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
@@ -344,7 +351,7 @@ return [
         'D' => 'D',
     ],
     'panel' => [
-        'playcount' => 'Numero partite: :count',
+        'playcount' => 'Volte giocata: :count',
         'favourites' => 'Preferiti: :count',
     ],
     'variant' => [

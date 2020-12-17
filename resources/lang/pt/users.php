@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Membros por modo de jogo',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "A tua conta não foi usada há muito tempo.",
@@ -84,6 +88,7 @@ return [
         'failed' => 'Início de sessão incorreto',
         'forgot' => 'Esqueceste-te da palavra-passe?',
         'info' => 'Por favor inicia sessão para continuar',
+        'invalid_captcha' => 'Demasiadas tentativas falhadas de início de sessão, termina o captcha e tenta novamente. (Atualiza a página se o captcha não estiver visível)',
         'locked_ip' => 'o teu endereço de IP foi bloqueado. Por favor espera uns minutos.',
         'password' => 'Palavra-passe',
         'register' => "Não tens uma conta osu? Cria uma nova",
@@ -186,7 +191,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'por :artist',
-                'none' => 'Nenhuns... por agora.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -216,7 +220,6 @@ return [
                 'show_more' => 'ver mais eventos',
             ],
             'historical' => [
-                'empty' => 'Sem registos de desempenho :(',
                 'title' => 'Historial',
 
                 'monthly_playcounts' => [
@@ -303,7 +306,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Transferir repetição',
-                'empty' => 'Nenhum registo de desempenhos espectaculares ainda :(',
                 'not_ranked' => 'Somente beatmaps classificados é que dão pp.',
                 'pp_weight' => ':percentage ponderada',
                 'view_details' => 'Ver detalhes',
@@ -349,7 +351,6 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Interesses',
-            'lastfm' => 'Last.fm',
             'location' => 'Localização atual',
             'occupation' => 'Ocupação',
             'skype' => '',

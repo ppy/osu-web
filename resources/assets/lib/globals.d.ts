@@ -1,6 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+type GroupJson = import('interfaces/group-json').default;
+
 // interfaces for using process.env
 interface Process {
   env: ProcessEnv;
@@ -13,7 +15,7 @@ interface ProcessEnv {
 declare var process: Process;
 
 // TODO: Turbolinks 5.3 is Typescript, so this should be updated then.
-declare var Turbolinks: TurbolinksStatic;
+declare var Turbolinks: import('turbolinks').default;
 
 // our helpers
 declare var tooltipDefault: TooltipDefault;
@@ -38,7 +40,6 @@ interface Comment {
 
 interface DiscussionMessageType {
   icon: {[key: string]: string};
-  iconText: {[key: string]: string[]};
 }
 
 interface BeatmapDiscussionHelperClass {
@@ -46,6 +47,7 @@ interface BeatmapDiscussionHelperClass {
   TIMESTAMP_REGEX: RegExp;
   format(text: string, options?: any): string;
   formatTimestamp(value: number | null): string | undefined;
+  nearbyDiscussions(discussions: BeatmapsetDiscussionJson[], timestamp: number): BeatmapsetDiscussionJson[];
   parseTimestamp(value: string): number | null;
   previewMessage(value: string): string;
   url(options: any, useCurrent?: boolean): string;
@@ -57,17 +59,19 @@ interface JQueryStatic {
   unsubscribe: (eventName: string) => void;
 }
 
+type AjaxError = (xhr: JQueryXHR) => void;
+
 interface OsuCommon {
-  ajaxError: (xhr: JQueryXHR) => void;
+  ajaxError: AjaxError;
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
   diffColour: (difficultyRating?: string | null) => React.CSSProperties;
-  groupColour: (group?: GroupJSON) => React.CSSProperties;
+  emitAjaxError: (el?: HTMLElement | null) => AjaxError;
+  groupColour: (group?: GroupJson) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
   link: (url: string, text: string, options?: { classNames?: string[]; isRemote?: boolean }) => string;
   linkify: (text: string, newWindow?: boolean) => string;
   navigate: (url: string, keepScroll?: boolean, action?: object) => void;
-  parseJson: (id: string, remove?: boolean) => any;
   popup: (message: string, type: string) => void;
   popupShowing: () => boolean;
   presence: (str?: string | null) => string | null;
@@ -85,6 +89,7 @@ interface OsuCommon {
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
   isDesktop(): boolean;
   isMobile(): boolean;
+  parseJson<T = any>(id: string, remove?: boolean): T;
   updateQueryString(url: string | null, params: { [key: string]: string | null | undefined }): string;
 }
 
@@ -114,49 +119,30 @@ interface BeatmapFailTimesArray {
 }
 
 // TODO: incomplete
-interface BeatmapDiscussion {
+interface BeatmapsetDiscussionJson {
   beatmap_id: number | null;
   beatmapset_id: number;
   deleted_at: string | null;
   id: number;
   message_type: string;
   parent_id: number | null;
-  posts: BeatmapDiscussionPost[];
+  posts: BeatmapsetDiscussionPostJson[];
   resolved: boolean;
-  starting_post: BeatmapDiscussionPost;
+  starting_post: BeatmapsetDiscussionPostJson;
   timestamp: number | null;
 }
 
 // TODO: incomplete
-interface BeatmapDiscussionPost {
+interface BeatmapsetDiscussionPostJson {
   message: string;
 }
 
 interface LangClass {
-  _getPluralForm: (count: number) => number;
-  _origGetPluralForm: (count: number) => number;
-  locale: string;
+  _getPluralForm: (count: number, locale: string) => number;
+  _origGetPluralForm: (count: number, locale: string) => number;
+  has(key: string): boolean;
 }
 
 interface TooltipDefault {
   remove: (el: HTMLElement) => void;
-}
-
-interface TurbolinksAction {
-  action: 'advance' | 'replace' | 'restore';
-}
-
-interface TurbolinksLocation {
-    getPath(): string;
-    isHTML(): boolean;
-}
-
-interface TurbolinksStatic {
-  controller: any;
-  supported: boolean;
-
-  clearCache(): void;
-  setProgressBarDelay(delayInMilliseconds: number): void;
-  uuid(): string;
-  visit(location: string, options?: TurbolinksAction): void;
 }

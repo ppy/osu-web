@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => 'Vad sägs om att spela lite osu! istället?',
     'require_login' => 'Var vänlig logga in för att fortsätta.',
     'require_verification' => 'Vänligen verifiera för att fortsätta.',
     'restricted' => "Kan ej göra det när man är begränsad.",
@@ -32,6 +33,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "Kan inte rösta på diskussion gjord av bot",
             'limit_exceeded' => 'Var god vänta innan du lägger fler röster',
             'owner' => "Kan inte rösta på din egen diskussion!",
             'wrong_beatmapset_state' => 'Kan endast rösta på diskussioner för väntande beatmaps.',

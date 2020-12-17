@@ -6,13 +6,15 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Jobs\Notifications\BeatmapsetDiscussionPostNew;
+use App\Jobs\Notifications\BeatmapsetDiscussionQualifiedProblem;
+use App\Jobs\Notifications\BeatmapsetResetNominations;
 use App\Libraries\BeatmapsetDiscussionReview;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
-use App\Models\Notification;
 use Auth;
 use DB;
 use Illuminate\Pagination\Paginator;
@@ -43,7 +45,7 @@ class BeatmapDiscussionPostsController extends Controller
     public function index()
     {
         $isModerator = priv_check('BeatmapDiscussionModerate')->can();
-        $params = request();
+        $params = request()->all();
         $params['is_moderator'] = $isModerator;
 
         if (!$isModerator) {
@@ -94,7 +96,7 @@ class BeatmapDiscussionPostsController extends Controller
             priv_check('BeatmapDiscussionStore', $discussion)->ensureCan();
         }
 
-        $postParams = get_params(request(), 'beatmap_discussion_post', ['message']);
+        $postParams = get_params(request()->all(), 'beatmap_discussion_post', ['message']);
         $postParams['user_id'] = Auth::user()->user_id;
         $post = new BeatmapDiscussionPost($postParams);
         $post->beatmapDiscussion()->associate($discussion);
@@ -160,7 +162,7 @@ class BeatmapDiscussionPostsController extends Controller
             }
 
             if ($resetNominations) {
-                broadcast_notification(Notification::BEATMAPSET_RESET_NOMINATIONS, $discussion->beatmapset, Auth::user());
+                (new BeatmapsetResetNominations($discussion->beatmapset, Auth::user()))->dispatch();
             }
 
             // feels like a controller shouldn't be calling refreshCache on a model?
@@ -175,14 +177,10 @@ class BeatmapDiscussionPostsController extends Controller
 
         if ($notifyQualifiedProblem) {
             // TODO: should work out how have the new post notification be able to handle this instead.
-            broadcast_notification(
-                Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
-                $post,
-                auth()->user()
-            );
+            (new BeatmapsetDiscussionQualifiedProblem($post, auth()->user()))->dispatch();
         }
 
-        broadcast_notification(Notification::BEATMAPSET_DISCUSSION_POST_NEW, $post, Auth::user());
+        (new BeatmapsetDiscussionPostNew($post, Auth::user()))->dispatch();
 
         return [
             'beatmapset' => $beatmapset->defaultDiscussionJson(),
@@ -197,7 +195,7 @@ class BeatmapDiscussionPostsController extends Controller
 
         priv_check('BeatmapDiscussionPostEdit', $post)->ensureCan();
 
-        $params = get_params(request(), 'beatmap_discussion_post', ['message']);
+        $params = get_params(request()->all(), 'beatmap_discussion_post', ['message']);
         $params['last_editor_id'] = Auth::user()->user_id;
 
         if ($post->beatmapDiscussion->message_type === 'review' && $post->isFirstPost()) {

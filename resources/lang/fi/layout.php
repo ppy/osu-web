@@ -36,27 +36,27 @@ return [
         ],
 
         'store' => [
-            'cart' => '',
-            'orders' => '',
-            'products' => '',
+            'cart' => 'ostoskori',
+            'orders' => 'tilaushistoria',
+            'products' => 'tuotteet',
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'listaus',
         ],
 
         'users' => [
-            'modding' => '',
-            'show' => '',
+            'modding' => 'modaus',
+            'show' => 'tiedot',
         ],
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => 'Sulje (Esc)',
+        'fullscreen' => 'Vaihda kokoruututila',
+        'zoom' => 'Zoomaa sisään/ulos',
+        'previous' => 'Edellinen (nuoli vasemmalla)',
+        'next' => 'Seuraava (nuoli oikealla)',
     ],
 
     'menu' => [
@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'apua',
+            'getAbuse' => '',
             'getFaq' => 'ukk',
             'getRules' => 'säännöt',
             'getSupport' => 'tarvitsen siis oikeasti apua!',
@@ -96,7 +97,7 @@ return [
             'country' => 'maa',
             'index' => 'suorituskyky',
             'kudosu' => 'kudosu',
-            'multiplayer' => '',
+            'multiplayer' => 'moninpeli',
             'score' => 'pisteet',
         ],
         'store' => [
@@ -121,7 +122,7 @@ return [
             'forum' => 'Keskustelupalsta',
             'livestreams' => 'Suorat lähetykset',
             'report' => 'Ilmoita ongelmasta',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Lakiasiat ja tilanne',
@@ -135,7 +136,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Virheellinen pyynnön parametri',
             'description' => '',
         ],
         '404' => [
@@ -155,7 +156,7 @@ return [
             'description' => "Pahoittelut, mutta sivu jota hait ei ole täällä!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Virheellinen pyynnön parametri',
             'description' => '',
         ],
         '500' => [
@@ -179,6 +180,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Olen unohtanut tietoni",
             'password' => 'salasana',

@@ -80,7 +80,7 @@
   }
 
   &--guest {
-    .at2x-simple("/images/layout/avatar-guest.png");
+    .at2x-simple("~@images/layout/avatar-guest.png");
   }
 
   &--nav2 {
@@ -97,19 +97,8 @@
       height: @nav2-avatar-height--pinned;
     }
 
-    &::after {
-      .full-size();
-      content: '';
-      border-radius: 50%;
-      box-shadow: inset 0 0 0 3px #fff;
-      opacity: 0;
-      will-change: opacity;
-    }
-
     &.js-click-menu--active, &:hover {
-      &::after {
-        opacity: 1;
-      }
+      box-shadow: inset 0 0 0 3px hsl(var(--hsl-c1));
     }
   }
 
@@ -128,7 +117,7 @@
     &::before {
       .full-size();
       content: '';
-      background-image: url('/images/layout/exclamation-icon.svg');
+      background-image: url('~@images/layout/exclamation-icon.svg');
       background-size: 60%;
       background-position: center;
       background-repeat: no-repeat;

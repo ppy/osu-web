@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Ваш аккаунт не использовался в течение долгого времени.",
@@ -84,6 +88,7 @@ return [
         'failed' => 'Неверный вход',
         'forgot' => 'Забыли пароль?',
         'info' => 'Пожалуйста, войдите в аккаунт, чтобы продолжить',
+        'invalid_captcha' => 'Неверная капча, перезагрузите страницу и попробуйте снова.',
         'locked_ip' => 'Ваш IP адрес заблокирован. Попробуйте через несколько минут.',
         'password' => 'Пароль',
         'register' => "У вас всё ещё нет аккаунта в osu!? Создайте новый",
@@ -186,7 +191,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'от :artist',
-                'none' => 'Ничего… пока что.',
                 'title' => 'Карты',
 
                 'favourite' => [
@@ -216,7 +220,6 @@ return [
                 'show_more' => 'посмотреть больше событий',
             ],
             'historical' => [
-                'empty' => 'Пока записей нет :(',
                 'title' => 'Хронология',
 
                 'monthly_playcounts' => [
@@ -303,7 +306,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Скачать повтор',
-                'empty' => 'Пока рекордов нет :(',
                 'not_ranked' => 'Очки производительности выдаются только за прохождение рейтинговых карт.',
                 'pp_weight' => 'взвешено: :percentage',
                 'view_details' => 'Подробнее',
@@ -313,7 +315,7 @@ return [
                     'title' => 'Лучшие результаты',
                 ],
                 'first' => [
-                    'title' => 'Рекорды',
+                    'title' => 'Первые места',
                 ],
             ],
             'votes' => [
@@ -324,7 +326,7 @@ return [
                 'vote_count' => ':count_delimited голос|:count_delimited голоса|:count_delimited голосов',
             ],
             'account_standing' => [
-                'title' => 'Состояние аккаунта',
+                'title' => 'Нарушения',
                 'bad_standing' => "с аккаунтом <strong>:username</strong> не всё хорошо :(",
                 'remaining_silence' => 'пользователю <strong>:username</strong> можно будет говорить через :duration.',
 
@@ -349,7 +351,6 @@ return [
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Интересы',
-            'lastfm' => 'Last.fm',
             'location' => 'Текущее местоположение',
             'occupation' => 'Род деятельности',
             'skype' => 'Skype',

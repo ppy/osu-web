@@ -1,11 +1,11 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { FlagCountry } from 'flag-country'
+import FlagCountry from 'flag-country'
 import * as React from 'react'
 import { a, div, h1, span } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
-import UserGroupBadge from 'user-group-badge'
+import UserGroupBadges from 'user-group-badges'
 el = React.createElement
 
 
@@ -38,11 +38,9 @@ export class HeaderInfo extends React.PureComponent
           className: "#{bn}__name"
           span className: 'u-ellipsis-pre-overflow', @props.user.username
           div className: "#{bn}__previous-usernames", @previousUsernames()
-        # hard space if no title
-        span
-          className: "#{bn}__title"
-          style: color: @props.user.profile_colour
-          @props.user.title ? '\u00A0'
+
+        @renderTitle() if @props.user.title?
+
         div className: "#{bn}__icon-group",
           div className: "#{bn}__icons",
             if @props.user.is_supporter
@@ -53,11 +51,7 @@ export class HeaderInfo extends React.PureComponent
                   span
                     key: i
                     className: 'fas fa-heart'
-            for group in @props.user.groups
-              span
-                className: "#{bn}__icon"
-                key: group.id
-                el UserGroupBadge, group: group, modifiers: ['profile-page']
+            el UserGroupBadges, groups: @props.user.groups, modifiers: ['profile-page'], wrapper: "#{bn}__icon"
           div className: "#{bn}__icons #{bn}__icons--flag",
             if @props.user.country?.code?
               a
@@ -67,13 +61,23 @@ export class HeaderInfo extends React.PureComponent
                   country: @props.user.country.code,
                   type: 'performance'
                 span className: "#{bn}__flag-flag",
-                  el FlagCountry, country: @props.user.country, modifiers: ['full']
+                  el FlagCountry, country: @props.user.country
                 span className: "#{bn}__flag-text",
                   @props.user.country.name
       div
         className: 'profile-info__bar hidden-xs'
         style:
           backgroundColor: @props.user.profile_colour
+
+
+  renderTitle: ->
+    element = if @props.user.title_url? then a else span
+
+    element
+      className: "#{bn}__title"
+      href: @props.user.title_url
+      style: color: @props.user.profile_colour
+      @props.user.title
 
 
   previousUsernames: =>

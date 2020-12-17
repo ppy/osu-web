@@ -2,6 +2,9 @@
 
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
+
+use App\Http\Middleware\ThrottleRequests;
+
 Route::group(['middleware' => ['web']], function () {
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('/beatmapsets/{beatmapset}/covers', 'BeatmapsetsController@covers')->name('beatmapsets.covers');
@@ -57,7 +60,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
         Route::resource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
-        Route::resource('watches', 'BeatmapsetWatchesController', ['only' => ['index', 'update', 'destroy']]);
+        // keeping old link alive
+        route_redirect('watches', 'follows.index');
+        Route::resource('watches', 'BeatmapsetWatchesController', ['only' => ['update', 'destroy']]);
 
         Route::group(['prefix' => 'discussions', 'as' => 'discussions.'], function () {
             Route::resource('votes', 'BeatmapsetDiscussionVotesController', ['only' => ['index']]);
@@ -74,6 +79,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('beatmapsets/{beatmapset}/discussion-unlock', 'BeatmapsetsController@discussionUnlock')->name('beatmapsets.discussion-unlock');
     Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download')->name('beatmapsets.download');
     Route::put('beatmapsets/{beatmapset}/love', 'BeatmapsetsController@love')->name('beatmapsets.love');
+    Route::delete('beatmapsets/{beatmapset}/love', 'BeatmapsetsController@removeFromLoved')->name('beatmapsets.remove-from-loved');
     Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
     Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
@@ -130,7 +136,9 @@ Route::group(['middleware' => ['web']], function () {
 
                 Route::resource('topic-covers', 'TopicCoversController', ['only' => ['store', 'update', 'destroy']]);
 
-                Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['index', 'update']]);
+                // keeping old link alive
+                route_redirect('topic-watches', 'follows.index');
+                Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['update']]);
             });
 
             Route::post('forums/mark-as-read', 'ForumsController@markAsRead')->name('forums.mark-as-read');
@@ -198,14 +206,17 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
         Route::get('notifications/endpoint', 'NotificationsController@endpoint')->name('notifications.endpoint');
         Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
+        Route::delete('notifications', 'NotificationsController@batchDestroy');
 
         Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');
 
         Route::resource('follows', 'FollowsController', ['only' => ['store']]);
+        Route::get('follows/{subtype?}', 'FollowsController@index')->name('follows.index');
         Route::delete('follows', 'FollowsController@destroy')->name('follows.destroy');
     });
 
-    Route::get('legal/{page}', 'LegalController@show')->name('legal');
+    Route::get('legal/{locale?}/{path?}', 'LegalController@show')->name('legal');
+    Route::put('legal/{locale}/{path}', 'LegalController@update');
 
     Route::group(['prefix' => 'multiplayer', 'as' => 'multiplayer.', 'namespace' => 'Multiplayer'], function () {
         Route::resource('rooms', 'RoomsController', ['only' => ['show']]);
@@ -242,7 +253,6 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'namespace' => 'Users'], function () {
         Route::get('/', 'ModdingHistoryController@index')->name('index');
-        Route::get('/events', 'ModdingHistoryController@events')->name('events');
         Route::get('/posts', 'ModdingHistoryController@posts')->name('posts');
         Route::get('/votes-given', 'ModdingHistoryController@votesGiven')->name('votes-given');
         Route::get('/votes-received', 'ModdingHistoryController@votesReceived')->name('votes-received');
@@ -251,14 +261,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
     Route::resource('users', 'UsersController', ['only' => 'store']);
 
-    Route::group(['prefix' => 'help'], function () {
-        // help section
-        Route::get('wiki/Sitemap', 'WikiController@sitemap')->name('wiki.sitemap');
-        Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
-        Route::put('wiki/{page}', 'WikiController@update')->where('page', '.+');
-        Route::get('wiki-suggestions', 'WikiController@suggestions')->name('wiki-suggestions');
-        route_redirect('/', 'wiki.show');
-    });
+    Route::get('wiki/{locale}/Sitemap', 'WikiController@sitemap')->name('wiki.sitemap');
+    Route::get('wiki/images/{path}', 'WikiController@image')->name('wiki.image')->where('path', '.+');
+    Route::get('wiki/{locale?}/{path?}', 'WikiController@show')->name('wiki.show')->where('path', '.+');
+    Route::put('wiki/{locale}/{path}', 'WikiController@update')->where('path', '.+');
+    Route::get('wiki-suggestions', 'WikiController@suggestions')->name('wiki-suggestions');
 
     // FIXME: someone split this crap up into proper controllers
     Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
@@ -280,7 +287,7 @@ Route::group(['middleware' => ['web']], function () {
 
             Route::resource('checkout', 'CheckoutController', ['only' => ['show', 'store']]);
 
-            Route::resource('orders', 'OrdersController', ['only' => ['index']]);
+            Route::resource('orders', 'OrdersController', ['only' => ['destroy', 'index']]);
 
             route_redirect('product/{product}', 'store.products.show');
             Route::resource('products', 'ProductsController', ['only' => ['show']]);
@@ -330,12 +337,12 @@ Route::group(['middleware' => ['web']], function () {
     route_redirect('u/{user}', 'users.show');
     route_redirect('forum', 'forum.forums.index');
     route_redirect('mp/{match}', 'matches.show');
-    route_redirect('wiki/{page?}', 'wiki.show')->where('page', '.+');
+    route_redirect('help/wiki/{path?}', 'wiki.show')->where('path', '.+');
 });
 
 // API
 // require-scopes is not in the api group at the moment to reduce the number of things that need immediate fixing.
-Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'require-scopes']], function () {
+Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', ThrottleRequests::getApiThrottle(), 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets'], function () {
             Route::apiResource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
@@ -382,9 +389,9 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'requir
 
         Route::apiResource('seasonal-backgrounds', 'SeasonalBackgroundsController', ['only' => ['index']]);
 
-        Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
-            // GET /api/v2/scores/:mode/:score_id/download
-            Route::get('{mode}/{score}/download', 'ScoresController@download')->name('download');
+        Route::group(['prefix' => 'scores/{mode}', 'as' => 'scores.'], function () {
+            Route::get('{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download');
+            Route::get('{score}', 'ScoresController@show')->name('show');
         });
 
         // Beatmaps
@@ -414,6 +421,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'requir
         //  GET /api/v2/me/download-quota-check
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck');
 
+        Route::delete('oauth/tokens/current', 'OAuth\TokensController@destroyCurrent')->name('oauth.tokens.current');
+
         Route::apiResource('news', 'NewsController', ['only' => ['index', 'show']]);
 
         // Notifications
@@ -436,8 +445,9 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'requir
         Route::get('users/{user}/recent_activity', 'UsersController@recentActivity');
         //  GET /api/v2/users/:user_id/:mode [osu, taiko, fruits, mania]
         Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
+        Route::resource('users', 'UsersController', ['only' => ['index']]);
 
-        Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
+        Route::get('wiki/{locale}/{path}', 'WikiController@show')->name('wiki.show')->where('path', '.+');
     });
 });
 
@@ -456,6 +466,20 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::post('user-recalculate-ranked-scores/{user}', 'LegacyInterOpController@userRecalculateRankedScores');
     Route::get('/news', 'LegacyInterOpController@news');
     Route::apiResource('users', 'InterOp\UsersController', ['only' => ['store']]);
+
+    Route::group(['namespace' => 'InterOp'], function () {
+        Route::post('beatmapsets/{beatmapset}/broadcast-new', 'BeatmapsetsController@broadcastNew');
+
+        Route::group(['as' => 'indexing.', 'prefix' => 'indexing'], function () {
+            Route::apiResource('bulk', 'Indexing\BulkController', ['only' => ['store']]);
+        });
+
+        Route::group(['as' => 'user-groups.'], function () {
+            Route::post('user-group', 'UserGroupsController@store')->name('store');
+            Route::delete('user-group', 'UserGroupsController@destroy')->name('destroy');
+            Route::post('user-default-group', 'UserGroupsController@setDefault')->name('store-default');
+        });
+    });
 });
 
-Route::fallback('FallbackController@index');
+Route::any('{catchall}', 'FallbackController@index')->where('catchall', '.*')->fallback();

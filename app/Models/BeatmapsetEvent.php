@@ -22,6 +22,7 @@ class BeatmapsetEvent extends Model
 {
     const NOMINATE = 'nominate';
     const LOVE = 'love';
+    const REMOVE_FROM_LOVED = 'remove_from_loved';
     const QUALIFY = 'qualify';
     const DISQUALIFY = 'disqualify';
     const APPROVE = 'approve';
@@ -193,6 +194,7 @@ class BeatmapsetEvent extends Model
                     static::LOVE,
                     static::NOMINATION_RESET,
                     static::DISQUALIFY,
+                    static::REMOVE_FROM_LOVED,
 
                     static::KUDOSU_GAIN,
                     static::KUDOSU_LOST,
@@ -245,6 +247,15 @@ class BeatmapsetEvent extends Model
         return $this->comment['beatmap_discussion_id'] ?? null;
     }
 
+    public function getNominationModesAttribute()
+    {
+        if ($this->type !== self::NOMINATE) {
+            return null;
+        }
+
+        return $this->comment['modes'] ?? [];
+    }
+
     public function beatmapDiscussion()
     {
         return $this->belongsTo(BeatmapDiscussion::class, 'beatmap_discussion_id');
@@ -283,14 +294,5 @@ class BeatmapsetEvent extends Model
     public function setCommentAttribute($value)
     {
         $this->attributes['comment'] = is_array($value) ? json_encode($value) : $value;
-    }
-
-    public function typeForTranslation()
-    {
-        if ($this->type === 'disqualify' && !is_array($this->comment)) {
-            return 'disqualify_legacy';
-        }
-
-        return $this->type;
     }
 }

@@ -34,15 +34,17 @@ export class Main extends React.PureComponent
     # FIXME: update url handler to recognize this instead
     @focusNewDiscussion = document.location.hash == '#new'
 
-    if !@restoredState
+    if @restoredState
+      @state.readPostIds = new Set(@state.readPostIdsArray)
+    else
       beatmapset = props.initial.beatmapset
       reviewsConfig = props.initial.reviews_config
       showDeleted = true
-      readPostIds = []
+      readPostIds = new Set
 
       for discussion in beatmapset.discussions
         for post in discussion?.posts ? []
-          readPostIds.push post.id if post?
+          readPostIds.add(post.id) if post?
 
       @state = {beatmapset, currentUser, readPostIds, reviewsConfig, showDeleted}
 
@@ -116,7 +118,6 @@ export class Main extends React.PureComponent
         currentBeatmap: @currentBeatmap()
         currentDiscussions: @currentDiscussions()
         currentFilter: @state.currentFilter
-        reviewsEnabled: @state.reviewsConfig.enabled
 
       if @state.currentMode == 'events'
         div
@@ -282,29 +283,36 @@ export class Main extends React.PureComponent
       # skip if filtering users
       continue if @state.selectedUserId? && d.user_id != @state.selectedUserId
 
-      filters = ['total']
+      filters = total: true
 
       if d.deleted_at?
-        filters.push 'deleted'
+        filters.deleted = true
       else if d.message_type == 'hype'
-        filters.push 'hype'
-        filters.push 'praises'
+        filters.hype = true
+        filters.praises = true
       else if d.message_type == 'praise'
-        filters.push 'praises'
+        filters.praises = true
       else if d.can_be_resolved
         if d.resolved
-          filters.push 'resolved'
+          filters.resolved = true
         else
-          filters.push 'pending'
+          filters.pending = true
 
       if d.user_id == @state.currentUser.id
-        filters.push 'mine'
+        filters.mine = true
 
       if d.message_type == 'mapper_note'
-        filters.push 'mapperNotes'
+        filters.mapperNotes = true
 
-      for filter in filters
+      # the value should always be true
+      for own filter, _isSet of filters
         byFilter[filter][mode][d.id] = d
+
+      if filters.pending && d.parent_id?
+        parentDiscussion = @discussions()[d.parent_id]
+
+        if parentDiscussion? && parentDiscussion.message_type == 'review'
+          byFilter.pending.reviews[parentDiscussion.id] = parentDiscussion
 
       byMode[mode].push d
 
@@ -362,7 +370,7 @@ export class Main extends React.PureComponent
       newState.selectedUserId = null
 
     newState.callback = =>
-      $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
+      $.publish 'beatmapset-discussions:highlight', discussionId: discussion.id
 
       target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
 
@@ -397,9 +405,15 @@ export class Main extends React.PureComponent
 
 
   markPostRead: (_e, {id}) =>
-    return if _.includes @state.readPostIds, id
+    return if @state.readPostIds.has(id)
 
-    @setState readPostIds: @state.readPostIds.concat(id)
+    newSet = new Set(@state.readPostIds)
+    if Array.isArray(id)
+      newSet.add(i) for i in id
+    else
+      newSet.add(id)
+
+    @setState readPostIds: newSet
 
 
   queryFromLocation: (discussions = @state.beatmapsetDiscussion.beatmap_discussions) =>
@@ -407,6 +421,8 @@ export class Main extends React.PureComponent
 
 
   saveStateToContainer: =>
+    # This is only so it can be stored with JSON.stringify.
+    @state.readPostIdsArray = Array.from(@state.readPostIds)
     @props.container.dataset.beatmapsetDiscussionState = JSON.stringify(@state)
 
 

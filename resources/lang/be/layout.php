@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'дапамога',
+            'getAbuse' => '',
             'getFaq' => 'faq',
             'getRules' => 'правілы',
             'getSupport' => 'ды не ж, мне праўда патрэбна дапамога!',
@@ -179,6 +180,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Не помню свае даныя",
             'password' => 'пароль',

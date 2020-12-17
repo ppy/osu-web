@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "давайте<br>розпочнемо!",
         'action' => 'Завантажити osu!',
+
+        'help' => [
+            '_' => 'якщо у вас виникла проблема з запуском гри чи реєстрацією облікового запису, :help_forum_link або :support_button.',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'для Windows',
             'macos' => 'для macOS',

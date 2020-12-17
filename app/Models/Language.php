@@ -27,6 +27,6 @@ class Language extends Model
 
     public static function listing()
     {
-        return json_collection(static::all(), new LanguageTransformer);
+        return json_collection(static::all(), new LanguageTransformer());
     }
 }

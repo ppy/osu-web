@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Kolekce beatmap s podobnou tématikou.',
-        'nav_title' => '',
+        'nav_title' => 'seznam',
         'title' => 'Balíčky beatmap',
 
         'blurb' => [
@@ -29,6 +29,10 @@ return [
         'item' => [
             'cleared' => 'splněno',
             'not_cleared' => 'nesplněno',
+        ],
+        'no_diff_reduction' => [
+            '_' => '',
+            'link' => '',
         ],
     ],
 

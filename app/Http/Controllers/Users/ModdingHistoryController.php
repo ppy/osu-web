@@ -65,20 +65,6 @@ class ModdingHistoryController extends Controller
         ));
     }
 
-    public function events()
-    {
-        $user = $this->user;
-
-        $bundle = ModdingHistoryEventsBundle::forListing($user, $this->searchParams);
-        $jsonChunks = $bundle->toArray();
-        $paginator = $bundle->getPaginator();
-        $params = $bundle->getParams();
-
-        $showUserSearch = false;
-
-        return ext_view('beatmapset_events.index', compact('paginator', 'params', 'jsonChunks', 'user', 'showUserSearch'));
-    }
-
     public function posts()
     {
         $user = $this->user;

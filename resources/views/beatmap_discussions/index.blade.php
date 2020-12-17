@@ -11,7 +11,7 @@
 
 {{-- FIXME: move to user modding history --}}
 @section('content')
-    @include('layout._page_header_v4')
+    @include('layout._page_header_v4', ['params' => ['theme' => 'beatmapsets']])
     <div class="osu-page osu-page--generic">
         <div class="beatmapset-activities">
             <h3>{{ trans('beatmap_discussions.index.title') }}</h3>
@@ -20,19 +20,18 @@
                 <h2 class="simple-form__row simple-form__row--title">
                     {{ trans('beatmap_discussions.index.form._') }}
                 </h2>
-                @if ($showUserSearch ?? true)
-                    <label class="simple-form__row">
-                        <div class="simple-form__label">
-                            {{ trans('beatmap_discussions.index.form.username') }}
-                        </div>
 
-                        <input
-                            class="simple-form__input"
-                            name="user"
-                            value="{{ $search['params']['user'] ?? '' }}"
-                        >
-                    </label>
-                @endif
+                <label class="simple-form__row">
+                    <div class="simple-form__label">
+                        {{ trans('beatmap_discussions.index.form.username') }}
+                    </div>
+
+                    <input
+                        class="simple-form__input"
+                        name="user"
+                        value="{{ $search['params']['user'] ?? '' }}"
+                    >
+                </label>
 
                 <div class="simple-form__row">
                     <div class="simple-form__label">
@@ -60,10 +59,6 @@
                     </div>
                     <div class="simple-form__checkboxes-inline">
                         @foreach (array_keys(App\Models\BeatmapDiscussion::MESSAGE_TYPES) as $messageType)
-                            {{-- TODO: remove this when reviews are released --}}
-                            @if (!config('osu.beatmapset.discussion_review_enabled') && $messageType === 'review')
-                                @continue
-                            @endif
                             <label class="simple-form__checkbox simple-form__checkbox--inline">
                                 @include('objects._switch', [
                                     'checked' => in_array($messageType, $search['params']['message_types'], true),

@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Delete post',
-            'restore' => 'Restore post',
             'edit' => 'Edit post',
+            'report' => 'Report post',
+            'restore' => 'Restore post',
         ],
 
         'create' => [
@@ -76,6 +77,7 @@ return [
         'deleted' => 'deleted topic',
         'go_to_latest' => 'view latest post',
         'has_replied' => 'You have replied to this topic',
+        'in_forum' => 'in :forum',
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'last reply by :user',
         'new_topic' => 'New topic',
@@ -125,7 +127,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'forum subscriptions',
+            'title_compact' => 'forum topic watchlist',
 
             'box' => [
                 'total' => 'Topics subscribed',

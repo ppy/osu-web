@@ -187,12 +187,18 @@ return [
         'nominate_confirm' => 'ترشيح هذه الخريطة؟',
         'nominated_by' => 'تم ترشيحها بواسطة :users',
         'not_enough_hype' => "لا يوجد تشجيع كافي.",
-        'qualified' => 'متوقع ان يتم تصفيفها في :date, اذا لم يتم اكتشاف اي اخطاء.',
-        'qualified_soon' => 'متوقع ان يتم تصفيفها قريبا, اذا لم يتم اكتشاف اي اخطاء.',
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'الترشيحات: :current/:required',
         'reset_message_deleted' => 'حُذفت',
         'title' => 'حالة الترشيح',
         'unresolved_issues' => 'لا تزال هناك اخطاء يجب الاِشارة اليها في البداية.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'اعادة تعيين حالة الترشيح بواسطة :user في :time_ago مع مشكلة جديدة :discussion (:message).',
@@ -246,6 +252,7 @@ return [
         'converts' => 'ادخال الخرائط المتحولة',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'الكل',
         'osu' => '',
         'taiko' => '',

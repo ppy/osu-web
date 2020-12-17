@@ -18,4 +18,11 @@ return [
     'user_support_first' => '<strong>:user</strong>はosu!サポーターになりました！ - あなたの寛大さに感謝します！',
     'user_support_gift' => '<strong>:user</strong>はosu!サポーターギフトを貰いました！',
     'username_change' => '<strong>:previousUsername</strong>は<strong><em>:user</strong></em>にユーザー名を変更しました！',
+
+    'beatmapset_status' => [
+        'approved' => 'approved',
+        'loved' => 'loved',
+        'qualified' => 'qualified',
+        'ranked' => 'ranked',
+    ],
 ];

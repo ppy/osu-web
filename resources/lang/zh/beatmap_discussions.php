@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => '在这个时间点上没有相关的讨论记录。',
         'notice' => '在 :timestamp 附近（:existing_timestamps）有讨论记录，发表前请检查。',
+        'unsaved' => '此审阅中有 :count',
     ],
 
     'reply' => [
@@ -64,7 +65,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max 块已使用',
         'go_to_parent' => '查看审阅帖',
         'go_to_child' => '查看讨论',
         'validation' => [

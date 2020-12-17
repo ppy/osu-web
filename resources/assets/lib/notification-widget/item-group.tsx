@@ -5,8 +5,10 @@ import { observer } from 'mobx-react';
 import Notification from 'models/notification';
 import NotificationStack from 'models/notification-stack';
 import { categoryToIcons } from 'notification-maps/icons';
+import { formatMessageGroup } from 'notification-maps/message';
 import { urlGroup } from 'notification-maps/url';
 import { NotificationContext } from 'notifications-context';
+import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
@@ -24,6 +26,7 @@ interface State {
 @observer
 export default class ItemGroup extends React.Component<Props, State> {
   static readonly contextType = NotificationContext;
+  context!: React.ContextType<typeof NotificationContext>;
   readonly state = {
     expanded: false,
   };
@@ -36,12 +39,14 @@ export default class ItemGroup extends React.Component<Props, State> {
       <div className='notification-popup-item-group'>
         <Item
           canMarkAsRead={this.props.stack.canMarkAsRead}
-          markRead={this.handleMarkAsRead}
-          markingAsRead={this.props.stack.isMarkingAsRead}
+          delete={this.handleDelete}
           expandButton={this.renderExpandButton()}
           icons={categoryToIcons[item.category]}
+          isDeleting={this.props.stack.isDeleting}
+          isMarkingAsRead={this.props.stack.isMarkingAsRead}
           item={item}
-          message={item.messageGroup}
+          markRead={this.handleMarkAsRead}
+          message={formatMessageGroup(item)}
           modifiers={['group']}
           url={urlGroup(item)}
           withCategory={true}
@@ -50,6 +55,10 @@ export default class ItemGroup extends React.Component<Props, State> {
         {this.renderItems()}
       </div>
     );
+  }
+
+  private handleDelete = () => {
+    this.props.stack.delete();
   }
 
   private handleMarkAsRead = () => {
@@ -109,6 +118,12 @@ export default class ItemGroup extends React.Component<Props, State> {
           <div className='notification-popup-item-group__collapse'>
             {this.renderShowLess()}
             <NotificationReadButton isMarkingAsRead={this.props.stack.isMarkingAsRead} onMarkAsRead={this.handleMarkAsRead} />
+            {!this.context.isWidget && (
+              <NotificationDeleteButton
+                isDeleting={this.props.stack.isDeleting}
+                onDelete={this.handleDelete}
+              />
+            )}
           </div>
         </div>
       </div>

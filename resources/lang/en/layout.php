@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'help',
+            'getAbuse' => 'report abuse',
             'getFaq' => 'faq',
             'getRules' => 'rules',
             'getSupport' => 'no, really, i need help!',
@@ -203,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Settings',
+            'follows' => 'Watchlists',
             'friends' => 'Friends',
             'logout' => 'Sign Out',
             'profile' => 'My Profile',

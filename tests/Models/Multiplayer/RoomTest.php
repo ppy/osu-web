@@ -30,7 +30,7 @@ class RoomTest extends TestCase
             ],
         ];
 
-        $room = (new Room)->startGame($user, $params);
+        $room = (new Room())->startGame($user, $params);
         $this->assertTrue($room->exists);
     }
 
@@ -51,7 +51,7 @@ class RoomTest extends TestCase
         ];
 
         $this->expectException(InvariantException::class);
-        (new Room)->startGame($user, $params);
+        (new Room())->startGame($user, $params);
     }
 
     public function testRoomHasEnded()

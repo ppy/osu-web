@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Je account is lange tijd niet gebruikt.",
@@ -84,6 +88,7 @@ return [
         'failed' => 'Verkeerde login',
         'forgot' => 'Wachtwoord vergeten?',
         'info' => 'Log in om verder te gaan',
+        'invalid_captcha' => 'Captcha ongeldig, vernieuw de pagina en probeer het opnieuw.',
         'locked_ip' => 'je IP adres is vergrendeld. Wacht enkele minuten.',
         'password' => 'Wachtwoord',
         'register' => "Heb je geen osu! account? Maak een nieuwe",
@@ -186,7 +191,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'door :artist',
-                'none' => 'Nog geen...',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -216,7 +220,6 @@ return [
                 'show_more' => 'meer gebeurtenissen zien',
             ],
             'historical' => [
-                'empty' => 'Geen prestatiegegevens. :(',
                 'title' => 'Historisch',
 
                 'monthly_playcounts' => [
@@ -303,7 +306,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Download Replay',
-                'empty' => 'Nog geen geweldige prestatiegegevens. :(',
                 'not_ranked' => 'Enkel gerankte beatmaps geven pp.',
                 'pp_weight' => 'gewogen :percentage',
                 'view_details' => 'Details Bekijken',
@@ -349,7 +351,6 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Interesses',
-            'lastfm' => 'Last.fm',
             'location' => 'Huidige Locatie',
             'occupation' => 'Beroep',
             'skype' => '',
@@ -380,23 +381,23 @@ return [
         ],
         'rank' => [
             'country' => 'Landelijke rank voor :mode',
-            'country_simple' => 'Land Ranking',
+            'country_simple' => 'Landelijke Ranking',
             'global' => 'Globale rank voor :mode',
-            'global_simple' => 'Globale Ranking',
+            'global_simple' => 'Wereldwijde Ranking',
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Precisie',
             'level' => 'Level :level',
             'level_progress' => 'Voortgang naar volgend level',
-            'maximum_combo' => 'Maximum Combo',
+            'maximum_combo' => 'Hoogste Combo',
             'medals' => 'Medailles',
             'play_count' => 'Play Count',
             'play_time' => 'Totale Speeltijd',
             'ranked_score' => 'Gerankte Score',
-            'replays_watched_by_others' => 'Replays Gekeken door Anderen',
+            'replays_watched_by_others' => 'Replays Bekeken door Anderen',
             'score_ranks' => 'Score Ranks',
             'total_hits' => 'Totaal Aantal Hits',
-            'total_score' => 'Totaal Aantal Score',
+            'total_score' => 'Totale Score',
             // modding stats
             'ranked_and_approved_beatmapset_count' => 'Gerankte & Goedgekeurde Beatmaps',
             'loved_beatmapset_count' => 'Loved Beatmaps',

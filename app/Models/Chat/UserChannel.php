@@ -5,6 +5,7 @@
 
 namespace App\Models\Chat;
 
+use App\Libraries\Notification\BatchIdentities;
 use App\Models\User;
 use App\Models\UserNotification;
 use DB;
@@ -56,12 +57,15 @@ class UserChannel extends Model
         // this prevents the read marker from going backwards
         $this->update(['last_read_id' => DB::raw("GREATEST(COALESCE(last_read_id, 0), $maxId)")]);
 
-        $params = [
-            'category' => 'channel',
-            'object_type' => 'channel',
-            'object_id' => $this->channel_id,
-        ];
-        UserNotification::markAsReadByNotificationIdentifier($this->user, $params);
+        UserNotification::batchMarkAsRead($this->user, BatchIdentities::fromParams([
+            'identities' => [
+                [
+                    'category' => 'channel',
+                    'object_type' => 'channel',
+                    'object_id' => $this->channel_id,
+                ],
+            ],
+        ]));
     }
 
     public static function presenceForUser(User $user)
@@ -162,8 +166,10 @@ class UserChannel extends Model
                 $targetUser = $usersById[array_shift($members)] ?? null;
 
                 // hide if target is restricted or blocked unless blocked user is a moderator.
-                if (!$targetUser
-                    || $user->hasBlocked($targetUser) && !($targetUser->isModerator() || $targetUser->isAdmin())) {
+                if (
+                    !$targetUser
+                    || $user->hasBlocked($targetUser) && !($targetUser->isModerator() || $targetUser->isAdmin())
+                ) {
                     return [];
                 }
 

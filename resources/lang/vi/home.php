@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "hãy<br>bắt đầu!",
         'action' => 'Tải xuống osu!',
+
+        'help' => [
+            '_' => '',
+            'help_forum_link' => '',
+            'support_button' => '',
+        ],
+
         'os' => [
             'windows' => 'cho Windows',
             'macos' => 'cho macOS',

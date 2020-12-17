@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Alle varsler lest!',
+    'delete' => '',
     'mark_read' => 'Tøm :type',
     'none' => 'Ingen varsler',
     'see_all' => 'se alle varsler',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'alle',
@@ -58,6 +60,8 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmappen er i kø for å bli rangert',
                 'beatmapset_rank' => '":title" har blitt rangert',
                 'beatmapset_rank_compact' => 'Beatmappet var rangert',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'Problemstilling skrevet av :username nullstilte nominasjonen av beatmappet ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Nominasjonen ble tilbakestilt',
             ],
@@ -67,6 +71,8 @@ return [
 
                 'comment_new' => ':username kommenterte ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterte ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -91,6 +97,8 @@ return [
 
                 'comment_new' => ':username kommenterte ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterte ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -102,6 +110,8 @@ return [
 
                 'comment_new' => ':username kommenterte ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterte ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -131,18 +141,36 @@ return [
                 '_' => 'Ny medalje',
                 'user_achievement_unlock' => '":title" låst opp!',
                 'user_achievement_unlock_compact' => '":title" låst opp!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => 'Diskusjonen om ":title" har nye oppdateringer',
-            'beatmapset_discussion_lock' => 'Diskusjonen om ":title" har blitt låst',
-            'beatmapset_discussion_unlock' => 'Diskusjonen om ":title" har blitt låst',
-            'beatmapset_problem' => 'Et nytt problem rapportert var rapportert på ":title"',
-            'beatmapset_state' => 'Tilstanden til ":title" har endret seg',
-            'comment' => ' Beatmap ":title" har nye kommentarer',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => 'Diskusjonen om ":title" har blitt låst',
+                'beatmapset_discussion_post_new' => 'Diskusjonen om ":title" har nye oppdateringer',
+                'beatmapset_discussion_unlock' => 'Diskusjonen om ":title" har blitt låst',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => 'Et nytt problem rapportert var rapportert på ":title"',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => ' Beatmap ":title" har nye kommentarer',
+            ],
         ],
 
         'channel' => [
@@ -152,20 +180,28 @@ return [
         ],
 
         'build' => [
-            'comment' => 'Endringslogg ":title" har nye kommentarer',
+            'comment' => [
+                'comment_new' => 'Endringslogg ":title" har nye kommentarer',
+            ],
         ],
 
         'news_post' => [
-            'comment' => 'Nyheter ":title" har nye kommentarer',
+            'comment' => [
+                'comment_new' => 'Nyheter ":title" har nye kommentarer',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => 'Det finnes nye svar i ":title"',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => 'Det finnes nye svar i ":title"',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => ':username har låst opp en ny medalje, ":title"!',
-            'user_achievement_unlock_self' => 'Du har låst opp en ny medalje, ":title"!',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => ':username har låst opp en ny medalje, ":title"!',
+                'user_achievement_unlock_self' => 'Du har låst opp en ny medalje, ":title"!',
+            ],
         ],
     ],
 ];

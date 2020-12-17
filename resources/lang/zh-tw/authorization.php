@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => '登入以繼續。',
     'require_verification' => '需要驗證帳戶!',
     'restricted' => "帳戶處於限制模式，無法進行該操作。",
@@ -32,6 +33,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "",
             'limit_exceeded' => '在投更多票之前請稍等一會',
             'owner' => "不能為自己的討論投票。",
             'wrong_beatmapset_state' => '只能對待處理的圖譜討論進行投票。',

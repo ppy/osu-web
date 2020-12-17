@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'помощ',
+            'getAbuse' => '',
             'getFaq' => 'чзв',
             'getRules' => 'правилник',
             'getSupport' => 'не, наистина, имам нужда от помощ!',
@@ -179,6 +180,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Забравих си данните",
             'password' => 'парола',

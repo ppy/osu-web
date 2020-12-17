@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '게임 모드 별 멤버',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "당신의 계정은 오랫동안 사용되지 않았네요.",
@@ -84,6 +88,7 @@ return [
         'failed' => '계정 정보가 올바르지 않습니다',
         'forgot' => '비밀번호를 잊어버리셨나요?',
         'info' => '계속 하시려면 로그인 해주세요',
+        'invalid_captcha' => 'Captcha가 올바르지 않습니다. 페이지를 새로 고친 후 다시 시도해주세요.',
         'locked_ip' => 'IP 주소가 잠겨있습니다. 잠시 기다려주세요.',
         'password' => 'Password',
         'register' => "osu!계정이 없으신가요? 새로 하나 만들어보세요",
@@ -186,7 +191,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'by :artist',
-                'none' => '아직... 없네요...',
                 'title' => '비트맵',
 
                 'favourite' => [
@@ -199,7 +203,7 @@ return [
                     'title' => 'Loved 비트맵',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked / Approved 된 비트맵',
+                    'title' => 'Ranked 및 Approved 상태의 비트맵',
                 ],
                 'unranked' => [
                     'title' => 'Pending 비트맵',
@@ -216,7 +220,6 @@ return [
                 'show_more' => '이벤트 더 보기',
             ],
             'historical' => [
-                'empty' => '기록된 플레이가 없습니다. :(',
                 'title' => '통계',
 
                 'monthly_playcounts' => [
@@ -303,7 +306,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => '리플레이 다운로드',
-                'empty' => '아직 이렇다 할 플레이 기록이 없네요. :(',
                 'not_ranked' => '랭크된 비트맵만 pp를 줍니다.',
                 'pp_weight' => '가중치 :percentage',
                 'view_details' => '자세히 보기',
@@ -349,7 +351,6 @@ return [
         'info' => [
             'discord' => '디스코드',
             'interests' => '관심 분야',
-            'lastfm' => 'Last.fm',
             'location' => '거주지',
             'occupation' => '직업',
             'skype' => '스카이프',

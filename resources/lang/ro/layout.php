@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'ajutor',
+            'getAbuse' => '',
             'getFaq' => 'întrebări frecvente',
             'getRules' => 'reguli',
             'getSupport' => 'nu, de fapt, am nevoie de ajutor!',
@@ -179,6 +180,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'autentifică-te / Înregistrează-te',
+
         'login' => [
             'forgot' => "Mi-am uitat detaliile de autentificare",
             'password' => 'parolă',

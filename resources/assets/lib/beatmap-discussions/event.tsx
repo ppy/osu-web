@@ -2,18 +2,19 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
-import UserJSON from 'interfaces/user-json';
+import GameMode from 'interfaces/game-mode';
+import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { kebabCase } from 'lodash';
 import * as React from 'react';
 import TimeWithTooltip from 'time-with-tooltip';
 
 interface Props {
-  discussions?: Record<string, BeatmapDiscussion>;
+  discussions?: Record<string, BeatmapsetDiscussionJson>;
   event: BeatmapsetEventJson;
   mode: 'discussions' | 'profile';
   time?: string;
-  users: Record<string, UserJSON>;
+  users: Record<string, UserJson>;
 }
 
 export default class Event extends React.PureComponent<Props> {
@@ -123,7 +124,7 @@ export default class Event extends React.PureComponent<Props> {
       text = BeatmapDiscussionHelper.format(this.props.event.comment, { newlines: false });
     }
 
-    if (this.props.event.type === 'discussion_lock') {
+    if (this.props.event.type === 'discussion_lock' || this.props.event.type === 'remove_from_loved') {
       text = BeatmapDiscussionHelper.format(this.props.event.comment.reason, { newlines: false });
     }
 
@@ -138,9 +139,15 @@ export default class Event extends React.PureComponent<Props> {
       ...this.props.event.comment,
     };
 
-    const eventType = this.props.event.type === 'disqualify' && this.discussion == null ? 'disqualify_legacy' : this.props.event.type;
-    const key = `beatmapset_events.event.${eventType}`;
+    let eventType = this.props.event.type === 'disqualify' && this.discussion == null ? 'disqualify_legacy' : this.props.event.type;
 
+    if (eventType === 'nominate' && this.props.event.comment?.modes.length > 0) {
+      eventType = `nominate_modes`;
+      const nominationModes = this.props.event.comment.modes.map((mode: GameMode) => osu.trans(`beatmaps.mode.${mode}`));
+      params.modes = osu.transArray(nominationModes);
+    }
+
+    const key = `beatmapset_events.event.${eventType}`;
     let message = osu.trans(key, params);
 
     // append owner of the event if not already included in main message

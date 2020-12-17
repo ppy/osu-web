@@ -6,56 +6,49 @@ import { action, computed, observable } from 'mobx';
 import NotificationStack from 'models/notification-stack';
 import { NotificationContextData } from 'notifications-context';
 import { NotificationCursor } from 'notifications/notification-cursor';
+import NotificationDeletable from 'notifications/notification-deletable';
 import { NotificationIdentity } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
 import { NotificationResolver } from 'notifications/notification-resolver';
 
-export type Name = null | 'beatmapset' | 'build' | 'channel' | 'forum_topic' | 'news_post' | 'user';
-const names: Name[] = [null, 'beatmapset', 'build', 'channel', 'forum_topic', 'news_post', 'user'];
-
-export const TYPES = [
-  { type: null },
-  { type: 'user' },
-  { type: 'beatmapset' },
-  { type: 'forum_topic' },
-  { type: 'news_post' },
-  { type: 'build' },
-  { type: 'channel' },
-];
+// List is in the order they appear on the notification filter.
+export const typeNames = [null, 'user', 'beatmapset', 'forum_topic', 'news_post', 'build', 'channel'] as const;
+export type Name = (typeof typeNames)[number];
 
 export function getValidName(value: unknown) {
   const casted = value as Name;
-  if (names.indexOf(casted) > -1) {
+  if (typeNames.indexOf(casted) > -1) {
     return casted;
   }
 
-  return names[0];
+  return typeNames[0];
 }
 
-export default class NotificationType implements NotificationReadable {
+export default class NotificationType implements NotificationReadable, NotificationDeletable {
   @observable cursor?: NotificationCursor | null;
+  @observable isDeleting = false;
   @observable isLoading = false;
   @observable isMarkingAsRead = false;
   @observable stacks = new Map<string, NotificationStack>();
   @observable total = 0;
-
-  @computed get isEmpty() {
-    return this.total <= 0;
-  }
-
-  @computed get hasVisibleNotifications() {
-    return (this.total > 0 && this.stacks.size > 0) || this.name === 'legacy_pm';
-  }
 
   @computed get hasMore() {
     // undefined means not loaded yet.
     return this.cursor !== null && this.stackNotificationCount < this.total;
   }
 
+  @computed get hasVisibleNotifications() {
+    return (this.total > 0 && this.stacks.size > 0);
+  }
+
   get identity(): NotificationIdentity {
     return {
       objectType: this.name,
     };
+  }
+
+  @computed get isEmpty() {
+    return this.total <= 0;
   }
 
   @computed get stackNotificationCount() {
@@ -70,6 +63,11 @@ export default class NotificationType implements NotificationReadable {
     const obj = new NotificationType(json.name, resolver);
     obj.updateWithJson(json);
     return obj;
+  }
+
+  @action
+  delete() {
+    this.resolver.delete(this);
   }
 
   @action

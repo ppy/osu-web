@@ -35,12 +35,24 @@
 
     &--flag {
       width: 100%;
-      display: block;
+      display: flex;
+      justify-content: center;
     }
 
     &--group-badge {
       width: 100%;
       display: block;
+    }
+
+    &--group-badge-playmodes {
+      display: none;
+
+      @media @mobile {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        font-size: 12px;
+      }
     }
 
     &--posts {
@@ -72,6 +84,11 @@
 
     &--title {
       font-size: @font-size--small-2;
+      color: @osu-colour-c1;
+
+      .link-hover({
+        color: @osu-colour-c1;
+      });
     }
 
     &--username {

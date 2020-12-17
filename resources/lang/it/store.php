@@ -9,7 +9,7 @@ return [
     ],
 
     'cart' => [
-        'checkout' => 'Pagamento',
+        'checkout' => 'Paga',
         'info' => ':count_delimited articolo nel carrello ($:subtotal)|:count_delimited articoli nel carrello ($:subtotal)',
         'more_goodies' => 'Voglio dare un\'occhiata ad altri elementi prima di completare l\'ordine',
         'shipping_fees' => 'costi di spedizione',
@@ -17,7 +17,7 @@ return [
         'total' => 'totale',
 
         'errors_no_checkout' => [
-            'line_1' => 'Uh oh, ci sono problemi con il tuo carrello che stanno impedendo il check-out!',
+            'line_1' => 'Uh oh, ci sono problemi con il tuo carrello che stanno impedendo il pagamento!',
             'line_2' => 'Rimuovere o aggiornare gli elementi di sopra per continuare.',
         ],
 
@@ -31,21 +31,21 @@ return [
     ],
 
     'checkout' => [
-        'cart_problems' => 'Uh oh, ci sono dei problemi con il carrello!',
+        'cart_problems' => 'Uh oh, ci sono problemi con il carrello!',
         'cart_problems_edit' => 'Clicca qui per modificarlo.',
-        'declined' => 'Il pagamento è annullato.',
+        'declined' => 'Il pagamento è stato annullato.',
         'delayed_shipping' => 'Attualmente siamo sommersi dagli ordini! Sei libero di effettuare ordini, ma per favore aspettati un **ritardo addizionale di 1-2 settimane** mentre completiamo gli ordini già esistenti.',
         'old_cart' => 'Il tuo carrello sembra essere obsoleto ed è stato ricaricato; per favore riprova.',
         'pay' => 'Acquista con Paypal',
         'title_compact' => 'pagamento',
 
         'has_pending' => [
-            '_' => 'Hai pagamenti incompleti, click :link per vederli.',
+            '_' => 'Hai pagamenti incompleti, clicca :link per vederli.',
             'link_text' => 'qui',
         ],
 
         'pending_checkout' => [
-            'line_1' => 'Un precedente check-out è stato iniziato ma non è stato portato a termine.',
+            'line_1' => 'Un pagamento precedente è stato iniziato ma non è stato portato a termine.',
             'line_2' => 'Completa il tuo pagamento selezionando un metodo di pagamento.',
         ],
     ],
@@ -106,8 +106,8 @@ return [
         'name' => 'Nome',
 
         'stock' => [
-            'out' => 'Attualmente non disponibile :(. Controlla più tardi.',
-            'out_with_alternative' => 'Questo tipo non è attualmente disponibile :(. Prova con un altro tipo o controlla più tardi.',
+            'out' => 'Questo elemento è attualmente esaurito. Controlla più tardi!',
+            'out_with_alternative' => 'Sfortunatamente questo elemento è esaurito. Usa il menu a discesa per sceglierne un altro tipo oppure controlla più tardi!',
         ],
 
         'add_to_cart' => 'Aggiungi al carrello',
@@ -122,8 +122,8 @@ return [
     'supporter_tag' => [
         'gift' => 'regalo ad un giocatore',
         'require_login' => [
-            '_' => 'Devi avere l\':link per ottenere un tag supporter!',
-            'link_text' => 'accesso effettuato',
+            '_' => 'Devi :link per poter ottenere un tag supporter!',
+            'link_text' => 'eseguire l\'accesso',
         ],
     ],
 
@@ -131,8 +131,8 @@ return [
         'check' => 'Inserisci un nome utente per controllare la disponibilità!',
         'checking' => 'Controllando la disponibilità di :username...',
         'require_login' => [
-            '_' => 'Devi essere :link per cambiare il tuo nome!',
-            'link_text' => 'accesso effettuato',
+            '_' => 'Devi :link per poter cambiare il tuo nome!',
+            'link_text' => 'eseguire l\'accesso',
         ],
     ],
 

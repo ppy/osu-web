@@ -49,6 +49,10 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             'covers' => $beatmapset->allCoverURLs(),
             'creator' => $beatmapset->creator,
             'favourite_count' => $beatmapset->favourite_count,
+            'hype' => $beatmapset->canBeHyped() ? [
+                'current' => $beatmapset->hype,
+                'required' => $beatmapset->requiredHype(),
+            ] : null,
             'id' => $beatmapset->beatmapset_id,
             'play_count' => $beatmapset->play_count,
             'preview_url' => $beatmapset->previewURL(),
@@ -65,7 +69,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     {
         $rel = $params->get('with_trashed') ? 'allBeatmaps' : 'beatmaps';
 
-        return $this->collection($beatmapset->$rel, new $this->beatmapTransformer);
+        return $this->collection($beatmapset->$rel, new $this->beatmapTransformer());
     }
 
     public function includeConverts(Beatmapset $beatmapset)
@@ -91,7 +95,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             }
         }
 
-        return $this->collection($converts, new BeatmapTransformer);
+        return $this->collection($converts, new BeatmapTransformer());
     }
 
     public function includeCurrentUserAttributes(Beatmapset $beatmapset)
@@ -110,15 +114,17 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             'can_hype' => $hypeValidation['result'],
             'can_hype_reason' => $hypeValidation['message'] ?? null,
             'can_love' => $beatmapset->isLoveable() && priv_check('BeatmapsetLove')->can(),
+            'can_remove_from_loved' => $beatmapset->isLoved() && priv_check('BeatmapsetLove')->can(),
             'is_watching' => BeatmapsetWatch::check($beatmapset, Auth::user()),
             'new_hype_time' => json_time($currentUser->newHypeTime()),
+            'nomination_modes' => $currentUser->nominationModes(),
             'remaining_hype' => $currentUser->remainingHype(),
         ]);
     }
 
     public function includeDescription(Beatmapset $beatmapset)
     {
-        return $this->item($beatmapset, new BeatmapsetDescriptionTransformer);
+        return $this->item($beatmapset, new BeatmapsetDescriptionTransformer());
     }
 
     public function includeDiscussions(Beatmapset $beatmapset)
@@ -144,25 +150,17 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
     public function includeGenre(Beatmapset $beatmapset)
     {
-        return $this->item($beatmapset->genre, new GenreTransformer);
+        return $this->item($beatmapset->genre, new GenreTransformer());
     }
 
     public function includeLanguage(Beatmapset $beatmapset)
     {
-        return $this->item($beatmapset->language, new LanguageTransformer);
+        return $this->item($beatmapset->language, new LanguageTransformer());
     }
 
     public function includeNominations(Beatmapset $beatmapset)
     {
-        if (!in_array($beatmapset->status(), ['wip', 'pending', 'qualified'], true)) {
-            return;
-        }
-
-        $result = [
-            'required_hype' => $beatmapset->requiredHype(),
-            'required' => $beatmapset->requiredNominationCount(),
-            'current' => $beatmapset->currentNominationCount(),
-        ];
+        $result = $beatmapset->nominationsMeta();
 
         if ($beatmapset->isPending()) {
             $currentUser = Auth::user();
@@ -178,9 +176,11 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             if ($currentUser !== null) {
                 $result['nominated'] = $beatmapset->nominationsSinceReset()->where('user_id', $currentUser->user_id)->exists();
             }
-        } elseif ($beatmapset->qualified()) {
-            $eta = $beatmapset->rankingETA();
-            $result['ranking_eta'] = json_time($eta);
+        } elseif ($beatmapset->isQualified()) {
+            $queueStatus = $beatmapset->rankingQueueStatus();
+
+            $result['ranking_eta'] = json_time($queueStatus['eta']);
+            $result['ranking_queue_position'] = $queueStatus['position'];
         }
 
         return $this->primitive($result);
@@ -189,8 +189,8 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     public function includeUser(Beatmapset $beatmapset)
     {
         return $this->item(
-            $beatmapset->user ?? (new DeletedUser),
-            new UserCompactTransformer
+            $beatmapset->user ?? (new DeletedUser()),
+            new UserCompactTransformer()
         );
     }
 
@@ -203,7 +203,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     {
         return $this->collection(
             $beatmapset->recentFavourites(),
-            new UserCompactTransformer
+            new UserCompactTransformer()
         );
     }
 
@@ -243,6 +243,6 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         $userIds = array_unique($userIds);
         $users = User::with('userGroups')->whereIn('user_id', $userIds)->get();
 
-        return $this->collection($users, new UserCompactTransformer);
+        return $this->collection($users, new UserCompactTransformer());
     }
 }

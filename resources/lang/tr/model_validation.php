@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Şifre kullanıcı adını içeremez.',
         'email_already_used' => 'E-posta adresi zaten kullanılıyor.',
+        'email_not_allowed' => 'E-posta adresine izin verilmiyor.',
         'invalid_country' => 'Ülke, veritabanında bulunmuyor.',
         'invalid_discord' => 'Discord kullanıcı adı hatalı.',
         'invalid_email' => "Geçerli bir e-posta adresi gibi görünmüyor.",

@@ -31,6 +31,10 @@ return [
             'cleared' => 'ryddet',
             'not_cleared' => 'ikke ryddet',
         ],
+        'no_diff_reduction' => [
+            '_' => '',
+            'link' => '',
+        ],
     ],
 
     'mode' => [

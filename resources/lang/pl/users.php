@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Według trybu gry',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Brak aktywności przez długi czas.",
@@ -84,6 +88,7 @@ return [
         'failed' => 'Nieprawidłowe dane logowania',
         'forgot' => 'Nie pamiętasz hasła?',
         'info' => 'Zaloguj się, aby kontynuować.',
+        'invalid_captcha' => 'Zbyt wiele nieudanych prób logowania - wykonaj captchę, by spróbować ponownie (odśwież stronę, jeżeli captcha nie jest widoczna).',
         'locked_ip' => 'Twój adres IP został zablokowany. Poczekaj kilka minut.',
         'password' => 'Hasło',
         'register' => "Nie posiadasz konta osu!? Utwórz nowe.",
@@ -186,7 +191,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'autorstwa :artist',
-                'none' => 'Jeszcze nie ma...',
                 'title' => 'Beatmapy',
 
                 'favourite' => [
@@ -216,7 +220,6 @@ return [
                 'show_more' => 'zobacz więcej wydarzeń',
             ],
             'historical' => [
-                'empty' => 'Brak wyników. :(',
                 'title' => 'Historia',
 
                 'monthly_playcounts' => [
@@ -303,7 +306,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Pobierz powtórkę',
-                'empty' => 'Brak wyników. :(',
                 'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp.',
                 'pp_weight' => 'ważone :percentage',
                 'view_details' => 'Pokaż szczegóły',
@@ -349,7 +351,6 @@ return [
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Zainteresowania',
-            'lastfm' => 'Last.fm',
             'location' => 'Obecna lokalizacja',
             'occupation' => 'Zajęcia',
             'skype' => 'Skype',

@@ -7,7 +7,7 @@ return [
     'landing' => [
         'download' => 'Şimdi indir',
         'online' => '<strong>:players</strong> oyuncu şu anda <strong>:games</strong> oyunda çevrimiçi',
-        'peak' => 'Zirve, :count çevrimiçi oyuncu',
+        'peak' => 'Zirve, :count çevrimiçi kullanıcı',
         'players' => '<strong>:count</strong> kayıtlı oyuncu',
         'title' => 'hoşgeldiniz',
         'see_more_news' => 'daha fazla haber gör',
@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "haydi seni<br>oyuna hazırlayalım!",
         'action' => 'osu!\'yu indir',
+
+        'help' => [
+            '_' => 'oyunu çalıştırırken ya da hesap oluştururken herhangi bir sorun yaşıyorsanız, :help_forum_link veya :support_button.',
+            'help_forum_link' => 'yardım forumunu kontrol edin',
+            'support_button' => 'destek ile iletişime geçin',
+        ],
+
         'os' => [
             'windows' => 'Windows için',
             'macos' => 'macOS için',
@@ -102,7 +109,7 @@ return [
     ],
 
     'user' => [
-        'title' => 'ön panel',
+        'title' => 'kontrol paneli',
         'news' => [
             'title' => 'Gelişmeler',
             'error' => 'Haberler yüklenirken hata oluştu, sayfayı yenilemeyi deneseniz?...',

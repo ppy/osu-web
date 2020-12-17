@@ -187,12 +187,18 @@ return [
         'nominate_confirm' => 'Nominate this beatmap?',
         'nominated_by' => 'nominated by :users',
         'not_enough_hype' => "There isn't enough hype.",
-        'qualified' => 'Estimated to be ranked :date, if no issues are found.',
-        'qualified_soon' => 'Estimated to be ranked soon, if no issues are found.',
+        'remove_from_loved' => 'Remove from Loved',
+        'remove_from_loved_prompt' => 'Reason for removing from Loved:',
         'required_text' => 'Nominations: :current/:required',
         'reset_message_deleted' => 'deleted',
         'title' => 'Nomination Status',
         'unresolved_issues' => 'There are still unresolved issues that must be addressed first.',
+
+        'rank_estimate' => [
+            '_' => 'This map is estimated to be ranked :date if no issues are found. It is #:position in the :queue.',
+            'queue' => 'ranking queue',
+            'soon' => 'soon',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Nomination process reset :time_ago by :user with new problem :discussion (:message).',
@@ -246,6 +252,7 @@ return [
         'converts' => 'Include converted beatmaps',
     ],
     'mode' => [
+        'all' => 'All',
         'any' => 'Any',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

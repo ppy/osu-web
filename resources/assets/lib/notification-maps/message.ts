@@ -37,3 +37,26 @@ export function formatMessage(item: Notification, compact: boolean = false) {
 
   return osu.trans(key, replacements);
 }
+
+export function formatMessageGroup(item: Notification) {
+  if (item.objectType === 'channel') {
+    const replacements = {
+      title: item.title,
+      username: item.details.username,
+    };
+
+    const key = `notifications.item.${item.objectType}.${item.category}.${item.details.type}.${item.name}_group`;
+
+    return osu.trans(key, replacements);
+  }
+
+  if (item.name === 'user_achievement_unlock' || item.name === 'user_beatmapset_new') {
+    const replacements = {
+      username: item.details.username,
+    };
+
+    return osu.trans(`notifications.item.${item.displayType}.${item.category}.${item.name}_group`, replacements);
+  }
+
+  return item.title;
+}

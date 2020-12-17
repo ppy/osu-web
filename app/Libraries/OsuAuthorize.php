@@ -587,16 +587,6 @@ class OsuAuthorize
             return $prefix.'exhausted';
         }
 
-        if ($user->isLimitedBN()) {
-            if ($beatmapset->playmodeCount() > 1) {
-                return $prefix.'full_bn_required_hybrid';
-            }
-
-            if ($beatmapset->requiresFullBNNomination()) {
-                return $prefix.'full_bn_required';
-            }
-        }
-
         return 'ok';
     }
 
@@ -821,8 +811,9 @@ class OsuAuthorize
     {
         $prefix = 'chat.';
 
-        $this->ensureLoggedIn($user);
+        $this->ensureSessionVerified($user);
         $this->ensureCleanRecord($user, $prefix);
+        // This check becomes useless when min_plays_allow_verified_bypass is enabled.
         $this->ensureHasPlayed($user);
 
         if (!$this->doCheckUser($user, 'ChatChannelRead', $channel)->can()) {
@@ -1126,7 +1117,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($forum->moderator_groups !== null && !empty(array_intersect($user->groupIds(), $forum->moderator_groups))) {
+        if ($forum->moderator_groups !== null && !empty(array_intersect($user->groupIds()['active'], $forum->moderator_groups))) {
             return 'ok';
         }
 
@@ -1662,7 +1653,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($owner->hasProfile()) {
+        if ($owner->hasProfileVisible()) {
             return 'ok';
         } else {
             return $prefix.'no_access';
@@ -1764,10 +1755,29 @@ class OsuAuthorize
             return;
         }
 
-        if ($user->isSessionVerified()) {
-            return;
+        if (config('osu.user.min_plays_allow_verified_bypass')) {
+            if ($user->isSessionVerified()) {
+                return;
+            }
+
+            throw new AuthorizationException('require_verification');
         }
 
-        throw new AuthorizationException('require_verification');
+        throw new AuthorizationException('play_more');
+    }
+
+    /**
+     * Ensure User is logged in and verified.
+     *
+     * @param User|null $user
+     * @throws AuthorizationException
+     */
+    public function ensureSessionVerified(?User $user)
+    {
+        $this->ensureLoggedIn($user);
+
+        if (!$user->isSessionVerified()) {
+            throw new AuthorizationException('require_verification');
+        }
     }
 }

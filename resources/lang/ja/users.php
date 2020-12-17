@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "あなたのアカウントは長期間使用されていません。",
@@ -84,6 +88,7 @@ return [
         'failed' => 'ログインに失敗しました',
         'forgot' => 'パスワードを忘れましたか？',
         'info' => 'ログインして続行してください',
+        'invalid_captcha' => 'Captcha が無効です。ページを更新して再度お試し下さい。',
         'locked_ip' => 'あなたのIPアドレスはロックされています。数分後もう一度お試しください。',
         'password' => 'パスワード',
         'register' => "osu!アカウントを持っていませんか？新しいアカウントを作るにはこちらから",
@@ -186,7 +191,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'by :artist',
-                'none' => 'まだ、空っぽ。',
                 'title' => 'ビートマップ',
 
                 'favourite' => [
@@ -216,7 +220,6 @@ return [
                 'show_more' => '他のイベントを見る',
             ],
             'historical' => [
-                'empty' => 'パフォーマンスの記録がありません。',
                 'title' => '履歴',
 
                 'monthly_playcounts' => [
@@ -303,7 +306,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'リプレイをダウンロード',
-                'empty' => 'まだ記録がありません！',
                 'not_ranked' => 'Rankedビートマップのみがppを与えます。',
                 'pp_weight' => '割合 :percentage',
                 'view_details' => '詳細の表示',
@@ -349,7 +351,6 @@ return [
         'info' => [
             'discord' => 'Discord',
             'interests' => '趣味',
-            'lastfm' => 'Last.fm',
             'location' => '現在地',
             'occupation' => '職業',
             'skype' => 'Skype',

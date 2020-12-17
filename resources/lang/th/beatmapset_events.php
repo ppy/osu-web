@@ -28,6 +28,7 @@ return [
         'nomination_reset' => 'ปัญหาใหม่ :discussion (:text) ทำให้เกิดการรีเซทการเสนอชื่อ',
         'qualify' => 'บีทแมพนี้ได้รับจำนวนการเสนอชื่อครบแล้ว และได้ถูก Qualified',
         'rank' => 'จัดอันดับ',
+        'remove_from_loved' => 'ถูกนำออกจาก Loved โดย :user (:text)',
     ],
 
     'index' => [
@@ -66,5 +67,6 @@ return [
         'nomination_reset' => 'กำลังตั้งค่าการเสนอชื่อใหม่',
         'qualify' => 'คุณสมบัติ',
         'rank' => 'อันดับ',
+        'remove_from_loved' => 'ถูกนำออกจาก Loved',
     ],
 ];

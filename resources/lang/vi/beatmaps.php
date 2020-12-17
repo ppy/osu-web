@@ -187,12 +187,18 @@ return [
         'nominate_confirm' => 'Đề cử (nominate) beatmap này?',
         'nominated_by' => 'Được :users đề cử',
         'not_enough_hype' => "",
-        'qualified' => 'Dự tính sẽ xếp hạng (rank) vào :date, nếu không tìm thấy vấn đề gì.',
-        'qualified_soon' => 'Dự tính sẽ sớm được xếp hạng (rank), nếu không tìm thấy vấn đề gì.',
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Trạng thái đề cử: :current/:required',
         'reset_message_deleted' => 'đã xóa',
         'title' => 'Trạng Thái Đề Cử',
         'unresolved_issues' => 'Vẫn còn một số vấn đề chưa giải quyết cần được xem lại trước.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Quá trình đề cử (nomination) thiết lập lại vào :time_ago bởi :user với vấn đề mới :discussion (:message).',
@@ -246,6 +252,7 @@ return [
         'converts' => 'Bao gồm beatmap được chuyển đổi',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'Bất Kì',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
@@ -275,10 +282,10 @@ return [
         'novelty' => 'Mới Lạ',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Điện Tử',
-        'metal' => '',
-        'classical' => '',
-        'folk' => '',
-        'jazz' => '',
+        'metal' => 'Metal',
+        'classical' => 'Cổ điển',
+        'folk' => 'Dân ca',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '4K',
@@ -317,11 +324,11 @@ return [
         'korean' => 'Tiếng Hàn',
         'spanish' => 'Tiếng Tây Ban Nha',
         'swedish' => 'Tiếng Thụy Điển',
-        'russian' => '',
-        'polish' => '',
+        'russian' => 'Tiếng Nga',
+        'polish' => 'Tiếng Ba Lan',
         'instrumental' => 'Nhạc Cụ',
         'other' => 'Khác',
-        'unspecified' => '',
+        'unspecified' => 'Không xác định',
     ],
     'played' => [
         'any' => 'Bất Kì',

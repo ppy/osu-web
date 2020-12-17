@@ -12,8 +12,8 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Il timestamp è specificato ma manca la beatmap.',
-        'beatmapset_no_hype' => "La beatmap non può essere promossa.",
-        'hype_requires_null_beatmap' => 'La promozione deve essere fatta nella sezione Generale (tutte le difficoltà).',
+        'beatmapset_no_hype' => "La beatmap non può avere hype.",
+        'hype_requires_null_beatmap' => 'Si può mettere hype nella sezione Generale (Tutte le difficoltà).',
         'invalid_beatmap_id' => 'Difficoltà specificata non valida.',
         'invalid_beatmapset_id' => 'Beatmap specificata non valida.',
         'locked' => 'La discussione è chiusa.',
@@ -24,12 +24,12 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Al momento questa beatmap è bloccata per le discussioni e non può avere Hype",
-            'guest' => 'Devi avere effettuato il login per promuovere.',
-            'hyped' => 'Hai già promosso questa beatmap.',
-            'limit_exceeded' => 'Hai usato tutte le tue promozioni.',
-            'not_hypeable' => 'Questa beatmap non può essere promossa',
-            'owner' => 'Nessuna promozione nella tua beatmap.',
+            'discussion_locked' => "Al momento questa beatmap è bloccata per le discussioni e non può avere hype",
+            'guest' => 'Devi avere effettuato il login per mettere hype.',
+            'hyped' => 'Hai già messo hype a questa beatmap.',
+            'limit_exceeded' => 'Hai usato tutti i tuoi hype.',
+            'not_hypeable' => 'Questa beatmap non può avere hype',
+            'owner' => 'Non puoi mettere hype alla tua beatmap.',
         ],
 
         'timestamp' => [
@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Password potrebbe non contenere il nome utente.',
         'email_already_used' => 'Indirizzo email già in uso.',
+        'email_not_allowed' => 'Indirizzo email non valido.',
         'invalid_country' => 'Paese non presente nel database.',
         'invalid_discord' => 'Nome utente di Discord non valido.',
         'invalid_email' => "Non sembra essere un indirizzo email valido.",

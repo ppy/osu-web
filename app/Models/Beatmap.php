@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $beatmap_id
  * @property Beatmapset $beatmapset
  * @property int|null $beatmapset_id
+ * @property float $bpm
  * @property string|null $checksum
  * @property int $countNormal
  * @property int $countSlider
@@ -197,7 +198,7 @@ class Beatmap extends Model
     {
         $mods = BeatmapDifficultyAttrib::NO_MODS;
         $attrib = BeatmapDifficultyAttrib::MAX_COMBO;
-        $attribTable = (new BeatmapDifficultyAttrib)->tableName();
+        $attribTable = (new BeatmapDifficultyAttrib())->tableName();
         $mode = $this->qualifyColumn('playmode');
         $id = $this->qualifyColumn('beatmap_id');
 

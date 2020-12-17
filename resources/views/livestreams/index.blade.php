@@ -5,14 +5,13 @@
 @extends('master')
 
 @section('content')
-    @include('layout._page_header_v4')
+    @include('layout._page_header_v4', ['params' => ['theme' => 'livestreams']])
 
     <div class="osu-page osu-page--description">
         {!! trans('livestreams.top-headers.description', [
             'link' => link_to(
                 wiki_url('Guides/Live_Streaming_osu!'),
-                trans('livestreams.top-headers.link'),
-                ['class' => 'link link--default']
+                trans('livestreams.top-headers.link')
             ),
         ]) !!}
     </div>

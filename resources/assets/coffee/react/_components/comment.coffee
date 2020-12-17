@@ -245,7 +245,7 @@ export class Comment extends React.PureComponent
             timeago: osu.timeago(@props.comment.editedAt)
             user:
               if editor.id?
-                osu.link(laroute.route('users.show', user: editor.id), editor.username, classNames: ['comment__link'])
+                osu.link(laroute.route('users.show', user: editor.id), editor.username)
               else
                 _.escape editor.username
 
@@ -365,11 +365,11 @@ export class Comment extends React.PureComponent
       a
         'data-user-id': user.id
         href: laroute.route('users.show', user: user.id)
-        className: 'js-usercard comment__row-item comment__row-item--username comment__row-item--username-link'
+        className: 'js-usercard comment__row-item'
         user.username
     else
       span
-        className: 'comment__row-item comment__row-item--username'
+        className: 'comment__row-item'
         user.username
 
 
@@ -377,6 +377,7 @@ export class Comment extends React.PureComponent
   renderVoteButton: =>
     className = osu.classWithModifiers('comment-vote', @props.modifiers)
     className += ' comment-vote--posting' if @state.postingVote
+    className += ' comment-vote--disabled' if !@props.comment.canVote
 
     if @hasVoted()
       className += ' comment-vote--on'
@@ -497,7 +498,7 @@ export class Comment extends React.PureComponent
 
 
   userFor: (comment) =>
-    user = userStore.get(comment.userId)?.toJSON()
+    user = userStore.get(comment.userId)?.toJson()
 
     if user?
       user

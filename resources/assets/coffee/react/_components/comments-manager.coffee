@@ -20,8 +20,8 @@ export class CommentsManager extends React.PureComponent
       # FIXME no initialization from component?
       json = osu.parseJson("json-comments-#{props.commentableType}-#{props.commentableId}", true)
       if json?
-        core.dataStore.updateWithCommentBundleJSON(json)
-        uiState.initializeWithCommentBundleJSON(json)
+        core.dataStore.updateWithCommentBundleJson(json)
+        uiState.initializeWithCommentBundleJson(json)
 
       state = osu.parseJson @jsonStorageId()
       uiState.importCommentsUIState(state) if state?
@@ -48,25 +48,26 @@ export class CommentsManager extends React.PureComponent
       componentProps = _.assign {}, @props.componentProps
       componentProps.commentableId = @props.commentableId
       componentProps.commentableType = @props.commentableType
+      componentProps.user = @props.user
 
       el @props.component, componentProps
 
 
   handleCommentsAdded: (_event, commentBundle) =>
     runInAction () ->
-      core.dataStore.updateWithCommentBundleJSON commentBundle
+      core.dataStore.updateWithCommentBundleJson commentBundle
       uiState.updateFromCommentsAdded commentBundle
 
 
   handleCommentsNew: (_event, commentBundle) =>
     runInAction () ->
-      core.dataStore.updateWithCommentBundleJSON commentBundle
+      core.dataStore.updateWithCommentBundleJson commentBundle
       uiState.updateFromCommentsNew commentBundle
 
 
   handleCommentUpdated: (_event, commentBundle) =>
     runInAction () ->
-      core.dataStore.updateWithCommentBundleJSON commentBundle
+      core.dataStore.updateWithCommentBundleJson commentBundle
       uiState.updateFromCommentUpdated commentBundle
 
 
@@ -132,8 +133,8 @@ export class CommentsManager extends React.PureComponent
 
       runInAction () ->
         core.dataStore.commentStore.flushStore()
-        core.dataStore.updateWithCommentBundleJSON data
-        uiState.initializeWithCommentBundleJSON data
+        core.dataStore.updateWithCommentBundleJson data
+        uiState.initializeWithCommentBundleJson data
     .always =>
       runInAction () ->
         uiState.comments.loadingSort = null

@@ -3,6 +3,10 @@
 
 .beatmap-discussion {
   @_top: beatmap-discussion;
+
+  @_top-padding-y: 10px;
+  @_top-padding-x: 15px;
+
   .own-layer();
   display: flex;
 
@@ -15,45 +19,10 @@
     overflow: hidden;
   }
 
-  &__compact,
-  &__full {
-    flex: 1;
-  }
-
-  &__compact {
-    display: none;
-
-    @media @mobile {
-      display: block;
-    }
-
-    .@{_top}--review & {
-      display: block;
-    }
-  }
-
-  &__full {
-    display: block;
-
-    @media @mobile {
-      display: none;
-    }
-
-    .@{_top}--review & {
-      display: none;
-    }
-  }
-
   &__actions {
     display: flex;
     align-items: center;
   }
-
-  &__actions-container {
-    display: flex;
-    align-items: center;
-    height: 40px;
-    }
 
   &__action {
     .reset-input();
@@ -74,7 +43,6 @@
 
   &__discussion {
     .default-box-shadow();
-    .default-border-radius();
 
     flex: 1;
     min-width: 0;
@@ -100,11 +68,10 @@
         }
       }
     }
-  }
 
-  &__discussion-header {
-    padding-top: 10px;
-    padding-left: 15px;
+    @media @desktop {
+      .default-border-radius();
+    }
   }
 
   &__expanded {
@@ -152,10 +119,6 @@
     margin: 5px 0;
   }
 
-  &__review-wrapper {
-    background: @osu-colour-b3;
-  }
-
   &__timestamp {
     flex: none;
 
@@ -169,9 +132,18 @@
   }
 
   &__top {
-    display: flex;
-    justify-content: space-between;
     background-color: @osu-colour-b3;
+    display: grid;
+    grid-template-areas: "user actions" "message message";
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+
+    .@{_top}--horizontal-desktop & {
+      @media @desktop {
+        grid-template-areas: "user message actions";
+        grid-template-columns: auto 1fr auto;
+      }
+    }
 
     .@{_top}--unread & {
       &::before {
@@ -184,6 +156,41 @@
 
     .@{_top}--review & {
       border-top: 2px solid var(--group-colour, transparent);
+    }
+
+    .@{_top}--single & {
+      display: block;
+      padding: @_top-padding-y @_top-padding-x;
+    }
+  }
+
+  &__top-actions {
+    grid-area: actions;
+    display: flex;
+    align-items: center;
+    height: 40px;
+  }
+
+  &__top-message {
+    grid-area: message;
+    margin: 0 @_top-padding-x @_top-padding-y;
+
+    .@{_top}--horizontal-desktop & {
+      @media @desktop {
+        margin: @_top-padding-y 0;
+      }
+    }
+  }
+
+  &__top-user {
+    margin-top: @_top-padding-y;
+    margin-left: @_top-padding-x;
+
+    .@{_top}--horizontal-desktop & {
+      @media @desktop {
+        margin-bottom: @_top-padding-y;
+        border-right: 2px solid var(--group-colour, hsl(var(--hsl-b5)));
+      }
     }
   }
 }

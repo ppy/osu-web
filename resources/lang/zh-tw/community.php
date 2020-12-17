@@ -12,7 +12,7 @@ return [
             'instructions' => '點擊愛心前往 osu! 商店',
         ],
         'why-support' => [
-            'title' => '我為什麼要支持osu!? 錢都花到哪兒了?',
+            'title' => '我為什麼要支持 osu! ？錢都花到哪兒了？',
 
             'team' => [
                 'title' => '支持團隊',
@@ -55,8 +55,8 @@ return [
             ],
 
             'country_ranking' => [
-                'title' => '國內/區內排行榜',
-                'description' => '在征服世界前，先征服你的國家（或地區）',
+                'title' => '國家排行榜',
+                'description' => '在征服世界前先征服你的國家',
             ],
 
             'mod_filtering' => [
@@ -90,7 +90,7 @@ return [
             ],
 
             'yellow_fellow' => [
-                'title' => '高亮用戶名',
+                'title' => '高亮使用者名稱',
                 'description' => '聊天時，用戶名會變成亮黃色。',
             ],
 
@@ -133,12 +133,12 @@ return [
             ],
             'friend_filtering' => [
                 'title' => '好友排行榜',
-                'description' => '和您的朋友一起競賽，看看你如何超越他們的排名!*<br/><br/><small>*此功能目前尚未在新網站啟用，即將上線(tm)</small>',
+                'description' => '和您的朋友一起競賽，看看你如何超越他們的排名!',
             ],
 
         ],
         'supporter_status' => [
-            'contribution' => '感謝您一直以來的支持！你已經捐贈了 :dollars 並購買了 :tags 次贊助者標籤！',
+            'contribution' => '感謝您一直以來的支持！您已經捐贈了 :dollars 並購買了 :tags 次贊助者標籤！',
             'gifted' => "您已經捐贈了 :giftedTags 次贊助者標籤（花費了 :giftedDollars ），真慷慨啊！",
             'not_yet' => "您還沒有贊助者標籤 :(",
             'valid_until' => '您的贊助者標籤將在 :date 到期',

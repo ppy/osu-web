@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'hjelp',
+            'getAbuse' => '',
             'getFaq' => 'faq',
             'getRules' => 'regler',
             'getSupport' => 'nei, virkelig, jeg trenger hjelp!',
@@ -179,6 +180,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Jeg har glemt kontoinformasjonen min",
             'password' => 'passord',

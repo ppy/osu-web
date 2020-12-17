@@ -187,12 +187,18 @@ return [
         'nominate_confirm' => 'Номинировать эту карту?',
         'nominated_by' => 'номинирована :users',
         'not_enough_hype' => "Недостаточно хайпа.",
-        'qualified' => 'Если проблем больше нет, карта получит статус «Рейтинговая» примерно :date.',
-        'qualified_soon' => 'Если проблем больше нет, карта скоро получит статус «Рейтинговая».',
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => 'Причина удаления из Любимых:',
         'required_text' => 'Номинаций: :current/:required',
         'reset_message_deleted' => 'удалено',
         'title' => 'Статус номинации',
         'unresolved_issues' => 'Ещё остались нерешенные проблемы, которые необходимо решить в первую очередь.',
+
+        'rank_estimate' => [
+            '_' => 'Эта карта будет ранкнута :date, если не будет найдено проблем. Она #:position в :queue.',
+            'queue' => 'очереди ранка',
+            'soon' => 'скоро',
+        ],
 
         'reset_at' => [
             'nomination_reset' => ':user сбросил прогресс номинаций :time_ago из-за новой проблемы :discussion (:message).',
@@ -246,6 +252,7 @@ return [
         'converts' => 'Включить конвертированные карты',
     ],
     'mode' => [
+        'all' => 'Все',
         'any' => 'Все',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

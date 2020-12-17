@@ -5,6 +5,7 @@
 
 namespace App\Console\Commands;
 
+use App\Libraries\Elasticsearch\Es;
 use App\Libraries\Elasticsearch\Indexing;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
@@ -19,8 +20,6 @@ class EsIndexDocuments extends Command
         'posts' => [Topic::class, Post::class],
         'users' => [User::class],
     ];
-
-    const BATCH_SIZE = 1000;
 
     /**
      * The name and signature of the console command.
@@ -115,12 +114,12 @@ class EsIndexDocuments extends Command
             if (!$this->inplace && $type === $first) {
                 // create new index if the first type for this index, otherwise
                 // index in place.
-                $type::esIndexIntoNew(static::BATCH_SIZE, $indexName, function ($progress) use ($bar) {
+                $type::esIndexIntoNew(Es::CHUNK_SIZE, $indexName, function ($progress) use ($bar) {
                     $bar->setProgress($progress);
                 });
             } else {
                 $options = ['index' => $indexName];
-                $type::esReindexAll(static::BATCH_SIZE, 0, $options, function ($progress) use ($bar) {
+                $type::esReindexAll(Es::CHUNK_SIZE, 0, $options, function ($progress) use ($bar) {
                     $bar->setProgress($progress);
                 });
             }
@@ -131,7 +130,7 @@ class EsIndexDocuments extends Command
 
         if ($alias !== $indexName) {
             $this->info("Aliasing {$alias} to {$indexName}");
-            Indexing::updateAlias($alias, [$indexName]);
+            Indexing::updateAlias($alias, $indexName);
             $this->line('');
         }
     }

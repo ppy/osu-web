@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'pomoc',
+            'getAbuse' => '',
             'getFaq' => 'faq',
             'getRules' => 'pravidlá',
             'getSupport' => 'nie, vážne, potrebujem pomoc!',
@@ -179,6 +180,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Zabudol som svoje údaje",
             'password' => 'heslo',

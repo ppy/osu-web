@@ -156,11 +156,13 @@ class Comment extends Model
             }
         }
 
-        if (!$this->allowEmptyCommentable && (
-            $this->commentable_type === null ||
-            $this->commentable_id === null ||
-            !$this->commentable()->exists()
-        )) {
+        if (
+            !$this->allowEmptyCommentable && (
+                $this->commentable_type === null ||
+                $this->commentable_id === null ||
+                !$this->commentable()->exists()
+            ) && !$this->isDirty('deleted_at')
+        ) {
             $this->validationErrors()->add('commentable', 'required');
         }
 

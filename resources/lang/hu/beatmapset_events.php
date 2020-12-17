@@ -28,6 +28,7 @@ return [
         'nomination_reset' => 'Új probléma :discussion (:text) miatt a nominálás alaphelyzetbe állt.',
         'qualify' => 'Ez a beatmap elérte az elegendő számú nominálást és kvalifikálva lett.',
         'rank' => 'Rangsorolt.',
+        'remove_from_loved' => '',
     ],
 
     'index' => [
@@ -66,5 +67,6 @@ return [
         'nomination_reset' => 'Nominálás visszaállítás',
         'qualify' => 'Kvalifikáció',
         'rank' => 'Rangsorolás',
+        'remove_from_loved' => '',
     ],
 ];

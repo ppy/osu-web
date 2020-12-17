@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Șterge postarea',
-            'restore' => 'Restaurează postarea',
             'edit' => 'Editează postarea',
+            'report' => '',
+            'restore' => 'Restaurează postarea',
         ],
 
         'create' => [
@@ -75,7 +76,8 @@ return [
     'topic' => [
         'deleted' => 'subiect șters',
         'go_to_latest' => 'vezi cea mai recentă postare',
-        'has_replied' => '',
+        'has_replied' => 'Ai răspuns în acest topic',
+        'in_forum' => 'in :forum',
         'latest_post' => ':when de :user',
         'latest_reply_by' => 'ultima replică de :user',
         'new_topic' => 'Postează un subiect nou',

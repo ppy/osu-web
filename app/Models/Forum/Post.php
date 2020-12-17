@@ -9,10 +9,12 @@ use App\Jobs\EsIndexDocument;
 use App\Jobs\MarkNotificationsRead;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\BBCodeFromDB;
+use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
 use App\Models\DeletedUser;
 use App\Models\Elasticsearch;
+use App\Models\Reportable;
 use App\Models\User;
 use App\Traits\Validatable;
 use Carbon\Carbon;
@@ -55,9 +57,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $topic_id
  * @property User $user
  */
-class Post extends Model implements AfterCommit
+class Post extends Model implements AfterCommit, Indexable
 {
-    use Elasticsearch\PostTrait, SoftDeletes, Validatable;
+    use Elasticsearch\PostTrait, Reportable, SoftDeletes, Validatable;
 
     protected $table = 'phpbb_posts';
     protected $primaryKey = 'post_id';
@@ -293,8 +295,7 @@ class Post extends Model implements AfterCommit
     public function isBeatmapsetPost()
     {
         if ($this->topic !== null) {
-            return
-                $this->getKey() === $this->topic->topic_first_post_id &&
+            return $this->getKey() === $this->topic->topic_first_post_id &&
                 $this->topic->beatmapset()->exists();
         }
     }
@@ -346,5 +347,18 @@ class Post extends Model implements AfterCommit
         }
 
         (new MarkNotificationsRead($this, $user))->dispatch();
+    }
+
+    public function url()
+    {
+        return route('forum.posts.show', $this);
+    }
+
+    protected function newReportableExtraParams(): array
+    {
+        return [
+            'reason' => 'Spam',
+            'user_id' => $this->poster_id,
+        ];
     }
 }

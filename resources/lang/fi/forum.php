@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Poista viesti',
-            'restore' => 'Palauta viesti',
             'edit' => 'Muokkaa viestiä',
+            'report' => '',
+            'restore' => 'Palauta viesti',
         ],
 
         'create' => [
@@ -76,6 +77,7 @@ return [
         'deleted' => 'poistettu aihe',
         'go_to_latest' => 'näytä viimeisin viesti',
         'has_replied' => '',
+        'in_forum' => '',
         'latest_post' => ':when käyttäjältä :user',
         'latest_reply_by' => 'viimeisimmän vastauksen jätti :user',
         'new_topic' => 'Lähetä uusi aihe',

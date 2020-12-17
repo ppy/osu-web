@@ -14,6 +14,11 @@ return [
         'title' => 'Zgłosić komentarz gracza :username?',
     ],
 
+    'forum_post' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Zgłoś wynik',
         'title' => 'Zgłosić wynik gracza :username?',

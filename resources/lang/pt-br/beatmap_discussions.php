@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Nenhuma das postagens corresponde ao que procuro',
         'notice' => 'Existem postagens próximas de :timestamp (:existing_timestamps). Por favor, visualize-as antes de postar.',
+        'unsaved' => ':count nesta revisão',
     ],
 
     'reply' => [
@@ -64,7 +65,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max blocos usados',
         'go_to_parent' => 'Ver Publicação de Revisão',
         'go_to_child' => 'Ver Discussão',
         'validation' => [

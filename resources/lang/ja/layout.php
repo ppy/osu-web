@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'ヘルプ',
+            'getAbuse' => '',
             'getFaq' => 'FAQ',
             'getRules' => 'ルール',
             'getSupport' => 'サポートが必要です！',
@@ -179,6 +180,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'サインイン / 登録',
+
         'login' => [
             'forgot' => "ログイン情報を忘れた",
             'password' => 'パスワード',

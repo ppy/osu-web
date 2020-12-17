@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => 'osu!를 조금 더 해보시는 건 어떨까요?',
     'require_login' => '계속하려면 로그인해 주세요.',
     'require_verification' => '계속하려면 인증해 주세요.',
     'restricted' => "제한된 상태에서는 할 수 없습니다.",
@@ -32,6 +33,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "봇이 만든 토론에는 투표할 수 없습니다.",
             'limit_exceeded' => '투표를 더 하기 전에 조금 기다려주세요',
             'owner' => "자신이 시작한 토론에는 투표할 수 없습니다.",
             'wrong_beatmapset_state' => 'Pending인 비트맵의 토론에만 투표할 수 있습니다.',

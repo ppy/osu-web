@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Вашият акаунт не е ползван от дълго време.",
@@ -84,6 +88,7 @@ return [
         'failed' => 'Неправилен опит за влизане',
         'forgot' => 'Забравихте си паролата?',
         'info' => 'Моля влезте в профила си, за да продължите',
+        'invalid_captcha' => '',
         'locked_ip' => 'Вашият IP адрес е блокиран. Моля изчакайте няколко минути.',
         'password' => 'Парола',
         'register' => "Нямате osu! акаунт? Направете си един",
@@ -186,7 +191,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'от :artist',
-                'none' => 'Няма... все още.',
                 'title' => 'Бийтмапове',
 
                 'favourite' => [
@@ -216,7 +220,6 @@ return [
                 'show_more' => 'виж повече събития',
             ],
             'historical' => [
-                'empty' => 'Няма записани изпълнения. :(',
                 'title' => 'Хронология',
 
                 'monthly_playcounts' => [
@@ -303,7 +306,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Изтегли повторението',
-                'empty' => 'Все още няма страхотни изпълнения. :(',
                 'not_ranked' => 'Само класираните бийтмапове дават pp точки.',
                 'pp_weight' => 'с тежест :percentage',
                 'view_details' => 'Виж детайлите',
@@ -349,7 +351,6 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Интереси',
-            'lastfm' => 'Last.fm',
             'location' => 'Текущо местоположение',
             'occupation' => 'Занимание/Работа',
             'skype' => '',

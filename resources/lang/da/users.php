@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Din account har ikke været i brug i lang tid.",
@@ -84,6 +88,7 @@ return [
         'failed' => 'Ugyldigt login',
         'forgot' => 'Glemt din adgangskode?',
         'info' => 'Log ind for at fortsætte',
+        'invalid_captcha' => '',
         'locked_ip' => 'din IP-adresse er låst. Vent venligst et par minutter.',
         'password' => 'Adgangskode',
         'register' => "Har du ikke en osu! konto? Opret en ny én!",
@@ -186,7 +191,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'af :artist',
-                'none' => 'Ingen... endnu.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -216,7 +220,6 @@ return [
                 'show_more' => 'se flere begivenheder',
             ],
             'historical' => [
-                'empty' => 'Ingen præstationsrekorder endnu. :(',
                 'title' => 'Historik',
 
                 'monthly_playcounts' => [
@@ -303,7 +306,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Download Replay',
-                'empty' => 'Ingen fede præstationsrekorder endnu. :(',
                 'not_ranked' => 'Kun rangerede beatmaps giver pp.',
                 'pp_weight' => 'vejede: :percentage',
                 'view_details' => '',
@@ -349,7 +351,6 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Interesser',
-            'lastfm' => 'Last.fm',
             'location' => 'Nuværende Position',
             'occupation' => 'Stilling',
             'skype' => 'Skype',

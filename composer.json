@@ -11,10 +11,6 @@
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/nanaya/slack-php"
-    },
-    {
-      "type": "vcs",
       "url": "https://github.com/nanaya/xsolla-sdk-php"
     }
   ],
@@ -23,13 +19,14 @@
     "chaseconey/laravel-datadog-helper": ">=1.2.0",
     "doctrine/dbal": "*",
     "egulias/email-validator": "*",
-    "elasticsearch/elasticsearch": ">=6.0, <6.6",
+    "elasticsearch/elasticsearch": "^6.7.0",
     "ezyang/htmlpurifier": "*",
+    "firebase/php-jwt": "^5.2",
     "graham-campbell/github": "*",
     "guzzlehttp/guzzle": "*",
     "itsgoingd/clockwork": ">=3.0",
     "jenssegers/agent": "*",
-    "laravel/framework": "6.8.0",
+    "laravel/framework": "6.18.26",
     "laravel/helpers": "^1.1",
     "laravel/passport": "*",
     "laravel/slack-notification-channel": "^2.0",
@@ -39,7 +36,6 @@
     "league/flysystem-aws-s3-v3": "*",
     "league/fractal": "*",
     "league/html-to-markdown": "*",
-    "maknz/slack": "dev-laravel-any",
     "mariuzzo/laravel-js-localization": "*",
     "mpociot/laravel-apidoc-generator": "*",
     "paypal/rest-api-sdk-php": "*",
@@ -50,11 +46,14 @@
   },
   "require-dev": {
     "beyondcode/laravel-query-detector": "*",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
     "filp/whoops": "*",
     "fzaninotto/faker": "*",
     "laravel/dusk": "*",
     "mockery/mockery": "*",
     "phpunit/phpunit": "*",
+    "slevomat/coding-standard": "^6.4",
+    "squizlabs/php_codesniffer": "^3.5",
     "symfony/css-selector": "*",
     "symfony/dom-crawler": "*"
   },
@@ -89,7 +88,10 @@
   "config": {
     "preferred-install": "dist",
     "sort-packages": true,
-    "optimize-autoloader": true
+    "optimize-autoloader": true,
+    "platform": {
+      "php": "7.3.0"
+    }
   },
   "extra": {
     "laravel": {

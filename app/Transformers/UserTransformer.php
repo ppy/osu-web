@@ -30,6 +30,7 @@ class UserTransformer extends UserCompactTransformer
         $profileCustomization = $this->userProfileCustomization($user);
 
         return array_merge($result, [
+            'comments_count' => $user->comments()->count(),
             'cover_url' => $profileCustomization->cover()->url(),
             'discord' => $user->user_discord,
             'has_supported' => $user->hasSupported(),
@@ -39,7 +40,6 @@ class UserTransformer extends UserCompactTransformer
                 'total' => $user->osu_kudostotal,
                 'available' => $user->osu_kudosavailable,
             ],
-            'lastfm' => $user->user_lastfm,
             'location' => $user->user_from,
             'max_blocks' => $user->maxBlocks(),
             'max_friends' => $user->maxFriends(),
@@ -50,6 +50,7 @@ class UserTransformer extends UserCompactTransformer
             'profile_order' => $profileCustomization->extras_order,
             'skype' => $user->user_msnm,
             'title' => $user->title(),
+            'title_url' => $user->titleUrl(),
             'twitter' => $user->user_twitter,
             'website' => $user->user_website,
         ]);

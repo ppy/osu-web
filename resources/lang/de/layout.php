@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'hilfe',
+            'getAbuse' => '',
             'getFaq' => 'faq',
             'getRules' => 'regeln',
             'getSupport' => 'ich brauche wirklich hilfe!',
@@ -179,6 +180,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'Einloggen / Registrieren',
+
         'login' => [
             'forgot' => "Passwort vergessen",
             'password' => 'passwort',

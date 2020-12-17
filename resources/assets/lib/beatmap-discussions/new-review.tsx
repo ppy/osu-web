@@ -4,7 +4,7 @@
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import Editor from './editor';
 
@@ -12,8 +12,8 @@ interface Props {
   beatmaps: BeatmapJsonExtended[];
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapJsonExtended;
-  currentDiscussions: BeatmapDiscussion[];
-  currentUser: UserJSON;
+  currentDiscussions: BeatmapsetDiscussionJson[];
+  currentUser: UserJson;
   pinned?: boolean;
   setPinned?: (sticky: boolean) => void;
   stickTo?: React.RefObject<HTMLDivElement>;

@@ -20,7 +20,7 @@ return [
         ],
     ],
     'input' => [
-        'disabled' => 'impossibile inviare il messaggio...',
+        'disabled' => 'impossibile messaggiare...',
         'placeholder' => 'scrivi un messaggio...',
         'send' => 'Invia',
     ],

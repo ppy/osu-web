@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "لنجعلك<br>مستعداََ!",
         'action' => 'حمل osu!',
+
+        'help' => [
+            '_' => 'إذا كان لديك مشكلة في بدء اللعبة أو انشاء حساب، :help_forum_link أو :support_button.',
+            'help_forum_link' => 'تحقق من منتدى المساعدة',
+            'support_button' => 'الاتصال بالدعم',
+        ],
+
         'os' => [
             'windows' => 'لنظام التشغيل Windows',
             'macos' => 'لنظام التشغل MacOS',

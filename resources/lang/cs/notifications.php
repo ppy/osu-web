@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Všechna oznámení přečtena!',
+    'delete' => '',
     'mark_read' => '',
     'none' => 'Žádná oznámení',
     'see_all' => '',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'vše',
@@ -57,6 +59,8 @@ return [
                 'beatmapset_qualify_compact' => '',
                 'beatmapset_rank' => '',
                 'beatmapset_rank_compact' => '',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => '',
                 'beatmapset_reset_nominations_compact' => 'Nominace byla obnovena',
             ],
@@ -66,6 +70,8 @@ return [
 
                 'comment_new' => '',
                 'comment_new_compact' => ':username okomentoval ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -90,6 +96,8 @@ return [
 
                 'comment_new' => ':username okomentoval ":content" v ":title"',
                 'comment_new_compact' => ':username okomentoval ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -101,6 +109,8 @@ return [
 
                 'comment_new' => ':username odpověděl ":content" v ":title"',
                 'comment_new_compact' => ':username okomentoval ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -130,18 +140,36 @@ return [
                 '_' => 'Nová medaile',
                 'user_achievement_unlock' => 'Odemčeno ":title"\'!',
                 'user_achievement_unlock_compact' => 'Odemčeno ":title"\'!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '',
-            'beatmapset_discussion_lock' => '',
-            'beatmapset_discussion_unlock' => '',
-            'beatmapset_problem' => '',
-            'beatmapset_state' => '',
-            'comment' => '',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_unlock' => '',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'channel' => [
@@ -151,20 +179,28 @@ return [
         ],
 
         'build' => [
-            'comment' => '',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'news_post' => [
-            'comment' => '',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => '',
-            'user_achievement_unlock_self' => '',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => '',
+                'user_achievement_unlock_self' => '',
+            ],
         ],
     ],
 ];

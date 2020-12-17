@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Всички известия са прочетени!',
+    'delete' => '',
     'mark_read' => 'Изчисти :type',
     'none' => 'Няма известия',
     'see_all' => 'виж всички известия',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'всички',
@@ -57,6 +59,8 @@ return [
                 'beatmapset_qualify_compact' => 'Бийтмапът влезе на опашката за класиране',
                 'beatmapset_rank' => '":title" бе класиран',
                 'beatmapset_rank_compact' => 'Бийтмапът бе класиран',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => 'Бийтмапът бе премахнат от Обичани',
                 'beatmapset_reset_nominations' => 'Номинацията на ":title" бе анулирана',
                 'beatmapset_reset_nominations_compact' => 'Номинацията бе анулирана',
             ],
@@ -66,6 +70,8 @@ return [
 
                 'comment_new' => ':username коментира ":content" в темата ":title"',
                 'comment_new_compact' => ':username коментира ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => ':username отговори в темата ":content"',
             ],
         ],
 
@@ -90,6 +96,8 @@ return [
 
                 'comment_new' => ':username коментира ":content" в темата ":title"',
                 'comment_new_compact' => ':username коментира ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -101,6 +109,8 @@ return [
 
                 'comment_new' => ':username коментира ":content" в темата ":title"',
                 'comment_new_compact' => ':username коментира ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -130,41 +140,67 @@ return [
                 '_' => 'Нов медал',
                 'user_achievement_unlock' => 'Отключихте ":title"!',
                 'user_achievement_unlock_compact' => 'Отключихте ":title"!',
+                'user_achievement_unlock_group' => 'Медали отключени!',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '',
-            'beatmapset_discussion_lock' => '',
-            'beatmapset_discussion_unlock' => '',
-            'beatmapset_problem' => '',
-            'beatmapset_state' => '',
-            'comment' => '',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_unlock' => '',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_remove_from_loved' => '":title" бе премахнат от Обичани',
+                'beatmapset_reset_nominations' => 'Номинацията на ":title" бе анулирана',
+            ],
+
+            'comment' => [
+                'comment_new' => 'Бийтмап ":title" има нови коментари',
+            ],
         ],
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => 'Ти получи ново съобщение от :username',
             ],
         ],
 
         'build' => [
-            'comment' => '',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'news_post' => [
-            'comment' => '',
+            'comment' => [
+                'comment_new' => 'Новини ":title" има нови коментари ',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => 'Има нови отговори от ":title"',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => '',
-            'user_achievement_unlock_self' => '',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => ':username отключи нов медал, ":title"!',
+                'user_achievement_unlock_self' => 'Вие отключихте нов медал, ":title"!',
+            ],
         ],
     ],
 ];

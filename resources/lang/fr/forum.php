@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Supprimer le post',
-            'restore' => 'Restaurer le post',
             'edit' => 'Modifier le post',
+            'report' => '',
+            'restore' => 'Restaurer le post',
         ],
 
         'create' => [
@@ -75,7 +76,8 @@ return [
     'topic' => [
         'deleted' => 'sujet supprimé',
         'go_to_latest' => 'voir le dernier post',
-        'has_replied' => '',
+        'has_replied' => 'Vous avez répondu à ce sujet',
+        'in_forum' => 'dans :forum',
         'latest_post' => ':when par :user',
         'latest_reply_by' => 'dernière réponse par :user',
         'new_topic' => 'Poster un nouveau sujet',

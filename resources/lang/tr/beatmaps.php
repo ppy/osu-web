@@ -49,7 +49,7 @@ return [
 
             'prompt' => [
                 'lock' => 'Kilitleme sebebi',
-                'unlock' => 'Kilidi açmak istediğinizden emin misiniz?',
+                'unlock' => 'Tartışmanın kilidini açmak istediğine emin misin?',
             ],
         ],
 
@@ -187,12 +187,18 @@ return [
         'nominate_confirm' => 'Beatmap aday gösterilsin mi?',
         'nominated_by' => ':users tarafından aday gösterildi',
         'not_enough_hype' => "Yeterince gaz yok.",
-        'qualified' => 'Eğer bir sorun bulunmazsa, :date tarihinde dereceli olacağı tahmin ediliyor.',
-        'qualified_soon' => 'Eğer bir sorun bulunmazsa, yakında dereceli olacağı tahmin ediliyor.',
+        'remove_from_loved' => 'Sevilenlerden Çıkar',
+        'remove_from_loved_prompt' => 'Sevilenlerden çıkarılma sebebi:',
         'required_text' => 'Aday Göstermeler: :current/:required',
         'reset_message_deleted' => 'silindi',
         'title' => 'Adaylık Durumu',
         'unresolved_issues' => 'Halen çözülmesi gereken sorunlar mevcut.',
+
+        'rank_estimate' => [
+            '_' => 'Herhangi bir sorun bulunmazsa mapin tahminen dereceli olacağı vakit :date. :queue :position. sırada bulunuyor.',
+            'queue' => 'derecelendirme sırasında',
+            'soon' => 'çok yakın',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Adaylık süreci :time_ago :user tarafından yeni :discussion (:message) sorunu sebebiyle sıfırlandı.',
@@ -246,6 +252,7 @@ return [
         'converts' => 'Dönüştürülmüş beatmapleri dahil et',
     ],
     'mode' => [
+        'all' => 'Hepsi',
         'any' => 'Hepsi',
         'osu' => '',
         'taiko' => '',
@@ -256,7 +263,7 @@ return [
         'any' => 'Hepsi',
         'approved' => 'Onaylı',
         'favourites' => 'Favoriler',
-        'graveyard' => 'Mezarlık',
+        'graveyard' => 'Mezarlıkta',
         'leaderboard' => 'Liderlik tablosu olanlar',
         'loved' => 'Sevilen',
         'mine' => 'Benim haritalarım',
@@ -319,7 +326,7 @@ return [
         'swedish' => 'İsveççe',
         'russian' => 'Rusça',
         'polish' => 'Lehçe',
-        'instrumental' => 'Enstrümental',
+        'instrumental' => 'Enstrümantal',
         'other' => 'Diğer',
         'unspecified' => 'Belirtilmemiş',
     ],
@@ -344,8 +351,8 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => 'Oynanma sayısı',
-        'favourites' => 'Favoriler',
+        'playcount' => 'Oynanma sayısı: :count',
+        'favourites' => 'Favoriler: :count',
     ],
     'variant' => [
         'mania' => [

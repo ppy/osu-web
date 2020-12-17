@@ -51,18 +51,19 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => '',
         'beatmapset_disqualify' => '',
+        'comment_reply' => '',
         'title' => 'Ilmoitukset',
         'topic_auto_subscribe' => 'automaattisesti salli ilmoitukset uusille foorumiaiheille jotka luot',
 
         'options' => [
             '_' => '',
             'beatmapset:modding' => 'beatmapin modaus',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => 'yksityisviestit',
+            'comment_new' => 'uudet kommentit',
             'forum_topic_reply' => 'aihevastaus',
-            'mail' => '',
+            'mail' => 'posti',
             'push' => 'push',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => 'käyttäjämitali avattu',
         ],
     ],
 

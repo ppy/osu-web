@@ -93,7 +93,6 @@ return [
             'source' => 'Kaynak',
             'success-rate' => 'Başarı Oranı',
             'tags' => 'Etiketler',
-            'unranked' => 'Derecelendirilmemiş beatmap',
         ],
 
         'scoreboard' => [
@@ -155,7 +154,7 @@ return [
             'qualified' => 'Nitelikli',
             'wip' => 'Yapım Aşamasında',
             'pending' => 'Beklemede',
-            'graveyard' => 'Mezarlık',
+            'graveyard' => 'Mezarlıkta',
         ],
     ],
 ];

@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Slet opslag',
-            'restore' => 'Gendan opslag',
             'edit' => 'Rediger opslag',
+            'report' => '',
+            'restore' => 'Gendan opslag',
         ],
 
         'create' => [
@@ -76,6 +77,7 @@ return [
         'deleted' => 'slettede emne',
         'go_to_latest' => 'vis det seneste opslag',
         'has_replied' => '',
+        'in_forum' => '',
         'latest_post' => ':when af :user',
         'latest_reply_by' => 'seneste svar af :user',
         'new_topic' => 'Nyt emne',

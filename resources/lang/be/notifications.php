@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Усе апавяшчэнні прачытаныя!',
+    'delete' => '',
     'mark_read' => 'Ачысціць :type',
     'none' => 'Няма апавяшчэнняў',
     'see_all' => 'гл. усе апавяшчэнні',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'усе',
@@ -57,6 +59,8 @@ return [
                 'beatmapset_qualify_compact' => 'Бітмапа далучылася да чаргі рэйтынгу',
                 'beatmapset_rank' => '":title" была ранкавана',
                 'beatmapset_rank_compact' => 'Бітмапа была ранкавана',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'Праблема, якую размясціў :username выклікала скід намінацыі бітмапы ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Намінацыя была скінута',
             ],
@@ -66,6 +70,8 @@ return [
 
                 'comment_new' => ':username пракаментаваў ":content" у ":title"',
                 'comment_new_compact' => ':username пракаментаваў ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -90,6 +96,8 @@ return [
 
                 'comment_new' => ':username пракаментаваў ":content" у ":title"',
                 'comment_new_compact' => ':username пракаментаваў ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -101,6 +109,8 @@ return [
 
                 'comment_new' => ':username пракаментаваў ":content" у ":title"',
                 'comment_new_compact' => ':username пракаментаваў ":content"',
+                'comment_reply' => '',
+                'comment_reply_compact' => '',
             ],
         ],
 
@@ -130,18 +140,36 @@ return [
                 '_' => 'Новая медаль',
                 'user_achievement_unlock' => 'Адкрыта ":title"!',
                 'user_achievement_unlock_compact' => 'Адкрыта ":title"!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '',
-            'beatmapset_discussion_lock' => '',
-            'beatmapset_discussion_unlock' => '',
-            'beatmapset_problem' => '',
-            'beatmapset_state' => '',
-            'comment' => '',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_unlock' => '',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '',
+                'beatmapset_love' => '',
+                'beatmapset_nominate' => '',
+                'beatmapset_qualify' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_reset_nominations' => '',
+            ],
+
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'channel' => [
@@ -151,20 +179,28 @@ return [
         ],
 
         'build' => [
-            'comment' => '',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'news_post' => [
-            'comment' => '',
+            'comment' => [
+                'comment_new' => '',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => '',
-            'user_achievement_unlock_self' => '',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => '',
+                'user_achievement_unlock_self' => '',
+            ],
         ],
     ],
 ];

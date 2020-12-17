@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => '도움말',
+            'getAbuse' => '',
             'getFaq' => 'FAQ',
             'getRules' => '규칙',
             'getSupport' => '지원 센터',
@@ -179,6 +180,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '로그인 / 등록',
+
         'login' => [
             'forgot' => "계정 정보를 잊어버렸어요.",
             'password' => '비밀번호',

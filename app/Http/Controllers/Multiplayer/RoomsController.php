@@ -22,12 +22,14 @@ class RoomsController extends BaseController
         $params = request()->all();
         $params['user'] = auth()->user();
 
-        return Room::search($params,
-            ['host.country', 'playlist.beatmap.beatmapset'],
+        return Room::search(
+            $params,
+            ['host.country', 'playlist.beatmap.beatmapset', 'playlist.beatmap.baseMaxCombo'],
             [
                 'host.country',
                 'playlist.beatmap.beatmapset',
                 'playlist.beatmap.checksum',
+                'playlist.beatmap.max_combo',
             ]
         );
     }
@@ -47,14 +49,23 @@ class RoomsController extends BaseController
     public function leaderboard($roomId)
     {
         $limit = clamp(get_int(request('limit')) ?? 50, 1, 50);
+        $room = Room::findOrFail($roomId);
 
-        return json_collection(
-            Room::findOrFail($roomId)
-                ->topScores()
-                ->paginate($limit),
-            'Multiplayer\UserScoreAggregate',
-            ['user.country']
-        );
+        // leaderboard currently requires auth so auth()->check() is not required.
+        $userScore = $room->topScores()->where('user_id', auth()->id())->first();
+
+        return [
+            'leaderboard' => json_collection(
+                $room->topScores()->paginate($limit),
+                'Multiplayer\UserScoreAggregate',
+                ['user.country']
+            ),
+            'user_score' => $userScore !== null ? json_item(
+                $userScore,
+                'Multiplayer\UserScoreAggregate',
+                ['position', 'user.country']
+            ) : null,
+        ];
     }
 
     public function part($roomId, $userId)
@@ -89,12 +100,14 @@ class RoomsController extends BaseController
             return json_item(
                 $room
                     ->load('host.country')
-                    ->load('playlist.beatmap.beatmapset'),
+                    ->load('playlist.beatmap.beatmapset')
+                    ->load('playlist.beatmap.baseMaxCombo'),
                 'Multiplayer\Room',
                 [
                     'host.country',
                     'playlist.beatmap.beatmapset',
                     'playlist.beatmap.checksum',
+                    'playlist.beatmap.max_combo',
                     'recent_participants',
                 ]
             );
@@ -117,17 +130,19 @@ class RoomsController extends BaseController
     public function store()
     {
         try {
-            $room = (new Room)->startGame(auth()->user(), request()->all());
+            $room = (new Room())->startGame(auth()->user(), request()->all());
 
             return json_item(
                 $room
                     ->load('host.country')
-                    ->load('playlist.beatmap.beatmapset'),
+                    ->load('playlist.beatmap.beatmapset')
+                    ->load('playlist.beatmap.baseMaxCombo'),
                 'Multiplayer\Room',
                 [
                     'host.country',
                     'playlist.beatmap.beatmapset',
                     'playlist.beatmap.checksum',
+                    'playlist.beatmap.max_combo',
                     'recent_participants',
                 ]
             );

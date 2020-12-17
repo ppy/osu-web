@@ -5,9 +5,11 @@
 
 return [
     'all_read' => '已经阅读所有通知！',
+    'delete' => '删除 :type',
     'mark_read' => '清除 :type 类型的通知',
     'none' => '没有新通知',
     'see_all' => '显示所有通知',
+    'see_channel' => '前往聊天',
 
     'filters' => [
         '_' => '所有',
@@ -50,13 +52,15 @@ return [
                 'beatmapset_disqualify' => '谱面 :title 被 :username 取消提名。',
                 'beatmapset_disqualify_compact' => '谱面被取消资格',
                 'beatmapset_love' => '谱面 :title 已经被 :username 推荐为 loved 。',
-                'beatmapset_love_compact' => '谱面被提升至最爱',
+                'beatmapset_love_compact' => '谱面已被 Loved',
                 'beatmapset_nominate' => '谱面 :title 被 :username 提名。',
                 'beatmapset_nominate_compact' => '谱面被提名',
                 'beatmapset_qualify' => '谱面 :title 已经得到足够数量的提名并进入到 ranking 队列。',
                 'beatmapset_qualify_compact' => '谱面进入 Ranked 序列',
                 'beatmapset_rank' => '":title" 已 Rank',
                 'beatmapset_rank_compact' => '谱面已 Ranked',
+                'beatmapset_remove_from_loved' => '谱面 :title 已被从 Loved 移除',
+                'beatmapset_remove_from_loved_compact' => '谱面从 Loved 中移除',
                 'beatmapset_reset_nominations' => ':username 提出的问题重置了谱面 :title 的提名过程 ',
                 'beatmapset_reset_nominations_compact' => '提名被重置',
             ],
@@ -66,6 +70,8 @@ return [
 
                 'comment_new' => ':username 在 ":title" 中评论道 ":content',
                 'comment_new_compact' => ':username 评论道 ":content',
+                'comment_reply' => ':username 回复了“:title”：“:content”',
+                'comment_reply_compact' => ':username 回复了：“:content”',
             ],
         ],
 
@@ -90,6 +96,8 @@ return [
 
                 'comment_new' => ':username 在 ":title" 中评论道 ":content"',
                 'comment_new_compact' => ':username 评论道 ":content"',
+                'comment_reply' => ':username 回复了“:title”：“:content”',
+                'comment_reply_compact' => ':username 回复了：“:content”',
             ],
         ],
 
@@ -101,6 +109,8 @@ return [
 
                 'comment_new' => ':username 在 ":title" 中评论道 ":content',
                 'comment_new_compact' => ':username 评论道 ":content"',
+                'comment_reply' => ':username 回复了“:title”：“:content”',
+                'comment_reply_compact' => ':username 回复了：“:content”',
             ],
         ],
 
@@ -130,18 +140,36 @@ return [
                 '_' => '新奖章',
                 'user_achievement_unlock' => '解锁 ":title"！',
                 'user_achievement_unlock_compact' => '您已解锁 ":title" 成就！',
+                'user_achievement_unlock_group' => '奖章已解锁！',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '谱面“:title”的讨论有新的更新',
-            'beatmapset_discussion_lock' => '谱面“:title”的讨论已被锁定',
-            'beatmapset_discussion_unlock' => '谱面“:title”的讨论已被解锁',
-            'beatmapset_problem' => '谱面“:title”有新的反馈',
-            'beatmapset_state' => '谱面”:title“的状态已被改变',
-            'comment' => ' 谱面”:title“有新的讨论',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '谱面“:title”的讨论已被锁定',
+                'beatmapset_discussion_post_new' => '谱面“:title”的讨论有新动态',
+                'beatmapset_discussion_unlock' => '谱面“:title”的讨论已被解锁',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '谱面“:title”被反馈了一个新问题',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '谱面 :title 已被 DQ',
+                'beatmapset_love' => '谱面 :title 已被 Loved',
+                'beatmapset_nominate' => '“:title”已被提名',
+                'beatmapset_qualify' => '谱面 :title 已获得足够的提名，已进入 Ranked 流程',
+                'beatmapset_rank' => '“:title”已被 ranked',
+                'beatmapset_remove_from_loved' => '谱面 :title 已被从 Loved 移除',
+                'beatmapset_reset_nominations' => '“:title”的提名被重置',
+            ],
+
+            'comment' => [
+                'comment_new' => '谱面“:title”有新的评论',
+            ],
         ],
 
         'channel' => [
@@ -151,20 +179,28 @@ return [
         ],
 
         'build' => [
-            'comment' => '更新日志”:title“有新评论',
+            'comment' => [
+                'comment_new' => '更新日志“:title”有新的评论',
+            ],
         ],
 
         'news_post' => [
-            'comment' => '新闻”:title“有的新评论',
+            'comment' => [
+                'comment_new' => '新闻“:title”有新的评论',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '主题”:title“有新的回复',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '主题“:title”有新的回复',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => ':username 解锁了成就“:title”！',
-            'user_achievement_unlock_self' => '您已解锁成就“:title”！',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => ':username 解锁了新成就“:title”！',
+                'user_achievement_unlock_self' => '您已解锁了新成就“:title”！',
+            ],
         ],
     ],
 ];

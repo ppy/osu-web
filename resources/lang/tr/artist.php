@@ -5,7 +5,7 @@
 
 return [
     'page_description' => 'osu!\'daki Seçkin sanatçılar',
-    'title' => 'Seçkin Sanatçılar',
+    'title' => 'Featured Artist\'ler',
 
     'admin' => [
         'hidden' => 'SANATÇI ŞU ANDA GİZLİ',
@@ -28,7 +28,7 @@ return [
 
     'songs' => [
         '_' => 'Şarkılar',
-        'count' => ':count şarkı|:count şarkı',
+        'count' => ':count_delimited şarkı|:count_delimited şarkı',
         'exclusive' => 'osu!\'ya özel',
     ],
 

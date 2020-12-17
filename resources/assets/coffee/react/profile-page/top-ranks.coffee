@@ -15,17 +15,20 @@ export class TopRanks extends React.PureComponent
       el ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       div null,
-        h3 className: 'title title--page-extra-small', osu.trans('users.show.extra.top_ranks.best.title')
+        h3
+          className: 'title title--page-extra-small'
+          osu.trans('users.show.extra.top_ranks.best.title')
+          span className: 'title__count',
+            osu.formatNumber(@props.user.scores_best_count)
+
         @renderScores 'scoresBest', 'best'
 
       div null,
         h3
           className: 'title title--page-extra-small'
           osu.trans('users.show.extra.top_ranks.first.title')
-          ' '
-          if @props.user.scores_first_count > 0
-            span className: 'title__count',
-              osu.formatNumber(@props.user.scores_first_count)
+          span className: 'title__count',
+            osu.formatNumber(@props.user.scores_first_count)
 
         @renderScores 'scoresFirsts', 'firsts'
 
@@ -35,7 +38,7 @@ export class TopRanks extends React.PureComponent
     scores = @props[key]
 
     if scores?.error
-      p className: 'profile-extra-entries', scores.error
+      p null, scores.error
 
     else if scores?.length
       div className: 'profile-extra-entries',
@@ -53,5 +56,3 @@ export class TopRanks extends React.PureComponent
                 user: @props.user.id
                 type: type
                 mode: @props.currentMode
-    else
-      p className: 'profile-extra-entries', osu.trans('users.show.extra.top_ranks.empty')

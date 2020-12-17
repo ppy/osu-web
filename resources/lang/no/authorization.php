@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Vennligst logg inn for å fortsette.',
     'require_verification' => 'Vennligst verifiser deg for å fortsette.',
     'restricted' => "Kan ikke gjøre det mens kontoen din er begrenset.",
@@ -32,6 +33,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "",
             'limit_exceeded' => 'Vennligst vent en stund før du avgir flere stemmer',
             'owner' => "Du kan ikke stemme på ditt eget diskusjonsinnlegg.",
             'wrong_beatmapset_state' => 'Kan bare stemme på diskusjoner der beatmappet er ventende.',

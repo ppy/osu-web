@@ -17,6 +17,10 @@
  */
 
 describe('osu_common', () => {
+  it('test locale file loaded in test runner', () => {
+    expect(Lang.has('common.confirmation')).toBe(true);
+  });
+
   it('should add the new parameter to the query string', () => {
     const params = {
       foo: 'bar',

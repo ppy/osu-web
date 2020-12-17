@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'لا يشمل اي من هذه المنشورات حالتي',
         'notice' => 'هناك منشورات حول :timestamp (:existing_timestamps). رجائا تحقق منهم قبل النشر.',
+        'unsaved' => ':count في هذه المراجعة',
     ],
 
     'reply' => [
@@ -64,7 +65,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max كتل مستخدمة',
         'go_to_parent' => 'مشاهدة منشور المراجعة',
         'go_to_child' => 'مشاهدة المناقشة',
         'validation' => [

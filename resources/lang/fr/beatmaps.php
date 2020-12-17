@@ -187,12 +187,18 @@ return [
         'nominate_confirm' => 'Nominer cette beatmap ?',
         'nominated_by' => 'nominée par :users',
         'not_enough_hype' => "Il n'y a pas assez de hype.",
-        'qualified' => 'La map sera classée le :date environ, si aucun problème n\'est trouvé.',
-        'qualified_soon' => 'Beatmap bientôt classée, si aucun problème n\'est trouvé.',
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Nominations: :current/:required',
         'reset_message_deleted' => 'supprimé',
         'title' => 'Statut de la nomination',
         'unresolved_issues' => 'Il reste encore des problèmes à résoudre.',
+
+        'rank_estimate' => [
+            '_' => 'Cette map est estimée à être classée le :date si aucun problème n\'a été trouvé. Elle est #:position dans la :queue.',
+            'queue' => 'file d\'attente de classement',
+            'soon' => 'bientôt',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Le processus de nomination a été réinitialisé :time_ago par :user avec le nouveau problème :discussion (:message).',
@@ -246,6 +252,7 @@ return [
         'converts' => 'Inclure les beatmaps converties',
     ],
     'mode' => [
+        'all' => 'Tous',
         'any' => 'Tous',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

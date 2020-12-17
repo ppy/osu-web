@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Kontoen din har ikke blitt brukt på lang tid.",
@@ -84,6 +88,7 @@ return [
         'failed' => 'Feil innlogging',
         'forgot' => 'Glemt passordet ditt?',
         'info' => 'Vennligst logg inn for å fortsette',
+        'invalid_captcha' => '',
         'locked_ip' => 'IP-adressen din er blokkert. Vennligst vent et par minutter.',
         'password' => 'Passord',
         'register' => "Har du ikke en osu!-konto? Lag en ny en",
@@ -186,7 +191,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'av :artist',
-                'none' => 'Ingen... ennå.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -216,7 +220,6 @@ return [
                 'show_more' => 'se flere hendelser',
             ],
             'historical' => [
-                'empty' => 'Ingen prestasjoner :(',
                 'title' => 'Historikk',
 
                 'monthly_playcounts' => [
@@ -303,7 +306,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Last ned Reprise',
-                'empty' => 'Ingen fantastiske prestasjoner på rekordlisten enda. :(',
                 'not_ranked' => 'Bare rangerte beatmaps gir pp.',
                 'pp_weight' => 'veid :percentage',
                 'view_details' => 'Vis detaljer',
@@ -349,7 +351,6 @@ return [
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Interesser',
-            'lastfm' => 'Last.fm',
             'location' => 'Nåværende Plassering',
             'occupation' => 'Yrke',
             'skype' => 'Skype',

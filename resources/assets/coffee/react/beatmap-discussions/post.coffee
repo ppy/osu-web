@@ -13,6 +13,7 @@ import { ReportReportable } from 'report-reportable'
 import Editor from 'beatmap-discussions/editor'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
+import { classWithModifiers } from 'utils/css'
 
 el = React.createElement
 
@@ -22,29 +23,19 @@ export class Post extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @textarea = React.createRef()
+    @textareaRef = React.createRef()
+    @messageBodyRef = React.createRef()
     @throttledUpdatePost = _.throttle @updatePost, 1000
     @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
     @xhr = {}
-    @cache = {}
     @reviewEditor = React.createRef()
 
     @state =
+      canSave: true
       editing: false
+      editorMinHeight: '0'
       posting: false
-      message: @props.post.message
-
-
-  componentDidMount: =>
-    osu.pageChange()
-
-
-  componentWillUpdate: =>
-    @cache = {}
-
-
-  componentDidUpdate: =>
-    osu.pageChange()
+      message: null
 
 
   componentWillUnmount: =>
@@ -55,13 +46,11 @@ export class Post extends React.PureComponent
 
 
   render: =>
-    topClasses = "#{bn} #{bn}--#{@props.type}"
-    if @state.editing
-      topClasses += " #{bn}--editing"
-    topClasses += " #{bn}--deleted" if @props.post.deleted_at?
-    topClasses += " #{bn}--unread" if !@props.read
-
-    userGroup = if @isOwner() then mapperGroup else @props.user.groups[0]
+    topClasses = classWithModifiers bn,
+      "#{@props.type}": true
+      deleted: @props.post.deleted_at?
+      editing: @state.editing
+      unread: !@props.read && @props.type != 'discussion'
 
     div
       className: topClasses
@@ -74,22 +63,28 @@ export class Post extends React.PureComponent
         if (!@props.hideUserCard)
           el UserCard,
             user: @props.user
-            group: userGroup
-        @messageViewer()
-        @messageEditor()
+            group: @userGroup()
+        if @state.editing
+          @messageEditor()
+        else
+          @messageViewer()
 
 
   editCancel: =>
-    @setState
-      editing: false
-      message: @props.post.message
+    @setState editing: false
 
 
   editStart: =>
-    @textarea.current?.style.minHeight = "#{@messageBody.getBoundingClientRect().height + 50}px"
+    if @messageBodyRef.current?
+      editorMinHeight = "#{@messageBodyRef.current.getBoundingClientRect().height + 50}px"
 
-    @setState editing: true, =>
-      @textarea.current?.focus()
+    @setState
+      editing: true
+      editorMinHeight: editorMinHeight ? '0'
+      message: @props.post.message
+      => @textareaRef.current?.focus()
+
+
 
   handleKeyDownCallback: (type, event) =>
     switch type
@@ -104,9 +99,9 @@ export class Post extends React.PureComponent
   messageEditor: =>
     return if !@props.canBeEdited
 
-    canPost = !@state.posting && @validPost()
+    canPost = !@state.posting && @state.canSave
 
-    div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
+    div className: "#{bn}__message-container",
       if @props.discussion.message_type == 'review' && @props.type == 'discussion'
         el DiscussionsContext.Consumer, null,
           (discussions) =>
@@ -121,15 +116,17 @@ export class Post extends React.PureComponent
                   editMode: true
                   editing: @state.editing
                   ref: @reviewEditor
+                  onChange: @updateCanSave
       else
         el React.Fragment, null,
           el TextareaAutosize,
+            style: minHeight: @state.editorMinHeight
             disabled: @state.posting
             className: "#{bn}__message #{bn}__message--editor"
             onChange: @setMessage
             onKeyDown: @handleKeyDown
             value: @state.message
-            ref: @textarea
+            ref: @textareaRef
           el MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
 
       div className: "#{bn}__actions",
@@ -158,18 +155,17 @@ export class Post extends React.PureComponent
       else
         ['beatmap-discussions', 'beatmap_discussion', @props.discussion]
 
-    div className: "#{bn}__message-container #{'hidden' if @state.editing}",
+    div className: "#{bn}__message-container",
       if @props.discussion.message_type == 'review' && @props.type == 'discussion'
         div
           className: "#{bn}__message"
-          ref: (el) => @messageBody = el
           el ReviewPost,
             discussions: @context.discussions
             message: @props.post.message
       else
         div
           className: "#{bn}__message"
-          ref: (el) => @messageBody = el
+          ref: @messageBodyRef
           dangerouslySetInnerHTML:
             __html: BeatmapDiscussionHelper.format @props.post.message
 
@@ -275,7 +271,11 @@ export class Post extends React.PureComponent
 
 
   setMessage: (e) =>
-    @setState message: e.target.value
+    @setState message: e.target.value, @updateCanSave
+
+
+  updateCanSave: =>
+    @setState canSave: @validPost()
 
 
   updatePost: =>
@@ -314,5 +314,12 @@ export class Post extends React.PureComponent
     .always => @setState posting: false
 
 
+  userGroup: ->
+    if @isOwner() then mapperGroup else @props.user.groups[0]
+
+
   validPost: =>
-    BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())
+    if @props.discussion.message_type == 'review' && @props.type == 'discussion'
+      @reviewEditor.current?.canSave
+    else
+      BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())

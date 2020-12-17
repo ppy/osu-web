@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Members by game mode',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Your account hasn't been used in a long time.",
@@ -84,7 +88,7 @@ return [
         'failed' => 'Incorrect sign in',
         'forgot' => 'Forgotten your password?',
         'info' => 'Please sign in to continue',
-        'invalid_captcha' => 'Captcha invalid, refresh the page and try again.',
+        'invalid_captcha' => 'Too many failed login attempts, please complete the captcha and try again. (Refresh page if captcha is not visible)',
         'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
         'password' => 'Password',
         'register' => "Don't have an osu! account? Make a new one",
@@ -150,6 +154,10 @@ return [
         'plays_with' => 'Plays with :devices',
         'title' => ":username's profile",
 
+        'comments_count' => [
+            '_' => 'Posted :link',
+            'count' => ':count_delimited comment|:count_delimited comments',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Change Profile Cover',
@@ -187,7 +195,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'by :artist',
-                'none' => 'None... yet.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -217,7 +224,6 @@ return [
                 'show_more' => 'see more events',
             ],
             'historical' => [
-                'empty' => 'No performance records. :(',
                 'title' => 'Historical',
 
                 'monthly_playcounts' => [
@@ -304,7 +310,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Download Replay',
-                'empty' => 'No awesome performance records yet. :(',
                 'not_ranked' => 'Only ranked beatmaps give out pp.',
                 'pp_weight' => 'weighted :percentage',
                 'view_details' => 'View Details',
@@ -327,7 +332,7 @@ return [
             'account_standing' => [
                 'title' => 'Account Standing',
                 'bad_standing' => "<strong>:username's</strong> account is not in a good standing :(",
-                'remaining_silence' => '<strong>:username</strong> will be able to speak again in :duration.',
+                'remaining_silence' => '<strong>:username</strong> will be able to speak again :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Recent Infringements',
@@ -350,7 +355,6 @@ return [
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Interests',
-            'lastfm' => 'Last.fm',
             'location' => 'Current Location',
             'occupation' => 'Occupation',
             'skype' => 'Skype',

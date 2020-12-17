@@ -6,7 +6,7 @@
 return [
     'confirmation' => '確定？',
     'confirmation_unsaved' => '未被修改的將不會保存。你確定嗎？',
-    'saved' => '儲存',
+    'saved' => '已儲存',
 
     'array_and' => [
         'words_connector' => '，',
@@ -38,7 +38,7 @@ return [
         'permalink' => '永久連結',
         'pin' => '置頂',
         'post' => '發表',
-        'read_more' => '',
+        'read_more' => '查看詳情',
         'reply' => '回覆',
         'reply_reopen' => '回覆並重新打開',
         'reply_resolve' => '回覆並標記為已解決',
@@ -72,7 +72,7 @@ return [
         'minute_short_unit' => '分',
         'minutes' => ':count_delimited 分鐘|:count_delimited 分鐘',
         'months' => ':count 個月',
-        'notifications' => '',
+        'notifications' => ':count_delimited 則通知|:count_delimited 則通知',
         'plus_others' => '+ :count_delimited 其他!|+ :count_delimited 其他!',
         'post' => ':count_delimited 篇貼文',
         'second_short_unit' => '秒',

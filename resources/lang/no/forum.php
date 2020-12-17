@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Slett innlegg',
-            'restore' => 'Gjenopprett innlegg',
             'edit' => 'Rediger innlegget',
+            'report' => '',
+            'restore' => 'Gjenopprett innlegg',
         ],
 
         'create' => [
@@ -76,6 +77,7 @@ return [
         'deleted' => 'slettet emne',
         'go_to_latest' => 'vis nyeste innlegg',
         'has_replied' => '',
+        'in_forum' => '',
         'latest_post' => ':when av :user',
         'latest_reply_by' => 'siste svar av :user',
         'new_topic' => 'Nytt emne',

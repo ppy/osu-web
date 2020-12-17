@@ -11,18 +11,18 @@ return [
     ],
 
     'discussions' => [
-        'allow_kudosu' => 'อนุญาตการให้ Kudosu',
+        'allow_kudosu' => 'อนุญาตการให้ kudosu',
         'beatmap_information' => 'หน้าบีทแมพ',
         'delete' => 'ลบ',
         'deleted' => 'ถูกลบโดย :editor เมื่อเวลา :delete_time',
-        'deny_kudosu' => 'ปฏิเสธการให้ค่าชื่อเสียง',
+        'deny_kudosu' => 'ปฏิเสธการให้ kudosu',
         'edit' => 'แก้ไข',
         'edited' => 'แก้ไขล่าสุดโดย :editor เมื่อเวลา :update_time',
         'kudosu_denied' => 'ถูกปฏิเสธการให้ kudosu',
         'message_placeholder_deleted_beatmap' => 'ระดับความยากนี้ถูกลบแล้วจึงไม่ควรถูกสนทนาถึง',
         'message_placeholder_locked' => 'การสนทนาสำหรับบีทแมพนี้ถูกปิดใช้งาน',
         'message_placeholder_silenced' => "ไม่สามารถโพสต์การสนทนาในขณะที่โดนเงียบ",
-        'message_type_select' => 'เลือกประเภทคอมเมนต์',
+        'message_type_select' => 'เลือกประเภทความคิดเห็น',
         'reply_notice' => 'กด Enter เพื่อตอบกลับ',
         'reply_placeholder' => 'พิมพ์คำตอบกลับที่นี่',
         'require-login' => 'กรุณาเข้าสู่ระบบเพื่อโพสต์หรือตอบกลับ',
@@ -103,7 +103,7 @@ return [
                 'unlink' => 'เลิกการเชื่อมโยง',
                 'unsaved' => 'ยังไม่ได้บันทึก',
                 'timestamp' => [
-                    'all-diff' => 'โพสต์ทุกโพสต์ที่มีนัยยะความหมายกว้าง ครอบคลุมบีทแมพทั้งหมดในชุดบีทแมพ จะไม่สามารถประทับเวลาได้',
+                    'all-diff' => 'โพสต์ในหมวด "ทุกระดับความยาก" จะไม่สามารถใส่ประทับเวลาได้',
                     'diff' => 'ถ้า :type เริ่มต้นด้วยการประทับเวลา สิ่งเหล่านั้นจะถูกแสดงภายใต้ไทม์ไลน์',
                 ],
             ],
@@ -116,20 +116,20 @@ return [
         ],
 
         'show' => [
-            'title' => ':title lสร้างโดย :mapper',
+            'title' => ':title แมพโดย :mapper',
         ],
 
         'sort' => [
             'created_at' => 'เวลาที่สร้าง',
             'timeline' => 'ไทม์ไลน์',
-            'updated_at' => 'อัพเดทล่าสุด',
+            'updated_at' => 'อัปเดตล่าสุด',
         ],
 
         'stats' => [
             'deleted' => 'ถูกลบไปแล้ว',
             'mapper_notes' => 'หมายเหตุ',
             'mine' => 'ของเรา',
-            'pending' => 'ดำเนินการ',
+            'pending' => 'อยู่ระหว่างดำเนินการ',
             'praises' => 'ชื่นชม',
             'resolved' => 'แก้ไขแล้ว',
             'total' => 'ทั้งหมด',
@@ -181,18 +181,24 @@ return [
         'disqualified_no_reason' => 'ไม่มีเหตุผลที่ระบุไว้',
         'disqualify' => 'ตัดสิทธิ์',
         'incorrect_state' => 'เกิดข้อผิดพลาดในการดำเนินการ ลองรีเฟรชหน้าเพจนี้ดู',
-        'love' => 'รัก',
+        'love' => 'Love',
         'love_confirm' => 'ชอบบีทแมพนี้หรือ?',
         'nominate' => 'เสนอชื่อ',
         'nominate_confirm' => 'เสนอชื่อบีทแมพนี้?',
         'nominated_by' => 'เสนอชื่อโดย :users',
         'not_enough_hype' => "ไม่มี Hype เพียงพอ",
-        'qualified' => 'คาดการณ์ว่าจะถูกจัดอันดับในเร็วๆนี้ ถ้าไม่พบปัญหาใดๆ',
-        'qualified_soon' => 'คาดการณ์ว่าจะถูกจัดอันดับในเร็วๆนี้ ถ้าไม่พบปัญหาใดๆ',
+        'remove_from_loved' => 'ถูกนำออกจาก Loved',
+        'remove_from_loved_prompt' => 'เหตุผลในการถูกออกจาก Loved',
         'required_text' => 'การเสนอชื่อ: :current/:required',
         'reset_message_deleted' => 'ถูกลบไปแล้ว',
         'title' => 'ข้อมูลการเสนอชื่อ',
         'unresolved_issues' => 'ยังมีปัญหาที่ต้องแก้ไขให้เสร็จก่อน',
+
+        'rank_estimate' => [
+            '_' => 'แมพนี้จะถูก ranked  ใน :date ถ้าไม่พบเจอปัญหาเพิ่มเติม แมพนี้อยู่ที่ #:position ใน :queue',
+            'queue' => 'คิวการ rank',
+            'soon' => 'เร็ว ๆ นี้',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'การเสนอชื่อถูกรีเซ็ตเมื่อ :time_ago โดยผู้ใช้ :user ที่มีปัญหาใหม่ :discussion (:message)',
@@ -230,14 +236,14 @@ return [
                 'favourites' => 'รายการโปรด',
                 'updated' => 'อัปเดต',
                 'ranked' => 'จัดอันดับแล้ว',
-                'rating' => 'คะแนน',
+                'rating' => 'เรตติ้ง',
                 'plays' => 'จำนวนการเล่น',
                 'relevance' => 'ความเกี่ยวข้อง',
                 'nominations' => 'การเสนอชื่อ',
             ],
             'supporter_filter_quote' => [
                 '_' => 'กรองโดย :filters ต้องมี :link ทำงานอยู่',
-                'link_text' => 'osu!supporter tag (ผู้สนับสนุนเกม)',
+                'link_text' => 'แท็กสนับสนุน',
             ],
         ],
     ],
@@ -246,6 +252,7 @@ return [
         'converts' => 'รวมแมพคอนเวิรต์ด้วย',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'ไม่เจาะจง',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
@@ -261,7 +268,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'แมพของฉัน',
         'pending' => 'รอดำเนินการ & WIP',
-        'qualified' => 'ผ่านเกณฑ์',
+        'qualified' => 'Qualified',
         'ranked' => 'จัดอันดับแล้ว',
     ],
     'genre' => [

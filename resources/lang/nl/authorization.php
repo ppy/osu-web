@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Log in om verder te gaan.',
     'require_verification' => 'Gelieve te verifiëren om verder te gaan.',
     'restricted' => "Je kan dit niet doen terwijl je restricted bent.",
@@ -32,6 +33,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "Kan niet stemmen op discussie gemaakt door bot",
             'limit_exceeded' => 'Wacht even voor je meer stemmen indient',
             'owner' => "Je kan niet stemmen op je eigen discussie.",
             'wrong_beatmapset_state' => 'Je kan alleen stemmen op discussies van beatmaps die in afwachting zijn.',

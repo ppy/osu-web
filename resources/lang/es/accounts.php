@@ -51,8 +51,9 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en mapas calificados de los siguientes modos',
         'beatmapset_disqualify' => 'recibir notificaciones para cuando se descalifiquen los mapas de los siguientes modos',
+        'comment_reply' => 'recibir notificaciones de respuestas a sus comentarios',
         'title' => 'Notificaciones',
-        'topic_auto_subscribe' => 'activar automáticamente las notificaciones en nuevos temas del foro que crees',
+        'topic_auto_subscribe' => 'activar automáticamente las notificaciones en nuevos temas del foro que cree',
 
         'options' => [
             '_' => 'opciones de entrega',
@@ -103,7 +104,7 @@ return [
         'current_session' => 'actual',
         'end_session' => 'Cerrar sesión',
         'end_session_confirmation' => 'Esto cerrará inmediatamente su sesión en ese dispositivo. ¿Está seguro?',
-        'last_active' => 'Última vez activo:',
+        'last_active' => 'Última conexión:',
         'title' => 'Seguridad',
         'web_sessions' => 'sesiones web',
     ],

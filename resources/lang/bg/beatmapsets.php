@@ -93,7 +93,6 @@ return [
             'source' => 'Източник',
             'success-rate' => 'Степен на успех (%)',
             'tags' => 'Тагове',
-            'unranked' => 'Некласиран бийтмап',
         ],
 
         'scoreboard' => [

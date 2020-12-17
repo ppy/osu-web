@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'ajuda',
+            'getAbuse' => '',
             'getFaq' => 'perguntas frequentes',
             'getRules' => 'regras',
             'getSupport' => 'não, sério, preciso de ajuda!',
@@ -179,6 +180,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'entrar / registrar',
+
         'login' => [
             'forgot' => "Esqueci as minhas credenciais",
             'password' => 'senha',

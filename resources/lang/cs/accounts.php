@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => '',
+            'rules' => 'Prosím ujistěte se, že Váš avatar dodržuje :link.<br/>To znamená, že musí být <strong>vhodný pro všechny věkové kategorie</strong>. Tj. žádný nahota či nenávistný obsah.',
             'rules_link' => 'pravidla komunity',
         ],
 
@@ -49,20 +49,21 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => '',
-        'beatmapset_disqualify' => '',
+        'beatmapset_discussion_qualified_problem' => 'dostávat oznámení na nové problémy u kvalifikovaných map u následujících módů',
+        'beatmapset_disqualify' => 'dostávat notifikace kdy mapy následujících módů jsou diskvalifikované',
+        'comment_reply' => 'dostávat notifikace na odpovědi na vaše komentáře',
         'title' => 'Oznámení',
         'topic_auto_subscribe' => 'automaticky povolit oznámení o nových tématech fóra, které vytvoříte',
 
         'options' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'channel_message' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mail' => '',
-            'push' => '',
-            'user_achievement_unlock' => '',
+            '_' => 'možnosti doručení',
+            'beatmapset:modding' => 'módování beatmap',
+            'channel_message' => 'soukromé zprávy',
+            'comment_new' => 'nové komentáře',
+            'forum_topic_reply' => 'odpoveď témata',
+            'mail' => 'e-mail',
+            'push' => 'push',
+            'user_achievement_unlock' => 'medaile odemčena',
         ],
     ],
 
@@ -76,13 +77,13 @@ return [
         'title' => 'Možnosti',
 
         'beatmapset_download' => [
-            '_' => '',
+            '_' => 'výchozí typ stahování map',
             'all' => 's videem, je-li k dispozici',
             'no_video' => 'bez videa',
             'direct' => 'otevřít v osu!direct',
         ],
 
-        'beatmapset_title_show_original' => '',
+        'beatmapset_title_show_original' => 'zobrazit informace map v originálním jazyce',
     ],
 
     'playstyles' => [

@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Odstraniť príspevok',
-            'restore' => 'Obnoviť príspevok',
             'edit' => 'Upraviť príspevok',
+            'report' => '',
+            'restore' => 'Obnoviť príspevok',
         ],
 
         'create' => [
@@ -76,6 +77,7 @@ return [
         'deleted' => 'odstranená téma',
         'go_to_latest' => 'zobraziť najnovší príspevok',
         'has_replied' => '',
+        'in_forum' => 'v :forum',
         'latest_post' => ':when použivateľom :user',
         'latest_reply_by' => 'posledná odpoveď od :user',
         'new_topic' => 'Založiť novú tému',

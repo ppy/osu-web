@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => '私が知りたいことに関する投稿はまだありません',
         'notice' => ':timestamp付近に他の投稿(:existing_timestamps)があります。投稿する前に確認してください。',
+        'unsaved' => ':count 個がこのレビューにあります',
     ],
 
     'reply' => [
@@ -64,7 +65,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max ブロックを使用',
         'go_to_parent' => 'レビュー投稿を表示',
         'go_to_child' => 'ディスカッションを表示',
         'validation' => [

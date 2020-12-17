@@ -5,11 +5,11 @@
 
 namespace Tests\Jobs;
 
+use App\Jobs\Notifications\ForumTopicReply;
 use App\Mail\UserNotificationDigest as UserNotificationDigestMail;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
-use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotificationOption;
 use Event;
@@ -42,12 +42,13 @@ class UserNotificationDigestTest extends TestCase
             'topic_id' => $topic->getKey(),
         ]);
 
-        $this->broadcastAndSendMail([Notification::FORUM_TOPIC_REPLY], $post, $this->sender);
+        $this->broadcastAndSendMail(new ForumTopicReply($post, $this->sender));
         Mail::assertSent(UserNotificationDigestMail::class);
 
         $this->clearMailFake();
 
-        $this->broadcastAndSendMail([Notification::FORUM_TOPIC_REPLY], $post, $this->sender);
+        (new ForumTopicReply($post, $this->sender))->dispatch();
+        $this->broadcastAndSendMail(new ForumTopicReply($post, $this->sender));
         // update shouldn't be sent
         Mail::assertNotSent(UserNotificationDigestMail::class);
     }
@@ -64,12 +65,9 @@ class UserNotificationDigestTest extends TestCase
         $this->sender = factory(User::class)->create();
     }
 
-    private function broadcastAndSendMail(array $notificationTypes, $object, User $source)
+    private function broadcastAndSendMail($notification)
     {
-        foreach ($notificationTypes as $type) {
-            broadcast_notification($type, $object, $source);
-        }
-
+        $notification->dispatch();
         $this->runFakeQueue();
 
         // run mail jobs

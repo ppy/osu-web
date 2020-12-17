@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Lette tutte le notifiche!',
-    'mark_read' => 'Svuota :type',
+    'delete' => 'Elimina :type',
+    'mark_read' => 'Segna :type come letto',
     'none' => 'Nessuna notifica',
     'see_all' => 'vedi tutte le notifiche',
+    'see_channel' => 'vai alla chat',
 
     'filters' => [
         '_' => 'tutto',
@@ -53,10 +55,12 @@ return [
                 'beatmapset_love_compact' => 'La beatmap è stata promossa tra le amate',
                 'beatmapset_nominate' => '":title" è stata nominata',
                 'beatmapset_nominate_compact' => 'La beatmap è stata nominata',
-                'beatmapset_qualify' => '":title" ha ottenuto abbastanza nomine ed è entrata nella coda di classificazione',
+                'beatmapset_qualify' => '":title" ha ottenuto abbastanza nomine ed è entrata nella coda di raking',
                 'beatmapset_qualify_compact' => 'La beatmap è entrata nella coda di classificazione',
                 'beatmapset_rank' => '":title" è stata classificata',
                 'beatmapset_rank_compact' => 'La beatmap è stata classificata',
+                'beatmapset_remove_from_loved' => '":title" è stato rimossa da Loved',
+                'beatmapset_remove_from_loved_compact' => 'La beatmap è stata rimossa dalle amate',
                 'beatmapset_reset_nominations' => 'La nomina di ":title" è stata reimpostata',
                 'beatmapset_reset_nominations_compact' => 'La nomina è stata reimpostata',
             ],
@@ -66,6 +70,8 @@ return [
 
                 'comment_new' => ':username ha commentato ":content" su ":title"',
                 'comment_new_compact' => ':username ha commentato ":content"',
+                'comment_reply' => ':username ha risposto ":content" su ":title"',
+                'comment_reply_compact' => ':username ha risposto ":content"',
             ],
         ],
 
@@ -90,6 +96,8 @@ return [
 
                 'comment_new' => ':username ha commentato ":content" su ":title"',
                 'comment_new_compact' => ':username ha commentato ":content"',
+                'comment_reply' => ':username ha risposto ":content" su ":title"',
+                'comment_reply_compact' => ':username ha risposto ":content"',
             ],
         ],
 
@@ -101,6 +109,8 @@ return [
 
                 'comment_new' => ':username ha commentato ":content" su ":title"',
                 'comment_new_compact' => ':username ha commentato ":content"',
+                'comment_reply' => ':username ha risposto ":content" su ":title"',
+                'comment_reply_compact' => ':username ha risposto ":content"',
             ],
         ],
 
@@ -130,18 +140,36 @@ return [
                 '_' => 'Nuova medaglia',
                 'user_achievement_unlock' => 'Sbloccato ":title"!',
                 'user_achievement_unlock_compact' => 'Sbloccato ":title"!',
+                'user_achievement_unlock_group' => 'Medaglie sbloccate!',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => 'La discussione su ":title" ha nuovi aggiornamenti',
-            'beatmapset_discussion_lock' => 'La discussione su ":title" è stata bloccata',
-            'beatmapset_discussion_unlock' => 'La discussione su ":title" è stata sbloccata',
-            'beatmapset_problem' => 'Un nuovo problema è stato segnalato su ":title"',
-            'beatmapset_state' => 'Lo stato di ":title" è cambiato',
-            'comment' => 'La beatmap ":title" ha nuovi commenti',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => 'La discussione su ":title" è stata bloccata',
+                'beatmapset_discussion_post_new' => 'La discussione su ":title" ha nuovi aggiornamenti',
+                'beatmapset_discussion_unlock' => 'La discussione su ":title" è stata sbloccata',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => 'Un nuovo problema è stato segnalato su ":title"',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '":title" è stata squalificata',
+                'beatmapset_love' => '":title" è stata promossa tra le amate',
+                'beatmapset_nominate' => '":title" è stata nominata',
+                'beatmapset_qualify' => '":title" ha ottenuto abbastanza nomine ed è entrata nella coda di ranking',
+                'beatmapset_rank' => '":title" è stata rankata',
+                'beatmapset_remove_from_loved' => '":title" è stata rimossa dalle amate',
+                'beatmapset_reset_nominations' => 'La nomina di ":title" è stata resettata',
+            ],
+
+            'comment' => [
+                'comment_new' => 'La beatmap ":title" ha nuovi commenti',
+            ],
         ],
 
         'channel' => [
@@ -151,20 +179,28 @@ return [
         ],
 
         'build' => [
-            'comment' => 'La nota di rilascio ":title" ha nuovi commenti',
+            'comment' => [
+                'comment_new' => 'La nota di rilascio ":title" ha nuovi commenti',
+            ],
         ],
 
         'news_post' => [
-            'comment' => 'La notizia ":title" ha nuovi commenti',
+            'comment' => [
+                'comment_new' => 'La notizia ":title" ha nuovi commenti',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => 'Ci sono nuove risposte in ":title"',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => 'Ci sono nuove risposte in ":title"',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => ':username ha sbloccato una nuova medaglia, ":title"!',
-            'user_achievement_unlock_self' => 'Hai sbloccato una nuova medaglia, ":title"!',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => ':username ha sbloccato una nuova medaglia, ":title"!',
+                'user_achievement_unlock_self' => 'Hai sbloccato una nuova medaglia, ":title"!',
+            ],
         ],
     ],
 ];

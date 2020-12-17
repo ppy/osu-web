@@ -19,7 +19,7 @@ return [
                 'scary' => 'JANGAN',
             ],
             'note' => [
-                '_' => 'Mohon diingat bahwa sangat disarankan bagi Anda untuk :scary, mengingat map-map yang terdahulu (lebih lama) pada umumnya cenderung memiliki kualitas yang jauh lebih rendah dibanding map-map terbaru.',
+                '_' => 'Di samping itu, Anda juga sangat disarankan untuk :scary mengingat pada umumnya map-map keluaran terdahulu memiliki kualitas yang jauh lebih rendah dibanding map-map keluaran terbaru.',
                 'scary' => 'mengunduh paket dari yang terbaru ke yang paling lama',
             ],
         ],
@@ -30,6 +30,10 @@ return [
         'item' => [
             'cleared' => 'telah dimainkan',
             'not_cleared' => 'belum dimainkan',
+        ],
+        'no_diff_reduction' => [
+            '_' => 'Anda tidak boleh menggunakan :link untuk dapat membuka medali yang terhubung dengan paket beatmap ini.',
+            'link' => 'mod-mod yang mempermudah permainan (EZ, NF, atau HT)',
         ],
     ],
 

@@ -5,6 +5,8 @@
 
 namespace App\Libraries\Markdown;
 
+use App\Libraries\LocaleMeta;
+use App\Libraries\OsuWiki;
 use League\CommonMark\Block\Element as Block;
 use League\CommonMark\EnvironmentInterface;
 use League\CommonMark\Event\DocumentParsedEvent;
@@ -20,10 +22,14 @@ class OsuMarkdownProcessor
     private $environment;
     private $event;
     private $node;
-    private $previousNode;
 
     private $listLevel;
     private $tocSlugs;
+
+    private $relativeUrlRoot;
+    private $wikiLocale;
+    private $wikiPathToRoot;
+    private $wikiAbsoluteRootPath;
 
     public function __construct(EnvironmentInterface $environment)
     {
@@ -35,10 +41,13 @@ class OsuMarkdownProcessor
         $document = $event->getDocument();
         $walker = $document->walker();
 
-        $fixRelativeUrl = $this->environment->getConfig('relative_url_root') !== null;
+        $this->relativeUrlRoot = $this->environment->getConfig('relative_url_root');
         $generateToc = $this->environment->getConfig('generate_toc');
         $recordFirstImage = $this->environment->getConfig('record_first_image');
         $titleFromDocument = $this->environment->getConfig('title_from_document');
+        $this->wikiLocale = $this->environment->getConfig('wiki_locale');
+
+        $this->setWikiPaths();
 
         $this->firstImage = null;
         $this->title = null;
@@ -47,16 +56,11 @@ class OsuMarkdownProcessor
         $this->listLevel = 0;
 
         while (($this->event = $walker->next()) !== null) {
-            $this->previousNode = $this->node;
             $this->node = $this->event->getNode();
 
             $this->updateLocaleLink();
-
-            if ($fixRelativeUrl) {
-                $this->fixRelativeUrl();
-            }
-
-            $this->prefixUrl();
+            $this->fixRelativeUrl();
+            $this->fixWikiUrl();
 
             if ($recordFirstImage) {
                 $this->recordFirstImage();
@@ -132,7 +136,11 @@ class OsuMarkdownProcessor
 
     public function fixRelativeUrl()
     {
-        if (!$this->event->isEntering() || !method_exists($this->node, 'getUrl')) {
+        if ($this->relativeUrlRoot === null) {
+            return;
+        }
+
+        if (!$this->event->isEntering() || !($this->node instanceof Inline\AbstractWebResource)) {
             return;
         }
 
@@ -224,17 +232,43 @@ class OsuMarkdownProcessor
         }
     }
 
-    public function prefixUrl()
+    public function fixWikiUrl()
     {
-        if (!$this->event->isEntering() || !method_exists($this->node, 'getUrl')) {
+        if (!$this->event->isEntering() || !($this->node instanceof Inline\AbstractWebResource)) {
             return;
         }
 
         $url = $this->node->getUrl();
 
-        if (starts_with($url, '/wiki/')) {
-            $this->node->setUrl('/help'.$url);
-        }
+        $url = preg_replace_callback(',^(?:/help)?/wiki/(?<locale>[^/?#]+)(?:/(?<path>[^?#]+))?(?<query>\?.*)?(?<hash>#.*)?$,', function ($matches) {
+            $matches['path'] = $matches['path'] ?? '';
+            $matches['query'] = $matches['query'] ?? '';
+            $matches['hash'] = $matches['hash'] ?? '';
+
+            if (LocaleMeta::isValid($matches['locale'])) {
+                $locale = $matches['locale'];
+                $path = $matches['path'];
+            } else {
+                $path = concat_path([$matches['locale'], $matches['path']]);
+            }
+
+            if (OsuWiki::isImage($path)) {
+                return route('wiki.image', compact('path'), false);
+            }
+
+            if (!isset($locale)) {
+                $locale = $this->wikiLocale ?? config('app.fallback_locale');
+            }
+
+            $url = wiki_url($path, $locale, false, false);
+            if (starts_with($url, $this->wikiAbsoluteRootPath)) {
+                $url = $this->wikiPathToRoot.substr($url, strlen($this->wikiAbsoluteRootPath));
+            }
+
+            return "{$url}{$matches['query']}{$matches['hash']}";
+        }, $url);
+
+        $this->node->setUrl($url);
     }
 
     public function proxyImage()
@@ -293,5 +327,27 @@ class OsuMarkdownProcessor
         }
 
         $this->node->setUrl("{$matches[2]}?locale={$matches[1]}");
+    }
+
+    private function setWikiPaths()
+    {
+        if ($this->relativeUrlRoot === null || $this->wikiLocale === null) {
+            return;
+        }
+
+        $this->wikiAbsoluteRootPath = route('wiki.show', ['locale' => $this->wikiLocale], false).'/';
+
+        if (starts_with($this->relativeUrlRoot, $this->wikiAbsoluteRootPath)) {
+            $relativeFromBase = substr($this->relativeUrlRoot, strlen($this->wikiAbsoluteRootPath));
+            $slashes = substr_count($relativeFromBase, '/');
+
+            if ($slashes === 0) {
+                $this->wikiPathToRoot = './';
+            } else {
+                $this->wikiPathToRoot = implode('/', array_fill(0, $slashes, '..')).'/';
+            }
+        } else {
+            $this->wikiPathToRoot = $this->wikiAbsoluteRootPath;
+        }
     }
 }

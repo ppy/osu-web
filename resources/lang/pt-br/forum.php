@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Excluir publicação',
-            'restore' => 'Restaurar publicação',
             'edit' => 'Editar publicação',
+            'report' => '',
+            'restore' => 'Restaurar publicação',
         ],
 
         'create' => [
@@ -75,7 +76,8 @@ return [
     'topic' => [
         'deleted' => 'tópico excluído',
         'go_to_latest' => 'ver a ultima publicação',
-        'has_replied' => '',
+        'has_replied' => 'Você respondeu a este tópico',
+        'in_forum' => 'em :forum',
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última resposta por :user',
         'new_topic' => 'Criar novo tópico',

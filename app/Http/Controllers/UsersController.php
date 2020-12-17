@@ -19,6 +19,8 @@ use App\Models\Log;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
+use App\Transformers\UserCompactTransformer;
+use App\Transformers\UserTransformer;
 use Auth;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
 use Illuminate\Cache\RateLimiter;
@@ -68,11 +70,9 @@ class UsersController extends Controller
 
     public function card($id)
     {
-        // FIXME: if there's a username with the id of a restricted user,
-        // it'll show the card of the non-restricted user.
-        $user = User::lookup($id) ?? UserNotFound::instance();
+        $user = $this->lookupUser($id) ?? UserNotFound::instance();
 
-        return json_item($user, 'UserCompact', ['cover', 'country']);
+        return json_item($user, 'UserCompact', UserCompactTransformer::CARD_INCLUDES);
     }
 
     public function disabled()
@@ -125,7 +125,7 @@ class UsersController extends Controller
             return error_popup('Wrong client', 403);
         }
 
-        $params = get_params(request(), 'user', ['username', 'user_email', 'password']);
+        $params = get_params(request()->all(), 'user', ['username', 'user_email', 'password']);
         $countryCode = request_country();
         $country = Country::find($countryCode);
         $params['user_ip'] = $ip;
@@ -153,7 +153,7 @@ class UsersController extends Controller
                 app('sentry')->getClient()->captureMessage(
                     'User registered from unknown country: '.$countryCode,
                     null,
-                    (new Scope)
+                    (new Scope())
                         ->setExtra('country', $countryCode)
                         ->setExtra('ip', $ip)
                         ->setExtra('user_id', $registration->user()->getKey())
@@ -224,6 +224,51 @@ class UsersController extends Controller
         return $this->getExtra($this->user, $page, [], $perPage, $this->offset);
     }
 
+    /**
+     * Get Users
+     *
+     * Returns list of users.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * Field | Type                          | Description
+     * ----- | ----------------------------- | ---------------------------------
+     * users | [UserCompact](#usercompact)[] | Includes: country, cover, groups.
+     *
+     * @queryParam ids[] User id to be returned. Specify once for each user id requested. Up to 50 users can be requested at once. Example: 1
+     *
+     * @response {
+     *   "users": [
+     *     {
+     *       "id": 1,
+     *       "other": "attributes..."
+     *     },
+     *     {
+     *       "id": 2,
+     *       "other": "attributes..."
+     *     }
+     *   ]
+     * }
+     */
+    public function index()
+    {
+        $params = get_params(request()->all(), null, ['ids:int[]']);
+
+        if (isset($params['ids'])) {
+            $users = User
+                ::whereIn('user_id', array_slice($params['ids'], 0, 50))
+                ->default()
+                ->with(UserCompactTransformer::CARD_INCLUDES_PRELOAD)
+                ->get();
+        }
+
+        return [
+            'users' => json_collection($users ?? [], 'UserCompact', UserCompactTransformer::CARD_INCLUDES),
+        ];
+    }
+
     public function posts($id)
     {
         $user = User::lookup($id, 'id', true);
@@ -246,7 +291,7 @@ class UsersController extends Controller
      *
      * ### Response format
      *
-     * Array of KudosuHistory.
+     * Array of [KudosuHistory](#kudosuhistory).
      *
      * @urlParam user required Id of the user. Example: 1
      *
@@ -278,7 +323,7 @@ class UsersController extends Controller
      *
      * ### Response format
      *
-     * Array of Event.
+     * Array of [Event](#event).
      *
      * @urlParam user required Id of the user. Example: 1
      *
@@ -310,7 +355,15 @@ class UsersController extends Controller
      *
      * ### Response format
      *
-     * Array of Score.
+     * Array of [Score](#score).
+     * Following attributes are included in the response object when applicable.
+     *
+     * Attribute  | Notes
+     * -----------|----------------------
+     * beatmap    | |
+     * beatmapset | |
+     * weight     | Only for type `best`.
+     * user       | |
      *
      * @urlParam user required Id of the user. Example: 1
      * @urlParam type required Score type. Must be one of these: `best`, `firsts`, `recent`. Example: best
@@ -397,6 +450,7 @@ class UsersController extends Controller
      * account_history                      | |
      * active_tournament_banner             | |
      * badges                               | |
+     * beatmap_playcounts_count             | |
      * favourite_beatmapset_count           | |
      * follower_count                       | |
      * graveyard_beatmapset_count           | |
@@ -405,10 +459,12 @@ class UsersController extends Controller
      * monthly_playcounts                   | |
      * page                                 | |
      * previous_usernames                   | |
-     * rankHistory                          | For specified mode.
+     * rank_history                         | For specified mode.
      * ranked_and_approved_beatmapset_count | |
      * replays_watched_counts               | |
+     * scores_best_count                    | For specified mode.
      * scores_first_count                   | For specified mode.
+     * scores_recent_count                  | For specified mode.
      * statistics                           | For specified mode. Inluces `rank` and `variants` attributes.
      * support_level                        | |
      * unranked_beatmapset_count            | |
@@ -421,13 +477,9 @@ class UsersController extends Controller
      */
     public function show($id, $mode = null)
     {
-        // Find matching id or username
-        // If no user is found, search for a previous username
-        // only if parameter is not a number (assume number is an id lookup).
+        $user = $this->lookupUser($id);
 
-        $user = User::lookupWithHistory($id, null, true);
-
-        if ($user === null || !priv_check('UserShow', $user)->can()) {
+        if ($user === null) {
             if (is_json_request()) {
                 abort(404);
             }
@@ -448,22 +500,27 @@ class UsersController extends Controller
         }
 
         $userIncludes = [
-            "scores_first_count:mode({$currentMode})",
-            "statistics:mode({$currentMode})",
             'account_history',
             'active_tournament_banner',
             'badges',
+            'beatmap_playcounts_count',
             'favourite_beatmapset_count',
             'follower_count',
             'graveyard_beatmapset_count',
             'groups',
             'loved_beatmapset_count',
+            'mapping_follower_count',
             'monthly_playcounts',
             'page',
             'previous_usernames',
+            'rankHistory',
+            'rank_history',
             'ranked_and_approved_beatmapset_count',
-            "rankHistory:mode({$currentMode})",
             'replays_watched_counts',
+            'scores_best_count',
+            'scores_first_count',
+            'scores_recent_count',
+            'statistics',
             'statistics.rank',
             'statistics.variants',
             'support_level',
@@ -476,9 +533,11 @@ class UsersController extends Controller
             $userIncludes[] = 'account_history.supporting_url';
         }
 
+        $transformer = new UserTransformer();
+        $transformer->mode = $currentMode;
         $userArray = json_item(
             $user,
-            'User',
+            $transformer,
             $userIncludes
         );
 
@@ -556,6 +615,20 @@ class UsersController extends Controller
         } catch (ModelNotSavedException $e) {
             return error_popup($e->getMessage());
         }
+    }
+
+    // Find matching id or username
+    // If no user is found, search for a previous username
+    // only if parameter is not a number (assume number is an id lookup).
+    private function lookupUser($id)
+    {
+        $user = User::lookupWithHistory($id, null, true);
+
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
+            return null;
+        }
+
+        return $user;
     }
 
     private function parsePaginationParams()

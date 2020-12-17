@@ -56,7 +56,7 @@ class KudosuHistory extends Model
 
     public function scopeWithPost($query)
     {
-        $postTableName = (new Forum\Post)->getTable();
+        $postTableName = (new Forum\Post())->getTable();
         $thisTableName = $this->getTable();
 
         return $query->whereExists(function ($query) use ($postTableName, $thisTableName) {
@@ -68,7 +68,7 @@ class KudosuHistory extends Model
 
     public function scopeWithGiver($query)
     {
-        $userTableName = (new User)->getTable();
+        $userTableName = (new User())->getTable();
         $thisTableName = $this->getTable();
 
         return $query->whereExists(function ($query) use ($userTableName, $thisTableName) {

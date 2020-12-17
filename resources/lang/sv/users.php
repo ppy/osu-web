@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Medlemmar efter spelläge',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Ditt konto har inte använts på länge.",
@@ -84,6 +88,7 @@ return [
         'failed' => 'Felaktig inloggning',
         'forgot' => 'Glömt ditt lösenord?',
         'info' => 'Vänligen logga in för att fortsätta',
+        'invalid_captcha' => 'Captcha ogiltig, uppdatera sidan och försök igen.',
         'locked_ip' => 'din IP-adress är låst. Var vänlig vänta några minuter.',
         'password' => 'Lösenord',
         'register' => "Har du inget osu! konto? Skapa ett nytt",
@@ -186,7 +191,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'av :artist',
-                'none' => 'Inga... än.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -216,7 +220,6 @@ return [
                 'show_more' => 'se fler händelser',
             ],
             'historical' => [
-                'empty' => 'Inga prestanda uppgifter. :(',
                 'title' => 'Historisk',
 
                 'monthly_playcounts' => [
@@ -303,7 +306,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Ladda ner Repris',
-                'empty' => 'Inga fantastiska prestationsrekord än. :(',
                 'not_ranked' => 'Endast rankade beatmaps ger pp.',
                 'pp_weight' => 'vägd :percentage',
                 'view_details' => 'Se Detaljer',
@@ -349,7 +351,6 @@ return [
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Intressen',
-            'lastfm' => 'Last.fm',
             'location' => 'Nuvarande plats',
             'occupation' => 'Sysselsättning',
             'skype' => 'Skype',

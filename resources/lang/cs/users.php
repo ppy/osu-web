@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "",
@@ -84,6 +88,7 @@ return [
         'failed' => 'Nesprávné přihlášení',
         'forgot' => 'Zapoměl jsi heslo?',
         'info' => 'Prosím přihlaste se pro pokračování',
+        'invalid_captcha' => '',
         'locked_ip' => 'vaše IP adresa je uzamčena. Počkejte, prosím, několik minut.',
         'password' => 'Heslo',
         'register' => "Nemáš osu! účet? Vytvoř si ho",
@@ -186,7 +191,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'autora :artist',
-                'none' => 'Žádná... zatím.',
                 'title' => 'Beatmapy',
 
                 'favourite' => [
@@ -216,7 +220,6 @@ return [
                 'show_more' => 'zobrazit více eventů',
             ],
             'historical' => [
-                'empty' => 'Žádné výkonnostní záznamy. :(',
                 'title' => 'Historické',
 
                 'monthly_playcounts' => [
@@ -303,7 +306,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Stáhnout záznam',
-                'empty' => 'Zatím žádné záznamy o úžasném výkonu. :(',
                 'not_ranked' => 'Pouze hodnocené mapy vydávají pp.',
                 'pp_weight' => 'váženo na :percentage',
                 'view_details' => '',
@@ -349,7 +351,6 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Zájmy',
-            'lastfm' => 'Last.fm',
             'location' => 'Současná poloha',
             'occupation' => 'Povolání',
             'skype' => '',

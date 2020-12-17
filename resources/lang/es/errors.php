@@ -12,7 +12,7 @@ return [
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Ha ocurrido un error. Intenta refrescando la página.',
+            'generic' => 'Ocurrió un error. Intente actualizar la página.',
         ],
     ],
     'beatmaps' => [
@@ -20,7 +20,7 @@ return [
         'standard_converts_only' => 'No hay puntuaciones disponibles para el modo solicitado en esta dificultad del mapa.',
     ],
     'checkout' => [
-        'generic' => 'Ha ocurrido un error mientras preparábamos tu compra.',
+        'generic' => 'Se produjo un error mientras se preparaba su compra.',
     ],
     'search' => [
         'default' => 'No se obtuvo ningún resultado, inténtalo de nuevo más tarde.',

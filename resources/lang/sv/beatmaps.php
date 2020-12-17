@@ -187,12 +187,18 @@ return [
         'nominate_confirm' => 'Nominera denna beatmap?',
         'nominated_by' => 'nominerad av :users',
         'not_enough_hype' => "Det finns inte tillräckligt med hype.",
-        'qualified' => 'Beräknad tid när den är rankad är :date, om inga fel hittas.',
-        'qualified_soon' => 'Beräknat att den rankas snart, om inga fel hittas.',
+        'remove_from_loved' => 'Ta bort från Älskad',
+        'remove_from_loved_prompt' => 'Anledning till borttagandet från Älskad:',
         'required_text' => 'Nomineringar: :current/:required',
         'reset_message_deleted' => 'raderad',
         'title' => 'Nominering Status',
         'unresolved_issues' => 'Det finns fortfarande olösta problem som måste tas hand om först.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => 'rankkö',
+            'soon' => 'snart',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Nomineringsprocessen återställdes :time_ago av :user med ett nytt problem :discussion (:message).',
@@ -246,6 +252,7 @@ return [
         'converts' => 'Inkludera konverterade beatmaps',
     ],
     'mode' => [
+        'all' => 'Alla',
         'any' => 'Alla',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
@@ -304,7 +311,7 @@ return [
         'SD' => 'Sudden Death',
         'SO' => 'Spinnat Ut',
         'TD' => '',
-        'V2' => 'Göra V2',
+        'V2' => 'Score V2',
     ],
     'language' => [
         'any' => 'Alla',

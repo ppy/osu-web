@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '¿Qué tal si en vez de eso jugamos un poco de osu!?',
     'require_login' => 'Por favor, inicia sesión para continuar.',
     'require_verification' => 'Por favor verifica para proceder.',
     'restricted' => "No puede hacer eso mientras esté restringido.",
@@ -19,7 +20,7 @@ return [
             'exhausted' => 'Has alcanzado tu límite de nominaciones diarias, por favor inténtalo de nuevo mañana.',
             'full_bn_required' => 'Debe ser un nominador completo para realizar esta nominación calificada.',
             'full_bn_required_hybrid' => 'Debe ser un nominador completo para nominar sets de mapas con más de un modo de juego.',
-            'incorrect_state' => 'Error al realizar esa acción, intenta actualizando la página.',
+            'incorrect_state' => 'Error al realizar esa acción, intente actualizar la página.',
             'owner' => "No puedes nominar tu propio mapa.",
             'set_metadata' => 'Debe establecer el género y el idioma antes de nominar.',
         ],
@@ -32,6 +33,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "No puede votar en una discusión hecha por un bot",
             'limit_exceeded' => 'Espera un poco antes de seguir votando',
             'owner' => "No puedes votar tus propias discusiones.",
             'wrong_beatmapset_state' => 'Solo puedes votar en discusiones de mapas pendientes.',

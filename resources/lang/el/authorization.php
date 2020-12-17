@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => '',
     'require_login' => 'Παρακαλώ συνδεθείτε για να συνεχίσετε.',
     'require_verification' => '',
     'restricted' => "Δε μπορείτε να το κάνετε αυτό όσο είστε restricted.",
@@ -32,6 +33,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "",
             'limit_exceeded' => 'Παρακαλώ περιμένετε λίγο πριν ψηφίσετε ξανά',
             'owner' => "Δεν μπορείτε να ψηφίσετε τη δική σας συζήτηση.",
             'wrong_beatmapset_state' => 'Μπορείτε να ψηφίσετε μόνο σε συζήτηση των pending beatmap.',

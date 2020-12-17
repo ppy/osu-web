@@ -5,9 +5,11 @@
 
 return [
     'all_read' => '모든 알림을 읽었어요!',
+    'delete' => ':type 삭제',
     'mark_read' => ':type 비우기',
     'none' => '알림 없음',
     'see_all' => '모든 알림 보기',
+    'see_channel' => '채팅으로 이동',
 
     'filters' => [
         '_' => '전체',
@@ -57,6 +59,8 @@ return [
                 'beatmapset_qualify_compact' => '비트맵이 랭크맵 대기열에 등록되었습니다.',
                 'beatmapset_rank' => '":title" 이(가) ranked 상태가 되었습니다.',
                 'beatmapset_rank_compact' => '비트맵이 ranked 상태가 되었습니다.',
+                'beatmapset_remove_from_loved' => '":title" 이(가) loved 상태에서 제거되었습니다.',
+                'beatmapset_remove_from_loved_compact' => '비트맵이 Loved 상태에서 제거되었습니다.',
                 'beatmapset_reset_nominations' => '비트맵 ":title"의 추천이 초기화되었습니다.',
                 'beatmapset_reset_nominations_compact' => '추천이 초기화되었습니다.',
             ],
@@ -66,6 +70,8 @@ return [
 
                 'comment_new' => ':username님이 ":title"에 ":content"라고 댓글을 다셨습니다.',
                 'comment_new_compact' => ':username님이 ":content"라고 댓글을 다셨습니다.',
+                'comment_reply' => '":title" 에 달린 :username 님의 답글: ":content"',
+                'comment_reply_compact' => ':username 님의 답글: ":content"',
             ],
         ],
 
@@ -90,6 +96,8 @@ return [
 
                 'comment_new' => ':username 님이 ":title" 에 ":content" 를 다셨습니다.',
                 'comment_new_compact' => ':username님이 ":content"라고 댓글을 다셨습니다.',
+                'comment_reply' => '":title" 에 달린 :username 님의 답글: ":content"',
+                'comment_reply_compact' => ':username 님의 답글: ":content"',
             ],
         ],
 
@@ -101,6 +109,8 @@ return [
 
                 'comment_new' => ':username님이 ":title"에 ":content"라고 댓글을 다셨습니다.',
                 'comment_new_compact' => ':username님이 ":content"라고 댓글을 다셨습니다.',
+                'comment_reply' => '":title" 에 달린 :username 님의 답글: ":content"',
+                'comment_reply_compact' => ':username 님의 답글: ":content"',
             ],
         ],
 
@@ -130,18 +140,36 @@ return [
                 '_' => '새 메달',
                 'user_achievement_unlock' => '":title" 해제!',
                 'user_achievement_unlock_compact' => '":title" 달성!',
+                'user_achievement_unlock_group' => '메달 언락함!',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '토론 ":title" 에 새로운 업데이트가 있습니다.',
-            'beatmapset_discussion_lock' => '비트맵 ":title" 의 토론이 잠겼습니다.',
-            'beatmapset_discussion_unlock' => '비트맵 ":title" 의 토론이 잠금 해제되었습니다.',
-            'beatmapset_problem' => '비트맵 ":title" 에 새로운 문제가 제의되었습니다.',
-            'beatmapset_state' => '":title" 의 상태가 변경되었습니다.',
-            'comment' => '비트맵 ":title" 에 새로운 댓글이 달렸습니다.',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => '토론 ":title" 의 토론이 잠겼습니다.',
+                'beatmapset_discussion_post_new' => '토론 ":title" 에 새로운 업데이트가 있습니다.',
+                'beatmapset_discussion_unlock' => '토론 ":title" 의 토론이 잠금 해제되었습니다.',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => '":title" 에 새로운 문제가 제의되었습니다.',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '":title" 이(가) disqualified 처리되었습니다.',
+                'beatmapset_love' => '":title" 이(가) loved 상태로 승격되었습니다.',
+                'beatmapset_nominate' => '":title" 이(가) 추천되었습니다.',
+                'beatmapset_qualify' => '":title" 이(가) 충분한 추천을 받아 랭킹 대기열에 등록되었습니다.',
+                'beatmapset_rank' => '":title" 이(가) ranked 상태가 되었습니다.',
+                'beatmapset_remove_from_loved' => '":title" 이(가) loved 상태에서 제거되었습니다.',
+                'beatmapset_reset_nominations' => '비트맵 ":title"의 추천이 초기화되었습니다.',
+            ],
+
+            'comment' => [
+                'comment_new' => '비트맵 ":title" 에 새로운 댓글이 달렸습니다.',
+            ],
         ],
 
         'channel' => [
@@ -151,20 +179,28 @@ return [
         ],
 
         'build' => [
-            'comment' => '변경 사항 ":title" 에 새로운 댓글이 달렸습니다.',
+            'comment' => [
+                'comment_new' => '변경 사항 ":title" 에 새로운 댓글이 달렸습니다.',
+            ],
         ],
 
         'news_post' => [
-            'comment' => '뉴스 ":title" 에 새로운 댓글이 달렸습니다.',
+            'comment' => [
+                'comment_new' => '뉴스 ":title" 에 새로운 댓글이 달렸습니다.',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '":title" 에 새로운 답글이 달렸습니다.',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => '":title" 에 새로운 답글이 달렸습니다.',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => ':username 님이 ":title" 메달을 획득하셨습니다!',
-            'user_achievement_unlock_self' => '":title" 메달을 획득하셨습니다!',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => ':username 님이 ":title" 메달을 획득하셨습니다!',
+                'user_achievement_unlock_self' => '":title" 메달을 획득하셨습니다!',
+            ],
         ],
     ],
 ];

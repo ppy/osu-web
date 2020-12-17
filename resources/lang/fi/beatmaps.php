@@ -111,7 +111,7 @@ return [
                 'paragraph' => '',
                 'praise' => '',
                 'problem' => '',
-                'suggestion' => '',
+                'suggestion' => 'lisää ehdotus',
             ],
         ],
 
@@ -187,12 +187,18 @@ return [
         'nominate_confirm' => 'Suosittele tätä beatmappia?',
         'nominated_by' => 'suositellut :users',
         'not_enough_hype' => "",
-        'qualified' => 'Arvioidaan hyväksyttävän :date, mikäli ongelmia ei löydy.',
-        'qualified_soon' => 'Arvioidaan hyväksyttävän pian, mikäli ongelmia ei löydy.',
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Suositukset: :current/:required',
         'reset_message_deleted' => 'poistettu',
         'title' => 'Suositusten Tila',
         'unresolved_issues' => 'Vanhat ongelmat on ratkaistava ensin.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Suositteluprosessi nollaantui :time_ago sitten käyttäjän :user uuden ongelman vuoksi :discussion (:message).',
@@ -246,6 +252,7 @@ return [
         'converts' => 'Sisällytä muunnetut beatmapit',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'Kaikki',
         'osu' => '',
         'taiko' => '',
@@ -257,7 +264,7 @@ return [
         'approved' => 'Vahvistettu',
         'favourites' => 'Suosikit',
         'graveyard' => 'Hautausmaa',
-        'leaderboard' => '',
+        'leaderboard' => 'Tulostaulukollinen',
         'loved' => 'Rakastettu',
         'mine' => 'Mappini',
         'pending' => 'Vireillä & WIP',

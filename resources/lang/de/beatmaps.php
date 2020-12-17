@@ -138,7 +138,7 @@ return [
         'status-messages' => [
             'approved' => 'Diese Beatmap wurde am :date approved!',
             'graveyard' => "Diese Beatmap wurde seit dem :date nicht mehr aktualisiert und wurde wahrscheinlich vom Ersteller aufgegeben...",
-            'loved' => 'Diese Beatmap wurde am :date loved!',
+            'loved' => 'Diese Beatmap wurde am :date Loved!',
             'ranked' => 'Diese Beatmap wurde am :date ranked!',
             'wip' => 'Anmerkung: Diese Beatmap ist vom Ersteller als \'Work-In-Progress\' gekennzeichnet',
         ],
@@ -187,12 +187,18 @@ return [
         'nominate_confirm' => 'Diese Beatmap nominieren?',
         'nominated_by' => 'Nominiert von :users',
         'not_enough_hype' => "Nicht ausreichend Hype vorhanden.",
-        'qualified' => 'Die Beatmap wird voraussichtlich am :date ranked, wenn keine Probleme gefunden werden.',
-        'qualified_soon' => 'Die Beatmap wird bald ranked, wenn keine Probleme gefunden werden.',
+        'remove_from_loved' => 'Aus Loved entfernen',
+        'remove_from_loved_prompt' => 'Grund fürs Entfernen aus Loved:',
         'required_text' => 'Nominierungen: :current/:required',
         'reset_message_deleted' => 'gelöscht',
         'title' => 'Nominierungsstatus',
         'unresolved_issues' => 'Es existieren noch Vorschläge/Probleme, die gelöst werden müssen.',
+
+        'rank_estimate' => [
+            '_' => 'Diese Map wird voraussichtlich (am) :date ranked. Sie befindet sich aktuell an Position :position der :queue.',
+            'queue' => 'Warteschlange',
+            'soon' => 'bald',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Nominierungsprozess zurückgesetzt vor :time_ago von :user mit dem Problem :discussion (:message).',
@@ -246,6 +252,7 @@ return [
         'converts' => 'Konvertierte Beatmaps miteinbeziehen',
     ],
     'mode' => [
+        'all' => 'Alle',
         'any' => 'Alle',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

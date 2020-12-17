@@ -11,7 +11,11 @@
 
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
-            <div class="account-edit-entry account-edit-entry--no-label js-account-edit" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
+            <div
+                class="account-edit-entry account-edit-entry--no-label js-account-edit"
+                data-account-edit-auto-submit="1"
+                data-url="{{ route('account.options') }}"
+            >
                 <label class="account-edit-entry__checkbox">
                     @include('objects._switch', [
                         'additionalClass'=> 'js-account-edit__input',
@@ -32,7 +36,6 @@
             <div
                 class="account-edit-entry account-edit-entry--no-label js-account-edit"
                 data-account-edit-auto-submit="1"
-                data-skip-ajax-error-popup="1"
                 data-url="{{ route('account.notification-options') }}"
             >
                 <label class="account-edit-entry__checkbox">
@@ -42,7 +45,7 @@
                     @endphp
                     @include('objects._switch', [
                         'additionalClass'=> 'js-account-edit__input',
-                        'checked' => $notificationOptions[$name]->details[$option] ?? false,
+                        'checked' => $notificationOptions[$name]->details[$option] ?? true,
                         'name' => "user_notification_option[{$name}][details][{$option}]",
                     ])
 

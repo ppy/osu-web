@@ -15,6 +15,7 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
+use App\Models\Group;
 use App\Models\Notification;
 use App\Models\User;
 use Faker;
@@ -49,81 +50,100 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     public function testCreateDocumentMissingBlockType()
     {
         $this->expectException(InvariantException::class);
-        BeatmapsetDiscussionReview::create($this->beatmapset,
+        BeatmapsetDiscussionReview::create(
+            $this->beatmapset,
             [
                 [
                     'text' => 'invalid lol',
                 ],
-            ], $this->user);
+            ],
+            $this->user
+        );
     }
 
     // invalid block type
     public function testCreateDocumentInvalidBlockType()
     {
         $this->expectException(InvariantException::class);
-        BeatmapsetDiscussionReview::create($this->beatmapset,
+        BeatmapsetDiscussionReview::create(
+            $this->beatmapset,
             [
                 [
                     'type' => 'invalid lol',
                 ],
-            ], $this->user);
+            ],
+            $this->user
+        );
     }
 
     // invalid paragraph block
     public function testCreateDocumentInvalidParagraphBlockContent()
     {
         $this->expectException(InvariantException::class);
-        BeatmapsetDiscussionReview::create($this->beatmapset,
+        BeatmapsetDiscussionReview::create(
+            $this->beatmapset,
             [
                 [
                     'type' => 'paragraph',
                 ],
-            ], $this->user);
+            ],
+            $this->user
+        );
     }
 
     // invalid embed block
     public function testCreateDocumentInvalidEmbedBlockContent()
     {
         $this->expectException(InvariantException::class);
-        BeatmapsetDiscussionReview::create($this->beatmapset,
+        BeatmapsetDiscussionReview::create(
+            $this->beatmapset,
             [
                 [
                     'type' => 'embed',
                 ],
-            ], $this->user);
+            ],
+            $this->user
+        );
     }
 
     // valid document containing zero issue embeds
     public function testCreateDocumentValidParagraphWithNoIssues()
     {
         $this->expectException(InvariantException::class);
-        BeatmapsetDiscussionReview::create($this->beatmapset,
+        BeatmapsetDiscussionReview::create(
+            $this->beatmapset,
             [
                 [
                     'type' => 'paragraph',
                     'text' => 'this is a text',
                 ],
-            ], $this->user);
+            ],
+            $this->user
+        );
     }
 
     // valid paragraph but text is JSON
     public function testCreateDocumentValidParagraphButJSON()
     {
         $this->expectException(InvariantException::class);
-        BeatmapsetDiscussionReview::create($this->beatmapset,
+        BeatmapsetDiscussionReview::create(
+            $this->beatmapset,
             [
                 [
                     'type' => 'paragraph',
                     'text' => ['y', 'tho'],
                 ],
-            ], $this->user);
+            ],
+            $this->user
+        );
     }
 
     // valid review but text is JSON
     public function testCreateDocumentValidIssueButJSON()
     {
         $this->expectException(InvariantException::class);
-        BeatmapsetDiscussionReview::create($this->beatmapset,
+        BeatmapsetDiscussionReview::create(
+            $this->beatmapset,
             [
                 [
                     'type' => 'embed',
@@ -137,14 +157,17 @@ class BeatmapsetDiscussionReviewTest extends TestCase
                     'discussion_type' => 'problem',
                     'text' => self::$faker->sentence(),
                 ],
-            ], $this->user);
+            ],
+            $this->user
+        );
     }
 
     // document with too many blocks
     public function testCreateDocumentValidWithTooManyBlocks()
     {
         $this->expectException(InvariantException::class);
-        BeatmapsetDiscussionReview::create($this->beatmapset,
+        BeatmapsetDiscussionReview::create(
+            $this->beatmapset,
             [
                 [
                     'type' => 'embed',
@@ -167,7 +190,9 @@ class BeatmapsetDiscussionReviewTest extends TestCase
                     'type' => 'paragraph',
                     'text' => self::$faker->sentence(),
                 ],
-            ], $this->user);
+            ],
+            $this->user
+        );
     }
 
     //endregion
@@ -182,7 +207,8 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $timestampedIssueText = '00:01:234 '.self::$faker->sentence();
         $issueText = self::$faker->sentence();
 
-        BeatmapsetDiscussionReview::create($this->beatmapset,
+        BeatmapsetDiscussionReview::create(
+            $this->beatmapset,
             [
                 [
                     'type' => 'embed',
@@ -200,7 +226,9 @@ class BeatmapsetDiscussionReviewTest extends TestCase
                     'type' => 'paragraph',
                     'text' => 'this is some paragraph text',
                 ],
-            ], $this->user);
+            ],
+            $this->user
+        );
 
         $discussionJson = json_encode($this->beatmapset->defaultDiscussionJson());
         $this->assertStringContainsString("\"message\":\"{$timestampedIssueText}\"", $discussionJson);
@@ -221,7 +249,8 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $watchingUser = factory(User::class)->create();
         $beatmapset->watches()->create(['user_id' => $watchingUser->getKey()]);
 
-        BeatmapsetDiscussionReview::create($beatmapset,
+        BeatmapsetDiscussionReview::create(
+            $beatmapset,
             [
                 [
                     'type' => 'embed',
@@ -232,7 +261,9 @@ class BeatmapsetDiscussionReviewTest extends TestCase
                     'type' => 'paragraph',
                     'text' => 'this is some paragraph text',
                 ],
-            ], $gmtUser);
+            ],
+            $gmtUser
+        );
 
         // ensure qualified beatmap has been reset to pending
         $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
@@ -246,20 +277,29 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     // valid document containing issue embeds should reset nominations (for GMT)
     public function testCreateDocumentDocumentValidWithIssuesShouldResetNominations()
     {
-        $gmtUser = factory(User::class)->states('gmt')->create();
         $beatmapset = factory(Beatmapset::class)->create([
             'discussion_enabled' => true,
             'approved' => Beatmapset::STATES['pending'],
         ]);
         $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+
+        $playmode = $beatmapset->playmodesStr()[0];
+        $natUser = factory(User::class)->create();
+        $natUser->userGroups()->create([
+            'group_id' => app('groups')->byIdentifier('nat')->getKey(),
+            'playmodes' => [$playmode],
+            'user_pending' => 0,
+        ]);
+
         $watchingUser = factory(User::class)->create();
         $beatmapset->watches()->create(['user_id' => $watchingUser->getKey()]);
 
         // ensure beatmapset has a nomination
-        $beatmapset->nominate($gmtUser);
-        $this->assertSame($beatmapset->nominations, 1);
+        $beatmapset->nominate($natUser, [$playmode]);
+        $this->assertSame($beatmapset->currentNominationCount()[$playmode], 1);
 
-        BeatmapsetDiscussionReview::create($beatmapset,
+        BeatmapsetDiscussionReview::create(
+            $beatmapset,
             [
                 [
                     'type' => 'embed',
@@ -270,12 +310,16 @@ class BeatmapsetDiscussionReviewTest extends TestCase
                     'type' => 'paragraph',
                     'text' => 'this is some paragraph text',
                 ],
-            ], $gmtUser);
+            ],
+            $natUser
+        );
+
+        $beatmapset->refresh();
 
         // ensure beatmap is still pending
         $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
         // ensure nomination count has been reset
-        $this->assertSame($beatmapset->nominations, 0);
+        $this->assertSame($beatmapset->currentNominationCount()[$playmode], 0);
 
         // ensure a nomination reset notification is dispatched
         Queue::assertPushed(BeatmapsetResetNominations::class);
@@ -295,7 +339,8 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         ]);
         $notificationOption->update(['details' => ['modes' => ['osu']]]);
 
-        BeatmapsetDiscussionReview::create($beatmapset,
+        BeatmapsetDiscussionReview::create(
+            $beatmapset,
             [
                 [
                     'type' => 'embed',
@@ -306,7 +351,9 @@ class BeatmapsetDiscussionReviewTest extends TestCase
                     'type' => 'paragraph',
                     'text' => 'this is some paragraph text',
                 ],
-            ], $this->user);
+            ],
+            $this->user
+        );
 
         // ensure beatmap is still qualified
         $this->assertSame($beatmapset->approved, Beatmapset::STATES['qualified']);
@@ -548,20 +595,28 @@ class BeatmapsetDiscussionReviewTest extends TestCase
 
     public function testUpdateDocumentWithNewIssueShouldResetNominations()
     {
-        $gmtUser = factory(User::class)->states('gmt')->create();
         $beatmapset = factory(Beatmapset::class)->create([
             'discussion_enabled' => true,
             'approved' => Beatmapset::STATES['pending'],
         ]);
         $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        $review = $this->setUpPraiseOnlyReview($beatmapset, $gmtUser);
+
+        $playmode = $beatmapset->playmodesStr()[0];
+        $natUser = factory(User::class)->create();
+        $natUser->userGroups()->create([
+            'group_id' => app('groups')->byIdentifier('nat')->getKey(),
+            'playmodes' => [$playmode],
+            'user_pending' => 0,
+        ]);
+
+        $review = $this->setUpPraiseOnlyReview($beatmapset, $natUser);
 
         // ensure qualified beatmap is pending
         $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
 
-        // ensure beatmapset has a nomination
-        $beatmapset->nominate($gmtUser);
-        $this->assertSame($beatmapset->nominations, 1);
+        // ensure beatmapset has a nominationBeatmapsetCompactTransformer.php
+        $beatmapset->nominate($natUser, [$playmode]);
+        $this->assertSame($beatmapset->currentNominationCount()[$playmode], 1);
 
         // ensure we have a user watching, otherwise no notifications will be sent
         $watchingUser = factory(User::class)->create();
@@ -574,14 +629,14 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             'text' => 'whee',
         ];
 
-        BeatmapsetDiscussionReview::update($review, $document, $gmtUser);
+        BeatmapsetDiscussionReview::update($review, $document, $natUser);
 
         $beatmapset->refresh();
 
         // ensure beatmap is still pending
         $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
         // ensure nomination count has been reset
-        $this->assertSame($beatmapset->nominations, 0);
+        $this->assertSame($beatmapset->currentNominationCount()[$playmode], 0);
 
         // ensure a nomination reset notification is dispatched
         Queue::assertPushed(BeatmapsetResetNominations::class);
@@ -662,7 +717,6 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         Queue::fake();
         Event::fake();
 
-        config()->set('osu.beatmapset.discussion_review_enabled', true);
         config()->set('osu.beatmapset.discussion_review_max_blocks', 4);
 
         $this->user = factory(User::class)->create();
@@ -671,6 +725,9 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             'approved' => Beatmapset::STATES['pending'],
         ]);
         $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+
+        Group::find(app('groups')->byIdentifier('nat')->getKey())->update(['has_playmodes' => true]);
+        app('groups')->resetCache();
     }
 
     protected function setUpReview($beatmapset = null): BeatmapDiscussion
@@ -678,7 +735,8 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $timestampedIssueText = '00:01:234 '.self::$faker->sentence();
         $issueText = self::$faker->sentence();
 
-        return BeatmapsetDiscussionReview::create($beatmapset ? $beatmapset : $this->beatmapset,
+        return BeatmapsetDiscussionReview::create(
+            $beatmapset ?? $this->beatmapset,
             [
                 [
                     'type' => 'embed',
@@ -696,12 +754,15 @@ class BeatmapsetDiscussionReviewTest extends TestCase
                     'type' => 'paragraph',
                     'text' => 'this is some paragraph text',
                 ],
-            ], $this->user);
+            ],
+            $this->user
+        );
     }
 
     protected function setUpPraiseOnlyReview($beatmapset = null, $user = null): BeatmapDiscussion
     {
-        return BeatmapsetDiscussionReview::create($beatmapset ? $beatmapset : $this->beatmapset,
+        return BeatmapsetDiscussionReview::create(
+            $beatmapset ?? $this->beatmapset,
             [
                 [
                     'type' => 'embed',
@@ -712,7 +773,9 @@ class BeatmapsetDiscussionReviewTest extends TestCase
                     'type' => 'paragraph',
                     'text' => 'this is some paragraph text',
                 ],
-            ], $user ? $user : $this->user);
+            ],
+            $user ?? $this->user
+        );
     }
 
     protected function updateReview($document)

@@ -93,7 +93,6 @@ return [
             'source' => '원작',
             'success-rate' => '클리어 비율',
             'tags' => '태그',
-            'unranked' => 'Unranked beatmap',
         ],
 
         'scoreboard' => [

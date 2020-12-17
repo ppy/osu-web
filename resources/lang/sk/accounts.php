@@ -50,7 +50,8 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'dostávať notifikácie pre nové problémy na kvalifikovaných beatmapách pre následujúce módy',
-        'beatmapset_disqualify' => '',
+        'beatmapset_disqualify' => 'prijímať upozornenia, keď sú beatmapy diskvalifikované s týchto módov',
+        'comment_reply' => 'prijímať upozornenia pre odpovede na moje komentáre',
         'title' => 'Oznámenia',
         'topic_auto_subscribe' => 'automaticky zapnúť notifikácie pre nové fórove témy ktoré vytvoríte',
 
@@ -62,7 +63,7 @@ return [
 ',
             'forum_topic_reply' => 'odpoveď na tému',
             'mail' => 'pošta',
-            'push' => '',
+            'push' => 'upozornenia na stránke',
             'user_achievement_unlock' => 'hráčska medaila odomknutá',
         ],
     ],
@@ -77,7 +78,7 @@ return [
         'title' => 'Možnosti',
 
         'beatmapset_download' => [
-            '_' => '',
+            '_' => 'predvolený druh sťahovania beatmáp',
             'all' => 's videom, ak je dostupné',
             'no_video' => 'bez videa',
             'direct' => 'otvoriť v osu!direct',

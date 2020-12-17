@@ -54,6 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Жоден з постів не вирішує про мою проблему',
         'notice' => 'Є повідомлення між :timestamp (:existing_timestamps). Перевірте їх перед публікацією.',
+        'unsaved' => ':count в цьому відгуку',
     ],
 
     'reply' => [
@@ -64,7 +65,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max блоків використано',
         'go_to_parent' => 'Побачити відгук',
         'go_to_child' => 'Побачити обговорення',
         'validation' => [

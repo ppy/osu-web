@@ -121,6 +121,7 @@ return [
     'user' => [
         'contains_username' => 'Ο κωδικός δεν πρέπει να περιέχει το όνομα χρήστη.',
         'email_already_used' => 'Το email είναι ήδη σε χρήση.',
+        'email_not_allowed' => '',
         'invalid_country' => 'Η χώρα δεν υπάρχει στη βάση δεδομένων.',
         'invalid_discord' => 'Το όνομα χρήστη στο Discord δεν είναι έγκυρο.',
         'invalid_email' => "Δε φαίνεται να είναι ένα έγκυρο email.",

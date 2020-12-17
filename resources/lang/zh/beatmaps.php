@@ -187,12 +187,18 @@ return [
         'nominate_confirm' => '提名这张谱面？',
         'nominated_by' => '由 :users 提名',
         'not_enough_hype' => "没有足够的推荐。",
-        'qualified' => '如果没有问题，预计将于 :date 被 Ranked 。',
-        'qualified_soon' => '如果没有问题，预计不久将被 Ranked 。',
+        'remove_from_loved' => '从 Loved 中移除',
+        'remove_from_loved_prompt' => '从 Loved 中移除的原因：',
         'required_text' => '提名数: :current/:required',
         'reset_message_deleted' => '已删除',
         'title' => '提名状态',
         'unresolved_issues' => '仍然有需解决的问题 。',
+
+        'rank_estimate' => [
+            '_' => '如果没有问题，该谱面将于 :date ranked。位于 :queue 中的第 :position 位。',
+            'queue' => 'ranking 队列',
+            'soon' => '不久后',
+        ],
 
         'reset_at' => [
             'nomination_reset' => '由于 :user 提出的新问题 :discussion（:message），提名过程于 :time_ago 被重置。',
@@ -246,6 +252,7 @@ return [
         'converts' => '包括转谱',
     ],
     'mode' => [
+        'all' => '全部',
         'any' => '所有',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\Forum\Topic;
 
@@ -35,11 +36,13 @@ class Notification extends Model
     const BEATMAPSET_NOMINATE = 'beatmapset_nominate';
     const BEATMAPSET_QUALIFY = 'beatmapset_qualify';
     const BEATMAPSET_RANK = 'beatmapset_rank';
+    const BEATMAPSET_REMOVE_FROM_LOVED = 'beatmapset_remove_from_loved';
     const BEATMAPSET_RESET_NOMINATIONS = 'beatmapset_reset_nominations';
     const CHANNEL_MESSAGE = 'channel_message';
     const COMMENT_NEW = 'comment_new';
     const FORUM_TOPIC_REPLY = 'forum_topic_reply';
     const USER_ACHIEVEMENT_UNLOCK = 'user_achievement_unlock';
+    const USER_BEATMAPSET_NEW = 'user_beatmapset_new';
 
     const NAME_TO_CATEGORY = [
         self::BEATMAPSET_DISCUSSION_LOCK => 'beatmapset_discussion',
@@ -52,11 +55,13 @@ class Notification extends Model
         self::BEATMAPSET_NOMINATE => 'beatmapset_state',
         self::BEATMAPSET_QUALIFY => 'beatmapset_state',
         self::BEATMAPSET_RANK => 'beatmapset_state',
+        self::BEATMAPSET_REMOVE_FROM_LOVED => 'beatmapset_state',
         self::BEATMAPSET_RESET_NOMINATIONS => 'beatmapset_state',
         self::CHANNEL_MESSAGE => 'channel',
         self::COMMENT_NEW => 'comment',
         self::FORUM_TOPIC_REPLY => 'forum_topic_reply',
         self::USER_ACHIEVEMENT_UNLOCK => 'user_achievement_unlock',
+        self::USER_BEATMAPSET_NEW => 'user_beatmapset_new',
     ];
 
     const NOTIFIABLE_CLASSES = [
@@ -69,7 +74,8 @@ class Notification extends Model
     ];
 
     const SUBTYPES = [
-        'comment_new' => 'comment',
+        self::COMMENT_NEW => 'comment',
+        self::USER_BEATMAPSET_NEW => 'mapping',
     ];
 
     protected $casts = [
@@ -91,6 +97,30 @@ class Notification extends Model
         }
 
         return $categories[$category] ?? [$category];
+    }
+
+    public function scopeByIdentity($query, array $params)
+    {
+        $category = $params['category'] ?? null;
+        $objectId = $params['object_id'] ?? null;
+        $objectType = $params['object_type'] ?? null;
+
+        if ($objectType !== null) {
+            $query->where('notifiable_type', $objectType);
+        }
+
+        if ($objectId !== null && $category !== null) {
+            if ($objectType === null) {
+                throw new InvariantException('object_type is required.');
+            }
+
+            $names = Notification::namesInCategory($category);
+            $query
+                ->where('notifiable_id', $objectId)
+                ->whereIn('name', $names);
+        }
+
+        return $query;
     }
 
     public function getCategoryAttribute()

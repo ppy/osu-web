@@ -45,12 +45,14 @@ export class SearchSort extends React.PureComponent
 
     if @props.filters.status in ['graveyard', 'pending']
       fields.updated = true
-      fields.nominations = true
     else if @props.filters.status in ['any', 'favourites', 'mine']
       fields.updated = true
       fields.ranked = true
     else
       fields.ranked = true
+
+    if @props.filters.status == 'pending'
+      fields.nominations = true
 
 
     field for own field, enabled of fields when enabled

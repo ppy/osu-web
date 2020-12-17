@@ -112,6 +112,7 @@ export class Info extends React.Component
       $(window).on 'resize.beatmapsetPageInfo', @_failurePointsChart.resize
 
     @_failurePointsChart.loadData @props.beatmap.failtimes
+    @_failurePointsChart.reattach @chartAreaRef.current
 
 
   renderEditMetadataButton: =>

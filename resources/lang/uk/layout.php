@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'допомога',
+            'getAbuse' => '',
             'getFaq' => 'чапи',
             'getRules' => 'правила',
             'getSupport' => 'мені, насправді, потрібна допомога!',
@@ -96,7 +97,7 @@ return [
             'country' => 'країна',
             'index' => 'по продуктивності',
             'kudosu' => 'кудосу',
-            'multiplayer' => '',
+            'multiplayer' => 'мультиплеер',
             'score' => 'рахунок',
         ],
         'store' => [
@@ -179,6 +180,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'увійти / зареєструватись',
+
         'login' => [
             'forgot' => "Я все забув",
             'password' => 'пароль',

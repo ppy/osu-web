@@ -48,18 +48,17 @@ class UserProfileCustomization extends Model
     public static function repairExtrasOrder($value)
     {
         // read from inside out
-        return
-            array_values(
-                // remove duplicate sections from previous merge
-                array_unique(
-                    // ensure all sections are included
-                    array_merge(
-                        // remove invalid sections
-                        array_intersect($value, static::SECTIONS),
-                        static::SECTIONS
-                    )
+        return array_values(
+            // remove duplicate sections from previous merge
+            array_unique(
+                // ensure all sections are included
+                array_merge(
+                    // remove invalid sections
+                    array_intersect($value, static::SECTIONS),
+                    static::SECTIONS
                 )
-            );
+            )
+        );
     }
 
     public function cover()

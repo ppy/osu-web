@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'hjälp',
+            'getAbuse' => '',
             'getFaq' => 'faq',
             'getRules' => 'regler',
             'getSupport' => 'support',
@@ -180,6 +181,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => 'logga in / registrera',
+
         'login' => [
             'forgot' => "Jag har glömt mina detaljer",
             'password' => 'lösenord',

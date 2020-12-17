@@ -5,14 +5,14 @@
 
 return [
     'completed' => [
-        'home' => '',
-        'logout' => '',
-        'text' => '',
-        'title' => '',
+        'home' => 'Đi đến bảng điều khiển',
+        'logout' => 'Đăng xuất',
+        'text' => 'Bây giờ bạn có thể đóng cửa sổ này',
+        'title' => 'osu! client đã được xác minh',
     ],
 
     'create' => [
         'confirm' => '',
-        'title' => '',
+        'title' => 'xác thực osu! client',
     ],
 ];

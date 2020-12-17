@@ -9,10 +9,11 @@
     $options['buttons']['delete'] = $options['buttons']['delete'] ?? false;
     $options['buttons']['edit'] = $options['buttons']['edit'] ?? false;
     $options['buttons']['quote'] = $options['buttons']['quote'] ?? false;
+    $options['buttons']['report'] = auth()->check() && $post->poster_id !== auth()->user()->getKey();
 
     $buttons = [];
 
-    foreach (['edit', 'delete', 'quote'] as $buttonType) {
+    foreach (['edit', 'delete', 'quote', 'report'] as $buttonType) {
         if ($options['buttons'][$buttonType]) {
             $buttons[] = $buttonType;
         }
@@ -21,8 +22,10 @@
     $user = $post->userNormalized();
 ?>
 <div
+    {{-- js-forum-post is also used by js-forum-post-report for the postId and postUsername dataset --}}
     class="js-forum-post {{ $post->trashed() ? 'js-forum-post--hidden' : '' }} forum-post"
     data-post-id="{{ $post->getKey() }}"
+    data-post-username="{{ $user->username }}"
     data-post-position="{{ $options["postPosition"] }}"
 >
     @include('forum.topics._post_info', compact('user'))
@@ -41,7 +44,7 @@
                 <div class="forum-post__header-content-item">
                     {!! link_to_user($user, null, '', ['forum-post__user']) !!}
 
-                    <a class="link link--default js-post-url" rel="nofollow" href="{{ $post->exists ? route('forum.posts.show', $post->post_id) : '#' }}">
+                    <a class="js-post-url" rel="nofollow" href="{{ $post->exists ? route('forum.posts.show', $post->post_id) : '#' }}">
                         {!! timeago($post->post_time) !!}
                     </a>
                 </div>
@@ -83,7 +86,7 @@
             <div class="forum-post__content forum-post__content--footer">
                 {!!
                     trans_choice('forum.post.edited', $post->post_edit_count, [
-                        'user' => link_to_user($post->lastEditorNormalized(), null, '', ['link link--default']),
+                        'user' => link_to_user($post->lastEditorNormalized(), null, '', []),
                         'when' => timeago($post->post_edit_time),
                     ])
                 !!}

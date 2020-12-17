@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 $factory->define(App\Models\Store\OrderItem::class, function (Faker\Generator $faker) {
-    return  [
+    return [
         'order_id' => function () {
             return factory(App\Models\Store\Order::class)->create()->order_id;
         },

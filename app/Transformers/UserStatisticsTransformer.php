@@ -69,7 +69,7 @@ class UserStatisticsTransformer extends TransformerAbstract
             $stats = new UserStatistics\Osu();
         }
 
-        return $this->item($stats->user, new UserCompactTransformer);
+        return $this->item($stats->user, new UserCompactTransformer());
     }
 
     public function includeVariants(UserStatistics\Model $stats = null)

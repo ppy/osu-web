@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "لم تستعمل حسابك منذ وقتِِ طويل.",
@@ -84,6 +88,7 @@ return [
         'failed' => 'تسجيل دخول غير صحيح',
         'forgot' => 'نسيت كلمة المرور؟',
         'info' => 'الرجاء تسجيل الدخول للاستمرار',
+        'invalid_captcha' => 'فَشِلت الكابتشا، قم بتحديث الصفحة وحاول مرة أخرى.',
         'locked_ip' => 'عنوان IP الخاص بك مؤمن. الرجاء الانتظار بضع دقائق.',
         'password' => 'كلمة السر',
         'register' => "ليس لديك حساب osu!؟ قم باِنشاء واحد",
@@ -186,7 +191,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'بواسطة :artist',
-                'none' => 'لا شيء... حتى الآن.',
                 'title' => 'خرائط الايقاع',
 
                 'favourite' => [
@@ -216,7 +220,6 @@ return [
                 'show_more' => 'عرض المزيد من الأحداث',
             ],
             'historical' => [
-                'empty' => 'لا توجد سجلات الأداء. :(',
                 'title' => 'التاريخ',
 
                 'monthly_playcounts' => [
@@ -303,7 +306,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'تحميل النتيجة',
-                'empty' => 'لا توجد سجلات أداء ممتاز بعد. :(',
                 'not_ranked' => 'فقط الخرائط المصفوفة تعطي نقاط خبرة.',
                 'pp_weight' => 'موزون :percentage',
                 'view_details' => 'عرض التفاصيل',
@@ -349,7 +351,6 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'الاهتمامات',
-            'lastfm' => 'Last.fm',
             'location' => 'الموقع الحالي',
             'occupation' => 'المهنة',
             'skype' => '',

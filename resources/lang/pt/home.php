@@ -74,6 +74,13 @@ return [
     'download' => [
         'tagline' => "vamos pôr-te<br>a começar!",
         'action' => 'Descarrega o osu!',
+
+        'help' => [
+            '_' => 'se tiveres problemas ao iniciar o jogo ou ao criar uma conta, vê :help_forum_link ou :support_button.',
+            'help_forum_link' => 'consultar o fórum de ajuda',
+            'support_button' => 'contactar apoio',
+        ],
+
         'os' => [
             'windows' => 'para Windows',
             'macos' => 'para macOS',

@@ -13,6 +13,8 @@ export const categoryToIcons: IconsMap = {
   comment: ['fas fa-comment'],
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
+  user_achievement_unlock: ['fas fa-medal'],
+  user_beatmapset_new: ['fas fa-music'],
 };
 
 export const nameToIcons: IconsMap = {
@@ -25,6 +27,7 @@ export const nameToIcons: IconsMap = {
   beatmapset_nominate: ['fas fa-drafting-compass', 'fas fa-vote-yea'],
   beatmapset_qualify: ['fas fa-drafting-compass', 'fas fa-check'],
   beatmapset_rank: ['fas fa-drafting-compass', 'fas fa-check-double'],
+  beatmapset_remove_from_loved: ['fas fa-drafting-compass', 'fas fa-heart-broken'],
   beatmapset_reset_nominations: ['fas fa-drafting-compass', 'fas fa-undo'],
   channel_message: ['fas fa-comments'],
   comment_new: ['fas fa-comment'],
@@ -32,6 +35,7 @@ export const nameToIcons: IconsMap = {
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
   user_achievement_unlock: ['fas fa-trophy'],
+  user_beatmapset_new: ['fas fa-music'],
 };
 
 export const nameToIconsCompact: IconsMap = {
@@ -44,10 +48,12 @@ export const nameToIconsCompact: IconsMap = {
   beatmapset_nominate: ['fas fa-vote-yea'],
   beatmapset_qualify: ['fas fa-check'],
   beatmapset_rank: ['fas fa-check-double'],
+  beatmapset_remove_from_loved: ['fas fa-heart-broken'],
   beatmapset_reset_nominations: ['fas fa-undo'],
   channel_message: ['fas fa-comments'],
   comment_new: ['fas fa-comment'],
   comment_reply: ['fas fa-reply'],
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
+  user_beatmapset_new: ['fas fa-music'],
 };

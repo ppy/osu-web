@@ -16,7 +16,7 @@ class QueryHelper
      */
     public static function clauseToArray($clause): array
     {
-        if (is_array($clause)) {
+        if (is_array($clause) && (!empty($clause) && !isset($clause[0]))) {
             return $clause;
         }
 
@@ -24,7 +24,7 @@ class QueryHelper
             return $clause->toArray();
         }
 
-        throw new Exception('$clause should be array or Queryable.');
+        throw new Exception('$clause should be associative array or Queryable.');
     }
 
     /**

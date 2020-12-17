@@ -8,6 +8,7 @@ return [
         'disabled' => 'This beatmap is currently not available for download.',
         'parts-removed' => 'Portions of this beatmap have been removed at the request of the creator or a third-party rights holder.',
         'more-info' => 'Check here for more information.',
+        'rule_violation' => 'Some assets contained within this map have been removed after being judged as not being suitable for use in osu!.',
     ],
 
     'index' => [
@@ -21,6 +22,20 @@ return [
             'video' => 'download with video',
             'no_video' => 'download without video',
             'direct' => 'open in osu!direct',
+        ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => 'A hybrid beatmapset requires you to select at least one playmode to nominate for.',
+        'incorrect_mode' => 'You do not have permission to nominate for mode: :mode',
+        'full_bn_required' => 'You must be a full nominator to perform this qualifying nomination.',
+        'too_many' => 'Nomination requirement already fulfilled.',
+
+        'dialog' => [
+            'confirmation' => 'Are you sure you want to nominate this Beatmap?',
+            'header' => 'Nominate Beatmap',
+            'hybrid_warning' => 'note: you may only nominate once, so please ensure that you are nominating for all game modes you intend to',
+            'which_modes' => 'Nominate for which modes?',
         ],
     ],
 

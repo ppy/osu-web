@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '成员按游戏模式筛选',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "您已经很长时间没有使用您的账户了。",
@@ -84,6 +88,7 @@ return [
         'failed' => '登录失败',
         'forgot' => '忘记密码？',
         'info' => '请登录以继续',
+        'invalid_captcha' => '验证码无效，请刷新页面后重试。',
         'locked_ip' => 'IP 已被锁定，请稍等几分钟',
         'password' => '密码',
         'register' => "没有 osu! 账户？现在就注册一个！",
@@ -186,7 +191,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'by :artist',
-                'none' => '暂时没有...',
                 'title' => '谱面',
 
                 'favourite' => [
@@ -216,7 +220,6 @@ return [
                 'show_more' => '查看更多事件',
             ],
             'historical' => [
-                'empty' => '没有游戏记录。:(',
                 'title' => '历史记录',
 
                 'monthly_playcounts' => [
@@ -303,7 +306,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => '下载回放',
-                'empty' => '还没有上传过成绩。 :(',
                 'not_ranked' => '只有 ranked 谱面才能得到 pp。',
                 'pp_weight' => '权重：:percentage',
                 'view_details' => '查看详情',
@@ -349,7 +351,6 @@ return [
         'info' => [
             'discord' => 'Discord',
             'interests' => '兴趣爱好',
-            'lastfm' => 'Last.fm',
             'location' => '所在地',
             'occupation' => '职业',
             'skype' => 'Skype',

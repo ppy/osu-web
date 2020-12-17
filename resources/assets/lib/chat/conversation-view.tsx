@@ -1,11 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatChannelLoadEarlierMessages } from 'actions/chat-actions';
-import { dispatch, dispatchListener } from 'app-dispatcher';
 import { route } from 'laroute';
 import * as _ from 'lodash';
-import { computed } from 'mobx';
+import { computed, observe } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
@@ -15,9 +13,6 @@ import { Spinner } from 'spinner';
 import RootDataStore from 'stores/root-data-store';
 import { StringWithComponent } from 'string-with-component';
 import { UserAvatar } from 'user-avatar';
-import { ChatChannelSwitchAction } from '../actions/chat-actions';
-import DispatcherAction from '../actions/dispatcher-action';
-import DispatchListener from '../dispatch-listener';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
 
@@ -34,8 +29,7 @@ const blankSnapshot = (): Snapshot => ({ chatHeight: 0, chatTop: 0 });
 
 @inject('dataStore')
 @observer
-@dispatchListener
-export default class ConversationView extends React.Component<Props> implements DispatchListener {
+export default class ConversationView extends React.Component<Props> {
   private assumeHasBacklog: boolean = false;
   private chatViewRef = React.createRef<HTMLDivElement>();
   private readonly dataStore: RootDataStore;
@@ -45,13 +39,19 @@ export default class ConversationView extends React.Component<Props> implements 
 
   @computed
   get currentChannel() {
-    return this.dataStore.channelStore.channels.get(this.dataStore.uiState.chat.selected);
+    return this.dataStore.chatState.selectedChannel;
   }
 
   constructor(props: Props) {
     super(props);
 
     this.dataStore = props.dataStore!;
+
+    observe(this.dataStore.chatState.selectedBoxed, (change) => {
+      if (change.newValue !== change.oldValue) {
+        this.didSwitchChannel = true;
+      }
+    });
   }
 
   componentDidMount() {
@@ -59,15 +59,13 @@ export default class ConversationView extends React.Component<Props> implements 
     $(window).on('scroll', _.throttle(this.onScroll, 1000));
   }
 
-  componentDidUpdate = (prevProps?: Props, prevState?: {}, snapshot?: Snapshot) => {
+  componentDidUpdate(prevProps?: Props, prevState?: {}, snapshot?: Snapshot) {
     const chatView = this.chatViewRef.current;
     if (!chatView) {
       return;
     }
 
-    const dataStore = this.dataStore;
-    const channel = dataStore.channelStore.channels.get(dataStore.uiState.chat.selected);
-    if (!channel?.loaded) {
+    if (!this.currentChannel?.loaded) {
       return;
     }
 
@@ -80,20 +78,20 @@ export default class ConversationView extends React.Component<Props> implements 
       this.didSwitchChannel = false;
     } else {
       snapshot = snapshot ?? blankSnapshot();
-      const prepending = this.firstMessage !== this.currentChannel?.messages[0];
+      const prepending = this.firstMessage !== this.currentChannel?.firstMessage;
 
       if (prepending && this.chatViewRef.current != null) {
         const chatEl = this.chatViewRef.current;
         const newHeight = chatEl.scrollHeight;
         chatEl.scrollTo(chatEl.scrollLeft, snapshot.chatTop + (newHeight - snapshot.chatHeight));
       } else {
-        if (this.dataStore.uiState.chat.autoScroll) {
+        if (this.dataStore.chatState.autoScroll) {
           this.scrollToBottom();
         }
       }
     }
 
-    this.firstMessage = channel.messages[0];
+    this.firstMessage = this.currentChannel.firstMessage;
   }
 
   getSnapshotBeforeUpdate() {
@@ -107,21 +105,13 @@ export default class ConversationView extends React.Component<Props> implements 
     return snapshot;
   }
 
-  handleDispatchAction(action: DispatcherAction) {
-    if (action instanceof ChatChannelSwitchAction) {
-      this.didSwitchChannel = true;
-    }
-  }
-
   noCanSendMessage(): React.ReactNode {
-    const channel = this.currentChannel;
-
-    if (channel == null) {
+    if (this.currentChannel == null) {
       // this shouldn't happen...
       return;
     }
 
-    if (channel.type === 'PM' || channel.type === 'NEW') {
+    if (this.currentChannel.type === 'PM' || this.currentChannel.transient) {
       return (
         <div>
           <div className='chat-conversation__cannot-message'>{osu.trans('chat.cannot_send.user')}</div>
@@ -133,7 +123,7 @@ export default class ConversationView extends React.Component<Props> implements 
           </ul>
         </div>
       );
-    } else if (channel.type === 'GROUP') {
+    } else if (this.currentChannel.type === 'GROUP') {
       return (
         <div>
           <div className='chat-conversation__cannot-message'>{osu.trans('chat.cannot_send.channel')}</div>
@@ -149,7 +139,7 @@ export default class ConversationView extends React.Component<Props> implements 
   onScroll = () => {
     const chatView = this.chatViewRef.current;
     if (chatView) {
-      this.dataStore.uiState.chat.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
+      this.dataStore.chatState.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
     }
   }
 
@@ -168,7 +158,8 @@ export default class ConversationView extends React.Component<Props> implements 
 
     _.each(channel.messages, (message: Message, key: number) => {
       // check if the last read indicator needs to be shown
-      if (!unreadMarkerShown && message.messageId > this.dataStore.uiState.chat.lastReadId && message.sender.id !== currentUser.id) {
+      // when messageId is a uuid, comparison will always be false.
+      if (!unreadMarkerShown && message.messageId > (channel.lastReadId ?? -1) && message.sender.id !== currentUser.id) {
         unreadMarkerShown = true;
 
         // If the unread marker is the first element in this conversation, it most likely means that the unread cursor
@@ -276,6 +267,6 @@ export default class ConversationView extends React.Component<Props> implements 
 
   private loadEarlierMessages = () => {
     if (this.currentChannel == null) return;
-    dispatch(new ChatChannelLoadEarlierMessages(this.currentChannel.channelId));
+    this.dataStore.channelStore.loadChannelEarlierMessages(this.currentChannel.channelId);
   }
 }

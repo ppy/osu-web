@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "",
@@ -84,6 +88,7 @@ return [
         'failed' => 'Λάθος σύνδεση',
         'forgot' => 'Ξεχάσατε τον κωδικό σας;',
         'info' => '',
+        'invalid_captcha' => '',
         'locked_ip' => 'η διεύθυνση IP σας είναι κλειδωμένη. Παρακαλώ περιμένετε λίγα λεπτά.',
         'password' => 'Κωδικός',
         'register' => "Δεν έχετε λογαριασμό στο osu!; Φτιάξτε ένα νέο",
@@ -186,7 +191,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'από :artist',
-                'none' => 'Κανένα... ακόμα.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -216,7 +220,6 @@ return [
                 'show_more' => '',
             ],
             'historical' => [
-                'empty' => 'Κανένα ρεκόρ επίδοσης. :(',
                 'title' => 'Ιστορικό',
 
                 'monthly_playcounts' => [
@@ -303,7 +306,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Λήψη Επανάληψης',
-                'empty' => 'Καμία εκπληκτική επίδοση ακόμα. :(',
                 'not_ranked' => 'Μόνο τα ranked beatmaps δίνουν pp.',
                 'pp_weight' => 'σταθμισμένo :percentage',
                 'view_details' => '',
@@ -349,7 +351,6 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Ενδιαφέροντα',
-            'lastfm' => 'Last.fm',
             'location' => 'Τρέχουσα Τοποθεσία',
             'occupation' => 'Ενασχόληση',
             'skype' => '',

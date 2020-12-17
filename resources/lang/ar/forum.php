@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'منشور محذوف',
-            'restore' => 'اِستعادة المنشور',
             'edit' => 'تعديل المنشور',
+            'report' => '',
+            'restore' => 'اِستعادة المنشور',
         ],
 
         'create' => [
@@ -75,7 +76,8 @@ return [
     'topic' => [
         'deleted' => 'موضوع محذوف',
         'go_to_latest' => 'عرض اخر منشور',
-        'has_replied' => '',
+        'has_replied' => 'لقد قمت بالرد على هذا الموضوع',
+        'in_forum' => 'في :forum',
         'latest_post' => ':when بواسطة :user',
         'latest_reply_by' => 'آخر رد من :user',
         'new_topic' => 'موضوع جديد',

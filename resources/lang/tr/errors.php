@@ -20,7 +20,7 @@ return [
         'standard_converts_only' => 'Bu beatmap zorluğunda seçilen mod\'da şuanda skor mevcut değil.',
     ],
     'checkout' => [
-        'generic' => 'Çıkışınızı yaparken bir hata oluştu.',
+        'generic' => 'Checkout\'unuzu hazırlarken bir hata oluştu.',
     ],
     'search' => [
         'default' => 'Hiç bir sonuç bulunamadı, sonra tekrar deneyiniz.',

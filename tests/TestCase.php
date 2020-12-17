@@ -9,9 +9,11 @@ use App\Http\Middleware\AuthApi;
 use App\Models\Beatmapset;
 use App\Models\OAuth\Client;
 use App\Models\User;
+use Firebase\JWT\JWT;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Testing\Fakes\MailFake;
+use Laravel\Passport\Passport;
 use Laravel\Passport\Token;
 use League\OAuth2\Server\ResourceServer;
 use Mockery;
@@ -137,6 +139,32 @@ class TestCase extends BaseTestCase
         return $this;
     }
 
+    // FIXME: figure out how to generate the encrypted token without doing it
+    //        manually here. Or alternatively some other way to authenticate
+    //        with token.
+    protected function actingWithToken($token)
+    {
+        static $privateKey;
+
+        if ($privateKey === null) {
+            $privateKey = file_get_contents(Passport::keyPath('oauth-private.key'));
+        }
+
+        $encryptedToken = JWT::encode([
+            'aud' => $token->client_id,
+            'exp' => $token->expires_at->timestamp,
+            'iat' => $token->created_at->timestamp, // issued at
+            'jti' => $token->getKey(),
+            'nbf' => $token->created_at->timestamp, // valid after
+            'sub' => $token->user_id,
+            'scopes' => $token->scopes,
+        ], $privateKey, 'RS256');
+
+        return $this->withHeaders([
+            'Authorization' => "Bearer {$encryptedToken}",
+        ]);
+    }
+
     protected function clearMailFake()
     {
         $mailer = app('mailer');
@@ -173,11 +201,6 @@ class TestCase extends BaseTestCase
                 'message' => 'Hello',
             ],
         ];
-    }
-
-    protected function interOpSignature($url)
-    {
-        return hash_hmac('sha1', $url, config('osu.legacy.shared_interop_secret'));
     }
 
     protected function invokeMethod($obj, string $name, array $params = [])
@@ -218,5 +241,12 @@ class TestCase extends BaseTestCase
         // clear queue jobs after running
         // FIXME: this won't work if a job queues another job and you want to run that job.
         $this->invokeSetProperty(app('queue'), 'jobs', []);
+    }
+
+    protected function withInterOpHeader($url)
+    {
+        return $this->withHeaders([
+            'X-LIO-Signature' => hash_hmac('sha1', $url, config('osu.legacy.shared_interop_secret')),
+        ]);
     }
 }

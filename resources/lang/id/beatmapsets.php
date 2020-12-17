@@ -93,7 +93,6 @@ return [
             'source' => 'Sumber',
             'success-rate' => 'Tingkat Keberhasilan',
             'tags' => 'Tag',
-            'unranked' => 'Beatmap ini tidak berstatus Ranked.',
         ],
 
         'scoreboard' => [

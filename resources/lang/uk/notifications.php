@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Всі сповіщення прочитані!',
+    'delete' => '',
     'mark_read' => 'Очистити :type',
     'none' => 'Немає повідомлень',
     'see_all' => 'див. всі сповіщення ',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'усе',
@@ -57,6 +59,8 @@ return [
                 'beatmapset_qualify_compact' => 'Карта увійшла до черги рейтингу',
                 'beatmapset_rank' => '":title" оцінено',
                 'beatmapset_rank_compact' => 'Карта була ранкнута',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'Проблема опублікована :username викликала скидання процесу номінації карти ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Номінацію було скинуто',
             ],
@@ -66,6 +70,8 @@ return [
 
                 'comment_new' => ':username прокоментував ":content" у ":title"',
                 'comment_new_compact' => ':username прокоментував ":content"',
+                'comment_reply' => ':username відповів ":content" на ":title"',
+                'comment_reply_compact' => ':username відповів ":content"',
             ],
         ],
 
@@ -90,6 +96,8 @@ return [
 
                 'comment_new' => ':username прокоментував ":content" на ":title"',
                 'comment_new_compact' => ':username прокоментував ":content"',
+                'comment_reply' => ':username відповів ":content" на ":title"',
+                'comment_reply_compact' => ':username відповів: ":content"',
             ],
         ],
 
@@ -101,6 +109,8 @@ return [
 
                 'comment_new' => ':username прокоментував ":content" на ":title"',
                 'comment_new_compact' => ':username прокоментував ":content"',
+                'comment_reply' => ':username відповів ":content" на ":title"',
+                'comment_reply_compact' => ':username відповів: ":content"',
             ],
         ],
 
@@ -130,41 +140,67 @@ return [
                 '_' => 'Нова медаль',
                 'user_achievement_unlock' => 'Розблоковано ":title"!',
                 'user_achievement_unlock_compact' => 'Розблоковано ":title"!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => '',
-            'beatmapset_discussion_lock' => '',
-            'beatmapset_discussion_unlock' => '',
-            'beatmapset_problem' => '',
-            'beatmapset_state' => '',
-            'comment' => '',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => 'Обговорення в ":title" закрито',
+                'beatmapset_discussion_post_new' => 'Обговорення на ":title" має нові оновлення',
+                'beatmapset_discussion_unlock' => 'Тема ":title" була розблокована',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => 'Повідомлено про нову проблему на ":title"',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '":title" було дискваліфіковано',
+                'beatmapset_love' => '":title" підвищено до коханого',
+                'beatmapset_nominate' => '":title" було номіновано',
+                'beatmapset_qualify' => '":title" отримав достатню кількість номінацій і увійшов до черги рейтингу',
+                'beatmapset_rank' => '":title" було оцінено',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_reset_nominations' => 'Номінація ":title" була скинута',
+            ],
+
+            'comment' => [
+                'comment_new' => 'У карті ":title" були знайдені нові коментарі',
+            ],
         ],
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => 'Ви отримали нове повідомлення від :username',
             ],
         ],
 
         'build' => [
-            'comment' => '',
+            'comment' => [
+                'comment_new' => 'У changelog\'а ":title" були знайдені нові коментарі',
+            ],
         ],
 
         'news_post' => [
-            'comment' => '',
+            'comment' => [
+                'comment_new' => 'У новини ":title" були знайдені нові комментарі',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => '',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => 'Є нові відповіді в ":title"',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => '',
-            'user_achievement_unlock_self' => '',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => ':username розблокував нову медаль, ":title"!',
+                'user_achievement_unlock_self' => 'Ви розблокували нову медаль, ":title"!',
+            ],
         ],
     ],
 ];

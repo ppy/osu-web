@@ -69,7 +69,7 @@ class BeatmapDiscussionsController extends Controller
     public function index()
     {
         $isModerator = priv_check('BeatmapDiscussionModerate')->can();
-        $params = request();
+        $params = request()->all();
         $params['is_moderator'] = $isModerator;
 
         if (!$isModerator) {
@@ -100,23 +100,22 @@ class BeatmapDiscussionsController extends Controller
         // TODO: remove this when reviews are released
         $relatedDiscussions = [];
         $relatedBeatmapsetIds = [];
-        if (config('osu.beatmapset.discussion_review_enabled')) {
-            $children = BeatmapDiscussion::whereIn('parent_id', $discussions->pluck('id'))
-                ->with([
-                    'beatmap',
-                    'beatmapDiscussionVotes',
-                    'beatmapset',
-                    'startingPost',
-                ]);
 
-            if ($isModerator) {
-                $children->visibleWithTrashed();
-            } else {
-                $children->visible();
-            }
+        $children = BeatmapDiscussion::whereIn('parent_id', $discussions->pluck('id'))
+            ->with([
+                'beatmap',
+                'beatmapDiscussionVotes',
+                'beatmapset',
+                'startingPost',
+            ]);
 
-            $relatedDiscussions = $children->get();
+        if ($isModerator) {
+            $children->visibleWithTrashed();
+        } else {
+            $children->visible();
         }
+
+        $relatedDiscussions = $children->get();
 
         $userIds = [];
         foreach ($discussions->merge($relatedDiscussions) as $discussion) {
@@ -170,11 +169,6 @@ class BeatmapDiscussionsController extends Controller
 
     public function review($beatmapsetId)
     {
-        // TODO: remove this when reviews are released
-        if (!config('osu.beatmapset.discussion_review_enabled')) {
-            abort(404);
-        }
-
         $beatmapset = Beatmapset
             ::where('discussion_enabled', true)
             ->findOrFail($beatmapsetId);

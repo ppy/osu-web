@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Oyun moduna göre üyeler',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Hesabın uzun bir zamandır kullanılmamıştır.",
@@ -84,6 +88,7 @@ return [
         'failed' => 'Hatalı giriş',
         'forgot' => 'Şifrenizi mi unuttunuz?',
         'info' => 'Devam etmek için lütfen giriş yapınız',
+        'invalid_captcha' => 'Captcha geçersiz, sayfayı yenileyip tekrar deneyin.',
         'locked_ip' => 'IP adresiniz kilitli. Lütfen birkaç dakika bekleyin.',
         'password' => 'Şifre',
         'register' => "osu! hesabınız yok mu? Yeni bir tane oluşturun",
@@ -186,23 +191,22 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => ':artist tarafından',
-                'none' => 'Hiç yok... şimdilik.',
                 'title' => 'Beatmapler',
 
                 'favourite' => [
                     'title' => 'Favori Beatmapler',
                 ],
                 'graveyard' => [
-                    'title' => 'Terk Edilmiş Beatmapler',
+                    'title' => 'Mezarlıktaki Beatmapler',
                 ],
                 'loved' => [
                     'title' => 'Sevilen Beatmapler',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Dereceli & Onaylanmış Beatmapler',
+                    'title' => 'Dereceli & Onaylı Beatmapler',
                 ],
                 'unranked' => [
-                    'title' => 'Onay Beklenen Beatmapler',
+                    'title' => 'Beklemedeki Beatmapler',
                 ],
             ],
             'discussions' => [
@@ -216,7 +220,6 @@ return [
                 'show_more' => 'daha fazla etkinlik gör',
             ],
             'historical' => [
-                'empty' => 'Performans kaydı yok. :(',
                 'title' => 'Geçmiş',
 
                 'monthly_playcounts' => [
@@ -303,9 +306,8 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Tekrarı İndir',
-                'empty' => 'Henüz kayda değer bir performans kaydı yok. :(',
                 'not_ranked' => 'Sadece dereceli beatmapler pp verir.',
-                'pp_weight' => 'ağırlıklı: yüzde',
+                'pp_weight' => ':percentage ağırlıklı',
                 'view_details' => 'Ayrıntıları Göster',
                 'title' => 'Dereceler',
 
@@ -349,7 +351,6 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'İlgi Alanları',
-            'lastfm' => 'Last.fm',
             'location' => 'Mevcut Konum',
             'occupation' => 'Meslek',
             'skype' => '',
@@ -376,7 +377,7 @@ return [
         ],
         'post_count' => [
             '_' => ':link kadar katkı',
-            'count' => ':count forum gönderisi|:count forum gönderisi',
+            'count' => ':count_delimited forum gönderisi|:count_delimited forum gönderisi',
         ],
         'rank' => [
             'country' => ':mode için Ülke sıralaması',
@@ -401,7 +402,7 @@ return [
             'ranked_and_approved_beatmapset_count' => 'Dereceli ve Onaylanmış Beatmapler',
             'loved_beatmapset_count' => 'Sevilen Beatmapler',
             'unranked_beatmapset_count' => 'Onay Bekleyen Beatmapler',
-            'graveyard_beatmapset_count' => 'Terk Edilmiş Beatmapler',
+            'graveyard_beatmapset_count' => 'Mezarlıktaki Beatmapler',
         ],
     ],
 

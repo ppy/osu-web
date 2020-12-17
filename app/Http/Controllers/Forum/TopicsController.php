@@ -6,7 +6,7 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Libraries\ForumUpdateNotifier;
+use App\Jobs\Notifications\ForumTopicReply;
 use App\Libraries\NewForumTopic;
 use App\Models\Forum\FeatureVote;
 use App\Models\Forum\Forum;
@@ -182,11 +182,7 @@ class TopicsController extends Controller
         $firstPostPosition = $topic->postPosition($post->post_id);
 
         $post->markRead(Auth::user());
-        ForumUpdateNotifier::onReply([
-            'topic' => $topic,
-            'post' => $post,
-            'user' => Auth::user(),
-        ]);
+        (new ForumTopicReply($post, auth()->user()))->dispatch();
 
         return ext_view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
     }
@@ -319,11 +315,12 @@ class TopicsController extends Controller
 
         $watch = TopicWatch::lookup($topic, Auth::user());
 
-        $poll = new TopicPoll;
+        $poll = new TopicPoll();
         $poll->setTopic($topic);
         $canEditPoll = $poll->canEdit() && priv_check('ForumTopicPollEdit', $topic)->can();
 
         $featureVotes = $this->groupFeatureVotes($topic);
+        $noindex = !$topic->esShouldIndex();
 
         return ext_view(
             "forum.topics.{$template}",
@@ -337,6 +334,7 @@ class TopicsController extends Controller
                 'featureVotes',
                 'firstPostPosition',
                 'firstPostId',
+                'noindex',
                 'topic',
                 'userCanModerate',
                 'showDeleted'
@@ -378,7 +376,6 @@ class TopicsController extends Controller
 
         $post = $topic->posts->last();
         $post->markRead($user);
-        ForumUpdateNotifier::onNew(['topic' => $topic, 'post' => $post, 'user' => $user]);
 
         return ujs_redirect(route('forum.topics.show', $topic));
     }
@@ -391,7 +388,7 @@ class TopicsController extends Controller
             abort(403);
         }
 
-        $params = get_params(request(), 'forum_topic', ['topic_title']);
+        $params = get_params(request()->all(), 'forum_topic', ['topic_title']);
 
         if ($topic->update($params)) {
             if ((Auth::user()->user_id ?? null) !== $topic->topic_poster) {
@@ -441,7 +438,7 @@ class TopicsController extends Controller
 
     private function getPollParams()
     {
-        return get_params(request(), 'forum_topic_poll', [
+        return get_params(request()->all(), 'forum_topic_poll', [
             'hide_results:bool',
             'length_days:int',
             'max_options:int',

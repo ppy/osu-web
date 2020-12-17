@@ -53,10 +53,14 @@
   display: none !important;
 }
 
-.u-hide-by-height {
-  height: 0 !important;
-  margin: 0 !important;
-  overflow: hidden !important;
+.u-hidden-narrow {
+  @media @narrow {
+    display: none !important;
+  }
+}
+
+.u-hover {
+  pointer-events: auto;
 }
 
 .u-nav-float {

@@ -9,20 +9,20 @@ class FallbackController extends Controller
 {
     public function __construct()
     {
-        parent::__construct();
-
         if (is_api_request()) {
             $this->middleware('api');
         } else {
             $this->middleware('web');
         }
 
+        parent::__construct();
+
         app('route-section')->setError(404);
     }
 
     public function index()
     {
-        if (is_api_request()) {
+        if (is_json_request()) {
             return response([], 404);
         }
 

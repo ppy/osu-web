@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Poszt törlése',
-            'restore' => 'Poszt visszaállítása',
             'edit' => 'Poszt szerkesztése',
+            'report' => '',
+            'restore' => 'Poszt visszaállítása',
         ],
 
         'create' => [
@@ -75,7 +76,8 @@ return [
     'topic' => [
         'deleted' => 'törölt téma',
         'go_to_latest' => 'utolsó poszt megtekintése',
-        'has_replied' => '',
+        'has_replied' => 'Feliratkoztál erre a témára',
+        'in_forum' => 'ide :forum',
         'latest_post' => ':when :user által',
         'latest_reply_by' => 'legutóbbi hozzászólás: :user',
         'new_topic' => 'Új téma',

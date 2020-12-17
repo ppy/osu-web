@@ -5,15 +5,18 @@ import NotificationJson from 'interfaces/notification-json';
 import { camelCase, forEach } from 'lodash';
 import { computed, observable } from 'mobx';
 import NotificationDetails, { newEmptyNotificationDetails } from 'models/notification-details';
+import { Name } from 'models/notification-type';
 import { categoryFromName, categoryGroupKey } from 'notification-maps/category';
 import { displayType } from 'notification-maps/type';
+import NotificationDeletable from 'notifications/notification-deletable';
 import { NotificationIdentity } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
 import core from 'osu-core-singleton';
 
-export default class Notification implements NotificationReadable {
+export default class Notification implements NotificationReadable, NotificationDeletable {
   createdAtJson?: string;
   details: NotificationDetails = newEmptyNotificationDetails();
+  @observable isDeleting = false;
   @observable isMarkingAsRead = false;
   @observable isRead = false;
   name?: string;
@@ -45,21 +48,6 @@ export default class Notification implements NotificationReadable {
     };
   }
 
-  @computed get messageGroup() {
-    if (this.objectType === 'channel') {
-      const replacements = {
-        title: this.title,
-        username: this.details.username,
-      };
-
-      const key = `notifications.item.${this.objectType}.${this.category}.${this.details.type}.${this.name}_group`;
-
-      return osu.trans(key, replacements);
-    }
-
-    return this.title;
-  }
-
   @computed get stackId() {
     return `${this.objectType}-${this.objectId}-${this.category}`;
   }
@@ -72,7 +60,7 @@ export default class Notification implements NotificationReadable {
     return this.details.title;
   }
 
-  constructor(readonly id: number, readonly objectType: string) {}
+  constructor(readonly id: number, readonly objectType: Name) {}
 
   static fromJson(json: NotificationJson): Notification {
     const obj = new Notification(json.id, json.object_type);

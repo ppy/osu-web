@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "",
@@ -84,6 +88,7 @@ return [
         'failed' => 'Đăng nhập không chính xác',
         'forgot' => 'Quên mật khẩu?',
         'info' => '',
+        'invalid_captcha' => '',
         'locked_ip' => 'Địa chỉ IP của bạn đã bị khóa. Vui lòng đợi một vài phút.',
         'password' => 'Mật khẩu',
         'register' => "Không có tài khoản osu!? Tạo một tài khoản mới",
@@ -186,7 +191,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'bởi :artist',
-                'none' => 'Chưa có... gì cả.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
@@ -216,7 +220,6 @@ return [
                 'show_more' => 'xem sự kiện khác',
             ],
             'historical' => [
-                'empty' => 'Chưa ghi nhận điểm. :(',
                 'title' => 'Lịch Sử',
 
                 'monthly_playcounts' => [
@@ -303,7 +306,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Tải Xuống Replay',
-                'empty' => 'Chưa ghi nhận thành tích tuyệt vời nào. :(',
                 'not_ranked' => 'Chỉ có beatmap được xếp hạng mới có pp.',
                 'pp_weight' => 'trọng số :percentage',
                 'view_details' => '',
@@ -349,7 +351,6 @@ return [
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Sở Thích',
-            'lastfm' => 'Last.fm',
             'location' => 'Vị Trí Hiện Tại',
             'occupation' => 'Nghề Nghiệp',
             'skype' => 'Skype',

@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => '帮助',
+            'getAbuse' => '',
             'getFaq' => '常见问题',
             'getRules' => '规章制度',
             'getSupport' => '帮助中心',
@@ -179,6 +180,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '登录/注册',
+
         'login' => [
             'forgot' => "我忘记了我的登录信息",
             'password' => '密码',

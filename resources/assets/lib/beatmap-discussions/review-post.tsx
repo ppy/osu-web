@@ -40,13 +40,13 @@ export class ReviewPost extends React.Component<Props> {
           source={source}
           unwrapDisallowed={true}
           renderers={{
-            link: (props) => <a className='beatmap-discussion-review-post__link' rel='nofollow' {...props}/>,
+            link: (props) => <a rel='nofollow' {...props}/>,
             paragraph: (props) => {
               return <div className='beatmap-discussion-review-post__block'>
                 <div className='beatmapset-discussion-message' {...props}/>
               </div>;
             },
-            timestamp: (props) => <a className='beatmapset-discussion-message__timestamp' {...props}/>,
+            timestamp: (props) => <a className='beatmap-discussion-timestamp-decoration' {...props}/>,
           }}
         />
     );

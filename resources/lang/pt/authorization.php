@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'play_more' => 'Que tal jogar um pouco de osu! em vez disso?',
     'require_login' => 'Por favor inicia sessão para proceder.',
     'require_verification' => 'Por favor verifica para proceder.',
     'restricted' => "Não é possível fazeres isso enquanto estiveres restrito.",
@@ -32,6 +33,7 @@ return [
         ],
 
         'vote' => [
+            'bot' => "Não é possível votar numa discussão criada por um bot",
             'limit_exceeded' => 'Por favor espera um momento antes de pores mais votos',
             'owner' => "Não é possível votares na tua própria discussão.",
             'wrong_beatmapset_state' => 'Só é possível votares em discussões com beatmaps que estejam a aguardar aprovação.',

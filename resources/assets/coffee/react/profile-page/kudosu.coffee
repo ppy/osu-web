@@ -23,7 +23,7 @@ export class Kudosu extends React.Component
             el StringWithComponent,
               mappings:
                 ':link': a
-                  href: laroute.route('wiki.show', page: 'Kudosu')
+                  href: laroute.route('wiki.show', path: 'Kudosu', locale: currentLocale)
                   key: 'link'
                   osu.trans 'users.show.extra.kudosu.total_info.link'
               pattern: osu.trans('users.show.extra.kudosu.total_info._')
@@ -35,17 +35,13 @@ export class Kudosu extends React.Component
 
             giver =
               if kudosu.giver?
-                osu.link kudosu.giver.url,
-                  kudosu.giver.username
-                  classNames: ['profile-extra-entries__link profile-extra-entries__link--kudosu']
+                osu.link kudosu.giver.url, kudosu.giver.username
               else
                 _.escape osu.trans('users.deleted')
 
             post =
               if kudosu.post?.url?
-                osu.link kudosu.post?.url,
-                  kudosu.post?.title
-                  classNames: ['profile-extra-entries__link profile-extra-entries__link--kudosu']
+                osu.link kudosu.post?.url, kudosu.post?.title
               else
                 kudosu.post?.title
 

@@ -28,6 +28,7 @@ return [
         'nomination_reset' => 'Nytt problem :discussion triggade en nomination återställning.',
         'qualify' => 'Denna beatmap har uppnått den nödvändiga antalet av nomineringar och har blivit kvalificerad.',
         'rank' => 'Rankad.',
+        'remove_from_loved' => 'Borttagen från Älskad av :user. (:text)',
     ],
 
     'index' => [
@@ -66,5 +67,6 @@ return [
         'nomination_reset' => 'Återställning av nominering',
         'qualify' => 'Kvalifikation',
         'rank' => 'Rankning',
+        'remove_from_loved' => '',
     ],
 ];

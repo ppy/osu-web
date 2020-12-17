@@ -1,0 +1,103 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmapset-discussions-chart {
+  @_top: beatmapset-discussions-chart;
+
+  --icon-area-height: 30px;
+  width: 100%;
+  height: 150px;
+  position: relative;
+  padding: 0 40px;
+  background-color: @osu-colour-b4;
+
+  &::before {
+    --border-size: 2px;
+    content: '';
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: calc(var(--border-size) + var(--icon-area-height));
+    background-color: @osu-colour-b6;
+    border-top: var(--border-size) solid hsl(var(--hsl-b3));
+  }
+
+  &__container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  &__item {
+    .link-plain();
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 6px;
+    transform: translateX(-3px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    --line-scale: 1;
+
+    &::before {
+      display: block;
+      content: '';
+      flex: 1;
+      width: 1px;
+      background-image: linear-gradient(to top, hsl(var(--hsl-c1)), hsl(var(--hsl-c1)) 10%, hsla(var(--hsl-c1), 0) 70%);
+      transform: scaleX(var(--line-scale));
+    }
+
+    &::after {
+      .fa();
+      content: var(--icon, '');
+      font-size: 12px; // icon size
+      font-weight: var(--icon-weight);
+      color: var(--icon-colour);
+      height: var(--icon-area-height);
+      display: flex;
+      align-items: center;
+      flex: none;
+    }
+
+    &:hover {
+      --line-scale: 2;
+    }
+
+    &--deleted {
+      opacity: 0.5;
+    }
+
+    &--mapper-note {
+      --icon-colour: @beatmap-discussion--color-mapper-note;
+      --icon: @fa-var-sticky-note;
+      --icon-weight: @fa-weight-regular;
+    }
+
+    &--praise {
+      --icon-colour: @beatmap-discussion--color-praise;
+      --icon: @fa-var-heart;
+      --icon-weight: @fa-weight-solid;
+    }
+
+    &--problem {
+      --icon-colour: @beatmap-discussion--color-problem;
+      --icon: @fa-var-exclamation-circle;
+      --icon-weight: @fa-weight-solid;
+    }
+
+    &--resolved {
+      --icon-colour: @beatmap-discussion--color-resolved;
+      --icon: @fa-var-check-circle;
+      --icon-weight: @fa-weight-regular;
+    }
+
+    &--suggestion {
+      --icon-colour: @beatmap-discussion--color-suggestion;
+      --icon: @fa-var-circle;
+      --icon-weight: @fa-weight-regular;
+    }
+  }
+}

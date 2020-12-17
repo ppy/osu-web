@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'trợ giúp',
+            'getAbuse' => '',
             'getFaq' => 'faq',
             'getRules' => 'quy tắc',
             'getSupport' => 'không, thật đó, tôi cần giúp đỡ!',
@@ -179,6 +180,8 @@ return [
     ],
 
     'popup_login' => [
+        'button' => '',
+
         'login' => [
             'forgot' => "Quên mật khẩu",
             'password' => 'password',

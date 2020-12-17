@@ -6,8 +6,8 @@
 namespace App\Models\Chat;
 
 use App\Exceptions\API;
+use App\Jobs\Notifications\ChannelMessage;
 use App\Models\Match\Match;
-use App\Models\Notification;
 use App\Models\User;
 use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
@@ -100,6 +100,11 @@ class Channel extends Model
         // TODO: additional message filtering
 
         return $messages;
+    }
+
+    public function userChannels()
+    {
+        return $this->hasMany(UserChannel::class);
     }
 
     public function users()
@@ -199,7 +204,7 @@ class Channel extends Model
             throw new API\ExcessiveChatMessagesException(trans('api.error.chat.limit_exceeded'));
         }
 
-        $content = trim($content);
+        $content = str_replace(["\r", "\n"], ' ', trim($content));
 
         if (mb_strlen($content, 'UTF-8') >= config('osu.chat.message_length_limit')) {
             throw new API\ChatMessageTooLongException(trans('api.error.chat.too_long'));
@@ -228,7 +233,7 @@ class Channel extends Model
 
         if ($this->isPM()) {
             $this->unhide();
-            broadcast_notification(Notification::CHANNEL_MESSAGE, $message, $sender);
+            (new ChannelMessage($message, $sender))->dispatch();
         }
 
         Datadog::increment('chat.channel.send', 1, ['target' => $this->type]);

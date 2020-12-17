@@ -5,9 +5,11 @@
 
 return [
     'all_read' => 'Alle meldingen gelezen!',
+    'delete' => '',
     'mark_read' => 'Wissen :type',
     'none' => 'Geen meldingen',
     'see_all' => 'alle meldingen bekijken',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'alle',
@@ -57,6 +59,8 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmap staat in de ranked wachtlijst',
                 'beatmapset_rank' => '":title" is geranked',
                 'beatmapset_rank_compact' => 'Beatmap was geranked',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'Probleem geplaatst door :username reset nominatie van beatmap ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Nominatie is gereset',
             ],
@@ -66,6 +70,8 @@ return [
 
                 'comment_new' => ':username gaf commentaar op ":content" op ":title"',
                 'comment_new_compact' => ':username gaf commentaar op ":content"',
+                'comment_reply' => ':username antwoordde ":content" op ":title"',
+                'comment_reply_compact' => ':username antwoordde ":content"',
             ],
         ],
 
@@ -90,6 +96,8 @@ return [
 
                 'comment_new' => ':username gaf commentaar ":content" op ":title"',
                 'comment_new_compact' => ':username gaf commentaar op ":content"',
+                'comment_reply' => ':username antwoordde ":content" op ":title"',
+                'comment_reply_compact' => ':username antwoordde ":content"',
             ],
         ],
 
@@ -101,6 +109,8 @@ return [
 
                 'comment_new' => ':username gaf commentaar ":content" op ":title"',
                 'comment_new_compact' => ':username gaf commentaar op ":content"',
+                'comment_reply' => ':username antwoordde ":content" op ":title"',
+                'comment_reply_compact' => ':username antwoordde ":content"',
             ],
         ],
 
@@ -130,18 +140,36 @@ return [
                 '_' => 'Nieuwe medaille',
                 'user_achievement_unlock' => '":title" ontgrendeld!',
                 'user_achievement_unlock_compact' => '":title" ontgrendeld!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => 'De discussie van ":title" heeft nieuwe updates',
-            'beatmapset_discussion_lock' => 'De discussie van ":title" is gesloten',
-            'beatmapset_discussion_unlock' => 'De discussie van ":title" is ontgrendeld',
-            'beatmapset_problem' => 'Er is een nieuw probleem vermeld op ":title:"',
-            'beatmapset_state' => 'De status van ":title" is veranderd',
-            'comment' => 'Beatmap ":title" heeft nieuwe reacties',
+            'beatmapset_discussion' => [
+                'beatmapset_discussion_lock' => 'De discussie op ":title" is vergrendeld',
+                'beatmapset_discussion_post_new' => 'De discussie over ":title" heeft nieuwe updates',
+                'beatmapset_discussion_unlock' => 'De discussie op ":title" is ontgrendeld',
+            ],
+
+            'beatmapset_problem' => [
+                'beatmapset_discussion_qualified_problem' => 'Er is een nieuw probleem gemeld op ":title"',
+            ],
+
+            'beatmapset_state' => [
+                'beatmapset_disqualify' => '":title" is gediskwalificeerd',
+                'beatmapset_love' => '":title" was gepromoveerd naar geliefde',
+                'beatmapset_nominate' => '":title" is genomineerd',
+                'beatmapset_qualify' => '":title" heeft genoeg nominaties gekregen en de rij van rangen ingevoerd',
+                'beatmapset_rank' => '":title" is gerangschikt',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_reset_nominations' => 'Nominatie van ":title" is gereset',
+            ],
+
+            'comment' => [
+                'comment_new' => 'Beatmap ":title" heeft nieuwe reacties',
+            ],
         ],
 
         'channel' => [
@@ -151,20 +179,28 @@ return [
         ],
 
         'build' => [
-            'comment' => 'Veranderingslogboek ":title" heeft nieuwe reacties',
+            'comment' => [
+                'comment_new' => 'Changelog ":title" heeft nieuwe reacties',
+            ],
         ],
 
         'news_post' => [
-            'comment' => 'Nieuws ":title" heeft nieuwe reacties',
+            'comment' => [
+                'comment_new' => 'Nieuws ":title" heeft nieuwe reacties',
+            ],
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => 'Er zijn nieuwe reacties in ":title"',
+            'forum_topic_reply' => [
+                'forum_topic_reply' => 'Er zijn nieuwe antwoorden in ":title"',
+            ],
         ],
 
-        'user_achievement' => [
-            'user_achievement_unlock' => ':username heeft een nieuwe medaille verdiend, ":title"!',
-            'user_achievement_unlock_self' => 'Je hebt een nieuwe medaille verdiend, ":title"!',
+        'user' => [
+            'user_achievement_unlock' => [
+                'user_achievement_unlock' => ':username heeft een nieuwe medaille ontgrendeld, ":title"!',
+                'user_achievement_unlock_self' => 'Je hebt een nieuwe medaille, ":title"!',
+            ],
         ],
     ],
 ];

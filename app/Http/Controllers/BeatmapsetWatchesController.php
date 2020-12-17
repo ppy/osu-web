@@ -18,13 +18,6 @@ class BeatmapsetWatchesController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
-    {
-        return ext_view('beatmapset_watches.index', [
-            'watches' => Auth::user()->beatmapsetWatches()->visible()->paginate(50),
-        ]);
-    }
-
     public function update($beatmapsetId)
     {
         $beatmapset = Beatmapset::where('discussion_enabled', '=', true)->findOrFail($beatmapsetId);

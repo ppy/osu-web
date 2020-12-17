@@ -187,12 +187,18 @@ return [
         'nominate_confirm' => 'Nominér dette beatmap?',
         'nominated_by' => 'nomineret af :users',
         'not_enough_hype' => "Der er ikke nok hype.",
-        'qualified' => 'Forventes at blive ranked :date, hvis der ikke bliver fundet nogen problemer.',
-        'qualified_soon' => 'Forventes at blive ranked snart, hvis der ikke bliver fundet nogen problemer.',
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Nomineringer: :current/:required',
         'reset_message_deleted' => 'slettet',
         'title' => 'Nomineringstatus',
         'unresolved_issues' => 'Der er stadig uløste problemer der skal tages fat på først.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Nominerings processen nulstillet :time_ago af :user med et nyt problem :discussion (:message).',
@@ -246,6 +252,7 @@ return [
         'converts' => 'Inkluder konvertert beatmeaps',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'Alle',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

@@ -17,7 +17,7 @@
 use App\Models\BeatmapDiscussionPost;
 
 $factory->define(BeatmapDiscussionPost::class, function (Faker\Generator $faker) {
-    return  [
+    return [
         'message' => $faker->sentence(10),
     ];
 });

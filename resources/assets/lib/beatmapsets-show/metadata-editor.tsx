@@ -20,8 +20,8 @@ interface State {
 }
 
 export default class MetadataEditor extends React.PureComponent<Props, State> {
-  private genres = osu.parseJson('json-genres') as GenreJson[];
-  private languages = osu.parseJson('json-languages') as LanguageJson[];
+  private genres = osu.parseJson<GenreJson[]>('json-genres');
+  private languages = osu.parseJson<LanguageJson[]>('json-languages');
 
   constructor(props: Props) {
     super(props);

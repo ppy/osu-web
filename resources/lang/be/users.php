@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "",
@@ -84,6 +88,7 @@ return [
         'failed' => 'Няправільны ўваход',
         'forgot' => 'Забылі свой пароль?',
         'info' => '',
+        'invalid_captcha' => '',
         'locked_ip' => 'ваш IP-адрас заблакаваны. Пачакайце некалькі хвілін.',
         'password' => 'Пароль',
         'register' => "Вы яшчэ не маеце ўліковага запісу osu!? Стварыце новы",
@@ -186,7 +191,6 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'ад :artist',
-                'none' => 'Няма... пакуль што.',
                 'title' => 'Бітмапы',
 
                 'favourite' => [
@@ -216,7 +220,6 @@ return [
                 'show_more' => '',
             ],
             'historical' => [
-                'empty' => 'Няма прадукцыйных спісаў. :(',
                 'title' => 'Храналогія',
 
                 'monthly_playcounts' => [
@@ -303,7 +306,6 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Спампаваць паўтор',
-                'empty' => 'Яшчэ няма запісаў пра цудоўную прадукцыйнасць. :(',
                 'not_ranked' => 'Адзінкі прадукцыйнасці даюцца толькі бітмапам, якія набылі ранг.',
                 'pp_weight' => 'узважана :percentage',
                 'view_details' => '',
@@ -349,7 +351,6 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Цікаўнасці',
-            'lastfm' => 'Last.fm',
             'location' => 'Бягучае месцазнаходжанне',
             'occupation' => 'Занятак',
             'skype' => '',

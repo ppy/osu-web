@@ -1,6 +1,6 @@
 {
   "mappings": {
-    "wiki_page": {
+    "_doc": {
       "dynamic": false,
       "properties": {
         "indexed_at": {

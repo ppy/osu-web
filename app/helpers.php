@@ -3,6 +3,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+use App\Models\LoginAttempt;
+use Illuminate\Support\HtmlString;
+
 /*
  * Like array_search but returns null if not found instead of false.
  * Strict mode only.
@@ -48,17 +51,6 @@ function beatmap_timestamp_format($ms)
 function blade_safe($html)
 {
     return new Illuminate\Support\HtmlString($html);
-}
-
-function broadcast_notification($name, ...$arguments)
-{
-    try {
-        $class = App\Jobs\Notifications\BroadcastNotificationBase::getNotificationClass($name);
-
-        return (new $class(...$arguments))->dispatch();
-    } catch (App\Exceptions\InvalidNotificationException $e) {
-        log_error($e);
-    }
 }
 
 /**
@@ -163,6 +155,22 @@ function captcha_enabled()
     return config('captcha.sitekey') !== '' && config('captcha.secret') !== '';
 }
 
+function captcha_triggered()
+{
+    if (!captcha_enabled()) {
+        return false;
+    }
+
+    if (config('captcha.threshold') === 0) {
+        $triggered = true;
+    } else {
+        $loginAttempts = LoginAttempt::find(request()->getClientIp());
+        $triggered = $loginAttempts && $loginAttempts->failed_attempts >= config('captcha.threshold');
+    }
+
+    return $triggered;
+}
+
 function class_with_modifiers(string $className, ?array $modifiers = null)
 {
     $class = $className;
@@ -192,6 +200,7 @@ function cleanup_cookies()
 
     $domains = [$host, ''];
 
+    // phpcs:ignore
     while (count($hostParts) > 1) {
         array_shift($hostParts);
         $domains[] = implode('.', $hostParts);
@@ -344,11 +353,6 @@ function es_records($results, $class)
     return $records;
 }
 
-function flag_path($country)
-{
-    return '/images/flags/'.$country.'.png';
-}
-
 function get_valid_locale($requestedLocale)
 {
     if (in_array($requestedLocale, config('app.available_locales'), true)) {
@@ -425,17 +429,8 @@ function locale_for_moment($locale)
         return 'zh-cn';
     }
 
-    return $locale;
-}
-
-function locale_for_timeago($locale)
-{
-    if ($locale === 'zh') {
-        return 'zh-CN';
-    }
-
-    if ($locale === 'zh-tw') {
-        return 'zh-TW';
+    if ($locale === 'no') {
+        return 'nb';
     }
 
     return $locale;
@@ -827,6 +822,7 @@ function link_to_user($id, $username = null, $color = null, $classNames = null)
         $color ?? ($color = $id->user_colour);
         $id = $id->getKey();
     }
+    $id = e($id);
     $username = e($username);
     $style = user_color_style($color, 'color');
 
@@ -851,12 +847,18 @@ function link_to_user($id, $username = null, $color = null, $classNames = null)
 function issue_icon($issue)
 {
     switch ($issue) {
-        case 'added': return 'fas fa-cogs';
-        case 'assigned': return 'fas fa-user';
-        case 'confirmed': return 'fas fa-exclamation-triangle';
-        case 'resolved': return 'far fa-check-circle';
-        case 'duplicate': return 'fas fa-copy';
-        case 'invalid': return 'far fa-times-circle';
+        case 'added':
+            return 'fas fa-cogs';
+        case 'assigned':
+            return 'fas fa-user';
+        case 'confirmed':
+            return 'fas fa-exclamation-triangle';
+        case 'resolved':
+            return 'far fa-check-circle';
+        case 'duplicate':
+            return 'fas fa-copy';
+        case 'invalid':
+            return 'far fa-times-circle';
     }
 }
 
@@ -881,21 +883,31 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     return $url;
 }
 
-function wiki_url($page = 'Main_Page', $locale = null, $api = null)
+function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
 {
     // FIXME: remove `rawurlencode` workaround when fixed upstream.
     // Reference: https://github.com/laravel/framework/issues/26715
-    $params = ['page' => str_replace('%2F', '/', rawurlencode($page))];
-
-    if (present($locale) && $locale !== App::getLocale()) {
-        $params['locale'] = $locale;
-    }
+    $params = [
+        'path' => $path === null ? 'Main_Page' : str_replace('%2F', '/', rawurlencode($path)),
+        'locale' => $locale ?? App::getLocale(),
+    ];
 
     if ($api ?? is_api_request()) {
-        return route('api.wiki.show', $params);
+        return route('api.wiki.show', $params, $fullUrl);
     }
 
-    return route('wiki.show', $params);
+    if ($params['path'] === 'Sitemap') {
+        return route('wiki.sitemap', $params['locale'], $fullUrl);
+    }
+
+    if (starts_with("{$params['path']}/", 'Legal/')) {
+        $params['path'] = ltrim(substr($params['path'], strlen('Legal')), '/');
+        $route = 'legal';
+    } else {
+        $route = 'wiki.show';
+    }
+
+    return route($route, $params, $fullUrl);
 }
 
 function bbcode($text, $uid, $options = [])
@@ -906,6 +918,11 @@ function bbcode($text, $uid, $options = [])
 function bbcode_for_editor($text, $uid = null)
 {
     return (new App\Libraries\BBCodeFromDB($text, $uid))->toEditor();
+}
+
+function concat_path($paths)
+{
+    return implode('/', array_filter($paths, 'present'));
 }
 
 function proxy_media($url)
@@ -986,6 +1003,7 @@ function nav_links()
         'getWiki' => wiki_url('Main_Page'),
         'getFaq' => wiki_url('FAQ'),
         'getRules' => wiki_url('Rules'),
+        'getAbuse' => wiki_url('Reporting_Bad_Behaviour/Abuse'),
         'getSupport' => wiki_url('Help_Centre'),
     ];
 
@@ -1013,10 +1031,12 @@ function footer_landing_links()
 
 function footer_legal_links()
 {
+    $locale = app()->getLocale();
+
     return [
-        'terms' => route('legal', 'terms'),
-        'privacy' => route('legal', 'privacy'),
-        'copyright' => route('legal', 'copyright'),
+        'terms' => route('legal', ['locale' => $locale, 'path' => 'Terms']),
+        'privacy' => route('legal', ['locale' => $locale, 'path' => 'Privacy']),
+        'copyright' => route('legal', ['locale' => $locale, 'path' => 'Copyright']),
         'server_status' => osu_url('server_status'),
         'source_code' => osu_url('source_code'),
     ];
@@ -1050,7 +1070,7 @@ function base62_encode($input)
     $remaining = $input;
 
     do {
-        $output = $numbers[($remaining % $base)].$output;
+        $output = $numbers[$remaining % $base].$output;
         $remaining = floor($remaining / $base);
     } while ($remaining > 0);
 
@@ -1195,20 +1215,18 @@ function fast_imagesize($url)
 
 function get_arr($input, $callback)
 {
-    if (!is_array($input)) {
-        return;
-    }
+    if (is_array($input)) {
+        $result = [];
+        foreach ($input as $value) {
+            $casted = call_user_func($callback, $value);
 
-    $result = [];
-    foreach ($input as $value) {
-        $casted = call_user_func($callback, $value);
-
-        if ($casted !== null) {
-            $result[] = $casted;
+            if ($casted !== null) {
+                $result[] = $casted;
+            }
         }
-    }
 
-    return $result;
+        return $result;
+    }
 }
 
 function get_bool($string)
@@ -1314,7 +1332,7 @@ function deltree($dir)
 {
     $files = array_diff(scandir($dir), ['.', '..']);
     foreach ($files as $file) {
-        (is_dir("$dir/$file")) ? deltree("$dir/$file") : unlink("$dir/$file");
+        is_dir("$dir/$file") ? deltree("$dir/$file") : unlink("$dir/$file");
     }
 
     return rmdir($dir);
@@ -1398,7 +1416,7 @@ function array_rand_val($array)
 function model_pluck($builder, $key, $class = null)
 {
     if ($class) {
-        $selectKey = (new $class)->qualifyColumn($key);
+        $selectKey = (new $class())->qualifyColumn($key);
     }
 
     $result = [];
@@ -1460,7 +1478,7 @@ function parse_time_to_carbon($value)
 
 function format_duration_for_display($seconds)
 {
-    return floor($seconds / 60).':'.str_pad(($seconds % 60), 2, '0', STR_PAD_LEFT);
+    return floor($seconds / 60).':'.str_pad($seconds % 60, 2, '0', STR_PAD_LEFT);
 }
 
 // Converts a standard image url to a retina one
@@ -1511,15 +1529,18 @@ function first_paragraph($html, $split_on = "\n")
     $text = strip_tags($html);
     $match_pos = strpos($text, $split_on);
 
-    return ($match_pos === false) ? $text : substr($text, 0, $match_pos);
+    return $match_pos === false ? $text : substr($text, 0, $match_pos);
 }
 
 function build_icon($prefix)
 {
     switch ($prefix) {
-        case 'add': return 'plus';
-        case 'fix': return 'wrench';
-        case 'misc': return 'question';
+        case 'add':
+            return 'plus';
+        case 'fix':
+            return 'wrench';
+        case 'misc':
+            return 'question';
     }
 }
 
@@ -1648,4 +1669,34 @@ function search_error_message(?Exception $e): ?string
     $text = trans($key);
 
     return $text === $key ? trans('errors.search.default') : $text;
+}
+
+/**
+ * Gets the path to a versioned resource.
+ *
+ * @param string $resource
+ * @param string $manifest
+ * @return HtmlString
+ *
+ * @throws Exception
+ */
+function unmix(string $resource)
+{
+    static $manifest;
+
+    if (!isset($manifest)) {
+        $manifestPath = public_path('assets/manifest.json');
+
+        if (!file_exists($manifestPath)) {
+            throw new Exception('The manifest does not exist.');
+        }
+
+        $manifest = json_decode(file_get_contents($manifestPath), true);
+    }
+
+    if (!isset($manifest[$resource])) {
+        throw new Exception("resource not defined: {$resource}.");
+    }
+
+    return new HtmlString($manifest[$resource]);
 }

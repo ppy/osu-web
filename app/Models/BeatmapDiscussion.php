@@ -139,11 +139,6 @@ class BeatmapDiscussion extends Model
             });
         }
 
-        // TODO: remove this when reviews are released
-        if (!config('osu.beatmapset.discussion_review_enabled')) {
-            $query->hideReviews();
-        }
-
         return ['query' => $query, 'params' => $params];
     }
 
@@ -182,7 +177,7 @@ class BeatmapDiscussion extends Model
     public function startingPost()
     {
         return $this->hasOne(BeatmapDiscussionPost::class)->whereNotExists(function ($query) {
-            $table = (new BeatmapDiscussionPost)->getTable();
+            $table = (new BeatmapDiscussionPost())->getTable();
 
             $query->selectRaw(1)
                 ->from(DB::raw("{$table} d"))
@@ -213,11 +208,6 @@ class BeatmapDiscussion extends Model
 
     public function setMessageTypeAttribute($value)
     {
-        // TODO: remove this when reviews are released
-        if (!config('osu.beatmapset.discussion_review_enabled') && $value === 'review') {
-            return $this->attributes['message_type'] = null;
-        }
-
         return $this->attributes['message_type'] = static::MESSAGE_TYPES[$value] ?? null;
     }
 
@@ -242,8 +232,7 @@ class BeatmapDiscussion extends Model
 
     public function canGrantKudosu()
     {
-        return
-            in_array($this->attributes['message_type'] ?? null, static::KUDOSUABLE_TYPES, true) &&
+        return in_array($this->attributes['message_type'] ?? null, static::KUDOSUABLE_TYPES, true) &&
             $this->user_id !== $this->beatmapset->user_id &&
             !$this->trashed() &&
             !$this->kudosu_denied;
@@ -278,9 +267,9 @@ class BeatmapDiscussion extends Model
 
         $beatmapsetKudosuGranted = (int) KudosuHistory
             ::where('kudosuable_type', $this->getMorphClass())
-            ->whereIn('kudosuable_id',
-                static
-                    ::where('kudosu_denied', '=', false)
+            ->whereIn(
+                'kudosuable_id',
+                static::where('kudosu_denied', '=', false)
                     ->where('beatmapset_id', '=', $this->beatmapset_id)
                     ->where('user_id', '=', $this->user_id)
                     ->select('id')
@@ -394,7 +383,8 @@ class BeatmapDiscussion extends Model
             'kudosu_denied_by_id',
         ];
 
-        if ($this->exists &&
+        if (
+            $this->exists &&
             count(array_diff(array_keys($this->getDirty()), $modifiableWhenLocked)) > 0 &&
             $this->isLocked()
         ) {
@@ -716,14 +706,6 @@ class BeatmapDiscussion extends Model
     {
         return $query->visibleWithTrashed()
             ->withoutTrashed();
-    }
-
-    // TODO: remove this when reviews are released
-    public function scopeHideReviews($query)
-    {
-        if (!config('osu.beatmapset.discussion_review_enabled')) {
-            return $query->where('message_type', '<>', static::MESSAGE_TYPES['review']);
-        }
     }
 
     public function scopeVisibleWithTrashed($query)

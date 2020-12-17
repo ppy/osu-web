@@ -51,6 +51,7 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'recevoir des notifications lorsqu\'un nouveau problème est posté sur les beatmaps qualifiées des modes suivants',
         'beatmapset_disqualify' => 'recevoir des notifications lorsque les beatmaps des modes suivants sont disqualifiées',
+        'comment_reply' => 'recevoir des notifications pour des réponses à vos commentaires',
         'title' => 'Notifications',
         'topic_auto_subscribe' => 'activer automatiquement les notifications sur les nouveaux sujets de forum que vous créez',
 
@@ -61,7 +62,7 @@ return [
             'comment_new' => 'nouveaux commentaires',
             'forum_topic_reply' => 'réponse à un sujet',
             'mail' => 'email',
-            'push' => 'push',
+            'push' => 'alerte',
             'user_achievement_unlock' => 'médaille utilisateur déverrouillée',
         ],
     ],
