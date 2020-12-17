@@ -62,8 +62,8 @@ export class AccountStanding extends React.PureComponent
         key: i
 
         td
-          className: "#{bn}__table-cell #{bn}__table-cell--date",
-            el TimeWithTooltip, dateTime: event.timestamp, relative: true
+          className: "#{bn}__table-cell #{bn}__table-cell--date"
+          el TimeWithTooltip, dateTime: event.timestamp, relative: true
 
         td
           className: "#{bn}__table-cell #{bn}__table-cell--action"
