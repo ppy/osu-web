@@ -8,12 +8,16 @@ import { Spinner } from 'spinner';
 import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
+  alwaysVisible?: boolean;
+  followers?: number;
   modifiers?: Modifiers;
+  showFollowerCounter?: boolean;
   userId: number;
 }
 
 interface State {
   follow: boolean;
+  followersWithoutSelf: number;
   loading: boolean;
 }
 
@@ -27,8 +31,14 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
   constructor(props: Props) {
     super(props);
 
+    const follow = currentUser.follow_user_mapping?.includes(this.props.userId) ?? false;
+    let followersWithoutSelf = this.props.followers ?? 0;
+
+    if (follow !== false) followersWithoutSelf -= 1;
+
     this.state = {
-      follow: currentUser.follow_user_mapping?.includes(this.props.userId) ?? false,
+      follow,
+      followersWithoutSelf,
       loading: false,
     };
   }
@@ -43,27 +53,38 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
   }
 
   render() {
-    if (currentUser.id == null || currentUser.id === this.props.userId) {
+    const canToggle = !(currentUser.id == null || currentUser.id === this.props.userId);
+
+    if (!canToggle && !this.props.alwaysVisible) {
       return null;
     }
 
-    const title = osu.trans(`follows.mapping.${this.state.follow ? 'to_0' : 'to_1'}`);
+    const title = canToggle
+      ? osu.trans(`follows.mapping.${this.state.follow ? 'to_0' : 'to_1'}`)
+      : osu.trans(`follows.mapping.followers`);
 
     let blockClass = classWithModifiers(bn, this.props.modifiers);
     blockClass += classWithModifiers(bn, { friend: this.state.follow }, true);
+
+    const disabled = this.state.loading || !canToggle;
 
     return (
       <div title={title}>
         <button
           className={blockClass}
-          disabled={this.state.loading}
+          disabled={disabled}
           onClick={this.onClick}
           ref={this.buttonRef}
         >
           {this.renderIcon()}
+          {this.renderCounter()}
         </button>
       </div>
     );
+  }
+
+  private followers() {
+    return this.state.followersWithoutSelf + (this.state.follow ? 1 : 0);
   }
 
   private onClick = () => {
@@ -99,10 +120,27 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
     });
   }
 
+  private renderCounter() {
+    if (this.props.showFollowerCounter == null || this.props.followers == null) {
+      return;
+    }
+
+    return(
+      <span className={`${bn}__counter`}>
+        {osu.formatNumber(this.followers())}
+      </span>
+    );
+  }
+
   private renderIcon() {
-    return (this.state.loading
+    const icon = this.state.loading
       ? <Spinner />
-      : <i className='fas fa-bell' />
+      : <i className='fas fa-bell' />;
+
+    return(
+      <span className={`${bn}__icon-container`}>
+        {icon}
+      </span>
     );
   }
 

@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Jobs\UpdateUserMappingFollowerCountCache;
 use App\Models\Follow;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicTrack;
@@ -28,6 +29,10 @@ class FollowsController extends Controller
 
         if ($follow !== null) {
             $follow->delete();
+        }
+
+        if ($follow->subtype === 'mapping') {
+            dispatch(new UpdateUserMappingFollowerCountCache($follow->notifiable_id));
         }
 
         return response([], 204);
@@ -62,6 +67,10 @@ class FollowsController extends Controller
             if (!is_sql_unique_exception($e)) {
                 throw $e;
             }
+        }
+
+        if ($params['subtype'] === 'mapping') {
+            dispatch(new UpdateUserMappingFollowerCountCache($params['notifiable_id']));
         }
 
         return response([], 204);
