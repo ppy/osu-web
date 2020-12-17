@@ -167,7 +167,7 @@ class ScoresController extends BaseController
         $playlistItem = $room->playlist()->where('id', $playlistId)->firstOrFail();
         $user = auth()->user();
 
-        if (!$user->isAdmin()) {
+        if ($user->findUserGroup(app('groups')->byIdentifier('admin'), true) === null) {
             $clientHash = presence(request('version_hash'));
             abort_if($clientHash === null, 422, 'missing client version');
 
