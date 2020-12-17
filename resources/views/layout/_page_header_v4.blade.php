@@ -5,6 +5,7 @@
 @php
     $backgroundExtraClass = $params['backgroundExtraClass'] ?? '';
     $backgroundImage = $params['backgroundImage'] ?? null;
+    $currentActive = $params['currentActive'] ?? null;
     $headerExtraClass = $params['headerExtraClass'] ?? '';
     $links = $params['links'] ?? null;
     $linksBreadcrumb = $params['linksBreadcrumb'] ?? false;
@@ -16,7 +17,11 @@
 <div class="
     header-v4
     {{ isset($theme) ? "header-v4--{$theme}" : '' }}
-    {{ (auth()->check() && auth()->user()->isRestricted()) ? 'header-v4--restricted' : '' }}
+    {{ ((auth()->check() && auth()->user()->isRestricted())
+        || (auth()->user()->isSilenced() && $currentActive === 'account_controller.edit'))
+        ? 'header-v4--restricted'
+        : ''
+    }}
     {{ $headerExtraClass }}
 ">
     <div class="header-v4__container header-v4__container--main">

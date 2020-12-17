@@ -5,6 +5,14 @@
 @extends('master', ['titlePrepend' => trans('accounts.edit.title_compact')])
 
 @section('content')
+    @if (Auth::user()->isSilenced() && !Auth::user()->isRestricted())
+        @include('objects._notification_banner', [
+            'type' => 'alert',
+            'title' => trans('users.silenced_banner.title'),
+            'message' => trans('users.silenced_banner.message'),
+        ])
+    @endif
+
     @include('home._user_header_default', ['themeOverride' => 'settings'])
 
     <div class="osu-page u-has-anchor">
@@ -81,7 +89,12 @@
                             </div>
                         </div>
 
-                        <label class="btn-osu-big btn-osu-big--account-edit">
+                        <label
+                            class="btn-osu-big btn-osu-big--account-edit"
+                            @if (Auth::user()->isSilenced())
+                                disabled
+                            @endif
+                        >
                             <div class="btn-osu-big__content">
                                 <div class="btn-osu-big__left">
                                     {{ trans('common.buttons.upload_image') }}
@@ -97,6 +110,9 @@
                                 type="file"
                                 name="avatar_file"
                                 data-url="{{ route('account.avatar') }}"
+                                @if (Auth::user()->isSilenced())
+                                    disabled
+                                @endif
                             >
                         </label>
 
