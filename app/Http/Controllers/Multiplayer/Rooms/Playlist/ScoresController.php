@@ -165,21 +165,24 @@ class ScoresController extends BaseController
     {
         $room = Room::findOrFail($roomId);
         $playlistItem = $room->playlist()->where('id', $playlistId)->firstOrFail();
+        $user = auth()->user();
 
-        $clientHash = presence(request('version_hash'));
-        abort_if($clientHash === null, 422, 'missing client version');
+        if ($user->findUserGroup(app('groups')->byIdentifier('admin'), true) === null) {
+            $clientHash = presence(request('version_hash'));
+            abort_if($clientHash === null, 422, 'missing client version');
 
-        // temporary measure to allow android builds to submit without access to the underlying dll to hash
-        if (strlen($clientHash) !== 32) {
-            $clientHash = md5($clientHash);
+            // temporary measure to allow android builds to submit without access to the underlying dll to hash
+            if (strlen($clientHash) !== 32) {
+                $clientHash = md5($clientHash);
+            }
+
+            Build::where([
+                'hash' => hex2bin($clientHash),
+                'allow_ranking' => true,
+            ])->firstOrFail();
         }
 
-        Build::where([
-            'hash' => hex2bin($clientHash),
-            'allow_ranking' => true,
-        ])->firstOrFail();
-
-        $score = $room->startPlay(auth()->user(), $playlistItem);
+        $score = $room->startPlay($user, $playlistItem);
 
         return json_item(
             $score,

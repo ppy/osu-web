@@ -104,10 +104,9 @@ reactTurbolinks.registerPersistent 'ranking-filter', RankingFilter, true, (el) -
 
 reactTurbolinks.register 'user-card', UserCard, (el) ->
   modifiers: try JSON.parse(el.dataset.modifiers)
-  user: try JSON.parse(el.dataset.user)
+  user: if el.dataset.isCurrentUser then currentUser else try JSON.parse(el.dataset.user)
 
 reactTurbolinks.register 'user-card-store', UserCardStore, (el) ->
-  container: el
   user: JSON.parse(el.dataset.user)
 
 reactTurbolinks.register 'user-card-tooltip', UserCardTooltip, (el) ->
