@@ -5,11 +5,13 @@ import Fade from 'fade';
 
 export default class ClickMenu {
   private current: string | null | undefined = null;
+  private documentMouseEventTarget: unknown;
 
   constructor() {
     $(document).on('click', '.js-click-menu--close', this.close);
     $(document).on('click', '.js-click-menu[data-click-menu-target]', this.toggle);
-    $(document).on('click', this.hide);
+    $(document).on('mousedown', this.onDocumentMousedown);
+    $(document).on('mouseup', this.onDocumentMouseup);
     document.addEventListener('turbolinks:load', this.restoreSaved);
     document.addEventListener('turbolinks:before-cache', this.saveCurrent);
   }
@@ -22,15 +24,6 @@ export default class ClickMenu {
     if (child != null) {
       return $(child).parents('[data-click-menu-id]').attr('data-click-menu-id');
     }
-  }
-
-  hide = (e: JQuery.ClickEvent) => {
-    if (e.button !== 0) return;
-    if (osu.popupShowing()) return;
-    if (this.current == null) return;
-    if ($(e.target).closest('.js-click-menu').length > 0) return;
-
-    this.show();
   }
 
   menu(id: string | null | undefined) {
@@ -138,5 +131,19 @@ export default class ClickMenu {
     }
 
     return tree;
+  }
+
+  private onDocumentMousedown = (e: JQuery.MouseDownEvent) => {
+    this.documentMouseEventTarget = e.button === 0 ? e.target : null;
+  }
+
+  private onDocumentMouseup = (e: JQuery.MouseUpEvent) => {
+    if (this.documentMouseEventTarget !== e.target) return;
+    if (e.button !== 0) return;
+    if (osu.popupShowing()) return;
+    if (this.current == null) return;
+    if ($(e.target).closest('.js-click-menu').length > 0) return;
+
+    this.show();
   }
 }

@@ -34,7 +34,7 @@ export default class MainView extends React.Component<Props> {
       <>
         <HeaderV4 theme='chat' />
         <Provider dataStore={this.props.dataStore}>
-          {this.props.dataStore.channelStore.loaded ? (
+          {this.props.dataStore.channelStore.channels.size > 0 ? (
             <div className='chat osu-page osu-page--chat'>
               <div className='chat__sidebar'>
                 <ConversationList />

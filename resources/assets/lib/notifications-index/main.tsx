@@ -20,6 +20,7 @@ import { ShowMoreLink } from 'show-more-link';
 @observer
 export class Main extends React.Component {
   static readonly contextType = NotificationContext;
+  context!: React.ContextType<typeof NotificationContext>;
 
   private readonly controller: NotificationController;
 
