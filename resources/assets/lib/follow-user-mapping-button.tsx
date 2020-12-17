@@ -53,20 +53,20 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
   }
 
   render() {
-    if (currentUser.id === this.props.userId && !this.props.alwaysVisible) {
+    const canToggle = !(currentUser.id == null || currentUser.id === this.props.userId);
+
+    if (!canToggle && !this.props.alwaysVisible) {
       return null;
     }
 
-    const currentUserProfile = currentUser.id === this.props.userId;
-    const notLoggedIn = currentUser.id == null;
-
-    let title = osu.trans(`follows.mapping.${this.state.follow ? 'to_0' : 'to_1'}`);
-    if (currentUserProfile || notLoggedIn) title = osu.trans(`follows.mapping.followers`);
+    const title = canToggle
+      ? osu.trans(`follows.mapping.${this.state.follow ? 'to_0' : 'to_1'}`)
+      : osu.trans(`follows.mapping.followers`);
 
     let blockClass = classWithModifiers(bn, this.props.modifiers);
     blockClass += classWithModifiers(bn, { friend: this.state.follow }, true);
 
-    const disabled = this.state.loading || currentUserProfile || notLoggedIn;
+    const disabled = this.state.loading || !canToggle;
 
     return (
       <div title={title}>
