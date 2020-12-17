@@ -1132,7 +1132,7 @@ body {
   width: max-content;
   text-decoration: none;
 }
-.scope--auth {
+.scope--oauth {
   background-color: #3a87ad;
 }
 .scope-list {

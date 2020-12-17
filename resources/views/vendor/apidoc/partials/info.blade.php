@@ -43,9 +43,9 @@ v1      | _legacy api provided by the old site, will be deprecated soon_
 
 # Authentication
 
-Routes marked with this label <span class="scope scope--auth">Requires authentication</span> require authentication.
+Routes marked with the <span class="scope scope--oauth">OAuth</span> label require a valid OAuth2 token for access.
 
-osu!api uses OAuth2 to grant access to the API. More information about applications you have registered and granted permissions to can be found [here](#managing-oauth-applications).
+More information about applications you have registered and granted permissions to can be found [here](#managing-oauth-applications).
 
 The API supports the following grant types:
 - [Authorization Code Grant](https://oauth.net/2/grant-types/authorization-code/)
