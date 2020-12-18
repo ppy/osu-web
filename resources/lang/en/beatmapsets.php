@@ -120,8 +120,8 @@ return [
             'title' => 'Explicit Content',
 
             'buttons' => [
-                'back' => 'Go back',
                 'disable' => 'Disable warning',
+                'listing' => 'Beatmap listing',
                 'show' => 'Show',
             ],
         ],
