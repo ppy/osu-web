@@ -5,7 +5,7 @@ import { route } from 'laroute';
 import Notification from 'models/notification';
 
 export function urlGroup(item: Notification) {
-  if (item.name === 'comment_new') {
+  if (item.name === 'comment_new' || item.name === 'comment_reply') {
     switch (item.objectType) {
       case 'beatmapset':
         return route('beatmapsets.show', { beatmapset: item.objectId });

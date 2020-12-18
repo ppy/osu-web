@@ -80,6 +80,8 @@
                         class="mobile-menu-tab js-click-menu js-react--chat-icon"
                         data-click-menu-target="mobile-chat-notification"
                         data-chat-icon="{{ json_encode(['type' => 'mobile']) }}"
+                        data-turbolinks-permanent
+                        id="notification-widget-chat-icon-mobile"
                     >
                         <span class="notification-icon notification-icon--mobile">
                             <i class="fas fa-comment-alt"></i>
@@ -90,6 +92,8 @@
                     <button class="mobile-menu-tab js-click-menu js-react--notification-icon"
                         data-click-menu-target="mobile-notification"
                         data-notification-icon="{{ json_encode(['type' => 'mobile']) }}"
+                        data-turbolinks-permanent
+                        id="notification-widget-icon-mobile"
                     >
                         <span class="notification-icon notification-icon--mobile">
                             <i class="fas fa-inbox"></i>
@@ -116,6 +120,8 @@
                     data-click-menu-id="mobile-chat-notification"
                     data-notification-widget="{{ json_encode(['only' => 'channel']) }}"
                     data-visibility="hidden"
+                    data-turbolinks-permanent
+                    id="notification-widget-chat-mobile"
                 ></div>
 
                 <div
@@ -123,6 +129,8 @@
                     data-click-menu-id="mobile-notification"
                     data-notification-widget="{{ json_encode(['excludes' => ['channel']]) }}"
                     data-visibility="hidden"
+                    data-turbolinks-permanent
+                    id="notification-widget-mobile"
                 ></div>
             @endif
         </div>

@@ -6,7 +6,6 @@ import * as React from 'react';
 import { UserCard } from 'user-card';
 
 interface Props {
-  container: HTMLElement;
   user: UserJson;
 }
 

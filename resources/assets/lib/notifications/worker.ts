@@ -21,11 +21,6 @@ import {
   NotificationEventReadJson,
 } from './notification-events';
 
-export interface MessageJson {
-  data: JSON;
-  event: string;
-}
-
 interface NotificationBootJson extends NotificationBundleJson {
   notification_endpoint: string;
 }

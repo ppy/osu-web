@@ -12,14 +12,13 @@ return [
         'title_compact' => 'watchlists',
     ],
 
-    'modding' => [
-        'title' => 'beatmap discussion',
+    'mapping' => [
+        'followers' => 'mapping subscribers',
+        'to_0' => 'stop notifying me when this user uploads new beatmap',
+        'to_1' => 'notify me when this user uploads new beatmap',
     ],
 
-    'user' => [
-        'modding' => [
-            'to_0' => 'stop notifying me when this user uploads new beatmap',
-            'to_1' => 'notify me when this user uploads new beatmap',
-        ],
+    'modding' => [
+        'title' => 'beatmap discussion',
     ],
 ];
