@@ -15,8 +15,8 @@ interface Props {
 }
 
 interface State {
-  following: boolean;
   followersWithoutSelf: number;
+  following: boolean;
   loading: boolean;
 }
 
