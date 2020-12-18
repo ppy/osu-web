@@ -28,13 +28,11 @@ class FollowsController extends Controller
     public function destroy()
     {
         $params = $this->getParams();
-        foreach (['notifiable_type', 'notifiable_id', 'subtype'] as $field) {
-            if (!isset($params[$field])) {
-                abort(422, "Missing parameter follow[{$field}]");
-            }
-        }
+        $follow = Follow::where($params)->first();
 
-        Follow::where($params)->delete();
+        if ($follow !== null) {
+            $follow->delete();
+        }
 
         return response([], 204);
     }
