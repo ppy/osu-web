@@ -52,7 +52,12 @@ export default class Main extends React.PureComponent<Props> {
     return (
       <div key={follow.notifiable_id} className='follows-table__row'>
         <div className='follows-table__data follows-table__data--user'>
-          <a className='follow-mapper' href={route('users.show', { user: follow.user.id })}>
+          <a
+            className='follow-mapper js-usercard'
+            data-user-id={follow.user.id}
+            data-tooltip-position='top center'
+            href={route('users.show', { user: follow.user.id })}
+          >
             <span className='follow-mapper__avatar'>
               <span
                 className='avatar avatar--full-rounded'
