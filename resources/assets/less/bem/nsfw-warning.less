@@ -4,48 +4,51 @@
 .nsfw-warning {
   font-size: @font-size--title-small;
   text-align: center;
+  display: grid;
+  grid-gap: 10px;
 
   &__button {
     .reset-input();
     .default-text-shadow();
+    --bg: hsl(var(--hsl-blue-2));
+    --bg-hover: hsl(var(--hsl-blue-3));
 
+    flex: none;
     padding: 10px;
-    width: 150px;
-    background-color: @blue-dark;
+    margin: 5px;
+    background-color: var(--bg);
     border-radius: 150px;
     font-weight: 600;
+    width: 200px;
+    max-width: 100%;
 
-    & + & {
-      margin-left: 10px;
-    }
+    .link-hover({
+      background-color: var(--bg-hover);
+    });
 
-    &:focus, &:hover, &:active {
-      background-color: @blue;
+    @media @narrow-up {
+      width: 150px;
+      max-width: none;
     }
 
     &--show {
-      background-color: @red-dark;
-
-      &:focus, &:hover, &:active {
-        background-color: @red;
-      }
+      --bg: hsl(var(--hsl-red-2));
+      --bg-hover: hsl(var(--hsl-red-3));
     }
-  }
-
-  &__header {
-    margin-bottom: 10px;
-    font-size: @font-size--title;
   }
 
   &__row {
     display: flex;
     justify-content: center;
 
-    & + & {
-      margin-top: 10px;
+    &--buttons {
+      margin: 0 -5px -5px;
+      flex-direction: column;
+      align-items: center;
 
-      &--buttons {
-        margin-top: 15px;
+      @media @narrow-up {
+        flex-direction: row;
+        align-items: stretch;
       }
     }
 
@@ -55,6 +58,7 @@
 
     &--title {
       font-weight: 300;
+      font-size: @font-size--title;
     }
   }
 }
