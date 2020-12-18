@@ -93,8 +93,10 @@ export class BeatmapsetPanel extends React.PureComponent
             div className: 'beatmapset-status', osu.trans("beatmapsets.show.status.#{beatmapset.status}")
 
           div className: 'beatmapset-panel__title-artist-box',
-            div className: 'u-ellipsis-overflow beatmapset-panel__header-text beatmapset-panel__header-text--title',
-              BeatmapHelper.getTitle(beatmapset)
+            div className: 'beatmapset-panel__header-text beatmapset-panel__header-text--title',
+              span className: 'u-ellipsis-overflow', BeatmapHelper.getTitle(beatmapset)
+              if beatmapset.nsfw
+                span className: 'nsfw-badge nsfw-badge--panel', osu.trans('beatmapsets.nsfw_badge.label')
             div className: 'u-ellipsis-overflow beatmapset-panel__header-text',
               BeatmapHelper.getArtist(beatmapset)
 

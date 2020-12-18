@@ -11,7 +11,7 @@ import { BeatmapsetMapping } from 'beatmapset-mapping'
 import HeaderV4 from 'header-v4'
 import { PlaymodeTabs } from 'playmode-tabs'
 import * as React from 'react'
-import { a, div, h1, h2, p } from 'react-dom-factories'
+import { a, div, h1, h2, p, span } from 'react-dom-factories'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
 import { showVisual } from 'utils/beatmapset-helper'
 import Chart from 'beatmap-discussions/chart'
@@ -84,6 +84,8 @@ export class Header extends React.PureComponent
           h1
             className: "#{bn}__title"
             getTitle(@props.beatmapset)
+            if @props.beatmapset.nsfw
+              span className: 'nsfw-badge', osu.trans('beatmapsets.nsfw_badge.label')
           h2
             className: "#{bn}__title #{bn}__title--artist"
             getArtist(@props.beatmapset)

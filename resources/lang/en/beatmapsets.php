@@ -39,6 +39,10 @@ return [
         ],
     ],
 
+    'nsfw_badge' => [
+        'label' => 'Explicit',
+    ],
+
     'show' => [
         'discussion' => 'Discussion',
 
