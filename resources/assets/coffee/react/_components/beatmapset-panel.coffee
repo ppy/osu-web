@@ -20,6 +20,8 @@ export class BeatmapsetPanel extends React.PureComponent
     # this is actually "beatmapset"
     beatmapset = @props.beatmap
 
+    @showVisual = !beatmapset.nsfw || (currentUser?.user_preferences?.beatmapset_show_nsfw ? false)
+
     showHypeCounts = beatmapset.hype?
     if showHypeCounts
       currentHype = osu.formatNumber(beatmapset.hype?.current)
@@ -68,16 +70,17 @@ export class BeatmapsetPanel extends React.PureComponent
               el BeatmapIcon, beatmap: b
 
     div
-      className: 'beatmapset-panel js-audio--player'
+      className: "beatmapset-panel #{if @showVisual then 'js-audio--player' else ''}"
       'data-audio-url': beatmapset.preview_url
       div className: 'beatmapset-panel__panel',
         a
           href: laroute.route('beatmapsets.show', beatmapset: beatmapset.id)
           className: 'beatmapset-panel__header',
-          el Img2x,
-            className: 'beatmapset-panel__image'
-            onError: @hideImage
-            src: beatmapset.covers.card
+          if @showVisual
+            el Img2x,
+              className: 'beatmapset-panel__image'
+              onError: @hideImage
+              src: beatmapset.covers.card
           div className: 'beatmapset-panel__image-overlay'
           div className: 'beatmapset-panel__status-container',
             if beatmapset.video
@@ -142,9 +145,10 @@ export class BeatmapsetPanel extends React.PureComponent
               @renderDownloadLink()
 
           div className: 'beatmapset-panel__difficulties', difficulties
-      button
-        type: 'button'
-        className: 'beatmapset-panel__play js-audio--play'
+      if @showVisual
+        button
+          type: 'button'
+          className: 'beatmapset-panel__play js-audio--play'
       div className: 'beatmapset-panel__shadow'
 
 
