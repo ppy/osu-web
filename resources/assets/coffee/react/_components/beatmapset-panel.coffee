@@ -8,6 +8,7 @@ import { a, button, div, i, span, strong } from 'react-dom-factories'
 import { StringWithComponent } from 'string-with-component'
 import OsuUrlHelper from 'osu-url-helper'
 import * as BeatmapHelper from 'utils/beatmap-helper'
+import { showVisual } from 'utils/beatmapset-helper'
 el = React.createElement
 
 export class BeatmapsetPanel extends React.PureComponent
@@ -20,7 +21,7 @@ export class BeatmapsetPanel extends React.PureComponent
     # this is actually "beatmapset"
     beatmapset = @props.beatmap
 
-    @showVisual = !beatmapset.nsfw || (currentUser?.user_preferences?.beatmapset_show_nsfw ? false)
+    @showVisual = showVisual(beatmapset)
 
     showHypeCounts = beatmapset.hype?
     if showHypeCounts

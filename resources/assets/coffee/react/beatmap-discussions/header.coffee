@@ -13,6 +13,7 @@ import { PlaymodeTabs } from 'playmode-tabs'
 import * as React from 'react'
 import { a, div, h1, h2, p } from 'react-dom-factories'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
+import { showVisual } from 'utils/beatmapset-helper'
 import Chart from 'beatmap-discussions/chart'
 el = React.createElement
 
@@ -75,7 +76,7 @@ export class Header extends React.PureComponent
       div
         className: "#{bn}__content"
         style:
-          backgroundImage: osu.urlPresence(@props.beatmapset.covers.cover)
+          backgroundImage: osu.urlPresence(@props.beatmapset.covers.cover) if showVisual(@props.beatmapset)
 
         a
           className: "#{bn}__title-container"
