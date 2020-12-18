@@ -81,19 +81,22 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
           </div>
         </label>
 
-        <label className='simple-form__row'>
+        <div className='simple-form__row'>
           <div className='simple-form__label'>
             {osu.trans('beatmapsets.show.info.nsfw')}
           </div>
 
-          <input
-            checked={this.state.nsfw}
-            className='simple-form__checkbox'
-            name='beatmapset[nsfw]'
-            onChange={this.setNsfw}
-            type='checkbox'
-          />
-        </label>
+          <label className='osu-switch-v2'>
+            <input
+              checked={this.state.nsfw}
+              className='osu-switch-v2__input'
+              name='beatmapset[nsfw]'
+              onChange={this.setNsfw}
+              type='checkbox'
+            />
+            <span className='osu-switch-v2__content' />
+          </label>
+        </div>
 
         <div className='simple-form__row simple-form__row--no-label'>
           <div className='simple-form__buttons'>
