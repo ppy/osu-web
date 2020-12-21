@@ -152,7 +152,6 @@ class FollowsController extends Controller
                 'user_id',
                 (clone $followsQuery)->select('notifiable_id')
             )->groupBy('user_id')
-            ->active()
             ->where('approved', '<>', Beatmapset::STATES['wip'])
             ->get()
             ->pluck('latest_beatmapset_id');
