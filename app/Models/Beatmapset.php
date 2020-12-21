@@ -73,6 +73,7 @@ use Illuminate\Database\QueryException;
  * @property int $language_id
  * @property \Carbon\Carbon $last_update
  * @property int $nominations
+ * @property bool $nsfw
  * @property int $offset
  * @property mixed|null $osz2_hash
  * @property int $play_count
@@ -107,6 +108,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         'active' => 'boolean',
         'download_disabled' => 'boolean',
         'epilepsy' => 'boolean',
+        'nsfw' => 'boolean',
         'storyboard' => 'boolean',
         'video' => 'boolean',
         'discussion_enabled' => 'boolean',
