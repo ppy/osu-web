@@ -8,8 +8,6 @@ namespace App\Http\Controllers;
 use App\Exceptions\ScoreRetrievalException;
 use App\Models\Beatmap;
 use App\Models\Score\Best\Model as BestModel;
-use Auth;
-use Request;
 
 class BeatmapsController extends Controller
 {
@@ -47,14 +45,22 @@ class BeatmapsController extends Controller
             return ['scores' => []];
         }
 
-        $mode = presence(Request::input('mode')) ?? $beatmap->mode;
-        $mods = get_arr(Request::input('mods'), 'presence') ?? [];
-        $type = Request::input('type', 'global');
-        $user = Auth::user();
+        $params = get_params(request()->all(), null, [
+            'mode:string',
+            'mods:any',
+            'type:string',
+            'user_id:int',
+        ]);
+
+        $mode = presence($params['mode'] ?? null, $beatmap->mode);
+        $mods = get_arr($params['mods'] ?? null, 'presence') ?? [];
+        $type = presence($params['type'] ?? null, 'global');
+        $currentUser = auth()->user();
+        $userId = presence($params['user_id'] ?? null);
 
         try {
             if ($type !== 'global' || !empty($mods)) {
-                if ($user === null || !$user->isSupporter()) {
+                if ($currentUser === null || !$currentUser->isSupporter()) {
                     throw new ScoreRetrievalException(trans('errors.supporter_only'));
                 }
             }
@@ -64,20 +70,24 @@ class BeatmapsController extends Controller
                 ->where('beatmap_id', $beatmap->getKey())
                 ->with(['beatmap', 'user.country', 'user.userProfileCustomization'])
                 ->withMods($mods)
-                ->withType($type, compact('user'));
+                ->withType($type, ['user' => $currentUser]);
 
-            if ($user !== null) {
-                $score = (clone $query)->where('user_id', $user->user_id)->first();
+            if ($currentUser !== null && $userId === null) {
+                $userScore = (clone $query)->where('user_id', $currentUser->user_id)->first();
+            }
+
+            if ($userId !== null) {
+                $query->where('user_id', $userId);
             }
 
             $results = [
                 'scores' => json_collection($query->visibleUsers()->forListing(), 'Score', ['beatmap', 'user', 'user.country', 'user.cover']),
             ];
 
-            if (isset($score)) {
+            if (isset($userScore)) {
                 $results['userScore'] = [
-                    'position' => $score->userRank(compact('type', 'mods')),
-                    'score' => json_item($score, 'Score', ['user', 'user.country', 'user.cover']),
+                    'position' => $userScore->userRank(compact('type', 'mods')),
+                    'score' => json_item($userScore, 'Score', ['user', 'user.country', 'user.cover']),
                 ];
             }
 
