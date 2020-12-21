@@ -346,6 +346,13 @@ Route::group(['middleware' => ['web']], function () {
 // require-scopes is not in the api group at the moment to reduce the number of things that need immediate fixing.
 Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', ThrottleRequests::getApiThrottle(), 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
+        Route::group(['prefix' => 'beatmaps'], function () {
+            Route::get('{beatmap}/scores', 'BeatmapsController@scores');
+            Route::get('lookup', 'API\BeatmapsController@lookup');
+        });
+
+        Route::resource('beatmaps', 'API\BeatmapsController', ['only' => ['show']]);
+
         Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets'], function () {
             Route::apiResource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
             // TODO: move other beatmapset routes here
@@ -396,13 +403,6 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             Route::get('{score}', 'ScoresController@show')->name('show');
         });
 
-        // Beatmaps
-        //   GET /api/v2/beatmaps/:beatmap_id/scores
-        Route::get('beatmaps/{id}/scores', 'BeatmapsController@scores');
-        //   GET /api/v2/beatmaps/lookup
-        Route::get('beatmaps/lookup', 'API\BeatmapsController@lookup');
-        //   GET /api/v2/beatmaps/:beatmap_id
-        Route::resource('beatmaps', 'API\BeatmapsController', ['only' => ['show']]);
 
         // Beatmapsets
         //   GET /api/v2/beatmapsets/search/:filters
