@@ -29,10 +29,10 @@ class FollowsController extends Controller
 
         if ($follow !== null) {
             $follow->delete();
-        }
 
-        if ($follow->subtype === 'mapping') {
-            dispatch(new UpdateUserMappingFollowerCountCache($follow->notifiable_id));
+            if ($follow->subtype === 'mapping') {
+                dispatch(new UpdateUserMappingFollowerCountCache($follow->notifiable_id));
+            }
         }
 
         return response([], 204);
