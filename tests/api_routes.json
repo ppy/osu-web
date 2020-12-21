@@ -664,7 +664,7 @@
         ]
     },
     {
-        "uri": "api/v2/beatmaps/{id}/scores",
+        "uri": "api/v2/beatmaps/{beatmaps}/scores",
         "method": "GET",
         "controller": "App\\Http\\Controllers\\BeatmapsController@scores",
         "middlewares": [
@@ -677,7 +677,7 @@
         ]
     },
     {
-        "uri": "api/v2/beatmaps/{id}/scores",
+        "uri": "api/v2/beatmaps/{beatmaps}/scores",
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\BeatmapsController@scores",
         "middlewares": [
