@@ -38,6 +38,24 @@ class BeatmapsController extends Controller
         return ujs_redirect(route('beatmapsets.show', ['beatmapset' => $set->beatmapset_id]).'#'.$mode.'/'.$id);
     }
 
+    /**
+     * Get Beatmap scores
+     *
+     * Returns the top scores for a beatmap
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [BeatmapScores](#beatmapscores)
+     *
+     * @urlParam id required Id of the [Beatmap](#beatmap).
+     *
+     * @queryParam mode The [GameMode](#gamemode) to get scores for.
+     * @queryParam mods An array of matching Mods, or none // TODO.
+     * @queryParam type Beatmap score ranking type // TODO.
+     * @queryParam user_id The id of the [User](#user) to lookup scores for; usernames are not accepted. `userScore` will not be included in the response.
+     */
     public function scores($id)
     {
         $beatmap = Beatmap::findOrFail($id);
