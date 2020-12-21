@@ -35,7 +35,6 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
             'last_updated' => json_time($beatmapset->last_update),
             'legacy_thread_url' => $beatmapset->thread_id !== 0 ? route('forum.topics.show', $beatmapset->thread_id) : null,
             'nominations_summary' => $beatmapset->nominationsSummaryMeta(),
-            'nsfw' => $beatmapset->nsfw,
             'ranked' => $beatmapset->approved,
             'ranked_date' => json_time($beatmapset->approved_date),
             'source' => $beatmapset->source,
