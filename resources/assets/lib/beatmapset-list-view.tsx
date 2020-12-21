@@ -47,7 +47,7 @@ export default class BeatmapsetListView extends React.PureComponent<Props> {
             </span>
           </div>
 
-          <div className='beatmapset-list-view__status'>
+          <div className='beatmapset-status beatmapset-status--list-view'>
             {osu.trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
           </div>
         </div>
