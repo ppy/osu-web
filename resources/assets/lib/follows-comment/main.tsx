@@ -27,7 +27,7 @@ export default class Main extends React.PureComponent<Props> {
       <div className='osu-layout osu-layout--full'>
         <HeaderV4
           backgroundImage={this.props.user.cover?.url}
-          links={homeLinks('follows@index')}
+          links={homeLinks('follows.index')}
           theme='settings'
         />
 
