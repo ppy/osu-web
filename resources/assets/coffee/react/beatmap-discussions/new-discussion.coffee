@@ -264,7 +264,7 @@ export class NewDiscussion extends React.PureComponent
       beatmap_discussion_post:
         message: @state.message
 
-    @postXhr = $.ajax laroute.route('beatmap-discussion-posts.store'),
+    @postXhr = $.ajax laroute.route('beatmapsets.discussions.posts.store'),
       method: 'POST'
       data: data
 
