@@ -68,14 +68,28 @@ class UserChannel extends Model
         ]));
     }
 
-    public static function presenceForUser(User $user, $cursor = null)
+    public static function presenceForUser(User $user)
+    {
+        $results = static::presenceForUserWithCursor($user);
+
+        $last = array_last($results);
+        while ($last !== null) {
+            $moreResults = static::presenceForUserWithCursor($user, $last['channel_id']);
+            $last = array_last($moreResults);
+            $results = array_merge($results, $moreResults);
+        }
+
+        return $results;
+    }
+
+    public static function presenceForUserWithCursor(User $user, $cursor = null)
     {
         // retrieve all the channels the user is in and the metadata for each
         $userChannels = static::forUser($user)
             ->whereHas('channel')
             ->with('channel')
             ->orderBy('channel_id', 'asc')
-            ->limit(10);
+            ->limit(100);
 
         if ($cursor !== null) {
             $userChannels->where('channel_id', '>', $cursor);
