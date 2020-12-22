@@ -89,7 +89,7 @@ class UserChannel extends Model
             ->whereHas('channel')
             ->with('channel')
             ->orderBy('channel_id', 'asc')
-            ->limit(100);
+            ->limit(50);
 
         if ($cursor !== null) {
             $userChannels->where('channel_id', '>', $cursor);
