@@ -804,7 +804,7 @@ function ujs_redirect($url, $status = 200)
         }
 
         // because non-3xx redirects make no sense.
-        if ((int) ($status / 300) !== 1) {
+        if ($status < 300 || $status > 399) {
             $status = 302;
         }
 
