@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
-import { without } from 'lodash';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import { classWithModifiers, Modifiers } from 'utils/css';
@@ -16,8 +15,8 @@ interface Props {
 }
 
 interface State {
-  follow: boolean;
   followersWithoutSelf: number;
+  following: boolean;
   loading: boolean;
 }
 
@@ -31,20 +30,20 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
   constructor(props: Props) {
     super(props);
 
-    const follow = currentUser.follow_user_mapping?.includes(this.props.userId) ?? false;
+    const following = currentUser.follow_user_mapping?.includes(this.props.userId) ?? false;
     let followersWithoutSelf = this.props.followers ?? 0;
 
-    if (follow !== false) followersWithoutSelf -= 1;
+    if (following !== false) followersWithoutSelf -= 1;
 
     this.state = {
-      follow,
       followersWithoutSelf,
+      following,
       loading: false,
     };
   }
 
   componentDidMount() {
-    $.subscribe(`followUserMapping:refresh.${this.eventId}`, this.refresh);
+    $.subscribe(`user:followUserMapping:refresh.${this.eventId}`, this.refresh);
   }
 
   componentWillUnmount() {
@@ -60,11 +59,11 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
     }
 
     const title = canToggle
-      ? osu.trans(`follows.mapping.${this.state.follow ? 'to_0' : 'to_1'}`)
+      ? osu.trans(`follows.mapping.${this.state.following ? 'to_0' : 'to_1'}`)
       : osu.trans(`follows.mapping.followers`);
 
     let blockClass = classWithModifiers(bn, this.props.modifiers);
-    blockClass += classWithModifiers(bn, { friend: this.state.follow }, true);
+    blockClass += classWithModifiers(bn, { friend: this.state.following }, true);
 
     const disabled = this.state.loading || !canToggle;
 
@@ -84,7 +83,7 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
   }
 
   private followers() {
-    return this.state.followersWithoutSelf + (this.state.follow ? 1 : 0);
+    return this.state.followersWithoutSelf + (this.state.following ? 1 : 0);
   }
 
   private onClick = () => {
@@ -99,7 +98,7 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
         },
       };
 
-      if (this.state.follow) {
+      if (this.state.following) {
         params.type = 'DELETE';
         params.url = route('follows.destroy');
       } else {
@@ -116,7 +115,7 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
 
   private refresh = () => {
     this.setState({
-      follow: currentUser.follow_user_mapping.includes(this.props.userId),
+      following: currentUser.follow_user_mapping.includes(this.props.userId),
     });
   }
 
@@ -145,12 +144,6 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
   }
 
   private updateData = () => {
-    if (this.state.follow) {
-      currentUser.follow_user_mapping = without(currentUser.follow_user_mapping, this.props.userId);
-    } else {
-      currentUser.follow_user_mapping = currentUser.follow_user_mapping.concat(this.props.userId);
-    }
-
-    $.publish('followUserMapping:refresh');
+    $.publish('user:followUserMapping:update', { following: !this.state.following, userId: this.props.userId });
   }
 }
