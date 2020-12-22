@@ -74,6 +74,8 @@ class UserChannel extends Model
         $userChannels = static::forUser($user)
             ->whereHas('channel')
             ->with('channel')
+            ->orderBy('channel_id', 'asc')
+            ->limit(10)
             ->get();
 
         $channelIds = $userChannels->pluck('channel_id');
