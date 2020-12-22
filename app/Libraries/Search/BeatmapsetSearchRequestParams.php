@@ -244,7 +244,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         }
 
         // generic tie-breaker.
-        $this->sorts[] = new Sort('post_id', $order);
+        $this->sorts[] = new Sort('_id', $order);
     }
 
     private static function remapSortField(?string $name)

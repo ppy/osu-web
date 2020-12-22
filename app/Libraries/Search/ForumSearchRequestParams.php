@@ -56,7 +56,7 @@ class ForumSearchRequestParams extends ForumSearchParams
         }
 
         if ($validSort) {
-            $this->sorts[] = new Sort('_id', $order);
+            $this->sorts[] = new Sort('post_id', $order);
             $this->sortField = $field;
             $this->sortOrder = $order;
         }
