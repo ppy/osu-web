@@ -225,7 +225,7 @@ export class Discussion extends React.PureComponent
 
     @voteXhr?.abort()
 
-    @voteXhr = $.ajax laroute.route('beatmap-discussions.vote', beatmap_discussion: @props.discussion.id),
+    @voteXhr = $.ajax laroute.route('beatmapsets.discussions.vote', discussion: @props.discussion.id),
       method: 'PUT',
       data:
         beatmap_discussion_vote:

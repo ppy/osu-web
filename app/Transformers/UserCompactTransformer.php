@@ -51,6 +51,7 @@ class UserCompactTransformer extends TransformerAbstract
         'is_restricted',
         'is_silenced',
         'loved_beatmapset_count',
+        'mapping_follower_count',
         'monthly_playcounts',
         'page',
         'previous_usernames',
@@ -257,6 +258,11 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeLovedBeatmapsetCount(User $user)
     {
         return $this->primitive($user->profileBeatmapsetsLoved()->count());
+    }
+
+    public function includeMappingFollowerCount(User $user)
+    {
+        return $this->primitive($user->mappingFollowerCount());
     }
 
     public function includeMonthlyPlaycounts(User $user)

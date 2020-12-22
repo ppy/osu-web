@@ -377,6 +377,7 @@
       message = "#{allErrors.join(', ')}."
 
     message ?= xhr?.responseJSON?.error
+    message ?= xhr?.responseJSON?.message
 
     if !message? || message == ''
       errorKey = "errors.codes.http-#{xhr?.status}"

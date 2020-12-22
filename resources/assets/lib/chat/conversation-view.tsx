@@ -120,6 +120,9 @@ export default class ConversationView extends React.Component<Props> {
             <li>{osu.trans('chat.cannot_send.reasons.target_restricted')}</li>
             <li>{osu.trans('chat.cannot_send.reasons.restricted')}</li>
             <li>{osu.trans('chat.cannot_send.reasons.blocked')}</li>
+            <li>{osu.trans('chat.cannot_send.reasons.not_enough_plays')}</li>
+            {/* TODO: missing verification */}
+            <li>{osu.trans('chat.cannot_send.reasons.not_verified')}</li>
           </ul>
         </div>
       );
@@ -130,6 +133,8 @@ export default class ConversationView extends React.Component<Props> {
           <ul className='chat-conversation__cannot-message-reasons'>
             <li>{osu.trans('chat.cannot_send.reasons.channel_moderated')}</li>
             <li>{osu.trans('chat.cannot_send.reasons.restricted')}</li>
+            <li>{osu.trans('chat.cannot_send.reasons.not_enough_plays')}</li>
+            <li>{osu.trans('chat.cannot_send.reasons.not_verified')}</li>
           </ul>
         </div>
       );

@@ -32,7 +32,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this
             ->actingAsVerified($this->user)
-            ->put(route('beatmap-discussions.vote', $this->discussion), [
+            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '1'],
             ])
             ->assertStatus(403);
@@ -46,7 +46,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this
             ->actingAs($this->anotherUser)
-            ->put(route('beatmap-discussions.vote', $this->discussion), [
+            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '1'],
             ])
             ->assertStatus(200);
@@ -63,7 +63,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this
             ->actingAs($moreUser)
-            ->put(route('beatmap-discussions.vote', $this->discussion), [
+            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '1'],
             ])
             ->assertStatus(403);
@@ -85,7 +85,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this
             ->actingAsVerified($this->bngUser)
-            ->put(route('beatmap-discussions.vote', $this->discussion), [
+            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
             ->assertStatus(200);
@@ -107,7 +107,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this
             ->actingAsVerified($this->anotherUser)
-            ->put(route('beatmap-discussions.vote', $this->discussion), [
+            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '1'],
             ])
             ->assertStatus(200);
@@ -129,7 +129,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this
             ->actingAsVerified($this->anotherUser)
-            ->put(route('beatmap-discussions.vote', $this->discussion), [
+            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '0'],
             ])
             ->assertStatus(200);
@@ -151,7 +151,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this
             ->actingAsVerified($this->anotherUser)
-            ->put(route('beatmap-discussions.vote', $this->discussion), [
+            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
             ->assertStatus(403);
@@ -168,7 +168,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this
             ->actingAsVerified($this->bngUser)
-            ->put(route('beatmap-discussions.vote', $this->discussion), [
+            ->put(route('beatmapsets.discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
             ->assertStatus(200);
@@ -256,8 +256,6 @@ class BeatmapDiscussionsControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
-        config()->set('osu.beatmapset.discussion_review_enabled', true);
 
         $this->mapper = factory(User::class)->create();
         $this->user = factory(User::class)->create();

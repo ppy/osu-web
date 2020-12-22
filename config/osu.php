@@ -42,7 +42,6 @@ return [
     ],
     'beatmapset' => [
         'discussion_kudosu_per_user' => get_int(env('BEATMAPSET_DISCUSSION_KUDOSU_PER_USER')) ?? 10,
-        'discussion_review_enabled' => get_bool(env('BEATMAPSET_DISCUSSION_REVIEW_ENABLED', false)),
         'discussion_review_max_blocks' => get_int(env('BEATMAPSET_DISCUSSION_REVIEW_MAXIMUM_BLOCKS', 10)),
         'discussion_review_min_issues' => get_int(env('BEATMAPSET_DISCUSSION_REVIEW_MINIMUM_ISSUES', 1)),
         'download_limit' => intval(env('BEATMAPSET_USER_DOWNLOAD_LIMIT_HOURLY', 10)),
@@ -72,6 +71,7 @@ return [
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
     ],
     'chat' => [
+        'channel_limit' => get_int(env('CHAT_CHANNEL_LIMIT')) ?? 10000,
         'message_length_limit' => get_int(env('CHAT_MESSAGE_LENGTH_LIMIT')) ?? 100,
         'public_backlog_limit' => get_int(env('CHAT_PUBLIC_BACKLOG_LIMIT_HOURS')) ?? 24,
         'rate_limits' => [
