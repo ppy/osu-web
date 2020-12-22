@@ -213,12 +213,13 @@ class Room extends Model
         $category = $params['category'] ?? null;
         if ($category === 'realtime') {
             $this->category = $category;
-        }
-
-        if ($params['ends_at'] ?? null !== null) {
-            $this->ends_at = Carbon::parse($params['ends_at']);
-        } elseif ($params['duration'] ?? null !== null) {
-            $this->ends_at = $this->starts_at->copy()->addMinutes(get_int($params['duration']));
+            $this->ends_at = now()->addSeconds(30);
+        } else {
+            if ($params['ends_at'] ?? null !== null) {
+                $this->ends_at = Carbon::parse($params['ends_at']);
+            } elseif ($params['duration'] ?? null !== null) {
+                $this->ends_at = $this->starts_at->copy()->addMinutes(get_int($params['duration']));
+            }
         }
 
         $this->assertValidStartGame();
@@ -311,20 +312,14 @@ class Room extends Model
 
     private function assertValidStartGame()
     {
-        foreach (['name'] as $field) {
+        foreach (['ends_at', 'name'] as $field) {
             if (!present($this->$field)) {
                 throw new InvariantException("'{$field}' is required");
             }
         }
 
-        if ($this->category !== 'realtime') {
-            if ($this->ends_at === null) {
-                throw new InvariantException("'ends_at' is required");
-            }
-
-            if ($this->starts_at->addMinutes(30)->gt($this->ends_at)) {
-                throw new InvariantException("'ends_at' must be at least 30 minutes after 'starts_at'");
-            }
+        if ($this->category !== 'realtime' && $this->starts_at->addMinutes(30)->gt($this->ends_at)) {
+            throw new InvariantException("'ends_at' must be at least 30 minutes after 'starts_at'");
         }
 
         if ($this->max_attempts !== null) {

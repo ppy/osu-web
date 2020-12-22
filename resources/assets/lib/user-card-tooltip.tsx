@@ -74,7 +74,6 @@ function createTooltip(element: HTMLElement) {
   const card = $('#js-usercard__loading-template').children().clone()[0];
   card.classList.remove('js-react--user-card');
   card.classList.add('js-react--user-card-tooltip');
-  delete card.dataset.reactTurbolinksLoaded;
   card.dataset.lookup = userId;
 
   $(element).qtip(createTooltipOptions(card));

@@ -52,10 +52,14 @@ export class DetailBar extends React.PureComponent
             followers: @props.user.follower_count
             modifiers: ['profile-page']
             alwaysVisible: true
-
-        if @state.currentUser.id? && @state.currentUser.id != @props.user.id
-          div className: "#{bn}__entry",
-            el FollowUserMappingButton, userId: @props.user.id, modifiers: ['profile-page']
+            
+        div className: "#{bn}__entry",
+          el FollowUserMappingButton,
+            userId: @props.user.id
+            showFollowerCounter: true
+            followers: @props.user.mapping_follower_count
+            modifiers: ['profile-page']
+            alwaysVisible: true
 
         if @state.currentUser.id != @props.user.id && !isBlocked
           div className: "#{bn}__entry",

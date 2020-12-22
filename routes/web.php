@@ -304,7 +304,7 @@ Route::group(['middleware' => ['web']], function () {
 
             Route::resource('checkout', 'CheckoutController', ['only' => ['show', 'store']]);
 
-            Route::resource('orders', 'OrdersController', ['only' => ['index']]);
+            Route::resource('orders', 'OrdersController', ['only' => ['destroy', 'index']]);
 
             route_redirect('product/{product}', 'store.products.show');
             Route::resource('products', 'ProductsController', ['only' => ['show']]);
