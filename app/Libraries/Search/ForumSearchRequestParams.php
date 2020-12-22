@@ -44,7 +44,6 @@ class ForumSearchRequestParams extends ForumSearchParams
         switch ($field) {
             case 'created':
                 $this->sorts[] = new Sort('post_time', $order);
-                $this->sorts[] = new Sort('_score', 'desc');
                 break;
             default:
                 $field = 'relevance';
