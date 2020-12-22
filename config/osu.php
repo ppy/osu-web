@@ -71,6 +71,7 @@ return [
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
     ],
     'chat' => [
+        'channel_limit' => get_int(env('CHAT_CHANNEL_LIMIT')) ?? 10000,
         'message_length_limit' => get_int(env('CHAT_MESSAGE_LENGTH_LIMIT')) ?? 100,
         'public_backlog_limit' => get_int(env('CHAT_PUBLIC_BACKLOG_LIMIT_HOURS')) ?? 24,
         'rate_limits' => [
