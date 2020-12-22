@@ -41,24 +41,18 @@ class ForumSearchRequestParams extends ForumSearchParams
             $order = static::DEFAULT_SORT_ORDER;
         }
 
-        $validSort = true;
-
         switch ($field) {
             case 'created':
                 $this->sorts[] = new Sort('post_time', $order);
                 $this->sorts[] = new Sort('_score', 'desc');
                 break;
-            case 'relevance':
-                $this->sorts[] = new Sort('_score', $order);
-                break;
             default:
-                $validSort = false;
+                $field = 'relevance';
+                $this->sorts[] = new Sort('_score', $order);
         }
 
-        if ($validSort) {
-            $this->sorts[] = new Sort('post_id', $order);
-            $this->sortField = $field;
-            $this->sortOrder = $order;
-        }
+        $this->sorts[] = new Sort('post_id', $order);
+        $this->sortField = $field;
+        $this->sortOrder = $order;
     }
 }
