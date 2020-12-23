@@ -81,12 +81,7 @@ class BeatmapsController extends Controller
                 }
             }
 
-            $query = BestModel::getClassByString($mode)
-                ::default()
-                ->where('beatmap_id', $beatmap->getKey())
-                ->with(['beatmap', 'user.country', 'user.userProfileCustomization'])
-                ->withMods($mods)
-                ->withType($type, ['user' => $currentUser]);
+            $query = static::baseScoreQuery($beatmap, $mode, $mods, $type);
 
             if ($currentUser !== null) {
                 // own score shouldn't be filtered by visibleUsers()
@@ -114,7 +109,7 @@ class BeatmapsController extends Controller
     {
         $beatmap = Beatmap::findOrFail($beatmapId);
         if ($beatmap->approved <= 0) {
-            return ['score' => []];
+            abort(404);
         }
 
         $params = get_params(request()->all(), null, [
@@ -126,11 +121,7 @@ class BeatmapsController extends Controller
         $mods = get_arr($params['mods'] ?? null, 'presence') ?? [];
 
         try {
-            $score = BestModel::getClassByString($mode)
-                ::default()
-                ->where('beatmap_id', $beatmap->getKey())
-                ->with(['beatmap', 'user.country', 'user.userProfileCustomization'])
-                ->withMods($mods)
+            $score = static::baseScoreQuery($beatmap, $mode, $mods)
                 ->visibleUsers()
                 ->where('user_id', $userId)
                 ->firstOrFail();
@@ -142,5 +133,20 @@ class BeatmapsController extends Controller
         } catch (ScoreRetrievalException $ex) {
             return error_popup($ex->getMessage());
         }
+    }
+
+    private static function baseScoreQuery(Beatmap $beatmap, $mode, $mods, $type = null)
+    {
+        $query = BestModel::getClassByString($mode)
+            ::default()
+            ->where('beatmap_id', $beatmap->getKey())
+            ->with(['beatmap', 'user.country', 'user.userProfileCustomization'])
+            ->withMods($mods);
+
+        if ($type !== null) {
+            $query->withType($type, ['user' => auth()->user()]);
+        }
+
+        return $query;
     }
 }
