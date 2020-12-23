@@ -49,12 +49,11 @@ class BeatmapsController extends Controller
      *
      * Returns [BeatmapScores](#beatmapscores)
      *
-     * @urlParam id required Id of the [Beatmap](#beatmap).
+     * @urlParam beatmap required Id of the [Beatmap](#beatmap).
      *
      * @queryParam mode The [GameMode](#gamemode) to get scores for.
      * @queryParam mods An array of matching Mods, or none // TODO.
      * @queryParam type Beatmap score ranking type // TODO.
-     * @queryParam user_id The id of the [User](#user) to lookup scores for; usernames are not accepted. `userScore` will not be included in the response.
      */
     public function scores($id)
     {
@@ -93,6 +92,7 @@ class BeatmapsController extends Controller
             ];
 
             if (isset($userScore)) {
+                // TODO: this should be moved to user_score
                 $results['userScore'] = [
                     'position' => $userScore->userRank(compact('type', 'mods')),
                     'score' => json_item($userScore, 'Score', ['user', 'user.country', 'user.cover']),
@@ -105,6 +105,24 @@ class BeatmapsController extends Controller
         }
     }
 
+    /**
+     * Get a User Beatmap score
+     *
+     * Return a [User](#user)'s score on a Beatmap
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [BeatmapUserScore](#beatmapuserscore)
+     * The position returned depends on the requested mode and mods.
+     *
+     * @urlParam beatmap required Id of the [Beatmap](#beatmap).
+     * @urlParam user required Id of the [User](#user).
+     *
+     * @queryParam mode The [GameMode](#gamemode) to get scores for.
+     * @queryParam mods An array of matching Mods, or none // TODO.
+     */
     public function userScore($beatmapId, $userId)
     {
         $beatmap = Beatmap::findOrFail($beatmapId);
