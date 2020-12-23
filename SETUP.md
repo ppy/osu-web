@@ -187,6 +187,11 @@ $ yarn run watch
 
 You can watch emails being sent from `osu-web` by watching the `storage/logs/laravel.log` file. Make sure the `MAIL_DRIVER` is set to `log`.
 
+## Use the API from osu!
+
+To connect from osu!(lazer) via the API offered by osu-web, you need to create an OAuth client from your user settings. Then, open the `oauth_clients` table and set the `personal_access_client` and `password_client` columns to `1`.
+You can then change the constants in the osu! repository (`./osu.Game/Online/API/APIAccess.cs`).
+
 # Testing
 
 To run test, first copy `.env.testing.example` to `.env.testing` and `.env.dusk.local.example` to `.env.dusk.local`.
