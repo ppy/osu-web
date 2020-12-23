@@ -9,7 +9,7 @@ export default class ResultSet implements SearchResults {
   static CACHE_DURATION_MS = 60000;
 
   @observable beatmapsetIds = new Set<number>();
-  cursor?: JSON; // null -> end; undefined -> not set yet.
+  cursor?: unknown; // null -> end; undefined -> not set yet.
   fetchedAt?: Date;
   @observable hasMore = false;
   @observable total = 0;

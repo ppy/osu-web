@@ -19,6 +19,14 @@ class OrdersController extends Controller
         $this->middleware('verify-user');
     }
 
+    public function destroy($id)
+    {
+        $order = auth()->user()->orders()->findOrFail($id);
+        $order->cancel(auth()->user());
+
+        return response(null, 204);
+    }
+
     public function index()
     {
         $orders = Auth::user()

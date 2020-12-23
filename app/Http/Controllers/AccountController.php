@@ -29,7 +29,7 @@ class AccountController extends Controller
 
         $this->middleware(function ($request, $next) {
             if (Auth::check() && Auth::user()->isSilenced()) {
-                return abort(403);
+                return abort(403, trans('authorization.silenced'));
             }
 
             return $next($request);

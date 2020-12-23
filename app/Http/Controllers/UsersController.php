@@ -507,6 +507,7 @@ class UsersController extends Controller
             'graveyard_beatmapset_count',
             'groups',
             'loved_beatmapset_count',
+            'mapping_follower_count',
             'monthly_playcounts',
             'page',
             'previous_usernames',

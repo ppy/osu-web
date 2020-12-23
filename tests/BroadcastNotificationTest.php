@@ -77,7 +77,7 @@ class BroadcastNotificationTest extends TestCase
 
         $this
             ->actingAsVerified($this->sender)
-            ->post(route('beatmap-discussion-posts.store'), $this->makeBeatmapsetDiscussionPostParams($beatmapset, 'praise'))
+            ->post(route('beatmapsets.discussions.posts.store'), $this->makeBeatmapsetDiscussionPostParams($beatmapset, 'praise'))
             ->assertStatus(200);
 
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class);

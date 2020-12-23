@@ -51,7 +51,12 @@
                 @php
                     $showMore = $allSearch->showMore();
                 @endphp
+
                 @foreach ($allSearch->visibleSearches() as $mode => $search)
+                    @if ($mode === 'forum_post' && $allSearch->getMode() === 'forum_post')
+                        @include('objects.search._forum_sort', compact('search'))
+                    @endif
+
                     @include('home._search_results', compact('mode', 'search', 'showMore'))
                 @endforeach
             @else

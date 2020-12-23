@@ -7,7 +7,9 @@
 @section('content')
     @include('home._user_header_default', ['themeOverride' => 'settings'])
 
-    <div class="osu-page osu-page--info-bar">
+    <div class="osu-page osu-page--generic osu-page--full">
+        @include('follows._subtypes')
+
         <div class="grid-items">
             <div class="counter-box counter-box--info">
                 <div class="counter-box__title">
@@ -27,9 +29,7 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="osu-page osu-page--full osu-page--generic">
         <div class="beatmapset-watches">
             <div class="beatmapset-watches__description">
                 {{ trans('beatmapset_watches.index.description') }}

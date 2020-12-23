@@ -139,11 +139,6 @@ class BeatmapDiscussion extends Model
             });
         }
 
-        // TODO: remove this when reviews are released
-        if (!config('osu.beatmapset.discussion_review_enabled')) {
-            $query->hideReviews();
-        }
-
         return ['query' => $query, 'params' => $params];
     }
 
@@ -213,11 +208,6 @@ class BeatmapDiscussion extends Model
 
     public function setMessageTypeAttribute($value)
     {
-        // TODO: remove this when reviews are released
-        if (!config('osu.beatmapset.discussion_review_enabled') && $value === 'review') {
-            return $this->attributes['message_type'] = null;
-        }
-
         return $this->attributes['message_type'] = static::MESSAGE_TYPES[$value] ?? null;
     }
 
@@ -595,7 +585,7 @@ class BeatmapDiscussion extends Model
 
     public function url()
     {
-        return route('beatmap-discussions.show', $this->id);
+        return route('beatmapsets.discussions.show', $this->id);
     }
 
     public function allowKudosu($allowedBy)
@@ -716,14 +706,6 @@ class BeatmapDiscussion extends Model
     {
         return $query->visibleWithTrashed()
             ->withoutTrashed();
-    }
-
-    // TODO: remove this when reviews are released
-    public function scopeHideReviews($query)
-    {
-        if (!config('osu.beatmapset.discussion_review_enabled')) {
-            return $query->where('message_type', '<>', static::MESSAGE_TYPES['review']);
-        }
     }
 
     public function scopeVisibleWithTrashed($query)
