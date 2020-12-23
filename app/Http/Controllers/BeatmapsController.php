@@ -9,6 +9,9 @@ use App\Exceptions\ScoreRetrievalException;
 use App\Models\Beatmap;
 use App\Models\Score\Best\Model as BestModel;
 
+/**
+ * @group Beatmaps
+ */
 class BeatmapsController extends Controller
 {
     public function __construct()
