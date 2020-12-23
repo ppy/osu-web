@@ -189,7 +189,10 @@ You can watch emails being sent from `osu-web` by watching the `storage/logs/lar
 
 ## Use the API from osu!
 
-To connect from osu!(lazer) via the API offered by osu-web, you need to create an OAuth client from your user settings. Then, open the `oauth_clients` table and set the `personal_access_client` and `password_client` columns to `1`.
+To connect from osu!(lazer) via the API offered by osu-web, you need to create a special OAuth password client with:
+```
+php artisan passport:client --password
+```
 You can then change the constants in the osu! repository (`./osu.Game/Online/API/APIAccess.cs`).
 
 # Testing
