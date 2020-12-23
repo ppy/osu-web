@@ -22,9 +22,9 @@ class ApidocRouteHelper
         return $instance;
     }
 
-    private static function keyFor(array $route)
+    private static function keyFor(array $methods, string $uri)
     {
-        return RouteScopesHelper::keyForMethods($route).'@'.$route['uri'];
+        return RouteScopesHelper::keyForMethods($methods).'@'.$uri;
     }
 
     private static function requiresAuthentication(array $route)
@@ -63,12 +63,12 @@ class ApidocRouteHelper
                 $route['scopes'] = [];
             }
 
-            $this->routeScopes[static::keyFor($route)] = $route;
+            $this->routeScopes[static::keyFor($route['methods'], $route['uri'])] = $route;
         }
     }
 
-    public function getScopeTags(array $route)
+    public function getScopeTags(array $methods, string $uri)
     {
-        return $this->routeScopes[static::keyFor($route)]['scopes'];
+        return $this->routeScopes[static::keyFor($methods, $uri)]['scopes'];
     }
 }

@@ -6,6 +6,7 @@
     use App\Libraries\ApidocRouteHelper;
 
     $uri = $route['uri'];
+    $methods = $route['methods'];
     $descriptions = explode("\n---\n", $route['metadata']['description'] ?? '');
 
     $topDescription = $descriptions[0];
@@ -24,7 +25,7 @@
 
 @endforeach
 
-@if(in_array('GET',$route['methods']) || (isset($route['showresponse']) && $route['showresponse']))
+@if(in_array('GET',$methods) || (isset($route['showresponse']) && $route['showresponse']))
 @if(is_array($route['responses']))
 @foreach($route['responses'] as $response)
 > Example response ({{$response['status']}}):
@@ -53,13 +54,13 @@
 {!! $topDescription !!}
 
 <span class="scope-list">
-    @foreach($helper->getScopeTags($route) as $scope)
+    @foreach($helper->getScopeTags($methods, $uri) as $scope)
         <a class="scope scope--{{ strtolower($scope) }}" href="#scope-{{ strtolower($scope) }}">{{ $scope }}</a>
     @endforeach
 </span>
 
 ### HTTP Request
-@foreach($route['methods'] as $method)
+@foreach($methods as $method)
 `{{$method}} {{ $displayUri }}`
 
 @endforeach

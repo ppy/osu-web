@@ -11,9 +11,8 @@ class RouteScopesHelper
 {
     public $routes;
 
-    public static function keyForMethods(array $route)
+    public static function keyForMethods(array $methods)
     {
-        $methods = $route['methods'];
         sort($methods);
 
         return implode('|', $methods);
