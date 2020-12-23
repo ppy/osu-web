@@ -44,7 +44,10 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
         Route::get('packs/{pack}/raw', 'BeatmapPacksController@raw')->name('packs.raw');
 
-        Route::get('{beatmap}/scores', 'BeatmapsController@scores')->name('beatmaps.scores');
+        Route::group(['as' => 'beatmaps.', 'prefix' => '{beatmap}'], function () {
+            Route::get('scores/users/{user}', 'BeatmapsController@userScore');
+            Route::get('scores', 'BeatmapsController@scores')->name('scores');
+        });
     });
 
     Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
@@ -363,10 +366,16 @@ Route::group(['middleware' => ['web']], function () {
 // require-scopes is not in the api group at the moment to reduce the number of things that need immediate fixing.
 Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', ThrottleRequests::getApiThrottle(), 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
-        Route::group(['prefix' => 'beatmaps'], function () {
-            Route::get('{beatmap}/scores', 'BeatmapsController@scores');
+        Route::group(['as' => 'beatmaps.', 'prefix' => 'beatmaps'], function () {
             Route::get('lookup', 'API\BeatmapsController@lookup');
+
+            Route::group(['prefix' => '{beatmap}'], function () {
+                Route::get('scores/users/{user}', 'BeatmapsController@userScore');
+                Route::get('scores', 'BeatmapsController@scores')->name('scores');
+            });
         });
+
+
 
         Route::resource('beatmaps', 'API\BeatmapsController', ['only' => ['show']]);
 

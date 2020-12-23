@@ -67,14 +67,12 @@ class BeatmapsController extends Controller
             'mode:string',
             'mods:any',
             'type:string',
-            'user_id:int',
         ]);
 
         $mode = presence($params['mode'] ?? null, $beatmap->mode);
         $mods = get_arr($params['mods'] ?? null, 'presence') ?? [];
         $type = presence($params['type'] ?? null, 'global');
         $currentUser = auth()->user();
-        $userId = presence($params['user_id'] ?? null);
 
         try {
             if ($type !== 'global' || !empty($mods)) {
@@ -90,21 +88,13 @@ class BeatmapsController extends Controller
                 ->withMods($mods)
                 ->withType($type, ['user' => $currentUser]);
 
-            if ($currentUser !== null && $userId === null) {
+            if ($currentUser !== null) {
                 // own score shouldn't be filtered by visibleUsers()
                 $userScore = (clone $query)->where('user_id', $currentUser->user_id)->first();
             }
 
-            $query->visibleUsers();
-
-            if ($userId !== null) {
-                $scores = $query->where('user_id', $userId)->limit(1)->get();
-            } else {
-                $scores = $query->forListing();
-            }
-
             $results = [
-                'scores' => json_collection($scores, 'Score', ['beatmap', 'user', 'user.country', 'user.cover']),
+                'scores' => json_collection($query->visibleUsers()->forListing(), 'Score', ['beatmap', 'user', 'user.country', 'user.cover']),
             ];
 
             if (isset($userScore)) {
@@ -115,6 +105,40 @@ class BeatmapsController extends Controller
             }
 
             return $results;
+        } catch (ScoreRetrievalException $ex) {
+            return error_popup($ex->getMessage());
+        }
+    }
+
+    public function userScore($beatmapId, $userId)
+    {
+        $beatmap = Beatmap::findOrFail($beatmapId);
+        if ($beatmap->approved <= 0) {
+            return ['score' => []];
+        }
+
+        $params = get_params(request()->all(), null, [
+            'mode:string',
+            'mods:any',
+        ]);
+
+        $mode = presence($params['mode'] ?? null, $beatmap->mode);
+        $mods = get_arr($params['mods'] ?? null, 'presence') ?? [];
+
+        try {
+            $score = BestModel::getClassByString($mode)
+                ::default()
+                ->where('beatmap_id', $beatmap->getKey())
+                ->with(['beatmap', 'user.country', 'user.userProfileCustomization'])
+                ->withMods($mods)
+                ->visibleUsers()
+                ->where('user_id', $userId)
+                ->firstOrFail();
+
+            return [
+                'position' => $score->userRank(compact('mods')),
+                'score' => json_item($score, 'Score', ['beatmap', 'user', 'user.country', 'user.cover']),
+            ];
         } catch (ScoreRetrievalException $ex) {
             return error_popup($ex->getMessage());
         }
