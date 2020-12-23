@@ -29,8 +29,6 @@ class SpotlightsController extends Controller
      * ### Response Format
      *
      * Returns [Spotlights](#spotlights)
-     *
-     * @authenticated
      */
     public function index()
     {

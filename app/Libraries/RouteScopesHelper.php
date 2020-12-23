@@ -11,6 +11,13 @@ class RouteScopesHelper
 {
     public $routes;
 
+    public static function keyForMethods(array $methods)
+    {
+        sort($methods);
+
+        return implode('|', $methods);
+    }
+
     // fills in any missing require-scopes:
     public function fillMissingMiddlewares()
     {
@@ -55,8 +62,9 @@ class RouteScopesHelper
 
         $routes = array_map(function ($line) use ($csv) {
             $a = array_combine($csv[0], $line);
-            $a['middlewares'] = explode(',', $a['middlewares']);
-            $a['scopes'] = array_filter(explode(',', $a['scopes']));
+            $a['methods'] = explode('|', $a['methods']);
+            $a['middlewares'] = explode('|', $a['middlewares']);
+            $a['scopes'] = array_filter(explode('|', $a['scopes']));
 
             return $a;
         }, $csv);
@@ -101,9 +109,10 @@ class RouteScopesHelper
 
             sort($scopes);
 
-            foreach ($route->methods as $method) {
-                $this->routes[] = compact('uri', 'method', 'controller', 'middlewares', 'scopes');
-            }
+            $methods = $route->methods;
+            sort($methods);
+
+            $this->routes[] = compact('uri', 'methods', 'controller', 'middlewares', 'scopes');
         }
     }
 
@@ -119,15 +128,15 @@ class RouteScopesHelper
     public function toCsv(string $filename)
     {
         $file = fopen($filename, 'w');
-        fputcsv($file, ['uri', 'method', 'controller', 'middlewares', 'scopes']);
+        fputcsv($file, ['uri', 'methods', 'controller', 'middlewares', 'scopes']);
 
         foreach ($this->toArray() as $obj) {
             $fields = [
                 $obj['uri'],
-                $obj['method'],
+                implode('|', $obj['methods']),
                 $obj['controller'],
-                implode(',', $obj['middlewares']),
-                implode(',', $obj['scopes']),
+                implode('|', $obj['middlewares']),
+                implode('|', $obj['scopes']),
             ];
 
             fputcsv($file, $fields);
