@@ -91,15 +91,20 @@ class BeatmapsController extends Controller
                 ->withType($type, ['user' => $currentUser]);
 
             if ($currentUser !== null && $userId === null) {
+                // own score shouldn't be filtered by visibleUsers()
                 $userScore = (clone $query)->where('user_id', $currentUser->user_id)->first();
             }
 
+            $query->visibleUsers();
+
             if ($userId !== null) {
-                $query->where('user_id', $userId);
+                $scores = $query->where('user_id', $userId)->limit(1)->get();
+            } else {
+                $scores = $query->forListing();
             }
 
             $results = [
-                'scores' => json_collection($query->visibleUsers()->forListing(), 'Score', ['beatmap', 'user', 'user.country', 'user.cover']),
+                'scores' => json_collection($scores, 'Score', ['beatmap', 'user', 'user.country', 'user.cover']),
             ];
 
             if (isset($userScore)) {
