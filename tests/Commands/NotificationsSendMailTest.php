@@ -74,7 +74,7 @@ class NotificationsSendMailTest extends TestCase
             ]);
             $this
                 ->actingAsVerified($sender)
-                ->post(route('beatmap-discussion-posts.store'), $this->makeBeatmapsetDiscussionPostParams($beatmapset, 'praise'));
+                ->post(route('beatmapsets.discussions.posts.store'), $this->makeBeatmapsetDiscussionPostParams($beatmapset, 'praise'));
         }
     }
 }

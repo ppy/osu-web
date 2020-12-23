@@ -66,9 +66,8 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
     {
         $browser->loginAs($user)
             ->visit('/_dusk/verify')
-            ->visitRoute('beatmap-discussions.show', [
-                'beatmapset' => $this->beatmapset->getKey(),
-                'beatmap_discussion' => $this->beatmapDiscussion->getKey(),
+            ->visitRoute('beatmapsets.discussions.show', [
+                'discussion' => $this->beatmapDiscussion->getKey(),
             ]);
     }
 

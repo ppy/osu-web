@@ -42,8 +42,6 @@ class ChatController extends Controller
      *   Note that this returns messages for all channels the user has joined.
      * </aside>
      *
-     * @authenticated
-     *
      * @queryParam since required The `message_id` of the last message to retrieve messages since
      * @queryParam channel_id If provided, will only return messages for the given channel
      * @queryParam limit number of messages to return (max of 50)
@@ -201,8 +199,6 @@ class ChatController extends Controller
      * <aside class="notice">
      *   This endpoint will only allow the creation of PMs initially, group chat support will come later.
      * </aside>
-     *
-     * @authenticated
      *
      * @bodyParam target_id integer required `user_id` of user to start PM with
      * @bodyParam message string required message to send
