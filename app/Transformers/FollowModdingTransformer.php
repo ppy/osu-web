@@ -16,7 +16,7 @@ class FollowModdingTransformer extends FollowTransformer
 
     private $latestBeatmapsets;
 
-    public function __construct($latestBeatmapsets)
+    public function __construct($latestBeatmapsets = null)
     {
         // should be keyed by "id"
         $this->latestBeatmapsets = $latestBeatmapsets;
