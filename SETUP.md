@@ -183,6 +183,10 @@ To continuously generate assets as you make changes to files (less, coffeescript
 $ yarn run watch
 ```
 
+## Email
+
+You can watch emails being sent from `osu-web` by watching the `storage/logs/laravel.log` file. Make sure the `MAIL_DRIVER` is set to `log`.
+
 # Testing
 
 To run test, first copy `.env.testing.example` to `.env.testing` and `.env.dusk.local.example` to `.env.dusk.local`.
