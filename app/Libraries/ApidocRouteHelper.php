@@ -27,6 +27,14 @@ class ApidocRouteHelper
         return RouteScopesHelper::keyForMethods($route).'@'.$route['uri'];
     }
 
+    private static function requiresAuthentication(array $route)
+    {
+        return !(
+            in_array('GET', $route['methods'], true)
+            && starts_with("{$route['uri']}/", RequireScopes::NO_TOKEN_REQUIRED)
+        );
+    }
+
     private function __construct()
     {
         $routeScopesHelper = new RouteScopesHelper();
@@ -40,16 +48,20 @@ class ApidocRouteHelper
                 });
             }
 
-            if (empty($route['scopes'])) {
-                $route['scopes'][] = 'lazer'; // not osu!lazer to make the css handling simpler.
+            if (static::requiresAuthentication($route)) {
+                if (empty($route['scopes'])) {
+                    $route['scopes'][] = 'lazer'; // not osu!lazer to make the css handling simpler.
+                }
+
+                $route['scopes'] = array_filter($route['scopes'], function ($scope) {
+                    return $scope !== 'any';
+                });
+
+                // anything that will list scopes will require OAuth.
+                array_unshift($route['scopes'], 'OAuth');
+            } else {
+                $route['scopes'] = [];
             }
-
-            $route['scopes'] = array_filter($route['scopes'], function ($scope) {
-                return $scope !== 'any';
-            });
-
-            // anything that will list scopes will require OAuth.
-            array_unshift($route['scopes'], 'OAuth');
 
             $this->routeScopes[static::keyFor($route)] = $route;
         }
@@ -57,22 +69,6 @@ class ApidocRouteHelper
 
     public function getScopeTags(array $route)
     {
-        if (!$this->requiresAuthentication($route)) {
-            return [];
-        }
-
         return $this->routeScopes[static::keyFor($route)]['scopes'];
-    }
-
-    public function requiresAuthentication(array $route)
-    {
-        if (
-            in_array('GET', $route['methods'], true)
-            && starts_with("{$route['uri']}/", RequireScopes::NO_TOKEN_REQUIRED)
-        ) {
-            return false;
-        }
-
-        return in_array('require-scopes', $this->routeScopes[static::keyFor($route)]['middlewares'], true);
     }
 }
