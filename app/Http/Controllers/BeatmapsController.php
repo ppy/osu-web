@@ -115,6 +115,7 @@ class BeatmapsController extends Controller
      * ### Response Format
      *
      * Returns [BeatmapUserScore](#beatmapuserscore)
+     *
      * The position returned depends on the requested mode and mods.
      *
      * @urlParam beatmap required Id of the [Beatmap](#beatmap).
