@@ -16,7 +16,7 @@ class FollowCommentTransformer extends FollowTransformer
 
     private $latestComments;
 
-    public function __construct($latestComments)
+    public function __construct($latestComments = null)
     {
         // should be keyed by "type:id"
         $this->latestComments = $latestComments;
