@@ -8,9 +8,10 @@
     // TODO: hopefully this can be temporary ಠ_ಠ.
     $fieldDefaults = [
         'forumId' => 'forum_id',
+        'includeSubforums' => 'forum_children',
+        'sort' => 'sort',
         'topicId' => 'topic_id',
         'user' => 'username',
-        'includeSubforums' => 'forum_children',
     ];
 
     $params = request()->all();
@@ -35,6 +36,10 @@
                 class="form-text"
             >
         </label>
+    @endif
+
+    @if ($fields['sort'] !== null && present($params[$fields['sort']] ?? null))
+        <input type="hidden" name="{{ $fields['sort'] }}" value="{{ $params[$fields['sort']] }}" />
     @endif
 
     {{-- FIXME: remove querystring check? --}}
