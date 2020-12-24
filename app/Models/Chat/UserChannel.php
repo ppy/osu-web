@@ -74,6 +74,7 @@ class UserChannel extends Model
         $userChannels = static::forUser($user)
             ->whereHas('channel')
             ->with('channel')
+            ->limit(config('osu.chat.channel_limit'))
             ->get();
 
         $channelIds = $userChannels->pluck('channel_id');

@@ -175,8 +175,18 @@ function class_with_modifiers(string $className, ?array $modifiers = null)
 {
     $class = $className;
 
-    foreach ($modifiers ?? [] as $modifier) {
-        $class .= " {$className}--{$modifier}";
+    if ($modifiers !== null) {
+        if (isset($modifiers[0])) {
+            foreach ($modifiers as $modifier) {
+                $class .= " {$className}--{$modifier}";
+            }
+        } else {
+            foreach ($modifiers as $modifier => $enabled) {
+                if ($enabled === true) {
+                    $class .= " {$className}--{$modifier}";
+                }
+            }
+        }
     }
 
     return $class;
@@ -793,7 +803,12 @@ function ujs_redirect($url, $status = 200)
             Request::session()->put('_turbolinks_location', $url);
         }
 
-        return redirect($url);
+        // because non-3xx redirects make no sense.
+        if ($status < 300 || $status > 399) {
+            $status = 302;
+        }
+
+        return redirect($url, $status);
     }
 }
 
@@ -803,9 +818,9 @@ function unzalgo(?string $text, int $level = 2)
     return preg_replace("/(\pM{{$level}})\pM+/u", '\1', $text);
 }
 
-function route_redirect($path, $target)
+function route_redirect($path, $target, string $method = 'get')
 {
-    return Route::get($path, '\App\Http\Controllers\RedirectController')->name("redirect:{$target}");
+    return Route::$method($path, '\App\Http\Controllers\RedirectController')->name("redirect:{$target}");
 }
 
 function timeago($date)
