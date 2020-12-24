@@ -4,48 +4,27 @@
 --}}
 {{-- more code than template in this view :best: --}}
 @php
-    $users = $search->users()->select('user_id', 'username', 'user_avatar')->get();
-    $firstPostsMap = $search->firstPostsMap();
+    $users = $search->users()->select('user_id', 'username', 'user_avatar')->get()->keyBy('user_id');
+    $topics = $search->topics()->with('forum')->get()->keyBy('topic_id');
+    $skipTitle = $search->isTopicSpecificSearch();
 @endphp
 
 @foreach ($search->data() as $entry)
     @php
         // $entry should be of type App\Libraries\Elasticsearch\Hit
-        $innerHits = $entry->innerHits('posts');
-        $firstPostUrl = route('forum.topics.show', $entry->source('topic_id'));
-        $excerpt = html_excerpt(optional($firstPostsMap[$entry->source('topic_id')] ?? null)->source('search_content'));
-
-        $user = $users->where('user_id', $entry->source('poster_id'))->first() ?? new App\Models\DeletedUser();
+        $postUrl = post_url($entry->source('topic_id'), $entry->source('post_id'));
+        $topic = $topics[$entry->source('topic_id')] ?? new App\Models\Forum\Topic();
+        $user = $users[$entry->source('poster_id')] ?? new App\Models\DeletedUser();
     @endphp
-    <div class="search-result-entry search-result-entry--threaded">
+    <div class="search-result-entry">
         <div class="search-entry">
             @include('objects.search._forum_post', [
                 'user' => $user,
-                'title' => $entry->source('search_content'),
-                'highlights' => $excerpt,
-                'link' => $firstPostUrl,
+                'title' => $skipTitle ? null : $topic->topic_title,
+                'highlights' => $search->highlightsForHit($entry),
+                'link' => $postUrl,
                 'time' => $entry->source('post_time'),
             ])
         </div>
-
-        @foreach ($innerHits as $innerHit)
-            @php
-                $postUrl = post_url($innerHit->source('topic_id'), $innerHit->source('post_id'));
-                $user = $users->where('user_id', $innerHit->source('poster_id'))->first() ?? new App\Models\DeletedUser;
-                $highlights = $search->highlightsForHit($innerHit);
-            @endphp
-
-            <div class="search-result-entry__sub-item">
-                <div class="search-entry">
-                    @include('objects.search._forum_post', [
-                        'user' => $user,
-                        'title' => null,
-                        'highlights' => $highlights,
-                        'link' => $postUrl,
-                        'time' => $innerHit->source('post_time'),
-                    ])
-                </div>
-            </div>
-        @endforeach
     </div>
 @endforeach

@@ -6,7 +6,6 @@
 namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\BoolQuery;
-use App\Libraries\Elasticsearch\HasChildQuery;
 use App\Libraries\Elasticsearch\Highlight;
 use App\Libraries\Elasticsearch\Hit;
 use App\Libraries\Elasticsearch\QueryHelper;
@@ -22,6 +21,14 @@ class ForumSearch extends Search
     public function __construct(?ForumSearchParams $params = null)
     {
         parent::__construct(Post::esIndexName(), $params ?? new ForumSearchParams());
+
+        $this->source(['topic_id', 'post_id', 'post_time', 'poster_id', 'search_content']);
+        $this->highlight(
+            (new Highlight())
+                ->field('search_content')
+                ->fragmentSize(static::HIGHLIGHT_FRAGMENT_SIZE)
+                ->numberOfFragments(3)
+        );
     }
 
     // TODO: maybe move to a response/view helper?
@@ -42,28 +49,13 @@ class ForumSearch extends Search
     public function getQuery()
     {
         $query = (new BoolQuery())
-            ->should($this->childQuery())
-            ->shouldMatch(1)
-            ->filter(['term' => ['type' => 'topics']]);
-
-        // skip the topic search if doing a username; needs a more complicated
-        // query to accurately filter the results which isn't implemented yet.
-        if (!isset($this->params->username) && $this->params->queryString !== null) {
-            $query->should(QueryHelper::queryString($this->params->queryString, ['search_content']));
-        }
+            ->filter(['term' => ['type' => 'posts']]);
 
         $query->filter(['terms' => ['forum_id' => $this->params->filteredForumIds()]]);
 
         if (isset($this->params->topicId)) {
             $query->filter(['term' => ['topic_id' => $this->params->topicId]]);
         }
-
-        return $query;
-    }
-
-    private function childQuery(): HasChildQuery
-    {
-        $query = new BoolQuery();
 
         if ($this->params->queryString !== null) {
             $query->must(QueryHelper::queryString($this->params->queryString, ['search_content']));
@@ -76,16 +68,12 @@ class ForumSearch extends Search
 
         $query->mustNot(['terms' => ['poster_id' => $this->params->blockedUserIds()]]);
 
-        return (new HasChildQuery('posts', 'posts'))
-            ->size(3)
-            ->scoreMode('max')
-            ->source(['topic_id', 'post_id', 'post_time', 'poster_id', 'search_content'])
-            ->highlight(
-                (new Highlight())
-                    ->field('search_content')
-                    ->fragmentSize(static::HIGHLIGHT_FRAGMENT_SIZE)
-                    ->numberOfFragments(3)
-            )->query($query);
+        return $query;
+    }
+
+    public function isTopicSpecificSearch()
+    {
+        return isset($this->params->topicId);
     }
 
     public function data()
@@ -94,28 +82,13 @@ class ForumSearch extends Search
     }
 
     /**
-     * Returns a mapping of the topic first posts keyed by topic_id.
+     * Returns a Builder for a Collection of all the posts that appeared in this query.
      *
      * @return array
      */
-    public function firstPostsMap(): array
+    public function topics(): Builder
     {
-        $ids = $this->response()->ids('post_id');
-
-        $search = (new BasicSearch(Post::esIndexName(), 'forumsearch_firstposts'))
-            ->size(count($ids))
-            ->query(
-                (new BoolQuery())
-                    ->filter(['term' => ['type' => 'posts']])
-                    ->filter(['terms' => ['post_id' => $ids]])
-            )->source(['topic_id', 'search_content']);
-
-        $map = [];
-        foreach ($search->response() as $post) {
-            $map[$post->source('topic_id')] = $post;
-        }
-
-        return $map;
+        return Topic::whereIn('topic_id', $this->response()->ids('topic_id'));
     }
 
     public function response(): SearchResponse
@@ -130,11 +103,6 @@ class ForumSearch extends Search
      */
     public function users(): Builder
     {
-        $ids = array_merge(
-            $this->response()->ids('poster_id'),
-            $this->response()->innerHitsIds('posts', 'poster_id')
-        );
-
-        return User::whereIn('user_id', $ids);
+        return User::whereIn('user_id', $this->response()->ids('poster_id'));
     }
 }

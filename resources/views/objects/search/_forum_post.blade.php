@@ -31,8 +31,14 @@
                    @if ($userLink !== null) href="{{ $userLink }}" @endif
                    data-user-id="{{ $user->user_id }}"
                 >
-                    posted by
-                    <span class="search-forum-post__username">{{ $user->username }}</span>
+                    {!! trans(
+                        'forum.post.posted_by',
+                        ['username' => tag(
+                            'span',
+                            ['class' => 'search-forum-post__username'],
+                            $user->username
+                        )]
+                    ) !!}
                 </a>
                 <div class="search-forum-post__url">
                     {{ $link }}
