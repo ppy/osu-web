@@ -585,7 +585,7 @@ class BeatmapDiscussion extends Model
 
     public function url()
     {
-        return route('beatmap-discussions.show', $this->id);
+        return route('beatmapsets.discussions.show', $this->id);
     }
 
     public function allowKudosu($allowedBy)

@@ -24,8 +24,6 @@ class TokensController extends Controller
      *
      * Revokes currently authenticated token.
      *
-     * @authenticated
-     *
      * @response 204
      */
     public function destroyCurrent()

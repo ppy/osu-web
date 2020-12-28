@@ -63,7 +63,7 @@ At this point you should be able to access the site via whatever webserver you c
   - Open Docker settings, go to Resources → WSL Integration → Enable integration with additional distros (enable for the installed distro).
 - Open terminal (or Linux console on Windows).
 - Clone this repository.
-- Run `bin/docker_dev.sh`.
+- Run `bin/docker_dev.sh`. Make sure the repository folder is owned by the user executing this command (must be non-root).
 - Due to the nature of Docker (a container is killed when the command running in it finishes), the Yarn container will be run in watch mode.
 - Do note that the supplied Elasticsearch container uses a high (1+ GB) amount of RAM. Ensure that your system (or virtual machine, if running on Windows/macOS) has a necessary amount of memory allocated (at least 2 GB). If you can't (or don't want to), you can comment out the relevant elasticsearch lines in `docker-compose.yml`.
 - To run any of the below commands, make sure you are using the docker container: `docker-compose run --rm php`.
@@ -182,6 +182,18 @@ To continuously generate assets as you make changes to files (less, coffeescript
 ```
 $ yarn run watch
 ```
+
+## Email
+
+You can watch emails being sent from `osu-web` by watching the `storage/logs/laravel.log` file. Make sure the `MAIL_DRIVER` is set to `log`.
+
+## Use the API from osu!
+
+To connect from osu!(lazer) via the API offered by osu-web, you need to create a special OAuth password client with:
+```
+php artisan passport:client --password
+```
+You can then change the constants in the osu! repository (`./osu.Game/Online/API/APIAccess.cs`).
 
 # Testing
 
