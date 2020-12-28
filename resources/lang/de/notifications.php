@@ -6,6 +6,7 @@
 return [
     'all_read' => 'Alle Benachrichtigungen gelesen!',
     'delete' => ':type löschen',
+    'loading' => '',
     'mark_read' => 'Lösche :type',
     'none' => 'Keine Benachrichtigungen',
     'see_all' => 'alle benachrichtigungen ansehen',
@@ -133,6 +134,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medaillen',
 
@@ -200,6 +211,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username hat eine neue Medaille freigeschaltet, ":title"!',
                 'user_achievement_unlock_self' => 'Du hast eine neue Medaille freigeschaltet, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

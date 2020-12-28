@@ -15,8 +15,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Bildir',
+        'title' => ':username: adlı kişinin gönderisi raporlansın mı?',
     ],
 
     'scores' => [

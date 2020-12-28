@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => ':date에 주문함',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => '청구서 보기',
         'no_orders' => '주문 내역이 없습니다.',
+        'paid_on' => ':date에 주문함',
         'resume' => '결제 계속하기',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

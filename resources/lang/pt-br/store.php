@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Ordem colocara :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'Ver Fatura',
         'no_orders' => 'Sem pedidos para ver.',
+        'paid_on' => 'Ordem colocara :date',
         'resume' => 'Continuar Compra',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

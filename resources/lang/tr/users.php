@@ -154,6 +154,10 @@ return [
         'plays_with' => ':devices ile oynuyor',
         'title' => ":username kullanıcısının profili",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Kapak Fotoğrafını Değiştir',

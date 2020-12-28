@@ -15,6 +15,8 @@ return [
             'blocked' => 'Alıcı tarafından engellendiniz',
             'channel_moderated' => 'Bu kanal kısıtlandı',
             'friends_only' => 'Alıcı sadece arkadaş listesindeki kişilerden gelen mesajları kabul ediyor',
+            'not_enough_plays' => '',
+            'not_verified' => '',
             'restricted' => 'Şu anda uzaklaştırıldınız',
             'target_restricted' => 'Alıcı şu an uzaklaştırılmış durumda',
         ],

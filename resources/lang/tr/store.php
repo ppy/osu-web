@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Sipariş verme tarihi :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'Faturayı Görüntüle',
         'no_orders' => 'Görüntülenecek sipariş yok.',
+        'paid_on' => 'Sipariş verme tarihi :date',
         'resume' => 'Sepete Dön',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

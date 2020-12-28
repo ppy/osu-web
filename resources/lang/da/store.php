@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Ordre placeret :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'Vis faktura',
         'no_orders' => 'Ingen ordrer til at se.',
+        'paid_on' => 'Ordre placeret :date',
         'resume' => 'Fortsæt Til Kassen',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

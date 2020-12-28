@@ -77,7 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'bantuan',
-            'getAbuse' => '',
+            'getAbuse' => 'laporkan penyalahgunaan',
             'getFaq' => 'faq',
             'getRules' => 'peraturan',
             'getSupport' => 'beneran, saya butuh bantuan!',
@@ -204,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Pengaturan',
+            'follows' => '',
             'friends' => 'Teman',
             'logout' => 'Keluar',
             'profile' => 'Profil Saya',

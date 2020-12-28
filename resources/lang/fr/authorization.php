@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Vous avez atteint la limite quotidienne de nominations, veuillez réessayer demain.',
-            'full_bn_required' => 'Vous devez être un Beatmap Nominator avec toutes les autorisations pour effectuer cette qualification.',
-            'full_bn_required_hybrid' => 'Vous devez être un Beatmap Nominator avec toutes les autorisations pour ajouter une nomination sur des beatmapsets avec plusieurs modes de jeu.',
             'incorrect_state' => 'Une erreur est survenue lors de l’exécution de cette action, essayez d’actualiser la page.',
             'owner' => "Vous ne pouvez pas nominer votre propre beatmap.",
             'set_metadata' => 'Veuillez définir le genre et la langue de cette musique avant de nominer cette beatmap.',

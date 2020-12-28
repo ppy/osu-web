@@ -77,7 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'yardım',
-            'getAbuse' => '',
+            'getAbuse' => 'kötüye kullanımı bildir',
             'getFaq' => 'sss',
             'getRules' => 'kurallar',
             'getSupport' => 'hayır, gerçekten, yardıma ihtiyacım var!',
@@ -204,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Ayarlar',
+            'follows' => '',
             'friends' => 'Arkadaşlar',
             'logout' => 'Çıkış Yap',
             'profile' => 'Profilim',

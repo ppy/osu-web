@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Έχετε φτάσει στο όριο των nomination για σήμερα, παρακαλώ προσπαθήστε ξανά αύριο.',
-            'full_bn_required' => 'Πρέπει να είστε ένας πλήρης nominator για να επικυρώσετε αυτό το nomination.',
-            'full_bn_required_hybrid' => 'Πρέπει να είστε ένας πλήρης nominator για να κάνετε nominate beatmap sets με περισσότερα από ένα game mode.',
             'incorrect_state' => 'Σφάλμα κατά την εκτέλεση αυτής της ενέργειας, δοκιμάστε να ανανεώσετε τη σελίδα.',
             'owner' => "Δεν μπορείτε να κάνετε nominate το δικό σας beatmap.",
             'set_metadata' => '',

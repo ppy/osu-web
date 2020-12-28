@@ -77,7 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'aiuto',
-            'getAbuse' => '',
+            'getAbuse' => 'segnala un abuso',
             'getFaq' => 'domande frequenti',
             'getRules' => 'regole',
             'getSupport' => 'davvero, mi serve aiuto!',
@@ -204,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Impostazioni',
+            'follows' => '',
             'friends' => 'Amici',
             'logout' => 'Disconnettiti',
             'profile' => 'Profilo',

@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'تم تعيين الطلب :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'عرض الفاتورة',
         'no_orders' => 'لا طلبات للعرض.',
+        'paid_on' => 'تم تعيين الطلب :date',
         'resume' => 'استئناف الدفع',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

@@ -15,8 +15,13 @@ return [
     'top' => 'популярные',
     'username' => 'Имени пользователя',
 
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => '',
+    ],
+
     'forum_topics' => [
-        'new' => 'Последний ответ',
         'feature_votes' => 'Количество голосов',
+        'new' => 'Последний ответ',
     ],
 ];

@@ -15,8 +15,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Пожаловаться',
+        'title' => 'Пожаловаться на пост :username?',
     ],
 
     'scores' => [

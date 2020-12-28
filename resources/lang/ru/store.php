@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Заказ размещён :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'Посмотреть чек',
         'no_orders' => 'Вы ничего не заказывали.',
+        'paid_on' => 'Заказ размещён :date',
         'resume' => 'Продолжить покупку',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

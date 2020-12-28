@@ -8,6 +8,7 @@ return [
         'disabled' => 'このビートマップは現在ダウンロード不可能です。',
         'parts-removed' => '権利者の申し立てによりこのビートマップは部分的に削除されています。',
         'more-info' => '詳細はこちらです。',
+        'rule_violation' => '',
     ],
 
     'index' => [
@@ -16,11 +17,27 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'ダウンロード',
             'video' => '動画付きでダウンロード',
             'no_video' => '動画無しでダウンロード',
             'direct' => 'osu!directで開く',
+        ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
         ],
     ],
 

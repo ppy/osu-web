@@ -8,6 +8,7 @@ return [
         'disabled' => 'Táto beatmapa momentálne nie je k dispozícii na stiahnutie.',
         'parts-removed' => 'Časti tejto mapy boli vymazané na žiadosť tvorca alebo vlastníka tretej strany.',
         'more-info' => 'Klikni sem pre viac informácií.',
+        'rule_violation' => '',
     ],
 
     'index' => [
@@ -16,11 +17,27 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'stiahnúť',
             'video' => 'stiahnuť s videom',
             'no_video' => 'stiahnuť bez videa',
             'direct' => '',
+        ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
         ],
     ],
 

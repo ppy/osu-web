@@ -35,7 +35,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => '',
         'nav_title' => '목록',
+        'no_comments' => '',
     ],
 
     'placeholder' => [

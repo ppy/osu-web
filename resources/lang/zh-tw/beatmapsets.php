@@ -8,6 +8,7 @@ return [
         'disabled' => '該圖譜現在無法下載。',
         'parts-removed' => '因作者或第三方版權擁有者的要求，故該圖譜已經下架。',
         'more-info' => '點擊這裡查看更多資訊。',
+        'rule_violation' => '',
     ],
 
     'index' => [
@@ -16,11 +17,27 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => '下載',
             'video' => '下載並包含影片',
             'no_video' => '下載並不包含影片',
             'direct' => '在osu!direct中查看',
+        ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
         ],
     ],
 

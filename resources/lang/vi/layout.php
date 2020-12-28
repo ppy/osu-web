@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Chơi bản nhạc tiếp theo tự động',
     ],
 
     'defaults' => [
@@ -53,10 +53,10 @@ return [
 
     'gallery' => [
         'close' => 'Đóng (Esc)',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'fullscreen' => 'Bật/tắt toàn màn hình',
+        'zoom' => 'Thu phóng',
+        'previous' => 'Trước (mũi tên trái)',
+        'next' => 'Tiếp theo (mũi tên phải)',
     ],
 
     'menu' => [
@@ -77,7 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'trợ giúp',
-            'getAbuse' => '',
+            'getAbuse' => 'báo cáo lạm dụng',
             'getFaq' => 'faq',
             'getRules' => 'quy tắc',
             'getSupport' => 'không, thật đó, tôi cần giúp đỡ!',
@@ -204,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Cài Đặt',
+            'follows' => '',
             'friends' => 'Bạn Bè',
             'logout' => 'Đăng Xuất',
             'profile' => 'Trang Cá Nhân',

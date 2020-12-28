@@ -8,6 +8,7 @@ return [
         'disabled' => 'Este mapa no está actualmente disponible para su descarga.',
         'parts-removed' => 'Partes de este mapa han sido eliminadas a petición de su creador o un titular de derechos de autor.',
         'more-info' => 'Haga clic aquí para obtener más información.',
+        'rule_violation' => '',
     ],
 
     'index' => [
@@ -16,11 +17,27 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'descargar',
             'video' => 'descargar con vídeo',
             'no_video' => 'descargar sin vídeo',
             'direct' => 'abrir en osu!direct',
+        ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
         ],
     ],
 
@@ -78,8 +95,8 @@ return [
             ],
 
             'report' => [
-                '_' => 'Si encuentras un problema con este mapa, por favor repórtalo :link para alertar al equipo.',
-                'button' => 'Reportar un problema',
+                '_' => 'Si encuentra un problema con este mapa, por favor, informe de ello :link para alertar al equipo.',
+                'button' => 'Informar un problema',
                 'link' => 'aquí',
             ],
         ],

@@ -15,6 +15,8 @@ return [
             'blocked' => 'Foste bloqueado pelo destinatário',
             'channel_moderated' => 'O canal foi moderado',
             'friends_only' => 'O destinatário só aceita mensagens de pessoas da sua lista de amigos',
+            'not_enough_plays' => '',
+            'not_verified' => '',
             'restricted' => 'Tu estás restrito',
             'target_restricted' => 'O destinatário está atualmente restrito',
         ],

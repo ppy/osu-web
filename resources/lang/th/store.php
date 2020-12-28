@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'สั่งซื้อเมื่อ :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'ดูใบเสร็จ',
         'no_orders' => 'ไม่มีรายการให้ดู',
+        'paid_on' => 'สั่งซื้อเมื่อ :date',
         'resume' => 'ดำเนินการชำระเงินต่อ',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

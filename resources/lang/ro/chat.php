@@ -15,6 +15,8 @@ return [
             'blocked' => 'Ai fost blocat de către destinatar',
             'channel_moderated' => 'Acest canal a fost moderat',
             'friends_only' => 'Destinatarul acceptă mesaje doar de la persoane din lista lui de prieteni',
+            'not_enough_plays' => '',
+            'not_verified' => '',
             'restricted' => 'Ești restricționat în prezent',
             'target_restricted' => 'Destinatarul este restricționat în prezent',
         ],

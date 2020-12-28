@@ -15,8 +15,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Melden',
+        'title' => ':usernames Beitrag melden?',
     ],
 
     'scores' => [

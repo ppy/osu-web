@@ -15,6 +15,8 @@ return [
             'blocked' => '你已被对方屏蔽',
             'channel_moderated' => '该频道正在被管制中',
             'friends_only' => '对方只接受来自好友的消息',
+            'not_enough_plays' => '',
+            'not_verified' => '',
             'restricted' => '你正处于限制状态',
             'target_restricted' => '对方正处于限制状态',
         ],

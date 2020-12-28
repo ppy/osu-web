@@ -75,6 +75,9 @@ return [
         'contests_controller' => [
             '_' => '评选',
         ],
+        'follows_controller' => [
+            'index' => '',
+        ],
         'friends_controller' => [
             'index' => '主页',
         ],

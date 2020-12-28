@@ -5,11 +5,12 @@
 
 return [
     'all_read' => 'Összes értesítés elolvasva!',
-    'delete' => '',
+    'delete' => ':type tisztítása',
+    'loading' => '',
     'mark_read' => 'Típus törlése :type',
     'none' => 'Nincsenek értesítések',
     'see_all' => 'összes értesítés megtekintése',
-    'see_channel' => '',
+    'see_channel' => 'menjen a csevegéshez',
 
     'filters' => [
         '_' => 'összes',
@@ -134,6 +135,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medálok',
 
@@ -150,7 +161,7 @@ return [
         'beatmapset' => [
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'A hozzászolás le lett tiltva ezen a beamapen::title',
-                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_post_new' => 'A hozzászólás frissült a következőn: :title',
                 'beatmapset_discussion_unlock' => 'A hozzászolás elérhető lett ezen a beatmapen::title',
             ],
 
@@ -161,11 +172,11 @@ return [
             'beatmapset_state' => [
                 'beatmapset_disqualify' => '":title" dalt diszkvalifikálták',
                 'beatmapset_love' => '":title" dalt kedvelt kategóriába került',
-                'beatmapset_nominate' => '',
+                'beatmapset_nominate' => 'Nominálva lett ":title"',
                 'beatmapset_qualify' => '":title" elért annyi szavazatot hogy rankedelési státuszba lépett',
                 'beatmapset_rank' => ':title rankedelt lett',
                 'beatmapset_remove_from_loved' => 'Ez a map el lett távolítva a kedvelt kategóriából:title',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_reset_nominations' => '":title" nominálása vissza lett állítva',
             ],
 
             'comment' => [
@@ -201,6 +212,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username feloldott egy új medált! ":title"',
                 'user_achievement_unlock_self' => 'Feloldottál egy új medált! ":title"',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

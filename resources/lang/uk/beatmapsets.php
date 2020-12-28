@@ -8,6 +8,7 @@ return [
         'disabled' => 'Ця карта тимчасово недоступна для завантаження.',
         'parts-removed' => 'Деякі частини цієї карти були видалені на вимогу учасника або правовласників.',
         'more-info' => 'Натисніть тут для отримання більш детальної інформації.',
+        'rule_violation' => '',
     ],
 
     'index' => [
@@ -16,11 +17,27 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'завантажити',
             'video' => 'завантажити з вiдео',
             'no_video' => 'завантажити без вiдео',
             'direct' => 'відкрити в osu!direct',
+        ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
         ],
     ],
 

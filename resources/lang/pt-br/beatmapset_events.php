@@ -25,6 +25,7 @@ return [
         'language_edit' => 'Língua alterada de :old para :new.',
         'love' => 'Loved por :user',
         'nominate' => 'Nomeado por :user.',
+        'nominate_modes' => '',
         'nomination_reset' => 'Novo problema :discussion reiniciou a contagem de nomeação.',
         'qualify' => 'Este beatmap alcançou o número de nomeações necessárias e se tornou qualificado.',
         'rank' => 'Ranqueado.',

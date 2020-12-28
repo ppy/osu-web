@@ -6,7 +6,8 @@
 return [
     'all_read' => 'Tüm bildirimler okundu!',
     'delete' => ':type sil',
-    'mark_read' => 'Temizle: :type',
+    'loading' => '',
+    'mark_read' => ':type temizle',
     'none' => 'Bildirim yok',
     'see_all' => 'tüm bildirimleri gör',
     'see_channel' => 'sohbete git',
@@ -133,6 +134,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Madalyalar',
 
@@ -200,6 +211,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username yeni bir madalya açtı, ":title"!',
                 'user_achievement_unlock_self' => 'Yeni bir madalya açtınız, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

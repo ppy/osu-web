@@ -25,6 +25,7 @@ return [
         'language_edit' => '언어가 :old에서 :new 으(로) 변경되었습니다.',
         'love' => ':user 님에게 Loved 받음',
         'nominate' => ':user 님이 추천함.',
+        'nominate_modes' => '',
         'nomination_reset' => '새로운 문제 :discussion (:text)가 추천 상태를 초기화시켰습니다.',
         'qualify' => '이 비트맵은 충분한 추천을 받았고 qualified 상태로 전환되었습니다.',
         'rank' => 'Ranked.',

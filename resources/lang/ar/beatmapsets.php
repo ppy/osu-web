@@ -8,6 +8,7 @@ return [
         'disabled' => 'هذه الأغنية غير متوفرة للتحميل حاليا.',
         'parts-removed' => 'تم حذف بعض اجزاء هذه الخريطة نظراََ لطلب من مالك او جهة خارجية.',
         'more-info' => 'تحقق هنا للمزيد من المعلومات.',
+        'rule_violation' => '',
     ],
 
     'index' => [
@@ -16,11 +17,27 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'تحميل',
             'video' => 'تحميل مع الفيديو',
             'no_video' => 'تحميل بدون الفيديو',
             'direct' => 'فتح في osu!direct',
+        ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
         ],
     ],
 

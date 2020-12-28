@@ -15,8 +15,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => '신고',
+        'title' => ':username 님의 글을 신고하실 건가요?',
     ],
 
     'scores' => [

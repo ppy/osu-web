@@ -51,7 +51,7 @@ return [
         'actions' => [
             'destroy' => '삭제',
             'edit' => '수정',
-            'report' => '',
+            'report' => '게시글 신고',
             'restore' => '복원',
         ],
 

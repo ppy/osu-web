@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Bermain menggunakan :devices',
         'title' => "profil :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Ganti Sampul Profil',

@@ -8,6 +8,7 @@ return [
         'disabled' => 'Nie możesz pobrać tej beatmapy.',
         'parts-removed' => 'Ta beatmapa została usunięta za prośbą twórcy materiałów w niej użytych.',
         'more-info' => 'Kliknij tutaj, aby dowiedzieć się więcej.',
+        'rule_violation' => '',
     ],
 
     'index' => [
@@ -16,11 +17,27 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'pobierz',
             'video' => 'pobierz z wideo',
             'no_video' => 'pobierz bez wideo',
             'direct' => 'otwórz w osu!direct',
+        ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
         ],
     ],
 

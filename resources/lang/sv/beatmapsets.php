@@ -8,6 +8,7 @@ return [
         'disabled' => 'Denna beatmap är för närvarande inte tillgänglig för nedladdning.',
         'parts-removed' => 'Portioner av denna beatmap har blivit borttagna på förfrågan av skaparen eller en tredje-parts rättighets hållare.',
         'more-info' => 'Klicka här för mer information.',
+        'rule_violation' => '',
     ],
 
     'index' => [
@@ -16,11 +17,27 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'ladda ner',
             'video' => 'ladda ner med video',
             'no_video' => 'ladda ner utan video',
             'direct' => 'öppna i osu!direct',
+        ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
         ],
     ],
 

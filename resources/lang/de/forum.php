@@ -51,7 +51,7 @@ return [
         'actions' => [
             'destroy' => 'Beitrag löschen',
             'edit' => 'Beitrag bearbeiten',
-            'report' => '',
+            'report' => 'Beitrag melden',
             'restore' => 'Beitrag wiederherstellen',
         ],
 

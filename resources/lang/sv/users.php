@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Spelar med :devices',
         'title' => ":username's profil",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Ändra Profilomslag',

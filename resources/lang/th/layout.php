@@ -78,7 +78,7 @@ return [
         ],
         'help' => [
             '_' => 'ช่วยเหลือ',
-            'getAbuse' => '',
+            'getAbuse' => 'รายงานการละเมิด',
             'getFaq' => 'คำถามที่ถามบ่อย',
             'getRules' => 'กฏ',
             'getSupport' => 'ไม่ ฉันต้องการความช่วยเหลือ จริงๆ!',
@@ -205,6 +205,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'การตั้งค่า',
+            'follows' => '',
             'friends' => 'เพื่อน',
             'logout' => 'ออกจากระบบ',
             'profile' => 'โปรไฟล์ของฉัน',

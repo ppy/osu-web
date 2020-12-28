@@ -138,7 +138,7 @@ return [
         'status-messages' => [
             'approved' => 'Diese Beatmap wurde am :date approved!',
             'graveyard' => "Diese Beatmap wurde seit dem :date nicht mehr aktualisiert und wurde wahrscheinlich vom Ersteller aufgegeben...",
-            'loved' => 'Diese Beatmap wurde am :date Loved!',
+            'loved' => 'Diese Beatmap wurde am :date loved!',
             'ranked' => 'Diese Beatmap wurde am :date ranked!',
             'wip' => 'Anmerkung: Diese Beatmap ist vom Ersteller als \'Work-In-Progress\' gekennzeichnet',
         ],

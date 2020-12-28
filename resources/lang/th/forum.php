@@ -51,7 +51,7 @@ return [
         'actions' => [
             'destroy' => 'ลบโพสต์',
             'edit' => 'แก้ไขโพสต์',
-            'report' => '',
+            'report' => 'รายงานโพสต์',
             'restore' => 'กู้คืนโพสต์',
         ],
 

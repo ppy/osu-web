@@ -8,6 +8,7 @@ return [
         'disabled' => '该谱面现在无法下载。',
         'parts-removed' => '应 歌曲作者/第三方版权持有者 的要求，这张谱面已经下架。',
         'more-info' => '点击这里查看更多信息。',
+        'rule_violation' => '',
     ],
 
     'index' => [
@@ -16,11 +17,27 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => '下载',
             'video' => '下载并包含视频',
             'no_video' => '下载并不包含视频',
             'direct' => '在 osu!direct 中查看',
+        ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
         ],
     ],
 
@@ -30,7 +47,7 @@ return [
         'details' => [
             'favourite' => '收藏这张谱面',
             'logged-out' => '下载谱面前请先登录！',
-            'mapped_by' => '作图者: :mapper',
+            'mapped_by' => '谱师：:mapper',
             'unfavourite' => '取消收藏',
             'updated_timeago' => '上次更新于 :timeago',
 

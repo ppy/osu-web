@@ -6,6 +6,7 @@
 return [
     'all_read' => '已经阅读所有通知！',
     'delete' => '删除 :type',
+    'loading' => '',
     'mark_read' => '清除 :type 类型的通知',
     'none' => '没有新通知',
     'see_all' => '显示所有通知',
@@ -133,6 +134,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => '奖章',
 
@@ -200,6 +211,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username 解锁了新成就“:title”！',
                 'user_achievement_unlock_self' => '您已解锁了新成就“:title”！',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],
