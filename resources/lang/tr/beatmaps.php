@@ -196,7 +196,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Herhangi bir sorun bulunmazsa mapin tahminen dereceli olacağı vakit :date. :queue :position. sırada bulunuyor.',
-            'queue' => 'derecelendirme sırasında',
+            'queue' => 'Derecelendirme sırasında',
             'soon' => 'çok yakın',
         ],
 

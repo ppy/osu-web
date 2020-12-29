@@ -9,7 +9,7 @@ return [
         'username' => 'nome utente',
 
         'avatar' => [
-            'title' => 'Immagine di profilo',
+            'title' => 'Avatar',
             'rules' => 'Assicurati che la tua immagine di profilo aderisca alle :link.<br/>Questo significa che deve essere <strong>adatto a tutte le età</strong> (ad esempio: niente nudità, profanità o contenuti provocanti).',
             'rules_link' => 'regole della comunità',
         ],

@@ -8,6 +8,7 @@ return [
         'disabled' => 'Ez a beatmap jelenleg nem letölthető.',
         'parts-removed' => 'Ez a beatmap eltávolításra került a készítő vagy egy jogbirtokos harmadik fél kérésére.',
         'more-info' => 'Itt találsz több információt.',
+        'rule_violation' => '',
     ],
 
     'index' => [
@@ -16,11 +17,27 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'letöltés',
             'video' => 'letöltés videóval',
             'no_video' => 'letöltés videó nélkül',
             'direct' => 'megnyitás osu!direct-ben',
+        ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
         ],
     ],
 

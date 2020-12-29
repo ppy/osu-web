@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Παίζει με :devices',
         'title' => "Το προφίλ του :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Αλλάξτε το Εξώφυλλο του Προφίλ σας',

@@ -154,6 +154,10 @@ return [
         'plays_with' => '플레이 장비: :devices',
         'title' => ":username님의 프로필",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '프로필 표지 변경',

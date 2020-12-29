@@ -77,7 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'segítség',
-            'getAbuse' => '',
+            'getAbuse' => 'visszaélés jelentése',
             'getFaq' => 'gyik',
             'getRules' => 'szabályok',
             'getSupport' => 'nem, tényleg segítség kell!',
@@ -204,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Beállítások',
+            'follows' => '',
             'friends' => 'Barátok',
             'logout' => 'Kijelentkezés',
             'profile' => 'Profilom',

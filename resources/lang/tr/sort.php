@@ -15,8 +15,13 @@ return [
     'top' => 'En üst',
     'username' => 'Kullanıcı adı',
 
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => '',
+    ],
+
     'forum_topics' => [
-        'new' => 'Son Yanıt',
         'feature_votes' => 'Yıldız öncelik',
+        'new' => 'Son Yanıt',
     ],
 ];

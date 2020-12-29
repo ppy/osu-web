@@ -154,6 +154,10 @@ return [
         'plays_with' => '使用デバイス :devices',
         'title' => ":usernameのプロフィール",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'カバー画像の変更',

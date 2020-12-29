@@ -15,6 +15,8 @@ return [
             'blocked' => '당신은 상대방에게 차단되었습니다.',
             'channel_moderated' => '채널이 중재되는 중입니다',
             'friends_only' => '상대방이 친구 목록에 있는 사람들에게서만 메시지를 받고 있습니다.',
+            'not_enough_plays' => '',
+            'not_verified' => '',
             'restricted' => '계정이 제한되어 있습니다',
             'target_restricted' => '상대방의 계정이 제한되어 있습니다',
         ],

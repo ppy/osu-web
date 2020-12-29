@@ -154,6 +154,10 @@ return [
         'plays_with' => '慣用 :devices',
         'title' => ":username 的個人簡介",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '變更個人簡介封面',

@@ -25,6 +25,7 @@ return [
         'language_edit' => 'แก้ไขภาษาจาก :old เป็น :new',
         'love' => 'รักแล้วโดย :user',
         'nominate' => 'ถูกเสนอชื่อโดย :user',
+        'nominate_modes' => '',
         'nomination_reset' => 'ปัญหาใหม่ :discussion (:text) ทำให้เกิดการรีเซทการเสนอชื่อ',
         'qualify' => 'บีทแมพนี้ได้รับจำนวนการเสนอชื่อครบแล้ว และได้ถูก Qualified',
         'rank' => 'จัดอันดับ',

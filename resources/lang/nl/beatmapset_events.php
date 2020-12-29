@@ -25,6 +25,7 @@ return [
         'language_edit' => 'Taal veranderd van :old naar :new.',
         'love' => 'Geloved door :user',
         'nominate' => 'Genomineerd door :user.',
+        'nominate_modes' => '',
         'nomination_reset' => 'Nieuw probleem: discussie (: tekst) veroorzaakte een nominatie reset.',
         'qualify' => 'Deze beatmap heeft het benodigde aantal nominaties bereikt en is nu gekwalificeerd.',
         'rank' => 'Ranked.',

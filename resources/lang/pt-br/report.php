@@ -15,8 +15,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Denunciar',
+        'title' => 'Denunciar publicação de :username?',
     ],
 
     'scores' => [

@@ -75,6 +75,9 @@ return [
         'contests_controller' => [
             '_' => 'versenyek',
         ],
+        'follows_controller' => [
+            'index' => '',
+        ],
         'friends_controller' => [
             'index' => 'irányítópult',
         ],

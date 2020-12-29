@@ -15,8 +15,13 @@ return [
     'top' => 'Κορυφαία',
     'username' => '',
 
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => '',
+    ],
+
     'forum_topics' => [
-        'new' => 'Τελευταία απάντηση',
         'feature_votes' => 'Βάσει αστεριών',
+        'new' => 'Τελευταία απάντηση',
     ],
 ];

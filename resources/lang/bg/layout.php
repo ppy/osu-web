@@ -204,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Настройки',
+            'follows' => '',
             'friends' => 'Приятели',
             'logout' => 'Изход',
             'profile' => 'Моят профил',

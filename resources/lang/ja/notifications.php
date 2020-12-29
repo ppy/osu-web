@@ -6,6 +6,7 @@
 return [
     'all_read' => '通知は全て既読です！',
     'delete' => '',
+    'loading' => '',
     'mark_read' => '消去 :type',
     'none' => '通知なし',
     'see_all' => 'すべての通知を見る',
@@ -133,6 +134,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'メダル',
 
@@ -200,6 +211,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':usernameが新しいメダル「:title」をアンロックしました！',
                 'user_achievement_unlock_self' => '新しいメダル「:title」をアンロックしました！',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

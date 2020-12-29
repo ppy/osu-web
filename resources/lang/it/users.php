@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Gioca con :devices',
         'title' => "Profilo di :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Cambia copertina del profilo',

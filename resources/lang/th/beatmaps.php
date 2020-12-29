@@ -252,7 +252,7 @@ return [
         'converts' => 'รวมแมพคอนเวิรต์ด้วย',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'ทั้งหมด',
         'any' => 'ไม่เจาะจง',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

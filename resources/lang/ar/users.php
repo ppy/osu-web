@@ -154,6 +154,10 @@ return [
         'plays_with' => 'يستخدم :devices',
         'title' => "صفحة:username الشخصية",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'تغيير صورة الغلاف',

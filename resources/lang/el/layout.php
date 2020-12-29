@@ -204,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Ρυθμίσεις',
+            'follows' => '',
             'friends' => 'Φίλοι',
             'logout' => 'Αποσύνδεση',
             'profile' => 'Το Προφίλ μου',

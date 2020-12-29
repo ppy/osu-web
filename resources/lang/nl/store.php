@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Bestelling geplaatst :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'Factuur weergeven',
         'no_orders' => 'Geen bestellingen om te bekijken.',
+        'paid_on' => 'Bestelling geplaatst :date',
         'resume' => 'Hervat afrekenen',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

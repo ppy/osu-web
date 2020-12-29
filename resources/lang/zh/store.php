@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => '订单支付于 :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => '查看发票',
         'no_orders' => '没有可显示的订单。',
+        'paid_on' => '订单支付于 :date',
         'resume' => '恢复结帐',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Joga com :devices',
         'title' => "Perfil de :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Mudar Capa de Perfil',

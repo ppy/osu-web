@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Участники по игровому режиму',
     ],
 
     'force_reactivation' => [
@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Играет с :devices',
         'title' => "Профиль :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Сменить обложку профиля',

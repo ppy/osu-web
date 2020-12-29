@@ -204,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Indstillinger',
+            'follows' => '',
             'friends' => 'Venner',
             'logout' => 'Log ud',
             'profile' => 'Min Profil',

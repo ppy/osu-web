@@ -6,6 +6,7 @@
 return [
     'all_read' => 'Alle meldingen gelezen!',
     'delete' => '',
+    'loading' => '',
     'mark_read' => 'Wissen :type',
     'none' => 'Geen meldingen',
     'see_all' => 'alle meldingen bekijken',
@@ -133,6 +134,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medailles',
 
@@ -200,6 +211,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username heeft een nieuwe medaille ontgrendeld, ":title"!',
                 'user_achievement_unlock_self' => 'Je hebt een nieuwe medaille, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

@@ -75,6 +75,9 @@ return [
         'contests_controller' => [
             '_' => 'konkurrencer',
         ],
+        'follows_controller' => [
+            'index' => '',
+        ],
         'friends_controller' => [
             'index' => 'instrumentbræt',
         ],

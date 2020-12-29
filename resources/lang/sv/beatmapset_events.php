@@ -25,6 +25,7 @@ return [
         'language_edit' => 'Språk ändrat från :old till :new.',
         'love' => 'Älskad av :user',
         'nominate' => 'Nominerad av :user.',
+        'nominate_modes' => '',
         'nomination_reset' => 'Nytt problem :discussion triggade en nomination återställning.',
         'qualify' => 'Denna beatmap har uppnått den nödvändiga antalet av nomineringar och har blivit kvalificerad.',
         'rank' => 'Rankad.',

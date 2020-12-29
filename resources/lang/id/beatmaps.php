@@ -28,7 +28,7 @@ return [
         'require-login' => 'Silakan masuk untuk membuka topik bahasan baru atau mengirimkan balasan',
         'resolved' => 'Terjawab',
         'restore' => 'kembalikan',
-        'show_deleted' => 'Tampilan dihapus',
+        'show_deleted' => 'Tampilkan yang sudah dihapus',
         'title' => 'Diskusi',
 
         'collapse' => [

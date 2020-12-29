@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => '注文済み :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => '請求書を見る',
         'no_orders' => '表示できる注文がありません。',
+        'paid_on' => '注文済み :date',
         'resume' => '支払いを再開',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

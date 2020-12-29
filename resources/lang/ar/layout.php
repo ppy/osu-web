@@ -204,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'الاعدادات',
+            'follows' => '',
             'friends' => 'الأصدقاء',
             'logout' => 'تسجيل الخروج',
             'profile' => 'الصفحة الشخصية',

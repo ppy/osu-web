@@ -36,7 +36,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => '',
         'nav_title' => 'výpis',
+        'no_comments' => '',
     ],
 
     'placeholder' => [

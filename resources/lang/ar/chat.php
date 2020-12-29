@@ -15,6 +15,8 @@ return [
             'blocked' => 'تم حظرك بواسطة المستلم',
             'channel_moderated' => 'القناة تحت الأدارة',
             'friends_only' => 'يقبل المستلم الرسائل من الناس في قائمة الأصدقاء فقط',
+            'not_enough_plays' => '',
+            'not_verified' => '',
             'restricted' => 'أنت مقيد حاليا',
             'target_restricted' => 'المستلم مقيد حاليا',
         ],

@@ -15,8 +15,13 @@ return [
     'top' => 'Hàng đầu',
     'username' => 'Tên người chơi',
 
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => '',
+    ],
+
     'forum_topics' => [
-        'new' => 'Trả lời cuối',
         'feature_votes' => 'Ưu tiên sao',
+        'new' => 'Trả lời cuối',
     ],
 ];

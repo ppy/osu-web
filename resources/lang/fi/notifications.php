@@ -6,6 +6,7 @@
 return [
     'all_read' => 'Kaikki ilmoitukset luettu!',
     'delete' => '',
+    'loading' => '',
     'mark_read' => '',
     'none' => '',
     'see_all' => '',
@@ -133,6 +134,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Mitalit',
 
@@ -200,6 +211,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => '',
                 'user_achievement_unlock_self' => '',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

@@ -154,6 +154,10 @@ return [
         'plays_with' => '惯用 :devices',
         'title' => ":username 的个人资料",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '更换个人资料头图',

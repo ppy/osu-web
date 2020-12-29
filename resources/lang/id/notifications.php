@@ -6,6 +6,7 @@
 return [
     'all_read' => 'Semua notifikasi telah dibaca!',
     'delete' => 'Hapus :type',
+    'loading' => '',
     'mark_read' => 'Hapus :type',
     'none' => 'Tidak ada notifikasi',
     'see_all' => 'lihat semua notifikasi',
@@ -133,6 +134,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medali',
 
@@ -200,6 +211,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username telah mendapatkan medali baru, ":title"!',
                 'user_achievement_unlock_self' => 'Anda telah mendapatkan medali baru, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],
