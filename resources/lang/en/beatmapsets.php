@@ -41,6 +41,10 @@ return [
         ],
     ],
 
+    'nsfw_badge' => [
+        'label' => 'Explicit',
+    ],
+
     'show' => [
         'discussion' => 'Discussion',
 
@@ -106,10 +110,22 @@ return [
             'genre' => 'Genre',
             'language' => 'Language',
             'no_scores' => 'Data still being calculated...',
+            'nsfw' => 'Explicit content',
             'points-of-failure' => 'Points of Failure',
             'source' => 'Source',
             'success-rate' => 'Success Rate',
             'tags' => 'Tags',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'This beatmap contains explicit, offensive, or disturbing content. Would you like to view it anyway?',
+            'title' => 'Explicit Content',
+
+            'buttons' => [
+                'disable' => 'Disable warning',
+                'listing' => 'Beatmap listing',
+                'show' => 'Show',
+            ],
         ],
 
         'scoreboard' => [

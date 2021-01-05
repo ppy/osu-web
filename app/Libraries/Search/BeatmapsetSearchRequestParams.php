@@ -74,6 +74,10 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         $this->parseSortOrder($sort);
         $this->searchAfter = $this->getSearchAfter($request['cursor'] ?? null);
 
+        if ($user !== null) {
+            $this->includeNsfw = get_bool($request['nsfw'] ?? null) ?? $user->profileCustomization()->beatmapset_show_nsfw;
+        }
+
         // Supporter-only options.
         $this->rank = array_intersect(
             explode('.', $request['r'] ?? null),
@@ -122,7 +126,12 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $statuses[] = ['id' => $id, 'name' => trans("beatmaps.status.{$id}")];
         }
 
-        return compact('extras', 'general', 'genres', 'languages', 'modes', 'played', 'ranks', 'statuses');
+        $nsfw = [
+            ['id' => false, 'name' => trans('beatmaps.nsfw.exclude')],
+            ['id' => true, 'name' => trans('beatmaps.nsfw.include')],
+        ];
+
+        return compact('extras', 'general', 'genres', 'languages', 'modes', 'nsfw', 'played', 'ranks', 'statuses');
     }
 
     public function isLoginRequired(): bool

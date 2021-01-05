@@ -252,6 +252,7 @@ class BeatmapsetsController extends Controller
         $metadataParams = get_params($params, 'beatmapset', [
             'language_id:int',
             'genre_id:int',
+            'nsfw:bool',
         ]);
 
         if (count($metadataParams) > 0) {
