@@ -12,6 +12,7 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, div, p } from 'react-dom-factories'
 import VirtualList from 'react-virtual-list'
+import { showVisual } from 'utils/beatmapset-helper'
 
 el = React.createElement
 beatmapsetStore = core.dataStore.beatmapsetStore
@@ -61,7 +62,7 @@ export class SearchContent extends React.Component
       beatmapsetIds = controller.currentBeatmapsetIds
 
       firstBeatmapset = beatmapsetStore.get(beatmapsetIds[0])
-      searchBackground = if beatmapsetIds.length > 0 then firstBeatmapset?.covers?.cover else null
+      searchBackground = if firstBeatmapset? && showVisual(firstBeatmapset) then firstBeatmapset.covers?.cover else null
       supporterRequiredFilterText = controller.supporterRequiredFilterText
       listCssClasses = 'beatmapsets'
       listCssClasses += ' beatmapsets--dimmed' if controller.isBusy
