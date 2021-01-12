@@ -4,7 +4,7 @@
 --}}
 
 <a class='user-home-beatmapset' href="{{route('beatmapsets.show', $beatmapset->beatmapset_id)}}">
-    @if ($beatmapset->nsfw && !auth()->user()->userProfileCustomization->beatmapset_show_nsfw)
+    @if ($beatmapset->nsfw && !$showNsfw)
         <div class="user-home-beatmapset__cover user-home-beatmapset__cover--blank"></div>
     @else
         <img
