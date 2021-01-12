@@ -67,16 +67,21 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $generals = explode('.', $request['c'] ?? null) ?? [];
             $this->includeConverts = in_array('converts', $generals, true);
             $this->showRecommended = in_array('recommended', $generals, true);
+
+            $includeNsfw = get_bool($request['nsfw'] ?? null);
+            if (!isset($includeNsfw) && $user !== null && $user->userProfileCustomization !== null) {
+                $includeNsfw = $user->userProfileCustomization->beatmapset_show_nsfw;
+            }
+
+            if (isset($includeNsfw)) {
+                $this->includeNsfw = $includeNsfw;
+            }
         } else {
             $sort = null;
         }
 
         $this->parseSortOrder($sort);
         $this->searchAfter = $this->getSearchAfter($request['cursor'] ?? null);
-
-        if ($user !== null) {
-            $this->includeNsfw = get_bool($request['nsfw'] ?? null) ?? $user->profileCustomization()->beatmapset_show_nsfw;
-        }
 
         // Supporter-only options.
         $this->rank = array_intersect(
