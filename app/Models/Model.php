@@ -19,6 +19,8 @@ abstract class Model extends BaseModel
 
     protected $connection = 'mysql';
     protected $guarded = [];
+    protected $macros;
+    protected $primaryKeys;
 
     public function getForeignKey()
     {
