@@ -23,7 +23,7 @@
     }
 @endphp
 
-<div id="search-forum-options" data-turbolinks-permanent class="search-forum-options">
+<div id="search-forum-options" class="search-forum-options">
     @if ($fields['user'] !== null)
         <label class="search-forum-options__input-group">
             <div class="search-forum-options__label">
