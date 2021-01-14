@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'ヘルプ',
+            'getAbuse' => '',
             'getFaq' => 'FAQ',
             'getRules' => 'ルール',
             'getSupport' => 'サポートが必要です！',
@@ -203,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '設定',
+            'follows' => '',
             'friends' => 'フレンド',
             'logout' => 'ログアウト',
             'profile' => 'プロフィール',

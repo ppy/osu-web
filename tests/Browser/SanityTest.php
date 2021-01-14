@@ -255,6 +255,9 @@ class SanityTest extends DuskTestCase
     public function bindParams(Browser $browser, \Illuminate\Routing\Route $route)
     {
         $paramOverrides = [
+            'beatmapsets.discussions.show' => [
+                'discussion' => static::$scaffolding['beatmap_discussion']->getKey(),
+            ],
             'forum.topics.create' => [
                 'forum_id' => self::$scaffolding['forum']->getKey(),
             ],
@@ -285,7 +288,14 @@ class SanityTest extends DuskTestCase
                 'changelog' => self::$scaffolding['build']->version,
             ],
             'legal' => [
-                'page' => 'terms',
+                'locale' => 'en',
+                'path' => 'Terms',
+            ],
+            'wiki.image' => [
+                'path' => 'shared/mode/osu.png',
+            ],
+            'wiki.sitemap' => [
+                'locale' => 'en',
             ],
         ];
 

@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'ayuda',
+            'getAbuse' => 'notificar abuso',
             'getFaq' => 'preguntas frecuentes',
             'getRules' => 'reglas',
             'getSupport' => 'no, en serio, ¡necesito ayuda!',
@@ -120,7 +121,7 @@ return [
             'faq' => 'Preguntas frecuentes',
             'forum' => 'Foros de la comunidad',
             'livestreams' => 'Transmisiones en vivo',
-            'report' => 'Reportar un error',
+            'report' => 'Informar de un problema',
             'wiki' => 'Wiki',
         ],
         'legal' => [
@@ -203,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Configuración',
+            'follows' => '',
             'friends' => 'Amigos',
             'logout' => 'Cerrar sesión',
             'profile' => 'Mi perfil',

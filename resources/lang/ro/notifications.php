@@ -5,9 +5,12 @@
 
 return [
     'all_read' => 'Toate notificările citite!',
+    'delete' => '',
+    'loading' => '',
     'mark_read' => 'Curăță :type',
     'none' => 'Nicio notificare',
     'see_all' => 'vedeți toate notificările',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'tot',
@@ -131,6 +134,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medalii',
 
@@ -198,6 +211,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username a deblocat o nouă medalie, ":title"!',
                 'user_achievement_unlock_self' => 'Ați deblocat o nouă medalie, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

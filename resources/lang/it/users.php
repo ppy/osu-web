@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Membri per modalità di gioco',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Il tuo account non è stato utilizzato per molto tempo.",
@@ -150,6 +154,10 @@ return [
         'plays_with' => 'Gioca con :devices',
         'title' => "Profilo di :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Cambia copertina del profilo',

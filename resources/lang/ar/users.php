@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "لم تستعمل حسابك منذ وقتِِ طويل.",
@@ -150,6 +154,10 @@ return [
         'plays_with' => 'يستخدم :devices',
         'title' => "صفحة:username الشخصية",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'تغيير صورة الغلاف',

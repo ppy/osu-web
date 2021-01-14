@@ -42,6 +42,7 @@ class Notification extends Model
     const COMMENT_NEW = 'comment_new';
     const FORUM_TOPIC_REPLY = 'forum_topic_reply';
     const USER_ACHIEVEMENT_UNLOCK = 'user_achievement_unlock';
+    const USER_BEATMAPSET_NEW = 'user_beatmapset_new';
 
     const NAME_TO_CATEGORY = [
         self::BEATMAPSET_DISCUSSION_LOCK => 'beatmapset_discussion',
@@ -60,6 +61,7 @@ class Notification extends Model
         self::COMMENT_NEW => 'comment',
         self::FORUM_TOPIC_REPLY => 'forum_topic_reply',
         self::USER_ACHIEVEMENT_UNLOCK => 'user_achievement_unlock',
+        self::USER_BEATMAPSET_NEW => 'user_beatmapset_new',
     ];
 
     const NOTIFIABLE_CLASSES = [
@@ -72,7 +74,8 @@ class Notification extends Model
     ];
 
     const SUBTYPES = [
-        'comment_new' => 'comment',
+        self::COMMENT_NEW => 'comment',
+        self::USER_BEATMAPSET_NEW => 'mapping',
     ];
 
     protected $casts = [

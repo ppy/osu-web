@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Pemesanan dilangsukan pada :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'Lihat Invoice',
         'no_orders' => 'Tidak ada pesanan yang tercatat.',
+        'paid_on' => 'Pemesanan dilangsukan pada :date',
         'resume' => 'Lanjutkan Proses Check-Out',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

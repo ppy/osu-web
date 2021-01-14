@@ -27,6 +27,10 @@ class UserNotification extends Model
         $notificationIds = $batchIdentities->getNotificationIds();
         $identities = $batchIdentities->getIdentities();
 
+        if (empty($notificationIds)) {
+            return;
+        }
+
         $now = now();
         // obtain and filter valid notification ids
         $notificationIds = $user
@@ -63,9 +67,11 @@ class UserNotification extends Model
     {
         $ids = $batchIdentities->getNotificationIds();
         $identities = $batchIdentities->getIdentities();
-
         $now = now();
-        if ($ids instanceof Builder) {
+
+        if (empty($ids)) {
+            return;
+        } else if ($ids instanceof Builder) {
             $instance = new static();
             $tableName = $instance->getTable();
             // force mysql optimizer to optimize properly with a fake multi-table update

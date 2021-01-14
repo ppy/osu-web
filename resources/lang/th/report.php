@@ -6,21 +6,26 @@
 return [
     'beatmapset_discussion_post' => [
         'button' => 'รีพอร์ต',
-        'title' => 'จะรายงานโพสต์ของ :username หรอ ?',
+        'title' => 'รายงานโพสต์ของ :username?',
     ],
 
     'comment' => [
         'button' => 'รายงาน',
-        'title' => 'ต้องการรายงานความคิดเห็นของ :username หรือไม่?',
+        'title' => 'รายงานคอมเมนท์ของ :username?',
+    ],
+
+    'forum_post' => [
+        'button' => 'รายงาน',
+        'title' => 'รายงานโพสต์​ของ :username? ',
     ],
 
     'scores' => [
         'button' => 'รายงานผลคะแนน',
-        'title' => 'ต้องการรายงานผลคะแนนของ :username หรือไม่?',
+        'title' => 'รรายงานผลคะแนนของ :username?',
     ],
 
     'user' => [
         'button' => 'รายงาน',
-        'title' => 'จะรายงาน :username ไหม?',
+        'title' => 'รายงาน :username?',
     ],
 ];

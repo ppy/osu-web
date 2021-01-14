@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '成员按游戏模式筛选',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "您已经很长时间没有使用您的账户了。",
@@ -150,6 +154,10 @@ return [
         'plays_with' => '惯用 :devices',
         'title' => ":username 的个人资料",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '更换个人资料头图',

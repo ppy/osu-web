@@ -15,8 +15,13 @@ return [
     'top' => 'トップ',
     'username' => 'ユーザー名',
 
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => '',
+    ],
+
     'forum_topics' => [
-        'new' => '最後の返信',
         'feature_votes' => 'スターの優先度',
+        'new' => '最後の返信',
     ],
 ];

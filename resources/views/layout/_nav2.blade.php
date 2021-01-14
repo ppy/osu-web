@@ -139,21 +139,34 @@
 
         @if (Auth::user() !== null)
             <div class="nav2__col">
-                <a
-                    class="nav-button nav-button--stadium js-react--chat-icon"
-                    href="{{ route('chat.index') }}"
+                <button
+                    class="nav-button nav-button--stadium js-click-menu js-react--chat-icon"
+                    data-click-menu-target="nav2-chat-notification-widget"
+                    data-turbolinks-permanent
+                    id="notification-widget-chat-icon"
                 >
                     <span class="notification-icon">
                         <i class="fas fa-comment-alt"></i>
                         <span class="notification-icon__count">...</span>
                     </span>
-                </a>
+                </button>
+                <div
+                    class="nav-click-popup js-click-menu js-react--notification-widget"
+                    data-click-menu-id="nav2-chat-notification-widget"
+                    data-visibility="hidden"
+                    data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup', 'only' => 'channel']) }}"
+                    data-turbolinks-permanent
+                    id="notification-widget-chat"
+                ></div>
+
             </div>
 
             <div class="nav2__col">
                 <button
                     class="nav-button nav-button--stadium js-click-menu js-react--notification-icon"
                     data-click-menu-target="nav2-notification-widget"
+                    data-turbolinks-permanent
+                    id="notification-widget-icon"
                 >
                     <span class="notification-icon">
                         <i class="fas fa-inbox"></i>
@@ -164,7 +177,9 @@
                     class="nav-click-popup js-click-menu js-react--notification-widget"
                     data-click-menu-id="nav2-notification-widget"
                     data-visibility="hidden"
-                    data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup']) }}"
+                    data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup', 'excludes' => ['channel']]) }}"
+                    data-turbolinks-permanent
+                    id="notification-widget"
                 ></div>
             </div>
         @endif

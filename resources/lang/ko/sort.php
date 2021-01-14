@@ -15,8 +15,13 @@ return [
     'top' => '상위',
     'username' => '사용자 이름',
 
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => '',
+    ],
+
     'forum_topics' => [
-        'new' => '최근 응답',
         'feature_votes' => '별 평점 순위',
+        'new' => '최근 응답',
     ],
 ];

@@ -28,6 +28,10 @@ return [
             'cleared' => 'geçildi',
             'not_cleared' => 'geçilmedi',
         ],
+        'no_diff_reduction' => [
+            '_' => ':link bu paketi tamamlamak için kullanılamaz.',
+            'link' => 'Zorluk düşürme modları',
+        ],
     ],
 
     'mode' => [

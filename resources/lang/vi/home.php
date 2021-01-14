@@ -36,7 +36,7 @@ return [
         'forum_post' => [
             'all' => 'Tất cả diễn đàn',
             'link' => 'Tìm trong diễn đàn',
-            'login_required' => '',
+            'login_required' => 'Đăng nhập để tìm kiếm trong diễn đàn',
             'more_simple' => 'Hiển thị thêm kết quả tìm kiếm trong diễn đàn',
             'title' => 'Diễn Đàn',
 
@@ -76,7 +76,7 @@ return [
         'action' => 'Tải xuống osu!',
 
         'help' => [
-            '_' => '',
+            '_' => 'nếu bạn gặp vấn đề khi bắt đầu game hoặc tạo tài khoản, :help_forum_link hoặc :support_button.',
             'help_forum_link' => '',
             'support_button' => '',
         ],

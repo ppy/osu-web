@@ -8,6 +8,11 @@ return [
         'description' => 'Voici les discussions de beatmap que vous suivez. Vous serez notifié quand il y aura de nouveaux posts ou des changements.',
         'title_compact' => 'liste d\'abonnement des modifications',
 
+        'counts' => [
+            'total' => 'Beatmaps suivies',
+            'unread' => 'Beatmaps avec une nouvelle activité',
+        ],
+
         'table' => [
             'empty' => 'Aucune discussion de beatmap suivie.',
             'open_issues' => 'Problèmes ouverts',

@@ -48,7 +48,7 @@ return [
             ],
 
             'prompt' => [
-                'lock' => 'Razón del bloqueo',
+                'lock' => 'Motivo del bloqueo',
                 'unlock' => '¿Seguro que desea desbloquearla?',
             ],
         ],
@@ -187,8 +187,8 @@ return [
         'nominate_confirm' => '¿Nominar este mapa?',
         'nominated_by' => 'nominado por :users',
         'not_enough_hype' => "No hay suficiente hype.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Remover de Amados',
+        'remove_from_loved_prompt' => 'Motivo para remover de Amados:',
         'required_text' => 'Nominaciones: :current/:required',
         'reset_message_deleted' => 'eliminado',
         'title' => 'Estado de nominación',
@@ -252,7 +252,8 @@ return [
         'converts' => 'Incluir mapas convertidos',
     ],
     'mode' => [
-        'any' => 'Todos',
+        'all' => 'Todos',
+        'any' => 'Cualquier',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
         'fruits' => 'osu!catch',

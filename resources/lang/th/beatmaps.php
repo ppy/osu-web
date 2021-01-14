@@ -187,16 +187,16 @@ return [
         'nominate_confirm' => 'เสนอชื่อบีทแมพนี้?',
         'nominated_by' => 'เสนอชื่อโดย :users',
         'not_enough_hype' => "ไม่มี Hype เพียงพอ",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'ถูกนำออกจาก Loved',
+        'remove_from_loved_prompt' => 'เหตุผลในการถูกออกจาก Loved',
         'required_text' => 'การเสนอชื่อ: :current/:required',
         'reset_message_deleted' => 'ถูกลบไปแล้ว',
         'title' => 'ข้อมูลการเสนอชื่อ',
         'unresolved_issues' => 'ยังมีปัญหาที่ต้องแก้ไขให้เสร็จก่อน',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
+            '_' => 'แมพนี้จะถูก ranked  ใน :date ถ้าไม่พบเจอปัญหาเพิ่มเติม แมพนี้อยู่ที่ #:position ใน :queue',
+            'queue' => 'คิวการ rank',
             'soon' => 'เร็ว ๆ นี้',
         ],
 
@@ -252,6 +252,7 @@ return [
         'converts' => 'รวมแมพคอนเวิรต์ด้วย',
     ],
     'mode' => [
+        'all' => 'ทั้งหมด',
         'any' => 'ไม่เจาะจง',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'generic' => 'Correzione di bug e piccoli miglioramenti.',
+    'generic' => 'Correzione di bug e piccoli miglioramenti',
 
     'build' => [
         'title' => 'modifiche in :version',
@@ -32,9 +32,9 @@ return [
     ],
 
     'support' => [
-        'heading' => 'Adori questo aggiornamento?',
+        'heading' => 'Ti piace questo aggiornamento?',
         'text_1' => 'Sostieni gli sviluppi futuri di osu! e :link oggi!',
         'text_1_link' => 'diventa un osu!supporter',
-        'text_2' => 'Non solo aiuterai a velocizzare lo sviluppo, ma riceverai anche nuove funzionalità e opzioni!',
+        'text_2' => 'Non solo aiuterai a velocizzare lo sviluppo, ma riceverai anche funzionalità e personalizzazioni extra!',
     ],
 ];

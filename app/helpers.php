@@ -175,8 +175,18 @@ function class_with_modifiers(string $className, ?array $modifiers = null)
 {
     $class = $className;
 
-    foreach ($modifiers ?? [] as $modifier) {
-        $class .= " {$className}--{$modifier}";
+    if ($modifiers !== null) {
+        if (isset($modifiers[0])) {
+            foreach ($modifiers as $modifier) {
+                $class .= " {$className}--{$modifier}";
+            }
+        } else {
+            foreach ($modifiers as $modifier => $enabled) {
+                if ($enabled === true) {
+                    $class .= " {$className}--{$modifier}";
+                }
+            }
+        }
     }
 
     return $class;
@@ -793,7 +803,12 @@ function ujs_redirect($url, $status = 200)
             Request::session()->put('_turbolinks_location', $url);
         }
 
-        return redirect($url);
+        // because non-3xx redirects make no sense.
+        if ($status < 300 || $status > 399) {
+            $status = 302;
+        }
+
+        return redirect($url, $status);
     }
 }
 
@@ -803,9 +818,9 @@ function unzalgo(?string $text, int $level = 2)
     return preg_replace("/(\pM{{$level}})\pM+/u", '\1', $text);
 }
 
-function route_redirect($path, $target)
+function route_redirect($path, $target, string $method = 'get')
 {
-    return Route::get($path, '\App\Http\Controllers\RedirectController')->name("redirect:{$target}");
+    return Route::$method($path, '\App\Http\Controllers\RedirectController')->name("redirect:{$target}");
 }
 
 function timeago($date)
@@ -883,21 +898,31 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     return $url;
 }
 
-function wiki_url($page = 'Main_Page', $locale = null, $api = null)
+function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
 {
     // FIXME: remove `rawurlencode` workaround when fixed upstream.
     // Reference: https://github.com/laravel/framework/issues/26715
-    $params = ['page' => str_replace('%2F', '/', rawurlencode($page))];
-
-    if (present($locale) && $locale !== App::getLocale()) {
-        $params['locale'] = $locale;
-    }
+    $params = [
+        'path' => $path === null ? 'Main_Page' : str_replace('%2F', '/', rawurlencode($path)),
+        'locale' => $locale ?? App::getLocale(),
+    ];
 
     if ($api ?? is_api_request()) {
-        return route('api.wiki.show', $params);
+        return route('api.wiki.show', $params, $fullUrl);
     }
 
-    return route('wiki.show', $params);
+    if ($params['path'] === 'Sitemap') {
+        return route('wiki.sitemap', $params['locale'], $fullUrl);
+    }
+
+    if (starts_with("{$params['path']}/", 'Legal/')) {
+        $params['path'] = ltrim(substr($params['path'], strlen('Legal')), '/');
+        $route = 'legal';
+    } else {
+        $route = 'wiki.show';
+    }
+
+    return route($route, $params, $fullUrl);
 }
 
 function bbcode($text, $uid, $options = [])
@@ -908,6 +933,11 @@ function bbcode($text, $uid, $options = [])
 function bbcode_for_editor($text, $uid = null)
 {
     return (new App\Libraries\BBCodeFromDB($text, $uid))->toEditor();
+}
+
+function concat_path($paths)
+{
+    return implode('/', array_filter($paths, 'present'));
 }
 
 function proxy_media($url)
@@ -988,6 +1018,7 @@ function nav_links()
         'getWiki' => wiki_url('Main_Page'),
         'getFaq' => wiki_url('FAQ'),
         'getRules' => wiki_url('Rules'),
+        'getAbuse' => wiki_url('Reporting_Bad_Behaviour/Abuse'),
         'getSupport' => wiki_url('Help_Centre'),
     ];
 
@@ -1015,10 +1046,12 @@ function footer_landing_links()
 
 function footer_legal_links()
 {
+    $locale = app()->getLocale();
+
     return [
-        'terms' => route('legal', 'terms'),
-        'privacy' => route('legal', 'privacy'),
-        'copyright' => route('legal', 'copyright'),
+        'terms' => route('legal', ['locale' => $locale, 'path' => 'Terms']),
+        'privacy' => route('legal', ['locale' => $locale, 'path' => 'Privacy']),
+        'copyright' => route('legal', ['locale' => $locale, 'path' => 'Copyright']),
         'server_status' => osu_url('server_status'),
         'source_code' => osu_url('source_code'),
     ];

@@ -5,9 +5,12 @@
 
 return [
     'all_read' => 'Tất cả các thông báo đã được đọc!',
+    'delete' => '',
+    'loading' => '',
     'mark_read' => '',
     'none' => 'Không có thông báo nào',
     'see_all' => 'xem tất cả thông báo',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'tất cả',
@@ -131,6 +134,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Huy chương',
 
@@ -198,6 +211,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => '',
                 'user_achievement_unlock_self' => '',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

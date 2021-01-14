@@ -59,7 +59,7 @@ return [
             '_' => '',
             'beatmapset:modding' => '',
             'channel_message' => '',
-            'comment_new' => '',
+            'comment_new' => 'νέα σχόλια',
             'forum_topic_reply' => '',
             'mail' => '',
             'push' => '',
@@ -74,13 +74,13 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Ρυθμίσεις',
 
         'beatmapset_download' => [
             '_' => '',
             'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            'no_video' => 'χωρίς βίντεο',
+            'direct' => 'άνοιγμα με osu!direct',
         ],
 
         'beatmapset_title_show_original' => '',

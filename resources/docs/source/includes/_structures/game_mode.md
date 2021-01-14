@@ -2,7 +2,7 @@
 
 Available game modes:
 
-Name   | Descriprion
+Name   | Description
 ------ | ---------------
 fruits | osu!catch
 mania  | osu!mania

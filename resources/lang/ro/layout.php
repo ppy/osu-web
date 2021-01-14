@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'ajutor',
+            'getAbuse' => '',
             'getFaq' => 'întrebări frecvente',
             'getRules' => 'reguli',
             'getSupport' => 'nu, de fapt, am nevoie de ajutor!',
@@ -203,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Setări',
+            'follows' => '',
             'friends' => 'Prieteni',
             'logout' => 'Deconectare',
             'profile' => 'Profilul meu',

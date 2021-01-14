@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Beställning slutförd :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'Visa faktura',
         'no_orders' => 'Inga beställningar att visa.',
+        'paid_on' => 'Beställning slutförd :date',
         'resume' => 'Återuppta transaktionen',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

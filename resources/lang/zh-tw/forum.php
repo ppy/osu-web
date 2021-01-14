@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => '刪除回覆',
-            'restore' => '恢復回覆',
             'edit' => '編輯回覆',
+            'report' => '',
+            'restore' => '恢復回覆',
         ],
 
         'create' => [

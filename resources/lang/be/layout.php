@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'дапамога',
+            'getAbuse' => '',
             'getFaq' => 'faq',
             'getRules' => 'правілы',
             'getSupport' => 'ды не ж, мне праўда патрэбна дапамога!',
@@ -203,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Налады',
+            'follows' => '',
             'friends' => 'Сябры',
             'logout' => 'Выйсці',
             'profile' => 'Мой профіль',

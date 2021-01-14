@@ -10,7 +10,7 @@ return [
 
     'cart' => [
         'checkout' => 'Ödeme',
-        'info' => ':count_delimited ürün sepette (:subtotal)|:count_delimited ürün sepette (:subtotal)',
+        'info' => ':count_delimited ürün sepette ($:subtotal)|:count_delimited ürün sepette ($:subtotal)',
         'more_goodies' => 'Ödememi yapmadan önce başka eşyalara göz atmak istiyorum',
         'shipping_fees' => 'kargo ücretleri',
         'title' => 'Alışveriş Sepeti',
@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Sipariş verme tarihi :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'Faturayı Görüntüle',
         'no_orders' => 'Görüntülenecek sipariş yok.',
+        'paid_on' => 'Sipariş verme tarihi :date',
         'resume' => 'Sepete Dön',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

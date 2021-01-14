@@ -5,9 +5,12 @@
 
 return [
     'all_read' => '모든 알림을 읽었어요!',
+    'delete' => ':type 삭제',
+    'loading' => '',
     'mark_read' => ':type 비우기',
     'none' => '알림 없음',
     'see_all' => '모든 알림 보기',
+    'see_channel' => '채팅으로 이동',
 
     'filters' => [
         '_' => '전체',
@@ -57,8 +60,8 @@ return [
                 'beatmapset_qualify_compact' => '비트맵이 랭크맵 대기열에 등록되었습니다.',
                 'beatmapset_rank' => '":title" 이(가) ranked 상태가 되었습니다.',
                 'beatmapset_rank_compact' => '비트맵이 ranked 상태가 되었습니다.',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved' => '":title" 이(가) loved 상태에서 제거되었습니다.',
+                'beatmapset_remove_from_loved_compact' => '비트맵이 Loved 상태에서 제거되었습니다.',
                 'beatmapset_reset_nominations' => '비트맵 ":title"의 추천이 초기화되었습니다.',
                 'beatmapset_reset_nominations_compact' => '추천이 초기화되었습니다.',
             ],
@@ -131,6 +134,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => '메달',
 
@@ -161,7 +174,7 @@ return [
                 'beatmapset_nominate' => '":title" 이(가) 추천되었습니다.',
                 'beatmapset_qualify' => '":title" 이(가) 충분한 추천을 받아 랭킹 대기열에 등록되었습니다.',
                 'beatmapset_rank' => '":title" 이(가) ranked 상태가 되었습니다.',
-                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved' => '":title" 이(가) loved 상태에서 제거되었습니다.',
                 'beatmapset_reset_nominations' => '비트맵 ":title"의 추천이 초기화되었습니다.',
             ],
 
@@ -198,6 +211,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username 님이 ":title" 메달을 획득하셨습니다!',
                 'user_achievement_unlock_self' => '":title" 메달을 획득하셨습니다!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

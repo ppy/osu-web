@@ -59,10 +59,13 @@ interface JQueryStatic {
   unsubscribe: (eventName: string) => void;
 }
 
+type AjaxError = (xhr: JQueryXHR) => void;
+
 interface OsuCommon {
-  ajaxError: (xhr: JQueryXHR) => void;
+  ajaxError: AjaxError;
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
   diffColour: (difficultyRating?: string | null) => React.CSSProperties;
+  emitAjaxError: (el?: HTMLElement | null) => AjaxError;
   groupColour: (group?: GroupJson) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;

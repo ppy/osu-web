@@ -20,7 +20,7 @@ return [
 
         'destroy' => [
             '_' => 'Boritókép eltávolítása',
-            'confirm' => 'Biztos vagy benne, hogy el szeretnéd távolitani a boritóképet?',
+            'confirm' => 'Biztos vagy benne, hogy el szeretnéd távolítani a borítóképet?',
         ],
     ],
 
@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Poszt törlése',
-            'restore' => 'Poszt visszaállítása',
             'edit' => 'Poszt szerkesztése',
+            'report' => 'Poszt jelentése',
+            'restore' => 'Poszt visszaállítása',
         ],
 
         'create' => [
@@ -75,8 +76,8 @@ return [
     'topic' => [
         'deleted' => 'törölt téma',
         'go_to_latest' => 'utolsó poszt megtekintése',
-        'has_replied' => '',
-        'in_forum' => '',
+        'has_replied' => 'Feliratkoztál erre a témára',
+        'in_forum' => 'ide :forum',
         'latest_post' => ':when :user által',
         'latest_reply_by' => 'legutóbbi hozzászólás: :user',
         'new_topic' => 'Új téma',

@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'apua',
+            'getAbuse' => '',
             'getFaq' => 'ukk',
             'getRules' => 'säännöt',
             'getSupport' => 'tarvitsen siis oikeasti apua!',
@@ -203,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Asetukset',
+            'follows' => '',
             'friends' => 'Kaverit',
             'logout' => 'Kirjaudu ulos',
             'profile' => 'Profiilini',

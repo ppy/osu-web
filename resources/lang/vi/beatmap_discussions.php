@@ -66,7 +66,7 @@ return [
 
     'review' => [
         'block_count' => '',
-        'go_to_parent' => '',
+        'go_to_parent' => 'Xem Bài viết Đánh giá',
         'go_to_child' => 'Xem cuộc thảo luận',
         'validation' => [
             'block_too_large' => '',

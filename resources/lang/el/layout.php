@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'βοήθεια',
+            'getAbuse' => '',
             'getFaq' => 'συχνές ερωτήσεις',
             'getRules' => 'κανόνες',
             'getSupport' => 'όχι, πραγματικά, χρειάζομαι βοήθεια!',
@@ -203,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Ρυθμίσεις',
+            'follows' => '',
             'friends' => 'Φίλοι',
             'logout' => 'Αποσύνδεση',
             'profile' => 'Το Προφίλ μου',

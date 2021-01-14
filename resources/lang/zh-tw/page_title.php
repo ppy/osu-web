@@ -75,6 +75,9 @@ return [
         'contests_controller' => [
             '_' => '評選',
         ],
+        'follows_controller' => [
+            'index' => '',
+        ],
         'friends_controller' => [
             'index' => '主頁',
         ],
@@ -101,7 +104,7 @@ return [
             '_' => '新聞',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => '歷史通知紀錄',
         ],
         'password_reset_controller' => [
             '_' => '重置密碼',
@@ -110,7 +113,7 @@ return [
             '_' => '排名',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => '成績',
         ],
         'store_controller' => [
             '_' => 'osu!商店',

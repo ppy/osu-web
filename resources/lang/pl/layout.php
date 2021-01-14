@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'pomoc',
+            'getAbuse' => 'zgłoś nadużycie',
             'getFaq' => 'faq',
             'getRules' => 'zasady',
             'getSupport' => 'pomoc techniczna',
@@ -203,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Ustawienia',
+            'follows' => '',
             'friends' => 'Znajomi',
             'logout' => 'Wyloguj się',
             'profile' => 'Mój profil',

@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Felhasználók játékmód szerint',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "A fiókod hosszú ideje nem volt használva.",
@@ -150,6 +154,10 @@ return [
         'plays_with' => 'Ezekkel játszik: :devices',
         'title' => ":username profilja",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Profil Borító Változtatása',

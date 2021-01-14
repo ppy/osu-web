@@ -5,9 +5,12 @@
 
 return [
     'all_read' => 'อ่านการแจ้งเตือนทั้งหมดแล้ว!',
+    'delete' => 'ลบ :type',
+    'loading' => '',
     'mark_read' => 'ล้าง :type',
     'none' => 'ไม่มีการแจ้งเตือนใดๆ',
     'see_all' => 'ดูการแจ้งเตือนทั้งหมด',
+    'see_channel' => 'ไปที่แชท',
 
     'filters' => [
         '_' => 'ทั้งหมด',
@@ -57,8 +60,8 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmap ได้เข้าคิวจัดอันดับ',
                 'beatmapset_rank' => '":title" ได้ถูกแรงค์แล้ว',
                 'beatmapset_rank_compact' => 'Beatmap ได้รับการจัดอันดับ',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved' => '":title" ได้ถูกนำออกจาก Loved',
+                'beatmapset_remove_from_loved_compact' => 'บีทแมพได้ถูกนำออกจาก Loved',
                 'beatmapset_reset_nominations' => 'ปัญหานี้โพสต์โดย :username รีเซ็ทการเสนอชื่อของ beatmap ":title" ',
                 'beatmapset_reset_nominations_compact' => 'การเสนอชื่อถูกรีเซ็ท',
             ],
@@ -131,6 +134,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'เหรียญตรา',
 
@@ -138,7 +151,7 @@ return [
                 '_' => 'เหรียญตราใหม่',
                 'user_achievement_unlock' => 'ปลดล๊อค ":title"!',
                 'user_achievement_unlock_compact' => 'ปลดล๊อค ":title"!',
-                'user_achievement_unlock_group' => '',
+                'user_achievement_unlock_group' => 'ปลดล็อกเหรียญตรา',
             ],
         ],
     ],
@@ -161,7 +174,7 @@ return [
                 'beatmapset_nominate' => '":title" ได้ถูกเสนอชื่อ',
                 'beatmapset_qualify' => '":title" ได้รับการเสนอชื่อเพียงพอที่จะเข้าคิวจัดอันดับ',
                 'beatmapset_rank' => '":title" ได้ถูก ranked แล้ว',
-                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved' => '":title" ได้ถูกนำออกจาก Loved',
                 'beatmapset_reset_nominations' => 'การเสนอชื่อของ ":title" ได้ถูกรีเซ็ทแล้ว',
             ],
 
@@ -198,6 +211,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username ได้ปลดล็อกเหรียญตรา ":title"!',
                 'user_achievement_unlock_self' => 'คุณได้ปลดล็อกเหรียญตรา ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

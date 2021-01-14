@@ -14,6 +14,7 @@ export const categoryToIcons: IconsMap = {
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
   user_achievement_unlock: ['fas fa-medal'],
+  user_beatmapset_new: ['fas fa-music'],
 };
 
 export const nameToIcons: IconsMap = {
@@ -34,6 +35,7 @@ export const nameToIcons: IconsMap = {
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
   user_achievement_unlock: ['fas fa-trophy'],
+  user_beatmapset_new: ['fas fa-music'],
 };
 
 export const nameToIconsCompact: IconsMap = {
@@ -53,4 +55,5 @@ export const nameToIconsCompact: IconsMap = {
   comment_reply: ['fas fa-reply'],
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
+  user_beatmapset_new: ['fas fa-music'],
 };

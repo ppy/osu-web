@@ -55,8 +55,8 @@ return [
             ],
 
             'country_ranking' => [
-                'title' => '國內/區內排行榜',
-                'description' => '在征服世界前，先征服你的國家（或地區）',
+                'title' => '國家排行榜',
+                'description' => '在征服世界前先征服你的國家',
             ],
 
             'mod_filtering' => [
@@ -133,7 +133,7 @@ return [
             ],
             'friend_filtering' => [
                 'title' => '好友排行榜',
-                'description' => '和您的朋友一起競賽，看看你如何超越他們的排名!*<br/><br/><small>*此功能目前尚未在新網站啟用，即將上線(tm)</small>',
+                'description' => '和您的朋友一起競賽，看看你如何超越他們的排名!',
             ],
 
         ],

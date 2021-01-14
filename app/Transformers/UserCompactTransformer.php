@@ -5,6 +5,7 @@
 
 namespace App\Transformers;
 
+use App\Libraries\MorphMap;
 use App\Models\Beatmap;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
@@ -35,6 +36,7 @@ class UserCompactTransformer extends TransformerAbstract
         'cover',
         'current_mode_rank',
         'favourite_beatmapset_count',
+        'follow_user_mapping',
         'follower_count',
         'friends',
         'graveyard_beatmapset_count',
@@ -49,6 +51,7 @@ class UserCompactTransformer extends TransformerAbstract
         'is_restricted',
         'is_silenced',
         'loved_beatmapset_count',
+        'mapping_follower_count',
         'monthly_playcounts',
         'page',
         'previous_usernames',
@@ -174,17 +177,27 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->primitive($user->profileBeatmapsetsFavourite()->count());
     }
 
-    public function includeFollowerCount(User $user)
-    {
-        return $this->primitive($user->followerCount());
-    }
-
     public function includeFriends(User $user)
     {
         return $this->collection(
             $user->relations()->friends()->withMutual()->get(),
             new UserRelationTransformer()
         );
+    }
+
+    public function includeFollowUserMapping(User $user)
+    {
+        return $this->primitive(
+            $user->follows()->where([
+                'notifiable_type' => MorphMap::getType($user),
+                'subtype' => 'mapping',
+            ])->pluck('notifiable_id')
+        );
+    }
+
+    public function includeFollowerCount(User $user)
+    {
+        return $this->primitive($user->followerCount());
     }
 
     public function includeGraveyardBeatmapsetCount(User $user)
@@ -245,6 +258,11 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeLovedBeatmapsetCount(User $user)
     {
         return $this->primitive($user->profileBeatmapsetsLoved()->count());
+    }
+
+    public function includeMappingFollowerCount(User $user)
+    {
+        return $this->primitive($user->mappingFollowerCount());
     }
 
     public function includeMonthlyPlaycounts(User $user)
@@ -352,6 +370,7 @@ class UserCompactTransformer extends TransformerAbstract
             'audio_muted',
             'audio_volume',
             'beatmapset_download',
+            'beatmapset_show_nsfw',
             'beatmapset_title_show_original',
             'forum_posts_show_deleted',
             'ranking_expanded',

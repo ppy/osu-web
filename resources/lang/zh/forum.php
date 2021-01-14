@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => '删除回复',
-            'restore' => '恢复回复',
             'edit' => '编辑回复',
+            'report' => '举报帖子',
+            'restore' => '恢复回复',
         ],
 
         'create' => [

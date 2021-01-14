@@ -10,7 +10,7 @@ import core from 'osu-core-singleton';
 const dataStore = core.dataStore;
 const presence = osu.parseJson<PresenceJson>('json-presence');
 
-if (!isEmpty(presence)) {
+if (Array.isArray(presence)) {
   // initial population of channel/presence data
   dataStore.channelStore.updateWithPresence(presence);
 }

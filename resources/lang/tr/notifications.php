@@ -5,9 +5,12 @@
 
 return [
     'all_read' => 'Tüm bildirimler okundu!',
-    'mark_read' => 'Temizle: :type',
+    'delete' => ':type sil',
+    'loading' => '',
+    'mark_read' => ':type temizle',
     'none' => 'Bildirim yok',
     'see_all' => 'tüm bildirimleri gör',
+    'see_channel' => 'sohbete git',
 
     'filters' => [
         '_' => 'hepsi',
@@ -127,7 +130,17 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => ':count_delimited okunmamış mesaj.|:count_delimited okunmamış mesajlar.',
+                'legacy_pm' => ':count_delimited okunmamış mesaj.|:count_delimited okunmamış mesaj',
+            ],
+        ],
+
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
             ],
         ],
 
@@ -198,6 +211,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username yeni bir madalya açtı, ":title"!',
                 'user_achievement_unlock_self' => 'Yeni bir madalya açtınız, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

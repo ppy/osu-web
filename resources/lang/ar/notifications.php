@@ -5,9 +5,12 @@
 
 return [
     'all_read' => 'تم قراءة جميع الإشعارات!',
+    'delete' => '',
+    'loading' => '',
     'mark_read' => 'مَحو :type',
     'none' => 'لا إشعارات',
     'see_all' => 'أِظهار جميع الإشعارات',
+    'see_channel' => '',
 
     'filters' => [
         '_' => 'الكل',
@@ -131,6 +134,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'ميدالية',
 
@@ -198,6 +211,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username فتح ميدالية جديدة، ":title"!',
                 'user_achievement_unlock_self' => 'لقد فتحت ميدالية جديدة، ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

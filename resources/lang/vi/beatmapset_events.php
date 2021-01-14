@@ -25,6 +25,7 @@ return [
         'language_edit' => '',
         'love' => 'Loved bởi :user',
         'nominate' => 'Được đề cử (nominated) bởi :user.',
+        'nominate_modes' => '',
         'nomination_reset' => 'Vấn đề mới :discussion đã khiến cho đề cử bị hoàn lại.',
         'qualify' => 'Beatmap này đã đạt được số đề cử (nominations) cần thiết và đã qualified.',
         'rank' => 'Đã được xếp hạng (Ranked).',

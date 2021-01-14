@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Contul dumneavoastră nu a fost folosit într-un timp îndelungat.",
@@ -150,6 +154,10 @@ return [
         'plays_with' => 'Joacă cu :devices',
         'title' => "Profilul lui :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Schimbă coperta de profil',

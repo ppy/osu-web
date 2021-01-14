@@ -15,6 +15,8 @@ return [
             'blocked' => 'Bạn bị chặn bởi người nhận',
             'channel_moderated' => 'Kênh này đang được kiểm duyệt',
             'friends_only' => 'Người nhận chỉ nhận tin nhắn từ những người trong danh sách bạn bè của họ',
+            'not_enough_plays' => '',
+            'not_verified' => '',
             'restricted' => 'Bạn đang bị hạn chế',
             'target_restricted' => 'Người nhận đang bị hạn chế',
         ],

@@ -14,6 +14,11 @@ return [
         'title' => 'Raportezi comentariul lui :username?',
     ],
 
+    'forum_post' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Raportează Scorul',
         'title' => 'Raportezi scorul lui :username?',

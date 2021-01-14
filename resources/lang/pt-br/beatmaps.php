@@ -187,8 +187,8 @@ return [
         'nominate_confirm' => 'Nomear este beatmap?',
         'nominated_by' => 'nomeado por :users',
         'not_enough_hype' => "Não há hype suficiente.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Remover dos Loved',
+        'remove_from_loved_prompt' => 'Motivo da remoção dos Loved:',
         'required_text' => 'Nomeações: :current/:required',
         'reset_message_deleted' => 'excluído',
         'title' => 'Estado de nomeação',
@@ -252,6 +252,7 @@ return [
         'converts' => 'Incluir beatmaps convertidos',
     ],
     'mode' => [
+        'all' => 'Todos',
         'any' => 'Todos',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

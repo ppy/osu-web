@@ -187,8 +187,8 @@ return [
         'nominate_confirm' => 'Diese Beatmap nominieren?',
         'nominated_by' => 'Nominiert von :users',
         'not_enough_hype' => "Nicht ausreichend Hype vorhanden.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Aus Loved entfernen',
+        'remove_from_loved_prompt' => 'Grund fürs Entfernen aus Loved:',
         'required_text' => 'Nominierungen: :current/:required',
         'reset_message_deleted' => 'gelöscht',
         'title' => 'Nominierungsstatus',
@@ -252,6 +252,7 @@ return [
         'converts' => 'Konvertierte Beatmaps miteinbeziehen',
     ],
     'mode' => [
+        'all' => 'Alle',
         'any' => 'Alle',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

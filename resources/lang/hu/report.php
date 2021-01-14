@@ -14,6 +14,11 @@ return [
         'title' => 'Jelented :username hozzászólását?',
     ],
 
+    'forum_post' => [
+        'button' => 'Jelentés',
+        'title' => 'Jelented :username hozzászólását?',
+    ],
+
     'scores' => [
         'button' => 'Eredmény Jelentése',
         'title' => 'Jelented :username eredményét?',

@@ -15,6 +15,8 @@ return [
             'blocked' => 'Вы в чёрном списке собеседника',
             'channel_moderated' => 'Этот канал модерируется',
             'friends_only' => 'Получатель принимает сообщения только от друзей',
+            'not_enough_plays' => '',
+            'not_verified' => '',
             'restricted' => 'У вас рестриктед',
             'target_restricted' => 'У получателя рестриктед',
         ],

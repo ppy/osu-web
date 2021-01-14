@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'مساعدة',
+            'getAbuse' => '',
             'getFaq' => 'الأسئلة الشائعة',
             'getRules' => 'القوانين',
             'getSupport' => 'لا، حقاً، أنا بحاجة إلى مساعدة!',
@@ -203,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'الاعدادات',
+            'follows' => '',
             'friends' => 'الأصدقاء',
             'logout' => 'تسجيل الخروج',
             'profile' => 'الصفحة الشخصية',

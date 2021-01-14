@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Oyun moduna göre üyeler',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Hesabın uzun bir zamandır kullanılmamıştır.",
@@ -150,6 +154,10 @@ return [
         'plays_with' => ':devices ile oynuyor',
         'title' => ":username kullanıcısının profili",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Kapak Fotoğrafını Değiştir',
@@ -199,10 +207,10 @@ return [
                     'title' => 'Sevilen Beatmapler',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Dereceli & Onaylanmış Beatmapler',
+                    'title' => 'Dereceli & Onaylı Beatmapler',
                 ],
                 'unranked' => [
-                    'title' => 'Onay Beklenen Beatmapler',
+                    'title' => 'Beklemedeki Beatmapler',
                 ],
             ],
             'discussions' => [
@@ -373,7 +381,7 @@ return [
         ],
         'post_count' => [
             '_' => ':link kadar katkı',
-            'count' => ':count forum gönderisi|:count forum gönderisi',
+            'count' => ':count_delimited forum gönderisi|:count_delimited forum gönderisi',
         ],
         'rank' => [
             'country' => ':mode için Ülke sıralaması',

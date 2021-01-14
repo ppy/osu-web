@@ -37,8 +37,6 @@ class ScoresController extends BaseController
      *
      * Returns [MultiplayerScores](#multiplayerscores) object.
      *
-     * @authenticated
-     *
      * @urlParam room required Id of the room.
      * @urlParam playlist required Id of the playlist item.
      *
@@ -110,8 +108,6 @@ class ScoresController extends BaseController
      *
      * Returns [MultiplayerScore](#multiplayerscore) object.
      *
-     * @authenticated
-     *
      * @urlParam room required Id of the room.
      * @urlParam playlist required Id of the playlist item.
      * @urlParam score required Id of the score.
@@ -142,8 +138,6 @@ class ScoresController extends BaseController
      *
      * Returns [MultiplayerScore](#multiplayerscore) object.
      *
-     * @authenticated
-     *
      * @urlParam room required Id of the room.
      * @urlParam playlist required Id of the playlist item.
      * @urlParam user required User id.
@@ -165,21 +159,24 @@ class ScoresController extends BaseController
     {
         $room = Room::findOrFail($roomId);
         $playlistItem = $room->playlist()->where('id', $playlistId)->firstOrFail();
+        $user = auth()->user();
 
-        $clientHash = presence(request('version_hash'));
-        abort_if($clientHash === null, 422, 'missing client version');
+        if ($user->findUserGroup(app('groups')->byIdentifier('admin'), true) === null) {
+            $clientHash = presence(request('version_hash'));
+            abort_if($clientHash === null, 422, 'missing client version');
 
-        // temporary measure to allow android builds to submit without access to the underlying dll to hash
-        if (strlen($clientHash) !== 32) {
-            $clientHash = md5($clientHash);
+            // temporary measure to allow android builds to submit without access to the underlying dll to hash
+            if (strlen($clientHash) !== 32) {
+                $clientHash = md5($clientHash);
+            }
+
+            Build::where([
+                'hash' => hex2bin($clientHash),
+                'allow_ranking' => true,
+            ])->firstOrFail();
         }
 
-        Build::where([
-            'hash' => hex2bin($clientHash),
-            'allow_ranking' => true,
-        ])->firstOrFail();
-
-        $score = $room->startPlay(auth()->user(), $playlistItem);
+        $score = $room->startPlay($user, $playlistItem);
 
         return json_item(
             $score,
@@ -190,7 +187,6 @@ class ScoresController extends BaseController
     public function update($roomId, $playlistId, $scoreId)
     {
         $room = Room::findOrFail($roomId);
-        // todo: check against room's end time, check within window of start_time + beatmap_length + x
 
         $playlistItem = $room->playlist()
             ->where('id', $playlistId)

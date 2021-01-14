@@ -25,10 +25,11 @@ return [
         'language_edit' => 'Sprache wurde von :old zu :new geändert.',
         'love' => 'Nominiert von :user',
         'nominate' => 'Von :user nominiert.',
+        'nominate_modes' => '',
         'nomination_reset' => 'Neues Problem :discussion hat die Nominierung zurückgesetzt.',
         'qualify' => 'Diese Beatmap hat die erforderliche Anzahl an Nominierungen erreicht und wurde qualifiziert.',
         'rank' => 'Ranked.',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Aus Loved entfernt von :user. (:text)',
     ],
 
     'index' => [
@@ -67,6 +68,6 @@ return [
         'nomination_reset' => 'Nominierung zurücksetzten',
         'qualify' => 'Qualifikation',
         'rank' => 'Ranking',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Loved-Entfernung',
     ],
 ];

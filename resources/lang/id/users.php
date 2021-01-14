@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Pengguna berdasarkan mode permainan',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Akun Anda telah lama tidak digunakan.",
@@ -150,6 +154,10 @@ return [
         'plays_with' => 'Bermain menggunakan :devices',
         'title' => "profil :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Ganti Sampul Profil',

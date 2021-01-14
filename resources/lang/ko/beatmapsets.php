@@ -8,6 +8,7 @@ return [
         'disabled' => '이 비트맵은 현재 다운로드할 수 없습니다.',
         'parts-removed' => '이 비트맵의 일부가 콘텐츠 제작자 또는 제삼자 권리자의 저작권 주장으로 인해 삭제되었습니다.',
         'more-info' => '더 많은 정보를 보려면 여기를 확인하세요.',
+        'rule_violation' => '',
     ],
 
     'index' => [
@@ -16,11 +17,27 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => '다운로드',
             'video' => '영상 포함된 것으로 받기',
             'no_video' => '영상 없는 것으로 받기',
             'direct' => 'osu!direct에서 열기',
+        ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
         ],
     ],
 

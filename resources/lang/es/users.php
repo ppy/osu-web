@@ -70,9 +70,13 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Miembros por modo de juego',
+    ],
+
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "Tu cuenta no ha sido usada en mucho tiempo.",
+            'inactive_different_country' => "Su cuenta no ha sido utilizada en mucho tiempo.",
         ],
     ],
 
@@ -110,24 +114,24 @@ return [
     ],
     'logout_confirm' => '¿Seguro que desea cerrar la sesión? :(',
     'report' => [
-        'button_text' => 'Reportar',
-        'comments' => 'Comentarios Adicionales',
-        'placeholder' => 'Por favor proporcione cualquier información que usted cree que podría ser útil.',
-        'reason' => 'Razón',
-        'thanks' => '¡Gracias por tu informe!',
-        'title' => '¿Reportar :username?',
+        'button_text' => 'Denunciar',
+        'comments' => 'Comentarios adicionales',
+        'placeholder' => 'Por favor, proporcione cualquier información que crea que pueda ser útil.',
+        'reason' => 'Motivo',
+        'thanks' => '¡Gracias por su informe!',
+        'title' => '¿Denunciar a :username?',
 
         'actions' => [
-            'send' => 'Enviar Reporte',
+            'send' => 'Enviar denuncia',
             'cancel' => 'Cancelar',
         ],
 
         'options' => [
-            'cheating' => 'Jugador tramposo',
-            'insults' => 'Insulta a mí / otros',
-            'spam' => 'Spam',
-            'unwanted_content' => 'Enlazando a contenido inapropiado',
-            'nonsense' => 'Incomprensible',
+            'cheating' => 'Juega sucio o hace trampa',
+            'insults' => 'Insulta a mí o a otros',
+            'spam' => 'Envía mensajes spam',
+            'unwanted_content' => 'Enlaza contenido inapropiado',
+            'nonsense' => 'Sin sentido',
             'other' => 'Otros (indicar abajo)',
         ],
     ],
@@ -150,6 +154,10 @@ return [
         'plays_with' => 'Juega con :devices',
         'title' => "Perfil de :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Cambiar portada de perfil',

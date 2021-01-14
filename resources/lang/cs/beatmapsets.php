@@ -8,6 +8,7 @@ return [
         'disabled' => 'Tato beatmapa není momentálně dostupná ke stažení.',
         'parts-removed' => 'Část této beatmapy byla smazána na žádost tvůrce nebo vlastníka třetí strany.',
         'more-info' => 'Pro více informací klikněte zde.',
+        'rule_violation' => '',
     ],
 
     'index' => [
@@ -16,11 +17,27 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'stáhnout',
             'video' => 'stáhnout s videem',
             'no_video' => 'stáhnout bez videa',
             'direct' => 'otevřít v osu!direct',
+        ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
         ],
     ],
 
@@ -48,12 +65,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
+            'approved' => 'schváleno :timeago',
             'loved' => '',
-            'qualified' => '',
+            'qualified' => 'kvalifikováno :timeago',
             'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'submitted' => 'odesláno :timeago',
+            'updated' => 'naposledy aktualizováno :timeago',
         ],
 
         'favourites' => [
@@ -74,11 +91,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => '',
+                '_' => 'Pokud najdete problém s touto mapou, diskvalifikujte ji prosím :link.',
             ],
 
             'report' => [
-                '_' => '',
+                '_' => 'Pokud najdete problém s touto mapou, nahlaste jej :link k upozornění týmu.',
                 'button' => 'Nahlásit problém',
                 'link' => 'zde',
             ],
@@ -114,7 +131,7 @@ return [
                 'rank' => 'Umístění',
                 'score_total' => 'Celkové skóre',
                 'score' => 'Skóre',
-                'time' => '',
+                'time' => 'Čas',
             ],
 
             'no_scores' => [

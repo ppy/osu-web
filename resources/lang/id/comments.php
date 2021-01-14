@@ -35,7 +35,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => '',
         'nav_title' => 'daftar',
+        'no_comments' => '',
     ],
 
     'placeholder' => [

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Mit szólsz ahhoz, hogy ha egy kis osu!-t játszanál inkább?',
     'require_login' => 'Kérlek jelentkezz be a folytatáshoz.',
     'require_verification' => 'Kérlek, hagyd jóvá a folytatáshoz.',
     'restricted' => "Felfüggesztett állapotban erre nem vagy képes.",
@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Elérted a napi ajánlási limited, próbáld újra holnap.',
-            'full_bn_required' => 'Teljes jogú nominátornak kell lenned a kvalifikálásra nomináláshoz.',
-            'full_bn_required_hybrid' => 'Teljes jogú nominátornak kell lenned a több játékmódot tartalmazó beatmapszettek nominálásához.',
             'incorrect_state' => 'Hiba történt a művelet végrehajtása közben, próbáld frissíteni az oldalt.',
             'owner' => "Saját beatmap-et nem lehet ajánlani.",
             'set_metadata' => 'Mielőtt kijelölné, a műfajt és a nyelvet meg kell adnod',

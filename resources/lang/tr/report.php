@@ -14,6 +14,11 @@ return [
         'title' => ':username adlı kişinin skoru raporlansın mı?',
     ],
 
+    'forum_post' => [
+        'button' => 'Bildir',
+        'title' => ':username: adlı kişinin gönderisi raporlansın mı?',
+    ],
+
     'scores' => [
         'button' => 'Skoru Raporla',
         'title' => ':username adlı kişinin skoru raporlansın mı?',

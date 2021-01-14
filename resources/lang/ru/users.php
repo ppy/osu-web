@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Участники по игровому режиму',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Ваш аккаунт не использовался в течение долгого времени.",
@@ -150,6 +154,10 @@ return [
         'plays_with' => 'Играет с :devices',
         'title' => "Профиль :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Сменить обложку профиля',

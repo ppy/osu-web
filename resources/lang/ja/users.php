@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "あなたのアカウントは長期間使用されていません。",
@@ -150,6 +154,10 @@ return [
         'plays_with' => '使用デバイス :devices',
         'title' => ":usernameのプロフィール",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'カバー画像の変更',

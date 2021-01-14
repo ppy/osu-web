@@ -25,10 +25,11 @@ return [
         'language_edit' => 'Мова змінена з :old на :new.',
         'love' => 'Додано :user в улюблене',
         'nominate' => 'Номіновано :user.',
+        'nominate_modes' => '',
         'nomination_reset' => 'Через нову проблему в :discussion (:text) статус номінації був скинутий.',
         'qualify' => 'Ця карта була номінована достатню кількість разів для кваліфікації.',
         'rank' => 'Рейтинговий.',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Вилучено з категорії Loved користувачем :user. (:text)',
     ],
 
     'index' => [

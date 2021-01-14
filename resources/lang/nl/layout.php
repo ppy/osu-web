@@ -37,7 +37,7 @@ return [
 
         'store' => [
             'cart' => 'winkelwagen',
-            'orders' => 'bestel geschiedenis',
+            'orders' => 'bestelgeschiedenis',
             'products' => 'producten',
         ],
 
@@ -46,7 +46,7 @@ return [
         ],
 
         'users' => [
-            'modding' => 'modderen',
+            'modding' => 'modding',
             'show' => 'info',
         ],
     ],
@@ -62,7 +62,7 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'featured artists',
+            'artists' => 'aanbevolen artiesten',
             'index' => 'index',
             'packs' => 'pakketten',
         ],
@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'hulp',
+            'getAbuse' => '',
             'getFaq' => 'faq',
             'getRules' => 'regels',
             'getSupport' => 'ondersteuning',
@@ -94,7 +95,7 @@ return [
             '_' => 'rankings',
             'charts' => 'in de schijnwerpers',
             'country' => 'land',
-            'index' => 'prestaties',
+            'index' => 'prestatie',
             'kudosu' => 'kudosu',
             'multiplayer' => 'multiplayer',
             'score' => 'score',
@@ -103,7 +104,7 @@ return [
             '_' => 'winkel',
             'cart-show' => 'winkelwagen',
             'getListing' => 'index',
-            'orders-index' => 'order geschiedenis',
+            'orders-index' => 'bestelgeschiedenis',
         ],
     ],
 
@@ -203,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Instellingen',
+            'follows' => '',
             'friends' => 'Vrienden',
             'logout' => 'Log Uit',
             'profile' => 'Mijn Profiel',

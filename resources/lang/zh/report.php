@@ -14,6 +14,11 @@ return [
         'title' => '举报 :username 的评论？',
     ],
 
+    'forum_post' => [
+        'button' => '举报',
+        'title' => '举报 :username 的帖子？',
+    ],
+
     'scores' => [
         'button' => '举报成绩',
         'title' => '举报 :username 的成绩？',

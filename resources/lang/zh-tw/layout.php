@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => '幫助',
+            'getAbuse' => '',
             'getFaq' => '常見問題',
             'getRules' => '規則',
             'getSupport' => '支援服務',
@@ -203,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '設定',
+            'follows' => '',
             'friends' => '好友',
             'logout' => '登出',
             'profile' => '我的資料',

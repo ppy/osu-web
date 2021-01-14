@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Eliminar publicação',
-            'restore' => 'Restaurar publicação',
             'edit' => 'Editar publicação',
+            'report' => 'Denunciar publicação',
+            'restore' => 'Restaurar publicação',
         ],
 
         'create' => [

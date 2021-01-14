@@ -16,8 +16,6 @@ class OsuWiki
 {
     const CACHE_DURATION = 60;
 
-    const IMAGE_EXTENSIONS = ['gif', 'jpeg', 'jpg', 'png'];
-
     public $path;
     public $data;
 
@@ -122,9 +120,7 @@ class OsuWiki
 
     public static function isImage($path)
     {
-        $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
-
-        return in_array($extension, static::IMAGE_EXTENSIONS, true);
+        return preg_match('/\.(?:jpe?g|gif|png)$/i', $path) === 1;
     }
 
     public static function repository()

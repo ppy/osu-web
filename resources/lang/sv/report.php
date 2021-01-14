@@ -14,6 +14,11 @@ return [
         'title' => 'Anmäl :username s kommentar?',
     ],
 
+    'forum_post' => [
+        'button' => 'Anmäl',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Anmäl poäng',
         'title' => 'Anmäl :username s poäng?',

@@ -15,8 +15,13 @@ return [
     'top' => 'Top',
     'username' => 'Benutzername',
 
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => '',
+    ],
+
     'forum_topics' => [
-        'new' => 'Letzte Antwort',
         'feature_votes' => 'Sternpriorität',
+        'new' => 'Letzte Antwort',
     ],
 ];

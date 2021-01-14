@@ -5,9 +5,12 @@
 
 return [
     'all_read' => 'Všetky upozornenia prečítané!',
+    'delete' => '',
+    'loading' => '',
     'mark_read' => '',
     'none' => '',
     'see_all' => '',
+    'see_channel' => '',
 
     'filters' => [
         '_' => '',
@@ -131,6 +134,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medaile',
 
@@ -198,6 +211,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => '',
                 'user_achievement_unlock_self' => '',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

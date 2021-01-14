@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'допомога',
+            'getAbuse' => '',
             'getFaq' => 'чапи',
             'getRules' => 'правила',
             'getSupport' => 'мені, насправді, потрібна допомога!',
@@ -179,7 +180,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'увійти / зареєструватись',
 
         'login' => [
             'forgot' => "Я все забув",
@@ -203,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Налаштування',
+            'follows' => '',
             'friends' => 'Друзі',
             'logout' => 'Вийти',
             'profile' => 'Мій профайл',

@@ -422,8 +422,6 @@ class UsersController extends Controller
      *
      * See [Get User](#get-user).
      *
-     * @authenticated
-     *
      * @urlParam mode [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
      *
      * @response "See User object section"
@@ -509,6 +507,7 @@ class UsersController extends Controller
             'graveyard_beatmapset_count',
             'groups',
             'loved_beatmapset_count',
+            'mapping_follower_count',
             'monthly_playcounts',
             'page',
             'previous_usernames',

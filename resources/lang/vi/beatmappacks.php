@@ -30,6 +30,10 @@ return [
             'cleared' => 'đã chơi',
             'not_cleared' => 'chưa chơi',
         ],
+        'no_diff_reduction' => [
+            '_' => '',
+            'link' => 'Mods làm giảm độ khó',
+        ],
     ],
 
     'mode' => [

@@ -13,8 +13,8 @@ return [
         ],
 
         'title' => [
-            '_' => ':info Berita',
-            'info' => 'Laman Depan',
+            '_' => 'berita',
+            'info' => 'laman utama',
         ],
     ],
 
@@ -22,13 +22,13 @@ return [
         'by' => 'oleh :user',
 
         'nav' => [
-            'newer' => 'Postingan baru',
-            'older' => 'Postingan lama',
+            'newer' => 'Topik berita berikutnya',
+            'older' => 'Topik berita sebelumnya',
         ],
 
         'title' => [
-            '_' => ':info Berita',
-            'info' => 'Kiriman',
+            '_' => 'berita',
+            'info' => 'topik berita',
         ],
     ],
 

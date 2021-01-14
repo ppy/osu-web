@@ -25,6 +25,7 @@ return [
         'language_edit' => 'Kieli :old muutettu kieleen :new.',
         'love' => ':user rakastaa',
         'nominate' => 'Käyttäjän :user suosittelema.',
+        'nominate_modes' => '',
         'nomination_reset' => 'Uusi ongelma :discussion (:text) nollasi suositukset.',
         'qualify' => 'Tämä beatmap sai vaaditun määrän suosituksia hyväksymisvaihetta varten.',
         'rank' => 'Hyväksytty.',

@@ -58,9 +58,13 @@ class UserChannel extends Model
         $this->update(['last_read_id' => DB::raw("GREATEST(COALESCE(last_read_id, 0), $maxId)")]);
 
         UserNotification::batchMarkAsRead($this->user, BatchIdentities::fromParams([
-            'category' => 'channel',
-            'object_type' => 'channel',
-            'object_id' => $this->channel_id,
+            'identities' => [
+                [
+                    'category' => 'channel',
+                    'object_type' => 'channel',
+                    'object_id' => $this->channel_id,
+                ],
+            ],
         ]));
     }
 
@@ -70,6 +74,7 @@ class UserChannel extends Model
         $userChannels = static::forUser($user)
             ->whereHas('channel')
             ->with('channel')
+            ->limit(config('osu.chat.channel_limit'))
             ->get();
 
         $channelIds = $userChannels->pluck('channel_id');

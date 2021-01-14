@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Вашият акаунт не е ползван от дълго време.",
@@ -150,6 +154,10 @@ return [
         'plays_with' => 'Играе с :devices',
         'title' => "профила на :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Промяна на профилната корица',

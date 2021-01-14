@@ -8,6 +8,7 @@ return [
         'disabled' => 'Questa beatmap non è al momento disponibile per il download.',
         'parts-removed' => 'Porzioni di questa beatmap sono state rimosse su richiesta del creatore o di un titolare di copyright di terze parti.',
         'more-info' => 'Controlla qui per maggiori informazioni.',
+        'rule_violation' => '',
     ],
 
     'index' => [
@@ -16,11 +17,27 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'scarica',
             'video' => 'scarica con il video',
             'no_video' => 'scarica senza il video',
             'direct' => 'apri in osu!direct',
+        ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
         ],
     ],
 
@@ -61,7 +78,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Lascia Hype a questa beatmap se ti sei divertito a giocarla per aiutare a renderla <strong>Classificata</strong>.',
+            'action' => 'Metti hype a questa beatmap se ti sei divertito a giocarla per aiutare a renderla <strong>Classificata</strong>.',
 
             'current' => [
                 '_' => 'Questa mappa è attualmente :status.',

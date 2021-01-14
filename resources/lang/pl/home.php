@@ -76,7 +76,7 @@ return [
         'action' => 'Pobierz osu!',
 
         'help' => [
-            '_' => 'jeżeli masz problem z uruchomieniem gry bądź utworzeniem konta, :help_forum_link lub :support_button.',
+            '_' => 'jeżeli masz problem z uruchomieniem gry lub utworzeniem konta, :help_forum_link albo :support_button.',
             'help_forum_link' => 'sprawdź forum',
             'support_button' => 'skontaktuj się z pomocą techniczną',
         ],

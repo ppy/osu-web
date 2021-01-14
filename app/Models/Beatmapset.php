@@ -6,6 +6,7 @@
 namespace App\Models;
 
 use App\Exceptions\BeatmapProcessorException;
+use App\Exceptions\InvariantException;
 use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\EsIndexDocument;
 use App\Jobs\Notifications\BeatmapsetDiscussionLock;
@@ -24,6 +25,7 @@ use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
 use App\Traits\CommentableDefaults;
+use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
@@ -71,6 +73,7 @@ use Illuminate\Database\QueryException;
  * @property int $language_id
  * @property \Carbon\Carbon $last_update
  * @property int $nominations
+ * @property bool $nsfw
  * @property int $offset
  * @property mixed|null $osz2_hash
  * @property int $play_count
@@ -95,7 +98,7 @@ use Illuminate\Database\QueryException;
  */
 class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 {
-    use CommentableDefaults, Elasticsearch\BeatmapsetTrait, SoftDeletes, Validatable;
+    use CommentableDefaults, Elasticsearch\BeatmapsetTrait, Memoizes, SoftDeletes, Validatable;
 
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
@@ -105,6 +108,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         'active' => 'boolean',
         'download_disabled' => 'boolean',
         'epilepsy' => 'boolean',
+        'nsfw' => 'boolean',
         'storyboard' => 'boolean',
         'video' => 'boolean',
         'discussion_enabled' => 'boolean',
@@ -216,10 +220,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function beatmapDiscussions()
     {
-        return $this
-            ->hasMany(BeatmapDiscussion::class)
-            // TODO: remove this when reviews are released
-            ->hideReviews();
+        return $this->hasMany(BeatmapDiscussion::class);
     }
 
     public function recentFavourites($limit = 50)
@@ -629,47 +630,116 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return true;
     }
 
-    public function nominate(User $user)
+    public function nominate(User $user, array $playmodes = [])
     {
-        if (!$this->isPending()) {
-            $message = trans('beatmaps.nominations.incorrect_state');
-        }
+        try {
+            $this->resetMemoized(); // ensure we're not using cached/stale event data
 
-        if ($this->hype < $this->requiredHype()) {
-            $message = trans('beatmaps.nominations.not_enough_hype');
-        }
+            if (!$this->isPending()) {
+                throw new InvariantException(trans('beatmaps.nominations.incorrect_state'));
+            }
 
-        // check if there are any outstanding issues still
-        if ($this->beatmapDiscussions()->openIssues()->count() > 0) {
-            $message = trans('beatmaps.nominations.unresolved_issues');
-        }
+            if ($this->hype < $this->requiredHype()) {
+                throw new InvariantException(trans('beatmaps.nominations.not_enough_hype'));
+            }
 
-        if (isset($message)) {
+            // check if there are any outstanding issues still
+            if ($this->beatmapDiscussions()->openIssues()->count() > 0) {
+                throw new InvariantException(trans('beatmaps.nominations.unresolved_issues'));
+            }
+
+            if ($this->isLegacyNominationMode()) {
+                // in legacy mode, we check if a user can nominate for _any_ of the beatmapset's playmodes
+                $canNominate = false;
+                $canFullNominate = false;
+                foreach ($this->playmodesStr() as $mode) {
+                    if ($user->isFullBN($mode) || $user->isNAT($mode)) {
+                        $canNominate = true;
+                        $canFullNominate = true;
+                    } else if ($user->isLimitedBN($mode)) {
+                        $canNominate = true;
+                    }
+                }
+
+                if (!$canNominate) {
+                    throw new InvariantException(trans('beatmapsets.nominate.incorrect_mode', ['mode' => implode(', ', $this->playmodesStr())]));
+                }
+
+                if (!$canFullNominate && $this->requiresFullBNNomination()) {
+                    throw new InvariantException(trans('beatmapsets.nominate.full_bn_required'));
+                }
+            } else {
+                $playmodes = array_values(array_intersect($this->playmodesStr(), $playmodes));
+
+                if (empty($playmodes)) {
+                    throw new InvariantException(trans('beatmapsets.nominate.hybrid_requires_modes'));
+                }
+
+                foreach ($playmodes as $mode) {
+                    if (!$user->isFullBN($mode) && !$user->isNAT($mode)) {
+                        if (!$user->isLimitedBN($mode)) {
+                            throw new InvariantException(trans('beatmapsets.nominate.incorrect_mode', ['mode' => $mode]));
+                        }
+
+                        if ($this->requiresFullBNNomination($mode)) {
+                            throw new InvariantException(trans('beatmapsets.nominate.full_bn_required'));
+                        }
+                    }
+                }
+            }
+
+            $nomination = $this->nominationsSinceReset()->where('user_id', $user->user_id);
+            if (!$nomination->exists()) {
+                $event = [
+                    'type' => BeatmapsetEvent::NOMINATE,
+                    'user_id' => $user->user_id,
+                ];
+                if (!$this->isLegacyNominationMode()) {
+                    $event['comment'] = ['modes' => $playmodes];
+                }
+                $this->events()->create($event);
+
+                if ($this->isLegacyNominationMode()) {
+                    $shouldQualify = $this->currentNominationCount() >= $this->requiredNominationCount();
+                } else {
+                    $currentNominations = $this->currentNominationCount();
+                    $requiredNominations = $this->requiredNominationCount();
+
+                    $modesSatisfied = 0;
+                    foreach ($requiredNominations as $mode => $count) {
+                        if ($currentNominations[$mode] > $count) {
+                            throw new InvariantException(trans('beatmaps.nominations.too_many'));
+                        }
+
+                        if ($currentNominations[$mode] === $count) {
+                            $modesSatisfied++;
+                        }
+                    }
+                    $shouldQualify = $modesSatisfied >= $this->playmodeCount();
+                }
+
+                if ($shouldQualify) {
+                    $this->getConnection()->transaction(function () use ($user) {
+                        return static::lockForUpdate()->find($this->getKey())->qualify($user);
+                    });
+                    $this->refresh();
+                } else {
+                    (new BeatmapsetNominate($this, $user))->dispatch();
+                }
+            }
+
+            $this->refresh();
+            $this->refreshCache();
+
+            return [
+                'result' => true,
+            ];
+        } catch (\Exception $e) {
             return [
                 'result' => false,
-                'message' => $message,
+                'message' => $e->getMessage(),
             ];
         }
-
-        $nomination = $this->nominationsSinceReset()->where('user_id', $user->user_id);
-        if (!$nomination->exists()) {
-            $this->events()->create(['type' => BeatmapsetEvent::NOMINATE, 'user_id' => $user->user_id]);
-            if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
-                $qualified = $this->getConnection()->transaction(function () use ($user) {
-                    return static::lockForUpdate()->find($this->getKey())->qualify($user);
-                });
-                $this->refresh();
-            }
-
-            if (!($qualified ?? false)) {
-                (new BeatmapsetNominate($this, $user))->dispatch();
-            }
-        }
-        $this->refreshCache();
-
-        return [
-            'result' => true,
-        ];
     }
 
     public function love(User $user)
@@ -868,21 +938,80 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         }
     }
 
-    public function requiredNominationCount()
+    public function requiredNominationCount($summary = false)
     {
-        return $this->isHybridSet()
-            ? $this->playmodes()->count() * config('osu.beatmapset.required_nominations_hybrid')
-            : config('osu.beatmapset.required_nominations');
+        $playmodeCount = $this->playmodeCount();
+        $baseRequirement = $playmodeCount === 1
+            ? config('osu.beatmapset.required_nominations')
+            : config('osu.beatmapset.required_nominations_hybrid');
+
+        if ($summary || $this->isLegacyNominationMode()) {
+            return $playmodeCount * $baseRequirement;
+        }
+
+        $requiredNominations = [];
+        foreach ($this->playmodesStr() as $playmode) {
+            $requiredNominations[$playmode] = $baseRequirement;
+        }
+
+        return $requiredNominations;
     }
 
     public function currentNominationCount()
     {
-        return $this->nominationsSinceReset()->count();
+        if ($this->isLegacyNominationMode()) {
+            return $this->nominationsSinceReset()->count();
+        }
+
+        $currentNominations = [];
+        foreach ($this->playmodesStr() as $playmode) {
+            $currentNominations[$playmode] = 0;
+        }
+
+        $nominations = $this->nominationsSinceReset()->get();
+        foreach ($nominations as $nomination) {
+            foreach ($nomination->nominationModes as $nomMode) {
+                if (!isset($currentNominations[$nomMode])) {
+                    continue;
+                }
+
+                $currentNominations[$nomMode] = $currentNominations[$nomMode] ?? 0;
+                $currentNominations[$nomMode]++;
+            }
+        }
+
+        return $currentNominations;
+    }
+
+    public function nominationsMeta()
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            return [
+                'legacy_mode' => $this->isLegacyNominationMode(),
+                'current' => $this->currentNominationCount(),
+                'required' => $this->requiredNominationCount(),
+            ];
+        });
+    }
+
+    public function nominationsSummaryMeta()
+    {
+        return [
+            'current' => $this->nominations,
+            'required' => $this->requiredNominationCount(true),
+        ];
+    }
+
+    public function isLegacyNominationMode()
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->nominationsSinceReset()->whereNull('comment')->exists();
+        });
     }
 
     public function hasNominations()
     {
-        return $this->currentNominationCount() > 0;
+        return $this->nominationsSinceReset()->exists();
     }
 
     public function playmodes()
@@ -892,7 +1021,19 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function playmodeCount()
     {
-        return $this->playmodes()->count();
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->playmodes()->count();
+        });
+    }
+
+    public function playmodesStr()
+    {
+        return array_map(
+            static function ($ele) {
+                return Beatmap::modeStr($ele);
+            },
+            $this->playmodes()->toArray()
+        );
     }
 
     public function rankingQueueStatus()
@@ -920,12 +1061,16 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function disqualificationEvent()
     {
-        return $this->events()->disqualifications()->orderBy('created_at', 'desc')->first();
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->events()->disqualifications()->orderBy('created_at', 'desc')->first();
+        });
     }
 
     public function resetEvent()
     {
-        return $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
+        });
     }
 
     public function eventsSinceReset()
@@ -945,21 +1090,26 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return $this->eventsSinceReset()->nominations();
     }
 
-    public function hasFullBNNomination()
+    public function hasFullBNNomination($mode = null)
     {
         return $this->nominationsSinceReset()
             ->with('user')
             ->get()
             ->pluck('user')
-            ->contains(function ($user) {
-                return $user->isNAT() || $user->isFullBN();
+            ->contains(function ($user) use ($mode) {
+                return $user->isNAT($mode) || $user->isFullBN($mode);
             });
     }
 
-    public function requiresFullBNNomination()
+    public function requiresFullBNNomination($mode = null)
     {
-        return $this->currentNominationCount() === $this->requiredNominationCount() - 1
-            && !$this->hasFullBNNomination();
+        if ($this->isLegacyNominationMode()) {
+            return $this->currentNominationCount() === $this->requiredNominationCount() - 1
+                && !$this->hasFullBNNomination();
+        }
+
+        return $this->currentNominationCount()[$mode] === $this->requiredNominationCount()[$mode] - 1
+            && !$this->hasFullBNNomination($mode);
     }
 
     public function status()
@@ -996,6 +1146,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                 'discussions.posts',
                 'discussions.votes',
                 'events',
+                'events.nomination_modes',
                 'nominations',
                 'related_users',
                 'related_users.groups',
@@ -1168,7 +1319,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     {
         return $this->update([
             'hype' => $this->freshHype(),
-            'nominations' => $this->currentNominationCount(),
+            'nominations' => $this->isLegacyNominationMode() ? $this->currentNominationCount() : array_sum(array_values($this->currentNominationCount())),
         ]);
     }
 
@@ -1185,11 +1336,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function validationErrorsTranslationPrefix()
     {
         return 'beatmapset';
-    }
-
-    public function isHybridSet(): bool
-    {
-        return $this->playmodes()->count() > 1;
     }
 
     public function isValid()

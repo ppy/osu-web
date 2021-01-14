@@ -15,6 +15,8 @@ return [
             'blocked' => 'Du blockerades av mottagaren',
             'channel_moderated' => 'Kanalen har modererats',
             'friends_only' => 'Mottagaren accepterar endast meddelanden från personer på sin vänlista',
+            'not_enough_plays' => '',
+            'not_verified' => '',
             'restricted' => 'Du är för närvarande begränsad',
             'target_restricted' => 'Mottagaren är för närvarande begränsad',
         ],

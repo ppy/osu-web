@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => '도움말',
+            'getAbuse' => '악용 사례 신고',
             'getFaq' => 'FAQ',
             'getRules' => '규칙',
             'getSupport' => '지원 센터',
@@ -203,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '설정',
+            'follows' => '',
             'friends' => '친구',
             'logout' => '로그아웃',
             'profile' => '내 프로필',

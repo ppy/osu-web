@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'hjelp',
+            'getAbuse' => '',
             'getFaq' => 'faq',
             'getRules' => 'regler',
             'getSupport' => 'nei, virkelig, jeg trenger hjelp!',
@@ -203,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Innstillinger',
+            'follows' => '',
             'friends' => 'Venner',
             'logout' => 'Logg Ut',
             'profile' => 'Min Profil',

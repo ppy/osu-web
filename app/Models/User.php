@@ -201,6 +201,10 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             'key' => 'followerCount',
             'duration' => 43200, // 12 hours
         ],
+        'mapping_follower_count' => [
+            'key' => 'moddingFollowerCount',
+            'duration' => 43200, // 12 hours
+        ],
     ];
 
     const INACTIVE_DAYS = 180;
@@ -772,9 +776,23 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     |
     */
 
-    public function isNAT()
+    public function inGroupWithPlaymode($groupIdentifier, $playmode = null)
     {
-        return $this->isGroup(app('groups')->byIdentifier('nat'));
+        $group = app('groups')->byIdentifier($groupIdentifier);
+        $isGroup = $this->isGroup($group);
+
+        if ($isGroup === false || $playmode === null) {
+            return $isGroup;
+        }
+
+        $groupModes = $this->findUserGroup($group, true)->playmodes;
+
+        return in_array($playmode, $groupModes ?? [], true);
+    }
+
+    public function isNAT($mode = null)
+    {
+        return $this->inGroupWithPlaymode('nat', $mode);
     }
 
     public function isAdmin()
@@ -787,19 +805,19 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->isGroup(app('groups')->byIdentifier('gmt'));
     }
 
-    public function isBNG()
+    public function isBNG($mode = null)
     {
-        return $this->isFullBN() || $this->isLimitedBN();
+        return $this->isFullBN($mode) || $this->isLimitedBN($mode);
     }
 
-    public function isFullBN()
+    public function isFullBN($mode = null)
     {
-        return $this->isGroup(app('groups')->byIdentifier('bng'));
+        return $this->inGroupWithPlaymode('bng', $mode);
     }
 
-    public function isLimitedBN()
+    public function isLimitedBN($mode = null)
     {
-        return $this->isGroup(app('groups')->byIdentifier('bng_limited'));
+        return $this->inGroupWithPlaymode('bng_limited', $mode);
     }
 
     public function isDev()
@@ -1293,6 +1311,11 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         );
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function follows()
     {
         return $this->hasMany(Follow::class);
@@ -1328,6 +1351,13 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return UserRelation::where('zebra_id', $this->user_id)->where('friend', 1)->count();
     }
 
+    public function uncachedMappingFollowerCount()
+    {
+        return Follow::where('notifiable_id', $this->user_id)
+            ->where('subtype', 'mapping')
+            ->count();
+    }
+
     public function cacheFollowerCount()
     {
         $count = $this->uncachedFollowerCount();
@@ -1341,9 +1371,27 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $count;
     }
 
+    public function cacheMappingFollowerCount()
+    {
+        $count = $this->uncachedMappingFollowerCount();
+
+        Cache::put(
+            self::CACHING['mapping_follower_count']['key'].':'.$this->user_id,
+            $count,
+            self::CACHING['mapping_follower_count']['duration']
+        );
+
+        return $count;
+    }
+
     public function followerCount()
     {
         return get_int(Cache::get(self::CACHING['follower_count']['key'].':'.$this->user_id)) ?? $this->cacheFollowerCount();
+    }
+
+    public function mappingFollowerCount()
+    {
+        return get_int(Cache::get(self::CACHING['mapping_follower_count']['key'].':'.$this->user_id)) ?? $this->cacheMappingFollowerCount();
     }
 
     public function events()
@@ -1443,6 +1491,40 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             });
 
             return $groups;
+        });
+    }
+
+    public function nominationModes()
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            if (!$this->isNAT() && !$this->isBNG()) {
+                return;
+            }
+
+            $modes = [];
+
+            if ($this->isLimitedBN()) {
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng_limited'), true)->playmodes ?? [];
+                foreach ($playmodes as $playmode) {
+                    $modes[$playmode] = 'limited';
+                }
+            }
+
+            if ($this->isFullBN()) {
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng'), true)->playmodes ?? [];
+                foreach ($playmodes as $playmode) {
+                    $modes[$playmode] = 'full';
+                }
+            }
+
+            if ($this->isNAT()) {
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('nat'), true)->playmodes ?? [];
+                foreach ($playmodes as $playmode) {
+                    $modes[$playmode] = 'full';
+                }
+            }
+
+            return $modes;
         });
     }
 
@@ -1551,7 +1633,15 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     // TODO: we should rename this to currentUserJson or something.
     public function defaultJson()
     {
-        return json_item($this, 'User', ['blocks', 'friends', 'groups', 'is_admin', 'unread_pm_count', 'user_preferences']);
+        return json_item($this, 'User', [
+            'blocks',
+            'follow_user_mapping',
+            'friends',
+            'groups',
+            'is_admin',
+            'unread_pm_count',
+            'user_preferences',
+        ]);
     }
 
     public function supportLength()

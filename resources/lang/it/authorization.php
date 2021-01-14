@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => 'Che ne dici invece, di giocare un pò di più a osu!?',
+    'play_more' => 'Che ne dici di giocare un po\' ad osu!?',
     'require_login' => 'Per favore effettua il login per poter procedere.',
     'require_verification' => 'Per favore, esegui la verifica prima di procedere.',
     'restricted' => "Non puoi farlo mentre sei limitato.",
@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Hai raggiunto il limite di nomine per questa giornata, per favore riprova domani.',
-            'full_bn_required' => 'Devi essere un nominatore completo per eseguire questa nomina di qualifica.',
-            'full_bn_required_hybrid' => 'Devi essere un nominatore completo per nominare dei set di beatmap con più di una modalità di gioco.',
             'incorrect_state' => 'Errore nell\'eseguire questa azione, prova a ricaricare la pagina.',
             'owner' => "Non puoi nominare la tua beatmap.",
             'set_metadata' => 'Devi impostare il genere e la lingua prima di nominarla.',
@@ -167,7 +165,7 @@ return [
             'edit' => [
                 'locked' => 'La tua userpage è bloccata.',
                 'not_owner' => 'Puoi modificare solo la tua pagina utente.',
-                'require_supporter_tag' => 'è necessario avere la tag osu!supporter.',
+                'require_supporter_tag' => 'è necessario avere il tag osu!supporter.',
             ],
         ],
     ],

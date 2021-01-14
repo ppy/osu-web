@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Je account is lange tijd niet gebruikt.",
@@ -150,6 +154,10 @@ return [
         'plays_with' => 'Speelt met :devices',
         'title' => "Profiel van :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Verander Profiel Cover',
@@ -377,23 +385,23 @@ return [
         ],
         'rank' => [
             'country' => 'Landelijke rank voor :mode',
-            'country_simple' => 'Land Ranking',
+            'country_simple' => 'Landelijke Ranking',
             'global' => 'Globale rank voor :mode',
-            'global_simple' => 'Globale Ranking',
+            'global_simple' => 'Wereldwijde Ranking',
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Precisie',
             'level' => 'Level :level',
             'level_progress' => 'Voortgang naar volgend level',
-            'maximum_combo' => 'Maximum Combo',
+            'maximum_combo' => 'Hoogste Combo',
             'medals' => 'Medailles',
             'play_count' => 'Play Count',
             'play_time' => 'Totale Speeltijd',
             'ranked_score' => 'Gerankte Score',
-            'replays_watched_by_others' => 'Replays Gekeken door Anderen',
+            'replays_watched_by_others' => 'Replays Bekeken door Anderen',
             'score_ranks' => 'Score Ranks',
             'total_hits' => 'Totaal Aantal Hits',
-            'total_score' => 'Totaal Aantal Score',
+            'total_score' => 'Totale Score',
             // modding stats
             'ranked_and_approved_beatmapset_count' => 'Gerankte & Goedgekeurde Beatmaps',
             'loved_beatmapset_count' => 'Loved Beatmaps',

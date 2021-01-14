@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'aide',
+            'getAbuse' => 'signaler un abus',
             'getFaq' => 'faq',
             'getRules' => 'règles',
             'getSupport' => 'non, vraiment, j\'ai besoin d\'aide !',
@@ -203,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Paramètres',
+            'follows' => '',
             'friends' => 'Amis',
             'logout' => 'Se déconnecter',
             'profile' => 'Mon profil',

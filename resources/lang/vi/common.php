@@ -155,7 +155,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => '',
-        'logout_link' => '',
+        '_' => 'Bạn đang đăng nhập với tư cách :user. :logout_link.',
+        'logout_link' => 'Nhấn vào đây để đăng nhập với tư cách là người khác',
     ],
 ];

@@ -15,6 +15,8 @@ return [
             'blocked' => 'Viestin vastaanottaja on estänyt sinut',
             'channel_moderated' => 'Tämä kanava on moderoitu',
             'friends_only' => 'Vastaanottaja sallii viestit vain hänen kavereiltaan',
+            'not_enough_plays' => '',
+            'not_verified' => '',
             'restricted' => 'Käyttäjätilisi on rajoitetussa tilassa',
             'target_restricted' => 'Vastaanottaja on rajoitetussa tilassa',
         ],

@@ -5,6 +5,7 @@ import { BeatmapPicker } from './beatmap-picker'
 import { Stats } from './stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
 import { BigButton } from 'big-button'
+import { route } from 'laroute'
 import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
@@ -103,7 +104,8 @@ export class Header extends React.Component
               if @props.beatmapset.status == 'pending'
                 span className: 'beatmapset-header__value', title: osu.trans('beatmapsets.show.stats.nominations'),
                   span className: 'beatmapset-header__value-icon', i className: 'fas fa-thumbs-up'
-                  span className: 'beatmapset-header__value-name', @props.beatmapset.nominations.current
+                  span className: 'beatmapset-header__value-name',
+                    @props.beatmapset.nominations_summary.current
 
               span
                 className: "beatmapset-header__value#{if @props.favcount > 0 then ' beatmapset-header__value--has-favourites' else ''}"
@@ -130,32 +132,23 @@ export class Header extends React.Component
                 div className: 'user-list-popup__remainder-count',
                   osu.transChoice 'common.count.plus_others', @props.favcount - @filteredFavourites.length
 
-          a
-            className: 'beatmapset-header__details-text beatmapset-header__details-text--title'
-            href: laroute.route 'beatmapsets.index', q: getTitle(@props.beatmapset)
-            getTitle(@props.beatmapset)
+          span className: 'beatmapset-header__details-text beatmapset-header__details-text--title',
+            a
+              className: 'beatmapset-header__details-text-link'
+              href: laroute.route 'beatmapsets.index', q: getTitle(@props.beatmapset)
+              getTitle(@props.beatmapset)
+            if @props.beatmapset.nsfw
+              span className: 'nsfw-badge', osu.trans('beatmapsets.nsfw_badge.label')
 
-          a
-            className: 'beatmapset-header__details-text beatmapset-header__details-text--artist'
-            href: laroute.route 'beatmapsets.index', q: getArtist(@props.beatmapset)
-            getArtist(@props.beatmapset)
+          span className: 'beatmapset-header__details-text beatmapset-header__details-text--artist',
+            a
+              className: 'beatmapset-header__details-text-link'
+              href: laroute.route 'beatmapsets.index', q: getArtist(@props.beatmapset)
+              getArtist(@props.beatmapset)
 
           el BeatmapsetMapping, beatmapset: @props.beatmapset
 
-          if currentUser.id? && @hasAvailabilityInfo()
-            div
-              className: 'beatmapset-header__availability-info',
-              if @props.beatmapset.availability.download_disabled
-                osu.trans 'beatmapsets.availability.disabled'
-              else
-                osu.trans 'beatmapsets.availability.parts-removed'
-
-              if @props.beatmapset.availability.more_information?
-                div className: 'beatmapset-header__availability-link',
-                  a
-                    href: @props.beatmapset.availability.more_information
-                    target: '_blank'
-                    osu.trans 'beatmapsets.availability.more-info'
+          @renderAvailabilityInfo()
 
           div
             className: 'beatmapset-header__buttons'
@@ -195,6 +188,31 @@ export class Header extends React.Component
             beatmapset: @props.beatmapset
             beatmap: @props.currentBeatmap
             timeElapsed: @props.timeElapsed
+
+
+  renderAvailabilityInfo: =>
+    return unless currentUser.id? && @hasAvailabilityInfo()
+
+    href = if @props.beatmapset.availability.more_information == 'rule_violation'
+              "#{route('wiki.show', locale: currentLocale, path: 'Rules')}#beatmap-submission-rules"
+            else
+              @props.beatmapset.availability.more_information
+
+    div
+      className: 'beatmapset-header__availability-info',
+      if @props.beatmapset.availability.download_disabled
+        osu.trans 'beatmapsets.availability.disabled'
+      else if @props.beatmapset.availability.more_information == 'rule_violation'
+        osu.trans 'beatmapsets.availability.rule_violation'
+      else
+        osu.trans 'beatmapsets.availability.parts-removed'
+
+      if href?
+        div className: 'beatmapset-header__availability-link',
+          a
+            href: href
+            target: '_blank'
+            osu.trans 'beatmapsets.availability.more-info'
 
 
   renderDownloadButtons: =>

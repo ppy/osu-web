@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => '帮助',
+            'getAbuse' => '报告不当行为',
             'getFaq' => '常见问题',
             'getRules' => '规章制度',
             'getSupport' => '帮助中心',
@@ -203,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '设置',
+            'follows' => '',
             'friends' => '好友',
             'logout' => '退出',
             'profile' => '我的资料',

@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '게임 모드 별 멤버',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "당신의 계정은 오랫동안 사용되지 않았네요.",
@@ -150,6 +154,10 @@ return [
         'plays_with' => '플레이 장비: :devices',
         'title' => ":username님의 프로필",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '프로필 표지 변경',

@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'nápověda',
+            'getAbuse' => '',
             'getFaq' => 'časté dotazy',
             'getRules' => 'pravidla',
             'getSupport' => 'ne, vážně, potřebuji pomoc!',
@@ -203,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Nastavení',
+            'follows' => '',
             'friends' => 'Přátelé',
             'logout' => 'Odhlásit se',
             'profile' => 'Můj profil',

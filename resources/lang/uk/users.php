@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Ваш обліковий запис вже давно не використовується.",
@@ -150,6 +154,10 @@ return [
         'plays_with' => 'Грає з :devices',
         'title' => "профіль :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Змінити обкладинку профілю',

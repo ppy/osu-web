@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Poista viesti',
-            'restore' => 'Palauta viesti',
             'edit' => 'Muokkaa viestiä',
+            'report' => '',
+            'restore' => 'Palauta viesti',
         ],
 
         'create' => [

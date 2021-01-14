@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Hapus Kiriman',
-            'restore' => 'Kembalikan post',
             'edit' => 'Sunting post',
+            'report' => 'Laporkan post',
+            'restore' => 'Kembalikan post',
         ],
 
         'create' => [

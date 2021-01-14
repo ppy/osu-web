@@ -14,6 +14,11 @@ return [
         'title' => 'Segnalare il commento di :username?',
     ],
 
+    'forum_post' => [
+        'button' => 'Segnala',
+        'title' => 'Segnalare il post di :username?',
+    ],
+
     'scores' => [
         'button' => 'Segnala Punteggio',
         'title' => 'Segnalare il punteggio di :username?',

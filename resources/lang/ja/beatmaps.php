@@ -187,8 +187,8 @@ return [
         'nominate_confirm' => 'このビートマップをノミネートしますか？',
         'nominated_by' => ':usersがノミネート',
         'not_enough_hype' => "Hypeが足りません",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Lovedから削除',
+        'remove_from_loved_prompt' => 'Lovedから削除した理由：',
         'required_text' => 'ノミネート数: :current/:required',
         'reset_message_deleted' => '削除済み',
         'title' => 'ノミネートのステータス',
@@ -252,6 +252,7 @@ return [
         'converts' => 'コンバートビートマップを含める',
     ],
     'mode' => [
+        'all' => '',
         'any' => '全て',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',

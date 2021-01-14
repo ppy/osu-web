@@ -25,7 +25,7 @@ return [
             'current' => 'текущий пароль',
             'new' => 'новый пароль',
             'new_confirmation' => 'повторите пароль',
-            'title' => 'Пароль',
+            'title' => 'Смена пароля',
         ],
 
         'profile' => [
@@ -49,41 +49,41 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'получать уведомления о новых проблемах с квалифицированными картами у следующих режимов',
+        'beatmapset_discussion_qualified_problem' => 'следить за проблемами в номинированных картах',
         'beatmapset_disqualify' => 'получать уведомления, когда карты для следующих режимов будут дисквалифицированы',
-        'comment_reply' => 'получать уведомления об ответах на комментарии',
+        'comment_reply' => 'следить за ответами на мои комментарии',
         'title' => 'Уведомления',
-        'topic_auto_subscribe' => 'отслеживать созданные темы автоматически',
+        'topic_auto_subscribe' => 'следить за форумными темами, которые я создаю',
 
         'options' => [
             '_' => 'способы доставки',
-            'beatmapset:modding' => 'моддинг карт',
+            'beatmapset:modding' => 'новые моды',
             'channel_message' => 'личные сообщения',
             'comment_new' => 'новые комментарии',
-            'forum_topic_reply' => 'ответы на тему',
+            'forum_topic_reply' => 'ответы на форуме',
             'mail' => 'почта',
-            'push' => 'рush',
-            'user_achievement_unlock' => 'открытие медали',
+            'push' => 'пуши',
+            'user_achievement_unlock' => 'новые медали',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => 'подключенные',
-        'own_clients' => 'мои клиенты',
+        'authorized_clients' => 'имеющие доступ',
+        'own_clients' => 'мои приложения',
         'title' => 'Приложения и доступ',
     ],
 
     'options' => [
-        'title' => 'Параметры',
+        'title' => 'Веб-сайт',
 
         'beatmapset_download' => [
-            '_' => 'тип загрузки карт по умолчанию',
-            'all' => 'с видео, если доступно',
+            '_' => 'по умолчанию скачивать карты',
+            'all' => 'с видео (если есть)',
             'no_video' => 'без видео',
-            'direct' => 'открыть в osu!direct',
+            'direct' => 'через osu!direct',
         ],
 
-        'beatmapset_title_show_original' => 'показывать метадату карт в оригинале',
+        'beatmapset_title_show_original' => 'показывать метаданные карт на языке оригинала',
     ],
 
     'playstyles' => [
@@ -95,34 +95,34 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'разрешить писать мне только друзьям',
-        'hide_online' => 'скрывать онлайн на сайте',
+        'friends_only' => 'блокировать сообщения не от друзей',
+        'hide_online' => 'скрывать, что я в сети',
         'title' => 'Конфиденциальность',
     ],
 
     'security' => [
         'current_session' => 'текущая',
-        'end_session' => 'деавторизовать',
+        'end_session' => 'Завершить',
         'end_session_confirmation' => 'Сеанс на этом устройстве будет немедленно завершён. Вы уверены?',
-        'last_active' => 'Был активен:',
+        'last_active' => 'Последняя активность:',
         'title' => 'Безопасность',
         'web_sessions' => 'веб-сессии',
     ],
 
     'update_email' => [
-        'update' => 'сменить',
+        'update' => 'сохранить',
     ],
 
     'update_password' => [
-        'update' => 'обновить',
+        'update' => 'сохранить',
     ],
 
     'verification_completed' => [
-        'text' => 'Теперь вы можете закрыть эту вкладку/окно',
+        'text' => 'Эту вкладку можно закрыть',
         'title' => 'Проверка завершена',
     ],
 
     'verification_invalid' => [
-        'title' => 'Неверная или устаревшая ссылка для подтверждения',
+        'title' => 'Неверная или истёкшая ссылка для подтверждения',
     ],
 ];

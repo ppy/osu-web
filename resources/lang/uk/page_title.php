@@ -75,6 +75,9 @@ return [
         'contests_controller' => [
             '_' => 'конкурси',
         ],
+        'follows_controller' => [
+            'index' => '',
+        ],
         'friends_controller' => [
             'index' => 'панель керування',
         ],

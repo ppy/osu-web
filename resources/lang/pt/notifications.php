@@ -5,9 +5,12 @@
 
 return [
     'all_read' => 'Todas as notificações foram lidas!',
+    'delete' => 'Eliminar :type',
+    'loading' => '',
     'mark_read' => 'Limpar :type',
     'none' => 'Sem notificações',
     'see_all' => 'ver todas as notificações',
+    'see_channel' => 'ir para a conversa',
 
     'filters' => [
         '_' => 'todas',
@@ -131,6 +134,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medalhas',
 
@@ -198,6 +211,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username desbloqueou uma nova medalha, ":title"!',
                 'user_achievement_unlock_self' => 'Desbloqueaste uma nova medalha: ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

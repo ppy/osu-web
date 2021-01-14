@@ -8,6 +8,7 @@ return [
         'disabled' => 'Diese Beatmap steht momentan nicht zum Herunterladen zur Verfügung.',
         'parts-removed' => 'Teile dieser Beatmap wurden auf Anfrage des Erstellers oder eines Rechteinhabers entfernt.',
         'more-info' => 'Siehe hier für mehr Informationen.',
+        'rule_violation' => '',
     ],
 
     'index' => [
@@ -16,11 +17,27 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'herunterladen',
             'video' => 'mit Video herunterladen',
             'no_video' => 'ohne Video herunterladen',
             'direct' => 'in osu!direct öffnen',
+        ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
         ],
     ],
 
@@ -74,11 +91,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Wenn Du ein Problem mit dieser Beatmap findest, bitte disqualifiziere diese :link.',
+                '_' => 'Wenn du ein Problem mit dieser Beatmap findest, disqualifiziere diese bitte :link.',
             ],
 
             'report' => [
-                '_' => 'Wenn du ein Problem mit dieser Beatmap findest, bitte melde es :link, um das Team zu informieren.',
+                '_' => 'Wenn du ein Problem mit dieser Beatmap findest, melde es bitte :link, um das Team zu informieren.',
                 'button' => 'Problem melden',
                 'link' => 'hier',
             ],

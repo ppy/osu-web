@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Delete post',
-            'restore' => 'Restore post',
             'edit' => 'Edit post',
+            'report' => 'Report post',
+            'restore' => 'Restore post',
         ],
 
         'create' => [
@@ -126,7 +127,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'forum subscriptions',
+            'title_compact' => 'forum topic watchlist',
 
             'box' => [
                 'total' => 'Topics subscribed',

@@ -15,8 +15,13 @@ return [
     'top' => 'Top',
     'username' => 'Nume de utilizator',
 
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => '',
+    ],
+
     'forum_topics' => [
-        'new' => 'Ultimul răspuns',
         'feature_votes' => 'Prioritatea stelelor',
+        'new' => 'Ultimul răspuns',
     ],
 ];

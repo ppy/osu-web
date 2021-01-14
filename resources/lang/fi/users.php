@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Käyttäjätiliäsi ei ole käytetty pitkään aikaan.",
@@ -150,6 +154,10 @@ return [
         'plays_with' => 'Pelityylinä :devices',
         'title' => ":username:n profiili",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Muuta profiilin kansikuvaa',

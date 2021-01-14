@@ -50,8 +50,9 @@ return [
 
         'actions' => [
             'destroy' => 'Usuń post',
-            'restore' => 'Przywróć post',
             'edit' => 'Edytuj post',
+            'report' => 'Zgłoś post',
+            'restore' => 'Przywróć post',
         ],
 
         'create' => [
@@ -92,7 +93,7 @@ return [
             'preview' => 'Podgląd',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Napisz',
+            'preview_hide' => 'Edytuj',
             'submit' => 'Opublikuj',
 
             'necropost' => [

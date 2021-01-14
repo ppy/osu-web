@@ -53,7 +53,7 @@ class ChangeUsername
             return $this->validationErrors()->addTranslated('username', static::requireSupportedMessage());
         }
 
-        if ($this->username === $this->user->username) {
+        if (User::cleanUsername($this->username) === $this->user->username_clean) {
             return $this->validationErrors()->add('username', '.change_username.username_is_same');
         }
 
