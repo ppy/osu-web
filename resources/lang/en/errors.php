@@ -27,7 +27,6 @@ return [
         'operation_timeout_exception' => 'Search is currently busier than usual, try again later.',
     ],
 
-    'logged_out' => 'You have been signed out. Please sign in and retry.',
     'supporter_only' => 'You must be an osu!supporter to use this feature.',
     'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',
     'unknown' => 'Unknown error occurred.',
