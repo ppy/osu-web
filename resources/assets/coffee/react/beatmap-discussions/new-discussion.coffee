@@ -290,7 +290,12 @@ export class NewDiscussion extends React.PureComponent
     return 'disqualify' if canDisqualify && willDisqualify
 
     canReset = currentUser.is_admin || currentUser.is_nat || currentUser.is_bng
-    willReset = @props.beatmapset.status == 'pending' && @props.beatmapset.nominations.current > 0
+    currentNominations =
+      if @props.beatmapset.nominations.legacy_mode
+        @props.beatmapset.nominations.current
+      else
+        _.sum(_.values(@props.beatmapset.nominations.current))
+    willReset = @props.beatmapset.status == 'pending' && currentNominations > 0
 
     return 'nomination_reset' if canReset && willReset
 
