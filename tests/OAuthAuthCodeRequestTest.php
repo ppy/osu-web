@@ -26,7 +26,7 @@ class OAuthAuthCodeRequestTest extends TestCase
             ->assertStatus(400);
     }
 
-    public function testNonBotClientCannotRequetChatWriteScope()
+    public function testNonBotClientCannotRequestChatWriteScope()
     {
         $owner = factory(User::class)->create();
         $client = factory(Client::class)->create([

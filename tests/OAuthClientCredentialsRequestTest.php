@@ -69,7 +69,7 @@ class OAuthClientCredentialsRequestTest extends TestCase
         return [
             'chat.write is not allowed' => ['chat.write', 400],
             'bot is not allowed' => ['bot', 400],
-            'public is alowed' => ['public', 200],
+            'public is allowed' => ['public', 200],
         ];
     }
 

@@ -20,7 +20,7 @@ class Token extends PassportToken
      *
      * @return bool
      */
-    public function canDeletage(): bool
+    public function canDelegate(): bool
     {
         return in_array('bot', $this->scopes, true);
     }
@@ -33,7 +33,7 @@ class Token extends PassportToken
      */
     public function getResourceOwner(): ?User
     {
-        if ($this->isClientCredentials() && $this->canDeletage()) {
+        if ($this->isClientCredentials() && $this->canDelegate()) {
             return $this->client->user;
         }
 
@@ -96,12 +96,12 @@ class Token extends PassportToken
             }
 
             // in the case of client credentials, delegation must be enabled on the token.
-            if ($this->isClientCredentials() && !$this->canDeletage()) {
+            if ($this->isClientCredentials() && !$this->canDelegate()) {
                 throw new InvalidScopeException('bot scope required.');
             }
         }
 
-        if ($this->canDeletage()) {
+        if ($this->canDelegate()) {
             if (!$this->client->user->isBot()) {
                 throw new InvalidScopeException('This scope is only available for chat bots.');
             }
