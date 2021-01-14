@@ -38,10 +38,18 @@ interface BaseNominationsInterface {
   required_hype: number;
 }
 
+export function isNominationsInterface(x: BaseNominationsInterface): x is NominationsInterface {
+  return !x.legacy_mode;
+}
+
 export interface NominationsInterface extends BaseNominationsInterface {
   current: Partial<Record<GameMode, number>>;
   legacy_mode: false;
   required: Partial<Record<GameMode, number>>;
+}
+
+export function isLegacyNominationsInterface(x: BaseNominationsInterface): x is LegacyNominationsInterface {
+  return x.legacy_mode;
 }
 
 export interface LegacyNominationsInterface extends BaseNominationsInterface {
