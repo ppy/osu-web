@@ -18,12 +18,14 @@
         <div class="search-forum-post__content">
             @if (isset($title))
                 <div class="search-forum-post__text search-forum-post__text--title">
-                    {{ $title }}
+                    <span class="search-highlight">
+                        {{ $title }}
+                    </span>
                 </div>
             @endif
             <div class="search-forum-post__text search-forum-post__text--excerpt">
                 <span class="search-highlight">
-                    {!! $highlights !!}
+                    {{ $excerpt }}
                 </span>
             </div>
             <div class="search-forum-post__text search-forum-post__text--footer">

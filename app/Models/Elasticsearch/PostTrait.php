@@ -22,7 +22,7 @@ trait PostTrait
     {
         $forumIds = Forum::where('enable_indexing', 1)->pluck('forum_id');
 
-        return static::withoutGlobalScopes()->whereIn('forum_id', $forumIds)->with('forum');
+        return static::withoutGlobalScopes()->whereIn('forum_id', $forumIds)->with('forum')->with('topic');
     }
 
     public static function esSchemaFile()
@@ -58,6 +58,10 @@ trait PostTrait
             }
 
             $values[$field] = $value;
+        }
+
+        if ($this->topic !== null && $this->topic->topic_first_post_id === $this->getKey()) {
+            $values['topic_title'] = $this->topic->topic_title;
         }
 
         $values['type'] = [

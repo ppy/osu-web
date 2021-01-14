@@ -27,6 +27,10 @@
         "topic_id": {
           "type": "long"
         },
+        "topic_title": {
+          "type": "text",
+          "analyzer": "post_text_analyzer"
+        },
         "type": {
           "type": "join",
           "relations": {

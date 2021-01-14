@@ -39,14 +39,7 @@
                     @else
                         <div class="search-result__row search-result__row--entries-container">
                             <div class="search-result__entries">
-                                @php
-                                    $users = $search->users()->select('user_id', 'username', 'user_avatar')->get();
-                                @endphp
-                                @foreach ($search->response() as $hit)
-                                    <div class="search-result-entry">
-                                        @include('objects.search._post_search', compact('hit', 'users'))
-                                    </div>
-                                @endforeach
+                                @include('home._search_result_forum_post', compact('search'))
                             </div>
                             <span class="search-result__more-button search-result__more-button--hidden">
                                 {{-- ...because this element actually affects the layout --}}

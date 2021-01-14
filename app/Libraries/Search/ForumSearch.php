@@ -18,28 +18,27 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ForumSearch extends Search
 {
+    public static function getHighlights(Hit $hit, string $field)
+    {
+        $highlights = $hit->highlights($field, static::HIGHLIGHT_FRAGMENT_SIZE * 2);
+        $highlightsText = implode(' ... ', $highlights);
+
+        if ($highlightsText !== '') {
+            return blade_safe($highlightsText);
+        }
+    }
+
     public function __construct(?ForumSearchParams $params = null)
     {
         parent::__construct(Post::esIndexName(), $params ?? new ForumSearchParams());
 
-        $this->source(['topic_id', 'post_id', 'post_time', 'poster_id', 'search_content']);
+        $this->source(['topic_id', 'post_id', 'post_time', 'poster_id', 'search_content', 'topic_title']);
         $this->highlight(
             (new Highlight())
+                ->field('topic_title')
                 ->field('search_content')
                 ->fragmentSize(static::HIGHLIGHT_FRAGMENT_SIZE)
                 ->numberOfFragments(3)
-        );
-    }
-
-    // TODO: maybe move to a response/view helper?
-    public function highlightsForHit(Hit $hit)
-    {
-        return implode(
-            ' ... ',
-            $hit->highlights(
-                'search_content',
-                static::HIGHLIGHT_FRAGMENT_SIZE * 2
-            )
         );
     }
 
@@ -58,7 +57,7 @@ class ForumSearch extends Search
         }
 
         if ($this->params->queryString !== null) {
-            $query->must(QueryHelper::queryString($this->params->queryString, ['search_content']));
+            $query->must(QueryHelper::queryString($this->params->queryString, ['search_content', 'topic_title']));
         }
 
         if (isset($this->params->username)) {

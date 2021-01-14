@@ -15,14 +15,20 @@
         $postUrl = post_url($entry->source('topic_id'), $entry->source('post_id'));
         $topic = $topics[$entry->source('topic_id')] ?? new App\Models\Forum\Topic();
         $user = $users[$entry->source('poster_id')] ?? new App\Models\DeletedUser();
+
+        if ($skipTitle) {
+            $title = null;
+        } else {
+            $title = $search->getHighlights($entry, 'topic_title') ?? $topic->topic_title;
+        }
     @endphp
     <div class="search-result-entry">
         <div class="search-entry">
             @include('objects.search._forum_post', [
                 'user' => $user,
-                'title' => $skipTitle ? null : $topic->topic_title,
-                'highlights' => $search->highlightsForHit($entry),
+                'title' => $title,
                 'link' => $postUrl,
+                'excerpt' => $search->getHighlights($entry, 'search_content') ?? str_limit($entry->source('search_content'), 100),
                 'time' => $entry->source('post_time'),
             ])
         </div>
