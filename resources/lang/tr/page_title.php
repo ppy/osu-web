@@ -76,7 +76,7 @@ return [
             '_' => 'yarışmalar',
         ],
         'follows_controller' => [
-            'index' => '',
+            'index' => 'kontrol paneli',
         ],
         'friends_controller' => [
             'index' => 'kontrol paneli',

@@ -9,8 +9,8 @@ return [
         'title_compact' => 'modding ウォッチリスト',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'ビートマップをウォッチ',
+            'unread' => '新しいアクティビティがあるビートマップ',
         ],
 
         'table' => [

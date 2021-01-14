@@ -16,8 +16,8 @@ return [
     'username' => 'Nama Pengguna',
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Waktu posting',
+        'relevance' => 'Relevansi',
     ],
 
     'forum_topics' => [

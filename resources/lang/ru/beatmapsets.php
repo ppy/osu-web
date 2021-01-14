@@ -17,7 +17,7 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'нет карт',
 
         'download' => [
             'all' => 'скачать',
@@ -29,16 +29,20 @@ return [
 
     'nominate' => [
         'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
+        'incorrect_mode' => 'У вас недостаточно прав для номинирования: :mode',
+        'full_bn_required' => 'Вы должны быть полноправным номинатором, чтобы номинировать эту карту на ранк.',
         'too_many' => '',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
+            'confirmation' => 'Вы уверены, что хотите номинировать эту карту?',
+            'header' => 'Номинировать карту',
+            'hybrid_warning' => 'примечание: вы можете номинировать лишь один раз, так что убедитесь, что вы номинируете все режимы, которые необходимы',
             'which_modes' => '',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -106,10 +110,22 @@ return [
             'genre' => 'Жанр',
             'language' => 'Язык',
             'no_scores' => 'Данные всё ещё обрабатываются...',
+            'nsfw' => '',
             'points-of-failure' => 'Шкала провалов',
             'source' => 'Источник',
             'success-rate' => 'Шанс успеха',
             'tags' => 'Теги',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

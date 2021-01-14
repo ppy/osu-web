@@ -6,11 +6,11 @@
 return [
     'all_read' => 'Semua notifikasi telah dibaca!',
     'delete' => 'Hapus :type',
-    'loading' => '',
+    'loading' => 'Memuat notifikasi-notifikasi yang belum dibaca...',
     'mark_read' => 'Hapus :type',
     'none' => 'Tidak ada notifikasi',
     'see_all' => 'lihat semua notifikasi',
-    'see_channel' => 'tuju kanal obrolan',
+    'see_channel' => 'tuju obrolan',
 
     'filters' => [
         '_' => 'semua notifikasi',
@@ -30,7 +30,7 @@ return [
                 '_' => 'Laman diskusi beatmap',
                 'beatmapset_discussion_lock' => 'Diskusi untuk beatmap ":title" telah ditutup.',
                 'beatmapset_discussion_lock_compact' => 'Diskusi beatmap telah dikunci',
-                'beatmapset_discussion_post_new' => ':username menulis pesan baru pada laman diskusi beatmap ":title".',
+                'beatmapset_discussion_post_new' => 'Postingan baru pada ":title" oleh :username: ":content"',
                 'beatmapset_discussion_post_new_empty' => 'Postingan baru di ":title" oleh :username',
                 'beatmapset_discussion_post_new_compact' => 'Postingan baru dari :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Postingan baru oleh :username',
@@ -130,17 +130,17 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => ':count_delimited pesan yang belum dibaca.',
+                'legacy_pm' => ':count_delimited pesan yang belum dibaca.|:count_delimited pesan yang belum dibaca.',
             ],
         ],
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Beatmap baru',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Beatmap baru ":title" oleh :username',
+                'user_beatmapset_new_compact' => 'Beatmap baru ":title"',
+                'user_beatmapset_new_group' => 'Beatmap-beatmap baru oleh :username',
             ],
         ],
 
@@ -214,7 +214,7 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username telah mengunggah beatmap baru',
             ],
         ],
     ],

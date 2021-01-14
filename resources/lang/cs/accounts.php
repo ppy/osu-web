@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'zobrazit informace map v originálním jazyce',
         'title' => 'Možnosti',
 
         'beatmapset_download' => [
             '_' => 'výchozí typ stahování map',
             'all' => 's videem, je-li k dispozici',
-            'no_video' => 'bez videa',
             'direct' => 'otevřít v osu!direct',
+            'no_video' => 'bez videa',
         ],
-
-        'beatmapset_title_show_original' => 'zobrazit informace map v originálním jazyce',
     ],
 
     'playstyles' => [

@@ -12,8 +12,8 @@ return [
     ],
 
     'error' => [
-        'contact_support' => 'Mohon hubungi layanan dukungan untuk memulihkan akun.',
-        'is_privileged' => 'Hubungi peppy lul.',
+        'contact_support' => 'Harap hubungi layanan dukungan untuk dapat memulihkan akun.',
+        'is_privileged' => 'Harap hubungi admin yang memiliki akses perizinan tingkat tinggi untuk dapat memulihkan akun.',
         'missing_key' => 'Wajib.',
         'too_many_tries' => 'Terlalu banyak percobaan gagal.',
         'user_not_found' => 'Pengguna yang diminta tidak ditemukan.',

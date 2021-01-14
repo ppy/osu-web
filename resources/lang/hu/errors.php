@@ -27,7 +27,6 @@ return [
         'operation_timeout_exception' => 'A keresés a szokásosnál jobban leterhelt, kérlek próbáld meg később.',
     ],
 
-    'logged_out' => 'Ki lettél léptetve. Kérlek lépj be és próbáld újra.',
     'supporter_only' => 'Támogatónak kell lenned a funkció használatához.',
     'no_restricted_access' => 'Felfüggesztett állapot erre nem vagy alkalmas.',
     'unknown' => 'Ismeretlen hiba történt.',

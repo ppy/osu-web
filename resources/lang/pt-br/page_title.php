@@ -76,7 +76,7 @@ return [
             '_' => 'concursos',
         ],
         'follows_controller' => [
-            'index' => '',
+            'index' => 'painel',
         ],
         'friends_controller' => [
             'index' => 'painel de controle',

@@ -35,9 +35,9 @@ return [
     ],
 
     'index' => [
-        'nav_comments' => '',
+        'nav_comments' => 'comentarios',
         'nav_title' => 'listado',
-        'no_comments' => '',
+        'no_comments' => 'no se encontraron comentarios...',
     ],
 
     'placeholder' => [

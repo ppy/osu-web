@@ -19,7 +19,7 @@ return [
         'nominate' => [
             'exhausted' => 'Você atingiu o limite de nomeações diárias, tente novamente amanhã.',
             'incorrect_state' => 'Erro ao realizar esta ação, tente atualizar a página.',
-            'owner' => "Não é possível nominar o próprio beatmap.",
+            'owner' => "Não é possível nomear o próprio beatmap.",
             'set_metadata' => 'Você deve definir o gênero e o idioma antes de nomear.',
         ],
         'resolve' => [

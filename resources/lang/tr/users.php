@@ -155,8 +155,8 @@ return [
         'title' => ":username kullanıcısının profili",
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => ':link Gönderildi',
+            'count' => ':count_delimited yorum|:count_delimited yorum',
         ],
         'edit' => [
             'cover' => [

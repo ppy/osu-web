@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'visa beatmapmetadata på originalspråk',
         'title' => 'Alternativ',
 
         'beatmapset_download' => [
             '_' => 'standard beatmap nedladdningstyp',
             'all' => 'med video om tillgängligt',
-            'no_video' => 'utan video',
             'direct' => 'öppna i osu!direct',
+            'no_video' => 'utan video',
         ],
-
-        'beatmapset_title_show_original' => 'visa beatmapmetadata på originalspråk',
     ],
 
     'playstyles' => [

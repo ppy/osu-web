@@ -220,14 +220,15 @@ return [
             'not-found' => 'niciun rezultat',
             'not-found-quote' => '... nup, nimic găsit.',
             'filters' => [
+                'extra' => 'extra',
                 'general' => 'General',
-                'mode' => 'Mod',
-                'status' => 'Categorii',
                 'genre' => 'Gen',
                 'language' => 'Limbă',
-                'extra' => 'extra',
-                'rank' => 'Clasament atins',
+                'mode' => 'Mod',
+                'nsfw' => '',
                 'played' => 'Jucat',
+                'rank' => 'Clasament atins',
+                'status' => 'Categorii',
             ],
             'sorting' => [
                 'title' => 'Titlu',
@@ -330,6 +331,12 @@ return [
         'other' => 'Altul',
         'unspecified' => 'Nespecificat',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Oricare',
         'played' => 'Jucat',

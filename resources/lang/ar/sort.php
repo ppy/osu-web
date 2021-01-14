@@ -16,8 +16,8 @@ return [
     'username' => 'اسم المُستخدم',
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'توقيت النشر',
+        'relevance' => 'الأهمية',
     ],
 
     'forum_topics' => [

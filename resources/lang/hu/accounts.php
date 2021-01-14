@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'A beatmap metaadatai megjelenítése eredeti nyelven',
         'title' => 'Beállítások',
 
         'beatmapset_download' => [
             '_' => 'Alapértelmezett beatmap letöltés típusa',
             'all' => 'Videóval, ha elérhető',
-            'no_video' => 'Videó nélkül',
             'direct' => 'Megnyitás osu!direct-ben',
+            'no_video' => 'Videó nélkül',
         ],
-
-        'beatmapset_title_show_original' => 'A beatmap metaadatai megjelenítése eredeti nyelven',
     ],
 
     'playstyles' => [
