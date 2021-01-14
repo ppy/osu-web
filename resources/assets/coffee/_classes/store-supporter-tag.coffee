@@ -86,7 +86,9 @@ class @StoreSupporterTag
       @user = data
 
     .fail (xhr, status) =>
-      $(@usernameInput).trigger 'ajax:error', [xhr, status]
+      $(@usernameInput)
+        .trigger 'ajax:error', [xhr, status]
+        .one 'click', @onInput
 
     .always =>
       @searching = false
