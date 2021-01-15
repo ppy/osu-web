@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'ゲームモードによるメンバー',
     ],
 
     'force_reactivation' => [
@@ -155,8 +155,8 @@ return [
         'title' => ":usernameのプロフィール",
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => '投稿 :link',
+            'count' => ':count_delimited コメント',
         ],
         'edit' => [
             'cover' => [

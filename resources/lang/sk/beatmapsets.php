@@ -41,6 +41,10 @@ return [
         ],
     ],
 
+    'nsfw_badge' => [
+        'label' => '',
+    ],
+
     'show' => [
         'discussion' => 'Diskusia',
 
@@ -106,10 +110,22 @@ return [
             'genre' => 'Žáner',
             'language' => 'Jazyk',
             'no_scores' => 'Vypočítavajú sa dáta...',
+            'nsfw' => '',
             'points-of-failure' => 'Body Neúspechu',
             'source' => 'Zdroj',
             'success-rate' => 'Úspešnosť',
             'tags' => 'Tagy',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

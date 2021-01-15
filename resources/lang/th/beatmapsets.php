@@ -41,6 +41,10 @@ return [
         ],
     ],
 
+    'nsfw_badge' => [
+        'label' => '',
+    ],
+
     'show' => [
         'discussion' => 'การสนทนา',
 
@@ -106,10 +110,22 @@ return [
             'genre' => 'ประเภท',
             'language' => 'ภาษา',
             'no_scores' => 'ข้อมูลกำลังถูกคำนวณ...',
+            'nsfw' => '',
             'points-of-failure' => 'ความล้มเหลว',
             'source' => 'แหล่งที่มา',
             'success-rate' => 'อัตราการผ่าน',
             'tags' => 'แท็ก',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

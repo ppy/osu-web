@@ -204,7 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Configurações',
-            'follows' => '',
+            'follows' => 'Observações',
             'friends' => 'Amigos',
             'logout' => 'Desconectar',
             'profile' => 'Meu Perfil',

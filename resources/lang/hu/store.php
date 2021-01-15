@@ -69,7 +69,7 @@ return [
     ],
 
     'order' => [
-        'cancel' => '',
+        'cancel' => 'Megrendelés törlése',
         'cancel_confirm' => '',
         'cancel_not_allowed' => '',
         'invoice' => 'Számla megtekintése',

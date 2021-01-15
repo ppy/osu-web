@@ -53,7 +53,7 @@ return [
         'beatmapset_disqualify' => 'ricevi notifiche quando le beatmap delle seguenti modalità vengono squalificate',
         'comment_reply' => 'ricevi notifiche per le risposte ai tuoi commenti',
         'title' => 'Notifiche',
-        'topic_auto_subscribe' => 'attiva automaticamente le notifiche sui nuovi topic del forum che crei',
+        'topic_auto_subscribe' => 'attiva automaticamente le notifiche sui nuovi topic che crei nel forum',
 
         'options' => [
             '_' => 'opzioni di notifica',
@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'mostra i metadati della beatmap in lingua originale',
         'title' => 'Opzioni',
 
         'beatmapset_download' => [
             '_' => 'tipo di download predefinito per le beatmap',
             'all' => 'con video, se disponibile',
-            'no_video' => 'senza video',
             'direct' => 'apri in osu!direct',
+            'no_video' => 'senza video',
         ],
-
-        'beatmapset_title_show_original' => 'mostra i metadati della beatmap in lingua originale',
     ],
 
     'playstyles' => [

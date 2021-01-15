@@ -220,14 +220,15 @@ return [
             'not-found' => 'geen resultaten',
             'not-found-quote' => '... nope, niets gevonden.',
             'filters' => [
+                'extra' => 'extra',
                 'general' => 'Algemeen',
-                'mode' => 'Mode',
-                'status' => 'Categorieën',
                 'genre' => 'Genre',
                 'language' => 'Taal',
-                'extra' => 'extra',
-                'rank' => 'Rank Behaald',
+                'mode' => 'Mode',
+                'nsfw' => '',
                 'played' => 'Gespeeld',
+                'rank' => 'Rank Behaald',
+                'status' => 'Categorieën',
             ],
             'sorting' => [
                 'title' => 'Titel',
@@ -330,6 +331,12 @@ return [
         'other' => 'Anders',
         'unspecified' => 'Niet Gespecificeerd',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Alles',
         'played' => 'Gespeeld',

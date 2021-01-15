@@ -8,7 +8,7 @@ return [
         'disabled' => 'Nie możesz pobrać tej beatmapy.',
         'parts-removed' => 'Ta beatmapa została usunięta za prośbą twórcy materiałów w niej użytych.',
         'more-info' => 'Kliknij tutaj, aby dowiedzieć się więcej.',
-        'rule_violation' => '',
+        'rule_violation' => 'Część zawartości tej beatmapy została usunięta po uznaniu jej za nieodpowiednią do użycia w osu!.',
     ],
 
     'index' => [
@@ -17,7 +17,7 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'brak beatmap',
 
         'download' => [
             'all' => 'pobierz',
@@ -29,16 +29,20 @@ return [
 
     'nominate' => [
         'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
+        'incorrect_mode' => 'Nie posiadasz uprawnień do nominowania beatmap dla tych trybów (:mode)',
+        'full_bn_required' => 'Musisz posiadać pełne uprawnienia nominatora, by zakwalifikować tę beatmapę.',
         'too_many' => '',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
+            'confirmation' => 'Czy na pewno chcesz nominować tę beatmapę?',
+            'header' => 'Nominuj beatmapę',
             'hybrid_warning' => '',
-            'which_modes' => '',
+            'which_modes' => 'Na jaki tryb chcesz nominować?',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -106,10 +110,22 @@ return [
             'genre' => 'Gatunek',
             'language' => 'Język',
             'no_scores' => 'Dane są nadal ładowane...',
+            'nsfw' => '',
             'points-of-failure' => 'Wykres porażek',
             'source' => 'Źródło',
             'success-rate' => 'Wskaźnik ukończonych zagrań',
             'tags' => 'Tagi',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

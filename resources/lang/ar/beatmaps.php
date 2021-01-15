@@ -187,17 +187,17 @@ return [
         'nominate_confirm' => 'ترشيح هذه الخريطة؟',
         'nominated_by' => 'تم ترشيحها بواسطة :users',
         'not_enough_hype' => "لا يوجد تشجيع كافي.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'إزالة من خانة "المحبوبة"',
+        'remove_from_loved_prompt' => 'سبب الإزالة من خانة "المحبوبة":',
         'required_text' => 'الترشيحات: :current/:required',
         'reset_message_deleted' => 'حُذفت',
         'title' => 'حالة الترشيح',
         'unresolved_issues' => 'لا تزال هناك اخطاء يجب الاِشارة اليها في البداية.',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
-            'soon' => '',
+            '_' => 'هذه الخريطة مقدرة بأن تصبح مصفوفة في :date إذا لم يتم العثور على أي مشاكل. انها#:position في :queue.',
+            'queue' => 'قائمة انتظار الترتيب',
+            'soon' => 'قريبًا',
         ],
 
         'reset_at' => [
@@ -220,14 +220,15 @@ return [
             'not-found' => 'لا نتائج',
             'not-found-quote' => '... لا, لا يوجد شيء.',
             'filters' => [
+                'extra' => 'اخرى',
                 'general' => 'عام',
-                'mode' => 'الوضع',
-                'status' => 'الفئات',
                 'genre' => 'النوع',
                 'language' => 'اللغة',
-                'extra' => 'اخرى',
-                'rank' => 'المرتبة الحاصل عليها',
+                'mode' => 'الوضع',
+                'nsfw' => '',
                 'played' => 'لُعبت',
+                'rank' => 'المرتبة الحاصل عليها',
+                'status' => 'الفئات',
             ],
             'sorting' => [
                 'title' => 'العنوان',
@@ -252,7 +253,7 @@ return [
         'converts' => 'ادخال الخرائط المتحولة',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'الكل',
         'any' => 'الكل',
         'osu' => '',
         'taiko' => '',
@@ -330,6 +331,12 @@ return [
         'other' => 'أخرى',
         'unspecified' => 'غير محدد',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'الكل',
         'played' => 'لُعبت',

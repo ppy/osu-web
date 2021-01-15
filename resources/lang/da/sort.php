@@ -6,8 +6,8 @@
 return [
     '_' => 'Sorter efter',
 
-    'all' => '',
-    'friends' => '',
+    'all' => 'Alle',
+    'friends' => 'Venner',
     'last_visit' => 'Senest aktive',
     'new' => 'Seneste',
     'old' => 'Gammel',
@@ -16,8 +16,8 @@ return [
     'username' => 'Brugernavn',
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Oprettelsestid',
+        'relevance' => 'Relevans',
     ],
 
     'forum_topics' => [
