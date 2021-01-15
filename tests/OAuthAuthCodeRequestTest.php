@@ -12,31 +12,25 @@ class OAuthAuthCodeRequestTest extends TestCase
 {
     protected $client;
 
-    public function testBotClientCannotRequestBotScope()
+    /**
+     * @dataProvider botClientDataProvider
+     */
+    public function testBotClient($scope, $success)
     {
         $params = [
             'client_id' => $this->client->getKey(),
             'redirect_uri' => $this->client->redirect,
             'response_type' => 'code',
-            'scope' => 'bot',
+            'scope' => $scope,
         ];
 
-        $this->get(route('oauth.authorizations.authorize', $params))
-            ->assertViewIs('layout.error')
-            ->assertStatus(400);
-    }
+        $request = $this->get(route('oauth.authorizations.authorize', $params));
 
-    public function testBotClientCanRequestChatWriteScope()
-    {
-        $params = [
-            'client_id' => $this->client->getKey(),
-            'redirect_uri' => $this->client->redirect,
-            'response_type' => 'code',
-            'scope' => 'chat.write',
-        ];
-
-        $this->get(route('oauth.authorizations.authorize', $params))
-            ->assertStatus(200);
+        if ($success) {
+            $request->assertStatus(200);
+        } else {
+            $request->assertViewIs('layout.error')->assertStatus(400);
+        }
     }
 
     public function testNonBotClientCannotRequestChatWriteScope()
@@ -57,6 +51,14 @@ class OAuthAuthCodeRequestTest extends TestCase
         $this->get(route('oauth.authorizations.authorize', $params))
             ->assertViewIs('layout.error')
             ->assertStatus(400);
+    }
+
+    public function botClientDataProvider()
+    {
+        return [
+            'cannot request bot scope for auth_code' => ['bot', false],
+            'can request chat.write scope' => ['chat.write', true],
+        ];
     }
 
     protected function setUp(): void
