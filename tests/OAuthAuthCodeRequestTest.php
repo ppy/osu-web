@@ -12,7 +12,7 @@ class OAuthAuthCodeRequestTest extends TestCase
 {
     protected $client;
 
-    public function testCannotRequestBotScope()
+    public function testBotClientCannotRequestBotScope()
     {
         $params = [
             'client_id' => $this->client->getKey(),
@@ -24,6 +24,19 @@ class OAuthAuthCodeRequestTest extends TestCase
         $this->get(route('oauth.authorizations.authorize', $params))
             ->assertViewIs('layout.error')
             ->assertStatus(400);
+    }
+
+    public function testBotClientCanRequestChatWriteScope()
+    {
+        $params = [
+            'client_id' => $this->client->getKey(),
+            'redirect_uri' => $this->client->redirect,
+            'response_type' => 'code',
+            'scope' => 'chat.write',
+        ];
+
+        $this->get(route('oauth.authorizations.authorize', $params))
+            ->assertStatus(200);
     }
 
     public function testNonBotClientCannotRequestChatWriteScope()
@@ -44,19 +57,6 @@ class OAuthAuthCodeRequestTest extends TestCase
         $this->get(route('oauth.authorizations.authorize', $params))
             ->assertViewIs('layout.error')
             ->assertStatus(400);
-    }
-
-    public function testSuccessfulRequest()
-    {
-        $params = [
-            'client_id' => $this->client->getKey(),
-            'redirect_uri' => $this->client->redirect,
-            'response_type' => 'code',
-            'scope' => 'chat.write',
-        ];
-
-        $this->get(route('oauth.authorizations.authorize', $params))
-            ->assertStatus(200);
     }
 
     protected function setUp(): void
