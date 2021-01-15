@@ -57,7 +57,7 @@ class WikiController extends Controller
         // in case locale is passed as query parameter (legacy url inside the page)
         // or it's in wrong case, redirect to new path
         $queryLocale = $this->locale();
-        if ($queryLocale !== $locale) {
+        if ($queryLocale !== $locale && present($path)) {
             return ujs_redirect(wiki_url($path, $queryLocale));
         }
 
