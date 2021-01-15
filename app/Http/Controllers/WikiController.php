@@ -85,6 +85,10 @@ class WikiController extends Controller
                 return ujs_redirect(wiki_url(ltrim($redirectTarget, '/')));
             }
 
+            if (!present($path)) {
+                return ujs_redirect(wiki_url($locale));
+            }
+
             $correctPath = Wiki\Page::searchPath($path, $locale);
             if ($correctPath !== null && $correctPath !== $path) {
                 return ujs_redirect(wiki_url($correctPath, $locale));
