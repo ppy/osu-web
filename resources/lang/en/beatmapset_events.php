@@ -34,7 +34,7 @@ return [
         'nsfw_toggle' => [
             'to_0' => 'Removed explicit mark',
             'to_1' => 'Marked as explicit',
-        ]
+        ],
     ],
 
     'index' => [
