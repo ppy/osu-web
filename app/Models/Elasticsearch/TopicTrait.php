@@ -50,16 +50,6 @@ trait TopicTrait
 
     public function toEsJson()
     {
-        $values = [
-            'post_id' => $this->topic_first_post_id,
-            'topic_id' => $this->topic_id,
-            'poster_id' => $this->topic_poster,
-            'forum_id' => $this->forum_id,
-            'post_time' => json_time($this->topic_time),
-            'search_content' => $this->topic_title,
-            'type' => 'topics',
-        ];
-
-        return $values;
+        return ['type' => 'topics'];
     }
 }
