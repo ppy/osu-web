@@ -76,7 +76,7 @@ return [
             '_' => 'tävlingar',
         ],
         'follows_controller' => [
-            'index' => '',
+            'index' => 'kontrollpanel',
         ],
         'friends_controller' => [
             'index' => 'kontrollpanel',

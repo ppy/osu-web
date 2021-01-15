@@ -76,7 +76,7 @@ return [
             '_' => 'المسابقات',
         ],
         'follows_controller' => [
-            'index' => '',
+            'index' => 'لوحة التحكم',
         ],
         'friends_controller' => [
             'index' => 'لوحة التحكم',

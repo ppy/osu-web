@@ -41,6 +41,10 @@ return [
         ],
     ],
 
+    'nsfw_badge' => [
+        'label' => '',
+    ],
+
     'show' => [
         'discussion' => 'Обговорення',
 
@@ -106,10 +110,22 @@ return [
             'genre' => 'Жанр',
             'language' => 'Мова',
             'no_scores' => 'Дані все ще обробляються...',
+            'nsfw' => '',
             'points-of-failure' => 'Шкала провалів',
             'source' => 'Джерело',
             'success-rate' => 'Шанс успіху',
             'tags' => 'Теги',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

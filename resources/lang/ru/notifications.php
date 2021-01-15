@@ -4,9 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => 'Все уведомления прочтены!',
+    'all_read' => 'Все уведомления прочитаны!',
     'delete' => 'Очистить :type',
-    'loading' => '',
+    'loading' => 'Загрузка непрочитанных уведомлений...',
     'mark_read' => 'Очистить :type',
     'none' => 'Уведомлений нет',
     'see_all' => 'см. все уведомления',
@@ -136,11 +136,11 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Новая карта',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Новая карта ":title" от :username',
+                'user_beatmapset_new_compact' => 'Новая карта ":title"',
+                'user_beatmapset_new_group' => 'Новые карты от :username',
             ],
         ],
 
@@ -214,7 +214,7 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username создал новую карту',
             ],
         ],
     ],

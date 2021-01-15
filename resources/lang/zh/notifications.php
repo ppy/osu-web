@@ -6,7 +6,7 @@
 return [
     'all_read' => '已经阅读所有通知！',
     'delete' => '删除 :type',
-    'loading' => '',
+    'loading' => '加载未读通知…',
     'mark_read' => '清除 :type 类型的通知',
     'none' => '没有新通知',
     'see_all' => '显示所有通知',
@@ -34,8 +34,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => ':username 发布了主题为“:title”新的帖子',
                 'beatmapset_discussion_post_new_compact' => ':username 的新主题',
                 'beatmapset_discussion_post_new_compact_empty' => ':username 发布了新的帖子',
-                'beatmapset_discussion_review_new' => '来自 :username 在“:title”上发表了新的审阅，问题：:problems，建议：:suggestions，赞：:praises',
-                'beatmapset_discussion_review_new_compact' => '来自 :username 发表了新的审阅，问题：:problems，建议：:suggestions，赞：:praises',
+                'beatmapset_discussion_review_new' => ':username 在《:title》上发表了新的审阅，问题：:problems，建议：:suggestions，赞：:praises',
+                'beatmapset_discussion_review_new_compact' => ':username 发表了新的审阅，问题：:problems，建议：:suggestions，赞：:praises',
                 'beatmapset_discussion_unlock' => '谱面 :title 已被解锁以供讨论。',
                 'beatmapset_discussion_unlock_compact' => '评论已解锁',
             ],
@@ -82,7 +82,7 @@ return [
             'channel' => [
                 '_' => '新消息',
                 'pm' => [
-                    'channel_message' => ':username 发表了 ":title"',
+                    'channel_message' => ':username 说 ":title"',
                     'channel_message_compact' => ':title',
                     'channel_message_group' => '由 :username',
                 ],
@@ -136,11 +136,11 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => '新谱面',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => ':username 上传了标题为“:title”的新谱面',
+                'user_beatmapset_new_compact' => '新谱面《:title》',
+                'user_beatmapset_new_group' => ':username 的新谱面',
             ],
         ],
 
@@ -214,7 +214,7 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username 创建了一张新谱面',
             ],
         ],
     ],

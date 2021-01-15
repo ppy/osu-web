@@ -27,7 +27,6 @@ return [
         'operation_timeout_exception' => '検索機能が平時より混み合っています。もう一度お試しください。',
     ],
 
-    'logged_out' => 'ログアウトされています。ログインしてから再度お試しください。',
     'supporter_only' => 'osu!サポーター限定の機能です。',
     'no_restricted_access' => 'アカウントが制限されている状態では実行できません。',
     'unknown' => '不明のエラーが発生しました。',

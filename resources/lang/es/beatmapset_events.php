@@ -25,7 +25,7 @@ return [
         'language_edit' => 'El lenguaje cambió de :old a :new.',
         'love' => 'Amado por :user.',
         'nominate' => 'Nominado por :user.',
-        'nominate_modes' => '',
+        'nominate_modes' => 'Nominado por :user (:modes).',
         'nomination_reset' => 'Un nuevo problema :discussion (:text) ha restablecido las nominaciones.',
         'qualify' => 'Este mapa ha alcanzado el número requerido de nominaciones y ha sido calificado.',
         'rank' => 'Clasificado.',

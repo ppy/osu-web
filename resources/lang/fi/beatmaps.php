@@ -220,14 +220,15 @@ return [
             'not-found' => 'ei tuloksia',
             'not-found-quote' => '... mitään ei löytynyt.',
             'filters' => [
+                'extra' => 'extra',
                 'general' => 'Yleinen',
-                'mode' => 'Pelitila',
-                'status' => 'Luokat',
                 'genre' => 'Tyylilaji',
                 'language' => 'Kieli',
-                'extra' => 'extra',
-                'rank' => 'Luokitus',
+                'mode' => 'Pelitila',
+                'nsfw' => '',
                 'played' => 'Pelatut',
+                'rank' => 'Luokitus',
+                'status' => 'Luokat',
             ],
             'sorting' => [
                 'title' => 'Nimi',
@@ -330,6 +331,12 @@ return [
         'other' => 'Muu',
         'unspecified' => 'Täsmentämätön',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Kaikki',
         'played' => 'Pelatut',

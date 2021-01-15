@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'beatmap metadata in originele taal weergeven',
         'title' => 'Opties',
 
         'beatmapset_download' => [
             '_' => 'standaard beatmap download type',
             'all' => 'met video als beschikbaar',
-            'no_video' => 'zonder video',
             'direct' => 'open in osu!direct',
+            'no_video' => 'zonder video',
         ],
-
-        'beatmapset_title_show_original' => 'beatmap metadata in originele taal weergeven',
     ],
 
     'playstyles' => [

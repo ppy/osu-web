@@ -69,14 +69,14 @@ return [
     ],
 
     'order' => [
-        'cancel' => '',
-        'cancel_confirm' => '',
-        'cancel_not_allowed' => '',
+        'cancel' => 'Siparişi iptal et',
+        'cancel_confirm' => 'Bu sipariş iptal edilecek ve bunun için ödeme kabul edilmeyecektir. Ödeme sağlayıcı ayrılan ödenekleri hemen ödeyemez. Emin misiniz?',
+        'cancel_not_allowed' => 'Sipariş bu zamanda iptal edilemez.',
         'invoice' => 'Faturayı Görüntüle',
         'no_orders' => 'Görüntülenecek sipariş yok.',
         'paid_on' => 'Sipariş verme tarihi :date',
         'resume' => 'Sepete Dön',
-        'shopify_expired' => '',
+        'shopify_expired' => 'Bu sipariş için ödeme bağlantısının süresi doldu.',
 
         'item' => [
             'display_name' => [
