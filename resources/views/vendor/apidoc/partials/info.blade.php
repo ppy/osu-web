@@ -252,7 +252,7 @@ You must replace <code>@{{token}}</code> with your OAuth2 token.
 The following scopes are currently supported:
 
 @php
-$wikiUrl = wiki_url('Bot_account');
+$wikiUrl = wiki_url('Bot_account', null, false);
 $scopeDescriptions = [
     'bot' => "[Chat Bot]({$wikiUrl}) exclusive scope.",
     'chat.write' => 'Allows sending chat messages on an authorizing user\'s behalf',
