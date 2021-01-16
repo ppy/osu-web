@@ -112,8 +112,15 @@ class Channel extends Model
 
     public function users()
     {
+        // 4 = strlen('#pm_')
+        if ($this->isPM() && substr($this->name, 0, 4) === '#pm_') {
+            $userIds = explode('-', substr($this->name, 4));
+        }
+
+        $userIds = $userIds ?? UserChannel::where('channel_id', $this->channel_id)->pluck('user_id');
+
         // This isn't a has-many-through because the relationship is cross-database.
-        return User::whereIn('user_id', UserChannel::where('channel_id', $this->channel_id)->pluck('user_id'));
+        return User::whereIn('user_id', $userIds);
     }
 
     public function scopePublic($query)
