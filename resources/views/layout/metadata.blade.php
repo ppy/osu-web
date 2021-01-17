@@ -59,6 +59,12 @@
             --font-default-override: var(--font-default-zh-tw);
         }
     </style>
+@elseif (App::getLocale() === 'th')
+    <style>
+        :root {
+            --font-default-override: var(--font-default-th);
+        }
+    </style>
 @endif
 
 <link rel="stylesheet" media="all" href="{{ unmix('css/app.css') }}" data-turbolinks-track="reload">
