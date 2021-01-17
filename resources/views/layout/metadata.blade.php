@@ -60,6 +60,7 @@
         }
     </style>
 @elseif (App::getLocale() === 'th')
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap&subset=thai" rel="stylesheet">
     <style>
         :root {
             --font-default-override: var(--font-default-th);
