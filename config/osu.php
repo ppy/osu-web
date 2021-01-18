@@ -189,8 +189,6 @@ return [
             'inbox' => '/forum/ucp.php?i=pm&folder=inbox',
         ],
         'rankings' => [
-            'charts' => '/p/chart',
-            'country' => '/p/countryranking',
             'kudosu' => '/p/kudosu',
         ],
         'help' => [
