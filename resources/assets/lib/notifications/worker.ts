@@ -42,6 +42,8 @@ const isNotificationEventReadJson = (arg: any): arg is NotificationEventReadJson
  */
 @dispatchListener
 export default class Worker implements DispatchListener {
+  @observable waitingVerification = false;
+
   @observable private firstLoadedAt?: Date;
   private timeout: Record<string, number> = {};
   private xhr: Record<string, JQueryXHR> = {};
@@ -119,10 +121,13 @@ export default class Worker implements DispatchListener {
       .always(() => {
         this.xhrLoadingState.loadMore = false;
       }).done((data: NotificationBootJson) => {
+        this.waitingVerification = false;
         this.loadBundle(data);
       })
       .fail((xhr) => {
         if (xhr.responseJSON != null && xhr.responseJSON.error === 'verification') {
+          this.waitingVerification = true;
+
           return;
         }
         this.delayedRetryInitialLoadMore();
