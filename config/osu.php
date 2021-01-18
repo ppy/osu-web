@@ -21,11 +21,6 @@ return [
         'storage' => env('AVATAR_STORAGE', 'local-avatar'),
     ],
 
-    'assets' => [
-        'base_url' => env('ASSETS_URL'),
-        'mini_url' => env('MINI_ASSETS_URL'),
-    ],
-
     'bbcode' => [
         // this should be random or a config variable.
         // ...who am I kidding, this shouldn't even exist at all.

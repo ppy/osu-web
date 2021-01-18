@@ -80,6 +80,7 @@ return [
             'region' => env('S3_REGION'),
             'bucket' => env('S3_BUCKET'),
             'base_url' => env('S3_BASE_URL'),
+            'mini_url' => env('S3_MINI_URL') ?? env('S3_BASE_URL'),
         ],
 
         's3-avatar' => [
