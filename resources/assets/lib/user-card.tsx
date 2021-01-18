@@ -80,6 +80,10 @@ export class UserCard extends React.PureComponent<Props, State> {
     return this.user.id === -1;
   }
 
+  private get isUserVisible() {
+    return this.isUserLoaded && !this.user.is_deleted;
+  }
+
   private get user() {
     return this.props.user || UserCard.userLoading;
   }
@@ -177,7 +181,7 @@ export class UserCard extends React.PureComponent<Props, State> {
       background = <div className={overlayCssClass} />;
     }
 
-    if (this.isUserLoaded && !this.user.is_deleted) {
+    if (this.isUserVisible) {
       backgroundLink = (
         <a
           href={route('users.show', { user: this.user.id })}
@@ -194,7 +198,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderIcons() {
-    if (!this.isUserLoaded || this.user.is_deleted) { return null; }
+    if (!this.isUserVisible) { return null; }
 
     return (
       <div className='user-card__icons'>
@@ -225,7 +229,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderListModeIcons() {
-    if (this.props.mode !== 'list' || !this.isUserLoaded || this.user.is_deleted) { return null; }
+    if (this.props.mode !== 'list' || !this.isUserVisible) { return null; }
 
     return (
       <div className='user-card__icons'>
@@ -284,7 +288,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderStatusBar() {
-    if (!this.isUserLoaded || this.user.is_deleted) { return null; }
+    if (!this.isUserVisible) { return null; }
 
     const lastSeen = (!this.isOnline && this.user.last_visit != null) ? osu.trans('users.show.lastvisit', { date: osu.timeago(this.user.last_visit) }) : '';
     const status = this.isOnline ? osu.trans('users.status.online') : osu.trans('users.status.offline');
@@ -311,7 +315,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderStatusIcon() {
-    if (!this.isUserLoaded || this.user.is_deleted) { return null; }
+    if (!this.isUserVisible) { return null; }
 
     return (
       <div className='user-card__status-icon-container'>
