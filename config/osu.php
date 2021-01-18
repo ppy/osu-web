@@ -183,10 +183,8 @@ return [
             'twitter' => '/wiki/Twitter',
         ],
         'user' => [
-            'kudosu' => '/wiki/Kudosu',
             'recover' => '/p/forgot-email',
             'rules' => '/wiki/Osu!:Rules',
-            'inbox' => '/forum/ucp.php?i=pm&folder=inbox',
         ],
         'rankings' => [
             'kudosu' => '/p/kudosu',
