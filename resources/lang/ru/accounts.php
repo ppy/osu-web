@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'показывать метаданные карт на языке оригинала',
         'title' => 'Веб-сайт',
 
         'beatmapset_download' => [
             '_' => 'по умолчанию скачивать карты',
             'all' => 'с видео (если есть)',
-            'no_video' => 'без видео',
             'direct' => 'через osu!direct',
+            'no_video' => 'без видео',
         ],
-
-        'beatmapset_title_show_original' => 'показывать метаданные карт на языке оригинала',
     ],
 
     'playstyles' => [

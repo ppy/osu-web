@@ -69,7 +69,7 @@ return [
     ],
 
     'order' => [
-        'cancel' => '',
+        'cancel' => 'Avbryt beställning',
         'cancel_confirm' => '',
         'cancel_not_allowed' => '',
         'invoice' => 'Visa faktura',

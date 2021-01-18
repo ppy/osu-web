@@ -220,14 +220,15 @@ return [
             'not-found' => 'brak wyników',
             'not-found-quote' => '...niczego nie znaleziono.',
             'filters' => [
+                'extra' => 'Dodatkowe',
                 'general' => 'Główne',
-                'mode' => 'Tryb gry',
-                'status' => 'Kategorie',
                 'genre' => 'Gatunek',
                 'language' => 'Język',
-                'extra' => 'Dodatkowe',
-                'rank' => 'Uzyskana ocena',
+                'mode' => 'Tryb gry',
+                'nsfw' => '',
                 'played' => 'Ukończenie',
+                'rank' => 'Uzyskana ocena',
+                'status' => 'Kategorie',
             ],
             'sorting' => [
                 'title' => 'Tytuł',
@@ -330,6 +331,12 @@ return [
         'other' => 'Inny',
         'unspecified' => 'Nieokreślony',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Jakikolwiek',
         'played' => 'Ukończona',

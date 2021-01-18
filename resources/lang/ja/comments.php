@@ -35,9 +35,9 @@ return [
     ],
 
     'index' => [
-        'nav_comments' => '',
+        'nav_comments' => 'コメント',
         'nav_title' => '一覧',
-        'no_comments' => '',
+        'no_comments' => 'コメントは見つかりませんでした。',
     ],
 
     'placeholder' => [

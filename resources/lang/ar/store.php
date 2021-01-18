@@ -69,14 +69,14 @@ return [
     ],
 
     'order' => [
-        'cancel' => '',
-        'cancel_confirm' => '',
-        'cancel_not_allowed' => '',
+        'cancel' => 'إلغاء الطلبية',
+        'cancel_confirm' => 'سيتم إلغاء هذه الطلبية ولن يَتُمَ تسديد الدفُعات. قد لا يتم استرداد الدفعات على الفور, هل أنت متأكد؟',
+        'cancel_not_allowed' => 'لا يمكن إلغاء هذه الطلبية حالياََ.',
         'invoice' => 'عرض الفاتورة',
         'no_orders' => 'لا طلبات للعرض.',
         'paid_on' => 'تم تعيين الطلب :date',
         'resume' => 'استئناف الدفع',
-        'shopify_expired' => '',
+        'shopify_expired' => 'انتهت صلاحية رابط الدفع لهذه الطلبية.',
 
         'item' => [
             'display_name' => [

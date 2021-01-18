@@ -127,7 +127,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'iscrizioni forum',
+            'title_compact' => 'topic del forum seguiti',
 
             'box' => [
                 'total' => 'Topic a cui sei iscritto',

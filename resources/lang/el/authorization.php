@@ -6,7 +6,7 @@
 return [
     'play_more' => '',
     'require_login' => 'Παρακαλώ συνδεθείτε για να συνεχίσετε.',
-    'require_verification' => '',
+    'require_verification' => 'Παρακαλώ επιβεβαιώστε για να συνεχίσετε.',
     'restricted' => "Δε μπορείτε να το κάνετε αυτό όσο είστε restricted.",
     'silenced' => "Δε μπορείτε να το κάνετε αυτό όσο είστε silenced.",
     'unauthorized' => 'Απαγορεύεται η πρόσβαση.',
@@ -40,7 +40,7 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'Μπορείτε να διαγράψετε μόνο τις δικές σας δημοσιεύσεις.',
             'resolved' => '',
             'system_generated' => '',
         ],

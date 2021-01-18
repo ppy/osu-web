@@ -32,8 +32,8 @@ return [
             'not_cleared' => 'ikke ryddet',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link må ikke bruges til at rydde denne pakke.',
+            'link' => 'Sværhedsgrad reduktion modifikationer',
         ],
     ],
 

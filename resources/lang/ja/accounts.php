@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'ビートマップのメタデータを元の言語で表示',
         'title' => 'オプション',
 
         'beatmapset_download' => [
             '_' => 'デフォルトのビートマップダウンロートタイプ',
             'all' => '可能であれば動画付き',
-            'no_video' => '動画なし',
             'direct' => 'osu!directで開く',
+            'no_video' => '動画なし',
         ],
-
-        'beatmapset_title_show_original' => 'ビートマップのメタデータを元の言語で表示',
     ],
 
     'playstyles' => [

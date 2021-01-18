@@ -8,7 +8,7 @@ return [
         'disabled' => 'Beatmap saat ini tidak tersedia untuk diunduh.',
         'parts-removed' => 'Beberapa bagian dari beatmap ini telah dihapus atas permintaan pembuat lagu atau pihak ketiga pemegang hak cipta.',
         'more-info' => 'Lihat di sini untuk informasi lebih lanjut.',
-        'rule_violation' => '',
+        'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus setelah tim kami memutuskan bahwa aset-aset yang bersangkutan tidak layak untuk dipergunakan secara luas di dalam lingkungan osu!.',
     ],
 
     'index' => [
@@ -17,7 +17,7 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'tidak ada beatmap',
 
         'download' => [
             'all' => 'unduh',
@@ -28,27 +28,31 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'hybrid_requires_modes' => 'Pada beatmapset hybrid, Anda harus memilih satu mode permainan yang akan Anda nominasikan.',
+        'incorrect_mode' => 'Anda tidak memiliki hak untuk memberikan nominasi pada mode permainan: :mode',
+        'full_bn_required' => 'Anda harus berstatus sebagai nominator penuh (full nominator) untuk dapat menominasikan beatmap ini.',
+        'too_many' => 'Persyaratan nominasi telah terpenuhi.',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'confirmation' => 'Apakah Anda yakin untuk menominasikan Beatmap ini?',
+            'header' => 'Nominasikan Beatmap',
+            'hybrid_warning' => 'catatan: Anda hanya dapat memberikan satu nominasi, sehingga pastikan Anda memberikan nominasi pada mode permainan yang memang Anda kehendaki',
+            'which_modes' => 'Mode permainan apa yang akan Anda nominasikan?',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
         'discussion' => 'Diskusi',
 
         'details' => [
-            'favourite' => 'Masukkan beatmapset ini ke dalam daftar Favorit Anda',
+            'favourite' => 'Tambahkan beatmapset ini ke dalam daftar Beatmap Favorit',
             'logged-out' => 'Anda harus masuk sebelum mengunduh beatmap!',
             'mapped_by' => 'dibuat oleh :mapper',
-            'unfavourite' => 'Hapus beatmapset ini dari daftar Favorit Anda',
+            'unfavourite' => 'Hapus beatmapset ini dari daftar Beatmap Favorit',
             'updated_timeago' => 'terakhir diperbarui :timeago',
 
             'download' => [
@@ -106,10 +110,22 @@ return [
             'genre' => 'Aliran',
             'language' => 'Bahasa',
             'no_scores' => 'Data sedang diproses...',
+            'nsfw' => '',
             'points-of-failure' => 'Titik-Titik Kegagalan',
             'source' => 'Sumber',
             'success-rate' => 'Tingkat Keberhasilan',
             'tags' => 'Tag',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

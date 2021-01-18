@@ -41,6 +41,10 @@ return [
         ],
     ],
 
+    'nsfw_badge' => [
+        'label' => '',
+    ],
+
     'show' => [
         'discussion' => 'Συζήτηση',
 
@@ -106,10 +110,22 @@ return [
             'genre' => 'Είδος',
             'language' => 'Γλώσσα',
             'no_scores' => 'Τα δεδομένα ακόμα υπολογίζονται...',
+            'nsfw' => '',
             'points-of-failure' => 'Σημεία Αποτυχίας',
             'source' => 'Προέλευση',
             'success-rate' => 'Ποσοστό Επιτυχίας',
             'tags' => 'Ετικέτες',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

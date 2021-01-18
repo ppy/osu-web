@@ -220,14 +220,15 @@ return [
             'not-found' => 'bez výsledkov',
             'not-found-quote' => '... nič sa nenašlo.',
             'filters' => [
+                'extra' => 'extra',
                 'general' => 'Všeobecné',
-                'mode' => 'Mód',
-                'status' => 'Kategórie',
                 'genre' => 'Žáner',
                 'language' => 'Jazyk',
-                'extra' => 'extra',
-                'rank' => 'Dosiahnuté Hodnotenie',
+                'mode' => 'Mód',
+                'nsfw' => '',
                 'played' => 'Hrané',
+                'rank' => 'Dosiahnuté Hodnotenie',
+                'status' => 'Kategórie',
             ],
             'sorting' => [
                 'title' => 'Názov',
@@ -330,6 +331,12 @@ return [
         'other' => 'Ostatné',
         'unspecified' => '',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Akékoľvek',
         'played' => 'Hrané',

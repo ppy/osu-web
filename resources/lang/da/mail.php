@@ -84,9 +84,9 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
-        'settings' => '',
-        'subject' => '',
+        'new' => 'Bare for at du ved det, der har været nye opdateringer om emner, du ser.',
+        'settings' => 'Skift e-mail notifikationer præferencer:',
+        'subject' => 'Nye osu! notifikationer',
     ],
 
     'user_password_updated' => [

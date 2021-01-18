@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'แสดงข้อมูลของ บีทแมพ ในภาษาดั้งเดิม',
         'title' => 'ตัวเลือก',
 
         'beatmapset_download' => [
             '_' => 'ประเภทการดาวน์โหลดบีทแมพเริ่มต้น',
             'all' => 'พร้อมวิดีโอ ถ้าใช้ได้',
-            'no_video' => 'โดยที่ไม่มีวิดีโอ',
             'direct' => 'เปิดใน osu!direct',
+            'no_video' => 'โดยที่ไม่มีวิดีโอ',
         ],
-
-        'beatmapset_title_show_original' => 'แสดงข้อมูลของ บีทแมพ ในภาษาดั้งเดิม',
     ],
 
     'playstyles' => [

@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => '원본 언어로 비트맵 메타데이터 표시',
         'title' => '설정',
 
         'beatmapset_download' => [
             '_' => '기본 비트맵 다운로드 형식',
             'all' => '가능하면 영상이 있는 비트맵으로 받기',
-            'no_video' => '영상이 없는 비트맵으로 받기',
             'direct' => 'osu!direct에서 열기',
+            'no_video' => '영상이 없는 비트맵으로 받기',
         ],
-
-        'beatmapset_title_show_original' => '원본 언어로 비트맵 메타데이터 표시',
     ],
 
     'playstyles' => [

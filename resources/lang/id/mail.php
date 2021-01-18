@@ -7,7 +7,7 @@ return [
     'beatmapset_update_notice' => [
         'new' => 'Pemberitahuan bahwa ada pembaruan dalam beatmap ":title" sejak kunjungan terakhir kamu.',
         'subject' => 'Pembaruan baru untuk beatmap ":title"',
-        'unwatch' => 'Jika kamu tidak lagi ingin mengikuti informasi beatmap ini, kamu dapat mengklik tautan "Unwatch" yang dapat ditemukan di atas laman ini, atau dari laman daftar pengamatan modding:',
+        'unwatch' => 'Jika Anda tidak lagi ingin memantau beatmap ini, Anda dapat membatalkan pantauan Anda melalui tautan "Batalkan Pantauan" yang tertera di atas atau melalui laman Daftar Pantauan berikut:',
         'visit' => 'Kunjungi laman diskusi di sini:',
     ],
 
@@ -40,12 +40,12 @@ return [
     'forum_new_reply' => [
         'new' => 'Kami ingin memberitahukan bahwa saat ini terdapat balasan baru pada ":title" sejak kunjungan terakhir Anda.',
         'subject' => '[osu!] Balasan terbaru dari topik ":title"',
-        'unwatch' => 'Jika kamu tidak lagi ingin mengikuti informasi seputar thread forum ini, Anda dapat meng-klik link "Unsubscribe Topic" yang dapat ditemukan di atas halaman ini, atau melalui laman Langganan Forum berikut:',
+        'unwatch' => 'Jika Anda tidak lagi ingin memantau topik forum ini, Anda dapat membatalkan pantauan Anda melalui tautan "Batalkan Pantauan" yang tertera di atas atau melalui laman Daftar Pantauan berikut:',
         'visit' => 'Anda dapat segera melihat balasan terbaru melalui link berikut:',
     ],
 
     'password_reset' => [
-        'code' => 'Kode verifikasi kamu adalah:',
+        'code' => 'Kode verifikasi Anda adalah:',
         'requested' => 'Baik kamu atau seseorang yang berpura-pura menjadi kamu telah meminta pengaturan ulang kata sandi akun osu! kamu.',
         'subject' => 'Pemulihan akun osu!',
     ],
@@ -84,7 +84,7 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => 'Kami ingin memberi tahu Anda bahwa saat ini terdapat perkembangan baru pada topik-topik yang telah Anda ikuti sebelumnya.',
+        'new' => 'Kami ingin memberi tahu Anda bahwa saat ini terdapat perkembangan baru pada hal-hal yang telah Anda pantau sebelumnya.',
         'settings' => 'Ubah preferensi penerimaan notifikasi:',
         'subject' => 'Notifikasi baru terkait osu!',
     ],
@@ -95,7 +95,7 @@ return [
     ],
 
     'user_verification' => [
-        'code' => 'Kode verifikasi kamu adalah:',
+        'code' => 'Kode verifikasi Anda adalah:',
         'code_hint' => 'Kamu dapat memasukkan kodenya dengan atau tanpa spasi.',
         'link' => 'Atau, kamu juga dapat mengunjungi tautan di bawah ini untuk menyelesaikan proses verifikasi:',
         'report' => 'Jika kamu tidak mengetahui aksi ini, harap SEGERA BALAS email ini karena akun kamu mungkin dalam bahaya.',
@@ -103,7 +103,7 @@ return [
 
         'action_from' => [
             '_' => 'Terdapat aktivitas baru yang dilakukan pada akun kamu dari :country dan memerlukan verifikasi.',
-            'unknown_country' => 'negara tak diketahui',
+            'unknown_country' => 'negara yang tidak diketahui',
         ],
     ],
 ];

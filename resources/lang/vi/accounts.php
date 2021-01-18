@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'hiển thị metadata của beatmap ở ngôn ngữ gốc',
         'title' => 'Tuỳ chọn',
 
         'beatmapset_download' => [
             '_' => 'kiểu tải beatmap mặc định',
             'all' => 'kèm video nếu có',
-            'no_video' => 'không kèm video',
             'direct' => 'mở trong osu!direct',
+            'no_video' => 'không kèm video',
         ],
-
-        'beatmapset_title_show_original' => 'hiển thị metadata của beatmap ở ngôn ngữ gốc',
     ],
 
     'playstyles' => [

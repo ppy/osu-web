@@ -25,7 +25,7 @@ return [
         'language_edit' => 'Zmieniono język z :old na :new.',
         'love' => ':user nadał(a) tej beatmapie status ulubionej społeczności',
         'nominate' => 'Nominowana przez :user.',
-        'nominate_modes' => '',
+        'nominate_modes' => 'Nominowana przez :user (:modes).',
         'nomination_reset' => 'Nowy problem :discussion spowodował zresetowanie nominacji.',
         'qualify' => 'Ta beatmapa osiągnęła wystarczającą liczbę nominacji i została zakwalifikowana.',
         'rank' => 'Rankingowa.',

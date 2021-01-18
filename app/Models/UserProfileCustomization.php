@@ -6,6 +6,7 @@
 namespace App\Models;
 
 use App\Libraries\ProfileCover;
+use App\Traits\Memoizes;
 
 /**
  * @property array|null $cover_json
@@ -17,6 +18,8 @@ use App\Libraries\ProfileCover;
  */
 class UserProfileCustomization extends Model
 {
+    use Memoizes;
+
     /**
      * An array of all possible profile sections, also in their default order.
      */
@@ -79,7 +82,7 @@ class UserProfileCustomization extends Model
 
     public function getAudioAutoplayAttribute()
     {
-        return $this->options['audio_autoplay'] ?? false;
+        return $this->getOptions()['audio_autoplay'] ?? false;
     }
 
     public function setAudioAutoplayAttribute($value)
@@ -93,7 +96,7 @@ class UserProfileCustomization extends Model
 
     public function getAudioMutedAttribute()
     {
-        return $this->options['audio_muted'] ?? false;
+        return $this->getOptions()['audio_muted'] ?? false;
     }
 
     public function setAudioMutedAttribute($value)
@@ -107,7 +110,7 @@ class UserProfileCustomization extends Model
 
     public function getAudioVolumeAttribute()
     {
-        return $this->options['audio_volume'] ?? null;
+        return $this->getOptions()['audio_volume'] ?? null;
     }
 
     public function setAudioVolumeAttribute($value)
@@ -121,7 +124,7 @@ class UserProfileCustomization extends Model
 
     public function getBeatmapsetDownloadAttribute()
     {
-        return $this->options['beatmapset_download'] ?? static::BEATMAPSET_DOWNLOAD[0];
+        return $this->getOptions()['beatmapset_download'] ?? static::BEATMAPSET_DOWNLOAD[0];
     }
 
     public function setBeatmapsetDownloadAttribute($value)
@@ -135,7 +138,7 @@ class UserProfileCustomization extends Model
 
     public function getBeatmapsetShowNsfwAttribute()
     {
-        return $this->options['beatmapset_show_nsfw'] ?? false;
+        return $this->getOptions()['beatmapset_show_nsfw'] ?? false;
     }
 
     public function setBeatmapsetShowNsfwAttribute($value)
@@ -149,7 +152,7 @@ class UserProfileCustomization extends Model
 
     public function getBeatmapsetTitleShowOriginalAttribute()
     {
-        return $this->options['beatmapset_title_show_original'] ?? false;
+        return $this->getOptions()['beatmapset_title_show_original'] ?? false;
     }
 
     public function setBeatmapsetTitleShowOriginalAttribute($value)
@@ -163,7 +166,7 @@ class UserProfileCustomization extends Model
 
     public function getCommentsSortAttribute()
     {
-        return $this->options['comments_sort'] ?? Comment::DEFAULT_SORT;
+        return $this->getOptions()['comments_sort'] ?? Comment::DEFAULT_SORT;
     }
 
     public function setCommentsSortAttribute($value)
@@ -177,7 +180,7 @@ class UserProfileCustomization extends Model
 
     public function getForumPostsShowDeletedAttribute()
     {
-        return $this->options['forum_posts_show_deleted'] ?? true;
+        return $this->getOptions()['forum_posts_show_deleted'] ?? true;
     }
 
     public function setForumPostsShowDeletedAttribute($value)
@@ -187,7 +190,7 @@ class UserProfileCustomization extends Model
 
     public function getUserListFilterAttribute()
     {
-        return $this->options['user_list_filter'] ?? static::USER_LIST['filters']['default'];
+        return $this->getOptions()['user_list_filter'] ?? static::USER_LIST['filters']['default'];
     }
 
     public function setUserListFilterAttribute($value)
@@ -201,7 +204,7 @@ class UserProfileCustomization extends Model
 
     public function getUserListSortAttribute()
     {
-        return $this->options['user_list_sort'] ?? static::USER_LIST['sorts']['default'];
+        return $this->getOptions()['user_list_sort'] ?? static::USER_LIST['sorts']['default'];
     }
 
     public function setUserListSortAttribute($value)
@@ -215,7 +218,7 @@ class UserProfileCustomization extends Model
 
     public function getUserListViewAttribute()
     {
-        return $this->options['user_list_view'] ?? static::USER_LIST['views']['default'];
+        return $this->getOptions()['user_list_view'] ?? static::USER_LIST['views']['default'];
     }
 
     public function setUserListViewAttribute($value)
@@ -233,7 +236,7 @@ class UserProfileCustomization extends Model
             $value = json_decode($value, true);
         }
 
-        $value = $this->options['extras_order'] ?? $value;
+        $value = $this->getOptions()['extras_order'] ?? $value;
 
         if ($value === null) {
             return static::SECTIONS;
@@ -250,7 +253,7 @@ class UserProfileCustomization extends Model
 
     public function getRankingExpandedAttribute()
     {
-        return $this->options['ranking_expanded'] ?? true;
+        return $this->getOptions()['ranking_expanded'] ?? true;
     }
 
     public function setRankingExpandedAttribute($value)
@@ -261,5 +264,13 @@ class UserProfileCustomization extends Model
     public function setOption($key, $value)
     {
         $this->options = array_merge($this->options ?? [], [$key => $value]);
+        $this->resetMemoized();
+    }
+
+    public function getOptions()
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->options;
+        });
     }
 }

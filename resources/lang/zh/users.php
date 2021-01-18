@@ -155,8 +155,8 @@ return [
         'title' => ":username 的个人资料",
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => '发表了 :link',
+            'count' => ':count_delimited 条评论',
         ],
         'edit' => [
             'cover' => [

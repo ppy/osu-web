@@ -220,14 +220,15 @@ return [
             'not-found' => 'sonuç bulunamadı',
             'not-found-quote' => '... yok, bir şey bulunamadı.',
             'filters' => [
+                'extra' => 'ekstra',
                 'general' => 'Genel',
-                'mode' => 'Mod',
-                'status' => 'Kategoriler',
                 'genre' => 'Tür',
                 'language' => 'Dil',
-                'extra' => 'ekstra',
-                'rank' => 'Alınan Derece',
+                'mode' => 'Mod',
+                'nsfw' => '',
                 'played' => 'Oynanmışlık',
+                'rank' => 'Alınan Derece',
+                'status' => 'Kategoriler',
             ],
             'sorting' => [
                 'title' => 'Başlık',
@@ -330,6 +331,12 @@ return [
         'other' => 'Diğer',
         'unspecified' => 'Belirtilmemiş',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Hepsi',
         'played' => 'Oynanmış',
