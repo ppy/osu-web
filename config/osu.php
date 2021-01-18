@@ -191,9 +191,6 @@ return [
         'rankings' => [
             'kudosu' => '/p/kudosu',
         ],
-        'help' => [
-            'support' => 'http://help.ppy.sh/',
-        ],
         'testflight' => [
             'public' => env('TESTFLIGHT_LINK'),
             'supporter' => env('TESTFLIGHT_LINK_SUPPORTER'),
