@@ -211,7 +211,6 @@ return [
         'max_multiplayer_rooms' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS')) ?? 1,
         'max_multiplayer_rooms_supporter' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS_SUPPORTER')) ?? 5,
         'online_window' => intval(env('USER_ONLINE_WINDOW', 10)),
-        'username_lock_rank_limit' => get_int(env('USER_USERNAME_LOCK_RANK_LIMIT')) ?? 100000,
         'password_reset' => [
             'expires_hour' => 2,
             'key_length' => 8,
