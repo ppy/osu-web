@@ -146,7 +146,6 @@ return [
         'ends_at' => env('SEASONAL_ENDS_AT'),
     ],
 
-    'static' => env('LEGACY_STATICS_HOST', ''),
     'support' => [
         'video_url' => env('SUPPORT_OSU_VIDEO_URL', 'https://assets.ppy.sh/media/osu-direct-demo.mp4'),
     ],
