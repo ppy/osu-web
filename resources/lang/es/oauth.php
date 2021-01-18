@@ -49,7 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => '¿Seguro que desea eliminar este cliente?',
-        'confirm_reset' => '¿Está seguro de que desea restablecer el secreto de cliente? Esto revocará todos los tokens existentes.',
+        'confirm_reset' => '¿Seguro que desea restablecer el secreto de cliente? Esto revocará todos los tokens existentes.',
         'new' => 'Nueva aplicación OAuth',
         'none' => 'No hay clientes',
 

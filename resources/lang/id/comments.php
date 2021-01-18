@@ -10,7 +10,7 @@ return [
     'pinned' => 'disematkan',
     'empty' => 'Belum ada komentar.',
     'load_replies' => 'muat lebih banyak balasan',
-    'replies_count' => ':count_delimited balasan',
+    'replies_count' => ':count_delimited balasan|:count_delimited balasan',
     'title' => 'Komentar',
 
     'commentable_name' => [
@@ -35,9 +35,9 @@ return [
     ],
 
     'index' => [
-        'nav_comments' => '',
+        'nav_comments' => 'komentar',
         'nav_title' => 'daftar',
-        'no_comments' => '',
+        'no_comments' => 'belum ada komentar...',
     ],
 
     'placeholder' => [

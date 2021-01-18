@@ -205,7 +205,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Inställningar',
-            'follows' => '',
+            'follows' => 'Bevakningslista',
             'friends' => 'Vänner',
             'logout' => 'Logga Ut',
             'profile' => 'Min Profil',

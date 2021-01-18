@@ -8,7 +8,7 @@ return [
         'disabled' => 'Este beatmap não está mais disponível para baixar.',
         'parts-removed' => 'Partes deste beatmap foram removidas a pedido do criador ou de um detentor de direitos de terceiros.',
         'more-info' => 'Clique aqui para mais informações.',
-        'rule_violation' => '',
+        'rule_violation' => 'Alguns arquivos contidos neste mapa foram removidos depois de serem julgados como não sendo adequados para uso no osu!.',
     ],
 
     'index' => [
@@ -17,7 +17,7 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'sem beatmaps',
 
         'download' => [
             'all' => 'baixar',
@@ -28,17 +28,21 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'hybrid_requires_modes' => 'Um beatmap híbrido requer que você selecione pelo menos um modo de jogo para nomear.',
+        'incorrect_mode' => 'Você não tem permissão para nomear para o modo: :mode',
+        'full_bn_required' => 'Você precisa ser um nominator completo para realizar essa nomeação de qualificação.',
+        'too_many' => 'Exigência de nomeação já cumprida.',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'confirmation' => 'Tem certeza que deseja nomear este Beatmap?',
+            'header' => 'Nomear Beatmap',
+            'hybrid_warning' => 'nota: você pode apenas nomear uma vez, então por favor, certifique-se de que você está nomeando para todos os modos de jogo que você pretende',
+            'which_modes' => 'Nomear para quais modos?',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -106,10 +110,22 @@ return [
             'genre' => 'Gênero',
             'language' => 'Idioma',
             'no_scores' => 'Dados ainda sendo calculados...',
+            'nsfw' => '',
             'points-of-failure' => 'Pontos de Falha',
             'source' => 'Fonte',
             'success-rate' => 'Taxa de Sucesso',
             'tags' => 'Tags',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

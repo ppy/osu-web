@@ -69,9 +69,9 @@ return [
     ],
 
     'order' => [
-        'cancel' => '',
+        'cancel' => 'Anuluj zamówienie',
         'cancel_confirm' => '',
-        'cancel_not_allowed' => '',
+        'cancel_not_allowed' => 'Nie możesz anulować tego zamówienia w tym momencie.',
         'invoice' => 'Pokaż fakturę',
         'no_orders' => 'Brak zamówień do wyświetlenia.',
         'paid_on' => 'Zamówienie złożone :date',

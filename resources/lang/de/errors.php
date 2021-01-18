@@ -27,7 +27,6 @@ return [
         'operation_timeout_exception' => 'Die Suche ist derzeit höher ausgelastet als normal, versuche es später erneut.',
     ],
 
-    'logged_out' => 'Du wurdest ausgeloggt. Einloggen und erneut versuchen.',
     'supporter_only' => 'Für dieses Feature muss man Supporter sein.',
     'no_restricted_access' => 'Diese Aktion steht nicht zur Verfügung, während der Account eingeschränkt ist.',
     'unknown' => 'Unbekannter Fehler aufgetreten.',

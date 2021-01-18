@@ -25,7 +25,7 @@ return [
         'language_edit' => 'Язык изменен с :old на :new.',
         'love' => 'Добавлено :user в любимое',
         'nominate' => 'Номинирована :user.',
-        'nominate_modes' => '',
+        'nominate_modes' => 'Номинатор: :user (:modes).',
         'nomination_reset' => 'Из-за новой проблемы в :discussion статус номинации был сброшен.',
         'qualify' => 'Эта карта была номинирована достаточное количество раз для квалификации.',
         'rank' => 'Рейтинговая.',

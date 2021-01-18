@@ -27,7 +27,6 @@ return [
         'operation_timeout_exception' => 'Sökning är för närvarande mer aktiv än vanligt, försök igen senare.',
     ],
 
-    'logged_out' => 'Du har blivit utloggad. Var vänlig logga in och försök igen .',
     'supporter_only' => 'Du måste vara en supporter för att använda denna funktion.',
     'no_restricted_access' => 'Du kan inte utföra denna återgärd medans ditt konto är begränsad.',
     'unknown' => 'Okänt fel uppstod.',

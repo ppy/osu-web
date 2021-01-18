@@ -20,15 +20,14 @@ return [
         'standard_converts_only' => 'Tidak ada skor yang tersedia untuk mode yang diminta pada beatmap dengan tingkat kesulitan ini.',
     ],
     'checkout' => [
-        'generic' => 'Terjadi kesalahan ketika akan melangsungkan proses check-out.',
+        'generic' => 'Terjadi kesalahan ketika akan melangsungkan proses checkout.',
     ],
     'search' => [
         'default' => 'Hasil tidak ditemukan, coba lagi nanti.',
         'operation_timeout_exception' => 'Aktivitas pencarian saat ini lebih sibuk dari biasanya, coba lagi nanti.',
     ],
 
-    'logged_out' => 'Anda telah keluar. Mohon masuk dan coba lagi.',
-    'supporter_only' => 'Anda harus menjadi supporter untuk menggunakan fitur ini.',
+    'supporter_only' => 'Anda harus menjadi seorang osu!supporter untuk dapat menggunakan fitur ini.',
     'no_restricted_access' => 'Anda tidak dapat melakukan tindakan ini ketika akun Anda sedang di-restrict.',
     'unknown' => 'Terjadi kesalahan yang tidak diketahui.',
 ];

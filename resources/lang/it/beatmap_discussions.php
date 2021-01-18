@@ -45,7 +45,7 @@ return [
     ],
 
     'item' => [
-        'created_at' => 'Data del Post',
+        'created_at' => 'Data del post',
         'deleted_at' => 'Data di eliminazione',
         'message_type' => 'Tipo',
         'permalink' => 'Permalink',

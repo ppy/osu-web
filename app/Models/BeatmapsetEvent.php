@@ -50,6 +50,7 @@ class BeatmapsetEvent extends Model
 
     const GENRE_EDIT = 'genre_edit';
     const LANGUAGE_EDIT = 'language_edit';
+    const NSFW_TOGGLE = 'nsfw_toggle';
 
     public static function log($type, $user, $object, $extraData = [])
     {
@@ -201,6 +202,7 @@ class BeatmapsetEvent extends Model
 
                     static::GENRE_EDIT,
                     static::LANGUAGE_EDIT,
+                    static::NSFW_TOGGLE,
                 ],
                 'kudosuModeration' => [
                     static::KUDOSU_ALLOW,

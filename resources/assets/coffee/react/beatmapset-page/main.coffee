@@ -140,8 +140,9 @@ export class Main extends React.Component
   setCurrentPlaymode: (_e, {mode}) =>
     return if @state.currentBeatmap.mode == mode
 
-    @setCurrentBeatmap null,
-      beatmap: BeatmapHelper.findDefault items: @state.beatmaps[mode]
+    beatmap = BeatmapHelper.find id: @state.currentBeatmap.id, mode: mode, group: @state.beatmaps
+    beatmap ?= BeatmapHelper.findDefault items: @state.beatmaps[mode]
+    @setCurrentBeatmap null, { beatmap }
 
 
   setHoveredBeatmap: (_e, hoveredBeatmap) =>

@@ -220,14 +220,15 @@ return [
             'not-found' => '該当結果なし',
             'not-found-quote' => '・・・なにも見つからなかったようだ。',
             'filters' => [
+                'extra' => '追加情報',
                 'general' => '全般',
-                'mode' => 'モード',
-                'status' => 'カテゴリー',
                 'genre' => 'ジャンル',
                 'language' => '言語',
-                'extra' => '追加情報',
-                'rank' => 'Rank取得日',
+                'mode' => 'モード',
+                'nsfw' => '',
                 'played' => 'プレイ済み',
+                'rank' => 'Rank取得日',
+                'status' => 'カテゴリー',
             ],
             'sorting' => [
                 'title' => 'タイトル',
@@ -252,7 +253,7 @@ return [
         'converts' => 'コンバートビートマップを含める',
     ],
     'mode' => [
-        'all' => '',
+        'all' => '全て',
         'any' => '全て',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
@@ -330,6 +331,12 @@ return [
         'other' => 'その他',
         'unspecified' => '未分類',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => '全て',
         'played' => 'プレイ済み',
