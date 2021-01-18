@@ -177,7 +177,6 @@ return [
         'server_status' => 'https://twitter.com/osustatus',
         'smilies' => '/forum/images/smilies',
         'source_code' => 'https://github.com/ppy',
-        'support-the-game' => '/p/support#transactionarea',
         'youtube-tutorial-playlist' => 'PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl',
 
         'social' => [
