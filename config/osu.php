@@ -193,9 +193,6 @@ return [
             'country' => '/p/countryranking',
             'kudosu' => '/p/kudosu',
         ],
-        'home' => [
-            'news' => '/p/news',
-        ],
         'help' => [
             'support' => 'http://help.ppy.sh/',
         ],
