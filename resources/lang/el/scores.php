@@ -8,11 +8,11 @@ return [
         'title' => '',
 
         'beatmap' => [
-            'by' => '',
+            'by' => 'από τον :artist',
         ],
 
         'player' => [
-            'by' => '',
+            'by' => 'Παίχτηκε από',
             'submitted_on' => '',
 
             'rank' => [

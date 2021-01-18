@@ -8,7 +8,7 @@ return [
         'disabled' => 'Cette beatmap n\'est actuellement pas disponible au téléchargement.',
         'parts-removed' => 'Des parties de cette beatmap ont été supprimées suite à la requête du créateur ou d\'un titulaire de droits tiers',
         'more-info' => 'Voir ici pour plus d\'informations.',
-        'rule_violation' => '',
+        'rule_violation' => 'Certains éléments contenus dans cette map ont été supprimés après avoir été jugés inappropriés pour être utilisés dans osu!.',
     ],
 
     'index' => [
@@ -17,7 +17,7 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'pas de beatmaps',
 
         'download' => [
             'all' => 'télécharger',
@@ -28,17 +28,21 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
+        'hybrid_requires_modes' => 'Un beatmapset hybride nécessite de sélectionner au moins un mode de jeu à nominer.',
+        'incorrect_mode' => 'Vous n\'avez pas la permission de nominer pour le mode :mode',
         'full_bn_required' => '',
-        'too_many' => '',
+        'too_many' => 'L\'exigence de nomination est déjà remplie.',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'confirmation' => 'Êtes-vous sûr de vouloir nominer cette Beatmap ?',
+            'header' => 'Nominer la beatmap',
+            'hybrid_warning' => 'remarque : vous ne pouvez nominer qu\'une seule fois, donc assurez-vous que vous êtes en nomination pour tous les modes de jeu que vous avez l\'intention de proposer',
+            'which_modes' => 'Nominer pour quels modes ?',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -106,10 +110,22 @@ return [
             'genre' => 'Genre',
             'language' => 'Langue',
             'no_scores' => 'Les données sont encore en cours de calcul...',
+            'nsfw' => '',
             'points-of-failure' => 'Répartition des échecs',
             'source' => 'Source',
             'success-rate' => 'Taux de réussite',
             'tags' => 'Tags',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

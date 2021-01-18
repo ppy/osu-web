@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'показувати метадату мовою оригіналу',
         'title' => 'Налаштування',
 
         'beatmapset_download' => [
             '_' => 'стандартний тип скачування карти',
             'all' => 'з відео, якщо доступно',
-            'no_video' => 'без відео',
             'direct' => 'відкрити в osu!direct',
+            'no_video' => 'без відео',
         ],
-
-        'beatmapset_title_show_original' => 'показувати метадату мовою оригіналу',
     ],
 
     'playstyles' => [

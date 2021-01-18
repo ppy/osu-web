@@ -8,7 +8,7 @@ return [
         'disabled' => '该谱面现在无法下载。',
         'parts-removed' => '应 歌曲作者/第三方版权持有者 的要求，这张谱面已经下架。',
         'more-info' => '点击这里查看更多信息。',
-        'rule_violation' => '',
+        'rule_violation' => '谱面中不适合 osu! 的内容已在审核后被移除。',
     ],
 
     'index' => [
@@ -17,7 +17,7 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => '没有谱面',
 
         'download' => [
             'all' => '下载',
@@ -28,17 +28,21 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'hybrid_requires_modes' => '有多于一个模式的谱面需要选择至少一个要提名的游戏模式。',
+        'incorrect_mode' => '你没有权限为该模式提名：:mode',
+        'full_bn_required' => '你必须是正式提名人才能进行此提名。',
+        'too_many' => '提名需求已达标。',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'confirmation' => '你确定要提名这张谱面吗？',
+            'header' => '提名谱面',
+            'hybrid_warning' => '注意：你只能提名一次，所以请确保你的提名包含所有你想要提名的游戏模式。',
+            'which_modes' => '你要提名哪种模式？',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -106,10 +110,22 @@ return [
             'genre' => '流派',
             'language' => '语言',
             'no_scores' => '数据还在计算中。。。',
+            'nsfw' => '',
             'points-of-failure' => '失败位置',
             'source' => '来源',
             'success-rate' => '成功率',
             'tags' => '标签',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

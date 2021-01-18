@@ -6,7 +6,7 @@
 return [
     'landing' => [
         'download' => 'Unduh sekarang',
-        'online' => '<strong>:players</strong> saat ini terhubung dalam <strong>:games</strong> permainan',
+        'online' => '<strong>:players</strong> pemain saat ini terhubung di dalam <strong>:games</strong> ruang permainan',
         'peak' => 'Tercatat maksimal sebanyak :count pengguna online',
         'players' => '<strong>:count</strong> pengguna terdaftar',
         'title' => 'selamat datang',
@@ -123,7 +123,7 @@ return [
         ],
         'beatmaps' => [
             'new' => 'Beatmap Ranked Terbaru',
-            'popular' => 'Beatmap yang Sedang Populer',
+            'popular' => 'Beatmap Populer',
             'by_user' => 'oleh :user',
         ],
         'buttons' => [

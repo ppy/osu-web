@@ -204,7 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Ayarlar',
-            'follows' => '',
+            'follows' => 'İzleme listeleri',
             'friends' => 'Arkadaşlar',
             'logout' => 'Çıkış Yap',
             'profile' => 'Profilim',

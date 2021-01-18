@@ -220,14 +220,15 @@ return [
             'not-found' => 'няма вынікаў',
             'not-found-quote' => '... няма, нічога не знойдзена.',
             'filters' => [
+                'extra' => 'дадаткова',
                 'general' => 'Агульнае',
-                'mode' => 'Рэжым',
-                'status' => 'Катэгорыі',
                 'genre' => 'Жанр',
                 'language' => 'Мова',
-                'extra' => 'дадаткова',
-                'rank' => 'Рэйтынг',
+                'mode' => 'Рэжым',
+                'nsfw' => '',
                 'played' => 'Згуляна',
+                'rank' => 'Рэйтынг',
+                'status' => 'Катэгорыі',
             ],
             'sorting' => [
                 'title' => 'Назва',
@@ -330,6 +331,12 @@ return [
         'other' => 'Іншае',
         'unspecified' => '',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Усе',
         'played' => 'Згуляна',

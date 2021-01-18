@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Hvad med at spille nogle osu! i stedet?',
     'require_login' => 'Log venligst ind for at fortsætte.',
     'require_verification' => 'Verificer venligst for at fortsætte.',
     'restricted' => "Det kan du ikke gøre, når du er tilbageholdt.",
@@ -20,7 +20,7 @@ return [
             'exhausted' => 'Du har nået dit maksimale antal nomineringer i dag, prøv igen i morgen!',
             'incorrect_state' => 'Fejl i udføringen af handlingen, prøv at genindlæse siden.',
             'owner' => "Kan ikke nominere din egen beatmap.",
-            'set_metadata' => '',
+            'set_metadata' => 'Du skal vælge genren og sproget, før du nominerer.',
         ],
         'resolve' => [
             'not_owner' => 'Kun den oprindelige ejer af tråden og beatmap-ejeren kan løse en diskussion.',
@@ -31,7 +31,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "",
+            'bot' => "Kan ikke stemme på diskussion lavet af bot",
             'limit_exceeded' => 'Vent venligst før du stemmer igen',
             'owner' => "Du kan ikke stemme på din egen diskussion!",
             'wrong_beatmapset_state' => 'Kan kun stemme på diskussioner fra afventende beatmaps.',
@@ -58,7 +58,7 @@ return [
 
     'beatmapset' => [
         'metadata' => [
-            'nominated' => '',
+            'nominated' => 'Du kan ikke ændre metadata for et nomineret map. Kontakt et BAT- eller NAT-medlem, hvis du mener, at det er angivet forkert.',
         ],
     ],
 

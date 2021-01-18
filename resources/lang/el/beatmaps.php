@@ -98,7 +98,7 @@ return [
         'review' => [
             'new' => '',
             'embed' => [
-                'delete' => '',
+                'delete' => 'Διαγραφή',
                 'missing' => '',
                 'unlink' => '',
                 'unsaved' => '',
@@ -186,9 +186,9 @@ return [
         'nominate' => 'Nominate',
         'nominate_confirm' => 'Κάντε nominate αυτό το beatmap;',
         'nominated_by' => 'nominated από :users',
-        'not_enough_hype' => "",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'not_enough_hype' => "Δεν υπάρχει αρκετό hype.",
+        'remove_from_loved' => 'Αφαίρεση από το Loved',
+        'remove_from_loved_prompt' => 'Λόγος αφαίρεσης από το Loved:',
         'required_text' => 'Υποψηφιότητες :current/:required',
         'reset_message_deleted' => 'διαγράφηκε',
         'title' => 'Κατάσταση Υποψηφιότητας',
@@ -197,7 +197,7 @@ return [
         'rank_estimate' => [
             '_' => '',
             'queue' => '',
-            'soon' => '',
+            'soon' => 'σύντομα',
         ],
 
         'reset_at' => [
@@ -220,14 +220,15 @@ return [
             'not-found' => 'κανένα αποτέλεσμα',
             'not-found-quote' => '... όχι, τίποτα δεν βρέθηκε.',
             'filters' => [
+                'extra' => 'επιπλέον',
                 'general' => 'Γενικά',
-                'mode' => 'Mode',
-                'status' => 'Κατηγορίες',
                 'genre' => 'Είδος',
                 'language' => 'Γλώσσα',
-                'extra' => 'επιπλέον',
-                'rank' => 'Κατάκτηση Κατάταξης',
+                'mode' => 'Mode',
+                'nsfw' => '',
                 'played' => 'Που έχετε παίξει',
+                'rank' => 'Κατάκτηση Κατάταξης',
+                'status' => 'Κατηγορίες',
             ],
             'sorting' => [
                 'title' => 'Τίτλος',
@@ -252,7 +253,7 @@ return [
         'converts' => 'Συμπεριλάμβανε beatmaps που έχουν μετατραπεί',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Όλα',
         'any' => 'Οποιοδήποτε',
         'osu' => '',
         'taiko' => '',
@@ -311,7 +312,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => '',
+        'V2' => 'Σκορ V2',
     ],
     'language' => [
         'any' => '',
@@ -324,12 +325,18 @@ return [
         'korean' => 'Κορεάτικα',
         'spanish' => 'Ισπανικά',
         'swedish' => 'Σουηδικά',
-        'russian' => '',
-        'polish' => '',
+        'russian' => 'Ρωσικά',
+        'polish' => 'Πολωνικά',
         'instrumental' => 'Ορχηστρικό',
         'other' => 'Άλλο',
         'unspecified' => '',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Οποιοδήποτε',
         'played' => 'Που έχετε παίξει',
@@ -356,9 +363,9 @@ return [
     ],
     'variant' => [
         'mania' => [
-            '4k' => '',
-            '7k' => '',
-            'all' => '',
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Όλα',
         ],
     ],
 ];

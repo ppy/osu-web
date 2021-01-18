@@ -239,7 +239,11 @@ class LegacyInterOpController extends Controller
 
         $userIds = array_keys($userIds);
 
-        $users = User::whereIn('user_id', $userIds)->get()->keyBy('user_id');
+        $users = User
+            ::whereIn('user_id', $userIds)
+            ->with(['userGroups', 'blocks'])
+            ->get()
+            ->keyBy('user_id');
 
         foreach ($params as $id => $messageParams) {
             try {

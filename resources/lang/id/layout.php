@@ -55,8 +55,8 @@ return [
         'close' => 'Tutup (Esc)',
         'fullscreen' => 'Beralih ke layar penuh',
         'zoom' => 'Perbesar/perkecil tampilan',
-        'previous' => 'Sebelumnya (arrow left)',
-        'next' => 'Selanjutnya (arrow right)',
+        'previous' => 'Sebelumnya (tombol panah kiri)',
+        'next' => 'Selanjutnya (tombol panah kanan)',
     ],
 
     'menu' => [
@@ -204,7 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Pengaturan',
-            'follows' => '',
+            'follows' => 'Daftar Pantauan',
             'friends' => 'Teman',
             'logout' => 'Keluar',
             'profile' => 'Profil Saya',

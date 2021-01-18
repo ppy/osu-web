@@ -62,7 +62,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => ':count_delimited 帖子',
+            'post_count' => ':count_delimited 篇帖子',
             'topic_starter' => '楼主',
         ],
     ],

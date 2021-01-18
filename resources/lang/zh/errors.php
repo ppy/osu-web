@@ -27,7 +27,6 @@ return [
         'operation_timeout_exception' => '搜索目前比平常较繁忙，稍后再试。',
     ],
 
-    'logged_out' => '你已退出，请登录后再试。',
     'supporter_only' => '要使用此功能，请先成为 osu! Supporter 。',
     'no_restricted_access' => '账户处于限制模式，无法执行该操作。',
     'unknown' => '发生了未知的错误。',

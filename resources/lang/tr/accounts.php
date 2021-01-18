@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'beatmap metaverisini orijinal dilinde göster',
         'title' => 'Ayarlar',
 
         'beatmapset_download' => [
             '_' => 'varsayılan beatmap indirme tipi',
             'all' => 'eğer varsa video ile beraber',
-            'no_video' => 'video olmadan',
             'direct' => 'osu!direct\'de aç',
+            'no_video' => 'video olmadan',
         ],
-
-        'beatmapset_title_show_original' => 'beatmap metaverisini orijinal dilinde göster',
     ],
 
     'playstyles' => [

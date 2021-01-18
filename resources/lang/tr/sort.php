@@ -16,8 +16,8 @@ return [
     'username' => 'Kullanıcı adı',
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Gönderi tarihi',
+        'relevance' => 'Alaka',
     ],
 
     'forum_topics' => [
