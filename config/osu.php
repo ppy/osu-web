@@ -180,7 +180,7 @@ return [
         'youtube-tutorial-playlist' => 'PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl',
 
         'social' => [
-            'twitter' => '/help/wiki/Twitter',
+            'twitter' => '/wiki/Twitter',
         ],
         'user' => [
             'kudosu' => '/wiki/Kudosu',
