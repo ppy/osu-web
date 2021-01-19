@@ -225,7 +225,7 @@ return [
                 'genre' => 'Genre',
                 'language' => 'Language',
                 'mode' => 'Mode',
-                'nsfw' => 'Explicit Maps',
+                'nsfw' => 'Explicit Content',
                 'played' => 'Played',
                 'rank' => 'Rank Achieved',
                 'status' => 'Categories',
