@@ -28,7 +28,7 @@ class UserNotificationsCleanup extends Command
         $loops = $total / $perLoop;
 
         $createdBefore = now()->subDays(config('osu.notification.cleanup.keep_days'));
-        $this->line("Deleting before {$createdBefore}");
+        $this->line("Deleting user notifications before {$createdBefore}");
 
         $progress = $this->output->createProgressBar($total);
         $deletedTotal = 0;
@@ -64,6 +64,6 @@ class UserNotificationsCleanup extends Command
 
         $progress->finish();
         $this->line('');
-        $this->line("Deleted {$deletedTotal} old user notifications.");
+        $this->line("Deleted {$deletedTotal} user notifications.");
     }
 }
