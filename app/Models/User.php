@@ -895,6 +895,11 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->user_type === 1;
     }
 
+    public function isDeleted()
+    {
+        return starts_with($this->username, 'DeletedUser_');
+    }
+
     public function isOld()
     {
         return preg_match('/_old(_\d+)?$/', $this->username) === 1;
