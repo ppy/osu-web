@@ -227,10 +227,7 @@ class Channel extends Model
         $message->channel()->associate($this);
         $message->save();
 
-        $userChannel = UserChannel::where([
-            'channel_id' => $this->channel_id,
-            'user_id' => $sender->user_id,
-        ])->first();
+        $userChannel = $this->userChannelFor($sender);
 
         if ($userChannel) {
             $userChannel->markAsRead($message->message_id);
@@ -248,10 +245,7 @@ class Channel extends Model
 
     public function addUser(User $user)
     {
-        $userChannel = UserChannel::where([
-            'channel_id' => $this->channel_id,
-            'user_id' => $user->user_id,
-        ])->first();
+        $userChannel = $this->userChannelFor($user);
 
         if ($userChannel) {
             if (!$userChannel->isHidden()) {
@@ -264,6 +258,7 @@ class Channel extends Model
             $userChannel->user()->associate($user);
             $userChannel->channel()->associate($this);
             $userChannel->save();
+            $this->resetMemoized();
         }
 
         Datadog::increment('chat.channel.join', 1, ['type' => $this->type]);
@@ -311,5 +306,15 @@ class Channel extends Model
         ])->update([
             'hidden' => false,
         ]);
+    }
+
+    private function userChannelFor(User $user)
+    {
+        return $this->memoize(__FUNCTION__.':'.$user->getKey(), function () use ($user) {
+            return UserChannel::where([
+                'channel_id' => $this->channel_id,
+                'user_id' => $user->getKey(),
+            ])->first();
+        });
     }
 }
