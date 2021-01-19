@@ -78,9 +78,9 @@ return [
         'action' => 'Download osu!',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => 'hvis du har problemer med at starte spillet eller registrere dig for konto, :help_forum_link eller :support_button.',
+            'help_forum_link' => 'tjek hjælpeforum',
+            'support_button' => 'kontakt support',
         ],
 
         'os' => [

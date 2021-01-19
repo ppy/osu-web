@@ -56,7 +56,8 @@ return [
             '_' => 'история карты',
         ],
         'beatmapset_watches_controller' => [
-            'index' => 'инфопанель',
+            'index' => 'главная страница
+',
         ],
         'beatmapsets_controller' => [
             'discussion' => 'обсуждение карты',
@@ -64,7 +65,7 @@ return [
             'show' => 'информация о карте',
         ],
         'changelog_controller' => [
-            '_' => 'история изменений',
+            '_' => 'список изменений',
         ],
         'chat_controller' => [
             '_' => 'чат',
@@ -75,17 +76,20 @@ return [
         'contests_controller' => [
             '_' => 'конкурсы',
         ],
+        'follows_controller' => [
+            'index' => 'главная страница',
+        ],
         'friends_controller' => [
-            'index' => 'инфопанель',
+            'index' => 'главная страница',
         ],
         'groups_controller' => [
             'show' => 'группы',
         ],
         'home_controller' => [
             'get_download' => 'скачать игру',
-            'index' => 'инфопанель',
+            'index' => 'главная страница',
             'search' => 'поиск',
-            'support_the_game' => 'поддержите игру',
+            'support_the_game' => 'поддержать игру',
             'testflight' => 'testflight',
         ],
         'legal_controller' => [

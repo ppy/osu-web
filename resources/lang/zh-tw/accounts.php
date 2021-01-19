@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => '以原語言顯示譜面資料',
         'title' => '選項',
 
         'beatmapset_download' => [
             '_' => '預設圖譜下載類型',
             'all' => '包含影片',
-            'no_video' => '不包含影片',
             'direct' => '在osu!direct中查看',
+            'no_video' => '不包含影片',
         ],
-
-        'beatmapset_title_show_original' => '以原語言顯示譜面資料',
     ],
 
     'playstyles' => [

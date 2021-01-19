@@ -15,8 +15,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Jelentés',
+        'title' => 'Jelented :username hozzászólását?',
     ],
 
     'scores' => [

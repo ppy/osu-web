@@ -204,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Nastavenia',
+            'follows' => '',
             'friends' => 'Priatelia',
             'logout' => 'Odhlásiť Sa',
             'profile' => 'Môj Profil',

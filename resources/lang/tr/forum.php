@@ -51,7 +51,7 @@ return [
         'actions' => [
             'destroy' => 'Gönderiyi sil',
             'edit' => 'Gönderiyi düzenle',
-            'report' => '',
+            'report' => 'Gönderiyi bildir',
             'restore' => 'Gönderiyi geri getir',
         ],
 

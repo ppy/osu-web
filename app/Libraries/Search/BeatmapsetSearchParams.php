@@ -22,6 +22,9 @@ class BeatmapsetSearchParams extends SearchParams
     /** @var bool */
     public $includeConverts = false;
 
+    /** @var bool */
+    public $includeNsfw = false;
+
     /**
      * null means any state.
      *

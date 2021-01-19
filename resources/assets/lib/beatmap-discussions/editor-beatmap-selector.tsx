@@ -17,6 +17,7 @@ interface Props {
 
 export default class EditorBeatmapSelector extends React.Component<Props> {
   static contextType = SlateContext;
+  context!: React.ContextType<typeof SlateContext>;
 
   render(): React.ReactNode {
     const menuOptions: MenuItem[] = [];

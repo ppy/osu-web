@@ -16,6 +16,7 @@ interface State {
   genreId: number;
   isBusy: boolean;
   languageId: number;
+  nsfw: boolean;
 }
 
 export default class MetadataEditor extends React.PureComponent<Props, State> {
@@ -29,6 +30,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
       genreId: props.beatmapset.genre.id ?? 0,
       isBusy: false,
       languageId: props.beatmapset.language.id ?? 0,
+      nsfw: props.beatmapset.nsfw ?? false,
     };
   }
 
@@ -79,6 +81,23 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
           </div>
         </label>
 
+        <div className='simple-form__row'>
+          <div className='simple-form__label'>
+            {osu.trans('beatmapsets.show.info.nsfw')}
+          </div>
+
+          <label className='osu-switch-v2'>
+            <input
+              checked={this.state.nsfw}
+              className='osu-switch-v2__input'
+              name='beatmapset[nsfw]'
+              onChange={this.setNsfw}
+              type='checkbox'
+            />
+            <span className='osu-switch-v2__content' />
+          </label>
+        </div>
+
         <div className='simple-form__row simple-form__row--no-label'>
           <div className='simple-form__buttons'>
             <div className='simple-form__button'>
@@ -115,6 +134,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
       data: { beatmapset: {
         genre_id: this.state.genreId,
         language_id: this.state.languageId,
+        nsfw: this.state.nsfw,
       } },
       method: 'PATCH',
     }).done((beatmapset: BeatmapsetJson) => $.publish('beatmapset:set', { beatmapset }))
@@ -129,5 +149,9 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
 
   private setLanguageId = (e: React.ChangeEvent<HTMLSelectElement>) => {
     this.setState({ languageId: parseInt(e.currentTarget.value, 10) });
+  }
+
+  private setNsfw = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ nsfw: e.currentTarget.checked });
   }
 }

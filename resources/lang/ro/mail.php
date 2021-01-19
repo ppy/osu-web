@@ -27,12 +27,12 @@ return [
 
         'benefit' => [
             'gift' => '',
-            'self' => '',
+            'self' => 'Acum vei avea acces la osu!direct și la multe alte beneficii de supporter pentru :duration.',
         ],
 
         'support' => [
-            '_' => '',
-            'first' => '',
+            '_' => 'Îți mulțumim mult pentru :support tau catre osu!.',
+            'first' => 'suport',
             'repeat' => '',
         ],
     ],
@@ -45,8 +45,8 @@ return [
     ],
 
     'password_reset' => [
-        'code' => '',
-        'requested' => '',
+        'code' => 'Codul tau de verificare este:',
+        'requested' => 'Fie tu sau cineva care pretinde că ești tu a solicitat o resetare a parolei pe contul tău osu!.',
         'subject' => 'recuperarea contului osu!',
     ],
 
@@ -63,9 +63,9 @@ return [
     'supporter_gift' => [
         'anonymous_gift' => '',
         'anonymous_gift_maybe_not' => '',
-        'duration' => '',
+        'duration' => 'Mulțumită lor, ai acces la beneficii directe și alte beneficii de suporter osu! pentru următoarea :duration.',
         'features' => '',
-        'gifted' => '',
+        'gifted' => 'Cineva tocmai ti-a daruit osu! supporter!',
         'subject' => 'Ţi-a fost oferită o insignă de suporter osu!',
     ],
 
@@ -79,7 +79,7 @@ return [
     'user_force_reactivation' => [
         'main' => '',
         'perform_reset' => '',
-        'reason' => '',
+        'reason' => 'Motiv:',
         'subject' => '',
     ],
 

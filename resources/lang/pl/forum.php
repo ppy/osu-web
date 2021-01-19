@@ -51,7 +51,7 @@ return [
         'actions' => [
             'destroy' => 'Usuń post',
             'edit' => 'Edytuj post',
-            'report' => '',
+            'report' => 'Zgłoś post',
             'restore' => 'Przywróć post',
         ],
 
@@ -93,7 +93,7 @@ return [
             'preview' => 'Podgląd',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Napisz',
+            'preview_hide' => 'Edytuj',
             'submit' => 'Opublikuj',
 
             'necropost' => [
@@ -127,7 +127,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'subskrybcje',
+            'title_compact' => 'lista obserwowanych wątków na forum',
 
             'box' => [
                 'total' => 'Zasubskrybowane wątki',

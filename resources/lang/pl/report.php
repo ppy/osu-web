@@ -15,8 +15,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Zgłoś',
+        'title' => 'Zgłosić post użytkownika :username?',
     ],
 
     'scores' => [

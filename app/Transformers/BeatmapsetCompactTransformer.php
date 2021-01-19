@@ -54,6 +54,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
                 'required' => $beatmapset->requiredHype(),
             ] : null,
             'id' => $beatmapset->beatmapset_id,
+            'nsfw' => $beatmapset->nsfw,
             'play_count' => $beatmapset->play_count,
             'preview_url' => $beatmapset->previewURL(),
             'source' => $beatmapset->source,

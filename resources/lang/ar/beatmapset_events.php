@@ -25,10 +25,11 @@ return [
         'language_edit' => 'تم تغيير اللغة من :old الى :new.',
         'love' => 'حُبِبت بواسطة :user',
         'nominate' => 'رُشحت بواسطة :user.',
+        'nominate_modes' => 'تم ترشيحها بواسطة :user (:modes).',
         'nomination_reset' => 'اثارت المشكلة :discussion (:text) اِعادة تعيين الترشيح.',
         'qualify' => 'هذه الخريطة وصلت إلى العدد المطلوب من الترشيحات وتأهلت.',
         'rank' => 'مصفوفة.',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'تمت إزالتها من "المحبوبة" من قِبَل :user. (:text)',
     ],
 
     'index' => [
@@ -67,6 +68,6 @@ return [
         'nomination_reset' => 'إعادة تعيين الترشيح',
         'qualify' => 'المؤهل',
         'rank' => 'الترتيب',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'اِزبالة من "المحبوبة"',
     ],
 ];

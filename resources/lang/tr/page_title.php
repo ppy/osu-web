@@ -75,6 +75,9 @@ return [
         'contests_controller' => [
             '_' => 'yarışmalar',
         ],
+        'follows_controller' => [
+            'index' => 'kontrol paneli',
+        ],
         'friends_controller' => [
             'index' => 'kontrol paneli',
         ],

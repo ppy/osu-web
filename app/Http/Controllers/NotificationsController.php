@@ -56,8 +56,6 @@ class NotificationsController extends Controller
      * unread_count          | total unread notifications
      * notification_endpoint | url to connect to websocket server
      *
-     * @authenticated
-     *
      * @queryParam max_id Maximum `id` fetched. Can be used to load earlier notifications. Defaults to no limit (fetch latest notifications)
      *
      * @response {
@@ -107,8 +105,6 @@ class NotificationsController extends Controller
      * ### Response Format
      *
      * _empty response_
-     *
-     * @authenticated
      *
      * @bodyParam ids integer[] required `id` of notifications to be marked as read  Example: [1, 2, 3]
      *

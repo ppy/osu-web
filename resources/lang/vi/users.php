@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Chơi bằng :devices',
         'title' => "Trang cá nhân của :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Đổi Ảnh Bìa Trang Cá Nhân',

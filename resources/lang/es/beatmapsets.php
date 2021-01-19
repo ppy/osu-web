@@ -8,6 +8,7 @@ return [
         'disabled' => 'Este mapa no está actualmente disponible para su descarga.',
         'parts-removed' => 'Partes de este mapa han sido eliminadas a petición de su creador o un titular de derechos de autor.',
         'more-info' => 'Haga clic aquí para obtener más información.',
+        'rule_violation' => 'Algunos de los elementos contenidos en este mapa han sido eliminados después de ser considerados no aptos para su uso en osu!.',
     ],
 
     'index' => [
@@ -16,12 +17,32 @@ return [
     ],
 
     'panel' => [
+        'empty' => 'sin mapas',
+
         'download' => [
             'all' => 'descargar',
             'video' => 'descargar con vídeo',
             'no_video' => 'descargar sin vídeo',
             'direct' => 'abrir en osu!direct',
         ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => 'Un set de mapas híbrido requiere que seleccione al menos un modo de juego para nominar.',
+        'incorrect_mode' => 'No tiene permiso para nominar para el modo: :mode',
+        'full_bn_required' => 'Debe ser un nominador completo para realizar esta nominación calificada.',
+        'too_many' => 'Requisito de nominación ya cumplido.',
+
+        'dialog' => [
+            'confirmation' => '¿Seguro que desea nominar este mapa?',
+            'header' => 'Nominar mapa',
+            'hybrid_warning' => 'nota: sólo puede nominar una vez, así que asegúrese de que está nominando para todos los modos de juego que desee',
+            'which_modes' => '¿Nominar para qué modos?',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -78,8 +99,8 @@ return [
             ],
 
             'report' => [
-                '_' => 'Si encuentras un problema con este mapa, por favor repórtalo :link para alertar al equipo.',
-                'button' => 'Reportar un problema',
+                '_' => 'Si encuentra un problema con este mapa, por favor, informe de ello :link para alertar al equipo.',
+                'button' => 'Informar un problema',
                 'link' => 'aquí',
             ],
         ],
@@ -89,10 +110,22 @@ return [
             'genre' => 'Género',
             'language' => 'Idioma',
             'no_scores' => 'Los datos todavía están siendo calculados...',
+            'nsfw' => '',
             'points-of-failure' => 'Puntos de fracaso',
             'source' => 'Fuente',
             'success-rate' => 'Tasa de éxito',
             'tags' => 'Etiquetas',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

@@ -25,6 +25,7 @@ return [
         'language_edit' => '',
         'love' => 'Obľúbené používateľom :user',
         'nominate' => 'Nominované užívateľom :user.',
+        'nominate_modes' => '',
         'nomination_reset' => 'Nový problém :discussion (:text) spôsobil zresetovanie nominácie.',
         'qualify' => 'Táto beatmapa dosiahla požadované číslo nominácii a bola kvalifikovaná.',
         'rank' => 'Ranked.',

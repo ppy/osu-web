@@ -48,7 +48,7 @@ return [
             ],
 
             'prompt' => [
-                'lock' => 'Razón del bloqueo',
+                'lock' => 'Motivo del bloqueo',
                 'unlock' => '¿Seguro que desea desbloquearla?',
             ],
         ],
@@ -188,7 +188,7 @@ return [
         'nominated_by' => 'nominado por :users',
         'not_enough_hype' => "No hay suficiente hype.",
         'remove_from_loved' => 'Remover de Amados',
-        'remove_from_loved_prompt' => 'Razón para remover de Amados:',
+        'remove_from_loved_prompt' => 'Motivo para remover de Amados:',
         'required_text' => 'Nominaciones: :current/:required',
         'reset_message_deleted' => 'eliminado',
         'title' => 'Estado de nominación',
@@ -220,14 +220,15 @@ return [
             'not-found' => 'no hay resultados',
             'not-found-quote' => '... nop, nada encontrado.',
             'filters' => [
+                'extra' => 'Adicional',
                 'general' => 'General',
-                'mode' => 'Modo',
-                'status' => 'Categorías',
                 'genre' => 'Género',
                 'language' => 'Idioma',
-                'extra' => 'Adicional',
-                'rank' => 'Rango obtenido',
+                'mode' => 'Modo',
+                'nsfw' => '',
                 'played' => 'Jugado',
+                'rank' => 'Rango obtenido',
+                'status' => 'Categorías',
             ],
             'sorting' => [
                 'title' => 'Título',
@@ -330,6 +331,12 @@ return [
         'other' => 'otro',
         'unspecified' => 'no especificado',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Cualquier',
         'played' => 'Ya jugado',

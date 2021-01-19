@@ -31,8 +31,8 @@ return [
             'not_cleared' => '未クリア',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link はこのパックをクリアするのに使用できません。',
+            'link' => '難易度低下mod',
         ],
     ],
 

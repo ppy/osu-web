@@ -27,7 +27,6 @@ return [
         'operation_timeout_exception' => 'Hệ thống tìm kiếm đang quá tải, vui lòng thử lại sau.',
     ],
 
-    'logged_out' => 'Bạn đã bị đăng xuất. Hãy đăng nhập và thử lại.',
     'supporter_only' => 'Bạn phải là một osu!supporter để sử dụng tính năng này.',
     'no_restricted_access' => 'Không thể thực hiện hành động do tài khoản của bạn đang bị hạn chế.',
     'unknown' => 'Đã xảy ra lỗi không xác định.',

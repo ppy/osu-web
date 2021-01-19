@@ -51,7 +51,7 @@ return [
         'actions' => [
             'destroy' => 'Eliminar publicación',
             'edit' => 'Editar publicación',
-            'report' => '',
+            'report' => 'Denunciar publicación',
             'restore' => 'Restaurar publicación',
         ],
 
@@ -127,7 +127,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'suscripciones a foros',
+            'title_compact' => 'lista de seguimiento de temas del foro',
 
             'box' => [
                 'total' => 'Temas suscritos',

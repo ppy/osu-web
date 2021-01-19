@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Tilaus laitettu :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'Näytä lasku',
         'no_orders' => 'Ei tilauksia katsottavissa.',
+        'paid_on' => 'Tilaus laitettu :date',
         'resume' => 'Jatka Kassalle',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

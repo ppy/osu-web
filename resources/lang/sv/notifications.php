@@ -6,6 +6,7 @@
 return [
     'all_read' => 'Alla aviseringar är lästa!',
     'delete' => 'Radera :type',
+    'loading' => 'Laddar olästa aviseringar...',
     'mark_read' => 'Rensa :type',
     'none' => 'Inga aviseringar',
     'see_all' => 'visa alla aviseringar',
@@ -133,6 +134,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => 'Ny beatmap',
+
+                'user_beatmapset_new' => 'Ny beatmap ":title" av :username',
+                'user_beatmapset_new_compact' => 'Ny beatmap ":title"',
+                'user_beatmapset_new_group' => 'Nya beatmaps av :username',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medaljer',
 
@@ -200,6 +211,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username har låst upp en ny medalj, ":title"!',
                 'user_achievement_unlock_self' => 'Du har låst upp en ny medalj, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':username har skapat nya beatmaps',
             ],
         ],
     ],

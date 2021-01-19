@@ -41,7 +41,9 @@ class OsuMarkdownProcessor
         $document = $event->getDocument();
         $walker = $document->walker();
 
-        $this->relativeUrlRoot = $this->environment->getConfig('relative_url_root');
+        // The config value should come from route() call which means it's percent encoded
+        // but it'll be reused as parameter for another route() call so decode it here.
+        $this->relativeUrlRoot = urldecode($this->environment->getConfig('relative_url_root'));
         $generateToc = $this->environment->getConfig('generate_toc');
         $recordFirstImage = $this->environment->getConfig('record_first_image');
         $titleFromDocument = $this->environment->getConfig('title_from_document');
@@ -151,7 +153,7 @@ class OsuMarkdownProcessor
                 $src = substr($src, 2);
             }
 
-            $this->node->setUrl($this->environment->getConfig('relative_url_root').'/'.$src);
+            $this->node->setUrl($this->relativeUrlRoot.'/'.$src);
         }
     }
 

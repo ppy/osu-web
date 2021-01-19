@@ -252,15 +252,17 @@ class BeatmapsetsController extends Controller
         $metadataParams = get_params($params, 'beatmapset', [
             'language_id:int',
             'genre_id:int',
+            'nsfw:bool',
         ]);
 
         if (count($metadataParams) > 0) {
             priv_check('BeatmapsetMetadataEdit', $beatmapset)->ensureCan();
 
-            $oldGenreId = $beatmapset->genre_id;
-            $oldLanguageId = $beatmapset->language_id;
+            DB::transaction(function () use ($beatmapset, $metadataParams) {
+                $oldGenreId = $beatmapset->genre_id;
+                $oldLanguageId = $beatmapset->language_id;
+                $oldNsfw = $beatmapset->nsfw;
 
-            DB::transaction(function () use ($beatmapset, $metadataParams, $oldGenreId, $oldLanguageId) {
                 $beatmapset->fill($metadataParams)->saveOrExplode();
 
                 if ($oldGenreId !== $beatmapset->genre_id) {
@@ -274,6 +276,13 @@ class BeatmapsetsController extends Controller
                     BeatmapsetEvent::log(BeatmapsetEvent::LANGUAGE_EDIT, Auth::user(), $beatmapset, [
                         'old' => Language::find($oldLanguageId)->name,
                         'new' => $beatmapset->language->name,
+                    ])->saveOrExplode();
+                }
+
+                if ($oldNsfw !== $beatmapset->nsfw) {
+                    BeatmapsetEvent::log(BeatmapsetEvent::NSFW_TOGGLE, Auth::user(), $beatmapset, [
+                        'old' => $oldNsfw,
+                        'new' => $beatmapset->nsfw,
                     ])->saveOrExplode();
                 }
             });

@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Joacă cu :devices',
         'title' => "Profilul lui :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Schimbă coperta de profil',

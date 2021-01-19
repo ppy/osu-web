@@ -138,7 +138,7 @@ return [
         'status-messages' => [
             'approved' => 'Diese Beatmap wurde am :date approved!',
             'graveyard' => "Diese Beatmap wurde seit dem :date nicht mehr aktualisiert und wurde wahrscheinlich vom Ersteller aufgegeben...",
-            'loved' => 'Diese Beatmap wurde am :date Loved!',
+            'loved' => 'Diese Beatmap wurde am :date loved!',
             'ranked' => 'Diese Beatmap wurde am :date ranked!',
             'wip' => 'Anmerkung: Diese Beatmap ist vom Ersteller als \'Work-In-Progress\' gekennzeichnet',
         ],
@@ -220,14 +220,15 @@ return [
             'not-found' => 'keine ergebnisse',
             'not-found-quote' => '... nope, nichts gefunden.',
             'filters' => [
+                'extra' => 'Extra',
                 'general' => 'Generell',
-                'mode' => 'Modus',
-                'status' => 'Kategorien',
                 'genre' => 'Genre',
                 'language' => 'Sprache',
-                'extra' => 'Extra',
-                'rank' => 'Erreichter Rang',
+                'mode' => 'Modus',
+                'nsfw' => '',
                 'played' => 'Gespielt',
+                'rank' => 'Erreichter Rang',
+                'status' => 'Kategorien',
             ],
             'sorting' => [
                 'title' => 'Titel',
@@ -330,6 +331,12 @@ return [
         'other' => 'Andere',
         'unspecified' => 'Nicht angegeben',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Alle',
         'played' => 'Gespielt',

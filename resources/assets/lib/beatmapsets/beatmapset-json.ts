@@ -86,6 +86,7 @@ export interface BeatmapsetJson {
   id: number;
   language: LanguageJson;
   nominations?: BeatmapsetNominationsInterface;
+  nsfw: boolean;
   status: BeatmapsetStatus;
   title: string;
   title_unicode: string | null;

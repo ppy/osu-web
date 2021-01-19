@@ -25,6 +25,7 @@ export interface CommentJson {
   pinned: boolean;
   replies_count: number;
   updated_at: string;
+  user?: UserJson;
   user_id: number;
   votes_count: number;
 }

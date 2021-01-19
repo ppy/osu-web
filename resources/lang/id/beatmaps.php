@@ -28,7 +28,7 @@ return [
         'require-login' => 'Silakan masuk untuk membuka topik bahasan baru atau mengirimkan balasan',
         'resolved' => 'Terjawab',
         'restore' => 'kembalikan',
-        'show_deleted' => 'Tampilan dihapus',
+        'show_deleted' => 'Tampilkan yang sudah dihapus',
         'title' => 'Diskusi',
 
         'collapse' => [
@@ -136,10 +136,10 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'Beatmap ini telah di-Approve pada :date!',
+            'approved' => 'Beatmap ini telah di-approve pada :date!',
             'graveyard' => "Beatmap ini belum diperbarui sejak :date dan kemungkinan besar telah diabaikan oleh pembuatnya...",
             'loved' => 'Beatmap ini telah ditambahkan pada kategori \'Loved\' pada :date!',
-            'ranked' => 'Beatmap ini telah di-Rank pada :date!',
+            'ranked' => 'Beatmap ini telah di-rank pada :date!',
             'wip' => 'Catatan: Beatmap ini ditandai dengan status dalam pengerjaan (work-in-progress) oleh pembuat beatmap.',
         ],
 
@@ -149,8 +149,8 @@ return [
                 'up' => 'Belum ada upvote',
             ],
             'latest' => [
-                'down' => 'Downvotes terbaru',
-                'up' => 'Upvotes terbaru',
+                'down' => 'Downvote terbaru',
+                'up' => 'Upvote terbaru',
             ],
         ],
     ],
@@ -206,7 +206,7 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Apakah kamu yakin? Memposting masalah baru akan mengulang proses nominasi.',
+            'nomination_reset' => 'Apakah Anda yakin? Memposting masalah baru akan mengulang proses nominasi.',
             'disqualify' => 'Apakah Anda yakin? Tindakan ini akan menganulir status Qualified pada beatmap ini dan mengulang proses nominasi dari awal.',
         ],
     ],
@@ -220,14 +220,15 @@ return [
             'not-found' => 'tidak ada hasil',
             'not-found-quote' => '... tidak, tidak ditemukan apa pun.',
             'filters' => [
+                'extra' => 'Konten Ekstra',
                 'general' => 'Umum',
-                'mode' => 'Mode',
-                'status' => 'Status',
                 'genre' => 'Aliran',
                 'language' => 'Bahasa',
-                'extra' => 'Konten Ekstra',
-                'rank' => 'Torehan Peringkat',
+                'mode' => 'Mode',
+                'nsfw' => '',
                 'played' => 'Riwayat Permainan',
+                'rank' => 'Torehan Peringkat',
+                'status' => 'Status',
             ],
             'sorting' => [
                 'title' => 'Judul',
@@ -330,6 +331,12 @@ return [
         'other' => 'Lainnya',
         'unspecified' => 'Belum Ditentukan',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Semua',
         'played' => 'Pernah Dimainkan',

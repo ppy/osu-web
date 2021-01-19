@@ -25,6 +25,7 @@ return [
         'language_edit' => 'Bahasa beatmap diubah dari :old menjadi :new.',
         'love' => 'Di-love oleh :user',
         'nominate' => 'Dinominasikan oleh :user.',
+        'nominate_modes' => 'Dinominasikan oleh :user (:modes).',
         'nomination_reset' => 'Masalah baru di :discussion (:text) memicu pengaturan ulang nominasi.',
         'qualify' => 'Beatmap ini telah memperoleh jumlah nominasi yang cukup untuk mendapatkan status Qualified.',
         'rank' => 'Ranked.',

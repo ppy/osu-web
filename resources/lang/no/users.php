@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Spiller med :devices',
         'title' => "Profilen til :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Endre profilbanner',

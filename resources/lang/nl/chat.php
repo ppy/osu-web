@@ -15,6 +15,8 @@ return [
             'blocked' => 'Je bent geblokkeerd door de ontvanger',
             'channel_moderated' => 'Dit kanaal is word op het moment gemodereerd',
             'friends_only' => 'De ontvanger accepteert alleen berichten van mensen op hun vriendenlijst',
+            'not_enough_plays' => '',
+            'not_verified' => '',
             'restricted' => 'Je bent op het moment gerestrict',
             'target_restricted' => 'De ontvanger is momenteel gerestrict',
         ],

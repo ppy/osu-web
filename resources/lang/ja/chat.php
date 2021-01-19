@@ -15,6 +15,8 @@ return [
             'blocked' => 'あなたは受信者にブロックされました',
             'channel_moderated' => 'このチャンネルは制限がかかっています。',
             'friends_only' => 'フレンドリスト上の人からのメッセージのみ受信する',
+            'not_enough_plays' => '十分にゲームをプレイしていません',
+            'not_verified' => 'セッションが確認されていません',
             'restricted' => 'あなたは現在制限されています',
             'target_restricted' => '受信者は現在制限されています',
         ],

@@ -204,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Setări',
+            'follows' => '',
             'friends' => 'Prieteni',
             'logout' => 'Deconectare',
             'profile' => 'Profilul meu',

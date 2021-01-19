@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'näytä beatmap-metadata alkuperäisellä kielellä',
         'title' => 'Asetukset',
 
         'beatmapset_download' => [
             '_' => 'oletus beatmap-lataus tyyppi',
             'all' => 'videon kanssa jos saatavilla',
-            'no_video' => 'ilman videota',
             'direct' => 'avaa osu!directissä',
+            'no_video' => 'ilman videota',
         ],
-
-        'beatmapset_title_show_original' => 'näytä beatmap-metadata alkuperäisellä kielellä',
     ],
 
     'playstyles' => [

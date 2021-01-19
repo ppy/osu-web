@@ -6,7 +6,7 @@
     @if (Auth::check())
         <div
             class="navbar-mobile-item__main js-react--user-card"
-            data-user="{{ json_encode(Auth::user()->defaultJson()) }}"
+            data-is-current-user="1"
         ></div>
 
         <a

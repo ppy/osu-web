@@ -129,7 +129,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Subir más mapas',
-                'description' => 'El número de mapas no clasificados que puedes tener a la vez se calcula a partir de un valor base más una bonificación adicional por cada mapa clasificado que tengas actualmente (hasta un límite).<br/><br/>Normalmente esto es :base más :bonus por mapa clasificado (hasta :bonus_max). Con supporter, esto aumenta a :supporter_base más :supporter_bonus por cada mapa clasificado (hasta :supporter_bonus_max).',
+                'description' => 'El número de mapas pendientes que puedes tener a la vez se calcula a partir de un valor base más una bonificación adicional por cada mapa clasificado que tengas actualmente (hasta un límite).<br/><br/>Normalmente esto es :base más :bonus por mapa clasificado (hasta :bonus_max). Con supporter, esto aumenta a :supporter_base más :supporter_bonus por cada mapa clasificado (hasta :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Amigos en la tabla de clasificación',

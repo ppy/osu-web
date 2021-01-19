@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Bugünkü aday gösterme sınırınıza ulaştınız, lütfen yarın tekrar deneyin.',
-            'full_bn_required' => 'Bu niteliklendirme aday gösterimini gerçekleştirebilmeniz için asil aday gösterici olmanız gerekmektedir.',
-            'full_bn_required_hybrid' => 'Birden fazla oyun modu içeren beatmap setlerini aday gösterebilmeniz için asil aday gösterici olmanız gerekmektedir.',
             'incorrect_state' => 'Bu işlemi gerçekleştirirken hata oluştu, sayfayı yenilemeyi deneyin.',
             'owner' => "Kendi beatmapinizi aday gösteremezsiniz.",
             'set_metadata' => 'Aday göstermeden önce türü ve dili ayarlamalısınız.',

@@ -3,7 +3,7 @@
 
 import { BlockButton } from 'block-button';
 import FlagCountry from 'flag-country';
-import FollowUserModdingButton from 'follow-user-modding-button';
+import FollowUserMappingButton from 'follow-user-mapping-button';
 import { FriendButton } from 'friend-button';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
@@ -45,6 +45,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     id: 0,
     is_active: false,
     is_bot: false,
+    is_deleted: false,
     is_online: false,
     is_supporter: false,
     last_visit: '',
@@ -77,6 +78,10 @@ export class UserCard extends React.PureComponent<Props, State> {
 
   private get isUserNotFound() {
     return this.user.id === -1;
+  }
+
+  private get isUserVisible() {
+    return this.isUserLoaded && !this.user.is_deleted;
   }
 
   private get user() {
@@ -117,7 +122,7 @@ export class UserCard extends React.PureComponent<Props, State> {
             <div className='user-card__details'>
               {this.renderIcons()}
               <div className='user-card__username-row'>
-                <div className='user-card__username u-ellipsis-pre-overflow'>{this.user.username}</div>
+                <div className='user-card__username u-ellipsis-pre-overflow'>{this.user.is_deleted ? osu.trans('users.deleted') : this.user.username}</div>
                 <div className='user-card__group-badges'><UserGroupBadges groups={this.user.groups} short={true} wrapper='user-card__group-badge' /></div>
               </div>
               {this.renderListModeIcons()}
@@ -176,7 +181,7 @@ export class UserCard extends React.PureComponent<Props, State> {
       background = <div className={overlayCssClass} />;
     }
 
-    if (this.isUserLoaded) {
+    if (this.isUserVisible) {
       backgroundLink = (
         <a
           href={route('users.show', { user: this.user.id })}
@@ -193,7 +198,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderIcons() {
-    if (!this.isUserLoaded) { return null; }
+    if (!this.isUserVisible) { return null; }
 
     return (
       <div className='user-card__icons'>
@@ -215,7 +220,7 @@ export class UserCard extends React.PureComponent<Props, State> {
               <FriendButton userId={this.user.id} modifiers={['user-card']} />
             </div>
             <div className='user-card__icon'>
-              <FollowUserModdingButton userId={this.user.id} modifiers={['user-card']} />
+              <FollowUserMappingButton userId={this.user.id} modifiers={['user-card']} />
             </div>
           </>
         )}
@@ -224,7 +229,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderListModeIcons() {
-    if (this.props.mode !== 'list' || !this.isUserLoaded) { return null; }
+    if (this.props.mode !== 'list' || !this.isUserVisible) { return null; }
 
     return (
       <div className='user-card__icons'>
@@ -239,7 +244,7 @@ export class UserCard extends React.PureComponent<Props, State> {
         </div>
 
         <div className='user-card__icon'>
-          <FollowUserModdingButton userId={this.user.id} modifiers={['user-list']} />
+          <FollowUserMappingButton userId={this.user.id} modifiers={['user-list']} />
         </div>
       </div>
     );
@@ -283,7 +288,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderStatusBar() {
-    if (!this.isUserLoaded) { return null; }
+    if (!this.isUserVisible) { return null; }
 
     const lastSeen = (!this.isOnline && this.user.last_visit != null) ? osu.trans('users.show.lastvisit', { date: osu.timeago(this.user.last_visit) }) : '';
     const status = this.isOnline ? osu.trans('users.status.online') : osu.trans('users.status.offline');
@@ -310,7 +315,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderStatusIcon() {
-    if (!this.isUserLoaded) { return null; }
+    if (!this.isUserVisible) { return null; }
 
     return (
       <div className='user-card__status-icon-container'>

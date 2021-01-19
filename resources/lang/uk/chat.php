@@ -15,6 +15,8 @@ return [
             'blocked' => 'Ви заблоковані співрозмовником',
             'channel_moderated' => 'Цей канал модерується',
             'friends_only' => 'Цей користувач приймає повідомлення тільки від друзів',
+            'not_enough_plays' => '',
+            'not_verified' => '',
             'restricted' => 'Наразі ви обмежені',
             'target_restricted' => 'Одержувач наразі обмежений',
         ],

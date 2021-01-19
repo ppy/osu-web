@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Dosáhl jsi dnešního limitu nominací, zkus to prosím zítra.',
-            'full_bn_required' => 'Musíte být plný nominátor, abyste mohl provést kvalifikační nominaci.',
-            'full_bn_required_hybrid' => 'Musíte být nominátor k nominaci setů map s více než jedním herním módem.',
             'incorrect_state' => 'Nastala chyba při provádění akce, zkuste stránku obnovit.',
             'owner' => "Nelze nominovat vlastní beatmapu.",
             'set_metadata' => 'Před jmenováním musíte nastavit žánr a jazyk.',

@@ -220,14 +220,15 @@ return [
             'not-found' => '沒有結果',
             'not-found-quote' => '姆....，什麼也沒有。',
             'filters' => [
+                'extra' => '其他資訊',
                 'general' => '一般',
-                'mode' => '模式',
-                'status' => '分類',
                 'genre' => '曲風',
                 'language' => '語言',
-                'extra' => '其他資訊',
-                'rank' => '已 Rank',
+                'mode' => '模式',
+                'nsfw' => '',
                 'played' => '玩過',
+                'rank' => '已 Rank',
+                'status' => '分類',
             ],
             'sorting' => [
                 'title' => '曲名',
@@ -330,6 +331,12 @@ return [
         'other' => '其他',
         'unspecified' => '',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => '所有',
         'played' => '玩過',

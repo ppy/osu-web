@@ -25,6 +25,7 @@ return [
         'language_edit' => 'Dil :old\'dan :new\'e değiştirildi.',
         'love' => ':user tarafından sevildi',
         'nominate' => ':user tarafından aday gösterildi.',
+        'nominate_modes' => ' :user (:modes) tarafından aday gösterildi.',
         'nomination_reset' => 'Yeni sorun :discussion (:text) bir adaylık sıfırlamasını tetikledi.',
         'qualify' => 'Bu beatmap gerekli aday gösterilme miktarına ulaştı ve nitelikli oldu.',
         'rank' => 'Dereceli.',

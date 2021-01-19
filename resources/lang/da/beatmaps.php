@@ -21,7 +21,7 @@ return [
         'kudosu_denied' => 'Nægtet fra at kunne modtage kudosu.',
         'message_placeholder_deleted_beatmap' => 'Denne sværhedsgrad er blevet slettet så den kan ikke blive diskuteret længere.',
         'message_placeholder_locked' => 'Diskussion for dette beatmap er blevet deaktiveret.',
-        'message_placeholder_silenced' => "",
+        'message_placeholder_silenced' => "Kan ikke skrive diskussion, mens du er tavs.",
         'message_type_select' => 'Vælg kommentar-type',
         'reply_notice' => 'Tryk enter for at svare.',
         'reply_placeholder' => 'Skriv dit svar her',
@@ -61,7 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Skriv her for at lave et opslag til General (:version)',
             'generalAll' => 'Skriv her for at lave et opslag til General (All difficulties)',
-            'review' => '',
+            'review' => 'Skriv her for at sende en anmeldelse',
             'timeline' => 'Skriv her for at lave et opslag til Tidslinjen (:version)',
         ],
 
@@ -96,22 +96,22 @@ return [
         ],
 
         'review' => [
-            'new' => '',
+            'new' => 'Ny anmeldelse',
             'embed' => [
-                'delete' => '',
-                'missing' => '',
-                'unlink' => '',
-                'unsaved' => '',
+                'delete' => 'Fjern',
+                'missing' => '[DISCUSSION SLETTET]',
+                'unlink' => 'Fjern link',
+                'unsaved' => 'Ikke gemt',
                 'timestamp' => [
                     'all-diff' => '',
                     'diff' => '',
                 ],
             ],
             'insert-block' => [
-                'paragraph' => '',
+                'paragraph' => 'indsæt afsnit',
                 'praise' => '',
-                'problem' => '',
-                'suggestion' => '',
+                'problem' => 'indsæt problem',
+                'suggestion' => 'indsæt forslag',
             ],
         ],
 
@@ -187,8 +187,8 @@ return [
         'nominate_confirm' => 'Nominér dette beatmap?',
         'nominated_by' => 'nomineret af :users',
         'not_enough_hype' => "Der er ikke nok hype.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Fjern fra Elsket',
+        'remove_from_loved_prompt' => 'Årsag til fjernelse fra Elsket:',
         'required_text' => 'Nomineringer: :current/:required',
         'reset_message_deleted' => 'slettet',
         'title' => 'Nomineringstatus',
@@ -197,7 +197,7 @@ return [
         'rank_estimate' => [
             '_' => '',
             'queue' => '',
-            'soon' => '',
+            'soon' => 'snart',
         ],
 
         'reset_at' => [
@@ -220,14 +220,15 @@ return [
             'not-found' => 'ingen resultater',
             'not-found-quote' => '... desværre, intet fundet.',
             'filters' => [
+                'extra' => 'extra',
                 'general' => 'Generelt',
-                'mode' => 'Mode',
-                'status' => 'Kategorier',
                 'genre' => 'Genre',
                 'language' => 'Sprog',
-                'extra' => 'extra',
-                'rank' => 'Rank Opnået',
+                'mode' => 'Mode',
+                'nsfw' => '',
                 'played' => 'Allerede spillet',
+                'rank' => 'Rank Opnået',
+                'status' => 'Kategorier',
             ],
             'sorting' => [
                 'title' => 'Titel',
@@ -252,7 +253,7 @@ return [
         'converts' => 'Inkluder konvertert beatmeaps',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Alle',
         'any' => 'Alle',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
@@ -312,7 +313,7 @@ return [
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
         'TD' => 'Touch Device',
-        'V2' => '',
+        'V2' => 'Score V2',
     ],
     'language' => [
         'any' => 'Vilkårlig',
@@ -331,6 +332,12 @@ return [
         'other' => 'Andet',
         'unspecified' => 'Uspecificeret',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Vilkårlig',
         'played' => 'Spillet',
@@ -357,9 +364,9 @@ return [
     ],
     'variant' => [
         'mania' => [
-            '4k' => '',
-            '7k' => '',
-            'all' => '',
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Alle',
         ],
     ],
 ];

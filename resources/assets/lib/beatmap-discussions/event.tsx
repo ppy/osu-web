@@ -115,7 +115,7 @@ export default class Event extends React.PureComponent<Props> {
         url = BeatmapDiscussionHelper.url({ discussion: this.discussion });
         text = firstPostMessage != null ? BeatmapDiscussionHelper.previewMessage(firstPostMessage) : '[no preview]';
       } else {
-        url = route('beatmap-discussions.show', { beatmap_discussion: this.discussionId });
+        url = route('beatmapsets.discussions.show', { discussion: this.discussionId });
         text = osu.trans('beatmapset_events.item.discussion_deleted');
       }
 
@@ -145,6 +145,11 @@ export default class Event extends React.PureComponent<Props> {
       eventType = `nominate_modes`;
       const nominationModes = this.props.event.comment.modes.map((mode: GameMode) => osu.trans(`beatmaps.mode.${mode}`));
       params.modes = osu.transArray(nominationModes);
+    }
+
+    if (eventType === 'nsfw_toggle') {
+      const newState = this.props.event.comment?.new ? 'to_1' : 'to_0';
+      eventType += `.${newState}`;
     }
 
     const key = `beatmapset_events.event.${eventType}`;

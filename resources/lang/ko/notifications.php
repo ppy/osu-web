@@ -6,6 +6,7 @@
 return [
     'all_read' => '모든 알림을 읽었어요!',
     'delete' => ':type 삭제',
+    'loading' => '읽지 않은 알림 불러오는 중...',
     'mark_read' => ':type 비우기',
     'none' => '알림 없음',
     'see_all' => '모든 알림 보기',
@@ -133,6 +134,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '새 비트맵',
+
+                'user_beatmapset_new' => ':username 님의 새로운 비트맵 ":title"',
+                'user_beatmapset_new_compact' => '새 비트맵 ":title"',
+                'user_beatmapset_new_group' => ':username 님의 새 비트맵',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => '메달',
 
@@ -200,6 +211,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username 님이 ":title" 메달을 획득하셨습니다!',
                 'user_achievement_unlock_self' => '":title" 메달을 획득하셨습니다!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':username 님이 새 비트맵을 제작했습니다',
             ],
         ],
     ],

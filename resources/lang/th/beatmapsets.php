@@ -8,6 +8,7 @@ return [
         'disabled' => 'บีทแมพนี้ยังไม่สามารถดาวน์โหลดได้',
         'parts-removed' => 'บางส่วนของบีทแมพนี้ถูกลบตามคำขอของผู้แต่งหรือผู้ถือสิทธิ์บุคคลสาม',
         'more-info' => 'เช็คที่นี่เพื่อดูรายละเอียดเพิ่มเติม',
+        'rule_violation' => '',
     ],
 
     'index' => [
@@ -16,12 +17,32 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'ดาวน์โหลด',
             'video' => 'ดาวน์โหลดพร้อมวิดีโอ',
             'no_video' => 'ดาวน์โหลดโดยไม่มีวิดีโอ',
             'direct' => 'เปิดใน osu!direct',
         ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -89,10 +110,22 @@ return [
             'genre' => 'ประเภท',
             'language' => 'ภาษา',
             'no_scores' => 'ข้อมูลกำลังถูกคำนวณ...',
+            'nsfw' => '',
             'points-of-failure' => 'ความล้มเหลว',
             'source' => 'แหล่งที่มา',
             'success-rate' => 'อัตราการผ่าน',
             'tags' => 'แท็ก',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

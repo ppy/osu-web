@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'ゲームモードによるメンバー',
     ],
 
     'force_reactivation' => [
@@ -154,6 +154,10 @@ return [
         'plays_with' => '使用デバイス :devices',
         'title' => ":usernameのプロフィール",
 
+        'comments_count' => [
+            '_' => '投稿 :link',
+            'count' => ':count_delimited コメント',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'カバー画像の変更',

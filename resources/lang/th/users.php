@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'สมาชิกตามโหมดเกม',
     ],
 
     'force_reactivation' => [
@@ -155,6 +155,10 @@ return [
         'plays_with' => 'เล่นด้วย :devices',
         'title' => "โปรไฟล์ของ :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'เปลี่ยนรูปภาพปก',

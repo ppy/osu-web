@@ -3,6 +3,12 @@
 
 .btn-circle {
   @top: btn-circle;
+  --transition: all 120ms ease-in-out;
+  --bg: @osu-colour-l4;
+  --bg-hover: @osu-colour-l3;
+  --bg-disabled: #333;
+  --colour: @osu-colour-c1;
+  --colour-hover: @osu-colour-c1;
   .reset-input();
   .circle(@btn-circle-diameter);
   .default-box-shadow();
@@ -11,14 +17,14 @@
   text-shadow: inherit;
 
   flex: none;
-  background-color: @osu-colour-l4;
-  color: @osu-colour-c1;
-  transition: all 120ms ease-in-out;
+  background-color: var(--bg);
+  color: var(--colour);
+  transition: var(--transition);
   font-size: 14px;
 
   .link-hover({
-    background-color: @osu-colour-l3;
-    color: @osu-colour-c1;
+    background-color: var(--bg-hover);
+    color: var(--colour-hover);
     text-decoration: none;
     box-shadow: 0 5px 15px fade(#000, 40%);
   });
@@ -49,6 +55,30 @@
       box-shadow: none;
       background-color: transparent;
     }
+  }
+
+  &--follow {
+    --bg: hsl(var(--hsl-b3));
+    --bg-hover: hsl(var(--hsl-b1));
+    --bg-disabled: hsl(var(--hsl-b3));
+    --colour: hsl(var(--hsl-l1));
+    --colour-hover: hsl(var(--hsl-c1));
+    .circle(40px);
+    font-size: 12px; // icon size
+  }
+
+  &--follow-small {
+    --bg: transparent;
+    --bg-hover: transparent;
+    --bg-disabled: transparent;
+    --colour: hsl(var(--hsl-l1));
+    --colour-hover: hsl(var(--hsl-c1));
+    font-size: 12px; // icon size
+    border-radius: 0;
+    width: 1em;
+    height: $width;
+    padding: 0;
+    vertical-align: middle;
   }
 
   &--topic-entry {
@@ -121,7 +151,7 @@
   &[disabled],
   &.js-disabled,
   &--disabled {
-    background-color: #333;
+    background-color: var(--bg-disabled);
     cursor: not-allowed;
   }
 
@@ -130,5 +160,31 @@
     .center-content();
     height: 100%;
     width: 100%;
+    // for icon-flip
+    position: relative;
+  }
+
+  &__icon {
+    .full-size();
+    .center-content();
+    --normal-opacity: 1;
+    --hover-opacity: 1;
+
+    opacity: var(--normal-opacity);
+    transition: var(--transition);
+
+    .@{top}:hover &, .@{top}:active & {
+      opacity: var(--hover-opacity);
+    }
+
+    &--hover-hide {
+      --normal-opacity: 1;
+      --hover-opacity: 0;
+    }
+
+    &--hover-show {
+      --normal-opacity: 0;
+      --hover-opacity: 1;
+    }
   }
 }

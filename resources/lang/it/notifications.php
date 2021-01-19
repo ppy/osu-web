@@ -6,6 +6,7 @@
 return [
     'all_read' => 'Lette tutte le notifiche!',
     'delete' => 'Elimina :type',
+    'loading' => '',
     'mark_read' => 'Segna :type come letto',
     'none' => 'Nessuna notifica',
     'see_all' => 'vedi tutte le notifiche',
@@ -133,6 +134,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => 'Nuova beatmap',
+
+                'user_beatmapset_new' => 'Nuova beatmap ":title" di :username',
+                'user_beatmapset_new_compact' => 'Nuova beatmap ":title"',
+                'user_beatmapset_new_group' => 'Nuove beatmap di :username',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medaglie',
 
@@ -200,6 +211,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username ha sbloccato una nuova medaglia, ":title"!',
                 'user_achievement_unlock_self' => 'Hai sbloccato una nuova medaglia, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':username ha creato nuove beatmap',
             ],
         ],
     ],

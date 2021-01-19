@@ -5,11 +5,12 @@
 
 return [
     'all_read' => 'تم قراءة جميع الإشعارات!',
-    'delete' => '',
+    'delete' => 'حذف :type',
+    'loading' => 'تحميل الإشعارات الغير مقروءة...',
     'mark_read' => 'مَحو :type',
     'none' => 'لا إشعارات',
     'see_all' => 'أِظهار جميع الإشعارات',
-    'see_channel' => '',
+    'see_channel' => 'انتقل للمُحادثة',
 
     'filters' => [
         '_' => 'الكل',
@@ -59,8 +60,8 @@ return [
                 'beatmapset_qualify_compact' => 'دخلت الخريطة قائمة التصنيف',
                 'beatmapset_rank' => 'اصبحت ":title" مصنفة',
                 'beatmapset_rank_compact' => 'تم تصنيف الخريطة',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved' => '":title" تمت ازالتها من "الخرائط المحبوبة"',
+                'beatmapset_remove_from_loved_compact' => 'تمت إزالة الخريطة من "الخرائِط المحبوبة"',
                 'beatmapset_reset_nominations' => 'تم اعادة تعيين ترشيحات ":title"',
                 'beatmapset_reset_nominations_compact' => 'تم اعادة ضبط الترشيح',
             ],
@@ -133,6 +134,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => 'خريطة جديدة',
+
+                'user_beatmapset_new' => 'خريطة جديدة ":title" بواسطة :username',
+                'user_beatmapset_new_compact' => 'خريطة جديدة ":title"',
+                'user_beatmapset_new_group' => 'خرائِط جديدة بواسطة :username',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'ميدالية',
 
@@ -140,7 +151,7 @@ return [
                 '_' => 'ميدالية جديدة',
                 'user_achievement_unlock' => 'تم فتح !:title',
                 'user_achievement_unlock_compact' => 'تم فتح ":title"!',
-                'user_achievement_unlock_group' => '',
+                'user_achievement_unlock_group' => 'تم فتح الميداليات!',
             ],
         ],
     ],
@@ -163,7 +174,7 @@ return [
                 'beatmapset_nominate' => 'اصبحت ":title" مرشحة',
                 'beatmapset_qualify' => '":title" حصلت على ترشيحات كافية ودخلت حالة التصنيف',
                 'beatmapset_rank' => 'اصبحت ":title" مصنفة',
-                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved' => '":title" أُزيلَت مِن "الخرائط المحبوبة"',
                 'beatmapset_reset_nominations' => 'تم اعادة تعيين ترشيحات ":title"',
             ],
 
@@ -200,6 +211,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username فتح ميدالية جديدة، ":title"!',
                 'user_achievement_unlock_self' => 'لقد فتحت ميدالية جديدة، ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => 'قام :username بإنشاء خرائط جديدة',
             ],
         ],
     ],

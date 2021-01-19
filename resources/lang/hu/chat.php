@@ -15,6 +15,8 @@ return [
             'blocked' => 'A címzett blokkolt téged',
             'channel_moderated' => 'A csatorna moderálva lett',
             'friends_only' => 'A címzett csak a barátlistáján szereplő emberektől fogad üzeneteket',
+            'not_enough_plays' => '',
+            'not_verified' => '',
             'restricted' => 'Jelenleg fel vagy függesztve',
             'target_restricted' => 'A címzett jelenleg korlátozva van',
         ],

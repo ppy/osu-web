@@ -15,6 +15,8 @@ return [
             'blocked' => 'Byl jste zablokován příjemcem',
             'channel_moderated' => 'Tento kanál je právě moderován',
             'friends_only' => 'Příjemce může přijímat zprávy pouze od lidí na jeho seznamu přátel',
+            'not_enough_plays' => '',
+            'not_verified' => '',
             'restricted' => 'Váš účet je teď zablokován',
             'target_restricted' => 'Účet příjemce je právě zablokován',
         ],

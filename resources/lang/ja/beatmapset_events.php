@@ -25,6 +25,7 @@ return [
         'language_edit' => '言語が :old から :new に変更されました。',
         'love' => ':userがLovedに追加しました。',
         'nominate' => ':userがノミネートしました。',
+        'nominate_modes' => ':user(:modes)がノミネートしました。',
         'nomination_reset' => '新しい問題 :discussion (:text)によりノミネートがリセットされました。',
         'qualify' => 'このビートマップは既に必要なノミネーション数に達しており、Qualifiedされています。',
         'rank' => 'Rankedされました。',

@@ -51,7 +51,7 @@ return [
         'actions' => [
             'destroy' => 'Hapus Kiriman',
             'edit' => 'Sunting post',
-            'report' => '',
+            'report' => 'Laporkan post',
             'restore' => 'Kembalikan post',
         ],
 
@@ -127,11 +127,11 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'langganan forum',
+            'title_compact' => 'daftar pantauan topik forum',
 
             'box' => [
                 'total' => 'Topik yang dilanggan',
-                'unread' => 'Topik dengan balasan terbaru',
+                'unread' => 'Topik-topik dengan balasan baru',
             ],
 
             'info' => [
@@ -175,7 +175,7 @@ return [
                 'length_days_suffix' => 'hari',
                 'length_info' => 'Biarkan kosong apabila Anda tidak ingin menerapkan tenggat waktu pada jajak pendapat ini',
                 'max_options' => 'Pilihan per pengguna',
-                'max_options_info' => 'Jumlah opsi yang dapat dipilih setiap pengguna saat memilih',
+                'max_options_info' => 'Jumlah opsi yang dapat dipilih setiap pengguna saat memilih.',
                 'options' => 'Pilihan',
                 'options_info' => 'Tempatkan setiap opsi pada baris baru. Anda dapat memasukkan hingga 10 opsi.',
                 'title' => 'Pertanyaan',
@@ -282,7 +282,7 @@ return [
                 ],
 
                 'user' => [
-                    'count' => '{0} tidak ada suara|{1} :count suara|[2,*] :count suara',
+                    'count' => '{0} tidak ada suara|{1} :count_delimited suara|[2,*] :count_delimited suara',
                     'current' => 'Anda memiliki :votes tersisa.',
                     'not_enough' => "Anda tidak memiliki cukup hak suara untuk dapat mempromosikan gagasan ini lebih jauh.",
                 ],
@@ -294,7 +294,7 @@ return [
                 'vote' => 'Pilih',
 
                 'button' => [
-                    'change_vote' => 'Ganti suara',
+                    'change_vote' => 'Ubah suara',
                     'edit' => 'Sunting jajak pendapat',
                     'view_results' => 'Lewati ke hasil jajak pendapat',
                     'vote' => 'Pilih',

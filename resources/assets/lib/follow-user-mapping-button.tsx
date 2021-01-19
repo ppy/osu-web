@@ -2,39 +2,48 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
-import { without } from 'lodash';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
+  alwaysVisible?: boolean;
+  followers?: number;
   modifiers?: Modifiers;
+  showFollowerCounter?: boolean;
   userId: number;
 }
 
 interface State {
-  follow: boolean;
+  followersWithoutSelf: number;
+  following: boolean;
   loading: boolean;
 }
 
 const bn = 'user-action-button';
 
-export default class FollowUserModdingButton extends React.Component<Props, State> {
+export default class FollowUserMappingButton extends React.Component<Props, State> {
   private buttonRef = React.createRef<HTMLButtonElement>();
-  private eventId = `follow-user-modding-button-${osu.uuid()}`;
+  private eventId = `follow-user-mapping-button-${osu.uuid()}`;
   private xhr?: JQueryXHR;
 
   constructor(props: Props) {
     super(props);
 
+    const following = currentUser.follow_user_mapping?.includes(this.props.userId) ?? false;
+    let followersWithoutSelf = this.props.followers ?? 0;
+
+    if (following !== false) followersWithoutSelf -= 1;
+
     this.state = {
-      follow: currentUser.follow_user_modding?.includes(this.props.userId) ?? false,
+      followersWithoutSelf,
+      following,
       loading: false,
     };
   }
 
   componentDidMount() {
-    $.subscribe(`followUserModding:refresh.${this.eventId}`, this.refresh);
+    $.subscribe(`user:followUserMapping:refresh.${this.eventId}`, this.refresh);
   }
 
   componentWillUnmount() {
@@ -43,27 +52,38 @@ export default class FollowUserModdingButton extends React.Component<Props, Stat
   }
 
   render() {
-    if (currentUser.id == null || currentUser.id === this.props.userId) {
+    const canToggle = !(currentUser.id == null || currentUser.id === this.props.userId);
+
+    if (!canToggle && !this.props.alwaysVisible) {
       return null;
     }
 
-    const title = osu.trans(`follows.user.modding.${this.state.follow ? 'to_0' : 'to_1'}`);
+    const title = canToggle
+      ? osu.trans(`follows.mapping.${this.state.following ? 'to_0' : 'to_1'}`)
+      : osu.trans(`follows.mapping.followers`);
 
     let blockClass = classWithModifiers(bn, this.props.modifiers);
-    blockClass += classWithModifiers(bn, { friend: this.state.follow }, true);
+    blockClass += classWithModifiers(bn, { friend: this.state.following }, true);
+
+    const disabled = this.state.loading || !canToggle;
 
     return (
       <div title={title}>
         <button
           className={blockClass}
-          disabled={this.state.loading}
+          disabled={disabled}
           onClick={this.onClick}
           ref={this.buttonRef}
         >
           {this.renderIcon()}
+          {this.renderCounter()}
         </button>
       </div>
     );
+  }
+
+  private followers() {
+    return this.state.followersWithoutSelf + (this.state.following ? 1 : 0);
   }
 
   private onClick = () => {
@@ -73,12 +93,12 @@ export default class FollowUserModdingButton extends React.Component<Props, Stat
           follow: {
             notifiable_id: this.props.userId,
             notifiable_type: 'user',
-            subtype: 'modding',
+            subtype: 'mapping',
           },
         },
       };
 
-      if (this.state.follow) {
+      if (this.state.following) {
         params.type = 'DELETE';
         params.url = route('follows.destroy');
       } else {
@@ -95,24 +115,35 @@ export default class FollowUserModdingButton extends React.Component<Props, Stat
 
   private refresh = () => {
     this.setState({
-      follow: currentUser.follow_user_modding.includes(this.props.userId),
+      following: currentUser.follow_user_mapping.includes(this.props.userId),
     });
   }
 
+  private renderCounter() {
+    if (this.props.showFollowerCounter == null || this.props.followers == null) {
+      return;
+    }
+
+    return(
+      <span className={`${bn}__counter`}>
+        {osu.formatNumber(this.followers())}
+      </span>
+    );
+  }
+
   private renderIcon() {
-    return (this.state.loading
+    const icon = this.state.loading
       ? <Spinner />
-      : <i className='fas fa-bell' />
+      : <i className='fas fa-bell' />;
+
+    return(
+      <span className={`${bn}__icon-container`}>
+        {icon}
+      </span>
     );
   }
 
   private updateData = () => {
-    if (this.state.follow) {
-      currentUser.follow_user_modding = without(currentUser.follow_user_modding, this.props.userId);
-    } else {
-      currentUser.follow_user_modding = currentUser.follow_user_modding.concat(this.props.userId);
-    }
-
-    $.publish('followUserModding:refresh');
+    $.publish('user:followUserMapping:update', { following: !this.state.following, userId: this.props.userId });
   }
 }
