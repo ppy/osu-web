@@ -317,10 +317,12 @@ class Channel extends Model
 
     private function userChannelFor(User $user)
     {
-        return $this->memoize(__FUNCTION__.':'.$user->getKey(), function () use ($user) {
+        $userId = $user->getKey();
+
+        return $this->memoize(__FUNCTION__.':'.$userId, function () use ($user, $userId) {
             $userChannel = UserChannel::where([
                 'channel_id' => $this->channel_id,
-                'user_id' => $user->getKey(),
+                'user_id' => $userId,
             ])->first();
 
             if ($userChannel !== null) {
