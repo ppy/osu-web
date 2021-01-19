@@ -3,8 +3,9 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    $username = $score->user === null || $score->user->isDeleted() ? trans('users.deleted') : $score->user->username;
     $title = trans('scores.show.title', [
-        'username' => $score->user->username,
+        'username' => $username,
         'title' => $score->beatmap->beatmapset->getDisplayTitle(auth()->user()),
         'version' => $score->beatmap->version,
     ]);
