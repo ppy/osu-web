@@ -39,6 +39,9 @@ class Channel extends Model
         'creation_time',
     ];
 
+    /** @var \Illuminate\Support\Collection */
+    private $pmUsers;
+
     const TYPES = [
         'public' => 'PUBLIC',
         'private' => 'PRIVATE',
@@ -61,6 +64,7 @@ class Channel extends Model
             $channel->save();
             $channel->addUser($user1);
             $channel->addUser($user2);
+            $channel->pmUsers = collect([$user1, $user2]);
         });
 
         return $channel;
@@ -70,7 +74,13 @@ class Channel extends Model
     {
         $channelName = static::getPMChannelName($user1, $user2);
 
-        return static::where('name', $channelName)->first();
+        $channel = static::where('name', $channelName)->first();
+
+        if ($channel !== null) {
+            $channel->pmUsers = collect([$user1, $user2]);
+        }
+
+        return $channel;
     }
 
     /**
@@ -182,8 +192,14 @@ class Channel extends Model
             return;
         }
 
-        return $this->memoize(__FUNCTION__.':'.$user->getKey(), function () use ($user) {
-            return $this->users()->where('user_id', '<>', $user->user_id)->first();
+        $userId = $user->getKey();
+
+        return $this->memoize(__FUNCTION__.':'.$userId, function () use ($userId) {
+            if (isset($this->pmUsers)) {
+                return $this->pmUsers->firstWhere('user_id', '<>', $userId);
+            } else {
+                return $this->users()->where('user_id', '<>', $userId)->first();
+            }
         });
     }
 
