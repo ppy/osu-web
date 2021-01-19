@@ -19,6 +19,11 @@ class UserNotificationsCleanup extends Command
     public function handle()
     {
         $total = config('osu.notification.cleanup.max_delete_per_run');
+
+        if ($total === 0) {
+            return;
+        }
+
         $perLoop = min($total, 10000);
         $loops = $total / $perLoop;
 
