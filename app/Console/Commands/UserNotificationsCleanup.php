@@ -10,10 +10,6 @@ use App\Models\User;
 use App\Models\UserNotification;
 use Illuminate\Console\Command;
 
-/**
- * Removes expired tokens and auth codes from the OAuth tables.
- * It uses chunkById which is much slower than a straight batch delete, but doesn't lock the entire table while deleting.
- */
 class UserNotificationsCleanup extends Command
 {
     protected $signature = 'user-notifications:cleanup';
