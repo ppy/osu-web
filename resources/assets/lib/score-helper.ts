@@ -5,6 +5,7 @@ import ScoreJson from 'interfaces/score-json';
 
 export function canBeReported(score: ScoreJson) {
   return score.best_id != null
+    && !score.user.is_deleted
     && currentUser.id != null
     && score.user_id !== currentUser.id;
 }

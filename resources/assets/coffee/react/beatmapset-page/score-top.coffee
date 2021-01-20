@@ -5,7 +5,7 @@ import FlagCountry from 'flag-country'
 import { route } from 'laroute'
 import Mod from 'mod'
 import * as React from 'react'
-import { div, a } from 'react-dom-factories'
+import { a, div, span } from 'react-dom-factories'
 import ScoreboardTime from 'scoreboard-time'
 import { classWithModifiers } from 'utils/css'
 
@@ -33,18 +33,26 @@ export ScoreTop = (props) ->
           div className: "score-rank score-rank--tiny score-rank--#{props.score.rank}"
 
         div className: "#{bn}__avatar",
-          a
-            href: route 'users.show', user: props.score.user.id
-            className: "avatar u-hover"
-            style:
-              backgroundImage: osu.urlPresence(props.score.user.avatar_url)
+          if props.score.user.is_deleted
+            span className: 'avatar avatar--guest'
+          else
+            a
+              href: route 'users.show', user: props.score.user.id
+              className: "avatar u-hover"
+              style:
+                backgroundImage: osu.urlPresence(props.score.user.avatar_url)
 
         div className: "#{bn}__user-box",
-          a
-            className: "#{bn}__username js-usercard u-hover"
-            'data-user-id': props.score.user.id
-            href: route 'users.show', user: props.score.user.id, mode: props.score.mode
-            props.score.user.username
+          if props.score.user.is_deleted
+            span
+              className: "#{bn}__username"
+              osu.trans('users.deleted')
+          else
+            a
+              className: "#{bn}__username js-usercard u-hover"
+              'data-user-id': props.score.user.id
+              href: route 'users.show', user: props.score.user.id, mode: props.score.mode
+              props.score.user.username
 
           div
             className: "#{bn}__achieved u-hover"

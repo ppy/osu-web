@@ -41,6 +41,10 @@ return [
         ],
     ],
 
+    'nsfw_badge' => [
+        'label' => '',
+    ],
+
     'show' => [
         'discussion' => 'Дискусия',
 
@@ -106,10 +110,22 @@ return [
             'genre' => 'Жанр',
             'language' => 'Език',
             'no_scores' => 'Информацията все още се обработва...',
+            'nsfw' => '',
             'points-of-failure' => 'Връхни точки на провал',
             'source' => 'Източник',
             'success-rate' => 'Степен на успех (%)',
             'tags' => 'Тагове',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Medlemmer efter spiltilstand',
     ],
 
     'force_reactivation' => [
@@ -88,7 +88,7 @@ return [
         'failed' => 'Ugyldigt login',
         'forgot' => 'Glemt din adgangskode?',
         'info' => 'Log ind for at fortsætte',
-        'invalid_captcha' => '',
+        'invalid_captcha' => 'For mange mislykkede loginforsøg. Udfyld venligst captcha og prøv igen. (Opdater side, hvis captcha ikke er synlig)',
         'locked_ip' => 'din IP-adresse er låst. Vent venligst et par minutter.',
         'password' => 'Adgangskode',
         'register' => "Har du ikke en osu! konto? Opret en ny én!",
@@ -155,8 +155,8 @@ return [
         'title' => ":username´s profil",
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'Slået op :link',
+            'count' => ':count_delimited kommentar|:count_delimited kommentarer',
         ],
         'edit' => [
             'cover' => [
@@ -312,7 +312,7 @@ return [
                 'download_replay' => 'Download Replay',
                 'not_ranked' => 'Kun rangerede beatmaps giver pp.',
                 'pp_weight' => 'vejede: :percentage',
-                'view_details' => '',
+                'view_details' => 'Vis detaljer',
                 'title' => 'Ranks',
 
                 'best' => [

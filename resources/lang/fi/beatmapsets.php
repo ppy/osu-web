@@ -41,6 +41,10 @@ return [
         ],
     ],
 
+    'nsfw_badge' => [
+        'label' => '',
+    ],
+
     'show' => [
         'discussion' => 'Keskustelu',
 
@@ -106,10 +110,22 @@ return [
             'genre' => 'Tyylilaji',
             'language' => 'Kieli',
             'no_scores' => 'Dataa lasketaan...',
+            'nsfw' => '',
             'points-of-failure' => 'Epäonnistumiskohdat',
             'source' => 'Lähde',
             'success-rate' => 'Läpäisyprosentti',
             'tags' => 'Tunnisteet',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Afspil næste sang automatisk',
     ],
 
     'defaults' => [
@@ -77,7 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'hjælp',
-            'getAbuse' => '',
+            'getAbuse' => 'anmeld misbrug',
             'getFaq' => 'faq',
             'getRules' => 'regler',
             'getSupport' => 'nej, jeg behøver virkelig noget hjælp!',
@@ -97,7 +97,7 @@ return [
             'country' => 'land',
             'index' => 'præstation',
             'kudosu' => 'kudosu',
-            'multiplayer' => '',
+            'multiplayer' => 'multiplayer',
             'score' => 'score',
         ],
         'store' => [
@@ -180,7 +180,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'log ind / Tilmeld',
 
         'login' => [
             'forgot' => "Jeg har glemt min login-info",
@@ -204,7 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Indstillinger',
-            'follows' => '',
+            'follows' => 'Overvågningsliste',
             'friends' => 'Venner',
             'logout' => 'Log ud',
             'profile' => 'Min Profil',

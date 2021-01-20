@@ -16,7 +16,7 @@ return [
             'channel_moderated' => 'Ten kanał jest w trybie tylko dla moderatorów',
             'friends_only' => 'Ten użytkownik nie przyjmuje wiadomości od osób spoza listy znajomych',
             'not_enough_plays' => '',
-            'not_verified' => '',
+            'not_verified' => 'Twoja sesja nie została zweryfikowana',
             'restricted' => 'Twoje konto zostało zablokowane',
             'target_restricted' => 'Konto tego użytkownika jest obecnie zablokowane',
         ],

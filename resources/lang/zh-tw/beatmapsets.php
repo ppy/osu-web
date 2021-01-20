@@ -41,6 +41,10 @@ return [
         ],
     ],
 
+    'nsfw_badge' => [
+        'label' => '',
+    ],
+
     'show' => [
         'discussion' => '討論',
 
@@ -106,10 +110,22 @@ return [
             'genre' => '曲風',
             'language' => '語言',
             'no_scores' => '資料還在計算中。。。',
+            'nsfw' => '',
             'points-of-failure' => '失敗位置',
             'source' => '來源',
             'success-rate' => '成功率',
             'tags' => '標籤',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

@@ -69,14 +69,14 @@ return [
     ],
 
     'order' => [
-        'cancel' => '',
-        'cancel_confirm' => '',
-        'cancel_not_allowed' => '',
+        'cancel' => 'Annulla Ordine',
+        'cancel_confirm' => 'Quest\'ordine verrà annullato insieme al suo pagamento. Il provider del pagamento potrebbe non rilasciare immediatamente i fondi riservati. Sei sicuro?',
+        'cancel_not_allowed' => 'Quest\'ordine non può essere annullato al momento.',
         'invoice' => 'Mostra Ricevuta',
         'no_orders' => 'Nessun ordine da visualizzare.',
         'paid_on' => 'Ordine effettuato :date',
-        'resume' => 'Riprendi il checkout',
-        'shopify_expired' => '',
+        'resume' => 'Riprendi Pagamento',
+        'shopify_expired' => 'Il link del pagamento per quest\'ordine è scaduto.',
 
         'item' => [
             'display_name' => [

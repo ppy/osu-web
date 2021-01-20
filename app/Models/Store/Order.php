@@ -69,7 +69,7 @@ class Order extends Model
     ];
 
     protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
-    public $macros = ['itemsQuantities'];
+    protected $macros = ['itemsQuantities'];
 
     protected static function splitTransactionId($value)
     {

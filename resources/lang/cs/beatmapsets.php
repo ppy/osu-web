@@ -41,6 +41,10 @@ return [
         ],
     ],
 
+    'nsfw_badge' => [
+        'label' => '',
+    ],
+
     'show' => [
         'discussion' => 'Diskuze',
 
@@ -106,10 +110,22 @@ return [
             'genre' => 'Žánr',
             'language' => 'Jazyk',
             'no_scores' => 'Data se vypočítávají...',
+            'nsfw' => '',
             'points-of-failure' => 'Body neúspěchů',
             'source' => 'Zdroj',
             'success-rate' => 'Úspěšnost',
             'tags' => 'Tagy',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

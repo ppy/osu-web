@@ -155,7 +155,7 @@ return [
         'title' => ":username's profil",
 
         'comments_count' => [
-            '_' => '',
+            '_' => 'Upplagd :link',
             'count' => '',
         ],
         'edit' => [

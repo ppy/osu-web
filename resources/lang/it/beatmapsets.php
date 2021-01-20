@@ -37,8 +37,12 @@ return [
             'confirmation' => '',
             'header' => '',
             'hybrid_warning' => '',
-            'which_modes' => '',
+            'which_modes' => 'Nominare per quali modalità?',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -106,10 +110,22 @@ return [
             'genre' => 'Genere',
             'language' => 'Lingua',
             'no_scores' => 'Dati ancora in elaborazione...',
+            'nsfw' => '',
             'points-of-failure' => 'Punti di Fallimento',
             'source' => 'Sorgente',
             'success-rate' => 'Rateo di Successo',
             'tags' => 'Tag',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

@@ -16,8 +16,8 @@ return [
     'username' => 'ユーザー名',
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => '投稿時間',
+        'relevance' => '関連性',
     ],
 
     'forum_topics' => [

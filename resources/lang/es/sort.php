@@ -16,8 +16,8 @@ return [
     'username' => 'Nombre de usuario',
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Tiempo de publicación',
+        'relevance' => 'Relevancia',
     ],
 
     'forum_topics' => [

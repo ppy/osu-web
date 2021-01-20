@@ -9,6 +9,7 @@ use App\Exceptions\API;
 use App\Jobs\Notifications\ChannelMessage;
 use App\Models\Match\Match;
 use App\Models\User;
+use App\Traits\Memoizes;
 use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
 use Illuminate\Support\Str;
@@ -26,6 +27,8 @@ use LaravelRedis as Redis;
  */
 class Channel extends Model
 {
+    use Memoizes;
+
     protected $primaryKey = 'channel_id';
 
     protected $casts = [
@@ -172,7 +175,9 @@ class Channel extends Model
             return;
         }
 
-        return $this->users()->where('user_id', '<>', $user->user_id)->first();
+        return $this->memoize(__FUNCTION__.':'.$user->getKey(), function () use ($user) {
+            return $this->users()->where('user_id', '<>', $user->user_id)->first();
+        });
     }
 
     public function receiveMessage(User $sender, string $content, bool $isAction = false)

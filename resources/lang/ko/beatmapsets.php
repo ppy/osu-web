@@ -8,7 +8,7 @@ return [
         'disabled' => '이 비트맵은 현재 다운로드할 수 없습니다.',
         'parts-removed' => '이 비트맵의 일부가 콘텐츠 제작자 또는 제삼자 권리자의 저작권 주장으로 인해 삭제되었습니다.',
         'more-info' => '더 많은 정보를 보려면 여기를 확인하세요.',
-        'rule_violation' => '',
+        'rule_violation' => '이 맵에 포함된 일부 요소는 osu!에서 사용하기에 적합하지 않다고 판단되어 제거되었습니다.',
     ],
 
     'index' => [
@@ -17,7 +17,7 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => '비트맵 없음',
 
         'download' => [
             'all' => '다운로드',
@@ -28,17 +28,21 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'hybrid_requires_modes' => '하이브리드 비트맵 셋을 사용하려면 추천할 플레이 모드를 하나 이상 선택해야 합니다.',
+        'incorrect_mode' => '이 모드 (:mode)를 추천할 권한을 가지고 있지 않습니다.',
+        'full_bn_required' => '완전한 Nominator가 되어야만 이 qualify 추천을 할 수 있습니다.',
+        'too_many' => '비트맵 추천 요구 사항을 이미 만족했습니다.',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'confirmation' => '정말로 이 비트맵을 추천하시겠어요?',
+            'header' => '비트맵 추천',
+            'hybrid_warning' => '주의: 오직 한 번만 추천할 수 있기에 원하는 게임 모드 전체를 선택했는지 확인해주세요.',
+            'which_modes' => '어떤 모드로 추천하시겠어요?',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -106,10 +110,22 @@ return [
             'genre' => '장르',
             'language' => '언어',
             'no_scores' => '데이터를 수집중입니다...',
+            'nsfw' => '',
             'points-of-failure' => '실패 지점',
             'source' => '원작',
             'success-rate' => '클리어 비율',
             'tags' => '태그',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

@@ -58,7 +58,7 @@
                             <li>
                                 <span class="oauth-scopes__icon">
                                     <span class="fas fa-check"></span>
-                                </span>{{ $scope->description }}
+                                </span>{{ trans("api.scopes.{$scope->id}") }}
                             </li>
                         @endforeach
                     </ul>
