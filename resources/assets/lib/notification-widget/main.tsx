@@ -193,6 +193,8 @@ export default class Main extends React.Component<Props, State> {
         } else {
           transKey = 'notifications.none';
         }
+      } else if (core.notificationsWorker.waitingVerification) {
+        transKey = 'notifications.verifying';
       }
 
       return (

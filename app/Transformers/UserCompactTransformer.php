@@ -96,6 +96,7 @@ class UserCompactTransformer extends TransformerAbstract
             'id' => $user->user_id,
             'is_active' => $user->isActive(),
             'is_bot' => $user->isBot(),
+            'is_deleted' => $user->isDeleted(),
             'is_online' => $user->isOnline(),
             'is_supporter' => $user->isSupporter(),
             'last_visit' => json_time($user->displayed_last_visit),

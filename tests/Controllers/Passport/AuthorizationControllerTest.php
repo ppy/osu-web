@@ -6,6 +6,7 @@
 namespace Tests\Controllers\Passport;
 
 use App\Http\Controllers\Passport\AuthorizationController;
+use App\Models\OAuth\Client;
 use Mockery;
 use Tests\TestCase;
 use Zend\Diactoros\ServerRequest;
@@ -16,6 +17,8 @@ class AuthorizationControllerTest extends TestCase
 
     public function testAuthorizeNormalizes()
     {
+        $client = factory(Client::class)->create();
+
         // phpcs:disable
         $request = new ServerRequest(
             /* $serverParams */ [],
@@ -25,7 +28,7 @@ class AuthorizationControllerTest extends TestCase
             /* $body */ 'php://input',
             /* $headers */  [],
             /* $cookies */  [],
-            /* $queryParams */ ['scope' => 'one two three'],
+            /* $queryParams */ ['client_id' => $client->getKey(), 'scope' => 'one two three'],
             /* $parsedBody */ null,
             /* $protocol*/ '1.1'
         );
