@@ -38,9 +38,6 @@
         {!! json_encode($languages) !!}
     </script>
 
-    <script id="json-recommended-star-difficulty-all" type="application/json">
-        {!! json_encode($recommendedStarDifficultyAll) !!}
-    </script>
-
+    @include('beatmapsets._recommended_star_difficulty_all')
     @include('layout._extra_js', ['src' => 'js/react/beatmapset-page.js'])
 @endsection
