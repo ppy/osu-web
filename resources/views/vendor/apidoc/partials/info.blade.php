@@ -4,6 +4,8 @@
 --}}
 @php
     use App\Libraries\ApidocRouteHelper;
+
+    $wikiUrl = wiki_url('Bot_account', null, false);
 @endphp
 
 # Introduction
@@ -257,7 +259,7 @@ The `Resource Owner` is the user that a token acts on behalf of.
 
 For [Authorization Code Grant](#authorization-code-grant) tokens, the Resource Owner is the user authorizing the token.
 
-[Client Credentials Grant](#client-credentials-grant) tokens do not have a Resource Owner (i.e. is a guest user), unless they have been granted the {{ ApidocRouteHelper::scopeBadge('bot') }} scope. The Resource Owner of tokens with the {{ ApidocRouteHelper::scopeBadge('bot') }} scope is the owner of the OAuth Application that was granted the token. Currently, only [Chat Bot]({$wikiUrl})s are allowed to request the {{ ApidocRouteHelper::scopeBadge('bot') }} scope.
+[Client Credentials Grant](#client-credentials-grant) tokens do not have a Resource Owner (i.e. is a guest user), unless they have been granted the {{ ApidocRouteHelper::scopeBadge('bot') }} scope. The Resource Owner of tokens with the {{ ApidocRouteHelper::scopeBadge('bot') }} scope is the owner of the OAuth Application that was granted the token. Currently, only [Chat Bot]({{ $wikiUrl }})s are allowed to request the {{ ApidocRouteHelper::scopeBadge('bot') }} scope.
 
 
 ## Scopes
@@ -265,7 +267,6 @@ For [Authorization Code Grant](#authorization-code-grant) tokens, the Resource O
 The following scopes are currently supported:
 
 @php
-$wikiUrl = wiki_url('Bot_account', null, false);
 $scopeDescriptions = [
     'bot' => "[Chat Bot]({$wikiUrl}) and [Client Credentials Grant](#client-credentials-grant) exclusive scope.",
     'chat.write' => "Allows sending chat messages on a user's behalf; exclusive to [Chat Bot]({$wikiUrl})s",
