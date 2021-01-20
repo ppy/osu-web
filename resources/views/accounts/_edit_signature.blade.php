@@ -41,7 +41,7 @@
 
             <div class="account-edit-entry account-edit-entry--wide account-edit-entry--no-label">
                 <div class="account-edit-entry__misc-info">
-                    @include('forum._post_toolbar')
+                    @include('forum._post_toolbar', ['disabled' => Auth::user()->isSilenced()])
                 </div>
             </div>
         </div>

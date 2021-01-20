@@ -2,7 +2,12 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-<div class="post-box-toolbar">
+<div
+    class="post-box-toolbar"
+    @if (isset($disabled) && $disabled === true)
+        disabled
+    @endif
+>
     <button
         class="btn-circle btn-circle--bbcode js-bbcode-btn--bold"
         title="{{ trans("bbcode.bold") }}"
