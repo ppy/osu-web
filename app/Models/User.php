@@ -1695,11 +1695,38 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     public function recommendedStarDifficulty(string $mode)
     {
         $stats = $this->statistics($mode);
-        if ($stats) {
-            return pow($stats->rank_score, 0.4) * 0.195;
-        }
 
-        return 1.0;
+        return UserStatistics\Model::calculateRecommendedStarDifficulty($stats);
+    }
+
+    /**
+     * Recommended star difficulty for all modes.
+     *
+     * @return float
+     */
+    public function recommendedStarDifficultyAll()
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            $unionQuery = null;
+
+            foreach (Beatmap::MODES as $key => $_value) {
+                $query = $this->statistics($key, true)->selectRaw("'{$key}' AS game_mode, rank_score");
+
+                if ($unionQuery === null) {
+                    $unionQuery = $query;
+                } else {
+                    $unionQuery->unionAll($query);
+                }
+            }
+
+            $stats = $unionQuery->get()->keyBy('game_mode');
+
+            foreach (Beatmap::MODES as $key => $_value) {
+                $recs[$key] = UserStatistics\Model::calculateRecommendedStarDifficulty($stats[$key] ?? null);
+            }
+
+            return $recs;
+        });
     }
 
     public function refreshForumCache($forum = null, $postsChangeCount = 0)

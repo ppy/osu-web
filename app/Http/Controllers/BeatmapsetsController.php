@@ -69,6 +69,10 @@ class BeatmapsetsController extends Controller
                 $languages = [];
             }
 
+            $recommendedStarDifficultyAll = auth()->check()
+                ? auth()->user()->recommendedStarDifficultyAll()
+                : null;
+
             $noindex = !$beatmapset->esShouldIndex();
 
             return ext_view('beatmapsets.show', compact(
@@ -77,6 +81,7 @@ class BeatmapsetsController extends Controller
                 'genres',
                 'languages',
                 'noindex',
+                'recommendedStarDifficultyAll',
                 'set'
             ));
         }

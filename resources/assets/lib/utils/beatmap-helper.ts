@@ -25,9 +25,20 @@ interface FindDefaultParams<T> {
 
 export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>): T | null {
   if (params.items != null) {
-    return _.findLast<T>(params.items, isVisibleBeatmap)
-      ?? _.last(params.items)
-      ?? null;
+    let currentDiffDelta: number;
+    let currentItem: T | null = null;
+    const targetDiff = userRecommendedDifficulty(params.mode ?? modes[0]);
+
+    params.items.forEach((item) => {
+      const diffDelta = Math.abs(item.difficulty_rating - targetDiff);
+
+      if (isVisibleBeatmap(item) && (currentDiffDelta == null || diffDelta < currentDiffDelta)) {
+        currentDiffDelta = diffDelta;
+        currentItem = item;
+      }
+    });
+
+    return currentItem ?? _.last(params.items) ?? null;
   }
 
   if (params.group == null) return null;
@@ -35,7 +46,7 @@ export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>)
   const findModes = params.mode == null ? userModes() : [params.mode];
 
   for (const m of findModes) {
-    const beatmap = findDefault({ items: params.group[m] });
+    const beatmap = findDefault({ items: params.group[m], mode: m });
 
     if (beatmap != null) return beatmap;
   }
@@ -125,4 +136,17 @@ function userModes() {
   ret.unshift(currentMode);
 
   return ret;
+}
+
+let userRecommendedDifficultyCache: Partial<Record<GameMode, number>> | null = null;
+
+function userRecommendedDifficulty(mode: GameMode) {
+  if (userRecommendedDifficultyCache == null) {
+    userRecommendedDifficultyCache = osu.parseJson<Record<GameMode, number> | null>('json-recommended-star-difficulty-all') ?? {};
+    $(document).one('turbolinks:before-cache', () => {
+      userRecommendedDifficultyCache = null;
+    });
+  }
+
+  return userRecommendedDifficultyCache[mode] ?? 1.0;
 }
