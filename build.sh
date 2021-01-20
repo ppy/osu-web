@@ -21,8 +21,9 @@ else
   COMPOSER="composer"
 fi
 
-# dummy user, no privilege github token to avoid github api limit
-${COMPOSER} config -g github-oauth.github.com 98cbc568911ef1e060a3a31623f2c80c1786d5ff
+if [ -n "${GITHUB_TOKEN}" ]; then
+  ${COMPOSER} config -g github-oauth.github.com "${GITHUB_TOKEN}"
+fi
 
 rm -f bootstrap/cache/*.php bootstrap/cache/*.json
 
