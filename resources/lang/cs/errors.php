@@ -27,7 +27,6 @@ return [
         'operation_timeout_exception' => '',
     ],
 
-    'logged_out' => 'Byl jsi odhlášen. Přihlas se prosím a zkus to znovu.',
     'supporter_only' => 'Pro použití této funkce musíš mít osu! supporter tag.',
     'no_restricted_access' => 'Tuto akci nemůžeš provést, když je tvůj účet v omezeném režimu.',
     'unknown' => 'Vyskytla se neznámá chyba.',

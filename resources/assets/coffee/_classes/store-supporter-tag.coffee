@@ -85,9 +85,10 @@ class @StoreSupporterTag
     .done (data) =>
       @user = data
 
-    .fail (xhr) ->
-      if xhr.status == 401
-        osu.popup osu.trans('errors.logged_out'), 'danger'
+    .fail (xhr, status) =>
+      $(@usernameInput)
+        .trigger 'ajax:error', [xhr, status]
+        .one 'click', @onInput
 
     .always =>
       @searching = false

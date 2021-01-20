@@ -27,7 +27,6 @@ return [
         'operation_timeout_exception' => 'De momento, a pesquisa está mais ocupada que o habitual, tenta outra vez mais tarde.',
     ],
 
-    'logged_out' => 'Foste desconectado. Por favor inicia sessão e tenta outra vez.',
     'supporter_only' => 'Tens de ser um apoiante para utilizar esta funcionalidade.',
     'no_restricted_access' => 'Tu não és capaz de desempenhar esta ação enquanto a tua conta estiver num estado restrito.',
     'unknown' => 'Ocorreu um erro desconhecido.',

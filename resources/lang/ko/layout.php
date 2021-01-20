@@ -204,7 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '설정',
-            'follows' => '',
+            'follows' => '관심 목록',
             'friends' => '친구',
             'logout' => '로그아웃',
             'profile' => '내 프로필',

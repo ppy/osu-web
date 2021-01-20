@@ -22,7 +22,8 @@ abstract class Model extends BaseModel
 
     public $position = null;
     public $weight = null;
-    public $macros = [
+
+    protected $macros = [
         'accurateRankCounts',
         'forListing',
         'userBest',

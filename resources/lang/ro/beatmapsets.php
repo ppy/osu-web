@@ -41,6 +41,10 @@ return [
         ],
     ],
 
+    'nsfw_badge' => [
+        'label' => '',
+    ],
+
     'show' => [
         'discussion' => 'Discuție',
 
@@ -106,10 +110,22 @@ return [
             'genre' => 'Gen',
             'language' => 'Limbă',
             'no_scores' => 'Încă se calculează datele...',
+            'nsfw' => '',
             'points-of-failure' => 'Puncte de eșec',
             'source' => 'Sursă',
             'success-rate' => 'Rata de succes',
             'tags' => 'Tag-uri',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

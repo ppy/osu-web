@@ -220,14 +220,15 @@ return [
             'not-found' => 'no hay resultados',
             'not-found-quote' => '... nop, nada encontrado.',
             'filters' => [
+                'extra' => 'Adicional',
                 'general' => 'General',
-                'mode' => 'Modo',
-                'status' => 'Categorías',
                 'genre' => 'Género',
                 'language' => 'Idioma',
-                'extra' => 'Adicional',
-                'rank' => 'Rango obtenido',
+                'mode' => 'Modo',
+                'nsfw' => '',
                 'played' => 'Jugado',
+                'rank' => 'Rango obtenido',
+                'status' => 'Categorías',
             ],
             'sorting' => [
                 'title' => 'Título',
@@ -330,6 +331,12 @@ return [
         'other' => 'otro',
         'unspecified' => 'no especificado',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Cualquier',
         'played' => 'Ya jugado',

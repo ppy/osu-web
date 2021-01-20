@@ -220,14 +220,15 @@ return [
             'not-found' => 'inga resultat',
             'not-found-quote' => '... nope, ingenting hittades.',
             'filters' => [
+                'extra' => 'extra',
                 'general' => 'Allmänt',
-                'mode' => 'Läge',
-                'status' => 'Kategorier',
                 'genre' => 'Genre',
                 'language' => 'Språk',
-                'extra' => 'extra',
-                'rank' => 'Rank Uppnådd',
+                'mode' => 'Läge',
+                'nsfw' => '',
                 'played' => 'Spelade',
+                'rank' => 'Rank Uppnådd',
+                'status' => 'Kategorier',
             ],
             'sorting' => [
                 'title' => 'Titel',
@@ -330,6 +331,12 @@ return [
         'other' => 'Annat',
         'unspecified' => 'Ospecificerat',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Alla',
         'played' => 'Spelade',

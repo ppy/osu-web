@@ -35,9 +35,9 @@ return [
     ],
 
     'index' => [
-        'nav_comments' => '',
+        'nav_comments' => 'yorumlar',
         'nav_title' => 'katalog',
-        'no_comments' => '',
+        'no_comments' => 'yorum bulunamadı...',
     ],
 
     'placeholder' => [

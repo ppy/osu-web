@@ -69,9 +69,9 @@ return [
     ],
 
     'order' => [
-        'cancel' => '',
-        'cancel_confirm' => '',
-        'cancel_not_allowed' => '',
+        'cancel' => '注文をキャンセル',
+        'cancel_confirm' => 'この注文はキャンセルされ、支払いは受け付けられません。 選択した支払い会社は、支払いをすぐに返金しない可能性があります。よろしいですか？',
+        'cancel_not_allowed' => 'この注文は現在キャンセルできません。',
         'invoice' => '請求書を見る',
         'no_orders' => '表示できる注文がありません。',
         'paid_on' => '注文済み :date',

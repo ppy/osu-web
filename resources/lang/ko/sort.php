@@ -16,8 +16,8 @@ return [
     'username' => '사용자 이름',
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => '게시 시각',
+        'relevance' => '연관성',
     ],
 
     'forum_topics' => [

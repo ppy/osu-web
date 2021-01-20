@@ -27,7 +27,6 @@ return [
         'operation_timeout_exception' => 'Wyszukiwanie jest obecnie bardziej obciążone niż zwykle, spróbuj ponownie później.',
     ],
 
-    'logged_out' => 'Wylogowano. Zaloguj się i spróbuj ponownie.',
     'supporter_only' => 'Potrzebujesz statusu donatora osu!, aby korzystać z tej funkcji.',
     'no_restricted_access' => 'Nie możesz wykonać tej czynności podczas blokady konta.',
     'unknown' => 'Wystąpił nieoczekiwany błąd.',

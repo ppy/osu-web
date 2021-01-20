@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'pokaż metadane beatmapy w oryginalnym języku',
         'title' => 'Ustawienia strony',
 
         'beatmapset_download' => [
             '_' => 'domyślny sposób pobierania beatmap',
             'all' => 'z wideo, jeżeli jest ono dostępne',
-            'no_video' => 'bez wideo',
             'direct' => 'otwórz w osu!direct',
+            'no_video' => 'bez wideo',
         ],
-
-        'beatmapset_title_show_original' => 'pokaż metadane beatmapy w oryginalnym języku',
     ],
 
     'playstyles' => [

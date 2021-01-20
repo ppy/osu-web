@@ -155,8 +155,8 @@ return [
         'title' => "Profilo di :username",
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'Ha postato :link',
+            'count' => ':count_delimited commento|:count_delimited commenti',
         ],
         'edit' => [
             'cover' => [

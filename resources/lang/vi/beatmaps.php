@@ -220,14 +220,15 @@ return [
             'not-found' => 'không có kết quả',
             'not-found-quote' => '... không, chả có gì cả.',
             'filters' => [
+                'extra' => 'thêm',
                 'general' => 'Chung',
-                'mode' => 'Chế Độ',
-                'status' => 'Danh mục',
                 'genre' => 'Thể Loại',
                 'language' => 'Ngôn Ngữ',
-                'extra' => 'thêm',
-                'rank' => 'Thứ Hạng Đạt Được',
+                'mode' => 'Chế Độ',
+                'nsfw' => '',
                 'played' => 'Đã chơi',
+                'rank' => 'Thứ Hạng Đạt Được',
+                'status' => 'Danh mục',
             ],
             'sorting' => [
                 'title' => 'Tiêu đề',
@@ -330,6 +331,12 @@ return [
         'other' => 'Khác',
         'unspecified' => 'Không xác định',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Bất Kì',
         'played' => 'Đã Chơi',

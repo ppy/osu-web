@@ -27,7 +27,6 @@ return [
         'operation_timeout_exception' => 'Søgemaskinen er i øjeblikket travlere end ellers, prøv igen senere.',
     ],
 
-    'logged_out' => 'Du er blevet logget ud. Log venligst ind og prøv igen.',
     'supporter_only' => 'Du skal være osu!supporter for at kunne anvende denne funktion.',
     'no_restricted_access' => 'Du kan ikke udføre denne handling mens din konto er begrænset.',
     'unknown' => 'En ukendt fejl er opstået.',
