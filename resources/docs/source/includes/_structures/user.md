@@ -7,6 +7,7 @@
   "id": 1,
   "is_active": true,
   "is_bot": false,
+  "is_deleted": false,
   "is_online": false,
   "is_supporter": true,
   "last_visit": "2020-01-01T00:00:00+00:00",
