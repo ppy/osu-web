@@ -134,11 +134,9 @@ class RouteSection
         ],
     ];
 
-    private $default;
-
     public function getCurrent($key = null)
     {
-        $data = $this->error ?? $this->getDefault();
+        $data = request()->attributes->get('route_section_error') ?? $this->getDefault();
 
         if ($key === null) {
             return $data;
@@ -149,17 +147,19 @@ class RouteSection
 
     public function setError($statusCode)
     {
-        $this->error = [
+        request()->attributes->set('route_section_error', [
             'action' => $statusCode,
             'controller' => 'error',
             'namespace' => 'error',
             'section' => 'error',
-        ];
+        ]);
     }
 
     private function getDefault()
     {
-        if ($this->default === null) {
+        $default = request()->attributes->get('route_section');
+
+        if ($default === null) {
             $currentRoute = request()->route();
             $currentController = optional($currentRoute)->controller;
 
@@ -180,14 +180,15 @@ class RouteSection
                     ?? static::SECTIONS['_'];
             }
 
-            $this->default = [
+            $default = [
                 'action' => $action ?? 'unknown',
                 'controller' => $controller ?? 'unknown',
                 'namespace' => $namespace ?? 'unknown',
                 'section' => $section ?? 'unknown',
             ];
+            request()->attributes->set('route_section', $default);
         }
 
-        return $this->default;
+        return $default;
     }
 }
