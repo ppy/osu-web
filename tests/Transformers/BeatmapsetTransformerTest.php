@@ -50,7 +50,6 @@ class BeatmapsetTransformerTest extends TestCase
             ['gmt', true],
             ['nat', true],
             [[], false],
-            [null, false],
         ];
     }
 }
