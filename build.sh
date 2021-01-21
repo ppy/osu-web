@@ -21,7 +21,7 @@ else
   COMPOSER="composer"
 fi
 
-if [ -n "${GITHUB_TOKEN}" ]; then
+if [ -n "${GITHUB_TOKEN:-}" ]; then
   ${COMPOSER} config -g github-oauth.github.com "${GITHUB_TOKEN}"
 fi
 
