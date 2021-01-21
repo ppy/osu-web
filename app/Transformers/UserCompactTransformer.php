@@ -61,6 +61,7 @@ class UserCompactTransformer extends TransformerAbstract
         'scores_first_count',
         'scores_recent_count',
         'statistics',
+        'statistics_all',
         'support_level',
         'unranked_beatmapset_count',
         'unread_pm_count',
@@ -337,6 +338,15 @@ class UserCompactTransformer extends TransformerAbstract
         $stats = $user->statistics($this->mode);
 
         return $this->item($stats, new UserStatisticsTransformer());
+    }
+
+    public function includeStatisticsAll(User $user)
+    {
+        foreach (Beatmap::MODES as $mode => $i) {
+            $all[$mode] = json_item($user->statistics($mode), new UserStatisticsTransformer());
+        }
+
+        return $this->primitive($all);
     }
 
     public function includeSupportLevel(User $user)

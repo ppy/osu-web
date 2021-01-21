@@ -70,6 +70,7 @@ scores_best_count                    | number
 scores_first_count                   | number
 scores_recent_count                  | number
 statistics                           | |
+statistics_all                       | [StatisticsAll](#usercompact-statisticsall)
 support_level                        | |
 unranked_beatmapset_count            | |
 unread_pm_count                      | |
@@ -86,6 +87,17 @@ Field         | Type        | Description
 id            | number      | |
 tournament_id | number      | |
 image         | string      | |
+
+<div id="usercompact-statisticsall" data-unique="usercompact-statisticsall"></div>
+
+### StatisticsAll
+
+Field  | Type           | Description
+------ | -------------- | -----------
+osu    | UserStatistics | |
+mania  | UserStatistics | |
+fruits | UserStatistics | |
+taiko  | UserStatistics | |
 
 <div id="usercompact-useraccounthistory" data-unique="usercompact-useraccounthistory"></div>
 
