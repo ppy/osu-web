@@ -6,6 +6,7 @@ import { BigButton } from 'big-button'
 import * as React from 'react'
 import { button, div, input, label, p, i, span } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
+import { nominationsCount } from 'utils/beatmapset-helper'
 el = React.createElement
 
 bn = 'beatmap-discussion-new'
@@ -290,7 +291,8 @@ export class NewDiscussion extends React.PureComponent
     return 'disqualify' if canDisqualify && willDisqualify
 
     canReset = currentUser.is_admin || currentUser.is_nat || currentUser.is_bng
-    willReset = @props.beatmapset.status == 'pending' && @props.beatmapset.nominations.current > 0
+    currentNominations = nominationsCount(@props.beatmapset.nominations, 'current')
+    willReset = @props.beatmapset.status == 'pending' && currentNominations > 0
 
     return 'nomination_reset' if canReset && willReset
 
