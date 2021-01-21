@@ -81,6 +81,16 @@ declare module 'modal' {
   class Modal extends React.PureComponent<Props> {}
 }
 
+declare module 'notification-banner' {
+  interface Props {
+    message: React.ReactFragment;
+    title: string;
+    type: string;
+  }
+
+  class NotificationBanner extends React.PureComponent<Props> {}
+}
+
 declare module 'popup-menu' {
   type Children = (dismiss: () => void) => React.ReactFragment;
 
