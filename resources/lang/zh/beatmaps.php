@@ -225,7 +225,7 @@ return [
                 'genre' => '流派',
                 'language' => '语言',
                 'mode' => '模式',
-                'nsfw' => '',
+                'nsfw' => '少儿不宜谱面',
                 'played' => '玩过',
                 'rank' => '成绩',
                 'status' => '分类',
@@ -333,8 +333,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => '隐藏',
+        'include' => '显示',
     ],
 
     'played' => [

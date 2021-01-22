@@ -11,6 +11,7 @@ return [
     'none' => 'Không có thông báo nào',
     'see_all' => 'xem tất cả thông báo',
     'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'tất cả',

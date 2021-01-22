@@ -11,6 +11,7 @@ return [
     'none' => '通知なし',
     'see_all' => 'すべての通知を見る',
     'see_channel' => 'チャットに行く',
+    'verifying' => '',
 
     'filters' => [
         '_' => '全て',
