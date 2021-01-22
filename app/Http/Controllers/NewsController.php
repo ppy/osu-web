@@ -99,19 +99,27 @@ class NewsController extends Controller
         }
 
         $currentYear = $currentYear ?? date('Y');
+        $latestPost = NewsPost::select('updated_at')->default()->first();
+        $lastUpdate = $latestPost === null ? 0 : $latestPost->updated_at->timestamp;
 
-        $years = NewsPost::selectRaw('DISTINCT YEAR(published_at) year')
-            ->whereNotNull('published_at')
-            ->orderBy('year', 'DESC')
-            ->pluck('year')
-            ->toArray();
+        return cache_remember_with_fallback(
+            "news_sidebar_meta_{$currentYear}_{$lastUpdate}",
+            3600,
+            function () use ($currentYear) {
+                $years = NewsPost::selectRaw('DISTINCT YEAR(published_at) year')
+                    ->whereNotNull('published_at')
+                    ->orderBy('year', 'DESC')
+                    ->pluck('year')
+                    ->toArray();
 
-        $posts = NewsPost::default()->year($currentYear)->get();
+                $posts = NewsPost::default()->year($currentYear)->get();
 
-        return [
-            'current_year' => $currentYear,
-            'news_posts' => json_collection($posts, 'NewsPost'),
-            'years' => $years,
-        ];
+                return [
+                    'current_year' => $currentYear,
+                    'news_posts' => json_collection($posts, 'NewsPost'),
+                    'years' => $years,
+                ];
+            }
+        );
     }
 }
