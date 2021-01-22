@@ -34,6 +34,7 @@ class NewsController extends Controller
 
         $postsJson = [
             'news_posts' => json_collection($posts, 'NewsPost', ['preview']),
+            'news_sidebar' => $this->sidebarMeta($posts[0] ?? null),
             'search' => $search['params'],
             'cursor' => $search['cursorHelper']->next($posts),
         ];
@@ -47,7 +48,6 @@ class NewsController extends Controller
                     'title' => 'osu!news Feed',
                 ],
                 'postsJson' => $postsJson,
-                'sidebarMeta' => $this->sidebarMeta($posts[0] ?? null),
             ]);
         }
     }
