@@ -22,8 +22,7 @@ class AddCountLastMailUserNotificationIdSent extends Migration
             $lastNotificationId = $lastNotificationIdSent->count;
 
             // prevent existing job from sending more digests
-            // 63-bit because otherwise php turns it into float
-            $lastNotificationIdSent->update(['count' => 0x7fffffffffffffff]);
+            $lastNotificationIdSent->update(['count' => PHP_INT_MAX]);
 
             $currentMaxId = UserNotification::max('id');
 
