@@ -87,14 +87,18 @@ class UserNotificationDigest implements ShouldQueue
 
     private function getNotifications()
     {
-        return Notification
-            ::whereHas('userNotifications', function ($q) {
-                $q->where('user_id', $this->user->getKey())
-                    ->where('is_read', false)
-                    ->hasMailDelivery();
-            })
+        $notificationIds = $this
+            ->user
+            ->userNotifications()
+            ->where('is_read', false)
+            ->hasMailDelivery()
             ->where('id', '>', $this->fromId)
             ->where('id', '<=', $this->toId)
+            ->select('notification_id')
+            ->pluck('notification_id');
+
+        return Notification
+            ::whereIn('id', $notificationIds)
             ->get();
     }
 
