@@ -11,6 +11,14 @@ class ApidocRouteHelper
 {
     private $routeScopes = [];
 
+    public static function scopeBadge($scope)
+    {
+        $scopeLower = strtolower($scope);
+
+        return \Html::link("#scope-{$scopeLower}", $scope, ['class' => "scope scope--{$scopeLower}"]);
+    }
+
+
     public static function instance()
     {
         static $instance;

@@ -55,7 +55,7 @@
 
 <span class="scope-list">
     @foreach($helper->getScopeTags($methods, $uri) as $scope)
-        <a class="scope scope--{{ strtolower($scope) }}" href="#scope-{{ strtolower($scope) }}">{{ $scope }}</a>
+        {{ ApidocRouteHelper::scopeBadge($scope) }}
     @endforeach
 </span>
 
