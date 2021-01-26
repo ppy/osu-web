@@ -158,7 +158,7 @@ abstract class Model extends BaseModel
             'mode' => $modeInt,
         ])->first();
 
-        if ($stats->unique_users < config('osu.scores.rank_cache.min_users')) {
+        if ($stats === null || $stats->unique_users < config('osu.scores.rank_cache.min_users')) {
             return;
         }
 
@@ -166,7 +166,7 @@ abstract class Model extends BaseModel
             $response = (new Client(['base_uri' => $server]))
                 ->request('GET', 'ranklookup', [
                     'connect_timeout' => 1,
-                    'timeout' => 5,
+                    'timeout' => config('osu.scores.rank_cache.timeout'),
 
                     'query' => [
                         'beatmapId' => $this->beatmap_id,
