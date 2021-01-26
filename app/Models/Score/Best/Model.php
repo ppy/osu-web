@@ -7,11 +7,14 @@ namespace App\Models\Score\Best;
 
 use App\Libraries\ReplayFile;
 use App\Models\Beatmap;
+use App\Models\BeatmapModeStats;
 use App\Models\ReplayViewCount;
 use App\Models\Reportable;
 use App\Models\Score\Model as BaseModel;
 use App\Models\User;
 use DB;
+use Exception;
+use GuzzleHttp\Client;
 
 /**
  * @property User $user
@@ -109,6 +112,14 @@ abstract class Model extends BaseModel
             return;
         }
 
+        if ($options['cached'] ?? true) {
+            $rank = $this->userRankCached($options);
+
+            if ($rank !== null && $rank > 50) {
+                return $rank;
+            }
+        }
+
         $query = static
             ::where('beatmap_id', '=', $this->beatmap_id)
             ->cursorWhere([
@@ -127,6 +138,51 @@ abstract class Model extends BaseModel
         $countQuery = DB::raw('DISTINCT user_id');
 
         return 1 + $query->visibleUsers()->default()->count($countQuery);
+    }
+
+    public function userRankCached($options)
+    {
+        $server = config('osu.scores.rank_cache.server_url');
+
+        if (
+            $server === null
+            && !empty($options['mods'])
+            && !isset($options['type'])
+        ) {
+            return;
+        }
+
+        $modeInt = Beatmap::modeInt($this->getMode());
+        $stats = BeatmapModeStats::where([
+            'beatmap_id' => $this->beatmap_id,
+            'mode' => $modeInt,
+        ])->first();
+
+        if ($stats->unique_users < config('osu.scores.rank_cache.min_users')) {
+            return;
+        }
+
+        try {
+            $response = (new Client(['base_uri' => $server]))
+                ->request('GET', 'ranklookup', [
+                    'connect_timeout' => 1,
+                    'timeout' => 5,
+
+                    'query' => [
+                        'beatmapId' => $this->beatmap_id,
+                        'rulesetId' => $modeInt,
+                        'score' => $this->score,
+                    ],
+                ])
+                ->getBody()
+                ->getContents();
+        } catch (Exception $e) {
+            log_error($e);
+
+            return;
+        }
+
+        return 1 + $response;
     }
 
     public function macroUserBest()

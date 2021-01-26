@@ -341,6 +341,10 @@ Route::group(['middleware' => ['web']], function () {
 
     route_redirect('/', 'home');
 
+    if (config('osu.scores.rank_cache.local_server')) {
+        Route::get('ranklookup', 'ScoresController@userRankLookup');
+    }
+
     // redirects go here
     route_redirect('forum/p/{post}', 'forum.posts.show');
     route_redirect('po/{post}', 'forum.posts.show');
