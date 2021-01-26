@@ -158,7 +158,7 @@ abstract class Model extends BaseModel
             'mode' => $modeInt,
         ])->first();
 
-        if ($stats->unique_users < config('osu.scores.rank_cache.min_users')) {
+        if ($stats === null || $stats->unique_users < config('osu.scores.rank_cache.min_users')) {
             return;
         }
 
