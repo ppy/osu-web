@@ -35,11 +35,14 @@ class UserNotificationsCleanup extends Command
 
         for ($i = 0; $i < $loops; $i++) {
             $userNotifications = UserNotification
-                ::where('created_at', '<', $createdBefore)
-                ->with('notification')
+                ::with('notification')
                 ->orderBy('id', 'ASC')
                 ->limit($perLoop)
                 ->get();
+
+            if (count($userNotifications) === 0 || $userNotifications[0]->created_at > $createdBefore) {
+                break;
+            }
 
             $notificationIdByUserIds = [];
 
