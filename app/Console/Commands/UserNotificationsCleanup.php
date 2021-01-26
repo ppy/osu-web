@@ -40,13 +40,15 @@ class UserNotificationsCleanup extends Command
                 ->limit($perLoop)
                 ->get();
 
-            if (count($userNotifications) === 0 || $userNotifications[0]->created_at > $createdBefore) {
-                break;
-            }
-
             $notificationIdByUserIds = [];
+            $pastKeepDays = false;
 
             foreach ($userNotifications as $n) {
+                if ($n->created_at > $createdBefore) {
+                    $pastKeepDays = true;
+                    break;
+                }
+
                 $notificationIdByUserIds[$n->user_id][] = $n->notification->toIdentityJson();
             }
 
@@ -60,7 +62,7 @@ class UserNotificationsCleanup extends Command
                 $progress->advance($deleted);
             }
 
-            if (count($userNotifications) < $perLoop) {
+            if ($pastKeepDays || count($userNotifications) < $perLoop) {
                 break;
             }
         }
