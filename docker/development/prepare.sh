@@ -35,12 +35,6 @@ if [ "$genkey" = 1 ]; then
     _run artisan key:generate
 fi
 
-if [ ! -f .docker/.composer/auth.json ]; then
-    echo "Copying default composer auth file"
-    mkdir -p .docker/.composer
-    cp .docker/.composer-auth.json.example .docker/.composer/auth.json
-fi
-
 if [ ! -f .env.testing ]; then
     echo "Copying default test env file"
     cp .env.testing.example .env.testing
