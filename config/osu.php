@@ -155,6 +155,7 @@ return [
             'local_server' => get_bool(env('SCORES_RANK_CACHE_LOCAL_SERVER')) ?? false,
             'min_users' => get_int(env('SCORES_RANK_CACHE_MIN_USERS')) ?? 35000,
             'server_url' => presence(env('SCORES_RANK_CACHE_SERVER_URL')),
+            'timeout' => get_int(env('SCORES_RANK_CACHE_TIMEOUT')) ?? 10,
         ],
     ],
 
