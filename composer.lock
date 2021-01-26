@@ -8,21 +8,21 @@
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
-            "version": "3.2.1",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/anhskohbo/no-captcha.git",
-                "reference": "6386365b76cfa6a6043dc2783a2a615c8574faf9"
+                "reference": "f654a4093bd2e9ddbdfad3297bb7aa142a55e611"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/anhskohbo/no-captcha/zipball/6386365b76cfa6a6043dc2783a2a615c8574faf9",
-                "reference": "6386365b76cfa6a6043dc2783a2a615c8574faf9",
+                "url": "https://api.github.com/repos/anhskohbo/no-captcha/zipball/f654a4093bd2e9ddbdfad3297bb7aa142a55e611",
+                "reference": "f654a4093bd2e9ddbdfad3297bb7aa142a55e611",
                 "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "^6.2|^7.0",
-                "illuminate/support": "^5.0|^6.0|^7.0",
+                "illuminate/support": "^5.0|^6.0|^7.0|^8.0",
                 "php": ">=5.5.5"
             },
             "require-dev": {
@@ -64,7 +64,11 @@
                 "no-captcha",
                 "recaptcha"
             ],
-            "time": "2020-08-06T05:45:09+00:00"
+            "support": {
+                "issues": "https://github.com/anhskohbo/no-captcha/issues",
+                "source": "https://github.com/anhskohbo/no-captcha/tree/3.3.0"
+            },
+            "time": "2020-09-10T02:31:52+00:00"
         },
         {
             "name": "aws/aws-sdk-php",
