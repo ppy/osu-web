@@ -30,6 +30,11 @@ return [
         'qualify' => 'Ez a beatmap elérte az elegendő számú nominálást és kvalifikálva lett.',
         'rank' => 'Rangsorolt.',
         'remove_from_loved' => 'Eltávolítva szeretettek közül :user felhasználó által. (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -66,6 +71,7 @@ return [
         'love' => 'Love',
         'nominate' => 'Nominálás',
         'nomination_reset' => 'Nominálás visszaállítás',
+        'nsfw_toggle' => '',
         'qualify' => 'Kvalifikáció',
         'rank' => 'Rangsorolás',
         'remove_from_loved' => 'Szeretett eltávolítás',

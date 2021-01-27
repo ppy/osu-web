@@ -138,7 +138,7 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Terima kasih atas dukungan Anda! Anda telah membeli supporter tag sebanyak :tags kali dengan total kontribusi sebesar :dollars!',
+            'contribution' => 'Terima kasih atas dukungan Anda! Anda telah membeli supporter tag sebanyak :tags kali dengan total kontribusi finansial senilai :dollars!',
             'gifted' => ":giftedTags dari pembelian tag Anda telah dihadiahkan (dengan total sebesar :giftedDollars telah dihadiahkan). Terima kasih atas kemurahan hati Anda!",
             'not_yet' => "Anda belum pernah memiliki supporter tag :(",
             'valid_until' => 'Supporter Tag Anda saat ini berlaku hingga :date!',

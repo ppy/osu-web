@@ -11,6 +11,7 @@ return [
     'none' => 'Nincsenek értesítések',
     'see_all' => 'összes értesítés megtekintése',
     'see_channel' => 'menjen a csevegéshez',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'összes',

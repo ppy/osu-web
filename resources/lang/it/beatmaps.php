@@ -220,12 +220,12 @@ return [
             'not-found' => 'nessun risultato',
             'not-found-quote' => '... no, trovato niente.',
             'filters' => [
-                'extra' => 'extra',
+                'extra' => 'Extra',
                 'general' => 'Generale',
                 'genre' => 'Genere',
                 'language' => 'Lingua',
                 'mode' => 'Modalità',
-                'nsfw' => '',
+                'nsfw' => 'Mappe Esplicite',
                 'played' => 'Giocato',
                 'rank' => 'Rank ottenuto',
                 'status' => 'Categorie',
@@ -333,8 +333,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Nascondi',
+        'include' => 'Mostra',
     ],
 
     'played' => [

@@ -74,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'beatmaplerdeki müstehcen içerik için uyarıları gizle',
         'beatmapset_title_show_original' => 'beatmap metaverisini orijinal dilinde göster',
         'title' => 'Ayarlar',
 

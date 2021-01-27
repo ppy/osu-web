@@ -30,6 +30,11 @@ return [
         'qualify' => '这张谱面已经有了足够数量的提名并已经 Qualified。',
         'rank' => 'Ranked.',
         'remove_from_loved' => '由 :user 从 Loved 中移除。（:text）',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -66,6 +71,7 @@ return [
         'love' => '被 Loved',
         'nominate' => '提名',
         'nomination_reset' => '重置提名',
+        'nsfw_toggle' => '',
         'qualify' => '审核通过',
         'rank' => '被 Ranked',
         'remove_from_loved' => 'Loved 移除',
