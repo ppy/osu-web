@@ -137,26 +137,29 @@ class NotificationsBundle
 
     private function getStackHeads(?string $type = null)
     {
-        $heads = Notification::whereHas('userNotifications', function ($q) {
-            $q->hasPushDelivery()->where('user_id', $this->user->getKey());
-            if ($this->unreadOnly) {
-                $q->where('is_read', false);
-            }
-        })
-        ->groupBy('name', 'notifiable_type', 'notifiable_id')
-        ->orderBy('max_id', 'DESC')
-        ->select(DB::raw('MAX(id) as max_id'), 'name', 'notifiable_type', 'notifiable_id');
+        $query = $this->user
+            ->userNotifications()
+            ->hasPushDelivery()
+            // need to group by all the where conditions for mysql to consider using the index;
+            // for smaller sets, the analyzer may use a different index.
+            // TODO: add migrations
+            ->groupBy('group_key', 'user_id', 'delivery')
+            ->orderBy('max_id', 'DESC')
+            ->select(DB::raw('MAX(notification_id) as max_id'));
 
-        if ($type !== null) {
-            $heads->where('notifiable_type', $type);
+        if ($this->unreadOnly) {
+            $query->where('is_read', false)->groupBy('is_read');
         }
 
         // TODO: ignore cursor if params don't match
         if ($this->cursorId !== null) {
-            $heads->having('max_id', '<', $this->cursorId);
+            $query->having('max_id', '<', $this->cursorId);
         }
 
-        return $heads->limit(static::STACK_LIMIT)->get();
+        // Mysql doesn't support subquery with order by, so we have to fetch first.
+        $notificationIds = $query->limit(static::STACK_LIMIT)->get();
+
+        return Notification::whereIn('id', $notificationIds)->select('id', 'notifiable_type', 'notifiable_id', 'name')->get();
     }
 
     private function fillTypesWhenNull($cursor)

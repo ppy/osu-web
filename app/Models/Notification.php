@@ -128,6 +128,11 @@ class Notification extends Model
         return static::NAME_TO_CATEGORY[$this->name] ?? $this->name;
     }
 
+    public function getStackKey()
+    {
+        return "{$this->notifiable_type}-{$this->notifiable_id}-{$this->name}";
+    }
+
     public function notifiable()
     {
         return $this->morphTo();
