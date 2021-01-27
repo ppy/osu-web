@@ -8,6 +8,7 @@ namespace App\Console\Commands;
 use App\Libraries\Notification\BatchIdentities;
 use App\Models\User;
 use App\Models\UserNotification;
+use Datadog;
 use Illuminate\Console\Command;
 
 class UserNotificationsCleanup extends Command
@@ -59,6 +60,7 @@ class UserNotificationsCleanup extends Command
                 );
                 $deleted = count($notificationIds);
                 $deletedTotal += $deleted;
+                Datadog::increment(config('datadog-helper.prefix_web').'.notifications_cleanup.user_notifications', 1, null, $deleted);
                 $progress->advance($deleted);
             }
 
