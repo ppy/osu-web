@@ -249,13 +249,12 @@ function datadog_timing(callable $callable, $stat, array $tag = null)
     $withClockwork = app('clockwork.support')->isEnabled();
 
     if ($withClockwork) {
-        $uid = uniqid($stat);
         // spaces used so clockwork doesn't run across the whole screen.
         $description = $stat
                        .' '.($tag['type'] ?? null)
                        .' '.($tag['index'] ?? null);
 
-        clock()->startEvent($uid, $description);
+        clock()->event($description)->start();
     }
 
     $start = microtime(true);
@@ -263,7 +262,7 @@ function datadog_timing(callable $callable, $stat, array $tag = null)
     $result = $callable();
 
     if ($withClockwork) {
-        clock()->endEvent($uid);
+        clock()->event($description)->end();
     }
 
     $duration = microtime(true) - $start;
