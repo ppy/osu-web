@@ -131,6 +131,11 @@ return [
     'notification' => [
         'endpoint' => presence(env('NOTIFICATION_ENDPOINT'), '/home/notifications/feed'),
         'queue_name' => presence(env('NOTIFICATION_QUEUE'), 'notification'),
+
+        'cleanup' => [
+            'keep_days' => get_int(env('NOTIFICATION_CLEANUP_KEEP_DAYS')) ?? 180,
+            'max_delete_per_run' => get_int(env('NOTIFICATION_CLEANUP_MAX_DELETE')) ?? 50000,
+        ],
     ],
     'oauth' => [
         'retain_expired_tokens_days' => abs(get_int(env('OAUTH_RETAIN_EXPIRED_TOKENS_DAYS'))) ?? 30,
@@ -151,6 +156,12 @@ return [
     ],
     'scores' => [
         'es_cache_duration' => 60 * (get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5), // in minutes, converted to seconds
+        'rank_cache' => [
+            'local_server' => get_bool(env('SCORES_RANK_CACHE_LOCAL_SERVER')) ?? false,
+            'min_users' => get_int(env('SCORES_RANK_CACHE_MIN_USERS')) ?? 35000,
+            'server_url' => presence(env('SCORES_RANK_CACHE_SERVER_URL')),
+            'timeout' => get_int(env('SCORES_RANK_CACHE_TIMEOUT')) ?? 10,
+        ],
     ],
 
     'seasonal' => [
