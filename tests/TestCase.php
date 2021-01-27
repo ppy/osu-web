@@ -34,8 +34,6 @@ class TestCase extends BaseTestCase
         'mysql-updates',
     ];
 
-    protected $baseUrl = 'http://localhost';
-
     public function regularOAuthScopesDataProvider()
     {
         $data = [];
