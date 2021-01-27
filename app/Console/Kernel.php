@@ -96,9 +96,9 @@ class Kernel extends ConsoleKernel
             ->hourly()
             ->withoutOverlapping();
 
-        $schedule->command('user-notifications:cleanup')
-            ->everyThirtyMinutes()
-            ->withoutOverlapping();
+        /* $schedule->command('user-notifications:cleanup') */
+        /*     ->everyThirtyMinutes() */
+        /*     ->withoutOverlapping(); */
     }
 
     protected function commands()
