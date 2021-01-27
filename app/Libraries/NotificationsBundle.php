@@ -17,7 +17,7 @@ class NotificationsBundle
 
     private $category;
     private $cursorId;
-    private $notifications;
+    private $notificationIdsToFetch;
     private $objectId;
     private $objectType;
     private $stacks = [];
@@ -25,10 +25,12 @@ class NotificationsBundle
     private $unreadOnly;
     private $user;
 
+
+
     public function __construct(User $user, array $request)
     {
         $this->user = $user;
-        $this->notifications = collect();
+        $this->notificationIdsToFetch = collect();
         $this->unreadOnly = get_bool($request['unread'] ?? false);
         $this->cursorId = get_int($request['cursor']['id'] ?? null);
 
@@ -45,8 +47,10 @@ class NotificationsBundle
             $this->fillTypes($this->objectType);
         }
 
+        $notifications = Notification::whereIn('id', $this->notificationIdsToFetch)->get();
+
         $response = [
-            'notifications' => json_collection($this->notifications, 'Notification'),
+            'notifications' => json_collection($notifications, 'Notification'),
             'stacks' => array_values($this->stacks),
             'timestamp' => json_time(now()),
             'types' => array_values($this->types),
@@ -67,19 +71,15 @@ class NotificationsBundle
             return;
         }
 
-        $query = $this->user->userNotifications()->with('notification')->hasPushDelivery()->whereHas('notification', function ($q) use ($objectId, $objectType, $category) {
-            $names = Notification::namesInCategory($category);
-            $q
-                ->where('notifiable_type', $objectType)
-                ->where('notifiable_id', $objectId)
-                ->whereIn('name', $names);
-        });
+        $query = UserNotification::hasPushDelivery()
+            ->where('user_id', $this->user->getKey())
+            ->where('notifiable_type', $objectType)
+            ->where('notifiable_id', $objectId)
+            ->where('category', $category);
 
         if ($this->unreadOnly) {
             $query->where('is_read', false);
         }
-
-        $total = $query->count();
 
         $query->orderBy('id', 'desc')->limit(static::PER_STACK_LIMIT);
 
@@ -87,14 +87,28 @@ class NotificationsBundle
             $query->where('notification_id', '<', $this->cursorId);
         }
 
-        $stack = $query->get();
-
-        $json = $this->stackToJson($stack);
-        if ($json !== null) {
-            $json['total'] = $total;
-            $this->stacks[$key] = $json;
-            $this->notifications = $this->notifications->merge($stack);
+        $notificationIds = $query->pluck('notification_id');
+        $last = $notificationIds->last();
+        if ($last === null) {
+            return;
         }
+
+        $this->notificationIdsToFetch = $this->notificationIdsToFetch->merge($notificationIds);
+
+        $cursor = $notificationIds->count() < static::PER_STACK_LIMIT ? null : [
+            'id' => $last,
+        ];
+
+        $json = [
+            'category' => $category,
+            'cursor' => $cursor,
+            'object_type' => $objectType,
+            'object_id' => $objectId,
+        ];
+
+        $total = $query->count();
+        $json['total'] = $total;
+        $this->stacks[$key] = $json;
     }
 
     private function fillTypes(?string $type = null)

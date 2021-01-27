@@ -27,7 +27,6 @@ export interface NotificationBundleJson {
 export interface NotificationStackJson extends NotificationIdentityJson {
   category: string;
   cursor: NotificationCursor | null;
-  name: string;
   object_id: number;
   object_type: Name;
   total: number;
