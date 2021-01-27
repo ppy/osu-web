@@ -143,7 +143,7 @@ class NotificationsBundle
             // need to group by all the where conditions for mysql to consider using the index;
             // for smaller sets, the analyzer may use a different index.
             // TODO: add migrations
-            ->groupBy('group_key', 'user_id', 'delivery')
+            ->groupBy('notifiable_type', 'notifiable_id', 'category', 'user_id', 'delivery')
             ->orderBy('max_id', 'DESC')
             ->select(DB::raw('MAX(notification_id) as max_id'));
 

@@ -130,7 +130,7 @@ class Notification extends Model
 
     public function getStackKey()
     {
-        return "{$this->notifiable_type}-{$this->notifiable_id}-{$this->name}";
+        return "{$this->notifiable_type}-{$this->notifiable_id}-{$this->category}";
     }
 
     public function notifiable()
