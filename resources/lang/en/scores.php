@@ -21,4 +21,8 @@ return [
             ],
         ],
     ],
+
+    'status' => [
+        'processing' => 'This score is still being calculated and will be displayed soon',
+    ],
 ];

@@ -74,8 +74,8 @@ export class PlayDetail extends PureComponent
               if score.weight?
                 span
                   className: "#{bn}__weighted-pp"
-                  osu.formatNumber(Math.round(score.weight.pp))
-                  'pp'
+                  if score.pp > 0
+                    "#{osu.formatNumber(Math.round(score.weight.pp))}pp"
             if score.weight?
               div
                 className: "#{bn}__pp-weight"
@@ -92,11 +92,14 @@ export class PlayDetail extends PureComponent
               osu.formatNumber(Math.round(score.pp))
               span className: "#{bn}__pp-unit", 'pp'
           else
-            span
-              title:
-                if score.beatmapset.status not in ['ranked', 'approved']
-                  osu.trans('users.show.extra.top_ranks.not_ranked')
-              '-'
+            if score.beatmapset.status in ['ranked', 'approved']
+              span
+                className: 'fas fa-exclamation-triangle'
+                title: osu.trans('scores.status.processing')
+            else
+              span
+                title: osu.trans('users.show.extra.top_ranks.not_ranked')
+                '-'
 
         div
           className: "#{bn}__more"
