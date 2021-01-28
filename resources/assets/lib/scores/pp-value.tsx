@@ -6,7 +6,7 @@ import * as React from 'react';
 
 interface Props {
   score: ScoreJson;
-  suffix?: React.Component;
+  suffix?: JSX.Element;
 }
 
 export default function PpValue(props: Props) {
