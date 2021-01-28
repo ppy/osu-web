@@ -66,10 +66,6 @@ class NotificationsBundle
     private function fillStacks(string $objectType, int $objectId, string $category)
     {
         $key = "{$objectType}-{$objectId}-{$category}";
-        // skip multiple notification names mapped to the same category.
-        if (isset($this->stacks[$key])) {
-            return;
-        }
 
         $query = UserNotification::hasPushDelivery()
             ->where('user_id', $this->user->getKey())
@@ -80,6 +76,9 @@ class NotificationsBundle
         if ($this->unreadOnly) {
             $query->where('is_read', false);
         }
+
+        // get count before applying cursor.
+        $total = $query->count();
 
         $query->orderBy('id', 'desc')->limit(static::PER_STACK_LIMIT);
 
@@ -99,25 +98,56 @@ class NotificationsBundle
             'id' => $last,
         ];
 
-        $json = [
+        $this->stacks[$key] = [
             'category' => $category,
             'cursor' => $cursor,
             'object_type' => $objectType,
             'object_id' => $objectId,
+            'total' => $total,
         ];
-
-        $total = $query->count();
-        $json['total'] = $total;
-        $this->stacks[$key] = $json;
     }
 
     private function fillTypes(?string $type = null)
     {
         $heads = $this->getStackHeads($type);
+        $unionQuery = null;
 
-        $heads->each(function ($row) {
-            $this->fillStacks($row->notifiable_type, $row->notifiable_id, $row->category);
-        });
+        foreach ($heads as $head) {
+            // everything less than the stack's pagination size can be batched together
+            // since no pagination or ordering is required for them.
+            if ($head->stack_size <= static::PER_STACK_LIMIT) {
+                $query = UserNotification::where('notifiable_type', $head->notifiable_type)
+                    ->where('notifiable_id', $head->notifiable_id)
+                    ->where('category', $head->category)
+                    ->select('notification_id');
+
+                if ($this->unreadOnly) {
+                    $query->where('is_read', false);
+                }
+
+                if ($unionQuery === null) {
+                    $unionQuery = $query;
+                } else {
+                    $unionQuery->union($query);
+                }
+
+                $key = "{$head->notifiable_type}-{$head->notifiable_id}-{$head->category}";
+                $this->stacks[$key] = [
+                    'category' => $head->category,
+                    'cursor' => null,
+                    'object_type' => $head->notifiable_type,
+                    'object_id' => $head->notifiable_id,
+                    'total' => $head->stack_size,
+                ];
+            } else {
+                $this->fillStacks($head->notifiable_type, $head->notifiable_id, $head->category);
+            }
+        }
+
+        if ($unionQuery !== null) {
+            $notificationIds = $unionQuery->pluck('notification_id');
+            $this->notificationIdsToFetch = $this->notificationIdsToFetch->merge($notificationIds);
+        }
 
         $last = $heads->last();
         $cursor = $last !== null ? ['id' => $last->max_id] : null;
@@ -159,10 +189,14 @@ class NotificationsBundle
             // TODO: add migrations
             ->groupBy('notifiable_type', 'notifiable_id', 'category', 'user_id', 'delivery')
             ->orderBy('max_id', 'DESC')
-            ->select(DB::raw('MAX(notification_id) as max_id'));
+            ->select(DB::raw('MAX(notification_id) as max_id'), DB::raw('COUNT(*) as stack_size'), 'notifiable_type', 'notifiable_id', 'category');
 
         if ($this->unreadOnly) {
             $query->where('is_read', false)->groupBy('is_read');
+        }
+
+        if ($type !== null) {
+            $query->where('notifiable_type', $type);
         }
 
         // TODO: ignore cursor if params don't match
@@ -170,10 +204,7 @@ class NotificationsBundle
             $query->having('max_id', '<', $this->cursorId);
         }
 
-        // Mysql doesn't support subquery with order by, so we have to fetch first.
-        $notificationIds = $query->limit(static::STACK_LIMIT)->get();
-
-        return Notification::whereIn('id', $notificationIds)->select('id', 'notifiable_type', 'notifiable_id', 'name')->get();
+        return $query->limit(static::STACK_LIMIT)->get();
     }
 
     private function fillTypesWhenNull($cursor)
