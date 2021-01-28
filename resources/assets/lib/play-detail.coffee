@@ -93,9 +93,9 @@ export class PlayDetail extends PureComponent
           className: "#{bn}__pp"
           if shouldShowPp(score.beatmapset)
             el React.Fragment, null,
-              el PpValue, score: score
-              if score.pp? && score.pp > 0
-                span className: "#{bn}__pp-unit", 'pp'
+              el PpValue,
+                score: score
+                suffix: span(className: "#{bn}__pp-unit", 'pp')
           else
             span
               title: osu.trans('users.show.extra.top_ranks.not_ranked')
