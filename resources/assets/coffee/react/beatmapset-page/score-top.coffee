@@ -20,7 +20,7 @@ export ScoreTop = (props) ->
     .join ' '
 
   position = if props.position? then "##{props.position}" else '-'
-  showPp = shouldShowPp(props.score.beatmap)
+  showPp = shouldShowPp(props.beatmap)
 
   div className: "#{bn} #{topClasses}",
     a
