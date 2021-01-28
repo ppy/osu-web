@@ -175,12 +175,10 @@ class NotificationsBundle
 
     private function getTotalNotificationCount(?string $type = null)
     {
-        $query = Notification::whereHas('userNotifications', function ($q) {
-            $q->hasPushDelivery()->where('user_id', $this->user->getKey());
-            if ($this->unreadOnly) {
-                $q->where('is_read', false);
-            }
-        });
+        $query = UserNotification::hasPushDelivery()->where('user_id', $this->user->getKey());
+        if ($this->unreadOnly) {
+            $query->where('is_read', false);
+        }
 
         if ($type !== null) {
             $query->where('notifiable_type', $type);
