@@ -51,11 +51,11 @@ class UserNotification extends Model
                 ->userNotifications()
                 ->hasPushDelivery()
                 ->where('is_read', false)
-                ->whereIn('id', $ids);
+                ->whereIn('id', $chunkedIds);
             $unreadCountInitial = $unreadCountQuery->count();
             $user
                 ->userNotifications()
-                ->whereIn('id', $ids)
+                ->whereIn('id', $chunkedIds)
                 ->delete();
 
             $unreadCountCurrent = $unreadCountQuery->count();
