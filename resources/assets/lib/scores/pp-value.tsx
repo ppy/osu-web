@@ -6,6 +6,7 @@ import * as React from 'react';
 
 interface Props {
   score: ScoreJson;
+  suffix?: React.Component;
 }
 
 export default function PpValue(props: Props) {
@@ -29,6 +30,7 @@ export default function PpValue(props: Props) {
   return (
     <span title={osu.formatNumber(props.score.pp)}>
       {osu.formatNumber(Math.round(props.score.pp))}
+      {props.suffix}
     </span>
   );
 }
