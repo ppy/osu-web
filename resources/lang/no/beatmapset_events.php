@@ -30,6 +30,11 @@ return [
         'qualify' => 'Dette beatmappet har nådd det nødvendige antallet med nominasjoner og har nå blitt kvalifisert.',
         'rank' => 'Rangert.',
         'remove_from_loved' => '',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -66,6 +71,7 @@ return [
         'love' => 'Elsk',
         'nominate' => 'Nominasjon',
         'nomination_reset' => 'Nominasjon nullstilling',
+        'nsfw_toggle' => '',
         'qualify' => 'Kvalifikasjon',
         'rank' => 'Rangering',
         'remove_from_loved' => '',

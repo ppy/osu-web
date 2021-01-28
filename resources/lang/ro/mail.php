@@ -33,7 +33,7 @@ return [
         'support' => [
             '_' => 'Îți mulțumim mult pentru :support tau catre osu!.',
             'first' => 'suport',
-            'repeat' => '',
+            'repeat' => 'suport continuu',
         ],
     ],
 
@@ -41,7 +41,7 @@ return [
         'new' => '',
         'subject' => '[osu!] Nou răspuns pentru subiectul ":title"',
         'unwatch' => '',
-        'visit' => '',
+        'visit' => 'Sari direct la cel mai recent răspuns folosind următorul link:',
     ],
 
     'password_reset' => [
@@ -52,19 +52,19 @@ return [
 
     'store_payment_completed' => [
         'prepare_shipping' => '',
-        'processing' => '',
+        'processing' => 'Am primit plata ta și momentan procesăm comanda. Poți urmări progresul comenzii tale aici:',
         'questions' => "",
-        'shipping' => '',
+        'shipping' => 'Livrare',
         'subject' => 'Am primit comanda ta din magazinul osu!',
         'thank_you' => '',
-        'total' => '',
+        'total' => 'Total',
     ],
 
     'supporter_gift' => [
         'anonymous_gift' => '',
-        'anonymous_gift_maybe_not' => '',
+        'anonymous_gift_maybe_not' => 'Dar probabil că ştii deja cine este ;).',
         'duration' => 'Mulțumită lor, ai acces la beneficii directe și alte beneficii de suporter osu! pentru următoarea :duration.',
-        'features' => '',
+        'features' => 'Mai multe detalii privind aceste funcții pot fi găsite aici:',
         'gifted' => 'Cineva tocmai ti-a daruit osu! supporter!',
         'subject' => 'Ţi-a fost oferită o insignă de suporter osu!',
     ],
@@ -72,15 +72,15 @@ return [
     'user_email_updated' => [
         'changed_to' => '',
         'check' => '',
-        'sent' => '',
+        'sent' => 'Din motive de securitate, acest e-mail a fost trimis atât la adresa de e-mail nouă, cât și la adresa veche.',
         'subject' => 'confirmarea schimbării e-mailului în osu!',
     ],
 
     'user_force_reactivation' => [
-        'main' => '',
+        'main' => 'Contul tău este suspectat că a fost compromis, că a avut recent o activitate suspectă sau o parolă FOARTE slabă. Ca urmare, vă cerem să setați o parolă nouă. Vă rugăm să alegeți o parolă SIGURĂ.',
         'perform_reset' => '',
         'reason' => 'Motiv:',
-        'subject' => '',
+        'subject' => 'reactivarea contului osu! este necesar',
     ],
 
     'user_notification_digest' => [
@@ -90,14 +90,14 @@ return [
     ],
 
     'user_password_updated' => [
-        'confirmation' => '',
+        'confirmation' => 'Aceasta este doar o confirmare că parola de osu! a fost schimbat.',
         'subject' => 'confirmarea schimbării parolei în osu!',
     ],
 
     'user_verification' => [
-        'code' => '',
+        'code' => 'Codul tau de verificare este:',
         'code_hint' => '',
-        'link' => '',
+        'link' => 'Alternativ, puteți de asemenea vizita acest link de mai jos pentru a finaliza verificarea:',
         'report' => '',
         'subject' => 'verificarea contului osu!',
 

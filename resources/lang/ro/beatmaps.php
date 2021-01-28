@@ -187,8 +187,8 @@ return [
         'nominate_confirm' => 'Nominalizezi acest beatmap?',
         'nominated_by' => 'nominalizat de :users',
         'not_enough_hype' => "Nu este suficient hype.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Șterge din iubit',
+        'remove_from_loved_prompt' => 'Motivul pentru ștergere din iubit:',
         'required_text' => 'Nominalizări: :current/:required',
         'reset_message_deleted' => 'șters',
         'title' => 'Statutul de nominalizare',
@@ -197,7 +197,7 @@ return [
         'rank_estimate' => [
             '_' => '',
             'queue' => '',
-            'soon' => '',
+            'soon' => 'curând',
         ],
 
         'reset_at' => [
@@ -253,7 +253,7 @@ return [
         'converts' => 'Include beatmaps convertite',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Toate',
         'any' => 'Oricare',
         'osu' => '',
         'taiko' => '',
@@ -333,8 +333,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Ascunde',
+        'include' => 'Arată',
     ],
 
     'played' => [

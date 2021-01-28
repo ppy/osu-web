@@ -144,11 +144,7 @@ abstract class Model extends BaseModel
     {
         $server = config('osu.scores.rank_cache.server_url');
 
-        if (
-            $server === null
-            && !empty($options['mods'])
-            && !isset($options['type'])
-        ) {
+        if ($server === null || !empty($options['mods']) || isset($options['type'])) {
             return;
         }
 

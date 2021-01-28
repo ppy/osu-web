@@ -42,7 +42,7 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Müstehcen',
     ],
 
     'show' => [
@@ -53,7 +53,7 @@ return [
             'logged-out' => 'Herhangi bir beatmapi indirmeden önce giriş yapmalısınız!',
             'mapped_by' => ':mapper tarafından yapıldı',
             'unfavourite' => 'Haritayı favorilerden çıkar',
-            'updated_timeago' => 'en son :timeago tarihinde güncellendi',
+            'updated_timeago' => 'son güncelleme: :timeago',
 
             'download' => [
                 '_' => 'İndir',
@@ -69,12 +69,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => ':timeago tarihinde onaylandı',
-            'loved' => ':timeago tarihinde sevilen oldu',
-            'qualified' => ':timeago tarihinde nitelikli oldu',
-            'ranked' => ':timeago tarihinde dereceli oldu',
-            'submitted' => ':timeago tarihinde gönderildi',
-            'updated' => 'en son :timeago tarihinde güncellendi',
+            'approved' => 'onaylandı: :timeago',
+            'loved' => 'sevilenlere eklendi: :timeago',
+            'qualified' => 'nitelikli oldu: :timeago',
+            'ranked' => 'dereceli oldu: :timeago',
+            'submitted' => 'gönderildi: :timeago',
+            'updated' => 'son güncelleme: :timeago',
         ],
 
         'favourites' => [
@@ -110,7 +110,7 @@ return [
             'genre' => 'Tür',
             'language' => 'Dil',
             'no_scores' => 'Veriler hala hesaplanıyor...',
-            'nsfw' => '',
+            'nsfw' => 'Müstehcen içerik',
             'points-of-failure' => 'Başarısız Olunan Kısımlar',
             'source' => 'Kaynak',
             'success-rate' => 'Başarı Oranı',
@@ -118,13 +118,13 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'Bu beatmap müstehcen, ofansif, veya rahatsız edici içerik içermektedir. Yine de görüntülemek istiyor musunuz?',
+            'title' => 'Müstehcen İçerik',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Uyarıyı devre dışı bırak',
+                'listing' => 'Beatmap listesi',
+                'show' => 'Göster',
             ],
         ],
 

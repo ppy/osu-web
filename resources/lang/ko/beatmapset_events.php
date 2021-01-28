@@ -30,6 +30,11 @@ return [
         'qualify' => '이 비트맵은 충분한 추천을 받았고 qualified 상태로 전환되었습니다.',
         'rank' => 'Ranked.',
         'remove_from_loved' => ':user 님에 의해 Loved 상태에서 제거됨 (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -66,6 +71,7 @@ return [
         'love' => '러브',
         'nominate' => '추천',
         'nomination_reset' => '추천 초기화',
+        'nsfw_toggle' => '',
         'qualify' => 'Qualification',
         'rank' => '랭킹',
         'remove_from_loved' => 'Loved 상태 제거',

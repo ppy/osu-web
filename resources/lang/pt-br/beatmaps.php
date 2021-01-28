@@ -225,7 +225,7 @@ return [
                 'genre' => 'Gênero',
                 'language' => 'Idioma',
                 'mode' => 'Modo',
-                'nsfw' => '',
+                'nsfw' => 'Beatmaps explícitos',
                 'played' => 'Jogado',
                 'rank' => 'Rank Conquistado',
                 'status' => 'Categorias',
@@ -333,8 +333,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Ocultar',
+        'include' => 'Exibir',
     ],
 
     'played' => [
