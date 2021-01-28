@@ -32,24 +32,24 @@ class UserNotification extends Model
         }
 
         $now = now();
-        // obtain and filter valid notification ids
-        $notificationIds = $user
+        // obtain and filter valid user notification ids
+        $ids = $user
             ->userNotifications()
             ->whereIn('notification_id', $notificationIds)
             ->where('created_at', '<=', $now)
-            ->pluck('notification_id')
+            ->pluck('id')
             ->all();
 
-        if (count($notificationIds) > 0) {
+        if (count($ids) > 0) {
             $unreadCountQuery = $user
                 ->userNotifications()
                 ->hasPushDelivery()
                 ->where('is_read', false)
-                ->whereIn('notification_id', $notificationIds);
+                ->whereIn('id', $ids);
             $unreadCountInitial = $unreadCountQuery->count();
             $user
                 ->userNotifications()
-                ->whereIn('notification_id', $notificationIds)
+                ->whereIn('id', $ids)
                 ->delete();
 
             $unreadCountCurrent = $unreadCountQuery->count();
