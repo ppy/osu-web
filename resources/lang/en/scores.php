@@ -23,6 +23,7 @@ return [
     ],
 
     'status' => [
+        'non_best' => 'Only personal best scores give out pp',
         'processing' => 'This score is still being calculated and will be displayed soon',
     ],
 ];

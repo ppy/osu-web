@@ -9,13 +9,21 @@ interface Props {
 }
 
 export default function PpValue(props: Props) {
-  if (props.score.pp == null || props.score.pp === 0) {
+  if (props.score.best_id == null) {
     return (
-      <span
-        className='fas fa-exclamation-triangle'
-        title={osu.trans('scores.status.processing')}
-      />
+      <span title={osu.trans('scores.status.non_best')}>
+        -
+      </span>
     );
+  }
+
+  if (props.score.pp == null || props.score.pp === 0) {
+      return (
+        <span
+          className='fas fa-exclamation-triangle'
+          title={osu.trans('scores.status.processing')}
+        />
+      );
   }
 
   return (
