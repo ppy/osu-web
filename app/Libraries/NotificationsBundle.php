@@ -110,26 +110,17 @@ class NotificationsBundle
     private function fillTypes(?string $type = null)
     {
         $heads = $this->getStackHeads($type);
+        $batches = [];
         $unionQuery = null;
 
         foreach ($heads as $head) {
             // everything less than the stack's pagination size can be batched together
             // since no pagination or ordering is required for them.
             if ($head->stack_size <= static::PER_STACK_LIMIT) {
-                $query = UserNotification::where('notifiable_type', $head->notifiable_type)
-                    ->where('notifiable_id', $head->notifiable_id)
-                    ->where('category', $head->category)
-                    ->select('notification_id');
-
-                if ($this->unreadOnly) {
-                    $query->where('is_read', false);
-                }
-
-                if ($unionQuery === null) {
-                    $unionQuery = $query;
-                } else {
-                    $unionQuery->union($query);
-                }
+                // collect notifiable_id together so they can be selected together instead of multiple unions.
+                // Unions are still run as seperate selects.
+                $batchKey = "{$head->notifiable_type}-{$head->category}";
+                $batches[$batchKey][] = $head->notifiable_id;
 
                 $key = "{$head->notifiable_type}-{$head->notifiable_id}-{$head->category}";
                 $this->stacks[$key] = [
@@ -140,7 +131,26 @@ class NotificationsBundle
                     'total' => $head->stack_size,
                 ];
             } else {
+                // TODO: it's possible to union query these as well; it just looks really bad reading the query.
                 $this->fillStacks($head->notifiable_type, $head->notifiable_id, $head->category);
+            }
+        }
+
+        foreach ($batches as $batchKey => $notifiableIds) {
+            [$notifiableType, $category] = explode('-', $batchKey, 2);
+            $query = UserNotification::where('notifiable_type', $notifiableType)
+                ->whereIn('notifiable_id', $notifiableIds)
+                ->where('category', $category)
+                ->select('notification_id');
+
+            if ($this->unreadOnly) {
+                $query->where('is_read', false);
+            }
+
+            if ($unionQuery === null) {
+                $unionQuery = $query;
+            } else {
+                $unionQuery->union($query);
             }
         }
 
