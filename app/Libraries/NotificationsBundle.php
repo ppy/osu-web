@@ -228,25 +228,4 @@ class NotificationsBundle
             ];
         }
     }
-
-    private function stackToJson($stack)
-    {
-        $last = $stack->last();
-        if ($last === null) {
-            return;
-        }
-
-        $last = $last instanceof UserNotification ? $last->notification : $last;
-        $cursor = $stack->count() < static::PER_STACK_LIMIT ? null : [
-            'id' => $last->id,
-        ];
-
-        return [
-            'category' => $last->category,
-            'cursor' => $cursor,
-            'name' => $last->name,
-            'object_type' => $last->notifiable_type,
-            'object_id' => $last->notifiable_id,
-        ];
-    }
 }
