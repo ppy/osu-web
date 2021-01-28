@@ -40,7 +40,7 @@ class UserNotification extends Model
             ->pluck('id')
             ->all();
 
-        if (count($ids) === 0) {
+        if (empty($ids)) {
             return;
         }
 
