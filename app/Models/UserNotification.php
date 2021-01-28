@@ -40,31 +40,33 @@ class UserNotification extends Model
             ->pluck('id')
             ->all();
 
+        if (count($ids) === 0) {
+            return;
+        }
+
         $readCount = 0;
 
-        if (count($ids) > 0) {
-            foreach (array_chunk($ids, 1000) as $chunkedIds) {
-                $unreadCountQuery = $user
-                    ->userNotifications()
-                    ->hasPushDelivery()
-                    ->where('is_read', false)
-                    ->whereIn('id', $ids);
-                $unreadCountInitial = $unreadCountQuery->count();
-                $user
-                    ->userNotifications()
-                    ->whereIn('id', $ids)
-                    ->delete();
+        foreach (array_chunk($ids, 1000) as $chunkedIds) {
+            $unreadCountQuery = $user
+                ->userNotifications()
+                ->hasPushDelivery()
+                ->where('is_read', false)
+                ->whereIn('id', $ids);
+            $unreadCountInitial = $unreadCountQuery->count();
+            $user
+                ->userNotifications()
+                ->whereIn('id', $ids)
+                ->delete();
 
-                $unreadCountCurrent = $unreadCountQuery->count();
-                $readCount += $unreadCountInitial - $unreadCountCurrent;
-            }
-
-            event(new NotificationDeleteEvent($user->getKey(), [
-                'notifications' => $identities,
-                'read_count' => $readCount,
-                'timestamp' => $now,
-            ]));
+            $unreadCountCurrent = $unreadCountQuery->count();
+            $readCount += $unreadCountInitial - $unreadCountCurrent;
         }
+
+        event(new NotificationDeleteEvent($user->getKey(), [
+            'notifications' => $identities,
+            'read_count' => $readCount,
+            'timestamp' => $now,
+        ]));
     }
 
     public static function batchMarkAsRead(User $user, BatchIdentities $batchIdentities)
