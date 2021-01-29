@@ -138,7 +138,8 @@ class NotificationsBundle
 
         foreach ($batches as $batchKey => $notifiableIds) {
             [$notifiableType, $category] = explode('-', $batchKey, 2);
-            $query = UserNotification::where('notifiable_type', $notifiableType)
+            $query = UserNotification::where('user_id', $this->user->getKey())
+                ->where('notifiable_type', $notifiableType)
                 ->whereIn('notifiable_id', $notifiableIds)
                 ->where('category', $category)
                 ->select('notification_id');
