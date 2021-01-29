@@ -193,15 +193,12 @@ class NotificationsBundle
         $query = $this->user
             ->userNotifications()
             ->hasPushDelivery()
-            // need to group by all the where conditions for mysql to consider using the index;
-            // for smaller sets, the analyzer may use a different index.
-            // TODO: add migrations
-            ->groupBy('notifiable_type', 'notifiable_id', 'category', 'user_id', 'delivery')
+            ->groupBy('notifiable_type', 'notifiable_id', 'category')
             ->orderBy('max_id', 'DESC')
             ->select(DB::raw('MAX(notification_id) as max_id'), DB::raw('COUNT(*) as stack_size'), 'notifiable_type', 'notifiable_id', 'category');
 
         if ($this->unreadOnly) {
-            $query->where('is_read', false)->groupBy('is_read');
+            $query->where('is_read', false);
         }
 
         if ($type !== null) {
