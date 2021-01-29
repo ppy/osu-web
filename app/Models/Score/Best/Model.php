@@ -160,7 +160,7 @@ abstract class Model extends BaseModel
 
         try {
             $response = (new Client(['base_uri' => $server]))
-                ->request('GET', 'ranklookup', [
+                ->request('GET', 'rankLookup', [
                     'connect_timeout' => 1,
                     'timeout' => config('osu.scores.rank_cache.timeout'),
 
