@@ -42,9 +42,9 @@ class NotificationsBundle
     public function toArray()
     {
         if ($this->objectId && $this->objectType && $this->category) {
-            $this->fillStacks($this->objectType, $this->objectId, $this->category);
+            $this->fillStack($this->objectType, $this->objectId, $this->category);
         } else {
-            $this->fillTypes($this->objectType);
+            $this->fillType($this->objectType);
         }
 
         $notifications = Notification::whereIn('id', $this->notificationIdsToFetch)->get();
@@ -63,7 +63,7 @@ class NotificationsBundle
         return $response;
     }
 
-    private function fillStacks(string $objectType, int $objectId, string $category)
+    private function fillStack(string $objectType, int $objectId, string $category)
     {
         $key = "{$objectType}-{$objectId}-{$category}";
 
@@ -107,7 +107,7 @@ class NotificationsBundle
         ];
     }
 
-    private function fillTypes(?string $type = null)
+    private function fillType(?string $type = null)
     {
         $heads = $this->getStackHeads($type);
         $batches = [];
@@ -132,7 +132,7 @@ class NotificationsBundle
                 ];
             } else {
                 // TODO: it's possible to union query these as well; it just looks really bad reading the query.
-                $this->fillStacks($head->notifiable_type, $head->notifiable_id, $head->category);
+                $this->fillStack($head->notifiable_type, $head->notifiable_id, $head->category);
             }
         }
 
@@ -169,7 +169,7 @@ class NotificationsBundle
 
         // when notifications for all types, fill in the cursor and totals for the other types.
         if ($type === null) {
-            $this->fillTypesWhenNull($cursor);
+            $this->fillTypeWhenNull($cursor);
         }
     }
 
@@ -215,7 +215,7 @@ class NotificationsBundle
         return $query->limit(static::STACK_LIMIT)->get();
     }
 
-    private function fillTypesWhenNull($cursor)
+    private function fillTypeWhenNull($cursor)
     {
         foreach (Notification::NOTIFIABLE_CLASSES as $class) {
             $type = MorphMap::getType($class);
