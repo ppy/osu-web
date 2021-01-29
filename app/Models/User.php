@@ -29,7 +29,7 @@ use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Translation\HasLocalePreference;
-use Illuminate\Database\QueryException as QueryException;
+use Illuminate\Database\QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
 
