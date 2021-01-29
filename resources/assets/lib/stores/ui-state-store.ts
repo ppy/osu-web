@@ -91,6 +91,7 @@ export default class UIStateStore {
     this.updatePinnedCommentIds(commentBundle);
 
     this.orderedCommentsByParentId = {};
+    this.comments.isShowDeleted = currentUser?.user_preferences?.comments_show_deleted ?? false;
   }
 
   @action

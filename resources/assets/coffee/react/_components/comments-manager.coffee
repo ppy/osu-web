@@ -81,8 +81,14 @@ export class CommentsManager extends React.PureComponent
 
 
   toggleShowDeleted: =>
+    nextState = !uiState.comments.isShowDeleted
+
     runInAction () ->
-      uiState.comments.isShowDeleted = !uiState.comments.isShowDeleted
+      uiState.comments.isShowDeleted = nextState
+
+    $.ajax laroute.route('account.options'),
+      method: 'PUT'
+      data: user_profile_customization: comments_show_deleted: nextState
 
 
   toggleFollow: =>
