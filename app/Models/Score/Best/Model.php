@@ -12,6 +12,7 @@ use App\Models\ReplayViewCount;
 use App\Models\Reportable;
 use App\Models\Score\Model as BaseModel;
 use App\Models\User;
+use Datadog;
 use DB;
 use Exception;
 use GuzzleHttp\Client;
@@ -142,9 +143,13 @@ abstract class Model extends BaseModel
 
     public function userRankCached($options)
     {
+        $ddPrefix = config('datadog-helper.prefix_web').'.user_rank_cached_lookup';
+
         $server = config('osu.scores.rank_cache.server_url');
 
         if ($server === null || !empty($options['mods']) || ($options['type'] ?? 'global') !== 'global') {
+            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'unsupported_mode']);
+
             return;
         }
 
@@ -154,7 +159,15 @@ abstract class Model extends BaseModel
             'mode' => $modeInt,
         ])->first();
 
-        if ($stats === null || $stats->unique_users < config('osu.scores.rank_cache.min_users')) {
+        if ($stats === null) {
+            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'missing_stats']);
+
+            return;
+        }
+
+        if ($stats->unique_users < config('osu.scores.rank_cache.min_users')) {
+            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'not_enough_unique_users']);
+
             return;
         }
 
@@ -174,9 +187,12 @@ abstract class Model extends BaseModel
                 ->getContents();
         } catch (Exception $e) {
             log_error($e);
+            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'fetch_failure']);
 
             return;
         }
+
+        Datadog::increment("{$ddPrefix}.hit", 1);
 
         return 1 + $response;
     }
