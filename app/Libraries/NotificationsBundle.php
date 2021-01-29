@@ -63,7 +63,7 @@ class NotificationsBundle
         return $response;
     }
 
-    private function fillStack(string $objectType, int $objectId, string $category)
+    private function fillStack(string $objectType, int $objectId, string $category, ?int $stackSize = null)
     {
         $key = "{$objectType}-{$objectId}-{$category}";
 
@@ -77,8 +77,8 @@ class NotificationsBundle
             $query->where('is_read', false);
         }
 
-        // get count before applying cursor.
-        $total = $query->count();
+        // use pre-fetched value; otherwise get count before applying cursor.
+        $total = $stackSize ?? $query->count();
 
         $query->orderBy('id', 'desc')->limit(static::PER_STACK_LIMIT);
 
@@ -132,7 +132,7 @@ class NotificationsBundle
                 ];
             } else {
                 // TODO: it's possible to union query these as well; it just looks really bad reading the query.
-                $this->fillStack($head->notifiable_type, $head->notifiable_id, $head->category);
+                $this->fillStack($head->notifiable_type, $head->notifiable_id, $head->category, $head->stack_size);
             }
         }
 
