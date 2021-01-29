@@ -175,9 +175,13 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
             foreach ($deliverySettings as $userId => $delivery) {
                 $userNotification = $notification->userNotifications()->create([
-                    'delivery' => $delivery,
-                    'user_id' => $userId,
+                    'category' => $notification->category,
                     'created_at' => $timestamp,
+                    'delivery' => $delivery,
+                    'notifiable_type' => $notification->notifiable_type,
+                    'notifiable_id' => $notification->notifiable_id,
+                    'user_id' => $userId,
+
                 ]);
                 $userNotification->isPush() && $pushReceiverIds[] = $userId;
             }
