@@ -23,7 +23,7 @@ export default class Channel {
   @observable moderated: boolean = false;
   @observable name: string = '';
   @observable newPmChannel = false;
-  @observable newPmChannelTransient = false;
+  newPmChannelTransient = false;
   @observable type: ChannelType = 'NEW';
   @observable users: number[] = [];
 
