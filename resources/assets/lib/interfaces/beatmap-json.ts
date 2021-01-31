@@ -8,5 +8,6 @@ export default interface BeatmapJson {
   id: number;
   max_combo?: number;
   mode: GameMode;
+  status: string;
   version: string;
 }

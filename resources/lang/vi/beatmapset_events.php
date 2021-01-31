@@ -30,6 +30,11 @@ return [
         'qualify' => 'Beatmap này đã đạt được số đề cử (nominations) cần thiết và đã qualified.',
         'rank' => 'Đã được xếp hạng (Ranked).',
         'remove_from_loved' => '',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -66,6 +71,7 @@ return [
         'love' => 'Love',
         'nominate' => 'Đề cử',
         'nomination_reset' => 'Đặt lại đề cử',
+        'nsfw_toggle' => '',
         'qualify' => 'Qualification',
         'rank' => 'Xếp hạng',
         'remove_from_loved' => '',

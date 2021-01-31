@@ -11,6 +11,7 @@ return [
     'none' => 'Brak powiadomień',
     'see_all' => 'zobacz wszystkie powiadomienia',
     'see_channel' => 'przejdź do czatu',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'wszystkie',

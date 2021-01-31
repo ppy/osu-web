@@ -61,6 +61,8 @@ class Kernel extends ConsoleKernel
 
         Commands\UserBestScoresCheckCommand::class,
         Commands\UserRecalculateRankCounts::class,
+
+        Commands\UserNotificationsCleanup::class,
     ];
 
     /**
@@ -92,6 +94,10 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('notifications:send-mail')
             ->hourly()
+            ->withoutOverlapping();
+
+        $schedule->command('user-notifications:cleanup')
+            ->everyThirtyMinutes()
             ->withoutOverlapping();
     }
 

@@ -15,6 +15,7 @@ export default interface UserJson {
   id: number;
   is_active: boolean;
   is_bot: boolean;
+  is_deleted: boolean;
   is_online: boolean;
   is_supporter: boolean;
   last_visit: string | null;
