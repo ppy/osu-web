@@ -129,10 +129,7 @@ class BeatmapsController extends Controller
      */
     public function userScore($beatmapId, $userId)
     {
-        $beatmap = Beatmap::findOrFail($beatmapId);
-        if ($beatmap->approved <= 0) {
-            abort(404);
-        }
+        $beatmap = Beatmap::scoreable()->findOrFail($beatmapId);
 
         $params = get_params(request()->all(), null, [
             'mode:string',
