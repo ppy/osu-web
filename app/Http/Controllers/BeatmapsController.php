@@ -67,12 +67,12 @@ class BeatmapsController extends Controller
 
         $params = get_params(request()->all(), null, [
             'mode:string',
-            'mods:any',
+            'mods:string[]',
             'type:string',
         ]);
 
         $mode = presence($params['mode'] ?? null, $beatmap->mode);
-        $mods = get_arr($params['mods'] ?? null, 'presence') ?? [];
+        $mods = array_values(array_filter($params['mods'] ?? []));
         $type = presence($params['type'] ?? null, 'global');
         $currentUser = auth()->user();
 
@@ -133,11 +133,11 @@ class BeatmapsController extends Controller
 
         $params = get_params(request()->all(), null, [
             'mode:string',
-            'mods:any',
+            'mods:string[]',
         ]);
 
         $mode = presence($params['mode'] ?? null, $beatmap->mode);
-        $mods = get_arr($params['mods'] ?? null, 'presence') ?? [];
+        $mods = array_values(array_filter($params['mods'] ?? []));
 
         try {
             $score = static::baseScoreQuery($beatmap, $mode, $mods)
