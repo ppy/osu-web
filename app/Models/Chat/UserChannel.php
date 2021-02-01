@@ -84,7 +84,7 @@ class UserChannel extends Model
         $channelMessageIds = Message::whereIn('channel_id', $channelIds)
             ->groupBy('channel_id')
             ->select('channel_id')
-            ->selectRaw('MIN(message_id) as first_message_id')
+            // ->selectRaw('MIN(message_id) as first_message_id')
             ->selectRaw('MAX(message_id) as last_message_id')
             ->get()
             ->keyBy('channel_id');
@@ -140,7 +140,7 @@ class UserChannel extends Model
                 'name' => $channel->name,
                 'description' => presence($channel->description),
                 'last_read_id' => $userChannel->last_read_id,
-                'first_message_id' => optional($messageEnds)->first_message_id,
+                // 'first_message_id' => optional($messageEnds)->first_message_id,
                 'last_message_id' => optional($messageEnds)->last_message_id,
                 'moderated' => $channel->moderated,
             ];
