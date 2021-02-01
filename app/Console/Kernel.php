@@ -63,6 +63,7 @@ class Kernel extends ConsoleKernel
         Commands\UserRecalculateRankCounts::class,
 
         Commands\UserNotificationsCleanup::class,
+        Commands\NotificationsCleanup::class,
     ];
 
     /**
@@ -98,6 +99,10 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('user-notifications:cleanup')
             ->everyThirtyMinutes()
+            ->withoutOverlapping();
+
+        $schedule->command('notifications:cleanup')
+            ->cron('15,45 * * * *')
             ->withoutOverlapping();
     }
 
