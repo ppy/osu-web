@@ -277,10 +277,14 @@ export default class ChannelStore {
       return Message.fromJson(messageJson);
     });
 
-    if (messages.length === 0) return;
-
     const channel = this.channels.get(channelId);
     if (channel == null) return;
+
+    if (messages.length === 0) {
+      // assume no more messages.
+      channel.firstMessageId = channel.minMessageId;
+      return;
+    }
 
     channel.addMessages(messages);
     channel.loaded = true;
