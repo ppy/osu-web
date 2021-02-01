@@ -30,7 +30,7 @@ class NotificationsCleanup extends Command
         $perLoop = min($total, static::MAX_PER_LOOP);
         $loops = $total / $perLoop;
 
-        $maxNotificationId = optional(UserNotification::first())->notification_id;
+        $maxNotificationId = optional(UserNotification::orderBy('id', 'ASC')->first())->notification_id;
 
         if ($maxNotificationId === null || $maxNotificationId < static::NOTIFICATION_ID_BUFFER) {
             $this->line('No notifications to delete');
