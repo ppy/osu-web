@@ -69,21 +69,21 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'klien yang memiliki akses',
-        'own_clients' => 'klien yang dimiliki',
+        'own_clients' => 'klien yang Anda miliki',
         'title' => 'OAuth',
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'nonaktifkan peringatan untuk beatmap-beatmap yang mengandung konten eksplisit',
+        'beatmapset_title_show_original' => 'tampilkan metadata beatmap dalam bahasa aslinya',
         'title' => 'Pengaturan',
 
         'beatmapset_download' => [
             '_' => 'tipe pengunduhan beatmap default',
             'all' => 'dengan video (apabila tersedia)',
-            'no_video' => 'tanpa video',
             'direct' => 'buka melalui osu!direct',
+            'no_video' => 'tanpa video',
         ],
-
-        'beatmapset_title_show_original' => 'tampilkan metadata beatmap dalam bahasa aslinya',
     ],
 
     'playstyles' => [
@@ -118,7 +118,7 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => 'Kamu dapat menutup laman ini sekarang',
+        'text' => 'Anda dapat menutup laman ini sekarang',
         'title' => 'Verifikasi selesai',
     ],
 

@@ -75,6 +75,9 @@ return [
         'contests_controller' => [
             '_' => 'kontes',
         ],
+        'follows_controller' => [
+            'index' => 'dasbor',
+        ],
         'friends_controller' => [
             'index' => 'dasbor',
         ],

@@ -310,7 +310,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Download Replay',
-                'not_ranked' => 'Only ranked beatmaps give out pp.',
+                'not_ranked' => 'Only ranked beatmaps award pp',
                 'pp_weight' => 'weighted :percentage',
                 'view_details' => 'View Details',
                 'title' => 'Ranks',

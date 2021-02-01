@@ -55,8 +55,8 @@ return [
         'close' => 'Tutup (Esc)',
         'fullscreen' => 'Beralih ke layar penuh',
         'zoom' => 'Perbesar/perkecil tampilan',
-        'previous' => 'Sebelumnya (arrow left)',
-        'next' => 'Selanjutnya (arrow right)',
+        'previous' => 'Sebelumnya (tombol panah kiri)',
+        'next' => 'Selanjutnya (tombol panah kanan)',
     ],
 
     'menu' => [
@@ -77,7 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'bantuan',
-            'getAbuse' => '',
+            'getAbuse' => 'laporkan penyalahgunaan',
             'getFaq' => 'faq',
             'getRules' => 'peraturan',
             'getSupport' => 'beneran, saya butuh bantuan!',
@@ -204,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Pengaturan',
+            'follows' => 'Daftar Pantauan',
             'friends' => 'Teman',
             'logout' => 'Keluar',
             'profile' => 'Profil Saya',

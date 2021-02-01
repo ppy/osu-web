@@ -220,14 +220,15 @@ return [
             'not-found' => '결과 없음',
             'not-found-quote' => '... 없네요, 아무것도 못 찾았습니다.',
             'filters' => [
+                'extra' => '추가 기능',
                 'general' => '일반',
-                'mode' => '모드',
-                'status' => '카테고리',
                 'genre' => '장르',
                 'language' => '언어',
-                'extra' => '추가 기능',
-                'rank' => '순위 기록됨',
+                'mode' => '모드',
+                'nsfw' => '부적절한 맵',
                 'played' => '플레이함',
+                'rank' => '순위 기록됨',
+                'status' => '카테고리',
             ],
             'sorting' => [
                 'title' => '제목',
@@ -330,6 +331,12 @@ return [
         'other' => '기타',
         'unspecified' => '미지정',
     ],
+
+    'nsfw' => [
+        'exclude' => '숨기기',
+        'include' => '표시',
+    ],
+
     'played' => [
         'any' => '모두',
         'played' => '플레이한 맵',

@@ -51,7 +51,7 @@ return [
         'actions' => [
             'destroy' => '删除回复',
             'edit' => '编辑回复',
-            'report' => '',
+            'report' => '举报帖子',
             'restore' => '恢复回复',
         ],
 
@@ -62,7 +62,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => ':count_delimited 帖子',
+            'post_count' => ':count_delimited 篇帖子',
             'topic_starter' => '楼主',
         ],
     ],

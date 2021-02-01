@@ -15,8 +15,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => '報告',
+        'title' => ':username の投稿を通報しますか？',
     ],
 
     'scores' => [

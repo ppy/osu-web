@@ -8,6 +8,7 @@ return [
         'disabled' => 'Dette beatmappet er for øyeblikket ikke tilgjengelig for nedlastning.',
         'parts-removed' => 'Deler av dette beatmappet har blitt fjernet etter forespørsel av skaperen eller en tredjepart rettighetshaver.',
         'more-info' => 'Klikk her for mer informasjon.',
+        'rule_violation' => '',
     ],
 
     'index' => [
@@ -16,12 +17,32 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'last ned',
             'video' => 'last ned med video',
             'no_video' => 'last ned med video',
             'direct' => 'åpne i osu!direct',
         ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -89,10 +110,22 @@ return [
             'genre' => 'Sjanger',
             'language' => 'Språk',
             'no_scores' => 'Data blir fortsatt kalkulert...',
+            'nsfw' => '',
             'points-of-failure' => 'Feilpunkter',
             'source' => 'Kilde',
             'success-rate' => 'Suksessrate',
             'tags' => 'Stikkord',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

@@ -11,6 +11,7 @@ export interface BeatmapsetSearchParams {
   genre: filterValueType;
   language: filterValueType;
   mode: filterValueType;
+  nsfw: filterValueType;
   played: filterValueType;
   query: filterValueType;
   rank: filterValueType;
@@ -26,6 +27,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   @observable genre: filterValueType = null;
   @observable language: filterValueType = null;
   @observable mode: filterValueType = null;
+  @observable nsfw: filterValueType = null;
   @observable played: filterValueType = null;
   @observable query: filterValueType = null;
   @observable rank: filterValueType = null;

@@ -51,7 +51,7 @@ return [
         'actions' => [
             'destroy' => 'Radera inlägg',
             'edit' => 'Redigera inlägg',
-            'report' => '',
+            'report' => 'Anmäl inlägg',
             'restore' => 'Återställ inlägg',
         ],
 

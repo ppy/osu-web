@@ -15,6 +15,7 @@ import { NotificationBanner } from 'notification-banner'
 import { Posts } from "./posts"
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
+import UserProfileContainer from 'user-profile-container'
 el = React.createElement
 
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
@@ -147,64 +148,39 @@ export class Main extends React.PureComponent
 
   render: =>
     profileOrder = @state.profileOrder
-    isBlocked = _.find(currentUser.blocks, target_id: @state.user.id)
 
     el ReviewEditorConfigContext.Provider, value: @props.reviewsConfig,
       el DiscussionsContext.Provider, value: @discussions(),
         el BeatmapsContext.Provider, value: @beatmaps(),
-          div
-            className: 'osu-layout__no-scroll' if isBlocked && !@state.forceShow
-            if isBlocked
+          el UserProfileContainer,
+            user: @state.user,
+            el Header,
+              user: @state.user
+              stats: @state.user.statistics
+              userAchievements: @props.userAchievements
+
+            div
+              className: 'hidden-xs page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'
               div className: 'osu-page',
-                el NotificationBanner,
-                  type: 'warning'
-                  title: osu.trans('users.blocks.banner_text')
-                  message:
-                    div className: 'grid-items grid-items--notification-banner-buttons',
-                      div null,
-                        el BlockButton, userId: @props.user.id
-                      div null,
-                        button
-                          type: 'button'
-                          className: 'textual-button'
-                          onClick: =>
-                            @setState forceShow: !@state.forceShow
-                          span {},
-                            i className: 'textual-button__icon fas fa-low-vision'
-                            " "
-                            if @state.forceShow
-                              osu.trans('users.blocks.hide_profile')
-                            else
-                              osu.trans('users.blocks.show_profile')
+                div
+                  className: 'page-mode page-mode--profile-page-extra'
+                  ref: @tabs
+                  for m in profileOrder
+                    a
+                      className: 'page-mode__item'
+                      key: m
+                      'data-page-id': m
+                      onClick: @tabClick
+                      href: "##{m}"
+                      el ExtraTab,
+                        page: m
+                        currentPage: @state.currentPage
+                        currentMode: @state.currentMode
 
-            div className: "osu-layout osu-layout--full#{if isBlocked && !@state.forceShow then ' osu-layout--masked' else ''}",
-              el Header,
-                user: @state.user
-                stats: @state.user.statistics
-                userAchievements: @props.userAchievements
-
-              div
-                className: 'hidden-xs page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'
-                div className: 'osu-page',
-                  div
-                    className: 'page-mode page-mode--profile-page-extra'
-                    ref: @tabs
-                    for m in profileOrder
-                      a
-                        className: 'page-mode__item'
-                        key: m
-                        'data-page-id': m
-                        onClick: @tabClick
-                        href: "##{m}"
-                        el ExtraTab,
-                          page: m
-                          currentPage: @state.currentPage
-                          currentMode: @state.currentMode
-
-              div
-                className: 'user-profile-pages'
-                ref: @pages
-                @extraPage name for name in profileOrder
+            div
+              className: 'user-profile-pages'
+              ref: @pages
+              @extraPage name for name in profileOrder
 
 
   extraPage: (name) =>

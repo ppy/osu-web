@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'ocultar advertencias para contenido explícito en mapas',
+        'beatmapset_title_show_original' => 'mostrar datos de mapas en su idioma original',
         'title' => 'Opciones',
 
         'beatmapset_download' => [
             '_' => 'tipo de descarga de mapa predeterminado',
             'all' => 'con vídeo si está disponible',
-            'no_video' => 'sin vídeo',
             'direct' => 'abrir en osu!direct',
+            'no_video' => 'sin vídeo',
         ],
-
-        'beatmapset_title_show_original' => 'mostrar datos de mapas en su idioma original',
     ],
 
     'playstyles' => [

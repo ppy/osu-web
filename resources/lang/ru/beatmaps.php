@@ -187,7 +187,7 @@ return [
         'nominate_confirm' => 'Номинировать эту карту?',
         'nominated_by' => 'номинирована :users',
         'not_enough_hype' => "Недостаточно хайпа.",
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Убрать из Loved',
         'remove_from_loved_prompt' => 'Причина удаления из Любимых:',
         'required_text' => 'Номинаций: :current/:required',
         'reset_message_deleted' => 'удалено',
@@ -220,14 +220,15 @@ return [
             'not-found' => 'нет результатов',
             'not-found-quote' => '... увы, ничего не найдено.',
             'filters' => [
+                'extra' => 'Дополнительно',
                 'general' => 'Общее',
-                'mode' => 'Режим игры',
-                'status' => 'Категории',
                 'genre' => 'Жанр',
                 'language' => 'Язык',
-                'extra' => 'Дополнительно',
-                'rank' => 'Заработан рейтинг',
+                'mode' => 'Режим игры',
+                'nsfw' => 'Откровенные Карты',
                 'played' => 'Сыграно',
+                'rank' => 'Заработан рейтинг',
+                'status' => 'Категории',
             ],
             'sorting' => [
                 'title' => 'Названию',
@@ -330,6 +331,12 @@ return [
         'other' => 'Другой',
         'unspecified' => 'Не определён',
     ],
+
+    'nsfw' => [
+        'exclude' => 'Скрыть',
+        'include' => 'Показать',
+    ],
+
     'played' => [
         'any' => 'Все',
         'played' => 'Сыграно',

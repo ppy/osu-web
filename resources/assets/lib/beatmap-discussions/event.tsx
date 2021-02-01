@@ -147,6 +147,11 @@ export default class Event extends React.PureComponent<Props> {
       params.modes = osu.transArray(nominationModes);
     }
 
+    if (eventType === 'nsfw_toggle') {
+      const newState = this.props.event.comment?.new ? 'to_1' : 'to_0';
+      eventType += `.${newState}`;
+    }
+
     const key = `beatmapset_events.event.${eventType}`;
     let message = osu.trans(key, params);
 

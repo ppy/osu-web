@@ -15,8 +15,13 @@ return [
     'top' => 'Paras',
     'username' => 'Käyttäjänimi',
 
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => '',
+    ],
+
     'forum_topics' => [
-        'new' => 'Viimeisin kommentti',
         'feature_votes' => 'Tähtitaso',
+        'new' => 'Viimeisin kommentti',
     ],
 ];

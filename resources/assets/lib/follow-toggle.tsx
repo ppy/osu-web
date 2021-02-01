@@ -25,6 +25,7 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
 
   state: State;
 
+  private eventId = `follow-toggle-${osu.uuid()}`;
   private toggleXhr: null | JQueryXHR = null;
 
   constructor(props: Props) {
@@ -34,6 +35,16 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
       following: this.props.following,
       toggling: false,
     };
+  }
+
+  componentDidMount() {
+    if (this.props.follow.subtype === 'mapping') {
+      $.subscribe(`user:followUserMapping:refresh.${this.eventId}`, this.refresh);
+    }
+  }
+
+  componentWillUnmount() {
+    $.unsubscribe(`.${this.eventId}`);
   }
 
   render() {
@@ -72,12 +83,21 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
               following: !this.state.following,
               userId: this.props.follow.notifiable_id,
             });
+          } else {
+            this.setState({ following: !this.state.following });
           }
-          this.setState({ following: !this.state.following });
         }).always(() => {
           this.setState({ toggling: false });
         });
     });
+  }
+
+  private refresh = () => {
+    if (this.props.follow.subtype === 'mapping') {
+      this.setState({
+        following: currentUser.follow_user_mapping.includes(this.props.follow.notifiable_id),
+      });
+    }
   }
 
   private renderToggleIcon() {

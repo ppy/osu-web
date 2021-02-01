@@ -56,7 +56,6 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
             ['gmt', true],
             ['nat', true],
             [[], false],
-            [null, false],
         ];
     }
 

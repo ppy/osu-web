@@ -13,7 +13,12 @@ return [
     ],
 
     'scopes' => [
+        'bot' => '',
         'identify' => '識別您的身份並閱讀您的公開個人資料。',
+
+        'chat' => [
+            'write' => '',
+        ],
 
         'friends' => [
             'read' => '查看您追蹤的玩家們。',

@@ -5,11 +5,13 @@
 
 return [
     'all_read' => '通知は全て既読です！',
-    'delete' => '',
+    'delete' => ':type を削除',
+    'loading' => '通知を読み込み中...',
     'mark_read' => '消去 :type',
     'none' => '通知なし',
     'see_all' => 'すべての通知を見る',
-    'see_channel' => '',
+    'see_channel' => 'チャットに行く',
+    'verifying' => '',
 
     'filters' => [
         '_' => '全て',
@@ -133,6 +135,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '新しいビートマップ',
+
+                'user_beatmapset_new' => ':username による新しいビートマップ「:title」',
+                'user_beatmapset_new_compact' => '新しいビートマップ「:title」',
+                'user_beatmapset_new_group' => ':username の新しいビートマップ',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'メダル',
 
@@ -200,6 +212,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':usernameが新しいメダル「:title」をアンロックしました！',
                 'user_achievement_unlock_self' => '新しいメダル「:title」をアンロックしました！',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':usernameがビートマップを作成しました',
             ],
         ],
     ],

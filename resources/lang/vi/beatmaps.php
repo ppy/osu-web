@@ -21,7 +21,7 @@ return [
         'kudosu_denied' => 'Đã từ chối nhận kudosu.',
         'message_placeholder_deleted_beatmap' => 'Difficulty này đã bị xóa nên nó có thể sẽ không còn được thảo luận nữa.',
         'message_placeholder_locked' => 'Chức năng bàn luận của beatmap này đã bị vô hiệu hóa.',
-        'message_placeholder_silenced' => "",
+        'message_placeholder_silenced' => "Không thể đăng thảo luận khi bị khoá mõm.",
         'message_type_select' => 'Chọn Loại Nhận Xét',
         'reply_notice' => 'Nhấn enter để trả lời.',
         'reply_placeholder' => 'Nhập câu trả lời của bạn tại đây',
@@ -61,7 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Nhập vào đây để đăng vào Chung (:version)',
             'generalAll' => 'Nhập vào đây để đăng vào Chung (Tất cả difficulties)',
-            'review' => '',
+            'review' => 'Gõ ở đây để đăng một bài đánh giá',
             'timeline' => 'Nhập vào đây để đăng vào Timeline (:version)',
         ],
 
@@ -96,22 +96,22 @@ return [
         ],
 
         'review' => [
-            'new' => '',
+            'new' => 'Nhận xét mới',
             'embed' => [
-                'delete' => '',
-                'missing' => '',
-                'unlink' => '',
-                'unsaved' => '',
+                'delete' => 'Xoá',
+                'missing' => '[ĐÃ XOÁ THẢO LUẬN]',
+                'unlink' => 'Gỡ liên kết',
+                'unsaved' => 'Huỷ lưu',
                 'timestamp' => [
-                    'all-diff' => '',
+                    'all-diff' => 'Các bài đăng trên "Mọi độ khó" không thể gắn mốc thời gian.',
                     'diff' => '',
                 ],
             ],
             'insert-block' => [
-                'paragraph' => '',
-                'praise' => '',
-                'problem' => '',
-                'suggestion' => '',
+                'paragraph' => 'chèn đoạn văn',
+                'praise' => 'chèn lời ca ngợi',
+                'problem' => 'chèn vấn đề',
+                'suggestion' => 'chèn gợi ý',
             ],
         ],
 
@@ -145,8 +145,8 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Chưa có downvote',
+                'up' => 'Chưa có upvote',
             ],
             'latest' => [
                 'down' => '',
@@ -220,14 +220,15 @@ return [
             'not-found' => 'không có kết quả',
             'not-found-quote' => '... không, chả có gì cả.',
             'filters' => [
+                'extra' => 'thêm',
                 'general' => 'Chung',
-                'mode' => 'Chế Độ',
-                'status' => 'Danh mục',
                 'genre' => 'Thể Loại',
                 'language' => 'Ngôn Ngữ',
-                'extra' => 'thêm',
-                'rank' => 'Thứ Hạng Đạt Được',
+                'mode' => 'Chế Độ',
+                'nsfw' => '',
                 'played' => 'Đã chơi',
+                'rank' => 'Thứ Hạng Đạt Được',
+                'status' => 'Danh mục',
             ],
             'sorting' => [
                 'title' => 'Tiêu đề',
@@ -330,6 +331,12 @@ return [
         'other' => 'Khác',
         'unspecified' => 'Không xác định',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Bất Kì',
         'played' => 'Đã Chơi',

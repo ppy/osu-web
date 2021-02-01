@@ -20,9 +20,9 @@ return [
     'username_change' => '<strong>:previousUsername</strong> megváltoztatta a felhasználónevét és mostmár <strong><em>:user</strong></em>!',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
-        'ranked' => '',
+        'approved' => 'jóváhagyott',
+        'loved' => 'szerettve',
+        'qualified' => 'kvalifikált',
+        'ranked' => 'rangsorolt',
     ],
 ];

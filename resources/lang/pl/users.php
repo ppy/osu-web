@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Gra za pomocą :devices',
         'title' => "Profil :username",
 
+        'comments_count' => [
+            '_' => ':link',
+            'count' => ':count_delimited komentarz|:count_delimited komentarze|:count_delimited komentarzy',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Zmień tło profilu',

@@ -25,10 +25,16 @@ return [
         'language_edit' => '言語が :old から :new に変更されました。',
         'love' => ':userがLovedに追加しました。',
         'nominate' => ':userがノミネートしました。',
+        'nominate_modes' => ':user(:modes)がノミネートしました。',
         'nomination_reset' => '新しい問題 :discussion (:text)によりノミネートがリセットされました。',
         'qualify' => 'このビートマップは既に必要なノミネーション数に達しており、Qualifiedされています。',
         'rank' => 'Rankedされました。',
         'remove_from_loved' => ':userによってLovedから削除されました。(:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -65,6 +71,7 @@ return [
         'love' => 'Love',
         'nominate' => 'ノミネーション',
         'nomination_reset' => 'ノミネーションのリセット',
+        'nsfw_toggle' => '',
         'qualify' => 'Qualification',
         'rank' => 'ランキング',
         'remove_from_loved' => 'Loved削除',

@@ -220,14 +220,15 @@ return [
             'not-found' => 'nessun risultato',
             'not-found-quote' => '... no, trovato niente.',
             'filters' => [
+                'extra' => 'Extra',
                 'general' => 'Generale',
-                'mode' => 'Modalità',
-                'status' => 'Categorie',
                 'genre' => 'Genere',
                 'language' => 'Lingua',
-                'extra' => 'extra',
-                'rank' => 'Rank ottenuto',
+                'mode' => 'Modalità',
+                'nsfw' => 'Mappe Esplicite',
                 'played' => 'Giocato',
+                'rank' => 'Rank ottenuto',
+                'status' => 'Categorie',
             ],
             'sorting' => [
                 'title' => 'Titolo',
@@ -330,6 +331,12 @@ return [
         'other' => 'Altro',
         'unspecified' => 'Non specificato',
     ],
+
+    'nsfw' => [
+        'exclude' => 'Nascondi',
+        'include' => 'Mostra',
+    ],
+
     'played' => [
         'any' => 'Qualsiasi',
         'played' => 'Giocate',

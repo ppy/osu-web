@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Felhasználók játékmód szerint',
     ],
 
     'force_reactivation' => [
@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Ezekkel játszik: :devices',
         'title' => ":username profilja",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Profil Borító Változtatása',

@@ -15,8 +15,13 @@ return [
     'top' => 'Terug naar boven',
     'username' => 'Gebruikersnaam',
 
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => '',
+    ],
+
     'forum_topics' => [
-        'new' => 'Laatste antwoord',
         'feature_votes' => 'Ster prioriteit',
+        'new' => 'Laatste antwoord',
     ],
 ];

@@ -54,7 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Żaden z tych postów nie jest istotny',
         'notice' => 'Istnieją posty dotyczące :timestamp (:existing_timestamps). Sprawdź je przed opublikowaniem posta.',
-        'unsaved' => '',
+        'unsaved' => ':count w tej recenzji',
     ],
 
     'reply' => [

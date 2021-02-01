@@ -35,7 +35,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => 'comentarii',
         'nav_title' => 'listare',
+        'no_comments' => 'niciun comentariu găsit...',
     ],
 
     'placeholder' => [

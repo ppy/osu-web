@@ -8,6 +8,7 @@ return [
         'disabled' => 'Αυτό το beatmap δεν είναι διαθέσιμο για λήψη.',
         'parts-removed' => 'Τμήματα αυτού του beatmap έχουν αφαιρεθεί κατ\' απαίτηση του δημιουργού ή κάποιου τρίτου, κατόχου πνευματικών δικαιωμάτων.',
         'more-info' => 'Κάντε κλικ εδώ για να δείτε περισσότερα.',
+        'rule_violation' => '',
     ],
 
     'index' => [
@@ -16,12 +17,32 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => '',
             'video' => '',
             'no_video' => '',
             'direct' => '',
         ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -89,10 +110,22 @@ return [
             'genre' => 'Είδος',
             'language' => 'Γλώσσα',
             'no_scores' => 'Τα δεδομένα ακόμα υπολογίζονται...',
+            'nsfw' => '',
             'points-of-failure' => 'Σημεία Αποτυχίας',
             'source' => 'Προέλευση',
             'success-rate' => 'Ποσοστό Επιτυχίας',
             'tags' => 'Ετικέτες',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

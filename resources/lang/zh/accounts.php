@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '隐藏谱面少儿不宜提示',
+        'beatmapset_title_show_original' => '以原语言显示谱面信息',
         'title' => '选项',
 
         'beatmapset_download' => [
             '_' => '默认谱面下载类型',
             'all' => '包含视频',
-            'no_video' => '不包含视频',
             'direct' => '在 osu!direct 中查看',
+            'no_video' => '不包含视频',
         ],
-
-        'beatmapset_title_show_original' => '以原语言显示谱面信息',
     ],
 
     'playstyles' => [

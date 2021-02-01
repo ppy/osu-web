@@ -8,6 +8,7 @@ return [
         'disabled' => 'このビートマップは現在ダウンロード不可能です。',
         'parts-removed' => '権利者の申し立てによりこのビートマップは部分的に削除されています。',
         'more-info' => '詳細はこちらです。',
+        'rule_violation' => 'このマップに含まれる一部のアセットは、Osu!での使用に適さないと判断し、削除されています。',
     ],
 
     'index' => [
@@ -16,12 +17,32 @@ return [
     ],
 
     'panel' => [
+        'empty' => 'ビートマップがありません',
+
         'download' => [
             'all' => 'ダウンロード',
             'video' => '動画付きでダウンロード',
             'no_video' => '動画無しでダウンロード',
             'direct' => 'osu!directで開く',
         ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => 'このビートマップを本当にノミネートしますか?',
+            'header' => 'ビートマップをノミネート',
+            'hybrid_warning' => '',
+            'which_modes' => 'どのモードをノミネートしますか？',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -89,10 +110,22 @@ return [
             'genre' => 'ジャンル',
             'language' => '言語',
             'no_scores' => 'データはまだ計算中です・・・',
+            'nsfw' => '',
             'points-of-failure' => '失敗地点',
             'source' => 'ソース',
             'success-rate' => 'クリア率',
             'tags' => 'タグ',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

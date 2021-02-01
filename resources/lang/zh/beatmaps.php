@@ -220,14 +220,15 @@ return [
             'not-found' => '没有结果',
             'not-found-quote' => '呃，什么也没有...',
             'filters' => [
+                'extra' => '其他',
                 'general' => '常规',
-                'mode' => '模式',
-                'status' => '分类',
                 'genre' => '流派',
                 'language' => '语言',
-                'extra' => '其他',
-                'rank' => '成绩',
+                'mode' => '模式',
+                'nsfw' => '少儿不宜谱面',
                 'played' => '玩过',
+                'rank' => '成绩',
+                'status' => '分类',
             ],
             'sorting' => [
                 'title' => '标题',
@@ -330,6 +331,12 @@ return [
         'other' => '其他',
         'unspecified' => '未指定',
     ],
+
+    'nsfw' => [
+        'exclude' => '隐藏',
+        'include' => '显示',
+    ],
+
     'played' => [
         'any' => '任意',
         'played' => '玩过',

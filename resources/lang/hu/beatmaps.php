@@ -187,17 +187,17 @@ return [
         'nominate_confirm' => 'Nominálod ezt a beatmapot?',
         'nominated_by' => 'nominálva :users által',
         'not_enough_hype' => "Nincs elég hype.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Eltávolítás a szeretettek közül',
+        'remove_from_loved_prompt' => 'Indoka a szeretettek közül való eltávolításnak:',
         'required_text' => 'Nominálások: :current/:required',
         'reset_message_deleted' => 'törölve',
         'title' => 'Nominálási Állapot',
         'unresolved_issues' => 'Még mindig vannak megoldatlan problémák amelyeket először kezelni kell.',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
-            'soon' => '',
+            '_' => 'Ez a pálya ranglistázott lesz :date napján, ha további problémák nem merülnek fel. Jelenleg a :position. helyen áll a :queue.',
+            'queue' => 'ranglistázási sorban',
+            'soon' => 'a közeljövő egy',
         ],
 
         'reset_at' => [
@@ -220,14 +220,15 @@ return [
             'not-found' => 'nincs találat',
             'not-found-quote' => '... nope, semmit sem találtam.',
             'filters' => [
+                'extra' => 'extra',
                 'general' => 'Általános',
-                'mode' => 'Mód',
-                'status' => 'Kategóriák',
                 'genre' => 'Műfaj',
                 'language' => 'Nyelv',
-                'extra' => 'extra',
-                'rank' => 'Elért Rang',
+                'mode' => 'Mód',
+                'nsfw' => '',
                 'played' => 'Lejátszott',
+                'rank' => 'Elért Rang',
+                'status' => 'Kategóriák',
             ],
             'sorting' => [
                 'title' => 'Cím',
@@ -252,7 +253,7 @@ return [
         'converts' => 'Konvertált beatmap-ek tartalmazása',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Összes',
         'any' => 'Bármelyik',
         'osu' => '',
         'taiko' => '',
@@ -330,6 +331,12 @@ return [
         'other' => 'Egyéb',
         'unspecified' => 'Meghatározatlan',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Bármelyik',
         'played' => 'LeJátszott',

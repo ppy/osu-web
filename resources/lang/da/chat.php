@@ -15,6 +15,8 @@ return [
             'blocked' => 'Du er blevet blokeret af modtageren',
             'channel_moderated' => 'Chatten er blevet sat til moderated',
             'friends_only' => 'Modtageren accepterer kun meddelelser fra personer på deres venneliste',
+            'not_enough_plays' => '',
+            'not_verified' => '',
             'restricted' => 'Du er i øjeblikket begrænset',
             'target_restricted' => 'Modtageren er i øjeblikket begrænset',
         ],

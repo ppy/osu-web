@@ -8,6 +8,7 @@ return [
         'disabled' => 'Гэтая бітмапа зараз недаступна для спампоўвання.',
         'parts-removed' => 'Некаторыя часткі гэтай бітмапы былі выдалены па запыту стваральніка або праваўладальніка.',
         'more-info' => 'Для падрабязнасцей націсніце тут.',
+        'rule_violation' => '',
     ],
 
     'index' => [
@@ -16,12 +17,32 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'спампаваць',
             'video' => '',
             'no_video' => '',
             'direct' => '',
         ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -89,10 +110,22 @@ return [
             'genre' => 'Жанр',
             'language' => 'Мова',
             'no_scores' => 'Усё яшчэ ідзе падлік даных...',
+            'nsfw' => '',
             'points-of-failure' => 'Колькасць правалаў',
             'source' => 'Крыніца',
             'success-rate' => 'Шанц поспеху',
             'tags' => 'Тэгі',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

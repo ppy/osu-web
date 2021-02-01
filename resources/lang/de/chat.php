@@ -15,6 +15,8 @@ return [
             'blocked' => 'Du wurdest vom Empfänger blockiert',
             'channel_moderated' => 'Der Kanal wurde moderiert',
             'friends_only' => 'Der Empfänger akzeptiert nur Nachrichten von Personen in seiner Freundesliste',
+            'not_enough_plays' => 'Du hast das Spiel nicht genug gespielt',
+            'not_verified' => 'Deine Sitzung wurde noch nicht verifiziert',
             'restricted' => 'Du bist zurzeit eingeschränkt',
             'target_restricted' => 'Der Empfänger ist zurzeit eingeschränkt',
         ],

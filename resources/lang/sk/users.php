@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Hrá s :devices',
         'title' => "profil používateľa :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Zmeniť pozadie profilu',

@@ -204,6 +204,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '設定',
+            'follows' => '',
             'friends' => '好友',
             'logout' => '登出',
             'profile' => '我的資料',

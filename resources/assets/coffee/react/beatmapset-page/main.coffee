@@ -5,6 +5,7 @@ import { Header } from './header'
 import { Hype } from './hype'
 import { Info } from './info'
 import { Scoreboard } from './scoreboard'
+import NsfwWarning from 'beatmapsets-show/nsfw-warning'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
 import HeaderV4 from 'header-v4'
@@ -47,6 +48,7 @@ export class Main extends React.Component
         favcount: props.beatmapset.favourite_count
         hasFavourited: props.beatmapset.has_favourited
         loading: false
+        showingNsfwWarning: props.beatmapset.nsfw && !currentUser.user_preferences?.beatmapset_show_nsfw
         currentScoreboardType: 'global'
         enabledMods: []
         scores: []
@@ -138,8 +140,9 @@ export class Main extends React.Component
   setCurrentPlaymode: (_e, {mode}) =>
     return if @state.currentBeatmap.mode == mode
 
-    @setCurrentBeatmap null,
-      beatmap: BeatmapHelper.findDefault items: @state.beatmaps[mode]
+    beatmap = BeatmapHelper.find id: @state.currentBeatmap.id, mode: mode, group: @state.beatmaps
+    beatmap ?= BeatmapHelper.findDefault items: @state.beatmaps[mode]
+    @setCurrentBeatmap null, { beatmap }
 
 
   setHoveredBeatmap: (_e, hoveredBeatmap) =>
@@ -189,6 +192,14 @@ export class Main extends React.Component
   render: ->
     div className: 'osu-layout osu-layout--full',
       @renderPageHeader()
+      if @state.showingNsfwWarning
+        el NsfwWarning, onClose: => @setState showingNsfwWarning: false
+      else
+        @renderPage()
+
+
+  renderPage: ->
+    el React.Fragment, null,
       div className: 'osu-layout__row osu-layout__row--page-compact',
         el Header,
           beatmapset: @state.beatmapset
@@ -228,14 +239,17 @@ export class Main extends React.Component
             commentableId: @state.beatmapset.id
 
 
-  renderPageHeader: =>
-    el HeaderV4,
-      theme: 'beatmapsets'
-      titleAppend: el PlaymodeTabs,
+  renderPageHeader: ->
+    unless @state.showingNsfwWarning
+      titleAppend = el PlaymodeTabs,
         beatmaps: @state.beatmaps
         currentMode: @state.currentBeatmap.mode
         hrefFunc: @tabHrefFunc
         showCounts: true
+
+    el HeaderV4,
+      theme: 'beatmapsets'
+      titleAppend: titleAppend
 
   saveStateToContainer: =>
     @props.container.dataset.state = JSON.stringify(@state)

@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'إخفاء تحذيرات المحتوى الحساس في الخرائط',
+        'beatmapset_title_show_original' => 'إظهار بيانات تعريف الخرائط باللغة الأصلية',
         'title' => 'الخيارات',
 
         'beatmapset_download' => [
             '_' => 'نوع تحميل الخريطة الافتراضي',
             'all' => 'مع الفيديو إذا كان متاحا',
-            'no_video' => 'بدون الفيديو',
             'direct' => 'فتح في osu!direct',
+            'no_video' => 'بدون الفيديو',
         ],
-
-        'beatmapset_title_show_original' => 'إظهار بيانات تعريف الخرائط باللغة الأصلية',
     ],
 
     'playstyles' => [
@@ -123,6 +123,6 @@ return [
     ],
 
     'verification_invalid' => [
-        'title' => 'رابط التثبيت غير صالح أو منتهي الصلاحية',
+        'title' => 'رابط التأكيد تالف أو منتهي الصلاحية',
     ],
 ];

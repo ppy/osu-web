@@ -6,10 +6,12 @@
 return [
     'all_read' => 'Toutes les notifications lues !',
     'delete' => 'Supprimer :type',
+    'loading' => 'Chargement des notifications non lues...',
     'mark_read' => 'Effacer :type',
     'none' => 'Pas de notifications',
     'see_all' => 'voir toutes les notifications',
     'see_channel' => 'accéder au chat',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'tout',
@@ -133,6 +135,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Médailles',
 
@@ -200,6 +212,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username a déverrouillé une nouvelle médaille, ":title" !',
                 'user_achievement_unlock_self' => 'Vous avez déverrouillé une nouvelle médaille, ":title" !',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

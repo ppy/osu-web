@@ -15,8 +15,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'รายงาน',
+        'title' => 'รายงานโพสต์​ของ :username? ',
     ],
 
     'scores' => [

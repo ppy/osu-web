@@ -5,19 +5,19 @@
 
 return [
     'show' => [
-        'title' => '',
+        'title' => ':username på :title [:version]',
 
         'beatmap' => [
-            'by' => '',
+            'by' => 'af :artist',
         ],
 
         'player' => [
-            'by' => '',
-            'submitted_on' => '',
+            'by' => 'Spillet af',
+            'submitted_on' => 'Indsendt den',
 
             'rank' => [
-                'country' => '',
-                'global' => '',
+                'country' => 'Lande Rang',
+                'global' => 'Global Rang',
             ],
         ],
     ],

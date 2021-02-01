@@ -25,10 +25,16 @@ return [
         'language_edit' => 'Язык изменен с :old на :new.',
         'love' => 'Добавлено :user в любимое',
         'nominate' => 'Номинирована :user.',
+        'nominate_modes' => 'Номинатор: :user (:modes).',
         'nomination_reset' => 'Из-за новой проблемы в :discussion статус номинации был сброшен.',
         'qualify' => 'Эта карта была номинирована достаточное количество раз для квалификации.',
         'rank' => 'Рейтинговая.',
         'remove_from_loved' => ':user удалил карту из Любимых (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -65,6 +71,7 @@ return [
         'love' => 'Любовь',
         'nominate' => 'Номинация',
         'nomination_reset' => 'Сброс номинации',
+        'nsfw_toggle' => '',
         'qualify' => 'Квалификация',
         'rank' => 'Рейтинг',
         'remove_from_loved' => 'Удаление из Любимых',
