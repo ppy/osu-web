@@ -13,7 +13,6 @@ export default class Channel {
   @observable firstMessageId: number = -1;
   @observable icon?: string;
   @observable inputText: string = '';
-  @observable lastMessageId: number = -1;
   @observable lastReadId?: number;
   @observable loaded: boolean = false;
   @observable loading: boolean = false;
@@ -52,6 +51,14 @@ export default class Channel {
   }
 
   @computed
+  get lastMessageId() {
+    // TODO: needs more checking
+    if (typeof(this.lastMessage?.messageId) === 'string') return -1;
+
+    return this.lastMessage?.messageId ?? -1;
+  }
+
+  @computed
   get minMessageId() {
     const id = this.messages.length > 0 ? this.messages[0].messageId : undefined;
 
@@ -84,9 +91,7 @@ export default class Channel {
       type: json.type,
 
       description: json.description,
-      // firstMessageId: json.first_message_id,
       icon: json.icon,
-      lastMessageId: json.last_message_id,
       lastReadId: json.last_read_id,
     });
   }
@@ -108,21 +113,6 @@ export default class Channel {
 
     if (!skipSort) {
       this.resortMessages();
-    }
-
-    const lastMessage = _(messages)
-      .filter((message) => typeof message.messageId === 'number')
-      .maxBy('messageId');
-    let lastMessageId;
-
-    // The type check is redundant due to the filter above.
-    if (lastMessage != null && typeof lastMessage.messageId === 'number') {
-      lastMessageId = lastMessage.messageId;
-    } else {
-      lastMessageId = -1;
-    }
-    if (lastMessageId > this.lastMessageId) {
-      this.lastMessageId = lastMessageId;
     }
   }
 
@@ -178,10 +168,6 @@ export default class Channel {
     this.icon = json?.icon ?? '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
     this.moderated = json.moderated;
     this.users = json.users;
-
-    // this.firstMessageId = json.first_message_id ?? this.firstMessageId;
-    // ?? -1 is just there for typing, lastMessageId initializes with -1.
-    this.lastMessageId = _.max([this.lastMessageId, json.last_message_id]) ?? -1;
 
     this.metaLoaded = true;
   }
