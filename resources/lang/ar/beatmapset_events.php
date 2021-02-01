@@ -30,6 +30,11 @@ return [
         'qualify' => 'هذه الخريطة وصلت إلى العدد المطلوب من الترشيحات وتأهلت.',
         'rank' => 'مصفوفة.',
         'remove_from_loved' => 'تمت إزالتها من "المحبوبة" من قِبَل :user. (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -66,6 +71,7 @@ return [
         'love' => 'حُب',
         'nominate' => 'ترشيح',
         'nomination_reset' => 'إعادة تعيين الترشيح',
+        'nsfw_toggle' => '',
         'qualify' => 'المؤهل',
         'rank' => 'الترتيب',
         'remove_from_loved' => 'اِزبالة من "المحبوبة"',

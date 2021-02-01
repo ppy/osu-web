@@ -74,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => '부적절한 내용의 비트맵 경고 숨기기',
         'beatmapset_title_show_original' => '원본 언어로 비트맵 메타데이터 표시',
         'title' => '설정',
 

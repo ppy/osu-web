@@ -11,6 +11,7 @@ return [
     'none' => 'Няма известия',
     'see_all' => 'виж всички известия',
     'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'всички',

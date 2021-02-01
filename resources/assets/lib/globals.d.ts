@@ -130,6 +130,7 @@ interface BeatmapsetDiscussionJson {
   resolved: boolean;
   starting_post: BeatmapsetDiscussionPostJson;
   timestamp: number | null;
+  user_id: number;
 }
 
 // TODO: incomplete

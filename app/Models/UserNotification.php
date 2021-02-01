@@ -32,35 +32,41 @@ class UserNotification extends Model
         }
 
         $now = now();
-        // obtain and filter valid notification ids
-        $notificationIds = $user
+        // obtain and filter valid user notification ids
+        $ids = $user
             ->userNotifications()
             ->whereIn('notification_id', $notificationIds)
             ->where('created_at', '<=', $now)
-            ->pluck('notification_id')
+            ->pluck('id')
             ->all();
 
-        if (count($notificationIds) > 0) {
+        if (empty($ids)) {
+            return;
+        }
+
+        $readCount = 0;
+
+        foreach (array_chunk($ids, 1000) as $chunkedIds) {
             $unreadCountQuery = $user
                 ->userNotifications()
                 ->hasPushDelivery()
                 ->where('is_read', false)
-                ->whereIn('notification_id', $notificationIds);
+                ->whereIn('id', $chunkedIds);
             $unreadCountInitial = $unreadCountQuery->count();
             $user
                 ->userNotifications()
-                ->whereIn('notification_id', $notificationIds)
+                ->whereIn('id', $chunkedIds)
                 ->delete();
 
             $unreadCountCurrent = $unreadCountQuery->count();
-            $readCount = $unreadCountInitial - $unreadCountCurrent;
-
-            event(new NotificationDeleteEvent($user->getKey(), [
-                'notifications' => $identities,
-                'read_count' => $readCount,
-                'timestamp' => $now,
-            ]));
+            $readCount += $unreadCountInitial - $unreadCountCurrent;
         }
+
+        event(new NotificationDeleteEvent($user->getKey(), [
+            'notifications' => $identities,
+            'read_count' => $readCount,
+            'timestamp' => $now,
+        ]));
     }
 
     public static function batchMarkAsRead(User $user, BatchIdentities $batchIdentities)
