@@ -13,6 +13,7 @@ import { ReportReportable } from 'report-reportable'
 import { ShowMoreLink } from 'show-more-link'
 import { Spinner } from 'spinner'
 import { UserAvatar } from 'user-avatar'
+import { classWithModifiers } from 'utils/css'
 import { estimateMinLines } from 'utils/estimate-min-lines'
 
 el = React.createElement
@@ -158,7 +159,7 @@ export class Comment extends React.PureComponent
               if @props.comment.canHaveVote
                 div
                   className: 'comment__row-item visible-xs'
-                  @renderVoteText()
+                  @renderVoteButton(true)
 
               div
                 className: 'comment__row-item comment__row-item--info'
@@ -373,18 +374,18 @@ export class Comment extends React.PureComponent
         user.username
 
 
-  # mobile vote button
-  renderVoteButton: =>
-    className = osu.classWithModifiers('comment-vote', @props.modifiers)
-    className += ' comment-vote--posting' if @state.postingVote
-    className += ' comment-vote--disabled' if !@props.comment.canVote
+  renderVoteButton: (inline = false) =>
+    hasVoted = @hasVoted()
 
-    if @hasVoted()
-      className += ' comment-vote--on'
-      hover = null
-    else
-      className += ' comment-vote--off'
-      hover = div className: 'comment-vote__hover', '+1'
+    className = classWithModifiers 'comment-vote', @props.modifiers
+    className += classWithModifiers 'comment-vote',
+      disabled: !@props.comment.canVote
+      inline: inline
+      on: hasVoted
+      posting: @state.postingVote
+      true
+
+    hover = div className: 'comment-vote__hover', '+1' if !inline && !hasVoted
 
     button
       className: className
@@ -396,18 +397,6 @@ export class Comment extends React.PureComponent
       if @state.postingVote
         span className: 'comment-vote__spinner', el Spinner
       hover
-
-
-  renderVoteText: =>
-    className = 'comment__action'
-    className += ' comment__action--active' if @hasVoted()
-
-    button
-      className: className
-      type: 'button'
-      onClick: @voteToggle
-      disabled: @state.postingVote
-      "+#{osu.formatNumberSuffixed(@props.comment.votesCount, null, maximumFractionDigits: 1)}"
 
 
   renderCommentableMeta: (meta) =>
