@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\UpdateUserMappingFollowerCountCache;
 use App\Models\Beatmapset;
+use App\Models\BeatmapDiscussion;
 use App\Models\Comment;
 use App\Models\Follow;
 use App\Models\Forum\Topic;
@@ -172,10 +173,22 @@ class FollowsController extends Controller
     private function indexModding()
     {
         $user = auth()->user();
-        $watches = $user->beatmapsetWatches()->visible()->orderBy('last_notified', 'DESC')->paginate(50);
+        $watches = $user
+            ->beatmapsetWatches()
+            ->visible()
+            ->orderBy('last_notified', 'DESC')
+            ->with('beatmapset')
+            ->paginate(50);
         $totalCount = $watches->total();
         $unreadCount = $user->beatmapsetWatches()->visible()->unread()->count();
+        $openIssues = BeatmapDiscussion
+            ::whereIn('beatmapset_id', $watches->pluck('beatmapset_id'))
+            ->openIssues()
+            ->groupBy('beatmapset_id')
+            ->selectRaw('beatmapset_id, COUNT(*) AS open_count')
+            ->get()
+            ->keyBy('beatmapset_id');
 
-        return ext_view('follows.modding', compact('watches', 'totalCount', 'unreadCount'));
+        return ext_view('follows.modding', compact('openIssues', 'watches', 'totalCount', 'unreadCount'));
     }
 }

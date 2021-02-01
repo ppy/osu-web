@@ -79,7 +79,7 @@
                                 </td>
 
                                 <td class="beatmapset-watches__col">
-                                    {{ $watch->beatmapset->beatmapDiscussions()->openIssues()->count() }}
+                                    {{ optional($openIssues[$watch->beatmapset_id] ?? null)->open_count ?? 0 }}
                                 </td>
 
                                 <td class="beatmapset-watches__col">
