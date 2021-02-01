@@ -379,8 +379,6 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             });
         });
 
-
-
         Route::resource('beatmaps', 'API\BeatmapsController', ['only' => ['show']]);
 
         Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets'], function () {
@@ -432,7 +430,6 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             Route::get('{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download');
             Route::get('{score}', 'ScoresController@show')->name('show');
         });
-
 
         // Beatmapsets
         //   GET /api/v2/beatmapsets/search/:filters
