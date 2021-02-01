@@ -79,16 +79,6 @@ class UserChannel extends Model
 
         $channelIds = $userChannels->pluck('channel_id');
 
-        // including MAX(message_id) in above query is slow for large channels.
-        // TODO: last_message_id seems like something that can be handled client side?
-        $channelMessageIds = Message::whereIn('channel_id', $channelIds)
-            ->groupBy('channel_id')
-            ->select('channel_id')
-            // ->selectRaw('MIN(message_id) as first_message_id')
-            ->selectRaw('MAX(message_id) as last_message_id')
-            ->get()
-            ->keyBy('channel_id');
-
         // Getting user list; Limited to PM channels due to large size of public channels.
         // FIXME: Chat needs reworking so it doesn't need to preload all this extra data every update.
         $userPmChannels = static::whereIn('channel_id', $channelIds)
@@ -130,9 +120,8 @@ class UserChannel extends Model
 
         // End getting user list.
 
-        $collection = json_collection($userChannels, function ($userChannel) use ($channelMessageIds, $user, $userIdsByChannelId, $usersById) {
+        $collection = json_collection($userChannels, function ($userChannel) use ($user, $userIdsByChannelId, $usersById) {
             $channel = $userChannel->channel;
-            $messageEnds = $channelMessageIds[$channel->getKey()] ?? null;
 
             $presence = [
                 'channel_id' => $channel->channel_id,
@@ -140,8 +129,6 @@ class UserChannel extends Model
                 'name' => $channel->name,
                 'description' => presence($channel->description),
                 'last_read_id' => $userChannel->last_read_id,
-                // 'first_message_id' => optional($messageEnds)->first_message_id,
-                'last_message_id' => optional($messageEnds)->last_message_id,
                 'moderated' => $channel->moderated,
             ];
 
