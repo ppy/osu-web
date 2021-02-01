@@ -11,6 +11,7 @@ return [
     'none' => 'Nicio notificare',
     'see_all' => 'vedeți toate notificările',
     'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'tot',
@@ -61,7 +62,7 @@ return [
                 'beatmapset_rank' => ':title a fost premiat',
                 'beatmapset_rank_compact' => 'Beatmap-ul a fost premiat',
                 'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved_compact' => 'Beatmap a fost eliminat din iubit',
                 'beatmapset_reset_nominations' => 'Nominația ":title" a fost resetată',
                 'beatmapset_reset_nominations_compact' => 'Nominația a fost resetată',
             ],
@@ -136,7 +137,7 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Beatmap nou',
 
                 'user_beatmapset_new' => '',
                 'user_beatmapset_new_compact' => '',
@@ -151,7 +152,7 @@ return [
                 '_' => 'Medalie nouă',
                 'user_achievement_unlock' => 'Deblocat ":title"!',
                 'user_achievement_unlock_compact' => 'Deblocat ":title"!',
-                'user_achievement_unlock_group' => '',
+                'user_achievement_unlock_group' => 'Medalii deblocate!',
             ],
         ],
     ],

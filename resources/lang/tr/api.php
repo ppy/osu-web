@@ -13,7 +13,12 @@ return [
     ],
 
     'scopes' => [
+        'bot' => '',
         'identify' => 'Kim olduğunuzu ve herkese açık profilinizi görüntüleyebilir.',
+
+        'chat' => [
+            'write' => '',
+        ],
 
         'friends' => [
             'read' => 'Kimi takip ettiğinizi görebilir.',

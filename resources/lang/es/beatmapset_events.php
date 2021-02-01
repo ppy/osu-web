@@ -30,6 +30,11 @@ return [
         'qualify' => 'Este mapa ha alcanzado el número requerido de nominaciones y ha sido calificado.',
         'rank' => 'Clasificado.',
         'remove_from_loved' => 'Removido de Amados por :user. (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -66,6 +71,7 @@ return [
         'love' => 'Amor',
         'nominate' => 'Nominación',
         'nomination_reset' => 'Restablecimiento de nominación',
+        'nsfw_toggle' => '',
         'qualify' => 'Calificación',
         'rank' => 'Clasificación',
         'remove_from_loved' => 'Remoción de Amados',

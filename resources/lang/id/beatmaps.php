@@ -225,7 +225,7 @@ return [
                 'genre' => 'Aliran',
                 'language' => 'Bahasa',
                 'mode' => 'Mode',
-                'nsfw' => '',
+                'nsfw' => 'Map-Map Berkonten Eksplisit',
                 'played' => 'Riwayat Permainan',
                 'rank' => 'Torehan Peringkat',
                 'status' => 'Status',
@@ -333,8 +333,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Sembunyikan',
+        'include' => 'Tampilkan',
     ],
 
     'played' => [

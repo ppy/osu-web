@@ -11,6 +11,7 @@ return [
     'none' => '',
     'see_all' => '',
     'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => '',

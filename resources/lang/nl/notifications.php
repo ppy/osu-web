@@ -11,6 +11,7 @@ return [
     'none' => 'Geen meldingen',
     'see_all' => 'alle meldingen bekijken',
     'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'alle',

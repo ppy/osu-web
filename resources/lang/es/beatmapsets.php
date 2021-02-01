@@ -42,7 +42,7 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Explícito',
     ],
 
     'show' => [
@@ -110,7 +110,7 @@ return [
             'genre' => 'Género',
             'language' => 'Idioma',
             'no_scores' => 'Los datos todavía están siendo calculados...',
-            'nsfw' => '',
+            'nsfw' => 'Contenido explícito',
             'points-of-failure' => 'Puntos de fracaso',
             'source' => 'Fuente',
             'success-rate' => 'Tasa de éxito',
@@ -118,13 +118,13 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'Este mapa contiene contenido explícito, ofensivo o perturbador. ¿Le gustaría verlo de todos modos?',
+            'title' => 'Contenido explícito',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Desactivar advertencia',
+                'listing' => 'Listado de mapas',
+                'show' => 'Mostrar',
             ],
         ],
 

@@ -225,7 +225,7 @@ return [
                 'genre' => 'Žánr',
                 'language' => 'Jazyk',
                 'mode' => 'Mód',
-                'nsfw' => '',
+                'nsfw' => 'Explicitní mapy',
                 'played' => 'Již hrané',
                 'rank' => 'Dle získaného písmene',
                 'status' => 'Kategorie',
@@ -333,8 +333,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Skrýt',
+        'include' => 'Zobrazit',
     ],
 
     'played' => [

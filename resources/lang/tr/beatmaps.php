@@ -225,7 +225,7 @@ return [
                 'genre' => 'Tür',
                 'language' => 'Dil',
                 'mode' => 'Mod',
-                'nsfw' => '',
+                'nsfw' => 'Müstehcen İçerik',
                 'played' => 'Oynanmışlık',
                 'rank' => 'Alınan Derece',
                 'status' => 'Kategoriler',
@@ -333,8 +333,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Gizle',
+        'include' => 'Göster',
     ],
 
     'played' => [

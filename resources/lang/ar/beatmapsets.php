@@ -42,7 +42,7 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'حَساس',
     ],
 
     'show' => [
@@ -110,7 +110,7 @@ return [
             'genre' => 'النوع',
             'language' => 'اللغة',
             'no_scores' => 'البيانات لا تزال تُحسب...',
-            'nsfw' => '',
+            'nsfw' => 'محتوى حَساس',
             'points-of-failure' => 'نقاط الفشل',
             'source' => 'المصدر',
             'success-rate' => 'معدل النجاح',
@@ -118,13 +118,13 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'تحتوي هذه الخريطة على محتوى حساس أو مسيء أو مزعج. هل ترغب في عرضها على أي حال؟',
+            'title' => 'محتوى حَساس',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'تعطيل التحذيرات',
+                'listing' => 'قائمة الخرائط',
+                'show' => 'عرض',
             ],
         ],
 
