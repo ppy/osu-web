@@ -46,7 +46,7 @@ class NotificationsCleanup extends Command
 
         for ($i = 0; $i < $loops; $i++) {
             $deleted = Notification::where('id', '<', $maxNotificationId)->limit($perLoop)->delete();
-            Datadog::increment(config('datadog-helper.prefix_web').'.notifications_cleanup.user_notifications', 1, null, $deleted);
+            Datadog::increment(config('datadog-helper.prefix_web').'.notifications_cleanup.notifications', 1, null, $deleted);
 
             $deletedTotal += $deleted;
         }
