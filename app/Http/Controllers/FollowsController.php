@@ -7,8 +7,8 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\UpdateUserMappingFollowerCountCache;
-use App\Models\Beatmapset;
 use App\Models\BeatmapDiscussion;
+use App\Models\Beatmapset;
 use App\Models\Comment;
 use App\Models\Follow;
 use App\Models\Forum\Topic;
