@@ -10,6 +10,7 @@ import * as React from 'react'
 import { a, div, span, tr, td } from 'react-dom-factories'
 import { hasMenu } from 'score-helper'
 import ScoreboardTime from 'scoreboard-time'
+import PpValue from 'scores/pp-value'
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
@@ -82,9 +83,10 @@ export class ScoreboardTableRow extends React.PureComponent
         modifiers: ['zero'] if score.statistics.count_miss == 0
         osu.formatNumber(score.statistics.count_miss)
 
-      el @tdLink,
-        {}
-        round score.pp
+      if @props.showPp
+        el @tdLink,
+          {}
+          el PpValue, score: score
 
       el @tdLink,
         modifiers: ['time']

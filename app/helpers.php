@@ -1639,9 +1639,7 @@ function check_url(string $url): bool
 
 function mini_asset(string $url): string
 {
-    return present(config('osu.assets.mini_url'))
-        ? str_replace(config('osu.assets.base_url'), config('osu.assets.mini_url'), $url)
-        : $url;
+    return str_replace(config('filesystems.disks.s3.base_url'), config('filesystems.disks.s3.mini_url'), $url);
 }
 
 function section_to_hue_map($section): int

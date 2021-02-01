@@ -35,7 +35,6 @@ class BeatmapTransformer extends BeatmapCompactTransformer
             'passcount' => $beatmap->passcount,
             'playcount' => $beatmap->playcount,
             'ranked' => $beatmap->approved,
-            'status' => $beatmap->status(),
             'url' => route('beatmaps.show', ['beatmap' => $beatmap->beatmap_id]),
         ]);
     }
