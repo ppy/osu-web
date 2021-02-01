@@ -172,7 +172,7 @@ class FollowsController extends Controller
     private function indexModding()
     {
         $user = auth()->user();
-        $watches = $user->beatmapsetWatches()->visible()->paginate(50);
+        $watches = $user->beatmapsetWatches()->visible()->orderBy('last_notified', 'DESC')->paginate(50);
         $totalCount = $watches->total();
         $unreadCount = $user->beatmapsetWatches()->visible()->unread()->count();
 
