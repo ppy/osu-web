@@ -203,6 +203,9 @@ class BeatmapsetEvent extends Model
                     static::GENRE_EDIT,
                     static::LANGUAGE_EDIT,
                     static::NSFW_TOGGLE,
+
+                    static::ISSUE_RESOLVE,
+                    static::ISSUE_REOPEN,
                 ],
                 'kudosuModeration' => [
                     static::KUDOSU_ALLOW,
@@ -212,9 +215,6 @@ class BeatmapsetEvent extends Model
                     static::APPROVE, // not actually used
 
                     static::KUDOSU_RECALCULATE,
-
-                    static::ISSUE_RESOLVE,
-                    static::ISSUE_REOPEN,
 
                     static::DISCUSSION_DELETE,
                     static::DISCUSSION_RESTORE,
