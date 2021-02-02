@@ -5,33 +5,33 @@
 
 return [
     'signature' => [
-        'not_match' => 'Tanda tangan tidak cocok',
+        'not_match' => '',
     ],
-    'notification_type' => 'notification_type tidak valid :type',
+    'notification_type' => '',
     'order' => [
-        'invalid' => 'Pesanan tidak valid',
+        'invalid' => '',
         'items' => [
-            'virtual_only' => 'Metode pembayaran `:provider` tidak bisa dipakai untuk barang ini.',
+            'virtual_only' => '',
         ],
         'status' => [
-            'not_checkout' => 'Mencoba menerima pembayaran untuk pesanan yang salah `:state`.',
-            'not_paid' => 'Mencoba melakukan pengembalian pembayaran untuk pesanan yang salah `:state`.',
+            'not_checkout' => '',
+            'not_paid' => '',
         ],
     ],
     'param' => [
-        'invalid' => '`:param` parameter tidak cocok',
+        'invalid' => '',
     ],
     'paypal' => [
-        'not_echeck' => 'Pembayaran yang tertunda bukan pembayaran echeck. (:actual)',
+        'not_echeck' => '',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => 'Jumlah pembayaran tidak sesuai: :actual != :expected',
-            'currency' => 'Pembayaran tidak dalam USD. (:type)',
+            'amount' => '',
+            'currency' => '',
         ],
     ],
     'order_number' => [
-        'malformed' => 'ID transaksi pesanan yang diterima tidak valid',
-        'user_id_mismatch' => 'external_id mengandung id pengguna yang salah',
+        'malformed' => '',
+        'user_id_mismatch' => '',
     ],
 ];

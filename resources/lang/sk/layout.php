@@ -159,6 +159,10 @@ return [
             'error' => '',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Ale nie! Niečo sa pokazilo! ;_;',
             'description' => "Sme automaticky oznámení o každej chybe.",

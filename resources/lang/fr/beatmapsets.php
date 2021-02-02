@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Certains éléments contenus dans cette map ont été supprimés après avoir été jugés inappropriés pour être utilisés dans osu!.',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Liste des beatmaps',
         'guest_title' => 'Beatmaps',
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'télécharger',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'sans Vidéo',
                 'video' => 'avec Vidéo',
             ],
@@ -143,7 +147,7 @@ return [
                 'miss' => 'Raté',
                 'mods' => 'Mods',
                 'player' => 'Joueur',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Rang',
                 'score_total' => 'Score total',
                 'score' => 'Score',

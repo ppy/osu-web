@@ -172,7 +172,7 @@ return [
                     'unsupported_format' => 'Formato no soportado.',
 
                     'restriction_info' => [
-                        '_' => 'Carga disponible solo para :link',
+                        '_' => 'Carga disponible sólo para :link',
                         'link' => 'osu!supporters',
                     ],
                 ],
@@ -353,12 +353,12 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Intereses',
             'location' => 'Ubicación actual',
             'occupation' => 'Ocupación',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'skype' => '',
+            'twitter' => '',
             'website' => 'Sitio web',
         ],
         'not_found' => [

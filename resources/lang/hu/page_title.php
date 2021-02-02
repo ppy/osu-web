@@ -22,6 +22,7 @@ return [
             '401-verification' => 'Fiók hitelesítése',
             '405' => 'hiányzó',
             '422' => 'Érvénytelen lekérés',
+            '429' => '',
             '500' => 'Valami nincs rendben',
             '503' => 'karbantartás',
         ],

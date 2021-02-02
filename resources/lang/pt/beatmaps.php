@@ -304,7 +304,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
-        'MR' => 'Link alternativo',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',

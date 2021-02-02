@@ -111,7 +111,7 @@ return [
 
             'feature_votes' => [
                 'title' => 'Özellik Oyları',
-                'description' => 'Özellik istekleri için oylar. (Ayda 2 adet)',
+                'description' => 'Özellik talepleri için oylar. (Ayda 2 adet)',
             ],
 
             'sort_options' => [

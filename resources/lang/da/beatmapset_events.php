@@ -32,8 +32,8 @@ return [
         'remove_from_loved' => '',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Fjernede eksplicit mærke',
+            'to_1' => 'Markeret som eksplicit',
         ],
     ],
 
@@ -71,7 +71,7 @@ return [
         'love' => 'Elsk',
         'nominate' => 'Nominering',
         'nomination_reset' => 'Nulstilling af nominering',
-        'nsfw_toggle' => '',
+        'nsfw_toggle' => 'Eksplicit mærke',
         'qualify' => 'Kvalifikation',
         'rank' => 'Rangering',
         'remove_from_loved' => '',
