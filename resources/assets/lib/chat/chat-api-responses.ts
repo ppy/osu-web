@@ -25,7 +25,6 @@ export interface ChannelJson {
 
 // This is the version used by 'presence'.
 export interface ChannelJsonExtended extends ChannelJson {
-  first_message_id: number;
   last_message_id: number;
   last_read_id: number;
 }

@@ -24,7 +24,6 @@ class ChatController extends Controller
     public function index()
     {
         $json = [
-            'last_message_id' => optional(Message::last())->getKey(),
             'presence' => UserChannel::presenceForUser(Auth::user()),
         ];
 

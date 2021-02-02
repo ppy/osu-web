@@ -26,6 +26,8 @@ export default class Channel {
   @observable type: ChannelType = 'NEW';
   @observable users: number[] = [];
 
+  private initialLastMessageId?: number;
+
   @computed
   get firstMessage() {
     return this.messages.length > 0 ? this.messages[0] : undefined;
@@ -52,10 +54,11 @@ export default class Channel {
 
   @computed
   get lastMessageId() {
-    // TODO: needs more checking
-    if (typeof(this.lastMessage?.messageId) === 'string') return -1;
+    if (typeof this.lastMessage?.messageId === 'number') {
+      return this.lastMessage.messageId;
+    }
 
-    return this.lastMessage?.messageId ?? -1;
+    return this.initialLastMessageId ?? -1;
   }
 
   @computed
@@ -168,6 +171,8 @@ export default class Channel {
     this.icon = json?.icon ?? '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
     this.moderated = json.moderated;
     this.users = json.users;
+
+    this.initialLastMessageId = json.last_message_id ?? this.lastMessageId;
 
     this.metaLoaded = true;
   }

@@ -128,6 +128,7 @@ class UserChannel extends Model
                 'type' => $channel->type,
                 'name' => $channel->name,
                 'description' => presence($channel->description),
+                'last_message_id' => $channel->last_message_id,
                 'last_read_id' => $userChannel->last_read_id,
                 'moderated' => $channel->moderated,
             ];
