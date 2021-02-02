@@ -32,14 +32,6 @@ export default class ChannelStore {
   }
 
   @computed
-  get maxMessageId(): number {
-    const channelArray = Array.from(this.channels.toJS().values());
-    const max = maxBy(channelArray, 'lastMessageId');
-
-    return max == null ? -1 : max.lastMessageId;
-  }
-
-  @computed
   get nonPmChannels(): Channel[] {
     const sortedChannels: Channel[] = [];
     this.channels.forEach((channel) => {
