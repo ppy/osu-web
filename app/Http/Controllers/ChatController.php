@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat\Channel;
+use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
 use Auth;
@@ -23,6 +24,7 @@ class ChatController extends Controller
     public function index()
     {
         $json = [
+            'last_message_id' => optional(Message::last())->getKey(),
             'presence' => UserChannel::presenceForUser(Auth::user()),
         ];
 

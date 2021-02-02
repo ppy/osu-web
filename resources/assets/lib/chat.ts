@@ -14,6 +14,8 @@ if (Array.isArray(initial.presence)) {
   dataStore.channelStore.updateWithPresence(initial.presence);
 }
 
+dataStore.channelStore.lastPolledMessageId = initial.last_message_id ?? 0;
+
 reactTurbolinks.register('chat', MainView, () => {
   let initialChannel: number | undefined;
   const sendTo = initial.send_to;

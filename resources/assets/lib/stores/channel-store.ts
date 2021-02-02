@@ -20,6 +20,7 @@ import UserStore from './user-store';
 @dispatchListener
 export default class ChannelStore {
   @observable channels = observable.map<number, Channel>();
+  lastPolledMessageId = 0;
   @observable loaded: boolean = false;
 
   private api = new ChatAPI();
@@ -238,6 +239,8 @@ export default class ChannelStore {
   @action
   updateWithJson(updateJson: GetUpdatesJson) {
     this.updateWithPresence(updateJson.presence);
+
+    this.lastPolledMessageId = maxBy(updateJson.messages, 'message_id')?.message_id ?? this.lastPolledMessageId;
 
     const groups = groupBy(updateJson.messages, 'channel_id');
     for (const key of Object.keys(groups)) {
