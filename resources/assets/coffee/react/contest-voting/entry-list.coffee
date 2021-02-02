@@ -27,6 +27,7 @@ export class EntryList extends BaseEntryList
         key: entry.id,
         rank: index + 1,
         entry: entry,
+        hideIfNotVoted: @state.showVotedOnly
         waitingForResponse: @state.waitingForResponse,
         options: @state.options,
         contest: @state.contest,
@@ -42,6 +43,8 @@ export class EntryList extends BaseEntryList
           div className: 'contest-voting-list__icon'
         div className: 'contest-voting-list__header-wrapper',
           div className: 'contest-voting-list__header-title', osu.trans('contest.entry._')
+          div className: 'contest-voting-list__header-voted-toggle-button',
+            @renderToggleShowVotedOnly()
           div className: 'contest-voting-list__header-votesummary',
             div className: 'contest__vote-summary-text', osu.trans('contest.vote.list')
             el VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
