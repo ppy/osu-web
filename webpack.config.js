@@ -16,7 +16,7 @@ let resolved = false;
 const watches = [
   {
     callback: () => {
-      spawnSync('php', ['artisan', 'ziggy:generate'], spawnOptions);
+      spawnSync('php', ['artisan', 'ziggy:generate', 'resources/assets/js/ziggy.js'], spawnOptions);
     },
     path: routesFile,
     type: 'file',
