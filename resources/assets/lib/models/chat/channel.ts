@@ -127,6 +127,7 @@ export default class Channel {
       message.messageId = json.message_id;
       message.timestamp = json.timestamp;
       message.persist();
+      this.setLastReadId(json.message_id);
     } else {
       message.errored = true;
       // delay and retry?
@@ -137,7 +138,7 @@ export default class Channel {
 
   @action
   markAsRead() {
-    this.lastReadId = this.lastMessageId;
+    this.setLastReadId(this.lastMessageId);
   }
 
   @action
@@ -162,7 +163,7 @@ export default class Channel {
     if (this.newPmChannelTransient) {
       this.newPmChannelTransient = false;
     }
-    this.lastReadId = json.last_read_id;
+    this.setLastReadId(json.last_read_id);
   }
 
   @action
@@ -182,5 +183,12 @@ export default class Channel {
   @action
   private resortMessages() {
     this.messages = _(this.messages).sortBy('timestamp').uniqBy('messageId').value();
+  }
+
+  @action
+  private setLastReadId(id: number) {
+    if (id > (this.lastReadId ?? 0)) {
+      this.lastReadId = id;
+    }
   }
 }
