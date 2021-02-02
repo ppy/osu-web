@@ -15,6 +15,7 @@ use App\Models\Forum\TopicTrack;
 use App\Models\Forum\TopicWatch;
 use App\Transformers\FollowCommentTransformer;
 use App\Transformers\FollowModdingTransformer;
+use DB;
 use Exception;
 
 class FollowsController extends Controller
@@ -97,15 +98,13 @@ class FollowsController extends Controller
         $user = auth()->user();
 
         $followsQuery = Follow::where(['user_id' => $user->getKey(), 'subtype' => 'comment']);
-        $follows = (clone $followsQuery)->with('notifiable')->get();
 
         $recentCommentIds = Comment
             ::selectRaw('MAX(id) latest_comment_id, commentable_type, commentable_id')
             ->whereIn(
-                \DB::raw('(commentable_type, commentable_id)'),
+                DB::raw('(commentable_type, commentable_id)'),
                 (clone $followsQuery)->selectRaw('notifiable_type, notifiable_id')
             )->groupBy('commentable_type', 'commentable_id')
-            ->get()
             ->pluck('latest_comment_id');
 
         $comments = Comment
@@ -114,6 +113,17 @@ class FollowsController extends Controller
             ->get()
             ->keyBy(function ($comment) {
                 return "{$comment->commentable_type}:{$comment->commentable_id}";
+            });
+
+        $follows = (clone $followsQuery)
+            ->with('notifiable')
+            ->get()
+            ->sortByDesc(function ($follow) use ($comments) {
+                $comment = $comments["{$follow->notifiable_type}:{$follow->notifiable_id}"] ?? null;
+
+                return $comment === null
+                    ? 0
+                    : $comment->getKey();
             });
 
         $followsTransformer = new FollowCommentTransformer($comments);
