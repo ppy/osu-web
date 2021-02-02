@@ -54,8 +54,10 @@ export default class Channel {
 
   @computed
   get lastMessageId() {
-    if (typeof this.lastMessage?.messageId === 'number') {
-      return this.lastMessage.messageId;
+    for (let i = this.messages.length - 1; i >= 0; i--) {
+      if (typeof this.messages[i].messageId === 'number') {
+        return this.messages[i].messageId as number;
+      }
     }
 
     return this.initialLastMessageId ?? -1;
