@@ -144,7 +144,6 @@ class FollowsController extends Controller
     {
         $user = auth()->user();
         $followsQuery = Follow::where(['user_id' => $user->getKey(), 'subtype' => 'mapping']);
-        $follows = (clone $followsQuery)->with('notifiable')->get();
 
         $recentBeatmapsetIds = Beatmapset
             ::selectRaw('MAX(beatmapset_id) latest_beatmapset_id, user_id')
@@ -153,15 +152,24 @@ class FollowsController extends Controller
                 (clone $followsQuery)->select('notifiable_id')
             )->groupBy('user_id')
             ->where('approved', '<>', Beatmapset::STATES['wip'])
-            ->get()
             ->pluck('latest_beatmapset_id');
 
         $beatmapsets = Beatmapset
             ::whereIn('beatmapset_id', $recentBeatmapsetIds)
-            ->with('user')
             ->with('beatmaps')
             ->get()
             ->keyBy('user_id');
+
+        $follows = (clone $followsQuery)
+            ->with('notifiable')
+            ->get()
+            ->sortByDesc(function ($follow) use ($beatmapsets) {
+                $latestBeatmapset = $beatmapsets[$follow->notifiable_id] ?? null;
+
+                return $latestBeatmapset === null
+                    ? null
+                    : $latestBeatmapset->getKey();
+            });
 
         $followsTransformer = new FollowModdingTransformer($beatmapsets);
         $followsJson = json_collection($follows, $followsTransformer, ['latest_beatmapset.beatmaps', 'user']);
