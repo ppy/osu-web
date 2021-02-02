@@ -30,6 +30,12 @@ export interface ChannelJsonExtended extends ChannelJson {
   last_read_id: number;
 }
 
+export interface ChatInitialJson {
+  last_message_id: number | null;
+  presence: PresenceJson;
+  send_to?: SendToJson;
+}
+
 export type GetMessagesJson =
   MessageJson[];
 
