@@ -121,9 +121,7 @@ class FollowsController extends Controller
             ->sortByDesc(function ($follow) use ($comments) {
                 $comment = $comments["{$follow->notifiable_type}:{$follow->notifiable_id}"] ?? null;
 
-                return $comment === null
-                    ? 0
-                    : $comment->getKey();
+                return $comment === null ? null : $comment->getKey();
             });
 
         $followsTransformer = new FollowCommentTransformer($comments);
@@ -174,11 +172,9 @@ class FollowsController extends Controller
             ->with('notifiable')
             ->get()
             ->sortByDesc(function ($follow) use ($beatmapsets) {
-                $latestBeatmapset = $beatmapsets[$follow->notifiable_id] ?? null;
+                $beatmapset = $beatmapsets[$follow->notifiable_id] ?? null;
 
-                return $latestBeatmapset === null
-                    ? null
-                    : $latestBeatmapset->getKey();
+                return $beatmapset === null ? null : $beatmapset->getKey();
             });
 
         $followsTransformer = new FollowModdingTransformer($beatmapsets);
