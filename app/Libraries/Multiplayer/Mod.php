@@ -254,7 +254,7 @@ class Mod
                         self::MANIA_MIRROR,
                         self::MANIA_RANDOM,
                         self::MANIA_INVERT,
-                        self::MANIA_CONSTANTSPEED
+                        self::MANIA_CONSTANTSPEED,
                     ]
                 ),
             ];
