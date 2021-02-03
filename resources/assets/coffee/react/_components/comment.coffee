@@ -106,6 +106,7 @@ export class Comment extends React.PureComponent
 
         @renderRepliesToggle()
         @renderCommentableMeta(meta)
+        @renderToolbar()
 
         div
           className: osu.classWithModifiers('comment__main', mainModifiers)
@@ -421,6 +422,21 @@ export class Comment extends React.PureComponent
         meta.title
 
 
+  renderToolbar: =>
+    return unless @props.showToolbar
+
+    div className: 'comment__toolbar',
+      div className: 'sort',
+        div className: 'sort__items',
+          button
+            type: 'button'
+            className: 'sort__item sort__item--button'
+            onClick: @onShowDeletedToggleClick
+            span className: 'sort__item-icon',
+              span className: if uiState.comments.isShowDeleted then 'fas fa-check-square' else 'far fa-square'
+            osu.trans('common.buttons.show_deleted')
+
+
   hasVoted: =>
     store.userVotes.has(@props.comment.id)
 
@@ -468,6 +484,10 @@ export class Comment extends React.PureComponent
   loadReplies: =>
     @loadMoreRef.current?.load()
     @toggleReplies()
+
+
+  onShowDeletedToggleClick: ->
+    $.publish 'comments:toggle-show-deleted'
 
 
   parentLink: (parent) =>
