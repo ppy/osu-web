@@ -5,10 +5,9 @@
 
 namespace App\Libraries\Search;
 
-use stdClass;
-use App\Exceptions\InvariantException;
 use App\Transformers\UserCompactTransformer;
 use App\Transformers\WikiPageTransformer;
+use stdClass;
 
 class AllSearch extends MultiSearch
 {
