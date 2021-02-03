@@ -941,6 +941,10 @@ function concat_path($paths)
 
 function proxy_media($url)
 {
+    if (!present($url)) {
+        return '';
+    }
+
     $url = html_entity_decode_better($url);
 
     if (config('osu.camo.key') === null) {
