@@ -8,8 +8,11 @@ el = React.createElement
 
 export class ArtEntry extends React.Component
   render: ->
-    votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
     isSelected = _.includes @props.selected, @props.entry.id
+
+    return null if @props.hideIfNotVoted && !isSelected
+
+    votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
     showVotes = @props.contest.show_votes
     shape = @props.contest.shape
     galleryId = "contest-#{@props.contest.id}"
