@@ -9,6 +9,7 @@ use App\Http\Middleware\AuthApi;
 use App\Models\Beatmapset;
 use App\Models\OAuth\Client;
 use App\Models\User;
+use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Firebase\JWT\JWT;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
@@ -23,7 +24,7 @@ use ReflectionProperty;
 
 class TestCase extends BaseTestCase
 {
-    use CreatesApplication, DatabaseTransactions;
+    use ArraySubsetAsserts, CreatesApplication, DatabaseTransactions;
 
     protected $connectionsToTransact = [
         'mysql',
@@ -32,8 +33,6 @@ class TestCase extends BaseTestCase
         'mysql-store',
         'mysql-updates',
     ];
-
-    protected $baseUrl = 'http://localhost';
 
     public function regularOAuthScopesDataProvider()
     {

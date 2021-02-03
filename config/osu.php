@@ -21,11 +21,6 @@ return [
         'storage' => env('AVATAR_STORAGE', 'local-avatar'),
     ],
 
-    'assets' => [
-        'base_url' => env('ASSETS_URL'),
-        'mini_url' => env('MINI_ASSETS_URL'),
-    ],
-
     'bbcode' => [
         // this should be random or a config variable.
         // ...who am I kidding, this shouldn't even exist at all.
@@ -56,13 +51,12 @@ return [
         'required_hype' => get_int(env('BEATMAPSET_REQUIRED_HYPE')) ?? 5,
         'required_nominations' => get_int(env('BEATMAPSET_REQUIRED_NOMINATIONS')) ?? 2,
         'required_nominations_hybrid' => get_int(env('BEATMAPSET_REQUIRED_NOMINATIONS_HYBRID')) ?? 2,
-        'storage' => env('BEATMAPSET_STORAGE'),
         'upload_allowed' => get_int(env('BEATMAPSET_UPLOAD_ALLOWED')) ?? 4,
+        'upload_allowed_supporter' => get_int(env('BEATMAPSET_UPLOAD_ALLOWED_SUPPORTER')) ?? 8,
         'upload_bonus_per_ranked' => get_int(env('BEATMAPSET_UPLOAD_BONUS_PER_RANKED')) ?? 1,
         'upload_bonus_per_ranked_max' => get_int(env('BEATMAPSET_UPLOAD_BONUS_PER_RANKED_MAX')) ?? 2,
-        'upload_allowed_supporter' => get_int(env('BEATMAPSET_UPLOAD_ALLOWED_SUPPORTER')) ?? 8,
-        'upload_bonus_per_ranked_supporter' => get_int(env('BEATMAPSET_UPLOAD_BONUS_PER_RANKED_SUPPORTER')) ?? 1,
         'upload_bonus_per_ranked_max_supporter' => get_int(env('BEATMAPSET_UPLOAD_BONUS_PER_RANKED_MAX_SUPPORTER')) ?? 12,
+        'upload_bonus_per_ranked_supporter' => get_int(env('BEATMAPSET_UPLOAD_BONUS_PER_RANKED_SUPPORTER')) ?? 1,
         'user_daily_nominations' => get_int(env('BEATMAPSET_USER_DAILY_NOMINATIONS', 10)) ?? 10,
         'user_weekly_hype' => get_int(env('BEATMAPSET_USER_WEEKLY_HYPE')) ?? 3,
     ],
@@ -89,7 +83,6 @@ return [
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
-        'number_of_shards' => env('ES_DEFAULT_SHARDS', 1),
         'prefix' => env('ES_INDEX_PREFIX'),
         'search_timeout' => env('ES_SEARCH_TIMEOUT', '5s'),
     ],
@@ -112,11 +105,6 @@ return [
         'double_post_time' => [
             'author' => 24,
             'normal' => 72,
-        ],
-
-        'slack_watch' => [
-            'forum_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_FORUM_IDS', '5 29 101 4 30 2'))),
-            'topic_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_TOPIC_IDS', '259747'))),
         ],
     ],
     'git-sha' => presence(env('GIT_SHA'))
@@ -169,7 +157,6 @@ return [
         'ends_at' => env('SEASONAL_ENDS_AT'),
     ],
 
-    'static' => env('LEGACY_STATICS_HOST', ''),
     'support' => [
         'video_url' => env('SUPPORT_OSU_VIDEO_URL', 'https://assets.ppy.sh/media/osu-direct-demo.mp4'),
     ],
@@ -201,28 +188,17 @@ return [
         'server_status' => 'https://twitter.com/osustatus',
         'smilies' => '/forum/images/smilies',
         'source_code' => 'https://github.com/ppy',
-        'support-the-game' => '/p/support#transactionarea',
         'youtube-tutorial-playlist' => 'PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl',
 
         'social' => [
-            'twitter' => '/help/wiki/Twitter',
+            'twitter' => '/wiki/Twitter',
         ],
         'user' => [
-            'kudosu' => '/wiki/Kudosu',
             'recover' => '/p/forgot-email',
             'rules' => '/wiki/Osu!:Rules',
-            'inbox' => '/forum/ucp.php?i=pm&folder=inbox',
         ],
         'rankings' => [
-            'charts' => '/p/chart',
-            'country' => '/p/countryranking',
             'kudosu' => '/p/kudosu',
-        ],
-        'home' => [
-            'news' => '/p/news',
-        ],
-        'help' => [
-            'support' => 'http://help.ppy.sh/',
         ],
         'testflight' => [
             'public' => env('TESTFLIGHT_LINK'),
@@ -246,7 +222,6 @@ return [
         'max_multiplayer_rooms' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS')) ?? 1,
         'max_multiplayer_rooms_supporter' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS_SUPPORTER')) ?? 5,
         'online_window' => intval(env('USER_ONLINE_WINDOW', 10)),
-        'username_lock_rank_limit' => get_int(env('USER_USERNAME_LOCK_RANK_LIMIT')) ?? 100000,
         'password_reset' => [
             'expires_hour' => 2,
             'key_length' => 8,
@@ -268,7 +243,6 @@ return [
         'chart_days' => intval(env('CHANGELOG_CHART_DAYS', 7)),
         'featured_stream' => intval(env('FEATURED_UPDATE_STREAM', 5)),
         'github_token' => env('CHANGELOG_GITHUB_TOKEN'),
-        'recent_weeks' => intval(env('CHANGELOG_RECENT_WEEKS', 6)),
         'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
     ],
 ];
