@@ -11,6 +11,7 @@ return [
     'none' => 'Ingen notifikationer',
     'see_all' => 'se alle notifikationer',
     'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'alle',

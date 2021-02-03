@@ -30,6 +30,11 @@ return [
         'qualify' => 'Dette beatmap har opnået det nødvendige antal nomineringer og er blevet kvalificeret.',
         'rank' => 'Ranked.',
         'remove_from_loved' => '',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -66,6 +71,7 @@ return [
         'love' => 'Elsk',
         'nominate' => 'Nominering',
         'nomination_reset' => 'Nulstilling af nominering',
+        'nsfw_toggle' => '',
         'qualify' => 'Kvalifikation',
         'rank' => 'Rangering',
         'remove_from_loved' => '',

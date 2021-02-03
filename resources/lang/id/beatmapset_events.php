@@ -30,6 +30,11 @@ return [
         'qualify' => 'Beatmap ini telah memperoleh jumlah nominasi yang cukup untuk mendapatkan status Qualified.',
         'rank' => 'Ranked.',
         'remove_from_loved' => 'Dilepas dari Loved oleh :user. (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -66,6 +71,7 @@ return [
         'love' => 'Love',
         'nominate' => 'Nominasi',
         'nomination_reset' => 'Nominasi ulang',
+        'nsfw_toggle' => '',
         'qualify' => 'Kualifikasi',
         'rank' => 'Peringkat',
         'remove_from_loved' => 'Pelepasan status Loved',

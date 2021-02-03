@@ -30,6 +30,11 @@ return [
         'qualify' => 'Tato beatmapa získala požadované množství nominací a byla kvalifikována.',
         'rank' => 'Hodnocené.',
         'remove_from_loved' => '',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -66,6 +71,7 @@ return [
         'love' => 'Obliba',
         'nominate' => 'Nominace',
         'nomination_reset' => 'Resetování nominací',
+        'nsfw_toggle' => '',
         'qualify' => 'Kvalifikace',
         'rank' => 'Hodnocení',
         'remove_from_loved' => '',

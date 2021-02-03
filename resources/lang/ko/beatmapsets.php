@@ -42,7 +42,7 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => '19금',
     ],
 
     'show' => [
@@ -110,7 +110,7 @@ return [
             'genre' => '장르',
             'language' => '언어',
             'no_scores' => '데이터를 수집중입니다...',
-            'nsfw' => '',
+            'nsfw' => '부적절한 내용',
             'points-of-failure' => '실패 지점',
             'source' => '원작',
             'success-rate' => '클리어 비율',
@@ -118,13 +118,13 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => '이 비트맵은 노골적, 폭력적 혹은 혐오감을 들게 하는 내용이 포함되어 있습니다. 그래도 보시겠습니까?',
+            'title' => '부적절한 내용',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => '경고 비활성화',
+                'listing' => '비트맵 목록',
+                'show' => '표시',
             ],
         ],
 
