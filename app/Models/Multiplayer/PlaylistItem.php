@@ -52,19 +52,20 @@ class PlaylistItem extends Model
     {
         $obj = new self();
         foreach (['beatmap_id', 'ruleset_id'] as $field) {
-            $obj->$field = array_get($json, $field);
-            if (!present($obj->$field)) {
+            $value = get_int($json[$field] ?? null);
+            if ($value === null) {
                 throw new InvariantException("{$field} is required.");
             }
+            $obj->$field = $value;
         }
 
         $obj->allowed_mods = Mod::parseInputArray(
-            array_get($json, 'allowed_mods') ?? [],
+            $json['allowed_mods'] ?? [],
             $obj->ruleset_id
         );
 
         $obj->required_mods = Mod::parseInputArray(
-            array_get($json, 'required_mods') ?? [],
+            $json['required_mods'] ?? [],
             $obj->ruleset_id
         );
 

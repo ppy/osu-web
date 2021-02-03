@@ -205,7 +205,7 @@ class Room extends Model
             throw new InvariantException('number of simultaneously active rooms reached');
         }
 
-        $this->name = $params['name'] ?? null;
+        $this->name = get_string($params['name'] ?? null);
         $this->user_id = $owner->getKey();
         $this->max_attempts = get_int($params['max_attempts'] ?? null);
         $this->starts_at = now();
@@ -215,10 +215,14 @@ class Room extends Model
             $this->category = $category;
             $this->ends_at = now()->addSeconds(30);
         } else {
-            if ($params['ends_at'] ?? null !== null) {
-                $this->ends_at = Carbon::parse($params['ends_at']);
-            } elseif ($params['duration'] ?? null !== null) {
-                $this->ends_at = $this->starts_at->copy()->addMinutes(get_int($params['duration']));
+            $endsAt = parse_time_to_carbon($params['ends_at'] ?? null);
+            if ($endsAt !== null) {
+                $this->ends_at = $endsAt;
+            } else {
+                $duration = get_int($params['duration'] ?? null);
+                if ($duration !== null) {
+                    $this->ends_at = $this->starts_at->copy()->addMinutes($duration);
+                }
             }
         }
 
