@@ -947,6 +947,12 @@ function proxy_media($url)
         return $url;
     }
 
+    $isProxied = starts_with($url, config('osu.camo.prefix'));
+
+    if ($isProxied) {
+        return $url;
+    }
+
     // turn relative urls into absolute urls
     if (!preg_match('/^https?\:\/\//', $url)) {
         // ensure url is relative to the site root
@@ -956,10 +962,6 @@ function proxy_media($url)
         $url = config('app.url').$url;
     }
 
-    $isProxied = starts_with($url, config('osu.camo.prefix'));
-    if ($isProxied) {
-        return $url;
-    }
 
     $hexUrl = bin2hex($url);
     $secret = hash_hmac('sha1', $url, config('osu.camo.key'));
