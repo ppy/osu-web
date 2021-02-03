@@ -5,7 +5,7 @@ on: [push, pull_request]
 env:
   APP_ENV: testing
   APP_KEY: base64:q7U5qyAkedR1F6UhN0SQlUxBpAMDyfHy3NNFkqmiMqA=
-  APP_URL: http://localhost
+  APP_URL: http://localhost:8000
   CACHE_DRIVER: redis
   CACHE_DRIVER_LOCAL: array
   DB_USERNAME: root
@@ -117,6 +117,4 @@ jobs:
         run: ./bin/phpunit.sh
 
       - name: Run Dusk
-        env:
-          APP_URL: http://localhost:8000
         run: ./bin/run_dusk.sh
