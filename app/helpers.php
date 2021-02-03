@@ -950,7 +950,7 @@ function proxy_media($url)
         $url = config('app.url').$url;
     }
 
-    $decoded = urldecode(html_entity_decode_better($url));
+    $decoded = html_entity_decode_better($url);
 
     if (config('osu.camo.key') === null) {
         return $decoded;
