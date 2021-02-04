@@ -42,7 +42,7 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Eksplisit',
     ],
 
     'show' => [
@@ -110,7 +110,7 @@ return [
             'genre' => 'Aliran',
             'language' => 'Bahasa',
             'no_scores' => 'Data sedang diproses...',
-            'nsfw' => '',
+            'nsfw' => 'Konten eksplisit',
             'points-of-failure' => 'Titik-Titik Kegagalan',
             'source' => 'Sumber',
             'success-rate' => 'Tingkat Keberhasilan',
@@ -118,13 +118,13 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'Beatmap ini ditenggarai mengandung konten yang eksplisit atau yang berpotensi menyinggung kalangan tertentu. Apakah Anda tetap ingin melihat beatmap ini?',
+            'title' => 'Konten Eksplisit',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Nonaktifkan peringatan',
+                'listing' => 'Daftar beatmap',
+                'show' => 'Tampilkan',
             ],
         ],
 

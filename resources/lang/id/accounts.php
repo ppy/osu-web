@@ -74,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'nonaktifkan peringatan untuk beatmap-beatmap yang mengandung konten eksplisit',
         'beatmapset_title_show_original' => 'tampilkan metadata beatmap dalam bahasa aslinya',
         'title' => 'Pengaturan',
 

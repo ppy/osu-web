@@ -30,6 +30,11 @@ return [
         'qualify' => 'Diese Beatmap hat die erforderliche Anzahl an Nominierungen erreicht und wurde qualifiziert.',
         'rank' => 'Ranked.',
         'remove_from_loved' => 'Aus Loved entfernt von :user. (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -66,6 +71,7 @@ return [
         'love' => 'Love',
         'nominate' => 'Nominierung',
         'nomination_reset' => 'Nominierung zurücksetzten',
+        'nsfw_toggle' => '',
         'qualify' => 'Qualifikation',
         'rank' => 'Ranking',
         'remove_from_loved' => 'Loved-Entfernung',

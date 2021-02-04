@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Ce ar fi să joci osu! în schimb?',
     'require_login' => 'Te rugăm să te autentifici pentru a continua.',
     'require_verification' => 'Vă rugăm să verificați pentru a continua.',
     'restricted' => "Nu poți face asta cât timp ești restricționat.",
@@ -31,7 +31,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "",
+            'bot' => "Nu se poate vota discuția făcută de bot",
             'limit_exceeded' => 'Te rugăm să aștepți un timp înainte să acorzi mai multe voturi',
             'owner' => "Nu îți poți vota propria discuție.",
             'wrong_beatmapset_state' => 'Poți vota doar discuțiile despre beatmapuri în așteptare.',

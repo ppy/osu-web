@@ -13,7 +13,12 @@ return [
     ],
 
     'scopes' => [
+        'bot' => '',
         'identify' => 'Nhận diện và đọc trang cá nhân công khai của bạn.',
+
+        'chat' => [
+            'write' => '',
+        ],
 
         'friends' => [
             'read' => 'Xem những ai bạn đang theo dõi.',

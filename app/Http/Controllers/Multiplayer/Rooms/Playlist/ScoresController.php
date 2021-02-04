@@ -170,10 +170,11 @@ class ScoresController extends BaseController
                 $clientHash = md5($clientHash);
             }
 
-            Build::where([
+            $buildExists = Build::where([
                 'hash' => hex2bin($clientHash),
                 'allow_ranking' => true,
-            ])->firstOrFail();
+            ])->exists();
+            abort_if(!$buildExists, 422, 'invalid client hash');
         }
 
         $score = $room->startPlay($user, $playlistItem);

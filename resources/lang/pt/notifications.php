@@ -11,6 +11,7 @@ return [
     'none' => 'Sem notificações',
     'see_all' => 'ver todas as notificações',
     'see_channel' => 'ir para a conversa',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'todas',
