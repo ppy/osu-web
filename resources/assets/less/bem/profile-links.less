@@ -4,6 +4,10 @@
 .profile-links {
   .inner-shadow-top();
   position: relative;
+  display: flex;
+  min-height: 70px;
+  justify-content: center;
+  flex-direction: column;
   padding: @padding-profile-page @gutter-profile-page;
   font-size: @font-size--normal;
   background-color: @osu-colour-b4;
@@ -26,6 +30,7 @@
   &__row {
     display: flex;
     flex-wrap: wrap;
+    flex-basis: 100%;
     margin: -2px -5px;
 
     &--0 + & {
