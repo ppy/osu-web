@@ -6,6 +6,7 @@ import { Entry } from './entry'
 import { VoteSummary } from './vote-summary'
 import * as React from 'react'
 import { div,a,i,span } from 'react-dom-factories'
+import { classWithModifiers } from 'utils/css'
 el = React.createElement
 
 export class EntryList extends BaseEntryList
@@ -37,10 +38,12 @@ export class EntryList extends BaseEntryList
 
     div className: 'contest-voting-list__table',
       div className: 'contest-voting-list__header',
+        if @state.contest.show_votes
+          div className: 'contest-voting-list__rank contest-voting-list__rank--blank'
         if @state.options.showPreview
           div className: 'contest-voting-list__icon'
         if @state.options.showLink
-          div className: 'contest-voting-list__icon'
+          div className: classWithModifiers('contest-voting-list__icon', 'best-of': @state.contest.best_of)
         div className: 'contest-voting-list__header-wrapper',
           div className: 'contest-voting-list__header-title', osu.trans('contest.entry._')
           div className: 'contest-voting-list__header-voted-toggle-button',
