@@ -11,7 +11,7 @@
     <link rel="self" type="application/atom+xml" href="{{ request()->fullUrl() }}" />
 
     <title>osu!news</title>
-    <icon>{{ config('osu.static') }}/apple-touch-icon.png</icon>
+    <icon>{{ config('app.url') }}/apple-touch-icon.png</icon>
 
     <updated>{{ json_time(optional($posts->last())->published_at ?? now()) }}</updated>
 
