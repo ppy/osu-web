@@ -30,11 +30,11 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => '',
         'incorrect_mode' => '',
-        'full_bn_required' => '',
+        'full_bn_required' => 'Trebuie să fi un nominator să participi în această nominare calificată.',
         'too_many' => '',
 
         'dialog' => [
-            'confirmation' => '',
+            'confirmation' => 'Ești sigur că vrei să nominalizezi acest Beatmap?',
             'header' => '',
             'hybrid_warning' => '',
             'which_modes' => '',
@@ -42,7 +42,7 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Explicit',
     ],
 
     'show' => [
@@ -110,7 +110,7 @@ return [
             'genre' => 'Gen',
             'language' => 'Limbă',
             'no_scores' => 'Încă se calculează datele...',
-            'nsfw' => '',
+            'nsfw' => 'Conținut explicit',
             'points-of-failure' => 'Puncte de eșec',
             'source' => 'Sursă',
             'success-rate' => 'Rata de succes',
@@ -118,13 +118,13 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'Acest beatmap conține conținut explicit, ofensiv sau deranjant. Doriți să-l vedeți oricum?',
+            'title' => 'Conținut explicit',
 
             'buttons' => [
-                'disable' => '',
+                'disable' => 'Dezactivează avertisment',
                 'listing' => '',
-                'show' => '',
+                'show' => 'Arată',
             ],
         ],
 

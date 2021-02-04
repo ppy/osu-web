@@ -225,7 +225,7 @@ return [
                 'genre' => '장르',
                 'language' => '언어',
                 'mode' => '모드',
-                'nsfw' => '',
+                'nsfw' => '부적절한 맵',
                 'played' => '플레이함',
                 'rank' => '순위 기록됨',
                 'status' => '카테고리',
@@ -333,8 +333,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => '숨기기',
+        'include' => '표시',
     ],
 
     'played' => [

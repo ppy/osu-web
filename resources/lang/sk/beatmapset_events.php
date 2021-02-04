@@ -30,6 +30,11 @@ return [
         'qualify' => 'Táto beatmapa dosiahla požadované číslo nominácii a bola kvalifikovaná.',
         'rank' => 'Ranked.',
         'remove_from_loved' => '',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -66,6 +71,7 @@ return [
         'love' => 'Obľuba',
         'nominate' => 'Nominácia',
         'nomination_reset' => 'Reštart nominácie',
+        'nsfw_toggle' => '',
         'qualify' => 'Kvalifikácia',
         'rank' => 'Hodnotenie',
         'remove_from_loved' => '',

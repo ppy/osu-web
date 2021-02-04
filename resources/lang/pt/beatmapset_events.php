@@ -30,6 +30,11 @@ return [
         'qualify' => 'Este beatmap atingiu o número necessário de nomeações e foi qualificado.',
         'rank' => 'Classificado.',
         'remove_from_loved' => 'Removido de Adorado por :user. (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -66,6 +71,7 @@ return [
         'love' => 'Adorar',
         'nominate' => 'Nomeação',
         'nomination_reset' => 'Reiniciação da nomeação',
+        'nsfw_toggle' => '',
         'qualify' => 'Qualificação',
         'rank' => 'Classificação',
         'remove_from_loved' => 'Adorado removido',

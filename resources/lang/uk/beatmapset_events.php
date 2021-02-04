@@ -30,6 +30,11 @@ return [
         'qualify' => 'Ця карта була номінована достатню кількість разів для кваліфікації.',
         'rank' => 'Рейтинговий.',
         'remove_from_loved' => 'Вилучено з категорії Loved користувачем :user. (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -66,6 +71,7 @@ return [
         'love' => 'Любов',
         'nominate' => 'Номінація',
         'nomination_reset' => 'Скинути номінацію',
+        'nsfw_toggle' => '',
         'qualify' => 'Кваліфікація',
         'rank' => 'Рейтинг',
         'remove_from_loved' => '',

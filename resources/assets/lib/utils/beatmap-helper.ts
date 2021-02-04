@@ -97,6 +97,10 @@ export function group<T extends BeatmapJson>(beatmaps: T[]): Partial<Record<Game
   return grouped;
 }
 
+export function shouldShowPp(beatmap: BeatmapJson) {
+  return beatmap.status === 'ranked' || beatmap.status === 'approved';
+}
+
 export function sort<T extends BeatmapJson>(beatmaps: T[]): T[] {
   if (beatmaps.length === 0) {
     return [];
