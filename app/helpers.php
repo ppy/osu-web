@@ -249,13 +249,12 @@ function datadog_timing(callable $callable, $stat, array $tag = null)
     $withClockwork = app('clockwork.support')->isEnabled();
 
     if ($withClockwork) {
-        $uid = uniqid($stat);
         // spaces used so clockwork doesn't run across the whole screen.
         $description = $stat
                        .' '.($tag['type'] ?? null)
                        .' '.($tag['index'] ?? null);
 
-        clock()->startEvent($uid, $description);
+        clock()->event($description)->start();
     }
 
     $start = microtime(true);
@@ -263,7 +262,7 @@ function datadog_timing(callable $callable, $stat, array $tag = null)
     $result = $callable();
 
     if ($withClockwork) {
-        clock()->endEvent($uid);
+        clock()->event($description)->end();
     }
 
     $duration = microtime(true) - $start;
@@ -942,6 +941,22 @@ function concat_path($paths)
 
 function proxy_media($url)
 {
+    if (!present($url)) {
+        return '';
+    }
+
+    $url = html_entity_decode_better($url);
+
+    if (config('osu.camo.key') === null) {
+        return $url;
+    }
+
+    $isProxied = starts_with($url, config('osu.camo.prefix'));
+
+    if ($isProxied) {
+        return $url;
+    }
+
     // turn relative urls into absolute urls
     if (!preg_match('/^https?\:\/\//', $url)) {
         // ensure url is relative to the site root
@@ -951,21 +966,11 @@ function proxy_media($url)
         $url = config('app.url').$url;
     }
 
-    $decoded = urldecode(html_entity_decode_better($url));
 
-    if (config('osu.camo.key') === null) {
-        return $decoded;
-    }
+    $hexUrl = bin2hex($url);
+    $secret = hash_hmac('sha1', $url, config('osu.camo.key'));
 
-    $isProxied = starts_with($decoded, config('osu.camo.prefix'));
-    if ($isProxied) {
-        return $decoded;
-    }
-
-    $url = bin2hex($decoded);
-    $secret = hash_hmac('sha1', $decoded, config('osu.camo.key'));
-
-    return config('osu.camo.prefix')."{$secret}/{$url}";
+    return config('osu.camo.prefix')."{$secret}/{$hexUrl}";
 }
 
 function lazy_load_image($url, $class = '', $alt = '')
@@ -1640,9 +1645,7 @@ function check_url(string $url): bool
 
 function mini_asset(string $url): string
 {
-    return present(config('osu.assets.mini_url'))
-        ? str_replace(config('osu.assets.base_url'), config('osu.assets.mini_url'), $url)
-        : $url;
+    return str_replace(config('filesystems.disks.s3.base_url'), config('filesystems.disks.s3.mini_url'), $url);
 }
 
 function section_to_hue_map($section): int
