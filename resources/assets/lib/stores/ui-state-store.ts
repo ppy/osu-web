@@ -101,12 +101,12 @@ export default class UIStateStore {
 
     if (currentUser.id != null) {
       $.ajax(route('account.options'), {
-        method: 'PUT',
         data: {
           user_profile_customization: {
             comments_show_deleted: this.comments.isShowDeleted,
           },
         },
+        method: 'PUT',
       });
     }
   }
