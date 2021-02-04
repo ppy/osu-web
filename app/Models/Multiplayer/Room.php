@@ -323,8 +323,9 @@ class Room extends Model
         }
 
         if ($this->max_attempts !== null) {
-            if ($this->max_attempts < 1 || $this->max_attempts > 32) {
-                throw new InvariantException("field 'max_attempts' must be between 1 and 32");
+            $maxAttemptsLimit = config('osu.multiplayer.max_attempts_limit');
+            if ($this->max_attempts < 1 || $this->max_attempts > $maxAttemptsLimit)) {
+                throw new InvariantException("field 'max_attempts' must be between 1 and {$maxAttemptsLimit}");
             }
         }
     }
