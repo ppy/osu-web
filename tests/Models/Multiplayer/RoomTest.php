@@ -10,6 +10,7 @@ use App\Models\Beatmap;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
+use Exception;
 use Tests\TestCase;
 
 class RoomTest extends TestCase
@@ -85,5 +86,35 @@ class RoomTest extends TestCase
 
         $this->expectException(InvariantException::class);
         $room->startPlay($user, $playlistItem1);
+    }
+
+    public function testMaxAttemptsForItemReached()
+    {
+        $user = factory(User::class)->create();
+        $room = factory(Room::class)->create();
+        $playlistItem1 = factory(PlaylistItem::class)->create([
+            'room_id' => $room->getKey(),
+            'max_attempts' => 1,
+        ]);
+        $playlistItem2 = factory(PlaylistItem::class)->create([
+            'room_id' => $room->getKey(),
+            'max_attempts' => 1,
+        ]);
+
+        $room->startPlay($user, $playlistItem1);
+
+        try {
+            $room->startPlay($user, $playlistItem1);
+        } catch (Exception $ex) {
+            $this->assertTrue($ex instanceof InvariantException);
+        }
+
+        $room->startPlay($user, $playlistItem2);
+
+        try {
+            $room->startPlay($user, $playlistItem2);
+        } catch (Exception $ex) {
+            $this->assertTrue($ex instanceof InvariantException);
+        }
     }
 }

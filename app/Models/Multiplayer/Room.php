@@ -348,5 +348,12 @@ class Room extends Model
                 throw new InvariantException('You have reached the maximum number of tries allowed.');
             }
         }
+
+        if ($playlistItem->max_attempts !== null) {
+            $playlistAttempts = $playlistItem->scores()->where('user_id', $user->getKey())->count();
+            if ($playlistAttempts >= $playlistItem->max_attempts) {
+                throw new InvariantException('You have reached the maximum number of tries allowed.');
+            }
+        }
     }
 }

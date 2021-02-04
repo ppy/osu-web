@@ -59,6 +59,8 @@ class PlaylistItem extends Model
             $obj->$field = $value;
         }
 
+        $obj->max_attempts = get_int($json['max_attempts'] ?? null);
+
         $obj->allowed_mods = Mod::parseInputArray(
             $json['allowed_mods'] ?? [],
             $obj->ruleset_id
@@ -100,6 +102,18 @@ class PlaylistItem extends Model
             ->orderBy('score_id', 'asc');
     }
 
+    private function assertValidMaxAttempts()
+    {
+        if ($this->max_attempts === null) {
+            return;
+        }
+
+        $maxAttemptsLimit = config('osu.multiplayer.max_attempts_limit');
+        if ($this->max_attempts < 1 || $this->max_attempts > $maxAttemptsLimit) {
+            throw new InvariantException("field 'max_attempts' must be between 1 and {$maxAttemptsLimit}");
+        }
+    }
+
     private function validateRuleset()
     {
         // osu beatmaps can be played in any mode, but non-osu maps can only be played in their specific modes
@@ -122,6 +136,7 @@ class PlaylistItem extends Model
 
     public function save(array $options = [])
     {
+        $this->assertValidMaxAttempts();
         $this->validateRuleset();
         $this->validateModOverlaps();
         Mod::validateSelection(array_column($this->allowed_mods, 'acronym'), $this->ruleset_id, true);
