@@ -70,17 +70,20 @@ class RoomTest extends TestCase
     {
         $user = factory(User::class)->create();
         $room = factory(Room::class)->create(['max_attempts' => 2]);
-        $playlistItem = factory(PlaylistItem::class)->create([
+        $playlistItem1 = factory(PlaylistItem::class)->create([
+            'room_id' => $room->getKey(),
+        ]);
+        $playlistItem2 = factory(PlaylistItem::class)->create([
             'room_id' => $room->getKey(),
         ]);
 
-        $room->startPlay($user, $playlistItem);
+        $room->startPlay($user, $playlistItem1);
         $this->assertTrue(true);
 
-        $room->startPlay($user, $playlistItem);
+        $room->startPlay($user, $playlistItem2);
         $this->assertTrue(true);
 
         $this->expectException(InvariantException::class);
-        $room->startPlay($user, $playlistItem);
+        $room->startPlay($user, $playlistItem1);
     }
 }
