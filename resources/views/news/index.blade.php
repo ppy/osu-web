@@ -7,10 +7,6 @@
 @section('content')
     <div class="js-react--news-index osu-layout osu-layout--full"></div>
 
-    <script id="json-sidebar" type="application/json">
-        {!! json_encode($sidebarMeta) !!}
-    </script>
-
     <script id="json-index" type="application/json">
         {!! json_encode($postsJson) !!}
     </script>
