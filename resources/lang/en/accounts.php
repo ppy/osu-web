@@ -62,6 +62,7 @@ return [
             'comment_new' => 'new comments',
             'forum_topic_reply' => 'topic reply',
             'mail' => 'mail',
+            'mapping' => 'beatmap mapper',
             'push' => 'push',
             'user_achievement_unlock' => 'user medal unlocked',
         ],
