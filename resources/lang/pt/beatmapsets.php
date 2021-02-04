@@ -42,7 +42,7 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Explícito',
     ],
 
     'show' => [
@@ -110,7 +110,7 @@ return [
             'genre' => 'Género',
             'language' => 'Língua',
             'no_scores' => 'Os dados ainda estão a ser calculados...',
-            'nsfw' => '',
+            'nsfw' => 'Conteúdo explícito',
             'points-of-failure' => 'Pontos de falha',
             'source' => 'Fonte',
             'success-rate' => 'Taxa de sucesso',
@@ -118,13 +118,13 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'Este beatmap contém conteúdo explícito, ofensivo ou perturbador. Gostarias de vê-lo mesmo assim?',
+            'title' => 'Conteúdo explícito',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Desativar aviso',
+                'listing' => 'Listagem de beatmaps',
+                'show' => 'Mostrar',
             ],
         ],
 

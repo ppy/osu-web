@@ -30,6 +30,11 @@ return [
         'qualify' => 'Tämä beatmap sai vaaditun määrän suosituksia hyväksymisvaihetta varten.',
         'rank' => 'Hyväksytty.',
         'remove_from_loved' => '',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -66,6 +71,7 @@ return [
         'love' => 'Rakkaus',
         'nominate' => 'Äänestetty',
         'nomination_reset' => 'Äänestyksen resetointi',
+        'nsfw_toggle' => '',
         'qualify' => 'Hyväksyntä',
         'rank' => 'Luokittelu',
         'remove_from_loved' => '',

@@ -11,6 +11,7 @@ return [
     'none' => '没有新通知',
     'see_all' => '显示所有通知',
     'see_channel' => '前往聊天',
+    'verifying' => '',
 
     'filters' => [
         '_' => '所有',

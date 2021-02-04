@@ -164,7 +164,7 @@ class BeatmapsetsController extends Controller
             ->count();
 
         if ($recentlyDownloaded > Auth::user()->beatmapsetDownloadAllowance()) {
-            abort(403);
+            abort(429, trans('beatmapsets.download.limit_exceeded'));
         }
 
         $noVideo = get_bool(Request::input('noVideo', false));

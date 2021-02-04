@@ -85,6 +85,9 @@ export default class ChannelStore {
   addNewConversation(json: ChannelJson, message: MessageJson) {
     const channel = this.getOrCreate(json.channel_id);
     channel.updateWithJson(json);
+    // prevent new PM channel from being deleted from presence updates requested before the new conversation but
+    // the response arrives after.
+    channel.newPmChannelTransient = true;
     this.handleChatChannelNewMessages(channel.channelId, [message]);
 
     return channel;
@@ -255,7 +258,7 @@ export default class ChannelStore {
 
     // remove parted channels
     this.channels.forEach((channel) => {
-      if (channel.newPmChannel) {
+      if (channel.newPmChannel || channel.newPmChannelTransient) {
         return;
       }
 

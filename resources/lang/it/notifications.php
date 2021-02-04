@@ -11,6 +11,7 @@ return [
     'none' => 'Nessuna notifica',
     'see_all' => 'vedi tutte le notifiche',
     'see_channel' => 'vai alla chat',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'tutto',

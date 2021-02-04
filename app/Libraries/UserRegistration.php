@@ -6,7 +6,6 @@
 namespace App\Libraries;
 
 use App\Exceptions\ValidationException;
-use App\Jobs\EsIndexDocument;
 use App\Models\User;
 use Carbon\Carbon;
 use Datadog;
@@ -56,6 +55,7 @@ class UserRegistration
         try {
             $this->user->getConnection()->transaction(function () {
                 User::findAndRenameUserForInactive($this->user->username);
+                $this->user->shouldReindex = true;
                 if (!$this->user->save()) {
                     // probably failed because of validation
                     throw new ValidationException($this->user->validationErrors());
@@ -65,8 +65,6 @@ class UserRegistration
 
                 Datadog::increment('osu.new_account_registrations', 1, ['source' => 'osu-web']);
             });
-
-            dispatch(new EsIndexDocument($this->user));
         } catch (Exception $e) {
             if (is_sql_unique_exception($e)) {
                 $this->user->validationErrors()->add('username', '.unknown_duplicate');

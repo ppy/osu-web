@@ -11,6 +11,7 @@ return [
     'none' => 'Žádná oznámení',
     'see_all' => '',
     'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'vše',

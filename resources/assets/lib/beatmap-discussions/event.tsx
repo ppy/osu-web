@@ -105,18 +105,25 @@ export default class Event extends React.PureComponent<Props> {
 
   private contentText() {
     let discussionLink = '';
+    let discussionUserLink = '[unknown user]';
     let text = '';
     let url = '';
     let user: string | undefined;
 
     if (this.discussionId != null) {
-      if (this.discussion != null) {
+      if (this.discussion == null) {
+        url = route('beatmapsets.discussions.show', { discussion: this.discussionId });
+        text = osu.trans('beatmapset_events.item.discussion_deleted');
+      } else {
         const firstPostMessage = this.firstPost?.message;
         url = BeatmapDiscussionHelper.url({ discussion: this.discussion });
         text = firstPostMessage != null ? BeatmapDiscussionHelper.previewMessage(firstPostMessage) : '[no preview]';
-      } else {
-        url = route('beatmapsets.discussions.show', { discussion: this.discussionId });
-        text = osu.trans('beatmapset_events.item.discussion_deleted');
+
+        const discussionUser = this.props.users[this.discussion.user_id];
+
+        if (discussionUser != null) {
+          discussionUserLink = osu.link(route('users.show', { user: discussionUser.id }), discussionUser.username);
+        }
       }
 
       discussionLink = osu.link(url, `#${this.discussionId}`, { classNames: ['js-beatmap-discussion--jump'] });
@@ -134,6 +141,7 @@ export default class Event extends React.PureComponent<Props> {
 
     const params = {
       discussion: discussionLink,
+      discussion_user: discussionUserLink,
       text,
       user,
       ...this.props.event.comment,
