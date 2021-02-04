@@ -101,20 +101,20 @@ class RoomTest extends TestCase
             'max_attempts' => 1,
         ]);
 
+        $initialCount = $room->scores()->count();
         $room->startPlay($user, $playlistItem1);
+        $this->assertSame($initialCount + 1, $room->scores()->count());
 
+        $initialCount = $room->scores()->count();
         try {
             $room->startPlay($user, $playlistItem1);
         } catch (Exception $ex) {
             $this->assertTrue($ex instanceof InvariantException);
         }
+        $this->assertSame($initialCount, $room->scores()->count());
 
+        $initialCount = $room->scores()->count();
         $room->startPlay($user, $playlistItem2);
-
-        try {
-            $room->startPlay($user, $playlistItem2);
-        } catch (Exception $ex) {
-            $this->assertTrue($ex instanceof InvariantException);
-        }
+        $this->assertSame($initialCount + 1, $room->scores()->count());
     }
 }
