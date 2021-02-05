@@ -9,11 +9,13 @@ el = React.createElement
 
 export class Entry extends React.Component
   render: ->
+    selected = _.includes @props.selected, @props.entry.id
+
+    return null if @props.hideIfNotVoted && !selected
+
     if @props.contest.show_votes
       votePercentage = _.round((@props.entry.results.votes / @props.totalVotes)*100, 2)
       relativeVotePercentage = _.round((@props.entry.results.votes / @props.winnerVotes)*100, 2)
-
-    selected = _.includes @props.selected, @props.entry.id
 
     div className: "contest-voting-list__row#{if selected && !@props.contest.show_votes then ' contest-voting-list__row--selected' else ''}",
       if @props.contest.show_votes
