@@ -225,10 +225,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('blocks', 'BlocksController', ['only' => ['store', 'destroy']]);
         Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
         Route::resource('news', 'NewsController', ['only' => ['index', 'show', 'store', 'update']]);
-        Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
-        Route::get('notifications/endpoint', 'NotificationsController@endpoint')->name('notifications.endpoint');
-        Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
-        Route::delete('notifications', 'NotificationsController@batchDestroy');
 
         Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');
 
@@ -236,6 +232,11 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('follows/{subtype?}', 'FollowsController@index')->name('follows.index');
         Route::delete('follows', 'FollowsController@destroy')->name('follows.destroy');
     });
+
+    Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
+    Route::get('notifications/endpoint', 'NotificationsController@endpoint')->name('notifications.endpoint');
+    Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
+    Route::delete('notifications', 'NotificationsController@batchDestroy');
 
     Route::get('legal/{locale?}/{path?}', 'LegalController@show')->name('legal');
     Route::put('legal/{locale}/{path}', 'LegalController@update');
