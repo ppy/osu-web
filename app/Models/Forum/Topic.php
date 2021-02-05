@@ -233,7 +233,7 @@ class Topic extends Model implements AfterCommit, Indexable
             return false;
         }
 
-        return $this->getConnection()->transaction(function () use ($destinationForum) {
+        $ret = $this->getConnection()->transaction(function () use ($destinationForum) {
             $originForum = $this->forum;
             $this->forum()->associate($destinationForum);
             $this->save();
@@ -249,18 +249,20 @@ class Topic extends Model implements AfterCommit, Indexable
             optional($this->forum)->topicsAdded(1);
             optional($this->forum)->postsAdded($visiblePostsCount);
 
-            $this
-                ->posts()
-                ->withTrashed()
-                // this relies on dispatcher always reloading the model
-                ->select(['poster_id', 'post_id'])
-                ->each(function ($post) {
-                    dispatch(new UpdateUserForumCache($post->poster_id));
-                    dispatch(new EsIndexDocument($post));
-                });
-
             return true;
         });
+
+        $this
+            ->posts()
+            ->withTrashed()
+            // this relies on dispatcher always reloading the model
+            ->select(['poster_id', 'post_id'])
+            ->each(function ($post) {
+                dispatch(new UpdateUserForumCache($post->poster_id));
+                dispatch(new EsIndexDocument($post));
+            });
+
+        return $ret;
     }
 
     public static function typeStr($typeInt)
