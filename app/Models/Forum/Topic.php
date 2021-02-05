@@ -262,6 +262,8 @@ class Topic extends Model implements AfterCommit, Indexable
                 dispatch(new EsIndexDocument($post));
             });
 
+        dispatch(new UpdateUserForumTopicFollows($this));
+
         return $ret;
     }
 
