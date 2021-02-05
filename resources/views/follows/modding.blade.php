@@ -48,6 +48,9 @@
                         <th class="beatmapset-watches__heading">
                             {{ trans('beatmapset_watches.index.table.open_issues') }}
                         </th>
+                        <th class="beatmapset-watches__heading">
+                            {{ trans('beatmapset_watches.index.table.last_update') }}
+                        </th>
                         <th class="beatmapset-watches__heading"></th>
                     </tr>
 
@@ -79,7 +82,16 @@
                                 </td>
 
                                 <td class="beatmapset-watches__col">
-                                    {{ $watch->beatmapset->beatmapDiscussions()->openIssues()->count() }}
+                                    {{ optional($openIssues[$watch->beatmapset_id] ?? null)->open_count ?? 0 }}
+                                </td>
+
+                                <td class="beatmapset-watches__col">
+                                    @php
+                                        $lastNotified = $watch->last_notified;
+                                    @endphp
+                                    @if ($lastNotified !== null)
+                                        {!! timeago($lastNotified) !!}
+                                    @endif
                                 </td>
 
                                 <td class="beatmapset-watches__col">
@@ -98,7 +110,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="5">
+                            <td colspan="6">
                                 {{ trans('beatmapset_watches.index.table.empty') }}
                             </td>
                         </tr>
