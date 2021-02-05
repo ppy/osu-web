@@ -116,6 +116,9 @@ return [
     'legacy' => [
         'shared_interop_secret' => env('SHARED_INTEROP_SECRET', ''),
     ],
+    'multiplayer' => [
+        'max_attempts_limit' => get_int(env('MULTIPLAYER_MAX_ATTEMPTS_LIMIT')) ?? 128,
+    ],
     'notification' => [
         'endpoint' => presence(env('NOTIFICATION_ENDPOINT'), '/home/notifications/feed'),
         'queue_name' => presence(env('NOTIFICATION_QUEUE'), 'notification'),

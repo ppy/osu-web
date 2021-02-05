@@ -20,6 +20,7 @@ export class ArtEntryList extends BaseEntryList
         key: index,
         displayIndex: index,
         entry: entry,
+        hideIfNotVoted: @state.showVotedOnly
         waitingForResponse: @state.waitingForResponse,
         options: @state.options,
         contest: @state.contest,
@@ -32,6 +33,7 @@ export class ArtEntryList extends BaseEntryList
 
     div className: 'contest__art-list',
       div className: 'contest__vote-summary--art',
+        @renderToggleShowVotedOnly()
         span className: 'contest__vote-summary-text contest__vote-summary-text--art', 'votes'
         el VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
 
