@@ -5,7 +5,6 @@
 
 namespace Tests\Jobs;
 
-use App\Jobs\UpdateUserForumTopicFollows;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicWatch;
@@ -19,6 +18,9 @@ class UpdateUserForumTopicFollowsTest extends TestCase
     public function testRemoveUserWithNoWatchPermission()
     {
         $forum = factory(Forum::class, 'child')->create();
+        $adminForum = factory(Forum::class, 'child')->create(['forum_id' => config('osu.forum.admin_forum_id')]);
+        config()->set('osu.forum.admin_forum_id', $adminForum->getKey());
+        $anotherForum = factory(Forum::class, 'child')->create();
         $topic = factory(Topic::class)->create(['forum_id' => $forum->getKey()]);
         $user = factory(User::class)->create();
 
@@ -38,16 +40,13 @@ class UpdateUserForumTopicFollowsTest extends TestCase
         $watchesCount = TopicWatch::count();
         $userNotificationsCount = UserNotification::count();
 
-        (new UpdateUserForumTopicFollows($topic))->handle();
+        $topic->moveTo($anotherForum);
 
         $this->assertSame($watchesCount, TopicWatch::count());
         $this->assertSame($userNotificationsCount, UserNotification::count());
 
-        $forum->update(['forum_id' => config('osu.forum.admin_forum_id')]);
-        $topic->update(['forum_id' => $forum->getKey()]);
         app()->make('OsuAuthorize')->cacheReset();
-
-        (new UpdateUserForumTopicFollows($topic))->handle();
+        $topic->moveTo($adminForum);
 
         $this->assertSame($watchesCount - 1, TopicWatch::count());
         $this->assertSame($userNotificationsCount - 1, UserNotification::count());

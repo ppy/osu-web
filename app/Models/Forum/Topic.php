@@ -8,6 +8,7 @@ namespace App\Models\Forum;
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\EsIndexDocument;
 use App\Jobs\UpdateUserForumCache;
+use App\Jobs\UpdateUserForumTopicFollows;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\Transactions\AfterCommit;
