@@ -81,8 +81,7 @@ export class CommentsManager extends React.PureComponent
 
 
   toggleShowDeleted: =>
-    runInAction () ->
-      uiState.comments.isShowDeleted = !uiState.comments.isShowDeleted
+    uiState.toggleShowDeletedComments()
 
 
   toggleFollow: =>

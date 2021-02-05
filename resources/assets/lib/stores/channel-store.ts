@@ -20,6 +20,7 @@ import UserStore from './user-store';
 @dispatchListener
 export default class ChannelStore {
   @observable channels = observable.map<number, Channel>();
+  lastPolledMessageId = 0;
   @observable loaded: boolean = false;
 
   private api = new ChatAPI();
@@ -28,14 +29,6 @@ export default class ChannelStore {
   @computed
   get channelList(): Channel[] {
     return [...this.nonPmChannels, ...this.pmChannels];
-  }
-
-  @computed
-  get maxMessageId(): number {
-    const channelArray = Array.from(this.channels.toJS().values());
-    const max = maxBy(channelArray, 'lastMessageId');
-
-    return max == null ? -1 : max.lastMessageId;
   }
 
   @computed
@@ -239,6 +232,8 @@ export default class ChannelStore {
   updateWithJson(updateJson: GetUpdatesJson) {
     this.updateWithPresence(updateJson.presence);
 
+    this.lastPolledMessageId = maxBy(updateJson.messages, 'message_id')?.message_id ?? this.lastPolledMessageId;
+
     const groups = groupBy(updateJson.messages, 'channel_id');
     for (const key of Object.keys(groups)) {
       const channelId = parseInt(key, 10);
@@ -277,10 +272,14 @@ export default class ChannelStore {
       return Message.fromJson(messageJson);
     });
 
-    if (messages.length === 0) return;
-
     const channel = this.channels.get(channelId);
     if (channel == null) return;
+
+    if (messages.length === 0) {
+      // assume no more messages.
+      channel.firstMessageId = channel.minMessageId;
+      return;
+    }
 
     channel.addMessages(messages);
     channel.loaded = true;
