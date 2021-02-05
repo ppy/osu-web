@@ -15,6 +15,7 @@ use App\Models\Forum\TopicTrack;
 use App\Models\Forum\TopicWatch;
 use App\Transformers\FollowCommentTransformer;
 use App\Transformers\FollowModdingTransformer;
+use DB;
 use Exception;
 
 class FollowsController extends Controller
@@ -97,15 +98,13 @@ class FollowsController extends Controller
         $user = auth()->user();
 
         $followsQuery = Follow::where(['user_id' => $user->getKey(), 'subtype' => 'comment']);
-        $follows = (clone $followsQuery)->with('notifiable')->get();
 
         $recentCommentIds = Comment
             ::selectRaw('MAX(id) latest_comment_id, commentable_type, commentable_id')
             ->whereIn(
-                \DB::raw('(commentable_type, commentable_id)'),
+                DB::raw('(commentable_type, commentable_id)'),
                 (clone $followsQuery)->selectRaw('notifiable_type, notifiable_id')
             )->groupBy('commentable_type', 'commentable_id')
-            ->get()
             ->pluck('latest_comment_id');
 
         $comments = Comment
@@ -114,6 +113,15 @@ class FollowsController extends Controller
             ->get()
             ->keyBy(function ($comment) {
                 return "{$comment->commentable_type}:{$comment->commentable_id}";
+            });
+
+        $follows = (clone $followsQuery)
+            ->with('notifiable')
+            ->get()
+            ->sortByDesc(function ($follow) use ($comments) {
+                $comment = $comments["{$follow->notifiable_type}:{$follow->notifiable_id}"] ?? null;
+
+                return $comment === null ? null : $comment->getKey();
             });
 
         $followsTransformer = new FollowCommentTransformer($comments);
@@ -144,7 +152,6 @@ class FollowsController extends Controller
     {
         $user = auth()->user();
         $followsQuery = Follow::where(['user_id' => $user->getKey(), 'subtype' => 'mapping']);
-        $follows = (clone $followsQuery)->with('notifiable')->get();
 
         $recentBeatmapsetIds = Beatmapset
             ::selectRaw('MAX(beatmapset_id) latest_beatmapset_id, user_id')
@@ -153,15 +160,22 @@ class FollowsController extends Controller
                 (clone $followsQuery)->select('notifiable_id')
             )->groupBy('user_id')
             ->where('approved', '<>', Beatmapset::STATES['wip'])
-            ->get()
             ->pluck('latest_beatmapset_id');
 
         $beatmapsets = Beatmapset
             ::whereIn('beatmapset_id', $recentBeatmapsetIds)
-            ->with('user')
             ->with('beatmaps')
             ->get()
             ->keyBy('user_id');
+
+        $follows = (clone $followsQuery)
+            ->with('notifiable')
+            ->get()
+            ->sortByDesc(function ($follow) use ($beatmapsets) {
+                $beatmapset = $beatmapsets[$follow->notifiable_id] ?? null;
+
+                return $beatmapset === null ? null : $beatmapset->getKey();
+            });
 
         $followsTransformer = new FollowModdingTransformer($beatmapsets);
         $followsJson = json_collection($follows, $followsTransformer, ['latest_beatmapset.beatmaps', 'user']);
