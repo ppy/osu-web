@@ -19,25 +19,25 @@ class BeatmapsController extends Controller
 
     /**
      * Get Beatmap
-     * 
+     *
      * Gets beatmap data for the specified beatmap ID.
-     * 
+     *
      * ---
-     * 
+     *
      * ### Response format
-     * 
+     *
      * Returns [Beatmap](#beatmap) object.
      * Following attributes are included in the response object when applicable,
-     * 
+     *
      * Attribute                            | Notes
      * -------------------------------------|------
      * beatmapset                           | See [Beatmapset](#beatmapset)
      * failtimes                            | |
-     * max_combo                            | | 
-     * 
+     * max_combo                            | |
+     *
      * @urlParam beatmap required The ID of the beatmap.
-     * 
-     * @response "See Beatmap object section"
+     *
+     * @response "See Beatmap object section.
      */
     public function show($id)
     {
@@ -48,19 +48,19 @@ class BeatmapsController extends Controller
 
     /**
      * Lookup Beatmap
-     * 
+     *
      * Returns beatmap.
-     * 
+     *
      *  ---
-     * 
+     *
      * ### Response format
-     * 
+     *
      * See [Get Beatmap](#get-beatmap)
-     * 
+     *
      * @queryParam checksum A beatmap checksum.
      * @queryParam filename A filename to lookup.
      * @queryParam id A beatmap ID to lookup.
-     * 
+     *
      * @response "See Beatmap object section"
      */
     public function lookup()
