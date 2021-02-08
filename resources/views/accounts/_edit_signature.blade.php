@@ -32,20 +32,30 @@
                     class="account-edit-entry__input js-post-preview--auto js-bbcode-body"
                     name="user[user_sig]"
                     rows=6
+                    @if (Auth::user()->isSilenced())
+                        disabled
+                    @endif
                 >{{ bbcode_for_editor(Auth::user()->user_sig, Auth::user()->user_sig_bbcode_uid) }}</textarea>
 
             </div>
 
             <div class="account-edit-entry account-edit-entry--wide account-edit-entry--no-label">
                 <div class="account-edit-entry__misc-info">
-                    @include('forum._post_toolbar')
+                    @include('forum._post_toolbar', ['disabled' => Auth::user()->isSilenced()])
                 </div>
             </div>
         </div>
 
         <div class="account-edit__input-group">
             <div class="account-edit-entry account-edit-entry--no-label">
-                <button class="btn-osu-big btn-osu-big--account-edit" type="submit" data-disable-with="{{ trans('common.buttons.saving') }}">
+                <button
+                    class="btn-osu-big btn-osu-big--account-edit"
+                    type="submit"
+                    data-disable-with="{{ trans('common.buttons.saving') }}"
+                    @if (Auth::user()->isSilenced())
+                        disabled
+                    @endif
+                >
                     <div class="btn-osu-big__content">
                         <div class="btn-osu-big__left">
                             {{ trans('accounts.edit.signature.update') }}
