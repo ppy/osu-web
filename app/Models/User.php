@@ -11,6 +11,7 @@ use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
 use App\Libraries\Elasticsearch\Indexable;
+use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\UsernameValidation;
 use App\Models\Forum\TopicWatch;
@@ -28,7 +29,7 @@ use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Translation\HasLocalePreference;
-use Illuminate\Database\QueryException as QueryException;
+use Illuminate\Database\QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
 
@@ -167,7 +168,7 @@ use Request;
  * @property string|null $username_previous
  * @property int|null $userpage_post_id
  */
-class User extends Model implements AuthenticatableContract, HasLocalePreference, Indexable
+class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, Indexable
 {
     use Elasticsearch\UserTrait, Store\UserTrait;
     use Authenticatable, HasApiTokens, Memoizes, Reportable, UserAvatar, UserScoreable, Validatable;
@@ -219,6 +220,8 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         'user_twitter' => 255,
         'user_website' => 200,
     ];
+
+    public $shouldReindex = false;
 
     private $validateCurrentPassword = false;
     private $validatePasswordConfirmation = false;
@@ -338,7 +341,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
             $skipValidations = in_array($type, ['inactive', 'revert'], true);
             $this->saveOrExplode(['skipValidations' => $skipValidations]);
-            dispatch(new EsIndexDocument($this));
+            $this->shouldReindex = true;
 
             return $history;
         });
@@ -1695,11 +1698,38 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     public function recommendedStarDifficulty(string $mode)
     {
         $stats = $this->statistics($mode);
-        if ($stats) {
-            return pow($stats->rank_score, 0.4) * 0.195;
-        }
 
-        return 1.0;
+        return UserStatistics\Model::calculateRecommendedStarDifficulty($stats);
+    }
+
+    /**
+     * Recommended star difficulty for all modes.
+     *
+     * @return float
+     */
+    public function recommendedStarDifficultyAll()
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            $unionQuery = null;
+
+            foreach (Beatmap::MODES as $key => $_value) {
+                $query = $this->statistics($key, true)->selectRaw("'{$key}' AS game_mode, rank_score");
+
+                if ($unionQuery === null) {
+                    $unionQuery = $query;
+                } else {
+                    $unionQuery->unionAll($query);
+                }
+            }
+
+            $stats = $unionQuery->get()->keyBy('game_mode');
+
+            foreach (Beatmap::MODES as $key => $_value) {
+                $recs[$key] = UserStatistics\Model::calculateRecommendedStarDifficulty($stats[$key] ?? null);
+            }
+
+            return $recs;
+        });
     }
 
     public function refreshForumCache($forum = null, $postsChangeCount = 0)
@@ -2132,6 +2162,14 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         }
 
         return $this->isValid() && parent::save($options);
+    }
+
+    public function afterCommit()
+    {
+        if ($this->shouldReindex) {
+            $this->shouldReindex = false;
+            dispatch(new EsIndexDocument($this));
+        }
     }
 
     protected function newReportableExtraParams(): array

@@ -16,8 +16,8 @@ return [
     'username' => 'Nume de utilizator',
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Data postării',
+        'relevance' => 'Relevanţă',
     ],
 
     'forum_topics' => [

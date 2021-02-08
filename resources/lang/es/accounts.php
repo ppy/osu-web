@@ -74,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'ocultar advertencias para contenido explícito en mapas',
         'beatmapset_title_show_original' => 'mostrar datos de mapas en su idioma original',
         'title' => 'Opciones',
 

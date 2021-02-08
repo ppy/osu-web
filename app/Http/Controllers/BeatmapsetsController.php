@@ -60,7 +60,6 @@ class BeatmapsetsController extends Controller
             return $set;
         } else {
             $commentBundle = CommentBundle::forEmbed($beatmapset);
-            $hasDiscussion = $beatmapset->discussion_enabled;
 
             if (priv_check('BeatmapsetMetadataEdit', $beatmapset)->can()) {
                 $genres = Genre::listing();
@@ -76,7 +75,6 @@ class BeatmapsetsController extends Controller
                 'beatmapset',
                 'commentBundle',
                 'genres',
-                'hasDiscussion',
                 'languages',
                 'noindex',
                 'set'
@@ -166,7 +164,7 @@ class BeatmapsetsController extends Controller
             ->count();
 
         if ($recentlyDownloaded > Auth::user()->beatmapsetDownloadAllowance()) {
-            abort(403);
+            abort(429, trans('beatmapsets.download.limit_exceeded'));
         }
 
         $noVideo = get_bool(Request::input('noVideo', false));

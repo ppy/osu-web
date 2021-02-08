@@ -30,6 +30,11 @@ return [
         'qualify' => '這張圖譜已經達到所需的提名數量，並已經 qualified。',
         'rank' => '進榜',
         'remove_from_loved' => '',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -66,6 +71,7 @@ return [
         'love' => 'Love',
         'nominate' => '被提名',
         'nomination_reset' => '被取消提名',
+        'nsfw_toggle' => '',
         'qualify' => 'Qualification',
         'rank' => 'Ranking',
         'remove_from_loved' => '',

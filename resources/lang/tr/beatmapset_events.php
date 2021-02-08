@@ -30,6 +30,11 @@ return [
         'qualify' => 'Bu beatmap gerekli aday gösterilme miktarına ulaştı ve nitelikli oldu.',
         'rank' => 'Dereceli.',
         'remove_from_loved' => ':user tarafından Sevilenlerden çıkarıldı (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -66,6 +71,7 @@ return [
         'love' => 'Love',
         'nominate' => 'Adaylık',
         'nomination_reset' => 'Adaylık Sıfırlama',
+        'nsfw_toggle' => '',
         'qualify' => 'Adaylık',
         'rank' => 'Sıralama',
         'remove_from_loved' => 'Sevilenlerden çıkarma',

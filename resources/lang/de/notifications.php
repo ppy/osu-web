@@ -11,6 +11,7 @@ return [
     'none' => 'Keine Benachrichtigungen',
     'see_all' => 'alle benachrichtigungen ansehen',
     'see_channel' => 'zum chat gehen',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'alle',

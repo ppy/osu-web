@@ -4,9 +4,11 @@
 import FlagCountry from 'flag-country'
 import { route } from 'laroute'
 import Mod from 'mod'
+import PpValue from 'scores/pp-value'
 import * as React from 'react'
 import { a, div, span } from 'react-dom-factories'
 import ScoreboardTime from 'scoreboard-time'
+import { shouldShowPp } from 'utils/beatmap-helper'
 import { classWithModifiers } from 'utils/css'
 
 el = React.createElement
@@ -18,6 +20,7 @@ export ScoreTop = (props) ->
     .join ' '
 
   position = if props.position? then "##{props.position}" else '-'
+  showPp = shouldShowPp(props.beatmap)
 
   div className: "#{bn} #{topClasses}",
     a
@@ -106,11 +109,12 @@ export ScoreTop = (props) ->
             div className: "#{bn}__stat-value #{bn}__stat-value--smaller",
               osu.formatNumber(props.score.statistics.count_miss)
 
-          div className: "#{bn}__stat",
-            div className: "#{bn}__stat-header",
-              osu.trans 'beatmapsets.show.scoreboard.headers.pp'
-            div className: "#{bn}__stat-value #{bn}__stat-value--smaller",
-              _.round props.score.pp
+          if showPp
+            div className: "#{bn}__stat",
+              div className: "#{bn}__stat-header",
+                osu.trans 'beatmapsets.show.scoreboard.headers.pp'
+              div className: "#{bn}__stat-value #{bn}__stat-value--smaller",
+                el PpValue, score: props.score
 
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header",
