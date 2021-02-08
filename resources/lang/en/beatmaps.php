@@ -250,7 +250,7 @@ return [
     ],
     'general' => [
         'converts' => 'Include converted beatmaps',
-        'follows' => 'By mappers in watchlist',
+        'follows' => 'Subscribed mappers',
         'recommended' => 'Recommended difficulty',
     ],
     'mode' => [
