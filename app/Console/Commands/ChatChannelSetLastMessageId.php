@@ -27,11 +27,9 @@ class ChatChannelSetLastMessageId extends Command
         $progress = $this->output->createProgressBar();
         Channel::where('last_message_id', null)->chunkById($chunkSize, function ($chunk) use ($delay, $progress) {
             foreach ($chunk as $channel) {
-                if ($channel->last_message_id === null) {
-                    $lastMessageId = $channel->messages()->max('message_id');
-                    if ($lastMessageId !== null) {
-                        $channel->update(['last_message_id' => $lastMessageId]);
-                    }
+                $lastMessageId = $channel->messages()->max('message_id');
+                if ($lastMessageId !== null) {
+                    $channel->update(['last_message_id' => $lastMessageId]);
                 }
 
                 $progress->advance();
