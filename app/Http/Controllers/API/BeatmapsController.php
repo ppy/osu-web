@@ -31,13 +31,13 @@ class BeatmapsController extends Controller
      *
      * Attribute                            | Notes
      * -------------------------------------|------
-     * beatmapset                           | See [Beatmapset](#beatmapset)
+     * beatmapset                           | Includes ratings property.
      * failtimes                            | |
      * max_combo                            | |
      *
      * @urlParam beatmap required The ID of the beatmap.
      *
-     * @response "See Beatmap object section.
+     * @response "See Beatmap object section."
      */
     public function show($id)
     {
@@ -51,7 +51,7 @@ class BeatmapsController extends Controller
      *
      * Returns beatmap.
      *
-     *  ---
+     * ---
      *
      * ### Response format
      *
