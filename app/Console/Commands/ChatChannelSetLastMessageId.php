@@ -10,9 +10,6 @@ use Illuminate\Console\Command;
 
 class ChatChannelSetLastMessageId extends Command
 {
-    const MAX_PER_LOOP = 1000;
-    const NOTIFICATION_ID_BUFFER = 1000;
-
     protected $signature = 'chat:channel-set-last-message-id {--chunk-size=1000} {--delay=1}';
 
     protected $description = 'Updates channels where last_message_id is not set.';
