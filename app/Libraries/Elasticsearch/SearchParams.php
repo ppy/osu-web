@@ -56,7 +56,7 @@ abstract class SearchParams
 
     public function shouldReturnEmptyResponse(): bool
     {
-        return $this->isLoginRequired() && !auth()->check();
+        return $this->isLoginRequired() && !auth()->check() && oauth_token() === null;
     }
 
     /**
