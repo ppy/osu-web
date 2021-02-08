@@ -41,5 +41,6 @@ class ChatChannelSetLastMessageId extends Command
         });
 
         $progress->finish();
+        $this->line('');
     }
 }
