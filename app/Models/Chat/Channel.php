@@ -250,6 +250,8 @@ class Channel extends Model
         $message->channel()->associate($this);
         $message->save();
 
+        $this->update(['last_message_id' => $message->getKey()]);
+
         $userChannel = $this->userChannelFor($sender);
 
         if ($userChannel) {

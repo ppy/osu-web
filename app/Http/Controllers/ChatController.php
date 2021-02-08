@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat\Channel;
+use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
 use Auth;
@@ -22,19 +23,24 @@ class ChatController extends Controller
 
     public function index()
     {
-        $json = [];
+        $json = [
+            'last_message_id' => optional(Message::last())->getKey(),
+            'presence' => UserChannel::presenceForUser(Auth::user()),
+        ];
 
         $targetUser = User::lookup(Request::input('sendto'), 'id');
         if ($targetUser) {
-            $json['target'] = json_item($targetUser, 'UserCompact');
-            $json['can_message'] = priv_check('ChatStart', $targetUser)->can();
+            $sendTo = [
+                'target' => json_item($targetUser, 'UserCompact'),
+                'can_message' => priv_check('ChatStart', $targetUser)->can(),
+            ];
 
             $channel = Channel::findPM($targetUser, Auth::user());
             optional($channel)->addUser(Auth::user());
+
+            $json['send_to'] = $sendTo;
         }
 
-        $presence = UserChannel::presenceForUser(Auth::user());
-
-        return ext_view('chat.index', compact('presence', 'json'));
+        return ext_view('chat.index', compact('json'));
     }
 }

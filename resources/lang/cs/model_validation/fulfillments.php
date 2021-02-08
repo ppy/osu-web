@@ -5,9 +5,9 @@
 
 return [
     'username_change' => [
-        'only_one' => 'po splnění objednávky je povolena pouze 1 změna uživatelského jména.',
-        'insufficient_paid' => 'Cena změny uživatelského jména přesahuje zaplacenou částku (:expected > :actual)',
-        'reverting_username_mismatch' => 'Aktuální uživatelské jméno (:current) není stejné, jako změněné, které chcete zrušit (:username)',
+        'only_one' => '',
+        'insufficient_paid' => '',
+        'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
         'insufficient_paid' => 'Váš dar je nižší, než je částka vyžadována pro darování statusu osu!podporovatele (:actual > :expected)',

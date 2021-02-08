@@ -353,12 +353,12 @@ return [
         ],
 
         'info' => [
-            'discord' => '디스코드',
+            'discord' => '',
             'interests' => '관심 분야',
             'location' => '거주지',
             'occupation' => '직업',
-            'skype' => '스카이프',
-            'twitter' => '트위터',
+            'skype' => '',
+            'twitter' => '',
             'website' => '웹사이트',
         ],
         'not_found' => [

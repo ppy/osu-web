@@ -60,7 +60,6 @@ class BeatmapsetsController extends Controller
             return $set;
         } else {
             $commentBundle = CommentBundle::forEmbed($beatmapset);
-            $hasDiscussion = $beatmapset->discussion_enabled;
 
             if (priv_check('BeatmapsetMetadataEdit', $beatmapset)->can()) {
                 $genres = Genre::listing();
@@ -76,7 +75,6 @@ class BeatmapsetsController extends Controller
                 'beatmapset',
                 'commentBundle',
                 'genres',
-                'hasDiscussion',
                 'languages',
                 'noindex',
                 'set'

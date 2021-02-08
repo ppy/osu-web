@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Beatmap lista',
         'guest_title' => 'Beatmap-ek',
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Letöltés',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'Videó nélkül',
                 'video' => 'Videóval',
             ],

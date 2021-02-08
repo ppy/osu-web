@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Alguns elementos contidos neste mapa foram removidos após serem avaliados como não sendo adequados para uso no osu!.',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Listagem de beatmaps',
         'guest_title' => 'Beatmaps',

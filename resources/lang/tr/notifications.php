@@ -11,7 +11,7 @@ return [
     'none' => 'Bildirim yok',
     'see_all' => 'tüm bildirimleri gör',
     'see_channel' => 'sohbete git',
-    'verifying' => '',
+    'verifying' => 'Bildirimleri görüntülemek için lütfen oturumunuzu doğrulayın',
 
     'filters' => [
         '_' => 'hepsi',

@@ -941,6 +941,22 @@ function concat_path($paths)
 
 function proxy_media($url)
 {
+    if (!present($url)) {
+        return '';
+    }
+
+    $url = html_entity_decode_better($url);
+
+    if (config('osu.camo.key') === null) {
+        return $url;
+    }
+
+    $isProxied = starts_with($url, config('osu.camo.prefix'));
+
+    if ($isProxied) {
+        return $url;
+    }
+
     // turn relative urls into absolute urls
     if (!preg_match('/^https?\:\/\//', $url)) {
         // ensure url is relative to the site root
@@ -950,21 +966,11 @@ function proxy_media($url)
         $url = config('app.url').$url;
     }
 
-    $decoded = urldecode(html_entity_decode_better($url));
 
-    if (config('osu.camo.key') === null) {
-        return $decoded;
-    }
+    $hexUrl = bin2hex($url);
+    $secret = hash_hmac('sha1', $url, config('osu.camo.key'));
 
-    $isProxied = starts_with($decoded, config('osu.camo.prefix'));
-    if ($isProxied) {
-        return $decoded;
-    }
-
-    $url = bin2hex($decoded);
-    $secret = hash_hmac('sha1', $decoded, config('osu.camo.key'));
-
-    return config('osu.camo.prefix')."{$secret}/{$url}";
+    return config('osu.camo.prefix')."{$secret}/{$hexUrl}";
 }
 
 function lazy_load_image($url, $class = '', $alt = '')

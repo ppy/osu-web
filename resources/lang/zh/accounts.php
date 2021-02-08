@@ -32,12 +32,12 @@ return [
             'title' => '个人资料',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => '当前位置',
                 'user_interests' => '兴趣爱好',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => '职业',
-                'user_twitter' => '推特',
+                'user_twitter' => '',
                 'user_website' => '个人主页',
             ],
         ],

@@ -5,8 +5,8 @@
 
 return [
     'username_change' => [
-        'only_one' => 'vain yksi käyttäjätunnuksen muutos sallittu per tilaus.',
-        'insufficient_paid' => 'Käyttäjätunnuksen muutoksen hinta ylittää maksetun määrän (:expected > :actual)',
+        'only_one' => '',
+        'insufficient_paid' => '',
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [

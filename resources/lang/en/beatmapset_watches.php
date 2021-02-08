@@ -15,6 +15,7 @@ return [
 
         'table' => [
             'empty' => 'No beatmap discussions watched.',
+            'last_update' => 'Last update',
             'open_issues' => 'Open issues',
             'state' => 'State',
             'title' => 'Title',

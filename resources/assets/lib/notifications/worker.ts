@@ -108,7 +108,7 @@ export default class Worker implements DispatchListener {
     }
   }
 
-  private loadMore() {
+  private loadMore = () => {
     if (this.xhrLoadingState.loadMore) {
       return;
     }

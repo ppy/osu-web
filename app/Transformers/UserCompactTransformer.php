@@ -373,6 +373,7 @@ class UserCompactTransformer extends TransformerAbstract
             'beatmapset_download',
             'beatmapset_show_nsfw',
             'beatmapset_title_show_original',
+            'comments_show_deleted',
             'forum_posts_show_deleted',
             'ranking_expanded',
             'user_list_filter',

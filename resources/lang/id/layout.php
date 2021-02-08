@@ -118,14 +118,14 @@ return [
         ],
         'help' => [
             '_' => 'Bantuan & Komunitas',
-            'faq' => 'Pertanyaan yang Sering Ditanyakan',
+            'faq' => 'Pertanyaan yang Umum Diajukan (FAQ)',
             'forum' => 'Forum Komunitas',
             'livestreams' => 'Siaran Langsung',
             'report' => 'Laporkan Masalah',
             'wiki' => 'Wiki',
         ],
         'legal' => [
-            '_' => 'Status Resmi',
+            '_' => 'Hukum & Status',
             'copyright' => 'Hak Cipta (DMCA)',
             'privacy' => 'Privasi',
             'server_status' => 'Status Server',
@@ -159,6 +159,10 @@ return [
             'error' => 'Parameter yang diminta tidak valid',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Oh, tidak! Sepertinya ada sesuatu yang rusak! ;_;',
             'description' => "Sistem osu! akan secara otomatis memberitahukan kami setiap kali terdapat kesalahan seperti ini.",
@@ -171,8 +175,8 @@ return [
             'error' => 'Sedang dalam pemeliharaan!',
             'description' => "Proses pemeliharaan utamanya dapat berlangsung dalam durasi yang cukup beragam, mulai dari 5 detik hingga lebih dari 10 menit. Jika proses pemeliharaan ternyata berlangsung lebih lama dari yang sewajarnya, harap kunjungi :link untuk informasi lebih lanjut.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
