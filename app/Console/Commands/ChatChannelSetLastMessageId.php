@@ -6,7 +6,6 @@
 namespace App\Console\Commands;
 
 use App\Models\Chat\Channel;
-use App\Models\Chat\Message;
 use Illuminate\Console\Command;
 
 class ChatChannelSetLastMessageId extends Command
@@ -32,7 +31,7 @@ class ChatChannelSetLastMessageId extends Command
         Channel::chunkById($chunkSize, function ($chunk) use ($delay, $progress) {
             foreach ($chunk as $channel) {
                 if ($channel->last_message_id === null) {
-                    $lastMessageId = optional(Message::where('channel_id', $channel->getKey())->last())->getKey();
+                    $lastMessageId = $channel->messages()->max('message_id');
                     if ($lastMessageId !== null) {
                         $channel->update(['last_message_id' => $lastMessageId]);
                     }
