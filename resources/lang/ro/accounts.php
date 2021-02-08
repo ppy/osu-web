@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'ascunde avertismente pentru conținut explicit în beatmaps',
+        'beatmapset_title_show_original' => 'arată metadatele beatmap în limba originală',
         'title' => 'Opțiuni',
 
         'beatmapset_download' => [
             '_' => 'tip implicit de descărcare de beatmap',
             'all' => 'cu video dacă e disponibil',
-            'no_video' => 'fără video',
             'direct' => 'deschis în osu!direct',
+            'no_video' => 'fără video',
         ],
-
-        'beatmapset_title_show_original' => 'arată metadatele beatmap în limba originală',
     ],
 
     'playstyles' => [

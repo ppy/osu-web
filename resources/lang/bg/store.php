@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Поръчка направена на :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'Преглед на фактурата',
         'no_orders' => 'Нямате поръчки за преглед.',
+        'paid_on' => 'Поръчка направена на :date',
         'resume' => 'Продължи разплащането',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

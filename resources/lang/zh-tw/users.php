@@ -154,6 +154,10 @@ return [
         'plays_with' => '慣用 :devices',
         'title' => ":username 的個人簡介",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '變更個人簡介封面',
@@ -349,12 +353,12 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => '興趣愛好',
             'location' => '所在地',
             'occupation' => '職業',
-            'skype' => 'Skype',
-            'twitter' => '推特',
+            'skype' => '',
+            'twitter' => '',
             'website' => '個人網站',
         ],
         'not_found' => [

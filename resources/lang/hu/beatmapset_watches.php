@@ -9,8 +9,8 @@ return [
         'title_compact' => 'modding követőlista',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Beatmap-ek nézve',
+            'unread' => 'Beatmap-ek új aktivitással',
         ],
 
         'table' => [

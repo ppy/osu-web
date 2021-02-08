@@ -15,6 +15,8 @@ return [
             'blocked' => '您已被收件者封鎖了',
             'channel_moderated' => '此頻道已經被管理員接管。',
             'friends_only' => '收件者只接受朋友發送的訊息',
+            'not_enough_plays' => '',
+            'not_verified' => '',
             'restricted' => '您的帳號已被限制。',
             'target_restricted' => '該使用者的帳號已被限制。',
         ],

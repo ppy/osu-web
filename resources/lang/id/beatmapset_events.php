@@ -25,10 +25,16 @@ return [
         'language_edit' => 'Bahasa beatmap diubah dari :old menjadi :new.',
         'love' => 'Di-love oleh :user',
         'nominate' => 'Dinominasikan oleh :user.',
+        'nominate_modes' => 'Dinominasikan oleh :user (:modes).',
         'nomination_reset' => 'Masalah baru di :discussion (:text) memicu pengaturan ulang nominasi.',
         'qualify' => 'Beatmap ini telah memperoleh jumlah nominasi yang cukup untuk mendapatkan status Qualified.',
         'rank' => 'Ranked.',
         'remove_from_loved' => 'Dilepas dari Loved oleh :user. (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => 'Tanda eksplisit telah dilepas',
+            'to_1' => 'Ditandai eksplisit',
+        ],
     ],
 
     'index' => [
@@ -65,6 +71,7 @@ return [
         'love' => 'Love',
         'nominate' => 'Nominasi',
         'nomination_reset' => 'Nominasi ulang',
+        'nsfw_toggle' => 'Tanda eksplisit',
         'qualify' => 'Kualifikasi',
         'rank' => 'Peringkat',
         'remove_from_loved' => 'Pelepasan status Loved',

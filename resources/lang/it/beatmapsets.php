@@ -8,6 +8,11 @@ return [
         'disabled' => 'Questa beatmap non è al momento disponibile per il download.',
         'parts-removed' => 'Porzioni di questa beatmap sono state rimosse su richiesta del creatore o di un titolare di copyright di terze parti.',
         'more-info' => 'Controlla qui per maggiori informazioni.',
+        'rule_violation' => '',
+    ],
+
+    'download' => [
+        'limit_exceeded' => '',
     ],
 
     'index' => [
@@ -16,12 +21,32 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'scarica',
             'video' => 'scarica con il video',
             'no_video' => 'scarica senza il video',
             'direct' => 'apri in osu!direct',
         ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => 'Nominare per quali modalità?',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Explicit',
     ],
 
     'show' => [
@@ -36,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Scarica',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'senza Video',
                 'video' => 'con Video',
             ],
@@ -89,10 +114,22 @@ return [
             'genre' => 'Genere',
             'language' => 'Lingua',
             'no_scores' => 'Dati ancora in elaborazione...',
+            'nsfw' => 'Contenuto esplicito',
             'points-of-failure' => 'Punti di Fallimento',
             'source' => 'Sorgente',
             'success-rate' => 'Rateo di Successo',
             'tags' => 'Tag',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'Questa beatmap ha contenuti espliciti, offensivi o disturbanti. Vuoi vederla comunque?',
+            'title' => 'Contenuto Esplicito',
+
+            'buttons' => [
+                'disable' => 'Disabilita avviso',
+                'listing' => 'Torna alla lista',
+                'show' => 'Mostra',
+            ],
         ],
 
         'scoreboard' => [

@@ -5,11 +5,11 @@ on: [push, pull_request]
 env:
   APP_ENV: testing
   APP_KEY: base64:q7U5qyAkedR1F6UhN0SQlUxBpAMDyfHy3NNFkqmiMqA=
-  APP_URL: http://localhost
+  APP_URL: http://localhost:8000
   CACHE_DRIVER: redis
   CACHE_DRIVER_LOCAL: array
   DB_USERNAME: root
-  GITHUB_TOKEN: 98cbc568911ef1e060a3a31623f2c80c1786d5ff
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   NOTIFICATION_ENDPOINT: ws://127.0.0.1:3000
   NOTIFICATION_SERVER_LISTEN_PORT: 3000
   OSU_INSTALL_DEV: 1
@@ -117,6 +117,4 @@ jobs:
         run: ./bin/phpunit.sh
 
       - name: Run Dusk
-        env:
-          APP_URL: http://localhost:8000
         run: ./bin/run_dusk.sh

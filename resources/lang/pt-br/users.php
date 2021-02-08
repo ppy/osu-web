@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Joga com :devices',
         'title' => "Perfil de :username",
 
+        'comments_count' => [
+            '_' => 'Publicado :link',
+            'count' => ':count_delimited comentário|:count_delimited comentários',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Mudar Capa de Perfil',
@@ -349,12 +353,12 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Interesses',
             'location' => 'Local Atual',
             'occupation' => 'Ocupação',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'skype' => '',
+            'twitter' => '',
             'website' => 'Website',
         ],
         'not_found' => [

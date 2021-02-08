@@ -25,10 +25,16 @@ return [
         'language_edit' => '',
         'love' => 'Elsket af :user',
         'nominate' => 'Nomineret af :user.',
+        'nominate_modes' => '',
         'nomination_reset' => 'Nyt problem :discussion udløste en nomineringsnulstilling.',
         'qualify' => 'Dette beatmap har opnået det nødvendige antal nomineringer og er blevet kvalificeret.',
         'rank' => 'Ranked.',
         'remove_from_loved' => '',
+
+        'nsfw_toggle' => [
+            'to_0' => 'Fjernede eksplicit mærke',
+            'to_1' => 'Markeret som eksplicit',
+        ],
     ],
 
     'index' => [
@@ -65,6 +71,7 @@ return [
         'love' => 'Elsk',
         'nominate' => 'Nominering',
         'nomination_reset' => 'Nulstilling af nominering',
+        'nsfw_toggle' => 'Eksplicit mærke',
         'qualify' => 'Kvalifikation',
         'rank' => 'Rangering',
         'remove_from_loved' => '',

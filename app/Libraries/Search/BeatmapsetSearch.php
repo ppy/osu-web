@@ -11,6 +11,7 @@ use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
+use App\Models\Follow;
 use App\Models\Score;
 
 class BeatmapsetSearch extends RecordSearch
@@ -55,9 +56,11 @@ class BeatmapsetSearch extends RecordSearch
 
         $this->addBlacklistFilter($query);
         $this->addBlockedUsersFilter($query);
+        $this->addFollowsFilter($query);
         $this->addGenreFilter($query);
         $this->addLanguageFilter($query);
         $this->addExtraFilter($query);
+        $this->addNsfwFilter($query);
         $this->addStatusFilter($query);
 
         $nested = new BoolQuery();
@@ -131,6 +134,15 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
+    private function addFollowsFilter($query)
+    {
+        if ($this->params->showFollows && $this->params->user !== null) {
+            $followIds = Follow::where(['subtype' => 'mapping', 'user_id' => $this->params->user->getKey()])->pluck('notifiable_id')->all();
+
+            $query->filter(['terms' => ['user_id' => $followIds]]);
+        }
+    }
+
     private function addGenreFilter($query)
     {
         if ($this->params->genre !== null) {
@@ -153,6 +165,13 @@ class BeatmapsetSearch extends RecordSearch
 
         if ($this->params->mode !== null) {
             $query->filter(['term' => ['beatmaps.playmode' => $this->params->mode]]);
+        }
+    }
+
+    private function addNsfwFilter($query)
+    {
+        if (!$this->params->includeNsfw) {
+            $query->filter(['term' => ['nsfw' => false]]);
         }
     }
 

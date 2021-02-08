@@ -22,6 +22,9 @@ class BeatmapsetSearchParams extends SearchParams
     /** @var bool */
     public $includeConverts = false;
 
+    /** @var bool */
+    public $includeNsfw = false;
+
     /**
      * null means any state.
      *
@@ -40,6 +43,9 @@ class BeatmapsetSearchParams extends SearchParams
 
     /** @var array */
     public $rank = [];
+
+    /** @var bool */
+    public $showFollows = false;
 
     /** @var bool */
     public $showRecommended = false;

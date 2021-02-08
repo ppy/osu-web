@@ -15,7 +15,7 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
+        'button' => 'Anmäl',
         'title' => '',
     ],
 

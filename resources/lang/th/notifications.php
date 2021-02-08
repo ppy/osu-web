@@ -5,11 +5,13 @@
 
 return [
     'all_read' => 'อ่านการแจ้งเตือนทั้งหมดแล้ว!',
-    'delete' => '',
+    'delete' => 'ลบ :type',
+    'loading' => '',
     'mark_read' => 'ล้าง :type',
     'none' => 'ไม่มีการแจ้งเตือนใดๆ',
     'see_all' => 'ดูการแจ้งเตือนทั้งหมด',
-    'see_channel' => '',
+    'see_channel' => 'ไปที่แชท',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'ทั้งหมด',
@@ -133,6 +135,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'เหรียญตรา',
 
@@ -200,6 +212,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username ได้ปลดล็อกเหรียญตรา ":title"!',
                 'user_achievement_unlock_self' => 'คุณได้ปลดล็อกเหรียญตรา ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

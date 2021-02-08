@@ -25,10 +25,16 @@ return [
         'language_edit' => 'Езикът бе сменен от :old на :new.',
         'love' => 'Заобичан от :user',
         'nominate' => 'Номиниран от :user.',
+        'nominate_modes' => '',
         'nomination_reset' => 'Нов проблем :discussion (:text) задейства нулиране на номинацията.',
         'qualify' => 'Този бийтмап достигна максимум брой номинации и бе квалифициран за класиране.',
         'rank' => 'Класиран.',
         'remove_from_loved' => '',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -65,6 +71,7 @@ return [
         'love' => 'Обичан',
         'nominate' => 'Номинация',
         'nomination_reset' => 'Анулиране на номинацията',
+        'nsfw_toggle' => '',
         'qualify' => 'Квалификация',
         'rank' => 'Класиране',
         'remove_from_loved' => '',

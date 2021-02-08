@@ -6,7 +6,7 @@
 return [
     'play_more' => '',
     'require_login' => 'Παρακαλώ συνδεθείτε για να συνεχίσετε.',
-    'require_verification' => '',
+    'require_verification' => 'Παρακαλώ επιβεβαιώστε για να συνεχίσετε.',
     'restricted' => "Δε μπορείτε να το κάνετε αυτό όσο είστε restricted.",
     'silenced' => "Δε μπορείτε να το κάνετε αυτό όσο είστε silenced.",
     'unauthorized' => 'Απαγορεύεται η πρόσβαση.',
@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Έχετε φτάσει στο όριο των nomination για σήμερα, παρακαλώ προσπαθήστε ξανά αύριο.',
-            'full_bn_required' => 'Πρέπει να είστε ένας πλήρης nominator για να επικυρώσετε αυτό το nomination.',
-            'full_bn_required_hybrid' => 'Πρέπει να είστε ένας πλήρης nominator για να κάνετε nominate beatmap sets με περισσότερα από ένα game mode.',
             'incorrect_state' => 'Σφάλμα κατά την εκτέλεση αυτής της ενέργειας, δοκιμάστε να ανανεώσετε τη σελίδα.',
             'owner' => "Δεν μπορείτε να κάνετε nominate το δικό σας beatmap.",
             'set_metadata' => '',
@@ -42,7 +40,7 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'Μπορείτε να διαγράψετε μόνο τις δικές σας δημοσιεύσεις.',
             'resolved' => '',
             'system_generated' => '',
         ],

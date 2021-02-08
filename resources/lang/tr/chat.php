@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'talking_in' => ':channel kanalındasınız',
+    'talking_in' => ':channel kanalında konuşuyorsunuz',
     'talking_with' => ':name ile konuşuyorsunuz',
     'title_compact' => 'sohbet',
 
@@ -15,6 +15,8 @@ return [
             'blocked' => 'Alıcı tarafından engellendiniz',
             'channel_moderated' => 'Bu kanal kısıtlandı',
             'friends_only' => 'Alıcı sadece arkadaş listesindeki kişilerden gelen mesajları kabul ediyor',
+            'not_enough_plays' => 'Oyunu yeterince oynamadınız',
+            'not_verified' => 'Oturumunuz doğrulanmadı',
             'restricted' => 'Şu anda uzaklaştırıldınız',
             'target_restricted' => 'Alıcı şu an uzaklaştırılmış durumda',
         ],

@@ -51,7 +51,7 @@ return [
         'actions' => [
             'destroy' => 'Eliminar publicação',
             'edit' => 'Editar publicação',
-            'report' => '',
+            'report' => 'Denunciar publicação',
             'restore' => 'Restaurar publicação',
         ],
 

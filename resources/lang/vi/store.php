@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Đã đặt hàng :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'Xem Hóa Đơn',
         'no_orders' => 'Không có đơn đặt hàng.',
+        'paid_on' => 'Đã đặt hàng :date',
         'resume' => 'Tiếp Tục Thanh Toán',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

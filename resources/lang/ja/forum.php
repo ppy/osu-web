@@ -51,7 +51,7 @@ return [
         'actions' => [
             'destroy' => '投稿を削除',
             'edit' => '投稿を編集',
-            'report' => '',
+            'report' => '投稿を報告',
             'restore' => '投稿を復元',
         ],
 
@@ -127,7 +127,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'フォーラムサブスクリプション',
+            'title_compact' => 'フォーラムトピックウォッチリスト',
 
             'box' => [
                 'total' => 'サブスクライブ中のトピック',

@@ -5,9 +5,9 @@
 
 return [
     'username_change' => [
-        'only_one' => 'apenas 1 troca de nome de usuário é permitida por compra.',
-        'insufficient_paid' => 'O custo para trocar de nome de usuário ultrapassa a quantia paga (:expected > :actual)',
-        'reverting_username_mismatch' => 'O atual nome de usuário (:current) não é o mesmo escolhido ao revogar (:username)',
+        'only_one' => '',
+        'insufficient_paid' => '',
+        'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
         'insufficient_paid' => 'O valor da doação é menor que o necessário para obter uma osu!supporter tag (:actual > :expected)',

@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Παραγγελία ορίστηκε :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'Προβολή τιμολογίου',
         'no_orders' => 'Δεν υπάρχουν παραγγελίες για προβολή.',
+        'paid_on' => 'Παραγγελία ορίστηκε :date',
         'resume' => 'Συνέχιση Αγοράς',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

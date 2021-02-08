@@ -123,7 +123,7 @@ return [
         'count_100' => '100',
         'count_300' => '300',
         'count_50' => '50',
-        'count_geki' => 'MAX',
+        'count_geki' => '',
         'count_katu' => '200',
         'count_miss' => 'Miss',
     ],
@@ -155,7 +155,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => '',
-        'logout_link' => '',
+        '_' => 'Bạn đang đăng nhập với tư cách :user. :logout_link.',
+        'logout_link' => 'Nhấn vào đây để đăng nhập với tư cách là người khác',
     ],
 ];

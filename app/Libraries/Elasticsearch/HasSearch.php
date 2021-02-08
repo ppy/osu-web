@@ -29,6 +29,14 @@ abstract class HasSearch
     }
 
     /**
+     * @return SearchParams
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    /**
      * @return $this
      */
     public function size(int $size)

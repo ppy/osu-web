@@ -32,12 +32,12 @@ return [
             'title' => '프로필',
 
             'user' => [
-                'user_discord' => 'Discord',
+                'user_discord' => '',
                 'user_from' => '거주지',
                 'user_interests' => '관심 분야',
-                'user_msnm' => 'Skype',
+                'user_msnm' => '',
                 'user_occ' => '직업',
-                'user_twitter' => 'Twitter',
+                'user_twitter' => '',
                 'user_website' => '웹사이트',
             ],
         ],
@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '부적절한 내용의 비트맵 경고 숨기기',
+        'beatmapset_title_show_original' => '원본 언어로 비트맵 메타데이터 표시',
         'title' => '설정',
 
         'beatmapset_download' => [
             '_' => '기본 비트맵 다운로드 형식',
             'all' => '가능하면 영상이 있는 비트맵으로 받기',
-            'no_video' => '영상이 없는 비트맵으로 받기',
             'direct' => 'osu!direct에서 열기',
+            'no_video' => '영상이 없는 비트맵으로 받기',
         ],
-
-        'beatmapset_title_show_original' => '원본 언어로 비트맵 메타데이터 표시',
     ],
 
     'playstyles' => [

@@ -205,7 +205,7 @@ class Room extends Model
             throw new InvariantException('number of simultaneously active rooms reached');
         }
 
-        $this->name = $params['name'] ?? null;
+        $this->name = get_string($params['name'] ?? null);
         $this->user_id = $owner->getKey();
         $this->max_attempts = get_int($params['max_attempts'] ?? null);
         $this->starts_at = now();
@@ -213,12 +213,17 @@ class Room extends Model
         $category = $params['category'] ?? null;
         if ($category === 'realtime') {
             $this->category = $category;
-        }
-
-        if ($params['ends_at'] ?? null !== null) {
-            $this->ends_at = Carbon::parse($params['ends_at']);
-        } elseif ($params['duration'] ?? null !== null) {
-            $this->ends_at = $this->starts_at->copy()->addMinutes(get_int($params['duration']));
+            $this->ends_at = now()->addSeconds(30);
+        } else {
+            $endsAt = parse_time_to_carbon($params['ends_at'] ?? null);
+            if ($endsAt !== null) {
+                $this->ends_at = $endsAt;
+            } else {
+                $duration = get_int($params['duration'] ?? null);
+                if ($duration !== null) {
+                    $this->ends_at = $this->starts_at->copy()->addMinutes($duration);
+                }
+            }
         }
 
         $this->assertValidStartGame();
@@ -311,25 +316,20 @@ class Room extends Model
 
     private function assertValidStartGame()
     {
-        foreach (['name'] as $field) {
+        foreach (['ends_at', 'name'] as $field) {
             if (!present($this->$field)) {
                 throw new InvariantException("'{$field}' is required");
             }
         }
 
-        if ($this->category !== 'realtime') {
-            if ($this->ends_at === null) {
-                throw new InvariantException("'ends_at' is required");
-            }
-
-            if ($this->starts_at->addMinutes(30)->gt($this->ends_at)) {
-                throw new InvariantException("'ends_at' must be at least 30 minutes after 'starts_at'");
-            }
+        if ($this->category !== 'realtime' && $this->starts_at->addMinutes(30)->gt($this->ends_at)) {
+            throw new InvariantException("'ends_at' must be at least 30 minutes after 'starts_at'");
         }
 
         if ($this->max_attempts !== null) {
-            if ($this->max_attempts < 1 || $this->max_attempts > 32) {
-                throw new InvariantException("field 'max_attempts' must be between 1 and 32");
+            $maxAttemptsLimit = config('osu.multiplayer.max_attempts_limit');
+            if ($this->max_attempts < 1 || $this->max_attempts > $maxAttemptsLimit) {
+                throw new InvariantException("field 'max_attempts' must be between 1 and {$maxAttemptsLimit}");
             }
         }
     }
@@ -342,11 +342,18 @@ class Room extends Model
             throw new InvariantException('Room has already ended.');
         }
 
-        if (
-            $this->max_attempts !== null
-            && $playlistItem->scores()->where('user_id', $user->getKey())->count() >= $this->max_attempts
-        ) {
-            throw new InvariantException('You have reached the maximum number of tries allowed.');
+        if ($this->max_attempts !== null) {
+            $roomStats = $this->userHighScores()->where('user_id', $user->getKey())->first();
+            if ($roomStats !== null && $roomStats->attempts >= $this->max_attempts) {
+                throw new InvariantException('You have reached the maximum number of tries allowed.');
+            }
+        }
+
+        if ($playlistItem->max_attempts !== null) {
+            $playlistAttempts = $playlistItem->scores()->where('user_id', $user->getKey())->count();
+            if ($playlistAttempts >= $playlistItem->max_attempts) {
+                throw new InvariantException('You have reached the maximum number of tries allowed.');
+            }
         }
     }
 }

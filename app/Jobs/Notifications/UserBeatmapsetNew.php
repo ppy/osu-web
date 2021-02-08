@@ -12,7 +12,7 @@ use App\Models\UserNotificationOption;
 
 class UserBeatmapsetNew extends BroadcastNotificationBase
 {
-    const NOTIFICATION_OPTION_NAME = UserNotificationOption::BEATMAPSET_MODDING;
+    const NOTIFICATION_OPTION_NAME = UserNotificationOption::MAPPING;
 
     protected $beatmapset;
 

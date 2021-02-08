@@ -51,13 +51,13 @@ return [
         'actions' => [
             'destroy' => 'Gönderiyi sil',
             'edit' => 'Gönderiyi düzenle',
-            'report' => '',
+            'report' => 'Gönderiyi bildir',
             'restore' => 'Gönderiyi geri getir',
         ],
 
         'create' => [
             'title' => [
-                'reply' => 'Yeni Yanıt',
+                'reply' => 'Yeni yanıt',
             ],
         ],
 
@@ -77,9 +77,9 @@ return [
         'deleted' => 'silinmiş konu',
         'go_to_latest' => 'son yazılan mesajı göster',
         'has_replied' => 'Bu konuyu yanıtladınız',
-        'in_forum' => ':forum da',
+        'in_forum' => ':forum forumunda',
         'latest_post' => ':user tarafından :when',
-        'latest_reply_by' => 'son cevap :user tarafından',
+        'latest_reply_by' => 'son yanıt :user tarafından',
         'new_topic' => 'Yeni konu aç',
         'new_topic_login' => 'Yeni konu başlatmak için giriş yapın',
         'post_reply' => 'Gönder',
@@ -152,9 +152,9 @@ return [
         '_' => 'Konular',
 
         'actions' => [
-            'login_reply' => 'Cevaplamak için giriş yap',
+            'login_reply' => 'Yanıtlamak için giriş yap',
             'reply' => 'Yanıtla',
-            'reply_with_quote' => 'Alıntı yaparak cevap ver',
+            'reply_with_quote' => 'Yanıtlamak için alıntıla',
             'search' => 'Ara',
         ],
 
@@ -273,11 +273,11 @@ return [
 
             'feature_vote' => [
                 'current' => 'Mevcut Öncelik: +:count',
-                'do' => 'Bu isteği destekle',
+                'do' => 'Bu talebi destekle',
 
                 'info' => [
                     '_' => 'Bu bir :feature_request. Özellik talepleri :supporters tarafından oylanabilir.',
-                    'feature_request' => 'özellik talebi',
+                    'feature_request' => 'özellik talebidir',
                     'supporters' => 'supporter\'lar',
                 ],
 

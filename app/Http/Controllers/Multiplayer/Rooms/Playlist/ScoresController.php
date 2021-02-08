@@ -37,8 +37,6 @@ class ScoresController extends BaseController
      *
      * Returns [MultiplayerScores](#multiplayerscores) object.
      *
-     * @authenticated
-     *
      * @urlParam room required Id of the room.
      * @urlParam playlist required Id of the playlist item.
      *
@@ -110,8 +108,6 @@ class ScoresController extends BaseController
      *
      * Returns [MultiplayerScore](#multiplayerscore) object.
      *
-     * @authenticated
-     *
      * @urlParam room required Id of the room.
      * @urlParam playlist required Id of the playlist item.
      * @urlParam score required Id of the score.
@@ -141,8 +137,6 @@ class ScoresController extends BaseController
      * ### Response Format
      *
      * Returns [MultiplayerScore](#multiplayerscore) object.
-     *
-     * @authenticated
      *
      * @urlParam room required Id of the room.
      * @urlParam playlist required Id of the playlist item.
@@ -176,10 +170,11 @@ class ScoresController extends BaseController
                 $clientHash = md5($clientHash);
             }
 
-            Build::where([
+            $buildExists = Build::where([
                 'hash' => hex2bin($clientHash),
                 'allow_ranking' => true,
-            ])->firstOrFail();
+            ])->exists();
+            abort_if(!$buildExists, 422, 'invalid client hash');
         }
 
         $score = $room->startPlay($user, $playlistItem);

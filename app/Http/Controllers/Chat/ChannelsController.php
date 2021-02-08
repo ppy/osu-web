@@ -26,8 +26,6 @@ class ChannelsController extends Controller
      *
      * Returns an array of [ChatChannel](#chatchannel)
      *
-     * @authenticated
-     *
      * @response [
      *   {
      *     "channel_id": 5,
@@ -59,8 +57,6 @@ class ChannelsController extends Controller
      * <aside class="notice">
      *   This endpoint will only allow the joining of public channels initially.
      * </aside>
-     *
-     * @authenticated
      *
      * @response {
      *   "channel_id": 5,
@@ -101,8 +97,6 @@ class ChannelsController extends Controller
      *   This endpoint will only allow the leaving of public channels initially.
      * </aside>
      *
-     * @authenticated
-     *
      * @response 204
      */
     public function part($channel_id, $user_id)
@@ -135,8 +129,6 @@ class ChannelsController extends Controller
      * Returns [ChatChannel](#chatchannel) with `recent_messages` attribute.
      * Note that if there's no existing PM channel, most of the fields will be blank.
      * In that case, [send a message](#create-new-pm) instead to create the channel.
-     *
-     * @authenticated
      *
      * @bodyParam type string required channel type (currently only supports "PM")
      * @bodyParam target_id integer target user id for type PM
@@ -201,8 +193,6 @@ class ChannelsController extends Controller
      * <aside class="notice">
      *   Note that the read marker cannot be moved backwards - i.e. if a channel has been marked as read up to <code>message_id = 12</code>, you cannot then set it backwards to <code>message_id = 10</code>. It will be rejected.
      * </aside>
-     *
-     * @authenticated
      *
      * @queryParam channel_id required The `channel_id` of the channel to mark as read
      * @queryParam message_id required The `message_id` of the message to mark as read up to

@@ -6,7 +6,7 @@
 return [
     'play_more' => '¿Qué tal si en vez de eso jugamos un poco de osu!?',
     'require_login' => 'Por favor, inicia sesión para continuar.',
-    'require_verification' => 'Por favor verifica para proceder.',
+    'require_verification' => 'Verifique para continuar.',
     'restricted' => "No puede hacer eso mientras esté restringido.",
     'silenced' => "No puede hacer eso mientras esté silenciado.",
     'unauthorized' => 'Acceso denegado.',
@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Has alcanzado tu límite de nominaciones diarias, por favor inténtalo de nuevo mañana.',
-            'full_bn_required' => 'Debe ser un nominador completo para realizar esta nominación calificada.',
-            'full_bn_required_hybrid' => 'Debe ser un nominador completo para nominar sets de mapas con más de un modo de juego.',
             'incorrect_state' => 'Error al realizar esa acción, intente actualizar la página.',
             'owner' => "No puedes nominar tu propio mapa.",
             'set_metadata' => 'Debe establecer el género y el idioma antes de nominar.',

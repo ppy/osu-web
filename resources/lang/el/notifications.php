@@ -6,10 +6,12 @@
 return [
     'all_read' => 'Όλες οι ειδοποιήσεις διαβάστηκαν!',
     'delete' => '',
+    'loading' => '',
     'mark_read' => '',
     'none' => '',
     'see_all' => '',
     'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => '',
@@ -133,6 +135,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => '',
 
@@ -200,6 +212,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => '',
                 'user_achievement_unlock_self' => '',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

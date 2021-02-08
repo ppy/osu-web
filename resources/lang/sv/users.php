@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Spelar med :devices',
         'title' => ":username's profil",
 
+        'comments_count' => [
+            '_' => 'Upplagd :link',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Ändra Profilomslag',
@@ -349,12 +353,12 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Intressen',
             'location' => 'Nuvarande plats',
             'occupation' => 'Sysselsättning',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'skype' => '',
+            'twitter' => '',
             'website' => 'Hemsida',
         ],
         'not_found' => [

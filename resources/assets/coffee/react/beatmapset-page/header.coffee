@@ -132,15 +132,19 @@ export class Header extends React.Component
                 div className: 'user-list-popup__remainder-count',
                   osu.transChoice 'common.count.plus_others', @props.favcount - @filteredFavourites.length
 
-          a
-            className: 'beatmapset-header__details-text beatmapset-header__details-text--title'
-            href: laroute.route 'beatmapsets.index', q: getTitle(@props.beatmapset)
-            getTitle(@props.beatmapset)
+          span className: 'beatmapset-header__details-text beatmapset-header__details-text--title',
+            a
+              className: 'beatmapset-header__details-text-link'
+              href: laroute.route 'beatmapsets.index', q: getTitle(@props.beatmapset)
+              getTitle(@props.beatmapset)
+            if @props.beatmapset.nsfw
+              span className: 'nsfw-badge', osu.trans('beatmapsets.nsfw_badge.label')
 
-          a
-            className: 'beatmapset-header__details-text beatmapset-header__details-text--artist'
-            href: laroute.route 'beatmapsets.index', q: getArtist(@props.beatmapset)
-            getArtist(@props.beatmapset)
+          span className: 'beatmapset-header__details-text beatmapset-header__details-text--artist',
+            a
+              className: 'beatmapset-header__details-text-link'
+              href: laroute.route 'beatmapsets.index', q: getArtist(@props.beatmapset)
+              getArtist(@props.beatmapset)
 
           el BeatmapsetMapping, beatmapset: @props.beatmapset
 

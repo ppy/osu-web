@@ -220,14 +220,15 @@ return [
             'not-found' => 'bez výsledků',
             'not-found-quote' => '... ups, nic nebylo nalezeno.',
             'filters' => [
+                'extra' => 'extra',
                 'general' => 'Obecné',
-                'mode' => 'Mód',
-                'status' => 'Kategorie',
                 'genre' => 'Žánr',
                 'language' => 'Jazyk',
-                'extra' => 'extra',
-                'rank' => 'Dle získaného písmene',
+                'mode' => 'Mód',
+                'nsfw' => 'Explicitní mapy',
                 'played' => 'Již hrané',
+                'rank' => 'Dle získaného písmene',
+                'status' => 'Kategorie',
             ],
             'sorting' => [
                 'title' => 'Název',
@@ -330,6 +331,12 @@ return [
         'other' => 'Jiné',
         'unspecified' => 'Nespecifikováno',
     ],
+
+    'nsfw' => [
+        'exclude' => 'Skrýt',
+        'include' => 'Zobrazit',
+    ],
+
     'played' => [
         'any' => 'Jakékoliv',
         'played' => 'Hrané',

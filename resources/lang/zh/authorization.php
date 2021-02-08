@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => '你今天的提名次数已达上限，请明天再试。',
-            'full_bn_required' => '你必须是一位完整提名者才能执行有效提名。',
-            'full_bn_required_hybrid' => '你必须是一位完整提名者，以提名包含多个游戏模式的谱面。',
             'incorrect_state' => '操作出错了，请尝试刷新页面。',
             'owner' => "不能提名自己的谱面。",
             'set_metadata' => '您必须在提名之前设置类型和语言。',

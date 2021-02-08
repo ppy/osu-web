@@ -6,10 +6,12 @@
 return [
     'all_read' => 'Alle varsler lest!',
     'delete' => '',
+    'loading' => '',
     'mark_read' => 'Tøm :type',
     'none' => 'Ingen varsler',
     'see_all' => 'se alle varsler',
     'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'alle',
@@ -134,6 +136,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medaljer',
 
@@ -201,6 +213,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username har låst opp en ny medalje, ":title"!',
                 'user_achievement_unlock_self' => 'Du har låst opp en ny medalje, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

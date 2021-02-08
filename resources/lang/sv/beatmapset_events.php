@@ -25,10 +25,16 @@ return [
         'language_edit' => 'Språk ändrat från :old till :new.',
         'love' => 'Älskad av :user',
         'nominate' => 'Nominerad av :user.',
+        'nominate_modes' => 'Nominerad av :user (:modes).',
         'nomination_reset' => 'Nytt problem :discussion triggade en nomination återställning.',
         'qualify' => 'Denna beatmap har uppnått den nödvändiga antalet av nomineringar och har blivit kvalificerad.',
         'rank' => 'Rankad.',
         'remove_from_loved' => 'Borttagen från Älskad av :user. (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -65,6 +71,7 @@ return [
         'love' => 'Älska',
         'nominate' => 'Nominering',
         'nomination_reset' => 'Återställning av nominering',
+        'nsfw_toggle' => '',
         'qualify' => 'Kvalifikation',
         'rank' => 'Rankning',
         'remove_from_loved' => '',

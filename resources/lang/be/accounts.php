@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'паказаць метададзеныя карты на зыходнай мове',
         'title' => 'Налады',
 
         'beatmapset_download' => [
             '_' => 'тып загрузкі бітмап па змаўчанні',
             'all' => 'з відэа, калі даступна',
-            'no_video' => 'без відэа',
             'direct' => 'адкрыць у osu!direct',
+            'no_video' => 'без відэа',
         ],
-
-        'beatmapset_title_show_original' => 'паказаць метададзеныя карты на зыходнай мове',
     ],
 
     'playstyles' => [

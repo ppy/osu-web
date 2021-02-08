@@ -6,10 +6,12 @@
 return [
     'all_read' => 'Toate notificările citite!',
     'delete' => '',
+    'loading' => '',
     'mark_read' => 'Curăță :type',
     'none' => 'Nicio notificare',
     'see_all' => 'vedeți toate notificările',
     'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'tot',
@@ -60,7 +62,7 @@ return [
                 'beatmapset_rank' => ':title a fost premiat',
                 'beatmapset_rank_compact' => 'Beatmap-ul a fost premiat',
                 'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved_compact' => 'Beatmap a fost eliminat din iubit',
                 'beatmapset_reset_nominations' => 'Nominația ":title" a fost resetată',
                 'beatmapset_reset_nominations_compact' => 'Nominația a fost resetată',
             ],
@@ -133,6 +135,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => 'Beatmap nou',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medalii',
 
@@ -140,7 +152,7 @@ return [
                 '_' => 'Medalie nouă',
                 'user_achievement_unlock' => 'Deblocat ":title"!',
                 'user_achievement_unlock_compact' => 'Deblocat ":title"!',
-                'user_achievement_unlock_group' => '',
+                'user_achievement_unlock_group' => 'Medalii deblocate!',
             ],
         ],
     ],
@@ -200,6 +212,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username a deblocat o nouă medalie, ":title"!',
                 'user_achievement_unlock_self' => 'Ați deblocat o nouă medalie, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

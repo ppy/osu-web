@@ -234,8 +234,8 @@ class UsersController extends Controller
      * ### Response format
      *
      * Field | Type                          | Description
-     * ----- | ----------------------------- | ---------------------------------
-     * users | [UserCompact](#usercompact)[] | Includes: country, cover, groups.
+     * ----- | ----------------------------- | -----------
+     * users | [UserCompact](#usercompact)[] | Includes: country, cover, groups, statistics_fruits, statistics_mania, statistics_osu, statistics_taiko.
      *
      * @queryParam ids[] User id to be returned. Specify once for each user id requested. Up to 50 users can be requested at once. Example: 1
      *
@@ -256,16 +256,25 @@ class UsersController extends Controller
     {
         $params = get_params(request()->all(), null, ['ids:int[]']);
 
+        $includes = UserCompactTransformer::CARD_INCLUDES;
+
         if (isset($params['ids'])) {
+            $preload = UserCompactTransformer::CARD_INCLUDES_PRELOAD;
+
+            foreach (Beatmap::MODES as $mode => $i) {
+                $includes[] = "statistics_{$mode}";
+                $preload[] = camel_case("statistics_{$mode}");
+            }
+
             $users = User
                 ::whereIn('user_id', array_slice($params['ids'], 0, 50))
                 ->default()
-                ->with(UserCompactTransformer::CARD_INCLUDES_PRELOAD)
+                ->with($preload)
                 ->get();
         }
 
         return [
-            'users' => json_collection($users ?? [], 'UserCompact', UserCompactTransformer::CARD_INCLUDES),
+            'users' => json_collection($users ?? [], 'UserCompact', $includes),
         ];
     }
 
@@ -421,8 +430,6 @@ class UsersController extends Controller
      * ### Response format
      *
      * See [Get User](#get-user).
-     *
-     * @authenticated
      *
      * @urlParam mode [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
      *

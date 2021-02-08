@@ -43,19 +43,29 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('artists', 'ArtistsController', ['only' => ['index', 'show']]);
         Route::resource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
         Route::get('packs/{pack}/raw', 'BeatmapPacksController@raw')->name('packs.raw');
+
+        Route::group(['as' => 'beatmaps.', 'prefix' => '{beatmap}'], function () {
+            Route::get('scores/users/{user}', 'BeatmapsController@userScore');
+            Route::get('scores', 'BeatmapsController@scores')->name('scores');
+        });
     });
-    Route::get('beatmaps/{beatmap}/scores', 'BeatmapsController@scores')->name('beatmaps.scores');
+
     Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
 
     Route::group(['prefix' => 'beatmapsets'], function () {
-        Route::put('beatmap-discussions/{beatmap_discussion}/vote', 'BeatmapDiscussionsController@vote')->name('beatmap-discussions.vote');
-        Route::post('beatmap-discussions/{beatmap_discussion}/restore', 'BeatmapDiscussionsController@restore')->name('beatmap-discussions.restore');
-        Route::post('beatmap-discussions/{beatmap_discussion}/deny-kudosu', 'BeatmapDiscussionsController@denyKudosu')->name('beatmap-discussions.deny-kudosu');
-        Route::post('beatmap-discussions/{beatmap_discussion}/allow-kudosu', 'BeatmapDiscussionsController@allowKudosu')->name('beatmap-discussions.allow-kudosu');
-        Route::resource('beatmap-discussions', 'BeatmapDiscussionsController', ['only' => ['destroy', 'index', 'show']]);
+        route_redirect('beatmap-discussions', 'beatmapsets.discussions.index');
+        route_redirect('beatmap-discussions/{beatmap_discussion}', 'beatmapsets.discussions.destroy', 'delete');
+        route_redirect('beatmap-discussions/{beatmap_discussion}', 'beatmapsets.discussions.show');
+        route_redirect('beatmap-discussions/{beatmap_discussion}/vote', 'beatmapsets.discussions.vote', 'put');
+        route_redirect('beatmap-discussions/{beatmap_discussion}/restore', 'beatmapsets.discussions.restore', 'post');
+        route_redirect('beatmap-discussions/{beatmap_discussion}/deny-kudosu', 'beatmapsets.discussions.deny-kudosu', 'post');
+        route_redirect('beatmap-discussions/{beatmap_discussion}/allow-kudosu', 'beatmapsets.discussions.allow-kudosu', 'post');
 
-        Route::post('beatmap-discussions-posts/{beatmap_discussion_post}/restore', 'BeatmapDiscussionPostsController@restore')->name('beatmap-discussion-posts.restore');
-        Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['destroy', 'index', 'store', 'update']]);
+        route_redirect('beatmap-discussion-posts/{beatmap_discussion_post}', 'beatmapsets.discussions.posts.destroy', 'delete');
+        route_redirect('beatmap-discussion-posts/{beatmap_discussion_post}', 'beatmapsets.discussions.posts.store', 'post');
+        route_redirect('beatmap-discussion-posts/{beatmap_discussion_post}', 'beatmapsets.discussions.posts.update', 'put');
+        route_redirect('beatmap-discussion-posts/{beatmap_discussion_post}/restore', 'beatmapsets.discussions.posts.restore', 'post');
+        route_redirect('beatmap-discussion-posts', 'beatmapsets.discussions.posts.index');
     });
 
     Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
@@ -65,8 +75,20 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('watches', 'BeatmapsetWatchesController', ['only' => ['update', 'destroy']]);
 
         Route::group(['prefix' => 'discussions', 'as' => 'discussions.'], function () {
+            Route::put('{discussion}/vote', 'BeatmapDiscussionsController@vote')->name('vote');
+            Route::post('{discussion}/restore', 'BeatmapDiscussionsController@restore')->name('restore');
+            Route::post('{discussion}/deny-kudosu', 'BeatmapDiscussionsController@denyKudosu')->name('deny-kudosu');
+            Route::post('{discussion}/allow-kudosu', 'BeatmapDiscussionsController@allowKudosu')->name('allow-kudosu');
+
+            Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
+                Route::post('{post}/restore', 'BeatmapDiscussionPostsController@restore')->name('restore');
+            });
+
+            Route::resource('posts', 'BeatmapDiscussionPostsController', ['only' => ['destroy', 'index', 'store', 'update']]);
             Route::resource('votes', 'BeatmapsetDiscussionVotesController', ['only' => ['index']]);
         });
+
+        Route::resource('discussions', 'BeatmapDiscussionsController', ['only' => ['destroy', 'index', 'show']]);
 
         Route::group(['namespace' => 'Beatmapsets'], function () {
             Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
@@ -203,10 +225,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('blocks', 'BlocksController', ['only' => ['store', 'destroy']]);
         Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
         Route::resource('news', 'NewsController', ['only' => ['index', 'show', 'store', 'update']]);
-        Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
-        Route::get('notifications/endpoint', 'NotificationsController@endpoint')->name('notifications.endpoint');
-        Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
-        Route::delete('notifications', 'NotificationsController@batchDestroy');
 
         Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');
 
@@ -214,6 +232,11 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('follows/{subtype?}', 'FollowsController@index')->name('follows.index');
         Route::delete('follows', 'FollowsController@destroy')->name('follows.destroy');
     });
+
+    Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
+    Route::get('notifications/endpoint', 'NotificationsController@endpoint')->name('notifications.endpoint');
+    Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
+    Route::delete('notifications', 'NotificationsController@batchDestroy');
 
     Route::get('legal/{locale?}/{path?}', 'LegalController@show')->name('legal');
     Route::put('legal/{locale}/{path}', 'LegalController@update');
@@ -324,6 +347,10 @@ Route::group(['middleware' => ['web']], function () {
 
     route_redirect('/', 'home');
 
+    if (config('osu.scores.rank_cache.local_server')) {
+        Route::get('rankLookup', 'ScoresController@userRankLookup');
+    }
+
     // redirects go here
     route_redirect('forum/p/{post}', 'forum.posts.show');
     route_redirect('po/{post}', 'forum.posts.show');
@@ -344,6 +371,17 @@ Route::group(['middleware' => ['web']], function () {
 // require-scopes is not in the api group at the moment to reduce the number of things that need immediate fixing.
 Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', ThrottleRequests::getApiThrottle(), 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
+        Route::group(['as' => 'beatmaps.', 'prefix' => 'beatmaps'], function () {
+            Route::get('lookup', 'API\BeatmapsController@lookup');
+
+            Route::group(['prefix' => '{beatmap}'], function () {
+                Route::get('scores/users/{user}', 'BeatmapsController@userScore');
+                Route::get('scores', 'BeatmapsController@scores')->name('scores');
+            });
+        });
+
+        Route::resource('beatmaps', 'API\BeatmapsController', ['only' => ['show']]);
+
         Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets'], function () {
             Route::apiResource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
             // TODO: move other beatmapset routes here
@@ -394,14 +432,6 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             Route::get('{score}', 'ScoresController@show')->name('show');
         });
 
-        // Beatmaps
-        //   GET /api/v2/beatmaps/:beatmap_id/scores
-        Route::get('beatmaps/{id}/scores', 'BeatmapsController@scores');
-        //   GET /api/v2/beatmaps/lookup
-        Route::get('beatmaps/lookup', 'API\BeatmapsController@lookup');
-        //   GET /api/v2/beatmaps/:beatmap_id
-        Route::resource('beatmaps', 'API\BeatmapsController', ['only' => ['show']]);
-
         // Beatmapsets
         //   GET /api/v2/beatmapsets/search/:filters
         Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search');
@@ -434,6 +464,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         //  GET /api/v2/rankings/:mode/:type
         Route::get('rankings/{mode}/{type}', 'RankingController@index');
         Route::resource('spotlights', 'SpotlightsController', ['only' => ['index']]);
+
+        Route::get('search', 'HomeController@search');
 
         //  GET /api/v2/users/:user_id/kudosu
         Route::get('users/{user}/kudosu', 'UsersController@kudosu');

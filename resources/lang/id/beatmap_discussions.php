@@ -6,7 +6,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Silakan masuk untuk menyunting.',
+            'null_user' => 'Anda harus masuk untuk dapat menyunting.',
             'system_generated' => 'Post yang dihasilkan secara otomatis tidak dapat disunting.',
             'wrong_user' => 'Hanya pembuat post yang diperbolehkan untuk menyunting post.',
         ],
@@ -93,6 +93,6 @@ return [
 
     'user_filter' => [
         'everyone' => 'Semua orang',
-        'label' => 'Filter berdasarkan pengguna',
+        'label' => 'Saring berdasarkan pengguna',
     ],
 ];

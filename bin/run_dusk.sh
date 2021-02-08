@@ -17,7 +17,7 @@ start_notification_server() { (
 ) }
 
 # install latest chrome driver
-php artisan dusk:chrome-driver
+php artisan dusk:chrome-driver --detect
 
 # start the standalone server and notification server that the tests use
 php artisan serve > /dev/null 2>&1 &

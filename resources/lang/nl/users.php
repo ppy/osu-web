@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Speelt met :devices',
         'title' => "Profiel van :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Verander Profiel Cover',

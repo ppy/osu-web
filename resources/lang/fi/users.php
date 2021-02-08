@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Pelityylinä :devices',
         'title' => ":username:n profiili",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Muuta profiilin kansikuvaa',

@@ -42,8 +42,8 @@ return [
         'ranked_score' => 'Score Classé',
         'average_score' => 'Score Moyen',
         'average_performance' => 'Perf. Moyenne',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];

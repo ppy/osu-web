@@ -22,6 +22,7 @@ return [
             '401-verification' => 'vérification du compte',
             '405' => 'manquant',
             '422' => 'requête invalide',
+            '429' => '',
             '500' => 'quelque chose a cassé',
             '503' => 'maintenance',
         ],
@@ -74,6 +75,9 @@ return [
         ],
         'contests_controller' => [
             '_' => 'concours',
+        ],
+        'follows_controller' => [
+            'index' => '',
         ],
         'friends_controller' => [
             'index' => 'tableau de bord',

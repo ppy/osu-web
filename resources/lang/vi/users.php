@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Chơi bằng :devices',
         'title' => "Trang cá nhân của :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Đổi Ảnh Bìa Trang Cá Nhân',
@@ -349,12 +353,12 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Sở Thích',
             'location' => 'Vị Trí Hiện Tại',
             'occupation' => 'Nghề Nghiệp',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'skype' => '',
+            'twitter' => '',
             'website' => 'Website',
         ],
         'not_found' => [

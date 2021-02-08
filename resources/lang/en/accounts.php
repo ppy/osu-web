@@ -62,6 +62,7 @@ return [
             'comment_new' => 'new comments',
             'forum_topic_reply' => 'topic reply',
             'mail' => 'mail',
+            'mapping' => 'beatmap mapper',
             'push' => 'push',
             'user_achievement_unlock' => 'user medal unlocked',
         ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'hide warnings for explicit content in beatmaps',
+        'beatmapset_title_show_original' => 'show beatmap metadata in original language',
         'title' => 'Options',
 
         'beatmapset_download' => [
             '_' => 'default beatmap download type',
             'all' => 'with video if available',
-            'no_video' => 'without video',
             'direct' => 'open in osu!direct',
+            'no_video' => 'without video',
         ],
-
-        'beatmapset_title_show_original' => 'show beatmap metadata in original language',
     ],
 
     'playstyles' => [

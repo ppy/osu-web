@@ -25,10 +25,16 @@ return [
         'language_edit' => 'Língua alterada de :old para :new.',
         'love' => 'Loved por :user',
         'nominate' => 'Nomeado por :user.',
+        'nominate_modes' => 'Nomeado por :user (:modes).',
         'nomination_reset' => 'Novo problema :discussion reiniciou a contagem de nomeação.',
         'qualify' => 'Este beatmap alcançou o número de nomeações necessárias e se tornou qualificado.',
         'rank' => 'Ranqueado.',
         'remove_from_loved' => 'Removido dos Loved por :user. (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => 'Marcação explícita removida',
+            'to_1' => 'Marcado como explícito',
+        ],
     ],
 
     'index' => [
@@ -65,6 +71,7 @@ return [
         'love' => 'Love',
         'nominate' => 'Nomeação',
         'nomination_reset' => 'Redefinição de Nomeação',
+        'nsfw_toggle' => 'Marcação explícita',
         'qualify' => 'Qualificações',
         'rank' => 'Classificação',
         'remove_from_loved' => 'Remoção de Loved',

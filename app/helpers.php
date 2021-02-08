@@ -175,8 +175,18 @@ function class_with_modifiers(string $className, ?array $modifiers = null)
 {
     $class = $className;
 
-    foreach ($modifiers ?? [] as $modifier) {
-        $class .= " {$className}--{$modifier}";
+    if ($modifiers !== null) {
+        if (isset($modifiers[0])) {
+            foreach ($modifiers as $modifier) {
+                $class .= " {$className}--{$modifier}";
+            }
+        } else {
+            foreach ($modifiers as $modifier => $enabled) {
+                if ($enabled === true) {
+                    $class .= " {$className}--{$modifier}";
+                }
+            }
+        }
     }
 
     return $class;
@@ -239,13 +249,12 @@ function datadog_timing(callable $callable, $stat, array $tag = null)
     $withClockwork = app('clockwork.support')->isEnabled();
 
     if ($withClockwork) {
-        $uid = uniqid($stat);
         // spaces used so clockwork doesn't run across the whole screen.
         $description = $stat
                        .' '.($tag['type'] ?? null)
                        .' '.($tag['index'] ?? null);
 
-        clock()->startEvent($uid, $description);
+        clock()->event($description)->start();
     }
 
     $start = microtime(true);
@@ -253,7 +262,7 @@ function datadog_timing(callable $callable, $stat, array $tag = null)
     $result = $callable();
 
     if ($withClockwork) {
-        clock()->endEvent($uid);
+        clock()->event($description)->end();
     }
 
     $duration = microtime(true) - $start;
@@ -793,7 +802,12 @@ function ujs_redirect($url, $status = 200)
             Request::session()->put('_turbolinks_location', $url);
         }
 
-        return redirect($url);
+        // because non-3xx redirects make no sense.
+        if ($status < 300 || $status > 399) {
+            $status = 302;
+        }
+
+        return redirect($url, $status);
     }
 }
 
@@ -803,9 +817,9 @@ function unzalgo(?string $text, int $level = 2)
     return preg_replace("/(\pM{{$level}})\pM+/u", '\1', $text);
 }
 
-function route_redirect($path, $target)
+function route_redirect($path, $target, string $method = 'get')
 {
-    return Route::get($path, '\App\Http\Controllers\RedirectController')->name("redirect:{$target}");
+    return Route::$method($path, '\App\Http\Controllers\RedirectController')->name("redirect:{$target}");
 }
 
 function timeago($date)
@@ -927,6 +941,22 @@ function concat_path($paths)
 
 function proxy_media($url)
 {
+    if (!present($url)) {
+        return '';
+    }
+
+    $url = html_entity_decode_better($url);
+
+    if (config('osu.camo.key') === null) {
+        return $url;
+    }
+
+    $isProxied = starts_with($url, config('osu.camo.prefix'));
+
+    if ($isProxied) {
+        return $url;
+    }
+
     // turn relative urls into absolute urls
     if (!preg_match('/^https?\:\/\//', $url)) {
         // ensure url is relative to the site root
@@ -936,21 +966,11 @@ function proxy_media($url)
         $url = config('app.url').$url;
     }
 
-    $decoded = urldecode(html_entity_decode_better($url));
 
-    if (config('osu.camo.key') === null) {
-        return $decoded;
-    }
+    $hexUrl = bin2hex($url);
+    $secret = hash_hmac('sha1', $url, config('osu.camo.key'));
 
-    $isProxied = starts_with($decoded, config('osu.camo.prefix'));
-    if ($isProxied) {
-        return $decoded;
-    }
-
-    $url = bin2hex($decoded);
-    $secret = hash_hmac('sha1', $decoded, config('osu.camo.key'));
-
-    return config('osu.camo.prefix')."{$secret}/{$url}";
+    return config('osu.camo.prefix')."{$secret}/{$hexUrl}";
 }
 
 function lazy_load_image($url, $class = '', $alt = '')
@@ -1625,9 +1645,7 @@ function check_url(string $url): bool
 
 function mini_asset(string $url): string
 {
-    return present(config('osu.assets.mini_url'))
-        ? str_replace(config('osu.assets.base_url'), config('osu.assets.mini_url'), $url)
-        : $url;
+    return str_replace(config('filesystems.disks.s3.base_url'), config('filesystems.disks.s3.mini_url'), $url);
 }
 
 function section_to_hue_map($section): int

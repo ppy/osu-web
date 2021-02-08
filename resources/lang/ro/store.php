@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Comandă plasată pe :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'Vezi factura',
         'no_orders' => 'Nu sunt comenzi pentru vizualizare.',
+        'paid_on' => 'Comandă plasată pe :date',
         'resume' => 'Reia finalizarea comenzii',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [
