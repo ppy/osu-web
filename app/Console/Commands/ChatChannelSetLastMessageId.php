@@ -28,13 +28,14 @@ class ChatChannelSetLastMessageId extends Command
 
         $this->line("Updating chat channels without last_message_id with {$delay}s delay between chunks of {$chunkSize}...");
 
-        $query = Channel::where('last_message_id', null);
-        $progress = $this->output->createProgressBar($query->count());
-        $query->chunkById($chunkSize, function ($chunk) use ($delay, $progress) {
+        $progress = $this->output->createProgressBar(Channel::count());
+        Channel::chunkById($chunkSize, function ($chunk) use ($delay, $progress) {
             foreach ($chunk as $channel) {
-                $lastMessageId = optional(Message::where('channel_id', $channel->getKey())->last())->getKey();
-                if ($lastMessageId !== null) {
-                    $channel->update(['last_message_id' => $lastMessageId]);
+                if ($channel->last_message_id === null) {
+                    $lastMessageId = optional(Message::where('channel_id', $channel->getKey())->last())->getKey();
+                    if ($lastMessageId !== null) {
+                        $channel->update(['last_message_id' => $lastMessageId]);
+                    }
                 }
 
                 $progress->advance();
