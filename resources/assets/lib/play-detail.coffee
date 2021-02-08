@@ -91,7 +91,7 @@ export class PlayDetail extends PureComponent
 
         div
           className: "#{bn}__pp"
-          if shouldShowPp(score.beatmapset)
+          if shouldShowPp(score.beatmap)
             el React.Fragment, null,
               el PpValue,
                 score: score

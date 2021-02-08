@@ -292,7 +292,7 @@ class OsuMarkdownProcessor
             return;
         }
 
-        $this->firstImage = $this->node->getUrl();
+        $this->firstImage = proxy_media($this->node->getUrl());
     }
 
     public function setTitle()
