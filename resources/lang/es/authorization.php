@@ -6,7 +6,7 @@
 return [
     'play_more' => '¿Qué tal si en vez de eso jugamos un poco de osu!?',
     'require_login' => 'Por favor, inicia sesión para continuar.',
-    'require_verification' => 'Por favor verifica para proceder.',
+    'require_verification' => 'Verifique para continuar.',
     'restricted' => "No puede hacer eso mientras esté restringido.",
     'silenced' => "No puede hacer eso mientras esté silenciado.",
     'unauthorized' => 'Acceso denegado.',

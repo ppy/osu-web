@@ -159,6 +159,10 @@ return [
             'error' => 'Ugyldige forespørgselsparametre',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Åh nej! Der er noget galt! ;_;',
             'description' => "Vi er blevet informeret om fejlen.",
@@ -171,8 +175,8 @@ return [
             'error' => 'Under Vedligeholdelse!',
             'description' => "Vedligeholdelse tager som regel mellem 5 sekunder og 10 minutter. Hvis siden er nede i længere tid, se :link for mere information.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error

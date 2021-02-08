@@ -353,12 +353,12 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => '興趣愛好',
             'location' => '所在地',
             'occupation' => '職業',
-            'skype' => 'Skype',
-            'twitter' => '推特',
+            'skype' => '',
+            'twitter' => '',
             'website' => '個人網站',
         ],
         'not_found' => [

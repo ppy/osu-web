@@ -18,15 +18,15 @@ return [
             'player-left' => ':user meninggalkan ruang pertandingan',
             'player-joined' => ':user bergabung ke dalam ruang pertandingan',
             'player-kicked' => ':user telah dikeluarkan dari ruang pertandingan',
-            'match-created' => ':user membuat pertandingan',
+            'match-created' => ':user membuat ruang pertandingan',
             'match-disbanded' => 'pertandingan dibubarkan',
             'host-changed' => ':user menjadi host',
 
             'player-left-no-user' => 'seorang pengguna meninggalkan ruang pertandingan',
             'player-joined-no-user' => 'seorang pengguna bergabung ke dalam ruang pertandingan',
             'player-kicked-no-user' => 'seorang pengguna telah dikeluarkan dari ruang pertandingan',
-            'match-created-no-user' => 'pertandingan telah dibuat',
-            'match-disbanded-no-user' => 'pertandingan telah dibubarkan',
+            'match-created-no-user' => 'ruang pertandingan dibuat',
+            'match-disbanded-no-user' => 'ruang pertandingan dibubarkan',
             'host-changed-no-user' => 'host diubah',
         ],
 
