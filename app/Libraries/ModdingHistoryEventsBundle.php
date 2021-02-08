@@ -282,6 +282,7 @@ class ModdingHistoryEventsBundle
                 $posts->pluck('user_id')->toArray(),
                 $posts->pluck('last_editor_id')->toArray(),
                 $events->pluck('user_id')->toArray(),
+                $events->pluck('beatmapDiscussion')->pluck('user_id')->toArray(),
                 $votes['given']->pluck('user_id')->toArray(),
                 $votes['received']->pluck('user_id')->toArray()
             );

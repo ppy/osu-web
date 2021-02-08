@@ -32,12 +32,12 @@ return [
             'title' => 'Perfil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'ubicación actual',
                 'user_interests' => 'intereses',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => 'ocupación',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'sitio web',
             ],
         ],
@@ -74,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'ocultar advertencias para contenido explícito en mapas',
         'beatmapset_title_show_original' => 'mostrar datos de mapas en su idioma original',
         'title' => 'Opciones',
 

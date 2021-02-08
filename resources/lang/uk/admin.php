@@ -10,7 +10,7 @@ return [
             'regenerating' => '',
             'remove' => '',
             'removing' => '',
-            'title' => 'Обкладинки наборів карт',
+            'title' => '',
         ],
         'show' => [
             'covers' => '',
@@ -57,7 +57,7 @@ return [
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => 'Набори карт',
+                'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
                 'store' => '',

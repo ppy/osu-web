@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Alguns arquivos contidos neste mapa foram removidos depois de serem julgados como não sendo adequados para uso no osu!.',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Lista de Beatmaps',
         'guest_title' => 'Beatmaps',
@@ -42,7 +46,7 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Explícito',
     ],
 
     'show' => [
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Baixar',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'sem Vídeo',
                 'video' => 'com Vídeo',
             ],
@@ -110,7 +114,7 @@ return [
             'genre' => 'Gênero',
             'language' => 'Idioma',
             'no_scores' => 'Dados ainda sendo calculados...',
-            'nsfw' => '',
+            'nsfw' => 'Conteúdo explícito',
             'points-of-failure' => 'Pontos de Falha',
             'source' => 'Fonte',
             'success-rate' => 'Taxa de Sucesso',
@@ -118,13 +122,13 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'Este beatmap contém conteúdo explícito, ofensivo ou perturbador. Você gostaria de visualizá-lo mesmo assim?',
+            'title' => 'Conteúdo explícito',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Desativar o aviso',
+                'listing' => 'Lista de beatmaps',
+                'show' => 'Exibir',
             ],
         ],
 
@@ -143,7 +147,7 @@ return [
                 'miss' => 'Erros',
                 'mods' => 'Mods',
                 'player' => 'Jogador',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Rank',
                 'score_total' => 'Pontuação Total',
                 'score' => 'Pontuação',

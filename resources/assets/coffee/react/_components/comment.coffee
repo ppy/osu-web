@@ -13,6 +13,7 @@ import { ReportReportable } from 'report-reportable'
 import { ShowMoreLink } from 'show-more-link'
 import { Spinner } from 'spinner'
 import { UserAvatar } from 'user-avatar'
+import { classWithModifiers } from 'utils/css'
 import { estimateMinLines } from 'utils/estimate-min-lines'
 
 el = React.createElement
@@ -105,6 +106,7 @@ export class Comment extends React.PureComponent
 
         @renderRepliesToggle()
         @renderCommentableMeta(meta)
+        @renderToolbar()
 
         div
           className: osu.classWithModifiers('comment__main', mainModifiers)
@@ -158,7 +160,7 @@ export class Comment extends React.PureComponent
               if @props.comment.canHaveVote
                 div
                   className: 'comment__row-item visible-xs'
-                  @renderVoteText()
+                  @renderVoteButton(true)
 
               div
                 className: 'comment__row-item comment__row-item--info'
@@ -373,18 +375,18 @@ export class Comment extends React.PureComponent
         user.username
 
 
-  # mobile vote button
-  renderVoteButton: =>
-    className = osu.classWithModifiers('comment-vote', @props.modifiers)
-    className += ' comment-vote--posting' if @state.postingVote
-    className += ' comment-vote--disabled' if !@props.comment.canVote
+  renderVoteButton: (inline = false) =>
+    hasVoted = @hasVoted()
 
-    if @hasVoted()
-      className += ' comment-vote--on'
-      hover = null
-    else
-      className += ' comment-vote--off'
-      hover = div className: 'comment-vote__hover', '+1'
+    className = classWithModifiers 'comment-vote', @props.modifiers
+    className += classWithModifiers 'comment-vote',
+      disabled: !@props.comment.canVote
+      inline: inline
+      on: hasVoted
+      posting: @state.postingVote
+      true
+
+    hover = div className: 'comment-vote__hover', '+1' if !inline && !hasVoted
 
     button
       className: className
@@ -396,18 +398,6 @@ export class Comment extends React.PureComponent
       if @state.postingVote
         span className: 'comment-vote__spinner', el Spinner
       hover
-
-
-  renderVoteText: =>
-    className = 'comment__action'
-    className += ' comment__action--active' if @hasVoted()
-
-    button
-      className: className
-      type: 'button'
-      onClick: @voteToggle
-      disabled: @state.postingVote
-      "+#{osu.formatNumberSuffixed(@props.comment.votesCount, null, maximumFractionDigits: 1)}"
 
 
   renderCommentableMeta: (meta) =>
@@ -430,6 +420,21 @@ export class Comment extends React.PureComponent
           osu.trans("comments.commentable_name.#{@props.comment.commentableType}")
       component params,
         meta.title
+
+
+  renderToolbar: =>
+    return unless @props.showToolbar
+
+    div className: 'comment__toolbar',
+      div className: 'sort',
+        div className: 'sort__items',
+          button
+            type: 'button'
+            className: 'sort__item sort__item--button'
+            onClick: @onShowDeletedToggleClick
+            span className: 'sort__item-icon',
+              span className: if uiState.comments.isShowDeleted then 'fas fa-check-square' else 'far fa-square'
+            osu.trans('common.buttons.show_deleted')
 
 
   hasVoted: =>
@@ -479,6 +484,10 @@ export class Comment extends React.PureComponent
   loadReplies: =>
     @loadMoreRef.current?.load()
     @toggleReplies()
+
+
+  onShowDeletedToggleClick: ->
+    $.publish 'comments:toggle-show-deleted'
 
 
   parentLink: (parent) =>

@@ -353,12 +353,12 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Sở Thích',
             'location' => 'Vị Trí Hiện Tại',
             'occupation' => 'Nghề Nghiệp',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'skype' => '',
+            'twitter' => '',
             'website' => 'Website',
         ],
         'not_found' => [

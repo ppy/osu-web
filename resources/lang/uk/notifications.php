@@ -11,6 +11,7 @@ return [
     'none' => 'Немає повідомлень',
     'see_all' => 'див. всі сповіщення ',
     'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'усе',

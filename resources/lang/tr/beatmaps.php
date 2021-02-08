@@ -225,7 +225,7 @@ return [
                 'genre' => 'Tür',
                 'language' => 'Dil',
                 'mode' => 'Mod',
-                'nsfw' => '',
+                'nsfw' => 'Müstehcen İçerik',
                 'played' => 'Oynanmışlık',
                 'rank' => 'Alınan Derece',
                 'status' => 'Kategoriler',
@@ -303,7 +303,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
-        'MR' => 'Ayna',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',
@@ -315,7 +315,7 @@ return [
         'V2' => 'Skor V2',
     ],
     'language' => [
-        'any' => '',
+        'any' => 'Herhangi biri',
         'english' => 'İngilizce',
         'chinese' => 'Çince',
         'french' => 'Fransızca',
@@ -333,8 +333,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Gizle',
+        'include' => 'Göster',
     ],
 
     'played' => [

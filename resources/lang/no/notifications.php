@@ -11,6 +11,7 @@ return [
     'none' => 'Ingen varsler',
     'see_all' => 'se alle varsler',
     'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'alle',

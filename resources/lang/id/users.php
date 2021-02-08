@@ -236,7 +236,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'akurasi: :percentage',
-                    'title' => 'Permainan Terbaru (24 jam)',
+                    'title' => 'Rekam Jejak Permainan Terbaru (24 jam)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Riwayat Jumlah Tayangan Ulang yang Ditonton',
@@ -250,7 +250,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "Pengguna ini belum menerima kudosu!",
+                    'empty' => "Pengguna ini belum tercatat pernah menerima kudosu! sebelumnya.",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -288,7 +288,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Berdasarkan seberapa besar kontribusi yang telah dilakukan pengguna dalam moderasi beatmap. Kunjungi :link untuk informasi lebih lanjut.',
+                    '_' => 'Berdasarkan seberapa besar kontribusi yang telah diberikan oleh pengguna ini dalam hal moderasi beatmap. Kunjungi :link untuk informasi lebih lanjut.',
                     'link' => 'laman ini',
                 ],
             ],
@@ -353,12 +353,12 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Minat',
             'location' => 'Lokasi Saat Ini',
             'occupation' => 'Pekerjaan',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'skype' => '',
+            'twitter' => '',
             'website' => 'Website',
         ],
         'not_found' => [

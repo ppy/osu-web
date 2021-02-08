@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Lista Beatmap',
         'guest_title' => 'Beatmap',
@@ -42,7 +46,7 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Explicit',
     ],
 
     'show' => [
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Scarica',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'senza Video',
                 'video' => 'con Video',
             ],
@@ -110,7 +114,7 @@ return [
             'genre' => 'Genere',
             'language' => 'Lingua',
             'no_scores' => 'Dati ancora in elaborazione...',
-            'nsfw' => '',
+            'nsfw' => 'Contenuto esplicito',
             'points-of-failure' => 'Punti di Fallimento',
             'source' => 'Sorgente',
             'success-rate' => 'Rateo di Successo',
@@ -118,13 +122,13 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'Questa beatmap ha contenuti espliciti, offensivi o disturbanti. Vuoi vederla comunque?',
+            'title' => 'Contenuto Esplicito',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Disabilita avviso',
+                'listing' => 'Torna alla lista',
+                'show' => 'Mostra',
             ],
         ],
 

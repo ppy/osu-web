@@ -74,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'nascondi avvisi per i contenuti espliciti nelle beatmap',
         'beatmapset_title_show_original' => 'mostra i metadati della beatmap in lingua originale',
         'title' => 'Opzioni',
 

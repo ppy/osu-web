@@ -32,12 +32,12 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'aktueller standort',
                 'user_interests' => 'interessen',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => 'beschäftigung',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'webseite',
             ],
         ],
@@ -74,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'warnungen für expliziten inhalt in beatmaps ausblenden',
         'beatmapset_title_show_original' => 'beatmap-metadaten in originalsprache anzeigen',
         'title' => 'Optionen',
 

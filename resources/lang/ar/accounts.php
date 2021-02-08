@@ -74,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'إخفاء تحذيرات المحتوى الحساس في الخرائط',
         'beatmapset_title_show_original' => 'إظهار بيانات تعريف الخرائط باللغة الأصلية',
         'title' => 'الخيارات',
 
@@ -123,6 +123,6 @@ return [
     ],
 
     'verification_invalid' => [
-        'title' => 'رابط التثبيت غير صالح أو منتهي الصلاحية',
+        'title' => 'رابط التأكيد تالف أو منتهي الصلاحية',
     ],
 ];

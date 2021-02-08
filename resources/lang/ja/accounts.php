@@ -32,12 +32,12 @@ return [
             'title' => 'プロフィール',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => '現在地',
                 'user_interests' => '趣味',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => '職業',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'ウェブサイト',
             ],
         ],
@@ -74,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'ビートマップ内の不適切なコンテンツの警告を非表示にする',
         'beatmapset_title_show_original' => 'ビートマップのメタデータを元の言語で表示',
         'title' => 'オプション',
 

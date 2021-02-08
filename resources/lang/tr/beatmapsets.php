@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Bu beatmap üzerinde yer alan bazı varlıklar osu!\'da kullanıma uygun olmadığına karar verildikten sonra kaldırıldı.',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Beatmap Listesi',
         'guest_title' => 'Beatmapler',
@@ -42,18 +46,18 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Müstehcen',
     ],
 
     'show' => [
         'discussion' => 'Tartışma',
 
         'details' => [
-            'favourite' => 'Haritayı favorilere ekle',
+            'favourite' => 'Beatmap setini favorilere ekle',
             'logged-out' => 'Herhangi bir beatmapi indirmeden önce giriş yapmalısınız!',
             'mapped_by' => ':mapper tarafından yapıldı',
-            'unfavourite' => 'Haritayı favorilerden çıkar',
-            'updated_timeago' => 'en son :timeago tarihinde güncellendi',
+            'unfavourite' => 'Beatmap setini favorilerden çıkar',
+            'updated_timeago' => 'son güncelleme: :timeago',
 
             'download' => [
                 '_' => 'İndir',
@@ -64,17 +68,17 @@ return [
 
             'login_required' => [
                 'bottom' => 'daha fazla özelliğe erişmek için',
-                'top' => 'Oturum Aç',
+                'top' => 'Giriş Yap',
             ],
         ],
 
         'details_date' => [
-            'approved' => ':timeago tarihinde onaylandı',
-            'loved' => ':timeago tarihinde sevilen oldu',
-            'qualified' => ':timeago tarihinde nitelikli oldu',
-            'ranked' => ':timeago tarihinde dereceli oldu',
-            'submitted' => ':timeago tarihinde gönderildi',
-            'updated' => 'en son :timeago tarihinde güncellendi',
+            'approved' => 'onaylandı: :timeago',
+            'loved' => 'sevilenlere eklendi: :timeago',
+            'qualified' => 'nitelikli oldu: :timeago',
+            'ranked' => 'dereceli oldu: :timeago',
+            'submitted' => 'gönderildi: :timeago',
+            'updated' => 'son güncelleme: :timeago',
         ],
 
         'favourites' => [
@@ -110,7 +114,7 @@ return [
             'genre' => 'Tür',
             'language' => 'Dil',
             'no_scores' => 'Veriler hala hesaplanıyor...',
-            'nsfw' => '',
+            'nsfw' => 'Müstehcen içerik',
             'points-of-failure' => 'Başarısız Olunan Kısımlar',
             'source' => 'Kaynak',
             'success-rate' => 'Başarı Oranı',
@@ -118,13 +122,13 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'Bu beatmap müstehcen, ofansif, veya rahatsız edici içerik içermektedir. Yine de görüntülemek istiyor musunuz?',
+            'title' => 'Müstehcen İçerik',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Uyarıyı devre dışı bırak',
+                'listing' => 'Beatmap listesi',
+                'show' => 'Göster',
             ],
         ],
 
@@ -138,8 +142,8 @@ return [
             'title' => 'Skor tahtası',
 
             'headers' => [
-                'accuracy' => 'İsabetlilik',
-                'combo' => 'Maksimum Kombo',
+                'accuracy' => 'İSABETLİLİK',
+                'combo' => 'Maks Kombo',
                 'miss' => 'Iska',
                 'mods' => 'Modlar',
                 'player' => 'Oyuncu',

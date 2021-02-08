@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Algunos de los elementos contenidos en este mapa han sido eliminados después de ser considerados no aptos para su uso en osu!.',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Listado de Mapas',
         'guest_title' => 'Mapas',
@@ -42,7 +46,7 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Explícito',
     ],
 
     'show' => [
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Descargar',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'sin vídeo',
                 'video' => 'con vídeo',
             ],
@@ -110,7 +114,7 @@ return [
             'genre' => 'Género',
             'language' => 'Idioma',
             'no_scores' => 'Los datos todavía están siendo calculados...',
-            'nsfw' => '',
+            'nsfw' => 'Contenido explícito',
             'points-of-failure' => 'Puntos de fracaso',
             'source' => 'Fuente',
             'success-rate' => 'Tasa de éxito',
@@ -118,13 +122,13 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'Este mapa del tiempo contiene contenido explícito, ofensivo o perturbador. ¿Desea verlo de todos modos?',
+            'title' => 'Contenido explícito',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Desactivar advertencia',
+                'listing' => 'Listado de mapas',
+                'show' => 'Mostrar',
             ],
         ],
 
@@ -143,7 +147,7 @@ return [
                 'miss' => 'Fallos',
                 'mods' => 'Mods',
                 'player' => 'Jugador',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Puesto',
                 'score_total' => 'Puntuación total',
                 'score' => 'Puntuación',

@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => '圖譜列表',
         'guest_title' => '圖譜',
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => '下載',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => '不含影像',
                 'video' => '含影像',
             ],
@@ -143,7 +147,7 @@ return [
                 'miss' => 'Miss',
                 'mods' => 'Mods',
                 'player' => '玩家',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => '排行榜',
                 'score_total' => '總分',
                 'score' => '得分',

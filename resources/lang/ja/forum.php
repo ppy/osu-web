@@ -127,7 +127,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'フォーラムサブスクリプション',
+            'title_compact' => 'フォーラムトピックウォッチリスト',
 
             'box' => [
                 'total' => 'サブスクライブ中のトピック',

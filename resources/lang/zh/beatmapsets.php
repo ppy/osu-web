@@ -11,6 +11,10 @@ return [
         'rule_violation' => '谱面中不适合 osu! 的内容已在审核后被移除。',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => '谱面列表',
         'guest_title' => '谱面',
@@ -42,7 +46,7 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => '少儿不宜',
     ],
 
     'show' => [
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => '下载',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => '不包含视频',
                 'video' => '包含视频',
             ],
@@ -110,7 +114,7 @@ return [
             'genre' => '流派',
             'language' => '语言',
             'no_scores' => '数据还在计算中。。。',
-            'nsfw' => '',
+            'nsfw' => '少儿不宜内容',
             'points-of-failure' => '失败位置',
             'source' => '来源',
             'success-rate' => '成功率',
@@ -118,13 +122,13 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => '此谱面包含少儿不宜的、具有冒犯性的或令人不安的内容。您仍然想查看它吗？',
+            'title' => '少儿不宜内容',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => '关闭警告',
+                'listing' => '返回谱面列表',
+                'show' => '显示',
             ],
         ],
 
@@ -143,7 +147,7 @@ return [
                 'miss' => 'Miss',
                 'mods' => 'Mod',
                 'player' => '玩家',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => '排名',
                 'score_total' => '得分',
                 'score' => '得分',

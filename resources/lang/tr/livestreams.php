@@ -6,8 +6,8 @@
 return [
     'top-headers' => [
         'headline' => 'Canlı Yayınlar',
-        'description' => 'Veriler her beş dakikada bir twitch.tv\'deki bulunan listelemeye göre alınmaktadır. Yayın yapma özgürlüğünüzü kullanın ve kendinizi bu listeye ekleyin! Canlı yayın kurulumu hakkında daha fazla bilgi almak istiyorsanız, lütfen wiki sayfasını ziyaret edin.',
+        'description' => 'Veriler twitch.tv\'deki listelemeye göre her beş dakikada bir alınmaktadır. Hemen bir yayın açın ve kendinizi bu listeye ekleyin! Kurulumun nasıl yapıldığı hakkında daha fazla bilgi için, lütfen :link ziyaret edin.',
 
-        'link' => 'canlı yayınlar hakkındaki wiki sayfası',
+        'link' => 'canlı yayınlar hakkındaki wiki sayfasını',
     ],
 ];

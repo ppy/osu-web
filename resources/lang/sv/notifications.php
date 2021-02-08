@@ -11,6 +11,7 @@ return [
     'none' => 'Inga aviseringar',
     'see_all' => 'visa alla aviseringar',
     'see_channel' => 'gå till chatt',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'alla',

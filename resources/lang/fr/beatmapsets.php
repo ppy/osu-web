@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Certains éléments contenus dans cette map ont été supprimés après avoir été jugés inappropriés pour être utilisés dans osu!.',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Liste des beatmaps',
         'guest_title' => 'Beatmaps',
@@ -42,7 +46,7 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Explicite',
     ],
 
     'show' => [
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'télécharger',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'sans Vidéo',
                 'video' => 'avec Vidéo',
             ],
@@ -110,7 +114,7 @@ return [
             'genre' => 'Genre',
             'language' => 'Langue',
             'no_scores' => 'Les données sont encore en cours de calcul...',
-            'nsfw' => '',
+            'nsfw' => 'Contenu explicite',
             'points-of-failure' => 'Répartition des échecs',
             'source' => 'Source',
             'success-rate' => 'Taux de réussite',
@@ -118,13 +122,13 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'Cette beatmap contient du contenu explicite, offensant ou perturbant. Voulez-vous le voir quand même ?',
+            'title' => 'Contenu explicite',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Désactiver l\'avertissement',
+                'listing' => 'Liste des beatmaps',
+                'show' => 'Afficher',
             ],
         ],
 
@@ -143,7 +147,7 @@ return [
                 'miss' => 'Raté',
                 'mods' => 'Mods',
                 'player' => 'Joueur',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Rang',
                 'score_total' => 'Score total',
                 'score' => 'Score',

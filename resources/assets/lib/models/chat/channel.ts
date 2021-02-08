@@ -10,10 +10,9 @@ import Message from './message';
 export default class Channel {
   @observable channelId: number;
   @observable description?: string;
-  firstMessageId: number = -1;
+  @observable firstMessageId: number = -1;
   @observable icon?: string;
   @observable inputText: string = '';
-  @observable lastMessageId: number = -1;
   @observable lastReadId?: number;
   @observable loaded: boolean = false;
   @observable loading: boolean = false;
@@ -23,8 +22,11 @@ export default class Channel {
   @observable moderated: boolean = false;
   @observable name: string = '';
   @observable newPmChannel = false;
+  newPmChannelTransient = false;
   @observable type: ChannelType = 'NEW';
   @observable users: number[] = [];
+
+  private initialLastMessageId?: number;
 
   @computed
   get firstMessage() {
@@ -48,6 +50,17 @@ export default class Channel {
   @computed
   get lastMessage(): Message | undefined {
     return this.messages[this.messages.length - 1];
+  }
+
+  @computed
+  get lastMessageId() {
+    for (let i = this.messages.length - 1; i >= 0; i--) {
+      if (typeof this.messages[i].messageId === 'number') {
+        return this.messages[i].messageId as number;
+      }
+    }
+
+    return this.initialLastMessageId ?? -1;
   }
 
   @computed
@@ -83,9 +96,7 @@ export default class Channel {
       type: json.type,
 
       description: json.description,
-      firstMessageId: json.first_message_id,
       icon: json.icon,
-      lastMessageId: json.last_message_id,
       lastReadId: json.last_read_id,
     });
   }
@@ -108,21 +119,6 @@ export default class Channel {
     if (!skipSort) {
       this.resortMessages();
     }
-
-    const lastMessage = _(messages)
-      .filter((message) => typeof message.messageId === 'number')
-      .maxBy('messageId');
-    let lastMessageId;
-
-    // The type check is redundant due to the filter above.
-    if (lastMessage != null && typeof lastMessage.messageId === 'number') {
-      lastMessageId = lastMessage.messageId;
-    } else {
-      lastMessageId = -1;
-    }
-    if (lastMessageId > this.lastMessageId) {
-      this.lastMessageId = lastMessageId;
-    }
   }
 
   @action
@@ -131,6 +127,7 @@ export default class Channel {
       message.messageId = json.message_id;
       message.timestamp = json.timestamp;
       message.persist();
+      this.setLastReadId(json.message_id);
     } else {
       message.errored = true;
       // delay and retry?
@@ -141,7 +138,7 @@ export default class Channel {
 
   @action
   markAsRead() {
-    this.lastReadId = this.lastMessageId;
+    this.setLastReadId(this.lastMessageId);
   }
 
   @action
@@ -162,7 +159,11 @@ export default class Channel {
   @action
   updatePresence = (json: ChannelJsonExtended) => {
     this.updateWithJson(json);
-    this.lastReadId = json.last_read_id;
+    // clear flag otherwise presence updates might not close the channel when closed in a different window.
+    if (this.newPmChannelTransient) {
+      this.newPmChannelTransient = false;
+    }
+    this.setLastReadId(json.last_read_id);
   }
 
   @action
@@ -174,9 +175,7 @@ export default class Channel {
     this.moderated = json.moderated;
     this.users = json.users;
 
-    this.firstMessageId = json.first_message_id ?? this.firstMessageId;
-    // ?? -1 is just there for typing, lastMessageId initializes with -1.
-    this.lastMessageId = _.max([this.lastMessageId, json.last_message_id]) ?? -1;
+    this.initialLastMessageId = json.last_message_id ?? this.lastMessageId;
 
     this.metaLoaded = true;
   }
@@ -184,5 +183,12 @@ export default class Channel {
   @action
   private resortMessages() {
     this.messages = _(this.messages).sortBy('timestamp').uniqBy('messageId').value();
+  }
+
+  @action
+  private setLastReadId(id: number) {
+    if (id > (this.lastReadId ?? 0)) {
+      this.lastReadId = id;
+    }
   }
 }

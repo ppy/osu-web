@@ -32,12 +32,12 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'lokasi saat ini',
                 'user_interests' => 'minat',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => 'pekerjaan',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'situs web',
             ],
         ],
@@ -74,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'nonaktifkan peringatan untuk beatmap-beatmap yang mengandung konten eksplisit',
         'beatmapset_title_show_original' => 'tampilkan metadata beatmap dalam bahasa aslinya',
         'title' => 'Pengaturan',
 

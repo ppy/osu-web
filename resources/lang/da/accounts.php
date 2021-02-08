@@ -35,9 +35,9 @@ return [
                 'user_discord' => '',
                 'user_from' => 'nuværende placering',
                 'user_interests' => 'interesser',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => 'beskæftigelse',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'hjemmeside',
             ],
         ],
@@ -74,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'skjul advarsler for eksplicit indhold i beatmaps',
         'beatmapset_title_show_original' => 'vis beatmap metadata på originalt sprog',
         'title' => 'Indstillinger',
 

@@ -13,12 +13,17 @@ return [
 
         'player' => [
             'by' => 'Spillet af',
-            'submitted_on' => '',
+            'submitted_on' => 'Indsendt den',
 
             'rank' => [
-                'country' => '',
+                'country' => 'Lande Rang',
                 'global' => 'Global Rang',
             ],
         ],
+    ],
+
+    'status' => [
+        'non_best' => '',
+        'processing' => '',
     ],
 ];

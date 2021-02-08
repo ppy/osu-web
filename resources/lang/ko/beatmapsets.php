@@ -11,6 +11,10 @@ return [
         'rule_violation' => '이 맵에 포함된 일부 요소는 osu!에서 사용하기에 적합하지 않다고 판단되어 제거되었습니다.',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => '비트맵 목록',
         'guest_title' => '비트맵',
@@ -42,7 +46,7 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => '19금',
     ],
 
     'show' => [
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => '다운로드',
-                'direct' => 'osu!다이렉트',
+                'direct' => '',
                 'no-video' => '영상 미포함',
                 'video' => '영상 포함',
             ],
@@ -110,7 +114,7 @@ return [
             'genre' => '장르',
             'language' => '언어',
             'no_scores' => '데이터를 수집중입니다...',
-            'nsfw' => '',
+            'nsfw' => '부적절한 내용',
             'points-of-failure' => '실패 지점',
             'source' => '원작',
             'success-rate' => '클리어 비율',
@@ -118,13 +122,13 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => '이 비트맵은 노골적, 폭력적 혹은 혐오감을 들게 하는 내용이 포함되어 있습니다. 그래도 보시겠습니까?',
+            'title' => '부적절한 내용',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => '경고 비활성화',
+                'listing' => '비트맵 목록',
+                'show' => '표시',
             ],
         ],
 

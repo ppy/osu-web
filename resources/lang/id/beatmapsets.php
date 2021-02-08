@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus setelah tim kami memutuskan bahwa aset-aset yang bersangkutan tidak layak untuk dipergunakan secara luas di dalam lingkungan osu!.',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Daftar Beatmap',
         'guest_title' => 'Beatmap',
@@ -42,7 +46,7 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Eksplisit',
     ],
 
     'show' => [
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Unduh',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'tanpa Video',
                 'video' => 'dengan Video',
             ],
@@ -110,7 +114,7 @@ return [
             'genre' => 'Aliran',
             'language' => 'Bahasa',
             'no_scores' => 'Data sedang diproses...',
-            'nsfw' => '',
+            'nsfw' => 'Konten eksplisit',
             'points-of-failure' => 'Titik-Titik Kegagalan',
             'source' => 'Sumber',
             'success-rate' => 'Tingkat Keberhasilan',
@@ -118,13 +122,13 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'Beatmap ini ditenggarai mengandung konten yang bersifat eksplisit dan/atau konten yang dapat dianggap menyinggung bagi kalangan tertentu. Apakah Anda tetap ingin melihat beatmap ini?',
+            'title' => 'Konten Eksplisit',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Nonaktifkan peringatan',
+                'listing' => 'Daftar beatmap',
+                'show' => 'Tampilkan',
             ],
         ],
 
@@ -143,7 +147,7 @@ return [
                 'miss' => 'Miss',
                 'mods' => 'Mod',
                 'player' => 'Pemain',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Peringkat',
                 'score_total' => 'Jumlah Skor',
                 'score' => 'Skor',

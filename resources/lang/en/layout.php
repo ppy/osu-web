@@ -159,6 +159,10 @@ return [
             'error' => 'Invalid request parameter',
             'description' => '',
         ],
+        '429' => [
+            'error' => 'Rate limit exceeded',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Oh no! Something broke! ;_;',
             'description' => "We're automatically notified of every error.",

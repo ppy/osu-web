@@ -32,12 +32,12 @@ return [
             'title' => '个人资料',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => '当前位置',
                 'user_interests' => '兴趣爱好',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => '职业',
-                'user_twitter' => '推特',
+                'user_twitter' => '',
                 'user_website' => '个人主页',
             ],
         ],
@@ -74,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => '隐藏谱面少儿不宜提示',
         'beatmapset_title_show_original' => '以原语言显示谱面信息',
         'title' => '选项',
 
