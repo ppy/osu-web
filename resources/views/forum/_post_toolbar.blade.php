@@ -3,10 +3,12 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 <div
-    class="post-box-toolbar"
-    @if (isset($disabled) && $disabled === true)
-        disabled
-    @endif
+    class="
+        post-box-toolbar
+        @if (isset($disabled) && $disabled === true)
+            post-box-toolbar--disabled
+        @endif
+    "
 >
     <button
         class="btn-circle btn-circle--bbcode js-bbcode-btn--bold"
