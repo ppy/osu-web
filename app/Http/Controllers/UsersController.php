@@ -234,8 +234,8 @@ class UsersController extends Controller
      * ### Response format
      *
      * Field | Type                          | Description
-     * ----- | ----------------------------- | -------------------------------------------------
-     * users | [UserCompact](#usercompact)[] | Includes: country, cover, groups, statistics_all.
+     * ----- | ----------------------------- | -----------
+     * users | [UserCompact](#usercompact)[] | Includes: country, cover, groups, statistics_fruits, statistics_mania, statistics_osu, statistics_taiko.
      *
      * @queryParam ids[] User id to be returned. Specify once for each user id requested. Up to 50 users can be requested at once. Example: 1
      *
@@ -257,12 +257,12 @@ class UsersController extends Controller
         $params = get_params(request()->all(), null, ['ids:int[]']);
 
         $includes = UserCompactTransformer::CARD_INCLUDES;
-        $includes[] = 'statistics_all';
 
         if (isset($params['ids'])) {
             $preload = UserCompactTransformer::CARD_INCLUDES_PRELOAD;
 
             foreach (Beatmap::MODES as $mode => $i) {
+                $includes[] = "statistics_{$mode}";
                 $preload[] = camel_case("statistics_{$mode}");
             }
 
