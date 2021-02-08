@@ -45,6 +45,9 @@ class BeatmapsetSearchParams extends SearchParams
     public $rank = [];
 
     /** @var bool */
+    public $showFollows = false;
+
+    /** @var bool */
     public $showRecommended = false;
 
     /** @var string|null */
