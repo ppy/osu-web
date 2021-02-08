@@ -5,33 +5,33 @@
 
 return [
     'signature' => [
-        'not_match' => 'İmzalar eşleşmiyor',
+        'not_match' => '',
     ],
-    'notification_type' => 'notification_type geçerli değil :type',
+    'notification_type' => '',
     'order' => [
-        'invalid' => 'Sipariş geçerli değil',
+        'invalid' => '',
         'items' => [
-            'virtual_only' => '`:provider` ödeme, fiziksel öğeler için geçerli değil.',
+            'virtual_only' => '',
         ],
         'status' => [
-            'not_checkout' => 'Yanlış durumdaki bir siparişin ödemesi kabul edilmeye çalışılıyor \':state\'.',
-            'not_paid' => 'Yanlış durumdaki bir siparişin geri ödemesi gerçekleştirilmeye çalışılıyor \':state\'.',
+            'not_checkout' => '',
+            'not_paid' => '',
         ],
     ],
     'param' => [
-        'invalid' => '`:param` parametresi eşleşmiyor',
+        'invalid' => '',
     ],
     'paypal' => [
-        'not_echeck' => 'Beklenen ödeme eCheck değil. (:actual)',
+        'not_echeck' => '',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => 'Ödeme miktarı eşleşmiyor: :actual != :expected',
-            'currency' => 'Ödeme ABD Doları tipinden değil. (:type)',
+            'amount' => '',
+            'currency' => '',
         ],
     ],
     'order_number' => [
-        'malformed' => 'Alınan sipariş onay numarası bozulmuş',
-        'user_id_mismatch' => 'external_id yanlış kullanıcı kimliğini içeriyor',
+        'malformed' => '',
+        'user_id_mismatch' => '',
     ],
 ];

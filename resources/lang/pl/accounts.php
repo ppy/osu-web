@@ -32,12 +32,12 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'obecna lokalizacja',
                 'user_interests' => 'zainteresowania',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => 'zajęcia',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'strona internetowa',
             ],
         ],

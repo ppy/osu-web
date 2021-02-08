@@ -32,8 +32,8 @@ return [
         'remove_from_loved' => ':user 님에 의해 Loved 상태에서 제거됨 (:text)',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => '부적절한 콘텐츠 표시가 해제됨',
+            'to_1' => '부적절한 콘텐츠로 표시됨',
         ],
     ],
 
@@ -71,7 +71,7 @@ return [
         'love' => '러브',
         'nominate' => '추천',
         'nomination_reset' => '추천 초기화',
-        'nsfw_toggle' => '',
+        'nsfw_toggle' => '부적절한 콘텐츠로 표시',
         'qualify' => 'Qualification',
         'rank' => '랭킹',
         'remove_from_loved' => 'Loved 상태 제거',

@@ -11,6 +11,10 @@ return [
         'rule_violation' => '谱面中不适合 osu! 的内容已在审核后被移除。',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => '谱面列表',
         'guest_title' => '谱面',
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => '下载',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => '不包含视频',
                 'video' => '包含视频',
             ],
@@ -143,7 +147,7 @@ return [
                 'miss' => 'Miss',
                 'mods' => 'Mod',
                 'player' => '玩家',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => '排名',
                 'score_total' => '得分',
                 'score' => '得分',

@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Zoznam Beatmap',
         'guest_title' => 'Beatmapy',

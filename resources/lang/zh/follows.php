@@ -20,7 +20,7 @@ return [
     ],
 
     'index' => [
-        'title_compact' => '关注项列表',
+        'title_compact' => '订阅',
     ],
 
     'mapping' => [

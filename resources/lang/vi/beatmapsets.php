@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Danh Sách Beatmap',
         'guest_title' => 'Beatmaps',
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Tải Xuống',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'không Video',
                 'video' => 'cùng Video',
             ],
@@ -143,7 +147,7 @@ return [
                 'miss' => 'Miss',
                 'mods' => 'Mods',
                 'player' => 'Người Chơi',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Xếp Hạng',
                 'score_total' => 'Tổng Điểm',
                 'score' => 'Điểm',

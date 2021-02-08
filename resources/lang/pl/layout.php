@@ -159,6 +159,10 @@ return [
             'error' => 'Nieprawidłowy parametr żądania',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'O nie! Coś się popsuło! ;_;',
             'description' => "Jesteśmy automatycznie powiadamiani o każdym problemie.",
@@ -171,8 +175,8 @@ return [
             'error' => 'Przerwa techniczna!',
             'description' => "Przerwa techniczna zajmuje od 5 sekund do 10 minut. Jeżeli jesteśmy niedostępni na dłużej, sprawdź :link, aby dowiedzieć się więcej.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error

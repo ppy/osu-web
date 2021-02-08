@@ -33,7 +33,7 @@ return [
 
         'nsfw_toggle' => [
             'to_0' => '',
-            'to_1' => '',
+            'to_1' => 'Marcado como explícito',
         ],
     ],
 

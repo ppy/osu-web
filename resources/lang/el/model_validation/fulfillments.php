@@ -5,9 +5,9 @@
 
 return [
     'username_change' => [
-        'only_one' => 'μόνο μία αλλαγή ονόματος χρήστη επιτρέπεται ανα παραγγελία.',
-        'insufficient_paid' => 'Το κόστος αλλαγής του ονόματος χρήστη είναι μεγαλύτερο από το ποσό που δόθηκε (:expected>:actual)',
-        'reverting_username_mismatch' => 'Το τρέχον όνομα χρήστη (:current) δεν είναι ίδιο με το (:username)',
+        'only_one' => '',
+        'insufficient_paid' => '',
+        'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
         'insufficient_paid' => 'Η δωρεά είναι μικρότερη από την απαιτούμενη για το δώρο osu!supporter tag (:actual > :expected)',

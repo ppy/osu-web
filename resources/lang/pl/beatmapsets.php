@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Część zawartości tej beatmapy została usunięta po uznaniu jej za nieodpowiednią do użycia w osu!.',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Lista beatmap',
         'guest_title' => 'Beatmapy',
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Pobierz',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'bez wideo',
                 'video' => 'z wideo',
             ],
@@ -143,7 +147,7 @@ return [
                 'miss' => 'Pudła',
                 'mods' => 'Modyfikatory',
                 'player' => 'Gracz',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Pozycja',
                 'score_total' => 'Wynik',
                 'score' => 'Wynik',

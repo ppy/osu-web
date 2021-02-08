@@ -16,7 +16,7 @@ return [
         'disqualify_legacy' => ':userによってDisqualifyされました。理由：:text。',
         'genre_edit' => 'ジャンルが :old から :new に変更されました。',
         'issue_reopen' => '解決済みの:discussionが再開されました。',
-        'issue_resolve' => ':discussionが解決しました。',
+        'issue_resolve' => '問題:discussionが解決しました。',
         'kudosu_allow' => ':discussionに対するkudosuの拒否は削除されました。',
         'kudosu_deny' => ':discussionはkudosuにより拒否されました。',
         'kudosu_gain' => ':userの:discussionがkudosuに十分な評価を得ました。',
@@ -32,8 +32,8 @@ return [
         'remove_from_loved' => ':userによってLovedから削除されました。(:text)',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => '露骨マークを削除しました',
+            'to_1' => '露骨であるとマークする',
         ],
     ],
 
@@ -71,7 +71,7 @@ return [
         'love' => 'Love',
         'nominate' => 'ノミネーション',
         'nomination_reset' => 'ノミネーションのリセット',
-        'nsfw_toggle' => '',
+        'nsfw_toggle' => '露骨マーク',
         'qualify' => 'Qualification',
         'rank' => 'ランキング',
         'remove_from_loved' => 'Loved削除',

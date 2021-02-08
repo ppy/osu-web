@@ -32,12 +32,12 @@ return [
             'title' => '프로필',
 
             'user' => [
-                'user_discord' => 'Discord',
+                'user_discord' => '',
                 'user_from' => '거주지',
                 'user_interests' => '관심 분야',
-                'user_msnm' => 'Skype',
+                'user_msnm' => '',
                 'user_occ' => '직업',
-                'user_twitter' => 'Twitter',
+                'user_twitter' => '',
                 'user_website' => '웹사이트',
             ],
         ],
