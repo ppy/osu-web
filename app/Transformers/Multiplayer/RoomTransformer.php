@@ -40,6 +40,11 @@ class RoomTransformer extends TransformerAbstract
     public function includeCurrentUserScore(Room $room)
     {
         $user = auth()->user();
+
+        if ($user === null) {
+            return;
+        }
+
         $score = UserScoreAggregate::new($user, $room);
 
         return $this->item($score, new UserScoreAggregateTransformer());
