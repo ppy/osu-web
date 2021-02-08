@@ -20,8 +20,8 @@ class ChatChannelSetLastMessageId extends Command
 
     public function handle()
     {
-        $delay = $this->getOptionValue('delay', 1);
-        $chunkSize = $this->getOptionValue('chunk-size', 1000);
+        $delay = $this->option('delay') ?? 1;
+        $chunkSize = $this->option('chunk-size') ?? 1000;
         if ($chunkSize < 1) {
             return;
         }
@@ -44,15 +44,5 @@ class ChatChannelSetLastMessageId extends Command
         });
 
         $progress->finish();
-    }
-
-    private function getOptionValue(string $name, int $default)
-    {
-        $value = $this->option($name);
-        if (!ctype_digit($value)) {
-            $value = $default;
-        }
-
-        return get_int($value);
     }
 }
