@@ -159,6 +159,10 @@ return [
             'error' => 'Virheellinen pyynnön parametri',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Hupsista! Jotain taisi hajota! ;_;',
             'description' => "Meille tulee automaattisesti jokaisesta virheestä ilmoitus.",

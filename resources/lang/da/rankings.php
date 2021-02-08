@@ -42,8 +42,8 @@ return [
         'ranked_score' => 'Rangeret Score',
         'average_score' => 'Gns. Score',
         'average_performance' => 'Gns. Præs.',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];

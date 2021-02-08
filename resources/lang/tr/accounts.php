@@ -32,12 +32,12 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'mevcut konum',
                 'user_interests' => 'ilgi alanları',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => 'meslek',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'web sitesi',
             ],
         ],

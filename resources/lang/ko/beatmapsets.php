@@ -11,6 +11,10 @@ return [
         'rule_violation' => '이 맵에 포함된 일부 요소는 osu!에서 사용하기에 적합하지 않다고 판단되어 제거되었습니다.',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => '비트맵 목록',
         'guest_title' => '비트맵',
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => '다운로드',
-                'direct' => 'osu!다이렉트',
+                'direct' => '',
                 'no-video' => '영상 미포함',
                 'video' => '영상 포함',
             ],

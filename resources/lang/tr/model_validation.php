@@ -62,7 +62,7 @@ return [
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Yalnızca bir özellik isteğine oy verebilirsiniz.',
+            'not_feature_topic' => 'Yalnızca bir özellik talebine oy verebilirsiniz.',
             'not_enough_feature_votes' => 'Yetersiz oy.',
         ],
 
@@ -71,8 +71,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Beatmap üstverisi gönderisinin silinmesi yasaktır.',
-            'beatmapset_post_no_edit' => 'Beatmap üstverisi gönderisini düzenlemek yasaktır.',
+            'beatmapset_post_no_delete' => 'Beatmap metaveri gönderisinin silinmesi yasaktır.',
+            'beatmapset_post_no_edit' => 'Beatmap metaveri gönderisini düzenlemek yasaktır.',
             'only_quote' => 'Cevabınız sadece bir alıntı içeriyor.',
 
             'attributes' => [

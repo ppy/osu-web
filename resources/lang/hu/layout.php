@@ -159,6 +159,10 @@ return [
             'error' => 'Érvénytelen lekérési paraméterek',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Jaj ne! Valami elromlott! ;_;',
             'description' => "Automatikusan értesítve vagyunk minden hibáról.",

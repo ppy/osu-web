@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Beatmaps Listning',
         'guest_title' => 'Beatmaps',
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Ladda Ner',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'utan Video',
                 'video' => 'med Video',
             ],

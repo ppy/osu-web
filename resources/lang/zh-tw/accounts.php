@@ -32,12 +32,12 @@ return [
             'title' => '編輯個人簡介',
 
             'user' => [
-                'user_discord' => 'Discord',
+                'user_discord' => '',
                 'user_from' => '目前所在地',
                 'user_interests' => '喜好',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => '職業',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => '個人網站',
             ],
         ],

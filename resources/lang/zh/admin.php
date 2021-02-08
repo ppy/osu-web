@@ -6,20 +6,20 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => '重新生成',
-            'regenerating' => '重新生成中...',
-            'remove' => '移除',
-            'removing' => '正在删除...',
-            'title' => '谱面集封面',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
+            'title' => '',
         ],
         'show' => [
-            'covers' => '管理谱面封面',
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modding v2',
-                'activate' => '启用',
-                'activate_confirm' => '确认要为这个谱面启用 Modding v2 吗?',
-                'active' => '已启用',
-                'inactive' => '未启用',
+                '_' => '',
+                'activate' => '',
+                'activate_confirm' => '',
+                'active' => '',
+                'inactive' => '',
             ],
         ],
     ],
@@ -27,22 +27,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => '删除',
+                'delete' => '',
 
-                'forum-name' => '论坛 #:id: :name',
+                'forum-name' => '',
 
-                'no-cover' => '没有头图',
+                'no-cover' => '',
 
                 'submit' => [
-                    'save' => '保存',
-                    'update' => '更新',
+                    'save' => '',
+                    'update' => '',
                 ],
 
-                'title' => '论坛封面列表',
+                'title' => '',
 
                 'type-title' => [
-                    'default-topic' => '默认板块头图',
-                    'main' => '论坛头图',
+                    'default-topic' => '',
+                    'main' => '',
                 ],
             ],
         ],
@@ -50,17 +50,17 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => '日志查看器',
+            'title' => '',
         ],
     ],
 
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => '谱面集',
-                'forum' => '论坛',
-                'general' => '常规',
-                'store' => '商店',
+                'beatmapsets' => '',
+                'forum' => '',
+                'general' => '',
+                'store' => '',
             ],
         ],
     ],
@@ -68,15 +68,15 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => '订单列表',
+                'title' => '',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => '该账户当前处于限制模式',
-            'message' => '（只有管理员能看见这条信息）',
+            'title' => '',
+            'message' => '',
         ],
     ],
 

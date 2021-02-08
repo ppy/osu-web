@@ -32,8 +32,8 @@ return [
         'remove_from_loved' => 'Aus Loved entfernt von :user. (:text)',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Explizit-Markierung entfernt',
+            'to_1' => 'Als explizit markiert',
         ],
     ],
 
@@ -71,7 +71,7 @@ return [
         'love' => 'Love',
         'nominate' => 'Nominierung',
         'nomination_reset' => 'Nominierung zurücksetzten',
-        'nsfw_toggle' => '',
+        'nsfw_toggle' => 'Explizit-Markierung',
         'qualify' => 'Qualifikation',
         'rank' => 'Ranking',
         'remove_from_loved' => 'Loved-Entfernung',

@@ -353,12 +353,12 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Interesser',
             'location' => 'Nåværende Plassering',
             'occupation' => 'Yrke',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'skype' => '',
+            'twitter' => '',
             'website' => 'Nettside',
         ],
         'not_found' => [
