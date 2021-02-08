@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
-import { Modifiers, classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
   modifiers?: Modifiers;
