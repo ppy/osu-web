@@ -1,10 +1,17 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import * as React from 'react'
-import { div } from 'react-dom-factories'
+import * as React from 'react';
+import { Modifiers, classWithModifiers } from 'utils/css';
 
-bn = 'la-ball-clip-rotate'
+interface Props {
+  modifiers?: Modifiers;
+}
 
-export Spinner = ({modifiers}) ->
-  div className: osu.classWithModifiers(bn, modifiers)
+export function Spinner(props: Props) {
+  return (
+    <div
+      className={classWithModifiers('la-ball-clip-rotate', props.modifiers)}
+    />
+  );
+}
