@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\DbCursorHelper;
 use App\Models\Match\Match;
 use App\Models\User;
 use App\Transformers\Match\EventTransformer;
@@ -12,6 +13,38 @@ use App\Transformers\UserCompactTransformer;
 
 class MatchesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('require-scopes:public', ['only' => ['index', 'show']]);
+    }
+
+    public function index()
+    {
+        $params = request()->all();
+        $cursorHelper = new DbCursorHelper(Match::SORTS, Match::DEFAULT_SORT, $params['sort'] ?? null);
+
+        $sort = $cursorHelper->getSort();
+        $cursor = $cursorHelper->prepare($params['cursor'] ?? null);
+        $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
+
+        $matches = Match
+            ::where('private', false)
+            ->cursorSort($sort, $cursor)
+            ->limit($limit + 1) // an extra to check for pagination
+            ->get();
+
+        $hasMore = count($matches) === $limit + 1;
+        if ($hasMore) {
+            $matches->pop();
+        }
+
+        return [
+            'cursor' => $hasMore ? $cursorHelper->next($matches) : null,
+            'matches' => json_collection($matches, 'Match\Match'),
+            'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
+        ];
+    }
+
     public function show($id)
     {
         $match = Match::findOrFail($id);
