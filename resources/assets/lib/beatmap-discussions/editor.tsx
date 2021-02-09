@@ -463,7 +463,7 @@ export default class Editor extends React.Component<Props, State> {
         }
       }
 
-      return normalizeNode(entry);
+      normalizeNode(entry);
     };
 
     return editor;
