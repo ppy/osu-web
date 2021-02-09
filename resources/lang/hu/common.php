@@ -137,7 +137,7 @@ return [
         'm' => '%d perc',
         'MM' => '%d hónap',
         'mm' => '%d perc',
-        'past' => '%s',
+        'past' => '',
         's' => '%d perc másodperc',
         'y' => '%d év',
         'yy' => '%d év',

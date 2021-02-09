@@ -122,7 +122,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Ranked Beatmaps อันใหม่',
+            'new' => 'บีทแมพจัดอันดับใหม่ล่าสุด',
             'popular' => 'บีทแมพยอดฮิต',
             'by_user' => 'โดย :user',
         ],

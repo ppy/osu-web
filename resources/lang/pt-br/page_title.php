@@ -22,6 +22,7 @@ return [
             '401-verification' => 'verificação de conta',
             '405' => 'não encontrado',
             '422' => 'solicitação inválida',
+            '429' => '',
             '500' => 'algo quebrou',
             '503' => 'manutenção',
         ],

@@ -76,7 +76,7 @@ return [
         'no_orders' => '表示できる注文がありません。',
         'paid_on' => '注文済み :date',
         'resume' => '支払いを再開',
-        'shopify_expired' => '',
+        'shopify_expired' => 'この注文の決済リンクは期限切れとなりました。',
 
         'item' => [
             'display_name' => [

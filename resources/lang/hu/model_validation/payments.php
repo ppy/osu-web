@@ -5,33 +5,33 @@
 
 return [
     'signature' => [
-        'not_match' => 'Az aláírások nem egyeznek',
+        'not_match' => '',
     ],
-    'notification_type' => 'notification_type helytelen :type',
+    'notification_type' => '',
     'order' => [
-        'invalid' => 'Érvénytelen rendelés',
+        'invalid' => '',
         'items' => [
-            'virtual_only' => '`:provider` fizetés nem érvényes kézzel fogható termékekre.',
+            'virtual_only' => '',
         ],
         'status' => [
-            'not_checkout' => 'Rossz államból próbálod elfogadtatni a kifizetést `:state`.',
-            'not_paid' => 'Próbáljuk visszatéríteni egy másik államból `:state` való vásárlásod.',
+            'not_checkout' => '',
+            'not_paid' => '',
         ],
     ],
     'param' => [
-        'invalid' => '`:param` paraméter nem egyezik',
+        'invalid' => '',
     ],
     'paypal' => [
-        'not_echeck' => 'A függőben lévő vásárlás nem echeck. (:actual)',
+        'not_echeck' => '',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => 'Fizetett összeg nem egyezik: :actual != :expected',
-            'currency' => 'Nem USD-vel fizetsz. (:type)',
+            'amount' => '',
+            'currency' => '',
         ],
     ],
     'order_number' => [
-        'malformed' => 'A rendelés tranzakciós azonosítója sérült',
-        'user_id_mismatch' => 'external_id hibás user id-t tartalmaz',
+        'malformed' => '',
+        'user_id_mismatch' => '',
     ],
 ];

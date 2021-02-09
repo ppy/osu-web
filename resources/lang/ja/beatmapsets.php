@@ -8,7 +8,11 @@ return [
         'disabled' => 'このビートマップは現在ダウンロード不可能です。',
         'parts-removed' => '権利者の申し立てによりこのビートマップは部分的に削除されています。',
         'more-info' => '詳細はこちらです。',
-        'rule_violation' => 'このマップに含まれる一部のアセットは、Osu!での使用に適さないと判断し、削除されています。',
+        'rule_violation' => 'このマップに含まれる一部のアセットは、osu!での使用に適さないと判断され、削除されています。',
+    ],
+
+    'download' => [
+        'limit_exceeded' => '',
     ],
 
     'index' => [
@@ -28,21 +32,21 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'hybrid_requires_modes' => 'ハイブリッドビートマップセットでは、少なくとも1つのモードを選択してノミネートする必要があります。',
+        'incorrect_mode' => 'ノミネートする権限がありません モード: :mode',
+        'full_bn_required' => 'qualifyノミネーションを行うには完全なノミネーターでなければなりません。',
+        'too_many' => 'ノミネーションの要件を満たしています',
 
         'dialog' => [
-            'confirmation' => 'このビートマップを本当にノミネートしますか?',
+            'confirmation' => 'このビートマップを本当にノミネートしますか？',
             'header' => 'ビートマップをノミネート',
-            'hybrid_warning' => '',
+            'hybrid_warning' => '注意: 一度しかノミネートできないので、ノミネートするゲームモードの全てにノミネートするようにしてください。',
             'which_modes' => 'どのモードをノミネートしますか？',
         ],
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => '露骨',
     ],
 
     'show' => [
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'ダウンロード',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => '動画なし',
                 'video' => '動画あり',
             ],
@@ -110,7 +114,7 @@ return [
             'genre' => 'ジャンル',
             'language' => '言語',
             'no_scores' => 'データはまだ計算中です・・・',
-            'nsfw' => '',
+            'nsfw' => '露骨なコンテンツ',
             'points-of-failure' => '失敗地点',
             'source' => 'ソース',
             'success-rate' => 'クリア率',
@@ -118,13 +122,13 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'このビートマップには明示的、攻撃的、または不穏なコンテンツが含まれています。それでも表示しますか？',
+            'title' => '露骨なコンテンツ',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => '警告を無効にする',
+                'listing' => 'ビートマップリスト',
+                'show' => '表示',
             ],
         ],
 
@@ -143,7 +147,7 @@ return [
                 'miss' => 'ミス',
                 'mods' => 'Mods',
                 'player' => 'プレイヤー',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => '順位',
                 'score_total' => '合計スコア',
                 'score' => 'スコア',
