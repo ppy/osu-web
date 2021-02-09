@@ -5,8 +5,8 @@
 
 return [
     'username_change' => [
-        'only_one' => 'bare 1 brukernavn endring hver ordregjennomføring.',
-        'insufficient_paid' => 'Brukernavnendring koster mer enn betalt (:expected > :actual)',
+        'only_one' => '',
+        'insufficient_paid' => '',
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [

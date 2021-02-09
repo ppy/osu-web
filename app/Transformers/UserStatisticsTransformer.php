@@ -28,6 +28,7 @@ class UserStatisticsTransformer extends TransformerAbstract
                 'progress' => $stats->currentLevelProgressPercent(),
             ],
 
+            'global_rank' => $stats->globalRank(),
             'pp' => $stats->rank_score,
             'pp_rank' => $stats->rank_score_index,
             'ranked_score' => $stats->ranked_score,
@@ -49,6 +50,7 @@ class UserStatisticsTransformer extends TransformerAbstract
         ];
     }
 
+    // TODO: split this into global_rank (already exists) and country_rank
     public function includeRank(UserStatistics\Model $stats = null)
     {
         if ($stats === null) {

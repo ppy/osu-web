@@ -64,6 +64,8 @@ class Kernel extends ConsoleKernel
 
         Commands\UserNotificationsCleanup::class,
         Commands\NotificationsCleanup::class,
+
+        Commands\ChatChannelSetLastMessageId::class,
     ];
 
     /**

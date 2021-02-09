@@ -115,15 +115,15 @@ return [
     ],
 
     'pagination' => [
-        'previous' => 'geri',
-        'next' => 'ileri',
+        'previous' => 'ÖNCEKİ',
+        'next' => 'SONRAKİ',
     ],
 
     'score_count' => [
         'count_100' => '100',
         'count_300' => '300',
         'count_50' => '50',
-        'count_geki' => 'MAX',
+        'count_geki' => '',
         'count_katu' => '200',
         'count_miss' => 'Miss',
     ],
@@ -151,7 +151,7 @@ return [
     ],
 
     'title' => [
-        'notice' => 'Bildirim',
+        'notice' => 'BİLDİRİM',
     ],
 
     'wrong_user' => [
