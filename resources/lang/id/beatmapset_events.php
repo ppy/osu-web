@@ -32,8 +32,8 @@ return [
         'remove_from_loved' => 'Dilepas dari Loved oleh :user. (:text)',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Tanda eksplisit telah dilepas',
+            'to_1' => 'Ditandai eksplisit',
         ],
     ],
 
@@ -71,7 +71,7 @@ return [
         'love' => 'Love',
         'nominate' => 'Nominasi',
         'nomination_reset' => 'Nominasi ulang',
-        'nsfw_toggle' => '',
+        'nsfw_toggle' => 'Tanda eksplisit',
         'qualify' => 'Kualifikasi',
         'rank' => 'Peringkat',
         'remove_from_loved' => 'Pelepasan status Loved',

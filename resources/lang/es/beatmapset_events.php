@@ -32,8 +32,8 @@ return [
         'remove_from_loved' => 'Removido de Amados por :user. (:text)',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Marca explícita removida',
+            'to_1' => 'Marcado como explícito',
         ],
     ],
 
@@ -71,7 +71,7 @@ return [
         'love' => 'Amor',
         'nominate' => 'Nominación',
         'nomination_reset' => 'Restablecimiento de nominación',
-        'nsfw_toggle' => '',
+        'nsfw_toggle' => 'Marca explícita',
         'qualify' => 'Calificación',
         'rank' => 'Clasificación',
         'remove_from_loved' => 'Remoción de Amados',

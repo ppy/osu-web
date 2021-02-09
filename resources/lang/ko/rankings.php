@@ -42,8 +42,8 @@ return [
         'ranked_score' => '기록된 점수',
         'average_score' => '평균 점수',
         'average_performance' => '평균 퍼포먼스 ',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];

@@ -93,6 +93,6 @@ return [
 
     'user_filter' => [
         'everyone' => 'Semua orang',
-        'label' => 'Filter berdasarkan pengguna',
+        'label' => 'Saring berdasarkan pengguna',
     ],
 ];

@@ -5,33 +5,33 @@
 
 return [
     'signature' => [
-        'not_match' => 'Les signatures ne correspondent pas',
+        'not_match' => '',
     ],
-    'notification_type' => 'Le notification_type n\'est pas valide :type',
+    'notification_type' => '',
     'order' => [
-        'invalid' => 'La commande n\'est pas valide',
+        'invalid' => '',
         'items' => [
-            'virtual_only' => 'Le paiement par `:provider` n\'est pas disponible pour les produits physiques.',
+            'virtual_only' => '',
         ],
         'status' => [
-            'not_checkout' => 'Vous essayez d\'accepter le paiement d\'une commande dans un état incorrect `:state`.',
-            'not_paid' => 'Tentative de remboursement du paiement pour une commande dans un état invalide `:state`.',
+            'not_checkout' => '',
+            'not_paid' => '',
         ],
     ],
     'param' => [
-        'invalid' => 'Le paramètre `:param` ne correspond pas',
+        'invalid' => '',
     ],
     'paypal' => [
-        'not_echeck' => 'Le paiement en attente n\'est pas un e-chèque. (:actual)',
+        'not_echeck' => '',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => 'Le montant payé ne correspond pas au montant attendu: :actual != :expected',
-            'currency' => 'Le paiement n\'est pas en USD. (:type)',
+            'amount' => '',
+            'currency' => '',
         ],
     ],
     'order_number' => [
-        'malformed' => 'L\'identifiant de transaction de commande reçu est mal-formé',
-        'user_id_mismatch' => 'external_id contient le mauvais id utilisateur',
+        'malformed' => '',
+        'user_id_mismatch' => '',
     ],
 ];

@@ -5,9 +5,9 @@
 
 return [
     'username_change' => [
-        'only_one' => 'dozwolona jest tylko jedna zmiana nazwy użytkownika na zamówienie.',
-        'insufficient_paid' => 'Każda zmiana nazwy użytkownika zwiększa jej koszty (:expected > :actual)',
-        'reverting_username_mismatch' => 'Obecna nazwa użytkownika (:current) nie jest taka sama jak zmiana do cofnięcia (:username)',
+        'only_one' => '',
+        'insufficient_paid' => '',
+        'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
         'insufficient_paid' => 'Podana kwota jest niewystarczająca, by podarować status donatora osu! (:actual > :expected)',

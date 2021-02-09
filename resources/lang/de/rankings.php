@@ -42,8 +42,8 @@ return [
         'ranked_score' => 'Punktzahl auf Rangliste',
         'average_score' => 'Durchschn. Pkte.',
         'average_performance' => 'Durchschn. Perf.',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];

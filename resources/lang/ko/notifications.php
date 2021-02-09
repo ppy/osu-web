@@ -11,7 +11,7 @@ return [
     'none' => '알림 없음',
     'see_all' => '모든 알림 보기',
     'see_channel' => '채팅으로 이동',
-    'verifying' => '',
+    'verifying' => '알림을 보려면 세션을 검증해주세요.',
 
     'filters' => [
         '_' => '전체',
