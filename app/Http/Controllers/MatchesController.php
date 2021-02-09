@@ -16,37 +16,26 @@ class MatchesController extends Controller
     {
         $match = Match::findOrFail($id);
 
-        priv_check('MatchView', $match)->ensureCan();
-
-        $eventsJson = $this->eventsJson([
-            'match' => $match,
-            'after' => request('after'),
-            'before' => request('before'),
-        ]);
-
-        return ext_view('matches.index', compact('match', 'eventsJson'));
-    }
-
-    public function history($matchId)
-    {
-        $match = Match::findOrFail($matchId);
+        $params = get_params(request()->all(), null, ['after:int', 'before:int', 'limit:int']);
+        $params['match'] = $match;
 
         priv_check('MatchView', $match)->ensureCan();
 
-        return $this->eventsJson([
-            'match' => $match,
-            'after' => request('after'),
-            'before' => request('before'),
-            'limit' => request('limit'),
-        ]);
+        $eventsJson = $this->eventsJson($params);
+
+        if (is_json_request()) {
+            return $eventsJson;
+        } else {
+            return ext_view('matches.index', compact('match', 'eventsJson'));
+        }
     }
 
     private function eventsJson($params)
     {
         $match = $params['match'];
-        $after = get_int($params['after'] ?? null);
-        $before = get_int($params['before'] ?? null);
-        $limit = clamp(get_int($params['limit'] ?? null) ?? 100, 1, 101);
+        $after = $params['after'] ?? null;
+        $before = $params['before'] ?? null;
+        $limit = clamp($params['limit'] ?? 100, 1, 101);
 
         $events = $match->events()
             ->with([
