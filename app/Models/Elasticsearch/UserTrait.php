@@ -39,7 +39,12 @@ trait UserTrait
 
         $values = [];
         foreach ($mappings as $field => $mapping) {
-            $value = $this[$field];
+            if ($field === 'user_lastvisit' && $this->hide_presence) {
+                $value = null;
+            } else {
+                $value = $this[$field];
+            }
+
             if ($value instanceof Carbon) {
                 $value = $value->toIso8601String();
             }
