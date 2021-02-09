@@ -13,11 +13,11 @@ return [
     ],
 
     'scopes' => [
-        'bot' => '',
+        'bot' => 'Bertindak selayaknya sebuah chat bot.',
         'identify' => 'Mengenali diri Anda dan membaca profil publik Anda.',
 
         'chat' => [
-            'write' => '',
+            'write' => 'Mengirimkan pesan-pesan atas nama akun Anda.',
         ],
 
         'friends' => [

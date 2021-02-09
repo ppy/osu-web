@@ -22,6 +22,7 @@ return [
             '401-verification' => 'verificare cont',
             '405' => 'lipsește',
             '422' => 'cerere invalidă',
+            '429' => '',
             '500' => 'ceva s-a stricat',
             '503' => 'mentenanță',
         ],

@@ -159,6 +159,10 @@ return [
             'error' => '',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => '糟糕，伺服器崩潰了',
             'description' => "我們會自動回報任何一個錯誤，請返回到上一個頁面。",
@@ -171,8 +175,8 @@ return [
             'error' => '啊...伺服器正在維護中',
             'description' => "每次維護需要5秒到10分鐘的時間。如果維護時間太長，查看 :link 以取得更多資訊。",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error

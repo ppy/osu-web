@@ -22,6 +22,7 @@ return [
             '401-verification' => 'account verificatie',
             '405' => 'ontbrekend',
             '422' => 'ongeldige aanvraag',
+            '429' => '',
             '500' => 'iets gaat er mis',
             '503' => 'onderhoud',
         ],

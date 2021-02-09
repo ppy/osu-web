@@ -22,6 +22,7 @@ return [
             '401-verification' => 'weryfikacja konta',
             '405' => 'nie znaleziono',
             '422' => 'nieprawidłowe żądanie',
+            '429' => '',
             '500' => 'coś się popsuło',
             '503' => 'przerwa techniczna',
         ],
