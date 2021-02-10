@@ -39,8 +39,8 @@ trait UserTrait
 
         $values = [];
         foreach ($mappings as $field => $mapping) {
-            if ($field === 'user_lastvisit' && $this->hide_presence) {
-                $value = null;
+            if ($field === 'user_lastvisit') {
+                $value = $this->displayed_last_visit;
             } else {
                 $value = $this[$field];
             }
