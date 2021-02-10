@@ -7,7 +7,6 @@ namespace App\Models\Elasticsearch;
 
 use App\Traits\EsIndexableModel;
 use Carbon\Carbon;
-use Schema;
 
 trait UserTrait
 {
