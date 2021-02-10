@@ -234,7 +234,7 @@ class Topic extends Model implements AfterCommit, Indexable
             return false;
         }
 
-        $ret = $this->getConnection()->transaction(function () use ($destinationForum) {
+        $this->getConnection()->transaction(function () use ($destinationForum) {
             $originForum = $this->forum;
             $this->forum()->associate($destinationForum);
             $this->save();
@@ -249,8 +249,6 @@ class Topic extends Model implements AfterCommit, Indexable
             optional($originForum)->postsAdded($visiblePostsCount * -1);
             optional($this->forum)->topicsAdded(1);
             optional($this->forum)->postsAdded($visiblePostsCount);
-
-            return true;
         });
 
         $this
@@ -265,7 +263,7 @@ class Topic extends Model implements AfterCommit, Indexable
 
         dispatch(new UpdateUserForumTopicFollows($this));
 
-        return $ret;
+        return true;
     }
 
     public static function typeStr($typeInt)
