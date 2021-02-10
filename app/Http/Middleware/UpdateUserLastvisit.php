@@ -32,9 +32,14 @@ class UpdateUserLastvisit
             }
 
             if (!$isInactive || $isVerified) {
-                $user->update([
-                    'user_lastvisit' => Carbon::createFromTime(null, null, 0),
-                ], ['skipValidations' => true]);
+                $recordedLastVisit = $user->user_lastvisit;
+                $currentLastVisit = now();
+
+                if ($currentLastVisit->diffInRealSeconds($recordedLastVisit) > 60) {
+                    $user->update([
+                        'user_lastvisit' => $currentLastVisit,
+                    ], ['skipValidations' => true]);
+                }
             }
 
             $this->recordSession($request);
