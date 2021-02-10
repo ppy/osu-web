@@ -3,29 +3,31 @@
 
 import GroupJson from 'interfaces/group-json';
 import * as React from 'react';
+import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
   group?: GroupJson;
-  modifiers?: string[];
+  modifiers?: Modifiers;
 }
 
-export default function UserGroupBadge({group, modifiers = []}: Props) {
+export default function UserGroupBadge({group, modifiers}: Props) {
   if (group == null) {
     return null;
   }
 
   const style = osu.groupColour(group);
 
-  const badgeModifiers = [...modifiers];
-  if (group.is_probationary) {
-    badgeModifiers.push('probationary');
-  }
+  let blockClass = classWithModifiers('user-group-badge', {
+    probationary: group.is_probationary,
+    [group.identifier]: true,
+  });
+  blockClass += classWithModifiers('user-group-badge', modifiers, true);
 
   const playModes: JSX.Element[] = (group.playmodes ?? []).map((mode) => <i className={`fal fa-extra-mode-${mode}`} key={mode} />);
 
   return (
     <div
-      className={osu.classWithModifiers('user-group-badge', badgeModifiers)}
+      className={blockClass}
       data-label={group.short_name}
       style={style}
       title={group.name}
