@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Lista Beatmap',
         'guest_title' => 'Beatmap',
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Scarica',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'senza Video',
                 'video' => 'con Video',
             ],

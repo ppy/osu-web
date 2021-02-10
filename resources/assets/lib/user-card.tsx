@@ -15,6 +15,7 @@ import { Spinner } from 'spinner';
 import { SupporterIcon } from 'supporter-icon';
 import UserCardBrick from 'user-card-brick';
 import UserGroupBadges from 'user-group-badges';
+import { classWithModifiers } from 'utils/css';
 
 export type ViewMode = 'brick' | 'card' | 'list';
 
@@ -135,23 +136,22 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderAvatar() {
-    const modifiers = this.state.avatarLoaded ? ['loaded'] : [];
+    const modifiers = { loaded: this.state.avatarLoaded };
+    const hasAvatar = osu.present(this.user.avatar_url) && !this.isUserNotFound;
 
     return (
       <div className='user-card__avatar-space'>
-        <div className={osu.classWithModifiers('user-card__avatar-spinner', modifiers)}>
-          {!this.isUserNotFound ? <Spinner modifiers={modifiers} /> : null}
+        <div className={classWithModifiers('user-card__avatar-spinner', modifiers)}>
+          {hasAvatar && <Spinner modifiers={modifiers} />}
         </div>
-        {
-          this.isUserLoaded ? (
+        {this.isUserLoaded && hasAvatar && (
             <img
-              className={osu.classWithModifiers('user-card__avatar', modifiers)}
+              className={classWithModifiers('user-card__avatar', modifiers)}
               onError={this.onAvatarLoad} // remove spinner if error
               onLoad={this.onAvatarLoad}
               src={this.user.avatar_url}
             />
-          ) : null
-        }
+        )}
       </div>
     );
   }

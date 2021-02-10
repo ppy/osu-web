@@ -354,12 +354,12 @@ return [
         ],
 
         'info' => [
-            'discord' => 'ดิสคอร์ด',
+            'discord' => '',
             'interests' => 'สิ่งที่สนใจ',
             'location' => 'ตำแหน่งปัจจุบัน',
             'occupation' => 'อาชีพ',
-            'skype' => 'Skype',
-            'twitter' => 'ทวิตเตอร์',
+            'skype' => '',
+            'twitter' => '',
             'website' => 'เว็บไซต์',
         ],
         'not_found' => [

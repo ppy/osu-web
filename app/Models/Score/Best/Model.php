@@ -293,7 +293,7 @@ abstract class Model extends BaseModel
     {
         switch ($type) {
             case 'country':
-                $countryAcronym = $options['countryAcronym'] ?? $options['user']->country_acronym;
+                $countryAcronym = $options['countryAcronym'] ?? $options['user']->country_acronym ?? 'XX';
 
                 return $query->fromCountry($countryAcronym);
             case 'friend':

@@ -422,7 +422,15 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   withNormalization = (editor: ReactEditor) => {
-    const { normalizeNode } = editor;
+    const { insertData, normalizeNode } = editor;
+
+    editor.insertData = (data) => {
+      if (insideEmbed(this.slateEditor)) {
+        editor.insertText(data.getData('text/plain'));
+      } else {
+        insertData(data);
+      }
+    };
 
     editor.normalizeNode = (entry) => {
       const [node, path] = entry;
@@ -455,7 +463,7 @@ export default class Editor extends React.Component<Props, State> {
         }
       }
 
-      return normalizeNode(entry);
+      normalizeNode(entry);
     };
 
     return editor;

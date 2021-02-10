@@ -32,12 +32,12 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'tartózkodási hely',
                 'user_interests' => 'érdeklődés',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => 'foglalkozás',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'weboldal',
             ],
         ],

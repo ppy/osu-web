@@ -5,13 +5,13 @@
 
 return [
     'signature' => [
-        'not_match' => 'Signaturer samsvarer ikke',
+        'not_match' => '',
     ],
-    'notification_type' => 'notification_type er ikke en gyldig :type',
+    'notification_type' => '',
     'order' => [
-        'invalid' => 'Bestilling er ikke gyldig',
+        'invalid' => '',
         'items' => [
-            'virtual_only' => 'Betaling fra`:provider` er ikke gyldig for fysiske varer.',
+            'virtual_only' => '',
         ],
         'status' => [
             'not_checkout' => '',
@@ -27,7 +27,7 @@ return [
     'purchase' => [
         'checkout' => [
             'amount' => '',
-            'currency' => 'Betaling er ikke i USD. (:type)',
+            'currency' => '',
         ],
     ],
     'order_number' => [
