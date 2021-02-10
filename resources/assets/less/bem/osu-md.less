@@ -3,7 +3,6 @@
 
 .osu-md {
   @_top: osu-md;
-  @_paragraph-space: 1.5em;
 
   .content-font();
   color: inherit;
@@ -74,7 +73,7 @@
   }
 
   &__figure-container {
-    margin: @_paragraph-space 0;
+    margin: @md-paragraph-space 0;
     text-align: center;
 
     .@{_top}--comment & {
@@ -204,7 +203,7 @@
   }
 
   &__paragraph {
-    margin-bottom: @_paragraph-space;
+    margin-bottom: @md-paragraph-space;
     line-height: 1.5;
 
     .@{_top}--store & {
