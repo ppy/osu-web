@@ -19,12 +19,8 @@ trait UserTrait
 
     public static function esIndexingQuery()
     {
-        $columns = array_keys((new static())->esFilterFields());
-        array_unshift($columns, 'user_id');
-
         return static::withoutGlobalScopes()
-            ->with('usernameChangeHistoryPublic')
-            ->select($columns);
+            ->with('usernameChangeHistoryPublic');
     }
 
     public static function esSchemaFile()
