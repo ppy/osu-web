@@ -12,7 +12,7 @@
         <span class="sort__item sort__item--title">
             {{ trans('sort._') }}
         </span>
-        @foreach (App\Libraries\Search\ForumSearchParams::VALID_SORT_FIELDS as $field)
+        @foreach (App\Libraries\Search\UserSearchParams::VALID_SORT_FIELDS as $field)
             @php
                 $active = $field === $searchParams->sortField;
                 if ($active) {
@@ -20,7 +20,7 @@
                     $order = $currentOrder === 'asc' ? 'desc' : 'asc';
                     $arrowOrder = $currentOrder;
                 } else {
-                    $order = App\Libraries\Search\ForumSearchParams::DEFAULT_SORT_ORDER;
+                    $order = App\Libraries\Search\UserSearchParams::defaultSortOrder($field);
                     $arrowOrder = $order;
                 }
                 $sort = "{$field}_{$order}";
@@ -30,7 +30,7 @@
                 class="{{ class_with_modifiers('sort__item', ['active' => $active, 'button' => true]) }}"
                 href="{{ route('search', array_merge($query, compact('sort'))) }}"
             >
-                {{ trans("sort.forum_posts.{$field}") }}
+                {{ trans("sort.users.{$field}") }}
 
                 <span class="sort__item-arrow">
                     <i class="{{ $arrowClass }}"></i>
