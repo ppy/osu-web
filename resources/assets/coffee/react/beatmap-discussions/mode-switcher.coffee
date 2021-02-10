@@ -3,6 +3,7 @@
 
 import * as React from 'react'
 import { a, div, li, span, ul } from 'react-dom-factories'
+import { StringWithComponent } from 'string-with-component'
 el = React.createElement
 
 export class ModeSwitcher extends React.PureComponent
@@ -51,14 +52,30 @@ export class ModeSwitcher extends React.PureComponent
                     beatmapId: @props.currentBeatmap.id
                     beatmapsetId: @props.beatmapset.id
                   'data-mode': mode
-                  div
-                    dangerouslySetInnerHTML:
-                      __html:
-                        if _.startsWith(mode, 'general')
-                          osu.trans "beatmaps.discussions.mode.general",
-                            scope: "<span class='page-mode-link__subtitle'>(#{osu.trans("beatmaps.discussions.mode.scopes.#{mode}")})</span>"
-                        else
-                          osu.trans("beatmaps.discussions.mode.#{_.snakeCase mode}")
+                  div null,
+                    if mode == 'general'
+                      el StringWithComponent,
+                        pattern: osu.trans('beatmaps.discussions.mode.general'),
+                        mappings:
+                          ':scope':
+                            span
+                              className: 'page-mode-link__subtitle'
+                              key: 'scope'
+                              "(#{@props.currentBeatmap.version})"
+
+                    else if mode == 'generalAll'
+                      el StringWithComponent,
+                        pattern: osu.trans('beatmaps.discussions.mode.general'),
+                        mappings:
+                          ':scope':
+                            span
+                              className: 'page-mode-link__subtitle'
+                              key: 'scope'
+                              "(#{osu.trans('beatmaps.discussions.mode.scopes.general')})"
+
+                    else
+                      osu.trans("beatmaps.discussions.mode.#{_.snakeCase mode}")
+
                   if mode != 'events'
                     span className: 'page-mode-link__badge',
                       _.size(@props.currentDiscussions.byFilter[@props.currentFilter][mode])
