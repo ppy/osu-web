@@ -37,6 +37,21 @@ class UserScoreAggregate extends Model
         ]);
     }
 
+    public static function lookupOrDefault(User $user, Room $room): self
+    {
+        $obj = static::firstOrNew([
+            'user_id' => $user->getKey(),
+            'room_id' => $room->getKey(),
+        ]);
+
+        foreach (['total_score', 'accuracy', 'pp', 'attempts', 'completed'] as $key) {
+            // init if required
+            $obj->$key = $obj->$key ?? 0;
+        }
+
+        return $obj;
+    }
+
     public static function updatePlaylistItemUserHighScore(PlaylistItemUserHighScore $highScore, Score $score)
     {
         if (!$score->passed) {
@@ -53,15 +68,7 @@ class UserScoreAggregate extends Model
 
     public static function new(User $user, Room $room): self
     {
-        $obj = static::firstOrNew([
-            'user_id' => $user->getKey(),
-            'room_id' => $room->getKey(),
-        ]);
-
-        foreach (['total_score', 'accuracy', 'pp', 'attempts', 'completed'] as $key) {
-            // init if required
-            $obj->$key = $obj->$key ?? 0;
-        }
+        $obj = static::lookupOrDefault($user, $room);
 
         if (!$obj->exists) {
             $obj->isNew = true;
