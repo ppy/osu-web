@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { snakeCase, size } from 'lodash'
 import * as React from 'react'
 import { a, div, li, span, ul } from 'react-dom-factories'
 import { StringWithComponent } from 'string-with-component'
@@ -74,11 +75,11 @@ export class ModeSwitcher extends React.PureComponent
                               "(#{osu.trans('beatmaps.discussions.mode.scopes.general')})"
 
                     else
-                      osu.trans("beatmaps.discussions.mode.#{_.snakeCase mode}")
+                      osu.trans("beatmaps.discussions.mode.#{snakeCase mode}")
 
                   if mode != 'events'
                     span className: 'page-mode-link__badge',
-                      _.size(@props.currentDiscussions.byFilter[@props.currentFilter][mode])
+                      size(@props.currentDiscussions.byFilter[@props.currentFilter][mode])
                   span className: 'page-mode-link__stripe'
     ]
 
