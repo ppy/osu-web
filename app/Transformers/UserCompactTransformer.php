@@ -61,10 +61,7 @@ class UserCompactTransformer extends TransformerAbstract
         'scores_first_count',
         'scores_recent_count',
         'statistics',
-        'statistics_fruits',
-        'statistics_mania',
-        'statistics_osu',
-        'statistics_taiko',
+        'statistics_all',
         'support_level',
         'unranked_beatmapset_count',
         'unread_pm_count',
@@ -343,24 +340,9 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->item($stats, new UserStatisticsTransformer());
     }
 
-    public function includeStatisticsFruits(User $user)
+    public function includeStatisticsAll(User $user)
     {
-        return $this->item($user->statisticsFruits, new UserStatisticsTransformer());
-    }
-
-    public function includeStatisticsMania(User $user)
-    {
-        return $this->item($user->statisticsMania, new UserStatisticsTransformer());
-    }
-
-    public function includeStatisticsOsu(User $user)
-    {
-        return $this->item($user->statisticsOsu, new UserStatisticsTransformer());
-    }
-
-    public function includeStatisticsTaiko(User $user)
-    {
-        return $this->item($user->statisticsTaiko, new UserStatisticsTransformer());
+        return $this->item($user, new UserStatisticsAllTransformer());
     }
 
     public function includeSupportLevel(User $user)

@@ -261,9 +261,9 @@ class UsersController extends Controller
         if (isset($params['ids'])) {
             $preload = UserCompactTransformer::CARD_INCLUDES_PRELOAD;
 
-            foreach (Beatmap::MODES as $mode => $i) {
-                $includes[] = "statistics_{$mode}";
-                $preload[] = camel_case("statistics_{$mode}");
+            foreach (Beatmap::MODES as $modeStr => $modeInt) {
+                $includes[] = "statistics_all.{$modeStr}";
+                $preload[] = camel_case("statistics_{$modeStr}");
             }
 
             $users = User
