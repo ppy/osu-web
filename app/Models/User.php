@@ -221,8 +221,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         'user_website' => 200,
     ];
 
-    public $shouldReindex = false;
-
     private $validateCurrentPassword = false;
     private $validatePasswordConfirmation = false;
     public $password = null;
@@ -341,7 +339,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
             $skipValidations = in_array($type, ['inactive', 'revert'], true);
             $this->saveOrExplode(['skipValidations' => $skipValidations]);
-            $this->shouldReindex = true;
 
             return $history;
         });
@@ -2166,10 +2163,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function afterCommit()
     {
-        if ($this->shouldReindex) {
-            $this->shouldReindex = false;
-            dispatch(new EsIndexDocument($this));
-        }
+        dispatch(new EsIndexDocument($this));
     }
 
     protected function newReportableExtraParams(): array

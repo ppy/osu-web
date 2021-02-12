@@ -37,6 +37,7 @@ class Mod
     const OSU_DEFLATE = 'DF';
     const OSU_SPININ = 'SI';
     const OSU_TRACEABLE = 'TC';
+    const OSU_CLASSIC = 'CL';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -219,6 +220,7 @@ class Mod
                         self::OSU_DEFLATE,
                         self::OSU_SPININ,
                         self::OSU_TRACEABLE,
+                        self::OSU_CLASSIC,
                     ]
                 ),
 
