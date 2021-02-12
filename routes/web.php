@@ -128,7 +128,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('livestreams/promote', 'LivestreamsController@promote')->name('livestreams.promote');
         Route::resource('livestreams', 'LivestreamsController', ['only' => ['index']]);
 
-        Route::get('matches/{match}/history', 'MatchesController@history')->name('matches.history');
         Route::resource('matches', 'MatchesController', ['only' => ['show']]);
 
         Route::post('tournaments/{tournament}/unregister', 'TournamentsController@unregister')->name('tournaments.unregister');
@@ -409,6 +408,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::get('changelog/{stream}/{build}', 'ChangelogController@build')->name('changelog.build');
         Route::resource('changelog', 'ChangelogController', ['only' => ['index', 'show']]);
+
+        Route::resource('matches', 'MatchesController', ['only' => ['index', 'show']]);
 
         Route::group(['as' => 'rooms.', 'prefix' => 'rooms'], function () {
             Route::get('{mode?}', 'Multiplayer\RoomsController@index')->name('index')->where('mode', 'owned|participated|ended');
