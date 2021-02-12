@@ -70,10 +70,7 @@ scores_best_count                    | number
 scores_first_count                   | number
 scores_recent_count                  | number
 statistics                           | |
-statistics_fruits                    | UserStatistics
-statistics_mania                     | UserStatistics
-statistics_osu                       | UserStatistics
-statistics_taiko                     | UserStatistics
+statistics_rulesets                  | UserStatisticsRulesets
 support_level                        | |
 unranked_beatmapset_count            | |
 unread_pm_count                      | |

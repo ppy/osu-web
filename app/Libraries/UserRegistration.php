@@ -55,7 +55,6 @@ class UserRegistration
         try {
             $this->user->getConnection()->transaction(function () {
                 User::findAndRenameUserForInactive($this->user->username);
-                $this->user->shouldReindex = true;
                 if (!$this->user->save()) {
                     // probably failed because of validation
                     throw new ValidationException($this->user->validationErrors());
