@@ -8,7 +8,7 @@ namespace App\Transformers;
 use App\Models\Beatmap;
 use App\Models\User;
 
-class UserStatisticsAllTransformer extends TransformerAbstract
+class UserStatisticsRulesetsTransformer extends TransformerAbstract
 {
     protected $gameModeIncludes;
 
