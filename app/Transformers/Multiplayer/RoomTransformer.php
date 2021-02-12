@@ -45,7 +45,7 @@ class RoomTransformer extends TransformerAbstract
             return;
         }
 
-        $score = UserScoreAggregate::new($user, $room);
+        $score = UserScoreAggregate::lookupOrDefault($user, $room);
 
         return $this->item($score, new UserScoreAggregateTransformer());
     }
