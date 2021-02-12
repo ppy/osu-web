@@ -262,7 +262,7 @@ class UsersController extends Controller
             $preload = UserCompactTransformer::CARD_INCLUDES_PRELOAD;
 
             foreach (Beatmap::MODES as $modeStr => $modeInt) {
-                $includes[] = "statistics_all.{$modeStr}";
+                $includes[] = "statistics_rulesets.{$modeStr}";
                 $preload[] = camel_case("statistics_{$modeStr}");
             }
 

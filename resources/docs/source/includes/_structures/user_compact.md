@@ -70,7 +70,7 @@ scores_best_count                    | number
 scores_first_count                   | number
 scores_recent_count                  | number
 statistics                           | |
-statistics_all                       | UserStatisticsAll
+statistics_rulesets                  | UserStatisticsRulesets
 support_level                        | |
 unranked_beatmapset_count            | |
 unread_pm_count                      | |

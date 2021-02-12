@@ -61,7 +61,7 @@ class UserCompactTransformer extends TransformerAbstract
         'scores_first_count',
         'scores_recent_count',
         'statistics',
-        'statistics_all',
+        'statistics_rulesets',
         'support_level',
         'unranked_beatmapset_count',
         'unread_pm_count',
@@ -340,9 +340,9 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->item($stats, new UserStatisticsTransformer());
     }
 
-    public function includeStatisticsAll(User $user)
+    public function includeStatisticsRulesets(User $user)
     {
-        return $this->item($user, new UserStatisticsAllTransformer());
+        return $this->item($user, new UserStatisticsRulesetsTransformer());
     }
 
     public function includeSupportLevel(User $user)
