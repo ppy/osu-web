@@ -35,6 +35,10 @@ class UserStatisticsRulesetsTransformer extends TransformerAbstract
 
     private function gameModeInclude(User $user, string $mode)
     {
-        return $this->item($user->statistics($mode), new UserStatisticsTransformer());
+        $statistics = $user->statistics($mode);
+
+        if ($statistics !== null) {
+            return $this->item($statistics, new UserStatisticsTransformer());
+        }
     }
 }
