@@ -56,7 +56,7 @@
     "id": null
   },
   "account_history": [],
-  "active_tournament_banner": [],
+  "active_tournament_banner": null,
   "badges": [
     {
       "awarded_at": "2015-01-01T00:00:00+00:00",

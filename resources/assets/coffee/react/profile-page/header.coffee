@@ -120,7 +120,7 @@ export class Header extends React.Component
 
 
   renderTournamentBanner: ({modifiers} = {}) =>
-    return if !@props.user.active_tournament_banner.id?
+    return if !@props.user.active_tournament_banner?.id?
 
     a
       href: laroute.route('tournaments.show', tournament: @props.user.active_tournament_banner.tournament_id)
