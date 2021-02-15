@@ -48,9 +48,7 @@ class ForumSearch extends Search
     public function getQuery()
     {
         $query = (new BoolQuery())
-            ->filter(['term' => ['type' => 'posts']]);
-
-        $query->filter(['terms' => ['forum_id' => $this->params->filteredForumIds()]]);
+            ->filter(['terms' => ['forum_id' => $this->params->filteredForumIds()]]);
 
         if (isset($this->params->topicId)) {
             $query->filter(['term' => ['topic_id' => $this->params->topicId]]);
