@@ -125,9 +125,8 @@ export class Info extends React.Component
       .slice(0, 21)
       .value()
 
-    if tags.length == 21
-      tags.pop()
-      tagsOverload = true
+    tagsOverload = tags.length == 21
+    tags.pop() if tagsOverload
 
     div className: 'beatmapset-info',
       if @state.isEditingDescription
