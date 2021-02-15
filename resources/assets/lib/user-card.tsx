@@ -15,6 +15,7 @@ import { Spinner } from 'spinner';
 import { SupporterIcon } from 'supporter-icon';
 import UserCardBrick from 'user-card-brick';
 import UserGroupBadges from 'user-group-badges';
+import { classWithModifiers } from 'utils/css';
 
 export type ViewMode = 'brick' | 'card' | 'list';
 
@@ -45,6 +46,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     id: 0,
     is_active: false,
     is_bot: false,
+    is_deleted: false,
     is_online: false,
     is_supporter: false,
     last_visit: '',
@@ -77,6 +79,10 @@ export class UserCard extends React.PureComponent<Props, State> {
 
   private get isUserNotFound() {
     return this.user.id === -1;
+  }
+
+  private get isUserVisible() {
+    return this.isUserLoaded && !this.user.is_deleted;
   }
 
   private get user() {
@@ -117,7 +123,7 @@ export class UserCard extends React.PureComponent<Props, State> {
             <div className='user-card__details'>
               {this.renderIcons()}
               <div className='user-card__username-row'>
-                <div className='user-card__username u-ellipsis-pre-overflow'>{this.user.username}</div>
+                <div className='user-card__username u-ellipsis-pre-overflow'>{this.user.is_deleted ? osu.trans('users.deleted') : this.user.username}</div>
                 <div className='user-card__group-badges'><UserGroupBadges groups={this.user.groups} short={true} wrapper='user-card__group-badge' /></div>
               </div>
               {this.renderListModeIcons()}
@@ -130,23 +136,22 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderAvatar() {
-    const modifiers = this.state.avatarLoaded ? ['loaded'] : [];
+    const modifiers = { loaded: this.state.avatarLoaded };
+    const hasAvatar = osu.present(this.user.avatar_url) && !this.isUserNotFound;
 
     return (
       <div className='user-card__avatar-space'>
-        <div className={osu.classWithModifiers('user-card__avatar-spinner', modifiers)}>
-          {!this.isUserNotFound ? <Spinner modifiers={modifiers} /> : null}
+        <div className={classWithModifiers('user-card__avatar-spinner', modifiers)}>
+          {hasAvatar && <Spinner modifiers={modifiers} />}
         </div>
-        {
-          this.isUserLoaded ? (
+        {this.isUserLoaded && hasAvatar && (
             <img
-              className={osu.classWithModifiers('user-card__avatar', modifiers)}
+              className={classWithModifiers('user-card__avatar', modifiers)}
               onError={this.onAvatarLoad} // remove spinner if error
               onLoad={this.onAvatarLoad}
               src={this.user.avatar_url}
             />
-          ) : null
-        }
+        )}
       </div>
     );
   }
@@ -176,7 +181,7 @@ export class UserCard extends React.PureComponent<Props, State> {
       background = <div className={overlayCssClass} />;
     }
 
-    if (this.isUserLoaded) {
+    if (this.isUserVisible) {
       backgroundLink = (
         <a
           href={route('users.show', { user: this.user.id })}
@@ -193,7 +198,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderIcons() {
-    if (!this.isUserLoaded) { return null; }
+    if (!this.isUserVisible) { return null; }
 
     return (
       <div className='user-card__icons'>
@@ -224,7 +229,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderListModeIcons() {
-    if (this.props.mode !== 'list' || !this.isUserLoaded) { return null; }
+    if (this.props.mode !== 'list' || !this.isUserVisible) { return null; }
 
     return (
       <div className='user-card__icons'>
@@ -283,7 +288,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderStatusBar() {
-    if (!this.isUserLoaded) { return null; }
+    if (!this.isUserVisible) { return null; }
 
     const lastSeen = (!this.isOnline && this.user.last_visit != null) ? osu.trans('users.show.lastvisit', { date: osu.timeago(this.user.last_visit) }) : '';
     const status = this.isOnline ? osu.trans('users.status.online') : osu.trans('users.status.offline');
@@ -310,7 +315,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderStatusIcon() {
-    if (!this.isUserLoaded) { return null; }
+    if (!this.isUserVisible) { return null; }
 
     return (
       <div className='user-card__status-icon-container'>

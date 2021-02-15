@@ -155,8 +155,8 @@ return [
         'title' => "Profil de :username",
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'Publié :link',
+            'count' => ':count_delimited commentaire|:count_delimited commentaires',
         ],
         'edit' => [
             'cover' => [
@@ -353,12 +353,12 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Centres d\'intérêt',
             'location' => 'Position actuelle',
             'occupation' => 'Occupation',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'skype' => '',
+            'twitter' => '',
             'website' => 'Site Internet',
         ],
         'not_found' => [

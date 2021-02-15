@@ -6,11 +6,12 @@
 return [
     'all_read' => '¡Todas las notificaciones leídas!',
     'delete' => 'Eliminar :type',
-    'loading' => '',
+    'loading' => 'Cargando notificaciones no leídas...',
     'mark_read' => 'Borrar :type',
     'none' => 'No hay notificaciones',
     'see_all' => 'ver todas las notificaciones',
     'see_channel' => 'ir al chat',
+    'verifying' => 'Verifique la sesión para ver las notificaciones',
 
     'filters' => [
         '_' => 'todas',
@@ -136,11 +137,11 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Nuevo mapa',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Nuevo mapa ":title" por :username',
+                'user_beatmapset_new_compact' => 'Nuevo mapa ":title"',
+                'user_beatmapset_new_group' => 'Nuevos mapas por :username',
             ],
         ],
 
@@ -214,7 +215,7 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username ha creado nuevos mapas',
             ],
         ],
     ],

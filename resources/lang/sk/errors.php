@@ -27,7 +27,6 @@ return [
         'operation_timeout_exception' => '',
     ],
 
-    'logged_out' => 'Boli ste odhlasený. Prihláste sa a skúste to znova.',
     'supporter_only' => 'Musíte byť osu! supporter pre použitie tejto funkcie.',
     'no_restricted_access' => 'Nie ste schopní vykonať túto akciu, zatiaľ čo váš účet je v obmedzenom stave.',
     'unknown' => 'Nastala neznáma chyba.',

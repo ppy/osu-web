@@ -5,33 +5,33 @@
 
 return [
     'signature' => [
-        'not_match' => 'Signaturer stämmer inte överens',
+        'not_match' => '',
     ],
-    'notification_type' => 'notification_type är inte en giltigt :type',
+    'notification_type' => '',
     'order' => [
-        'invalid' => 'Order är inte giltigt',
+        'invalid' => '',
         'items' => [
-            'virtual_only' => '`:provider` betalning är inte giltigt för fysiska föremål.',
+            'virtual_only' => '',
         ],
         'status' => [
-            'not_checkout' => 'Försöker acceptera betalning för en order i fel stat `:state`.',
-            'not_paid' => 'Försöker återbetala betalning för en order i fel stat `:state`.',
+            'not_checkout' => '',
+            'not_paid' => '',
         ],
     ],
     'param' => [
-        'invalid' => '`:param` parameter stämmer inte överens',
+        'invalid' => '',
     ],
     'paypal' => [
-        'not_echeck' => 'Pågående betalning är inte en echeck. (:actual)',
+        'not_echeck' => '',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => 'Betalningssumma stämmer inte överens: :actual != :expected',
-            'currency' => 'Betalning är inte i USD. (:type)',
+            'amount' => '',
+            'currency' => '',
         ],
     ],
     'order_number' => [
-        'malformed' => 'Mottagen order transaktion id är missformad',
-        'user_id_mismatch' => 'external_id innehåller fel användar id',
+        'malformed' => '',
+        'user_id_mismatch' => '',
     ],
 ];

@@ -15,11 +15,11 @@ import PostItem from './post-item';
 interface Props {
   container: HTMLElement;
   data: PostsJson;
-  sidebarMeta: NewsSidebarMetaJson;
 }
 
 interface PostsJson {
   news_posts: PostJson[];
+  news_sidebar: NewsSidebarMetaJson;
   search: Search;
 }
 
@@ -71,7 +71,7 @@ export default class Main extends React.Component<Props, State> {
         <div className='osu-page osu-page--wiki'>
           <div className='wiki-page'>
             <div className='wiki-page__toc'>
-              <NewsSidebar data={this.props.sidebarMeta} />
+              <NewsSidebar data={this.props.data.news_sidebar} />
             </div>
 
             <div className='wiki-page__content'>
@@ -159,7 +159,7 @@ export default class Main extends React.Component<Props, State> {
     const search: Search = {
       cursor: {},
       limit: 21,
-      year: this.props.sidebarMeta.current_year,
+      year: this.props.data.news_sidebar.current_year,
     };
 
     const lastPost = _.last(this.state.posts);

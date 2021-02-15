@@ -129,16 +129,16 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Unggah Lebih Banyak Beatmap',
-                'description' => 'Berapa banyak beatmap non-ranked yang dapat kamu miliki dihitung dari nilai dasar ditambah bonus tambahan untuk tiap beatmap ranked yang kamu miliki saat ini (hingga batas).<br/><br/> Biasanya jumlahnya adalah 4 ditambah 1 per beatmap ranked (hingga 2). Dengan supporter, jumlah ini meningkat menjadi 8 ditambah 1 per beatmap ranked (hingga 12).',
+                'description' => 'Jumlah beatmap Pending yang dapat kamu unggah pada satu waktu pada umumnya terbatas hanya pada bilangan :base beatmap ditambah :bonus beatmap per beatmap Ranked yang kamu miliki (hingga :bonus_max beatmap).<br/><br/> Dengan osu!supporter, kamu akan dapat mengunggah lebih banyak beatmap hingga bilangan :supporter_base beatmap ditambah :supporter_bonus beatmap per beatmap Ranked yang kamu miliki (hingga :supporter_bonus_max beatmap).',
             ],
             'friend_filtering' => [
                 'title' => 'Papan Peringkat Teman',
-                'description' => 'Bersainglah dengan teman-temanmu dan lihat bagaimana kamu dapat melawan dengan menunjukkan peringkatmu pada mereka!*<br/><br/><small>* fitur ini belum tersedia di situs baru, segera tersedia (tm) </small>',
+                'description' => 'Bersainglah dengan teman-temanmu dan lihat siapa yang paling unggul di antara kamu dan teman-temanmu!',
             ],
 
         ],
         'supporter_status' => [
-            'contribution' => 'Terima kasih atas dukungan Anda! Anda telah membeli supporter tag sebanyak :tags kali dengan total kontribusi sebesar :dollars!',
+            'contribution' => 'Terima kasih atas dukungan Anda! Anda telah membeli supporter tag sebanyak :tags kali dengan total kontribusi finansial senilai :dollars!',
             'gifted' => ":giftedTags dari pembelian tag Anda telah dihadiahkan (dengan total sebesar :giftedDollars telah dihadiahkan). Terima kasih atas kemurahan hati Anda!",
             'not_yet' => "Anda belum pernah memiliki supporter tag :(",
             'valid_until' => 'Supporter Tag Anda saat ini berlaku hingga :date!',

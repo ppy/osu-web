@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Λίστα Beatmaps',
         'guest_title' => 'Beatmaps',
@@ -39,6 +43,10 @@ return [
             'hybrid_warning' => '',
             'which_modes' => '',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -106,10 +114,22 @@ return [
             'genre' => 'Είδος',
             'language' => 'Γλώσσα',
             'no_scores' => 'Τα δεδομένα ακόμα υπολογίζονται...',
+            'nsfw' => '',
             'points-of-failure' => 'Σημεία Αποτυχίας',
             'source' => 'Προέλευση',
             'success-rate' => 'Ποσοστό Επιτυχίας',
             'tags' => 'Ετικέτες',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

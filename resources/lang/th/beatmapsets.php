@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'รายการ Beatmap',
         'guest_title' => 'บีทแมพ',
@@ -41,6 +45,10 @@ return [
         ],
     ],
 
+    'nsfw_badge' => [
+        'label' => '',
+    ],
+
     'show' => [
         'discussion' => 'การสนทนา',
 
@@ -53,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'ดาวน์โหลด',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'ไม่มีวิดิโอ',
                 'video' => 'พร้อมวิดิโอ',
             ],
@@ -106,10 +114,22 @@ return [
             'genre' => 'ประเภท',
             'language' => 'ภาษา',
             'no_scores' => 'ข้อมูลกำลังถูกคำนวณ...',
+            'nsfw' => '',
             'points-of-failure' => 'ความล้มเหลว',
             'source' => 'แหล่งที่มา',
             'success-rate' => 'อัตราการผ่าน',
             'tags' => 'แท็ก',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [
@@ -139,7 +159,7 @@ return [
                 'friend' => 'ยังไม่มีใครในเพือนของคุณที่ทำคะแนนบนแมพนี้ได้!',
                 'global' => 'ยังไม่มีคะแนน บางทีคุณอาจจะลองทำดูนะ',
                 'loading' => 'กำลังโหลดคะแนน...',
-                'unranked' => 'บีทแมพที่ไม่ได้จัดอันดับ.',
+                'unranked' => 'แมพที่ไม่ได้จัดอันดับ',
             ],
             'score' => [
                 'first' => 'นำ',

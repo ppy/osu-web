@@ -6,11 +6,12 @@
 return [
     'all_read' => '모든 알림을 읽었어요!',
     'delete' => ':type 삭제',
-    'loading' => '',
+    'loading' => '읽지 않은 알림 불러오는 중...',
     'mark_read' => ':type 비우기',
     'none' => '알림 없음',
     'see_all' => '모든 알림 보기',
     'see_channel' => '채팅으로 이동',
+    'verifying' => '알림을 보려면 세션을 검증해주세요.',
 
     'filters' => [
         '_' => '전체',
@@ -136,11 +137,11 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => '새 비트맵',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => ':username 님의 새로운 비트맵 ":title"',
+                'user_beatmapset_new_compact' => '새 비트맵 ":title"',
+                'user_beatmapset_new_group' => ':username 님의 새 비트맵',
             ],
         ],
 
@@ -214,7 +215,7 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username 님이 새 비트맵을 제작했습니다',
             ],
         ],
     ],

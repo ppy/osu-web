@@ -17,7 +17,7 @@ return [
 
     'forum_posts' => [
         'created' => '',
-        'relevance' => '',
+        'relevance' => 'Relevancia',
     ],
 
     'forum_topics' => [

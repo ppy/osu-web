@@ -6,11 +6,12 @@
 return [
     'all_read' => 'Toutes les notifications lues !',
     'delete' => 'Supprimer :type',
-    'loading' => '',
+    'loading' => 'Chargement des notifications non lues...',
     'mark_read' => 'Effacer :type',
     'none' => 'Pas de notifications',
     'see_all' => 'voir toutes les notifications',
     'see_channel' => 'accéder au chat',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'tout',

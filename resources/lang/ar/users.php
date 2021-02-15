@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'الأعضاء حسب نمط اللعبة',
     ],
 
     'force_reactivation' => [
@@ -155,8 +155,8 @@ return [
         'title' => "صفحة:username الشخصية",
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'نَشَر :link',
+            'count' => ':count_delimited تعليق|:count_delimited تعليقات',
         ],
         'edit' => [
             'cover' => [
@@ -167,7 +167,7 @@ return [
                     'button' => 'رفع صورة',
                     'dropzone' => 'اَسقط الملف هنا للرفع',
                     'dropzone_info' => 'يمكنك أيضا إسقاط الصورة هنا للرفع',
-                    'size_info' => 'حجم الغلاف يجب ان يكون 2400x620',
+                    'size_info' => 'حجم الغلاف يجب ان يكون 2400x640',
                     'too_large' => 'الملف المرفوع كبير جدا.',
                     'unsupported_format' => 'تنسيق غير مدعوم.',
 

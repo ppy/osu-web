@@ -32,12 +32,12 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'aktueller standort',
                 'user_interests' => 'interessen',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => 'beschäftigung',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'webseite',
             ],
         ],
@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'warnungen für expliziten inhalt in beatmaps ausblenden',
+        'beatmapset_title_show_original' => 'beatmap-metadaten in originalsprache anzeigen',
         'title' => 'Optionen',
 
         'beatmapset_download' => [
             '_' => 'bevorzuge beatmap-download',
             'all' => 'mit video, falls verfügbar',
-            'no_video' => 'ohne video',
             'direct' => 'in osu!direct öffnen',
+            'no_video' => 'ohne video',
         ],
-
-        'beatmapset_title_show_original' => 'beatmap-metadaten in originalsprache anzeigen',
     ],
 
     'playstyles' => [
@@ -101,7 +101,7 @@ return [
     ],
 
     'security' => [
-        'current_session' => 'Aktuell',
+        'current_session' => 'aktuell',
         'end_session' => 'Sitzung beenden',
         'end_session_confirmation' => 'Das wird deine Sitzung auf diesem Gerät sofort beenden. Bist du sicher?',
         'last_active' => 'Zuletzt aktiv:',

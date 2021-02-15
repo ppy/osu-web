@@ -225,7 +225,7 @@ return [
                 'genre' => 'Genre',
                 'language' => 'Language',
                 'mode' => 'Mode',
-                'nsfw' => 'Explicit Maps',
+                'nsfw' => 'Explicit Content',
                 'played' => 'Played',
                 'rank' => 'Rank Achieved',
                 'status' => 'Categories',
@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Recommended difficulty',
         'converts' => 'Include converted beatmaps',
+        'follows' => 'Subscribed mappers',
+        'recommended' => 'Recommended difficulty',
     ],
     'mode' => [
         'all' => 'All',

@@ -18,11 +18,13 @@
                 if ($active) {
                     $currentOrder = $searchParams->sortOrder;
                     $order = $currentOrder === 'asc' ? 'desc' : 'asc';
+                    $arrowOrder = $currentOrder;
                 } else {
                     $order = App\Libraries\Search\ForumSearchParams::DEFAULT_SORT_ORDER;
+                    $arrowOrder = $order;
                 }
                 $sort = "{$field}_{$order}";
-                $arrowClass = ($currentOrder ?? $order) === 'asc' ? 'fas fa-caret-up' : 'fas fa-caret-down';
+                $arrowClass = $arrowOrder === 'asc' ? 'fas fa-caret-up' : 'fas fa-caret-down';
             @endphp
             <a
                 class="{{ class_with_modifiers('sort__item', ['active' => $active, 'button' => true]) }}"

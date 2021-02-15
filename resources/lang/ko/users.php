@@ -155,8 +155,8 @@ return [
         'title' => ":username님의 프로필",
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => ':link 작성됨',
+            'count' => '댓글 :count_delimited개',
         ],
         'edit' => [
             'cover' => [
@@ -353,12 +353,12 @@ return [
         ],
 
         'info' => [
-            'discord' => '디스코드',
+            'discord' => '',
             'interests' => '관심 분야',
             'location' => '거주지',
             'occupation' => '직업',
-            'skype' => '스카이프',
-            'twitter' => '트위터',
+            'skype' => '',
+            'twitter' => '',
             'website' => '웹사이트',
         ],
         'not_found' => [

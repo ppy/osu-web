@@ -8,6 +8,7 @@ namespace App\Models\Forum;
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\EsIndexDocument;
 use App\Jobs\UpdateUserForumCache;
+use App\Jobs\UpdateUserForumTopicFollows;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\Transactions\AfterCommit;
@@ -233,7 +234,7 @@ class Topic extends Model implements AfterCommit, Indexable
             return false;
         }
 
-        return $this->getConnection()->transaction(function () use ($destinationForum) {
+        $this->getConnection()->transaction(function () use ($destinationForum) {
             $originForum = $this->forum;
             $this->forum()->associate($destinationForum);
             $this->save();
@@ -248,19 +249,21 @@ class Topic extends Model implements AfterCommit, Indexable
             optional($originForum)->postsAdded($visiblePostsCount * -1);
             optional($this->forum)->topicsAdded(1);
             optional($this->forum)->postsAdded($visiblePostsCount);
-
-            $this
-                ->posts()
-                ->withTrashed()
-                // this relies on dispatcher always reloading the model
-                ->select(['poster_id', 'post_id'])
-                ->each(function ($post) {
-                    dispatch(new UpdateUserForumCache($post->poster_id));
-                    dispatch(new EsIndexDocument($post));
-                });
-
-            return true;
         });
+
+        $this
+            ->posts()
+            ->withTrashed()
+            // this relies on dispatcher always reloading the model
+            ->select(['poster_id', 'post_id'])
+            ->each(function ($post) {
+                dispatch(new UpdateUserForumCache($post->poster_id));
+                dispatch(new EsIndexDocument($post));
+            });
+
+        dispatch(new UpdateUserForumTopicFollows($this));
+
+        return true;
     }
 
     public static function typeStr($typeInt)
@@ -524,11 +527,8 @@ class Topic extends Model implements AfterCommit, Indexable
 
     public function scopeWatchedByUser($query, $user)
     {
-        $forumIds = Authorize::aclGetAllowedForums($user, 'f_read');
-
         return $query
             ->with('forum')
-            ->whereIn('forum_id', $forumIds)
             ->whereIn(
                 'topic_id',
                 TopicWatch::where('user_id', $user->user_id)->select('topic_id')

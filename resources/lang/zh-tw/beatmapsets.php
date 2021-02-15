@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => '圖譜列表',
         'guest_title' => '圖譜',
@@ -41,6 +45,10 @@ return [
         ],
     ],
 
+    'nsfw_badge' => [
+        'label' => '',
+    ],
+
     'show' => [
         'discussion' => '討論',
 
@@ -53,7 +61,7 @@ return [
 
             'download' => [
                 '_' => '下載',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => '不含影像',
                 'video' => '含影像',
             ],
@@ -106,10 +114,22 @@ return [
             'genre' => '曲風',
             'language' => '語言',
             'no_scores' => '資料還在計算中。。。',
+            'nsfw' => '',
             'points-of-failure' => '失敗位置',
             'source' => '來源',
             'success-rate' => '成功率',
             'tags' => '標籤',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [
@@ -127,7 +147,7 @@ return [
                 'miss' => 'Miss',
                 'mods' => 'Mods',
                 'player' => '玩家',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => '排行榜',
                 'score_total' => '總分',
                 'score' => '得分',

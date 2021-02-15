@@ -220,14 +220,15 @@ return [
             'not-found' => 'geen resultaten',
             'not-found-quote' => '... nope, niets gevonden.',
             'filters' => [
+                'extra' => 'extra',
                 'general' => 'Algemeen',
-                'mode' => 'Mode',
-                'status' => 'Categorieën',
                 'genre' => 'Genre',
                 'language' => 'Taal',
-                'extra' => 'extra',
-                'rank' => 'Rank Behaald',
+                'mode' => 'Mode',
+                'nsfw' => '',
                 'played' => 'Gespeeld',
+                'rank' => 'Rank Behaald',
+                'status' => 'Categorieën',
             ],
             'sorting' => [
                 'title' => 'Titel',
@@ -254,10 +255,10 @@ return [
     'mode' => [
         'all' => '',
         'any' => 'Alles',
-        'osu' => 'osu!',
-        'taiko' => 'osu!taiko',
-        'fruits' => 'osu!catch',
-        'mania' => 'osu!mania',
+        'osu' => '',
+        'taiko' => '',
+        'fruits' => '',
+        'mania' => '',
     ],
     'status' => [
         'any' => 'Alles',
@@ -302,7 +303,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
-        'MR' => 'Mirror',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',
@@ -330,6 +331,12 @@ return [
         'other' => 'Anders',
         'unspecified' => 'Niet Gespecificeerd',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Alles',
         'played' => 'Gespeeld',
@@ -342,13 +349,13 @@ return [
     'rank' => [
         'any' => 'Alles',
         'XH' => 'Zilveren SS',
-        'X' => 'SS',
+        'X' => '',
         'SH' => 'Zilveren S',
-        'S' => 'S',
-        'A' => 'A',
-        'B' => 'B',
-        'C' => 'C',
-        'D' => 'D',
+        'S' => '',
+        'A' => '',
+        'B' => '',
+        'C' => '',
+        'D' => '',
     ],
     'panel' => [
         'playcount' => 'Speelaantal :count',

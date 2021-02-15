@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Beatmap lista',
         'guest_title' => 'Beatmap-ek',
@@ -41,6 +45,10 @@ return [
         ],
     ],
 
+    'nsfw_badge' => [
+        'label' => '',
+    ],
+
     'show' => [
         'discussion' => 'Beszélgetés',
 
@@ -53,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Letöltés',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'Videó nélkül',
                 'video' => 'Videóval',
             ],
@@ -106,10 +114,22 @@ return [
             'genre' => 'Műfaj',
             'language' => 'Nyelv',
             'no_scores' => 'Az adatok még számítás alatt...',
+            'nsfw' => '',
             'points-of-failure' => 'Kibukási Alkalmak',
             'source' => 'Forrás',
             'success-rate' => 'Teljesítési arány',
             'tags' => 'Címkék',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

@@ -6,11 +6,12 @@
 return [
     'all_read' => 'Tüm bildirimler okundu!',
     'delete' => ':type sil',
-    'loading' => '',
+    'loading' => 'Okunmamış bildirimler yükleniyor...',
     'mark_read' => ':type temizle',
     'none' => 'Bildirim yok',
     'see_all' => 'tüm bildirimleri gör',
     'see_channel' => 'sohbete git',
+    'verifying' => 'Bildirimleri görüntülemek için lütfen oturumunuzu doğrulayın',
 
     'filters' => [
         '_' => 'hepsi',
@@ -136,11 +137,11 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Yeni beatmap',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => ':username tarafından yeni beatmap ":title"',
+                'user_beatmapset_new_compact' => 'Yeni beatmap ":title"',
+                'user_beatmapset_new_group' => ' :username tarafından yapılmış yeni beatmapler',
             ],
         ],
 
@@ -214,7 +215,7 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username yeni beatmapler yaptı',
             ],
         ],
     ],

@@ -11,13 +11,17 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Beatmaps Listning',
         'guest_title' => 'Beatmaps',
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'inga beatmaps',
 
         'download' => [
             'all' => 'ladda ner',
@@ -29,16 +33,20 @@ return [
 
     'nominate' => [
         'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
+        'incorrect_mode' => 'Du har inte behörighet att nominera för läge: :mode',
         'full_bn_required' => '',
         'too_many' => '',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
+            'confirmation' => 'Är du säker på att du vill nominera denna Beatmap?',
+            'header' => 'Nominera Beatmap',
             'hybrid_warning' => '',
             'which_modes' => '',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -53,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Ladda Ner',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'utan Video',
                 'video' => 'med Video',
             ],
@@ -106,10 +114,22 @@ return [
             'genre' => 'Genre',
             'language' => 'Språk',
             'no_scores' => 'Data beräknas...',
+            'nsfw' => '',
             'points-of-failure' => 'Punkter av Misslyckande',
             'source' => 'Källa',
             'success-rate' => 'Genomsnittig Succe',
             'tags' => 'Taggar',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

@@ -27,7 +27,6 @@ return [
         'operation_timeout_exception' => 'Attualmente la ricerca è più occupata del solito, riprova più tardi.',
     ],
 
-    'logged_out' => 'Sei stato disconnesso. Per favore effettua di nuovo il login e riprova.',
     'supporter_only' => 'Devi essere un supporter per poter usare questa funzionalità.',
     'no_restricted_access' => 'Non puoi fare questa azione mentre il tuo account è limitato.',
     'unknown' => 'Si è verificato un errore sconosciuto.',

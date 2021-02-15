@@ -11,6 +11,7 @@ return [
     'none' => 'Ingen notifikationer',
     'see_all' => 'se alle notifikationer',
     'see_channel' => '',
+    'verifying' => 'Bekræft venligst session for at se notifikationer',
 
     'filters' => [
         '_' => 'alle',

@@ -11,6 +11,7 @@ return [
     'none' => 'Няма апавяшчэнняў',
     'see_all' => 'гл. усе апавяшчэнні',
     'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'усе',

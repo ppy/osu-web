@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Beatmap Lijst',
         'guest_title' => 'Beatmaps',
@@ -41,6 +45,10 @@ return [
         ],
     ],
 
+    'nsfw_badge' => [
+        'label' => '',
+    ],
+
     'show' => [
         'discussion' => 'Discussie',
 
@@ -53,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'downloaden',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'zonder video',
                 'video' => 'met Video',
             ],
@@ -106,10 +114,22 @@ return [
             'genre' => 'Genre',
             'language' => 'Taal',
             'no_scores' => 'Data nog aan het berekenen...',
+            'nsfw' => '',
             'points-of-failure' => 'Faalpunten',
             'source' => 'Bron',
             'success-rate' => 'Slagingspercentage',
             'tags' => 'Labels',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

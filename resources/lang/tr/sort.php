@@ -4,24 +4,24 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    '_' => 'Şuna göre sırala',
+    '_' => 'Sıralama ölçütü',
 
-    'all' => 'Hepsi',
+    'all' => 'Tümü',
     'friends' => 'Arkadaşlar',
     'last_visit' => 'Son zamanlarda aktif',
-    'new' => 'En son yüklenen',
-    'old' => 'Eski',
+    'new' => 'En son',
+    'old' => 'En eski',
     'rank' => 'Sıralama',
     'top' => 'En üst',
     'username' => 'Kullanıcı adı',
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Gönderi tarihi',
+        'relevance' => 'Alaka',
     ],
 
     'forum_topics' => [
-        'feature_votes' => 'Yıldız öncelik',
-        'new' => 'Son Yanıt',
+        'feature_votes' => 'Yıldız önceliği',
+        'new' => 'Son yanıt',
     ],
 ];

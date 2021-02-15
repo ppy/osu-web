@@ -8,7 +8,11 @@ return [
         'disabled' => 'Bu beatmap henüz indirilmeye açık değil.',
         'parts-removed' => 'Bu beatmapin bazı bölümleri içerik oluşturucunun ya da üçüncü parti hak sahibinin isteği üzerine kaldırılmıştır.',
         'more-info' => 'Daha fazla bilgi için buraya göz atın.',
-        'rule_violation' => '',
+        'rule_violation' => 'Bu beatmap üzerinde yer alan bazı varlıklar osu!\'da kullanıma uygun olmadığına karar verildikten sonra kaldırıldı.',
+    ],
+
+    'download' => [
+        'limit_exceeded' => '',
     ],
 
     'index' => [
@@ -17,7 +21,7 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'beatmap yok',
 
         'download' => [
             'all' => 'indir',
@@ -28,28 +32,32 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'hybrid_requires_modes' => 'Karma bir beatmap seti, adaylık için en az bir oyun modu seçmenizi gerektirir.',
+        'incorrect_mode' => ':mode modunu aday göstermek için izniniz yok.',
+        'full_bn_required' => 'Bu niteliklendirme aday gösterimini gerçekleştirebilmeniz için tam aday gösterici olmanız gerekmektedir.',
+        'too_many' => 'Adaylık şartı zaten yerine getirildi.',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'confirmation' => 'Bu Beatmap\'i aday göstermek istediğinize emin misiniz?',
+            'header' => 'Beatmap aday gösterin',
+            'hybrid_warning' => 'not: sadece bir kez aday gösterebilirsiniz, bu yüzden lütfen istediğiniz tüm oyun modlarını aday gösterdiğinizden emin olun',
+            'which_modes' => 'Hangi modlar için aday gösterilsin?',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Müstehcen',
     ],
 
     'show' => [
         'discussion' => 'Tartışma',
 
         'details' => [
-            'favourite' => 'Haritayı favorilere ekle',
+            'favourite' => 'Beatmap setini favorilere ekle',
             'logged-out' => 'Herhangi bir beatmapi indirmeden önce giriş yapmalısınız!',
             'mapped_by' => ':mapper tarafından yapıldı',
-            'unfavourite' => 'Haritayı favorilerden çıkar',
-            'updated_timeago' => 'son güncelleme :timeago',
+            'unfavourite' => 'Beatmap setini favorilerden çıkar',
+            'updated_timeago' => 'son güncelleme: :timeago',
 
             'download' => [
                 '_' => 'İndir',
@@ -60,17 +68,17 @@ return [
 
             'login_required' => [
                 'bottom' => 'daha fazla özelliğe erişmek için',
-                'top' => 'Oturum Aç',
+                'top' => 'Giriş Yap',
             ],
         ],
 
         'details_date' => [
-            'approved' => 'onaylandı :timeago',
-            'loved' => 'sevildi :timeago',
-            'qualified' => ':timeago önce nitelikli oldu',
-            'ranked' => ':timeago önce dereceli oldu',
-            'submitted' => ':timeago önce gönderildi',
-            'updated' => 'en son :timeago önce güncellendi',
+            'approved' => 'onaylandı: :timeago',
+            'loved' => 'sevilenlere eklendi: :timeago',
+            'qualified' => 'nitelikli oldu: :timeago',
+            'ranked' => 'dereceli oldu: :timeago',
+            'submitted' => 'gönderildi: :timeago',
+            'updated' => 'son güncelleme: :timeago',
         ],
 
         'favourites' => [
@@ -106,10 +114,22 @@ return [
             'genre' => 'Tür',
             'language' => 'Dil',
             'no_scores' => 'Veriler hala hesaplanıyor...',
+            'nsfw' => 'Müstehcen içerik',
             'points-of-failure' => 'Başarısız Olunan Kısımlar',
             'source' => 'Kaynak',
             'success-rate' => 'Başarı Oranı',
             'tags' => 'Etiketler',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'Bu beatmap müstehcen, ofansif, veya rahatsız edici içerik içermektedir. Yine de görüntülemek istiyor musunuz?',
+            'title' => 'Müstehcen İçerik',
+
+            'buttons' => [
+                'disable' => 'Uyarıyı devre dışı bırak',
+                'listing' => 'Beatmap listesi',
+                'show' => 'Göster',
+            ],
         ],
 
         'scoreboard' => [
@@ -122,8 +142,8 @@ return [
             'title' => 'Skor tahtası',
 
             'headers' => [
-                'accuracy' => 'İsabetlilik',
-                'combo' => 'Maksimum Kombo',
+                'accuracy' => 'İSABETLİLİK',
+                'combo' => 'Maks Kombo',
                 'miss' => 'Iska',
                 'mods' => 'Modlar',
                 'player' => 'Oyuncu',

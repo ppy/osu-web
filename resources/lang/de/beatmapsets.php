@@ -8,7 +8,11 @@ return [
         'disabled' => 'Diese Beatmap steht momentan nicht zum Herunterladen zur Verfügung.',
         'parts-removed' => 'Teile dieser Beatmap wurden auf Anfrage des Erstellers oder eines Rechteinhabers entfernt.',
         'more-info' => 'Siehe hier für mehr Informationen.',
-        'rule_violation' => '',
+        'rule_violation' => 'Einige in dieser Beatmap enthaltene Assets wurden entfernt, nachdem sie als nicht für die Verwendung in osu! geeignet eingestuft worden waren.',
+    ],
+
+    'download' => [
+        'limit_exceeded' => '',
     ],
 
     'index' => [
@@ -17,7 +21,7 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'keine beatmaps',
 
         'download' => [
             'all' => 'herunterladen',
@@ -28,17 +32,21 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'hybrid_requires_modes' => 'Für ein Hybrid-Beatmapset musst du mindestens einen Spielmodus auswählen, für den du nominieren möchtest.',
+        'incorrect_mode' => 'Du hast keine Berechtigung, für diesen Modus zu nominieren: :mode',
+        'full_bn_required' => 'Du musst ein vollwertiger Nominator sein, um diese qualifizierende Nominierung durchzuführen.',
+        'too_many' => 'Nominierungsvoraussetzung bereits erfüllt.',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'confirmation' => 'Bist du sicher, dass du diese Beatmap nominieren möchtest?',
+            'header' => 'Beatmap nominieren',
+            'hybrid_warning' => 'hinweis: du kannst nur einmal nominieren, also stelle bitte sicher, dass du für alle spielmodi nominierst, die du beabsichtigst',
+            'which_modes' => 'Für welche Modi nominieren?',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Explizit',
     ],
 
     'show' => [
@@ -53,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Herunterladen',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'ohne Video',
                 'video' => 'mit Video',
             ],
@@ -106,10 +114,22 @@ return [
             'genre' => 'Genre',
             'language' => 'Sprache',
             'no_scores' => 'Die Daten werden noch verarbeitet...',
+            'nsfw' => 'Expliziter Inhalt',
             'points-of-failure' => 'Stellen, an denen Spieler gescheitert sind',
             'source' => 'Quelle',
             'success-rate' => 'Erfolgsrate',
             'tags' => 'Tags',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'Diese Beatmap enthält explizite, anstößige oder verstörende Inhalte. Möchtest du sie trotzdem sehen?',
+            'title' => 'Expliziter Inhalt',
+
+            'buttons' => [
+                'disable' => 'Warnung deaktivieren',
+                'listing' => 'Beatmap-Auflistung',
+                'show' => 'Anzeigen',
+            ],
         ],
 
         'scoreboard' => [
@@ -127,7 +147,7 @@ return [
                 'miss' => 'Miss',
                 'mods' => 'Mods',
                 'player' => 'Spieler',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Rang',
                 'score_total' => 'Gesamtpunktzahl',
                 'score' => 'Punktzahl',

@@ -159,6 +159,10 @@ return [
             'error' => 'Parámetro de solicitud no válido',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => '¡Oh no! ¡Algo se ha roto! ;_;',
             'description' => "Somos notificados automáticamente de cada error.",
@@ -171,8 +175,8 @@ return [
             'error' => '¡Fuera de servicio por mantenimiento!',
             'description' => "El mantenimiento normalmente tarda entre 5 segundos y 10 minutos. Si continúa pasado ese tiempo, ve :link para más información.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -204,7 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Configuración',
-            'follows' => '',
+            'follows' => 'Listas de seguimiento',
             'friends' => 'Amigos',
             'logout' => 'Cerrar sesión',
             'profile' => 'Mi perfil',

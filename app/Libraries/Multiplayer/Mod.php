@@ -37,6 +37,7 @@ class Mod
     const OSU_DEFLATE = 'DF';
     const OSU_SPININ = 'SI';
     const OSU_TRACEABLE = 'TC';
+    const OSU_CLASSIC = 'CL';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -54,6 +55,7 @@ class Mod
     const MANIA_MIRROR = 'MR';
     const MANIA_RANDOM = 'RD';
     const MANIA_INVERT = 'IN';
+    const MANIA_CONSTANTSPEED = 'CS';
 
     // taiko-specific
     const TAIKO_RANDOM = 'RD';
@@ -142,6 +144,7 @@ class Mod
             'overall_difficulty' => 'float',
             'circle_size' => 'float',
             'approach_rate' => 'float',
+            'scroll_speed' => 'float',
         ],
         self::DOUBLETIME => [
             'speed_change' => 'float',
@@ -217,6 +220,7 @@ class Mod
                         self::OSU_DEFLATE,
                         self::OSU_SPININ,
                         self::OSU_TRACEABLE,
+                        self::OSU_CLASSIC,
                     ]
                 ),
 
@@ -252,6 +256,7 @@ class Mod
                         self::MANIA_MIRROR,
                         self::MANIA_RANDOM,
                         self::MANIA_INVERT,
+                        self::MANIA_CONSTANTSPEED,
                     ]
                 ),
             ];

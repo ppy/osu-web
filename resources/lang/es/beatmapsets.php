@@ -8,7 +8,11 @@ return [
         'disabled' => 'Este mapa no está actualmente disponible para su descarga.',
         'parts-removed' => 'Partes de este mapa han sido eliminadas a petición de su creador o un titular de derechos de autor.',
         'more-info' => 'Haga clic aquí para obtener más información.',
-        'rule_violation' => '',
+        'rule_violation' => 'Algunos de los elementos contenidos en este mapa han sido eliminados después de ser considerados no aptos para su uso en osu!.',
+    ],
+
+    'download' => [
+        'limit_exceeded' => '',
     ],
 
     'index' => [
@@ -17,7 +21,7 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'sin mapas',
 
         'download' => [
             'all' => 'descargar',
@@ -28,17 +32,21 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'hybrid_requires_modes' => 'Un set de mapas híbrido requiere que seleccione al menos un modo de juego para nominar.',
+        'incorrect_mode' => 'No tiene permiso para nominar para el modo: :mode',
+        'full_bn_required' => 'Debe ser un nominador completo para realizar esta nominación calificada.',
+        'too_many' => 'Requisito de nominación ya cumplido.',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'confirmation' => '¿Seguro que desea nominar este mapa?',
+            'header' => 'Nominar mapa',
+            'hybrid_warning' => 'nota: sólo puede nominar una vez, así que asegúrese de que está nominando para todos los modos de juego que desee',
+            'which_modes' => '¿Nominar para qué modos?',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Explícito',
     ],
 
     'show' => [
@@ -53,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Descargar',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'sin vídeo',
                 'video' => 'con vídeo',
             ],
@@ -106,10 +114,22 @@ return [
             'genre' => 'Género',
             'language' => 'Idioma',
             'no_scores' => 'Los datos todavía están siendo calculados...',
+            'nsfw' => 'Contenido explícito',
             'points-of-failure' => 'Puntos de fracaso',
             'source' => 'Fuente',
             'success-rate' => 'Tasa de éxito',
             'tags' => 'Etiquetas',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'Este mapa del tiempo contiene contenido explícito, ofensivo o perturbador. ¿Desea verlo de todos modos?',
+            'title' => 'Contenido explícito',
+
+            'buttons' => [
+                'disable' => 'Desactivar advertencia',
+                'listing' => 'Listado de mapas',
+                'show' => 'Mostrar',
+            ],
         ],
 
         'scoreboard' => [
@@ -127,7 +147,7 @@ return [
                 'miss' => 'Fallos',
                 'mods' => 'Mods',
                 'player' => 'Jugador',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Puesto',
                 'score_total' => 'Puntuación total',
                 'score' => 'Puntuación',

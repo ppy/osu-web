@@ -155,8 +155,8 @@ return [
         'title' => ":username 的个人资料",
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => '发表了 :link',
+            'count' => ':count_delimited 条评论',
         ],
         'edit' => [
             'cover' => [
@@ -353,12 +353,12 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => '兴趣爱好',
             'location' => '所在地',
             'occupation' => '职业',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'skype' => '',
+            'twitter' => '',
             'website' => '网站',
         ],
         'not_found' => [

@@ -32,12 +32,12 @@ return [
             'title' => 'Trang cá nhân',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'vị trí hiện tại',
                 'user_interests' => 'sở thích',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => 'nghề nghiệp',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'trang web',
             ],
         ],
@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'hiển thị metadata của beatmap ở ngôn ngữ gốc',
         'title' => 'Tuỳ chọn',
 
         'beatmapset_download' => [
             '_' => 'kiểu tải beatmap mặc định',
             'all' => 'kèm video nếu có',
-            'no_video' => 'không kèm video',
             'direct' => 'mở trong osu!direct',
+            'no_video' => 'không kèm video',
         ],
-
-        'beatmapset_title_show_original' => 'hiển thị metadata của beatmap ở ngôn ngữ gốc',
     ],
 
     'playstyles' => [

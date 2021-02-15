@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Danh Sách Beatmap',
         'guest_title' => 'Beatmaps',
@@ -41,6 +45,10 @@ return [
         ],
     ],
 
+    'nsfw_badge' => [
+        'label' => '',
+    ],
+
     'show' => [
         'discussion' => 'Góc Thảo Luận',
 
@@ -53,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Tải Xuống',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'không Video',
                 'video' => 'cùng Video',
             ],
@@ -106,10 +114,22 @@ return [
             'genre' => 'Thể Loại',
             'language' => 'Ngôn Ngữ',
             'no_scores' => 'Vẫn đang tính toán dữ liệu...',
+            'nsfw' => '',
             'points-of-failure' => 'Tỉ Lệ Thất Bại',
             'source' => 'Nguồn',
             'success-rate' => 'Tỉ Lệ Thành Công',
             'tags' => 'Tags',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [
@@ -127,7 +147,7 @@ return [
                 'miss' => 'Miss',
                 'mods' => 'Mods',
                 'player' => 'Người Chơi',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Xếp Hạng',
                 'score_total' => 'Tổng Điểm',
                 'score' => 'Điểm',

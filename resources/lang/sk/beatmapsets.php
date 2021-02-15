@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Zoznam Beatmap',
         'guest_title' => 'Beatmapy',
@@ -39,6 +43,10 @@ return [
             'hybrid_warning' => '',
             'which_modes' => '',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -106,10 +114,22 @@ return [
             'genre' => 'Žáner',
             'language' => 'Jazyk',
             'no_scores' => 'Vypočítavajú sa dáta...',
+            'nsfw' => '',
             'points-of-failure' => 'Body Neúspechu',
             'source' => 'Zdroj',
             'success-rate' => 'Úspešnosť',
             'tags' => 'Tagy',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

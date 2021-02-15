@@ -35,9 +35,9 @@ return [
                 'user_discord' => '',
                 'user_from' => 'ที่อยู่ปัจจุบัน',
                 'user_interests' => 'สิ่งที่สนใจ',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => 'อาชีพ',
-                'user_twitter' => 'ทวิตเตอร์',
+                'user_twitter' => '',
                 'user_website' => 'เว็บไซต์',
             ],
         ],
@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'แสดงข้อมูลของ บีทแมพ ในภาษาดั้งเดิม',
         'title' => 'ตัวเลือก',
 
         'beatmapset_download' => [
             '_' => 'ประเภทการดาวน์โหลดบีทแมพเริ่มต้น',
             'all' => 'พร้อมวิดีโอ ถ้าใช้ได้',
-            'no_video' => 'โดยที่ไม่มีวิดีโอ',
             'direct' => 'เปิดใน osu!direct',
+            'no_video' => 'โดยที่ไม่มีวิดีโอ',
         ],
-
-        'beatmapset_title_show_original' => 'แสดงข้อมูลของ บีทแมพ ในภาษาดั้งเดิม',
     ],
 
     'playstyles' => [

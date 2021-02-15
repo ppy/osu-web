@@ -1,5 +1,69 @@
 [
     {
+        "uri": "api/v2/beatmaps/lookup",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\API\\BeatmapsController@lookup",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/beatmaps/{beatmap}/scores/users/{user}",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\BeatmapsController@userScore",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/beatmaps/{beatmap}/scores",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\BeatmapsController@scores",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/beatmaps/{beatmap}",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\API\\BeatmapsController@show",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
         "uri": "api/v2/beatmapsets/events",
         "methods": [
             "GET",
@@ -129,9 +193,12 @@
         "middlewares": [
             "throttle:1200,1,api:",
             "require-scopes",
+            "require-scopes:chat.write",
             "auth"
         ],
-        "scopes": []
+        "scopes": [
+            "chat.write"
+        ]
     },
     {
         "uri": "api/v2/chat/updates",
@@ -292,6 +359,38 @@
             "require-scopes"
         ],
         "scopes": []
+    },
+    {
+        "uri": "api/v2/matches",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\MatchesController@index",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/matches/{match}",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\MatchesController@show",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/rooms/{mode?}",
@@ -515,54 +614,6 @@
         ]
     },
     {
-        "uri": "api/v2/beatmaps/{id}/scores",
-        "methods": [
-            "GET",
-            "HEAD"
-        ],
-        "controller": "App\\Http\\Controllers\\BeatmapsController@scores",
-        "middlewares": [
-            "throttle:1200,1,api:",
-            "require-scopes",
-            "require-scopes:public"
-        ],
-        "scopes": [
-            "public"
-        ]
-    },
-    {
-        "uri": "api/v2/beatmaps/lookup",
-        "methods": [
-            "GET",
-            "HEAD"
-        ],
-        "controller": "App\\Http\\Controllers\\API\\BeatmapsController@lookup",
-        "middlewares": [
-            "throttle:1200,1,api:",
-            "require-scopes",
-            "require-scopes:public"
-        ],
-        "scopes": [
-            "public"
-        ]
-    },
-    {
-        "uri": "api/v2/beatmaps/{beatmap}",
-        "methods": [
-            "GET",
-            "HEAD"
-        ],
-        "controller": "App\\Http\\Controllers\\API\\BeatmapsController@show",
-        "middlewares": [
-            "throttle:1200,1,api:",
-            "require-scopes",
-            "require-scopes:public"
-        ],
-        "scopes": [
-            "public"
-        ]
-    },
-    {
         "uri": "api/v2/beatmapsets/search/{filters?}",
         "methods": [
             "GET",
@@ -768,6 +819,22 @@
             "HEAD"
         ],
         "controller": "App\\Http\\Controllers\\SpotlightsController@index",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/search",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\HomeController@search",
         "middlewares": [
             "throttle:1200,1,api:",
             "require-scopes",

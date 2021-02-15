@@ -11,6 +11,7 @@ return [
     'none' => 'Nessuna notifica',
     'see_all' => 'vedi tutte le notifiche',
     'see_channel' => 'vai alla chat',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'tutto',
@@ -136,11 +137,11 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Nuova beatmap',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Nuova beatmap ":title" di :username',
+                'user_beatmapset_new_compact' => 'Nuova beatmap ":title"',
+                'user_beatmapset_new_group' => 'Nuove beatmap di :username',
             ],
         ],
 
@@ -214,7 +215,7 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username ha creato nuove beatmap',
             ],
         ],
     ],

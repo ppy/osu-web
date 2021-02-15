@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Seznam Beatmap',
         'guest_title' => 'Beatmapy',
@@ -39,6 +43,10 @@ return [
             'hybrid_warning' => '',
             'which_modes' => '',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Explicitní',
     ],
 
     'show' => [
@@ -106,10 +114,22 @@ return [
             'genre' => 'Žánr',
             'language' => 'Jazyk',
             'no_scores' => 'Data se vypočítávají...',
+            'nsfw' => 'Explicitní obsah',
             'points-of-failure' => 'Body neúspěchů',
             'source' => 'Zdroj',
             'success-rate' => 'Úspěšnost',
             'tags' => 'Tagy',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'Tato beatmapa obsahuje explicitní, urážlivý nebo rušivý obsah. Chcete ji přesto zobrazit?',
+            'title' => 'Explicitní obsah',
+
+            'buttons' => [
+                'disable' => 'Vypnout varování',
+                'listing' => 'Seznam beatmap',
+                'show' => 'Zobrazit',
+            ],
         ],
 
         'scoreboard' => [

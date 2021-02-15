@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Listarea beatmapurilor',
         'guest_title' => 'Beatmaps',
@@ -30,15 +34,19 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => '',
         'incorrect_mode' => '',
-        'full_bn_required' => '',
+        'full_bn_required' => 'Trebuie să fi un nominator să participi în această nominare calificată.',
         'too_many' => '',
 
         'dialog' => [
-            'confirmation' => '',
+            'confirmation' => 'Ești sigur că vrei să nominalizezi acest Beatmap?',
             'header' => '',
             'hybrid_warning' => '',
             'which_modes' => '',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Explicit',
     ],
 
     'show' => [
@@ -106,10 +114,22 @@ return [
             'genre' => 'Gen',
             'language' => 'Limbă',
             'no_scores' => 'Încă se calculează datele...',
+            'nsfw' => 'Conținut explicit',
             'points-of-failure' => 'Puncte de eșec',
             'source' => 'Sursă',
             'success-rate' => 'Rata de succes',
             'tags' => 'Tag-uri',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'Acest beatmap conține conținut explicit, ofensiv sau deranjant. Doriți să-l vedeți oricum?',
+            'title' => 'Conținut explicit',
+
+            'buttons' => [
+                'disable' => 'Dezactivează avertisment',
+                'listing' => '',
+                'show' => 'Arată',
+            ],
         ],
 
         'scoreboard' => [

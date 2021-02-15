@@ -11,13 +11,17 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Beatmap-Liste',
         'guest_title' => 'Beatmaps',
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'ingen beatmaps',
 
         'download' => [
             'all' => 'download',
@@ -30,15 +34,19 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => '',
         'incorrect_mode' => '',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'full_bn_required' => 'Du skal være en fuld nominator for at kunne udføre denne kvalificerende nominering.',
+        'too_many' => 'Nomineringskravet er allerede opfyldt.',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'confirmation' => 'Er du sikker på du vil nominere dette Beatmap?',
+            'header' => 'Nominér Beatmap',
+            'hybrid_warning' => 'bemærk: du kan kun nominere én gang, så sørg for at du nominerer til alle spiltilstande, du har til hensigt til',
+            'which_modes' => 'Nominér for hvilke tilstande?',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -53,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Download',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'uden video',
                 'video' => 'med video',
             ],
@@ -106,10 +114,22 @@ return [
             'genre' => 'Genre',
             'language' => 'Sprog',
             'no_scores' => 'Data er stadig ved at blive beregnet...',
+            'nsfw' => '',
             'points-of-failure' => 'Fejl-steder',
             'source' => 'Kilde',
             'success-rate' => 'Succesrate',
             'tags' => 'Tags',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [
@@ -131,7 +151,7 @@ return [
                 'rank' => 'Rang',
                 'score_total' => 'Total Score',
                 'score' => 'Score',
-                'time' => '',
+                'time' => 'Tid',
             ],
 
             'no_scores' => [

@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Спіс бітмап',
         'guest_title' => 'Бітмапы',
@@ -39,6 +43,10 @@ return [
             'hybrid_warning' => '',
             'which_modes' => '',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -106,10 +114,22 @@ return [
             'genre' => 'Жанр',
             'language' => 'Мова',
             'no_scores' => 'Усё яшчэ ідзе падлік даных...',
+            'nsfw' => '',
             'points-of-failure' => 'Колькасць правалаў',
             'source' => 'Крыніца',
             'success-rate' => 'Шанц поспеху',
             'tags' => 'Тэгі',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

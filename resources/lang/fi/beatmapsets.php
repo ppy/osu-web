@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Beatmapit',
         'guest_title' => 'Beatmapit',
@@ -39,6 +43,10 @@ return [
             'hybrid_warning' => '',
             'which_modes' => '',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -106,10 +114,22 @@ return [
             'genre' => 'Tyylilaji',
             'language' => 'Kieli',
             'no_scores' => 'Dataa lasketaan...',
+            'nsfw' => '',
             'points-of-failure' => 'Epäonnistumiskohdat',
             'source' => 'Lähde',
             'success-rate' => 'Läpäisyprosentti',
             'tags' => 'Tunnisteet',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

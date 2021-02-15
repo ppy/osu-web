@@ -28,7 +28,7 @@ return [
             'guest' => 'Silakan masuk untuk dapat memberikan hype.',
             'hyped' => 'Anda telah memberikan hype untuk beatmap ini.',
             'limit_exceeded' => 'Anda telah menggunakan semua hype Anda.',
-            'not_hypeable' => 'Beatmap ini tidak dapat di-hype.',
+            'not_hypeable' => 'Beatmap ini tidak dapat di-hype',
             'owner' => 'Tidak dapat memberikan hype pada beatmap anda sendiri.',
         ],
 
@@ -109,7 +109,7 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => 'Jumlah aplikasi OAuth melebihi batas maksimal.',
-            'url' => 'Harap masukkan URL valid.',
+            'url' => 'Harap masukkan URL yang valid.',
 
             'attributes' => [
                 'name' => 'Nama Aplikasi',

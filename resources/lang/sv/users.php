@@ -155,7 +155,7 @@ return [
         'title' => ":username's profil",
 
         'comments_count' => [
-            '_' => '',
+            '_' => 'Upplagd :link',
             'count' => '',
         ],
         'edit' => [
@@ -353,12 +353,12 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Intressen',
             'location' => 'Nuvarande plats',
             'occupation' => 'Sysselsättning',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'skype' => '',
+            'twitter' => '',
             'website' => 'Hemsida',
         ],
         'not_found' => [

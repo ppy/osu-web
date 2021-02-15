@@ -25,11 +25,16 @@ return [
         'language_edit' => 'Dil :old\'dan :new\'e değiştirildi.',
         'love' => ':user tarafından sevildi',
         'nominate' => ':user tarafından aday gösterildi.',
-        'nominate_modes' => '',
+        'nominate_modes' => ' :user (:modes) tarafından aday gösterildi.',
         'nomination_reset' => 'Yeni sorun :discussion (:text) bir adaylık sıfırlamasını tetikledi.',
         'qualify' => 'Bu beatmap gerekli aday gösterilme miktarına ulaştı ve nitelikli oldu.',
         'rank' => 'Dereceli.',
         'remove_from_loved' => ':user tarafından Sevilenlerden çıkarıldı (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => 'Müstehcen işareti kaldırıldı',
+            'to_1' => 'Müstehcen olarak işaretlendi',
+        ],
     ],
 
     'index' => [
@@ -66,6 +71,7 @@ return [
         'love' => 'Love',
         'nominate' => 'Adaylık',
         'nomination_reset' => 'Adaylık Sıfırlama',
+        'nsfw_toggle' => 'Müstehcen işareti',
         'qualify' => 'Adaylık',
         'rank' => 'Sıralama',
         'remove_from_loved' => 'Sevilenlerden çıkarma',

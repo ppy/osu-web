@@ -73,9 +73,9 @@ return [
             'external_references' => '审阅包含不属于此审阅的 issues 的引用',
             'invalid_block_type' => '板块类型无效',
             'invalid_document' => '审阅无效',
-            'minimum_issues' => '审阅时必须提出最少 :count 个 issue |审阅时必须提出最少 :count 个 issue',
+            'minimum_issues' => '审阅时必须指出最少 :count 个问题',
             'missing_text' => '该版块缺少文本。',
-            'too_many_blocks' => '审阅只能包含 :count 个段落或 issue|审阅最多只能包含 :count 个段落或 issue',
+            'too_many_blocks' => '审阅只能包含 :count 个段落或问题',
         ],
     ],
 

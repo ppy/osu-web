@@ -127,7 +127,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'subskrybcje',
+            'title_compact' => 'lista obserwowanych wątków na forum',
 
             'box' => [
                 'total' => 'Zasubskrybowane wątki',

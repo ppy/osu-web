@@ -42,8 +42,8 @@ return [
         'ranked_score' => 'Điểm Được Xếp Hạng',
         'average_score' => 'Điểm Trung Bình',
         'average_performance' => 'pp Trung Bình',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];

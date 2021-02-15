@@ -159,6 +159,10 @@ return [
             'error' => 'Geçersiz istek parametreleri',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Hay aksi! Bir şeyler bozuldu! ;_;',
             'description' => "Her bir hata bize otomatik olarak bildirilir.",
@@ -204,7 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Ayarlar',
-            'follows' => '',
+            'follows' => 'İzleme listeleri',
             'friends' => 'Arkadaşlar',
             'logout' => 'Çıkış Yap',
             'profile' => 'Profilim',

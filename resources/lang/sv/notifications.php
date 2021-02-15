@@ -6,11 +6,12 @@
 return [
     'all_read' => 'Alla aviseringar är lästa!',
     'delete' => 'Radera :type',
-    'loading' => '',
+    'loading' => 'Laddar olästa aviseringar...',
     'mark_read' => 'Rensa :type',
     'none' => 'Inga aviseringar',
     'see_all' => 'visa alla aviseringar',
     'see_channel' => 'gå till chatt',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'alla',
@@ -136,11 +137,11 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Ny beatmap',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Ny beatmap ":title" av :username',
+                'user_beatmapset_new_compact' => 'Ny beatmap ":title"',
+                'user_beatmapset_new_group' => 'Nya beatmaps av :username',
             ],
         ],
 
@@ -214,7 +215,7 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username har skapat nya beatmaps',
             ],
         ],
     ],

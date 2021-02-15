@@ -6,6 +6,7 @@ import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
 import { StringWithComponent } from 'string-with-component'
 import { Nominator } from 'beatmap-discussions/nominator'
+import { nominationsCount } from 'utils/beatmapset-helper'
 
 el = React.createElement
 
@@ -353,10 +354,7 @@ export class Nominations extends React.PureComponent
           className: "#{bn}__title"
           osu.trans 'beatmaps.nominations.title'
         span null,
-          if nominations.legacy_mode
-            " #{nominations.current} / #{nominations.required}"
-          else
-            " #{_.sum(_.values(nominations.current))} / #{_.sum(_.values(nominations.required))}"
+          " #{nominationsCount(nominations, 'current')} / #{nominationsCount(nominations, 'required')}"
 
       @renderLightsForNominations(nominations)
 

@@ -8,6 +8,7 @@ namespace App\Http\Controllers\Passport;
 use Illuminate\Http\Request;
 use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Http\Controllers\AuthorizationController as PassportAuthorizationController;
+use Laravel\Passport\Passport;
 use Laravel\Passport\TokenRepository;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -63,6 +64,16 @@ class AuthorizationController extends PassportAuthorizationController
         $scopes = $this->normalizeScopes(
             explode(' ', $params['scope'] ?? null)
         );
+
+        // temporary non-persisted token to validate with.
+        $token = Passport::token()->forceFill([
+            'client_id' => $params['client_id'] ?? null,
+            'revoked' => false,
+            'scopes' => $scopes,
+        ]);
+        $token->user()->associate(auth()->user());
+        $token->validate();
+
         $params['scope'] = implode(' ', $scopes);
 
         return $request->withQueryParams($params);

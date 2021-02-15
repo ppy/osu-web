@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Beatmapsliste',
         'guest_title' => 'Beatmaps',
@@ -39,6 +43,10 @@ return [
             'hybrid_warning' => '',
             'which_modes' => '',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -106,10 +114,22 @@ return [
             'genre' => 'Sjanger',
             'language' => 'Språk',
             'no_scores' => 'Data blir fortsatt kalkulert...',
+            'nsfw' => '',
             'points-of-failure' => 'Feilpunkter',
             'source' => 'Kilde',
             'success-rate' => 'Suksessrate',
             'tags' => 'Stikkord',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

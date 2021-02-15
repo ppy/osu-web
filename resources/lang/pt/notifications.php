@@ -6,11 +6,12 @@
 return [
     'all_read' => 'Todas as notificações foram lidas!',
     'delete' => 'Eliminar :type',
-    'loading' => '',
+    'loading' => 'A carregar notificações não lidas...',
     'mark_read' => 'Limpar :type',
     'none' => 'Sem notificações',
     'see_all' => 'ver todas as notificações',
     'see_channel' => 'ir para a conversa',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'todas',
@@ -136,11 +137,11 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Novo beatmap',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Novo beatmap ":title" por :username',
+                'user_beatmapset_new_compact' => 'Novo beatmap ":title"',
+                'user_beatmapset_new_group' => 'Novos beatmaps por :username',
             ],
         ],
 
@@ -214,7 +215,7 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username criou novos beatmaps',
             ],
         ],
     ],

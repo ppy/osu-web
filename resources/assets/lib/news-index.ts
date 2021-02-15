@@ -7,6 +7,5 @@ reactTurbolinks.registerPersistent('news-index', Main, true, (container: HTMLEle
   return {
     container,
     data: osu.parseJson('json-index'),
-    sidebarMeta: osu.parseJson('json-sidebar'),
   };
 });

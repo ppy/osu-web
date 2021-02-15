@@ -25,11 +25,16 @@ return [
         'language_edit' => '언어가 :old에서 :new 으(로) 변경되었습니다.',
         'love' => ':user 님에게 Loved 받음',
         'nominate' => ':user 님이 추천함.',
-        'nominate_modes' => '',
+        'nominate_modes' => ':user (:modes) 님이 추천함.',
         'nomination_reset' => '새로운 문제 :discussion (:text)가 추천 상태를 초기화시켰습니다.',
         'qualify' => '이 비트맵은 충분한 추천을 받았고 qualified 상태로 전환되었습니다.',
         'rank' => 'Ranked.',
         'remove_from_loved' => ':user 님에 의해 Loved 상태에서 제거됨 (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => '부적절한 콘텐츠 표시가 해제됨',
+            'to_1' => '부적절한 콘텐츠로 표시됨',
+        ],
     ],
 
     'index' => [
@@ -66,6 +71,7 @@ return [
         'love' => '러브',
         'nominate' => '추천',
         'nomination_reset' => '추천 초기화',
+        'nsfw_toggle' => '부적절한 콘텐츠로 표시',
         'qualify' => 'Qualification',
         'rank' => '랭킹',
         'remove_from_loved' => 'Loved 상태 제거',

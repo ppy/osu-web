@@ -69,6 +69,15 @@ abstract class Model extends BaseModel
         return $this->count300 + $this->count100 + $this->count50;
     }
 
+    public static function calculateRecommendedStarDifficulty(?self $stats)
+    {
+        if ($stats !== null && $stats->rank_score > 0) {
+            return pow($stats->rank_score, 0.4) * 0.195;
+        }
+
+        return 1.0;
+    }
+
     public static function getClass($modeStr, $variant = null)
     {
         if (!Beatmap::isModeValid($modeStr)) {

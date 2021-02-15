@@ -220,14 +220,15 @@ return [
             'not-found' => 'nincs találat',
             'not-found-quote' => '... nope, semmit sem találtam.',
             'filters' => [
+                'extra' => 'extra',
                 'general' => 'Általános',
-                'mode' => 'Mód',
-                'status' => 'Kategóriák',
                 'genre' => 'Műfaj',
                 'language' => 'Nyelv',
-                'extra' => 'extra',
-                'rank' => 'Elért Rang',
+                'mode' => 'Mód',
+                'nsfw' => '',
                 'played' => 'Lejátszott',
+                'rank' => 'Elért Rang',
+                'status' => 'Kategóriák',
             ],
             'sorting' => [
                 'title' => 'Cím',
@@ -302,7 +303,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
-        'MR' => 'Mirror',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',
@@ -330,6 +331,12 @@ return [
         'other' => 'Egyéb',
         'unspecified' => 'Meghatározatlan',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Bármelyik',
         'played' => 'LeJátszott',

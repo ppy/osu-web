@@ -159,6 +159,10 @@ return [
             'error' => 'Parâmetro de pedido inválido',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Oh não! Algo se quebrou! ;_;',
             'description' => "Somos automaticamente notificados de todos os erros.",
@@ -204,7 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Definições',
-            'follows' => '',
+            'follows' => 'Listas de observação',
             'friends' => 'Amigos',
             'logout' => 'Terminar sessão',
             'profile' => 'O meu perfil',

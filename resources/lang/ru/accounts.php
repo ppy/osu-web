@@ -32,12 +32,12 @@ return [
             'title' => 'Профиль',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'место проживания',
                 'user_interests' => 'интересы',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => 'род деятельности',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'веб-сайт',
             ],
         ],
@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'скрыть предупреждения об откровенном содержании в картах',
+        'beatmapset_title_show_original' => 'показывать метаданные карт на языке оригинала',
         'title' => 'Веб-сайт',
 
         'beatmapset_download' => [
             '_' => 'по умолчанию скачивать карты',
             'all' => 'с видео (если есть)',
-            'no_video' => 'без видео',
             'direct' => 'через osu!direct',
+            'no_video' => 'без видео',
         ],
-
-        'beatmapset_title_show_original' => 'показывать метаданные карт на языке оригинала',
     ],
 
     'playstyles' => [

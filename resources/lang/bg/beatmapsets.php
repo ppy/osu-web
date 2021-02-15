@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Списък с бийтмапове',
         'guest_title' => 'Бийтмапове',
@@ -39,6 +43,10 @@ return [
             'hybrid_warning' => '',
             'which_modes' => '',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -106,10 +114,22 @@ return [
             'genre' => 'Жанр',
             'language' => 'Език',
             'no_scores' => 'Информацията все още се обработва...',
+            'nsfw' => '',
             'points-of-failure' => 'Връхни точки на провал',
             'source' => 'Източник',
             'success-rate' => 'Степен на успех (%)',
             'tags' => 'Тагове',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

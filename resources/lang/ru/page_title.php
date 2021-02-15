@@ -22,6 +22,7 @@ return [
             '401-verification' => 'подтверждение аккаунта',
             '405' => 'не найдено',
             '422' => 'неверный запрос',
+            '429' => '',
             '500' => 'что-то сломалось',
             '503' => 'технические работы',
         ],
@@ -56,7 +57,8 @@ return [
             '_' => 'история карты',
         ],
         'beatmapset_watches_controller' => [
-            'index' => 'инфопанель',
+            'index' => 'главная страница
+',
         ],
         'beatmapsets_controller' => [
             'discussion' => 'обсуждение карты',
@@ -64,7 +66,7 @@ return [
             'show' => 'информация о карте',
         ],
         'changelog_controller' => [
-            '_' => 'история изменений',
+            '_' => 'список изменений',
         ],
         'chat_controller' => [
             '_' => 'чат',
@@ -76,19 +78,19 @@ return [
             '_' => 'конкурсы',
         ],
         'follows_controller' => [
-            'index' => '',
+            'index' => 'главная страница',
         ],
         'friends_controller' => [
-            'index' => 'инфопанель',
+            'index' => 'главная страница',
         ],
         'groups_controller' => [
             'show' => 'группы',
         ],
         'home_controller' => [
             'get_download' => 'скачать игру',
-            'index' => 'инфопанель',
+            'index' => 'главная страница',
             'search' => 'поиск',
-            'support_the_game' => 'поддержите игру',
+            'support_the_game' => 'поддержать игру',
             'testflight' => 'testflight',
         ],
         'legal_controller' => [

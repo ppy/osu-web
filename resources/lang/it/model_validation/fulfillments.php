@@ -5,9 +5,9 @@
 
 return [
     'username_change' => [
-        'only_one' => 'è consentito un solo cambio di username per pagamento degli ordini.',
-        'insufficient_paid' => 'Il costo del cambio di username eccede la quantità pagata (:expected > :actual)',
-        'reverting_username_mismatch' => 'L\'username corrente (:current) non è lo stesso del cambio da annullare (:username)',
+        'only_one' => '',
+        'insufficient_paid' => '',
+        'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
         'insufficient_paid' => 'La donazione è inferiore rispetto al minimo richiesto per il regalo del tag di osu!supporter (:actual > :expected)',

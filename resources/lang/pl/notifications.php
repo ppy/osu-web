@@ -6,11 +6,12 @@
 return [
     'all_read' => 'Wszystkie powiadomienia przeczytane!',
     'delete' => 'Usuń :type',
-    'loading' => '',
+    'loading' => 'Ładowanie nieodczytanych powiadomień...',
     'mark_read' => 'Wyczyść :type',
     'none' => 'Brak powiadomień',
     'see_all' => 'zobacz wszystkie powiadomienia',
     'see_channel' => 'przejdź do czatu',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'wszystkie',
@@ -136,11 +137,11 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Nowa beatmapa',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Nowa beatmapa od użytkownika :username: „:title”',
+                'user_beatmapset_new_compact' => 'Nowa beatmapa: „:title”',
+                'user_beatmapset_new_group' => 'Nowe beatmapy od użytkownika :username',
             ],
         ],
 
@@ -214,7 +215,7 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username przesyła nowe beatmapy',
             ],
         ],
     ],
