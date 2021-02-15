@@ -5,7 +5,6 @@
 
 namespace App\Models\Elasticsearch;
 
-use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Traits\EsIndexableModel;
 
