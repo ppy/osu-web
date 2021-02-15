@@ -595,7 +595,7 @@ class Topic extends Model implements AfterCommit, Indexable
     public function postsCount()
     {
         return $this->memoize(__FUNCTION__, function () {
-            return $this->posts()->count();
+            return $this->topic_replies + 1;
         });
     }
 
