@@ -204,10 +204,7 @@ class TopicsController extends Controller
         $showDeleted = $params['with_deleted'] ?? null;
         $jumpTo = null;
 
-        $topic = Topic
-            ::with([
-                'forum.cover',
-            ])->withTrashed()->findOrFail($id);
+        $topic = Topic::with(['forum'])->withTrashed()->findOrFail($id);
 
         $userCanModerate = priv_check('ForumModerate', $topic->forum)->can();
 
@@ -311,10 +308,9 @@ class TopicsController extends Controller
 
         $template = $skipLayout ? '_posts' : 'show';
 
-        $cover = json_item(
-            $topic->cover()->firstOrNew([]),
-            new TopicCoverTransformer()
-        );
+        $coverModel = $topic->cover()->firstOrNew([]);
+        $coverModel->setRelation('topic', $topic);
+        $cover = json_item($coverModel, new TopicCoverTransformer());
 
         $watch = TopicWatch::lookup($topic, Auth::user());
 
