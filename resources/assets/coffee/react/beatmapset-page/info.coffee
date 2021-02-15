@@ -33,23 +33,8 @@ export class Info extends React.Component
     $(window).off '.beatmapsetPageInfo'
 
 
-  # see Modal#hideModal
-  dismissEditor: (e) =>
-    @setState isEditingDescription: false if e.button == 0 &&
-                                  e.target == @overlayRef.current &&
-                                  @clickEndTarget == @clickStartTarget
-
-
-  editStart: =>
-    @setState isEditingDescription: true
-
-
-  handleClickEnd: (e) =>
-    @clickEndTarget = e.target
-
-
-  handleClickStart: (e) =>
-    @clickStartTarget = e.target
+  toggleEditingDescription: =>
+    @setState isEditingDescription: !@state.isEditingDescription
 
 
   onEditorChange: (action) =>
@@ -92,7 +77,7 @@ export class Info extends React.Component
     @setState isEditingMetadata: !@state.isEditingMetadata
 
 
-  withEdit: =>
+  withEditDescription: =>
      @props.beatmapset.description.bbcode?
 
 
@@ -127,12 +112,12 @@ export class Info extends React.Component
           i className: 'fas fa-pencil-alt'
 
 
-  renderEditButton: =>
+  renderEditDescriptionButton: =>
     div className: 'beatmapset-info__edit-button',
       button
         type: 'button'
         className: 'btn-circle'
-        onClick: @editStart
+        onClick: @toggleEditingDescription
         span className: 'btn-circle__content',
           i className: 'fas fa-pencil-alt'
 
@@ -150,29 +135,22 @@ export class Info extends React.Component
 
     div className: 'beatmapset-info',
       if @state.isEditingDescription
-        div className: 'beatmapset-description-editor',
-          div
-            className: 'beatmapset-description-editor__overlay'
-            onClick: @dismissEditor
-            onMouseDown: @handleClickStart
-            onMouseUp: @handleClickEnd
-            ref: @overlayRef
-
-            div className: 'osu-page',
-              el BbcodeEditor,
-                modifiers: ['beatmapset-description-editor']
-                disabled: @state.isBusy
-                onChange: @onEditorChange
-                onSelectionUpdate: @onSelectionUpdate
-                rawValue: @state.description?.bbcode ? @props.beatmapset.description.bbcode
-                selection: @state.selection
+        el Modal, visible: true, onClose: @toggleEditingDescription,
+          div className: 'osu-page',
+            el BbcodeEditor,
+              modifiers: ['beatmapset-description-editor']
+              disabled: @state.isBusy
+              onChange: @onEditorChange
+              onSelectionUpdate: @onSelectionUpdate
+              rawValue: @state.description?.bbcode ? @props.beatmapset.description.bbcode
+              selection: @state.selection
 
       if @state.isEditingMetadata
         el Modal, visible: true, onClose: @toggleEditingMetadata,
           el MetadataEditor, onClose: @toggleEditingMetadata, beatmapset: @props.beatmapset
 
       div className: 'beatmapset-info__box beatmapset-info__box--description',
-        @renderEditButton() if @withEdit()
+        @renderEditDescriptionButton() if @withEditDescription()
 
         h3
           className: 'beatmapset-info__header'
