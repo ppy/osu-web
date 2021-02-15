@@ -384,6 +384,14 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets'], function () {
             Route::apiResource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
+
+            Route::group(['as' => 'discussions.', 'prefix' => 'discussions'], function () {
+                Route::apiResource('posts', 'BeatmapDiscussionPostsController', ['only' => ['index']]);
+                Route::apiResource('votes', 'BeatmapsetDiscussionVotesController', ['only' => ['index']]);
+            });
+
+            Route::resource('discussions', 'BeatmapDiscussionsController', ['only' => ['index', 'show']]);
+
             // TODO: move other beatmapset routes here
             Route::group(['namespace' => 'Beatmapsets'], function () {
                 Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
