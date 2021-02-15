@@ -203,6 +203,7 @@ class TopicsController extends Controller
         $skipLayout = $params['skip_layout'] ?? false;
         $showDeleted = $params['with_deleted'] ?? null;
         $jumpTo = null;
+        $currentUser = auth()->user();
 
         $topic = Topic::with(['forum'])->withTrashed()->findOrFail($id);
 
@@ -217,7 +218,7 @@ class TopicsController extends Controller
         }
 
         if ($userCanModerate) {
-            $showDeleted = $showDeleted ?? auth()->user()->profileCustomization()->forum_posts_show_deleted;
+            $showDeleted = $showDeleted ?? $currentUser->profileCustomization()->forum_posts_show_deleted;
         } else {
             $showDeleted = false;
         }
@@ -227,7 +228,7 @@ class TopicsController extends Controller
         $posts = $topic->posts()->showDeleted($showDeleted);
 
         if ($postStartId === 'unread') {
-            $postStartId = Post::lastUnreadByUser($topic, Auth::user());
+            $postStartId = Post::lastUnreadByUser($topic, $currentUser);
         } else {
             $postStartId = get_int($postStartId);
         }
@@ -303,9 +304,9 @@ class TopicsController extends Controller
             $canEditPoll = false;
         }
 
-        $pollSummary = PollOption::summary($topic, auth()->user());
+        $pollSummary = PollOption::summary($topic, $currentUser);
 
-        $posts->last()->markRead(Auth::user());
+        $posts->last()->markRead($currentUser);
 
         $template = $skipLayout ? '_posts' : 'show';
 
@@ -313,7 +314,7 @@ class TopicsController extends Controller
         $coverModel->setRelation('topic', $topic);
         $cover = json_item($coverModel, new TopicCoverTransformer());
 
-        $watch = TopicWatch::lookup($topic, Auth::user());
+        $watch = TopicWatch::lookup($topic, $currentUser);
 
         $featureVotes = $this->groupFeatureVotes($topic);
         $noindex = !$topic->esShouldIndex();
