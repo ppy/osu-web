@@ -270,8 +270,9 @@ class TopicsController extends Controller
                 'user.userGroups',
             ])->get()
             ->each(function ($item) use ($topic) {
-                $item->setRelation('forum', $topic->forum);
-                $item->setRelation('topic', $topic);
+                $item
+                    ->setRelation('forum', $topic->forum)
+                    ->setRelation('topic', $topic);
             })->sortBy('post_id');
 
         if ($posts->count() === 0) {
