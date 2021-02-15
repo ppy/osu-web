@@ -18,7 +18,7 @@
     header-v4
     {{ isset($theme) ? "header-v4--{$theme}" : '' }}
     {{ (auth()->check() && (auth()->user()->isRestricted()
-        || (auth()->user()->isSilenced() && $currentActive === 'account_controller.edit')))
+        || ($currentActive === 'account_controller.edit' && auth()->user()->isSilenced())))
         ? 'header-v4--restricted'
         : ''
     }}
