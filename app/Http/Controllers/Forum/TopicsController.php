@@ -265,12 +265,13 @@ class TopicsController extends Controller
 
         $posts = $posts
             ->take(20)
-            ->with('lastEditor')
-            ->with('user.rank')
-            ->with('user.country')
-            ->with('user.supporterTagPurchases')
-            ->with('user.userGroups')
-            ->get()
+            ->with([
+                'lastEditor',
+                'user.country',
+                'user.rank',
+                'user.supporterTagPurchases',
+                'user.userGroups',
+            ])->get()
             ->each(function ($item) use ($topic) {
                 $item->setRelation('forum', $topic->forum);
                 $item->setRelation('topic', $topic);
