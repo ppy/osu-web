@@ -207,9 +207,6 @@ class TopicsController extends Controller
         $topic = Topic
             ::with([
                 'forum.cover',
-                'pollOptions.votes',
-                'pollOptions.post',
-                'featureVotes.user',
             ])->withTrashed()->findOrFail($id);
 
         $userCanModerate = priv_check('ForumModerate', $topic->forum)->can();
@@ -295,7 +292,18 @@ class TopicsController extends Controller
         // to generate positions of further posts
         $firstPostPosition = $topic->postPosition($firstShownPostId);
 
-        $pollSummary = PollOption::summary($topic, Auth::user());
+        $poll = $topic->poll();
+        if ($poll->exists()) {
+            $topic->load([
+                'pollOptions.votes',
+                'pollOptions.post',
+            ]);
+            $canEditPoll = $poll->canEdit() && priv_check('ForumTopicPollEdit', $topic)->can();
+        } else {
+            $canEditPoll = false;
+        }
+
+        $pollSummary = PollOption::summary($topic, auth()->user());
 
         $posts->last()->markRead(Auth::user());
 
@@ -307,10 +315,6 @@ class TopicsController extends Controller
         );
 
         $watch = TopicWatch::lookup($topic, Auth::user());
-
-        $poll = new TopicPoll();
-        $poll->setTopic($topic);
-        $canEditPoll = $poll->canEdit() && priv_check('ForumTopicPollEdit', $topic)->can();
 
         $featureVotes = $this->groupFeatureVotes($topic);
         $noindex = !$topic->esShouldIndex();
@@ -443,9 +447,13 @@ class TopicsController extends Controller
 
     private function groupFeatureVotes($topic)
     {
+        if (!$topic->isFeatureTopic()) {
+            return [];
+        }
+
         $ret = [];
 
-        foreach ($topic->featureVotes as $vote) {
+        foreach ($topic->featureVotes()->with('user')->get() as $vote) {
             $username = optional($vote->user)->username;
             $ret[$username] ?? ($ret[$username] = 0);
             $ret[$username] += $vote->voteIncrement();
