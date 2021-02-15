@@ -265,15 +265,16 @@ class TopicsController extends Controller
 
         $posts = $posts
             ->take(20)
-            ->with('forum')
             ->with('lastEditor')
-            ->with('topic')
             ->with('user.rank')
             ->with('user.country')
             ->with('user.supporterTagPurchases')
             ->with('user.userGroups')
             ->get()
-            ->sortBy('post_id');
+            ->each(function ($item) use ($topic) {
+                $item->setRelation('forum', $topic->forum);
+                $item->setRelation('topic', $topic);
+            })->sortBy('post_id');
 
         if ($posts->count() === 0) {
             abort($skipLayout ? 204 : 404);
