@@ -9,6 +9,7 @@ use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Traits\EsIndexableModel;
 
+// TODO: this should be removed eventually
 trait TopicTrait
 {
     use EsIndexableModel;
@@ -20,9 +21,7 @@ trait TopicTrait
 
     public static function esIndexingQuery()
     {
-        $forumIds = Forum::where('enable_indexing', 1)->pluck('forum_id');
-
-        return static::withoutGlobalScopes()->whereIn('forum_id', $forumIds)->with('forum');
+        return static::none();
     }
 
     public static function esSchemaFile()
@@ -38,9 +37,7 @@ trait TopicTrait
 
     public function esShouldIndex()
     {
-        return $this->forum->enable_indexing
-            && !$this->trashed()
-            && $this->topic_moved_id === 0;
+        return false;
     }
 
     public function getEsId()
@@ -50,6 +47,6 @@ trait TopicTrait
 
     public function toEsJson()
     {
-        return ['type' => 'topics'];
+        return [];
     }
 }
