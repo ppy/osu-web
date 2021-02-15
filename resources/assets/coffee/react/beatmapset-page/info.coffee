@@ -49,10 +49,6 @@ export class Info extends React.Component
         @setState isEditingDescription: false
 
 
-  onSelectionUpdate: (selection) =>
-    @setState selection: selection
-
-
   saveDescription: ({ event, value }) =>
     target = event.target
 
@@ -141,9 +137,7 @@ export class Info extends React.Component
               modifiers: ['beatmapset-description-editor']
               disabled: @state.isBusy
               onChange: @onEditorChange
-              onSelectionUpdate: @onSelectionUpdate
               rawValue: @state.description?.bbcode ? @props.beatmapset.description.bbcode
-              selection: @state.selection
 
       if @state.isEditingMetadata
         el Modal, visible: true, onClose: @toggleEditingMetadata,
