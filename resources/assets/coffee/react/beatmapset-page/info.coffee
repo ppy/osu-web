@@ -56,7 +56,7 @@ export class Info extends React.Component
     switch action.type
       when 'save'
         if action.hasChanged
-          @saveDescription(action.value)
+          @saveDescription(action)
         else
           @setState isEditingDescription: false
 
@@ -68,7 +68,9 @@ export class Info extends React.Component
     @setState selection: selection
 
 
-  saveDescription: (value) =>
+  saveDescription: ({ event, value }) =>
+    target = event.target
+
     @setState isBusy: true
     $.ajax laroute.route('beatmapsets.update', beatmapset: @props.beatmapset.id),
       method: 'PATCH',
@@ -80,7 +82,7 @@ export class Info extends React.Component
         isEditingDescription: false
         description: data.description
 
-    .fail osu.ajaxError
+    .fail osu.emitAjaxError(target)
 
     .always =>
       @setState isBusy: false
