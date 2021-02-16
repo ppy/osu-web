@@ -1171,10 +1171,7 @@ class OsuAuthorize
             return $prefix.'locked';
         }
 
-        $position = $post->postPosition;
-        $topicPostsCount = $post->topic->postsCount();
-
-        if ($position !== $topicPostsCount) {
+        if ($post->getKey() !== $topic->topic_last_post_id) {
             return $prefix.'only_last_post';
         }
 
