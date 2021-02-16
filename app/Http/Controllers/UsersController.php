@@ -7,8 +7,8 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
-use App\Libraries\Search\PostSearch;
-use App\Libraries\Search\PostSearchRequestParams;
+use App\Libraries\Search\ForumSearch;
+use App\Libraries\Search\ForumSearchRequestParams;
 use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
@@ -286,8 +286,9 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $search = (new PostSearch(new PostSearchRequestParams(request()->all(), $user)))
-            ->size(50);
+        $params = request()->all();
+        $params['username'] = $id;
+        $search = (new ForumSearch(new ForumSearchRequestParams($params)))->size(50);
 
         return ext_view('users.posts', compact('search', 'user'));
     }
