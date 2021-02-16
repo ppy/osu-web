@@ -41,7 +41,7 @@ class @BeatmapDiscussionHelper
 
       linkText ?= displayUrl
 
-      "<a href='#{url}' rel='nofollow' #{attrs ? ''}>#{linkText ? url}</a>"
+      "<a href='#{url}' rel='nofollow' #{attrs ? 'target="_blank"'}>#{linkText ? url}</a>"
 
 
 
