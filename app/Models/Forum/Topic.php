@@ -287,6 +287,11 @@ class Topic extends Model implements AfterCommit, Indexable
         return $this->belongsTo(Beatmapset::class, 'topic_id', 'thread_id');
     }
 
+    public function firstPost()
+    {
+        return $this->hasOne(Post::class, 'post_id', 'topic_first_post_id');
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class);
@@ -863,5 +868,8 @@ class Topic extends Model implements AfterCommit, Indexable
     public function afterCommit()
     {
         dispatch(new EsIndexDocument($this));
+        if ($this->firstPost !== null) {
+            dispatch(new EsIndexDocument($this->firstPost));
+        }
     }
 }

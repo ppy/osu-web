@@ -22,7 +22,7 @@ trait PostTrait
     {
         $forumIds = Forum::where('enable_indexing', 1)->pluck('forum_id');
 
-        return static::withoutGlobalScopes()->whereIn('forum_id', $forumIds)->with('forum');
+        return static::withoutGlobalScopes()->whereIn('forum_id', $forumIds)->with('forum')->with('topic');
     }
 
     public static function esSchemaFile()
@@ -50,21 +50,27 @@ trait PostTrait
     {
         $mappings = static::esMappings();
 
-        $values = [];
+        $document = [];
         foreach ($mappings as $field => $mapping) {
-            $value = $this[$field];
+            switch ($field) {
+                case 'topic_title':
+                    if ($this->topic !== null && $this->topic->topic_first_post_id === $this->getKey()) {
+                        $value = $this->topic->topic_title;
+                    } else {
+                        $value = null;
+                    }
+                    break;
+                default:
+                    $value = $this[$field];
+            }
+
             if ($value instanceof Carbon) {
                 $value = $value->toIso8601String();
             }
 
-            $values[$field] = $value;
+            $document[$field] = $value;
         }
 
-        $values['type'] = [
-            'name' => 'posts',
-            'parent' => "topic-{$this->topic_id}",
-        ];
-
-        return $values;
+        return $document;
     }
 }
