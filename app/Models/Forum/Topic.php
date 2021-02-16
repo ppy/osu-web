@@ -827,9 +827,11 @@ class Topic extends Model implements AfterCommit, Indexable
 
     public function afterCommit()
     {
-        dispatch(new EsIndexDocument($this));
-        if ($this->firstPost !== null) {
-            dispatch(new EsIndexDocument($this->firstPost));
+        if ($this->exists) {
+            dispatch(new EsIndexDocument($this));
+            if ($this->firstPost !== null) {
+                dispatch(new EsIndexDocument($this->firstPost));
+            }
         }
     }
 

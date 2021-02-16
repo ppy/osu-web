@@ -406,7 +406,9 @@ class Post extends Model implements AfterCommit, Indexable
 
     public function afterCommit()
     {
-        dispatch(new EsIndexDocument($this));
+        if ($this->exists) {
+            dispatch(new EsIndexDocument($this));
+        }
     }
 
     public function bodyHTML($options = [])
