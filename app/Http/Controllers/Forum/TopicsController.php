@@ -19,7 +19,6 @@ use App\Models\Forum\TopicWatch;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use DB;
-use Illuminate\Http\Request as HttpRequest;
 use Request;
 
 class TopicsController extends Controller
@@ -47,6 +46,54 @@ class TopicsController extends Controller
             'forum.topics.create',
             (new NewForumTopic($forum, Auth::user()))->toArray()
         );
+    }
+
+    public function destroy($id)
+    {
+        $topic = Topic::withTrashed()->findOrFail($id);
+
+        priv_check('ForumTopicDelete', $topic)->ensureCan();
+
+        DB::transaction(function () use ($topic) {
+            if ((auth()->user()->user_id ?? null) !== $topic->topic_poster) {
+                $this->logModerate(
+                    'LOG_DELETE_TOPIC',
+                    [$topic->topic_title],
+                    $topic
+                );
+            }
+
+            if (!$topic->delete()) {
+                throw new ModelNotSavedException($topic->validationErrors()->toSentence());
+            }
+        });
+
+        if (priv_check('ForumModerate', $topic->forum)->can()) {
+            return ext_view('forum.topics.delete', ['post' => $topic->firstPost], 'js');
+        } else {
+            return ujs_redirect(route('forum.forums.show', $topic->forum));
+        }
+    }
+
+    public function restore($id)
+    {
+        $topic = Topic::withTrashed()->findOrFail($id);
+
+        priv_check('ForumModerate', $topic->forum)->ensureCan();
+
+        DB::transaction(function () use ($topic) {
+            $this->logModerate(
+                'LOG_RESTORE_TOPIC',
+                [$topic->topic_title],
+                $topic
+            );
+
+            if (!$topic->restore()) {
+                throw new ModelNotSavedException($topic->validationErrors()->toSentence());
+            }
+        });
+
+        return ext_view('forum.topics.restore', ['post' => $topic->firstPost], 'js');
     }
 
     public function editPollGet($topicId)
@@ -166,14 +213,14 @@ class TopicsController extends Controller
         return ext_view('forum.topics.replace_button', compact('topic', 'type', 'state'), 'js');
     }
 
-    public function reply(HttpRequest $request, $id)
+    public function reply($id)
     {
         $topic = Topic::findOrFail($id);
 
         priv_check('ForumTopicReply', $topic)->ensureCan();
 
         try {
-            $post = $topic->addPostOrExplode(Auth::user(), request('body'));
+            $post = Post::createNew($topic, auth()->user(), get_string(request('body')));
         } catch (ModelNotSavedException $e) {
             return error_popup($e->getMessage());
         }
@@ -339,14 +386,22 @@ class TopicsController extends Controller
         );
     }
 
-    public function store(HttpRequest $request)
+    public function store()
     {
-        $forum = Forum::findOrFail($request->get('forum_id'));
+        $params = get_params(request()->all(), null, [
+            'body:string',
+            'cover_id:int',
+            'forum_id:int',
+            'title:string',
+            'with_poll:bool',
+        ], ['null_missing' => true]);
+
+        $forum = Forum::findOrFail($params['forum_id']);
         $user = auth()->user();
 
         priv_check('ForumTopicStore', $forum)->ensureCan();
 
-        if (get_bool($request->get('with_poll'))) {
+        if ($params['with_poll']) {
             $poll = (new TopicPoll())->fill($this->getPollParams());
 
             if (!$poll->isValid()) {
@@ -354,15 +409,15 @@ class TopicsController extends Controller
             }
         }
 
-        $params = [
-            'title' => $request->get('title'),
+        $topicParams = [
+            'title' => $params['title'],
             'user' => $user,
-            'body' => $request->get('body'),
-            'cover' => TopicCover::findForUse(presence($request->input('cover_id')), $user),
+            'body' => $params['body'],
+            'cover' => TopicCover::findForUse($params['cover_id'], $user),
         ];
 
         try {
-            $topic = Topic::createNew($forum, $params, $poll ?? null);
+            $topic = Topic::createNew($forum, $topicParams, $poll ?? null);
         } catch (ModelNotSavedException $e) {
             return error_popup($e->getMessage());
         }

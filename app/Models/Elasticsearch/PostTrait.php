@@ -38,7 +38,7 @@ trait PostTrait
 
     public function esShouldIndex()
     {
-        return $this->forum->enable_indexing && !$this->trashed();
+        return $this->forum->enable_indexing && !$this->trashed() && ($this->topic !== null && !$this->topic->trashed());
     }
 
     public function getEsId()

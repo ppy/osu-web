@@ -75,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'Really delete topic?',
+        'confirm_restore' => 'Really restore topic?',
         'deleted' => 'deleted topic',
         'go_to_latest' => 'view latest post',
         'has_replied' => 'You have replied to this topic',
@@ -88,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'by :user',
         'started_by_verbose' => 'started by :user',
+
+        'actions' => [
+            'destroy' => 'Delete topic',
+            'restore' => 'Restore topic',
+        ],
 
         'create' => [
             'close' => 'Close',
