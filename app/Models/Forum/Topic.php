@@ -675,7 +675,7 @@ class Topic extends Model implements AfterCommit, Indexable
 
         if ($firstPost === null) {
             $this->topic_first_post_id = 0;
-            $this->topic_poster = '';
+            $this->topic_poster = 0;
             $this->topic_first_poster_name = '';
             $this->topic_first_poster_colour = '';
         } else {
