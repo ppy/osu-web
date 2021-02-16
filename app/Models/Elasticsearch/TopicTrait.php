@@ -5,10 +5,10 @@
 
 namespace App\Models\Elasticsearch;
 
-use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Traits\EsIndexableModel;
 
+// TODO: this should be removed eventually
 trait TopicTrait
 {
     use EsIndexableModel;
@@ -20,9 +20,7 @@ trait TopicTrait
 
     public static function esIndexingQuery()
     {
-        $forumIds = Forum::where('enable_indexing', 1)->pluck('forum_id');
-
-        return static::withoutGlobalScopes()->whereIn('forum_id', $forumIds)->with('forum');
+        return static::none();
     }
 
     public static function esSchemaFile()
@@ -38,9 +36,7 @@ trait TopicTrait
 
     public function esShouldIndex()
     {
-        return $this->forum->enable_indexing
-            && !$this->trashed()
-            && $this->topic_moved_id === 0;
+        return false;
     }
 
     public function getEsId()
@@ -50,16 +46,6 @@ trait TopicTrait
 
     public function toEsJson()
     {
-        $values = [
-            'post_id' => $this->topic_first_post_id,
-            'topic_id' => $this->topic_id,
-            'poster_id' => $this->topic_poster,
-            'forum_id' => $this->forum_id,
-            'post_time' => json_time($this->topic_time),
-            'search_content' => $this->topic_title,
-            'type' => 'topics',
-        ];
-
-        return $values;
+        return [];
     }
 }
