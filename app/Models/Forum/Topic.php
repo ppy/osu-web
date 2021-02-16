@@ -323,11 +323,6 @@ class Topic extends Model implements AfterCommit, Indexable
                 $this->forum->topicsAdded(1);
             }
 
-            // restoring topic
-            if ($this->isDirty('deleted_at') && $this->deleted_at === null) {
-                $this->forum->topicsAdded(1);
-            }
-
             return parent::save($options);
         });
     }
