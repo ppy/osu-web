@@ -43,6 +43,7 @@ class UsersController extends Controller
             'checkUsernameExists',
             'report',
             'me',
+            'posts',
             'updatePage',
         ]]);
 
