@@ -21,30 +21,14 @@ class @BeatmapDiscussionHelper
 
   # text should be pre-escaped.
   @discussionLinkify: (text) =>
-    currentUrl = new URL(window.location)
-    currentBeatmapsetDiscussions = @urlParse(currentUrl.href)
+    text.replace osu.urlRegex, (url, _, displayUrl) ->
+      props = _exported.propsFromHref(url)
+      text = props.children
+      classNames = props.className?.split(' ')
+      props.children = null
+      props.className = null
 
-    text.replace osu.urlRegex, (url, _, displayUrl) =>
-      targetUrl = new URL(url)
-      options =
-        props:
-          rel: 'nofollow noreferrer'
-          target: '_blank'
-
-      if targetUrl.host == currentUrl.host
-        targetBeatmapsetDiscussions = @urlParse targetUrl.href, null, forceDiscussionId: true
-        if targetBeatmapsetDiscussions?.discussionId?
-          if currentBeatmapsetDiscussions? &&
-              currentBeatmapsetDiscussions.beatmapsetId == targetBeatmapsetDiscussions.beatmapsetId
-            # same beatmapset, format: #123
-            linkText = "##{targetBeatmapsetDiscussions.discussionId}"
-            options.classNames = ['js-beatmap-discussion--jump']
-            options.props.target = null
-          else
-            # different beatmapset, format: 1234#567
-            linkText = "#{targetBeatmapsetDiscussions.beatmapsetId}##{targetBeatmapsetDiscussions.discussionId}"
-
-      osu.link(url, linkText ? displayUrl, options)
+      osu.link(url, text, { classNames, props })
 
 
   @discussionMode: (discussion) ->
