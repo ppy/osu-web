@@ -82,7 +82,8 @@ export class ReviewPost extends React.Component<Props> {
     );
   }
 
-  private link(props: Readonly<ReactMarkdown.ReactMarkdownProps>) {
+  // not sure if any additional props besides href and children are included.
+  private link(props: Readonly<ReactMarkdown.ReactMarkdownProps> & { href: string }) {
     // TODO: should probably context this so it's not reparsed every link
     const currentUrl = new URL(window.location.href);
     const currentBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse(currentUrl.href);
