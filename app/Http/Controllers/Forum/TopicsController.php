@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Forum;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\Notifications\ForumTopicReply;
+use App\Libraries\DbCursorHelper;
 use App\Libraries\NewForumTopic;
 use App\Models\Forum\FeatureVote;
 use App\Models\Forum\Forum;
@@ -243,13 +244,14 @@ class TopicsController extends Controller
             'start', // either number or "unread"
             'end:int',
             'n:int',
+
             'skip_layout:bool',
             'with_deleted:bool',
+
+            'sort:string',
+            'cursor:any',
         ], ['null_missing' => true]);
 
-        $postStartId = $params['start'];
-        $postEndId = $params['end'];
-        $nthPost = $params['n'];
         $skipLayout = $params['skip_layout'] ?? false;
         $showDeleted = $params['with_deleted'];
         $jumpTo = null;
@@ -275,31 +277,35 @@ class TopicsController extends Controller
 
         priv_check('ForumView', $topic->forum)->ensureCan();
 
-        $posts = $topic->posts()->showDeleted($showDeleted);
+        if ($params['cursor'] === null) {
+            if ($params['start'] === 'unread') {
+                $params['start'] = Post::lastUnreadByUser($topic, $currentUser);
+            } else {
+                $params['start'] = get_int($params['start']);
+            }
 
-        if ($postStartId === 'unread') {
-            $postStartId = Post::lastUnreadByUser($topic, $currentUser);
-        } else {
-            $postStartId = get_int($postStartId);
-        }
-
-        if ($nthPost !== null) {
-            $post = $topic->nthPost($nthPost);
-            if ($post) {
-                $postStartId = $post->post_id;
+            if ($params['n'] !== null) {
+                $post = $topic->nthPost($params['n']);
+                if ($post !== null) {
+                    $params['cursor'] = ['post_id' => $post->post_id - 1];
+                    $params['sort'] = 'id_asc';
+                }
+            } elseif ($params['start'] !== null) {
+                $params['cursor'] = ['post_id' => $params['start'] - 1];
+                $params['sort'] = 'id_asc';
+            } elseif ($params['end'] !== null) {
+                $params['cursor'] = ['post_id' => $params['end'] + 1];
+                $params['sort'] = 'id_desc';
             }
         }
 
-        $sortOrder = 'asc';
-        if ($postStartId !== null) {
-            $posts = $posts->where('post_id', '>=', $postStartId);
-        } elseif ($postEndId !== null) {
-            $sortOrder = 'desc';
-            $posts = $posts->where('post_id', '<=', $postEndId);
-        }
-        $posts->orderBy('post_id', $sortOrder);
+        $cursorHelper = new DbCursorHelper(Post::SORTS, Post::DEFAULT_SORT, $params['sort']);
 
-        $posts = $posts->limit($perPage)->get();
+        $postsQueryBase = $topic->posts()->showDeleted($showDeleted)->limit(20);
+        $posts = (clone $postsQueryBase)->cursorSort(
+            $cursorHelper->getSort(),
+            $cursorHelper->prepare($params['cursor'])
+        )->get();
 
         if ($posts->count() === 0) {
             abort($skipLayout ? 204 : 404);
@@ -309,27 +315,19 @@ class TopicsController extends Controller
             $firstPost = $posts->first();
             $jumpTo = $firstPost->getKey();
 
-            if ($sortOrder === 'asc') {
+            if ($cursorHelper->getSortName() === 'id_asc') {
                 if ($jumpTo !== $topic->topic_first_post_id) {
-                    $next = [
-                        'oper' => '<',
-                        'order' => 'desc',
-                    ];
+                    $extraCursorHelper = new DbCursorHelper(Post::SORTS, 'id_desc');
                 }
             } else {
-                $next = [
-                    'oper' => '>',
-                    'order' => 'asc',
-                ];
+                $extraCursorHelper = new DbCursorHelper(Post::SORTS, 'id_asc');
             }
-            if (isset($next)) {
-                $extraPosts = $topic
-                    ->posts()
-                    ->showDeleted($showDeleted)
-                    ->where('post_id', $next['oper'], $jumpTo)
-                    ->orderBy('post_id', $next['order'])
-                    ->limit($perPage)
-                    ->get();
+            if (isset($extraCursorHelper)) {
+                $extraPosts = (clone $postsQueryBase)
+                    ->cursorSort(
+                        $extraCursorHelper->getSort(),
+                        $extraCursorHelper->prepare(['post_id' => $jumpTo])
+                    )->get();
 
                 $posts = $posts->concat($extraPosts);
             }
