@@ -235,18 +235,19 @@ class @Forum
     $link = $(e.currentTarget)
     mode = $link.data('mode')
 
-    options =
-      start: null
-      end: null
-      skip_layout: 1
-      with_deleted: +@showDeleted()
-
     if mode == 'previous'
       $refPost = $('.js-forum-post').first()
-      options['end'] = $refPost.data('post-id') - 1
+      sort = 'id_desc'
     else
       $refPost = $('.js-forum-post').last()
-      options['start'] = $refPost.data('post-id') + 1
+      sort = 'id_asc'
+
+    options =
+      skip_layout: 1
+      with_deleted: +@showDeleted()
+      sort: sort
+      cursor:
+        post_id: $refPost.data('post-id')
 
     $link.addClass 'js-disabled'
 

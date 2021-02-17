@@ -20,7 +20,6 @@ use App\Models\Forum\TopicWatch;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use DB;
-use Illuminate\Database\Eloquent\Builder;
 use Request;
 
 class TopicsController extends Controller
@@ -238,8 +237,6 @@ class TopicsController extends Controller
 
     public function show($id)
     {
-        static $perPage = 20;
-
         $params = get_params(request()->all(), null, [
             'start', // either number or "unread"
             'end:int',
@@ -511,11 +508,6 @@ class TopicsController extends Controller
             'title',
             'vote_change:bool',
         ]);
-    }
-
-    private function getPosts(Topic $topic, Builder $postsQuery)
-    {
-        return $postsQuery->limit(20)->get();
     }
 
     private function groupFeatureVotes($topic)
