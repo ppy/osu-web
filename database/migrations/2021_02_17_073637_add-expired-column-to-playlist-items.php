@@ -16,8 +16,7 @@ class AddExpiredColumnToPlaylistItems extends Migration
      */
     public function up()
     {
-        Schema::table('multiplayer_playlist_items', function (Blueprint $table)
-        {
+        Schema::table('multiplayer_playlist_items', function (Blueprint $table) {
             $table->boolean('expired')->default(false);
         });
     }
@@ -29,8 +28,7 @@ class AddExpiredColumnToPlaylistItems extends Migration
      */
     public function down()
     {
-        Schema::table('multiplayer_playlist_items', function (Blueprint $table)
-        {
+        Schema::table('multiplayer_playlist_items', function (Blueprint $table) {
             $table->dropColumn('expired');
         });
     }
