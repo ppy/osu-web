@@ -19,6 +19,7 @@ use App\Models\Forum\TopicWatch;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use DB;
+use Illuminate\Database\Eloquent\Builder;
 use Request;
 
 class TopicsController extends Controller
@@ -236,6 +237,8 @@ class TopicsController extends Controller
 
     public function show($id)
     {
+        static $perPage = 20;
+
         $params = get_params(request()->all(), null, [
             'start', // either number or "unread"
             'end:int',
@@ -287,45 +290,63 @@ class TopicsController extends Controller
             }
         }
 
-        if (!$skipLayout) {
-            $jumpTo = $postStartId ?? $postEndId ?? 0;
-        }
-
-        if ($postStartId !== null && !$skipLayout) {
-            // move starting post up by ten to avoid hitting
-            // page autoloader right after loading the page.
-            $postPosition = $topic->postPosition($postStartId);
-            $post = $topic->nthPost($postPosition - 10);
-            $postStartId = $post->post_id;
-        }
-
+        $sortOrder = 'asc';
         if ($postStartId !== null) {
-            $posts = $posts
-                ->where('post_id', '>=', $postStartId);
+            $posts = $posts->where('post_id', '>=', $postStartId);
         } elseif ($postEndId !== null) {
-            $posts = $posts
-                ->where('post_id', '<=', $postEndId)
-                ->orderBy('post_id', 'desc');
+            $sortOrder = 'desc';
+            $posts = $posts->where('post_id', '<=', $postEndId);
+        }
+        $posts->orderBy('post_id', $sortOrder);
+
+        $posts = $posts->limit($perPage)->get();
+
+        if ($posts->count() === 0) {
+            abort($skipLayout ? 204 : 404);
+        }
+
+        if (!$skipLayout) {
+            $firstPost = $posts->first();
+            $jumpTo = $firstPost->getKey();
+
+            if ($sortOrder === 'asc') {
+                if ($jumpTo !== $topic->topic_first_post_id) {
+                    $next = [
+                        'oper' => '<',
+                        'order' => 'desc',
+                    ];
+                }
+            } else {
+                $next = [
+                    'oper' => '>',
+                    'order' => 'asc',
+                ];
+            }
+            if (isset($next)) {
+                $extraPosts = $topic
+                    ->posts()
+                    ->showDeleted($showDeleted)
+                    ->where('post_id', $next['oper'], $jumpTo)
+                    ->orderBy('post_id', $next['order'])
+                    ->limit($perPage)
+                    ->get();
+
+                $posts = $posts->concat($extraPosts);
+            }
         }
 
         $posts = $posts
-            ->take(20)
-            ->with([
+            ->load([
                 'lastEditor',
                 'user.country',
                 'user.rank',
                 'user.supporterTagPurchases',
                 'user.userGroups',
-            ])->get()
-            ->each(function ($item) use ($topic) {
+            ])->each(function ($item) use ($topic) {
                 $item
                     ->setRelation('forum', $topic->forum)
                     ->setRelation('topic', $topic);
             })->sortBy('post_id');
-
-        if ($posts->count() === 0) {
-            abort($skipLayout ? 204 : 404);
-        }
 
         $firstPostId = $topic->topic_first_post_id;
         $firstShownPostId = $posts->first()->post_id;
@@ -492,6 +513,11 @@ class TopicsController extends Controller
             'title',
             'vote_change:bool',
         ]);
+    }
+
+    private function getPosts(Topic $topic, Builder $postsQuery)
+    {
+        return $postsQuery->limit(20)->get();
     }
 
     private function groupFeatureVotes($topic)
