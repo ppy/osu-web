@@ -327,13 +327,7 @@ class TopicsController extends Controller
             abort($skipLayout ? 204 : 404);
         }
 
-        $firstPostId = $topic->posts()
-            ->showDeleted($showDeleted)
-            ->orderBy('post_id', 'asc')
-            ->select('post_id')
-            ->first()
-            ->post_id;
-
+        $firstPostId = $topic->topic_first_post_id;
         $firstShownPostId = $posts->first()->post_id;
 
         // position of the first post, incremented in the view
