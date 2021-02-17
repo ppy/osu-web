@@ -193,6 +193,8 @@ class ScoresController extends BaseController
             ->where('id', $playlistId)
             ->firstOrFail();
 
+        abort_if($playlistItem->expired, 422, 'expired playlist item');
+
         $roomScore = $playlistItem->scores()
             ->where('user_id', auth()->user()->getKey())
             ->where('id', $scoreId)
