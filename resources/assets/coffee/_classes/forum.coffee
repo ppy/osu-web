@@ -121,6 +121,9 @@ class @Forum
     if lastPostLoaded
       $(@endPost()).find('.js-post-delete-toggle').css(display: '')
 
+    for link in @loadMoreLinks
+      link.href = @moreMeta(link).url
+
 
   refreshCounter: =>
     return if @_postsCounter.length == 0
@@ -230,38 +233,25 @@ class @Forum
   showMore: (e) =>
     e.preventDefault()
 
-    return if e.currentTarget.classList.contains('js-disabled')
+    link = e.currentTarget
 
-    $link = $(e.currentTarget)
-    mode = $link.data('mode')
+    return if link.classList.contains('js-disabled')
 
-    if mode == 'previous'
-      $refPost = $('.js-forum-post').first()
-      sort = 'id_desc'
-    else
-      $refPost = $('.js-forum-post').last()
-      sort = 'id_asc'
+    link.classList.add 'js-disabled'
 
-    options =
-      skip_layout: 1
-      with_deleted: +@showDeleted()
-      sort: sort
-      cursor:
-        post_id: $refPost.data('post-id')
+    moreMeta = @moreMeta link
 
-    $link.addClass 'js-disabled'
-
-    $.get(window.canonicalUrl, options)
+    $.get(moreMeta.url)
     .done (data) =>
-      scrollReference = $refPost[0]
+      scrollReference = moreMeta.refPost
       scrollReferenceTop = scrollReference.getBoundingClientRect().top
 
-      if mode == 'previous'
-        $link.after data
+      if moreMeta.mode == 'previous'
+        link.insertAdjacentHTML 'afterend', data
         toRemoveStart = @maxPosts
         toRemoveEnd = @posts.length
       else
-        $link.before data
+        link.insertAdjacentHTML 'beforebegin', data
         toRemoveStart = 0
         toRemoveEnd = @posts.length - @maxPosts
 
@@ -281,12 +271,12 @@ class @Forum
       window.scrollTo x, targetDocumentScrollTop
 
       osu.pageChange()
-      $link.attr 'data-failed', '0'
+      link.dataset.failed = '0'
 
     .always ->
-      $link.removeClass 'js-disabled'
+      link.classList.remove 'js-disabled'
     .fail ->
-      $link.attr 'data-failed', '1'
+      link.dataset.failed = '1'
 
 
   jumpToSubmit: (e) =>
@@ -295,3 +285,24 @@ class @Forum
 
     if @jumpTo $(e.target).find('[name="n"]').val()
       $.publish 'forum:topic:jumpTo'
+
+  moreMeta: (link) =>
+    mode = link.dataset.mode
+
+    if mode == 'previous'
+      refPost = @posts[0]
+      sort = 'id_desc'
+    else
+      refPost = @endPost()
+      sort = 'id_asc'
+
+    query = $.param
+      skip_layout: 1
+      with_deleted: +@showDeleted()
+      sort: sort
+      cursor:
+        post_id: refPost.dataset.postId
+
+    url: "#{window.canonicalUrl}?#{query}"
+    refPost: refPost
+    mode: mode
