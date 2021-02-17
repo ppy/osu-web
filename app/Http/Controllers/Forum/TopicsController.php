@@ -314,12 +314,13 @@ class TopicsController extends Controller
 
             if ($cursorHelper->getSortName() === 'id_asc') {
                 if ($jumpTo !== $topic->topic_first_post_id) {
-                    $extraCursorHelper = new DbCursorHelper(Post::SORTS, 'id_desc');
+                    $extraSort = 'id_desc';
                 }
             } else {
-                $extraCursorHelper = new DbCursorHelper(Post::SORTS, 'id_asc');
+                $extraSort = 'id_asc';
             }
             if (isset($extraCursorHelper)) {
+                $extraCursorHelper = new DbCursorHelper(Post::SORTS, $extraSort);
                 $extraPosts = (clone $postsQueryBase)
                     ->cursorSort(
                         $extraCursorHelper->getSort(),
