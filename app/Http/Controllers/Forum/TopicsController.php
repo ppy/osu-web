@@ -242,13 +242,13 @@ class TopicsController extends Controller
             'n:int',
             'skip_layout:bool',
             'with_deleted:bool',
-        ]);
+        ], ['null_missing' => true]);
 
-        $postStartId = $params['start'] ?? null;
-        $postEndId = $params['end'] ?? null;
-        $nthPost = $params['n'] ?? null;
+        $postStartId = $params['start'];
+        $postEndId = $params['end'];
+        $nthPost = $params['n'];
         $skipLayout = $params['skip_layout'] ?? false;
-        $showDeleted = $params['with_deleted'] ?? null;
+        $showDeleted = $params['with_deleted'];
         $jumpTo = null;
         $currentUser = auth()->user();
 
