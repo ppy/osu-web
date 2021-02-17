@@ -44,9 +44,7 @@ class @BeatmapDiscussionHelper
             # different beatmapset, format: 1234#567
             linkText = "#{targetBeatmapsetDiscussions.beatmapsetId}##{targetBeatmapsetDiscussions.discussionId}"
 
-      linkText ?= displayUrl
-
-      osu.link(url, linkText ? url, options)
+      osu.link(url, linkText ? displayUrl, options)
 
 
   @discussionMode: (discussion) ->
