@@ -190,7 +190,7 @@ class TopicsController extends Controller
     public function show($id)
     {
         $params = get_params(request()->all(), null, [
-            'start:int',
+            'start', // either number or "unread"
             'end:int',
             'n:int',
             'skip_layout:bool',
