@@ -40,7 +40,7 @@ export class ReviewPost extends React.Component<Props> {
           source={source}
           unwrapDisallowed={true}
           renderers={{
-            link: (props) => <a rel='nofollow' {...props}/>,
+            link: this.link,
             paragraph: (props) => {
               return <div className='beatmap-discussion-review-post__block'>
                 <div className='beatmapset-discussion-message' {...props}/>
@@ -80,5 +80,35 @@ export class ReviewPost extends React.Component<Props> {
         {docBlocks}
       </div>
     );
+  }
+
+  private link(props: Readonly<ReactMarkdown.ReactMarkdownProps>) {
+    // TODO: should probably context this so it's not reparsed every link
+    const currentUrl = new URL(window.location.href);
+    const currentBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse(currentUrl.href);
+
+    const extraProps: React.AnchorHTMLAttributes<HTMLAnchorElement> = {
+      target: '_blank',
+    };
+
+    const targetUrl = new URL(props.href);
+    let linkText = props.href;
+
+    if (targetUrl.host === currentUrl.host) {
+      const targetBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse(targetUrl.href, null, { forceDiscussionId: true });
+      if (targetBeatmapsetDiscussions?.discussionId != null) {
+        if (currentBeatmapsetDiscussions?.beatmapsetId === targetBeatmapsetDiscussions.beatmapsetId) {
+          // same beatmapset, format: #123
+          linkText = `#${targetBeatmapsetDiscussions.discussionId}`;
+          extraProps.className = 'js-beatmap-discussion--jump';
+          extraProps.target = undefined;
+        } else {
+          // different beatmapset, format: 1234#567
+          linkText = `${targetBeatmapsetDiscussions.beatmapsetId}#${targetBeatmapsetDiscussions.discussionId}`;
+        }
+      }
+    }
+
+    return <a rel='nofollow noreferrer' {...props} {...extraProps}>{linkText}</a>;
   }
 }
