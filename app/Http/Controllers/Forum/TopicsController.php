@@ -22,6 +22,9 @@ use Auth;
 use DB;
 use Request;
 
+/**
+ * @group Forum
+ */
 class TopicsController extends Controller
 {
     public function __construct()
@@ -35,6 +38,8 @@ class TopicsController extends Controller
             'reply',
             'store',
         ]]);
+
+        $this->middleware('require-scopes:public', ['only' => ['show']]);
     }
 
     public function create()
@@ -235,6 +240,38 @@ class TopicsController extends Controller
         return ext_view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
     }
 
+    /**
+     * Get Topic and Posts
+     *
+     * Get topic and its posts.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field  | Type              | Includes
+     * ------ | ----------------- | --------
+     * topic  | Topic             | |
+     * posts  | Post[]            | body
+     * cursor | [Cursor](#cursor) | |
+     * sort   | ForumPostSort     | |
+     *
+     * @urlParam topic Id of the topic. Example: 1
+     *
+     * @queryParam cursor [Cursor](#cursor) for pagination. No-example
+     * @queryParam sort Post sorting option. Valid values are `id_asc` (default) and `id_desc`. No-example
+     * @queryParam start First post id to be returned with `sort` set to `id_asc`. This parameter is ignored if `cursor` is specified. No-example
+     * @queryParam end First post id to be returned with `sort` set to `id_desc`. This parameter is ignored if `cursor` is specified. No-example
+     *
+     * @response {
+     *   "topic": { "id": 1, "...": "..." },
+     *   "posts": [
+     *     { "id": 1, "...": "..." },
+     *     { "id": 2, "...": "..." }
+     *   ],
+     *   "cursor": { "post_id": 1 }
+     * }
+     */
     public function show($id)
     {
         $params = get_params(request()->all(), null, [
@@ -249,6 +286,7 @@ class TopicsController extends Controller
             'cursor:any',
         ], ['null_missing' => true]);
 
+        $isJsonRequest = is_api_request();
         $skipLayout = $params['skip_layout'] ?? false;
         $showDeleted = $params['with_deleted'];
         $jumpTo = null;
@@ -304,11 +342,11 @@ class TopicsController extends Controller
             $cursorHelper->prepare($params['cursor'])
         )->get();
 
-        if ($posts->count() === 0) {
+        if (!$isJsonRequest && $posts->count() === 0) {
             abort($skipLayout ? 204 : 404);
         }
 
-        if (!$skipLayout) {
+        if (!$isJsonRequest && !$skipLayout) {
             $firstPost = $posts->first();
             $jumpTo = $firstPost->getKey();
 
@@ -345,16 +383,24 @@ class TopicsController extends Controller
                     ->setRelation('topic', $topic);
             });
 
+        if ($isJsonRequest) {
+            return [
+                'topic' => json_item($topic, 'Forum\Topic'),
+                'posts' => json_collection($posts, 'Forum\Post', ['body']),
+                'cursor' => $cursorHelper->next($posts),
+                'sort' => $cursorHelper->getSortName(),
+            ];
+        }
+
         if ($cursorHelper->getSortName() === 'id_desc') {
             $posts = $posts->reverse();
         }
 
-        $firstPostId = $topic->topic_first_post_id;
-        $firstShownPostId = $posts->first()->post_id;
+        $posts->last()->markRead($currentUser);
 
-        // position of the first post, incremented in the view
-        // to generate positions of further posts
-        $firstPostPosition = $topic->postPosition($firstShownPostId);
+        $coverModel = $topic->cover()->firstOrNew([]);
+        $coverModel->setRelation('topic', $topic);
+        $cover = json_item($coverModel, new TopicCoverTransformer());
 
         $poll = $topic->poll();
         if ($poll->exists()) {
@@ -366,21 +412,21 @@ class TopicsController extends Controller
         } else {
             $canEditPoll = false;
         }
-
         $pollSummary = PollOption::summary($topic, $currentUser);
-
-        $posts->last()->markRead($currentUser);
-
-        $template = $skipLayout ? '_posts' : 'show';
-
-        $coverModel = $topic->cover()->firstOrNew([]);
-        $coverModel->setRelation('topic', $topic);
-        $cover = json_item($coverModel, new TopicCoverTransformer());
 
         $watch = TopicWatch::lookup($topic, $currentUser);
 
         $featureVotes = $this->groupFeatureVotes($topic);
+
         $noindex = !$topic->esShouldIndex();
+        $template = $skipLayout ? '_posts' : 'show';
+
+        $firstPostId = $topic->topic_first_post_id;
+        $firstShownPostId = $posts->first()->post_id;
+
+        // position of the first post, incremented in the view
+        // to generate positions of further posts
+        $firstPostPosition = $topic->postPosition($firstShownPostId);
 
         return ext_view(
             "forum.topics.{$template}",
