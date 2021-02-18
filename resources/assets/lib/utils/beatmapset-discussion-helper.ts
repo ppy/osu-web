@@ -4,8 +4,7 @@
 import { AnchorHTMLAttributes } from 'react';
 
 export function propsFromHref(href: string) {
-  const currentUrl = new URL(window.location.href);
-  const currentBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse(currentUrl.href);
+  const currentBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse(window.location.href);
 
   const targetUrl = new URL(href);
   const props: AnchorHTMLAttributes<HTMLAnchorElement> = {
@@ -14,7 +13,7 @@ export function propsFromHref(href: string) {
     target: '_blank',
   };
 
-  if (targetUrl.host === currentUrl.host) {
+  if (targetUrl.host === window.location.host) {
     const targetBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse(targetUrl.href, null, { forceDiscussionId: true });
     if (targetBeatmapsetDiscussions?.discussionId != null) {
       if (currentBeatmapsetDiscussions?.beatmapsetId === targetBeatmapsetDiscussions.beatmapsetId) {
