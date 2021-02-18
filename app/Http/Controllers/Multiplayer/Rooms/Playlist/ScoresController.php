@@ -7,7 +7,6 @@ namespace App\Http\Controllers\Multiplayer\Rooms\Playlist;
 
 use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
-use App\Libraries\DbCursorHelper;
 use App\Libraries\Multiplayer\Mod;
 use App\Models\Build;
 use App\Models\Multiplayer\PlaylistItem;
@@ -48,11 +47,7 @@ class ScoresController extends BaseController
     {
         $playlist = PlaylistItem::where('room_id', $roomId)->where('id', $playlistId)->firstOrFail();
         $params = request()->all();
-        $cursorHelper = new DbCursorHelper(
-            PlaylistItemUserHighScore::SORTS,
-            PlaylistItemUserHighScore::DEFAULT_SORT,
-            get_string($params['sort'] ?? null)
-        );
+        $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper(get_string($params['sort'] ?? null));
 
         $sort = $cursorHelper->getSort();
         $cursor = $cursorHelper->prepare($params['cursor'] ?? null);

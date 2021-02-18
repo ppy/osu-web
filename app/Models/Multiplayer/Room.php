@@ -6,10 +6,10 @@
 namespace App\Models\Multiplayer;
 
 use App\Exceptions\InvariantException;
-use App\Libraries\DbCursorHelper;
 use App\Models\Chat\Channel;
 use App\Models\Model;
 use App\Models\User;
+use App\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -32,7 +32,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Room extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, WithDbCursorHelper;
+
+    const DEFAULT_SORT = 'ended';
 
     const SORTS = [
         'ended' => [
@@ -80,7 +82,7 @@ class Room extends Model
                 $query->active();
         }
 
-        $cursorHelper = new DbCursorHelper(static::SORTS, $sort);
+        $cursorHelper = static::makeDbCursorHelper($sort);
         $cursor = $cursorHelper->prepare($params['cursor'] ?? null);
 
         $query->cursorSort($cursorHelper->getSort(), $cursor);

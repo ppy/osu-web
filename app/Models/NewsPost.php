@@ -7,10 +7,10 @@ namespace App\Models;
 
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\Commentable;
-use App\Libraries\DbCursorHelper;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use App\Traits\CommentableDefaults;
+use App\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
 use Exception;
 
@@ -28,7 +28,7 @@ use Exception;
  */
 class NewsPost extends Model implements Commentable, Wiki\WikiObject
 {
-    use CommentableDefaults;
+    use CommentableDefaults, WithDbCursorHelper;
 
     // in minutes
     const CACHE_DURATION = 86400;
@@ -71,7 +71,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
         $limit = clamp(get_int($params['limit'] ?? null) ?? 20, 1, 21);
 
-        $cursorHelper = new DbCursorHelper(static::SORTS, static::DEFAULT_SORT);
+        $cursorHelper = static::makeDbCursorHelper();
         $sort = $cursorHelper->getSort();
         $cursorRaw = $params['cursor'] ?? null;
         $cursor = $cursorHelper->prepare($cursorRaw);

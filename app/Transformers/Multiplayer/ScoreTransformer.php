@@ -5,7 +5,6 @@
 
 namespace App\Transformers\Multiplayer;
 
-use App\Libraries\DbCursorHelper;
 use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Score;
 use App\Transformers\TransformerAbstract;
@@ -66,7 +65,7 @@ class ScoreTransformer extends TransformerAbstract
         $ret = [];
 
         foreach ($typeOptions as $type => $sortName) {
-            $cursorHelper = new DbCursorHelper(PlaylistItemUserHighScore::SORTS, $sortName);
+            $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper($sortName);
             $sort = $cursorHelper->getSort();
             $cursor = $cursorHelper->prepareNext([$highScorePlaceholder]);
             $highScores = PlaylistItemUserHighScore

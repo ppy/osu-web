@@ -56,7 +56,7 @@ class CommentBundleParams
         $this->commentableId = $params['commentable_id'] ?? null;
         $this->commentableType = $params['commentable_type'] ?? null;
 
-        $this->cursorHelper = new DbCursorHelper(Comment::SORTS, Comment::DEFAULT_SORT, $params['sort'] ?? $this->sort);
+        $this->cursorHelper = Comment::makeDbCursorHelper(get_string($params['sort'] ?? $this->sort));
         $this->cursorRaw = $params['cursor'] ?? null;
         $this->cursor = $this->cursorHelper->prepare($this->cursorRaw);
         $this->sort = $this->cursorHelper->getSortName();

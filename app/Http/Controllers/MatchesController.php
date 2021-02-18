@@ -5,7 +5,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Libraries\DbCursorHelper;
 use App\Models\Match\Match;
 use App\Models\User;
 use App\Transformers\Match\EventTransformer;
@@ -21,7 +20,7 @@ class MatchesController extends Controller
     public function index()
     {
         $params = request()->all();
-        $cursorHelper = new DbCursorHelper(Match::SORTS, Match::DEFAULT_SORT, $params['sort'] ?? null);
+        $cursorHelper = Match::makeDbCursorHelper($params['sort'] ?? null);
 
         $sort = $cursorHelper->getSort();
         $cursor = $cursorHelper->prepare($params['cursor'] ?? null);
