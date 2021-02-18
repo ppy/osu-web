@@ -21,14 +21,8 @@ class @BeatmapDiscussionHelper
 
   # text should be pre-escaped.
   @discussionLinkify: (text) =>
-    text.replace osu.urlRegex, (url, _, displayUrl) ->
-      props = _exported.propsFromHref(url)
-      text = props.children
-      classNames = props.className?.split(' ')
-      props.children = null
-      props.className = null
-
-      osu.link(url, text, { classNames, props })
+    text.replace osu.urlRegex, (_match, url, _displayUrl) ->
+      osu.link(_exported.linkArgsFromHref(url)...)
 
 
   @discussionMode: (discussion) ->

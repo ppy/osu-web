@@ -3,6 +3,16 @@
 
 import { AnchorHTMLAttributes } from 'react';
 
+export function linkArgsFromHref(href: string) {
+  const props = propsFromHref(href);
+  const text = props.children;
+  const classNames = props.className?.split(' ');
+  props.children = null;
+  props.className = undefined;
+
+  return [href, text, { classNames, props }];
+}
+
 export function propsFromHref(href: string) {
   const current = BeatmapDiscussionHelper.urlParse(window.location.href);
 
