@@ -333,7 +333,7 @@ class Post extends Model implements AfterCommit, Indexable
             return;
         }
 
-        $topic = $this->topic()->withTrashed()->first();
+        $topic = $this->topic ?? $this->topic()->withTrashed()->first();
 
         if ($topic === null) {
             return;
