@@ -27,11 +27,9 @@
         "topic_id": {
           "type": "long"
         },
-        "type": {
-          "type": "join",
-          "relations": {
-            "topics": "posts"
-          }
+        "topic_title": {
+          "type": "text",
+          "analyzer": "post_text_analyzer"
         }
       }
     }

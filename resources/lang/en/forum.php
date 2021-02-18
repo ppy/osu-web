@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Really restore post?',
         'edited' => 'Last edited by :user :when, edited :count_delimited time in total.|Last edited by :user :when, edited :count_delimited times in total.',
         'posted_at' => 'posted :when',
+        'posted_by' => 'posted by :username',
 
         'actions' => [
             'destroy' => 'Delete post',

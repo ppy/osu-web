@@ -72,7 +72,7 @@ export class ModeSwitcher extends React.PureComponent
                             span
                               className: 'page-mode-link__subtitle'
                               key: 'scope'
-                              "(#{osu.trans('beatmaps.discussions.mode.scopes.general')})"
+                              "(#{osu.trans('beatmaps.discussions.mode.scopes.generalAll')})"
 
                     else
                       osu.trans("beatmaps.discussions.mode.#{snakeCase mode}")
