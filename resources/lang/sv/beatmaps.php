@@ -225,7 +225,7 @@ return [
                 'genre' => 'Genre',
                 'language' => 'Språk',
                 'mode' => 'Läge',
-                'nsfw' => '',
+                'nsfw' => 'Explicit innehåll',
                 'played' => 'Spelade',
                 'rank' => 'Rank Uppnådd',
                 'status' => 'Kategorier',
@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Rekommenderad svårighetsgrad',
         'converts' => 'Inkludera konverterade beatmaps',
+        'follows' => '',
+        'recommended' => 'Rekommenderad svårighetsgrad',
     ],
     'mode' => [
         'all' => 'Alla',
@@ -333,8 +334,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Dölj',
+        'include' => 'Visa',
     ],
 
     'played' => [

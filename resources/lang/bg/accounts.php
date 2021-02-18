@@ -62,6 +62,7 @@ return [
             'comment_new' => 'нови коментари ',
             'forum_topic_reply' => 'отговор на темата',
             'mail' => 'поща',
+            'mapping' => '',
             'push' => 'push',
             'user_achievement_unlock' => '',
         ],

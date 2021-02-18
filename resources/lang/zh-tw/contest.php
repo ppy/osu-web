@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => '這場評選的投票已經結束',
         'login_required' => '請登入後再投票。',
+        'over' => '這場評選的投票已經結束',
+        'show_voted_only' => '',
 
         'best_of' => [
             'none_played' => "沒有符合此次評選條件的圖譜！",

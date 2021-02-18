@@ -23,7 +23,7 @@ return [
     ],
 
     'status' => [
-        'non_best' => '',
-        'processing' => '',
+        'non_best' => 'Yalnızca en iyi bireysel skorlar pp kazandırır',
+        'processing' => 'Bu skor halen daha hesaplanıyor ve çok yakında gösterilecek',
     ],
 ];

@@ -68,6 +68,7 @@ return [
         'moderated' => '該頻道目前正在被管制中。',
         'no_access' => '你沒有權限訪問該頻道。',
         'restricted' => '你不能在帳戶被禁言、限制或封鎖的時候發送訊息。',
+        'silenced' => '',
     ],
 
     'comment' => [

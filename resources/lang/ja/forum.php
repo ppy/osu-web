@@ -47,6 +47,7 @@ return [
         'confirm_restore' => '投稿を本当に復元しますか？',
         'edited' => ':userが:whenに最終編集、合計:count_delimited回の編集',
         'posted_at' => '投稿日時 :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => '投稿を削除',

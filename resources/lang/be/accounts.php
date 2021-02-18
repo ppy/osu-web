@@ -62,6 +62,7 @@ return [
             'comment_new' => 'новыя каментарыі',
             'forum_topic_reply' => 'адказы да тэмы',
             'mail' => 'пошта',
+            'mapping' => '',
             'push' => 'push',
             'user_achievement_unlock' => 'адкрыццё медаля',
         ],

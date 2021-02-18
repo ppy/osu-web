@@ -18,6 +18,7 @@ return [
             'not_enough_plays' => '',
             'not_verified' => '',
             'restricted' => 'Είστε περιορισμένος',
+            'silenced' => '',
             'target_restricted' => 'Αυτός ο χρήστης είναι περιορισμένος',
         ],
     ],
