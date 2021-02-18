@@ -418,7 +418,7 @@ class TopicsController extends Controller
 
         $featureVotes = $this->groupFeatureVotes($topic);
 
-        $noindex = !$topic->esShouldIndex();
+        $noindex = !$topic->forum->enable_indexing;
         $template = $skipLayout ? '_posts' : 'show';
 
         $firstPostId = $topic->topic_first_post_id;
