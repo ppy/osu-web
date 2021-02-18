@@ -19,12 +19,6 @@ class @BeatmapDiscussionHelper
     user.is_admin || user.is_moderator
 
 
-  # text should be pre-escaped.
-  @discussionLinkify: (text) =>
-    text.replace osu.urlRegex, (_match, url, _displayUrl) ->
-      osu.link(_exported.linkArgsFromHref(url)...)
-
-
   @discussionMode: (discussion) ->
     if discussion.message_type == 'review'
       'reviews'
@@ -42,7 +36,7 @@ class @BeatmapDiscussionHelper
     blockName = 'beatmapset-discussion-message'
     text = _.escape text
     text = text.trim()
-    text = @discussionLinkify text
+    text = _exported.discussionLinkify text
     text = @linkTimestamp text, ['beatmap-discussion-timestamp-decoration']
 
     if options.newlines ? true

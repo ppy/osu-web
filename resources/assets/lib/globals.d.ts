@@ -77,7 +77,7 @@ interface OsuCommon {
   groupColour: (group?: GroupJson) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
-  link: (url: string, text: string, options?: { classNames?: string[]; isRemote?: boolean }) => string;
+  link: (url: string, text: string, options?: OsuLinkOptions) => string;
   linkify: (text: string, newWindow?: boolean) => string;
   navigate: (url: string, keepScroll?: boolean, action?: object) => void;
   popup: (message: string, type: string) => void;
@@ -99,6 +99,12 @@ interface OsuCommon {
   isMobile(): boolean;
   parseJson<T = any>(id: string, remove?: boolean): T;
   updateQueryString(url: string | null, params: { [key: string]: string | null | undefined }): string;
+}
+
+interface OsuLinkOptions {
+  classNames?: string[];
+  isRemote?: boolean;
+  props?: Record<string, any>;
 }
 
 interface ChangelogBuild {

@@ -20,7 +20,7 @@ import TextareaAutosize from 'react-autosize-textarea'
 import WindowVHPatcher from 'window-vh-patcher'
 import TurbolinksReload from 'turbolinks-reload'
 import OsuUrlHelper from 'osu-url-helper'
-import { linkArgsFromHref } from 'utils/beatmapset-discussion-helper'
+import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
@@ -32,9 +32,9 @@ window.gallery ?= new Gallery
 window._exported = {
   Captcha
   ClickMenu
+  discussionLinkify
   Enchant
   ForumPoll
-  linkArgsFromHref
   Localtime
   MobileToggle
   OsuAudio

@@ -3,14 +3,18 @@
 
 import { AnchorHTMLAttributes } from 'react';
 
-export function linkArgsFromHref(href: string) {
-  const props = propsFromHref(href);
-  const text = props.children;
-  const classNames = props.className?.split(' ');
-  props.children = null;
-  props.className = undefined;
+export function discussionLinkify(text: string) {
+  // text should be pre-escaped.
+  return text.replace(osu.urlRegex, (match, url) => {
+    const props = propsFromHref(url);
+    // React types it as ReactNode but is can be a string.
+    const displayUrl = typeof props.children === 'string' ? props.children : url;
+    const classNames = props.className?.split(' ');
+    props.children = null;
+    props.className = undefined;
 
-  return [href, text, { classNames, props }];
+    return osu.link(url, displayUrl, { classNames, props });
+  });
 }
 
 export function propsFromHref(href: string) {
