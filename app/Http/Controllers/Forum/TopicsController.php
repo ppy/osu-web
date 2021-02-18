@@ -246,14 +246,7 @@ class TopicsController extends Controller
         }
 
         if (!$skipLayout) {
-            foreach ([$postStartId, $postEndId, 0] as $jumpPoint) {
-                if ($jumpPoint === null) {
-                    continue;
-                }
-
-                $jumpTo = $jumpPoint;
-                break;
-            }
+            $jumpTo = $postStartId ?? $postEndId ?? 0;
         }
 
         if ($postStartId !== null && !$skipLayout) {

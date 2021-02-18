@@ -131,6 +131,7 @@ class Score extends Model
         if (!empty($this->playlistItem->allowed_mods)) {
             $missingMods = array_diff(
                 array_column($this->mods, 'acronym'),
+                array_column($this->playlistItem->required_mods, 'acronym'),
                 array_column($this->playlistItem->allowed_mods, 'acronym')
             );
 
