@@ -313,7 +313,7 @@ class TopicsController extends Controller
         $canEditPoll = $poll->canEdit() && priv_check('ForumTopicPollEdit', $topic)->can();
 
         $featureVotes = $this->groupFeatureVotes($topic);
-        $noindex = !$topic->esShouldIndex();
+        $noindex = !$topic->forum->enable_indexing;
 
         return ext_view(
             "forum.topics.{$template}",
