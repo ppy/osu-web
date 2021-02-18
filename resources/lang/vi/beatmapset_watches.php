@@ -15,6 +15,7 @@ return [
 
         'table' => [
             'empty' => 'Chưa theo dõi cuộc thảo luận nào.',
+            'last_update' => '',
             'open_issues' => 'Vấn đề đang mở',
             'state' => 'Trạng thái',
             'title' => 'Tiêu đề',

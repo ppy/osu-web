@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Tingkat kesulitan yang disarankan',
         'converts' => 'Sertakan beatmap yang dikonversi',
+        'follows' => '',
+        'recommended' => 'Tingkat kesulitan yang disarankan',
     ],
     'mode' => [
         'all' => 'Semua',
@@ -315,7 +316,7 @@ return [
         'V2' => 'Score V2',
     ],
     'language' => [
-        'any' => '',
+        'any' => 'Semua',
         'english' => 'Inggris',
         'chinese' => 'Mandarin',
         'french' => 'Prancis',

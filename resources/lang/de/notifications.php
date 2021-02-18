@@ -7,7 +7,7 @@ return [
     'all_read' => 'Alle Benachrichtigungen gelesen!',
     'delete' => ':type löschen',
     'loading' => 'Ungelesene Benachrichtigungen werden geladen...',
-    'mark_read' => 'Lösche :type',
+    'mark_read' => ':type als gelesen markieren',
     'none' => 'Keine Benachrichtigungen',
     'see_all' => 'alle benachrichtigungen ansehen',
     'see_channel' => 'zum chat gehen',

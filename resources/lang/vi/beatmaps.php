@@ -149,8 +149,8 @@ return [
                 'up' => 'Chưa có upvote',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Downvote mới nhất',
+                'up' => 'Upvote mới nhất',
             ],
         ],
     ],
@@ -186,18 +186,18 @@ return [
         'nominate' => 'Đề Cử',
         'nominate_confirm' => 'Đề cử (nominate) beatmap này?',
         'nominated_by' => 'Được :users đề cử',
-        'not_enough_hype' => "",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'not_enough_hype' => "Không đủ hype.",
+        'remove_from_loved' => 'Gỡ khỏi Được Yêu thích',
+        'remove_from_loved_prompt' => 'Lý do gỡ khỏi Được Yêu thích:',
         'required_text' => 'Trạng thái đề cử: :current/:required',
         'reset_message_deleted' => 'đã xóa',
         'title' => 'Trạng Thái Đề Cử',
         'unresolved_issues' => 'Vẫn còn một số vấn đề chưa giải quyết cần được xem lại trước.',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
-            'soon' => '',
+            '_' => 'Map này ước tính sẽ được Xếp Hạng :date nếu không tìm ra lỗi nào. Nó đang ở #:position trong :queue.',
+            'queue' => 'hàng chờ xếp hạng',
+            'soon' => 'sớm',
         ],
 
         'reset_at' => [
@@ -225,7 +225,7 @@ return [
                 'genre' => 'Thể Loại',
                 'language' => 'Ngôn Ngữ',
                 'mode' => 'Chế Độ',
-                'nsfw' => '',
+                'nsfw' => 'Nội dung không lành mạnh',
                 'played' => 'Đã chơi',
                 'rank' => 'Thứ Hạng Đạt Được',
                 'status' => 'Danh mục',
@@ -239,7 +239,7 @@ return [
                 'ranked' => 'Ngày xếp hạng',
                 'rating' => 'Đánh giá',
                 'plays' => 'Lượt chơi',
-                'relevance' => 'Độ liên quan',
+                'relevance' => 'Mức độ liên quan',
                 'nominations' => 'Số đề cử',
             ],
             'supporter_filter_quote' => [
@@ -249,11 +249,12 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Độ khó đề nghị',
         'converts' => 'Bao gồm beatmap được chuyển đổi',
+        'follows' => '',
+        'recommended' => 'Độ khó đề nghị',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Tất cả',
         'any' => 'Bất Kì',
         'osu' => '',
         'taiko' => '',
@@ -312,7 +313,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => '',
+        'V2' => 'Score V2',
     ],
     'language' => [
         'any' => 'Bất Kì',
@@ -333,8 +334,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Ẩn',
+        'include' => 'Hiển thị',
     ],
 
     'played' => [
@@ -363,9 +364,9 @@ return [
     ],
     'variant' => [
         'mania' => [
-            '4k' => '',
-            '7k' => '',
-            'all' => '',
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Tất cả',
         ],
     ],
 ];

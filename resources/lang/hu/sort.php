@@ -24,4 +24,9 @@ return [
         'feature_votes' => 'Csillag prioritás',
         'new' => 'Legutóbbi válasz',
     ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
+    ],
 ];

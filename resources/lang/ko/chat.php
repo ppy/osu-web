@@ -18,6 +18,7 @@ return [
             'not_enough_plays' => '게임을 충분히 하지 않으셨네요',
             'not_verified' => '세션이 유효하지 않습니다.',
             'restricted' => '계정이 제한되어 있습니다',
+            'silenced' => '',
             'target_restricted' => '상대방의 계정이 제한되어 있습니다',
         ],
     ],

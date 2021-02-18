@@ -189,7 +189,7 @@ return [
             'unranked' => 'Tidak ada rekam jejak permainan yang tercatat dalam beberapa waktu ke belakang',
 
             'achievements' => [
-                'achieved-on' => 'Dicapai pada :date',
+                'achieved-on' => 'Diraih pada :date',
                 'locked' => 'Terkunci',
                 'title' => 'Pencapaian',
             ],
@@ -408,6 +408,11 @@ return [
             'unranked_beatmapset_count' => 'Beatmap Pending',
             'graveyard_beatmapset_count' => 'Beatmap Graveyard',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

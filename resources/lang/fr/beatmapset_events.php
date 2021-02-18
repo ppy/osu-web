@@ -32,8 +32,8 @@ return [
         'remove_from_loved' => '',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Tags explicit supprimer',
+            'to_1' => 'Marquer en tant qu\'explicite',
         ],
     ],
 
@@ -71,7 +71,7 @@ return [
         'love' => 'Aimé',
         'nominate' => 'Nomination',
         'nomination_reset' => 'Réinitialisation de la nomination',
-        'nsfw_toggle' => '',
+        'nsfw_toggle' => 'Explicit',
         'qualify' => 'Qualification',
         'rank' => 'Classement',
         'remove_from_loved' => '',

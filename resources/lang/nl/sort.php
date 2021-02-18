@@ -24,4 +24,9 @@ return [
         'feature_votes' => 'Ster prioriteit',
         'new' => 'Laatste antwoord',
     ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
+    ],
 ];

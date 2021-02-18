@@ -17,7 +17,7 @@ return [
         'identify' => 'zidentyfikować cię i uzyskać publiczne informacje z twojego profilu.',
 
         'chat' => [
-            'write' => '',
+            'write' => 'wysyłać wiadomości w twoim imieniu',
         ],
 
         'friends' => [
