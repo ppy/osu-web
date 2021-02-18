@@ -325,9 +325,10 @@ class TopicsController extends Controller
                     ->cursorSort(
                         $extraCursorHelper->getSort(),
                         $extraCursorHelper->prepare(['post_id' => $jumpTo])
-                    )->get();
+                    )->get()
+                    ->reverse();
 
-                $posts = $posts->concat($extraPosts);
+                $posts = $extraPosts->concat($posts);
             }
         }
 
@@ -342,7 +343,11 @@ class TopicsController extends Controller
                 $item
                     ->setRelation('forum', $topic->forum)
                     ->setRelation('topic', $topic);
-            })->sortBy('post_id');
+            });
+
+        if ($cursorHelper->getSortName() === 'id_desc') {
+            $posts = $posts->reverse();
+        }
 
         $firstPostId = $topic->topic_first_post_id;
         $firstShownPostId = $posts->first()->post_id;
