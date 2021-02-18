@@ -60,7 +60,7 @@ grade_counts.ss           | number                      | Number of SS ranked sc
 grade_counts.ssh          | number                      | Number of Silver SS ranked scores.
 hit_accuracy              | number                      | Hit accuracy percentage
 is_ranked                 | boolean                     | Is actively ranked
-level.cuurent             | number                      | Current level.
+level.current             | number                      | Current level.
 level.progress            | number                      | Progress to next level.
 maximum_combo             | number                      | Highest maximum combo.
 play_count                | number                      | Number of maps played.
