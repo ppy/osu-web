@@ -305,7 +305,7 @@ class TopicsController extends Controller
         )->get();
 
         if ($posts->count() === 0) {
-            abort($skipLayout ? 204 : 404);
+            abort(404);
         }
 
         if (!$skipLayout) {
