@@ -13,6 +13,7 @@ import ForumPostReport from 'forum-post-report'
 import { FriendButton } from 'friend-button'
 import { LandingNews } from 'landing-news'
 import { keyBy } from 'lodash'
+import { deletedUser } from 'models/user'
 import MultiplayerSelectOptions from 'multiplayer-select-options'
 import NotificationIcon from 'notification-icon'
 import NotificationWidget from 'notification-widget/main'
@@ -57,8 +58,7 @@ reactTurbolinks.register 'beatmap-discussion-events', Events, (container) ->
   # TODO: move to store?
   users = osu.parseJson('json-users')
   props.users = _.keyBy(users, 'id')
-  props.users[null] = props.users[undefined] =
-    username: osu.trans 'users.deleted'
+  @cache.users[null] = @cache.users[undefined] = deletedUser.toJson()
 
   props
 
