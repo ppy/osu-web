@@ -249,12 +249,12 @@ class TopicsController extends Controller
      *
      * ### Response Format
      *
-     * Field  | Type              | Includes
-     * ------ | ----------------- | --------
-     * topic  | Topic             | |
-     * posts  | Post[]            | body
-     * cursor | [Cursor](#cursor) | |
-     * sort   | ForumPostSort     | |
+     * Field  | Type                       | Includes
+     * ------ | -------------------------- | --------
+     * topic  | [ForumTopic](#forum-topic) | |
+     * posts  | [ForumPost](#forum-post)[] | body
+     * cursor | [Cursor](#cursor)          | |
+     * sort   | ForumPostSort              | |
      *
      * @urlParam topic Id of the topic. Example: 1
      *
