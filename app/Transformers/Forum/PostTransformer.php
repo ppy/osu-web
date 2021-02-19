@@ -24,9 +24,9 @@ class PostTransformer extends TransformerAbstract
             'topic_id' => $post->topic_id,
             'user_id' => $post->poster_id,
 
-            'created_at' => $post->post_time,
-            'deleted_at' => $post->deleted_at,
-            'edited_at' => $post->post_edit_time,
+            'created_at' => json_time($post->post_time),
+            'deleted_at' => json_time($post->deleted_at),
+            'edited_at' => json_time($post->post_edit_time),
         ];
     }
 

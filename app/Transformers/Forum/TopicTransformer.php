@@ -25,9 +25,9 @@ class TopicTransformer extends TransformerAbstract
             'first_post_id' => $topic->topic_first_post_id,
             'last_post_id' => $topic->topic_last_post_id,
 
-            'created_at' => $topic->topic_time,
-            'deleted_at' => $topic->deleted_at,
-            'updated_at' => $topic->topic_last_post_time,
+            'created_at' => json_time($topic->topic_time),
+            'deleted_at' => json_time($topic->deleted_at),
+            'updated_at' => json_time($topic->topic_last_post_time),
         ];
     }
 }
