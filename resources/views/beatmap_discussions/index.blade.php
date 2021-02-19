@@ -119,11 +119,9 @@
 @section ("script")
     @parent
 
-    @foreach ($jsonChunks as $name => $data)
-        <script id="json-{{$name}}" type="application/json">
-            {!! json_encode($data) !!}
-        </script>
-    @endforeach
+    <script id="json-index" type="application/json">
+        {!! json_encode($json) !!}
+    </script>
 
     @include('layout._extra_js', ['src' => 'js/react/beatmap-discussions-history.js'])
 @endsection

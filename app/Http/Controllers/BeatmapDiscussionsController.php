@@ -7,10 +7,9 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\BeatmapsetDiscussionReview;
-use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
-use App\Models\User;
+use App\Transformers\BeatmapDiscussionsTransformer;
 use Auth;
 use Illuminate\Pagination\Paginator;
 use Request;
@@ -20,6 +19,7 @@ class BeatmapDiscussionsController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('require-scopes:public', ['only' => ['index']]);
 
         return parent::__construct();
     }
@@ -97,66 +97,26 @@ class BeatmapDiscussionsController extends Controller
 
         $discussions = $paginator->getCollection();
 
-        // TODO: remove this when reviews are released
-        $relatedDiscussions = [];
-        $relatedBeatmapsetIds = [];
+        $json = json_item($discussions, new BeatmapDiscussionsTransformer(), [
+            'beatmaps',
+            'included_discussions',
+            'reviews_config',
+            'users',
+        ]);
 
-        $children = BeatmapDiscussion::whereIn('parent_id', $discussions->pluck('id'))
-            ->with([
-                'beatmap',
-                'beatmapDiscussionVotes',
-                'beatmapset',
-                'startingPost',
-            ]);
+        if (is_api_request()) {
+            // TODO: move to non-offset
+            if ($paginator->hasMorePages()) {
+                $json['cursor'] = [
+                    'page' => $paginator->currentPage() + 1,
+                    'limit' => $paginator->perPage(),
+                ];
+            }
 
-        if ($isModerator) {
-            $children->visibleWithTrashed();
-        } else {
-            $children->visible();
+            return $json;
         }
 
-        $relatedDiscussions = $children->get();
-
-        $userIds = [];
-        foreach ($discussions->merge($relatedDiscussions) as $discussion) {
-            $userIds[$discussion->user_id] = true;
-            $userIds[$discussion->startingPost->last_editor_id] = true;
-            $relatedBeatmapsetIds[$discussion->beatmapset_id] = true;
-        }
-
-        $users = User::whereIn('user_id', array_keys($userIds))->with('userGroups');
-        if (!$isModerator) {
-            $users->default();
-        }
-
-        $users = $users->get();
-
-        $relatedBeatmaps = Beatmap::whereIn('beatmapset_id', array_keys($relatedBeatmapsetIds))->get();
-
-        $jsonChunks = [
-            'discussions' => json_collection(
-                $discussions,
-                'BeatmapDiscussion',
-                ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
-            ),
-            'related-beatmaps' => json_collection(
-                $relatedBeatmaps,
-                'Beatmap'
-            ),
-            'related-discussions' => json_collection(
-                $relatedDiscussions,
-                'BeatmapDiscussion',
-                ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
-            ),
-            'reviews-config' => BeatmapsetDiscussionReview::config(),
-            'users' => json_collection(
-                $users,
-                'UserCompact',
-                ['groups']
-            ),
-        ];
-
-        return ext_view('beatmap_discussions.index', compact('jsonChunks', 'search', 'paginator'));
+        return ext_view('beatmap_discussions.index', compact('json', 'search', 'paginator'));
     }
 
     public function restore($id)
