@@ -24,4 +24,9 @@ return [
         'feature_votes' => 'Prioritatea stelelor',
         'new' => 'Ultimul răspuns',
     ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
+    ],
 ];

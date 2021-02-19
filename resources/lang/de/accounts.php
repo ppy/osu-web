@@ -62,6 +62,7 @@ return [
             'comment_new' => 'neue kommentare',
             'forum_topic_reply' => 'antwort auf einen thread',
             'mail' => 'mail',
+            'mapping' => '',
             'push' => 'push',
             'user_achievement_unlock' => 'medaille freigeschaltet',
         ],

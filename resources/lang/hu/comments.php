@@ -35,9 +35,9 @@ return [
     ],
 
     'index' => [
-        'nav_comments' => '',
+        'nav_comments' => 'hozzászolások',
         'nav_title' => 'lista',
-        'no_comments' => '',
+        'no_comments' => 'nem találtunk hozzászólást...',
     ],
 
     'placeholder' => [

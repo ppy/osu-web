@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Le vote pour ce concours est terminé',
         'login_required' => 'Veuillez vous connecter pour voter.',
+        'over' => 'Le vote pour ce concours est terminé',
+        'show_voted_only' => '',
 
         'best_of' => [
             'none_played' => "Il semble que vous n'ayez joué aucune beatmap qualifiée pour ce concours !",

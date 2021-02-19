@@ -68,6 +68,7 @@ return [
         'moderated' => 'A csatorna jelenleg moderálva van.',
         'no_access' => 'Nincs hozzáférésed a csatornához.',
         'restricted' => 'Nem küldhetsz üzeneteket némított, felfüggesztett vagy kitiltott állapotban.',
+        'silenced' => '',
     ],
 
     'comment' => [

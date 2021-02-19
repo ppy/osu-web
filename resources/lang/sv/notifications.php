@@ -11,7 +11,7 @@ return [
     'none' => 'Inga aviseringar',
     'see_all' => 'visa alla aviseringar',
     'see_channel' => 'gå till chatt',
-    'verifying' => '',
+    'verifying' => 'Vänligen verifiera sessionen för att visa aviseringar',
 
     'filters' => [
         '_' => 'alla',

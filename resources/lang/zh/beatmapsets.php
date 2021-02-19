@@ -55,7 +55,7 @@ return [
         'details' => [
             'favourite' => '收藏这张谱面',
             'logged-out' => '下载谱面前请先登录！',
-            'mapped_by' => '谱师：:mapper',
+            'mapped_by' => '作图者: :mapper',
             'unfavourite' => '取消收藏',
             'updated_timeago' => '上次更新于 :timeago',
 

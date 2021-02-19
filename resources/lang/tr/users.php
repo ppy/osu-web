@@ -410,6 +410,11 @@ return [
         ],
     ],
 
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
+    ],
+
     'status' => [
         'all' => 'Tümü',
         'online' => 'Çevrimiçi',

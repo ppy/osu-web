@@ -160,7 +160,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => '已達速率限制',
             'description' => '',
         ],
         '500' => [

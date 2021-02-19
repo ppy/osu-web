@@ -5,8 +5,8 @@
 
 return [
     'comment' => [
-        'empty' => '',
-        'page_title' => '',
+        'empty' => 'Aucun commentaire suivi.',
+        'page_title' => 'liste de suivi des commentaires',
         'title' => 'commentaire',
 
         'table' => [
@@ -25,7 +25,7 @@ return [
 
     'mapping' => [
         'empty' => 'Pas de mappers suivis.',
-        'followers' => '',
+        'followers' => 'mapping des abonnés',
         'page_title' => 'liste de suivi du mappeur',
         'title' => 'mappeur',
         'to_0' => 'arrêter de me notifier lorsque cet utilisateur met en ligne une nouvelle beatmap',

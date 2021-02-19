@@ -209,7 +209,7 @@ return [
         'links' => [
             'account-edit' => 'Cài Đặt',
             'follows' => '',
-            'friends' => 'Bạn Bè',
+            'friends' => 'Bạn bè',
             'logout' => 'Đăng Xuất',
             'profile' => 'Trang Cá Nhân',
         ],
