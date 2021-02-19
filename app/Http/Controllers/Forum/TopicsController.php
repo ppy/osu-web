@@ -260,6 +260,7 @@ class TopicsController extends Controller
      *
      * @queryParam cursor [Cursor](#cursor) for pagination. No-example
      * @queryParam sort Post sorting option. Valid values are `id_asc` (default) and `id_desc`. No-example
+     * @queryParam limit Maximum number of posts to be returned (50 at most). No-example
      * @queryParam start First post id to be returned with `sort` set to `id_asc`. This parameter is ignored if `cursor` is specified. No-example
      * @queryParam end First post id to be returned with `sort` set to `id_desc`. This parameter is ignored if `cursor` is specified. No-example
      *
@@ -284,6 +285,7 @@ class TopicsController extends Controller
 
             'sort:string',
             'cursor:any',
+            'limit:int',
         ], ['null_missing' => true]);
 
         $isJsonRequest = is_api_request();
@@ -291,6 +293,7 @@ class TopicsController extends Controller
         $showDeleted = $params['with_deleted'];
         $jumpTo = null;
         $currentUser = auth()->user();
+        $limit = clamp($params['limit'], 1, 50);
 
         $topic = Topic::with(['forum'])->withTrashed()->findOrFail($id);
 
@@ -336,7 +339,7 @@ class TopicsController extends Controller
 
         $cursorHelper = new DbCursorHelper(Post::SORTS, Post::DEFAULT_SORT, $params['sort']);
 
-        $postsQueryBase = $topic->posts()->showDeleted($showDeleted)->limit(20);
+        $postsQueryBase = $topic->posts()->showDeleted($showDeleted)->limit($limit);
         $posts = (clone $postsQueryBase)->cursorSort(
             $cursorHelper->getSort(),
             $cursorHelper->prepare($params['cursor'])
