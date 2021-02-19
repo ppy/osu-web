@@ -62,6 +62,7 @@ return [
             'comment_new' => 'nieuwe reacties',
             'forum_topic_reply' => 'topic antwoord',
             'mail' => 'e-mail',
+            'mapping' => '',
             'push' => 'push',
             'user_achievement_unlock' => 'medaille verdiend',
         ],

@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Dificultatea recomandată',
         'converts' => 'Include beatmaps convertite',
+        'follows' => '',
+        'recommended' => 'Dificultatea recomandată',
     ],
     'mode' => [
         'all' => 'Toate',

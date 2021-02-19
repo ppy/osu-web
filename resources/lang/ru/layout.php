@@ -160,7 +160,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Превышен лимит запросов',
             'description' => '',
         ],
         '500' => [
@@ -208,7 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Настройки',
-            'follows' => '',
+            'follows' => 'Подписки',
             'friends' => 'Друзья',
             'logout' => 'Выйти',
             'profile' => 'Мой профиль',

@@ -17,6 +17,7 @@ use App\Models\Elasticsearch;
 use App\Models\Log;
 use App\Models\Notification;
 use App\Models\User;
+use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
@@ -76,7 +77,7 @@ use Illuminate\Database\QueryException;
  */
 class Topic extends Model implements AfterCommit, Indexable
 {
-    use Elasticsearch\TopicTrait, SoftDeletes, Validatable;
+    use Elasticsearch\TopicTrait, Memoizes, SoftDeletes, Validatable;
 
     const DEFAULT_SORT = 'new';
 
@@ -106,12 +107,6 @@ class Topic extends Model implements AfterCommit, Indexable
     protected $primaryKey = 'topic_id';
 
     public $timestamps = false;
-
-    private $postsCount;
-    private $deletedPostsCount;
-    private $_vote;
-    private $_poll;
-    private $_issueTags;
 
     protected $casts = [
         'poll_hide_results' => 'boolean',
@@ -492,20 +487,20 @@ class Topic extends Model implements AfterCommit, Indexable
 
     public function issueTags()
     {
-        if (!$this->isIssue()) {
-            return [];
-        }
+        return $this->memoize(__FUNCTION__, function () {
+            if (!$this->isIssue()) {
+                return [];
+            }
 
-        if ($this->_issueTags === null) {
-            $this->_issueTags = [];
+            $tags = [];
             foreach (static::ISSUE_TAGS as $tag) {
                 if ($this->hasIssueTag($tag)) {
-                    $this->_issueTags[] = $tag;
+                    $tags[] = $tag;
                 }
             }
-        }
 
-        return $this->_issueTags;
+            return $tags;
+        });
     }
 
     public function scopePinned($query)
@@ -604,20 +599,16 @@ class Topic extends Model implements AfterCommit, Indexable
 
     public function postsCount()
     {
-        if ($this->postsCount === null) {
-            $this->postsCount = $this->posts()->count();
-        }
-
-        return $this->postsCount;
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->topic_replies + 1;
+        });
     }
 
     public function deletedPostsCount()
     {
-        if ($this->deletedPostsCount === null) {
-            $this->deletedPostsCount = $this->posts()->onlyTrashed()->count();
-        }
-
-        return $this->deletedPostsCount;
+        return $this->memoize(__FUNCTION__, function () {
+            $this->posts()->onlyTrashed()->count();
+        });
     }
 
     public function isLocked()
@@ -828,23 +819,16 @@ class Topic extends Model implements AfterCommit, Indexable
 
     public function poll($poll = null)
     {
-        if ($this->_poll === null) {
-            if ($poll === null) {
-                $poll = new TopicPoll();
-            }
-            $this->_poll = $poll->setTopic($this);
-        }
-
-        return $this->_poll;
+        return $this->memoize(__FUNCTION__, function () use ($poll) {
+            return ($poll ?? new TopicPoll())->setTopic($this);
+        });
     }
 
     public function vote()
     {
-        if ($this->_vote === null) {
-            $this->_vote = new TopicVote($this);
-        }
-
-        return $this->_vote;
+        return $this->memoize(__FUNCTION__, function () {
+            return new TopicVote($this);
+        });
     }
 
     public function setIssueTag($tag)

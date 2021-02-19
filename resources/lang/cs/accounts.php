@@ -62,6 +62,7 @@ return [
             'comment_new' => 'nové komentáře',
             'forum_topic_reply' => 'odpoveď témata',
             'mail' => 'e-mail',
+            'mapping' => '',
             'push' => 'push',
             'user_achievement_unlock' => 'medaile odemčena',
         ],

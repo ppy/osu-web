@@ -68,6 +68,7 @@ return [
         'moderated' => 'Denne kanalen er for tiden moderert.',
         'no_access' => 'Du har ingen adgang til denne kanalen.',
         'restricted' => 'Du kan ikke sende meldinger mens du er stum, begrenset eller bannlyst.',
+        'silenced' => '',
     ],
 
     'comment' => [

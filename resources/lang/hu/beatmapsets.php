@@ -12,7 +12,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Lassíts le, játssz többet.',
     ],
 
     'index' => [
@@ -46,7 +46,7 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Felnőtt',
     ],
 
     'show' => [
@@ -114,7 +114,7 @@ return [
             'genre' => 'Műfaj',
             'language' => 'Nyelv',
             'no_scores' => 'Az adatok még számítás alatt...',
-            'nsfw' => '',
+            'nsfw' => 'Felnőtt tartalom',
             'points-of-failure' => 'Kibukási Alkalmak',
             'source' => 'Forrás',
             'success-rate' => 'Teljesítési arány',
@@ -123,12 +123,12 @@ return [
 
         'nsfw_warning' => [
             'details' => '',
-            'title' => '',
+            'title' => 'Felnőtt tartalom',
 
             'buttons' => [
-                'disable' => '',
+                'disable' => 'Figyelmeztetés kikapcsolása',
                 'listing' => '',
-                'show' => '',
+                'show' => 'Mutassa',
             ],
         ],
 

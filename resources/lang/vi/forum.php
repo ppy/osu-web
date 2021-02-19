@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Bạn muốn phục hồi bài viết?',
         'edited' => 'Chỉnh sửa lần cuối bởi :user :when, đã chỉnh sửa tổng cộng :count lần.',
         'posted_at' => 'đăng vào :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Xóa bài viết',
@@ -63,7 +64,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited bài đăng',
-            'topic_starter' => 'Chủ đề mở đầu',
+            'topic_starter' => 'Người tạo topic',
         ],
     ],
 

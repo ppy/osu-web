@@ -15,6 +15,7 @@ return [
 
         'table' => [
             'empty' => 'Nicio discuție beatmap urmărită.',
+            'last_update' => '',
             'open_issues' => 'Probleme deschise',
             'state' => 'Stare',
             'title' => 'Titlu',

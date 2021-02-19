@@ -22,7 +22,7 @@ return [
             '401-verification' => 'verifikasi akun',
             '405' => 'hilang',
             '422' => 'permintaan tidak valid',
-            '429' => '',
+            '429' => 'terlalu banyak permintaan',
             '500' => 'ada yang rusak',
             '503' => 'pemeliharaan',
         ],

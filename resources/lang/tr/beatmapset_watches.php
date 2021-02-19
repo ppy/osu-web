@@ -15,6 +15,7 @@ return [
 
         'table' => [
             'empty' => 'Takip edilen beatmap tartışması yok.',
+            'last_update' => '',
             'open_issues' => 'Açık sorunlar',
             'state' => 'Durum',
             'title' => 'Başlık',

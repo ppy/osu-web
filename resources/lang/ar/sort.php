@@ -24,4 +24,9 @@ return [
         'feature_votes' => 'تفضيل النجمة',
         'new' => 'الرد الأخير',
     ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
+    ],
 ];

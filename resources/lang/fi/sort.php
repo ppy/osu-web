@@ -24,4 +24,9 @@ return [
         'feature_votes' => 'Tähtitaso',
         'new' => 'Viimeisin kommentti',
     ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
+    ],
 ];

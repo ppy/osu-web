@@ -6,11 +6,11 @@
 return [
     'show' => [
         'fallback_translation' => 'Trang yêu cầu chưa được dịch sang ngôn ngữ đã chọn (:language). Đang hiển thị phiên bản tiếng Anh.',
-        'incomplete_or_outdated' => '',
+        'incomplete_or_outdated' => 'Nội dung trên trang này chưa hoàn chỉnh hoặc đã cũ. Nếu bạn có thể giúp, vui lòng cân nhắc cập nhật văn bản này!',
         'missing' => 'Không thể tìm thấy trang ":keyword".',
         'missing_title' => 'Không Tìm Thấy',
         'missing_translation' => 'Không thể tìm trang đã yêu cầu cho ngôn ngữ bạn đã chọn.',
-        'needs_cleanup_or_rewrite' => '',
+        'needs_cleanup_or_rewrite' => 'Trang này không đáp ứng được tiêu chuẩn của osu! wiki và cần được chỉnh sửa hoặc viết lại. Nếu bạn có thể giúp, vui lòng cân nhắc cập nhật văn bản này!',
         'search' => 'Tìm kiếm trang có sẵn cho :link.',
         'toc' => 'Nội dung',
 

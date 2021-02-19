@@ -13,7 +13,7 @@ return [
     ],
 
     'scopes' => [
-        'bot' => 'Bertindak selayaknya sebuah chat bot.',
+        'bot' => 'Bertindak selaku chat bot.',
         'identify' => 'Mengenali diri Anda dan membaca profil publik Anda.',
 
         'chat' => [

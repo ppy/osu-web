@@ -187,8 +187,8 @@ return [
         'nominate_confirm' => 'Nominer cette beatmap ?',
         'nominated_by' => 'nominée par :users',
         'not_enough_hype' => "Il n'y a pas assez de hype.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Retirer des Favoris',
+        'remove_from_loved_prompt' => 'Raison de la suppression a partir de Aimer:',
         'required_text' => 'Nominations: :current/:required',
         'reset_message_deleted' => 'supprimé',
         'title' => 'Statut de la nomination',
@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Difficulté recommandée',
         'converts' => 'Inclure les beatmaps converties',
+        'follows' => '',
+        'recommended' => 'Difficulté recommandée',
     ],
     'mode' => [
         'all' => 'Tous',

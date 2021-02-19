@@ -62,6 +62,7 @@ return [
             'comment_new' => 'nowe komentarze',
             'forum_topic_reply' => 'odpowiedzi do wątków',
             'mail' => 'e-mail',
+            'mapping' => '',
             'push' => 'push',
             'user_achievement_unlock' => 'odblokowanie medalu',
         ],

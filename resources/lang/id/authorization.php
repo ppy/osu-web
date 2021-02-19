@@ -68,6 +68,7 @@ return [
         'moderated' => 'Channel itu sedang dalam pengelolaan.',
         'no_access' => 'Anda tidak memiliki akses ke channel ini.',
         'restricted' => 'Anda tidak dapat mengirim pesan saat akun Anda sedang di-silence, di-restrict, atau di-ban.',
+        'silenced' => '',
     ],
 
     'comment' => [

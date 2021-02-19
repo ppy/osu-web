@@ -47,6 +47,7 @@ return [
         'confirm_restore' => '恢復此回覆？',
         'edited' => '最後由 :user 於 :when 編輯，總共編輯了 :count 次。',
         'posted_at' => '發表於 :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => '刪除回覆',

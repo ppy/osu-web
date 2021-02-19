@@ -110,7 +110,7 @@ return [
             'insert-block' => [
                 'paragraph' => '',
                 'praise' => '',
-                'problem' => '',
+                'problem' => '插入問題',
                 'suggestion' => '',
             ],
         ],
@@ -197,7 +197,7 @@ return [
         'rank_estimate' => [
             '_' => '',
             'queue' => '',
-            'soon' => '',
+            'soon' => '不久後',
         ],
 
         'reset_at' => [
@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => '推薦難度',
         'converts' => '包括轉換圖譜',
+        'follows' => '',
+        'recommended' => '推薦難度',
     ],
     'mode' => [
         'all' => '全部',
@@ -334,7 +335,7 @@ return [
 
     'nsfw' => [
         'exclude' => '',
-        'include' => '',
+        'include' => '顯示',
     ],
 
     'played' => [

@@ -24,4 +24,9 @@ return [
         'feature_votes' => 'Βάσει αστεριών',
         'new' => 'Τελευταία απάντηση',
     ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
+    ],
 ];

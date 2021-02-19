@@ -18,6 +18,7 @@ return [
             'not_enough_plays' => '',
             'not_verified' => '',
             'restricted' => 'Momentálne ste obmedzený',
+            'silenced' => '',
             'target_restricted' => 'Príjemca je momentálne obmedzený',
         ],
     ],
