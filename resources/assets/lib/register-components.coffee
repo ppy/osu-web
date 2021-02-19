@@ -58,7 +58,7 @@ reactTurbolinks.register 'beatmap-discussion-events', Events, (container) ->
   # TODO: move to store?
   users = osu.parseJson('json-users')
   props.users = _.keyBy(users, 'id')
-  @cache.users[null] = @cache.users[undefined] = deletedUser.toJson()
+  props.users[null] = props.users[undefined] = deletedUser.toJson()
 
   props
 
