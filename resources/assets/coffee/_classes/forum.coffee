@@ -259,6 +259,8 @@ class @Forum
         parent = @posts[0].parentNode
         parent.removeChild(post) for post in _.slice(@posts, toRemoveStart, toRemoveEnd)
 
+      @refreshLoadMoreLinks()
+
       # Restore scroll position after adding/removing posts.
       # Called after refreshLoadMoreLinks to allow header changes
       # to be included in calculation.
@@ -271,12 +273,10 @@ class @Forum
       osu.pageChange()
       link.dataset.failed = '0'
 
+    .always ->
+      link.classList.remove 'js-disabled'
     .fail ->
       link.dataset.failed = '1'
-    .always =>
-      @refreshLoadMoreLinks()
-
-      link.classList.remove 'js-disabled'
 
 
   jumpToSubmit: (e) =>
