@@ -301,7 +301,7 @@ class @Forum
       with_deleted: +@showDeleted()
       sort: sort
       cursor:
-        post_id: refPost.dataset.postId
+        id: refPost.dataset.postId
 
     url: "#{window.canonicalUrl}?#{query}"
     refPost: refPost
