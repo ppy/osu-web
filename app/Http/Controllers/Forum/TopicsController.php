@@ -227,7 +227,7 @@ class TopicsController extends Controller
         }
 
         $posts = collect([$post]);
-        $firstPostPosition = $topic->postPosition($post->post_id);
+        $firstPostPosition = $topic->postPosition($post->getKey());
 
         $post->markRead(Auth::user());
         (new ForumTopicReply($post, auth()->user()))->dispatch();
@@ -284,14 +284,14 @@ class TopicsController extends Controller
             if ($params['n'] !== null) {
                 $post = $topic->nthPost($params['n']);
                 if ($post !== null) {
-                    $params['cursor'] = ['post_id' => $post->post_id - 1];
+                    $params['cursor'] = ['id' => $post->getKey() - 1];
                     $params['sort'] = 'id_asc';
                 }
             } elseif ($params['start'] !== null) {
-                $params['cursor'] = ['post_id' => $params['start'] - 1];
+                $params['cursor'] = ['id' => $params['start'] - 1];
                 $params['sort'] = 'id_asc';
             } elseif ($params['end'] !== null) {
-                $params['cursor'] = ['post_id' => $params['end'] + 1];
+                $params['cursor'] = ['id' => $params['end'] + 1];
                 $params['sort'] = 'id_desc';
             }
         }
@@ -324,7 +324,7 @@ class TopicsController extends Controller
                 $extraPosts = (clone $postsQueryBase)
                     ->cursorSort(
                         $extraCursorHelper->getSort(),
-                        $extraCursorHelper->prepare(['post_id' => $jumpTo])
+                        $extraCursorHelper->prepare(['id' => $jumpTo])
                     )->get()
                     ->reverse();
 
@@ -350,7 +350,7 @@ class TopicsController extends Controller
         }
 
         $firstPostId = $topic->topic_first_post_id;
-        $firstShownPostId = $posts->first()->post_id;
+        $firstShownPostId = $posts->first()->getKey();
 
         // position of the first post, incremented in the view
         // to generate positions of further posts
