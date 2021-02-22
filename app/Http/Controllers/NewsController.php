@@ -8,6 +8,9 @@ namespace App\Http\Controllers;
 use App\Libraries\CommentBundle;
 use App\Models\NewsPost;
 
+/**
+ * @group News
+ */
 class NewsController extends Controller
 {
     public function __construct()
@@ -17,6 +20,29 @@ class NewsController extends Controller
         $this->middleware('require-scopes:public');
     }
 
+    /**
+     * Get news posts
+     * 
+     * Returns an array of news objects.
+     * 
+     * ---
+     * 
+     * ### Response format
+     * 
+     * Returns an array of news objects.
+     * 
+     * Attribute                            | Notes
+     * -------------------------------------|------
+     * id                                   | |
+     * author                               | |
+     * edit_url                             | |
+     * first_image                          | |
+     * published_at                         | |
+     * updated_at                           | |
+     * slug                                 | |
+     * title                                | |
+     * preview                              | |
+     */
     public function index()
     {
         $params = request()->all();
@@ -52,6 +78,17 @@ class NewsController extends Controller
         }
     }
 
+    /**
+     * Get news post
+     * 
+     * Returns news post for the specified news slug.
+     * a
+     * ---
+     * 
+     * ### Response format
+     * 
+     * Renderes the news web page.
+     */
     public function show($slug)
     {
         if (request('key') === 'id') {
