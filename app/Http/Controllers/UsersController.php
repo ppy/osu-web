@@ -530,6 +530,7 @@ class UsersController extends Controller
             'scores_first_count',
             'scores_recent_count',
             'statistics',
+            'statistics.country_rank',
             'statistics.rank',
             'statistics.variants',
             'support_level',
