@@ -15,6 +15,7 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
+use App\Transformers\BeatmapDiscussionPostsTransformer;
 use Auth;
 use DB;
 use Illuminate\Pagination\Paginator;
@@ -24,6 +25,7 @@ class BeatmapDiscussionPostsController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => 'index']);
+        $this->middleware('require-scopes:public', ['only' => ['index']]);
 
         return parent::__construct();
     }
@@ -54,14 +56,17 @@ class BeatmapDiscussionPostsController extends Controller
 
         $search = BeatmapDiscussionPost::search($params);
 
-        $query = $search['query']->with([
-            'user',
-            'beatmapset',
-            'beatmapDiscussion',
-            'beatmapDiscussion.beatmapset',
-            'beatmapDiscussion.user',
-            'beatmapDiscussion.startingPost',
-        ])->limit($search['params']['limit'] + 1);
+        $queryWith = ['user', 'beatmapset'];
+        if (!is_api_request()) {
+            $queryWith = array_merge($queryWith, [
+                'beatmapDiscussion',
+                'beatmapDiscussion.beatmapset',
+                'beatmapDiscussion.user',
+                'beatmapDiscussion.startingPost',
+            ]);
+        }
+
+        $query = $search['query']->with($queryWith)->limit($search['params']['limit'] + 1);
 
         $posts = new Paginator(
             $query->get(),
@@ -72,6 +77,23 @@ class BeatmapDiscussionPostsController extends Controller
                 'query' => $search['params'],
             ]
         );
+
+        if (is_api_request()) {
+            $json = json_item($posts->getCollection(), new BeatmapDiscussionPostsTransformer(), [
+                'beatmaps',
+                'users',
+            ]);
+
+            // TODO: move to non-offset
+            if ($posts->hasMorePages()) {
+                $json['cursor'] = [
+                    'page' => $posts->currentPage() + 1,
+                    'limit' => $posts->perPage(),
+                ];
+            }
+
+            return $json;
+        }
 
         return ext_view('beatmap_discussion_posts.index', compact('posts'));
     }
