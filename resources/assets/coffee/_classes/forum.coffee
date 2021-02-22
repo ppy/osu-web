@@ -95,7 +95,9 @@ class @Forum
 
 
   firstPostLoaded: =>
-    @postId(@posts[0]) == @firstPostId()
+    # Less than or equal in case the first post id data is wrong due to the
+    # earlier version allowing deleting "first" post.
+    @postId(@posts[0]) <= @firstPostId()
 
 
   lastPostLoaded: =>
