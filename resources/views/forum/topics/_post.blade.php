@@ -20,10 +20,11 @@
     }
 
     $user = $post->userNormalized();
+    $hidden = $post->trashed() || ($options['postPosition'] === 1 && $post->topic->trashed());
 ?>
 <div
     {{-- js-forum-post is also used by js-forum-post-report for the postId and postUsername dataset --}}
-    class="js-forum-post {{ $post->trashed() ? 'js-forum-post--hidden' : '' }} forum-post"
+    class="js-forum-post {{ $hidden ? 'js-forum-post--hidden' : '' }} forum-post"
     data-post-id="{{ $post->getKey() }}"
     data-post-username="{{ $user->username }}"
     data-post-position="{{ $options["postPosition"] }}"
