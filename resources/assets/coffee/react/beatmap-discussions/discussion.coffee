@@ -79,7 +79,6 @@ export class Discussion extends React.PureComponent
 
     user = @props.users[@props.discussion.user_id] ? @props.users[null]
     group = if user.id == @props.beatmapset.user_id then mapperGroup else user.groups?[0]
-    console.log user
 
     div
       className: topClasses
