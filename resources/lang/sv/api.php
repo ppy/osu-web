@@ -13,7 +13,12 @@ return [
     ],
 
     'scopes' => [
+        'bot' => 'Agera som en chattbot.',
         'identify' => 'Identifiera dig och läs din offentliga profil.',
+
+        'chat' => [
+            'write' => 'Skicka meddelanden åt dig.',
+        ],
 
         'friends' => [
             'read' => 'Se vem du följer.',

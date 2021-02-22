@@ -4,13 +4,11 @@
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { typeNames } from 'models/notification-type';
-import Worker from 'notifications/worker';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
 interface Props {
   type?: string;
-  worker: Worker;
 }
 
 @observer
@@ -25,10 +23,6 @@ export default class NotificationIcon extends React.Component<Props> {
   }
 
   render() {
-    if (!this.props.worker.isActive()) {
-      return null;
-    }
-
     return (
       <span className={this.mainClass()}>
         <i className='fas fa-inbox' />
@@ -42,7 +36,7 @@ export default class NotificationIcon extends React.Component<Props> {
   private mainClass() {
     let ret = 'notification-icon';
 
-    if (this.props.worker.unreadCount > 0) {
+    if (this.unreadCount > 0) {
       ret += ' notification-icon--glow';
     }
 
@@ -54,7 +48,7 @@ export default class NotificationIcon extends React.Component<Props> {
   }
 
   private unreadCountDisplay() {
-    if (this.props.worker.hasData) {
+    if (core.notificationsWorker.hasData) {
       return osu.formatNumber(this.unreadCount);
     } else {
       return '...';

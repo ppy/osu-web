@@ -70,14 +70,14 @@
   }
 
   &__details-text {
-    .default-text-shadow();
-    color: #fff;
     align-self: flex-start;
     max-width: 100%;
+    word-break: break-word;
 
-    &:hover, &:visited, &:active {
-      color: #fff;
-      text-decoration: none;
+    &--artist {
+      font-size: 20px;
+      font-weight: 500;
+      padding-bottom: 20px;
     }
 
     &--title {
@@ -86,17 +86,13 @@
       line-height: 1;
       margin-bottom: 5px;
       margin-top: 10px;
-      word-break: break-word;
     }
+  }
 
-    &--artist {
-      font-size: 20px;
-      font-weight: 500;
-    }
-
-    &:last-of-type {
-      padding-bottom: 20px;
-    }
+  &__details-text-link {
+    .default-text-shadow();
+    .link-white();
+    .link-plain();
   }
 
   &__diff-name {
@@ -119,6 +115,14 @@
     font-size: 11px;
     font-weight: 600;
     color: @yellow;
+  }
+
+  &__status {
+    height: @beatmap-picker-size;
+    font-size: @font-size--title-small;
+    margin: -5px -5px 5px;
+    display: flex;
+    margin-left: auto;
   }
 
   &__value {

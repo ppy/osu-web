@@ -47,11 +47,12 @@ return [
         'confirm_restore' => 'Voulez-vous vraiment restaurer ce post ?',
         'edited' => 'Modifié par :user le :when, édité :count fois en tout.',
         'posted_at' => 'posté :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Supprimer le post',
             'edit' => 'Modifier le post',
-            'report' => '',
+            'report' => 'Signaler la publication',
             'restore' => 'Restaurer le post',
         ],
 

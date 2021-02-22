@@ -5,33 +5,33 @@
 
 return [
     'signature' => [
-        'not_match' => 'Chữ ký không khớp.',
+        'not_match' => '',
     ],
-    'notification_type' => 'notification_type không hợp lệ :type',
+    'notification_type' => '',
     'order' => [
-        'invalid' => 'Đơn đặt hàng không hợp lệ.',
+        'invalid' => '',
         'items' => [
-            'virtual_only' => 'thanh toán `:provider` không hợp lệ cho các vật phẩm thật.',
+            'virtual_only' => '',
         ],
         'status' => [
-            'not_checkout' => 'Đang cố chấp nhận thanh toán cho mặt hàng trong trạng thái lỗi `:state`.',
-            'not_paid' => 'Đang cố hoàn tiền của thanh toán cho mặt hàng trong trạng thái lỗi `:state`.',
+            'not_checkout' => '',
+            'not_paid' => '',
         ],
     ],
     'param' => [
-        'invalid' => '`:param` param không khớp',
+        'invalid' => '',
     ],
     'paypal' => [
-        'not_echeck' => 'Thanh toán đang chờ không phải là echeck. (:actual)',
+        'not_echeck' => '',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => 'Lượng tiền trong thanh toán không khớp: :actual != :expected',
-            'currency' => 'Thanh toán không phải bằng USD. (:type)',
+            'amount' => '',
+            'currency' => '',
         ],
     ],
     'order_number' => [
-        'malformed' => 'ID giao dịch của đơn hàng nhận được không bình thường',
-        'user_id_mismatch' => 'external_id chứa sai ID của người dùng',
+        'malformed' => '',
+        'user_id_mismatch' => '',
     ],
 ];

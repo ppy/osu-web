@@ -159,6 +159,10 @@ return [
             'error' => 'Неправильний параметр запиту',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Ох, горе! Щось зламалося! ;_;',
             'description' => "Про помилку буде сповіщено.",
@@ -204,6 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Налаштування',
+            'follows' => '',
             'friends' => 'Друзі',
             'logout' => 'Вийти',
             'profile' => 'Мій профайл',

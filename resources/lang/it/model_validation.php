@@ -156,7 +156,7 @@ return [
                 '_' => 'Devi essere :link per cambiare il tuo nome!',
                 'link_text' => 'osu! sostenuto',
             ],
-            'username_is_same' => 'Questo è già il tuo nome utente, stupido!',
+            'username_is_same' => 'Questo è già il tuo nome utente, sciocco!',
         ],
     ],
 

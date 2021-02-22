@@ -27,7 +27,6 @@ return [
         'operation_timeout_exception' => 'Søkefunksjonen ser ikke ut til å fungere akkurat nå. Prøv igjen senere.',
     ],
 
-    'logged_out' => 'Du har blitt logget ut. Vennligst logg inn og prøv på nytt.',
     'supporter_only' => 'Du må være en osu!supporter for å bruke denne funksjonen.',
     'no_restricted_access' => 'Du kan ikke utføre denne handlingen mens kontoen din er i begrenset tilstand.',
     'unknown' => 'En ukjent feil har oppstått.',

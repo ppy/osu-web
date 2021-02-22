@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Felhasználók játékmód szerint',
     ],
 
     'force_reactivation' => [
@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Ezekkel játszik: :devices',
         'title' => ":username profilja",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => ':count_delimited komment|:count_delimited komment',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Profil Borító Változtatása',
@@ -404,6 +408,11 @@ return [
             'unranked_beatmapset_count' => 'Függőben lévő beatmapek',
             'graveyard_beatmapset_count' => 'Eltemetett beatmapek',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

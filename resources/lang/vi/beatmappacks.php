@@ -31,8 +31,8 @@ return [
             'not_cleared' => 'chưa chơi',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link không thể sử dụng để qua gói này.',
+            'link' => 'Mods làm giảm độ khó',
         ],
     ],
 

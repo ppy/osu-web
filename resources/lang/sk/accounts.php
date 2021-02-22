@@ -63,6 +63,7 @@ return [
 ',
             'forum_topic_reply' => 'odpoveď na tému',
             'mail' => 'pošta',
+            'mapping' => '',
             'push' => 'upozornenia na stránke',
             'user_achievement_unlock' => 'hráčska medaila odomknutá',
         ],
@@ -75,16 +76,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'zobraziť metadáta beatmapy v originálnom jazyku',
         'title' => 'Možnosti',
 
         'beatmapset_download' => [
             '_' => 'predvolený druh sťahovania beatmáp',
             'all' => 's videom, ak je dostupné',
-            'no_video' => 'bez videa',
             'direct' => 'otvoriť v osu!direct',
+            'no_video' => 'bez videa',
         ],
-
-        'beatmapset_title_show_original' => 'zobraziť metadáta beatmapy v originálnom jazyku',
     ],
 
     'playstyles' => [

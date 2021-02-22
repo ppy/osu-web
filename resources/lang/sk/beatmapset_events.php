@@ -25,10 +25,16 @@ return [
         'language_edit' => '',
         'love' => 'Obľúbené používateľom :user',
         'nominate' => 'Nominované užívateľom :user.',
+        'nominate_modes' => '',
         'nomination_reset' => 'Nový problém :discussion (:text) spôsobil zresetovanie nominácie.',
         'qualify' => 'Táto beatmapa dosiahla požadované číslo nominácii a bola kvalifikovaná.',
         'rank' => 'Ranked.',
         'remove_from_loved' => '',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -65,6 +71,7 @@ return [
         'love' => 'Obľuba',
         'nominate' => 'Nominácia',
         'nomination_reset' => 'Reštart nominácie',
+        'nsfw_toggle' => '',
         'qualify' => 'Kvalifikácia',
         'rank' => 'Hodnotenie',
         'remove_from_loved' => '',

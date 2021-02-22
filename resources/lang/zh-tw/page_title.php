@@ -22,6 +22,7 @@ return [
             '401-verification' => '',
             '405' => '',
             '422' => '',
+            '429' => '要求數過多',
             '500' => '伺服器發生了一些問題...',
             '503' => '伺服器維護中',
         ],
@@ -74,6 +75,9 @@ return [
         ],
         'contests_controller' => [
             '_' => '評選',
+        ],
+        'follows_controller' => [
+            'index' => '',
         ],
         'friends_controller' => [
             'index' => '主頁',

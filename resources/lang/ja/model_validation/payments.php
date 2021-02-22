@@ -5,33 +5,33 @@
 
 return [
     'signature' => [
-        'not_match' => '署名が一致していません。',
+        'not_match' => '',
     ],
-    'notification_type' => 'notification_type が無効の:typeです',
+    'notification_type' => '',
     'order' => [
-        'invalid' => '注文が無効です',
+        'invalid' => '',
         'items' => [
-            'virtual_only' => '`:provider`による支払いは物質的な製品にはご利用できません。',
+            'virtual_only' => '',
         ],
         'status' => [
-            'not_checkout' => '`:state`は精算するには正常でない状態です.',
-            'not_paid' => '`:state`は返金するには正常でない状態です',
+            'not_checkout' => '',
+            'not_paid' => '',
         ],
     ],
     'param' => [
-        'invalid' => '`:param` パラメータが一致しません',
+        'invalid' => '',
     ],
     'paypal' => [
-        'not_echeck' => '保留の支払いはecheckではありません。(:actual)',
+        'not_echeck' => '',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => '支払い金額が一致しません： :actual != :expected',
-            'currency' => '支払い通貨がUSDではありません。(:type)',
+            'amount' => '',
+            'currency' => '',
         ],
     ],
     'order_number' => [
-        'malformed' => '受け取った取引IDが不正な形式です',
-        'user_id_mismatch' => 'external_id の含むuser idが異なります',
+        'malformed' => '',
+        'user_id_mismatch' => '',
     ],
 ];

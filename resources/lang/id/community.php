@@ -20,20 +20,20 @@ return [
             ],
             'infra' => [
                 'title' => 'Prasarana Server',
-                'description' => 'Kontribusi kamu akan turut digunakan untuk mendanai biaya operasional server-server osu! dalam menjalankan situs web, fasilitas multiplayer, papan peringkat online, dan lainnya.',
+                'description' => 'Kontribusimu akan turut digunakan untuk memenuhi biaya operasional server-server kami dan menjalankan berbagai fasilitas yang kami miliki seperti situs web, multiplayer, papan peringkat, dan lain sebagainya.',
             ],
             'featured-artists' => [
                 'title' => 'Featured Artist',
-                'description' => 'Berkat dukunganmu, kami dapat melisensi lebih banyak musik dari artis-artis berbakat lainnya untuk dapat digunakan secara resmi di osu!',
+                'description' => 'Berkat dukunganmu, kami dapat melisensi berbagai lagu pilihan dari musisi-musisi berbakat di seluruh dunia untuk dapat secara bebas dipergunakan di dalam lingkungan osu!.',
                 'link_text' => 'Lihat daftar Featured Artist saat ini &raquo;',
             ],
             'ads' => [
                 'title' => 'Bantu osu! Untuk Tetap Mandiri',
-                'description' => 'Kontribusi kamu menjaga game ini untuk dapat sepenuhnya berfungsi secara independen tanpa bergantung pada iklan-iklan maupun sponsor-sponsor dari luar.',
+                'description' => 'Kontribusimu memungkinkan osu! untuk dapat sepenuhnya berfungsi secara independen tanpa bergantung pada iklan-iklan maupun sponsor-sponsor dari luar.',
             ],
             'tournaments' => [
                 'title' => 'Turnamen Resmi',
-                'description' => 'Dukungan yang kamu berikan akan sebagian digunakan untuk mendanai biaya operasional (dan menambah pundi-pundi hadiah yang diberikan) pada turnamen osu! World Cup.',
+                'description' => 'Dukungan yang kamu berikan akan sebagian digunakan untuk memenuhi biaya operasional (dan menambah pundi-pundi hadiah) turnamen osu! World Cup.',
                 'link_text' => 'Jelajahi turnamen &raquo;',
             ],
             'bounty-program' => [
@@ -46,7 +46,7 @@ return [
             'title' => 'Oh? Apa saja yang akan saya dapatkan?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'akses cepat dan mudah untuk mencari beatmap tanpa meninggalkan permainan.',
+                'description' => 'Telusuri beatmap-beatmap yang Anda kehendaki dengan cepat dan mudah tanpa harus meninggalkan permainan.',
             ],
 
             'friend_ranking' => [
@@ -66,7 +66,7 @@ return [
 
             'auto_downloads' => [
                 'title' => 'Unduh Otomatis',
-                'description' => 'Unduhan otomatis saat bermain multiplayer, menonton orang lain, atau mengklik tautan dalam obrolan!.',
+                'description' => 'Unduhan otomatis saat bermain multiplayer, menonton orang lain, atau mengklik tautan dalam obrolan!',
             ],
 
             'upload_more' => [
@@ -81,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => 'Kustomisasi',
-                'description' => "Kustomisasi profil Anda dengan menambahkan laman pengguna yang dapat Anda hias sepenuhnya.",
+                'description' => "Buat laman profil Anda lebih menarik dengan tambahan gambar latar dan kolom \"saya!\" yang dapat diisi dengan hal apapun yang Anda kehendaki.",
             ],
 
             'beatmap_filters' => [
@@ -91,7 +91,7 @@ return [
 
             'yellow_fellow' => [
                 'title' => 'Pesona Kuning Cemerlang',
-                'description' => 'Buat dirimu lebih tersorot dengan nama pengguna yang berwarna kuning terang di obrolan.',
+                'description' => 'Buat dirimu lebih tersorot dengan nama pengguna yang berwarna kuning terang di dalam kanal obrolan.',
             ],
 
             'speedy_downloads' => [
@@ -105,7 +105,7 @@ return [
             ],
 
             'skinnables' => [
-                'title' => 'Lebih Banyak Elemen Skinning',
+                'title' => 'Elemen Skinning Tambahan',
                 'description' => 'Tambahan elemen skin yang bisa Anda kustomisasi, seperti latar belakang menu utama.',
             ],
 
@@ -129,16 +129,16 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Unggah Lebih Banyak Beatmap',
-                'description' => 'Berapa banyak beatmap non-ranked yang dapat kamu miliki dihitung dari nilai dasar ditambah bonus tambahan untuk tiap beatmap ranked yang kamu miliki saat ini (hingga batas).<br/><br/> Biasanya jumlahnya adalah 4 ditambah 1 per beatmap ranked (hingga 2). Dengan supporter, jumlah ini meningkat menjadi 8 ditambah 1 per beatmap ranked (hingga 12).',
+                'description' => 'Jumlah beatmap Pending yang dapat kamu unggah pada satu waktu pada umumnya terbatas hanya pada bilangan :base beatmap ditambah :bonus beatmap per beatmap Ranked yang kamu miliki (hingga :bonus_max beatmap).<br/><br/> Dengan osu!supporter, kamu akan dapat mengunggah lebih banyak beatmap hingga bilangan :supporter_base beatmap ditambah :supporter_bonus beatmap per beatmap Ranked yang kamu miliki (hingga :supporter_bonus_max beatmap).',
             ],
             'friend_filtering' => [
                 'title' => 'Papan Peringkat Teman',
-                'description' => 'Bersainglah dengan teman-temanmu dan lihat bagaimana kamu dapat melawan dengan menunjukkan peringkatmu pada mereka!*<br/><br/><small>* fitur ini belum tersedia di situs baru, segera tersedia (tm) </small>',
+                'description' => 'Bersainglah dengan teman-temanmu dan lihat siapa yang paling unggul di antara kamu dan teman-temanmu!',
             ],
 
         ],
         'supporter_status' => [
-            'contribution' => 'Terima kasih atas dukungan Anda! Anda telah membeli supporter tag sebanyak :tags kali dengan total kontribusi sebesar :dollars!',
+            'contribution' => 'Terima kasih atas dukungan Anda! Anda telah membeli supporter tag sebanyak :tags kali dengan total kontribusi finansial senilai :dollars!',
             'gifted' => ":giftedTags dari pembelian tag Anda telah dihadiahkan (dengan total sebesar :giftedDollars telah dihadiahkan). Terima kasih atas kemurahan hati Anda!",
             'not_yet' => "Anda belum pernah memiliki supporter tag :(",
             'valid_until' => 'Supporter Tag Anda saat ini berlaku hingga :date!',

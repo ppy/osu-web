@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Играе с :devices',
         'title' => "профила на :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Промяна на профилната корица',
@@ -404,6 +408,11 @@ return [
             'unranked_beatmapset_count' => 'Предстоящи бийтмапове за класиране',
             'graveyard_beatmapset_count' => 'Изоставени бийтмапове',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

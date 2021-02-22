@@ -35,14 +35,26 @@
   max-width: 150px
   margin: 10px auto
 
-.authenticated
+.scope
   padding: 1px 10px
   text-shadow: none
+  font-size: smaller
   font-weight: bold
   white-space: nowrap
   color: #fff
   border-radius: 9px
-  background-color: #3a87ad
-  display: block
+  background-color: #87ad3a
   width: max-content
-  margin-bottom: 1em
+  text-decoration: none
+
+  &--lazer
+    background-color: #ba6436
+
+  &--oauth
+    background-color: #3a87ad
+
+  .scope-list &
+    margin-right: 5px
+
+.scope-list
+  display: flex

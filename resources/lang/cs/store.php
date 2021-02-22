@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Objednávka vystavena dne :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'Zobrazit fakturu',
         'no_orders' => 'Nejsou zde žádné objednávky k zobrazení.',
+        'paid_on' => 'Objednávka vystavena dne :date',
         'resume' => 'Obnovit objednávku',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

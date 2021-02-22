@@ -204,11 +204,6 @@ class ModdingHistoryEventsBundle
 
             $discussions = $parents['query']->get();
 
-            // TODO: remove this when reviews are released
-            if (!config('osu.beatmapset.discussion_review_enabled')) {
-                return $discussions;
-            }
-
             $children = BeatmapDiscussion::whereIn('parent_id', $discussions->pluck('id'))->with($includes);
 
             if ($this->isModerator) {
@@ -287,6 +282,7 @@ class ModdingHistoryEventsBundle
                 $posts->pluck('user_id')->toArray(),
                 $posts->pluck('last_editor_id')->toArray(),
                 $events->pluck('user_id')->toArray(),
+                $events->pluck('beatmapDiscussion')->pluck('user_id')->toArray(),
                 $votes['given']->pluck('user_id')->toArray(),
                 $votes['received']->pluck('user_id')->toArray()
             );

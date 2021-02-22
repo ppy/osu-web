@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => '你今天的提名次數已達上限，請明天再試。',
-            'full_bn_required' => '您必須是完整的提名者才能執行此合格提名。',
-            'full_bn_required_hybrid' => '你必須是一個完整的提名者至提名圖譜設定最少一個遊戲模式。',
             'incorrect_state' => '執行操作時發生錯誤，請重新載入頁面。',
             'owner' => "不能提名自己的圖譜。",
             'set_metadata' => '',
@@ -70,6 +68,7 @@ return [
         'moderated' => '該頻道目前正在被管制中。',
         'no_access' => '你沒有權限訪問該頻道。',
         'restricted' => '你不能在帳戶被禁言、限制或封鎖的時候發送訊息。',
+        'silenced' => '',
     ],
 
     'comment' => [

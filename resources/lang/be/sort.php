@@ -15,8 +15,18 @@ return [
     'top' => 'Найлепшае',
     'username' => 'Імя карыстальніка',
 
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => '',
+    ],
+
     'forum_topics' => [
-        'new' => 'Апошні адказ',
         'feature_votes' => 'Зорны прыярытэт',
+        'new' => 'Апошні адказ',
+    ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
     ],
 ];

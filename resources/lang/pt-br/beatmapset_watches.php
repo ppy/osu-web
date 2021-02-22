@@ -15,6 +15,7 @@ return [
 
         'table' => [
             'empty' => 'Nenhuma discussão de beatmap supervisionada.',
+            'last_update' => '',
             'open_issues' => 'Problemas em aberto',
             'state' => 'Estado',
             'title' => 'Título',

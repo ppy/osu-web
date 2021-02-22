@@ -221,14 +221,15 @@ return [
             'not-found' => 'sem resultados',
             'not-found-quote' => '... não, nada encontrado.',
             'filters' => [
+                'extra' => 'extra',
                 'general' => 'Geral',
-                'mode' => 'Modo',
-                'status' => 'Categorias',
                 'genre' => 'Género',
                 'language' => 'Língua',
-                'extra' => 'extra',
-                'rank' => 'Classificação alcançada',
+                'mode' => 'Modo',
+                'nsfw' => 'Mapas explícitos',
                 'played' => 'Jogado',
+                'rank' => 'Classificação alcançada',
+                'status' => 'Categorias',
             ],
             'sorting' => [
                 'title' => 'Título',
@@ -249,8 +250,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Dificuldade recomendada',
         'converts' => 'Incluir beatmaps convertidos',
+        'follows' => '',
+        'recommended' => 'Dificuldade recomendada',
     ],
     'mode' => [
         'all' => 'Todos',
@@ -303,7 +305,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
-        'MR' => 'Link alternativo',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',
@@ -331,6 +333,12 @@ return [
         'other' => 'Outro',
         'unspecified' => 'Não especificada',
     ],
+
+    'nsfw' => [
+        'exclude' => 'Ocultar',
+        'include' => 'Mostrar',
+    ],
+
     'played' => [
         'any' => 'Qualquer',
         'played' => 'Jogado',

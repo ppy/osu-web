@@ -15,6 +15,7 @@ return [
 
         'table' => [
             'empty' => 'Ei seurattuja keskusteluja.',
+            'last_update' => '',
             'open_issues' => 'Avoimet ongelmat',
             'state' => 'Tila',
             'title' => 'Nimi',

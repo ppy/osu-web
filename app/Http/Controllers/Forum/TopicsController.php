@@ -190,7 +190,7 @@ class TopicsController extends Controller
     public function show($id)
     {
         $params = get_params(request()->all(), null, [
-            'start',
+            'start', // either number or "unread"
             'end:int',
             'n:int',
             'skip_layout:bool',
@@ -203,14 +203,9 @@ class TopicsController extends Controller
         $skipLayout = $params['skip_layout'] ?? false;
         $showDeleted = $params['with_deleted'] ?? null;
         $jumpTo = null;
+        $currentUser = auth()->user();
 
-        $topic = Topic
-            ::with([
-                'forum.cover',
-                'pollOptions.votes',
-                'pollOptions.post',
-                'featureVotes.user',
-            ])->withTrashed()->findOrFail($id);
+        $topic = Topic::with(['forum'])->withTrashed()->findOrFail($id);
 
         $userCanModerate = priv_check('ForumModerate', $topic->forum)->can();
 
@@ -223,7 +218,7 @@ class TopicsController extends Controller
         }
 
         if ($userCanModerate) {
-            $showDeleted = $showDeleted ?? auth()->user()->profileCustomization()->forum_posts_show_deleted;
+            $showDeleted = $showDeleted ?? $currentUser->profileCustomization()->forum_posts_show_deleted;
         } else {
             $showDeleted = false;
         }
@@ -233,7 +228,7 @@ class TopicsController extends Controller
         $posts = $topic->posts()->showDeleted($showDeleted);
 
         if ($postStartId === 'unread') {
-            $postStartId = Post::lastUnreadByUser($topic, Auth::user());
+            $postStartId = Post::lastUnreadByUser($topic, $currentUser);
         } else {
             $postStartId = get_int($postStartId);
         }
@@ -246,14 +241,7 @@ class TopicsController extends Controller
         }
 
         if (!$skipLayout) {
-            foreach ([$postStartId, $postEndId, 0] as $jumpPoint) {
-                if ($jumpPoint === null) {
-                    continue;
-                }
-
-                $jumpTo = $jumpPoint;
-                break;
-            }
+            $jumpTo = $postStartId ?? $postEndId ?? 0;
         }
 
         if ($postStartId !== null && !$skipLayout) {
@@ -275,15 +263,18 @@ class TopicsController extends Controller
 
         $posts = $posts
             ->take(20)
-            ->with('forum')
-            ->with('lastEditor')
-            ->with('topic')
-            ->with('user.rank')
-            ->with('user.country')
-            ->with('user.supporterTagPurchases')
-            ->with('user.userGroups')
-            ->get()
-            ->sortBy('post_id');
+            ->with([
+                'lastEditor',
+                'user.country',
+                'user.rank',
+                'user.supporterTagPurchases',
+                'user.userGroups',
+            ])->get()
+            ->each(function ($item) use ($topic) {
+                $item
+                    ->setRelation('forum', $topic->forum)
+                    ->setRelation('topic', $topic);
+            })->sortBy('post_id');
 
         if ($posts->count() === 0) {
             abort($skipLayout ? 204 : 404);
@@ -302,25 +293,31 @@ class TopicsController extends Controller
         // to generate positions of further posts
         $firstPostPosition = $topic->postPosition($firstShownPostId);
 
-        $pollSummary = PollOption::summary($topic, Auth::user());
+        $poll = $topic->poll();
+        if ($poll->exists()) {
+            $topic->load([
+                'pollOptions.votes',
+                'pollOptions.post',
+            ]);
+            $canEditPoll = $poll->canEdit() && priv_check('ForumTopicPollEdit', $topic)->can();
+        } else {
+            $canEditPoll = false;
+        }
 
-        $posts->last()->markRead(Auth::user());
+        $pollSummary = PollOption::summary($topic, $currentUser);
+
+        $posts->last()->markRead($currentUser);
 
         $template = $skipLayout ? '_posts' : 'show';
 
-        $cover = json_item(
-            $topic->cover()->firstOrNew([]),
-            new TopicCoverTransformer()
-        );
+        $coverModel = $topic->cover()->firstOrNew([]);
+        $coverModel->setRelation('topic', $topic);
+        $cover = json_item($coverModel, new TopicCoverTransformer());
 
-        $watch = TopicWatch::lookup($topic, Auth::user());
-
-        $poll = new TopicPoll();
-        $poll->setTopic($topic);
-        $canEditPoll = $poll->canEdit() && priv_check('ForumTopicPollEdit', $topic)->can();
+        $watch = TopicWatch::lookup($topic, $currentUser);
 
         $featureVotes = $this->groupFeatureVotes($topic);
-        $noindex = !$topic->esShouldIndex();
+        $noindex = !$topic->forum->enable_indexing;
 
         return ext_view(
             "forum.topics.{$template}",
@@ -450,9 +447,13 @@ class TopicsController extends Controller
 
     private function groupFeatureVotes($topic)
     {
+        if (!$topic->isFeatureTopic()) {
+            return [];
+        }
+
         $ret = [];
 
-        foreach ($topic->featureVotes as $vote) {
+        foreach ($topic->featureVotes()->with('user')->get() as $vote) {
             $username = optional($vote->user)->username;
             $ret[$username] ?? ($ret[$username] = 0);
             $ret[$username] += $vote->voteIncrement();

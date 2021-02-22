@@ -32,12 +32,12 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'tartózkodási hely',
                 'user_interests' => 'érdeklődés',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => 'foglalkozás',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'weboldal',
             ],
         ],
@@ -62,6 +62,7 @@ return [
             'comment_new' => 'Új megjegyzések',
             'forum_topic_reply' => 'Válaszolj erre a témára',
             'mail' => 'e-mail',
+            'mapping' => '',
             'push' => 'Elöjövő',
             'user_achievement_unlock' => 'Medál feloldva',
         ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'beatmapekben lévő felnőtt tartalmakra vonatkozó figyelmeztetések elrejtése',
+        'beatmapset_title_show_original' => 'A beatmap metaadatai megjelenítése eredeti nyelven',
         'title' => 'Beállítások',
 
         'beatmapset_download' => [
             '_' => 'Alapértelmezett beatmap letöltés típusa',
             'all' => 'Videóval, ha elérhető',
-            'no_video' => 'Videó nélkül',
             'direct' => 'Megnyitás osu!direct-ben',
+            'no_video' => 'Videó nélkül',
         ],
-
-        'beatmapset_title_show_original' => 'A beatmap metaadatai megjelenítése eredeti nyelven',
     ],
 
     'playstyles' => [

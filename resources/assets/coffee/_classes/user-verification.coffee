@@ -6,11 +6,17 @@ class @UserVerification
     addEventListener 'turbolinks:load', @setModal
     $(document).on 'ajax:error', @showOnError
     $(document).on 'turbolinks:load', @showOnLoad
+    $(document).on 'turbolinks:visit', @setDelayShow
     $(document).on 'input', '.js-user-verification--input', @autoSubmit
     $(document).on 'click', '.js-user-verification--reissue', @reissue
     $.subscribe 'user-verification:success', @success
 
     $(window).on 'resize scroll', @reposition
+
+    # set to true on turbolinks:visit so the box will be rendered on navigation
+    @delayShow = false
+    # actual function to "store" the parameter original used for delayed show call
+    @delayShowCallback = null
 
     # Used as callback on original action (where verification was required)
     @clickAfterVerification = null
@@ -97,6 +103,10 @@ class @UserVerification
       @float(referenceBottom < 0, @modal, referenceBottom)
 
 
+  setDelayShow: =>
+    @delayShow = true
+
+
   setMessage: (text, withSpinner = false) =>
     if !text? || text.length == 0
       Fade.out @message[0]
@@ -129,6 +139,10 @@ class @UserVerification
 
 
   show: (target, html) =>
+    if @delayShow
+      @delayShowCallback = => @show(target, html)
+      return
+
     @clickAfterVerification = target
 
     if html?
@@ -155,4 +169,10 @@ class @UserVerification
   # for pages which require authentication
   # and being visited directly from outside
   showOnLoad: =>
-    @show() if @isVerificationPage()
+    @delayShow = false
+
+    if @delayShowCallback?
+      @delayShowCallback()
+      @delayShowCallback = null
+    else if @isVerificationPage()
+      @show()

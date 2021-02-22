@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Гуляе з :devices',
         'title' => "Профіль :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Змяніць фон профілю',
@@ -404,6 +408,11 @@ return [
             'unranked_beatmapset_count' => '',
             'graveyard_beatmapset_count' => '',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

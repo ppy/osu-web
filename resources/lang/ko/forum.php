@@ -47,11 +47,12 @@ return [
         'confirm_restore' => '정말 이 글을 복원할까요?',
         'edited' => ':user 님이 마지막으로 :when에 수정하여 총 :count_delimited회 수정되었습니다.',
         'posted_at' => ':when에 게시됨',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => '삭제',
             'edit' => '수정',
-            'report' => '',
+            'report' => '게시글 신고',
             'restore' => '복원',
         ],
 

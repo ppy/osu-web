@@ -15,8 +15,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'إبلاغ',
+        'title' => 'الاِبلاغ عن منشور :username؟',
     ],
 
     'scores' => [

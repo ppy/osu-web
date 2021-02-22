@@ -32,12 +32,12 @@ return [
             'title' => 'Perfil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'localização atual',
                 'user_interests' => 'interesses',
-                'user_msnm' => 'skype',
+                'user_msnm' => '',
                 'user_occ' => 'ocupação',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'website',
             ],
         ],
@@ -62,6 +62,7 @@ return [
             'comment_new' => 'novos comentários',
             'forum_topic_reply' => 'resposta em tópico',
             'mail' => 'email',
+            'mapping' => '',
             'push' => 'push',
             'user_achievement_unlock' => 'medalha de usuário desbloqueada',
         ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'ocultar avisos para conteúdo explícito em beatmaps',
+        'beatmapset_title_show_original' => 'mostrar metadados do beatmap no idioma original',
         'title' => 'Opções',
 
         'beatmapset_download' => [
             '_' => 'tipo de download padrão de beatmap',
             'all' => 'com vídeo se disponível',
-            'no_video' => 'sem vídeo',
             'direct' => 'abrir no osu!direct',
+            'no_video' => 'sem vídeo',
         ],
-
-        'beatmapset_title_show_original' => 'mostrar metadados do beatmap no idioma original',
     ],
 
     'playstyles' => [

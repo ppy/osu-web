@@ -27,7 +27,6 @@ return [
         'operation_timeout_exception' => 'Zoeken is momenteel drukker dan gebruikelijk, probeer het later opnieuw.',
     ],
 
-    'logged_out' => 'Je bent uitgelogd. Log in en probeer opnieuw.',
     'supporter_only' => 'Je moet een supporter zijn om dit te gebruiken.',
     'no_restricted_access' => 'Je mag dit niet doen terwijl je account de restricted status heeft.',
     'unknown' => 'Een onbekende fout trad op.',

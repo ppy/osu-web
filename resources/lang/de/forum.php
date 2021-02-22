@@ -47,11 +47,12 @@ return [
         'confirm_restore' => 'Beitrag wirklich wiederherstellen?',
         'edited' => 'Zuletzt von :user :when bearbeitet, insgesamt :count_delimited Mal bearbeitet.',
         'posted_at' => 'erstellt :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Beitrag löschen',
             'edit' => 'Beitrag bearbeiten',
-            'report' => '',
+            'report' => 'Beitrag melden',
             'restore' => 'Beitrag wiederherstellen',
         ],
 

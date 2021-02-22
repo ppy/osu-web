@@ -8,7 +8,7 @@ return [
         'title' => ':username 在 :title [:version] 上的成绩',
 
         'beatmap' => [
-            'by' => '作者：:artist',
+            'by' => '曲师：:artist',
         ],
 
         'player' => [
@@ -20,5 +20,10 @@ return [
                 'global' => '全球排名',
             ],
         ],
+    ],
+
+    'status' => [
+        'non_best' => '',
+        'processing' => '',
     ],
 ];

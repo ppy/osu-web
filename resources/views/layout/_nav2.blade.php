@@ -142,6 +142,8 @@
                 <button
                     class="nav-button nav-button--stadium js-click-menu js-react--chat-icon"
                     data-click-menu-target="nav2-chat-notification-widget"
+                    data-turbolinks-permanent
+                    id="notification-widget-chat-icon"
                 >
                     <span class="notification-icon">
                         <i class="fas fa-comment-alt"></i>
@@ -153,6 +155,8 @@
                     data-click-menu-id="nav2-chat-notification-widget"
                     data-visibility="hidden"
                     data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup', 'only' => 'channel']) }}"
+                    data-turbolinks-permanent
+                    id="notification-widget-chat"
                 ></div>
 
             </div>
@@ -161,6 +165,8 @@
                 <button
                     class="nav-button nav-button--stadium js-click-menu js-react--notification-icon"
                     data-click-menu-target="nav2-notification-widget"
+                    data-turbolinks-permanent
+                    id="notification-widget-icon"
                 >
                     <span class="notification-icon">
                         <i class="fas fa-inbox"></i>
@@ -172,6 +178,8 @@
                     data-click-menu-id="nav2-notification-widget"
                     data-visibility="hidden"
                     data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup', 'excludes' => ['channel']]) }}"
+                    data-turbolinks-permanent
+                    id="notification-widget"
                 ></div>
             </div>
         @endif

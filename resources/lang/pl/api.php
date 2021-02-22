@@ -13,7 +13,12 @@ return [
     ],
 
     'scopes' => [
+        'bot' => '',
         'identify' => 'zidentyfikować cię i uzyskać publiczne informacje z twojego profilu.',
+
+        'chat' => [
+            'write' => 'wysyłać wiadomości w twoim imieniu',
+        ],
 
         'friends' => [
             'read' => 'zobaczyć, kogo obserwujesz.',

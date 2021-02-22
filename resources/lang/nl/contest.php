@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Je kan niet meer stemmen in deze wedstrijd',
         'login_required' => 'Log in om te kunnen stemmen.',
+        'over' => 'Je kan niet meer stemmen in deze wedstrijd',
+        'show_voted_only' => '',
 
         'best_of' => [
             'none_played' => "Het lijkt erop dat je geen van de beatmaps in deze wedstrijd hebt gespeeld!",

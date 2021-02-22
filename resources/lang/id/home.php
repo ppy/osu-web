@@ -6,7 +6,7 @@
 return [
     'landing' => [
         'download' => 'Unduh sekarang',
-        'online' => '<strong>:players</strong> saat ini terhubung dalam <strong>:games</strong> permainan',
+        'online' => '<strong>:players</strong> pemain saat ini terhubung di dalam <strong>:games</strong> ruang permainan',
         'peak' => 'Tercatat maksimal sebanyak :count pengguna online',
         'players' => '<strong>:count</strong> pengguna terdaftar',
         'title' => 'selamat datang',
@@ -76,7 +76,7 @@ return [
         'action' => 'Unduh osu!',
 
         'help' => [
-            '_' => 'apabila Anda mengalami masalah dalam memulai permainan atau mendaftarkan akun, harap :help_forum_link atau :support_button.',
+            '_' => 'apabila Anda menemui suatu masalah di saat Anda hendak memulai permainan atau mendaftarkan akun, harap :help_forum_link atau :support_button.',
             'help_forum_link' => 'kunjungi sub-forum Help',
             'support_button' => 'hubungi layanan dukungan kami',
         ],
@@ -91,7 +91,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'buat akun',
-                'description' => 'ikuti petunjuk saat memulai permainan untuk masuk atau membuat akun baru',
+                'description' => 'ikuti petunjuk yang muncul di awal permainan untuk masuk atau membuat akun baru',
             ],
             'download' => [
                 'title' => 'unduh permainannya',
@@ -123,7 +123,7 @@ return [
         ],
         'beatmaps' => [
             'new' => 'Beatmap Ranked Terbaru',
-            'popular' => 'Beatmap yang Sedang Populer',
+            'popular' => 'Beatmap Populer',
             'by_user' => 'oleh :user',
         ],
         'buttons' => [

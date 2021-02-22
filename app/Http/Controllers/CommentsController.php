@@ -38,8 +38,6 @@ class CommentsController extends Controller
      * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
-     *
-     * @authenticated
      */
     public function destroy($id)
     {
@@ -68,8 +66,6 @@ class CommentsController extends Controller
      * Returns [CommentBundle](#commentbundle).
      *
      * `pinned_comments` is only included when `commentable_type` and `commentable_id` are specified.
-     *
-     * @authenticated
      *
      * @queryParam commentable_type The type of resource to get comments for.
      * @queryParam commentable_id The id of the resource to get comments for.
@@ -153,8 +149,6 @@ class CommentsController extends Controller
      * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
-     *
-     * @authenticated
      */
     public function show($id)
     {
@@ -179,8 +173,6 @@ class CommentsController extends Controller
      * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
-     *
-     * @authenticated
      *
      * @queryParam comment.commentable_id Resource ID the comment thread is attached to
      * @queryParam comment.commentable_type Resource type the comment thread is attached to
@@ -224,8 +216,6 @@ class CommentsController extends Controller
      * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
-     *
-     * @authenticated
      *
      * @queryParam comment.message New text of the comment
      */
@@ -277,8 +267,6 @@ class CommentsController extends Controller
      * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
-     *
-     * @authenticated
      */
     public function voteDestroy($id)
     {
@@ -305,8 +293,6 @@ class CommentsController extends Controller
      * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
-     *
-     * @authenticated
      */
     public function voteStore($id)
     {

@@ -77,7 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'ajuda',
-            'getAbuse' => '',
+            'getAbuse' => 'denunciar abuso',
             'getFaq' => 'perguntas frequentes',
             'getRules' => 'regras',
             'getSupport' => 'a sério, preciso mesmo de ajuda!',
@@ -159,6 +159,10 @@ return [
             'error' => 'Parâmetro de pedido inválido',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Oh não! Algo se quebrou! ;_;',
             'description' => "Somos automaticamente notificados de todos os erros.",
@@ -204,6 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Definições',
+            'follows' => 'Listas de observação',
             'friends' => 'Amigos',
             'logout' => 'Terminar sessão',
             'profile' => 'O meu perfil',

@@ -13,12 +13,17 @@ return [
     ],
 
     'scopes' => [
+        'bot' => 'Hành xử như chat bot.',
         'identify' => 'Nhận diện và đọc trang cá nhân công khai của bạn.',
+
+        'chat' => [
+            'write' => 'Gửi tin nhắn dưới tư cách của bạn.',
+        ],
 
         'friends' => [
             'read' => 'Xem những ai bạn đang theo dõi.',
         ],
 
-        'public' => '',
+        'public' => 'Đọc dữ liệu công khai nhân danh bạn.',
     ],
 ];

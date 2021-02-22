@@ -47,11 +47,12 @@ return [
         'confirm_restore' => 'Queres mesmo restaurar a publicação?',
         'edited' => 'Editado pela última vez por :user :when, editado :count vezes no total.',
         'posted_at' => 'publicado :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Eliminar publicação',
             'edit' => 'Editar publicação',
-            'report' => '',
+            'report' => 'Denunciar publicação',
             'restore' => 'Restaurar publicação',
         ],
 

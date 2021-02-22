@@ -15,8 +15,18 @@ return [
     'top' => '熱門',
     'username' => '使用者名稱',
 
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => '',
+    ],
+
     'forum_topics' => [
-        'new' => '最新回覆',
         'feature_votes' => '星級優先',
+        'new' => '最新回覆',
+    ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
     ],
 ];

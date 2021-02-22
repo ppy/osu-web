@@ -5,11 +5,13 @@
 
 return [
     'all_read' => 'Tất cả các thông báo đã được đọc!',
-    'delete' => '',
+    'delete' => 'Xóa :type',
+    'loading' => 'Đang tải thông báo chưa đọc...',
     'mark_read' => '',
     'none' => 'Không có thông báo nào',
     'see_all' => 'xem tất cả thông báo',
     'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'tất cả',
@@ -133,14 +135,24 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Huy chương',
 
             'user_achievement_unlock' => [
                 '_' => 'Huy chương mới',
                 'user_achievement_unlock' => 'Đã mở khóa ":title"!',
-                'user_achievement_unlock_compact' => '',
-                'user_achievement_unlock_group' => '',
+                'user_achievement_unlock_compact' => 'Đã mở khóa ":title"!',
+                'user_achievement_unlock_group' => 'Đã mở khóa huy hiệu!',
             ],
         ],
     ],
@@ -162,7 +174,7 @@ return [
                 'beatmapset_love' => '',
                 'beatmapset_nominate' => '',
                 'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
+                'beatmapset_rank' => '":title" đã được xếp hạng',
                 'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => '',
             ],
@@ -200,6 +212,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => '',
                 'user_achievement_unlock_self' => '',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

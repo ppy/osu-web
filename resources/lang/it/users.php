@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Gioca con :devices',
         'title' => "Profilo di :username",
 
+        'comments_count' => [
+            '_' => 'Ha postato :link',
+            'count' => ':count_delimited commento|:count_delimited commenti',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Cambia copertina del profilo',
@@ -404,6 +408,11 @@ return [
             'unranked_beatmapset_count' => 'Beatmap in Attesa',
             'graveyard_beatmapset_count' => 'Beatmap Abbandonate',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

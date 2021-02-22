@@ -154,6 +154,10 @@ return [
         'plays_with' => '惯用 :devices',
         'title' => ":username 的个人资料",
 
+        'comments_count' => [
+            '_' => '发表了 :link',
+            'count' => ':count_delimited 条评论',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '更换个人资料头图',
@@ -349,12 +353,12 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => '兴趣爱好',
             'location' => '所在地',
             'occupation' => '职业',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'skype' => '',
+            'twitter' => '',
             'website' => '网站',
         ],
         'not_found' => [
@@ -404,6 +408,11 @@ return [
             'unranked_beatmapset_count' => 'Pending 的谱面',
             'graveyard_beatmapset_count' => '坟场里的谱面',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

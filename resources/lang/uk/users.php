@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Грає з :devices',
         'title' => "профіль :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Змінити обкладинку профілю',
@@ -404,6 +408,11 @@ return [
             'unranked_beatmapset_count' => 'Карти на розгляді',
             'graveyard_beatmapset_count' => 'Закинуті карти',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

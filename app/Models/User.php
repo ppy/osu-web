@@ -11,6 +11,7 @@ use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
 use App\Libraries\Elasticsearch\Indexable;
+use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\UsernameValidation;
 use App\Models\Forum\TopicWatch;
@@ -28,7 +29,7 @@ use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Translation\HasLocalePreference;
-use Illuminate\Database\QueryException as QueryException;
+use Illuminate\Database\QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
 
@@ -167,7 +168,7 @@ use Request;
  * @property string|null $username_previous
  * @property int|null $userpage_post_id
  */
-class User extends Model implements AuthenticatableContract, HasLocalePreference, Indexable
+class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, Indexable
 {
     use Elasticsearch\UserTrait, Store\UserTrait;
     use Authenticatable, HasApiTokens, Memoizes, Reportable, UserAvatar, UserScoreable, Validatable;
@@ -199,6 +200,10 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     const CACHING = [
         'follower_count' => [
             'key' => 'followerCount',
+            'duration' => 43200, // 12 hours
+        ],
+        'mapping_follower_count' => [
+            'key' => 'moddingFollowerCount',
             'duration' => 43200, // 12 hours
         ],
     ];
@@ -334,7 +339,6 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
             $skipValidations = in_array($type, ['inactive', 'revert'], true);
             $this->saveOrExplode(['skipValidations' => $skipValidations]);
-            dispatch(new EsIndexDocument($this));
 
             return $history;
         });
@@ -891,6 +895,11 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->user_type === 1;
     }
 
+    public function isDeleted()
+    {
+        return starts_with($this->username, 'DeletedUser_');
+    }
+
     public function isOld()
     {
         return preg_match('/_old(_\d+)?$/', $this->username) === 1;
@@ -1347,6 +1356,13 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return UserRelation::where('zebra_id', $this->user_id)->where('friend', 1)->count();
     }
 
+    public function uncachedMappingFollowerCount()
+    {
+        return Follow::where('notifiable_id', $this->user_id)
+            ->where('subtype', 'mapping')
+            ->count();
+    }
+
     public function cacheFollowerCount()
     {
         $count = $this->uncachedFollowerCount();
@@ -1360,9 +1376,27 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $count;
     }
 
+    public function cacheMappingFollowerCount()
+    {
+        $count = $this->uncachedMappingFollowerCount();
+
+        Cache::put(
+            self::CACHING['mapping_follower_count']['key'].':'.$this->user_id,
+            $count,
+            self::CACHING['mapping_follower_count']['duration']
+        );
+
+        return $count;
+    }
+
     public function followerCount()
     {
         return get_int(Cache::get(self::CACHING['follower_count']['key'].':'.$this->user_id)) ?? $this->cacheFollowerCount();
+    }
+
+    public function mappingFollowerCount()
+    {
+        return get_int(Cache::get(self::CACHING['mapping_follower_count']['key'].':'.$this->user_id)) ?? $this->cacheMappingFollowerCount();
     }
 
     public function events()
@@ -1606,7 +1640,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     {
         return json_item($this, 'User', [
             'blocks',
-            'follow_user_modding',
+            'follow_user_mapping',
             'friends',
             'groups',
             'is_admin',
@@ -1661,11 +1695,38 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     public function recommendedStarDifficulty(string $mode)
     {
         $stats = $this->statistics($mode);
-        if ($stats) {
-            return pow($stats->rank_score, 0.4) * 0.195;
-        }
 
-        return 1.0;
+        return UserStatistics\Model::calculateRecommendedStarDifficulty($stats);
+    }
+
+    /**
+     * Recommended star difficulty for all modes.
+     *
+     * @return float
+     */
+    public function recommendedStarDifficultyAll()
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            $unionQuery = null;
+
+            foreach (Beatmap::MODES as $key => $_value) {
+                $query = $this->statistics($key, true)->selectRaw("'{$key}' AS game_mode, rank_score");
+
+                if ($unionQuery === null) {
+                    $unionQuery = $query;
+                } else {
+                    $unionQuery->unionAll($query);
+                }
+            }
+
+            $stats = $unionQuery->get()->keyBy('game_mode');
+
+            foreach (Beatmap::MODES as $key => $_value) {
+                $recs[$key] = UserStatistics\Model::calculateRecommendedStarDifficulty($stats[$key] ?? null);
+            }
+
+            return $recs;
+        });
     }
 
     public function refreshForumCache($forum = null, $postsChangeCount = 0)
@@ -2098,6 +2159,11 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         }
 
         return $this->isValid() && parent::save($options);
+    }
+
+    public function afterCommit()
+    {
+        dispatch(new EsIndexDocument($this));
     }
 
     protected function newReportableExtraParams(): array

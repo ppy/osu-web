@@ -35,7 +35,7 @@ class ChannelTransformer extends TransformerAbstract
 
     public function includeLastMessageId(Channel $channel)
     {
-        return $this->primitive($channel->messages()->select('message_id')->last()->message_id ?? null);
+        return $this->primitive($channel->last_message_id);
     }
 
     public function includeRecentMessages(Channel $channel)

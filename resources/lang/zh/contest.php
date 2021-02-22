@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => '这场评选的投票已经结束',
         'login_required' => '请登录后再投票.',
+        'over' => '这场评选的投票已经结束',
+        'show_voted_only' => '',
 
         'best_of' => [
             'none_played' => "没有符合此次评选条件的谱面！",

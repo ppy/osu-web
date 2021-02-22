@@ -42,8 +42,8 @@ return [
         'ranked_score' => 'Рейтинговых очков',
         'average_score' => 'Сред. очки',
         'average_performance' => 'Сред. произ.',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];

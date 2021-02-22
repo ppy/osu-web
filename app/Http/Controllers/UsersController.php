@@ -7,8 +7,8 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
-use App\Libraries\Search\PostSearch;
-use App\Libraries\Search\PostSearchRequestParams;
+use App\Libraries\Search\ForumSearch;
+use App\Libraries\Search\ForumSearchRequestParams;
 use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
@@ -43,6 +43,7 @@ class UsersController extends Controller
             'checkUsernameExists',
             'report',
             'me',
+            'posts',
             'updatePage',
         ]]);
 
@@ -234,8 +235,8 @@ class UsersController extends Controller
      * ### Response format
      *
      * Field | Type                          | Description
-     * ----- | ----------------------------- | ---------------------------------
-     * users | [UserCompact](#usercompact)[] | Includes: country, cover, groups.
+     * ----- | ----------------------------- | -----------
+     * users | [UserCompact](#usercompact)[] | Includes: country, cover, groups, statistics_fruits, statistics_mania, statistics_osu, statistics_taiko.
      *
      * @queryParam ids[] User id to be returned. Specify once for each user id requested. Up to 50 users can be requested at once. Example: 1
      *
@@ -256,16 +257,25 @@ class UsersController extends Controller
     {
         $params = get_params(request()->all(), null, ['ids:int[]']);
 
+        $includes = UserCompactTransformer::CARD_INCLUDES;
+
         if (isset($params['ids'])) {
+            $preload = UserCompactTransformer::CARD_INCLUDES_PRELOAD;
+
+            foreach (Beatmap::MODES as $modeStr => $modeInt) {
+                $includes[] = "statistics_rulesets.{$modeStr}";
+                $preload[] = camel_case("statistics_{$modeStr}");
+            }
+
             $users = User
                 ::whereIn('user_id', array_slice($params['ids'], 0, 50))
                 ->default()
-                ->with(UserCompactTransformer::CARD_INCLUDES_PRELOAD)
+                ->with($preload)
                 ->get();
         }
 
         return [
-            'users' => json_collection($users ?? [], 'UserCompact', UserCompactTransformer::CARD_INCLUDES),
+            'users' => json_collection($users ?? [], 'UserCompact', $includes),
         ];
     }
 
@@ -276,8 +286,9 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $search = (new PostSearch(new PostSearchRequestParams(request()->all(), $user)))
-            ->size(50);
+        $params = request()->all();
+        $params['username'] = $id;
+        $search = (new ForumSearch(new ForumSearchRequestParams($params)))->size(50);
 
         return ext_view('users.posts', compact('search', 'user'));
     }
@@ -422,8 +433,6 @@ class UsersController extends Controller
      *
      * See [Get User](#get-user).
      *
-     * @authenticated
-     *
      * @urlParam mode [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
      *
      * @response "See User object section"
@@ -509,6 +518,7 @@ class UsersController extends Controller
             'graveyard_beatmapset_count',
             'groups',
             'loved_beatmapset_count',
+            'mapping_follower_count',
             'monthly_playcounts',
             'page',
             'previous_usernames',

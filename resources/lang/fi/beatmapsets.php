@@ -8,6 +8,11 @@ return [
         'disabled' => 'Beatmap ei ole tällä hetkellä saatavilla.',
         'parts-removed' => 'Joitain osia tästä beatmapista on poistettu joko sen tekijän tai kolmannen osapuolen oikeuksien omaavan pyynnöstä.',
         'more-info' => 'Klikkaa nähdäksesi lisätietoja.',
+        'rule_violation' => '',
+    ],
+
+    'download' => [
+        'limit_exceeded' => '',
     ],
 
     'index' => [
@@ -16,12 +21,32 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'lataa',
             'video' => 'lataa videon kanssa',
             'no_video' => 'lataa ilman videota',
             'direct' => 'avaa osu!directissä',
         ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -89,10 +114,22 @@ return [
             'genre' => 'Tyylilaji',
             'language' => 'Kieli',
             'no_scores' => 'Dataa lasketaan...',
+            'nsfw' => '',
             'points-of-failure' => 'Epäonnistumiskohdat',
             'source' => 'Lähde',
             'success-rate' => 'Läpäisyprosentti',
             'tags' => 'Tunnisteet',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

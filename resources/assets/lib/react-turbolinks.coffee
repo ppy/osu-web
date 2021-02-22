@@ -4,10 +4,14 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
+isTurbolinksPermanent = (element) =>
+  element.dataset.turbolinksPermanent? && element.id != ''
+
+
 export class ReactTurbolinks
   constructor: (@components = {}) ->
     @documentReady = false
-    @targets = []
+    @targets = new Set
     @newVisit = true
     @scrolled = false
 
@@ -26,26 +30,24 @@ export class ReactTurbolinks
     return unless @documentReady
 
     @allTargets ({ target, component }) =>
-      return if target.dataset.reactTurbolinksLoaded == '1'
+      return if @targets.has(target)
 
-      target.dataset.reactTurbolinksLoaded = '1'
-      @targets.push target
+      @targets.add target
       ReactDOM.render React.createElement(component.element, component.propsFunction(target)), target
-
-
-  deleteLoadedMarker: =>
-    @allTargets ({ target }) =>
-      delete target.dataset.reactTurbolinksLoaded if target.dataset.reactTurbolinksLoaded?
 
 
   destroy: =>
     @allTargets ({ target, component }) =>
-      if target.dataset.reactTurbolinksLoaded == '1' && !component.persistent
+      if !isTurbolinksPermanent(target) && @targets.has(target) && !component.persistent
         ReactDOM.unmountComponentAtNode target
 
 
   destroyPersisted: =>
-    ReactDOM.unmountComponentAtNode(target) while target = @targets.pop()
+    for target from @targets.values()
+      continue if isTurbolinksPermanent(target) && document.body.contains(target)
+
+      ReactDOM.unmountComponentAtNode(target)
+      @targets.delete target
 
 
   onBeforeCache: =>
@@ -65,7 +67,6 @@ export class ReactTurbolinks
 
     # Delayed to wait until cacheSnapshot finishes. The delay matches Turbolinks' defer.
     Timeout.set 1, =>
-      @deleteLoadedMarker()
       @destroyPersisted()
       @documentReady = true
       @boot()

@@ -15,8 +15,18 @@ return [
     'top' => 'Популярністю',
     'username' => 'Ім\'я користувача',
 
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => '',
+    ],
+
     'forum_topics' => [
-        'new' => 'Останьою відповідю',
         'feature_votes' => 'Кількістю голосів',
+        'new' => 'Останьою відповідю',
+    ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
     ],
 ];

@@ -18,15 +18,15 @@ return [
     ],
 
     'type' => [
-        'charts' => 'Spotlights',
-        'country' => 'Negara',
+        'charts' => 'spotlights',
+        'country' => 'negara',
         'multiplayer' => 'multiplayer',
-        'performance' => 'Performa',
-        'score' => 'Skor',
+        'performance' => 'performa',
+        'score' => 'skor',
     ],
 
     'spotlight' => [
-        'end_date' => 'Tanggal Selesai',
+        'end_date' => 'Tanggal Berakhir',
         'map_count' => 'Jumlah Map',
         'participants' => 'Peserta',
         'start_date' => 'Tanggal Mulai',
@@ -42,8 +42,8 @@ return [
         'ranked_score' => 'Skor Ranked',
         'average_score' => 'Skor Rata-Rata',
         'average_performance' => 'pp Rata-Rata',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];

@@ -58,6 +58,13 @@ class Room extends Model
         $user = $params['user'];
         $sort = 'created';
 
+        $category = presence(get_string($params['category'] ?? null)) ?? 'any';
+        if ($category === 'any') {
+            $query->where('category', '<>', 'realtime');
+        } else {
+            $query->where('category', $category);
+        }
+
         switch ($mode) {
             case 'ended':
                 $query->ended();
@@ -71,11 +78,6 @@ class Room extends Model
                 break;
             default:
                 $query->active();
-        }
-
-        $category = presence(get_string($params['category'] ?? null)) ?? 'any';
-        if ($category !== 'any') {
-            $query->where('category', $category);
         }
 
         $cursorHelper = new DbCursorHelper(static::SORTS, $sort);
@@ -122,7 +124,9 @@ class Room extends Model
     {
         return $query
             ->where('starts_at', '<', Carbon::now())
-            ->where('ends_at', '>', Carbon::now());
+            ->where(function ($q) {
+                $q->where('ends_at', '>', Carbon::now())->orWhereNull('ends_at');
+            });
     }
 
     public function scopeEnded($query)
@@ -147,13 +151,13 @@ class Room extends Model
 
     public function hasEnded()
     {
-        return Carbon::now()->gte($this->ends_at);
+        return $this->ends_at !== null && Carbon::now()->gte($this->ends_at);
     }
 
     public function isScoreSubmissionStillAllowed()
     {
-        // TODO: move grace period to config.
-        return Carbon::now()->lte($this->ends_at->addMinutes(5));
+        // TODO: move grace period to config or use the beatmap's duration
+        return $this->ends_at === null || Carbon::now()->lte($this->ends_at->addMinutes(5));
     }
 
     /**
@@ -201,15 +205,25 @@ class Room extends Model
             throw new InvariantException('number of simultaneously active rooms reached');
         }
 
-        $this->name = $params['name'] ?? null;
+        $this->name = get_string($params['name'] ?? null);
         $this->user_id = $owner->getKey();
         $this->max_attempts = get_int($params['max_attempts'] ?? null);
-        $this->starts_at = Carbon::parse($params['starts_at'] ?? null);
+        $this->starts_at = now();
 
-        if ($params['ends_at'] ?? null !== null) {
-            $this->ends_at = Carbon::parse($params['ends_at']);
-        } elseif ($params['duration'] ?? null !== null) {
-            $this->ends_at = $this->starts_at->copy()->addMinutes(get_int($params['duration']));
+        $category = $params['category'] ?? null;
+        if ($category === 'realtime') {
+            $this->category = $category;
+            $this->ends_at = now()->addSeconds(30);
+        } else {
+            $endsAt = parse_time_to_carbon($params['ends_at'] ?? null);
+            if ($endsAt !== null) {
+                $this->ends_at = $endsAt;
+            } else {
+                $duration = get_int($params['duration'] ?? null);
+                if ($duration !== null) {
+                    $this->ends_at = $this->starts_at->copy()->addMinutes($duration);
+                }
+            }
         }
 
         $this->assertValidStartGame();
@@ -224,7 +238,13 @@ class Room extends Model
             $playlistItems[] = PlaylistItem::fromJsonParams($item);
         }
 
-        if (count($playlistItems) < 1) {
+        $playlistItemsCount = count($playlistItems);
+
+        if ($this->category === 'realtime' && $playlistItemsCount !== 1) {
+            throw new InvariantException('realtime room must have exactly one playlist item');
+        }
+
+        if ($playlistItemsCount < 1) {
             throw new InvariantException('room must have at least one playlist item');
         }
 
@@ -296,19 +316,20 @@ class Room extends Model
 
     private function assertValidStartGame()
     {
-        foreach (['name', 'starts_at', 'ends_at'] as $field) {
+        foreach (['ends_at', 'name'] as $field) {
             if (!present($this->$field)) {
                 throw new InvariantException("'{$field}' is required");
             }
         }
 
-        if ($this->starts_at->addMinutes(30)->gt($this->ends_at)) {
+        if ($this->category !== 'realtime' && $this->starts_at->addMinutes(30)->gt($this->ends_at)) {
             throw new InvariantException("'ends_at' must be at least 30 minutes after 'starts_at'");
         }
 
         if ($this->max_attempts !== null) {
-            if ($this->max_attempts < 1 || $this->max_attempts > 32) {
-                throw new InvariantException("field 'max_attempts' must be between 1 and 32");
+            $maxAttemptsLimit = config('osu.multiplayer.max_attempts_limit');
+            if ($this->max_attempts < 1 || $this->max_attempts > $maxAttemptsLimit) {
+                throw new InvariantException("field 'max_attempts' must be between 1 and {$maxAttemptsLimit}");
             }
         }
     }
@@ -321,11 +342,22 @@ class Room extends Model
             throw new InvariantException('Room has already ended.');
         }
 
-        if (
-            $this->max_attempts !== null
-            && $playlistItem->scores()->where('user_id', $user->getKey())->count() >= $this->max_attempts
-        ) {
-            throw new InvariantException('You have reached the maximum number of tries allowed.');
+        if ($this->max_attempts !== null) {
+            $roomStats = $this->userHighScores()->where('user_id', $user->getKey())->first();
+            if ($roomStats !== null && $roomStats->attempts >= $this->max_attempts) {
+                throw new InvariantException('You have reached the maximum number of tries allowed.');
+            }
+        }
+
+        if ($playlistItem->max_attempts !== null) {
+            $playlistAttempts = $playlistItem->scores()->where('user_id', $user->getKey())->count();
+            if ($playlistAttempts >= $playlistItem->max_attempts) {
+                throw new InvariantException('You have reached the maximum number of tries allowed.');
+            }
+        }
+
+        if ($playlistItem->expired) {
+            throw new InvariantException('Cannot play an expired playlist item.');
         }
     }
 }

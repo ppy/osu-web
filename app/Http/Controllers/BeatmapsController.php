@@ -8,9 +8,10 @@ namespace App\Http\Controllers;
 use App\Exceptions\ScoreRetrievalException;
 use App\Models\Beatmap;
 use App\Models\Score\Best\Model as BestModel;
-use Auth;
-use Request;
 
+/**
+ * @group Beatmaps
+ */
 class BeatmapsController extends Controller
 {
     public function __construct()
@@ -40,6 +41,23 @@ class BeatmapsController extends Controller
         return ujs_redirect(route('beatmapsets.show', ['beatmapset' => $set->beatmapset_id]).'#'.$mode.'/'.$id);
     }
 
+    /**
+     * Get Beatmap scores
+     *
+     * Returns the top scores for a beatmap
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [BeatmapScores](#beatmapscores)
+     *
+     * @urlParam beatmap required Id of the [Beatmap](#beatmap).
+     *
+     * @queryParam mode The [GameMode](#gamemode) to get scores for.
+     * @queryParam mods An array of matching Mods, or none // TODO.
+     * @queryParam type Beatmap score ranking type // TODO.
+     */
     public function scores($id)
     {
         $beatmap = Beatmap::findOrFail($id);
@@ -47,37 +65,40 @@ class BeatmapsController extends Controller
             return ['scores' => []];
         }
 
-        $mode = presence(Request::input('mode')) ?? $beatmap->mode;
-        $mods = get_arr(Request::input('mods'), 'presence') ?? [];
-        $type = Request::input('type', 'global');
-        $user = Auth::user();
+        $params = get_params(request()->all(), null, [
+            'mode:string',
+            'mods:string[]',
+            'type:string',
+        ]);
+
+        $mode = presence($params['mode'] ?? null, $beatmap->mode);
+        $mods = array_values(array_filter($params['mods'] ?? []));
+        $type = presence($params['type'] ?? null, 'global');
+        $currentUser = auth()->user();
 
         try {
             if ($type !== 'global' || !empty($mods)) {
-                if ($user === null || !$user->isSupporter()) {
+                if ($currentUser === null || !$currentUser->isSupporter()) {
                     throw new ScoreRetrievalException(trans('errors.supporter_only'));
                 }
             }
 
-            $query = BestModel::getClassByString($mode)
-                ::default()
-                ->where('beatmap_id', $beatmap->getKey())
-                ->with(['beatmap', 'user.country', 'user.userProfileCustomization'])
-                ->withMods($mods)
-                ->withType($type, compact('user'));
+            $query = static::baseScoreQuery($beatmap, $mode, $mods, $type);
 
-            if ($user !== null) {
-                $score = (clone $query)->where('user_id', $user->user_id)->first();
+            if ($currentUser !== null) {
+                // own score shouldn't be filtered by visibleUsers()
+                $userScore = (clone $query)->where('user_id', $currentUser->user_id)->first();
             }
 
             $results = [
                 'scores' => json_collection($query->visibleUsers()->forListing(), 'Score', ['beatmap', 'user', 'user.country', 'user.cover']),
             ];
 
-            if (isset($score)) {
+            if (isset($userScore)) {
+                // TODO: this should be moved to user_score
                 $results['userScore'] = [
-                    'position' => $score->userRank(compact('type', 'mods')),
-                    'score' => json_item($score, 'Score', ['user', 'user.country', 'user.cover']),
+                    'position' => $userScore->userRank(compact('type', 'mods')),
+                    'score' => json_item($userScore, 'Score', ['user', 'user.country', 'user.cover']),
                 ];
             }
 
@@ -85,5 +106,66 @@ class BeatmapsController extends Controller
         } catch (ScoreRetrievalException $ex) {
             return error_popup($ex->getMessage());
         }
+    }
+
+    /**
+     * Get a User Beatmap score
+     *
+     * Return a [User](#user)'s score on a Beatmap
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [BeatmapUserScore](#beatmapuserscore)
+     *
+     * The position returned depends on the requested mode and mods.
+     *
+     * @urlParam beatmap required Id of the [Beatmap](#beatmap).
+     * @urlParam user required Id of the [User](#user).
+     *
+     * @queryParam mode The [GameMode](#gamemode) to get scores for.
+     * @queryParam mods An array of matching Mods, or none // TODO.
+     */
+    public function userScore($beatmapId, $userId)
+    {
+        $beatmap = Beatmap::scoreable()->findOrFail($beatmapId);
+
+        $params = get_params(request()->all(), null, [
+            'mode:string',
+            'mods:string[]',
+        ]);
+
+        $mode = presence($params['mode'] ?? null, $beatmap->mode);
+        $mods = array_values(array_filter($params['mods'] ?? []));
+
+        try {
+            $score = static::baseScoreQuery($beatmap, $mode, $mods)
+                ->visibleUsers()
+                ->where('user_id', $userId)
+                ->firstOrFail();
+
+            return [
+                'position' => $score->userRank(compact('mods')),
+                'score' => json_item($score, 'Score', ['beatmap', 'user', 'user.country', 'user.cover']),
+            ];
+        } catch (ScoreRetrievalException $ex) {
+            return error_popup($ex->getMessage());
+        }
+    }
+
+    private static function baseScoreQuery(Beatmap $beatmap, $mode, $mods, $type = null)
+    {
+        $query = BestModel::getClassByString($mode)
+            ::default()
+            ->where('beatmap_id', $beatmap->getKey())
+            ->with(['beatmap', 'user.country', 'user.userProfileCustomization'])
+            ->withMods($mods);
+
+        if ($type !== null) {
+            $query->withType($type, ['user' => auth()->user()]);
+        }
+
+        return $query;
     }
 }

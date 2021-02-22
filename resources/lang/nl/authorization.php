@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Je hebt je dagelijkse nominatie-limiet bereikt, probeer het morgen opnieuw.',
-            'full_bn_required' => 'Je moet een volledige nominator zijn om deze nominatie te kunnen uitvoeren.',
-            'full_bn_required_hybrid' => 'Je moet een volledige nominator zijn om beatmap sets met meer dan één spelmodus te nomineren.',
             'incorrect_state' => 'Fout tijdens het uitvoeren van deze actie, probeer de pagina te herladen.',
             'owner' => "Je kan je eigen beatmap niet nomineren.",
             'set_metadata' => 'Je moet eerst het genre en de taal instellen voor je de nominatie invoert.',
@@ -70,6 +68,7 @@ return [
         'moderated' => 'Dat kanaal wordt op dit moment gemodereerd.',
         'no_access' => 'Je hebt geen toegang tot dat kanaal.',
         'restricted' => 'Je kunt geen berichten versturen wanneer je het zwijgen is opgelegd, wanneer je bent beperkt of verbannen.',
+        'silenced' => '',
     ],
 
     'comment' => [

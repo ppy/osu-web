@@ -8,8 +8,8 @@ namespace Tests\Commands;
 use App\Mail\UserNotificationDigest;
 use App\Models\Beatmapset;
 use App\Models\Count;
-use App\Models\Notification;
 use App\Models\User;
+use App\Models\UserNotification;
 use App\Models\UserNotificationOption;
 use Mail;
 use Tests\TestCase;
@@ -18,8 +18,8 @@ class NotificationsSendMailTest extends TestCase
 {
     public function testDoesNotSendMailAlreadySent()
     {
-        $lastId = Count::lastMailNotificationIdSent();
-        $lastId->count = Notification::orderBy('id', 'desc')->first()->getKey();
+        $lastId = Count::lastMailUserNotificationIdSent();
+        $lastId->count = UserNotification::orderBy('id', 'desc')->first()->getKey();
         $lastId->save();
 
         $this->artisan('notifications:send-mail');
@@ -29,14 +29,14 @@ class NotificationsSendMailTest extends TestCase
 
     public function testLastNotificationIdSentDoesNotGoBackwards()
     {
-        $to = Notification::orderBy('id', 'desc')->first()->getKey();
-        $lastId = Count::lastMailNotificationIdSent();
+        $to = UserNotification::orderBy('id', 'desc')->first()->getKey();
+        $lastId = Count::lastMailUserNotificationIdSent();
         $lastId->count = $to + 10;
         $lastId->save();
 
         $this->artisan('notifications:send-mail', ['--from' => 0, '--to' => $to]);
         Mail::assertSent(UserNotificationDigest::class, 1);
-        $this->assertSame($to + 10, Count::lastMailNotificationIdSent()->count);
+        $this->assertSame($to + 10, Count::lastMailUserNotificationIdSent()->count);
     }
 
     public function testSendsMailAndUpdatesCounter()
@@ -46,7 +46,7 @@ class NotificationsSendMailTest extends TestCase
         // both notifications should go into the same mail
         // TODO: split out multiple notification test after making it easier to trigger notifications for testing.
         Mail::assertSent(UserNotificationDigest::class, 1);
-        $this->assertSame(Notification::orderBy('id', 'desc')->first()->getKey(), Count::lastMailNotificationIdSent()->count);
+        $this->assertSame(UserNotification::orderBy('id', 'desc')->first()->getKey(), Count::lastMailUserNotificationIdSent()->count);
     }
 
     protected function setUp(): void
@@ -74,7 +74,7 @@ class NotificationsSendMailTest extends TestCase
             ]);
             $this
                 ->actingAsVerified($sender)
-                ->post(route('beatmap-discussion-posts.store'), $this->makeBeatmapsetDiscussionPostParams($beatmapset, 'praise'));
+                ->post(route('beatmapsets.discussions.posts.store'), $this->makeBeatmapsetDiscussionPostParams($beatmapset, 'praise'));
         }
     }
 }

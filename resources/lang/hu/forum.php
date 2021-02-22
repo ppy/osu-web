@@ -20,7 +20,7 @@ return [
 
         'destroy' => [
             '_' => 'Boritókép eltávolítása',
-            'confirm' => 'Biztos vagy benne, hogy el szeretnéd távolitani a boritóképet?',
+            'confirm' => 'Biztos vagy benne, hogy el szeretnéd távolítani a borítóképet?',
         ],
     ],
 
@@ -47,11 +47,12 @@ return [
         'confirm_restore' => 'Biztosan visszaállítod a posztot?',
         'edited' => 'Utoljára módosítva :user által :when, módosítva :count alkalommal.',
         'posted_at' => 'posztolva :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Poszt törlése',
             'edit' => 'Poszt szerkesztése',
-            'report' => '',
+            'report' => 'Poszt jelentése',
             'restore' => 'Poszt visszaállítása',
         ],
 

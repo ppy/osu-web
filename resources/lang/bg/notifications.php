@@ -6,10 +6,12 @@
 return [
     'all_read' => 'Всички известия са прочетени!',
     'delete' => '',
+    'loading' => '',
     'mark_read' => 'Изчисти :type',
     'none' => 'Няма известия',
     'see_all' => 'виж всички известия',
     'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'всички',
@@ -133,6 +135,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Медали',
 
@@ -200,6 +212,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username отключи нов медал, ":title"!',
                 'user_achievement_unlock_self' => 'Вие отключихте нов медал, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

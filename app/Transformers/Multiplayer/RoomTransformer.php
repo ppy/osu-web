@@ -6,6 +6,7 @@
 namespace App\Transformers\Multiplayer;
 
 use App\Models\Multiplayer\Room;
+use App\Models\Multiplayer\UserScoreAggregate;
 use App\Transformers\TransformerAbstract;
 use App\Transformers\UserCompactTransformer;
 use Carbon\Carbon;
@@ -13,6 +14,7 @@ use Carbon\Carbon;
 class RoomTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
+        'current_user_score',
         'host',
         'playlist',
         'recent_participants',
@@ -33,6 +35,19 @@ class RoomTransformer extends TransformerAbstract
             'channel_id' => $room->channel_id,
             'active' => Carbon::now()->between($room->starts_at, $room->ends_at),
         ];
+    }
+
+    public function includeCurrentUserScore(Room $room)
+    {
+        $user = auth()->user();
+
+        if ($user === null) {
+            return;
+        }
+
+        $score = UserScoreAggregate::lookupOrDefault($user, $room);
+
+        return $this->item($score, new UserScoreAggregateTransformer());
     }
 
     public function includeHost(Room $room)

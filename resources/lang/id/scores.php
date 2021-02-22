@@ -21,4 +21,9 @@ return [
             ],
         ],
     ],
+
+    'status' => [
+        'non_best' => 'Hanya skor-skor terbaik yang memberikan pp',
+        'processing' => 'Skor ini sedang diproses dan akan ditampilkan kemudian',
+    ],
 ];

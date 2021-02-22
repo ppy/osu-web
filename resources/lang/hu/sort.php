@@ -15,8 +15,18 @@ return [
     'top' => 'Felső',
     'username' => 'Felhasználónév',
 
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => 'Relevancia',
+    ],
+
     'forum_topics' => [
-        'new' => 'Legutóbbi válasz',
         'feature_votes' => 'Csillag prioritás',
+        'new' => 'Legutóbbi válasz',
+    ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
     ],
 ];

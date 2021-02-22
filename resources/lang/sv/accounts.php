@@ -62,6 +62,7 @@ return [
             'comment_new' => 'nya kommentarer',
             'forum_topic_reply' => 'ämnessvar',
             'mail' => 'mail',
+            'mapping' => '',
             'push' => 'push',
             'user_achievement_unlock' => 'användarmedalj upplåst',
         ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'dölj varningar för explicit innehåll i beatmaps',
+        'beatmapset_title_show_original' => 'visa beatmapmetadata på originalspråk',
         'title' => 'Alternativ',
 
         'beatmapset_download' => [
             '_' => 'standard beatmap nedladdningstyp',
             'all' => 'med video om tillgängligt',
-            'no_video' => 'utan video',
             'direct' => 'öppna i osu!direct',
+            'no_video' => 'utan video',
         ],
-
-        'beatmapset_title_show_original' => 'visa beatmapmetadata på originalspråk',
     ],
 
     'playstyles' => [

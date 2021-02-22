@@ -15,8 +15,18 @@ return [
     'top' => 'Topp',
     'username' => 'Användarnamn',
 
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => 'Relevans',
+    ],
+
     'forum_topics' => [
-        'new' => 'Senaste svar',
         'feature_votes' => 'Stjärnprioritet',
+        'new' => 'Senaste svar',
+    ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
     ],
 ];

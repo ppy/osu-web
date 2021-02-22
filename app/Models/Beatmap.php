@@ -194,6 +194,11 @@ class Beatmap extends Model
             ->orderBy('difficultyrating', 'ASC');
     }
 
+    public function scopeScoreable($query)
+    {
+        return $query->where('approved', '>', 0);
+    }
+
     public function scopeWithMaxCombo($query)
     {
         $mods = BeatmapDifficultyAttrib::NO_MODS;

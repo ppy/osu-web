@@ -8,6 +8,11 @@ return [
         'disabled' => 'Ez a beatmap jelenleg nem letölthető.',
         'parts-removed' => 'Ez a beatmap eltávolításra került a készítő vagy egy jogbirtokos harmadik fél kérésére.',
         'more-info' => 'Itt találsz több információt.',
+        'rule_violation' => '',
+    ],
+
+    'download' => [
+        'limit_exceeded' => 'Lassíts le, játssz többet.',
     ],
 
     'index' => [
@@ -16,12 +21,32 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'letöltés',
             'video' => 'letöltés videóval',
             'no_video' => 'letöltés videó nélkül',
             'direct' => 'megnyitás osu!direct-ben',
         ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Felnőtt',
     ],
 
     'show' => [
@@ -36,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Letöltés',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'Videó nélkül',
                 'video' => 'Videóval',
             ],
@@ -89,10 +114,22 @@ return [
             'genre' => 'Műfaj',
             'language' => 'Nyelv',
             'no_scores' => 'Az adatok még számítás alatt...',
+            'nsfw' => 'Felnőtt tartalom',
             'points-of-failure' => 'Kibukási Alkalmak',
             'source' => 'Forrás',
             'success-rate' => 'Teljesítési arány',
             'tags' => 'Címkék',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => 'Felnőtt tartalom',
+
+            'buttons' => [
+                'disable' => 'Figyelmeztetés kikapcsolása',
+                'listing' => '',
+                'show' => 'Mutassa',
+            ],
         ],
 
         'scoreboard' => [

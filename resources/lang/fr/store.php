@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Commande passée le :date',
-
+        'cancel' => 'Annuler la commande',
+        'cancel_confirm' => 'Cette commande sera annulée et le paiement ne sera pas accepté. Le fournisseur de paiement peut ne pas libérer immédiatement des fonds réservés. Êtes-vous sûr ?',
+        'cancel_not_allowed' => 'Cette commande ne peut pas être annulée pour le moment.',
         'invoice' => 'Afficher la facture',
         'no_orders' => 'Aucune commande à voir.',
+        'paid_on' => 'Commande passée le :date',
         'resume' => 'Reprendre la commande',
+        'shopify_expired' => 'Le lien de commande pour cette commande a expiré.',
 
         'item' => [
             'display_name' => [

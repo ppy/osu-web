@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Du har nådd din nominasjons-grense for dagen, vennligst prøv igjen i morgen.',
-            'full_bn_required' => 'Du må være en full nominator for å kunne utføre denne kvalifiserende nominasjonen.',
-            'full_bn_required_hybrid' => 'Du må være en full nominator for å nominere beatmapsets med mer enn en spillmodus.',
             'incorrect_state' => 'Feil under utføringen av denne handlingen, prøv å oppdatere siden.',
             'owner' => "Du kan ikke nominere din egen beatmap.",
             'set_metadata' => 'Du må angi sjangeren og språk før du kan nominere.',
@@ -70,6 +68,7 @@ return [
         'moderated' => 'Denne kanalen er for tiden moderert.',
         'no_access' => 'Du har ingen adgang til denne kanalen.',
         'restricted' => 'Du kan ikke sende meldinger mens du er stum, begrenset eller bannlyst.',
+        'silenced' => '',
     ],
 
     'comment' => [

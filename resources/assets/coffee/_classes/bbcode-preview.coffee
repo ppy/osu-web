@@ -8,7 +8,8 @@ class @BbcodePreview
 
 
   fetchPreview: (e) =>
-    $form = $(e.target).parents('.js-bbcode-preview--form')
+    target = e.target
+    $form = $(target).parents('.js-bbcode-preview--form')
     $preview = $form.find('.js-bbcode-preview--preview')
     $body = $form.find('.js-bbcode-preview--body')
 
@@ -36,6 +37,8 @@ class @BbcodePreview
       $preview.html(data)
       osu.pageChange()
       @showPreview(e)
+
+    .fail osu.emitAjaxError(target)
 
 
   showPreview: (e) =>

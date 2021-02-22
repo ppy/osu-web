@@ -27,7 +27,6 @@ return [
         'operation_timeout_exception' => 'La recherche est actuellement plus active que d\'habitude, réessayez plus tard.',
     ],
 
-    'logged_out' => 'Vous avez été déconnecté. Merci de vous connecter et de réessayer.',
     'supporter_only' => 'Vous devez être un osu!supporter pour utiliser cette fonctionnalité.',
     'no_restricted_access' => 'Vous ne pouvez pas effectuer cette action avec un compte restreint.',
     'unknown' => 'Une erreur inconnue est survenue.',

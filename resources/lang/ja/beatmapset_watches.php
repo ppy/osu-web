@@ -6,15 +6,16 @@
 return [
     'index' => [
         'description' => 'ウォッチ中のディスカッションの一覧です。新しい投稿や更新の時に通知されます。',
-        'title_compact' => 'modding ウォッチリスト',
+        'title_compact' => 'ビートマップディスカッションウォッチリスト',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'ビートマップをウォッチ',
+            'unread' => '新しいアクティビティがあるビートマップ',
         ],
 
         'table' => [
             'empty' => 'ウォッチしているビートマップディスカッションがありません',
+            'last_update' => '',
             'open_issues' => '未解決の問題',
             'state' => 'ステータス',
             'title' => 'タイトル',

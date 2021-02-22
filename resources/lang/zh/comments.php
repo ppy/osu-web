@@ -5,7 +5,7 @@
 
 return [
     'deleted' => '已删除',
-    'deleted_count' => ':count_delimited 已删除评论|:count_delimited 已删除评论',
+    'deleted_count' => ':count_delimited 条已删除评论',
     'edited' => ':user 编辑于 :timeago',
     'pinned' => '已置顶',
     'empty' => '暂无评论。',
@@ -35,7 +35,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => '评论',
         'nav_title' => '列表',
+        'no_comments' => '未找到评论',
     ],
 
     'placeholder' => [
