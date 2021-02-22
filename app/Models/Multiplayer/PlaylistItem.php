@@ -125,16 +125,17 @@ class PlaylistItem extends Model
 
     private function assertValidMods()
     {
-        $allowedModTypes = array_column($this->allowed_mods, 'acronym');
-        $requiredModTypes = array_column($this->required_mods, 'acronym');
+        $allowedModIds = array_column($this->allowed_mods, 'acronym');
+        $requiredModIds = array_column($this->required_mods, 'acronym');
 
-        $dupeMods = array_intersect($allowedModTypes, $requiredModTypes);
+        $dupeMods = array_intersect($allowedModIds, $requiredModIds);
         if (count($dupeMods) > 0) {
             throw new InvariantException('mod cannot be listed as both allowed and required: '.implode(', ', $dupeMods));
         }
 
-        Mod::validateSelection($allowedModTypes, $this->ruleset_id, true);
-        Mod::validateSelection($requiredModTypes, $this->ruleset_id);
+        Mod::validateSelection($allowedModIds, $this->ruleset_id);
+        Mod::validateSelection($requiredModIds, $this->ruleset_id);
+        Mod::assertValidExclusivity($requiredModIds, $allowedModIds, $this->ruleset_id);
     }
 
     public function save(array $options = [])
