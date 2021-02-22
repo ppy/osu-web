@@ -160,7 +160,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Limite de taxa excedido',
             'description' => '',
         ],
         '500' => [

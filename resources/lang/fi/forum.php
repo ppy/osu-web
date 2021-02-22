@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Haluatko varmasti palauttaa viestin?',
         'edited' => 'Viimeksi muokannut :user :when, muokattu yhteensä :count kertaa.',
         'posted_at' => 'lähetetty :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Poista viesti',

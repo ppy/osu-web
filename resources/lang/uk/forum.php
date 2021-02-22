@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Відновити відповідь?',
         'edited' => 'Останній раз відредагований :user :when, відредагований :count раз.',
         'posted_at' => 'написано :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Видалити відповідь',

@@ -12,7 +12,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Ralentissez, jouez plus.',
     ],
 
     'index' => [
@@ -34,7 +34,7 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Un beatmapset hybride nécessite de sélectionner au moins un mode de jeu à nominer.',
         'incorrect_mode' => 'Vous n\'avez pas la permission de nominer pour le mode :mode',
-        'full_bn_required' => '',
+        'full_bn_required' => 'Vous devez être un Beatmap Nominator avec toutes les autorisations pour effectuer cette qualification.',
         'too_many' => 'L\'exigence de nomination est déjà remplie.',
 
         'dialog' => [

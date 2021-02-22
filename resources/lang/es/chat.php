@@ -18,6 +18,7 @@ return [
             'not_enough_plays' => 'No ha jugado lo suficiente',
             'not_verified' => 'Su sesión no ha sido verificada',
             'restricted' => 'Actualmente está restringido',
+            'silenced' => '',
             'target_restricted' => 'El destinatario está actualmente restringido',
         ],
     ],

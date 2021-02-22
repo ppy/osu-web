@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Aanbevolen moeilijkheid',
         'converts' => 'Tel geconverteerde beatmaps mee',
+        'follows' => '',
+        'recommended' => 'Aanbevolen moeilijkheid',
     ],
     'mode' => [
         'all' => '',

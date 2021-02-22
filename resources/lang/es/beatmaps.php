@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Dificultades recomendadas',
         'converts' => 'Incluir mapas convertidos',
+        'follows' => '',
+        'recommended' => 'Dificultades recomendadas',
     ],
     'mode' => [
         'all' => 'Todos',

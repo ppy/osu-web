@@ -24,4 +24,9 @@ return [
         'feature_votes' => 'Yıldız önceliği',
         'new' => 'Son yanıt',
     ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
+    ],
 ];

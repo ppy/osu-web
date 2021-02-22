@@ -62,6 +62,7 @@ return [
             'comment_new' => 'yeni yorumlar',
             'forum_topic_reply' => 'konu yanıtı',
             'mail' => 'posta',
+            'mapping' => '',
             'push' => 'anlık',
             'user_achievement_unlock' => 'kullanıcı madalyası açıldı',
         ],

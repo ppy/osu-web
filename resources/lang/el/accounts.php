@@ -62,6 +62,7 @@ return [
             'comment_new' => 'νέα σχόλια',
             'forum_topic_reply' => '',
             'mail' => 'mail',
+            'mapping' => '',
             'push' => 'push',
             'user_achievement_unlock' => '',
         ],

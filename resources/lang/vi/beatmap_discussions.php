@@ -72,7 +72,7 @@ return [
             'block_too_large' => '',
             'external_references' => '',
             'invalid_block_type' => '',
-            'invalid_document' => '',
+            'invalid_document' => 'đánh giá không phù hợp',
             'minimum_issues' => '',
             'missing_text' => '',
             'too_many_blocks' => '',

@@ -183,7 +183,7 @@ export class Header extends React.Component
             @renderLoginButton()
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
-          div className: 'beatmapset-status beatmapset-status--show', osu.trans("beatmapsets.show.status.#{@props.currentBeatmap.status}")
+          @renderStatusBar()
           el Stats,
             beatmapset: @props.beatmapset
             beatmap: @props.currentBeatmap
@@ -256,6 +256,16 @@ export class Header extends React.Component
           top: osu.trans 'beatmapsets.show.details.login_required.top'
           bottom: osu.trans 'beatmapsets.show.details.login_required.bottom'
         icon: 'fas fa-lock'
+
+
+  renderStatusBar: =>
+    div className: 'beatmapset-header__status',
+      if @props.beatmapset.storyboard
+        div
+          className: 'beatmapset-status beatmapset-status--show-icon'
+          title: osu.trans('beatmapsets.show.info.storyboard')
+          i className: 'fas fa-image'
+      div className: 'beatmapset-status beatmapset-status--show', osu.trans("beatmapsets.show.status.#{@props.currentBeatmap.status}")
 
 
   downloadButton: ({key, href, icon = 'fas fa-download', topTextKey = '_', bottomTextKey, osuDirect = false}) =>

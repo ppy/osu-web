@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Odporúčaná obtiažnosť',
         'converts' => 'Zahrnúť konvertované beatmapy',
+        'follows' => '',
+        'recommended' => 'Odporúčaná obtiažnosť',
     ],
     'mode' => [
         'all' => '',

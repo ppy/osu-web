@@ -13,12 +13,13 @@ return [
         'user' => 'Şu anda bu kişiye mesaj yazamazsınız. Şunlardan herhangi birisi buna sebep olabilir:',
         'reasons' => [
             'blocked' => 'Alıcı tarafından engellendiniz',
-            'channel_moderated' => 'Bu kanal kısıtlandı',
+            'channel_moderated' => 'Bu kanal şu anda modere edilmekte',
             'friends_only' => 'Alıcı sadece arkadaş listesindeki kişilerden gelen mesajları kabul ediyor',
             'not_enough_plays' => 'Oyunu yeterince oynamadınız',
             'not_verified' => 'Oturumunuz doğrulanmadı',
-            'restricted' => 'Şu anda uzaklaştırıldınız',
-            'target_restricted' => 'Alıcı şu an uzaklaştırılmış durumda',
+            'restricted' => 'Şu anda hesabınız kısıtlı durumda',
+            'silenced' => '',
+            'target_restricted' => 'Alıcı şu anda kısıtlı durumda',
         ],
     ],
     'input' => [

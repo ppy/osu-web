@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Rekommenderat sværhedsgrad',
         'converts' => 'Inkluder konvertert beatmeaps',
+        'follows' => '',
+        'recommended' => 'Rekommenderat sværhedsgrad',
     ],
     'mode' => [
         'all' => 'Alle',

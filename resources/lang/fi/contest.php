@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Äänestys tälle kilpailulle on päättynyt',
         'login_required' => 'Kirjaudu sisään äänestääksesi.',
+        'over' => 'Äänestys tälle kilpailulle on päättynyt',
+        'show_voted_only' => '',
 
         'best_of' => [
             'none_played' => "Näyttäisi siltä, ettet ole pelannut tähän kilpailuun kelpuutettuja mappeja!",

@@ -68,6 +68,7 @@ return [
         'moderated' => '该频道现在正在被管制中。',
         'no_access' => '你没有权限访问该频道。',
         'restricted' => '在账户禁言、受限或被 ban 期间不能发消息。',
+        'silenced' => '',
     ],
 
     'comment' => [
