@@ -315,7 +315,7 @@ export class Post extends React.PureComponent
 
 
   userGroup: ->
-    if @isOwner() then mapperGroup else @props.user.groups[0]
+    if @isOwner() then mapperGroup else @props.user.groups?[0]
 
 
   validPost: =>

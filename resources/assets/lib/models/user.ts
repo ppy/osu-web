@@ -7,11 +7,15 @@ import { action, observable } from 'mobx';
 export default class User {
   @observable avatarUrl: string = '/images/layout/avatar-guest.png'; // TODO: move to a global config store?
   @observable countryCode: string = 'XX';
+  @observable defaultGroup = '';
+  @observable groups?: GroupJson[];
   @observable id: number;
   @observable isActive: boolean = false;
   @observable isBot: boolean = false;
+  @observable isDeleted = false;
   @observable isOnline: boolean = false;
   @observable isSupporter: boolean = false;
+  @observable lastVisit: string | null = null;
   @observable loaded: boolean = false;
   @observable pmFriendsOnly: boolean = false;
   @observable profileColour: string = '';
@@ -26,6 +30,8 @@ export default class User {
     return Object.assign(user, {
       avatarUrl: json.avatar_url,
       countryCode: json.country_code,
+      defaultGroup: json.default_group,
+      groups: json.groups,
       id: json.id,
       isActive: json.is_active,
       isBot: json.is_bot,
@@ -54,11 +60,15 @@ export default class User {
     return {
       avatar_url: this.avatarUrl,
       country_code: this.countryCode,
+      default_group: this.defaultGroup,
+      groups: this.groups,
       id: this.id,
       is_active: this.isActive,
       is_bot: this.isBot,
+      is_deleted: this.isDeleted,
       is_online: this.isOnline,
       is_supporter: this.isSupporter,
+      last_visit: this.lastVisit,
       pm_friends_only: this.pmFriendsOnly,
       profile_colour: this.profileColour,
       username: this.username,
@@ -79,3 +89,11 @@ export default class User {
     this.loaded = true;
   }
 }
+
+const deletedUser = new User(-1);
+deletedUser.isDeleted = true;
+deletedUser.username = osu.trans('users.deleted');
+
+export {
+  deletedUser,
+};
