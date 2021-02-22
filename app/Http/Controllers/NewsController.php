@@ -22,15 +22,15 @@ class NewsController extends Controller
 
     /**
      * Get news posts
-     * 
+     *
      * Returns an array of news objects.
-     * 
+     *
      * ---
-     * 
+     *
      * ### Response format
-     * 
+     *
      * Returns an array of [news objects](#news).
-     * 
+     *
      */
     public function index()
     {
@@ -69,13 +69,13 @@ class NewsController extends Controller
 
     /**
      * Get news post
-     * 
+     *
      * Returns news post for the specified news slug.
      * a
      * ---
-     * 
+     *
      * ### Response format
-     * 
+     *
      * Renderes the news web page.
      */
     public function show($slug)
