@@ -68,6 +68,7 @@ return [
         'moderated' => '채널은 현재 관리 중입니다.',
         'no_access' => '해당 채널에 대한 접근 권한이 없습니다.',
         'restricted' => '침목이나 제한, 밴이 된 상태인 동안에는 메시지를 보낼 수 없습니다.',
+        'silenced' => '',
     ],
 
     'comment' => [

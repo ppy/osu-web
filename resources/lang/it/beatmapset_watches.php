@@ -15,6 +15,7 @@ return [
 
         'table' => [
             'empty' => 'Non segui nessuna discussione beatmap.',
+            'last_update' => '',
             'open_issues' => 'Problemi aperti',
             'state' => 'Stato',
             'title' => 'Titolo',

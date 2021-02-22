@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => '권장 난이도',
         'converts' => '변환된 비트맵 포함',
+        'follows' => '',
+        'recommended' => '권장 난이도',
     ],
     'mode' => [
         'all' => '전체',

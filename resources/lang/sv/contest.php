@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Möjligheten att rösta i denna tävling har avslutats',
         'login_required' => 'Var vänlig logga in för att rösta.',
+        'over' => 'Möjligheten att rösta i denna tävling har avslutats',
+        'show_voted_only' => '',
 
         'best_of' => [
             'none_played' => "Det ser inte ut som att du har spelat någon av beatmapsen som kvalificerar för denna tävling!",

@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Sigur dorești să restaurezi postarea?',
         'edited' => 'Editat ultima dată de către :user :when, editat de :count ori în total.',
         'posted_at' => 'postat :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Șterge postarea',

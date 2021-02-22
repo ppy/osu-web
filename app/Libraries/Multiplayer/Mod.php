@@ -37,6 +37,7 @@ class Mod
     const OSU_DEFLATE = 'DF';
     const OSU_SPININ = 'SI';
     const OSU_TRACEABLE = 'TC';
+    const OSU_CLASSIC = 'CL';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -143,6 +144,7 @@ class Mod
             'overall_difficulty' => 'float',
             'circle_size' => 'float',
             'approach_rate' => 'float',
+            'extended_limits' => 'bool',
             'scroll_speed' => 'float',
         ],
         self::DOUBLETIME => [
@@ -219,6 +221,7 @@ class Mod
                         self::OSU_DEFLATE,
                         self::OSU_SPININ,
                         self::OSU_TRACEABLE,
+                        self::OSU_CLASSIC,
                     ]
                 ),
 

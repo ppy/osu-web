@@ -62,6 +62,7 @@ return [
             'comment_new' => '새 댓글',
             'forum_topic_reply' => '주제 답글',
             'mail' => '메일',
+            'mapping' => '',
             'push' => '푸시 알림',
             'user_achievement_unlock' => '메달 획득',
         ],

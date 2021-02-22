@@ -68,6 +68,7 @@ return [
         'moderated' => 'Kanál je momentálne moderovaný.',
         'no_access' => 'Nemáte prístup k tomuto kanálu.',
         'restricted' => 'Nemôžete posielať správy, keď ste umlčaný, obmedzený alebo zabanovaný.',
+        'silenced' => '',
     ],
 
     'comment' => [

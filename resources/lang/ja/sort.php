@@ -24,4 +24,9 @@ return [
         'feature_votes' => 'スターの優先度',
         'new' => '最後の返信',
     ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
+    ],
 ];

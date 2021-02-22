@@ -21,7 +21,8 @@ abstract class Controller extends BaseController
             $forumId = $object->forum_id;
             $topicId = $object->getKey();
         } elseif ($object instanceof Post) {
-            $forumId = $object->topic()->withTrashed()->value('forum_id');
+            $forumId = $object->forum_id;
+            $postId = $object->getKey();
             $topicId = $object->topic_id;
         }
 
@@ -30,8 +31,9 @@ abstract class Controller extends BaseController
             'log_operation' => $operation,
             'log_data' => $data,
 
-            'topic_id' => $topicId ?? null,
             'forum_id' => $forumId ?? null,
+            'post_id' => $postId ?? null,
+            'topic_id' => $topicId ?? null,
         ]);
     }
 }

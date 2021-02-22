@@ -62,6 +62,7 @@ return [
             'comment_new' => '新评论',
             'forum_topic_reply' => '主题回复',
             'mail' => '邮件',
+            'mapping' => '',
             'push' => '推送',
             'user_achievement_unlock' => '成就解锁',
         ],

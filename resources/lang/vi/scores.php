@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'title' => '',
+        'title' => ':username chơi :title [:version]',
 
         'beatmap' => [
             'by' => 'bởi :artist',
@@ -23,7 +23,7 @@ return [
     ],
 
     'status' => [
-        'non_best' => '',
-        'processing' => '',
+        'non_best' => 'Chỉ điểm cá nhân tốt nhất thưởng pp',
+        'processing' => 'Điểm vẫn đang được tính toán và sẽ được hiển thị sớm',
     ],
 ];

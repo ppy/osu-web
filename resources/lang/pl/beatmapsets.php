@@ -41,7 +41,7 @@ return [
             'confirmation' => 'Czy na pewno chcesz nominować tę beatmapę?',
             'header' => 'Nominuj beatmapę',
             'hybrid_warning' => '',
-            'which_modes' => 'Na jaki tryb chcesz nominować?',
+            'which_modes' => 'Dla jakich trybów chcesz nominować tę beatmapę?',
         ],
     ],
 
@@ -126,9 +126,9 @@ return [
             'title' => '',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Wyłącz ostrzeżenia',
+                'listing' => 'Wróć do listy beatmap',
+                'show' => 'Pokaż',
             ],
         ],
 

@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Opravdu chcete příspěvek obnovit?',
         'edited' => 'Naposledy upravil :user :when, celkový počet úprav :count.',
         'posted_at' => 'publikováno :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Odstranit příspěvek',

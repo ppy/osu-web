@@ -23,7 +23,13 @@ class Scope extends Fractal\Scope
             }
         }
 
-        return parent::fireTransformer($transformer, $data);
+        [$transformedData, $includedData] = parent::fireTransformer($transformer, $data);
+
+        if (empty($transformedData) && empty($includedData)) {
+            return [null, []];
+        }
+
+        return [$transformedData, $includedData];
     }
 
     protected function serializeResource(SerializerAbstract $serializer, $data)

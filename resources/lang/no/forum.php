@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Vil du virkelig gjenopprette innlegget?',
         'edited' => 'Sist endret av :user :when, redigert :count ganger totalt.',
         'posted_at' => 'lagt ut :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Slett innlegg',
