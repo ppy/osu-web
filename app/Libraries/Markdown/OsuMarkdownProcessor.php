@@ -82,6 +82,8 @@ class OsuMarkdownProcessor
 
             $this->proxyImage();
 
+            $this->addListStartAsVariable();
+
             // last to prevent possible conflict
             $this->addClass();
         }
@@ -98,6 +100,9 @@ class OsuMarkdownProcessor
         switch (get_class($this->node)) {
             case Block\ListBlock::class:
                 $class = "{$blockClass}__list";
+                if ($this->node->getListData()->type === Block\ListBlock::TYPE_ORDERED) {
+                    $class .= " {$blockClass}__list--ordered";
+                }
                 break;
             case Block\ListItem::class:
                 $class = "{$blockClass}__list-item";
@@ -133,6 +138,19 @@ class OsuMarkdownProcessor
 
         if (isset($class)) {
             $this->node->data['attributes']['class'] = $class;
+        }
+    }
+
+    public function addListStartAsVariable()
+    {
+        if (!$this->node instanceof Block\ListBlock || !$this->event->isEntering()) {
+            return;
+        }
+
+        if ($this->node->getListData()->type === Block\ListBlock::TYPE_ORDERED) {
+            $start = ($this->node->getListData()->start ?? 1) - 1;
+
+            $this->node->data['attributes']['style'] = "--list-start: {$start}";
         }
     }
 

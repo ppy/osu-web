@@ -6,6 +6,7 @@
 namespace App\Libraries\Markdown;
 
 use App\Libraries\Markdown\Indexing\RendererExtension as IndexingRendererExtension;
+use League\CommonMark\Block\Element\ListItem;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
 use League\CommonMark\Event\DocumentParsedEvent;
@@ -110,6 +111,7 @@ class OsuMarkdown
 
         $env->addExtension(new TableExtension\TableExtension());
         $env->addBlockRenderer(TableExtension\Table::class, new OsuTableRenderer());
+        $env->addBlockRenderer(ListItem::class, new ListItemRenderer());
 
         $env->addExtension(new AutolinkExtension());
 
