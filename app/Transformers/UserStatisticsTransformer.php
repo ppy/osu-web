@@ -30,7 +30,6 @@ class UserStatisticsTransformer extends TransformerAbstract
 
             'global_rank' => $stats->globalRank(),
             'pp' => $stats->rank_score,
-            'pp_rank' => $stats->rank_score_index,
             'ranked_score' => $stats->ranked_score,
             'hit_accuracy' => $stats->hit_accuracy,
             'play_count' => $stats->playcount,
