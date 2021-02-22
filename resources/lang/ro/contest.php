@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Votarea pentru acest concurs s-a încheiat',
         'login_required' => 'Te rugăm să te autentifici pentru a vota.',
+        'over' => 'Votarea pentru acest concurs s-a încheiat',
+        'show_voted_only' => '',
 
         'best_of' => [
             'none_played' => "Nu pare să fi jucat niciun beatmap care se califică pentru acest concurs!",

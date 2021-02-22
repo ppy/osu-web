@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Głosowanie dla tego konkursu zostało zakończone',
         'login_required' => 'Zaloguj się, aby zagłosować!',
+        'over' => 'Głosowanie dla tego konkursu zostało zakończone',
+        'show_voted_only' => '',
 
         'best_of' => [
             'none_played' => "Wygląda na to, że żadna z beatmap kwalifikujących się do tego konkursu nie została przez ciebie zagrana.",

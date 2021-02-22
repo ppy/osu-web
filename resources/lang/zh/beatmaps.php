@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => '推荐难度',
         'converts' => '包括转谱',
+        'follows' => '',
+        'recommended' => '推荐难度',
     ],
     'mode' => [
         'all' => '全部',

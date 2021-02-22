@@ -24,4 +24,9 @@ return [
         'feature_votes' => 'Stelle di priorità',
         'new' => 'Ultima risposta',
     ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
+    ],
 ];

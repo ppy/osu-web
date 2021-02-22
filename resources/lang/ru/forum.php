@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Восстановить ответ?',
         'edited' => 'Последний раз отредактирован :user :when, отредактирован :count раз.',
         'posted_at' => 'написано :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Удалить ответ',

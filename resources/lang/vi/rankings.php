@@ -5,7 +5,7 @@
 
 return [
     'countries' => [
-        'all' => '',
+        'all' => 'Tất cả',
         'title' => 'Quốc gia',
     ],
 

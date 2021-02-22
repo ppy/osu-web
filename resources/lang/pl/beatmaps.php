@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Polecany poziom trudności',
         'converts' => 'Uwzględnij przekonwertowane beatmapy',
+        'follows' => '',
+        'recommended' => 'Polecany poziom trudności',
     ],
     'mode' => [
         'all' => 'Wszyscy',
@@ -333,8 +334,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Ukryj',
+        'include' => 'Pokaż',
     ],
 
     'played' => [

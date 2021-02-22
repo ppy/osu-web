@@ -15,6 +15,7 @@ return [
 
         'table' => [
             'empty' => 'Anda tidak sedang memantau laman diskusi beatmap manapun.',
+            'last_update' => '',
             'open_issues' => 'Isu yang belum terjawab',
             'state' => 'Status',
             'title' => 'Judul',

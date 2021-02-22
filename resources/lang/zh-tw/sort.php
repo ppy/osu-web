@@ -24,4 +24,9 @@ return [
         'feature_votes' => '星級優先',
         'new' => '最新回覆',
     ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
+    ],
 ];

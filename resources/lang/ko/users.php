@@ -410,6 +410,11 @@ return [
         ],
     ],
 
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
+    ],
+
     'status' => [
         'all' => '모두',
         'online' => '온라인',

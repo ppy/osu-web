@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Biztosan visszaállítod a posztot?',
         'edited' => 'Utoljára módosítva :user által :when, módosítva :count alkalommal.',
         'posted_at' => 'posztolva :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Poszt törlése',

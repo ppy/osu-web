@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Suositeltu vaikeustaso',
         'converts' => 'Sisällytä muunnetut beatmapit',
+        'follows' => '',
+        'recommended' => 'Suositeltu vaikeustaso',
     ],
     'mode' => [
         'all' => '',

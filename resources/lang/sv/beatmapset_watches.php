@@ -15,6 +15,7 @@ return [
 
         'table' => [
             'empty' => 'Inga beatmap diskussioner bevakade.',
+            'last_update' => '',
             'open_issues' => 'Öppna Problem',
             'state' => 'Tillstånd',
             'title' => 'Titel',

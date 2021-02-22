@@ -68,6 +68,7 @@ return [
         'moderated' => 'Ten kanał jest obecnie w trybie tylko dla moderatorów.',
         'no_access' => 'Nie masz dostępu do tego kanału.',
         'restricted' => 'Nie możesz wysyłać wiadomości podczas uciszenia czy blokady konta.',
+        'silenced' => '',
     ],
 
     'comment' => [

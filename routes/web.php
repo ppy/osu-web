@@ -151,9 +151,10 @@ Route::group(['middleware' => ['web']], function () {
                 Route::post('topics/{topic}/move', 'TopicsController@move')->name('topics.move');
                 Route::post('topics/{topic}/pin', 'TopicsController@pin')->name('topics.pin');
                 Route::post('topics/{topic}/reply', 'TopicsController@reply')->name('topics.reply');
+                Route::post('topics/{topic}/restore', 'TopicsController@restore')->name('topics.restore');
                 Route::post('topics/{topic}/vote', 'TopicsController@vote')->name('topics.vote');
                 Route::post('topics/{topic}/vote-feature', 'TopicsController@voteFeature')->name('topics.vote-feature');
-                Route::resource('topics', 'TopicsController', ['only' => ['create', 'show', 'store', 'update']]);
+                Route::resource('topics', 'TopicsController', ['only' => ['create', 'destroy', 'show', 'store', 'update']]);
 
                 Route::resource('topic-covers', 'TopicCoversController', ['only' => ['store', 'update', 'destroy']]);
 
