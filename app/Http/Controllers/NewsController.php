@@ -29,19 +29,8 @@ class NewsController extends Controller
      * 
      * ### Response format
      * 
-     * Returns an array of news objects.
+     * Returns an array of [news objects](#news).
      * 
-     * Attribute                            | Notes
-     * -------------------------------------|------
-     * id                                   | |
-     * author                               | |
-     * edit_url                             | |
-     * first_image                          | |
-     * published_at                         | |
-     * updated_at                           | |
-     * slug                                 | |
-     * title                                | |
-     * preview                              | |
      */
     public function index()
     {
