@@ -32,8 +32,8 @@ return [
         'remove_from_loved' => ':user tarafından Sevilenlerden çıkarıldı (:text)',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Müstehcen işareti kaldırıldı',
+            'to_1' => 'Müstehcen olarak işaretlendi',
         ],
     ],
 
@@ -71,7 +71,7 @@ return [
         'love' => 'Love',
         'nominate' => 'Adaylık',
         'nomination_reset' => 'Adaylık Sıfırlama',
-        'nsfw_toggle' => '',
+        'nsfw_toggle' => 'Müstehcen işareti',
         'qualify' => 'Adaylık',
         'rank' => 'Sıralama',
         'remove_from_loved' => 'Sevilenlerden çıkarma',

@@ -6,20 +6,20 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Obnovit',
-            'regenerating' => 'Obnovování...',
-            'remove' => 'Odebrat',
-            'removing' => 'Odebírání...',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
             'title' => '',
         ],
         'show' => [
-            'covers' => 'Spravovat Přebaly Mapsetu',
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modding v2',
-                'activate' => 'aktivovat',
-                'activate_confirm' => 'aktivovat modding v2 pro tuto beatmapu?',
-                'active' => 'aktivní',
-                'inactive' => 'neakitvní',
+                '_' => '',
+                'activate' => '',
+                'activate_confirm' => '',
+                'active' => '',
+                'inactive' => '',
             ],
         ],
     ],
@@ -27,22 +27,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Smazat',
+                'delete' => '',
 
-                'forum-name' => 'Fórum #:id: :name',
+                'forum-name' => '',
 
-                'no-cover' => 'Žádný přebal nenastaven',
+                'no-cover' => '',
 
                 'submit' => [
-                    'save' => 'Uložit',
-                    'update' => 'Aktualizovat',
+                    'save' => '',
+                    'update' => '',
                 ],
 
-                'title' => 'Seznam Přebalů fór',
+                'title' => '',
 
                 'type-title' => [
-                    'default-topic' => 'Výchozí Přebal Tématu',
-                    'main' => 'Přebal fóra',
+                    'default-topic' => '',
+                    'main' => '',
                 ],
             ],
         ],
@@ -50,7 +50,7 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Prohlížeč záznamů',
+            'title' => '',
         ],
     ],
 
@@ -58,9 +58,9 @@ return [
         'root' => [
             'sections' => [
                 'beatmapsets' => '',
-                'forum' => 'Fórum',
-                'general' => 'Obecné',
-                'store' => 'Obchod',
+                'forum' => '',
+                'general' => '',
+                'store' => '',
             ],
         ],
     ],
@@ -68,15 +68,15 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Seznam objednávek',
+                'title' => '',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Tento uživatel je momentálně omezen.',
-            'message' => '(toto vidí pouze administrátoři)',
+            'title' => '',
+            'message' => '',
         ],
     ],
 

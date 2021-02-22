@@ -22,6 +22,7 @@ return [
             '401-verification' => 'kontobekræftelse',
             '405' => 'mangler',
             '422' => 'ugyldig anmodning',
+            '429' => '',
             '500' => 'mm, noget gik galt',
             '503' => 'vedligeholdelse',
         ],

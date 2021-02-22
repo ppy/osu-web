@@ -357,8 +357,8 @@ return [
             'interests' => 'Interesser',
             'location' => 'Nuværende Position',
             'occupation' => 'Stilling',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'skype' => '',
+            'twitter' => '',
             'website' => 'Hjemmeside',
         ],
         'not_found' => [

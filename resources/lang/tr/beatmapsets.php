@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Bu beatmap üzerinde yer alan bazı varlıklar osu!\'da kullanıma uygun olmadığına karar verildikten sonra kaldırıldı.',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Beatmap Listesi',
         'guest_title' => 'Beatmapler',
@@ -49,10 +53,10 @@ return [
         'discussion' => 'Tartışma',
 
         'details' => [
-            'favourite' => 'Haritayı favorilere ekle',
+            'favourite' => 'Beatmap setini favorilere ekle',
             'logged-out' => 'Herhangi bir beatmapi indirmeden önce giriş yapmalısınız!',
             'mapped_by' => ':mapper tarafından yapıldı',
-            'unfavourite' => 'Haritayı favorilerden çıkar',
+            'unfavourite' => 'Beatmap setini favorilerden çıkar',
             'updated_timeago' => 'son güncelleme: :timeago',
 
             'download' => [
@@ -64,7 +68,7 @@ return [
 
             'login_required' => [
                 'bottom' => 'daha fazla özelliğe erişmek için',
-                'top' => 'Oturum Aç',
+                'top' => 'Giriş Yap',
             ],
         ],
 
@@ -138,8 +142,8 @@ return [
             'title' => 'Skor tahtası',
 
             'headers' => [
-                'accuracy' => 'İsabetlilik',
-                'combo' => 'Maksimum Kombo',
+                'accuracy' => 'İSABETLİLİK',
+                'combo' => 'Maks Kombo',
                 'miss' => 'Iska',
                 'mods' => 'Modlar',
                 'player' => 'Oyuncu',

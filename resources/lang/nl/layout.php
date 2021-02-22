@@ -159,6 +159,10 @@ return [
             'error' => 'Ongeldige aanvraagparameter',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Oh nee! Iets brak! ;_;',
             'description' => "We worden automatisch op de hoogte gesteld van alle fouten.",
@@ -171,8 +175,8 @@ return [
             'error' => 'Offline voor onderhoud!',
             'description' => "Onderhoud duurt meestal ongeveer 5 seconden tot 10 minuten. Als we langer offline zijn, check :link voor meer informatie.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error

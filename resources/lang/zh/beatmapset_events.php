@@ -32,8 +32,9 @@ return [
         'remove_from_loved' => '由 :user 从 Loved 中移除。（:text）',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => '移除少儿不宜标识
+',
+            'to_1' => '已标为少儿不宜',
         ],
     ],
 
@@ -71,7 +72,7 @@ return [
         'love' => '被 Loved',
         'nominate' => '提名',
         'nomination_reset' => '重置提名',
-        'nsfw_toggle' => '',
+        'nsfw_toggle' => '少儿不宜标识',
         'qualify' => '审核通过',
         'rank' => '被 Ranked',
         'remove_from_loved' => 'Loved 移除',

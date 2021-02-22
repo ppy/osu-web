@@ -11,7 +11,7 @@ return [
     'none' => 'Tidak ada notifikasi',
     'see_all' => 'lihat semua notifikasi',
     'see_channel' => 'tuju obrolan',
-    'verifying' => '',
+    'verifying' => 'Harap verifikasi sesi Anda untuk dapat melihat notifikasi',
 
     'filters' => [
         '_' => 'semua notifikasi',

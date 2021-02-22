@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Recommended difficulty',
         'converts' => 'Include converted beatmaps',
+        'follows' => 'Subscribed mappers',
+        'recommended' => 'Recommended difficulty',
     ],
     'mode' => [
         'all' => 'All',
