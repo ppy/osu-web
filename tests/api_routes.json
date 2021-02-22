@@ -80,6 +80,67 @@
         ]
     },
     {
+        "uri": "api/v2/beatmapsets/discussions/posts",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\BeatmapDiscussionPostsController@index",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/beatmapsets/discussions/votes",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\BeatmapsetDiscussionVotesController@index",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/beatmapsets/discussions",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\BeatmapDiscussionsController@index",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/beatmapsets/discussions/{discussion}",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\BeatmapDiscussionsController@show",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes"
+        ],
+        "scopes": []
+    },
+    {
         "uri": "api/v2/beatmapsets/{beatmapset}/favourites",
         "methods": [
             "POST"
