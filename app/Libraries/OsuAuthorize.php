@@ -1171,10 +1171,7 @@ class OsuAuthorize
             return $prefix.'locked';
         }
 
-        $position = $post->postPosition;
-        $topicPostsCount = $post->topic->postsCount();
-
-        if ($position !== $topicPostsCount) {
+        if ($post->getKey() !== $post->topic->topic_last_post_id) {
             return $prefix.'only_last_post';
         }
 
@@ -1255,6 +1252,17 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    /**
+     * @param User|null $user
+     * @param Topic $topic
+     * @return string
+     * @throws AuthorizationException
+     */
+    public function checkForumTopicDelete(?User $user, Topic $topic): string
+    {
+        return $this->checkForumPostDelete($user, $topic->firstPost);
     }
 
     /**

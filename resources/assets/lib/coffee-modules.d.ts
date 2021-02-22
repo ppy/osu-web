@@ -47,13 +47,6 @@ declare module 'img2x' {
   class Img2x extends React.PureComponent<any> {}
 }
 
-declare module 'spinner' {
-  interface Props {
-    modifiers?: string[];
-  }
-
-  class Spinner extends React.PureComponent<Props> {}
-}
 declare module 'user-avatar' {
   class UserAvatar extends React.PureComponent<any> {}
 }

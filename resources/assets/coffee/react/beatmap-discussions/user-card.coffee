@@ -11,13 +11,14 @@ export class UserCard extends React.PureComponent
   render: =>
     additionalClasses = @props.additionalClasses ? []
     hideStripe = @props.hideStripe ? false
+    linkComponent = if @props.user.is_deleted then span else a
 
     div
       className: osu.classWithModifiers(bn, additionalClasses)
       style: osu.groupColour(@props.group)
 
       div className: "#{bn}__avatar",
-        a
+        linkComponent
           className: "#{bn}__user-link"
           href: laroute.route('users.show', user: @props.user.id)
           el UserAvatar, user: @props.user, modifiers: ['full-rounded']
@@ -25,14 +26,14 @@ export class UserCard extends React.PureComponent
         className: "#{bn}__user"
         div
           className: "#{bn}__user-row"
-          a
+          linkComponent
             className: "#{bn}__user-link"
             href: laroute.route('users.show', user: @props.user.id)
             span
               className: "#{bn}__user-text u-ellipsis-overflow"
               @props.user.username
 
-          if !@props.user.is_bot
+          if !@props.user.is_bot && !@props.user.is_deleted
             a
               className: "#{bn}__user-modding-history-link"
               href: laroute.route('users.modding.index', user: @props.user.id)

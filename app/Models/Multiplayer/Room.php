@@ -355,5 +355,9 @@ class Room extends Model
                 throw new InvariantException('You have reached the maximum number of tries allowed.');
             }
         }
+
+        if ($playlistItem->expired) {
+            throw new InvariantException('Cannot play an expired playlist item.');
+        }
     }
 }

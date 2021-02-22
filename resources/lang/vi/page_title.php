@@ -5,10 +5,10 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'admin_forum' => [
-        '_' => '',
+        '_' => 'forum của admin',
     ],
     'admin_store' => [
         '_' => '',
@@ -80,7 +80,7 @@ return [
             'index' => '',
         ],
         'friends_controller' => [
-            'index' => '',
+            'index' => 'trang chủ',
         ],
         'groups_controller' => [
             'show' => '',

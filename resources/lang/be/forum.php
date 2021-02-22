@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Аднавіць допіс?',
         'edited' => 'Апошняе рэдагаванне :user а :when, адрэдагавана :count раз.',
         'posted_at' => 'апублікаваны :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Выдаліць допіс',

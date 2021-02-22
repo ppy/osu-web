@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Deseja mesmo restaurar a publicação?',
         'edited' => 'Última edição por :user :when, editado :count vezes no total.',
         'posted_at' => 'publicado :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Excluir publicação',

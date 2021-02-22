@@ -62,6 +62,7 @@ return [
             'comment_new' => 'تعليقات جديدة',
             'forum_topic_reply' => 'رد الموضوع',
             'mail' => 'البريد',
+            'mapping' => '',
             'push' => 'دفع',
             'user_achievement_unlock' => 'تم فتح ميدالية المستخدم',
         ],

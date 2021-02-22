@@ -18,6 +18,7 @@ return [
             'not_enough_plays' => '',
             'not_verified' => '',
             'restricted' => 'คุณถูกจำกัดการใช้งานอยู่ในตอนนี้',
+            'silenced' => '',
             'target_restricted' => 'ผู้ใช้งานคนนี้ถูกจำกัดการใช้งาน',
         ],
     ],

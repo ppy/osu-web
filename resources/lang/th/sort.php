@@ -24,4 +24,9 @@ return [
         'feature_votes' => 'ลำดับความสำคัญ',
         'new' => 'ตอบกลับครั้งล่าสุด',
     ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
+    ],
 ];

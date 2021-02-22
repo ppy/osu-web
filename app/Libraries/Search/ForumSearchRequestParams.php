@@ -29,13 +29,13 @@ class ForumSearchRequestParams extends ForumSearchParams
 
     private function parseSort(?string $sortStr): void
     {
-        if ($sortStr === null) {
-            return;
-        }
-
-        $options = explode('_', $sortStr);
+        $options = explode('_', $sortStr ?? '');
         $field = $options[0];
         $order = $options[1] ?? null;
+
+        if (!in_array($field, static::VALID_SORT_FIELDS, true)) {
+            $field = $this->queryString === null ? 'created' : 'relevance';
+        }
 
         if (!in_array($order, ['asc', 'desc'], true)) {
             $order = static::DEFAULT_SORT_ORDER;
@@ -43,7 +43,7 @@ class ForumSearchRequestParams extends ForumSearchParams
 
         switch ($field) {
             case 'created':
-                $this->sorts[] = new Sort('post_time', $order);
+                // just post_id
                 break;
             default:
                 $field = 'relevance';

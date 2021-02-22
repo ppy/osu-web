@@ -24,4 +24,9 @@ return [
         'feature_votes' => 'Prioritas',
         'new' => 'Balasan Terakhir',
     ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
+    ],
 ];

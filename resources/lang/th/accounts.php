@@ -62,6 +62,7 @@ return [
             'comment_new' => 'ความคิดเห็นใหม่',
             'forum_topic_reply' => 'ข้อความตอบกลับในกระทู้',
             'mail' => 'อีเมล',
+            'mapping' => '',
             'push' => 'ส่งการแจ้งเตือน',
             'user_achievement_unlock' => 'ผู้เล่นได้ปลดล็อกเหรียญตรา',
         ],

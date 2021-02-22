@@ -124,10 +124,12 @@ class BeatmapDiscussionsController extends Controller
             $relatedBeatmapsetIds[$discussion->beatmapset_id] = true;
         }
 
-        $users = User::whereIn('user_id', array_keys($userIds))
-            ->with('userGroups')
-            ->default()
-            ->get();
+        $users = User::whereIn('user_id', array_keys($userIds))->with('userGroups');
+        if (!$isModerator) {
+            $users->default();
+        }
+
+        $users = $users->get();
 
         $relatedBeatmaps = Beatmap::whereIn('beatmapset_id', array_keys($relatedBeatmapsetIds))->get();
 
