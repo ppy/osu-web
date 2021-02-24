@@ -37,6 +37,10 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     const LANDING_LIMIT = 4;
 
     const SORTS = [
+        'published_asc' => [
+            ['column' => 'published_at', 'order' => 'ASC', 'type' => 'time'],
+            ['column' => 'id', 'order' => 'ASC'],
+        ],
         'published_desc' => [
             ['column' => 'published_at', 'order' => 'DESC', 'type' => 'time'],
             ['column' => 'id', 'order' => 'DESC'],
@@ -245,17 +249,9 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     {
         if (!array_key_exists('newer', $this->adjacent)) {
             $this->adjacent['newer'] = static
-                ::cursorWhere([
-                    [
-                        'column' => 'published_at',
-                        'order' => 'ASC',
-                        'value' => $this->published_at,
-                    ],
-                    [
-                        'column' => 'id',
-                        'order' => 'ASC',
-                        'value' => $this->getKey(),
-                    ],
+                ::cursorSort('published_asc', [
+                    'published_at' => $this->published_at,
+                    'id' => $this->getKey(),
                 ])->first() ?? null;
         }
 
@@ -266,17 +262,9 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     {
         if (!array_key_exists('older', $this->adjacent)) {
             $this->adjacent['older'] = static
-                ::cursorWhere([
-                    [
-                        'column' => 'published_at',
-                        'order' => 'DESC',
-                        'value' => $this->published_at,
-                    ],
-                    [
-                        'column' => 'id',
-                        'order' => 'DESC',
-                        'value' => $this->getKey(),
-                    ],
+                ::cursorSort('published_desc', [
+                    'published_at' => $this->published_at,
+                    'id' => $this->getKey(),
                 ])->first() ?? null;
         }
 

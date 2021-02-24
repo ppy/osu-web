@@ -80,35 +80,6 @@ abstract class Model extends BaseModel
         return parent::refresh();
     }
 
-    public function scopeCursorWhere($query, array $cursors, bool $isFirst = true)
-    {
-        if (empty($cursors)) {
-            return;
-        }
-
-        if ($isFirst) {
-            foreach ($cursors as $cursor) {
-                $query->orderBy($cursor['column'], $cursor['order']);
-            }
-        }
-
-        $cursor = array_shift($cursors);
-
-        $dir = strtoupper($cursor['order']) === 'DESC' ? '<' : '>';
-
-        if (count($cursors) === 0) {
-            $query->where($cursor['column'], $dir, $cursor['value']);
-        } else {
-            $query->where($cursor['column'], "{$dir}=", $cursor['value'])
-                ->where(function ($q) use ($cursor, $dir, $cursors) {
-                    $q->where($cursor['column'], $dir, $cursor['value'])
-                        ->orWhere(function ($qq) use ($cursors) {
-                            $qq->cursorWhere($cursors, false);
-                        });
-                });
-        }
-    }
-
     public function scopeReorderBy($query, $field, $order)
     {
         $query->getQuery()->orders = null;

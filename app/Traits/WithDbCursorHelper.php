@@ -27,7 +27,30 @@ trait WithDbCursorHelper
         }
 
         if (is_array($preparedCursor)) {
-            $query->cursorWhere($preparedCursor, false);
+            $query->cursorSortExec($preparedCursor);
+        }
+    }
+
+    public function scopeCursorSortExec($query, array $cursors)
+    {
+        if (empty($cursors)) {
+            return;
+        }
+
+        $cursor = array_shift($cursors);
+
+        $dir = strtoupper($cursor['order']) === 'DESC' ? '<' : '>';
+
+        if (count($cursors) === 0) {
+            $query->where($cursor['column'], $dir, $cursor['value']);
+        } else {
+            $query->where($cursor['column'], "{$dir}=", $cursor['value'])
+                ->where(function ($q) use ($cursor, $dir, $cursors) {
+                    $q->where($cursor['column'], $dir, $cursor['value'])
+                        ->orWhere(function ($qq) use ($cursors) {
+                            $qq->cursorSortExec($cursors);
+                        });
+                });
         }
     }
 }
