@@ -41,7 +41,7 @@ trait WithDbCursorHelper
                 ->where(function ($q) use ($current, $dir, $preparedCursor) {
                     return $q->where($current['column'], $dir, $current['value'])
                         ->orWhere(function ($qq) use ($preparedCursor) {
-                            static::cursorSortExecWhere($qq, $preparedCursor);
+                            return static::cursorSortExecWhere($qq, $preparedCursor);
                         });
                 });
         }
