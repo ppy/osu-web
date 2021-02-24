@@ -20,22 +20,27 @@ trait WithDbCursorHelper
             ? $sortOrCursorHelper
             : static::makeDbCursorHelper(get_string($sortOrCursorHelper));
 
+        $query->cursorSortExecOrder($cursorHelper->getSort());
+
         $cursor = $cursorArrayOrStatic instanceof static
             ? $cursorHelper->itemToCursor($cursorArrayOrStatic)
             : $cursorArrayOrStatic;
 
-        $preparedCursor = $cursorHelper->prepare($cursor);
+        $query->cursorSortExecWhere($cursorHelper->prepare($cursor));
 
-        foreach ($cursorHelper->getSort() as $sortItem) {
+        return $query;
+    }
+
+    public function scopeCursorSortExecOrder($query, array $sort)
+    {
+        foreach ($sort as $sortItem) {
             $query->orderBy($sortItem['column'], $sortItem['order']);
         }
 
-        if (is_array($preparedCursor)) {
-            $query->cursorSortExec($preparedCursor);
-        }
+        return $query;
     }
 
-    public function scopeCursorSortExec($query, array $preparedCursors)
+    public function scopeCursorSortExecWhere($query, ?array $preparedCursors)
     {
         if (empty($preparedCursors)) {
             return;
@@ -50,11 +55,13 @@ trait WithDbCursorHelper
         } else {
             $query->where($currentCursor['column'], "{$dir}=", $currentCursor['value'])
                 ->where(function ($q) use ($currentCursor, $dir, $preparedCursors) {
-                    $q->where($currentCursor['column'], $dir, $currentCursor['value'])
+                    return $q->where($currentCursor['column'], $dir, $currentCursor['value'])
                         ->orWhere(function ($qq) use ($preparedCursors) {
-                            $qq->cursorSortExec($preparedCursors);
+                            return $qq->cursorSortExecWhere($preparedCursors);
                         });
                 });
         }
+
+        return $query;
     }
 }
