@@ -34,8 +34,6 @@ class Room extends Model
 {
     use SoftDeletes, WithDbCursorHelper;
 
-    const DEFAULT_SORT = 'ended';
-
     const SORTS = [
         'ended' => [
             ['column' => 'ends_at', 'order' => 'desc', 'type' => 'time'],
@@ -45,6 +43,8 @@ class Room extends Model
             ['column' => 'id', 'order' => 'desc', 'type' => 'int'],
         ],
     ];
+
+    const DEFAULT_SORT = 'ended';
 
     protected $table = 'multiplayer_rooms';
     protected $dates = ['starts_at', 'ends_at'];

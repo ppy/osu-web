@@ -50,8 +50,6 @@ class Comment extends Model
     // some people seem to put song lyrics in comment which inflated the size.
     const MESSAGE_LIMIT = 10000;
 
-    const DEFAULT_SORT = 'new';
-
     const SORTS = [
         'new' => [
             ['column' => 'created_at', 'order' => 'DESC', 'type' => 'time'],
@@ -67,6 +65,8 @@ class Comment extends Model
             ['column' => 'id', 'order' => 'DESC'],
         ],
     ];
+
+    const DEFAULT_SORT = 'new';
 
     protected $dates = ['deleted_at', 'edited_at'];
 
