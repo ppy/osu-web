@@ -23,6 +23,23 @@ class DbCursorHelper
         }
     }
 
+    public function itemToCursor($item)
+    {
+        if (!($item instanceof Model)) {
+            return;
+        }
+
+        $ret = [];
+
+        foreach ($this->sort as $sort) {
+            $column = $sort['column'];
+            $columnInput = $sort['columnInput'] ?? $sort['column'];
+            $ret[$columnInput] = $item->$column;
+        }
+
+        return $ret;
+    }
+
     public function getSort()
     {
         return $this->sort;
@@ -57,30 +74,16 @@ class DbCursorHelper
         return $ret;
     }
 
-    public function next($itemsOrObject)
+    public function next($items)
     {
-        if ($itemsOrObject instanceof Model) {
-            $lastItem = $itemsOrObject;
-        } else {
-            if (count($itemsOrObject) === 0) {
-                return;
-            }
-
-            $lastItem = $itemsOrObject[count($itemsOrObject) - 1];
-
-            if ($lastItem === null) {
-                return;
-            }
+        if (count($items) === 0) {
+            return;
         }
 
-        $ret = [];
+        $lastItem = $items[count($items) - 1];
 
-        foreach ($this->sort as $sort) {
-            $column = $sort['column'];
-            $columnInput = $sort['columnInput'] ?? $sort['column'];
-            $ret[$columnInput] = $lastItem->$column;
+        if ($lastItem instanceof Model) {
+            return $this->itemToCursor($lastItem);
         }
-
-        return $ret;
     }
 }

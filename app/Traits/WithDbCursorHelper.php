@@ -21,7 +21,7 @@ trait WithDbCursorHelper
             : static::makeDbCursorHelper(get_string($sortOrCursorHelper));
 
         $cursor = $cursorArrayOrStatic instanceof static
-            ? $cursorHelper->next($cursorArrayOrStatic)
+            ? $cursorHelper->itemToCursor($cursorArrayOrStatic)
             : $cursorArrayOrStatic;
 
         $preparedCursor = $cursorHelper->prepare($cursor);
