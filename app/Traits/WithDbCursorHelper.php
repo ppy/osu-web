@@ -40,24 +40,24 @@ trait WithDbCursorHelper
         return $query;
     }
 
-    public function scopeCursorSortExecWhere($query, ?array $preparedCursors)
+    public function scopeCursorSortExecWhere($query, ?array $preparedCursor)
     {
-        if (empty($preparedCursors)) {
+        if (empty($preparedCursor)) {
             return;
         }
 
-        $currentCursor = array_shift($preparedCursors);
+        $current = array_shift($preparedCursor);
 
-        $dir = strtoupper($currentCursor['order']) === 'DESC' ? '<' : '>';
+        $dir = strtoupper($current['order']) === 'DESC' ? '<' : '>';
 
-        if (count($preparedCursors) === 0) {
-            $query->where($currentCursor['column'], $dir, $currentCursor['value']);
+        if (count($preparedCursor) === 0) {
+            $query->where($current['column'], $dir, $current['value']);
         } else {
-            $query->where($currentCursor['column'], "{$dir}=", $currentCursor['value'])
-                ->where(function ($q) use ($currentCursor, $dir, $preparedCursors) {
-                    return $q->where($currentCursor['column'], $dir, $currentCursor['value'])
-                        ->orWhere(function ($qq) use ($preparedCursors) {
-                            return $qq->cursorSortExecWhere($preparedCursors);
+            $query->where($current['column'], "{$dir}=", $current['value'])
+                ->where(function ($q) use ($current, $dir, $preparedCursor) {
+                    return $q->where($current['column'], $dir, $current['value'])
+                        ->orWhere(function ($qq) use ($preparedCursor) {
+                            return $qq->cursorSortExecWhere($preparedCursor);
                         });
                 });
         }
