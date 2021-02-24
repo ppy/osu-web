@@ -14,24 +14,7 @@ trait WithDbCursorHelper
         return new DbCursorHelper(static::SORTS, static::DEFAULT_SORT, $sort);
     }
 
-    public function scopeCursorSort($query, $sortOrCursorHelper, $cursorArrayOrStatic)
-    {
-        $cursorHelper = $sortOrCursorHelper instanceof DbCursorHelper
-            ? $sortOrCursorHelper
-            : static::makeDbCursorHelper(get_string($sortOrCursorHelper));
-
-        $query->cursorSortExecOrder($cursorHelper->getSort());
-
-        $cursor = $cursorArrayOrStatic instanceof static
-            ? $cursorHelper->itemToCursor($cursorArrayOrStatic)
-            : $cursorArrayOrStatic;
-
-        $query->cursorSortExecWhere($cursorHelper->prepare($cursor));
-
-        return $query;
-    }
-
-    public function scopeCursorSortExecOrder($query, array $sort)
+    private static function cursorSortExecOrder($query, array $sort)
     {
         foreach ($sort as $sortItem) {
             $query->orderBy($sortItem['column'], $sortItem['order']);
@@ -40,7 +23,7 @@ trait WithDbCursorHelper
         return $query;
     }
 
-    public function scopeCursorSortExecWhere($query, ?array $preparedCursor)
+    private static function cursorSortExecWhere($query, ?array $preparedCursor)
     {
         if (empty($preparedCursor)) {
             return;
@@ -57,10 +40,27 @@ trait WithDbCursorHelper
                 ->where(function ($q) use ($current, $dir, $preparedCursor) {
                     return $q->where($current['column'], $dir, $current['value'])
                         ->orWhere(function ($qq) use ($preparedCursor) {
-                            return $qq->cursorSortExecWhere($preparedCursor);
+                            static::cursorSortExecWhere($qq, $preparedCursor);
                         });
                 });
         }
+
+        return $query;
+    }
+
+    public function scopeCursorSort($query, $sortOrCursorHelper, $cursorArrayOrStatic)
+    {
+        $cursorHelper = $sortOrCursorHelper instanceof DbCursorHelper
+            ? $sortOrCursorHelper
+            : static::makeDbCursorHelper(get_string($sortOrCursorHelper));
+
+        static::cursorSortExecOrder($query, $cursorHelper->getSort());
+
+        $cursor = $cursorArrayOrStatic instanceof static
+            ? $cursorHelper->itemToCursor($cursorArrayOrStatic)
+            : $cursorArrayOrStatic;
+
+        static::cursorSortExecWhere($query, $cursorHelper->prepare($cursor));
 
         return $query;
     }
