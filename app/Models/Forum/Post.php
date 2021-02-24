@@ -65,6 +65,17 @@ class Post extends Model implements AfterCommit, Indexable
         restore as private origRestore;
     }
 
+    const SORTS = [
+        'id_asc' => [
+            ['column' => 'post_id', 'columnInput' => 'id', 'order' => 'ASC'],
+        ],
+        'id_desc' => [
+            ['column' => 'post_id', 'columnInput' => 'id', 'order' => 'DESC'],
+        ],
+    ];
+
+    const DEFAULT_SORT = 'id_asc';
+
     protected $table = 'phpbb_posts';
     protected $primaryKey = 'post_id';
 
