@@ -16,8 +16,9 @@ trait WithDbCursorHelper
 
     private static function cursorSortExecOrder($query, array $sort)
     {
-        foreach ($sort as $sortItem) {
-            $query->orderBy($sortItem['column'], $sortItem['order']);
+        foreach ($sort as $i => $sortItem) {
+            $orderMethod = $i === 0 ? 'reorderBy' : 'orderBy';
+            $query->$orderMethod($sortItem['column'], $sortItem['order']);
         }
 
         return $query;
