@@ -94,23 +94,38 @@ class @Forum
   endPost: => @posts[@posts.length - 1]
 
 
-  firstPostLoaded: =>
-    # Less than or equal in case the first post id data is wrong due to the
-    # earlier version allowing deleting "first" post.
-    @postId(@posts[0]) <= @firstPostId()
+  startingPostLoaded: =>
+    morePrevious = document.querySelector('.js-forum__posts-show-more--previous')
+    startingPostLoaded = morePrevious.dataset.noMore == '1'
+
+    if !startingPostLoaded
+      # Less than or equal in case the first post id data is wrong due to the
+      # earlier version allowing deleting "first" post.
+      startingPostLoaded = @postId(@posts[0]) <= @firstPostId()
+      morePrevious.dataset.noMore = '1' if startingPostLoaded
+
+    startingPostLoaded
 
 
   lastPostLoaded: =>
-    @postPosition(@endPost()) == @totalPosts()
+    moreNext = document.querySelector('.js-forum__posts-show-more--next')
+    lastPostLoaded = moreNext.dataset.noMore == '1'
+
+    if !lastPostLoaded
+      # Greater than or equal to allow handling more posts than initially known
+      lastPostLoaded = @postPosition(@endPost()) >= @totalPosts()
+      moreNext.dataset.noMore = '1' if lastPostLoaded
+
+    lastPostLoaded
 
 
   refreshLoadMoreLinks: =>
     return unless @loadMoreLinks.length
 
-    firstPostLoaded = @firstPostLoaded()
+    startingPostLoaded = @startingPostLoaded()
 
-    $('.js-header--main').toggleClass 'hidden', !firstPostLoaded
-    $('.js-header--alt').toggleClass 'hidden', firstPostLoaded
+    $('.js-header--main').toggleClass 'hidden', !startingPostLoaded
+    $('.js-header--alt').toggleClass 'hidden', startingPostLoaded
 
     lastPostLoaded = @lastPostLoaded()
 
@@ -277,8 +292,14 @@ class @Forum
 
     .always ->
       link.classList.remove 'js-disabled'
-    .fail ->
+    .fail (xhr) =>
+      if xhr.status == 404
+        link.dataset.noMore = '1'
+        @refreshLoadMoreLinks()
+        return
+
       link.dataset.failed = '1'
+      osu.ajaxError xhr
 
 
   jumpToSubmit: (e) =>
