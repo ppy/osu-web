@@ -186,10 +186,7 @@ class UserScoreAggregate extends Model
         }
 
         $query = static::where('room_id', $this->room_id)->forRanking()
-            ->cursorSort('score_asc', [
-                'total_score' => $this->total_score,
-                'last_score_id' => $this->last_score_id,
-            ]);
+            ->cursorSort('score_asc', $this);
 
         return 1 + $query->count();
     }

@@ -248,11 +248,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     public function newer()
     {
         if (!array_key_exists('newer', $this->adjacent)) {
-            $this->adjacent['newer'] = static
-                ::cursorSort('published_asc', [
-                    'published_at' => $this->published_at,
-                    'id' => $this->getKey(),
-                ])->first() ?? null;
+            $this->adjacent['newer'] = static::cursorSort('published_asc', $this)->first() ?? null;
         }
 
         return $this->adjacent['newer'];
@@ -261,11 +257,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     public function older()
     {
         if (!array_key_exists('older', $this->adjacent)) {
-            $this->adjacent['older'] = static
-                ::cursorSort('published_desc', [
-                    'published_at' => $this->published_at,
-                    'id' => $this->getKey(),
-                ])->first() ?? null;
+            $this->adjacent['older'] = static::cursorSort('published_desc', $this)->first() ?? null;
         }
 
         return $this->adjacent['older'];

@@ -14,11 +14,15 @@ trait WithDbCursorHelper
         return new DbCursorHelper(static::SORTS, static::DEFAULT_SORT, $sort);
     }
 
-    public function scopeCursorSort($query, $sortOrCursorHelper, ?array $cursor)
+    public function scopeCursorSort($query, $sortOrCursorHelper, $cursorArrayOrStatic)
     {
         $cursorHelper = $sortOrCursorHelper instanceof DbCursorHelper
             ? $sortOrCursorHelper
             : static::makeDbCursorHelper(get_string($sortOrCursorHelper));
+
+        $cursor = $cursorArrayOrStatic instanceof static
+            ? $cursorHelper->next($cursorArrayOrStatic)
+            : $cursorArrayOrStatic;
 
         $preparedCursor = $cursorHelper->prepare($cursor);
 

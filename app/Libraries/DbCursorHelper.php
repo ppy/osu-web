@@ -5,6 +5,8 @@
 
 namespace App\Libraries;
 
+use App\Models\Model;
+
 class DbCursorHelper
 {
     private $sort;
@@ -60,16 +62,20 @@ class DbCursorHelper
         return $this->prepare($this->next($items));
     }
 
-    public function next($items)
+    public function next($itemsOrObject)
     {
-        if (count($items) === 0) {
-            return;
-        }
+        if ($itemsOrObject instanceof Model) {
+            $lastItem = $itemsOrObject;
+        } else {
+            if (count($itemsOrObject) === 0) {
+                return;
+            }
 
-        $lastItem = $items[count($items) - 1];
+            $lastItem = $itemsOrObject[count($itemsOrObject) - 1];
 
-        if ($lastItem === null) {
-            return;
+            if ($lastItem === null) {
+                return;
+            }
         }
 
         $ret = [];

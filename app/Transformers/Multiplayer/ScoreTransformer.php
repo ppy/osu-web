@@ -67,7 +67,7 @@ class ScoreTransformer extends TransformerAbstract
         foreach ($typeOptions as $type => $sortName) {
             $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper($sortName);
             $highScores = PlaylistItemUserHighScore
-                ::cursorSort($cursorHelper, $cursorHelper->next([$highScorePlaceholder]))
+                ::cursorSort($cursorHelper, $highScorePlaceholder)
                 ->with(static::BASE_PRELOAD)
                 ->where('playlist_item_id', $score->playlist_item_id)
                 ->where('user_id', '<>', $score->user_id)
