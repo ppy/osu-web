@@ -319,7 +319,7 @@ class TopicsController extends Controller
             } else {
                 $extraSort = 'id_asc';
             }
-            if (isset($extraCursorHelper)) {
+            if (isset($extraSort)) {
                 $extraCursorHelper = new DbCursorHelper(Post::SORTS, $extraSort);
                 $extraPosts = (clone $postsQueryBase)
                     ->cursorSort(
