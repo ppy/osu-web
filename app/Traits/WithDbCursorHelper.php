@@ -32,7 +32,7 @@ trait WithDbCursorHelper
 
         $current = array_shift($preparedCursor);
 
-        $dir = strtoupper($current['order']) === 'DESC' ? '<' : '>';
+        $dir = $current['order'] === 'DESC' ? '<' : '>';
 
         if (count($preparedCursor) === 0) {
             $query->where($current['column'], $dir, $current['value']);
