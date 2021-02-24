@@ -35,24 +35,24 @@ trait WithDbCursorHelper
         }
     }
 
-    public function scopeCursorSortExec($query, array $cursors)
+    public function scopeCursorSortExec($query, array $preparedCursors)
     {
-        if (empty($cursors)) {
+        if (empty($preparedCursors)) {
             return;
         }
 
-        $cursor = array_shift($cursors);
+        $currentCursor = array_shift($preparedCursors);
 
-        $dir = strtoupper($cursor['order']) === 'DESC' ? '<' : '>';
+        $dir = strtoupper($currentCursor['order']) === 'DESC' ? '<' : '>';
 
-        if (count($cursors) === 0) {
-            $query->where($cursor['column'], $dir, $cursor['value']);
+        if (count($preparedCursors) === 0) {
+            $query->where($currentCursor['column'], $dir, $currentCursor['value']);
         } else {
-            $query->where($cursor['column'], "{$dir}=", $cursor['value'])
-                ->where(function ($q) use ($cursor, $dir, $cursors) {
-                    $q->where($cursor['column'], $dir, $cursor['value'])
-                        ->orWhere(function ($qq) use ($cursors) {
-                            $qq->cursorSortExec($cursors);
+            $query->where($currentCursor['column'], "{$dir}=", $currentCursor['value'])
+                ->where(function ($q) use ($currentCursor, $dir, $preparedCursors) {
+                    $q->where($currentCursor['column'], $dir, $currentCursor['value'])
+                        ->orWhere(function ($qq) use ($preparedCursors) {
+                            $qq->cursorSortExec($preparedCursors);
                         });
                 });
         }
