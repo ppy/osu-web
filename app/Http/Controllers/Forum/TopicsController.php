@@ -237,6 +237,20 @@ class TopicsController extends Controller
 
     public function show($id)
     {
+        $topic = Topic::with(['forum'])->withTrashed()->findOrFail($id);
+
+        $userCanModerate = priv_check('ForumModerate', $topic->forum)->can();
+
+        if ($topic->trashed() && !$userCanModerate) {
+            abort(404);
+        }
+
+        if ($topic->forum === null) {
+            abort(404);
+        }
+
+        priv_check('ForumView', $topic->forum)->ensureCan();
+
         $params = get_params(request()->all(), null, [
             'start', // either number or "unread"
             'end:int',
@@ -254,25 +268,11 @@ class TopicsController extends Controller
         $jumpTo = null;
         $currentUser = auth()->user();
 
-        $topic = Topic::with(['forum'])->withTrashed()->findOrFail($id);
-
-        $userCanModerate = priv_check('ForumModerate', $topic->forum)->can();
-
-        if ($topic->trashed() && !$userCanModerate) {
-            abort(404);
-        }
-
-        if ($topic->forum === null) {
-            abort(404);
-        }
-
         if ($userCanModerate) {
             $showDeleted = $showDeleted ?? $currentUser->profileCustomization()->forum_posts_show_deleted;
         } else {
             $showDeleted = false;
         }
-
-        priv_check('ForumView', $topic->forum)->ensureCan();
 
         if ($params['cursor'] === null) {
             if ($params['start'] === 'unread') {
