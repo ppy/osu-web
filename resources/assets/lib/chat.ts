@@ -6,19 +6,21 @@ import MainView from 'chat/main-view';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 
-const dataStore = core.dataStore;
-const initial = osu.parseJson<ChatInitialJson>('json-chat-initial');
-
-if (Array.isArray(initial.presence)) {
-  // initial population of channel/presence data
-  dataStore.channelStore.updateWithPresence(initial.presence);
-}
-
-dataStore.channelStore.lastPolledMessageId = initial.last_message_id ?? 0;
-
 reactTurbolinks.register('chat', MainView, () => {
+  const dataStore = core.dataStore;
+  const initial = osu.parseJson<ChatInitialJson | null>('json-chat-initial', true);
+
+  if (initial != null) {
+    if (Array.isArray(initial.presence)) {
+      // initial population of channel/presence data
+      dataStore.channelStore.updateWithPresence(initial.presence);
+    }
+
+    dataStore.channelStore.lastPolledMessageId = initial.last_message_id ?? 0;
+  }
+
   let initialChannel: number | undefined;
-  const sendTo = initial.send_to;
+  const sendTo = initial?.send_to;
 
   if ((sendTo != null)) {
     const target = dataStore.userStore.getOrCreate(sendTo.target.id, sendTo.target); // pre-populate userStore with target
