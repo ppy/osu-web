@@ -249,12 +249,12 @@ class TopicsController extends Controller
      *
      * ### Response Format
      *
-     * Field  | Type                       | Includes
-     * ------ | -------------------------- | --------
+     * Field  | Type                       | Notes
+     * ------ | -------------------------- | -----
      * topic  | [ForumTopic](#forum-topic) | |
-     * posts  | [ForumPost](#forum-post)[] | body
+     * posts  | [ForumPost](#forum-post)[] | Includes `body`.
      * cursor | [Cursor](#cursor)          | |
-     * sort   | ForumPostSort              | |
+     * params |                            | Parameters used for current request excluding cursor.
      *
      * @urlParam topic Id of the topic. Example: 1
      *
@@ -392,7 +392,7 @@ class TopicsController extends Controller
                 'topic' => json_item($topic, 'Forum\Topic'),
                 'posts' => json_collection($posts, 'Forum\Post', ['body']),
                 'cursor' => $cursorHelper->next($posts),
-                'sort' => $cursorHelper->getSortName(),
+                'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
             ];
         }
 
