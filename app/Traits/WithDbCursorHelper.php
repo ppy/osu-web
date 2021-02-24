@@ -49,7 +49,7 @@ trait WithDbCursorHelper
         return $query;
     }
 
-    public function scopeCursorSort($query, $sortOrCursorHelper, $cursorArrayOrStatic)
+    public function scopeCursorSort($query, $sortOrCursorHelper, $cursorOrStatic)
     {
         $cursorHelper = $sortOrCursorHelper instanceof DbCursorHelper
             ? $sortOrCursorHelper
@@ -57,9 +57,9 @@ trait WithDbCursorHelper
 
         static::cursorSortExecOrder($query, $cursorHelper->getSort());
 
-        $cursor = $cursorArrayOrStatic instanceof static
-            ? $cursorHelper->itemToCursor($cursorArrayOrStatic)
-            : $cursorArrayOrStatic;
+        $cursor = $cursorOrStatic instanceof static
+            ? $cursorHelper->itemToCursor($cursorOrStatic)
+            : $cursorOrStatic;
 
         static::cursorSortExecWhere($query, $cursorHelper->prepare($cursor));
 
