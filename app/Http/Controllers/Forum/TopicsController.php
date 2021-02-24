@@ -251,50 +251,11 @@ class TopicsController extends Controller
 
         priv_check('ForumView', $topic->forum)->ensureCan();
 
-        $params = get_params(request()->all(), null, [
-            'start', // either number or "unread"
-            'end:int',
-            'n:int',
-
-            'skip_layout:bool',
-            'with_deleted:bool',
-
-            'sort:string',
-            'cursor:any',
-        ], ['null_missing' => true]);
-
-        $skipLayout = $params['skip_layout'] ?? false;
-        $showDeleted = $params['with_deleted'];
-        $jumpTo = null;
         $currentUser = auth()->user();
+        $params = $this->getIndexParams($topic, $currentUser, $userCanModerate);
 
-        if ($userCanModerate) {
-            $showDeleted = $showDeleted ?? $currentUser->profileCustomization()->forum_posts_show_deleted;
-        } else {
-            $showDeleted = false;
-        }
-
-        if ($params['cursor'] === null) {
-            if ($params['start'] === 'unread') {
-                $params['start'] = Post::lastUnreadByUser($topic, $currentUser);
-            } else {
-                $params['start'] = get_int($params['start']);
-            }
-
-            if ($params['n'] !== null) {
-                $post = $topic->nthPost($params['n']);
-                if ($post !== null) {
-                    $params['cursor'] = ['id' => $post->getKey() - 1];
-                    $params['sort'] = 'id_asc';
-                }
-            } elseif ($params['start'] !== null) {
-                $params['cursor'] = ['id' => $params['start'] - 1];
-                $params['sort'] = 'id_asc';
-            } elseif ($params['end'] !== null) {
-                $params['cursor'] = ['id' => $params['end'] + 1];
-                $params['sort'] = 'id_desc';
-            }
-        }
+        $skipLayout = $params['skip_layout'];
+        $showDeleted = $params['with_deleted'];
 
         $cursorHelper = new DbCursorHelper(Post::SORTS, Post::DEFAULT_SORT, $params['sort']);
 
@@ -308,7 +269,9 @@ class TopicsController extends Controller
             abort(404);
         }
 
-        if (!$skipLayout) {
+        if ($skipLayout) {
+            $jumpTo = null;
+        } else {
             $firstPost = $posts->first();
             $jumpTo = $firstPost->getKey();
 
@@ -502,6 +465,53 @@ class TopicsController extends Controller
         } else {
             return error_popup($star->validationErrors()->toSentence());
         }
+    }
+
+    private function getIndexParams($topic, $currentUser, $userCanModerate)
+    {
+        $params = get_params(request()->all(), null, [
+            'start', // either number or "unread"
+            'end:int',
+            'n:int',
+
+            'skip_layout:bool',
+            'with_deleted:bool',
+
+            'sort:string',
+            'cursor:any',
+        ], ['null_missing' => true]);
+
+        $params['skip_layout'] = $params['skip_layout'] ?? false;
+
+        if ($userCanModerate) {
+            $params['with_deleted'] = $params['with_deleted'] ?? $currentUser->profileCustomization()->forum_posts_show_deleted;
+        } else {
+            $params['with_deleted'] = false;
+        }
+
+        if (!is_array($params['cursor'])) {
+            if ($params['start'] === 'unread') {
+                $params['start'] = Post::lastUnreadByUser($topic, $currentUser);
+            } else {
+                $params['start'] = get_int($params['start']);
+            }
+
+            if ($params['n'] !== null) {
+                $post = $topic->nthPost($params['n']);
+                if ($post !== null) {
+                    $params['cursor'] = ['id' => $post->getKey() - 1];
+                    $params['sort'] = 'id_asc';
+                }
+            } elseif ($params['start'] !== null) {
+                $params['cursor'] = ['id' => $params['start'] - 1];
+                $params['sort'] = 'id_asc';
+            } elseif ($params['end'] !== null) {
+                $params['cursor'] = ['id' => $params['end'] + 1];
+                $params['sort'] = 'id_desc';
+            }
+        }
+
+        return $params;
     }
 
     private function getPollParams()
