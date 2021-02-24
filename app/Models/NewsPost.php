@@ -10,6 +10,7 @@ use App\Libraries\Commentable;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use App\Traits\CommentableDefaults;
+use App\Traits\Memoizes;
 use App\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
 use Exception;
@@ -28,7 +29,7 @@ use Exception;
  */
 class NewsPost extends Model implements Commentable, Wiki\WikiObject
 {
-    use CommentableDefaults, WithDbCursorHelper;
+    use CommentableDefaults, Memoizes, WithDbCursorHelper;
 
     // in minutes
     const CACHE_DURATION = 86400;
@@ -56,8 +57,6 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     protected $dates = [
         'published_at',
     ];
-
-    private $adjacent = [];
 
     public static function lookup($slug)
     {
@@ -247,20 +246,16 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
     public function newer()
     {
-        if (!array_key_exists('newer', $this->adjacent)) {
-            $this->adjacent['newer'] = static::cursorSort('published_asc', $this)->first() ?? null;
-        }
-
-        return $this->adjacent['newer'];
+        return $this->memoize(__FUNCTION__, function () {
+            return static::cursorSort('published_asc', $this)->first();
+        });
     }
 
     public function older()
     {
-        if (!array_key_exists('older', $this->adjacent)) {
-            $this->adjacent['older'] = static::cursorSort('published_desc', $this)->first() ?? null;
-        }
-
-        return $this->adjacent['older'];
+        return $this->memoize(__FUNCTION__, function () {
+            return static::cursorSort('published_desc', $this)->first();
+        });
     }
 
     public function sync($force = false)
