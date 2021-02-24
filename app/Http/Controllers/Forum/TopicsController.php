@@ -380,7 +380,7 @@ class TopicsController extends Controller
         $watch = TopicWatch::lookup($topic, $currentUser);
 
         $featureVotes = $this->groupFeatureVotes($topic);
-        $noindex = !$topic->esShouldIndex();
+        $noindex = !$topic->forum->enable_indexing;
 
         return ext_view(
             "forum.topics.{$template}",

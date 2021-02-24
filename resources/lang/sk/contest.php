@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Hlasovanie pre túto súťaź bolo ukončené',
         'login_required' => 'Pre hlasovanie sa prosím prihlás.',
+        'over' => 'Hlasovanie pre túto súťaź bolo ukončené',
+        'show_voted_only' => '',
 
         'best_of' => [
             'none_played' => "Vypadá to, že nemáš zahratú žiadnu mapu, ktorá je kvalifikovaná pre túto súťaž!",

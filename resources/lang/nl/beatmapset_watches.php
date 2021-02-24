@@ -15,6 +15,7 @@ return [
 
         'table' => [
             'empty' => 'Geen map discussies aan het volgen.',
+            'last_update' => '',
             'open_issues' => 'Open problemen',
             'state' => 'Staat',
             'title' => 'Titel',

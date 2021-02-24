@@ -68,6 +68,7 @@ return [
         'moderated' => 'Bu kanal şu anda modere ediliyor.',
         'no_access' => 'Bu kanala erişiminiz yok.',
         'restricted' => 'Susturulmuş, kısıtlanmış ya da banlanmış iken mesaj gönderemezsiniz.',
+        'silenced' => '',
     ],
 
     'comment' => [

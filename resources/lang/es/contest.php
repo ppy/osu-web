@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Las votaciones para este concurso ya han terminado',
         'login_required' => 'Por favor, inicia sesión para votar.',
+        'over' => 'Las votaciones para este concurso ya han terminado',
+        'show_voted_only' => '',
 
         'best_of' => [
             'none_played' => "¡No parece que hayas jugado a ningún mapa que califique para este concurso!",

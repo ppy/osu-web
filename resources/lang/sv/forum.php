@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Vill du verkligen återställa inlägget?',
         'edited' => 'Senast redigerad av :user :when, redigerad :count gånger totalt.',
         'posted_at' => 'upplagd :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Radera inlägg',

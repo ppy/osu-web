@@ -160,7 +160,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Kullanım limiti aşıldı',
             'description' => '',
         ],
         '500' => [

@@ -32,8 +32,8 @@ return [
         'remove_from_loved' => 'Borttagen från Älskad av :user. (:text)',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Tog bort explicit markering',
+            'to_1' => 'Markerad som explicit',
         ],
     ],
 
@@ -71,7 +71,7 @@ return [
         'love' => 'Älska',
         'nominate' => 'Nominering',
         'nomination_reset' => 'Återställning av nominering',
-        'nsfw_toggle' => '',
+        'nsfw_toggle' => 'Explicit markering',
         'qualify' => 'Kvalifikation',
         'rank' => 'Rankning',
         'remove_from_loved' => '',

@@ -68,6 +68,7 @@ return [
         'moderated' => 'Canalul este moderat în prezent.',
         'no_access' => 'Nu ai acces la acest canal.',
         'restricted' => 'Nu poți trimite mesaje cât timp ești amuțit, restricționat sau interzis.',
+        'silenced' => '',
     ],
 
     'comment' => [

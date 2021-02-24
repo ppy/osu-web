@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Czy na pewno chcesz przywrócić post?',
         'edited' => 'Ostatnio edytowane przez :user :when, łącznie edytowane :count_delimited raz.|Ostatnio edytowane przez :user :when, łącznie edytowane :count_delimited razy.|Ostatnio edytowane przez :user :when, łącznie edytowane :count_delimited razy.',
         'posted_at' => 'opublikowane :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Usuń post',

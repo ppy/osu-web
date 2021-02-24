@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Önerilen zorluk seviyesi',
         'converts' => 'Dönüştürülmüş beatmapleri dahil et',
+        'follows' => '',
+        'recommended' => 'Önerilen zorluk seviyesi',
     ],
     'mode' => [
         'all' => 'Hepsi',

@@ -192,6 +192,12 @@
 
   &__list {
     padding-left: 20px;
+
+    &--ordered {
+      list-style: none;
+      padding-left: 0;
+      counter-reset: c var(--list-start);
+    }
   }
 
   &__list-item {
@@ -199,6 +205,24 @@
 
     .@{_top}--store & {
       margin-left: 10px;
+    }
+
+    .@{_top}__list--ordered > & {
+      counter-increment: c;
+      display: flex;
+
+      &::before {
+        content: counter(c) ". ";
+        min-width: 30px;
+        padding-right: 5px;
+        flex: none;
+      }
+
+      // can't have class due to how it's rendered
+      > div {
+        flex: 1;
+        min-width: 0;
+      }
     }
   }
 

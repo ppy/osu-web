@@ -68,6 +68,7 @@ return [
         'moderated' => 'That channel is currently moderated.',
         'no_access' => 'You do not have access to that channel.',
         'restricted' => 'You cannot send messages while silenced, restricted or banned.',
+        'silenced' => 'You cannot send messages while silenced, restricted or banned.',
     ],
 
     'comment' => [

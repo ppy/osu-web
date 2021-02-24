@@ -26,9 +26,18 @@
   }
 
   &--show {
-    padding: 10px 35px;
-    font-size: @font-size--title-small;
-    align-self: flex-end;
-    margin-bottom: 10px;
+    padding: 0 35px;
+    font-size: inherit;
+    margin: 5px;
+    height: 100%;
+    .center-content();
+  }
+
+  &--show-icon {
+    font-size: inherit;
+    padding: 0;
+    margin: 5px;
+    .circle(@beatmap-picker-size);
+    .center-content();
   }
 }

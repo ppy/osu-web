@@ -18,6 +18,7 @@ return [
             'not_enough_plays' => 'Du har inte spelat spelet tillräckligt',
             'not_verified' => 'Din session har inte verifierats',
             'restricted' => 'Du är för närvarande begränsad',
+            'silenced' => '',
             'target_restricted' => 'Mottagaren är för närvarande begränsad',
         ],
     ],
