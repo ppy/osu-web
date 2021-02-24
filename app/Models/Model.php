@@ -80,17 +80,6 @@ abstract class Model extends BaseModel
         return parent::refresh();
     }
 
-    public function scopeCursorSort($query, array $sort, ?array $cursor)
-    {
-        if (empty($cursor)) {
-            foreach ($sort as $sortItem) {
-                $query->orderBy($sortItem['column'], $sortItem['order']);
-            }
-        } else {
-            $query->cursorWhere($cursor);
-        }
-    }
-
     public function scopeCursorWhere($query, array $cursors, bool $isFirst = true)
     {
         if (empty($cursors)) {

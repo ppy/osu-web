@@ -82,10 +82,7 @@ class Room extends Model
                 $query->active();
         }
 
-        $cursorHelper = static::makeDbCursorHelper($sort);
-        $cursor = $cursorHelper->prepare($params['cursor'] ?? null);
-
-        $query->cursorSort($cursorHelper->getSort(), $cursor);
+        $query->cursorSort($sort, $params['cursor'] ?? null);
 
         foreach ($preloads ?? [] as $preload) {
             $query->with($preload);

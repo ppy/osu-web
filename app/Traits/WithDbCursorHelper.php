@@ -13,4 +13,21 @@ trait WithDbCursorHelper
     {
         return new DbCursorHelper(static::SORTS, static::DEFAULT_SORT, $sort);
     }
+
+    public function scopeCursorSort($query, $sortOrCursorHelper, ?array $cursor)
+    {
+        $cursorHelper = $sortOrCursorHelper instanceof DbCursorHelper
+            ? $sortOrCursorHelper
+            : static::makeDbCursorHelper(get_string($sortOrCursorHelper));
+
+        $preparedCursor = $cursorHelper->prepare($cursor);
+
+        foreach ($cursorHelper->getSort() as $sortItem) {
+            $query->orderBy($sortItem['column'], $sortItem['order']);
+        }
+
+        if (is_array($preparedCursor)) {
+            $query->cursorWhere($preparedCursor, false);
+        }
+    }
 }

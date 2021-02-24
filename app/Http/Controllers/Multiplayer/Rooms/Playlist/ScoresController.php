@@ -47,15 +47,12 @@ class ScoresController extends BaseController
     {
         $playlist = PlaylistItem::where('room_id', $roomId)->where('id', $playlistId)->firstOrFail();
         $params = request()->all();
-        $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper(get_string($params['sort'] ?? null));
-
-        $sort = $cursorHelper->getSort();
-        $cursor = $cursorHelper->prepare($params['cursor'] ?? null);
         $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
+        $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper($params['sort'] ?? null);
 
         $highScores = $playlist
             ->highScores()
-            ->cursorSort($sort, $cursor)
+            ->cursorSort($cursorHelper, $params['cursor'] ?? null)
             ->with(ScoreTransformer::BASE_PRELOAD)
             ->limit($limit + 1) // an extra to check for pagination
             ->get();

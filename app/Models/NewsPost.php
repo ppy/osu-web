@@ -72,10 +72,8 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         $limit = clamp(get_int($params['limit'] ?? null) ?? 20, 1, 21);
 
         $cursorHelper = static::makeDbCursorHelper();
-        $sort = $cursorHelper->getSort();
-        $cursorRaw = $params['cursor'] ?? null;
-        $cursor = $cursorHelper->prepare($cursorRaw);
-        $query->cursorSort($sort, $cursor);
+        $cursor = get_arr($params['cursor'] ?? null);
+        $query->cursorSort($cursorHelper, $cursor);
 
         $query->year(get_int($params['year'] ?? null));
 
@@ -84,10 +82,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         return [
             'cursorHelper' => $cursorHelper,
             'query' => $query,
-            'params' => [
-                'cursor' => $cursor === null ? null : $cursorRaw,
-                'limit' => $limit,
-            ],
+            'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
         ];
     }
 
