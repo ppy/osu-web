@@ -57,11 +57,6 @@ class DbCursorHelper
         return $ret;
     }
 
-    public function prepareNext($items)
-    {
-        return $this->prepare($this->next($items));
-    }
-
     public function next($itemsOrObject)
     {
         if ($itemsOrObject instanceof Model) {
