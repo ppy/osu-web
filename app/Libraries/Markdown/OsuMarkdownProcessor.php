@@ -209,7 +209,7 @@ class OsuMarkdownProcessor
         }
 
         $title = $this->getText($this->node);
-        $slug = presence(mb_strtolower(str_replace(' ', '-', $title))) ?? 'page';
+        $slug = $this->node->data['attributes']['id'] ?? presence(mb_strtolower(str_replace(' ', '-', $title))) ?? 'page';
 
         if (array_key_exists($slug, $this->tocSlugs)) {
             $this->tocSlugs[$slug] += 1;
