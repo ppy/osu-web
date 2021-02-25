@@ -27,6 +27,7 @@ class @BeatmapDiscussionHelper
     text.replace osu.urlRegex, (url, _, displayUrl) =>
       targetUrl = new URL(url)
       options =
+        unescape: true
         props:
           rel: 'nofollow noreferrer'
           target: '_blank'
