@@ -260,10 +260,7 @@ class TopicsController extends Controller
         $cursorHelper = new DbCursorHelper(Post::SORTS, Post::DEFAULT_SORT, $params['sort']);
 
         $postsQueryBase = $topic->posts()->showDeleted($showDeleted)->limit(20);
-        $posts = (clone $postsQueryBase)->cursorSort(
-            $cursorHelper->getSort(),
-            $cursorHelper->prepare($params['cursor'])
-        )->get();
+        $posts = (clone $postsQueryBase)->cursorSort($cursorHelper, $params['cursor'])->get();
 
         if ($posts->count() === 0) {
             abort(404);
@@ -283,13 +280,7 @@ class TopicsController extends Controller
                 $extraSort = 'id_asc';
             }
             if (isset($extraSort)) {
-                $extraCursorHelper = new DbCursorHelper(Post::SORTS, $extraSort);
-                $extraPosts = (clone $postsQueryBase)
-                    ->cursorSort(
-                        $extraCursorHelper->getSort(),
-                        $extraCursorHelper->prepare(['id' => $jumpTo])
-                    )->get()
-                    ->reverse();
+                $extraPosts = (clone $postsQueryBase)->cursorSort($extraSort, ['id' => $jumpTo])->get()->reverse();
 
                 $posts = $extraPosts->concat($posts);
             }
