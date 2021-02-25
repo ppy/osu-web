@@ -22,6 +22,8 @@ export default class ChatStateStore {
     return this.selectedBoxed.get();
   }
 
+  // This setter should be considered private.
+  // Use selectChannel to change channel.
   set selected(value: number) {
     this.selectedBoxed.set(value);
   }
