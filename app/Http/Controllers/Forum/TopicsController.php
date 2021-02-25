@@ -7,7 +7,6 @@ namespace App\Http\Controllers\Forum;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\Notifications\ForumTopicReply;
-use App\Libraries\DbCursorHelper;
 use App\Libraries\NewForumTopic;
 use App\Models\Forum\FeatureVote;
 use App\Models\Forum\Forum;
@@ -257,7 +256,7 @@ class TopicsController extends Controller
         $skipLayout = $params['skip_layout'];
         $showDeleted = $params['with_deleted'];
 
-        $cursorHelper = new DbCursorHelper(Post::SORTS, Post::DEFAULT_SORT, $params['sort']);
+        $cursorHelper = Post::makeDbCursorHelper($params['sort']);
 
         $postsQueryBase = $topic->posts()->showDeleted($showDeleted)->limit(20);
         $posts = (clone $postsQueryBase)->cursorSort($cursorHelper, $params['cursor'])->get();
