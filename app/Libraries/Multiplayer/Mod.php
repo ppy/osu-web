@@ -92,6 +92,9 @@ class Mod
             self::NOFAIL,
             self::PERFECT,
             self::OSU_AUTOPILOT,
+        ],
+        [
+            self::OSU_AUTOPILOT,
             self::OSU_SPUNOUT,
         ],
         [
