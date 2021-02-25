@@ -120,7 +120,7 @@
       "progress": 55
     },
     "pp": 100,
-    "pp_rank": 2000,
+    "global_rank": 2000,
     "ranked_score": 2000000,
     "hit_accuracy": 90.5,
     "play_count": 1000,
