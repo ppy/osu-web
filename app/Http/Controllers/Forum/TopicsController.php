@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Forum;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\Notifications\ForumTopicReply;
+use App\Libraries\DbCursorHelper;
 use App\Libraries\NewForumTopic;
 use App\Models\Forum\FeatureVote;
 use App\Models\Forum\Forum;
@@ -226,7 +227,7 @@ class TopicsController extends Controller
         }
 
         $posts = collect([$post]);
-        $firstPostPosition = $topic->postPosition($post->post_id);
+        $firstPostPosition = $topic->postPosition($post->getKey());
 
         $post->markRead(Auth::user());
         (new ForumTopicReply($post, auth()->user()))->dispatch();
@@ -236,22 +237,6 @@ class TopicsController extends Controller
 
     public function show($id)
     {
-        $params = get_params(request()->all(), null, [
-            'start', // either number or "unread"
-            'end:int',
-            'n:int',
-            'skip_layout:bool',
-            'with_deleted:bool',
-        ]);
-
-        $postStartId = $params['start'] ?? null;
-        $postEndId = $params['end'] ?? null;
-        $nthPost = $params['n'] ?? null;
-        $skipLayout = $params['skip_layout'] ?? false;
-        $showDeleted = $params['with_deleted'] ?? null;
-        $jumpTo = null;
-        $currentUser = auth()->user();
-
         $topic = Topic::with(['forum'])->withTrashed()->findOrFail($id);
 
         $userCanModerate = priv_check('ForumModerate', $topic->forum)->can();
@@ -264,71 +249,71 @@ class TopicsController extends Controller
             abort(404);
         }
 
-        if ($userCanModerate) {
-            $showDeleted = $showDeleted ?? $currentUser->profileCustomization()->forum_posts_show_deleted;
-        } else {
-            $showDeleted = false;
-        }
-
         priv_check('ForumView', $topic->forum)->ensureCan();
 
-        $posts = $topic->posts()->showDeleted($showDeleted);
+        $currentUser = auth()->user();
+        $params = $this->getIndexParams($topic, $currentUser, $userCanModerate);
 
-        if ($postStartId === 'unread') {
-            $postStartId = Post::lastUnreadByUser($topic, $currentUser);
-        } else {
-            $postStartId = get_int($postStartId);
+        $skipLayout = $params['skip_layout'];
+        $showDeleted = $params['with_deleted'];
+
+        $cursorHelper = new DbCursorHelper(Post::SORTS, Post::DEFAULT_SORT, $params['sort']);
+
+        $postsQueryBase = $topic->posts()->showDeleted($showDeleted)->limit(20);
+        $posts = (clone $postsQueryBase)->cursorSort(
+            $cursorHelper->getSort(),
+            $cursorHelper->prepare($params['cursor'])
+        )->get();
+
+        if ($posts->count() === 0) {
+            abort(404);
         }
 
-        if ($nthPost !== null) {
-            $post = $topic->nthPost($nthPost);
-            if ($post) {
-                $postStartId = $post->post_id;
+        if ($skipLayout) {
+            $jumpTo = null;
+        } else {
+            $firstPost = $posts->first();
+            $jumpTo = $firstPost->getKey();
+
+            if ($cursorHelper->getSortName() === 'id_asc') {
+                if ($jumpTo !== $topic->topic_first_post_id) {
+                    $extraSort = 'id_desc';
+                }
+            } else {
+                $extraSort = 'id_asc';
+            }
+            if (isset($extraSort)) {
+                $extraCursorHelper = new DbCursorHelper(Post::SORTS, $extraSort);
+                $extraPosts = (clone $postsQueryBase)
+                    ->cursorSort(
+                        $extraCursorHelper->getSort(),
+                        $extraCursorHelper->prepare(['id' => $jumpTo])
+                    )->get()
+                    ->reverse();
+
+                $posts = $extraPosts->concat($posts);
             }
         }
 
-        if (!$skipLayout) {
-            $jumpTo = $postStartId ?? $postEndId ?? 0;
-        }
-
-        if ($postStartId !== null && !$skipLayout) {
-            // move starting post up by ten to avoid hitting
-            // page autoloader right after loading the page.
-            $postPosition = $topic->postPosition($postStartId);
-            $post = $topic->nthPost($postPosition - 10);
-            $postStartId = $post->post_id;
-        }
-
-        if ($postStartId !== null) {
-            $posts = $posts
-                ->where('post_id', '>=', $postStartId);
-        } elseif ($postEndId !== null) {
-            $posts = $posts
-                ->where('post_id', '<=', $postEndId)
-                ->orderBy('post_id', 'desc');
-        }
-
         $posts = $posts
-            ->take(20)
-            ->with([
+            ->load([
                 'lastEditor',
                 'user.country',
                 'user.rank',
                 'user.supporterTagPurchases',
                 'user.userGroups',
-            ])->get()
-            ->each(function ($item) use ($topic) {
+            ])->each(function ($item) use ($topic) {
                 $item
                     ->setRelation('forum', $topic->forum)
                     ->setRelation('topic', $topic);
-            })->sortBy('post_id');
+            });
 
-        if ($posts->count() === 0) {
-            abort($skipLayout ? 204 : 404);
+        if ($cursorHelper->getSortName() === 'id_desc') {
+            $posts = $posts->reverse();
         }
 
         $firstPostId = $topic->topic_first_post_id;
-        $firstShownPostId = $posts->first()->post_id;
+        $firstShownPostId = $posts->first()->getKey();
 
         // position of the first post, incremented in the view
         // to generate positions of further posts
@@ -480,6 +465,53 @@ class TopicsController extends Controller
         } else {
             return error_popup($star->validationErrors()->toSentence());
         }
+    }
+
+    private function getIndexParams($topic, $currentUser, $userCanModerate)
+    {
+        $params = get_params(request()->all(), null, [
+            'start', // either number or "unread"
+            'end:int',
+            'n:int',
+
+            'skip_layout:bool',
+            'with_deleted:bool',
+
+            'sort:string',
+            'cursor:any',
+        ], ['null_missing' => true]);
+
+        $params['skip_layout'] = $params['skip_layout'] ?? false;
+
+        if ($userCanModerate) {
+            $params['with_deleted'] = $params['with_deleted'] ?? $currentUser->profileCustomization()->forum_posts_show_deleted;
+        } else {
+            $params['with_deleted'] = false;
+        }
+
+        if (!is_array($params['cursor'])) {
+            if ($params['start'] === 'unread') {
+                $params['start'] = Post::lastUnreadByUser($topic, $currentUser);
+            } else {
+                $params['start'] = get_int($params['start']);
+            }
+
+            if ($params['n'] !== null) {
+                $post = $topic->nthPost($params['n']);
+                if ($post !== null) {
+                    $params['cursor'] = ['id' => $post->getKey() - 1];
+                    $params['sort'] = 'id_asc';
+                }
+            } elseif ($params['start'] !== null) {
+                $params['cursor'] = ['id' => $params['start'] - 1];
+                $params['sort'] = 'id_asc';
+            } elseif ($params['end'] !== null) {
+                $params['cursor'] = ['id' => $params['end'] + 1];
+                $params['sort'] = 'id_desc';
+            }
+        }
+
+        return $params;
     }
 
     private function getPollParams()
