@@ -123,25 +123,26 @@ class PlaylistItem extends Model
         }
     }
 
-    private function validateModOverlaps()
+    private function assertValidMods()
     {
-        $dupeMods = array_intersect(
-            array_column($this->allowed_mods, 'acronym'),
-            array_column($this->required_mods, 'acronym')
-        );
+        $allowedModIds = array_column($this->allowed_mods, 'acronym');
+        $requiredModIds = array_column($this->required_mods, 'acronym');
 
+        $dupeMods = array_intersect($allowedModIds, $requiredModIds);
         if (count($dupeMods) > 0) {
             throw new InvariantException('mod cannot be listed as both allowed and required: '.implode(', ', $dupeMods));
         }
+
+        Mod::validateSelection($allowedModIds, $this->ruleset_id);
+        Mod::validateSelection($requiredModIds, $this->ruleset_id);
+        Mod::assertValidExclusivity($requiredModIds, $allowedModIds, $this->ruleset_id);
     }
 
     public function save(array $options = [])
     {
         $this->assertValidMaxAttempts();
         $this->validateRuleset();
-        $this->validateModOverlaps();
-        Mod::validateSelection(array_column($this->allowed_mods, 'acronym'), $this->ruleset_id, true);
-        Mod::validateSelection(array_column($this->required_mods, 'acronym'), $this->ruleset_id);
+        $this->assertValidMods();
 
         return parent::save($options);
     }

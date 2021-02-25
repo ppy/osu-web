@@ -183,6 +183,31 @@ class Mod
         ],
     ];
 
+    public static function assertValidExclusivity($requiredIds, $allowedIds, $ruleset)
+    {
+        $exclusiveRequiredIds = [];
+
+        foreach (static::exclusivityByRuleset()[$ruleset] as $group) {
+            $intersection = array_intersect($requiredIds, $group);
+
+            if (count($intersection) > 1) {
+                throw new InvariantException('incompatible mods: '.implode(', ', $intersection));
+            }
+
+            if (count($intersection) === 1) {
+                $exclusiveRequiredIds = array_merge($exclusiveRequiredIds, $group);
+            }
+        }
+
+        $invalidAllowedIds = array_intersect($exclusiveRequiredIds, $allowedIds);
+
+        if (count($invalidAllowedIds) > 0) {
+            throw new InvariantException('allowed mods conflict with required mods: '.implode(', ', $invalidAllowedIds));
+        }
+
+        return true;
+    }
+
     public static function filterSettings($mod, $settings)
     {
         if ($settings === null || !is_array($settings)) {
@@ -309,7 +334,7 @@ class Mod
         return in_array($acronym, static::validModsForRuleset($ruleset), true);
     }
 
-    public static function validateSelection($mods, $ruleset, $skipExclusivityCheck = false)
+    public static function validateSelection($mods, $ruleset)
     {
         if (!in_array($ruleset, Ruleset::ALL, true)) {
             throw new InvariantException('invalid ruleset');
@@ -326,15 +351,6 @@ class Mod
             }
 
             $checkedMods[$mod] = true;
-        }
-
-        if (!$skipExclusivityCheck) {
-            foreach (static::exclusivityByRuleset()[$ruleset] as $group) {
-                $intersection = array_intersect($mods, $group);
-                if (count($intersection) > 1) {
-                    throw new InvariantException('incompatible mods: '.implode(', ', $intersection));
-                }
-            }
         }
 
         return true;
@@ -360,7 +376,7 @@ class Mod
 
         $cleanMods = array_values($filteredMods);
 
-        static::validateSelection(array_column($cleanMods, 'acronym'), $ruleset, true);
+        static::validateSelection(array_column($cleanMods, 'acronym'), $ruleset);
 
         return $cleanMods;
     }
