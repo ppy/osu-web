@@ -110,12 +110,14 @@ class OsuMarkdown
 
         $env = Environment::createCommonMarkEnvironment();
         $this->processor = new OsuMarkdownProcessor($env);
-        $env->addEventListener(DocumentParsedEvent::class, [$this->processor, 'onDocumentParsed']);
 
         if ($this->config['parse_attribute_id']) {
             $env->addEventListener(DocumentParsedEvent::class, [new AttributesOnlyIdListener(), 'processDocument']);
-            $env->addExtension(new AttributesExtension());
+            // make sure the listener for the extension is registered before $this->processor.
+            (new AttributesExtension())->register($env);
         }
+
+        $env->addEventListener(DocumentParsedEvent::class, [$this->processor, 'onDocumentParsed']);
 
         $env->addExtension(new TableExtension\TableExtension());
         $env->addBlockRenderer(TableExtension\Table::class, new OsuTableRenderer());
