@@ -5,9 +5,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BeatmapDiscussionVote;
-use App\Transformers\BeatmapDiscussionVotesTransformer;
-use Illuminate\Pagination\LengthAwarePaginator;
+use App\Libraries\BeatmapsetDiscussionVotesBundle;
 
 class BeatmapsetDiscussionVotesController extends Controller
 {
@@ -20,42 +18,12 @@ class BeatmapsetDiscussionVotesController extends Controller
 
     public function index()
     {
-        $params = request()->all();
-        $params['is_moderator'] = priv_check('BeatmapDiscussionModerate')->can();
-
-        $search = BeatmapDiscussionVote::search($params);
-        $votes = new LengthAwarePaginator(
-            $search['query']->with([
-                'user',
-                'beatmapDiscussion',
-                'beatmapDiscussion.user',
-                'beatmapDiscussion.beatmapset',
-                'beatmapDiscussion.startingPost',
-            ])->get(),
-            $search['query']->realCount(),
-            $search['params']['limit'],
-            $search['params']['page'],
-            [
-                'path' => LengthAwarePaginator::resolveCurrentPath(),
-                'query' => $search['params'],
-            ]
-        );
+        $bundle = new BeatmapsetDiscussionVotesBundle(request()->all());
+        $votes = $bundle->getPaginator();
+        $search = $bundle->getSearch();
 
         if (is_api_request()) {
-            $json = json_item($votes->getCollection(), new BeatmapDiscussionVotesTransformer(), [
-                'discussions',
-                'users',
-            ]);
-
-            // TODO: move to non-offset
-            if ($votes->hasMorePages()) {
-                $json['cursor'] = [
-                    'page' => $votes->currentPage() + 1,
-                    'limit' => $votes->perPage(),
-                ];
-            }
-
-            return $json;
+            return $bundle->toArray();
         }
 
         return ext_view('beatmapset_discussion_votes.index', compact('votes'));
