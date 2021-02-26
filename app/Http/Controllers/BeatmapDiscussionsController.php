@@ -67,7 +67,7 @@ class BeatmapDiscussionsController extends Controller
 
     public function index()
     {
-        $bundle = new BeatmapsetDiscussionsBundle(null, request()->all());
+        $bundle = new BeatmapsetDiscussionsBundle(request()->all());
 
         $json = $bundle->toArray();
         $paginator = $bundle->getPaginator();

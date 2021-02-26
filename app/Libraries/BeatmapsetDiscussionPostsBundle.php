@@ -14,46 +14,20 @@ use App\Transformers\BeatmapsetCompactTransformer;
 use App\Transformers\UserCompactTransformer;
 use Illuminate\Pagination\Paginator;
 
-class BeatmapsetDiscussionPostsBundle
+class BeatmapsetDiscussionPostsBundle extends BeatmapsetDiscussionsBundleBase
 {
     use Memoizes;
 
-    private $isModerator;
-    private $paginator;
-    private $params;
-    private $search;
-
-    public function __construct(array $params)
+    public function getData()
     {
-        $this->params = $params;
-
-        $this->isModerator = priv_check('BeatmapDiscussionModerate')->can();
-        if (!$this->isModerator) {
-            $this->params['with_deleted'] = false;
-        }
-    }
-
-    public function getPaginator()
-    {
-        if ($this->paginator === null) {
-            $this->getPosts();
-        }
-
-        return $this->paginator;
+        return $this->getPosts();
     }
 
     public function toArray()
     {
-        $paginator = $this->getPaginator();
-        $cursor = $paginator->hasMorePages() ? [
-            // TODO: move to non-offset
-            'page' => $paginator->currentPage() + 1,
-            'limit' => $paginator->perPage(),
-        ] : null;
-
         return [
             'beatmapsets' => json_collection($this->getBeatmapsets(), new BeatmapsetCompactTransformer()),
-            'cursor' => $cursor,
+            'cursor' => $this->getCursor(),
             'posts' => json_collection($this->getPosts(), new BeatmapDiscussionPostTransformer(), ['beatmaps', 'users']),
             'users' => json_collection($this->getUsers(), new UserCompactTransformer(), ['groups']),
         ];
@@ -63,6 +37,7 @@ class BeatmapsetDiscussionPostsBundle
     {
         return $this->memoize(__FUNCTION__, function () {
             $beatmapsetIds = $this->getPosts()->pluck('beatmapset_id')->unique()->values();
+
             return Beatmapset::whereIn('beatmapset_id', $beatmapsetIds)->get();
         });
     }
@@ -83,8 +58,6 @@ class BeatmapsetDiscussionPostsBundle
             }
 
             $query = $this->search['query']->with($queryWith)->limit($this->search['params']['limit'] + 1);
-
-            // pop 1 off instead?
 
             $this->paginator = new Paginator(
                 $query->get(),

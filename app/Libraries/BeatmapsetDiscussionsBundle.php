@@ -7,7 +7,6 @@ namespace App\Libraries;
 
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
-use App\Models\Beatmapset;
 use App\Models\User;
 use App\Traits\Memoizes;
 use App\Transformers\BeatmapDiscussionTransformer;
@@ -15,62 +14,24 @@ use App\Transformers\BeatmapTransformer;
 use App\Transformers\UserCompactTransformer;
 use Illuminate\Pagination\Paginator;
 
-class BeatmapsetDiscussionsBundle
+class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
 {
     use Memoizes;
 
     private const DISCUSSION_WITHS = ['beatmap', 'beatmapDiscussionVotes', 'beatmapset', 'startingPost'];
 
-    // private $beatmapset;
-    private $isModerator;
-    private $paginator;
-    private $params;
-    private $search;
-
-    public function __construct(?Beatmapset $beatmapset, $params)
+    public function getData()
     {
-        // $this->beatmapset = $beatmapset;
-        $this->params = $params;
-
-        $this->isModerator = priv_check('BeatmapDiscussionModerate')->can();
-        if (!$this->isModerator) {
-            $this->params['with_deleted'] = false;
-        }
-    }
-
-    public function getPaginator()
-    {
-        if ($this->paginator === null) {
-            $this->getDiscussions();
-        }
-
-        return $this->paginator;
-    }
-
-    public function getParams()
-    {
-        return $this->params;
-    }
-
-    public function getSearch()
-    {
-        return $this->search;
+        return $this->getDiscussions();
     }
 
     public function toArray()
     {
         static $discussionIncludes = ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes'];
 
-        $paginator = $this->getPaginator();
-        $cursor = $paginator->hasMorePages() ? [
-            // TODO: move to non-offset
-            'page' => $paginator->currentPage() + 1,
-            'limit' => $paginator->perPage(),
-        ] : null;
-
         return [
             'beatmaps' => json_collection($this->getBeatmaps(), new BeatmapTransformer()),
-            'cursor' => $cursor,
+            'cursor' => $this->getCursor(),
             'discussions' => json_collection($this->getDiscussions(), new BeatmapDiscussionTransformer(), $discussionIncludes),
             'included_discussions' => json_collection($this->getRelatedDiscussions(), new BeatmapDiscussionTransformer(), $discussionIncludes),
             'reviews_config' => BeatmapsetDiscussionReview::config(),
@@ -93,8 +54,6 @@ class BeatmapsetDiscussionsBundle
             $this->search = BeatmapDiscussion::search($this->params);
 
             $query = $this->search['query']->with(static::DISCUSSION_WITHS)->limit($this->search['params']['limit'] + 1);
-
-            // pop 1 off instead?
 
             $this->paginator = new Paginator(
                 $query->get(),

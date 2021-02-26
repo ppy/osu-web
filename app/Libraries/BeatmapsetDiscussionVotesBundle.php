@@ -14,50 +14,19 @@ use App\Transformers\BeatmapDiscussionVoteTransformer;
 use App\Transformers\UserCompactTransformer;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class BeatmapsetDiscussionVotesBundle
+class BeatmapsetDiscussionVotesBundle extends BeatmapsetDiscussionsBundleBase
 {
     use Memoizes;
 
-    private $isModerator;
-    private $paginator;
-    private $params;
-    private $search;
-
-    public function __construct(array $params)
+    public function getData()
     {
-        $this->params = $params;
-
-        $this->isModerator = priv_check('BeatmapDiscussionModerate')->can();
-        if (!$this->isModerator) {
-            $this->params['with_deleted'] = false;
-        }
-    }
-
-    public function getPaginator()
-    {
-        if ($this->paginator === null) {
-            $this->getVotes();
-        }
-
-        return $this->paginator;
-    }
-
-    public function getSearch()
-    {
-        return $this->search;
+        return $this->getVotes();
     }
 
     public function toArray()
     {
-        $paginator = $this->getPaginator();
-        $cursor = $paginator->hasMorePages() ? [
-            // TODO: move to non-offset
-            'page' => $paginator->currentPage() + 1,
-            'limit' => $paginator->perPage(),
-        ] : null;
-
         return [
-            'cursor' => $cursor,
+            'cursor' => $this->getCursor(),
             'discussions' => json_collection($this->getDiscussions(), new BeatmapDiscussionTransformer()),
             'users' => json_collection($this->getUsers(), new UserCompactTransformer(), ['groups']),
             'votes' => json_collection($this->getVotes(), new BeatmapDiscussionVoteTransformer()),
