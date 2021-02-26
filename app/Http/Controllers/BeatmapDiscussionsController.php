@@ -7,11 +7,10 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\BeatmapsetDiscussionReview;
+use App\Libraries\BeatmapsetDiscussionsBundle;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
-use App\Transformers\BeatmapDiscussionsTransformer;
 use Auth;
-use Illuminate\Pagination\Paginator;
 use Request;
 
 class BeatmapDiscussionsController extends Controller
@@ -68,51 +67,13 @@ class BeatmapDiscussionsController extends Controller
 
     public function index()
     {
-        $isModerator = priv_check('BeatmapDiscussionModerate')->can();
-        $params = request()->all();
-        $params['is_moderator'] = $isModerator;
+        $bundle = new BeatmapsetDiscussionsBundle(null, request()->all());
 
-        if (!$isModerator) {
-            $params['with_deleted'] = false;
-        }
-
-        $search = BeatmapDiscussion::search($params);
-
-        $query = $search['query']->with([
-            'beatmap',
-            'beatmapDiscussionVotes',
-            'beatmapset',
-            'startingPost',
-        ])->limit($search['params']['limit'] + 1);
-
-        $paginator = new Paginator(
-            $query->get(),
-            $search['params']['limit'],
-            $search['params']['page'],
-            [
-                'path' => Paginator::resolveCurrentPath(),
-                'query' => $search['params'],
-            ]
-        );
-
-        $discussions = $paginator->getCollection();
-
-        $json = json_item($discussions, new BeatmapDiscussionsTransformer(), [
-            'beatmaps',
-            'included_discussions',
-            'reviews_config',
-            'users',
-        ]);
+        $json = $bundle->toArray();
+        $paginator = $bundle->getPaginator();
+        $search = $bundle->getSearch();
 
         if (is_api_request()) {
-            // TODO: move to non-offset
-            if ($paginator->hasMorePages()) {
-                $json['cursor'] = [
-                    'page' => $paginator->currentPage() + 1,
-                    'limit' => $paginator->perPage(),
-                ];
-            }
-
             return $json;
         }
 
