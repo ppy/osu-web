@@ -12,7 +12,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => '잠시 멈추시고, 좀 더 플레이해보세요.',
     ],
 
     'index' => [

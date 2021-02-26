@@ -32,8 +32,8 @@ return [
         'remove_from_loved' => ':user удалил карту из Любимых (:text)',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Удалить отметку 18+',
+            'to_1' => 'Помечено как откровенное',
         ],
     ],
 
@@ -71,7 +71,7 @@ return [
         'love' => 'Любовь',
         'nominate' => 'Номинация',
         'nomination_reset' => 'Сброс номинации',
-        'nsfw_toggle' => '',
+        'nsfw_toggle' => 'Контент 18+',
         'qualify' => 'Квалификация',
         'rank' => 'Рейтинг',
         'remove_from_loved' => 'Удаление из Любимых',

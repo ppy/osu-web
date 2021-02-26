@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Will je deze post echt terugzetten?',
         'edited' => 'Laatst bewerkt door :user op :when. :count keer bewerkt in totaal.',
         'posted_at' => 'gepost op :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Verwijder bericht',

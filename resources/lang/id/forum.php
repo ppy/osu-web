@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Yakin mengembalikan post?',
         'edited' => 'Terakhir disunting oleh :user :when, dengan total penyuntingan sebanyak :count_delimited kali.|Terakhir disunting oleh :user :when, dengan total penyuntingan sebanyak :count_delimited kali.',
         'posted_at' => 'diposting :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Hapus Kiriman',

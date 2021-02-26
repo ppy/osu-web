@@ -11,6 +11,7 @@ import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
 import { BlockButton } from 'block-button'
+import { deletedUser } from 'models/user'
 import { NotificationBanner } from 'notification-banner'
 import { Posts } from "./posts"
 import * as React from 'react'
@@ -344,8 +345,7 @@ export class Main extends React.PureComponent
   users: =>
     if !@cache.users?
       @cache.users = _.keyBy @state.users, 'id'
-      @cache.users[null] = @cache.users[undefined] =
-        username: osu.trans 'users.deleted'
+      @cache.users[null] = @cache.users[undefined] = deletedUser.toJson()
 
     @cache.users
 

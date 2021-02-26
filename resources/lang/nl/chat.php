@@ -18,6 +18,7 @@ return [
             'not_enough_plays' => '',
             'not_verified' => '',
             'restricted' => 'Je bent op het moment gerestrict',
+            'silenced' => '',
             'target_restricted' => 'De ontvanger is momenteel gerestrict',
         ],
     ],

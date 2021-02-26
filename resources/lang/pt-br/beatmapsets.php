@@ -12,7 +12,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Vá devagar, jogue mais.',
     ],
 
     'index' => [

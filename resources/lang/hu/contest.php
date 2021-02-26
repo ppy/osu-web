@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Erre a versenyre már véget ért a szavazás',
         'login_required' => 'Kérlek jelentkezz be a szavazáshoz.',
+        'over' => 'Erre a versenyre már véget ért a szavazás',
+        'show_voted_only' => '',
 
         'best_of' => [
             'none_played' => "Úgy tűnik, hogy egyetlen beatmap-et sem játszottál ami megfelelne ennek a versenynek!",

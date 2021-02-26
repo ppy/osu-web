@@ -24,4 +24,9 @@ return [
         'feature_votes' => 'Stjärnprioritet',
         'new' => 'Senaste svar',
     ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
+    ],
 ];

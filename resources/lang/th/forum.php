@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'ต้องการกู้คืนโพสต์จริงหรอ?',
         'edited' => 'แก้ไขล่าสุดโดย :user :when ถูกแก้ไขทั้งหมด :count ครั้ง',
         'posted_at' => 'โพสต์เมื่อ :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'ลบโพสต์',

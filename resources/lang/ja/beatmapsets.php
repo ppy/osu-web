@@ -12,7 +12,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'スピードを落として、もっと遊ぼう。',
     ],
 
     'index' => [

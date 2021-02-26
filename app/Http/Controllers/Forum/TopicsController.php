@@ -232,7 +232,7 @@ class TopicsController extends Controller
         }
 
         $posts = collect([$post]);
-        $firstPostPosition = $topic->postPosition($post->post_id);
+        $firstPostPosition = $topic->postPosition($post->getKey());
 
         $post->markRead(Auth::user());
         (new ForumTopicReply($post, auth()->user()))->dispatch();
@@ -276,26 +276,6 @@ class TopicsController extends Controller
      */
     public function show($id)
     {
-        $params = get_params(request()->all(), null, [
-            'start', // either number or "unread"
-            'end:int',
-            'n:int',
-
-            'skip_layout:bool',
-            'with_deleted:bool',
-
-            'sort:string',
-            'cursor:any',
-            'limit:int',
-        ], ['null_missing' => true]);
-
-        $isJsonRequest = is_api_request();
-        $skipLayout = $params['skip_layout'] ?? false;
-        $showDeleted = $params['with_deleted'];
-        $jumpTo = null;
-        $currentUser = auth()->user();
-        $limit = clamp($params['limit'] ?? 20, 1, 50);
-
         $topic = Topic::with(['forum'])->withTrashed()->findOrFail($id);
 
         $userCanModerate = priv_check('ForumModerate', $topic->forum)->can();
@@ -308,49 +288,31 @@ class TopicsController extends Controller
             abort(404);
         }
 
-        if ($userCanModerate) {
-            $showDeleted = $showDeleted ?? $currentUser->profileCustomization()->forum_posts_show_deleted;
-        } else {
-            $showDeleted = false;
-        }
-
         priv_check('ForumView', $topic->forum)->ensureCan();
 
-        if ($params['cursor'] === null) {
-            if ($params['start'] === 'unread') {
-                $params['start'] = Post::lastUnreadByUser($topic, $currentUser);
-            } else {
-                $params['start'] = get_int($params['start']);
-            }
+        $currentUser = auth()->user();
+        $params = $this->getIndexParams($topic, $currentUser, $userCanModerate);
 
-            if ($params['n'] !== null) {
-                $post = $topic->nthPost($params['n']);
-                if ($post !== null) {
-                    $params['cursor'] = ['post_id' => $post->post_id - 1];
-                    $params['sort'] = 'id_asc';
-                }
-            } elseif ($params['start'] !== null) {
-                $params['cursor'] = ['post_id' => $params['start'] - 1];
-                $params['sort'] = 'id_asc';
-            } elseif ($params['end'] !== null) {
-                $params['cursor'] = ['post_id' => $params['end'] + 1];
-                $params['sort'] = 'id_desc';
-            }
-        }
+        $skipLayout = $params['skip_layout'];
+        $showDeleted = $params['with_deleted'];
 
         $cursorHelper = new DbCursorHelper(Post::SORTS, Post::DEFAULT_SORT, $params['sort']);
 
-        $postsQueryBase = $topic->posts()->showDeleted($showDeleted)->limit($limit);
+        $postsQueryBase = $topic->posts()->showDeleted($showDeleted)->limit($params['limit']);
         $posts = (clone $postsQueryBase)->cursorSort(
             $cursorHelper->getSort(),
             $cursorHelper->prepare($params['cursor'])
         )->get();
 
-        if (!$isJsonRequest && $posts->count() === 0) {
-            abort($skipLayout ? 204 : 404);
+        if ($posts->count() === 0) {
+            abort(404);
         }
 
-        if (!$isJsonRequest && !$skipLayout) {
+        $isJsonRequest = is_api_request();
+
+        if ($isJsonRequest || $skipLayout) {
+            $jumpTo = null;
+        } else {
             $firstPost = $posts->first();
             $jumpTo = $firstPost->getKey();
 
@@ -361,12 +323,12 @@ class TopicsController extends Controller
             } else {
                 $extraSort = 'id_asc';
             }
-            if (isset($extraCursorHelper)) {
+            if (isset($extraSort)) {
                 $extraCursorHelper = new DbCursorHelper(Post::SORTS, $extraSort);
                 $extraPosts = (clone $postsQueryBase)
                     ->cursorSort(
                         $extraCursorHelper->getSort(),
-                        $extraCursorHelper->prepare(['post_id' => $jumpTo])
+                        $extraCursorHelper->prepare(['id' => $jumpTo])
                     )->get()
                     ->reverse();
 
@@ -392,15 +354,13 @@ class TopicsController extends Controller
                 'topic' => json_item($topic, 'Forum\Topic'),
                 'posts' => json_collection($posts, 'Forum\Post', ['body']),
                 'cursor' => $cursorHelper->next($posts),
-                'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
+                'params' => ['limit' => $params['limit'], 'sort' => $cursorHelper->getSortName()],
             ];
         }
 
         if ($cursorHelper->getSortName() === 'id_desc') {
             $posts = $posts->reverse();
         }
-
-        $posts->last()->markRead($currentUser);
 
         $coverModel = $topic->cover()->firstOrNew([]);
         $coverModel->setRelation('topic', $topic);
@@ -421,6 +381,8 @@ class TopicsController extends Controller
         $watch = TopicWatch::lookup($topic, $currentUser);
 
         $featureVotes = $this->groupFeatureVotes($topic);
+
+        $posts->last()->markRead($currentUser);
 
         $noindex = !$topic->forum->enable_indexing;
         $template = $skipLayout ? '_posts' : 'show';
@@ -552,6 +514,55 @@ class TopicsController extends Controller
         } else {
             return error_popup($star->validationErrors()->toSentence());
         }
+    }
+
+    private function getIndexParams($topic, $currentUser, $userCanModerate)
+    {
+        $params = get_params(request()->all(), null, [
+            'start', // either number or "unread"
+            'end:int',
+            'n:int',
+
+            'skip_layout:bool',
+            'with_deleted:bool',
+
+            'sort:string',
+            'cursor:any',
+            'limit:int',
+        ], ['null_missing' => true]);
+
+        $params['skip_layout'] = $params['skip_layout'] ?? false;
+        $params['limit'] = clamp($params['limit'] ?? 20, 1, 50);
+
+        if ($userCanModerate) {
+            $params['with_deleted'] = $params['with_deleted'] ?? $currentUser->profileCustomization()->forum_posts_show_deleted;
+        } else {
+            $params['with_deleted'] = false;
+        }
+
+        if (!is_array($params['cursor'])) {
+            if ($params['start'] === 'unread') {
+                $params['start'] = Post::lastUnreadByUser($topic, $currentUser);
+            } else {
+                $params['start'] = get_int($params['start']);
+            }
+
+            if ($params['n'] !== null) {
+                $post = $topic->nthPost($params['n']);
+                if ($post !== null) {
+                    $params['cursor'] = ['id' => $post->getKey() - 1];
+                    $params['sort'] = 'id_asc';
+                }
+            } elseif ($params['start'] !== null) {
+                $params['cursor'] = ['id' => $params['start'] - 1];
+                $params['sort'] = 'id_asc';
+            } elseif ($params['end'] !== null) {
+                $params['cursor'] = ['id' => $params['end'] + 1];
+                $params['sort'] = 'id_desc';
+            }
+        }
+
+        return $params;
     }
 
     private function getPollParams()

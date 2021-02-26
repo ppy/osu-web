@@ -12,7 +12,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => '欲速則不達。',
     ],
 
     'index' => [
@@ -86,7 +86,7 @@ return [
         ],
 
         'hype' => [
-            'action' => '推薦這個圖譜如果你喜歡玩它來幫助它進度至 <strong>進榜</strong> 狀態。',
+            'action' => '如果你喜歡這張圖譜，請推薦它來幫助它進展至<strong>進榜</strong>狀態。',
 
             'current' => [
                 '_' => '此地圖目前是 :status 的。',

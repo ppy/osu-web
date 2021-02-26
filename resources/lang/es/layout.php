@@ -160,7 +160,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Se ha superado el límite de frecuencia',
             'description' => '',
         ],
         '500' => [

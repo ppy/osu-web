@@ -160,7 +160,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => '試行可能回数の上限に達しました。',
             'description' => '',
         ],
         '500' => [

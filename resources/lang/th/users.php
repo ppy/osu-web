@@ -411,6 +411,11 @@ return [
         ],
     ],
 
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
+    ],
+
     'status' => [
         'all' => 'ทั้งหมด',
         'online' => 'ออนไลน์',

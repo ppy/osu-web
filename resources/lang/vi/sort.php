@@ -6,8 +6,8 @@
 return [
     '_' => 'Sắp xếp theo',
 
-    'all' => '',
-    'friends' => '',
+    'all' => 'Tất cả',
+    'friends' => 'Bạn bè',
     'last_visit' => 'Hoạt động gần nhất',
     'new' => 'Gần đây',
     'old' => 'Cũ',
@@ -16,12 +16,17 @@ return [
     'username' => 'Tên người chơi',
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Thời gian đăng',
+        'relevance' => 'Mức độ liên quan',
     ],
 
     'forum_topics' => [
         'feature_votes' => 'Ưu tiên sao',
         'new' => 'Trả lời cuối',
+    ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
     ],
 ];

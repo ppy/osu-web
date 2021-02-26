@@ -23,7 +23,7 @@ return [
     ],
 
     'status' => [
-        'non_best' => '',
-        'processing' => '',
+        'non_best' => 'Apenas as melhores pontuações pessoais dão pp',
+        'processing' => 'Esta pontuação ainda está sendo calculada e será exibida em breve',
     ],
 ];

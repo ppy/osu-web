@@ -24,4 +24,9 @@ return [
         'feature_votes' => 'Зорны прыярытэт',
         'new' => 'Апошні адказ',
     ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
+    ],
 ];

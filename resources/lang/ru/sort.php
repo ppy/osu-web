@@ -24,4 +24,9 @@ return [
         'feature_votes' => 'Количество голосов',
         'new' => 'Последний ответ',
     ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
+    ],
 ];
