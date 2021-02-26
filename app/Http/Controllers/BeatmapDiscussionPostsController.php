@@ -9,16 +9,15 @@ use App\Exceptions\ModelNotSavedException;
 use App\Jobs\Notifications\BeatmapsetDiscussionPostNew;
 use App\Jobs\Notifications\BeatmapsetDiscussionQualifiedProblem;
 use App\Jobs\Notifications\BeatmapsetResetNominations;
+use App\Libraries\BeatmapsetDiscussionPostsBundle;
 use App\Libraries\BeatmapsetDiscussionReview;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
-use App\Transformers\BeatmapDiscussionPostsTransformer;
 use Auth;
 use DB;
-use Illuminate\Pagination\Paginator;
 
 class BeatmapDiscussionPostsController extends Controller
 {
@@ -46,53 +45,11 @@ class BeatmapDiscussionPostsController extends Controller
 
     public function index()
     {
-        $isModerator = priv_check('BeatmapDiscussionModerate')->can();
-        $params = request()->all();
-        $params['is_moderator'] = $isModerator;
-
-        if (!$isModerator) {
-            $params['with_deleted'] = false;
-        }
-
-        $search = BeatmapDiscussionPost::search($params);
-
-        $queryWith = ['user', 'beatmapset'];
-        if (!is_api_request()) {
-            $queryWith = array_merge($queryWith, [
-                'beatmapDiscussion',
-                'beatmapDiscussion.beatmapset',
-                'beatmapDiscussion.user',
-                'beatmapDiscussion.startingPost',
-            ]);
-        }
-
-        $query = $search['query']->with($queryWith)->limit($search['params']['limit'] + 1);
-
-        $posts = new Paginator(
-            $query->get(),
-            $search['params']['limit'],
-            $search['params']['page'],
-            [
-                'path' => Paginator::resolveCurrentPath(),
-                'query' => $search['params'],
-            ]
-        );
+        $bundle = new BeatmapsetDiscussionPostsBundle(request()->all());
+        $posts = $bundle->getPaginator();
 
         if (is_api_request()) {
-            $json = json_item($posts->getCollection(), new BeatmapDiscussionPostsTransformer(), [
-                'beatmaps',
-                'users',
-            ]);
-
-            // TODO: move to non-offset
-            if ($posts->hasMorePages()) {
-                $json['cursor'] = [
-                    'page' => $posts->currentPage() + 1,
-                    'limit' => $posts->perPage(),
-                ];
-            }
-
-            return $json;
+            return $bundle->toArray();
         }
 
         return ext_view('beatmap_discussion_posts.index', compact('posts'));
