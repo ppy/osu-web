@@ -362,9 +362,12 @@ class TopicsController extends Controller
             $posts = $posts->reverse();
         }
 
-        $coverModel = $topic->cover()->firstOrNew([]);
-        $coverModel->setRelation('topic', $topic);
-        $cover = json_item($coverModel, new TopicCoverTransformer());
+        $firstPostId = $topic->topic_first_post_id;
+        $firstShownPostId = $posts->first()->getKey();
+
+        // position of the first post, incremented in the view
+        // to generate positions of further posts
+        $firstPostPosition = $topic->postPosition($firstShownPostId);
 
         $poll = $topic->poll();
         if ($poll->exists()) {
@@ -376,23 +379,21 @@ class TopicsController extends Controller
         } else {
             $canEditPoll = false;
         }
+
         $pollSummary = PollOption::summary($topic, $currentUser);
+
+        $posts->last()->markRead($currentUser);
+
+        $template = $skipLayout ? '_posts' : 'show';
+
+        $coverModel = $topic->cover()->firstOrNew([]);
+        $coverModel->setRelation('topic', $topic);
+        $cover = json_item($coverModel, new TopicCoverTransformer());
 
         $watch = TopicWatch::lookup($topic, $currentUser);
 
         $featureVotes = $this->groupFeatureVotes($topic);
-
-        $posts->last()->markRead($currentUser);
-
         $noindex = !$topic->forum->enable_indexing;
-        $template = $skipLayout ? '_posts' : 'show';
-
-        $firstPostId = $topic->topic_first_post_id;
-        $firstShownPostId = $posts->first()->post_id;
-
-        // position of the first post, incremented in the view
-        // to generate positions of further posts
-        $firstPostPosition = $topic->postPosition($firstShownPostId);
 
         return ext_view(
             "forum.topics.{$template}",
