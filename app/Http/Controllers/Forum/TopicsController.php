@@ -362,12 +362,14 @@ class TopicsController extends Controller
             $posts = $posts->reverse();
         }
 
-        $firstPostId = $topic->topic_first_post_id;
         $firstShownPostId = $posts->first()->getKey();
-
         // position of the first post, incremented in the view
         // to generate positions of further posts
         $firstPostPosition = $topic->postPosition($firstShownPostId);
+
+        if ($skipLayout) {
+            return ext_view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
+        }
 
         $poll = $topic->poll();
         if ($poll->exists()) {
@@ -384,8 +386,6 @@ class TopicsController extends Controller
 
         $posts->last()->markRead($currentUser);
 
-        $template = $skipLayout ? '_posts' : 'show';
-
         $coverModel = $topic->cover()->firstOrNew([]);
         $coverModel->setRelation('topic', $topic);
         $cover = json_item($coverModel, new TopicCoverTransformer());
@@ -395,24 +395,20 @@ class TopicsController extends Controller
         $featureVotes = $this->groupFeatureVotes($topic);
         $noindex = !$topic->forum->enable_indexing;
 
-        return ext_view(
-            "forum.topics.{$template}",
-            compact(
-                'canEditPoll',
-                'cover',
-                'watch',
-                'jumpTo',
-                'pollSummary',
-                'posts',
-                'featureVotes',
-                'firstPostPosition',
-                'firstPostId',
-                'noindex',
-                'topic',
-                'userCanModerate',
-                'showDeleted'
-            )
-        );
+        return ext_view('forum.topics.show', compact(
+            'canEditPoll',
+            'cover',
+            'watch',
+            'jumpTo',
+            'pollSummary',
+            'posts',
+            'featureVotes',
+            'firstPostPosition',
+            'noindex',
+            'topic',
+            'userCanModerate',
+            'showDeleted'
+        ));
     }
 
     public function store()
