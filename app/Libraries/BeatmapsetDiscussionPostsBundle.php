@@ -36,7 +36,7 @@ class BeatmapsetDiscussionPostsBundle extends BeatmapsetDiscussionsBundleBase
     private function getBeatmapsets()
     {
         return $this->memoize(__FUNCTION__, function () {
-            $beatmapsetIds = $this->getPosts()->pluck('beatmapset_id')->unique()->values();
+            $beatmapsetIds = $this->getPosts()->pluck('beatmapset.beatmapset_id')->unique()->values();
 
             return Beatmapset::whereIn('beatmapset_id', $beatmapsetIds)->get();
         });
