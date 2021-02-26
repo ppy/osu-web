@@ -33,7 +33,6 @@ class BeatmapsetDiscussionsBundle
         $this->params = $params;
 
         $this->isModerator = priv_check('BeatmapDiscussionModerate')->can();
-        $this->params['is_moderator'] = $this->isModerator;
         if (!$this->isModerator) {
             $this->params['with_deleted'] = false;
         }

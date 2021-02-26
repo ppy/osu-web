@@ -133,12 +133,6 @@ class BeatmapDiscussion extends Model
             $query->withoutTrashed();
         }
 
-        if (!($rawParams['is_moderator'] ?? false)) {
-            $query->whereHas('user', function ($userQuery) {
-                $userQuery->default();
-            });
-        }
-
         return ['query' => $query, 'params' => $params];
     }
 
