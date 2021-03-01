@@ -33,8 +33,6 @@ return [
         'login_required' => 'Merci de vous connecter pour participer.',
         'silenced_or_restricted' => 'Vous ne pouvez pas entrer dans un concours quand vous êtes réduit au silence ou restreint.',
         'preparation' => 'Nous sommes en train de préparer le concours. Merci de patienter !',
-        'over' => 'Merci pour vos inscriptions ! Les soumissions sont fermées pour ce concours et le vote va bientôt ouvrir.',
-        'limit_reached' => 'Vous avez atteint la limite d\'entrée pour ce concours',
         'drop_here' => '"Droppez" votre entrée ici',
         'download' => 'Télécharger .osz',
         'wrong_type' => [

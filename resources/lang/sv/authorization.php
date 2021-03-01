@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Du kan inte ändra din röst efter att röstperioden för den här tävlingen har avslutas.',
+
+        'entry' => [
+            'limit_reached' => 'Du har uppnått max antal bidrag i denna tävling',
+            'over' => 'Tack för era bidrag! Möjligheten att lägga till bidrag har stängt och röstning kommer öppnas snart.',
+        ],
     ],
 
     'forum' => [

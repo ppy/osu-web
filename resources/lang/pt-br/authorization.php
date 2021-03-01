@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Não é possível alterar o voto após o fim do período de votação.',
+
+        'entry' => [
+            'limit_reached' => 'Você atingiu o limite de inscrições para este concurso',
+            'over' => 'Agradecemos a sua participação! As inscrições para este concurso foram encerradas e a votação abrirá em breve.',
+        ],
     ],
 
     'forum' => [

@@ -33,8 +33,6 @@ return [
         'login_required' => 'Zaloguj się, aby uczestniczyć w tym konkursie.',
         'silenced_or_restricted' => 'Nie możesz uczestniczyć w konkursach podczas uciszenia bądź blokady konta.',
         'preparation' => 'Ten konkurs jest obecnie przygotowywany. Czekaj cierpliwie!',
-        'over' => 'Dziękujemy za zgłoszenia! Przesyłanie prac zakończyło się i wkrótce rozpocznie się głosowanie.',
-        'limit_reached' => 'Osiągnięto limit zgłoszeń dla tego konkursu',
         'drop_here' => 'Tutaj umieść swoje zgłoszenie',
         'download' => 'Pobierz plik .osz',
         'wrong_type' => [

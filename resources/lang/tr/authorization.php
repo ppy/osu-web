@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Yarışma için oylama süresi bittikten sonra oyunuzu değiştiremezsiniz.',
+
+        'entry' => [
+            'limit_reached' => 'Bu yarışma için girdi sınırına ulaştınız',
+            'over' => 'Girdileriniz için teşekkürler! Bu yarışma için gönderiler kapandı ve yakında oylamalara açılacak.',
+        ],
     ],
 
     'forum' => [

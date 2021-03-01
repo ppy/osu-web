@@ -33,8 +33,6 @@ return [
         'login_required' => 'Per favore effettua il login per entrare nel contest.',
         'silenced_or_restricted' => 'Non puoi entrare nei contest se sei limitato o silenziato.',
         'preparation' => 'Attualmente stiamo preparando il contest. Per favore attendi con pazienza!',
-        'over' => 'Grazie per le tue iscrizioni! Le richieste sono terminate per questo contest e le votazioni avverranno presto.',
-        'limit_reached' => 'Hai raggiunto il limite massimo di iscrizioni per questo contest',
         'drop_here' => 'Trascina la tua iscrizione qui',
         'download' => 'Scarica .osz',
         'wrong_type' => [
