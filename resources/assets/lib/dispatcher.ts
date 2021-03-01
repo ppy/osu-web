@@ -13,13 +13,13 @@ export default class Dispatcher {
       // tslint:disable-next-line: no-console
       console.debug('Dispatcher::dispatch', action);
     }
-    this.listeners.forEach((callback) => {
-      callback.handleDispatchAction(action);
+    this.listeners.forEach((listener) => {
+      listener.handleDispatchAction(action);
     });
   }
 
-  register(callback: DispatchListener) {
-    this.listeners.add(callback);
+  register(listener: DispatchListener) {
+    this.listeners.add(listener);
   }
 
   unregister(listener: DispatchListener) {
