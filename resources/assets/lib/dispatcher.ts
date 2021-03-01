@@ -23,6 +23,6 @@ export default class Dispatcher {
   }
 
   unregister(listener: DispatchListener) {
-    this.listeners.add(listener);
+    this.listeners.delete(listener);
   }
 }
