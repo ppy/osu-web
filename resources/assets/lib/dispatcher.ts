@@ -21,4 +21,8 @@ export default class Dispatcher {
   register(callback: DispatchListener) {
     this.listeners.add(callback);
   }
+
+  unregister(listener: DispatchListener) {
+    this.listeners.add(listener);
+  }
 }
