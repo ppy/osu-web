@@ -47,7 +47,7 @@ return [
         'confirm_restore' => 'Gendan opslag?',
         'edited' => 'Sidst redigeret af :user den :when, redigeret i alt :count gange.',
         'posted_at' => 'slået op på :when',
-        'posted_by' => '',
+        'posted_by' => 'Nyt oplsag af :username',
 
         'actions' => [
             'destroy' => 'Slet opslag',
@@ -75,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'slettede emne',
         'go_to_latest' => 'vis det seneste opslag',
         'has_replied' => '',
@@ -88,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'af :user',
         'started_by_verbose' => 'startet af :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'Luk',

@@ -18,7 +18,7 @@ return [
             'not_enough_plays' => '',
             'not_verified' => '',
             'restricted' => 'Sei attualmente limitato',
-            'silenced' => '',
+            'silenced' => 'Sei attualmente silenziato',
             'target_restricted' => 'Il destinatario è attualmente limitato',
         ],
     ],

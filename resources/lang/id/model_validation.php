@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Menghapus posting metadata beatmap tidak diizinkan.',
             'beatmapset_post_no_edit' => 'Menyunting posting metadata beatmap tidak diizinkan.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => 'Balasan Anda hanya berisi kutipan.',
 
             'attributes' => [

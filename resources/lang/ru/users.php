@@ -411,8 +411,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'У вас сайленс.',
+        'message' => 'Некоторые действия могут быть недоступны.',
     ],
 
     'status' => [

@@ -68,7 +68,7 @@ return [
         'moderated' => 'Ce canal est actuellement modéré.',
         'no_access' => 'Vous n’avez pas accès à ce canal.',
         'restricted' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
-        'silenced' => '',
+        'silenced' => 'Vous ne pouvez pas envoyez de message quand vous êtes réduit au silence, restreint ou banni.',
     ],
 
     'comment' => [

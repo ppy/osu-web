@@ -69,7 +69,7 @@ return [
     ],
 
     'order' => [
-        'cancel' => '',
+        'cancel' => '取消訂單',
         'cancel_confirm' => '',
         'cancel_not_allowed' => '',
         'invoice' => '查看收據',

@@ -75,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'usunięty wątek',
         'go_to_latest' => 'pokaż najnowszy post',
         'has_replied' => 'Twoja odpowiedź znajduje się w tym wątku',
@@ -88,6 +90,11 @@ return [
         'reply_title_prefix' => 'Odp.',
         'started_by' => 'autor: :user',
         'started_by_verbose' => 'utworzony przez :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'Zamknij',

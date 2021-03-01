@@ -26,7 +26,7 @@ return [
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'Релевантность',
+        'username' => 'Имя',
     ],
 ];

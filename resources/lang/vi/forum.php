@@ -75,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'chủ đề đã xóa',
         'go_to_latest' => 'xem bài viết mới nhất',
         'has_replied' => 'Bạn đã trả lời topic này',
@@ -88,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'bởi :user',
         'started_by_verbose' => 'bắt đầu bởi :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'Đóng',

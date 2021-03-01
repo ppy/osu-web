@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Нельзя удалить метаданные карты.',
             'beatmapset_post_no_edit' => 'Нельзя изменить метаданные карты.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => 'Ваш ответ содержит только цитату.',
 
             'attributes' => [

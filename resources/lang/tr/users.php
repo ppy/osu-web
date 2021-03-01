@@ -411,8 +411,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Şu anda susturulmuş durumdasınız.',
+        'message' => 'Bazı eylemler kullanım dışı olabilir.',
     ],
 
     'status' => [
