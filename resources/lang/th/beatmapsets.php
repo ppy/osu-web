@@ -57,7 +57,7 @@ return [
             'logged-out' => 'คุณต้องเข้าสู่ระบบก่อนที่จะดาวน์โหลดบีทแมพ',
             'mapped_by' => 'แมพโดย :mapper',
             'unfavourite' => 'เลิก Favourite beatmapset นี้',
-            'updated_timeago' => 'อัพเดทล่าสุดเมื่อ :timeago',
+            'updated_timeago' => 'อัปเดตล่าสุดเมื่อ :timeago',
 
             'download' => [
                 '_' => 'ดาวน์โหลด',
@@ -78,7 +78,7 @@ return [
             'qualified' => 'qualified :timeago',
             'ranked' => 'จัดอันดับแล้วเมื่อ :timeago',
             'submitted' => 'ส่งเมื่อ :timeago',
-            'updated' => 'อัพเดทครั้งล่าสุดเมื่อ :timeago',
+            'updated' => 'อัปเดตครั้งล่าสุดเมื่อ :timeago',
         ],
 
         'favourites' => [
@@ -117,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => 'ความล้มเหลว',
             'source' => 'แหล่งที่มา',
+            'storyboard' => '',
             'success-rate' => 'อัตราการผ่าน',
             'tags' => 'แท็ก',
         ],

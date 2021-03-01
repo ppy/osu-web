@@ -75,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => '삭제된 주제',
         'go_to_latest' => '최근에 올라온 글 보기',
         'has_replied' => '이 주제에 답글을 달았습니다.',
@@ -88,6 +90,11 @@ return [
         'reply_title_prefix' => '답글',
         'started_by' => 'by :user',
         'started_by_verbose' => ':user 님이 시작함',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => '닫기',

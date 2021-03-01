@@ -117,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => 'Feilpunkter',
             'source' => 'Kilde',
+            'storyboard' => '',
             'success-rate' => 'Suksessrate',
             'tags' => 'Stikkord',
         ],

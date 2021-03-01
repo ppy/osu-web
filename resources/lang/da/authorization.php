@@ -68,7 +68,7 @@ return [
         'moderated' => 'Denne kanal er i øjeblikket modereret.',
         'no_access' => 'Du har ikke adgang til denne kanal.',
         'restricted' => 'Du kan ikke sende beskeder når du er enten muted, begrænset eller banned.',
-        'silenced' => '',
+        'silenced' => 'Du kan ikke sende beskeder når du er enten muted, begrænset eller banned.',
     ],
 
     'comment' => [

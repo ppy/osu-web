@@ -16,7 +16,7 @@ return [
     'voting' => [
         'login_required' => '請登入後再投票。',
         'over' => '這場評選的投票已經結束',
-        'show_voted_only' => '',
+        'show_voted_only' => '顯示投票',
 
         'best_of' => [
             'none_played' => "沒有符合此次評選條件的圖譜！",
@@ -54,7 +54,7 @@ return [
     ],
     'dates' => [
         'ended' => '結束於 :date',
-        'ended_no_date' => '',
+        'ended_no_date' => '已結束',
 
         'starts' => [
             '_' => '開始於 :date',

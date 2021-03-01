@@ -250,7 +250,8 @@ return [
     ],
     'general' => [
         'converts' => 'Inkluder konvertert beatmeaps',
-        'follows' => '',
+        'follows' => 'Subscribed mappers
+',
         'recommended' => 'Rekommenderat sværhedsgrad',
     ],
     'mode' => [

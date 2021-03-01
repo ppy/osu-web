@@ -117,6 +117,7 @@ return [
             'nsfw' => '露骨なコンテンツ',
             'points-of-failure' => '失敗地点',
             'source' => 'ソース',
+            'storyboard' => '',
             'success-rate' => 'クリア率',
             'tags' => 'タグ',
         ],

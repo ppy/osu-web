@@ -117,6 +117,7 @@ return [
             'nsfw' => 'Откровенное содержание',
             'points-of-failure' => 'Шкала провалов',
             'source' => 'Источник',
+            'storyboard' => '',
             'success-rate' => 'Шанс успеха',
             'tags' => 'Теги',
         ],

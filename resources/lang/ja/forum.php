@@ -75,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => '削除されたトピック',
         'go_to_latest' => '最新の投稿を見る',
         'has_replied' => 'このトピックに返信しました',
@@ -88,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'by :user',
         'started_by_verbose' => '開始したユーザー: :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => '閉じる',

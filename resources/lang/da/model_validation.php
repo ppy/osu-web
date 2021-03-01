@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Sletning af beatmap metadata opslag er ikke tilladt.',
             'beatmapset_post_no_edit' => 'Redigering af beatmap metadata opslag er ikke tilladt.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => 'Dit svar indeholder kun et quotationstegn.',
 
             'attributes' => [
