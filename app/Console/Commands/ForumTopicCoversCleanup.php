@@ -31,15 +31,15 @@ class ForumTopicCoversCleanup extends Command
      */
     public function handle()
     {
+        $createdBefore = now()->subDays(get_int($this->option('maxdays')) ?? 30);
+        $this->line("This will delete unused topic covers before {$createdBefore}.");
+
         if (!$this->option('yes') && !$this->confirm('Proceed?')) {
             return $this->error('Aborted.');
         }
 
-        $createdBefore = now()->subDays(get_int($this->option('maxdays')) ?? 30);
         $progress = $this->output->createProgressBar();
         $deleted = 0;
-
-        $this->line("Deleting unused topic covers before {$createdBefore}...");
 
         TopicCover::whereNull('topic_id')->chunkById(1000, function ($coversChunk) use ($createdBefore, $progress, &$deleted) {
             foreach ($coversChunk as $cover) {
