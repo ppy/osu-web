@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Nie możesz zmieniać swojego głosu po zakończeniu głosowania.',
+
+        'entry' => [
+            'limit_reached' => 'Osiągnięto limit zgłoszeń dla tego konkursu',
+            'over' => 'Dziękujemy za zgłoszenia! Przesyłanie prac zakończyło się i wkrótce rozpocznie się głosowanie.',
+        ],
     ],
 
     'forum' => [

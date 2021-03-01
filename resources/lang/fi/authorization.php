@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Et voi muuttaa ääntäsi tälle kilpailulle äänestysajan loppumisen jälkeen.',
+
+        'entry' => [
+            'limit_reached' => 'Olet saavuttanut kilpailuun lähetettävien töiden rajan',
+            'over' => 'Kiitos lähettämistänne töistä! Kilpailuun ei oteta enää ehdokkaita ja äänestys avataan pian.',
+        ],
     ],
 
     'forum' => [
