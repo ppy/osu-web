@@ -161,7 +161,7 @@ return [
         'beatmapset' => [
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'Topik diskusi ":title" telah dikunci',
-                'beatmapset_discussion_post_new' => 'Terdapat pembaharuan baru pada topik diskusi ":title"',
+                'beatmapset_discussion_post_new' => 'Terdapat pembaruan baru pada topik diskusi ":title"',
                 'beatmapset_discussion_unlock' => 'Topik diskusi ":title" telah kembali dibuka',
             ],
 

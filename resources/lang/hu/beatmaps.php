@@ -250,7 +250,7 @@ return [
     ],
     'general' => [
         'converts' => 'Konvertált beatmap-ek tartalmazása',
-        'follows' => '',
+        'follows' => 'Követett készítők',
         'recommended' => 'Ajánlott nehézség',
     ],
     'mode' => [

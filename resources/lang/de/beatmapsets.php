@@ -117,6 +117,7 @@ return [
             'nsfw' => 'Expliziter Inhalt',
             'points-of-failure' => 'Stellen, an denen Spieler gescheitert sind',
             'source' => 'Quelle',
+            'storyboard' => '',
             'success-rate' => 'Erfolgsrate',
             'tags' => 'Tags',
         ],

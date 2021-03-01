@@ -250,7 +250,7 @@ return [
     ],
     'general' => [
         'converts' => 'Includi beatmap convertite',
-        'follows' => '',
+        'follows' => 'Mapper iscritti',
         'recommended' => 'Difficoltà consigliata',
     ],
     'mode' => [

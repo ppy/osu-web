@@ -411,7 +411,7 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
+        'title' => 'Du är för närvarande tystad.',
         'message' => '',
     ],
 

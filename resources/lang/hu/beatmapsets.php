@@ -8,7 +8,7 @@ return [
         'disabled' => 'Ez a beatmap jelenleg nem letölthető.',
         'parts-removed' => 'Ez a beatmap eltávolításra került a készítő vagy egy jogbirtokos harmadik fél kérésére.',
         'more-info' => 'Itt találsz több információt.',
-        'rule_violation' => '',
+        'rule_violation' => 'Ennek a map-nek néhány elemét eltávolítottuk, mert nem találtuk őket megfelelőnek az osu!-ban történő használathoz.',
     ],
 
     'download' => [
@@ -21,7 +21,7 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'nincs beatmap',
 
         'download' => [
             'all' => 'letöltés',
@@ -33,13 +33,13 @@ return [
 
     'nominate' => [
         'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
+        'incorrect_mode' => 'Nincs jogosultságod :mode módban nominálni',
         'full_bn_required' => '',
-        'too_many' => '',
+        'too_many' => 'A nominálási követelmények már teljesültek.',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
+            'confirmation' => 'Biztosan nominálni szeretnéd ezt a Beatmap-et?',
+            'header' => 'Beatmap Nominálása',
             'hybrid_warning' => '',
             'which_modes' => '',
         ],
@@ -117,6 +117,7 @@ return [
             'nsfw' => 'Felnőtt tartalom',
             'points-of-failure' => 'Kibukási Alkalmak',
             'source' => 'Forrás',
+            'storyboard' => '',
             'success-rate' => 'Teljesítési arány',
             'tags' => 'Címkék',
         ],

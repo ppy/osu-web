@@ -411,8 +411,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Vous êtes actuellement réduit au silence.',
+        'message' => 'Certaines actions peuvent être indisponibles.',
     ],
 
     'status' => [

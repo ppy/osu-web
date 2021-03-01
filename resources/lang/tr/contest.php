@@ -16,7 +16,7 @@ return [
     'voting' => [
         'login_required' => 'Oylamak için lütfen giriş yapınız.',
         'over' => 'Bu yarışma için oylama sona erdi',
-        'show_voted_only' => '',
+        'show_voted_only' => 'Oy verilenleri göster',
 
         'best_of' => [
             'none_played' => "Bu yarışma için geçerli olan hiçbir beatmapi oynamamışsınız!",

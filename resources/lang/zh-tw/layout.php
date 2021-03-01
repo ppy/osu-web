@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => '自動播放下一首曲目',
     ],
 
     'defaults' => [
@@ -77,7 +77,7 @@ return [
         ],
         'help' => [
             '_' => '幫助',
-            'getAbuse' => '',
+            'getAbuse' => '檢舉違規行為',
             'getFaq' => '常見問題',
             'getRules' => '規則',
             'getSupport' => '支援服務',
@@ -184,7 +184,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => '登入/註冊',
 
         'login' => [
             'forgot' => "忘記登入資訊？",
@@ -208,7 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '設定',
-            'follows' => '',
+            'follows' => '追蹤清單',
             'friends' => '好友',
             'logout' => '登出',
             'profile' => '我的資料',

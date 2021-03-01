@@ -16,7 +16,7 @@ return [
     'voting' => [
         'login_required' => 'Por favor, conecte-se para votar.',
         'over' => 'A votação deste concurso já foi encerrada',
-        'show_voted_only' => '',
+        'show_voted_only' => 'Mostrar votados',
 
         'best_of' => [
             'none_played' => "Parece que você não jogou nenhum dos beatmaps qualificados para este concurso!",

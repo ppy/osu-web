@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Beatmapin metatietoviestiä ei voida poistaa.',
             'beatmapset_post_no_edit' => 'Beatmapin metatietoviestiä ei voida muokata.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => 'Sinun vastauksesi sisältää ainoastaan lainauksen.',
 
             'attributes' => [

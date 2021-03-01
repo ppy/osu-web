@@ -18,7 +18,7 @@ return [
             'not_enough_plays' => 'Вы сыграли недостаточно игр',
             'not_verified' => 'Ваша сессия не была подтверждена',
             'restricted' => 'У вас рестриктед',
-            'silenced' => '',
+            'silenced' => 'У вас сайленс',
             'target_restricted' => 'У получателя рестриктед',
         ],
     ],

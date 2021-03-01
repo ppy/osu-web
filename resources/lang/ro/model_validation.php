@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Ștergerea metadatei unui beatmap nu este permisă.',
             'beatmapset_post_no_edit' => 'Editarea metadatei unui beatmap nu este permisă.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => 'Răspunsul tău conţine doar un citat.',
 
             'attributes' => [

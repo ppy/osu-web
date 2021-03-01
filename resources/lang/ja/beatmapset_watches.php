@@ -15,7 +15,7 @@ return [
 
         'table' => [
             'empty' => 'ウォッチしているビートマップディスカッションがありません',
-            'last_update' => '',
+            'last_update' => '最終更新',
             'open_issues' => '未解決の問題',
             'state' => 'ステータス',
             'title' => 'タイトル',

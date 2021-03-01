@@ -15,7 +15,7 @@ return [
 
         'table' => [
             'empty' => 'Brak obserwowanych dyskusji beatmap.',
-            'last_update' => '',
+            'last_update' => 'Ostatnia aktualizacja',
             'open_issues' => 'Nierozwiązane problemy',
             'state' => 'Status',
             'title' => 'Tytuł',
