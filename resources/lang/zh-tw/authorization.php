@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => '投票已結束，禁止重新投票。',
+
+        'entry' => [
+            'limit_reached' => '您提交的參賽文件大小超出限制',
+            'over' => '感謝參與！提交已經關閉，投票即將開始。',
+        ],
     ],
 
     'forum' => [

@@ -33,8 +33,6 @@ return [
         'login_required' => '请登录后再参加评选。',
         'silenced_or_restricted' => '账户受限时无法参加评选。',
         'preparation' => '我们正在准备这场评选，请耐心等待！',
-        'over' => '感谢参与！提交已经关闭，投票即将开始。',
-        'limit_reached' => '您提交的参赛文件大小超出限制',
         'drop_here' => '将您的参赛文件拖到此处',
         'download' => '下载 .osz',
         'wrong_type' => [

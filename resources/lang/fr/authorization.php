@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Vous ne pouvez pas changer votre vote une fois la période de vote terminée.',
+
+        'entry' => [
+            'limit_reached' => 'Vous avez atteint la limite d\'entrée pour ce concours',
+            'over' => 'Merci pour vos inscriptions ! Les soumissions sont fermées pour ce concours et le vote va bientôt ouvrir.',
+        ],
     ],
 
     'forum' => [

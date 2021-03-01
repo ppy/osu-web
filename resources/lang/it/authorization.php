@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Non puoi cambiare il tuo voto quando il periodo di votazione per questo contest è finito.',
+
+        'entry' => [
+            'limit_reached' => 'Hai raggiunto il limite massimo di iscrizioni per questo contest',
+            'over' => 'Grazie per le tue iscrizioni! Le richieste sono terminate per questo contest e le votazioni avverranno presto.',
+        ],
     ],
 
     'forum' => [
