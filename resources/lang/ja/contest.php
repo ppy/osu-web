@@ -16,7 +16,7 @@ return [
     'voting' => [
         'login_required' => '投票するにはログインが必要です。',
         'over' => 'このコンテストの投票期間は終了しました。',
-        'show_voted_only' => '',
+        'show_voted_only' => '投票済みを表示',
 
         'best_of' => [
             'none_played' => "このコンテストに該当するビートマップをプレイした事がないようです！",

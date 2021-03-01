@@ -117,6 +117,7 @@ return [
             'nsfw' => 'Contenu explicite',
             'points-of-failure' => 'Répartition des échecs',
             'source' => 'Source',
+            'storyboard' => '',
             'success-rate' => 'Taux de réussite',
             'tags' => 'Tags',
         ],
@@ -157,7 +158,7 @@ return [
             'no_scores' => [
                 'country' => 'Personne de votre pays n\'a encore fait un score !',
                 'friend' => 'Aucun de vos amis n\'a de score sur cette map !',
-                'global' => 'Pas de scores. Peut-être vous dans le classement ?',
+                'global' => 'Pas de scores. Peut-être devriez vous en faire un ?',
                 'loading' => 'Chargement des scores...',
                 'unranked' => 'Beatmap non classifié.',
             ],

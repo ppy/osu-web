@@ -67,8 +67,8 @@ return [
         'friends_only' => '用户阻止了来自非好友的消息。',
         'moderated' => '该频道现在正在被管制中。',
         'no_access' => '你没有权限访问该频道。',
-        'restricted' => '在账户禁言、受限或被 ban 期间不能发消息。',
-        'silenced' => '',
+        'restricted' => '账户被禁言、受限或封禁期间不能发消息。',
+        'silenced' => '账户被禁言、受限或封禁期间不能发消息。',
     ],
 
     'comment' => [

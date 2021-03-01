@@ -62,7 +62,7 @@ return [
             'comment_new' => 'nowe komentarze',
             'forum_topic_reply' => 'odpowiedzi do wątków',
             'mail' => 'e-mail',
-            'mapping' => '',
+            'mapping' => 'twórca',
             'push' => 'push',
             'user_achievement_unlock' => 'odblokowanie medalu',
         ],
@@ -75,7 +75,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'ukryj ostrzeżenia o treściach dla pełnoletnich w beatmapach',
         'beatmapset_title_show_original' => 'pokaż metadane beatmapy w oryginalnym języku',
         'title' => 'Ustawienia strony',
 

@@ -13,11 +13,11 @@ return [
     ],
 
     'scopes' => [
-        'bot' => '',
+        'bot' => 'Comportarsi come bot in chat.',
         'identify' => 'Identificarti e leggere il tuo profilo pubblico.',
 
         'chat' => [
-            'write' => '',
+            'write' => 'Mandare messaggi per tuo conto.',
         ],
 
         'friends' => [

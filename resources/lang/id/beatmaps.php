@@ -250,7 +250,7 @@ return [
     ],
     'general' => [
         'converts' => 'Sertakan beatmap yang dikonversi',
-        'follows' => '',
+        'follows' => 'Mapper yang dipantau',
         'recommended' => 'Tingkat kesulitan yang disarankan',
     ],
     'mode' => [

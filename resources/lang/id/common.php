@@ -77,7 +77,7 @@ return [
         'post' => ':count_delimited kiriman|:count_delimited kiriman',
         'second_short_unit' => 'detik|detik',
         'star_priority' => 'star priority :count_delimited|star priority :count_delimited',
-        'update' => ':count_delimited pembaharuan|:count_delimited pembaharuan',
+        'update' => ':count_delimited pembaruan|:count_delimited pembaruan',
         'view' => ':count_delimited kali dilihat|:count_delimited kali dilihat',
         'years' => ':count_delimited tahun|:count_delimited tahun',
     ],

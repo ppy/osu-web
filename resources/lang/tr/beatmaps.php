@@ -250,7 +250,7 @@ return [
     ],
     'general' => [
         'converts' => 'Dönüştürülmüş beatmapleri dahil et',
-        'follows' => '',
+        'follows' => 'Abone olunan mapperlar',
         'recommended' => 'Önerilen zorluk seviyesi',
     ],
     'mode' => [

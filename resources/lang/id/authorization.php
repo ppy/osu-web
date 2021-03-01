@@ -67,8 +67,8 @@ return [
         'friends_only' => 'Pengguna memblokir pesan dari orang yang tidak ada dalam daftar teman pengguna.',
         'moderated' => 'Channel itu sedang dalam pengelolaan.',
         'no_access' => 'Anda tidak memiliki akses ke channel ini.',
-        'restricted' => 'Anda tidak dapat mengirim pesan saat akun Anda sedang di-silence, di-restrict, atau di-ban.',
-        'silenced' => '',
+        'restricted' => 'Anda tidak dapat mengirim pesan pada saat akun Anda sedang di-silence, di-restrict, atau di-ban.',
+        'silenced' => 'Anda tidak dapat mengirim pesan pada saat akun Anda sedang di-silence, di-restrict, atau di-ban.',
     ],
 
     'comment' => [
@@ -95,7 +95,7 @@ return [
             ],
 
             'edit' => [
-                'deleted' => 'Tidak dapat menyunting kiriman yang telah dihapus.',
+                'deleted' => 'Tidak dapat menyunting postingan yang telah dihapus.',
                 'locked' => 'Topik telah dikunci, sehingga penyuntingan kiriman tidak lagi dapat dilakukan.',
                 'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
                 'not_owner' => 'Hanya pemilik topik yang dapat menyunting kiriman.',

@@ -16,11 +16,11 @@ return [
     ],
 
     'forum_topic' => [
-        'title' => '',
+        'title' => '論壇主題',
     ],
 
     'index' => [
-        'title_compact' => '',
+        'title_compact' => '追蹤清單',
     ],
 
     'mapping' => [
@@ -33,6 +33,6 @@ return [
     ],
 
     'modding' => [
-        'title' => '',
+        'title' => '圖譜討論',
     ],
 ];
