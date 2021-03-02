@@ -18,12 +18,11 @@ el = React.createElement
 beatmapsetStore = core.dataStore.beatmapsetStore
 controller = core.beatmapsetSearchController
 
-ITEM_HEIGHT = 205 # needs to be known in advance to calculate size of virtual scrolling area.
+ITEM_HEIGHT = 110 # needs to be known in advance to calculate size of virtual scrolling area.
 
 ListRender = ({ virtual, itemHeight }) ->
-  style = _.extend {}, virtual.style
   div
-    style: style
+    style: virtual.style
     div
       className: 'beatmapsets__items'
       virtual.items.map (row) ->
@@ -34,7 +33,7 @@ ListRender = ({ virtual, itemHeight }) ->
             div
               className: 'beatmapsets__item'
               key: beatmapsetId
-              el BeatmapsetPanel, beatmap: beatmapsetStore.get(beatmapsetId)
+              el BeatmapsetPanel, beatmapset: beatmapsetStore.get(beatmapsetId)
 
 # stored in an observable so a rerender will occur when the HOC gets updated.
 Observables = observable

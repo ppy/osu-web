@@ -82,7 +82,9 @@ export interface BeatmapsetJson {
   creator: string;
   current_user_attributes?: CurrentUserAttributes;
   events?: BeatmapsetEvent[];
+  favourite_count: number;
   genre: GenreJson;
+  has_favourited?: boolean;
   hype?: {
     current: number;
     required: number;

@@ -41,7 +41,7 @@ export class Beatmaps extends React.PureComponent
             div
               key: beatmapset.id
               className: 'osu-layout__col osu-layout__col--sm-6'
-              el BeatmapsetPanel, beatmap: beatmapset
+              el BeatmapsetPanel, beatmapset: beatmapset
 
           div
             className: 'osu-layout__col',

@@ -7,8 +7,10 @@ import * as React from 'react'
 import { a, button, div, i, span, strong } from 'react-dom-factories'
 import { StringWithComponent } from 'string-with-component'
 import OsuUrlHelper from 'osu-url-helper'
+import TimeWithTooltip from 'time-with-tooltip'
 import * as BeatmapHelper from 'utils/beatmap-helper'
-import { showVisual } from 'utils/beatmapset-helper'
+import { showVisual, toggleFavourite } from 'utils/beatmapset-helper'
+import { Observer } from 'mobx-react'
 el = React.createElement
 
 export class BeatmapsetPanel extends React.PureComponent
@@ -18,177 +20,207 @@ export class BeatmapsetPanel extends React.PureComponent
 
 
   render: =>
-    # this is actually "beatmapset"
-    beatmapset = @props.beatmap
+    el Observer, null, @renderReal
+
+
+  renderReal: =>
+    beatmapset = @props.beatmapset
 
     @showVisual = showVisual(beatmapset)
-
     showHypeCounts = beatmapset.hype?
-    if showHypeCounts
-      currentHype = osu.formatNumber(beatmapset.hype?.current)
-      requiredHype = osu.formatNumber(beatmapset.hype?.required)
-
-      if beatmapset.nominations_summary?
-        currentNominations = osu.formatNumber beatmapset.nominations_summary.current
-        requiredNominations = osu.formatNumber beatmapset.nominations_summary.required
-      else if beatmapset.nominations?
-        if beatmapset.nominations.legacy_mode
-          currentNominations = osu.formatNumber beatmapset.nominations.current
-          requiredNominations = osu.formatNumber beatmapset.nominations.required
-        else
-          currentNominations = osu.formatNumber _.sum(_.values(beatmapset.nominations?.current))
-          requiredNominations = osu.formatNumber _.sum(_.values(beatmapset.nominations?.required))
-
-    playCount = osu.formatNumber(beatmapset.play_count)
-
-    favouriteCount = osu.formatNumber(beatmapset.favourite_count)
-
-    # arbitrary number
-    maxDisplayedDifficulty = 10
-
-    condenseDifficulties = beatmapset.beatmaps.length > maxDisplayedDifficulty
-
+    nominations = @getNominations() if showHypeCounts
+    downloadLink = @getDownloadLink()
     groupedBeatmaps = BeatmapHelper.group beatmapset.beatmaps
-
-    difficulties =
-      for mode in BeatmapHelper.modes
-        beatmaps = groupedBeatmaps[mode]
-
-        continue unless beatmaps?
-
-        if condenseDifficulties
-          [
-            el BeatmapIcon, key: "#{mode}-icon", beatmap: _.last(beatmaps), showTitle: false
-            span
-              className: 'beatmapset-panel__difficulty-count'
-              key: "#{mode}-count", beatmaps.length
-          ]
-        else
-          for b in beatmaps
-            div
-              className: 'beatmapset-panel__difficulty-icon'
-              key: b.id
-              el BeatmapIcon, beatmap: b
+    url = laroute.route('beatmapsets.show', beatmapset: beatmapset.id)
+    displayDateAttribute = if beatmapset.ranked > 0 then 'ranked_date' else 'last_updated'
 
     div
       className: "beatmapset-panel #{if @showVisual then 'js-audio--player' else ''}"
       'data-audio-url': beatmapset.preview_url
-      div className: 'beatmapset-panel__panel',
-        a
-          href: laroute.route('beatmapsets.show', beatmapset: beatmapset.id)
-          className: 'beatmapset-panel__header',
-          if @showVisual
-            el Img2x,
-              className: 'beatmapset-panel__image'
-              onError: @hideImage
-              src: beatmapset.covers.card
-          div className: 'beatmapset-panel__image-overlay'
-          div className: 'beatmapset-panel__status-container',
+      a
+        href: url
+        className: 'beatmapset-panel__cover-container',
+        div className: 'beatmapset-panel__cover beatmapset-panel__cover--default'
+        if @showVisual
+          el Img2x,
+            className: 'beatmapset-panel__cover'
+            onError: @hideImage
+            src: beatmapset.covers.card
+      div className: 'beatmapset-panel__content',
+        div className: 'beatmapset-panel__play-container',
+          div className: 'beatmapset-panel__extra-icons',
             if beatmapset.video
-              div className: 'beatmapset-panel__extra-icon',
-                i className: 'fas fa-film fa-fw'
+              div
+                className: 'beatmapset-panel__extra-icon'
+                title: osu.trans('beatmapsets.show.info.video')
+                i className: 'fas fa-film'
             if beatmapset.storyboard
-              div className: 'beatmapset-panel__extra-icon',
-                i className: 'fas fa-image fa-fw'
-            div className: 'beatmapset-status', osu.trans("beatmapsets.show.status.#{beatmapset.status}")
+              div
+                className: 'beatmapset-panel__extra-icon'
+                title: osu.trans('beatmapsets.show.info.storyboard')
+                i className: 'fas fa-image'
+          if @showVisual
+            button
+              type: 'button'
+              className: 'beatmapset-panel__play js-audio--play'
+        div className: 'beatmapset-panel__info',
+          div className: 'beatmapset-panel__info-row beatmapset-panel__info-row--title',
+            a
+              className: 'beatmapset-panel__main-link u-ellipsis-overflow'
+              href: url
+              BeatmapHelper.getTitle(beatmapset)
+            if beatmapset.nsfw
+              span className: 'nsfw-badge nsfw-badge--panel', osu.trans('beatmapsets.nsfw_badge.label')
+          div className: 'beatmapset-panel__info-row beatmapset-panel__info-row--artist',
+            a
+              className: 'beatmapset-panel__main-link u-ellipsis-overflow'
+              href: url
+              osu.trans('beatmapsets.show.details.by_artist', artist: BeatmapHelper.getArtist(beatmapset))
+          div className: 'beatmapset-panel__info-row beatmapset-panel__info-row--mapper',
+            div
+              className: 'u-ellipsis-overflow'
+              el StringWithComponent,
+                pattern: osu.trans 'beatmapsets.show.details.mapped_by'
+                mappings:
+                  ':mapper':
+                    a
+                      key: 'mapper'
+                      href: laroute.route('users.show', user: beatmapset.user_id)
+                      className: 'beatmapset-panel__mapper-link u-hover js-usercard'
+                      'data-user-id': beatmapset.user_id
+                      beatmapset.creator
 
-          div className: 'beatmapset-panel__title-artist-box',
-            div className: 'beatmapset-panel__header-text beatmapset-panel__header-text--title',
-              span className: 'u-ellipsis-overflow', BeatmapHelper.getTitle(beatmapset)
-              if beatmapset.nsfw
-                span className: 'nsfw-badge nsfw-badge--panel', osu.trans('beatmapsets.nsfw_badge.label')
-            div className: 'u-ellipsis-overflow beatmapset-panel__header-text',
-              BeatmapHelper.getArtist(beatmapset)
-
-          div className: 'beatmapset-panel__counts-box',
+          div className: 'beatmapset-panel__info-row beatmapset-panel__info-row--stats',
             if showHypeCounts
-              div null,
-                div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.hype.required_text', {current: currentHype, required: requiredHype}),
-                  span className: 'beatmapset-panel__count-number', currentHype
-                  i className: 'fas fa-bullhorn fa-fw'
-                div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.nominations.required_text', {current: currentNominations, required: requiredNominations}),
-                  span className: 'beatmapset-panel__count-number', currentNominations
-                  i className: 'fas fa-thumbs-up fa-fw'
+              @renderStatsItem
+                title: osu.trans 'beatmaps.hype.required_text',
+                  current: osu.formatNumber(beatmapset.hype.current)
+                  required: osu.formatNumber(beatmapset.hype.required)
+                icon: 'fas fa-bullhorn'
+                value: beatmapset.hype.current
 
-            div null,
-              div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.panel.playcount', count: playCount),
-                span className: 'beatmapset-panel__count-number', playCount
-                i className: 'fas fa-fw fa-play-circle'
-              div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.panel.favourites', count: favouriteCount),
-                span className: 'beatmapset-panel__count-number', favouriteCount
-                i className: 'fas fa-fw fa-heart'
+            if showHypeCounts
+              @renderStatsItem
+                title: osu.trans 'beatmaps.nominations.required_text',
+                  current: osu.formatNumber(nominations.current)
+                  required: osu.formatNumber(nominations.required)
+                icon: 'fas fa-thumbs-up'
+                value: nominations.current
 
-          div className: 'beatmapset-panel__preview-bar'
+            @renderStatsItem
+              title: osu.trans('beatmaps.panel.playcount', count: osu.formatNumber(beatmapset.play_count))
+              icon: 'fas fa-play-circle'
+              value: beatmapset.play_count
 
-        div className: 'beatmapset-panel__content',
-          div className: 'beatmapset-panel__row',
-            div className: 'beatmapset-panel__mapper-source-box',
-              div
-                className: 'u-ellipsis-overflow'
-                el StringWithComponent,
-                  pattern: osu.trans 'beatmapsets.show.details.mapped_by'
-                  mappings:
-                    ':mapper':
-                      a
-                        key: 'mapper'
-                        href: laroute.route('users.show', user: beatmapset.user_id)
-                        className: 'js-usercard'
-                        'data-user-id': beatmapset.user_id
-                        strong null, beatmapset.creator
-              div
-                className: 'u-ellipsis-overflow'
-                if beatmapset.status in ['graveyard', 'wip', 'pending']
-                  span dangerouslySetInnerHTML: __html:
-                    osu.trans 'beatmapsets.show.details.updated_timeago',
-                      timeago: osu.timeago(beatmapset.last_updated)
-                else
-                  beatmapset.source
+            @renderStatsItem
+              title: osu.trans('beatmaps.panel.favourites', count: osu.formatNumber(beatmapset.favourite_count))
+              icon: 'fas fa-heart'
+              value: beatmapset.favourite_count
 
-            div className: 'beatmapset-panel__icons-box',
-              @renderDownloadLink()
+            div className: 'beatmapset-panel__stats-item',
+              span className: 'beatmapset-panel__stats-item-icon',
+                i className: 'fas fa-fw fa-check-circle'
+              el TimeWithTooltip, dateTime: beatmapset[displayDateAttribute], format: 'L'
 
-          div className: 'beatmapset-panel__difficulties', difficulties
-      if @showVisual
-        button
-          type: 'button'
-          className: 'beatmapset-panel__play js-audio--play'
-      div className: 'beatmapset-panel__shadow'
+          div className: 'beatmapset-panel__info-row',
+            div
+              className: 'beatmapset-status beatmapset-status--panel'
+              style:
+                '--bg': "var(--beatmapset-#{beatmapset.status}-bg)"
+                '--colour': "var(--beatmapset-#{beatmapset.status}-colour)"
+              osu.trans("beatmapsets.show.status.#{beatmapset.status}")
+            div className: 'beatmapset-panel__beatmaps-all',
+              for mode in BeatmapHelper.modes
+                beatmaps = groupedBeatmaps[mode]
+
+                continue unless beatmaps?
+
+                div
+                  className: 'beatmapset-panel__beatmaps'
+                  key: mode
+                  div className: 'beatmapset-panel__beatmap-icon',
+                    i className: "fal fa-extra-mode-#{mode}"
+                  for beatmap in beatmaps
+                    div
+                      className: 'beatmapset-panel__beatmap'
+                      style:
+                        '--bg': "var(--diff-#{BeatmapHelper.getDiffRating(beatmap.difficulty_rating)})"
+                      key: "beatmap-#{beatmap.id}"
+
+        div className: 'beatmapset-panel__menu-container',
+          div className: 'beatmapset-panel__menu',
+            button
+              type: 'button'
+              className: 'beatmapset-panel__menu-item js-login-required--click'
+              onClick: @toggleFavourite
+              span className: 'fas fa-heart'
+
+            a
+              href: laroute.route('beatmapsets.discussion', beatmapset: beatmapset.id)
+              className: 'beatmapset-panel__menu-item'
+              span className: 'fas fa-comment-alt'
+
+            if downloadLink.url?
+              a
+                href: downloadLink.url
+                title: downloadLink.title
+                className: 'beatmapset-panel__menu-item'
+                'data-turbolinks': 'false'
+                span className: 'fas fa-file-download'
+            else
+              span
+                title: downloadLink.title
+                className: 'beatmapset-panel__menu-item beatmapset-panel__menu-item--disabled'
+                span className: 'fas fa-file-download'
 
 
-  renderDownloadLink: =>
-    return null unless currentUser.id?
+  getDownloadLink: =>
+    if !currentUser.id?
+      return title: osu.trans('beatmapsets.show.details.logged-out')
 
-    beatmapset = @props.beatmap
+    beatmapset = @props.beatmapset
 
     if beatmapset.availability.download_disabled
-      return div
-        title: osu.trans('beatmapsets.availability.disabled')
-        className: 'beatmapset-panel__icon beatmapset-panel__icon--disabled'
-        i className: 'fas fa-lg fa-download'
+      return title: osu.trans('beatmapsets.availability.disabled')
 
     type = currentUser.user_preferences.beatmapset_download
     type = 'all' if type == 'direct' && !currentUser.is_supporter
 
-    switch type
-      when 'direct'
+    if type == 'direct'
         url = OsuUrlHelper.beatmapsetDownloadDirect beatmapset.id
         title = osu.trans 'beatmapsets.panel.download.direct'
-      else
-        if beatmapset.video
-          switch type
-            when 'no_video'
-              url = laroute.route 'beatmapsets.download', beatmapset: beatmapset.id, noVideo: 1
-              title = osu.trans 'beatmapsets.panel.download.no_video'
-            else
-              url = laroute.route 'beatmapsets.download', beatmapset: beatmapset.id
-              title = osu.trans 'beatmapsets.panel.download.video'
+    else
+      if beatmapset.video
+        if type == 'no_video'
+          url = laroute.route 'beatmapsets.download', beatmapset: beatmapset.id, noVideo: 1
+          title = osu.trans 'beatmapsets.panel.download.no_video'
         else
           url = laroute.route 'beatmapsets.download', beatmapset: beatmapset.id
-          title = osu.trans 'beatmapsets.panel.download.all'
+          title = osu.trans 'beatmapsets.panel.download.video'
+      else
+        url = laroute.route 'beatmapsets.download', beatmapset: beatmapset.id
+        title = osu.trans 'beatmapsets.panel.download.all'
 
-    a
-      href: url
-      title: title
-      className: 'beatmapset-panel__icon js-beatmapset-download-link'
-      'data-turbolinks': 'false'
-      i className: 'fas fa-lg fa-download'
+    { url, title }
+
+
+  renderStatsItem: ({ icon, title, value }) ->
+    div className: 'beatmapset-panel__stats-item u-hover', title: title,
+      span className: 'beatmapset-panel__stats-item-icon',
+        i className: icon
+      span null, osu.formatNumberSuffixed(value, 0)
+
+
+  getNominations: =>
+    if @props.beatmapset.nominations_summary?
+      @props.beatmapset.nominations_summary
+    else if @props.beatmapset.nominations?
+      if @props.beatmapset.nominations.legacy_mode
+        @props.beatmapset.nominations
+      else
+        current: _.sum(_.values(@props.beatmapset.nominations?.current))
+        required: _.sum(_.values(@props.beatmapset.nominations?.required))
+
+
+  toggleFavourite: =>
+    toggleFavourite @props.beatmapset
