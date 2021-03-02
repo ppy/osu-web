@@ -20,6 +20,7 @@ class TopicTransformer extends TransformerAbstract
             'id' => $topic->getKey(),
             'is_locked' => $topic->isLocked(),
             'last_post_id' => $topic->topic_last_post_id,
+            'post_count' => $topic->postCount(),
             'title' => $topic->topic_title,
             'type' => $topic->typeStr($topic->topic_type),
             'updated_at' => json_time($topic->topic_last_post_time),

@@ -138,7 +138,7 @@
         @include('objects._show_more_link', [
             'additionalClasses' => 'js-forum-posts-show-more js-forum__posts-show-more--next',
             'attributes' => ['data-mode' => 'next'],
-            'hidden' => $firstPostPosition + sizeof($posts) - 1 >= $topic->postsCount(),
+            'hidden' => $firstPostPosition + sizeof($posts) - 1 >= $topic->postCount(),
             'modifiers' => ['forum-topic'],
             'url' => route('forum.topics.show', ['topic' => $topic, 'start' => $posts->last()->post_id + 1, 'with_deleted' => $showDeleted ? '1' : '0']),
         ])
