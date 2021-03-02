@@ -9,6 +9,7 @@ forum_id     | number                  | |
 id           | number                  | |
 is_locked    | boolean                 | |
 last_post_id | number                  | |
+post_count   | number                  | |
 title        | string                  | |
 type         | string                  | normal, sticky, or announcement
 updated_at   | [Timestamp](#timestamp) | |
