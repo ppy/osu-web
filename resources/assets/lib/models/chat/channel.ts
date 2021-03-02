@@ -8,6 +8,8 @@ import User from 'models/user';
 import Message from './message';
 
 export default class Channel {
+  private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
+
   @observable channelId: number;
   @observable description?: string;
   @observable firstMessageId: number = -1;
@@ -175,7 +177,7 @@ export default class Channel {
     this.name = json.name;
     this.description = json.description;
     this.type = json.type;
-    this.icon = json?.icon ?? '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
+    this.icon = json?.icon ?? Channel.defaultIcon;
     this.moderated = json.moderated;
     this.users = json.users ?? this.users;
 
