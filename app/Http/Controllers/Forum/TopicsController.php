@@ -251,10 +251,10 @@ class TopicsController extends Controller
      *
      * Field  | Type                       | Notes
      * ------ | -------------------------- | -----
-     * topic  | [ForumTopic](#forum-topic) | |
-     * posts  | [ForumPost](#forum-post)[] | Includes `body`.
      * cursor | [Cursor](#cursor)          | |
-     * params |                            | Parameters used for current request excluding cursor.
+     * search |                            | Parameters used for current request excluding cursor.
+     * posts  | [ForumPost](#forum-post)[] | Includes `body`.
+     * topic  | [ForumTopic](#forum-topic) | |
      *
      * @urlParam topic Id of the topic. Example: 1
      *
