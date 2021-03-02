@@ -9,7 +9,6 @@ use App\Libraries\Elasticsearch\Es;
 use App\Libraries\Elasticsearch\Indexing;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
-use App\Models\Forum\Topic;
 use App\Models\User;
 use Illuminate\Console\Command;
 
@@ -17,7 +16,7 @@ class EsIndexDocuments extends Command
 {
     const ALLOWED_TYPES = [
         'beatmapsets' => [Beatmapset::class],
-        'posts' => [Topic::class, Post::class],
+        'posts' => [Post::class],
         'users' => [User::class],
     ];
 
