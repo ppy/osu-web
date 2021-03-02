@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
-import * as _ from 'lodash';
+import { each, isEmpty, last, throttle } from 'lodash';
 import { computed, observe } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
@@ -47,7 +47,7 @@ export default class ConversationView extends React.Component<Props> {
     let unreadMarkerShown = false;
     let currentDay: number;
 
-    _.each(channel.messages, (message: Message, key: number) => {
+    each(channel.messages, (message: Message, key: number) => {
       // check if the last read indicator needs to be shown
       // when messageId is a uuid, comparison will always be false.
       if (!unreadMarkerShown && message.messageId > (channel.lastReadId ?? -1) && message.sender.id !== currentUser.id) {
@@ -59,11 +59,11 @@ export default class ConversationView extends React.Component<Props> {
         //
         // TODO: Actually in hindsight, there's another scenario where the first element in the conversation is an
         // unread marker - when you receive new PMs and have yet to read any. Will look to handle this case later...
-        if (_.isEmpty(conversationStack)) {
+        if (isEmpty(conversationStack)) {
           this.assumeHasBacklog = true;
         }
 
-        if (!_.isEmpty(currentGroup)) {
+        if (!isEmpty(currentGroup)) {
           conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
           currentGroup = [];
         }
@@ -71,8 +71,8 @@ export default class ConversationView extends React.Component<Props> {
       }
 
       // check whether the day-change header needs to be shown
-      if (_.isEmpty(conversationStack) || moment(message.timestamp).date() !== currentDay /* TODO: make check less dodgy */) {
-        if (!_.isEmpty(currentGroup)) {
+      if (isEmpty(conversationStack) || moment(message.timestamp).date() !== currentDay /* TODO: make check less dodgy */) {
+        if (!isEmpty(currentGroup)) {
           conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
           currentGroup = [];
         }
@@ -81,7 +81,7 @@ export default class ConversationView extends React.Component<Props> {
       }
 
       // add message to current message grouping if the sender is the same, otherwise create a new message grouping
-      const lastCurrentGroup = _.last(currentGroup);
+      const lastCurrentGroup = last(currentGroup);
       if (lastCurrentGroup == null || lastCurrentGroup.sender.id === message.sender.id) {
         currentGroup.push(message);
       } else {
@@ -117,7 +117,7 @@ export default class ConversationView extends React.Component<Props> {
 
   componentDidMount() {
     this.componentDidUpdate();
-    $(window).on('scroll', _.throttle(this.onScroll, 1000));
+    $(window).on('scroll', throttle(this.onScroll, 1000));
   }
 
   componentDidUpdate(prevProps?: Props, prevState?: {}, snapshot?: Snapshot) {
