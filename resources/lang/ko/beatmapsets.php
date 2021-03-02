@@ -117,6 +117,7 @@ return [
             'nsfw' => '부적절한 내용',
             'points-of-failure' => '실패 지점',
             'source' => '원작',
+            'storyboard' => '',
             'success-rate' => '클리어 비율',
             'tags' => '태그',
         ],

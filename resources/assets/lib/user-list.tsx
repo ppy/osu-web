@@ -34,13 +34,7 @@ interface State {
 }
 
 function rankSortDescending(x: UserJson, y: UserJson) {
-  if (x.current_mode_rank != null && y.current_mode_rank != null) {
-    return x.current_mode_rank > y.current_mode_rank ? 1 : -1;
-  } else if (x.current_mode_rank === null) {
-    return 1;
-  } else {
-    return -1;
-  }
+  return (x.statistics?.global_rank ?? Number.MAX_VALUE) - (y.statistics?.global_rank ?? Number.MAX_VALUE);
 }
 
 function usernameSortAscending(x: UserJson, y: UserJson) {

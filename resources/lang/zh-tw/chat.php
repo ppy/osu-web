@@ -18,7 +18,7 @@ return [
             'not_enough_plays' => '',
             'not_verified' => '',
             'restricted' => '您的帳號已被限制。',
-            'silenced' => '',
+            'silenced' => '您正被禁言',
             'target_restricted' => '該使用者的帳號已被限制。',
         ],
     ],

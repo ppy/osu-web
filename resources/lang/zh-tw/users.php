@@ -155,7 +155,7 @@ return [
         'title' => ":username 的個人簡介",
 
         'comments_count' => [
-            '_' => '',
+            '_' => '發表了 :link',
             'count' => '',
         ],
         'edit' => [
@@ -411,8 +411,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => '您正被禁言。',
+        'message' => '可能無法執行某些動作。',
     ],
 
     'status' => [

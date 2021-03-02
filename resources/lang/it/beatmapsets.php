@@ -117,6 +117,7 @@ return [
             'nsfw' => 'Contenuto esplicito',
             'points-of-failure' => 'Punti di Fallimento',
             'source' => 'Sorgente',
+            'storyboard' => '',
             'success-rate' => 'Rateo di Successo',
             'tags' => 'Tag',
         ],

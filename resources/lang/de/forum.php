@@ -75,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'gelöschter thread',
         'go_to_latest' => 'letzten beitrag anschauen',
         'has_replied' => 'Du hast auf diesen Thread geantwortet',
@@ -88,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'von :user',
         'started_by_verbose' => 'gestartet von :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'Schließen',

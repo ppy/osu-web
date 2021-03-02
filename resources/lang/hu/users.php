@@ -411,7 +411,7 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
+        'title' => 'Jelenleg el vagy némítva.',
         'message' => '',
     ],
 

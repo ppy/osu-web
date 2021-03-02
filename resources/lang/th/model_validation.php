@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'ไม่อนุญาตให้ลบโพสต์ Metadata ของบีทแมพ',
             'beatmapset_post_no_edit' => 'ไม่อนุญาตให้ดัดแปลงโพสต์ Metadata ของบีทแมพ',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => 'การตอบกลับของคุณมีแค่คำพูด',
 
             'attributes' => [

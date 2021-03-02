@@ -16,7 +16,7 @@ return [
     'voting' => [
         'login_required' => 'Por favor, conecte-se para votar.',
         'over' => 'A votação deste concurso já foi encerrada',
-        'show_voted_only' => '',
+        'show_voted_only' => 'Mostrar votados',
 
         'best_of' => [
             'none_played' => "Parece que você não jogou nenhum dos beatmaps qualificados para este concurso!",
@@ -33,8 +33,6 @@ return [
         'login_required' => 'Por favor, conecte-se para participar deste concurso.',
         'silenced_or_restricted' => 'Você não pode participar de concursos enquanto restrito ou silenciado.',
         'preparation' => 'Estamos preparando este concurso. Por favor, aguarde pacientemente!',
-        'over' => 'Agradecemos a sua participação! As inscrições para este concurso foram encerradas e a votação abrirá em breve.',
-        'limit_reached' => 'Você atingiu o limite de inscrições para este concurso',
         'drop_here' => 'Solte a sua inscrição aqui',
         'download' => 'Baixar .osz',
         'wrong_type' => [

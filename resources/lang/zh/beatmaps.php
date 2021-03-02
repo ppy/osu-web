@@ -250,7 +250,7 @@ return [
     ],
     'general' => [
         'converts' => '包括转谱',
-        'follows' => '',
+        'follows' => '已关注谱师',
         'recommended' => '推荐难度',
     ],
     'mode' => [
@@ -316,7 +316,7 @@ return [
         'V2' => 'Score V2',
     ],
     'language' => [
-        'any' => '',
+        'any' => '所有',
         'english' => '英语',
         'chinese' => '汉语',
         'french' => '法语',

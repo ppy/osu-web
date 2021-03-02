@@ -11,6 +11,7 @@ use App\Models\UserStatistics;
 class UserStatisticsTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
+        'country_rank',
         'rank',
         'user',
         'variants',
@@ -30,7 +31,6 @@ class UserStatisticsTransformer extends TransformerAbstract
 
             'global_rank' => $stats->globalRank(),
             'pp' => $stats->rank_score,
-            'pp_rank' => $stats->rank_score_index,
             'ranked_score' => $stats->ranked_score,
             'hit_accuracy' => $stats->hit_accuracy,
             'play_count' => $stats->playcount,
@@ -50,7 +50,14 @@ class UserStatisticsTransformer extends TransformerAbstract
         ];
     }
 
-    // TODO: split this into global_rank (already exists) and country_rank
+    public function includeCountryRank(UserStatistics\Model $stats = null)
+    {
+        if ($stats !== null) {
+            return $this->primitive($stats->countryRank());
+        }
+    }
+
+    // TODO: remove this after country_rank is deployed
     public function includeRank(UserStatistics\Model $stats = null)
     {
         if ($stats === null) {
@@ -59,7 +66,6 @@ class UserStatisticsTransformer extends TransformerAbstract
 
         return $this->item($stats, function ($stats) {
             return [
-                'global' => $stats->globalRank(),
                 'country' => $stats->countryRank(),
             ];
         });

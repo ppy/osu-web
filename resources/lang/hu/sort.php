@@ -16,7 +16,7 @@ return [
     'username' => 'Felhasználónév',
 
     'forum_posts' => [
-        'created' => '',
+        'created' => 'Közzétéve',
         'relevance' => 'Relevancia',
     ],
 
@@ -26,7 +26,7 @@ return [
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'Relevancia',
+        'username' => 'Név',
     ],
 ];

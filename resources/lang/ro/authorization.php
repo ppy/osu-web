@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Nu îți poți schimba votul după ce perioada de vot pentru această competiție s-a încheiat.',
+
+        'entry' => [
+            'limit_reached' => 'Ai atins limita de intrări în acest concurs',
+            'over' => 'Îți mulțumim pentru intrările tale! Înscrierile s-au închis pentru acest concurs și votarea se va deschide în curând.',
+        ],
     ],
 
     'forum' => [

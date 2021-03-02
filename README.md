@@ -1,6 +1,9 @@
 # osu!web
 
-[![Build Status](https://travis-ci.com/ppy/osu-web.svg?branch=master)](https://travis-ci.com/ppy/osu-web) [![Crowdin](https://d322cqt584bo4o.cloudfront.net/osu-web/localized.svg)](https://crowdin.com/project/osu-web) [![dev chat](https://discordapp.com/api/guilds/188630481301012481/widget.png?style=shield)](https://discord.gg/ppy)
+[![Tests](https://github.com/ppy/osu-web/actions/workflows/tests.yml/badge.svg)](https://github.com/ppy/osu-web/actions/workflows/tests.yml)
+[![Lint](https://github.com/ppy/osu-web/actions/workflows/lint.yml/badge.svg)](https://github.com/ppy/osu-web/actions/workflows/lint.yml)
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/osu-web/localized.svg)](https://crowdin.com/project/osu-web)
+[![dev chat](https://discordapp.com/api/guilds/188630481301012481/widget.png?style=shield)](https://discord.gg/ppy)
 
 The browser-facing portion of [osu!](https://osu.ppy.sh/home).
 

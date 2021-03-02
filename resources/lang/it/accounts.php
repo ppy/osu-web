@@ -62,7 +62,7 @@ return [
             'comment_new' => 'nuovi commenti',
             'forum_topic_reply' => 'risposta al topic',
             'mail' => 'mail',
-            'mapping' => '',
+            'mapping' => 'mapper di beatmap',
             'push' => 'push',
             'user_achievement_unlock' => 'medaglie sbloccate',
         ],

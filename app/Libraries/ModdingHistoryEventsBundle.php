@@ -152,6 +152,7 @@ class ModdingHistoryEventsBundle
                         'previous_usernames',
                         'ranked_and_approved_beatmapset_count',
                         'statistics',
+                        'statistics.country_rank',
                         'statistics.rank',
                         'support_level',
                         'unranked_beatmapset_count',
