@@ -307,7 +307,11 @@ class TopicsController extends Controller
         $isJsonRequest = is_api_request();
 
         if (!$isJsonRequest && $posts->count() === 0) {
-            abort(404);
+            if ($skipLayout) {
+                return response(null, 204);
+            } else {
+                return ujs_redirect(route('forum.topics.show', $topic));
+            }
         }
 
         if ($isJsonRequest || $skipLayout) {
