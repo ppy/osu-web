@@ -304,11 +304,11 @@ class TopicsController extends Controller
             $cursorHelper->prepare($params['cursor'])
         )->get();
 
-        if ($posts->count() === 0) {
+        $isJsonRequest = is_api_request();
+
+        if (!$isJsonRequest && $posts->count() === 0) {
             abort(404);
         }
-
-        $isJsonRequest = is_api_request();
 
         if ($isJsonRequest || $skipLayout) {
             $jumpTo = null;
