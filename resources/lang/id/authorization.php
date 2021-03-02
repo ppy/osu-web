@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Anda tidak dapat mengubah pilihan Anda setelah periode pemungutan suara untuk kontes ini telah berakhir.',
+
+        'entry' => [
+            'limit_reached' => 'Anda telah mencapai batas entri untuk kontes ini',
+            'over' => 'Terima kasih telah mengirimkan entri Anda! Meskipun demikian, dengan sangat menyesal kami harus memberi tahu Anda bahwa tahapan penyerahan entri untuk kontes ini telah berakhir. Mohon maaf sebelumnya!',
+        ],
     ],
 
     'forum' => [

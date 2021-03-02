@@ -35,6 +35,9 @@ class Kernel extends ConsoleKernel
         Commands\BuildsCreate::class,
         Commands\BuildsUpdatePropagationHistory::class,
 
+        // forum
+        Commands\ForumTopicCoversCleanup::class,
+
         // leaderboard recalculation
         Commands\RankingsRecalculateCountryStats::class,
 
@@ -85,6 +88,10 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('builds:update-propagation-history')
             ->everyThirtyMinutes();
+
+        $schedule->command('forum:topic-cover-cleanup --yes')
+            ->daily()
+            ->withoutOverlapping();
 
         $schedule->command('rankings:recalculate-country')
             ->cron('25 0,3,6,9,12,15,18,21 * * *');

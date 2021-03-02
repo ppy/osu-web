@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Nem változtathatod meg a szavazatod, mert ennek a versenynek a szavazási ideje lejárt.',
+
+        'entry' => [
+            'limit_reached' => 'Elérted a jelentkezési limited erre a versenyre',
+            'over' => 'Köszönjük a jelentkezéseidet! A beküldési lehetőség lezárult erre a versenyre és a szavazás hamarosan indul.',
+        ],
     ],
 
     'forum' => [

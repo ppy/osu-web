@@ -33,8 +33,6 @@ return [
         'login_required' => 'Log venligst ind for at deltage i denne konkurrence.',
         'silenced_or_restricted' => 'Du kan ikke deltage i konkurrencer, når du er mutet eller begrænset.',
         'preparation' => 'Vi er i gang med at forberede den næste konkurrence. Vær tålmodig!',
-        'over' => 'Tak for jeres bidrag! Indsendelsen for denne konkurrence er slut, og afstemning vil finde sted snarest!.',
-        'limit_reached' => 'Du har nået dit maksimale antal bidrag for denne konkurrence',
         'drop_here' => 'Aflever dit bidrag her',
         'download' => 'Download .osz',
         'wrong_type' => [

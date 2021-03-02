@@ -33,8 +33,6 @@ return [
         'login_required' => 'Var vänlig logga in för att gå med i tävlingen.',
         'silenced_or_restricted' => 'Du kan inte gå med i en tävling när du är begränsad eller tystad.',
         'preparation' => 'Vi håller på att förbereda denna tävling. Var god vänta med tålamod!',
-        'over' => 'Tack för era bidrag! Möjligheten att lägga till bidrag har stängt och röstning kommer öppnas snart.',
-        'limit_reached' => 'Du har uppnått max antal bidrag i denna tävling',
         'drop_here' => 'Släpp ditt bidrag här',
         'download' => 'Ladda ner .osz',
         'wrong_type' => [

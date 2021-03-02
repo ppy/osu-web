@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Du kan ikke ændre din stemme efter stemmeperioden for denne konkurrence er slut.',
+
+        'entry' => [
+            'limit_reached' => 'Du har nået dit maksimale antal bidrag for denne konkurrence',
+            'over' => 'Tak for jeres bidrag! Indsendelsen for denne konkurrence er slut, og afstemning vil finde sted snarest!.',
+        ],
     ],
 
     'forum' => [
