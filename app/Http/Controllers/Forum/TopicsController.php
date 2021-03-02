@@ -358,7 +358,7 @@ class TopicsController extends Controller
                 'topic' => json_item($topic, 'Forum\Topic'),
                 'posts' => json_collection($posts, 'Forum\Post', ['body']),
                 'cursor' => $cursorHelper->next($posts),
-                'params' => ['limit' => $params['limit'], 'sort' => $cursorHelper->getSortName()],
+                'search' => ['limit' => $params['limit'], 'sort' => $cursorHelper->getSortName()],
             ];
         }
 
