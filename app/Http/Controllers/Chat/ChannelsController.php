@@ -8,6 +8,7 @@ namespace App\Http\Controllers\Chat;
 use App\Models\Chat\Channel;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
+use App\Transformers\Chat\ChannelTransformer;
 use Auth;
 
 /**
@@ -114,6 +115,18 @@ class ChannelsController extends Controller
         $channel->removeUser(Auth::user());
 
         return response([], 204);
+    }
+
+    public function show($channelId)
+    {
+        $channel = Channel::where('channel_id', $channelId)->firstOrFail();
+
+        priv_check('ChatChannelRead', $channel)->ensureCan();
+
+        return [
+            'channel' => json_item($channel, ChannelTransformer::forUser(auth()->user()), ['first_message_id', 'last_message_id', 'users']),
+            'users' => $channel->isPublic() ? [] : json_collection($channel->users()->get(), 'UserCompact'),
+        ];
     }
 
     /**

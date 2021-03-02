@@ -6,6 +6,7 @@
 namespace App\Transformers\Chat;
 
 use App\Models\Chat\Channel;
+use App\Models\User;
 use App\Transformers\TransformerAbstract;
 
 class ChannelTransformer extends TransformerAbstract
@@ -17,13 +18,24 @@ class ChannelTransformer extends TransformerAbstract
         'users',
     ];
 
+    private $userId;
+
+    public static function forUser(?User $user)
+    {
+        $transformer = new static();
+        $transformer->userId = optional($user)->getKey();
+
+        return $transformer;
+    }
+
     public function transform(Channel $channel)
     {
         return [
             'channel_id' => $channel->channel_id,
             'description' => $channel->description,
+            'icon' => $channel->displayIconFor($this->userId),
             'moderated' => $channel->moderated,
-            'name' => $channel->name,
+            'name' => $channel->displayNameFor($this->userId),
             'type' => $channel->type,
         ];
     }
@@ -58,6 +70,10 @@ class ChannelTransformer extends TransformerAbstract
 
     public function includeUsers(Channel $channel)
     {
-        return $this->primitive($channel->userChannels()->pluck('user_id'));
+        if ($channel->isPM()) {
+            return $this->primitive($channel->userChannels()->pluck('user_id'));
+        }
+
+        return $this->primitive([]);
     }
 }
