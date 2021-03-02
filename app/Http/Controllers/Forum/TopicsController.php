@@ -355,10 +355,10 @@ class TopicsController extends Controller
 
         if ($isJsonRequest) {
             return [
-                'topic' => json_item($topic, 'Forum\Topic'),
-                'posts' => json_collection($posts, 'Forum\Post', ['body']),
                 'cursor' => $cursorHelper->next($posts),
+                'posts' => json_collection($posts, 'Forum\Post', ['body']),
                 'search' => ['limit' => $params['limit'], 'sort' => $cursorHelper->getSortName()],
+                'topic' => json_item($topic, 'Forum\Topic'),
             ];
         }
 
