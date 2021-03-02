@@ -38,6 +38,67 @@ export default class ConversationView extends React.Component<Props> {
   private unreadMarkerRef = React.createRef<HTMLDivElement>();
 
   @computed
+  get conversationStack() {
+    const channel = this.currentChannel;
+    if (channel == null) return [];
+
+    const conversationStack: JSX.Element[] = [];
+    let currentGroup: Message[] = [];
+    let unreadMarkerShown = false;
+    let currentDay: number;
+
+    _.each(channel.messages, (message: Message, key: number) => {
+      // check if the last read indicator needs to be shown
+      // when messageId is a uuid, comparison will always be false.
+      if (!unreadMarkerShown && message.messageId > (channel.lastReadId ?? -1) && message.sender.id !== currentUser.id) {
+        unreadMarkerShown = true;
+
+        // If the unread marker is the first element in this conversation, it most likely means that the unread cursor
+        // is even further in the past, making the displayed marker somewhat useless (until we can back-load those
+        // past messages in)... thus we ignore it when auto-scrolling and just go to the bottom instead.
+        //
+        // TODO: Actually in hindsight, there's another scenario where the first element in the conversation is an
+        // unread marker - when you receive new PMs and have yet to read any. Will look to handle this case later...
+        if (_.isEmpty(conversationStack)) {
+          this.assumeHasBacklog = true;
+        }
+
+        if (!_.isEmpty(currentGroup)) {
+          conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
+          currentGroup = [];
+        }
+        conversationStack.push(<MessageDivider key={`read-${message.timestamp}`} ref={this.unreadMarkerRef} type='UNREAD_MARKER' timestamp={message.timestamp} />);
+      }
+
+      // check whether the day-change header needs to be shown
+      if (_.isEmpty(conversationStack) || moment(message.timestamp).date() !== currentDay /* TODO: make check less dodgy */) {
+        if (!_.isEmpty(currentGroup)) {
+          conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
+          currentGroup = [];
+        }
+        conversationStack.push(<MessageDivider key={`day-${message.timestamp}`} type='DAY_MARKER' timestamp={message.timestamp} />);
+        currentDay = moment(message.timestamp).date();
+      }
+
+      // add message to current message grouping if the sender is the same, otherwise create a new message grouping
+      const lastCurrentGroup = _.last(currentGroup);
+      if (lastCurrentGroup == null || lastCurrentGroup.sender.id === message.sender.id) {
+        currentGroup.push(message);
+      } else {
+        conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
+        currentGroup = [];
+        currentGroup.push(message);
+      }
+
+      if (key === channel.messages.length - 1) {
+        conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
+      }
+    });
+
+    return conversationStack;
+  }
+
+  @computed
   get currentChannel() {
     return this.dataStore.chatState.selectedChannel;
   }
@@ -155,61 +216,8 @@ export default class ConversationView extends React.Component<Props> {
     this.assumeHasBacklog = false;
 
     if (channel == null) {
-      return <div className='conversation' />;
+      return <div className='chat-conversation' />;
     }
-
-    const conversationStack: JSX.Element[] = [];
-    let currentGroup: Message[] = [];
-    let unreadMarkerShown = false;
-    let currentDay: number;
-
-    _.each(channel.messages, (message: Message, key: number) => {
-      // check if the last read indicator needs to be shown
-      // when messageId is a uuid, comparison will always be false.
-      if (!unreadMarkerShown && message.messageId > (channel.lastReadId ?? -1) && message.sender.id !== currentUser.id) {
-        unreadMarkerShown = true;
-
-        // If the unread marker is the first element in this conversation, it most likely means that the unread cursor
-        // is even further in the past, making the displayed marker somewhat useless (until we can back-load those
-        // past messages in)... thus we ignore it when auto-scrolling and just go to the bottom instead.
-        //
-        // TODO: Actually in hindsight, there's another scenario where the first element in the conversation is an
-        // unread marker - when you receive new PMs and have yet to read any. Will look to handle this case later...
-        if (_.isEmpty(conversationStack)) {
-          this.assumeHasBacklog = true;
-        }
-
-        if (!_.isEmpty(currentGroup)) {
-          conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
-          currentGroup = [];
-        }
-        conversationStack.push(<MessageDivider key={`read-${message.timestamp}`} ref={this.unreadMarkerRef} type='UNREAD_MARKER' timestamp={message.timestamp} />);
-      }
-
-      // check whether the day-change header needs to be shown
-      if (_.isEmpty(conversationStack) || moment(message.timestamp).date() !== currentDay /* TODO: make check less dodgy */) {
-        if (!_.isEmpty(currentGroup)) {
-          conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
-          currentGroup = [];
-        }
-        conversationStack.push(<MessageDivider key={`day-${message.timestamp}`} type='DAY_MARKER' timestamp={message.timestamp} />);
-        currentDay = moment(message.timestamp).date();
-      }
-
-      // add message to current message grouping if the sender is the same, otherwise create a new message grouping
-      const lastCurrentGroup = _.last(currentGroup);
-      if (lastCurrentGroup == null || lastCurrentGroup.sender.id === message.sender.id) {
-        currentGroup.push(message);
-      } else {
-        conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
-        currentGroup = [];
-        currentGroup.push(message);
-      }
-
-      if (key === channel.messages.length - 1) {
-        conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
-      }
-    });
 
     return (
       <div className='chat-conversation' onScroll={this.onScroll} ref={this.chatViewRef}>
@@ -246,7 +254,7 @@ export default class ConversationView extends React.Component<Props> {
             <Spinner />
           </div>
         }
-        {conversationStack}
+        {this.conversationStack}
         {channel.moderated &&
           this.noCanSendMessage()
         }
