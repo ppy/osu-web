@@ -61,7 +61,7 @@ return [
     ],
 
     'supporter_gift' => [
-        'anonymous_gift' => '赠予您支持者标签的人想要保持匿名，所以在这个通知中并没有提到他（们）。',
+        'anonymous_gift' => '赠予您支持者标签的人想要保持匿名，所以在这封邮件中并没有提到他（们）。',
         'anonymous_gift_maybe_not' => '话虽如此，不过您可能已经猜到是谁啦嘿嘿嘿~',
         'duration' => '感谢赠送者，您可以在接下来的 :duration 内享受到 osu!direct 等 osu! 支持者所享有的特权。',
         'features' => '您可以在此处找到更多关于特权的信息：',

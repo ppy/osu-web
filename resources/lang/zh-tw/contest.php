@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => '這場評選的投票已經結束',
         'login_required' => '請登入後再投票。',
+        'over' => '這場評選的投票已經結束',
+        'show_voted_only' => '顯示投票',
 
         'best_of' => [
             'none_played' => "沒有符合此次評選條件的圖譜！",
@@ -32,8 +33,6 @@ return [
         'login_required' => '請登入後再參加評選。',
         'silenced_or_restricted' => '帳戶受限時無法參加評選。',
         'preparation' => '我們正在準備這場評選，請耐心等待！',
-        'over' => '感謝參與！提交已經關閉，投票即將開始。',
-        'limit_reached' => '您提交的參賽文件大小超出限制',
         'drop_here' => '將您的參賽文件拖到此處',
         'download' => '下載 .osz 檔案',
         'wrong_type' => [
@@ -53,7 +52,7 @@ return [
     ],
     'dates' => [
         'ended' => '結束於 :date',
-        'ended_no_date' => '',
+        'ended_no_date' => '已結束',
 
         'starts' => [
             '_' => '開始於 :date',

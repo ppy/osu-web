@@ -117,6 +117,7 @@ return [
             'nsfw' => 'محتوى حَساس',
             'points-of-failure' => 'نقاط الفشل',
             'source' => 'المصدر',
+            'storyboard' => '',
             'success-rate' => 'معدل النجاح',
             'tags' => 'ألعلامات',
         ],

@@ -29,7 +29,7 @@ return [
         'nomination_reset' => '新問題 :discussion 導致提名被重置。',
         'qualify' => '這張圖譜已經達到所需的提名數量，並已經 qualified。',
         'rank' => '進榜',
-        'remove_from_loved' => '',
+        'remove_from_loved' => '由 :user 從 Loved 中移除。(:text)',
 
         'nsfw_toggle' => [
             'to_0' => '',
@@ -67,7 +67,7 @@ return [
         'kudosu_gain' => '獲得 Kudosu',
         'kudosu_lost' => '失去 Kudosu',
         'kudosu_recalculate' => '重新計算 Kudosu',
-        'language_edit' => '',
+        'language_edit' => '更改語言',
         'love' => 'Love',
         'nominate' => '被提名',
         'nomination_reset' => '被取消提名',

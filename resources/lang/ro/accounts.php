@@ -62,6 +62,7 @@ return [
             'comment_new' => 'comentarii noi',
             'forum_topic_reply' => 'răspuns topic',
             'mail' => 'mail',
+            'mapping' => '',
             'push' => 'push',
             'user_achievement_unlock' => 'medalie de utilizator deblocată',
         ],

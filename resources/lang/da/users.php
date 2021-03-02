@@ -410,6 +410,11 @@ return [
         ],
     ],
 
+    'silenced_banner' => [
+        'title' => 'Du er i øjeblikket gjort tavs.',
+        'message' => 'Nogle handlinger kan være utilgængelige.',
+    ],
+
     'status' => [
         'all' => 'Alle',
         'online' => 'Online',

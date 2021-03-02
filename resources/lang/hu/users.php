@@ -156,7 +156,7 @@ return [
 
         'comments_count' => [
             '_' => '',
-            'count' => '',
+            'count' => ':count_delimited komment|:count_delimited komment',
         ],
         'edit' => [
             'cover' => [
@@ -408,6 +408,11 @@ return [
             'unranked_beatmapset_count' => 'Függőben lévő beatmapek',
             'graveyard_beatmapset_count' => 'Eltemetett beatmapek',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Jelenleg el vagy némítva.',
+        'message' => '',
     ],
 
     'status' => [

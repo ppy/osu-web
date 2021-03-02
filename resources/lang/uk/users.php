@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Учасники за режимом гри',
     ],
 
     'force_reactivation' => [
@@ -408,6 +408,11 @@ return [
             'unranked_beatmapset_count' => 'Карти на розгляді',
             'graveyard_beatmapset_count' => 'Закинуті карти',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => 'Деякі дії можуть бути недоступними.',
     ],
 
     'status' => [

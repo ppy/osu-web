@@ -155,7 +155,7 @@ return [
         'title' => ":username 的個人簡介",
 
         'comments_count' => [
-            '_' => '',
+            '_' => '發表了 :link',
             'count' => '',
         ],
         'edit' => [
@@ -408,6 +408,11 @@ return [
             'unranked_beatmapset_count' => '待處理的圖譜',
             'graveyard_beatmapset_count' => '已拋棄的圖譜',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '您正被禁言。',
+        'message' => '可能無法執行某些動作。',
     ],
 
     'status' => [

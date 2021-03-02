@@ -1386,7 +1386,7 @@ function get_param_value($input, $type)
     }
 }
 
-function get_params($input, $namespace, $keys)
+function get_params($input, $namespace, $keys, $options = [])
 {
     if ($namespace !== null) {
         $input = array_get($input, $namespace);
@@ -1395,6 +1395,8 @@ function get_params($input, $namespace, $keys)
     $params = [];
 
     if (is_array($input) || ($input instanceof ArrayAccess)) {
+        $options['null_missing'] = $options['null_missing'] ?? false;
+
         foreach ($keys as $keyAndType) {
             $keyAndType = explode(':', $keyAndType);
 
@@ -1403,8 +1405,11 @@ function get_params($input, $namespace, $keys)
 
             if (array_has($input, $key)) {
                 $value = get_param_value(array_get($input, $key), $type);
-
                 array_set($params, $key, $value);
+            } else {
+                if ($options['null_missing']) {
+                    array_set($params, $key, null);
+                }
             }
         }
     }

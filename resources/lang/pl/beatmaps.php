@@ -225,7 +225,7 @@ return [
                 'genre' => 'Gatunek',
                 'language' => 'Język',
                 'mode' => 'Tryb gry',
-                'nsfw' => '',
+                'nsfw' => 'Treść dla pełnoletnich',
                 'played' => 'Ukończenie',
                 'rank' => 'Uzyskana ocena',
                 'status' => 'Kategorie',
@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Polecany poziom trudności',
         'converts' => 'Uwzględnij przekonwertowane beatmapy',
+        'follows' => 'Obserwowani twórcy',
+        'recommended' => 'Polecany poziom trudności',
     ],
     'mode' => [
         'all' => 'Wszyscy',
@@ -333,8 +334,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Ukryj',
+        'include' => 'Pokaż',
     ],
 
     'played' => [

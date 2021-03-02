@@ -18,6 +18,7 @@ return [
             'not_enough_plays' => 'You have not played the game enough',
             'not_verified' => 'Your session has not been verified',
             'restricted' => 'You are currently restricted',
+            'silenced' => 'You are currently silenced',
             'target_restricted' => 'The recipient is currently restricted',
         ],
     ],

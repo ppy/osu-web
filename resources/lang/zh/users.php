@@ -148,7 +148,7 @@ return [
         'joined_at' => '注册时间：:date',
         'lastvisit' => '上次登录：:date',
         'lastvisit_online' => '当前在线',
-        'missingtext' => '未找到用户！（或者该用户已经被 ban）',
+        'missingtext' => '你可能打错字了！（或者该用户已经被封禁）',
         'origin_country' => '来自 :country',
         'previous_usernames' => '曾用名',
         'plays_with' => '惯用 :devices',
@@ -408,6 +408,11 @@ return [
             'unranked_beatmapset_count' => 'Pending 的谱面',
             'graveyard_beatmapset_count' => '坟场里的谱面',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '你已被禁言。',
+        'message' => '部分操作将不可用。',
     ],
 
     'status' => [

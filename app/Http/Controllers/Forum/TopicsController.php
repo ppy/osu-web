@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Forum;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\Notifications\ForumTopicReply;
+use App\Libraries\DbCursorHelper;
 use App\Libraries\NewForumTopic;
 use App\Models\Forum\FeatureVote;
 use App\Models\Forum\Forum;
@@ -19,7 +20,6 @@ use App\Models\Forum\TopicWatch;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use DB;
-use Illuminate\Http\Request as HttpRequest;
 use Request;
 
 class TopicsController extends Controller
@@ -47,6 +47,54 @@ class TopicsController extends Controller
             'forum.topics.create',
             (new NewForumTopic($forum, Auth::user()))->toArray()
         );
+    }
+
+    public function destroy($id)
+    {
+        $topic = Topic::withTrashed()->findOrFail($id);
+
+        priv_check('ForumTopicDelete', $topic)->ensureCan();
+
+        DB::transaction(function () use ($topic) {
+            if ((auth()->user()->user_id ?? null) !== $topic->topic_poster) {
+                $this->logModerate(
+                    'LOG_DELETE_TOPIC',
+                    [$topic->topic_title],
+                    $topic
+                );
+            }
+
+            if (!$topic->delete()) {
+                throw new ModelNotSavedException($topic->validationErrors()->toSentence());
+            }
+        });
+
+        if (priv_check('ForumModerate', $topic->forum)->can()) {
+            return ext_view('forum.topics.delete', ['post' => $topic->firstPost], 'js');
+        } else {
+            return ujs_redirect(route('forum.forums.show', $topic->forum));
+        }
+    }
+
+    public function restore($id)
+    {
+        $topic = Topic::withTrashed()->findOrFail($id);
+
+        priv_check('ForumModerate', $topic->forum)->ensureCan();
+
+        DB::transaction(function () use ($topic) {
+            $this->logModerate(
+                'LOG_RESTORE_TOPIC',
+                [$topic->topic_title],
+                $topic
+            );
+
+            if (!$topic->restore()) {
+                throw new ModelNotSavedException($topic->validationErrors()->toSentence());
+            }
+        });
+
+        return ext_view('forum.topics.restore', ['post' => $topic->firstPost], 'js');
     }
 
     public function editPollGet($topicId)
@@ -166,20 +214,20 @@ class TopicsController extends Controller
         return ext_view('forum.topics.replace_button', compact('topic', 'type', 'state'), 'js');
     }
 
-    public function reply(HttpRequest $request, $id)
+    public function reply($id)
     {
         $topic = Topic::findOrFail($id);
 
         priv_check('ForumTopicReply', $topic)->ensureCan();
 
         try {
-            $post = $topic->addPostOrExplode(Auth::user(), request('body'));
+            $post = Post::createNew($topic, auth()->user(), get_string(request('body')));
         } catch (ModelNotSavedException $e) {
             return error_popup($e->getMessage());
         }
 
         $posts = collect([$post]);
-        $firstPostPosition = $topic->postPosition($post->post_id);
+        $firstPostPosition = $topic->postPosition($post->getKey());
 
         $post->markRead(Auth::user());
         (new ForumTopicReply($post, auth()->user()))->dispatch();
@@ -189,28 +237,7 @@ class TopicsController extends Controller
 
     public function show($id)
     {
-        $params = get_params(request()->all(), null, [
-            'start',
-            'end:int',
-            'n:int',
-            'skip_layout:bool',
-            'with_deleted:bool',
-        ]);
-
-        $postStartId = $params['start'] ?? null;
-        $postEndId = $params['end'] ?? null;
-        $nthPost = $params['n'] ?? null;
-        $skipLayout = $params['skip_layout'] ?? false;
-        $showDeleted = $params['with_deleted'] ?? null;
-        $jumpTo = null;
-
-        $topic = Topic
-            ::with([
-                'forum.cover',
-                'pollOptions.votes',
-                'pollOptions.post',
-                'featureVotes.user',
-            ])->withTrashed()->findOrFail($id);
+        $topic = Topic::with(['forum'])->withTrashed()->findOrFail($id);
 
         $userCanModerate = priv_check('ForumModerate', $topic->forum)->can();
 
@@ -222,98 +249,101 @@ class TopicsController extends Controller
             abort(404);
         }
 
-        if ($userCanModerate) {
-            $showDeleted = $showDeleted ?? auth()->user()->profileCustomization()->forum_posts_show_deleted;
-        } else {
-            $showDeleted = false;
-        }
-
         priv_check('ForumView', $topic->forum)->ensureCan();
 
-        $posts = $topic->posts()->showDeleted($showDeleted);
+        $currentUser = auth()->user();
+        $params = $this->getIndexParams($topic, $currentUser, $userCanModerate);
 
-        if ($postStartId === 'unread') {
-            $postStartId = Post::lastUnreadByUser($topic, Auth::user());
-        } else {
-            $postStartId = get_int($postStartId);
+        $skipLayout = $params['skip_layout'];
+        $showDeleted = $params['with_deleted'];
+
+        $cursorHelper = new DbCursorHelper(Post::SORTS, Post::DEFAULT_SORT, $params['sort']);
+
+        $postsQueryBase = $topic->posts()->showDeleted($showDeleted)->limit(20);
+        $posts = (clone $postsQueryBase)->cursorSort(
+            $cursorHelper->getSort(),
+            $cursorHelper->prepare($params['cursor'])
+        )->get();
+
+        if ($posts->count() === 0) {
+            abort(404);
         }
 
-        if ($nthPost !== null) {
-            $post = $topic->nthPost($nthPost);
-            if ($post) {
-                $postStartId = $post->post_id;
+        if ($skipLayout) {
+            $jumpTo = null;
+        } else {
+            $firstPost = $posts->first();
+            $jumpTo = $firstPost->getKey();
+
+            if ($cursorHelper->getSortName() === 'id_asc') {
+                if ($jumpTo !== $topic->topic_first_post_id) {
+                    $extraSort = 'id_desc';
+                }
+            } else {
+                $extraSort = 'id_asc';
+            }
+            if (isset($extraSort)) {
+                $extraCursorHelper = new DbCursorHelper(Post::SORTS, $extraSort);
+                $extraPosts = (clone $postsQueryBase)
+                    ->cursorSort(
+                        $extraCursorHelper->getSort(),
+                        $extraCursorHelper->prepare(['id' => $jumpTo])
+                    )->get()
+                    ->reverse();
+
+                $posts = $extraPosts->concat($posts);
             }
         }
 
-        if (!$skipLayout) {
-            $jumpTo = $postStartId ?? $postEndId ?? 0;
-        }
-
-        if ($postStartId !== null && !$skipLayout) {
-            // move starting post up by ten to avoid hitting
-            // page autoloader right after loading the page.
-            $postPosition = $topic->postPosition($postStartId);
-            $post = $topic->nthPost($postPosition - 10);
-            $postStartId = $post->post_id;
-        }
-
-        if ($postStartId !== null) {
-            $posts = $posts
-                ->where('post_id', '>=', $postStartId);
-        } elseif ($postEndId !== null) {
-            $posts = $posts
-                ->where('post_id', '<=', $postEndId)
-                ->orderBy('post_id', 'desc');
-        }
-
         $posts = $posts
-            ->take(20)
-            ->with('forum')
-            ->with('lastEditor')
-            ->with('topic')
-            ->with('user.rank')
-            ->with('user.country')
-            ->with('user.supporterTagPurchases')
-            ->with('user.userGroups')
-            ->get()
-            ->sortBy('post_id');
+            ->load([
+                'lastEditor',
+                'user.country',
+                'user.rank',
+                'user.supporterTagPurchases',
+                'user.userGroups',
+            ])->each(function ($item) use ($topic) {
+                $item
+                    ->setRelation('forum', $topic->forum)
+                    ->setRelation('topic', $topic);
+            });
 
-        if ($posts->count() === 0) {
-            abort($skipLayout ? 204 : 404);
+        if ($cursorHelper->getSortName() === 'id_desc') {
+            $posts = $posts->reverse();
         }
 
-        $firstPostId = $topic->posts()
-            ->showDeleted($showDeleted)
-            ->orderBy('post_id', 'asc')
-            ->select('post_id')
-            ->first()
-            ->post_id;
-
-        $firstShownPostId = $posts->first()->post_id;
+        $firstPostId = $topic->topic_first_post_id;
+        $firstShownPostId = $posts->first()->getKey();
 
         // position of the first post, incremented in the view
         // to generate positions of further posts
         $firstPostPosition = $topic->postPosition($firstShownPostId);
 
-        $pollSummary = PollOption::summary($topic, Auth::user());
+        $poll = $topic->poll();
+        if ($poll->exists()) {
+            $topic->load([
+                'pollOptions.votes',
+                'pollOptions.post',
+            ]);
+            $canEditPoll = $poll->canEdit() && priv_check('ForumTopicPollEdit', $topic)->can();
+        } else {
+            $canEditPoll = false;
+        }
 
-        $posts->last()->markRead(Auth::user());
+        $pollSummary = PollOption::summary($topic, $currentUser);
+
+        $posts->last()->markRead($currentUser);
 
         $template = $skipLayout ? '_posts' : 'show';
 
-        $cover = json_item(
-            $topic->cover()->firstOrNew([]),
-            new TopicCoverTransformer()
-        );
+        $coverModel = $topic->cover()->firstOrNew([]);
+        $coverModel->setRelation('topic', $topic);
+        $cover = json_item($coverModel, new TopicCoverTransformer());
 
-        $watch = TopicWatch::lookup($topic, Auth::user());
-
-        $poll = new TopicPoll();
-        $poll->setTopic($topic);
-        $canEditPoll = $poll->canEdit() && priv_check('ForumTopicPollEdit', $topic)->can();
+        $watch = TopicWatch::lookup($topic, $currentUser);
 
         $featureVotes = $this->groupFeatureVotes($topic);
-        $noindex = !$topic->esShouldIndex();
+        $noindex = !$topic->forum->enable_indexing;
 
         return ext_view(
             "forum.topics.{$template}",
@@ -335,14 +365,22 @@ class TopicsController extends Controller
         );
     }
 
-    public function store(HttpRequest $request)
+    public function store()
     {
-        $forum = Forum::findOrFail($request->get('forum_id'));
+        $params = get_params(request()->all(), null, [
+            'body:string',
+            'cover_id:int',
+            'forum_id:int',
+            'title:string',
+            'with_poll:bool',
+        ], ['null_missing' => true]);
+
+        $forum = Forum::findOrFail($params['forum_id']);
         $user = auth()->user();
 
         priv_check('ForumTopicStore', $forum)->ensureCan();
 
-        if (get_bool($request->get('with_poll'))) {
+        if ($params['with_poll']) {
             $poll = (new TopicPoll())->fill($this->getPollParams());
 
             if (!$poll->isValid()) {
@@ -350,15 +388,15 @@ class TopicsController extends Controller
             }
         }
 
-        $params = [
-            'title' => $request->get('title'),
+        $topicParams = [
+            'title' => $params['title'],
             'user' => $user,
-            'body' => $request->get('body'),
-            'cover' => TopicCover::findForUse(presence($request->input('cover_id')), $user),
+            'body' => $params['body'],
+            'cover' => TopicCover::findForUse($params['cover_id'], $user),
         ];
 
         try {
-            $topic = Topic::createNew($forum, $params, $poll ?? null);
+            $topic = Topic::createNew($forum, $topicParams, $poll ?? null);
         } catch (ModelNotSavedException $e) {
             return error_popup($e->getMessage());
         }
@@ -429,6 +467,53 @@ class TopicsController extends Controller
         }
     }
 
+    private function getIndexParams($topic, $currentUser, $userCanModerate)
+    {
+        $params = get_params(request()->all(), null, [
+            'start', // either number or "unread"
+            'end:int',
+            'n:int',
+
+            'skip_layout:bool',
+            'with_deleted:bool',
+
+            'sort:string',
+            'cursor:any',
+        ], ['null_missing' => true]);
+
+        $params['skip_layout'] = $params['skip_layout'] ?? false;
+
+        if ($userCanModerate) {
+            $params['with_deleted'] = $params['with_deleted'] ?? $currentUser->profileCustomization()->forum_posts_show_deleted;
+        } else {
+            $params['with_deleted'] = false;
+        }
+
+        if (!is_array($params['cursor'])) {
+            if ($params['start'] === 'unread') {
+                $params['start'] = Post::lastUnreadByUser($topic, $currentUser);
+            } else {
+                $params['start'] = get_int($params['start']);
+            }
+
+            if ($params['n'] !== null) {
+                $post = $topic->nthPost($params['n']);
+                if ($post !== null) {
+                    $params['cursor'] = ['id' => $post->getKey() - 1];
+                    $params['sort'] = 'id_asc';
+                }
+            } elseif ($params['start'] !== null) {
+                $params['cursor'] = ['id' => $params['start'] - 1];
+                $params['sort'] = 'id_asc';
+            } elseif ($params['end'] !== null) {
+                $params['cursor'] = ['id' => $params['end'] + 1];
+                $params['sort'] = 'id_desc';
+            }
+        }
+
+        return $params;
+    }
+
     private function getPollParams()
     {
         return get_params(request()->all(), 'forum_topic_poll', [
@@ -443,9 +528,13 @@ class TopicsController extends Controller
 
     private function groupFeatureVotes($topic)
     {
+        if (!$topic->isFeatureTopic()) {
+            return [];
+        }
+
         $ret = [];
 
-        foreach ($topic->featureVotes as $vote) {
+        foreach ($topic->featureVotes()->with('user')->get() as $vote) {
             $username = optional($vote->user)->username;
             $ret[$username] ?? ($ret[$username] = 0);
             $ret[$username] += $vote->voteIncrement();

@@ -29,29 +29,17 @@ class PostsController extends Controller
 
         priv_check('ForumPostDelete', $post)->ensureCan();
 
-        $topic = $post->topic()->withTrashed()->first();
+        DB::transaction(function () use ($post) {
+            if ((auth()->user()->user_id ?? null) !== $post->poster_id) {
+                $this->logModerate(
+                    'LOG_DELETE_POST',
+                    [$post->topic->topic_title],
+                    $post
+                );
+            }
 
-        try {
-            DB::transaction(function () use ($post, $topic) {
-                if ((Auth::user()->user_id ?? null) !== $post->poster_id) {
-                    $this->logModerate(
-                        'LOG_DELETE_POST',
-                        [$topic->topic_title],
-                        $post
-                    );
-                }
-
-                $topic->removePostOrExplode($post);
-            });
-        } catch (ModelNotSavedException $e) {
-            return error_popup($e->getMessage());
-        }
-
-        if ($topic->trashed()) {
-            $redirect = route('forum.forums.show', $topic->forum);
-
-            return ujs_redirect($redirect);
-        }
+            $post->deleteOrExplode();
+        });
 
         return ext_view('forum.topics.delete', compact('post'), 'js');
     }
@@ -62,15 +50,17 @@ class PostsController extends Controller
 
         priv_check('ForumModerate', $post->forum)->ensureCan();
 
-        $topic = $post->topic()->withTrashed()->first();
+        DB::transaction(function () use ($post) {
+            $this->logModerate(
+                'LOG_RESTORE_POST',
+                [$post->topic->topic_title],
+                $post
+            );
 
-        $this->logModerate(
-            'LOG_RESTORE_POST',
-            [$topic->topic_title],
-            $post
-        );
-
-        $topic->restorePost($post);
+            if (!$post->restore()) {
+                throw new ModelNotSavedException($post->validationErrors()->toSentence());
+            }
+        });
 
         return ext_view('forum.topics.restore', compact('post'), 'js');
     }

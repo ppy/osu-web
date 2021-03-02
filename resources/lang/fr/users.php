@@ -410,6 +410,11 @@ return [
         ],
     ],
 
+    'silenced_banner' => [
+        'title' => 'Vous êtes actuellement réduit au silence.',
+        'message' => 'Certaines actions peuvent être indisponibles.',
+    ],
+
     'status' => [
         'all' => 'Tous',
         'online' => 'En ligne',

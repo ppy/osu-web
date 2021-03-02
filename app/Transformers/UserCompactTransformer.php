@@ -34,7 +34,6 @@ class UserCompactTransformer extends TransformerAbstract
         'blocks',
         'country',
         'cover',
-        'current_mode_rank',
         'favourite_beatmapset_count',
         'follow_user_mapping',
         'follower_count',
@@ -165,13 +164,6 @@ class UserCompactTransformer extends TransformerAbstract
             'url' => $profileCustomization->cover()->url(),
             'id' => $profileCustomization->cover()->id(),
         ]);
-    }
-
-    public function includeCurrentModeRank(User $user)
-    {
-        $currentModeStatistics = $user->statistics(auth()->user()->playmode ?? 'osu');
-
-        return $this->primitive($currentModeStatistics ? $currentModeStatistics->globalRank() : null);
     }
 
     public function includeFavouriteBeatmapsetCount(User $user)

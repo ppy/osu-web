@@ -68,6 +68,7 @@ return [
         'moderated' => 'Tento kanál je právě moderován.',
         'no_access' => 'Nemáte přístup k tomu kanálu.',
         'restricted' => 'Nemůžete posílat zprávy, když jste umlčen, omezen nebo zabanován.',
+        'silenced' => '',
     ],
 
     'comment' => [
@@ -78,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Po skončení hlasovací doby pro tuto soutěž již nemůžeš změnit svůj hlas.',
+
+        'entry' => [
+            'limit_reached' => 'Dosáhl jsi limitu vstupů pro tuto soutěž',
+            'over' => 'Díky za vaše vstupy! Podání byla uzavřena a hlasování se brzy otevře.',
+        ],
     ],
 
     'forum' => [

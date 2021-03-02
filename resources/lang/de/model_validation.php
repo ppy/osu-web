@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Den Metadaten-Beitrag einer Beatmap kann man nicht löschen.',
             'beatmapset_post_no_edit' => 'Den Metadaten-Beitrag einer Beatmap kann man nicht bearbeiten.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => 'In deiner Antwort ist nur ein Zitat enthalten.',
 
             'attributes' => [

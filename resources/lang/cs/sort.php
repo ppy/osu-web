@@ -24,4 +24,9 @@ return [
         'feature_votes' => 'Počet hvězd',
         'new' => 'Poslední odpověď',
     ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
+    ],
 ];

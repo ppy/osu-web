@@ -62,6 +62,7 @@ return [
             'comment_new' => 'nuevos comentarios',
             'forum_topic_reply' => 'respuestas a temas',
             'mail' => 'correo electrónico',
+            'mapping' => 'creadores de mapas',
             'push' => 'push',
             'user_achievement_unlock' => 'medallas desbloqueadas',
         ],

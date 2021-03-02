@@ -410,6 +410,11 @@ return [
         ],
     ],
 
+    'silenced_banner' => [
+        'title' => 'Du är för närvarande tystad.',
+        'message' => '',
+    ],
+
     'status' => [
         'all' => 'Alla',
         'online' => 'Online',

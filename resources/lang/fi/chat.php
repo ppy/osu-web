@@ -18,6 +18,7 @@ return [
             'not_enough_plays' => '',
             'not_verified' => '',
             'restricted' => 'Käyttäjätilisi on rajoitetussa tilassa',
+            'silenced' => '',
             'target_restricted' => 'Vastaanottaja on rajoitetussa tilassa',
         ],
     ],

@@ -410,6 +410,11 @@ return [
         ],
     ],
 
+    'silenced_banner' => [
+        'title' => 'Şu anda susturulmuş durumdasınız.',
+        'message' => 'Bazı eylemler kullanım dışı olabilir.',
+    ],
+
     'status' => [
         'all' => 'Tümü',
         'online' => 'Çevrimiçi',

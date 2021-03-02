@@ -23,7 +23,7 @@ return [
     ],
 
     'status' => [
-        'non_best' => '',
-        'processing' => '',
+        'non_best' => '只有個人最佳成績的回饋 pp',
+        'processing' => '成績仍在結算中，不久後就會顯示',
     ],
 ];

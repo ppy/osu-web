@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => '推荐难度',
         'converts' => '包括转谱',
+        'follows' => '已关注谱师',
+        'recommended' => '推荐难度',
     ],
     'mode' => [
         'all' => '全部',
@@ -315,7 +316,7 @@ return [
         'V2' => 'Score V2',
     ],
     'language' => [
-        'any' => '',
+        'any' => '所有',
         'english' => '英语',
         'chinese' => '汉语',
         'french' => '法语',

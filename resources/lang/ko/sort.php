@@ -24,4 +24,9 @@ return [
         'feature_votes' => '별 평점 순위',
         'new' => '최근 응답',
     ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
+    ],
 ];

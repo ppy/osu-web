@@ -24,4 +24,9 @@ return [
         'feature_votes' => 'Кількістю голосів',
         'new' => 'Останьою відповідю',
     ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
+    ],
 ];

@@ -13,11 +13,11 @@ return [
     ],
 
     'scopes' => [
-        'bot' => '',
+        'bot' => 'Hành xử như chat bot.',
         'identify' => 'Nhận diện và đọc trang cá nhân công khai của bạn.',
 
         'chat' => [
-            'write' => '',
+            'write' => 'Gửi tin nhắn dưới tư cách của bạn.',
         ],
 
         'friends' => [
