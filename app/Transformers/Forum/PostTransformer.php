@@ -17,16 +17,14 @@ class PostTransformer extends TransformerAbstract
     public function transform(Post $post)
     {
         return [
-            'id' => $post->getKey(),
-
-            'edited_by_id' => $post->post_edit_user,
-            'forum_id' => $post->forum_id,
-            'topic_id' => $post->topic_id,
-            'user_id' => $post->poster_id,
-
             'created_at' => json_time($post->post_time),
             'deleted_at' => json_time($post->deleted_at),
             'edited_at' => json_time($post->post_edit_time),
+            'edited_by_id' => $post->post_edit_user,
+            'forum_id' => $post->forum_id,
+            'id' => $post->getKey(),
+            'topic_id' => $post->topic_id,
+            'user_id' => $post->poster_id,
         ];
     }
 
