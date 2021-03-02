@@ -18,7 +18,6 @@ export default class Channel {
   @observable loading: boolean = false;
   @observable loadingEarlierMessages: boolean = false;
   @observable messages: Message[] = observable([]);
-  @observable metaLoaded: boolean = false;
   @observable moderated: boolean = false;
   @observable name: string = '';
   @observable newPmChannel = false;
@@ -61,6 +60,11 @@ export default class Channel {
     }
 
     return this.initialLastMessageId ?? -1;
+  }
+
+  @computed
+  get isDisplayable() {
+    return this.name.length > 0 && this.icon != null;
   }
 
   @computed
@@ -176,8 +180,6 @@ export default class Channel {
     this.users = json.users;
 
     this.initialLastMessageId = json.last_message_id ?? this.lastMessageId;
-
-    this.metaLoaded = true;
   }
 
   @action
