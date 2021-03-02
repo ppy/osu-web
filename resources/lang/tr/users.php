@@ -357,7 +357,6 @@ return [
             'interests' => 'İlgi Alanları',
             'location' => 'Mevcut Konum',
             'occupation' => 'Meslek',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Web sitesi',
         ],

@@ -357,7 +357,6 @@ return [
             'interests' => 'Interesser',
             'location' => 'Nåværende Plassering',
             'occupation' => 'Yrke',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Nettside',
         ],
