@@ -47,7 +47,7 @@ return [
         'confirm_restore' => 'Yakin mengembalikan post?',
         'edited' => 'Terakhir disunting oleh :user :when, dengan total penyuntingan sebanyak :count_delimited kali.|Terakhir disunting oleh :user :when, dengan total penyuntingan sebanyak :count_delimited kali.',
         'posted_at' => 'diposting :when',
-        'posted_by' => '',
+        'posted_by' => 'di-post oleh :username',
 
         'actions' => [
             'destroy' => 'Hapus Kiriman',
@@ -75,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'topik yang dihapus',
         'go_to_latest' => 'lihat posting terbaru',
         'has_replied' => 'Anda telah mengirimkan balasan pada topik ini',
@@ -88,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'oleh :user',
         'started_by_verbose' => 'topik dimulai oleh :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'Tutup',

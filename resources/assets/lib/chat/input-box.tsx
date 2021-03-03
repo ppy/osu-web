@@ -4,7 +4,7 @@
 import { ChatMessageSendAction } from 'actions/chat-message-send-action';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
-import { dispatch, dispatchListener } from 'app-dispatcher';
+import { dispatch, dispatcher, dispatchListener } from 'app-dispatcher';
 import { BigButton } from 'big-button';
 import DispatchListener from 'dispatch-listener';
 import * as _ from 'lodash';
@@ -57,6 +57,10 @@ export default class InputBox extends React.Component<Props> implements Dispatch
 
   componentDidMount() {
     this.focusInput();
+  }
+
+  componentWillUnmount() {
+    dispatcher.unregister(this);
   }
 
   focusInput() {

@@ -33,8 +33,6 @@ return [
         'login_required' => 'Kirjaudu sisään osallistuaksesi kilpailuun.',
         'silenced_or_restricted' => 'Et voi osallistua kilpailuun jos olet rajoitetussa -tai mykistetyssä tilassa.',
         'preparation' => 'Valmistelemme tätä kilpailua. Odota rauhassa!',
-        'over' => 'Kiitos lähettämistänne töistä! Kilpailuun ei oteta enää ehdokkaita ja äänestys avataan pian.',
-        'limit_reached' => 'Olet saavuttanut kilpailuun lähetettävien töiden rajan',
         'drop_here' => 'Pudota työsi tähän',
         'download' => 'Lataa .osz-tiedosto',
         'wrong_type' => [

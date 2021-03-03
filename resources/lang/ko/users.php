@@ -357,7 +357,6 @@ return [
             'interests' => '관심 분야',
             'location' => '거주지',
             'occupation' => '직업',
-            'skype' => '',
             'twitter' => '',
             'website' => '웹사이트',
         ],

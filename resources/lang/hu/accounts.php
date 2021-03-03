@@ -62,7 +62,7 @@ return [
             'comment_new' => 'Új megjegyzések',
             'forum_topic_reply' => 'Válaszolj erre a témára',
             'mail' => 'e-mail',
-            'mapping' => '',
+            'mapping' => 'beatmap készítő',
             'push' => 'Elöjövő',
             'user_achievement_unlock' => 'Medál feloldva',
         ],

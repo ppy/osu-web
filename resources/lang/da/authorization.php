@@ -68,7 +68,7 @@ return [
         'moderated' => 'Denne kanal er i øjeblikket modereret.',
         'no_access' => 'Du har ikke adgang til denne kanal.',
         'restricted' => 'Du kan ikke sende beskeder når du er enten muted, begrænset eller banned.',
-        'silenced' => '',
+        'silenced' => 'Du kan ikke sende beskeder når du er enten muted, begrænset eller banned.',
     ],
 
     'comment' => [
@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Du kan ikke ændre din stemme efter stemmeperioden for denne konkurrence er slut.',
+
+        'entry' => [
+            'limit_reached' => 'Du har nået dit maksimale antal bidrag for denne konkurrence',
+            'over' => 'Tak for jeres bidrag! Indsendelsen for denne konkurrence er slut, og afstemning vil finde sted snarest!.',
+        ],
     ],
 
     'forum' => [

@@ -75,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'موضوع محذوف',
         'go_to_latest' => 'عرض اخر منشور',
         'has_replied' => 'لقد قمت بالرد على هذا الموضوع',
@@ -88,6 +90,11 @@ return [
         'reply_title_prefix' => 'إعادة',
         'started_by' => 'بواسطة :user',
         'started_by_verbose' => 'بدأت بواسطة :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'إغلاق',

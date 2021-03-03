@@ -250,7 +250,7 @@ return [
     ],
     'general' => [
         'converts' => 'Incluir mapas convertidos',
-        'follows' => '',
+        'follows' => 'Mapeadores suscritos',
         'recommended' => 'Dificultades recomendadas',
     ],
     'mode' => [

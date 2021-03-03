@@ -9,10 +9,8 @@ use App\Jobs\EsIndexDocument;
 use App\Jobs\UpdateUserForumCache;
 use App\Jobs\UpdateUserForumTopicFollows;
 use App\Libraries\BBCodeForDB;
-use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
-use App\Models\Elasticsearch;
 use App\Models\Log;
 use App\Models\Notification;
 use App\Models\User;
@@ -74,9 +72,9 @@ use Illuminate\Database\QueryException;
  * @property \Illuminate\Database\Eloquent\Collection $userTracks TopicTrack
  * @property \Illuminate\Database\Eloquent\Collection $watches TopicWatch
  */
-class Topic extends Model implements AfterCommit, Indexable
+class Topic extends Model implements AfterCommit
 {
-    use Elasticsearch\TopicTrait, Memoizes, Validatable;
+    use Memoizes, Validatable;
     use SoftDeletes {
         restore as private origRestore;
     }
@@ -827,11 +825,8 @@ class Topic extends Model implements AfterCommit, Indexable
 
     public function afterCommit()
     {
-        if ($this->exists) {
-            dispatch(new EsIndexDocument($this));
-            if ($this->firstPost !== null) {
-                dispatch(new EsIndexDocument($this->firstPost));
-            }
+        if ($this->exists && $this->firstPost !== null) {
+            dispatch(new EsIndexDocument($this->firstPost));
         }
     }
 

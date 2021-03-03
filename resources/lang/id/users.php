@@ -59,7 +59,7 @@ return [
         ],
 
         'reasons' => [
-            'compromised' => 'Akun Anda terindikasi telah disalahgunakan oleh pihak-pihak yang tidak bertanggung jawab untuk hal-hal yang membahayakan. Akun Anda mungkin akan dinonaktifkan untuk sementara waktu hingga identitas pengguna akun telah terkonfirmasi.',
+            'compromised' => 'Akun Anda terindikasi telah disalahgunakan oleh pihak-pihak yang tidak bertanggung jawab untuk hal-hal yang membahayakan. Akun Anda akan dinonaktifkan untuk sementara waktu hingga identitas pengguna akun telah terkonfirmasi.',
             'opening' => 'Ada sejumlah alasan yang dapat menyebabkan akun Anda dinonaktifkan:',
 
             'tos' => [
@@ -84,7 +84,7 @@ return [
         '_' => 'Masuk',
         'button' => 'Masuk',
         'button_posting' => 'Mencoba masuk...',
-        'email_login_disabled' => 'Masuk menggunakan email saat ini dinonaktifkan. Silakan masuk menggunakan nama pengguna.',
+        'email_login_disabled' => 'Anda tidak lagi dapat masuk dengan menggunakan alamat email. Silakan masuk dengan menggunakan nama pengguna.',
         'failed' => 'Gagal masuk',
         'forgot' => 'Lupa kata sandi?',
         'info' => 'Silahkan sign in untuk melanjutkan',
@@ -357,14 +357,13 @@ return [
             'interests' => 'Minat',
             'location' => 'Lokasi Saat Ini',
             'occupation' => 'Pekerjaan',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Website',
         ],
         'not_found' => [
-            'reason_1' => 'Pengguna mungkin telah mengubah nama penggunanya.',
-            'reason_2' => 'Akun tersebut mungkin tidak tersedia untuk sementara waktu karena memiliki riwayat masalah yang berhubungan dengan keamanan atau penyalahgunaan akun.',
-            'reason_3' => 'Mungkin Anda salah ketik!',
+            'reason_1' => 'Pengguna yang hendak Anda tuju telah mengubah nama penggunanya.',
+            'reason_2' => 'Pengguna yang hendak Anda tuju telah dinonaktifkan untuk sementara waktu karena memiliki riwayat masalah yang berhubungan dengan keamanan atau penyalahgunaan akun.',
+            'reason_3' => 'Atau mungkin Anda salah ketik!',
             'reason_header' => 'Ada beberapa kemungkinan mengapa hal ini bisa terjadi:',
             'title' => 'Pengguna tidak ditemukan! ;_;',
         ],
@@ -381,7 +380,7 @@ return [
         ],
         'post_count' => [
             '_' => 'Berkontribusi sebanyak :link',
-            'count' => ':count postingan forum',
+            'count' => ':count_delimited postingan forum|:count_delimited postingan forum',
         ],
         'rank' => [
             'country' => 'Peringkat negara untuk :mode',
@@ -411,8 +410,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Anda sedang di-silence.',
+        'message' => 'Anda tidak dapat melakukan tindakan-tindakan tertentu.',
     ],
 
     'status' => [

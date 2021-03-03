@@ -117,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => 'Колькасць правалаў',
             'source' => 'Крыніца',
+            'storyboard' => '',
             'success-rate' => 'Шанц поспеху',
             'tags' => 'Тэгі',
         ],

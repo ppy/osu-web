@@ -357,7 +357,6 @@ return [
             'interests' => 'Érdekeltségek',
             'location' => 'Tartózkodási hely',
             'occupation' => 'Foglalkozás',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Honlap',
         ],
@@ -411,7 +410,7 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
+        'title' => 'Jelenleg el vagy némítva.',
         'message' => '',
     ],
 

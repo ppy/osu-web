@@ -75,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'subiect șters',
         'go_to_latest' => 'vezi cea mai recentă postare',
         'has_replied' => 'Ai răspuns în acest topic',
@@ -88,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'de :user',
         'started_by_verbose' => 'început de :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'Închide',

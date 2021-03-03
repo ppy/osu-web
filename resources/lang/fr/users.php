@@ -357,7 +357,6 @@ return [
             'interests' => 'Centres d\'intérêt',
             'location' => 'Position actuelle',
             'occupation' => 'Occupation',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Site Internet',
         ],
@@ -411,8 +410,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Vous êtes actuellement réduit au silence.',
+        'message' => 'Certaines actions peuvent être indisponibles.',
     ],
 
     'status' => [

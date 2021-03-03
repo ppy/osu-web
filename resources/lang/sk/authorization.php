@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Po tom, čo sa hlasovacie obdobie pre túto súťaž ukončilo, svoj hlas nemôžete zmeniť.',
+
+        'entry' => [
+            'limit_reached' => 'Dosiahol si limit vstupov pre túto súťaž',
+            'over' => 'Díky za vaše vstupy! Podania boli uzavreté a hlasovanie sa čoskoro otvorí.',
+        ],
     ],
 
     'forum' => [

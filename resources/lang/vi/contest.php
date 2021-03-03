@@ -33,8 +33,6 @@ return [
         'login_required' => 'Hãy đăng nhập để tham gia cuộc thi.',
         'silenced_or_restricted' => 'Bạn không thể tham gia cuộc thi trong khi bị hạn chế hoặc bị im lặng.',
         'preparation' => 'Chúng tôi đang chuẩn bị cho cuộc thi này. Xin hãy kiên nhẫn chờ đợi!',
-        'over' => 'Cảm ơn về bài dự thi của bạn! Cuộc thi đã không còn nhận thêm mục nào nữa và sẽ sớm mở bình chọn.',
-        'limit_reached' => 'Bạn đã đạt giới hạn bài dự thi cho cuộc thi này',
         'drop_here' => 'Thả bài dự thi của bạn vào đây',
         'download' => 'Tải xuống .osz',
         'wrong_type' => [

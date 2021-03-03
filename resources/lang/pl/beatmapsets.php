@@ -46,7 +46,7 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Dla pełnoletnich',
     ],
 
     'show' => [
@@ -117,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => 'Wykres porażek',
             'source' => 'Źródło',
+            'storyboard' => '',
             'success-rate' => 'Wskaźnik ukończonych zagrań',
             'tags' => 'Tagi',
         ],

@@ -125,7 +125,6 @@ class AccountController extends Controller
         $params = get_params(request()->all(), 'user', [
             'user_from:string',
             'user_interests:string',
-            'user_msnm:string',
             'user_occ:string',
             'user_sig:string',
             'user_twitter:string',
