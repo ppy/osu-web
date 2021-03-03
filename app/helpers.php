@@ -1201,7 +1201,7 @@ function json_collection($model, $transformer, $includes = null)
 
 function json_item($model, $transformer, $includes = null)
 {
-    return json_collection([$model], $transformer, $includes)[0];
+    return json_collection([$model], $transformer, $includes)[0] ?? null;
 }
 
 function fast_imagesize($url)
