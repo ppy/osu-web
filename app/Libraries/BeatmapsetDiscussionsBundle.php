@@ -72,15 +72,7 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
     private function getRelatedDiscussions()
     {
         return $this->memoize(__FUNCTION__, function () {
-            $related = BeatmapDiscussion::whereIn('parent_id', $this->getDiscussions()->pluck('id'))->with(static::DISCUSSION_WITHS);
-
-            if ($this->isModerator) {
-                $related->visibleWithTrashed();
-            } else {
-                $related->visible();
-            }
-
-            return $related->get();
+            return BeatmapDiscussion::whereIn('parent_id', $this->getDiscussions()->pluck('id'))->with(static::DISCUSSION_WITHS)->get();
         });
     }
 

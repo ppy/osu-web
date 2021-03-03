@@ -35,15 +35,7 @@ class BeatmapsetDiscussionVotesBundle extends BeatmapsetDiscussionsBundleBase
 
     private function getDiscussions()
     {
-        $discussions = BeatmapDiscussion::whereIn('id', $this->getVotes()->pluck('beatmap_discussion_id')->unique()->values());
-
-        if ($this->isModerator) {
-            $discussions->visibleWithTrashed();
-        } else {
-            $discussions->visible();
-        }
-
-        return $discussions->get();
+        return BeatmapDiscussion::whereIn('id', $this->getVotes()->pluck('beatmap_discussion_id')->unique()->values())->get();
     }
 
     private function getUsers()
