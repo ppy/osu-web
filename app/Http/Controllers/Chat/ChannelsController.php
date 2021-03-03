@@ -125,7 +125,8 @@ class ChannelsController extends Controller
 
         return [
             'channel' => json_item($channel, ChannelTransformer::forUser(auth()->user()), ['first_message_id', 'last_message_id', 'users']),
-            'users' => $channel->isPublic() ? [] : json_collection($channel->users(), 'UserCompact'),
+            // TODO: probably going to need a better way to list/fetch/update users on larger channels without sending user on every message.
+            'users' => json_collection($channel->visibleUsers(), 'UserCompact'),
         ];
     }
 

@@ -142,14 +142,6 @@ class Channel extends Model
         return $this->hasMany(UserChannel::class);
     }
 
-    public function users()
-    {
-        return $this->memoize(__FUNCTION__, function () {
-            // This isn't a has-many-through because the relationship is cross-database.
-            return User::whereIn('user_id', $this->userIds())->get();
-        });
-    }
-
     public function userIds()
     {
         return $this->memoize(__FUNCTION__, function () {
@@ -158,8 +150,25 @@ class Channel extends Model
                 $userIds = explode('-', substr($this->name, 4));
             }
 
-            return $userIds ?? UserChannel::where('channel_id', $this->channel_id)->pluck('user_id');
+            return $userIds ?? $this->userChannels()->pluck('user_id');
         });
+    }
+
+    public function users()
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            // This isn't a has-many-through because the relationship is cross-database.
+            return User::whereIn('user_id', $this->userIds())->get();
+        });
+    }
+
+    public function visibleUsers()
+    {
+        if ($this->isPM()) {
+            return $this->users();
+        }
+
+        return collect();
     }
 
     public function scopePublic($query)
