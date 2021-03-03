@@ -13,7 +13,7 @@ export function discussionLinkify(text: string) {
     props.children = null;
     props.className = undefined;
 
-    return osu.link(url, displayUrl, { classNames, props });
+    return osu.link(url, displayUrl, { classNames, props, unescape: true });
   });
 }
 

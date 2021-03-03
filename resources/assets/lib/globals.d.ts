@@ -105,6 +105,7 @@ interface OsuLinkOptions {
   classNames?: string[];
   isRemote?: boolean;
   props?: Record<string, any>;
+  unescape?: boolean;
 }
 
 interface ChangelogBuild {
