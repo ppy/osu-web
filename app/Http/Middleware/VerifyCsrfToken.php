@@ -13,8 +13,14 @@ use Illuminate\Session\TokenMismatchException;
 class VerifyCsrfToken extends BaseVerifier
 {
     protected $except = [
-        'oauth/authorize',
+        'home/changelog/github',
         'oauth/access_token',
+        'oauth/authorize',
+        'payments/centili/callback',
+        'payments/paypal/ipn',
+        'payments/shopify/callback',
+        'payments/xsolla/callback',
+        'users',
     ];
 
     public function handle($request, Closure $next)
