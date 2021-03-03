@@ -103,7 +103,7 @@ class Channel extends Model
             return;
         }
 
-        return $this->users()->get()->filter(function ($user) use ($userId) {
+        return $this->users()->filter(function ($user) use ($userId) {
             return $userId !== $user->getKey();
         })->first()->user_avatar;
     }
@@ -114,7 +114,7 @@ class Channel extends Model
             return $this->name;
         }
 
-        return $this->users()->get()->filter(function ($user) use ($userId) {
+        return $this->users()->filter(function ($user) use ($userId) {
             return $userId !== $user->getKey();
         })->first()->username;
     }
@@ -144,15 +144,22 @@ class Channel extends Model
 
     public function users()
     {
-        // 4 = strlen('#pm_')
-        if ($this->isPM() && substr($this->name, 0, 4) === '#pm_') {
-            $userIds = explode('-', substr($this->name, 4));
-        }
+        return $this->memoize(__FUNCTION__, function () {
+            // This isn't a has-many-through because the relationship is cross-database.
+            return User::whereIn('user_id', $this->userIds())->get();
+        });
+    }
 
-        $userIds = $userIds ?? UserChannel::where('channel_id', $this->channel_id)->pluck('user_id');
+    public function userIds()
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            // 4 = strlen('#pm_')
+            if ($this->isPM() && substr($this->name, 0, 4) === '#pm_') {
+                $userIds = explode('-', substr($this->name, 4));
+            }
 
-        // This isn't a has-many-through because the relationship is cross-database.
-        return User::whereIn('user_id', $userIds);
+            return $userIds ?? UserChannel::where('channel_id', $this->channel_id)->pluck('user_id');
+        });
     }
 
     public function scopePublic($query)
@@ -217,11 +224,9 @@ class Channel extends Model
         $userId = $user->getKey();
 
         return $this->memoize(__FUNCTION__.':'.$userId, function () use ($userId) {
-            if (isset($this->pmUsers)) {
-                return $this->pmUsers->firstWhere('user_id', '<>', $userId);
-            } else {
-                return $this->users()->where('user_id', '<>', $userId)->first();
-            }
+            $users = $this->pmUsers ?? $this->users();
+
+            return $users->firstWhere('user_id', '<>', $userId);
         });
     }
 
