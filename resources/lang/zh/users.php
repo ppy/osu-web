@@ -357,7 +357,6 @@ return [
             'interests' => '兴趣爱好',
             'location' => '所在地',
             'occupation' => '职业',
-            'skype' => '',
             'twitter' => '',
             'website' => '网站',
         ],

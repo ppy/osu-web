@@ -357,7 +357,6 @@ return [
             'interests' => 'Minat',
             'location' => 'Lokasi Saat Ini',
             'occupation' => 'Pekerjaan',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Website',
         ],

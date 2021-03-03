@@ -357,7 +357,6 @@ return [
             'interests' => 'Kiinnostuksen kohteet',
             'location' => 'Tämänhetkinen sijainti',
             'occupation' => 'Ammatti',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Verkkosivu',
         ],
