@@ -26,6 +26,11 @@ class @BeatmapDiscussionHelper
 
     text.replace osu.urlRegex, (url, _, displayUrl) =>
       targetUrl = new URL(url)
+      options =
+        unescape: true
+        props:
+          rel: 'nofollow noreferrer'
+          target: '_blank'
 
       if targetUrl.host == currentUrl.host
         targetBeatmapsetDiscussions = @urlParse targetUrl.href, null, forceDiscussionId: true
@@ -34,15 +39,13 @@ class @BeatmapDiscussionHelper
               currentBeatmapsetDiscussions.beatmapsetId == targetBeatmapsetDiscussions.beatmapsetId
             # same beatmapset, format: #123
             linkText = "##{targetBeatmapsetDiscussions.discussionId}"
-            attrs = 'class="js-beatmap-discussion--jump"'
+            options.classNames = ['js-beatmap-discussion--jump']
+            options.props.target = null
           else
             # different beatmapset, format: 1234#567
             linkText = "#{targetBeatmapsetDiscussions.beatmapsetId}##{targetBeatmapsetDiscussions.discussionId}"
 
-      linkText ?= displayUrl
-
-      "<a href='#{url}' rel='nofollow' #{attrs ? ''}>#{linkText ? url}</a>"
-
+      osu.link(url, linkText ? displayUrl, options)
 
 
   @discussionMode: (discussion) ->
