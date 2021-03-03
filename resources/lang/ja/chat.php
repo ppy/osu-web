@@ -18,6 +18,7 @@ return [
             'not_enough_plays' => '十分にゲームをプレイしていません',
             'not_verified' => 'セッションが確認されていません',
             'restricted' => 'あなたは現在制限されています',
+            'silenced' => '現在サイレンス中です',
             'target_restricted' => '受信者は現在制限されています',
         ],
     ],

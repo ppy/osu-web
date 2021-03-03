@@ -62,6 +62,7 @@ return [
             'comment_new' => '新しいコメント',
             'forum_topic_reply' => 'トピックへの返信',
             'mail' => 'メール',
+            'mapping' => '',
             'push' => 'プッシュ通知',
             'user_achievement_unlock' => 'ユーザーメダルのアンロック',
         ],

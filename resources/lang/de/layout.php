@@ -160,7 +160,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Ratengrenze überschritten',
             'description' => '',
         ],
         '500' => [

@@ -357,7 +357,6 @@ return [
             'interests' => 'الاهتمامات',
             'location' => 'الموقع الحالي',
             'occupation' => 'المهنة',
-            'skype' => '',
             'twitter' => '',
             'website' => 'الموقع',
         ],
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'الخرائط المعلقة',
             'graveyard_beatmapset_count' => 'الخرائط المقبورة',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

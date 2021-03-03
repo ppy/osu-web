@@ -357,7 +357,6 @@ return [
             'interests' => 'Intereses',
             'location' => 'Ubicación actual',
             'occupation' => 'Ocupación',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Sitio web',
         ],
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Mapas Pendientes',
             'graveyard_beatmapset_count' => 'Mapas Abandonados',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Actualmente está silenciado.',
+        'message' => 'Es posible que algunas acciones no estén disponibles.',
     ],
 
     'status' => [

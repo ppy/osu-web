@@ -12,7 +12,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Yavaş ol, daha çok oyna.',
     ],
 
     'index' => [
@@ -117,6 +117,7 @@ return [
             'nsfw' => 'Müstehcen içerik',
             'points-of-failure' => 'Başarısız Olunan Kısımlar',
             'source' => 'Kaynak',
+            'storyboard' => '',
             'success-rate' => 'Başarı Oranı',
             'tags' => 'Etiketler',
         ],

@@ -62,6 +62,7 @@ return [
             'comment_new' => 'komentar baru',
             'forum_topic_reply' => 'balasan pada topik',
             'mail' => 'email',
+            'mapping' => 'pembuat beatmap',
             'push' => 'web',
             'user_achievement_unlock' => 'terbukanya medali baru',
         ],

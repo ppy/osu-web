@@ -357,7 +357,6 @@ return [
             'interests' => 'İlgi Alanları',
             'location' => 'Mevcut Konum',
             'occupation' => 'Meslek',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Web sitesi',
         ],
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Onay Bekleyen Beatmapler',
             'graveyard_beatmapset_count' => 'Mezarlıktaki Beatmapler',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Şu anda susturulmuş durumdasınız.',
+        'message' => 'Bazı eylemler kullanım dışı olabilir.',
     ],
 
     'status' => [

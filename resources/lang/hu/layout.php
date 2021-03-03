@@ -160,7 +160,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Ráta korlát túllépve',
             'description' => '',
         ],
         '500' => [
@@ -208,7 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Beállítások',
-            'follows' => '',
+            'follows' => 'Figyelőlisták',
             'friends' => 'Barátok',
             'logout' => 'Kijelentkezés',
             'profile' => 'Profilom',

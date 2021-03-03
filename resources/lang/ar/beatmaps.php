@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'الصعوبة الموصاة',
         'converts' => 'ادخال الخرائط المتحولة',
+        'follows' => '',
+        'recommended' => 'الصعوبة الموصاة',
     ],
     'mode' => [
         'all' => 'الكل',

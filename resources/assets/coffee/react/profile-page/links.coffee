@@ -36,9 +36,6 @@ export class Links extends React.PureComponent
         el ClickToCopy, value: val, showIcon: true
     interests: ->
       icon: 'far fa-heart'
-    skype: (val) ->
-      icon: 'fab fa-skype'
-      url: "skype:#{val}?chat"
     location: ->
       icon: 'fas fa-map-marker-alt'
     occupation: ->
@@ -96,7 +93,7 @@ export class Links extends React.PureComponent
     rows = [
       ['join_date', 'last_visit', 'playstyle', 'post_count', 'comments_count'].map @renderText
       ['location', 'interests', 'occupation'].map @renderLink
-      ['twitter', 'discord', 'skype', 'website'].map @renderLink
+      ['twitter', 'discord', 'website'].map @renderLink
     ]
 
     div className: bn,

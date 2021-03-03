@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Mitä jos pelaisit vähän osu! sen sijaan?',
     'require_login' => 'Kirjaudu sisään jatkaaksesi.',
     'require_verification' => 'Vahvista jatkaaksesi.',
     'restricted' => "Et voi tehdä tätä rajoitettuna.",
@@ -31,7 +31,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "",
+            'bot' => "Et voi äänestää botin tekemässä keskustelussa",
             'limit_exceeded' => 'Odota hetki ennen uusien äänien antamista',
             'owner' => "Omia keskusteluja ei voi äänestää.",
             'wrong_beatmapset_state' => 'Voit äänestää vain vireillä olevien beatmappien keskusteluissa.',
@@ -52,7 +52,7 @@ return [
         ],
 
         'store' => [
-            'beatmapset_locked' => '',
+            'beatmapset_locked' => 'Tämä beatmap on lukittu keskustelulta.',
         ],
     ],
 
@@ -68,6 +68,7 @@ return [
         'moderated' => 'Tätä kanavaa moderoidaan.',
         'no_access' => 'Sinulla ei ole oikeuksia tälle kanavalle.',
         'restricted' => 'Et voi lähettää viestejä mykistettynä, rajoitettuna tai bännättynä.',
+        'silenced' => '',
     ],
 
     'comment' => [
@@ -78,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Et voi muuttaa ääntäsi tälle kilpailulle äänestysajan loppumisen jälkeen.',
+
+        'entry' => [
+            'limit_reached' => 'Olet saavuttanut kilpailuun lähetettävien töiden rajan',
+            'over' => 'Kiitos lähettämistänne töistä! Kilpailuun ei oteta enää ehdokkaita ja äänestys avataan pian.',
+        ],
     ],
 
     'forum' => [

@@ -12,7 +12,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Sakta ner, spela mer.',
     ],
 
     'index' => [
@@ -46,7 +46,7 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Explicit',
     ],
 
     'show' => [
@@ -114,21 +114,22 @@ return [
             'genre' => 'Genre',
             'language' => 'Språk',
             'no_scores' => 'Data beräknas...',
-            'nsfw' => '',
+            'nsfw' => 'Explicit innehåll',
             'points-of-failure' => 'Punkter av Misslyckande',
             'source' => 'Källa',
+            'storyboard' => '',
             'success-rate' => 'Genomsnittig Succe',
             'tags' => 'Taggar',
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'Denna beatmap innehåller explicit, kränkande eller störande innehåll. Vill du se den ändå?',
+            'title' => 'Explicit innehåll',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Inaktivera varning',
+                'listing' => 'Beatmaplistningar',
+                'show' => 'Visa',
             ],
         ],
 

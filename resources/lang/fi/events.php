@@ -20,9 +20,9 @@ return [
     'username_change' => '<strong>:previousUsername</strong> tunnetaan nyt käyttäjänimellä <strong><em>:user</strong></em>!',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
+        'approved' => 'vahvistettu',
+        'loved' => 'rakastettu',
+        'qualified' => 'hyväksytty',
         'ranked' => '',
     ],
 ];

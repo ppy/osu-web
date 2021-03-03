@@ -92,6 +92,9 @@ class Mod
             self::NOFAIL,
             self::PERFECT,
             self::OSU_AUTOPILOT,
+        ],
+        [
+            self::OSU_AUTOPILOT,
             self::OSU_SPUNOUT,
         ],
         [
@@ -144,6 +147,7 @@ class Mod
             'overall_difficulty' => 'float',
             'circle_size' => 'float',
             'approach_rate' => 'float',
+            'extended_limits' => 'bool',
             'scroll_speed' => 'float',
         ],
         self::DOUBLETIME => [
@@ -177,7 +181,38 @@ class Mod
         self::OSU_DEFLATE => [
             'start_scale' => 'float',
         ],
+        self::OSU_CLASSIC => [
+            'classic_note_lock' => 'bool',
+            'fixed_follow_circle_hit_area' => 'bool',
+            'no_slider_head_accuracy' => 'bool',
+            'no_slider_head_movement' => 'bool',
+        ],
     ];
+
+    public static function assertValidExclusivity($requiredIds, $allowedIds, $ruleset)
+    {
+        $exclusiveRequiredIds = [];
+
+        foreach (static::exclusivityByRuleset()[$ruleset] as $group) {
+            $intersection = array_intersect($requiredIds, $group);
+
+            if (count($intersection) > 1) {
+                throw new InvariantException('incompatible mods: '.implode(', ', $intersection));
+            }
+
+            if (count($intersection) === 1) {
+                $exclusiveRequiredIds = array_merge($exclusiveRequiredIds, $group);
+            }
+        }
+
+        $invalidAllowedIds = array_intersect($exclusiveRequiredIds, $allowedIds);
+
+        if (count($invalidAllowedIds) > 0) {
+            throw new InvariantException('allowed mods conflict with required mods: '.implode(', ', $invalidAllowedIds));
+        }
+
+        return true;
+    }
 
     public static function filterSettings($mod, $settings)
     {
@@ -305,7 +340,7 @@ class Mod
         return in_array($acronym, static::validModsForRuleset($ruleset), true);
     }
 
-    public static function validateSelection($mods, $ruleset, $skipExclusivityCheck = false)
+    public static function validateSelection($mods, $ruleset)
     {
         if (!in_array($ruleset, Ruleset::ALL, true)) {
             throw new InvariantException('invalid ruleset');
@@ -322,15 +357,6 @@ class Mod
             }
 
             $checkedMods[$mod] = true;
-        }
-
-        if (!$skipExclusivityCheck) {
-            foreach (static::exclusivityByRuleset()[$ruleset] as $group) {
-                $intersection = array_intersect($mods, $group);
-                if (count($intersection) > 1) {
-                    throw new InvariantException('incompatible mods: '.implode(', ', $intersection));
-                }
-            }
         }
 
         return true;
@@ -356,7 +382,7 @@ class Mod
 
         $cleanMods = array_values($filteredMods);
 
-        static::validateSelection(array_column($cleanMods, 'acronym'), $ruleset, true);
+        static::validateSelection(array_column($cleanMods, 'acronym'), $ruleset);
 
         return $cleanMods;
     }

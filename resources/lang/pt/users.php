@@ -357,7 +357,6 @@ return [
             'interests' => 'Interesses',
             'location' => 'Localização atual',
             'occupation' => 'Ocupação',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Sítio web',
         ],
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Beatmaps pendentes',
             'graveyard_beatmapset_count' => 'Beatmaps no cemitério',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

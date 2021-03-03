@@ -357,7 +357,6 @@ return [
             'interests' => '趣味',
             'location' => '現在地',
             'occupation' => '職業',
-            'skype' => '',
             'twitter' => '',
             'website' => 'ウェブサイト',
         ],
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => '保留中のビートマップ',
             'graveyard_beatmapset_count' => 'Graveyardのビートマップ',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

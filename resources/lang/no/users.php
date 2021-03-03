@@ -357,7 +357,6 @@ return [
             'interests' => 'Interesser',
             'location' => 'Nåværende Plassering',
             'occupation' => 'Yrke',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Nettside',
         ],
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Ventende Beatmaps',
             'graveyard_beatmapset_count' => 'Gravlagte Beatmaps',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

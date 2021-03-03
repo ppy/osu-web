@@ -20,7 +20,7 @@ return [
             ],
             'infra' => [
                 'title' => 'Cơ sở hạ tầng máy chủ',
-                'description' => 'Đóng góp hướng tới máy chủ chạy trang web, dịch vụ nhiều người chơi, bảng xếp hạng trực tuyến, v.v.',
+                'description' => 'Phần đóng góp sẽ được sử dụng cho các máy chủ để chạy trang web, dịch vụ multiplayer, bảng xếp hạng trực tuyến, v.v.',
             ],
             'featured-artists' => [
                 'title' => 'Featured Artists',
@@ -66,7 +66,7 @@ return [
 
             'auto_downloads' => [
                 'title' => 'Tải Tự Động',
-                'description' => 'Tự tải khi đang chơi multiplayer, theo dõi người chơi khác, hay chỉ nhấn link trong chat!',
+                'description' => 'Beatmap sẽ tự động tải khi đang chơi multiplayer, theo dõi người chơi khác, hoặc khi click vào link beatmap trong kênh chat!',
             ],
 
             'upload_more' => [

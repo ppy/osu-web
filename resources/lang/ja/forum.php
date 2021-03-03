@@ -47,6 +47,7 @@ return [
         'confirm_restore' => '投稿を本当に復元しますか？',
         'edited' => ':userが:whenに最終編集、合計:count_delimited回の編集',
         'posted_at' => '投稿日時 :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => '投稿を削除',
@@ -74,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => '削除されたトピック',
         'go_to_latest' => '最新の投稿を見る',
         'has_replied' => 'このトピックに返信しました',
@@ -87,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'by :user',
         'started_by_verbose' => '開始したユーザー: :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => '閉じる',

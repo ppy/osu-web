@@ -310,7 +310,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Pobierz powtórkę',
-                'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp.',
+                'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp',
                 'pp_weight' => 'ważone :percentage',
                 'view_details' => 'Pokaż szczegóły',
                 'title' => 'Wyniki',
@@ -357,7 +357,6 @@ return [
             'interests' => 'Zainteresowania',
             'location' => 'Obecna lokalizacja',
             'occupation' => 'Zajęcia',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Strona internetowa',
         ],
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Oczekujące beatmapy',
             'graveyard_beatmapset_count' => 'Porzucone beatmapy',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

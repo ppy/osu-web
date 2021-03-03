@@ -357,7 +357,6 @@ return [
             'interests' => 'Interesser',
             'location' => 'Nuværende Position',
             'occupation' => 'Stilling',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Hjemmeside',
         ],
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Afventende Beatmaps',
             'graveyard_beatmapset_count' => 'Beatmaps på Kirkegården',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Du er i øjeblikket gjort tavs.',
+        'message' => 'Nogle handlinger kan være utilgængelige.',
     ],
 
     'status' => [

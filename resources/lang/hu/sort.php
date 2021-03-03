@@ -16,12 +16,17 @@ return [
     'username' => 'Felhasználónév',
 
     'forum_posts' => [
-        'created' => '',
+        'created' => 'Közzétéve',
         'relevance' => 'Relevancia',
     ],
 
     'forum_topics' => [
         'feature_votes' => 'Csillag prioritás',
         'new' => 'Legutóbbi válasz',
+    ],
+
+    'users' => [
+        'relevance' => 'Relevancia',
+        'username' => 'Név',
     ],
 ];

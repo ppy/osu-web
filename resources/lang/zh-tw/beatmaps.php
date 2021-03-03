@@ -110,7 +110,7 @@ return [
             'insert-block' => [
                 'paragraph' => '',
                 'praise' => '',
-                'problem' => '',
+                'problem' => '插入問題',
                 'suggestion' => '',
             ],
         ],
@@ -197,7 +197,7 @@ return [
         'rank_estimate' => [
             '_' => '',
             'queue' => '',
-            'soon' => '',
+            'soon' => '不久後',
         ],
 
         'reset_at' => [
@@ -227,7 +227,7 @@ return [
                 'mode' => '模式',
                 'nsfw' => '',
                 'played' => '玩過',
-                'rank' => '已 Rank',
+                'rank' => '成績',
                 'status' => '分類',
             ],
             'sorting' => [
@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => '推薦難度',
         'converts' => '包括轉換圖譜',
+        'follows' => '訂閱的作圖者',
+        'recommended' => '推薦難度',
     ],
     'mode' => [
         'all' => '全部',
@@ -329,12 +330,12 @@ return [
         'polish' => '波蘭語',
         'instrumental' => '樂器演奏',
         'other' => '其他',
-        'unspecified' => '',
+        'unspecified' => '未指定',
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => '隱藏',
+        'include' => '顯示',
     ],
 
     'played' => [

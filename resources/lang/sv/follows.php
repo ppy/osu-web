@@ -28,8 +28,8 @@ return [
         'followers' => '',
         'page_title' => '',
         'title' => 'mappare',
-        'to_0' => '',
-        'to_1' => '',
+        'to_0' => 'sluta meddela mig när denna användaren laddar upp ny beatmap',
+        'to_1' => 'meddela mig när denna användaren laddar upp ny beatmap',
     ],
 
     'modding' => [

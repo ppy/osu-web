@@ -18,6 +18,7 @@ return [
             'not_enough_plays' => '',
             'not_verified' => '',
             'restricted' => 'Du er for øyeblikket i begrenset modus',
+            'silenced' => '',
             'target_restricted' => 'Mottakeren er i begrenset modus',
         ],
     ],

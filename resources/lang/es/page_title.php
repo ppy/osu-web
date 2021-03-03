@@ -22,7 +22,7 @@ return [
             '401-verification' => 'verificación de la cuenta',
             '405' => 'no encontrado',
             '422' => 'solicitud no válida',
-            '429' => '',
+            '429' => 'demasiadas solicitudes',
             '500' => 'algo se rompió',
             '503' => 'mantenimiento',
         ],
