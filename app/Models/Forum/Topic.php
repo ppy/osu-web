@@ -483,7 +483,7 @@ class Topic extends Model implements AfterCommit
     public function deletedPostsCount()
     {
         return $this->memoize(__FUNCTION__, function () {
-            $this->posts()->onlyTrashed()->count();
+            return $this->posts()->onlyTrashed()->count();
         });
     }
 
