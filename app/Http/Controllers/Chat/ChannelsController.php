@@ -66,13 +66,13 @@ class ChannelsController extends Controller
      *   "type": "public"
      * }
      */
-    public function join($channel_id, $user_id)
+    public function join($channelId, $userId)
     {
-        $channel = Channel::where('channel_id', $channel_id)->firstOrFail();
+        $channel = Channel::where('channel_id', $channelId)->firstOrFail();
 
         priv_check('ChatChannelJoin', $channel)->ensureCan();
 
-        if (Auth::user()->user_id !== get_int($user_id)) {
+        if (Auth::user()->user_id !== get_int($userId)) {
             abort(403);
         }
 
@@ -100,15 +100,15 @@ class ChannelsController extends Controller
      *
      * @response 204
      */
-    public function part($channel_id, $user_id)
+    public function part($channelId, $userId)
     {
-        $channel = Channel::where('channel_id', $channel_id)->firstOrFail();
+        $channel = Channel::where('channel_id', $channelId)->firstOrFail();
 
         // TODO: the order of these check seems wrong?
         // FIXME: doesn't seem right authorizing leaving channel
         priv_check('ChatChannelPart', $channel)->ensureCan();
 
-        if (Auth::user()->user_id !== get_int($user_id)) {
+        if (Auth::user()->user_id !== get_int($userId)) {
             abort(403);
         }
 
