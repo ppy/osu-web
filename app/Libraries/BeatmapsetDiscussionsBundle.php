@@ -18,7 +18,7 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
 {
     use Memoizes;
 
-    private const DISCUSSION_WITHS = ['beatmap', 'beatmapDiscussionVotes', 'beatmapset', 'startingPost'];
+    private const DISCUSSION_WITHS = ['beatmapDiscussionVotes', 'beatmapset', 'startingPost'];
 
     public function getData()
     {
@@ -27,7 +27,9 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
 
     public function toArray()
     {
-        static $discussionIncludes = ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes'];
+        // TODO: beatmapset nested include should be removed (should be moved to side load);
+        // currently left here as some components assume beatmapset is always nested.
+        static $discussionIncludes = ['starting_post', 'beatmapset', 'current_user_attributes'];
 
         return [
             'beatmaps' => json_collection($this->getBeatmaps(), new BeatmapTransformer()),
@@ -42,6 +44,7 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
     private function getBeatmaps()
     {
         return $this->memoize(__FUNCTION__, function () {
+            // using all beatmaps of the beatmapsets for the beatmap selector when editing.
             $beatmapsetIds = $this->getDiscussions()->pluck('beatmapset_id')->unique()->values();
 
             return Beatmap::whereIn('beatmapset_id', $beatmapsetIds)->get();
