@@ -117,6 +117,17 @@ class ChannelsController extends Controller
         return response([], 204);
     }
 
+    /**
+     * Get Channel
+     *
+     * Gets details of a chat channel.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [ChatChannelShow](#chatchannelshow)
+     */
     public function show($channelId)
     {
         $channel = Channel::where('channel_id', $channelId)->firstOrFail();
