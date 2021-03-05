@@ -49,6 +49,9 @@ class BeatmapsetDiscussionVotesBundle extends BeatmapsetDiscussionsBundleBase
                 ->uniqueStrict('user_id')
                 ->values();
 
+            // TODO: move/add output filtering to transformer;
+            // there's other issues with discussions that need handling first for it
+            // to work, though.
             if (!$this->isModerator) {
                 $users = $users->filter(function ($user) {
                     return !$user->isRestricted();
