@@ -5,9 +5,7 @@
 
 namespace App\Libraries;
 
-use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionVote;
-use App\Models\User;
 use App\Traits\Memoizes;
 use App\Transformers\BeatmapDiscussionTransformer;
 use App\Transformers\BeatmapDiscussionVoteTransformer;

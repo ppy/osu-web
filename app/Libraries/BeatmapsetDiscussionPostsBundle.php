@@ -6,8 +6,6 @@
 namespace App\Libraries;
 
 use App\Models\BeatmapDiscussionPost;
-use App\Models\Beatmapset;
-use App\Models\User;
 use App\Traits\Memoizes;
 use App\Transformers\BeatmapDiscussionPostTransformer;
 use App\Transformers\BeatmapsetCompactTransformer;
