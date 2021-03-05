@@ -35,21 +35,21 @@ class BeatmapsetDiscussionVotesBundle extends BeatmapsetDiscussionsBundleBase
 
     private function getDiscussions()
     {
-        return BeatmapDiscussion::whereIn('id', $this->getVotes()->pluck('beatmap_discussion_id')->unique()->values())->get();
+        return $this->getVotes()->pluck('beatmapDiscussion')->uniqueStrict()->filter()->values();
     }
 
     private function getUsers()
     {
         return $this->memoize(__FUNCTION__, function () {
-            $userIds = $this->getVotes()->pluck('user_id')->unique()->values();
-
-            $users = User::whereIn('user_id', $userIds)->with('userGroups');
+            $users = $this->getVotes()->pluck('user')->uniqueStrict()->values();
 
             if (!$this->isModerator) {
-                $users->default();
+                $users = $users->filter(function ($user) {
+                    return !$user->isRestricted();
+                });
             }
 
-            return $users->get();
+            return $users;
         });
     }
 
@@ -59,7 +59,7 @@ class BeatmapsetDiscussionVotesBundle extends BeatmapsetDiscussionsBundleBase
             $this->search = BeatmapDiscussionVote::search($this->params);
 
             $query = $this->search['query']->with([
-                'user',
+                'user.userGroups',
                 'beatmapDiscussion',
                 'beatmapDiscussion.user',
                 'beatmapDiscussion.beatmapset',
