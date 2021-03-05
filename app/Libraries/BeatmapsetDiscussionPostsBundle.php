@@ -47,12 +47,13 @@ class BeatmapsetDiscussionPostsBundle extends BeatmapsetDiscussionsBundleBase
         return $this->memoize(__FUNCTION__, function () {
             $this->search = BeatmapDiscussionPost::search($this->params);
 
+            // TODO: move non-api versino to React.
             $queryWith = ['user', 'beatmapset'];
             if (!is_api_request()) {
                 $queryWith = array_merge($queryWith, [
                     'beatmapDiscussion',
                     'beatmapDiscussion.beatmapset',
-                    'beatmapDiscussion.user',
+                    'beatmapDiscussion.user.userGroups',
                     'beatmapDiscussion.startingPost',
                 ]);
             }
@@ -76,15 +77,19 @@ class BeatmapsetDiscussionPostsBundle extends BeatmapsetDiscussionsBundleBase
     private function getUsers()
     {
         return $this->memoize(__FUNCTION__, function () {
-            $userIds = $this->getPosts()->pluck('user_id')->unique()->values();
+            $users = $this->getPosts()
+                ->pluck('user')
+                ->uniqueStrict('user_id')
+                ->values();
 
-            $users = User::whereIn('user_id', $userIds)->with('userGroups');
-
+            // see note in BeatmapDiscussionVotesBundle
             if (!$this->isModerator) {
-                $users->default();
+                $users = $users->filter(function ($user) {
+                    return !$user->isRestricted();
+                });
             }
 
-            return $users->get();
+            return $users;
         });
     }
 }
