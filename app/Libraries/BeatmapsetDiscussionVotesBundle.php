@@ -61,7 +61,7 @@ class BeatmapsetDiscussionVotesBundle extends BeatmapsetDiscussionsBundleBase
             $query = $this->search['query']->with([
                 'user.userGroups',
                 'beatmapDiscussion',
-                'beatmapDiscussion.user',
+                'beatmapDiscussion.user.userGroups',
                 'beatmapDiscussion.beatmapset',
                 'beatmapDiscussion.startingPost',
             ]);
