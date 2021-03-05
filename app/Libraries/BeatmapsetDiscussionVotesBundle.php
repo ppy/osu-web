@@ -35,13 +35,19 @@ class BeatmapsetDiscussionVotesBundle extends BeatmapsetDiscussionsBundleBase
 
     private function getDiscussions()
     {
-        return $this->getVotes()->pluck('beatmapDiscussion')->uniqueStrict()->filter()->values();
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->getVotes()->pluck('beatmapDiscussion')->uniqueStrict()->filter()->values();
+        });
     }
 
     private function getUsers()
     {
         return $this->memoize(__FUNCTION__, function () {
-            $users = $this->getVotes()->pluck('user')->uniqueStrict()->values();
+            $users = $this->getVotes()
+                ->pluck('user')
+                ->merge($this->getDiscussions()->pluck('user'))
+                ->uniqueStrict('user_id')
+                ->values();
 
             if (!$this->isModerator) {
                 $users = $users->filter(function ($user) {
