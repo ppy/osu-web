@@ -29,16 +29,14 @@ class BeatmapsetDiscussionPostsBundle extends BeatmapsetDiscussionsBundleBase
             'beatmapsets' => json_collection($this->getBeatmapsets(), new BeatmapsetCompactTransformer()),
             'cursor' => $this->getCursor(),
             'posts' => json_collection($this->getPosts(), new BeatmapDiscussionPostTransformer(), ['beatmaps', 'users']),
-            'users' => json_collection($this->getUsers(), new UserCompactTransformer(), ['groups']),
+            'users' => json_collection($this->getUsers(), new UserCompactTransformer()),
         ];
     }
 
     private function getBeatmapsets()
     {
         return $this->memoize(__FUNCTION__, function () {
-            $beatmapsetIds = $this->getPosts()->pluck('beatmapset.beatmapset_id')->unique()->values();
-
-            return Beatmapset::whereIn('beatmapset_id', $beatmapsetIds)->get();
+            return $this->getPosts()->pluck('beatmapDiscussion.beatmapset')->uniqueStrict('id')->values();
         });
     }
 
