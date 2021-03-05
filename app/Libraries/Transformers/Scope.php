@@ -29,9 +29,10 @@ class Scope extends Fractal\Scope
             [$transformedData, $includedData[]] = $this->fireTransformer($transformer, $data);
         } elseif ($this->resource instanceof Collection) {
             foreach ($data as $value) {
-                [$itemTransformedData, $includedData[]] = $this->fireTransformer($transformer, $value);
+                [$itemTransformedData, $itemIncludedData] = $this->fireTransformer($transformer, $value);
                 if ($itemTransformedData !== null) {
                     $transformedData[] = $itemTransformedData;
+                    $includedData[] = $itemIncludedData;
                 }
             }
         } elseif ($this->resource instanceof NullResource) {
