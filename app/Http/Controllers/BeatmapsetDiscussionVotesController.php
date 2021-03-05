@@ -19,12 +19,12 @@ class BeatmapsetDiscussionVotesController extends Controller
     public function index()
     {
         $bundle = new BeatmapsetDiscussionVotesBundle(request()->all());
-        $votes = $bundle->getPaginator();
-        $search = $bundle->getSearch();
 
         if (is_api_request()) {
             return $bundle->toArray();
         }
+
+        $votes = $bundle->getPaginator();
 
         return ext_view('beatmapset_discussion_votes.index', compact('votes'));
     }

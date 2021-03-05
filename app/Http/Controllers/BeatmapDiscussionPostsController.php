@@ -46,11 +46,12 @@ class BeatmapDiscussionPostsController extends Controller
     public function index()
     {
         $bundle = new BeatmapsetDiscussionPostsBundle(request()->all());
-        $posts = $bundle->getPaginator();
 
         if (is_api_request()) {
             return $bundle->toArray();
         }
+
+        $posts = $bundle->getPaginator();
 
         return ext_view('beatmap_discussion_posts.index', compact('posts'));
     }

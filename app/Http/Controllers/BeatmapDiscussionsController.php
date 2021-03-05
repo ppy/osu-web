@@ -70,12 +70,13 @@ class BeatmapDiscussionsController extends Controller
         $bundle = new BeatmapsetDiscussionsBundle(request()->all());
 
         $json = $bundle->toArray();
-        $paginator = $bundle->getPaginator();
-        $search = $bundle->getSearch();
 
         if (is_api_request()) {
             return $json;
         }
+
+        $paginator = $bundle->getPaginator();
+        $search = $bundle->getSearch();
 
         return ext_view('beatmap_discussions.index', compact('json', 'search', 'paginator'));
     }
