@@ -28,7 +28,7 @@ class BeatmapsetDiscussionPostsBundle extends BeatmapsetDiscussionsBundleBase
         return [
             'beatmapsets' => json_collection($this->getBeatmapsets(), new BeatmapsetCompactTransformer()),
             'cursor' => $this->getCursor(),
-            'posts' => json_collection($this->getPosts(), new BeatmapDiscussionPostTransformer(), ['beatmaps', 'users']),
+            'posts' => json_collection($this->getPosts(), new BeatmapDiscussionPostTransformer()),
             'users' => json_collection($this->getUsers(), new UserCompactTransformer()),
         ];
     }
@@ -45,18 +45,7 @@ class BeatmapsetDiscussionPostsBundle extends BeatmapsetDiscussionsBundleBase
         return $this->memoize(__FUNCTION__, function () {
             $this->search = BeatmapDiscussionPost::search($this->params);
 
-            // TODO: move non-api versino to React.
-            $queryWith = ['user', 'beatmapset'];
-            if (!is_api_request()) {
-                $queryWith = array_merge($queryWith, [
-                    'beatmapDiscussion',
-                    'beatmapDiscussion.beatmapset',
-                    'beatmapDiscussion.user.userGroups',
-                    'beatmapDiscussion.startingPost',
-                ]);
-            }
-
-            $query = $this->search['query']->with($queryWith)->limit($this->search['params']['limit'] + 1);
+            $query = $this->search['query']->with(['user.userGroups', 'beatmapset'])->limit($this->search['params']['limit'] + 1);
 
             $this->paginator = new Paginator(
                 $query->get(),
