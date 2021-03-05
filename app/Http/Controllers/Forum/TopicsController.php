@@ -21,6 +21,9 @@ use Auth;
 use DB;
 use Request;
 
+/**
+ * @group Forum
+ */
 class TopicsController extends Controller
 {
     public function __construct()
@@ -34,6 +37,8 @@ class TopicsController extends Controller
             'reply',
             'store',
         ]]);
+
+        $this->middleware('require-scopes:public', ['only' => ['show']]);
     }
 
     public function create()
@@ -234,6 +239,40 @@ class TopicsController extends Controller
         return ext_view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
     }
 
+    /**
+     * Get Topic and Posts
+     *
+     * Get topic and its posts.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field  | Type                       | Notes
+     * ------ | -------------------------- | -----
+     * cursor | [Cursor](#cursor)          | |
+     * search |                            | Parameters used for current request excluding cursor.
+     * posts  | [ForumPost](#forum-post)[] | Includes `body`.
+     * topic  | [ForumTopic](#forum-topic) | |
+     *
+     * @urlParam topic Id of the topic. Example: 1
+     *
+     * @queryParam cursor [Cursor](#cursor) for pagination. No-example
+     * @queryParam sort Post sorting option. Valid values are `id_asc` (default) and `id_desc`. No-example
+     * @queryParam limit Maximum number of posts to be returned (20 default, 50 at most). No-example
+     * @queryParam start First post id to be returned with `sort` set to `id_asc`. This parameter is ignored if `cursor` is specified. No-example
+     * @queryParam end First post id to be returned with `sort` set to `id_desc`. This parameter is ignored if `cursor` is specified. No-example
+     *
+     * @response {
+     *   "topic": { "id": 1, "...": "..." },
+     *   "posts": [
+     *     { "id": 1, "...": "..." },
+     *     { "id": 2, "...": "..." }
+     *   ],
+     *   "cursor": { "post_id": 1 },
+     *   "sort": "id_asc"
+     * }
+     */
     public function show($id)
     {
         $topic = Topic::with(['forum'])->withTrashed()->findOrFail($id);
@@ -258,14 +297,20 @@ class TopicsController extends Controller
 
         $cursorHelper = Post::makeDbCursorHelper($params['sort']);
 
-        $postsQueryBase = $topic->posts()->showDeleted($showDeleted)->limit(20);
+        $postsQueryBase = $topic->posts()->showDeleted($showDeleted)->limit($params['limit']);
         $posts = (clone $postsQueryBase)->cursorSort($cursorHelper, $params['cursor'])->get();
 
-        if ($posts->count() === 0) {
-            abort(404);
+        $isJsonRequest = is_api_request();
+
+        if (!$isJsonRequest && $posts->count() === 0) {
+            if ($skipLayout) {
+                return response(null, 204);
+            } else {
+                return ujs_redirect(route('forum.topics.show', $topic));
+            }
         }
 
-        if ($skipLayout) {
+        if ($isJsonRequest || $skipLayout) {
             $jumpTo = null;
         } else {
             $firstPost = $posts->first();
@@ -298,16 +343,27 @@ class TopicsController extends Controller
                     ->setRelation('topic', $topic);
             });
 
+        if ($isJsonRequest) {
+            return [
+                'cursor' => $cursorHelper->next($posts),
+                'posts' => json_collection($posts, 'Forum\Post', ['body']),
+                'search' => ['limit' => $params['limit'], 'sort' => $cursorHelper->getSortName()],
+                'topic' => json_item($topic, 'Forum\Topic'),
+            ];
+        }
+
         if ($cursorHelper->getSortName() === 'id_desc') {
             $posts = $posts->reverse();
         }
 
-        $firstPostId = $topic->topic_first_post_id;
         $firstShownPostId = $posts->first()->getKey();
-
         // position of the first post, incremented in the view
         // to generate positions of further posts
         $firstPostPosition = $topic->postPosition($firstShownPostId);
+
+        if ($skipLayout) {
+            return ext_view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
+        }
 
         $poll = $topic->poll();
         if ($poll->exists()) {
@@ -324,8 +380,6 @@ class TopicsController extends Controller
 
         $posts->last()->markRead($currentUser);
 
-        $template = $skipLayout ? '_posts' : 'show';
-
         $coverModel = $topic->cover()->firstOrNew([]);
         $coverModel->setRelation('topic', $topic);
         $cover = json_item($coverModel, new TopicCoverTransformer());
@@ -335,24 +389,20 @@ class TopicsController extends Controller
         $featureVotes = $this->groupFeatureVotes($topic);
         $noindex = !$topic->forum->enable_indexing;
 
-        return ext_view(
-            "forum.topics.{$template}",
-            compact(
-                'canEditPoll',
-                'cover',
-                'watch',
-                'jumpTo',
-                'pollSummary',
-                'posts',
-                'featureVotes',
-                'firstPostPosition',
-                'firstPostId',
-                'noindex',
-                'topic',
-                'userCanModerate',
-                'showDeleted'
-            )
-        );
+        return ext_view('forum.topics.show', compact(
+            'canEditPoll',
+            'cover',
+            'watch',
+            'jumpTo',
+            'pollSummary',
+            'posts',
+            'featureVotes',
+            'firstPostPosition',
+            'noindex',
+            'topic',
+            'userCanModerate',
+            'showDeleted'
+        ));
     }
 
     public function store()
@@ -469,9 +519,11 @@ class TopicsController extends Controller
 
             'sort:string',
             'cursor:any',
+            'limit:int',
         ], ['null_missing' => true]);
 
         $params['skip_layout'] = $params['skip_layout'] ?? false;
+        $params['limit'] = clamp($params['limit'] ?? 20, 1, 50);
 
         if ($userCanModerate) {
             $params['with_deleted'] = $params['with_deleted'] ?? $currentUser->profileCustomization()->forum_posts_show_deleted;

@@ -47,7 +47,7 @@ return [
         'confirm_restore' => 'Vuoi veramente ripristinare il post?',
         'edited' => 'Ultima modifica di :user :when, modificato :count_delimited volta in totale.|Ultima modifica di :user :when, modificato :count_delimited volte in totale.',
         'posted_at' => 'postato :when',
-        'posted_by' => '',
+        'posted_by' => 'postato da :username',
 
         'actions' => [
             'destroy' => 'Elimina post',
@@ -75,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'discussione eliminata',
         'go_to_latest' => 'guarda l\'ultimo post',
         'has_replied' => 'Hai risposto a questo topic',
@@ -88,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'di :user',
         'started_by_verbose' => 'postato da :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'Chiudi',

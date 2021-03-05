@@ -12,7 +12,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => '慢一点，打几张图再回来吧。',
     ],
 
     'index' => [
@@ -117,6 +117,7 @@ return [
             'nsfw' => '少儿不宜内容',
             'points-of-failure' => '失败位置',
             'source' => '来源',
+            'storyboard' => '',
             'success-rate' => '成功率',
             'tags' => '标签',
         ],

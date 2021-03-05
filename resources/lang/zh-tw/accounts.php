@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => '編輯頭像',
-            'rules' => '請確保您的頭像堅持 :link.<br/>這意味著必須 <strong>適合所有年齡</strong>. i.e. 沒有裸露，褻瀆或暗示性的內容。',
+            'rules' => '請確保您的頭像符合 :link.<br/>這意味著必須 <strong>適合所有年齡</strong>. i.e. 沒有裸露，褻瀆或暗示性的內容。',
             'rules_link' => '社群規則',
         ],
 
@@ -62,9 +62,9 @@ return [
             'comment_new' => '新評論',
             'forum_topic_reply' => '主題回覆',
             'mail' => '郵箱',
-            'mapping' => '',
+            'mapping' => '圖譜製作者',
             'push' => '推送',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => '成就解鎖',
         ],
     ],
 
@@ -76,7 +76,7 @@ return [
 
     'options' => [
         'beatmapset_show_nsfw' => '',
-        'beatmapset_title_show_original' => '以原語言顯示譜面資料',
+        'beatmapset_title_show_original' => '以原語言顯示圖譜資料',
         'title' => '選項',
 
         'beatmapset_download' => [

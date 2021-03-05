@@ -357,7 +357,6 @@ return [
             'interests' => 'Záujmy',
             'location' => 'Súčasná Poloha',
             'occupation' => 'Povolanie',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Web Stránka',
         ],

@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Je kan je stem niet meer veranderen nadat de stemperiode van deze wedstrijd is afgelopen.',
+
+        'entry' => [
+            'limit_reached' => 'Je hebt de limiet voor inschrijvingen bereikt',
+            'over' => 'Bedankt voor de inzendingen! Inzendingen zijn gesloten voor deze wedstrijd en de stembus gaan binnenkort open.',
+        ],
     ],
 
     'forum' => [

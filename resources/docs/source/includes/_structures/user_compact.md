@@ -45,7 +45,6 @@ beatmap_playcounts_count             | number
 blocks                               | |
 country                              | |
 cover                                | |
-current_mode_rank                    | |
 favourite_beatmapset_count           | number
 follower_count                       | number
 friends                              | |

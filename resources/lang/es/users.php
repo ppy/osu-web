@@ -357,7 +357,6 @@ return [
             'interests' => 'Intereses',
             'location' => 'Ubicación actual',
             'occupation' => 'Ocupación',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Sitio web',
         ],
@@ -411,8 +410,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Actualmente está silenciado.',
+        'message' => 'Es posible que algunas acciones no estén disponibles.',
     ],
 
     'status' => [

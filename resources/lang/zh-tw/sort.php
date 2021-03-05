@@ -6,8 +6,8 @@
 return [
     '_' => '排序',
 
-    'all' => '',
-    'friends' => '',
+    'all' => '全部',
+    'friends' => '朋友',
     'last_visit' => '最近活躍',
     'new' => '最新',
     'old' => '最舊',
@@ -16,7 +16,7 @@ return [
     'username' => '使用者名稱',
 
     'forum_posts' => [
-        'created' => '',
+        'created' => '發表時間',
         'relevance' => '',
     ],
 
@@ -26,7 +26,7 @@ return [
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => '相關度',
+        'username' => '名稱',
     ],
 ];

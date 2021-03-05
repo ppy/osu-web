@@ -75,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'slettet emne',
         'go_to_latest' => 'vis nyeste innlegg',
         'has_replied' => '',
@@ -88,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'av :user',
         'started_by_verbose' => 'startet av :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'Lukk',

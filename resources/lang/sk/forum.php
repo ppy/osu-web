@@ -75,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'odstranená téma',
         'go_to_latest' => 'zobraziť najnovší príspevok',
         'has_replied' => '',
@@ -88,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'od :user',
         'started_by_verbose' => 'začaté použivateľom :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'Zavrieť',

@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 use App\Jobs\UpdateUserFollowerCountCache;
 use App\Models\User;
 use App\Models\UserRelation;
+use App\Transformers\UserCompactTransformer;
 use Auth;
 use Request;
 
@@ -31,20 +32,22 @@ class FriendsController extends Controller
 
     public function index()
     {
-        $currentUser = Auth::user();
-        $currentMode = studly_case($currentUser->playmode);
+        $currentUser = auth()->user();
+        $currentMode = default_mode();
 
         $friends = $currentUser
             ->friends()
-            ->with('statistics'.$currentMode)
+            ->with('statistics'.studly_case($currentMode))
             ->eagerloadForListing()
             ->orderBy('username', 'asc')
             ->get();
 
-        $usersJson = json_collection($friends, 'UserCompact', [
+        $transformer = new UserCompactTransformer();
+        $transformer->mode = $currentMode;
+        $usersJson = json_collection($friends, $transformer, [
             'cover',
             'country',
-            'current_mode_rank',
+            'statistics',
             'groups',
             'support_level',
         ]);

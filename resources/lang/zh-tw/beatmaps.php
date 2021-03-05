@@ -227,7 +227,7 @@ return [
                 'mode' => '模式',
                 'nsfw' => '',
                 'played' => '玩過',
-                'rank' => '已 Rank',
+                'rank' => '成績',
                 'status' => '分類',
             ],
             'sorting' => [
@@ -250,7 +250,7 @@ return [
     ],
     'general' => [
         'converts' => '包括轉換圖譜',
-        'follows' => '',
+        'follows' => '訂閱的作圖者',
         'recommended' => '推薦難度',
     ],
     'mode' => [
@@ -330,11 +330,11 @@ return [
         'polish' => '波蘭語',
         'instrumental' => '樂器演奏',
         'other' => '其他',
-        'unspecified' => '',
+        'unspecified' => '未指定',
     ],
 
     'nsfw' => [
-        'exclude' => '',
+        'exclude' => '隱藏',
         'include' => '顯示',
     ],
 

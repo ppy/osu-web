@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Radera beatmap metadata inlägg är inte tillåtet.',
             'beatmapset_post_no_edit' => 'Redigera beatmap metadata inlägg är inte tillåtet.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => 'Ditt svar innehåller bara en citat.',
 
             'attributes' => [

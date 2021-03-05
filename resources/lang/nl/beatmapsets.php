@@ -117,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => 'Faalpunten',
             'source' => 'Bron',
+            'storyboard' => '',
             'success-rate' => 'Slagingspercentage',
             'tags' => 'Labels',
         ],

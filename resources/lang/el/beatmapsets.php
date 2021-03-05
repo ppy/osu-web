@@ -117,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => 'Σημεία Αποτυχίας',
             'source' => 'Προέλευση',
+            'storyboard' => '',
             'success-rate' => 'Ποσοστό Επιτυχίας',
             'tags' => 'Ετικέτες',
         ],

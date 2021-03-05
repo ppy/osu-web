@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Beatmap metadata post verwijderen is niet toegestaan.',
             'beatmapset_post_no_edit' => 'Beatmap metadata post bewerken is niet toegestaan.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => 'Uw antwoord bevat slechts een citaat.',
 
             'attributes' => [

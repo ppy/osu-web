@@ -18,7 +18,7 @@
   "play_count": 228050,
   "play_time": null,
   "pp": 990,
-  "pp_rank": 87468,
+  "global_rank": 87468,
   "ranked_score": 1502995536,
   "replays_watched_by_others": 0,
   "total_hits": 5856573,
@@ -66,7 +66,7 @@ maximum_combo             | number                      | Highest maximum combo.
 play_count                | number                      | Number of maps played.
 play_time                 | number                      | Cumulative time played.
 pp                        | number                      | Performance points
-pp_rank                   | number                      | Current rank according to pp.
+global_rank               | number?                     | Current rank according to pp.
 ranked_score              | number                      | Current ranked score.
 replays_watched_by_others | number                      | Number of replays watched by other users.
 total_hits                | number                      | Total number of hits.

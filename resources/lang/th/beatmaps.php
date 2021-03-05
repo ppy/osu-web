@@ -6,7 +6,7 @@
 return [
     'discussion-votes' => [
         'update' => [
-            'error' => 'อัพเดทโหวตล้มเหลว',
+            'error' => 'อัปเดตโหวตล้มเหลว',
         ],
     ],
 
@@ -225,7 +225,7 @@ return [
                 'genre' => 'ประเภท',
                 'language' => 'ภาษา',
                 'mode' => 'โหมด',
-                'nsfw' => '',
+                'nsfw' => 'เนื้อหาล่อแหลม',
                 'played' => 'เคยเล่นแล้ว',
                 'rank' => 'แรงค์ที่ได้รับ',
                 'status' => 'หมวดหมู่',
@@ -235,7 +235,7 @@ return [
                 'artist' => 'ศิลปิน',
                 'difficulty' => 'ระดับความยาก',
                 'favourites' => 'รายการโปรด',
-                'updated' => 'อัปเดต',
+                'updated' => 'อัปเดตแล้ว',
                 'ranked' => 'จัดอันดับแล้ว',
                 'rating' => 'เรตติ้ง',
                 'plays' => 'จำนวนการเล่น',
@@ -250,7 +250,7 @@ return [
     ],
     'general' => [
         'converts' => 'รวมแมพคอนเวิรต์ด้วย',
-        'follows' => '',
+        'follows' => 'ติดตามผู้ทำแมพ',
         'recommended' => 'ระดับความยากที่แนะนำ',
     ],
     'mode' => [
@@ -334,8 +334,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'ซ่อน',
+        'include' => 'แสดง',
     ],
 
     'played' => [
