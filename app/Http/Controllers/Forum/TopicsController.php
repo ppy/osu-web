@@ -221,7 +221,7 @@ class TopicsController extends Controller
     }
 
     /**
-     * Reply topic
+     * Reply Topic
      *
      * Create a post replying to the specified topic.
      *
