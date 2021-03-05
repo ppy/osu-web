@@ -357,7 +357,6 @@ return [
             'interests' => '興趣愛好',
             'location' => '所在地',
             'occupation' => '職業',
-            'skype' => '',
             'twitter' => '',
             'website' => '個人網站',
         ],

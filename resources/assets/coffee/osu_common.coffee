@@ -161,6 +161,10 @@
 
 
   link: (url, text, options = {}) ->
+    if options.unescape
+      url = _.unescape(url)
+      text = _.unescape(text)
+
     el = document.createElement('a')
     el.setAttribute 'href', url
     el.setAttribute 'data-remote', true if options.isRemote
@@ -168,7 +172,7 @@
     el.textContent = text
     if options.props
       _.each options.props, (val, prop) ->
-        el.setAttribute prop, val
+        el.setAttribute prop, val if val?
     el.outerHTML
 
 

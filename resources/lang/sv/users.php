@@ -357,7 +357,6 @@ return [
             'interests' => 'Intressen',
             'location' => 'Nuvarande plats',
             'occupation' => 'Sysselsättning',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Hemsida',
         ],

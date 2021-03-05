@@ -357,7 +357,6 @@ return [
             'interests' => 'Interesses',
             'location' => 'Huidige Locatie',
             'occupation' => 'Beroep',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Website',
         ],

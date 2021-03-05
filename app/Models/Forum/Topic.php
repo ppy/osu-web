@@ -473,7 +473,7 @@ class Topic extends Model implements AfterCommit
         }
     }
 
-    public function postsCount()
+    public function postCount()
     {
         return $this->memoize(__FUNCTION__, function () {
             return $this->topic_replies + 1;
@@ -483,7 +483,7 @@ class Topic extends Model implements AfterCommit
     public function deletedPostsCount()
     {
         return $this->memoize(__FUNCTION__, function () {
-            $this->posts()->onlyTrashed()->count();
+            return $this->posts()->onlyTrashed()->count();
         });
     }
 
@@ -565,7 +565,7 @@ class Topic extends Model implements AfterCommit
                 return false;
             }
 
-            $deletedPosts = $this->postsCount();
+            $deletedPosts = $this->postCount();
             $this->forum->topicsAdded(-1);
             $this->forum->postsAdded(-$deletedPosts);
 
@@ -590,7 +590,7 @@ class Topic extends Model implements AfterCommit
                 return false;
             }
 
-            $restoredPosts = $this->postsCount();
+            $restoredPosts = $this->postCount();
             $this->forum->topicsAdded(1);
             $this->forum->postsAdded($restoredPosts);
 
@@ -653,7 +653,7 @@ class Topic extends Model implements AfterCommit
     public function refreshCache()
     {
         $this->getConnection()->transaction(function () {
-            $this->setPostsCountCache();
+            $this->setPostCountCache();
             $this->setFirstPostCache();
             $this->setLastPostCache();
 
@@ -661,7 +661,7 @@ class Topic extends Model implements AfterCommit
         });
     }
 
-    public function setPostsCountCache()
+    public function setPostCountCache()
     {
         $this->topic_replies = -1 + $this->posts()->where('post_approved', true)->count();
         $this->topic_replies_real = -1 + $this->posts()->count();

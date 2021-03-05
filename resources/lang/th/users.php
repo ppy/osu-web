@@ -358,7 +358,6 @@ return [
             'interests' => 'สิ่งที่สนใจ',
             'location' => 'ตำแหน่งปัจจุบัน',
             'occupation' => 'อาชีพ',
-            'skype' => '',
             'twitter' => '',
             'website' => 'เว็บไซต์',
         ],
