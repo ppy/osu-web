@@ -12,7 +12,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Rallenta, gioca di più.',
     ],
 
     'index' => [
@@ -117,6 +117,7 @@ return [
             'nsfw' => 'Contenuto esplicito',
             'points-of-failure' => 'Punti di Fallimento',
             'source' => 'Sorgente',
+            'storyboard' => '',
             'success-rate' => 'Rateo di Successo',
             'tags' => 'Tag',
         ],

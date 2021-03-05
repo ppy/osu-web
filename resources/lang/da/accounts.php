@@ -62,6 +62,7 @@ return [
             'comment_new' => 'nye kommentarer',
             'forum_topic_reply' => 'emne svar',
             'mail' => 'post',
+            'mapping' => 'beatmap mapper',
             'push' => 'push',
             'user_achievement_unlock' => 'bruger medalje låst op',
         ],

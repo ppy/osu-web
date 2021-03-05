@@ -67,10 +67,10 @@ class Post extends Model implements AfterCommit, Indexable
 
     const SORTS = [
         'id_asc' => [
-            ['column' => 'post_id', 'order' => 'ASC'],
+            ['column' => 'post_id', 'columnInput' => 'id', 'order' => 'ASC'],
         ],
         'id_desc' => [
-            ['column' => 'post_id', 'order' => 'DESC'],
+            ['column' => 'post_id', 'columnInput' => 'id', 'order' => 'DESC'],
         ],
     ];
 

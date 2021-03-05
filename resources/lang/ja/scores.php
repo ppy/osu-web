@@ -23,7 +23,7 @@ return [
     ],
 
     'status' => [
-        'non_best' => '',
-        'processing' => '',
+        'non_best' => '個人ベストスコア賞のみpp',
+        'processing' => 'このスコアはまだ計算中です。すぐに表示されます。',
     ],
 ];

@@ -358,7 +358,6 @@ return [
             'interests' => 'สิ่งที่สนใจ',
             'location' => 'ตำแหน่งปัจจุบัน',
             'occupation' => 'อาชีพ',
-            'skype' => '',
             'twitter' => '',
             'website' => 'เว็บไซต์',
         ],
@@ -409,6 +408,11 @@ return [
             'unranked_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
             'graveyard_beatmapset_count' => 'สุสานบีทแมพ',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

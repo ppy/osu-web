@@ -304,6 +304,12 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2021-02-25
+- `current_mode_rank` has been removed from [UserCompact](#usercompact)
+- attributes in [UserStatistics](#userstatistics) have been moved around
+  - `rank.country` is deprecated, replaced by `country_rank`
+  - `rank.global` and `pp_rank` are removed, replaced by `global_rank`
+
 ### 2020-09-08
 - `presence` removed from `chat/new` response.
 

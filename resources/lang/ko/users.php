@@ -357,7 +357,6 @@ return [
             'interests' => '관심 분야',
             'location' => '거주지',
             'occupation' => '직업',
-            'skype' => '',
             'twitter' => '',
             'website' => '웹사이트',
         ],
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => '대기 중인 비트맵',
             'graveyard_beatmapset_count' => '묻힌 비트맵',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

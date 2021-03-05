@@ -357,7 +357,6 @@ return [
             'interests' => 'Цікаўнасці',
             'location' => 'Бягучае месцазнаходжанне',
             'occupation' => 'Занятак',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Вэб-сайт',
         ],
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => '',
             'graveyard_beatmapset_count' => '',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

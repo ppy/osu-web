@@ -12,7 +12,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Harap mainkan beatmap-beatmap yang sudah Anda miliki terlebih dahulu.',
     ],
 
     'index' => [
@@ -117,6 +117,7 @@ return [
             'nsfw' => 'Konten eksplisit',
             'points-of-failure' => 'Titik-Titik Kegagalan',
             'source' => 'Sumber',
+            'storyboard' => '',
             'success-rate' => 'Tingkat Keberhasilan',
             'tags' => 'Tag',
         ],
@@ -133,7 +134,7 @@ return [
         ],
 
         'scoreboard' => [
-            'achieved' => 'dicapai pada :when',
+            'achieved' => 'diraih pada :when',
             'country' => 'Peringkat Negara',
             'friend' => 'Peringkat Teman',
             'global' => 'Peringkat Global',

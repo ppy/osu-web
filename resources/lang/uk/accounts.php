@@ -62,6 +62,7 @@ return [
             'comment_new' => 'нові коментарі',
             'forum_topic_reply' => 'відповідь темі',
             'mail' => 'пошта',
+            'mapping' => '',
             'push' => 'push',
             'user_achievement_unlock' => 'медаль користувача розблоковано',
         ],

@@ -357,7 +357,6 @@ return [
             'interests' => 'Интересы',
             'location' => 'Текущее местоположение',
             'occupation' => 'Род деятельности',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Веб-сайт',
         ],
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Карты на рассмотрении',
             'graveyard_beatmapset_count' => 'Заброшенные карты',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'У вас сайленс.',
+        'message' => 'Некоторые действия могут быть недоступны.',
     ],
 
     'status' => [

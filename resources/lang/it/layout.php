@@ -160,7 +160,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Limite di richieste superato',
             'description' => '',
         ],
         '500' => [

@@ -62,6 +62,7 @@ return [
             'comment_new' => 'ความคิดเห็นใหม่',
             'forum_topic_reply' => 'ข้อความตอบกลับในกระทู้',
             'mail' => 'อีเมล',
+            'mapping' => 'ผู้ทำบีทแมพ',
             'push' => 'ส่งการแจ้งเตือน',
             'user_achievement_unlock' => 'ผู้เล่นได้ปลดล็อกเหรียญตรา',
         ],
@@ -74,7 +75,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'ซ่อนคำเตือนเกี่ยวกับเนื้อหาที่ล่อแหลมในบีทแมพ',
         'beatmapset_title_show_original' => 'แสดงข้อมูลของ บีทแมพ ในภาษาดั้งเดิม',
         'title' => 'ตัวเลือก',
 

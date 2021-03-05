@@ -357,7 +357,6 @@ return [
             'interests' => 'Интереси',
             'location' => 'Текущо местоположение',
             'occupation' => 'Занимание/Работа',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Уеб сайт',
         ],
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Предстоящи бийтмапове за класиране',
             'graveyard_beatmapset_count' => 'Изоставени бийтмапове',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

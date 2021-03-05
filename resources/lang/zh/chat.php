@@ -18,6 +18,7 @@ return [
             'not_enough_plays' => '你的游戏次数还不够',
             'not_verified' => '你的会话未认证',
             'restricted' => '你正处于限制状态',
+            'silenced' => '你已被禁言',
             'target_restricted' => '对方正处于限制状态',
         ],
     ],

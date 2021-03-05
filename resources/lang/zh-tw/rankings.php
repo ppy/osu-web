@@ -5,12 +5,12 @@
 
 return [
     'countries' => [
-        'all' => '',
+        'all' => '全部',
         'title' => '國家',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => '顯示',
 
         'variant' => [
             'title' => '',

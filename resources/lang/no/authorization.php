@@ -68,6 +68,7 @@ return [
         'moderated' => 'Denne kanalen er for tiden moderert.',
         'no_access' => 'Du har ingen adgang til denne kanalen.',
         'restricted' => 'Du kan ikke sende meldinger mens du er stum, begrenset eller bannlyst.',
+        'silenced' => '',
     ],
 
     'comment' => [
@@ -78,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Du kan ikke endre stemmen din etter den stemmeberettigede perioden for denne konkurransen har avsluttet.',
+
+        'entry' => [
+            'limit_reached' => 'Du har nådd maks antall bidrag for denne konkurransen',
+            'over' => 'Takk for dine bidrag! Påmeldingen for denne konkurransen har stengt og avstemningen vil åpne snart.',
+        ],
     ],
 
     'forum' => [

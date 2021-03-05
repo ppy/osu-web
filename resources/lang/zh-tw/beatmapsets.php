@@ -12,7 +12,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => '欲速則不達。',
     ],
 
     'index' => [
@@ -21,7 +21,7 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => '沒有圖譜',
 
         'download' => [
             'all' => '下載',
@@ -73,7 +73,7 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
+            'approved' => '於:timeago批准',
             'loved' => '',
             'qualified' => '',
             'ranked' => '於:timeago進榜',
@@ -86,7 +86,7 @@ return [
         ],
 
         'hype' => [
-            'action' => '推薦這個圖譜如果你喜歡玩它來幫助它進度至 <strong>進榜</strong> 狀態。',
+            'action' => '如果你喜歡這張圖譜，請推薦它來幫助它進展至<strong>進榜</strong>狀態。',
 
             'current' => [
                 '_' => '此地圖目前是 :status 的。',
@@ -117,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => '失敗位置',
             'source' => '來源',
+            'storyboard' => '',
             'success-rate' => '成功率',
             'tags' => '標籤',
         ],
@@ -126,9 +127,9 @@ return [
             'title' => '',
 
             'buttons' => [
-                'disable' => '',
+                'disable' => '關閉警告',
                 'listing' => '',
-                'show' => '',
+                'show' => '顯示',
             ],
         ],
 
@@ -186,7 +187,7 @@ return [
 
         'status' => [
             'ranked' => '已進榜',
-            'approved' => '已核準',
+            'approved' => '已批准',
             'loved' => 'Loved',
             'qualified' => '已提名',
             'wip' => '製作中',

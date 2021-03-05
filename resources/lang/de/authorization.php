@@ -68,6 +68,7 @@ return [
         'moderated' => 'Dieser Kanal wird derzeit moderiert.',
         'no_access' => 'Du hast kein Zugriff auf diesen Kanal.',
         'restricted' => 'Du kannst keine Nachrichten senden, während du stummgeschaltet, eingeschränkt oder gebannt bist.',
+        'silenced' => '',
     ],
 
     'comment' => [
@@ -78,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Stimmen können nach dem Abstimmungsende nicht mehr geändert werden.',
+
+        'entry' => [
+            'limit_reached' => 'Du hast das Einsendelimit für diesen Wettbewerb erreicht',
+            'over' => 'Vielen Dank für eure Einsendungen! Der Einsendezeitraum ist vorbei, die Abstimmungen werden bald beginnen.',
+        ],
     ],
 
     'forum' => [

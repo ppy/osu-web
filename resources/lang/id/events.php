@@ -12,7 +12,7 @@ return [
     'beatmapset_update' => '<strong><em>:user</em></strong> telah memperbarui beatmap "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> telah mengunggah beatmap baru ":beatmapset"',
     'empty' => "Pengguna ini tidak tercatat melakukan aktivitas apapun baru-baru ini!",
-    'rank' => '<strong><em>:user</em></strong> telah mendapatkan peringkat #:rank pada <em>:beatmap</em> (:mode)',
+    'rank' => '<strong><em>:user</em></strong> telah meraih peringkat #:rank pada <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> telah kehilangan peringkat pertama pada <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> telah sekali lagi memutuskan untuk mendukung osu! - terima kasih atas kemurahan hati Anda!',
     'user_support_first' => '<strong>:user</strong> telah menjadi seorang osu!supporter - terima kasih atas kemurahan hati Anda!',

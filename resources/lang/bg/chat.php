@@ -18,6 +18,7 @@ return [
             'not_enough_plays' => '',
             'not_verified' => '',
             'restricted' => 'В момента сте с ограничен статут',
+            'silenced' => '',
             'target_restricted' => 'Получателят е в момента с ограничен статут',
         ],
     ],

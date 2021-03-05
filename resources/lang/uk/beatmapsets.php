@@ -117,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => 'Шкала провалів',
             'source' => 'Джерело',
+            'storyboard' => '',
             'success-rate' => 'Шанс успіху',
             'tags' => 'Теги',
         ],

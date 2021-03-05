@@ -6,19 +6,21 @@ import MainView from 'chat/main-view';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 
-const dataStore = core.dataStore;
-const initial = osu.parseJson<ChatInitialJson>('json-chat-initial');
-
-if (Array.isArray(initial.presence)) {
-  // initial population of channel/presence data
-  dataStore.channelStore.updateWithPresence(initial.presence);
-}
-
-dataStore.channelStore.lastPolledMessageId = initial.last_message_id ?? 0;
-
 reactTurbolinks.register('chat', MainView, () => {
-  let initialChannel: number | undefined;
-  const sendTo = initial.send_to;
+  const dataStore = core.dataStore;
+  const initial = osu.parseJson<ChatInitialJson | null>('json-chat-initial', true);
+
+  if (initial != null) {
+    if (Array.isArray(initial.presence)) {
+      // initial population of channel/presence data
+      dataStore.channelStore.updateWithPresence(initial.presence);
+    }
+
+    dataStore.channelStore.lastPolledMessageId = initial.last_message_id ?? 0;
+  }
+
+  let initialChannel = dataStore.chatState.selected;
+  const sendTo = initial?.send_to;
 
   if ((sendTo != null)) {
     const target = dataStore.userStore.getOrCreate(sendTo.target.id, sendTo.target); // pre-populate userStore with target
@@ -33,18 +35,15 @@ reactTurbolinks.register('chat', MainView, () => {
       dataStore.channelStore.loaded = true;
       initialChannel = channel.channelId;
     }
-  } else if (dataStore.channelStore.loaded) {
-    const hasNonPmChannels = dataStore.channelStore.nonPmChannels.length > 0;
-    const hasPmChannels = dataStore.channelStore.pmChannels.length > 0;
-
-    if (hasNonPmChannels) {
+  } else if (initialChannel === 0 && dataStore.channelStore.loaded) {
+    if (dataStore.channelStore.nonPmChannels.length > 0) {
       initialChannel = dataStore.channelStore.nonPmChannels[0].channelId;
-    } else if (hasPmChannels) {
+    } else if (dataStore.channelStore.pmChannels.length > 0) {
       initialChannel = dataStore.channelStore.pmChannels[0].channelId;
     }
   }
 
-  if (initialChannel != null) {
+  if (initialChannel !== 0) {
     dataStore.chatState.selectChannel(initialChannel);
   }
 

@@ -24,10 +24,10 @@ return [
         'empty' => '',
 
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'tải xuống',
+            'video' => 'tải xuống cùng video',
+            'no_video' => 'tải xuống không video',
+            'direct' => 'mở trong osu!direct',
         ],
     ],
 
@@ -117,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => 'Tỉ Lệ Thất Bại',
             'source' => 'Nguồn',
+            'storyboard' => '',
             'success-rate' => 'Tỉ Lệ Thành Công',
             'tags' => 'Tags',
         ],
@@ -126,9 +127,9 @@ return [
             'title' => '',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Ẩn thông báo',
+                'listing' => 'Danh sách beatmap',
+                'show' => 'Hiển thị',
             ],
         ],
 
@@ -151,7 +152,7 @@ return [
                 'rank' => 'Xếp Hạng',
                 'score_total' => 'Tổng Điểm',
                 'score' => 'Điểm',
-                'time' => '',
+                'time' => 'Thời gian',
             ],
 
             'no_scores' => [

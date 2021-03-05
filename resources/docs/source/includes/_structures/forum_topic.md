@@ -2,14 +2,15 @@
 
 Field        | Type                    | Description
 ------------ | ----------------------- | -----------
-id           | number                  | |
-forum_id     | number                  | |
-user_id      | number                  | |
-is_locked    | boolean                 | |
-title        | string                  | |
-type         | string                  | normal, sticky, or announcement
-first_post_id| number                  | |
-last_post_id | number                  | |
 created_at   | [Timestamp](#timestamp) | |
 deleted_at   | [Timestamp](#timestamp) | |
+first_post_id| number                  | |
+forum_id     | number                  | |
+id           | number                  | |
+is_locked    | boolean                 | |
+last_post_id | number                  | |
+post_count   | number                  | |
+title        | string                  | |
+type         | string                  | normal, sticky, or announcement
 updated_at   | [Timestamp](#timestamp) | |
+user_id      | number                  | |

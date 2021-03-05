@@ -18,6 +18,7 @@ return [
             'not_enough_plays' => '',
             'not_verified' => '',
             'restricted' => 'Du er i øjeblikket begrænset',
+            'silenced' => 'Du er i øjeblikket gjort tavs',
             'target_restricted' => 'Modtageren er i øjeblikket begrænset',
         ],
     ],

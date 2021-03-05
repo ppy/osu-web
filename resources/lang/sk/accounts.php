@@ -63,6 +63,7 @@ return [
 ',
             'forum_topic_reply' => 'odpoveď na tému',
             'mail' => 'pošta',
+            'mapping' => '',
             'push' => 'upozornenia na stránke',
             'user_achievement_unlock' => 'hráčska medaila odomknutá',
         ],

@@ -357,7 +357,6 @@ return [
             'interests' => 'Interese',
             'location' => 'Locația curentă',
             'occupation' => 'Ocupație',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Site web',
         ],
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Beatmap-uri în așteptare',
             'graveyard_beatmapset_count' => 'Beatmap-uri Îngropate',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => '비트맵 메타데이터 글을 삭제할 수 없습니다.',
             'beatmapset_post_no_edit' => '비트맵 메타데이터 글을 수정할 수 없습니다.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => '답글에 인용만 포함하고 있습니다.',
 
             'attributes' => [

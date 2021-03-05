@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Deseja mesmo restaurar a publicação?',
         'edited' => 'Última edição por :user :when, editado :count vezes no total.',
         'posted_at' => 'publicado :when',
+        'posted_by' => 'publicado por :username',
 
         'actions' => [
             'destroy' => 'Excluir publicação',
@@ -74,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'tópico excluído',
         'go_to_latest' => 'ver a ultima publicação',
         'has_replied' => 'Você respondeu a este tópico',
@@ -87,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'por :user',
         'started_by_verbose' => 'publicado por :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'Fechar',

@@ -18,7 +18,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'poistettu',
-        'none_found' => '',
+        'none_found' => 'Hakukriteereihin täsmääviä keskusteluja ei löytynyt.',
         'title' => 'Beatmapkeskustelut',
 
         'form' => [
@@ -29,11 +29,11 @@ return [
             'username' => 'Käyttäjänimi',
 
             'beatmapset_status' => [
-                '_' => '',
+                '_' => 'Beatmapin tila',
                 'all' => 'Kaikki',
-                'disqualified' => '',
+                'disqualified' => 'Hylätty',
                 'never_qualified' => '',
-                'qualified' => '',
+                'qualified' => 'Hyväksytty',
                 'ranked' => '',
             ],
 

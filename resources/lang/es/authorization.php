@@ -68,6 +68,7 @@ return [
         'moderated' => 'Ese canal está actualmente siendo moderado.',
         'no_access' => 'No tienes acceso a ese canal.',
         'restricted' => 'No puede enviar mensajes mientras esté silenciado, restringido o baneado.',
+        'silenced' => 'No puede enviar mensajes mientras esté silenciado, restringido o baneado.',
     ],
 
     'comment' => [
@@ -78,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'No puedes cambiar tu voto después de haber concluido el periodo de votación.',
+
+        'entry' => [
+            'limit_reached' => 'Has alcanzado el límite de entradas para este concurso',
+            'over' => '¡Gracias por su participación! Los envíos se han cerrado para este concurso y la votación se abrirá pronto.',
+        ],
     ],
 
     'forum' => [

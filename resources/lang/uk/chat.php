@@ -18,6 +18,7 @@ return [
             'not_enough_plays' => '',
             'not_verified' => '',
             'restricted' => 'Наразі ви обмежені',
+            'silenced' => '',
             'target_restricted' => 'Одержувач наразі обмежений',
         ],
     ],

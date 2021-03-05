@@ -357,7 +357,6 @@ return [
             'interests' => 'Intressen',
             'location' => 'Nuvarande plats',
             'occupation' => 'Sysselsättning',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Hemsida',
         ],
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Väntande Beatmaps',
             'graveyard_beatmapset_count' => 'Begravda Beatmaps',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Du är för närvarande tystad.',
+        'message' => '',
     ],
 
     'status' => [

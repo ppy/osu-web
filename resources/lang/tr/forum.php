@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Gönderiyi geri yükle?',
         'edited' => 'En son :user tarafından :when, toplamda :count_delimited defa düzenlendi.|En son :user tarafından :when, toplamda :count_delimited defa düzenlendi.',
         'posted_at' => ':when gönderildi',
+        'posted_by' => ':username tarafından gönderildi',
 
         'actions' => [
             'destroy' => 'Gönderiyi sil',
@@ -74,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'silinmiş konu',
         'go_to_latest' => 'son yazılan mesajı göster',
         'has_replied' => 'Bu konuyu yanıtladınız',
@@ -87,6 +90,11 @@ return [
         'reply_title_prefix' => 'Ynt',
         'started_by' => ':user tarafından',
         'started_by_verbose' => ':user tarafından başlatıldı',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'Kapat',

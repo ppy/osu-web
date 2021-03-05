@@ -13,21 +13,18 @@ class TopicTransformer extends TransformerAbstract
     public function transform(Topic $topic)
     {
         return [
-            'id' => $topic->getKey(),
-
-            'forum_id' => $topic->forum_id,
-            'user_id' => $topic->topic_poster,
-
-            'is_locked' => $topic->isLocked(),
-            'title' => $topic->topic_title,
-            'type' => $topic->typeStr($topic->topic_type),
-
-            'first_post_id' => $topic->topic_first_post_id,
-            'last_post_id' => $topic->topic_last_post_id,
-
             'created_at' => json_time($topic->topic_time),
             'deleted_at' => json_time($topic->deleted_at),
+            'first_post_id' => $topic->topic_first_post_id,
+            'forum_id' => $topic->forum_id,
+            'id' => $topic->getKey(),
+            'is_locked' => $topic->isLocked(),
+            'last_post_id' => $topic->topic_last_post_id,
+            'post_count' => $topic->postCount(),
+            'title' => $topic->topic_title,
+            'type' => $topic->typeStr($topic->topic_type),
             'updated_at' => json_time($topic->topic_last_post_time),
+            'user_id' => $topic->topic_poster,
         ];
     }
 }
