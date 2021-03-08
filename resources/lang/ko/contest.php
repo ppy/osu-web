@@ -15,8 +15,8 @@ return [
 
     'voting' => [
         'login_required' => '투표하려면 로그인해주세요.',
-        'over' => '현재 콘테스트의 투표가 종료되었습니다.',
-        'show_voted_only' => '',
+        'over' => '이 콘테스트의 투표가 종료되었습니다.',
+        'show_voted_only' => '투표한 항목만 보기',
 
         'best_of' => [
             'none_played' => "이 콘테스트에서 평가할 어떤 맵도 플레이하지 않으신 것 같네요.",

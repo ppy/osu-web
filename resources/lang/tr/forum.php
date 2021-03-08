@@ -75,8 +75,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Gerçekten konuyu silmek istiyor musun?',
+        'confirm_restore' => 'Gerçekten konu geri yüklensin mi?',
         'deleted' => 'silinmiş konu',
         'go_to_latest' => 'son yazılan mesajı göster',
         'has_replied' => 'Bu konuyu yanıtladınız',
@@ -92,8 +92,8 @@ return [
         'started_by_verbose' => ':user tarafından başlatıldı',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Konuyu sil',
+            'restore' => 'Konuyu geri yükle',
         ],
 
         'create' => [

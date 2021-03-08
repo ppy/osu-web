@@ -75,8 +75,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Voulez-vous vraiment supprimer cette discussion ?',
+        'confirm_restore' => 'Voulez-vous vraiment restaurer cette discussion ?',
         'deleted' => 'sujet supprimé',
         'go_to_latest' => 'voir le dernier post',
         'has_replied' => 'Vous avez répondu à ce sujet',
@@ -92,8 +92,8 @@ return [
         'started_by_verbose' => 'suivi par :user',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Supprimer le sujet',
+            'restore' => 'Restaurer le sujet',
         ],
 
         'create' => [

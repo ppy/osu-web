@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'lokasi saat ini',
                 'user_interests' => 'minat',
-                'user_msnm' => '',
                 'user_occ' => 'pekerjaan',
                 'user_twitter' => '',
                 'user_website' => 'situs web',

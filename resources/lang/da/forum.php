@@ -75,8 +75,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Slet opslag?',
+        'confirm_restore' => 'Gendan opslag?',
         'deleted' => 'slettede emne',
         'go_to_latest' => 'vis det seneste opslag',
         'has_replied' => '',
@@ -92,8 +92,8 @@ return [
         'started_by_verbose' => 'startet af :user',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Slet emne',
+            'restore' => 'Gendan emne',
         ],
 
         'create' => [
