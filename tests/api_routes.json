@@ -361,6 +361,22 @@
         "scopes": []
     },
     {
+        "uri": "api/v2/forums/topics/{topic}",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\Forum\\TopicsController@show",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
         "uri": "api/v2/matches",
         "methods": [
             "GET",
