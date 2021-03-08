@@ -75,8 +75,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Realmente excluir tópico?',
+        'confirm_restore' => 'Realmente restaurar tópico?',
         'deleted' => 'tópico excluído',
         'go_to_latest' => 'ver a ultima publicação',
         'has_replied' => 'Você respondeu a este tópico',
@@ -92,8 +92,8 @@ return [
         'started_by_verbose' => 'publicado por :user',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Excluir tópico',
+            'restore' => 'Restaurar tópico',
         ],
 
         'create' => [

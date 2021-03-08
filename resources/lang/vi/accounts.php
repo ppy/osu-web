@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'vị trí hiện tại',
                 'user_interests' => 'sở thích',
-                'user_msnm' => '',
                 'user_occ' => 'nghề nghiệp',
                 'user_twitter' => '',
                 'user_website' => 'trang web',

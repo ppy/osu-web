@@ -117,7 +117,7 @@ return [
             'nsfw' => 'Contenido explícito',
             'points-of-failure' => 'Puntos de fracaso',
             'source' => 'Fuente',
-            'storyboard' => '',
+            'storyboard' => 'Este mapa contiene storyboard',
             'success-rate' => 'Tasa de éxito',
             'tags' => 'Etiquetas',
         ],

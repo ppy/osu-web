@@ -15,7 +15,7 @@ return [
         'disqualify' => 'Descalificado por :user. Motivo: :discussion (:text).',
         'disqualify_legacy' => 'Descalificado por :user. Motivo: :text.',
         'genre_edit' => 'El género cambió de :old a :new.',
-        'issue_reopen' => 'El problema resuelto :discussion ha sido reabierto.',
+        'issue_reopen' => 'El problema resuelto :discussion por :discussion_user ha sido reabierto por :user.',
         'issue_resolve' => 'El problema :discussion ha sido marcado como resuelto.',
         'kudosu_allow' => 'La negación de kudosu para la discusión :discussion ha sido eliminada.',
         'kudosu_deny' => 'La discusión :discussion ha sido negada para kudosu.',

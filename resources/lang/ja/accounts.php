@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => '現在地',
                 'user_interests' => '趣味',
-                'user_msnm' => '',
                 'user_occ' => '職業',
                 'user_twitter' => '',
                 'user_website' => 'ウェブサイト',

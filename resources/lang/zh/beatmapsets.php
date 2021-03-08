@@ -117,7 +117,7 @@ return [
             'nsfw' => '少儿不宜内容',
             'points-of-failure' => '失败位置',
             'source' => '来源',
-            'storyboard' => '',
+            'storyboard' => '此谱面包含故事板',
             'success-rate' => '成功率',
             'tags' => '标签',
         ],

@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'mevcut konum',
                 'user_interests' => 'ilgi alanları',
-                'user_msnm' => '',
                 'user_occ' => 'meslek',
                 'user_twitter' => '',
                 'user_website' => 'web sitesi',
