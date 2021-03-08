@@ -390,7 +390,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
                 Route::apiResource('votes', 'BeatmapsetDiscussionVotesController', ['only' => ['index']]);
             });
 
-            Route::resource('discussions', 'BeatmapDiscussionsController', ['only' => ['index', 'show']]);
+            Route::resource('discussions', 'BeatmapDiscussionsController', ['only' => ['index']]);
 
             // TODO: move other beatmapset routes here
             Route::group(['namespace' => 'Beatmapsets'], function () {
