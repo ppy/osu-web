@@ -357,7 +357,6 @@ return [
             'interests' => 'Érdekeltségek',
             'location' => 'Tartózkodási hely',
             'occupation' => 'Foglalkozás',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Honlap',
         ],

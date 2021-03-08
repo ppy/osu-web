@@ -357,7 +357,6 @@ return [
             'interests' => 'Interese',
             'location' => 'Locația curentă',
             'occupation' => 'Ocupație',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Site web',
         ],
