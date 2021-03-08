@@ -10,9 +10,6 @@ abstract class SearchParams
     /** @var int */
     public $from = 0;
 
-    /** @var int|null */
-    public $page = null;
-
     /** @var int */
     public $size = 50;
 
@@ -21,6 +18,9 @@ abstract class SearchParams
 
     /** @var array|null */
     public $searchAfter = null;
+
+    /** @var int|null */
+    protected $page = null;
 
     public function __construct()
     {
