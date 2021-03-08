@@ -7,6 +7,9 @@ namespace App\Http\Controllers;
 
 use App\Libraries\BeatmapsetDiscussionVotesBundle;
 
+/**
+ @group Beatmapset Discussions
+ */
 class BeatmapsetDiscussionVotesController extends Controller
 {
     public function __construct()
@@ -16,6 +19,30 @@ class BeatmapsetDiscussionVotesController extends Controller
         return parent::__construct();
     }
 
+    /**
+     * Get Beatmapset Discussion Votes
+     *
+     * Returns the votes given to beatmapset discussions.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field       | Type                                                    | Description
+     * ----------- | ------------------------------------------------------- | -----------
+     * cursor      | [Cursor](#cursor)                                       | |
+     * discussions | [BeatmapsetDiscussion](#beatmapsetdiscussion)           | |
+     * users       | [UserCompact](#usercompact)                             | |
+     * votes       | [BeatmapsetDiscussionVote](#beatmapsetdiscussionvote)[] | |
+     *
+     * @queryParam limit Maximum number of results.
+     * @queryParam page Search result page.
+     * @queryParam receiver The `id` of the [User](#user) receiving the votes.
+     * @queryParam score `1` for up vote, `-1` for down vote.
+     * @queryParam sort `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`.
+     * @queryParam user The `id` of the [User](#user) giving the votes.
+     * @queryParam with_deleted This param has no effect as api calls do not currently receive group permissions.
+     */
     public function index()
     {
         $bundle = new BeatmapsetDiscussionVotesBundle(request()->all());

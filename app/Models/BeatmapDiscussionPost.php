@@ -73,7 +73,7 @@ class BeatmapDiscussionPost extends Model
         $query->where('system', 0);
 
         if (isset($rawParams['sort'])) {
-            $sort = explode('-', strtolower($rawParams['sort']));
+            $sort = explode('_', strtolower($rawParams['sort']));
 
             if (in_array($sort[0] ?? null, ['id'], true)) {
                 $sortField = $sort[0];
@@ -87,7 +87,7 @@ class BeatmapDiscussionPost extends Model
         $sortField ?? ($sortField = 'id');
         $sortOrder ?? ($sortOrder = 'desc');
 
-        $params['sort'] = "{$sortField}-{$sortOrder}";
+        $params['sort'] = "{$sortField}_{$sortOrder}";
         $query->orderBy($sortField, $sortOrder);
 
         $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;

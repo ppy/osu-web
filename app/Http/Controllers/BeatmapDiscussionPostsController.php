@@ -19,6 +19,9 @@ use App\Models\BeatmapsetWatch;
 use Auth;
 use DB;
 
+/**
+ @group Beatmapset Discussions
+ */
 class BeatmapDiscussionPostsController extends Controller
 {
     public function __construct()
@@ -43,6 +46,28 @@ class BeatmapDiscussionPostsController extends Controller
         return $post->beatmapset->defaultDiscussionJson();
     }
 
+    /**
+     * Get Beatmapset Discussion Posts
+     *
+     * Returns the posts of beatmapset discussions.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field       | Type                                                    | Description
+     * ----------- | ------------------------------------------------------- | -----------
+     * beatmapsets | [BeatmapsetCompact](#beatmapsetcompact)                 | |
+     * cursor      | [Cursor](#cursor)                                       | |
+     * posts       | [BeatmapsetDiscussionPost](#beatmapsetdiscussionpost)[] | |
+     * users       | [UserCompact](#usercompact)                             | |
+     *
+     * @queryParam limit Maximum number of results.
+     * @queryParam page Search result page.
+     * @queryParam sort `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`.
+     * @queryParam user The `id` of the [User](#user).
+     * @queryParam with_deleted This param has no effect as api calls do not currently receive group permissions.
+     */
     public function index()
     {
         $bundle = new BeatmapsetDiscussionPostsBundle(request()->all());
