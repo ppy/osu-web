@@ -10,7 +10,7 @@ use App\Models\Follow;
 use App\Models\Notification;
 use App\Models\UserNotificationOption;
 
-class UserBeatmapsetNew extends BroadcastNotificationBase
+abstract class UserBeatmapsetNewBase extends BroadcastNotificationBase
 {
     const NOTIFICATION_OPTION_NAME = UserNotificationOption::MAPPING;
 

@@ -36,6 +36,7 @@ export const nameToIcons: IconsMap = {
   legacy_pm: ['fas fa-envelope'],
   user_achievement_unlock: ['fas fa-trophy'],
   user_beatmapset_new: ['fas fa-music'],
+  user_beatmapset_revive: ['fas fa-drum'],
 };
 
 export const nameToIconsCompact: IconsMap = {
@@ -56,4 +57,5 @@ export const nameToIconsCompact: IconsMap = {
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
   user_beatmapset_new: ['fas fa-music'],
+  user_beatmapset_revive: ['fas fa-drum'],
 };
