@@ -86,6 +86,8 @@ class BeatmapDiscussionsController extends Controller
      * reviews_config.max_blocks | number                                          | Maximum number of blocks allowed in a review.
      * users                     | [UserCompact](#usercompact)[]                   | List of users associated with the discussions returned.
      *
+     * @queryParam beatmap_id `id` of the [Beatmap](#beatmap).
+     * @queryParam beatmapset_id `id` of the [Beatmapset](#beatmapset).
      * @queryParam beatmapset_status One of `all`, `ranked`, `qualified`, `disqualified`, `never_qualified`. Defaults to `all`. TODO: better descriptions.
      * @queryParam limit Maximum number of results.
      * @queryParam message_types[] `suggestion`, `problem`, `mapper_note`, `praise`, `hype`, `review`. Blank defaults to all types. TODO: better descriptions.
