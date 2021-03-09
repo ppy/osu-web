@@ -75,6 +75,7 @@ class BeatmapsetDiscussionVotesBundle extends BeatmapsetDiscussionsBundleBase
 
             $this->paginator = new LengthAwarePaginator(
                 $votes,
+                $query->realCount(),
                 $params['limit'],
                 $params['page'],
                 [
