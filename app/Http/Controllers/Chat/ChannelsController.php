@@ -40,7 +40,7 @@ class ChannelsController extends Controller
     {
         return json_collection(
             Channel::public()->get(),
-            'Chat\Channel'
+            ChannelTransformer::forUser(auth()->user())
         );
     }
 
@@ -180,12 +180,13 @@ class ChannelsController extends Controller
         $params = request()->all();
         $params['type'] = $params['type'] ?? null;
 
+        $sender = auth()->user();
+
         if ($params['type'] === Channel::TYPES['pm']) {
             if (!isset($params['target_id'])) {
                 abort(422, 'missing target_id parameter');
             }
 
-            $sender = auth()->user();
             $target = User::findOrFail($params['target_id']);
 
             priv_check('ChatStart', $target)->ensureCan();
@@ -198,7 +199,7 @@ class ChannelsController extends Controller
         }
 
         if (isset($channel)) {
-            return json_item($channel, 'Chat\Channel', ['recent_messages.sender']);
+            return json_item($channel, ChannelTransformer::forUser($sender), ['recent_messages.sender']);
         } else {
             abort(422, 'unknown or missing type parameter');
         }
