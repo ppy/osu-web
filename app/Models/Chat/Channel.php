@@ -138,15 +138,15 @@ class Channel extends Model
         return $this->hasMany(UserChannel::class);
     }
 
-    public function userIds()
+    public function userIds(): array
     {
         return $this->memoize(__FUNCTION__, function () {
             // 4 = strlen('#pm_')
             if ($this->isPM() && substr($this->name, 0, 4) === '#pm_') {
-                $userIds = explode('-', substr($this->name, 4));
+                $userIds = array_map('get_int', explode('-', substr($this->name, 4)));
             }
 
-            return $userIds ?? $this->userChannels()->pluck('user_id');
+            return $userIds ?? $this->userChannels()->pluck('user_id')->all();
         });
     }
 
