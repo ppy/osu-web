@@ -263,7 +263,7 @@ class ChatController extends Controller
             'channel' => $channelJson,
             'message' => json_item(
                 $message,
-                'Chat/Message',
+                'Chat\Message',
                 ['sender']
             ),
             'new_channel_id' => $message->channel_id,
