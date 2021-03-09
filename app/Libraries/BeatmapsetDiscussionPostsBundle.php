@@ -41,17 +41,17 @@ class BeatmapsetDiscussionPostsBundle extends BeatmapsetDiscussionsBundleBase
     private function getPosts()
     {
         return $this->memoize(__FUNCTION__, function () {
-            $this->search = BeatmapDiscussionPost::search($this->params);
+            ['query' => $query, 'params' => $params] = BeatmapDiscussionPost::search($this->params);
 
-            $query = $this->search['query']->with(['user.userGroups', 'beatmapset'])->limit($this->search['params']['limit'] + 1);
+            $posts = $query->with(['user.userGroups', 'beatmapset'])->limit($params['limit'] + 1)->get();
 
             $this->paginator = new Paginator(
-                $query->get(),
-                $this->search['params']['limit'],
-                $this->search['params']['page'],
+                $posts,
+                $params['limit'],
+                $params['page'],
                 [
                     'path' => Paginator::resolveCurrentPath(),
-                    'query' => $this->search['params'],
+                    'query' => $params,
                 ]
             );
 

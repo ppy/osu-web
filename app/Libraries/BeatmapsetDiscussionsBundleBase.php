@@ -10,7 +10,6 @@ abstract class BeatmapsetDiscussionsBundleBase
     protected $isModerator;
     protected $paginator;
     protected $params;
-    protected $search;
 
     public function __construct(array $params)
     {
@@ -34,16 +33,6 @@ abstract class BeatmapsetDiscussionsBundleBase
         }
 
         return $this->paginator;
-    }
-
-    public function getParams()
-    {
-        return $this->params;
-    }
-
-    public function getSearch()
-    {
-        return $this->search;
     }
 
     protected function getCursor()

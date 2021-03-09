@@ -63,23 +63,23 @@ class BeatmapsetDiscussionVotesBundle extends BeatmapsetDiscussionsBundleBase
     private function getVotes()
     {
         return $this->memoize(__FUNCTION__, function () {
-            $this->search = BeatmapDiscussionVote::search($this->params);
+            ['query' => $query, 'params' => $params] = BeatmapDiscussionVote::search($this->params);
 
-            $query = $this->search['query']->with([
+            $votes = $query->with([
                 'user.userGroups',
                 'beatmapDiscussion',
                 'beatmapDiscussion.user.userGroups',
                 'beatmapDiscussion.beatmapset',
                 'beatmapDiscussion.startingPost',
-            ]);
+            ])->get();
 
             $this->paginator = new LengthAwarePaginator(
-                $query->get(),
-                $this->search['params']['limit'],
-                $this->search['params']['page'],
+                $votes,
+                $params['limit'],
+                $params['page'],
                 [
                     'path' => LengthAwarePaginator::resolveCurrentPath(),
-                    'query' => $this->search['params'],
+                    'query' => $params,
                 ]
             );
 

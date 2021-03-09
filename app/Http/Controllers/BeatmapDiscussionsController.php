@@ -112,7 +112,7 @@ class BeatmapDiscussionsController extends Controller
         }
 
         $paginator = $bundle->getPaginator();
-        $search = $bundle->getSearch();
+        $search = $bundle->getSearchParams();
 
         return ext_view('beatmap_discussions.index', compact('json', 'search', 'paginator'));
     }

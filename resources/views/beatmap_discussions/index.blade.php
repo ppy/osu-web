@@ -29,7 +29,7 @@
                     <input
                         class="simple-form__input"
                         name="user"
-                        value="{{ $search['params']['user'] ?? '' }}"
+                        value="{{ $search['user'] ?? '' }}"
                     >
                 </label>
 
@@ -43,7 +43,7 @@
                                 @foreach ($statusOptions as $option)
                                     <option
                                         value="{{$option}}"
-                                        {{ $option === $search['params']['beatmapset_status'] ? "selected" : "" }}
+                                        {{ $option === $search['beatmapset_status'] ? "selected" : "" }}
                                     >
                                         {{ trans("beatmap_discussions.index.form.beatmapset_status.{$option}") }}
                                     </option>
@@ -61,7 +61,7 @@
                         @foreach (array_keys(App\Models\BeatmapDiscussion::MESSAGE_TYPES) as $messageType)
                             <label class="simple-form__checkbox simple-form__checkbox--inline">
                                 @include('objects._switch', [
-                                    'checked' => in_array($messageType, $search['params']['message_types'], true),
+                                    'checked' => in_array($messageType, $search['message_types'], true),
                                     'name' => 'message_types[]',
                                     'value' => $messageType,
                                 ])
@@ -74,7 +74,7 @@
                 <div class="simple-form__row simple-form__row--no-label">
                     <label class="simple-form__checkbox">
                         @include('objects._switch', [
-                            'checked' => $search['params']['only_unresolved'],
+                            'checked' => $search['only_unresolved'],
                             'name' => 'only_unresolved',
                         ])
                         {{ trans('beatmap_discussions.index.form.only_unresolved') }}
@@ -85,7 +85,7 @@
                     <div class="simple-form__row simple-form__row--no-label">
                         <label class="simple-form__checkbox">
                             @include('objects._switch', [
-                                'checked' => $search['params']['with_deleted'],
+                                'checked' => $search['with_deleted'],
                                 'name' => 'with_deleted',
                             ])
                             {{ trans('beatmap_discussions.index.form.deleted') }}

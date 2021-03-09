@@ -20,9 +20,16 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
 
     private const DISCUSSION_WITHS = ['beatmapDiscussionVotes', 'beatmapset', 'startingPost'];
 
+    private $searchParams;
+
     public function getData()
     {
         return $this->getDiscussions();
+    }
+
+    public function getSearchParams()
+    {
+        return $this->searchParams;
     }
 
     public function toArray()
@@ -54,17 +61,17 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
     private function getDiscussions()
     {
         return $this->memoize(__FUNCTION__, function () {
-            $this->search = BeatmapDiscussion::search($this->params);
+            ['query' => $query, 'params' => $this->searchParams] = BeatmapDiscussion::search($this->params);
 
-            $query = $this->search['query']->with(static::DISCUSSION_WITHS)->limit($this->search['params']['limit'] + 1);
+            $discussions = $query->with(static::DISCUSSION_WITHS)->limit($this->searchParams['limit'] + 1)->get();
 
             $this->paginator = new Paginator(
-                $query->get(),
-                $this->search['params']['limit'],
-                $this->search['params']['page'],
+                $discussions,
+                $this->searchParams['limit'],
+                $this->searchParams['page'],
                 [
                     'path' => Paginator::resolveCurrentPath(),
-                    'query' => $this->search['params'],
+                    'query' => $this->searchParams, // unfortunately getting query from Paginator is not public.
                 ]
             );
 
