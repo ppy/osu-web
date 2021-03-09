@@ -16,7 +16,10 @@ abstract class BeatmapsetDiscussionsBundleBase
         $this->params = $params;
 
         $this->isModerator = priv_check('BeatmapDiscussionModerate')->can();
-        if (!$this->isModerator) {
+        if ($this->isModerator) {
+            // TODO: normalize with mail beatmap discussions behaviour (discussion by restricted user visible for all users, name is not).
+            $this->params['is_moderator'] = true;
+        } else {
             $this->params['with_deleted'] = false;
         }
     }
