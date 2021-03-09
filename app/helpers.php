@@ -305,43 +305,6 @@ function es_query_and_words($words)
     return implode(' AND ', $partsEscaped);
 }
 
-/**
- * Takes an Elasticsearch resultset and retrieves the matching models from the database,
- *  returning them in the same order as the Elasticsearch results.
- *
- *
- * @param $results Elasticsesarch results.
- * @param $class Class name of the model.
- * @return array Records matching the Elasticsearch results.
- */
-function es_records($results, $class)
-{
-    $keyName = (new $class())->getKeyName();
-
-    $hits = $results['hits']['hits'];
-    $ids = [];
-    foreach ($hits as $hit) {
-        $ids[] = $hit['_id'];
-    }
-
-    $query = $class::whereIn($keyName, $ids);
-    $keyed = [];
-    foreach ($query->get() as $result) {
-        // save for lookup.
-        $keyed[$result->user_id] = $result;
-    }
-
-    // match records with elasticsearch results.
-    $records = [];
-    foreach ($ids as $id) {
-        if (isset($keyed[$id])) {
-            $records[] = $keyed[$id];
-        }
-    }
-
-    return $records;
-}
-
 function get_valid_locale($requestedLocale)
 {
     if (in_array($requestedLocale, config('app.available_locales'), true)) {
