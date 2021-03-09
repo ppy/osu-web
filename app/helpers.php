@@ -288,23 +288,6 @@ function default_mode()
     return optional(auth()->user())->playmode ?? 'osu';
 }
 
-function es_query_and_words($words)
-{
-    $parts = preg_split("/\s+/", $words, null, PREG_SPLIT_NO_EMPTY);
-
-    if (empty($parts)) {
-        return;
-    }
-
-    $partsEscaped = [];
-
-    foreach ($parts as $part) {
-        $partsEscaped[] = str_replace('-', '%2D', urlencode(strtolower($part)));
-    }
-
-    return implode(' AND ', $partsEscaped);
-}
-
 function get_valid_locale($requestedLocale)
 {
     if (in_array($requestedLocale, config('app.available_locales'), true)) {
