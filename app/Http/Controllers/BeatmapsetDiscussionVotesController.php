@@ -28,6 +28,10 @@ class BeatmapsetDiscussionVotesController extends Controller
      *
      * ### Response Format
      *
+     * <aside class="warning">
+     *   The response of this endpoint is likely to change soon!
+     * </aside>
+     *
      * Field       | Type                                                    | Description
      * ----------- | ------------------------------------------------------- | -----------
      * cursor      | [Cursor](#cursor)                                       | |

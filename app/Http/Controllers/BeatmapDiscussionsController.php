@@ -77,6 +77,10 @@ class BeatmapDiscussionsController extends Controller
      *
      * ### Response Format
      *
+     * <aside class="warning">
+     *   The response of this endpoint is likely to change soon!
+     * </aside>
+     *
      * Field                     | Type                                            | Description
      * ------------------------- | ----------------------------------------------- | -----------------------------------------------------------------------
      * beatmaps                  | [Beatmap](#beatmap)[]                           | List of beatmaps associated with the discussions returned.
