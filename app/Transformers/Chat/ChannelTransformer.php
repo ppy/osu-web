@@ -18,12 +18,12 @@ class ChannelTransformer extends TransformerAbstract
         'users',
     ];
 
-    private $userId;
+    private $user;
 
     public static function forUser(?User $user)
     {
         $transformer = new static();
-        $transformer->userId = optional($user)->getKey();
+        $transformer->user = $user;
 
         return $transformer;
     }
@@ -33,9 +33,9 @@ class ChannelTransformer extends TransformerAbstract
         return [
             'channel_id' => $channel->channel_id,
             'description' => $channel->description,
-            'icon' => $channel->displayIconFor($this->userId),
+            'icon' => $channel->displayIconFor($this->user),
             'moderated' => $channel->moderated,
-            'name' => $channel->displayNameFor($this->userId),
+            'name' => $channel->displayNameFor($this->user),
             'type' => $channel->type,
         ];
     }

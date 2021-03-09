@@ -97,26 +97,22 @@ class Channel extends Model
         return '#pm_'.implode('-', $userIds);
     }
 
-    public function displayIconFor(?int $userId)
+    public function displayIconFor(?User $user)
     {
-        if (!$this->isPM() || $userId === null) {
+        if (!$this->isPM() || $user === null) {
             return;
         }
 
-        return $this->users()->filter(function ($user) use ($userId) {
-            return $userId !== $user->getKey();
-        })->first()->user_avatar;
+        return $this->pmTargetFor($user)->user_avatar;
     }
 
-    public function displayNameFor(?int $userId)
+    public function displayNameFor(?User $user)
     {
-        if (!$this->isPM() || $userId === null) {
+        if (!$this->isPM() || $user === null) {
             return $this->name;
         }
 
-        return $this->users()->filter(function ($user) use ($userId) {
-            return $userId !== $user->getKey();
-        })->first()->username;
+        return $this->pmTargetFor($user)->username;
     }
 
     public function messages()
