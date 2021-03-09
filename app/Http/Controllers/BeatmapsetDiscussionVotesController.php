@@ -35,6 +35,7 @@ class BeatmapsetDiscussionVotesController extends Controller
      * users       | [UserCompact](#usercompact)                             | |
      * votes       | [BeatmapsetDiscussionVote](#beatmapsetdiscussionvote)[] | |
      *
+     * @queryParam beatmapset_discussion_id `id` of the [BeatmapsetDiscussion](#beatmapsetdiscussion).
      * @queryParam limit Maximum number of results.
      * @queryParam page Search result page.
      * @queryParam receiver The `id` of the [User](#user) receiving the votes.

@@ -62,6 +62,7 @@ class BeatmapDiscussionPostsController extends Controller
      * posts       | [BeatmapsetDiscussionPost](#beatmapsetdiscussionpost)[] | |
      * users       | [UserCompact](#usercompact)                             | |
      *
+     * @queryParam beatmapset_discussion_id `id` of the [BeatmapsetDiscussion](#beatmapsetdiscussion).
      * @queryParam limit Maximum number of results.
      * @queryParam page Search result page.
      * @queryParam sort `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`.

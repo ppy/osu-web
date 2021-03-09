@@ -90,12 +90,19 @@ class BeatmapDiscussionPost extends Model
         $params['sort'] = "{$sortField}_{$sortOrder}";
         $query->orderBy($sortField, $sortOrder);
 
+        $params['beatmapset_discussion_id'] = get_int($rawParams['beatmapset_discussion_id'] ?? null);
+        if ($params['beatmapset_discussion_id'] !== null) {
+            // column name is beatmap_ =)
+            $query->where('beatmap_discussion_id', $params['beatmapset_discussion_id']);
+        }
+
         $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
 
         if (!$params['with_deleted']) {
             $query->withoutTrashed();
         }
 
+        // TODO: normalize with main beatmapset discussion behaviour (needs React-side fixing)
         if (!($rawParams['is_moderator'] ?? false)) {
             $query->whereHas('user', function ($userQuery) {
                 $userQuery->default();
