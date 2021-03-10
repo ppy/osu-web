@@ -155,7 +155,7 @@ return [
         'title' => ":username profilja",
 
         'comments_count' => [
-            '_' => '',
+            '_' => ':link posztolva',
             'count' => ':count_delimited komment|:count_delimited komment',
         ],
         'edit' => [
@@ -357,7 +357,6 @@ return [
             'interests' => 'Érdekeltségek',
             'location' => 'Tartózkodási hely',
             'occupation' => 'Foglalkozás',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Honlap',
         ],
@@ -411,8 +410,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Jelenleg el vagy némítva.',
+        'message' => 'Egyes műveletek lehet, hogy nem érhetők el.',
     ],
 
     'status' => [

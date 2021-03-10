@@ -5,13 +5,13 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => '管理員',
     ],
     'admin_forum' => [
-        '_' => '',
+        '_' => '管理',
     ],
     'admin_store' => [
-        '_' => '',
+        '_' => '管理員',
     ],
     'error' => [
         'error' => [
@@ -77,7 +77,7 @@ return [
             '_' => '評選',
         ],
         'follows_controller' => [
-            'index' => '',
+            'index' => '看板',
         ],
         'friends_controller' => [
             'index' => '主頁',
@@ -89,7 +89,7 @@ return [
             'get_download' => '下載',
             'index' => '主頁',
             'search' => '搜尋',
-            'support_the_game' => '',
+            'support_the_game' => '贊助 osu!',
             'testflight' => 'testflight 測試',
         ],
         'legal_controller' => [

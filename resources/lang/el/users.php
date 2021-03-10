@@ -357,7 +357,6 @@ return [
             'interests' => 'Ενδιαφέροντα',
             'location' => 'Τρέχουσα Τοποθεσία',
             'occupation' => 'Ενασχόληση',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Ιστοσελίδα',
         ],

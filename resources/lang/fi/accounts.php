@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'nykyinen sijainti',
                 'user_interests' => 'kiinnostukset',
-                'user_msnm' => '',
                 'user_occ' => 'ammatti',
                 'user_twitter' => '',
                 'user_website' => 'verkkosivu',

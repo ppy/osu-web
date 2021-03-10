@@ -28,7 +28,7 @@ return [
         'require-login' => 'Silakan masuk untuk membuka topik bahasan baru atau mengirimkan balasan',
         'resolved' => 'Terjawab',
         'restore' => 'kembalikan',
-        'show_deleted' => 'Tampilkan yang sudah dihapus',
+        'show_deleted' => 'Tampilkan yang telah dihapus',
         'title' => 'Diskusi',
 
         'collapse' => [
@@ -59,10 +59,10 @@ return [
         ],
 
         'message_placeholder' => [
-            'general' => 'Ketik di sini untuk membuka topik bahasan baru pada Umum (:version)',
-            'generalAll' => 'Ketik di sini untuk membuka topik bahasan baru pada Umum (Semua tingkat kesulitan)',
+            'general' => 'Ketik di sini untuk membuka topik bahasan baru pada kolom diskusi Umum (:version)',
+            'generalAll' => 'Ketik di sini untuk membuka topik bahasan baru pada kolom diskusi Umum (Seluruh tingkat kesulitan)',
             'review' => 'Ketik di sini untuk memulai kajian baru',
-            'timeline' => 'Ketik di sini untuk membuka topik bahasan baru pada Linimasa (:version)',
+            'timeline' => 'Ketik di sini untuk membuka topik bahasan baru pada kolom diskusi Linimasa (:version)',
         ],
 
         'message_type' => [
@@ -83,7 +83,7 @@ return [
             'timeline' => 'Linimasa',
             'scopes' => [
                 'general' => 'Tingkat kesulitan ini',
-                'generalAll' => 'Semua tingkat kesulitan',
+                'generalAll' => 'Seluruh tingkat kesulitan',
             ],
         ],
 
@@ -159,8 +159,8 @@ return [
         'button' => 'Hype Beatmap!',
         'button_done' => 'Telah di-Hype!',
         'confirm' => "Apakah Anda yakin? Dengan ini Anda akan memberikan 1 hype kepada beatmap ini dari :n hype yang Anda miliki saat ini. Aksi ini tidak dapat diurungkan.",
-        'explanation' => 'Berikan hype kepada beatmap ini agar beatmap ini dapat lebih layak dinominasikan dan dapat segera di-rank!',
-        'explanation_guest' => 'Masuk dan berikan hype kepada beatmap ini agar beatmap ini dapat lebih layak dinominasikan dan dapat segera di-rank!',
+        'explanation' => 'Berikanlah hype Anda untuk membawa beatmap ini lebih dekat menuju Ranked!',
+        'explanation_guest' => 'Masuk dan berikan hype kepada beatmap ini agar beatmap ini dapat segera dinominasikan dan di-rank!',
         'new_time' => "Anda akan mendapatkan hype tambahan :new_time.",
         'remaining' => 'Anda memiliki :remaining hype tersisa.',
         'required_text' => 'Hype: :current/:required',
@@ -250,7 +250,7 @@ return [
     ],
     'general' => [
         'converts' => 'Sertakan beatmap yang dikonversi',
-        'follows' => '',
+        'follows' => 'Mapper yang dipantau',
         'recommended' => 'Tingkat kesulitan yang disarankan',
     ],
     'mode' => [

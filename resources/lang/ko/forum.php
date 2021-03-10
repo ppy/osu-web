@@ -47,7 +47,7 @@ return [
         'confirm_restore' => '정말 이 글을 복원할까요?',
         'edited' => ':user 님이 마지막으로 :when에 수정하여 총 :count_delimited회 수정되었습니다.',
         'posted_at' => ':when에 게시됨',
-        'posted_by' => '',
+        'posted_by' => ':username 님이 게시함',
 
         'actions' => [
             'destroy' => '삭제',
@@ -75,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '정말 주제를 삭제할까요?',
+        'confirm_restore' => '정말 주제를 복원할까요?',
         'deleted' => '삭제된 주제',
         'go_to_latest' => '최근에 올라온 글 보기',
         'has_replied' => '이 주제에 답글을 달았습니다.',
@@ -88,6 +90,11 @@ return [
         'reply_title_prefix' => '답글',
         'started_by' => 'by :user',
         'started_by_verbose' => ':user 님이 시작함',
+
+        'actions' => [
+            'destroy' => '주제 삭제',
+            'restore' => '주제 복원',
+        ],
 
         'create' => [
             'close' => '닫기',

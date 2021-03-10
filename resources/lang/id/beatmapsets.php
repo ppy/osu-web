@@ -117,6 +117,7 @@ return [
             'nsfw' => 'Konten eksplisit',
             'points-of-failure' => 'Titik-Titik Kegagalan',
             'source' => 'Sumber',
+            'storyboard' => 'Beatmap ini mengandung storyboard',
             'success-rate' => 'Tingkat Keberhasilan',
             'tags' => 'Tag',
         ],

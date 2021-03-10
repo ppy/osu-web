@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Eliminar la publicación de los metadatos del mapa no está permitido.',
             'beatmapset_post_no_edit' => 'Editar la publicación de los metadatos del mapa no está permitido.',
+            'first_post_no_delete' => 'No se puede eliminar la publicación inicial',
+            'missing_topic' => 'Falta el tema de la publicación',
             'only_quote' => 'Tu respuesta sólo contiene una cita.',
 
             'attributes' => [

@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Beatmap metaveri gönderisinin silinmesi yasaktır.',
             'beatmapset_post_no_edit' => 'Beatmap metaveri gönderisini düzenlemek yasaktır.',
+            'first_post_no_delete' => 'Başlangıç gönderisi silinemez',
+            'missing_topic' => 'Gönderinin konusu eksik',
             'only_quote' => 'Cevabınız sadece bir alıntı içeriyor.',
 
             'attributes' => [

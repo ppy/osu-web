@@ -357,7 +357,6 @@ return [
             'interests' => 'İlgi Alanları',
             'location' => 'Mevcut Konum',
             'occupation' => 'Meslek',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Web sitesi',
         ],
@@ -411,8 +410,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Şu anda susturulmuş durumdasınız.',
+        'message' => 'Bazı eylemler kullanım dışı olabilir.',
     ],
 
     'status' => [

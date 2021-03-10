@@ -33,8 +33,6 @@ return [
         'login_required' => 'Přihlaš se prosím pro vstup do soutěže.',
         'silenced_or_restricted' => 'Nemůžeš se zůčastnit soutěže, když je tvůj účet v omezeném režimu nebo ztlumený.',
         'preparation' => 'Tuto soutěž právě připravujeme. Prosím čekej trpělivě!',
-        'over' => 'Díky za vaše vstupy! Podání byla uzavřena a hlasování se brzy otevře.',
-        'limit_reached' => 'Dosáhl jsi limitu vstupů pro tuto soutěž',
         'drop_here' => 'Tvůj vstup přetáhni sem',
         'download' => 'Stáhnout .osz',
         'wrong_type' => [

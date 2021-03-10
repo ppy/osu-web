@@ -84,9 +84,9 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
-        'settings' => '',
-        'subject' => '',
+        'new' => '只是想提醒您，您追蹤的項目有新的更新',
+        'settings' => '更改電子郵件通知設定：',
+        'subject' => '新的 osu! 通知',
     ],
 
     'user_password_updated' => [

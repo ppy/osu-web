@@ -117,6 +117,7 @@ return [
             'nsfw' => 'Contenuto esplicito',
             'points-of-failure' => 'Punti di Fallimento',
             'source' => 'Sorgente',
+            'storyboard' => 'Questa beatmap contiene storyboard',
             'success-rate' => 'Rateo di Successo',
             'tags' => 'Tag',
         ],

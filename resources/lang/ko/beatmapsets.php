@@ -117,6 +117,7 @@ return [
             'nsfw' => '부적절한 내용',
             'points-of-failure' => '실패 지점',
             'source' => '원작',
+            'storyboard' => '이 비트맵은 스토리보드를 포함합니다',
             'success-rate' => '클리어 비율',
             'tags' => '태그',
         ],

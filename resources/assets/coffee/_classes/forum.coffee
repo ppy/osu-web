@@ -260,6 +260,11 @@ class @Forum
 
     $.get(moreMeta.url)
     .done (data) =>
+      if !data?
+        link.dataset.noMore = '1'
+        @refreshLoadMoreLinks()
+        return
+
       scrollReference = moreMeta.refPost
       scrollReferenceTop = scrollReference.getBoundingClientRect().top
 
@@ -293,11 +298,6 @@ class @Forum
     .always ->
       link.classList.remove 'js-disabled'
     .fail (xhr) =>
-      if xhr.status == 404
-        link.dataset.noMore = '1'
-        @refreshLoadMoreLinks()
-        return
-
       link.dataset.failed = '1'
       osu.ajaxError xhr
 

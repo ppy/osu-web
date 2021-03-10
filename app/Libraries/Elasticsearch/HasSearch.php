@@ -41,7 +41,7 @@ abstract class HasSearch
      */
     public function size(int $size)
     {
-        $this->params->size = $size;
+        $this->params->size($size);
 
         return $this;
     }

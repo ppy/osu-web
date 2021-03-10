@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Beatmap metaadat törlése nem engedélyezett.',
             'beatmapset_post_no_edit' => 'Beatmap metaadat poszt szerkesztése nem engedélyezett.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => 'A válaszod csak egy idézetet tartalmaz.',
 
             'attributes' => [

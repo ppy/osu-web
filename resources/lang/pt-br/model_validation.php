@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Deletar postagem de metadados de um beatmap não é permitido.',
             'beatmapset_post_no_edit' => 'Editar postagem de metadados de um beatmap não é permitido.',
+            'first_post_no_delete' => 'Não é possível excluir a publicação inicial',
+            'missing_topic' => 'Está faltando um tópico na publicação',
             'only_quote' => 'Sua resposta contém apenas uma citação.',
 
             'attributes' => [

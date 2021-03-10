@@ -181,6 +181,12 @@ class Mod
         self::OSU_DEFLATE => [
             'start_scale' => 'float',
         ],
+        self::OSU_CLASSIC => [
+            'classic_note_lock' => 'bool',
+            'fixed_follow_circle_hit_area' => 'bool',
+            'no_slider_head_accuracy' => 'bool',
+            'no_slider_head_movement' => 'bool',
+        ],
     ];
 
     public static function assertValidExclusivity($requiredIds, $allowedIds, $ruleset)

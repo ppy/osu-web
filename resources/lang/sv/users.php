@@ -357,7 +357,6 @@ return [
             'interests' => 'Intressen',
             'location' => 'Nuvarande plats',
             'occupation' => 'Sysselsättning',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Hemsida',
         ],
@@ -411,7 +410,7 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
+        'title' => 'Du är för närvarande tystad.',
         'message' => '',
     ],
 
