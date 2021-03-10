@@ -250,7 +250,7 @@ return [
     ],
     'general' => [
         'converts' => '변환된 비트맵 포함',
-        'follows' => '',
+        'follows' => '구독한 비트맵 제작자',
         'recommended' => '권장 난이도',
     ],
     'mode' => [

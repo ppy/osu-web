@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'současná poloha',
                 'user_interests' => 'zájmy',
-                'user_msnm' => '',
                 'user_occ' => 'zaměstnání',
                 'user_twitter' => '',
                 'user_website' => 'webové stránky',

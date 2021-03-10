@@ -57,7 +57,9 @@ class NewsController extends Controller
         if (request('key') === 'id') {
             $post = NewsPost::findOrFail($slug);
 
-            return ujs_redirect(route('news.show', $post->slug));
+            $routeName = (is_api_request() ? 'api.' : '').'news.show';
+
+            return ujs_redirect(route($routeName, $post->slug));
         }
 
         $post = NewsPost::lookup($slug)->sync();
@@ -66,10 +68,16 @@ class NewsController extends Controller
             abort(404);
         }
 
+        $postJson = json_item($post, 'NewsPost', ['content', 'navigation']);
+
+        if (is_json_request()) {
+            return $postJson;
+        }
+
         return ext_view('news.show', [
             'commentBundle' => CommentBundle::forEmbed($post),
             'post' => $post,
-            'postJson' => json_item($post, 'NewsPost', ['content', 'navigation']),
+            'postJson' => $postJson,
             'sidebarMeta' => $this->sidebarMeta($post),
         ]);
     }

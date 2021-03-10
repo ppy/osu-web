@@ -43,8 +43,8 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Yakin menghapus post?',
-        'confirm_restore' => 'Yakin mengembalikan post?',
+        'confirm_destroy' => 'Apakah Anda yakin untuk menghapus post ini?',
+        'confirm_restore' => 'Apakah Anda yakin untuk mengembalikan post ini?',
         'edited' => 'Terakhir disunting oleh :user :when, dengan total penyuntingan sebanyak :count_delimited kali.|Terakhir disunting oleh :user :when, dengan total penyuntingan sebanyak :count_delimited kali.',
         'posted_at' => 'diposting :when',
         'posted_by' => 'di-post oleh :username',
@@ -75,8 +75,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Apakah Anda yakin untuk menghapus topik ini?',
+        'confirm_restore' => 'Apakah Anda yakin untuk mengembalikan topik ini?',
         'deleted' => 'topik yang dihapus',
         'go_to_latest' => 'lihat posting terbaru',
         'has_replied' => 'Anda telah mengirimkan balasan pada topik ini',
@@ -92,8 +92,8 @@ return [
         'started_by_verbose' => 'topik dimulai oleh :user',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Hapus topik',
+            'restore' => 'Kembalikan topik',
         ],
 
         'create' => [
