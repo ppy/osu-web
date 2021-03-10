@@ -20,6 +20,10 @@ return [
             'write' => 'Send messages on your behalf.',
         ],
 
+        'forum' => [
+            'write' => 'Create and edit forum topics and posts on your behalf.',
+        ],
+
         'friends' => [
             'read' => 'See who you are following.',
         ],
