@@ -11,9 +11,9 @@ use League\CommonMark\Extension\Attributes\Node\AttributesInline;
 
 class AttributesOnlyIdListener
 {
-    public function processDocument(DocumentParsedEvent $event): void
+    public function processDocument(DocumentParsedEvent $documentEvent): void
     {
-        $walker = $event->getDocument()->walker();
+        $walker = $documentEvent->getDocument()->walker();
         while ($event = $walker->next()) {
             $node = $event->getNode();
 
