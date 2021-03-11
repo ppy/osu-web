@@ -27,7 +27,7 @@ trait WithDbCursorHelper
     private static function cursorSortExecWhere($query, ?array $preparedCursor)
     {
         if (empty($preparedCursor)) {
-            return;
+            return $query;
         }
 
         $current = array_shift($preparedCursor);
@@ -49,6 +49,15 @@ trait WithDbCursorHelper
         return $query;
     }
 
+    /**
+     * Builds a cursor-based sort query.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query Input query to be extended.
+     * @param string|DbCursorHelper $sortOrCursorHelper Either sort name to create DbCursorHelper or existing DbCursorHelper.
+     * @param array|static $cursorOrStatic Either an input cursor array or object instance to generate cursor array from.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeCursorSort($query, $sortOrCursorHelper, $cursorOrStatic)
     {
         $cursorHelper = $sortOrCursorHelper instanceof DbCursorHelper
@@ -61,8 +70,6 @@ trait WithDbCursorHelper
             ? $cursorHelper->itemToCursor($cursorOrStatic)
             : $cursorOrStatic;
 
-        static::cursorSortExecWhere($query, $cursorHelper->prepare($cursor));
-
-        return $query;
+        return static::cursorSortExecWhere($query, $cursorHelper->prepare($cursor));
     }
 }
