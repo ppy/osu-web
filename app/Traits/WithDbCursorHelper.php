@@ -64,7 +64,7 @@ trait WithDbCursorHelper
             ? $sortOrCursorHelper
             : static::makeDbCursorHelper(get_string($sortOrCursorHelper));
 
-        static::cursorSortExecOrder($query, $cursorHelper->getSort());
+        $query = static::cursorSortExecOrder($query, $cursorHelper->getSort());
 
         $cursor = $cursorOrStatic instanceof static
             ? $cursorHelper->itemToCursor($cursorOrStatic)
