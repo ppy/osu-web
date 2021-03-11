@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'бягучае месцазнаходжанне',
                 'user_interests' => 'цікаўнасці',
-                'user_msnm' => '',
                 'user_occ' => 'занятак',
                 'user_twitter' => '',
                 'user_website' => 'вэб-сайт',

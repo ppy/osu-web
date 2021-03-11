@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'τρέχουσα τοποθεσία',
                 'user_interests' => 'ενδιαφέροντα',
-                'user_msnm' => '',
                 'user_occ' => 'ενασχόληση',
                 'user_twitter' => '',
                 'user_website' => 'ιστοσελίδα',

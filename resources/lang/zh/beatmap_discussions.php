@@ -31,10 +31,10 @@ return [
             'beatmapset_status' => [
                 '_' => '谱面状态',
                 'all' => '所有',
-                'disqualified' => '已被Disqualified',
+                'disqualified' => 'Disqualified',
                 'never_qualified' => '从未被Qualified',
-                'qualified' => '已被Qualified',
-                'ranked' => '已被Ranked',
+                'qualified' => 'Qualified',
+                'ranked' => 'Ranked',
             ],
 
             'user' => [

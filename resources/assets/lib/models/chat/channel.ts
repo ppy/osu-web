@@ -8,6 +8,8 @@ import User from 'models/user';
 import Message from './message';
 
 export default class Channel {
+  private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
+
   @observable channelId: number;
   @observable description?: string;
   @observable firstMessageId: number = -1;
@@ -18,7 +20,6 @@ export default class Channel {
   @observable loading: boolean = false;
   @observable loadingEarlierMessages: boolean = false;
   @observable messages: Message[] = observable([]);
-  @observable metaLoaded: boolean = false;
   @observable moderated: boolean = false;
   @observable name: string = '';
   @observable newPmChannel = false;
@@ -61,6 +62,11 @@ export default class Channel {
     }
 
     return this.initialLastMessageId ?? -1;
+  }
+
+  @computed
+  get isDisplayable() {
+    return this.name.length > 0 && this.icon != null;
   }
 
   @computed
@@ -171,13 +177,11 @@ export default class Channel {
     this.name = json.name;
     this.description = json.description;
     this.type = json.type;
-    this.icon = json?.icon ?? '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
+    this.icon = json?.icon ?? Channel.defaultIcon;
     this.moderated = json.moderated;
-    this.users = json.users;
+    this.users = json.users ?? this.users;
 
     this.initialLastMessageId = json.last_message_id ?? this.lastMessageId;
-
-    this.metaLoaded = true;
   }
 
   @action

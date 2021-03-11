@@ -75,8 +75,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Действительно удалить тему?',
+        'confirm_restore' => 'Действительно восстановить тему?',
         'deleted' => 'удалённая тема',
         'go_to_latest' => 'перейти к последнему ответу',
         'has_replied' => 'Вы отвечали на эту тему',
@@ -92,8 +92,8 @@ return [
         'started_by_verbose' => 'начато :user',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Удалить тему',
+            'restore' => 'Восстановить тему',
         ],
 
         'create' => [

@@ -73,7 +73,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Supprimer les métadonnées d\'une beatmap n\'est pas autorisé.',
             'beatmapset_post_no_edit' => 'Modifier les métadonnées d\'une beatmap n\'est pas autorisé.',
-            'first_post_no_delete' => '',
+            'first_post_no_delete' => 'Impossible de supprimer le message de départ',
             'missing_topic' => '',
             'only_quote' => 'Votre réponse ne contient qu\'une citation.',
 

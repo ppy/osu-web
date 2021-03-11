@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'nuvarande position',
                 'user_interests' => 'intressen',
-                'user_msnm' => '',
                 'user_occ' => 'sysselsättning',
                 'user_twitter' => '',
                 'user_website' => 'hemsida',

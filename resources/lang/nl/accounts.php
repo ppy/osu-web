@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'huidige locatie',
                 'user_interests' => 'interesses',
-                'user_msnm' => '',
                 'user_occ' => 'bezigheid',
                 'user_twitter' => '',
                 'user_website' => 'website',
