@@ -25,39 +25,14 @@
           "dynamic": false,
           "type": "nested",
           "properties": {
-            "beatmap_id": {
-              "type": "long"
-            },
-            "convert": {
-              "type": "boolean"
-            },
-            "difficultyrating": {
-              "type": "double"
-            },
-            "playmode": {
-              "type": "byte"
-            }
-          }
-        },
-        "bpm": {
-          "type": "double"
-        },
-        "creator": {
-          "type": "text",
-          "fields": {
-            "raw": {
-              "type": "keyword"
-            }
-          }
-        },
-        "difficulties": {
-          "dynamic": false,
-          "properties": {
             "approved": {
               "type": "long"
             },
             "beatmap_id": {
               "type": "long"
+            },
+            "convert": {
+              "type": "boolean"
             },
             "countNormal": {
               "type": "long"
@@ -100,6 +75,25 @@
             },
             "version": {
               "type": "text"
+            }
+          }
+        },
+        "bpm": {
+          "type": "double"
+        },
+        "creator": {
+          "type": "text",
+          "fields": {
+            "raw": {
+              "type": "keyword"
+            }
+          }
+        },
+        "difficulties": {
+          "dynamic": false,
+          "properties": {
+            "playmode": {
+              "type": "byte"
             }
           }
         },
