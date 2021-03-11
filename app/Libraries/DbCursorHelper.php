@@ -76,14 +76,6 @@ class DbCursorHelper
 
     public function next($items)
     {
-        if (count($items) === 0) {
-            return;
-        }
-
-        $lastItem = $items[count($items) - 1];
-
-        if ($lastItem instanceof Model) {
-            return $this->itemToCursor($lastItem);
-        }
+        return $this->itemToCursor(array_last($items));
     }
 }
