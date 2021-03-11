@@ -34,6 +34,11 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
     private $requestQuery;
 
+    /** @var string|null */
+    private $sortField;
+    /** @var string|null */
+    private $sortOrder;
+
     public function __construct(array $request, ?User $user = null)
     {
         parent::__construct();
@@ -141,29 +146,33 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         return compact('extras', 'general', 'genres', 'languages', 'modes', 'nsfw', 'played', 'ranks', 'statuses');
     }
 
+    public function getSort(): ?string
+    {
+        if ($this->sortField !== null && $this->sortOrder !== null) {
+            return "{$this->sortField}_{$this->sortOrder}";
+        }
+    }
+
     public function isLoginRequired(): bool
     {
         return present($this->requestQuery);
     }
 
-    private function getDefaultSort(string $order): array
+    private function getDefaultSortField(): string
     {
         if (present($this->queryString)) {
-            return [new Sort('_score', $order)];
+            return 'relevance';
         }
 
         if ($this->status === 'qualified') {
-            return [
-                new Sort('queued_at', $order),
-                new Sort('approved_date', $order), // fallback
-            ];
+            return 'ranked';
         }
 
         if (in_array($this->status, ['pending', 'graveyard', 'mine'], true)) {
-            return [new Sort('last_update', $order)];
+            return 'updated';
         }
 
-        return [new Sort('approved_date', $order)];
+        return 'ranked';
     }
 
     /**
@@ -246,21 +255,23 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
     private function parseSortOrder(?string $value)
     {
         $array = explode('_', $value);
-        $field = static::remapSortField($array[0]);
-        $order = $array[1] ?? null;
+        $this->sortField = $array[0];
+        $this->sortOrder = $array[1] ?? null;
 
-        if (!in_array($order, ['asc', 'desc'], true)) {
-            $order = 'desc';
+        $mappedField = static::remapSortField($this->sortField);
+        if ($mappedField === null) {
+            $this->sortField = $this->getDefaultSortField();
+            $mappedField = static::remapSortField($this->sortField);
         }
 
-        if (empty($field)) {
-            $this->sorts = $this->getDefaultSort($order);
-        } else {
-            $this->sorts = $this->normalizeSort(new Sort($field, $order));
+        if (!in_array($this->sortOrder, ['asc', 'desc'], true)) {
+            $this->sortOrder = 'desc';
         }
+
+        $this->sorts = $this->normalizeSort(new Sort($mappedField, $this->sortOrder));
 
         // generic tie-breaker.
-        $this->sorts[] = new Sort('_id', $order);
+        $this->sorts[] = new Sort('_id', $this->sortOrder);
     }
 
     private static function remapSortField(?string $name)
