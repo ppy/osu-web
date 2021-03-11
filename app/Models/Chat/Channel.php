@@ -143,7 +143,7 @@ class Channel extends Model
         return $this->memoize(__FUNCTION__, function () {
             // 4 = strlen('#pm_')
             if ($this->isPM() && substr($this->name, 0, 4) === '#pm_') {
-                $userIds = array_map('get_int', explode('-', substr($this->name, 4)));
+                $userIds = get_arr(explode('-', substr($this->name, 4)), 'get_int');
             }
 
             return $userIds ?? $this->userChannels()->pluck('user_id')->all();
