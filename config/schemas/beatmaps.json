@@ -68,7 +68,7 @@
               "type": "long"
             },
             "playmode": {
-              "type": "long"
+              "type": "byte"
             },
             "total_length": {
               "type": "long"
@@ -93,7 +93,7 @@
           "dynamic": false,
           "properties": {
             "playmode": {
-              "type": "byte"
+              "type": "long"
             }
           }
         },
