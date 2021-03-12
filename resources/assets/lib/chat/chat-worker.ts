@@ -3,13 +3,44 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
-import { dispatchListener } from 'app-dispatcher';
+import { dispatch, dispatchListener } from 'app-dispatcher';
+import ChatAPI from 'chat/chat-api';
+import { ChatChannelEventJson, ChatChannelJoinEvent, ChatChannelPartEvent, ChatEventJson, ChatMessageEventJson, ChatMessageNewEvent } from 'chat/chat-events';
 import DispatchListener from 'dispatch-listener';
 import { maxBy } from 'lodash';
 import { transaction } from 'mobx';
+import Channel from 'models/chat/channel';
+import Message from 'models/chat/message';
+import SocketMessageEvent from 'socket-message-event';
 import ChannelStore from 'stores/channel-store';
 import RetryDelay from 'utils/retry-delay';
-import ChatAPI from './chat-api';
+
+function isChannelEvent(arg: any): arg is ChatChannelEventJson {
+  return arg.event?.startsWith('chat.channel.') ?? false;
+}
+
+function isMessageEvent(arg: any): arg is ChatMessageEventJson {
+  return arg.event?.startsWith('chat.message.') ?? false;
+}
+
+function newDispatchActionFromJson(json: ChatEventJson) {
+  if (isMessageEvent(json)) {
+    switch (json.event) {
+      case 'chat.message.new':
+        return new ChatMessageNewEvent(Message.fromJson(json.data));
+    }
+  } else if (isChannelEvent(json)) {
+    switch (json.event) {
+      case 'chat.channel.join': {
+        const channel = new Channel(json.data.channel_id);
+        channel.updateWithJson(json.data);
+        return new ChatChannelJoinEvent(channel);
+      }
+      case 'chat.channel.part':
+        return new ChatChannelPartEvent(json.data.channel_id);
+    }
+  }
+}
 
 @dispatchListener
 export default class ChatWorker implements DispatchListener {
@@ -26,11 +57,18 @@ export default class ChatWorker implements DispatchListener {
   constructor(private channelStore: ChannelStore) {
   }
 
-  handleDispatchAction(action: DispatcherAction) {
-    if (action instanceof WindowFocusAction) {
+  handleDispatchAction(event: DispatcherAction) {
+    if (event instanceof WindowFocusAction) {
       this.windowIsActive = true;
-    } else if (action instanceof WindowBlurAction) {
+    } else if (event instanceof WindowBlurAction) {
       this.windowIsActive = false;
+    }
+
+    if (!(event instanceof SocketMessageEvent)) return;
+
+    const dispatchAction = newDispatchActionFromJson(event.message);
+    if (dispatchAction != null) {
+      dispatch(dispatchAction);
     }
   }
 
