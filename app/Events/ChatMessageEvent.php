@@ -7,6 +7,7 @@ namespace App\Events;
 
 use App\Models\Chat\Message;
 use App\Models\User;
+use App\Transformers\Chat\MessageTransformer;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Queue\SerializesModels;
@@ -52,6 +53,6 @@ class ChatMessageEvent implements ShouldBroadcast
 
     public function broadcastWith()
     {
-        return json_item($this->message, 'Chat\Message');
+        return json_item($this->message, new MessageTransformer());
     }
 }
