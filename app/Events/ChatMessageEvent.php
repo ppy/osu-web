@@ -18,16 +18,17 @@ class ChatMessageEvent implements ShouldBroadcast
 
     public $broadcastQueue;
     public $message;
-    public $user;
+    public $sender;
 
-    public function __construct(Message $message, User $user)
+    // TODO: just get sender from message?
+    public function __construct(Message $message, User $sender)
     {
         // TODO: different queue? conditional queue?
         $this->broadcastQueue = config('osu.notification.queue_name');
 
         // TODO: avoid serializing so handle doesn't need to perform queries to deserialize.
         $this->message = $message;
-        $this->user = $user;
+        $this->sender = $sender;
     }
 
     public function broadcastAs()
@@ -45,9 +46,9 @@ class ChatMessageEvent implements ShouldBroadcast
         if ($this->message->channel->isPublic()) {
             return new Channel("chat:channel:{$this->message->channel->getKey()}");
         } else {
-            $userId = $this->message->channel->pmTargetFor($this->user)->getKey();
+            $senderId = $this->message->channel->pmTargetFor($this->sender)->getKey();
 
-            return new Channel("private:user:{$userId}");
+            return new Channel("private:user:{$senderId}");
         }
     }
 

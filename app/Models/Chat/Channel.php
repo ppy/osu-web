@@ -5,6 +5,8 @@
 
 namespace App\Models\Chat;
 
+use App\Events\ChatChannelEvent;
+use App\Events\ChatMessageEvent;
 use App\Exceptions\API;
 use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\ChannelMessage;
@@ -366,6 +368,8 @@ class Channel extends Model
             $userChannel->markAsRead($message->message_id);
         }
 
+        event(new ChatMessageEvent($message, $sender));
+
         if ($this->isPM()) {
             $this->unhide();
             (new ChannelMessage($message, $sender))->dispatch();
@@ -382,6 +386,9 @@ class Channel extends Model
 
         if ($userChannel) {
             if (!$userChannel->isHidden()) {
+                // tell notification server to forward events for this user.
+                event(new ChatChannelEvent($userChannel->channel, $user, 'join'));
+
                 return;
             }
 
@@ -394,6 +401,9 @@ class Channel extends Model
             $this->resetMemoized();
         }
 
+        event(new ChatChannelEvent($userChannel->channel, $user, 'join'));
+
+        // TODO: probably need to update so it doesn't increment if user is already in channel?
         Datadog::increment('chat.channel.join', 1, ['type' => $this->type]);
     }
 
@@ -414,6 +424,8 @@ class Channel extends Model
         } else {
             $userChannel->delete();
         }
+
+        event(new ChatChannelEvent($userChannel->channel, $user, 'part'));
 
         Datadog::increment('chat.channel.part', 1, ['type' => $this->type]);
     }
