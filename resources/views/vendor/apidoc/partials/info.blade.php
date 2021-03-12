@@ -270,6 +270,7 @@ The following scopes are currently supported:
 $scopeDescriptions = [
     'bot' => "[Chat Bot]({$wikiUrl}) and [Client Credentials Grant](#client-credentials-grant) exclusive scope.",
     'chat.write' => "Allows sending chat messages on a user's behalf; exclusive to [Chat Bot]({$wikiUrl})s",
+    'forum.write' => "Allows creating and editing forum posts on a user's behalf.",
     'friends.read' => 'Allows reading of the user\'s friend list.',
     'identify' => 'Allows reading of the public profile of the user (`/me`).',
     'public' => 'Allows reading of publicly available data on behalf of the user.',

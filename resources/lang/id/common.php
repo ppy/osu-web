@@ -49,7 +49,7 @@ return [
         'search' => 'Cari',
         'see_more' => 'perlihatkan lebih banyak',
         'show' => 'tampilkan',
-        'show_deleted' => 'Tampilkan yang sudah dihapus',
+        'show_deleted' => 'Tampilkan yang telah dihapus',
         'show_less' => 'tampilkan lebih sedikit',
         'show_more' => 'tampilkan lebih banyak',
         'show_more_options' => 'tampilkan pilihan lainnya',

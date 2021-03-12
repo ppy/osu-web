@@ -172,7 +172,7 @@
     el.textContent = text
     if options.props
       _.each options.props, (val, prop) ->
-        el.setAttribute prop, val
+        el.setAttribute prop, val if val?
     el.outerHTML
 
 

@@ -20,7 +20,7 @@ export interface ChannelJson {
   moderated: boolean;
   name: string;
   type: ChannelType;
-  users: number[];
+  users?: number[];
 }
 
 // This is the version used by 'presence'.

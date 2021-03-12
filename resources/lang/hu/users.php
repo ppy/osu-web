@@ -155,7 +155,7 @@ return [
         'title' => ":username profilja",
 
         'comments_count' => [
-            '_' => '',
+            '_' => ':link posztolva',
             'count' => ':count_delimited komment|:count_delimited komment',
         ],
         'edit' => [
@@ -411,7 +411,7 @@ return [
 
     'silenced_banner' => [
         'title' => 'Jelenleg el vagy némítva.',
-        'message' => '',
+        'message' => 'Egyes műveletek lehet, hogy nem érhetők el.',
     ],
 
     'status' => [

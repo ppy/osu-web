@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'tartózkodási hely',
                 'user_interests' => 'érdeklődés',
-                'user_msnm' => '',
                 'user_occ' => 'foglalkozás',
                 'user_twitter' => '',
                 'user_website' => 'weboldal',

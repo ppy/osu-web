@@ -35,7 +35,7 @@ class ForumPostsControllerTest extends TestCase
 
         $this->assertSame($initialPostCount - 1, Forum\Post::count());
         $this->assertSame($initialTopicCount, Forum\Topic::count());
-        $this->assertSame(1, $topic->postsCount());
+        $this->assertSame(1, $topic->postCount());
     }
 
     public function testDestroyFirstPost()
@@ -61,7 +61,7 @@ class ForumPostsControllerTest extends TestCase
 
         $this->assertSame($initialPostCount, Forum\Post::count());
         $this->assertSame($initialTopicCount, Forum\Topic::count());
-        $this->assertSame(1, $topic->postsCount());
+        $this->assertSame(1, $topic->postCount());
     }
 
     public function testDestroyNotLastPost()
@@ -89,7 +89,7 @@ class ForumPostsControllerTest extends TestCase
 
         $this->assertSame($initialPostCount, Forum\Post::count());
         $this->assertSame($initialTopicCount, Forum\Topic::count());
-        $this->assertSame(3, $topic->postsCount());
+        $this->assertSame(3, $topic->postCount());
     }
 
     public function testRestore()
@@ -117,6 +117,6 @@ class ForumPostsControllerTest extends TestCase
         $topic->refresh();
 
         $this->assertSame($initialPostCount + 1, Forum\Post::count());
-        $this->assertSame(2, $topic->postsCount());
+        $this->assertSame(2, $topic->postCount());
     }
 }

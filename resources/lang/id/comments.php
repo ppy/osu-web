@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => 'terhapus',
+    'deleted' => 'telah dihapus',
     'deleted_count' => ':count_delimited komentar yang dihapus|:count_delimited komentar yang dihapus',
     'edited' => 'disunting :timeago oleh :user',
     'pinned' => 'disematkan',

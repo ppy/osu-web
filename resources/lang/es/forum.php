@@ -43,8 +43,8 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => '¿Realmente quieres eliminar la publicación?',
-        'confirm_restore' => '¿Realmente quieres restaurar la publicación?',
+        'confirm_destroy' => '¿Realmente desea eliminar la publicación?',
+        'confirm_restore' => '¿Realmente desea restaurar la publicación?',
         'edited' => 'Última edición por :user :when, editado :count_delimited vez en total.|Última edición por :user :when, editado :count_delimited veces en total.',
         'posted_at' => 'publicado :when',
         'posted_by' => 'publicado por :username',
@@ -75,8 +75,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => '¿Realmente desea eliminar el tema?',
+        'confirm_restore' => '¿Realmente desea restaurar el tema?',
         'deleted' => 'tema eliminado',
         'go_to_latest' => 'ver la última publicación',
         'has_replied' => 'Ha respondido a este tema',
@@ -92,8 +92,8 @@ return [
         'started_by_verbose' => 'iniciado por :user',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Eliminar tema',
+            'restore' => 'Restaurar tema',
         ],
 
         'create' => [
@@ -290,7 +290,7 @@ return [
                 ],
 
                 'user' => [
-                    'count' => '{0} cero votos|{1} :count voto|[2,*] :count votos',
+                    'count' => '{0} cero votos|{1} :count_delimited voto|[2,*] :count_delimited votos',
                     'current' => 'Tienes :votes restantes.',
                     'not_enough' => "No tienes más votos restantes",
                 ],
