@@ -1,10 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { dispatch } from 'app-dispatcher';
+import ChatAPI from 'chat/chat-api';
+import { ChatChannelNewMessagesEvent } from 'chat/chat-events';
 import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
 import * as _ from 'lodash';
-import { action, computed, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import User from 'models/user';
 import Message from './message';
 
@@ -21,6 +24,13 @@ export default class Channel {
   @observable loaded = false;
   @observable loading = false;
   @observable loadingEarlierMessages = false;
+  @observable loadingState = {
+    // null: not loaded
+    // false: loading
+    // true: loaded
+    messages: null as boolean | null,
+    metadata: null as boolean | null,
+  };
   @observable messages: Message[] = observable([]);
   @observable name = '';
   @observable newPmChannel = false;
@@ -130,6 +140,48 @@ export default class Channel {
     }
 
     this.resortMessages();
+  }
+
+  @action
+  // TODO: don't pass api through?
+  async load(api: ChatAPI) {
+    // nothing to load
+    if (this.newPmChannel) return;
+
+    this.loadMessages(api);
+    this.loadMetadata(api);
+  }
+
+  @action
+  async loadMessages(api: ChatAPI) {
+    if (this.newPmChannel || this.loadingState.messages != null) return;
+
+    this.loadingState.messages = false;
+
+    try {
+      const response = await api.getMessages(this.channelId);
+      dispatch(new ChatChannelNewMessagesEvent(this.channelId, response));
+    } finally {
+      runInAction(() => {
+        this.loadingState.messages = true;
+      });
+    }
+  }
+
+  @action
+  async loadMetadata(api: ChatAPI) {
+    if (this.loadingState.metadata != null) return;
+
+    this.loadingState.metadata = false;
+    const response = await api.getChannel(this.channelId);
+
+    try {
+      this.updateWithJson(response.channel);
+    } finally {
+      runInAction(() => {
+        this.loadingState.metadata = true;
+      });
+    }
   }
 
   @action

@@ -141,24 +141,8 @@ export default class ChannelStore {
       return;
     }
 
-    // TODO:
-    // current implementation should always have this loaded already,
-    // but future versions may skip having all the initial metadata on chat load.
-
-    if (channel.loaded) {
-      return;
-    }
-
-    channel.loading = true;
-
-    try {
-      const response = await this.api.getMessages(channelId);
-      this.handleChatChannelNewMessages(channelId, response);
-    } finally {
-      runInAction(() => {
-        channel.loading = false;
-      });
-    }
+    // call load and then wait for ChatChannelJoin to arrive over the websocket.
+    channel.load(this.api);
   }
 
   @action

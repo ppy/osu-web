@@ -2,7 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import DispatcherAction from 'actions/dispatcher-action';
-import { ChannelJson, MessageJson } from 'chat/chat-api-responses';
+import ChannelJson from 'interfaces/channel-json';
+import MessageJson from 'interfaces/message-json';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 
@@ -22,6 +23,12 @@ export interface ChatMessageEventJson {
 
 export class ChatChannelJoinEvent extends DispatcherAction {
   constructor(readonly channel: Channel) {
+    super();
+  }
+}
+
+export class ChatChannelNewMessagesEvent extends DispatcherAction {
+  constructor(readonly channelId: number, readonly json: MessageJson[]) {
     super();
   }
 }
