@@ -170,7 +170,7 @@ export default class Channel {
     this.name = json.name;
     this.description = json.description;
     this.type = json.type;
-    this.icon = json?.icon ?? Channel.defaultIcon;
+    this.icon = json.icon ?? Channel.defaultIcon;
     this.users = json.users ?? this.users;
 
     this.initialLastMessageId = json.last_message_id ?? this.lastMessageId;
