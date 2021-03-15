@@ -79,7 +79,7 @@ interface OsuCommon {
   jsonClone: (obj: any) => any;
   link: (url: string, text: string, options?: OsuLinkOptions) => string;
   linkify: (text: string, newWindow?: boolean) => string;
-  navigate: (url: string, keepScroll?: boolean, action?: object) => void;
+  navigate: (url: string, keepScroll?: boolean, action?: Record<string, unknown>) => void;
   popup: (message: string, type: string) => void;
   popupShowing: () => boolean;
   presence: (str?: string | null) => string | null;
