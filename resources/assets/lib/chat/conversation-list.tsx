@@ -8,7 +8,7 @@ import ConversationListItem from './conversation-list-item';
 
 @inject('dataStore')
 @observer
-export default class ConversationList extends React.Component<any, {}> {
+export default class ConversationList extends React.Component<any> {
   render(): React.ReactNode {
     const nonPmChannels: Channel[] = this.props.dataStore.channelStore.nonPmChannels;
     const pmChannels: Channel[] = this.props.dataStore.channelStore.pmChannels;
