@@ -25,7 +25,7 @@ declare var reactTurbolinks: any;
 declare var userVerification: any;
 
 // external (to typescript) classes
-declare var BeatmapsetFilter: any;
+declare var BeatmapsetFilter: BeatmapsetFilterClass;
 declare var BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
 declare var LoadingOverlay: any;
 declare var Timeout: any;
@@ -40,6 +40,15 @@ interface Comment {
 
 interface DiscussionMessageType {
   icon: {[key: string]: string};
+}
+
+interface BeatmapsetFilterClass {
+  expand: ['genre', 'language', 'extra', 'rank', 'played'];
+  fillDefaults(filters: Record<string, any>): Record<string, any>;
+  filtersFromUrl(url: string): Record<string, any>;
+  getDefault(filters: Record<string, any>, key: string): string;
+  queryParamsFromFilters(filters: Record<string, any>): Record<string, any>;
+  supporterRequired(filters: Record<string, any>): Record<string, any>;
 }
 
 interface BeatmapDiscussionHelperClass {

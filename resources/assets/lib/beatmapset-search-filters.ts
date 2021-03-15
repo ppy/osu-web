@@ -3,9 +3,12 @@
 
 import { action, computed, intercept, observable } from 'mobx';
 
+const keyNames = ['extra', 'general', 'genre', 'language', 'mode', 'nsfw', 'played', 'query', 'rank', 'sort', 'status'] as const;
+type Key = (typeof keyNames)[number];
 type filterValueType = string | null;
 
-export interface BeatmapsetSearchParams {
+// FIXME: the any typing is because the class has additional methods.
+export interface BeatmapsetSearchParams extends Record<Key, any> {
   extra: filterValueType;
   general: filterValueType;
   genre: filterValueType;
@@ -17,8 +20,10 @@ export interface BeatmapsetSearchParams {
   rank: filterValueType;
   sort: filterValueType;
   status: filterValueType;
+}
 
-  [key: string]: any;
+function isKey(arg: string): arg is Key {
+  return keyNames.indexOf(arg as Key) > -1;
 }
 
 export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
@@ -39,7 +44,9 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   constructor(url: string) {
     const filters = BeatmapsetFilter.filtersFromUrl(url);
     for (const key of Object.keys(filters)) {
-      this[key] = filters[key];
+      if (isKey(key)) {
+        this[key] = filters[key];
+      }
     }
 
     intercept(this, 'query', (change) => {
@@ -61,7 +68,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
     return BeatmapsetFilter.queryParamsFromFilters(values);
   }
 
-  selectedValue(key: string) {
+  selectedValue(key: Key) {
     const value = this[key];
     if (value == null) {
       return BeatmapsetFilter.getDefault(this.values, key);
@@ -76,7 +83,9 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
     const normalized = BeatmapsetFilter.fillDefaults(values) as any;
     const parts = [];
     for (const key of Object.keys(normalized)) {
-      parts.push(`${key}=${normalized[key]}`);
+      if (isKey(key)) {
+        parts.push(`${key}=${normalized[key]}`);
+      }
     }
 
     return parts.join('&');
@@ -90,7 +99,9 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
     }
 
     for (const key of Object.keys(newFilters)) {
-      this[key] = newFilters[key];
+      if (isKey(key)) {
+        this[key] = newFilters[key] ?? null;
+      }
     }
   }
 
