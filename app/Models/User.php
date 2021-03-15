@@ -1524,29 +1524,23 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function hasBlocked(self $user)
     {
-        $blockIds = $this->memoize(__FUNCTION__, function () {
+        return $this->memoize(__FUNCTION__, function () {
             return new Set($this->blocks->pluck('user_id'));
-        });
-
-        return $blockIds->contains($user->getKey());
+        })->contains($user->getKey());
     }
 
     public function hasFriended(self $user)
     {
-        $friendIds = $this->memoize(__FUNCTION__, function () {
+        return $this->memoize(__FUNCTION__, function () {
             return new Set($this->friends->pluck('user_id'));
-        });
-
-        return $friendIds->contains($user->getKey());
+        })->contains($user->getKey());
     }
 
     public function hasFavourited($beatmapset)
     {
-        $favouritedIds = $this->memoize(__FUNCTION__, function () {
+        return $this->memoize(__FUNCTION__, function () {
             return new Set($this->favourites->pluck('beatmapset_id'));
-        });
-
-        return $favouritedIds->contains($beatmapset->getKey());
+        })->contains($beatmapset->getKey());
     }
 
     public function remainingHype()
