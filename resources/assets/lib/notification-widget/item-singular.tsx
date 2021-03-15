@@ -29,7 +29,7 @@ export default class ItemSingular extends React.Component<Props> {
         markRead={this.handleMarkAsRead}
         message={formatMessage(item)}
         modifiers={['one']}
-        url={urlSingular(item)}
+        url={urlSingular(item) ?? ''}
         withCategory={true}
         withCoverImage={true}
       />
