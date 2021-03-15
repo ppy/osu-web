@@ -22,6 +22,7 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Ds\Set;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Exception;
@@ -1523,17 +1524,29 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function hasBlocked(self $user)
     {
-        return $this->blocks->where('user_id', $user->user_id)->count() > 0;
+        $blockIds = $this->memoize(__FUNCTION__, function () {
+            return new Set($this->blocks->pluck('user_id'));
+        });
+
+        return $blockIds->contains($user->getKey());
     }
 
     public function hasFriended(self $user)
     {
-        return $this->friends->where('user_id', $user->user_id)->count() > 0;
+        $friendIds = $this->memoize(__FUNCTION__, function () {
+            return new Set($this->friends->pluck('user_id'));
+        });
+
+        return $friendIds->contains($user->getKey());
     }
 
     public function hasFavourited($beatmapset)
     {
-        return $this->favourites->contains('beatmapset_id', $beatmapset->getKey());
+        $favouritedIds = $this->memoize(__FUNCTION__, function () {
+            return new Set($this->favourites->pluck('beatmapset_id'));
+        });
+
+        return $favouritedIds->contains($beatmapset->getKey());
     }
 
     public function remainingHype()
