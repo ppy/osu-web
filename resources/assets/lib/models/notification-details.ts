@@ -6,9 +6,9 @@ export default interface NotificationDetails extends Record<string, any> {
   content?: string;
   coverUrl: string | null;
   embeds?: {
-    suggestions: number;
-    problems: number;
     praises: number;
+    problems: number;
+    suggestions: number;
   };
   title: string;
   titleUnicode?: string | null;
