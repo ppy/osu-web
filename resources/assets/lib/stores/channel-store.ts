@@ -187,7 +187,7 @@ export default class ChannelStore {
   }
 
   @action
-  async markAsRead(channelId: number) {
+  markAsRead(channelId: number) {
     const channel = this.get(channelId);
 
     if (channel == null || !channel.isUnread) {
