@@ -22,10 +22,6 @@ export interface BeatmapsetSearchParams extends Record<Key, any> {
   status: filterValueType;
 }
 
-function isKey(arg: string): arg is Key {
-  return keyNames.indexOf(arg as Key) > -1;
-}
-
 export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   @observable extra: filterValueType = null;
   @observable general: filterValueType = null;
@@ -43,10 +39,8 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
 
   constructor(url: string) {
     const filters = BeatmapsetFilter.filtersFromUrl(url);
-    for (const key of Object.keys(filters)) {
-      if (isKey(key)) {
-        this[key] = filters[key];
-      }
+    for (const key of keyNames) {
+      this[key] = filters[key];
     }
 
     intercept(this, 'query', (change) => {
@@ -82,10 +76,8 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
 
     const normalized = BeatmapsetFilter.fillDefaults(values) as any;
     const parts = [];
-    for (const key of Object.keys(normalized)) {
-      if (isKey(key)) {
-        parts.push(`${key}=${normalized[key]}`);
-      }
+    for (const key of keyNames) {
+      parts.push(`${key}=${normalized[key]}`);
     }
 
     return parts.join('&');
@@ -98,10 +90,8 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
       this.sort = null;
     }
 
-    for (const key of Object.keys(newFilters)) {
-      if (isKey(key)) {
-        this[key] = newFilters[key] ?? null;
-      }
+    for (const key of keyNames) {
+      this[key] = newFilters[key] ?? null;
     }
   }
 
