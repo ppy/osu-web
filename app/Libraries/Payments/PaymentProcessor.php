@@ -153,7 +153,7 @@ abstract class PaymentProcessor implements \ArrayAccess
         }
 
         Datadog::increment(
-            config('datadog-helper.prefix_web').'payment_processor.run',
+            config('datadog-helper.prefix_web').'.payment_processor.run',
             1,
             ['provider' => $this->getPaymentProvider(), 'type' => $type]
         );

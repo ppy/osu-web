@@ -322,6 +322,20 @@
         "scopes": []
     },
     {
+        "uri": "api/v2/chat/channels/{channel}",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\Chat\\ChannelsController@show",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "auth"
+        ],
+        "scopes": []
+    },
+    {
         "uri": "api/v2/changelog/{stream}/{build}",
         "methods": [
             "GET",
@@ -361,6 +375,38 @@
         "scopes": []
     },
     {
+        "uri": "api/v2/forums/topics/{topic}/reply",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\Forum\\TopicsController@reply",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "auth",
+            "require-scopes:forum.write"
+        ],
+        "scopes": [
+            "forum.write"
+        ]
+    },
+    {
+        "uri": "api/v2/forums/topics",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\Forum\\TopicsController@store",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "auth",
+            "require-scopes:forum.write"
+        ],
+        "scopes": [
+            "forum.write"
+        ]
+    },
+    {
         "uri": "api/v2/forums/topics/{topic}",
         "methods": [
             "GET",
@@ -374,6 +420,38 @@
         ],
         "scopes": [
             "public"
+        ]
+    },
+    {
+        "uri": "api/v2/forums/topics/{topic}",
+        "methods": [
+            "PATCH",
+            "PUT"
+        ],
+        "controller": "App\\Http\\Controllers\\Forum\\TopicsController@update",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "require-scopes:forum.write"
+        ],
+        "scopes": [
+            "forum.write"
+        ]
+    },
+    {
+        "uri": "api/v2/forums/posts/{post}",
+        "methods": [
+            "PATCH",
+            "PUT"
+        ],
+        "controller": "App\\Http\\Controllers\\Forum\\PostsController@update",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "require-scopes:forum.write"
+        ],
+        "scopes": [
+            "forum.write"
         ]
     },
     {

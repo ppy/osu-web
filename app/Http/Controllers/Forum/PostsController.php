@@ -11,6 +11,9 @@ use Auth;
 use DB;
 use Request;
 
+/**
+ * @group Forum
+ */
 class PostsController extends Controller
 {
     public function __construct()
@@ -19,6 +22,8 @@ class PostsController extends Controller
             'destroy',
             'raw',
         ]]);
+
+        $this->middleware('require-scopes:forum.write', ['only' => ['update']]);
 
         return parent::__construct();
     }
@@ -74,6 +79,21 @@ class PostsController extends Controller
         return ext_view('forum.topics._post_edit', compact('post'));
     }
 
+    /**
+     * Edit Post
+     *
+     * Edit specified forum post.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * [ForumPost](#forum-post) with `body` included.
+     *
+     * @urlParam post required Id of the post. Example: 1
+     *
+     * @bodyParam body string required New post content in BBCode format. Example: hello
+     */
     public function update($id)
     {
         $post = Post::withTrashed()->findOrFail($id);
@@ -97,7 +117,7 @@ class PostsController extends Controller
 
                 $post
                     ->fill([
-                        'post_text' => request('body'),
+                        'post_text' => get_string(request('body')),
                         'post_edit_user' => $userId,
                     ])
                     ->saveOrExplode();
@@ -106,11 +126,17 @@ class PostsController extends Controller
             return error_popup($e->getMessage());
         }
 
-        $posts = collect([$post->fresh()]);
-        $topic = $post->topic;
-        $firstPostPosition = $topic->postPosition($post->post_id);
+        $post->refresh();
 
-        return ext_view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
+        if (is_api_request()) {
+            return json_item($post, 'Forum\Post', ['body']);
+        }
+
+        return ext_view('forum.topics._posts', [
+            'posts' => collect([$post]),
+            'firstPostPosition' => $post->topic->postPosition($post->post_id),
+            'topic' => $post->topic,
+        ]);
     }
 
     public function raw($id)

@@ -42,7 +42,8 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         static $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
 
         $this->user = $user;
-        $this->from = $this->pageAsFrom(get_int($request['page'] ?? null));
+        $this->page = get_int($request['page'] ?? null);
+        $this->from = $this->pageAsFrom($this->page);
         $this->requestQuery = $request['q'] ?? $request['query'] ?? null;
 
         $sort = $request['sort'] ?? null;
