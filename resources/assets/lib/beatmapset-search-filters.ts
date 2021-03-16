@@ -6,10 +6,10 @@ import { action, computed, intercept, observable } from 'mobx';
 const keyNames = ['extra', 'general', 'genre', 'language', 'mode', 'nsfw', 'played', 'query', 'rank', 'sort', 'status'] as const;
 
 export type BeatmapsetSearchParams = {
-  [key in Key]: filterValueType
+  [key in FilterKey]: filterValueType
 };
 
-type Key = (typeof keyNames)[number];
+export type FilterKey = (typeof keyNames)[number];
 type filterValueType = string | null;
 
 export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
@@ -50,7 +50,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
     return BeatmapsetFilter.queryParamsFromFilters(values);
   }
 
-  selectedValue(key: Key) {
+  selectedValue(key: FilterKey) {
     const value = this[key];
     if (value == null) {
       return BeatmapsetFilter.getDefault(this.values, key);
