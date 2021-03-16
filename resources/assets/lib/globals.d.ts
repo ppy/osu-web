@@ -12,23 +12,23 @@ interface ProcessEnv {
   [key: string]: string | undefined;
 }
 
-declare var process: Process;
+declare const process: Process;
 
 // TODO: Turbolinks 5.3 is Typescript, so this should be updated then.
-declare var Turbolinks: import('turbolinks').default;
+declare const Turbolinks: import('turbolinks').default;
 
 // our helpers
-declare var tooltipDefault: TooltipDefault;
-declare var osu: OsuCommon;
-declare var currentUser: import('interfaces/current-user').default;
-declare var reactTurbolinks: any;
-declare var userVerification: any;
+declare const tooltipDefault: TooltipDefault;
+declare const osu: OsuCommon;
+declare const currentUser: import('interfaces/current-user').default;
+declare const reactTurbolinks: any;
+declare const userVerification: any;
 
 // external (to typescript) classes
-declare var BeatmapsetFilter: BeatmapsetFilterClass;
-declare var BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
-declare var LoadingOverlay: any;
-declare var Timeout: any;
+declare const BeatmapsetFilter: BeatmapsetFilterClass;
+declare const BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
+declare const LoadingOverlay: any;
+declare const Timeout: any;
 declare const Lang: LangClass;
 declare const fallbackLocale: string;
 declare const currentLocale: string;
