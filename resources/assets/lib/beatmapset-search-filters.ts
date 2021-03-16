@@ -74,7 +74,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   toKeyString() {
     const values = this.values;
 
-    const normalized = BeatmapsetFilter.fillDefaults(values) as any;
+    const normalized = BeatmapsetFilter.fillDefaults(values);
     const parts = [];
     for (const key of keyNames) {
       parts.push(`${key}=${normalized[key]}`);
