@@ -29,7 +29,6 @@ const displayDateMap: Record<BeatmapsetStatus, 'last_updated' | 'ranked_date'> =
 
 @observer
 export default class BeatmapsetPanel extends React.PureComponent<Props> {
-
   render() {
     const beatmapset = this.props.beatmapset;
     const shouldShowVisual = showVisual(beatmapset);
@@ -39,6 +38,8 @@ export default class BeatmapsetPanel extends React.PureComponent<Props> {
     const groupedBeatmaps = BeatmapHelper.group(beatmapset.beatmaps ?? []);
     const url = route('beatmapsets.show', { beatmapset: beatmapset.id});
     const displayDateAttribute = displayDateMap[beatmapset.status];
+    const favouriteIcon = this.props.beatmapset.has_favourited ? 'fas fa-heart' : 'far fa-heart';
+    const favouriteTitleVariant = this.props.beatmapset.has_favourited ? 'unfavourite' : 'favourite';
 
     return (
       <div
@@ -152,7 +153,7 @@ export default class BeatmapsetPanel extends React.PureComponent<Props> {
               })}
 
               {this.renderStatsItem({
-                icon: 'fas fa-heart',
+                icon: favouriteIcon,
                 title: osu.trans('beatmaps.panel.favourites', { count: osu.formatNumber(beatmapset.favourite_count) }),
                 value: beatmapset.favourite_count,
               })}
@@ -184,10 +185,7 @@ export default class BeatmapsetPanel extends React.PureComponent<Props> {
                   }
 
                   return (
-                    <div
-                      className='beatmapset-panel__beatmaps'
-                      key={mode}
-                    >
+                    <div className='beatmapset-panel__beatmaps' key={mode}>
                       <div className='beatmapset-panel__beatmap-icon'>
                         <i className={`fal fa-extra-mode-${mode}`} />
                       </div>
@@ -210,11 +208,12 @@ export default class BeatmapsetPanel extends React.PureComponent<Props> {
           <div className='beatmapset-panel__menu-container'>
             <div className='beatmapset-panel__menu'>
               <button
-                type='button'
                 className='beatmapset-panel__menu-item js-login-required--click'
                 onClick={this.toggleFavourite}
+                title={osu.trans(`beatmapsets.show.details.${favouriteTitleVariant}`)}
+                type='button'
               >
-                <span className='fas fa-heart' />
+                <span className={favouriteIcon} />
               </button>
 
               <a

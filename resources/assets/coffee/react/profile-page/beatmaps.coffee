@@ -3,6 +3,7 @@
 
 import { ExtraHeader } from './extra-header'
 import BeatmapsetPanel from 'beatmapset-panel'
+import { observable } from 'mobx'
 import * as React from 'react'
 import { div, h2, h3, ul, li, a, p, pre, span } from 'react-dom-factories'
 import { ShowMoreLink } from 'show-more-link'
@@ -41,7 +42,7 @@ export class Beatmaps extends React.PureComponent
             div
               key: beatmapset.id
               className: 'osu-layout__col osu-layout__col--sm-6'
-              el BeatmapsetPanel, beatmapset: beatmapset
+              el BeatmapsetPanel, beatmapset: observable(beatmapset)
 
           div
             className: 'osu-layout__col',
