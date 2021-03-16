@@ -4,23 +4,13 @@
 import { action, computed, intercept, observable } from 'mobx';
 
 const keyNames = ['extra', 'general', 'genre', 'language', 'mode', 'nsfw', 'played', 'query', 'rank', 'sort', 'status'] as const;
+
+export type BeatmapsetSearchParams = {
+  [key in Key]: filterValueType
+};
+
 type Key = (typeof keyNames)[number];
 type filterValueType = string | null;
-
-// FIXME: the any typing is because the class has additional methods.
-export interface BeatmapsetSearchParams extends Record<Key, any> {
-  extra: filterValueType;
-  general: filterValueType;
-  genre: filterValueType;
-  language: filterValueType;
-  mode: filterValueType;
-  nsfw: filterValueType;
-  played: filterValueType;
-  query: filterValueType;
-  rank: filterValueType;
-  sort: filterValueType;
-  status: filterValueType;
-}
 
 export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   @observable extra: filterValueType = null;
@@ -34,8 +24,6 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   @observable rank: filterValueType = null;
   @observable sort: filterValueType = null;
   @observable status: filterValueType = null;
-
-  [key: string]: any;
 
   constructor(url: string) {
     const filters = BeatmapsetFilter.filtersFromUrl(url);

@@ -42,13 +42,16 @@ interface DiscussionMessageType {
   icon: {[key: string]: string};
 }
 
+type BeatmapsetSearchParams = import('beatmapset-search-filters').BeatmapsetSearchParams;
+
 interface BeatmapsetFilterClass {
+
   expand: ['genre', 'language', 'extra', 'rank', 'played'];
-  fillDefaults(filters: Record<string, any>): Record<string, any>;
-  filtersFromUrl(url: string): Record<string, any>;
-  getDefault(filters: Record<string, any>, key: string): string;
-  queryParamsFromFilters(filters: Record<string, any>): Record<string, any>;
-  supporterRequired(filters: Record<string, any>): Record<string, any>;
+  fillDefaults(filters: Record<string, any>): BeatmapsetSearchParams;
+  filtersFromUrl(url: string): BeatmapsetSearchParams;
+  getDefault(filters: Partial<BeatmapsetSearchParams>, key: string): string;
+  queryParamsFromFilters(filters: Partial<BeatmapsetSearchParams>): Record<string, any>;
+  supporterRequired(filters: Partial<BeatmapsetSearchParams>): Partial<BeatmapsetSearchParams>;
 }
 
 interface BeatmapDiscussionHelperClass {
