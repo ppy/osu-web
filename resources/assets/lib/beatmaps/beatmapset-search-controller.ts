@@ -174,7 +174,6 @@ export class BeatmapsetSearchController {
     this.filters = new BeatmapsetSearchFilters(location.href);
     this.filtersObserver = observe(this.filters, this.filterChangedHandler);
 
-    // FIXME: should not use Object.keys(filtersFromUrl) unless filtersFromUrl becomes a Partial type
     this.isExpanded = intersection(Object.keys(filtersFromUrl), BeatmapsetFilter.expand).length > 0;
   }
 }

@@ -28,7 +28,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   constructor(url: string) {
     const filters = BeatmapsetFilter.filtersFromUrl(url);
     for (const key of keyNames) {
-      this[key] = filters[key];
+      this[key] = filters[key] ?? null;
     }
 
     intercept(this, 'query', (change) => {
