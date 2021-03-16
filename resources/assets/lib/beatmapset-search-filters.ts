@@ -79,7 +79,10 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
     }
 
     for (const key of keyNames) {
-      this[key] = newFilters[key] ?? null;
+      const value = newFilters[key];
+      if (value !== undefined) {
+        this[key] = value;
+      }
     }
   }
 
