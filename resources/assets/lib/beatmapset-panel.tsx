@@ -2,14 +2,18 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetJson, BeatmapsetStatus } from 'beatmapsets/beatmapset-json';
+import { CircularProgress } from 'circular-progress';
 import { Img2x } from 'img2x';
+import BeatmapJson from 'interfaces/beatmap-json';
 import { route } from 'laroute';
 import { sum, values } from 'lodash';
+import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import OsuUrlHelper from 'osu-url-helper';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
+import { UserLink } from 'user-link';
 import * as BeatmapHelper from 'utils/beatmap-helper';
 import { showVisual, toggleFavourite } from 'utils/beatmapset-helper';
 
@@ -27,234 +31,53 @@ const displayDateMap: Record<BeatmapsetStatus, 'last_updated' | 'ranked_date'> =
   wip: 'last_updated',
 };
 
+const ExtraIcon = ({ icon, titleVariant }: { icon: string, titleVariant: string }) => (
+  <div
+    className='beatmapset-panel__extra-icon'
+    title={osu.trans(`beatmapsets.show.info.${titleVariant}`)}
+  >
+    <i className={icon} />
+  </div>
+);
+
+const MapperLink = ({ beatmapset }: { beatmapset: BeatmapsetJson }) => (
+  <UserLink
+    user={{ id: beatmapset.user_id, username: beatmapset.creator }}
+    className='beatmapset-panel__mapper-link u-hover'
+  />
+);
+
+const NsfwBadge = () => (
+  <span className='nsfw-badge nsfw-badge--panel'>
+    {osu.trans('beatmapsets.nsfw_badge.label')}
+  </span>
+);
+
+const StatsItem = ({ icon, title, value }: { icon: string, title: string, value: number }) => (
+  <div className='beatmapset-panel__stats-item u-hover' title={title}>
+    <span className='beatmapset-panel__stats-item-icon'>
+      <i className={icon} />
+    </span>
+    <span>{osu.formatNumberSuffixed(value, 0)}</span>
+  </div>
+);
+
 @observer
-export default class BeatmapsetPanel extends React.PureComponent<Props> {
-  render() {
-    const beatmapset = this.props.beatmapset;
-    const shouldShowVisual = showVisual(beatmapset);
-    const showHypeCounts = beatmapset.hype != null;
-    const nominations = showHypeCounts ? this.getNominations() : null;
-    const downloadLink = this.getDownloadLink();
-    const groupedBeatmaps = BeatmapHelper.group(beatmapset.beatmaps ?? []);
-    const url = route('beatmapsets.show', { beatmapset: beatmapset.id});
-    const displayDateAttribute = displayDateMap[beatmapset.status];
-    const favouriteIcon = this.props.beatmapset.has_favourited ? 'fas fa-heart' : 'far fa-heart';
-    const favouriteTitleVariant = this.props.beatmapset.has_favourited ? 'unfavourite' : 'favourite';
+export default class BeatmapsetPanel extends React.Component<Props> {
+  @computed
+  private get displayDate() {
+    const attribute = displayDateMap[this.props.beatmapset.status];
 
-    return (
-      <div
-        className={`beatmapset-panel ${shouldShowVisual ? 'js-audio--player' : ''}`}
-        data-audio-url={beatmapset.preview_url}
-      >
-        <a
-          href={url}
-          className='beatmapset-panel__cover-container'
-        >
-          <div className='beatmapset-panel__cover beatmapset-panel__cover--default' />
-          {shouldShowVisual && (
-            <Img2x
-              className='beatmapset-panel__cover'
-              onError={this.hideImage}
-              src={beatmapset.covers.card}
-            />
-          )}
-        </a>
-        <div className='beatmapset-panel__content'>
-          <div className='beatmapset-panel__play-container'>
-            <div className='beatmapset-panel__extra-icons'>
-              {beatmapset.video && (
-                <div
-                  className='beatmapset-panel__extra-icon'
-                  title={osu.trans('beatmapsets.show.info.video')}
-                >
-                  <i className='fas fa-film' />
-                </div>
-              )}
-              {beatmapset.storyboard && (
-                <div
-                  className='beatmapset-panel__extra-icon'
-                  title={osu.trans('beatmapsets.show.info.storyboard')}
-                >
-                  <i className='fas fa-image' />
-                </div>
-              )}
-            </div>
-            {shouldShowVisual && (
-              <button
-                type='button'
-                className='beatmapset-panel__play js-audio--play'
-              />
-            )}
-          </div>
-          <div className='beatmapset-panel__info'>
-            <div className='beatmapset-panel__info-row beatmapset-panel__info-row--title'>
-              <a
-                className='beatmapset-panel__main-link u-ellipsis-overflow'
-                href={url}
-              >
-                {BeatmapHelper.getTitle(beatmapset)}
-              </a>
-              {beatmapset.nsfw && (
-                <span className='nsfw-badge nsfw-badge--panel'>
-                  {osu.trans('beatmapsets.nsfw_badge.label')}
-                </span>
-              )}
-            </div>
-            <div className='beatmapset-panel__info-row beatmapset-panel__info-row--artist'>
-              <a
-                className='beatmapset-panel__main-link u-ellipsis-overflow'
-                href={url}
-              >
-                {osu.trans('beatmapsets.show.details.by_artist', { artist: BeatmapHelper.getArtist(beatmapset) })}
-              </a>
-            </div>
-            <div className='beatmapset-panel__info-row beatmapset-panel__info-row--mapper'>
-              <div className='u-ellipsis-overflow'>
-                <StringWithComponent
-                  pattern={osu.trans('beatmapsets.show.details.mapped_by')}
-                  mappings={{
-                    ':mapper':
-                      <a
-                        key='mapper'
-                        href={route('users.show', { user: beatmapset.user_id })}
-                        className='beatmapset-panel__mapper-link u-hover js-usercard'
-                        data-user-id={beatmapset.user_id}
-                      >
-                        {beatmapset.creator}
-                      </a>,
-                  }}
-                />
-              </div>
-            </div>
-
-            <div className='beatmapset-panel__info-row beatmapset-panel__info-row--stats'>
-              {showHypeCounts && beatmapset.hype != null && this.renderStatsItem({
-                icon: 'fas fa-bullhorn',
-                title: osu.trans('beatmaps.hype.required_text', {
-                  current: osu.formatNumber(beatmapset.hype.current),
-                  required: osu.formatNumber(beatmapset.hype.required),
-                }),
-                value: beatmapset.hype.current,
-              })}
-
-              {showHypeCounts && nominations != null && this.renderStatsItem({
-                icon: 'fas fa-thumbs-up',
-                title: osu.trans('beatmaps.nominations.required_text', {
-                  current: osu.formatNumber(nominations.current),
-                  required: osu.formatNumber(nominations.required),
-                }),
-                value: nominations.current,
-              })}
-
-              {this.renderStatsItem({
-                icon: 'fas fa-play-circle',
-                title: osu.trans('beatmaps.panel.playcount', { count: osu.formatNumber(beatmapset.play_count) }),
-                value: beatmapset.play_count,
-              })}
-
-              {this.renderStatsItem({
-                icon: favouriteIcon,
-                title: osu.trans('beatmaps.panel.favourites', { count: osu.formatNumber(beatmapset.favourite_count) }),
-                value: beatmapset.favourite_count,
-              })}
-
-              <div className='beatmapset-panel__stats-item'>
-                <span className='beatmapset-panel__stats-item-icon'>
-                  <i className='fas fa-fw fa-check-circle' />
-                </span>
-                <TimeWithTooltip dateTime={beatmapset[displayDateAttribute]} format='L' />
-              </div>
-            </div>
-
-            <div className='beatmapset-panel__info-row'>
-              <div
-                className='beatmapset-status beatmapset-status--panel'
-                style={{
-                  '--bg': `var(--beatmapset-${beatmapset.status}-bg)`,
-                  '--colour': `var(--beatmapset-${beatmapset.status}-colour)`,
-                } as React.CSSProperties}
-              >
-                {osu.trans(`beatmapsets.show.status.${beatmapset.status}`)}
-              </div>
-              <div className='beatmapset-panel__beatmaps-all'>
-                {BeatmapHelper.modes.map((mode) => {
-                  const beatmaps = groupedBeatmaps[mode];
-
-                  if (beatmaps == null) {
-                    return null;
-                  }
-
-                  return (
-                    <div className='beatmapset-panel__beatmaps' key={mode}>
-                      <div className='beatmapset-panel__beatmap-icon'>
-                        <i className={`fal fa-extra-mode-${mode}`} />
-                      </div>
-                      {beatmaps.map((beatmap) => (
-                        <div
-                          className='beatmapset-panel__beatmap'
-                          style={{
-                            '--bg': `var(--diff-${BeatmapHelper.getDiffRating(beatmap.difficulty_rating)})`,
-                          } as React.CSSProperties}
-                          key={`beatmap-${beatmap.id}`}
-                        />
-                      ))}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-
-          <div className='beatmapset-panel__menu-container'>
-            <div className='beatmapset-panel__menu'>
-              <button
-                className='beatmapset-panel__menu-item js-login-required--click'
-                onClick={this.toggleFavourite}
-                title={osu.trans(`beatmapsets.show.details.${favouriteTitleVariant}`)}
-                type='button'
-              >
-                <span className={favouriteIcon} />
-              </button>
-
-              <a
-                href={route('beatmapsets.discussion', { beatmapset: beatmapset.id })}
-                className='beatmapset-panel__menu-item'
-              >
-                <span className='fas fa-comment-alt' />
-              </a>
-
-              {downloadLink.url != null ? (
-                <a
-                  href={downloadLink.url}
-                  title={downloadLink.title}
-                  className='beatmapset-panel__menu-item'
-                  data-turbolinks='false'
-                >
-                  <span className='fas fa-file-download' />
-                </a>
-              ) : (
-                <span
-                  title={downloadLink.title}
-                  className='beatmapset-panel__menu-item beatmapset-panel__menu-item--disabled'
-                >
-                  <span className='fas fa-file-download' />
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+    return this.props.beatmapset[attribute];
   }
 
-  private getDownloadLink() {
+  @computed
+  private get downloadLink() {
     if (currentUser.id == null) {
       return { title: osu.trans('beatmapsets.show.details.logged-out') };
     }
 
-    const beatmapset = this.props.beatmapset;
-
-    if (beatmapset.availability?.download_disabled) {
+    if (this.props.beatmapset.availability?.download_disabled) {
       return { title: osu.trans('beatmapsets.availability.disabled') };
     }
 
@@ -264,30 +87,51 @@ export default class BeatmapsetPanel extends React.PureComponent<Props> {
     }
 
     let url: string;
-    let title: string;
+    let titleVariant: string;
 
     if (type === 'direct') {
-        url = OsuUrlHelper.beatmapsetDownloadDirect(beatmapset.id);
-        title = osu.trans('beatmapsets.panel.download.direct');
+        url = OsuUrlHelper.beatmapsetDownloadDirect(this.props.beatmapset.id);
+        titleVariant = 'direct';
     } else {
-      if (beatmapset.video) {
+      const params: Record<string, string|number> = {
+        beatmapset: this.props.beatmapset.id,
+      };
+
+      if (this.props.beatmapset.video) {
         if (type === 'no_video') {
-          url = route('beatmapsets.download', { beatmapset: beatmapset.id, noVideo: 1 });
-          title = osu.trans('beatmapsets.panel.download.no_video');
+          params.noVideo = 1;
+          titleVariant = 'no_video';
         } else {
-          url = route('beatmapsets.download', { beatmapset: beatmapset.id });
-          title = osu.trans('beatmapsets.panel.download.video');
+          titleVariant = 'video';
         }
       } else {
-        url = route('beatmapsets.download', { beatmapset: beatmapset.id });
-        title = osu.trans('beatmapsets.panel.download.all');
+        titleVariant = 'all';
       }
+
+      url = route('beatmapsets.download', params);
     }
 
-    return { url, title };
+    return {
+      title: osu.trans(`beatmapsets.panel.download.${titleVariant}`),
+      url,
+    };
   }
 
-  private getNominations() {
+  @computed
+  private get favourite() {
+    return this.props.beatmapset.has_favourited
+      ? {
+        icon: 'fas fa-heart',
+        toggleTitleVariant: 'unfavourite',
+      }
+      : {
+        icon: 'far fa-heart',
+        toggleTitleVariant: 'favourite',
+      };
+  }
+
+  @computed
+  private get nominations() {
     if (this.props.beatmapset.nominations_summary != null) {
       return this.props.beatmapset.nominations_summary;
     }
@@ -303,25 +147,237 @@ export default class BeatmapsetPanel extends React.PureComponent<Props> {
       };
     }
   }
+
+  @computed
+  private get showHypeCounts() {
+    return this.props.beatmapset.hype != null;
+  }
+
+  @computed
+  private get showVisual() {
+    return showVisual(this.props.beatmapset);
+  }
+
+  @computed
+  private get url() {
+    return route('beatmapsets.show', { beatmapset: this.props.beatmapset.id});
+  }
+
+  render() {
+    return (
+      <div
+        className={`beatmapset-panel ${this.showVisual ? 'js-audio--player' : ''}`}
+        data-audio-url={this.props.beatmapset.preview_url}
+      >
+        {this.renderCover()}
+        <div className='beatmapset-panel__content'>
+          {this.renderPlayArea()}
+          {this.renderInfoArea()}
+          {this.renderMenuArea()}
+        </div>
+      </div>
+    );
+  }
+
   private hideImage(e: React.SyntheticEvent<HTMLElement>) {
     // hides img elements that have errored (hides native browser broken-image icons)
     e.currentTarget.style.display = 'none';
   }
 
-  private renderStatsItem({ icon, title, value }: { icon: string, title: string, value: number }) {
+  private renderBeatmapIcon(beatmap: BeatmapJson) {
     return (
       <div
-        className='beatmapset-panel__stats-item u-hover'
-        title={title}
-      >
-        <span className='beatmapset-panel__stats-item-icon'>
-          <i className={icon} />
-        </span>
-        <span>{osu.formatNumberSuffixed(value, 0)}</span>
+        className='beatmapset-panel__beatmap'
+        style={{
+          '--bg': `var(--diff-${BeatmapHelper.getDiffRating(beatmap.difficulty_rating)})`,
+        } as React.CSSProperties}
+        key={`beatmap-${beatmap.id}`}
+      />
+    );
+  }
+
+  private renderBeatmapIcons() {
+    const groupedBeatmaps = BeatmapHelper.group(this.props.beatmapset.beatmaps ?? []);
+
+    return BeatmapHelper.modes.map((mode) => {
+      const beatmaps = groupedBeatmaps[mode];
+
+      if (beatmaps == null) return null;
+
+      return (
+        <div className='beatmapset-panel__beatmaps' key={mode}>
+          <div className='beatmapset-panel__beatmap-icon'>
+            <i className={`fal fa-extra-mode-${mode}`} />
+          </div>
+          {beatmaps.map(this.renderBeatmapIcon)}
+        </div>
+      );
+    });
+  }
+
+  private renderCover() {
+    return (
+      <a href={this.url} className='beatmapset-panel__cover-container'>
+        <div className='beatmapset-panel__cover beatmapset-panel__cover--default' />
+        {this.showVisual && (
+          <Img2x
+            className='beatmapset-panel__cover'
+            onError={this.hideImage}
+            src={this.props.beatmapset.covers.card}
+          />
+        )}
+      </a>
+    );
+  }
+
+  private renderInfoArea() {
+    return (
+      <div className='beatmapset-panel__info'>
+        <div className='beatmapset-panel__info-row beatmapset-panel__info-row--title'>
+          <a className='beatmapset-panel__main-link u-ellipsis-overflow' href={this.url}>
+            {BeatmapHelper.getTitle(this.props.beatmapset)}
+          </a>
+          {this.props.beatmapset.nsfw && <NsfwBadge />}
+        </div>
+        <div className='beatmapset-panel__info-row beatmapset-panel__info-row--artist'>
+          <a className='beatmapset-panel__main-link u-ellipsis-overflow' href={this.url}>
+            {osu.trans('beatmapsets.show.details.by_artist', { artist: BeatmapHelper.getArtist(this.props.beatmapset) })}
+          </a>
+        </div>
+        <div className='beatmapset-panel__info-row beatmapset-panel__info-row--mapper'>
+          <div className='u-ellipsis-overflow'>
+            <StringWithComponent
+              pattern={osu.trans('beatmapsets.show.details.mapped_by')}
+              mappings={{ ':mapper': <MapperLink beatmapset={this.props.beatmapset} key='mapper' /> }}
+            />
+          </div>
+        </div>
+
+        <div className='beatmapset-panel__info-row beatmapset-panel__info-row--stats'>
+          {this.showHypeCounts && this.props.beatmapset.hype != null && (
+            <StatsItem
+              icon='fas fa-bullhorn'
+              title={osu.trans('beatmaps.hype.required_text', {
+                current: osu.formatNumber(this.props.beatmapset.hype.current),
+                required: osu.formatNumber(this.props.beatmapset.hype.required),
+              })}
+              value={this.props.beatmapset.hype.current}
+            />
+          )}
+
+          {this.showHypeCounts && this.nominations != null && (
+            <StatsItem
+              icon='fas fa-thumbs-up'
+              title={osu.trans('beatmaps.nominations.required_text', {
+                current: osu.formatNumber(this.nominations.current),
+                required: osu.formatNumber(this.nominations.required),
+              })}
+              value={this.nominations.current}
+            />
+          )}
+
+          <StatsItem
+            icon='fas fa-play-circle'
+            title={osu.trans('beatmaps.panel.playcount', { count: osu.formatNumber(this.props.beatmapset.play_count) })}
+            value={this.props.beatmapset.play_count}
+          />
+
+          <StatsItem
+            icon={this.favourite.icon}
+            title={osu.trans('beatmaps.panel.favourites', { count: osu.formatNumber(this.props.beatmapset.favourite_count) })}
+            value={this.props.beatmapset.favourite_count}
+          />
+
+          <div className='beatmapset-panel__stats-item'>
+            <span className='beatmapset-panel__stats-item-icon'>
+              <i className='fas fa-fw fa-check-circle' />
+            </span>
+            <TimeWithTooltip dateTime={this.displayDate} format='L' />
+          </div>
+        </div>
+
+        <div className='beatmapset-panel__info-row'>
+          <div
+            className='beatmapset-status beatmapset-status--panel'
+            style={{
+              '--bg': `var(--beatmapset-${this.props.beatmapset.status}-bg)`,
+              '--colour': `var(--beatmapset-${this.props.beatmapset.status}-colour)`,
+            } as React.CSSProperties}
+          >
+            {osu.trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
+          </div>
+          <div className='beatmapset-panel__beatmaps-all'>
+            {this.renderBeatmapIcons()}
+          </div>
+        </div>
       </div>
     );
   }
 
-  private toggleFavourite = () =>
-    toggleFavourite(this.props.beatmapset)
+  private renderMenuArea() {
+    return (
+      <div className='beatmapset-panel__menu-container'>
+        <div className='beatmapset-panel__menu'>
+          <button
+            className='beatmapset-panel__menu-item js-login-required--click'
+            onClick={this.toggleFavourite}
+            title={osu.trans(`beatmapsets.show.details.${this.favourite.toggleTitleVariant}`)}
+            type='button'
+          >
+            <span className={this.favourite.icon} />
+          </button>
+
+          <a
+            href={route('beatmapsets.discussion', { beatmapset: this.props.beatmapset.id })}
+            className='beatmapset-panel__menu-item'
+          >
+            <span className='fas fa-comment-alt' />
+          </a>
+
+          {this.downloadLink.url == null ? (
+            <span
+              title={this.downloadLink.title}
+              className='beatmapset-panel__menu-item beatmapset-panel__menu-item--disabled'
+            >
+              <span className='fas fa-file-download' />
+            </span>
+          ) : (
+            <a
+              href={this.downloadLink.url}
+              title={this.downloadLink.title}
+              className='beatmapset-panel__menu-item'
+              data-turbolinks='false'
+            >
+              <span className='fas fa-file-download' />
+            </a>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  private renderPlayArea() {
+    return (
+      <div className='beatmapset-panel__play-container'>
+        <div className='beatmapset-panel__extra-icons'>
+          {this.props.beatmapset.video && <ExtraIcon icon='fas fa-film' titleVariant='video' />}
+          {this.props.beatmapset.storyboard && <ExtraIcon icon='fas fa-image' titleVariant='storyboard' />}
+        </div>
+        {this.showVisual && <button type='button' className='beatmapset-panel__play js-audio--play' />}
+        <div className='beatmapset-panel__play-progress'>
+          <CircularProgress
+            current={0}
+            max={1}
+            theme='beatmapset-panel'
+            onlyShowAsWarning={false}
+            ignoreProgress={true}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  private toggleFavourite = () => {
+    toggleFavourite(this.props.beatmapset);
+  }
 }
