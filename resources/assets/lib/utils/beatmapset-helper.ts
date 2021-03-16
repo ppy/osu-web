@@ -24,14 +24,24 @@ export function showVisual(beatmapset: BeatmapsetJson) {
 export function toggleFavourite(beatmapset: BeatmapsetJson) {
   const add = !beatmapset.has_favourited;
 
+  // fake immediate change
+  beatmapset.has_favourited = add;
+  beatmapset.favourite_count += add ? 1 : -1;
+
   $.ajax(route('beatmapsets.favourites.store', { beatmapset: beatmapset.id }), {
     data: {
       action: add ? 'favourite' : 'unfavourite',
     },
     method: 'POST',
-  }).fail(osu.ajaxError)
+  })
+  .fail((xhr) => {
+    // undo faked change
+    beatmapset.has_favourited = !add;
+    beatmapset.favourite_count += add ? -1 : 1;
+
+    osu.ajaxError(xhr);
+  })
   .done((data: FavouriteResponse) => {
-    beatmapset.has_favourited = add;
     beatmapset.favourite_count = data.favourite_count;
   });
 }
