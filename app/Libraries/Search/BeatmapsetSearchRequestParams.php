@@ -49,7 +49,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         $sort = $request['sort'] ?? null;
 
         if (priv_check_user($this->user, 'BeatmapsetAdvancedSearch')->can()) {
-            $this->queryString = es_query_escape_with_caveats($this->requestQuery);
+            $this->queryString = $this->requestQuery;
             $status = presence($request['s'] ?? null);
             $this->status = static::LEGACY_STATUS_MAP[$status] ?? $status;
 

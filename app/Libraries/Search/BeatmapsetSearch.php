@@ -16,8 +16,6 @@ use App\Models\Score;
 
 class BeatmapsetSearch extends RecordSearch
 {
-    public $recommendedDifficulty;
-
     /**
      * @param BeatmapsetSearchParams $params
      */
