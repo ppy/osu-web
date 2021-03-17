@@ -29,7 +29,7 @@ export function propsFromHref(href: string) {
 
   if (targetUrl.host === window.location.host) {
     const target = BeatmapDiscussionHelper.urlParse(targetUrl.href, null, { forceDiscussionId: true });
-    if (target?.discussionId != null && target?.beatmapsetId != null) {
+    if (target?.discussionId != null && target.beatmapsetId != null) {
       if (current?.beatmapsetId === target.beatmapsetId) {
         // same beatmapset, format: #123
         props.children = `#${target.discussionId}`;
