@@ -491,6 +491,8 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   }
 
   private toggleFavourite = () => {
+    if (currentUser.id == null) return;
+
     toggleFavourite(this.props.beatmapset);
   }
 }
