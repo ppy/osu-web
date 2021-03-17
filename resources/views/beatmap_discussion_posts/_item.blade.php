@@ -3,14 +3,18 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 
+@php
+    $beatmapset = $post->beatmapDiscussion->beatmapset;
+@endphp
+
 <div class="beatmap-discussions__discussion beatmapset-activities__discussion-post">
     <div class="beatmap-discussion beatmap-discussion--single beatmapset-activities__post-grow">
         <div class="beatmap-discussion-timestamp__icons-container">
             <div class="beatmap-discussion-timestamp__icons">
-                <a href="{{ route('beatmapsets.discussion', $post->beatmapset) }}#/{{ $post->beatmapset_discussion_id }}">
+                <a href="{{ route('beatmapsets.discussion', $beatmapset) }}#/{{ $post->beatmap_discussion_id }}">
                     <img class='beatmapset-cover'
-                        src="{{$post->beatmapset->coverURL('list')}}"
-                        srcSet="{{$post->beatmapset->coverURL('list')}} 1x, {{$post->beatmapset->coverURL('list@2x')}} 2x">
+                        src="{{$beatmapset->coverURL('list')}}"
+                        srcSet="{{$beatmapset->coverURL('list')}} 1x, {{$beatmapset->coverURL('list@2x')}} 2x">
                 </a>
                 <div class="beatmap-discussion-timestamp__icon beatmapset-activities__timeline-icon-margin">
                     <span class="beatmap-discussion-message-type">

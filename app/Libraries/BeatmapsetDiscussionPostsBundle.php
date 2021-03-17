@@ -8,6 +8,7 @@ namespace App\Libraries;
 use App\Models\BeatmapDiscussionPost;
 use App\Traits\Memoizes;
 use App\Transformers\BeatmapDiscussionPostTransformer;
+use App\Transformers\BeatmapDiscussionTransformer;
 use App\Transformers\BeatmapsetCompactTransformer;
 use App\Transformers\UserCompactTransformer;
 use Illuminate\Pagination\Paginator;
@@ -25,6 +26,7 @@ class BeatmapsetDiscussionPostsBundle extends BeatmapsetDiscussionsBundleBase
     {
         return [
             'beatmapsets' => json_collection($this->getBeatmapsets(), new BeatmapsetCompactTransformer()),
+            'discussions' => json_collection($this->getDiscussions(), new BeatmapDiscussionTransformer()),
             'cursor' => $this->getCursor(),
             'posts' => json_collection($this->getPosts(), new BeatmapDiscussionPostTransformer()),
             'users' => json_collection($this->getUsers(), new UserCompactTransformer()),
@@ -38,12 +40,19 @@ class BeatmapsetDiscussionPostsBundle extends BeatmapsetDiscussionsBundleBase
         });
     }
 
+    private function getDiscussions()
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->getPosts()->pluck('beatmapDiscussion')->uniqueStrict('id')->values();
+        });
+    }
+
     private function getPosts()
     {
         return $this->memoize(__FUNCTION__, function () {
             ['query' => $query, 'params' => $params] = BeatmapDiscussionPost::search($this->params);
 
-            $posts = $query->with(['user.userGroups', 'beatmapset'])->limit($params['limit'] + 1)->get();
+            $posts = $query->with(['user.userGroups', 'beatmapDiscussion.beatmapset'])->limit($params['limit'] + 1)->get();
 
             $this->paginator = new Paginator(
                 $posts,
