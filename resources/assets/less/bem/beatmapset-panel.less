@@ -23,7 +23,8 @@
   --play-icon-opacity: 0;
   --stats-opacity: 0;
   --menu-opacity: 0;
-
+  --beatmaps-popup-opacity: 0;
+  --beatmaps-popup-pointer-events: none;
 
   &:hover {
     --menu-width: @_menu-width-hover;
@@ -43,28 +44,66 @@
     --play-icon: @fa-var-pause;
   }
 
+  &--with-beatmaps-popup {
+    z-index: @z-index--beatmaps-panel;
+    --beatmaps-popup-opacity: 1;
+    --beatmaps-popup-pointer-events: auto;
+  }
+
   &__beatmap {
-    margin: 1px 0.5px;
+    margin-right: 1px;
     width: 4px;
-    height: 8px;
+    height: 7px;
     border-radius: 10000px;
     background-color: var(--bg);
   }
 
   &__beatmap-icon {
-    margin: 1px 1.5px 1px 1px;
+    margin-right: 2px;
     font-size: 12px; // icon size
   }
 
+  &__beatmap-more {
+    font-weight: 600;
+    // Manual adjustment so it looks centered. The result is kind of different between Chromium and Firefox.
+    bottom: 2px;
+    position: relative;
+  }
+
   &__beatmaps {
-    margin: 4px;
+    padding: 5px;
     display: flex;
     align-items: center;
+    pointer-events: auto;
+    line-height: 12px;
+    height: $padding * 2 + $line-height;
   }
 
   &__beatmaps-all {
-    margin: -4px;
+    margin: -5px;
     display: flex;
+  }
+
+  &__beatmaps-popup {
+    max-height: 50vh;
+    overflow: auto;
+    padding: 0 5px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__beatmaps-popup-container {
+    .fancy-scrollbar();
+    opacity: var(--beatmaps-popup-opacity);
+    pointer-events: var(--beatmaps-popup-pointer-events);
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    margin-top: -@_border-radius;
+    background-color: hsl(var(--hsl-b2));
+    padding: (2 * @_border-radius) 0 @_border-radius;
+    border-radius: 0 0 @_border-radius @_border-radius;
+    .fade-element(@_hover-transition-duration);
   }
 
   &__content {
@@ -116,7 +155,7 @@
     // Adjust radius to prevent bleeding of the underneath cover
     // when hover background (of &__play) is active.
     border-radius: (@_border-radius - 1px) 0 0 (@_border-radius - 1px);
-    padding: 4px @_border-radius;
+    padding: 4px @_border-radius 6px;
     position: relative;
     background: var(--info-bg);
     display: flex;
@@ -145,7 +184,7 @@
     }
 
     &--stats {
-      margin: -1px -5px;
+      margin: 0 -5px;
       opacity: var(--stats-opacity);
     }
 
@@ -173,6 +212,7 @@
     color: hsl(var(--hsl-c2));
     .fade-element(@_hover-transition-duration);
     pointer-events: auto;
+    overflow: hidden;
   }
 
   &__menu-container {
