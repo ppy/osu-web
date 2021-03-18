@@ -88,7 +88,7 @@ export class Store {
     window.location.href = checkout.webUrl;
   }
 
-  async resumeCheckout(event: Event) {
+  resumeCheckout(event: Event) {
     if (event.target == null) { return; }
 
     const target = event.target as HTMLElement;

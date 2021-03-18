@@ -5,7 +5,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Libraries\DbCursorHelper;
 use App\Models\Match\Match;
 use App\Models\User;
 use App\Transformers\Match\EventTransformer;
@@ -21,15 +20,12 @@ class MatchesController extends Controller
     public function index()
     {
         $params = request()->all();
-        $cursorHelper = new DbCursorHelper(Match::SORTS, Match::DEFAULT_SORT, $params['sort'] ?? null);
-
-        $sort = $cursorHelper->getSort();
-        $cursor = $cursorHelper->prepare($params['cursor'] ?? null);
         $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
+        $cursorHelper = Match::makeDbCursorHelper($params['sort'] ?? null);
 
         $matches = Match
             ::where('private', false)
-            ->cursorSort($sort, $cursor)
+            ->cursorSort($cursorHelper, $params['cursor'] ?? null)
             ->limit($limit + 1) // an extra to check for pagination
             ->get();
 

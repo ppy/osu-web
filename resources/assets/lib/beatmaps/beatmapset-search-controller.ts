@@ -94,7 +94,7 @@ export class BeatmapsetSearchController {
   }
 
   @action
-  async loadMore() {
+  loadMore() {
     if (this.isBusy || !this.hasMore) {
       return;
     }
