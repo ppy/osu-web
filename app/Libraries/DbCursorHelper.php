@@ -5,6 +5,8 @@
 
 namespace App\Libraries;
 
+use App\Models\Model;
+
 class DbCursorHelper
 {
     private $sort;
@@ -19,6 +21,23 @@ class DbCursorHelper
             $this->sort = $sorts[$defaultSort];
             $this->sortName = $defaultSort;
         }
+    }
+
+    public function itemToCursor($item)
+    {
+        if (!($item instanceof Model)) {
+            return;
+        }
+
+        $ret = [];
+
+        foreach ($this->sort as $sort) {
+            $column = $sort['column'];
+            $columnInput = $sort['columnInput'] ?? $sort['column'];
+            $ret[$columnInput] = $item->$column;
+        }
+
+        return $ret;
     }
 
     public function getSort()
@@ -55,31 +74,8 @@ class DbCursorHelper
         return $ret;
     }
 
-    public function prepareNext($items)
-    {
-        return $this->prepare($this->next($items));
-    }
-
     public function next($items)
     {
-        if (count($items) === 0) {
-            return;
-        }
-
-        $lastItem = $items[count($items) - 1];
-
-        if ($lastItem === null) {
-            return;
-        }
-
-        $ret = [];
-
-        foreach ($this->sort as $sort) {
-            $column = $sort['column'];
-            $columnInput = $sort['columnInput'] ?? $sort['column'];
-            $ret[$columnInput] = $lastItem->$column;
-        }
-
-        return $ret;
+        return $this->itemToCursor(array_last($items));
     }
 }
