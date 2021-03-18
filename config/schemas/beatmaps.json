@@ -214,8 +214,10 @@
             "min_gram": "2",
             "max_gram": "20",
             "token_chars": [
+              "digit",
               "letter",
-              "digit"
+              "punctuation",
+              "symbol"
             ]
           }
         }
