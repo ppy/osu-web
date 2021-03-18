@@ -38,11 +38,14 @@ class BeatmapsetQueryParser
                     $parsed = static::parseLength($m['value']);
                     $option = static::makeFloatRangeOption($m['op'], $parsed['value'], $parsed['scale'] / 2.0);
                     break;
+                case 'keys':
+                    $option = static::makeIntRangeOption($m['op'], $m['value']);
+                    break;
                 case 'divisor':
-                    $option = static::makeRangeOption($m['op'], $m['value']);
+                    $option = static::makeIntRangeOption($m['op'], $m['value']);
                     break;
                 case 'status':
-                    $option = static::makeRangeOption($m['op'], Beatmapset::STATES[$m['value']] ?? null);
+                    $option = static::makeIntRangeOption($m['op'], Beatmapset::STATES[$m['value']] ?? null);
                     break;
                 case 'creator':
                     $option = static::makeTextOption($m['op'], $m['value']);
@@ -111,7 +114,7 @@ class BeatmapsetQueryParser
         }
     }
 
-    private static function makeRangeOption($operator, $value)
+    private static function makeIntRangeOption($operator, $value)
     {
         if ($value === null || !is_numeric($value)) {
             return;

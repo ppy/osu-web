@@ -34,6 +34,7 @@ class BeatmapsetQueryParserTest extends TestCase
             ['length>=70s', ['keywords' => null, 'options' => ['length' => ['gte' => 69.5]]]],
             ['length:8m', ['keywords' => null, 'options' => ['length' => ['gte' => 450, 'lte' => 510]]]],
             ['length:0.9h', ['keywords' => null, 'options' => ['length' => ['gte' => (0.9 * 3600 - 1800), 'lte' => (0.9 * 3600 + 1800)]]]],
+            ['keys=10', ['keywords' => null, 'options' => ['keys' => ['gte' => 10, 'lte' => 10]]]],
             ['divisor>0', ['keywords' => null, 'options' => ['divisor' => ['gt' => 0]]]],
             ['status<ranked', ['keywords' => null, 'options' => ['status' => ['lt' => Beatmapset::STATES['ranked']]]]],
             ['status=graveyard', ['keywords' => null, 'options' => ['status' => ['gte' => Beatmapset::STATES['graveyard'], 'lte' => Beatmapset::STATES['graveyard']]]]],

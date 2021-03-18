@@ -46,6 +46,9 @@ class BeatmapsetSearchParams extends SearchParams
     /** @var bool */
     public $includeNsfw = false;
 
+    /** @var array|null */
+    public $keys;
+
     /** @var int|null */
     public $language = null;
 
