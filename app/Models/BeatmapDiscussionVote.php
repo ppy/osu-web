@@ -89,7 +89,7 @@ class BeatmapDiscussionVote extends Model
         }
 
         if (isset($rawParams['sort'])) {
-            $sort = explode('-', strtolower($rawParams['sort']));
+            $sort = explode('_', strtolower($rawParams['sort']));
 
             if (in_array($sort[0] ?? null, ['id'], true)) {
                 $sortField = $sort[0];
@@ -103,7 +103,7 @@ class BeatmapDiscussionVote extends Model
         $sortField ?? ($sortField = 'id');
         $sortOrder ?? ($sortOrder = 'desc');
 
-        $params['sort'] = "{$sortField}-{$sortOrder}";
+        $params['sort'] = "{$sortField}_{$sortOrder}";
         $query->orderBy($sortField, $sortOrder);
 
         if (isset($rawParams['score'])) {
@@ -113,6 +113,13 @@ class BeatmapDiscussionVote extends Model
             }
         }
 
+        $params['beatmapset_discussion_id'] = get_int($rawParams['beatmapset_discussion_id'] ?? null);
+        if ($params['beatmapset_discussion_id'] !== null) {
+            // column name is beatmap_ =)
+            $query->where('beatmap_discussion_id', $params['beatmapset_discussion_id']);
+        }
+
+        // TODO: normalize with main beatmapset discussion behaviour (needs React-side fixing)
         if (!($rawParams['is_moderator'] ?? false)) {
             $query->whereHas('user', function ($userQuery) {
                 $userQuery->default();

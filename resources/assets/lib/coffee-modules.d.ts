@@ -6,8 +6,8 @@
 // importable coffeescript modules
 declare module 'back-to-top' {
   interface Props {
-    anchor: React.RefObject<{}>;
-    ref: React.RefObject<{}>;
+    anchor: React.RefObject<HTMLElement>;
+    ref: React.RefObject<BackToTop>;
   }
 
   class BackToTop extends React.PureComponent<Props> {
@@ -102,7 +102,7 @@ declare module 'react/beatmaps/search-content' {
 
   interface Props {
     availableFilters: AvailableFilters;
-    backToTopAnchor: React.RefObject<{}>;
+    backToTopAnchor: React.RefObject<HTMLElement>;
   }
 
   class SearchContent extends React.PureComponent<Props> {}

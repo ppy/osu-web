@@ -160,7 +160,7 @@ class CommentBundle
 
     private function getComments($query, $isChildren = true, $pinnedOnly = false)
     {
-        $sort = $pinnedOnly ? Comment::SORTS['new'] : $this->params->cursorHelper->getSort();
+        $sortOrCursorHelper = $pinnedOnly ? 'new' : $this->params->cursorHelper;
         $queryLimit = $this->params->limit;
 
         if (!$isChildren) {
@@ -176,7 +176,7 @@ class CommentBundle
             }
         }
 
-        $query->with('commentable')->cursorSort($sort, $cursor ?? null);
+        $query->with('commentable')->cursorSort($sortOrCursorHelper, $cursor ?? null);
 
         if (!$this->includeDeleted) {
             $query->whereNull('deleted_at');

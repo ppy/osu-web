@@ -120,7 +120,7 @@ export default class ConversationView extends React.Component<Props> {
     $(window).on('scroll', throttle(this.onScroll, 1000));
   }
 
-  componentDidUpdate(prevProps?: Props, prevState?: {}, snapshot?: Snapshot) {
+  componentDidUpdate(prevProps?: Props, prevState?: Readonly<Record<string, never>>, snapshot?: Snapshot) {
     const chatView = this.chatViewRef.current;
     if (!chatView) {
       return;

@@ -154,9 +154,9 @@ class Score extends Model
 
         $query = PlaylistItemUserHighScore
             ::where('playlist_item_id', $this->playlist_item_id)
-            ->cursorWhere([
-                ['column' => 'total_score', 'order' => 'ASC', 'value' => $this->total_score],
-                ['column' => 'score_id', 'order' => 'DESC', 'value' => $this->getKey()],
+            ->cursorSort('score_asc', [
+                'total_score' => $this->total_score,
+                'score_id' => $this->getKey(),
             ]);
 
         return 1 + $query->count();
