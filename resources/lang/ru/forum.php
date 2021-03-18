@@ -47,7 +47,7 @@ return [
         'confirm_restore' => 'Восстановить ответ?',
         'edited' => 'Последний раз отредактирован :user :when, отредактирован :count раз.',
         'posted_at' => 'написано :when',
-        'posted_by' => '',
+        'posted_by' => 'опубликовано :username',
 
         'actions' => [
             'destroy' => 'Удалить ответ',
@@ -75,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'Действительно удалить тему?',
+        'confirm_restore' => 'Действительно восстановить тему?',
         'deleted' => 'удалённая тема',
         'go_to_latest' => 'перейти к последнему ответу',
         'has_replied' => 'Вы отвечали на эту тему',
@@ -88,6 +90,11 @@ return [
         'reply_title_prefix' => 'Ответ',
         'started_by' => 'от :user',
         'started_by_verbose' => 'начато :user',
+
+        'actions' => [
+            'destroy' => 'Удалить тему',
+            'restore' => 'Восстановить тему',
+        ],
 
         'create' => [
             'close' => 'Закрыть',

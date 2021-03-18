@@ -18,7 +18,7 @@ return [
             'not_enough_plays' => 'Anda belum bermain cukup lama',
             'not_verified' => 'Sesi Anda belum diverifikasi',
             'restricted' => 'Akun Anda saat ini sedang di-restrict',
-            'silenced' => '',
+            'silenced' => 'Anda sedang di-silence',
             'target_restricted' => 'Penerima pesan yang Anda tuju saat ini sedang di-restrict',
         ],
     ],

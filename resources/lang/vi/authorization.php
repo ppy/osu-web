@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Bạn không thể đổi phiếu bầu sau khi giai đoạn bầu chọn của cuộc thi này kết thúc.',
+
+        'entry' => [
+            'limit_reached' => 'Bạn đã đạt giới hạn bài dự thi cho cuộc thi này',
+            'over' => 'Cảm ơn về bài dự thi của bạn! Cuộc thi đã không còn nhận thêm mục nào nữa và sẽ sớm mở bình chọn.',
+        ],
     ],
 
     'forum' => [

@@ -19,7 +19,7 @@ interface Props {
   markRead?: () => void;
   message: string;
   modifiers: string[];
-  url: string;
+  url?: string;
   withCategory: boolean;
   withCoverImage: boolean;
 }

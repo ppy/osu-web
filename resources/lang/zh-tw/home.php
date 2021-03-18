@@ -76,8 +76,8 @@ return [
         'action' => '下載 osu!',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
+            '_' => '如果您在啟動遊戲或註冊帳號時遇到問題，請:help_forum_link或:support_button。',
+            'help_forum_link' => '查看幫助論壇',
             'support_button' => '聯絡支援團隊',
         ],
 

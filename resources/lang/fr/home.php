@@ -7,10 +7,10 @@ return [
     'landing' => [
         'download' => 'Télécharger maintenant',
         'online' => '<strong>:players</strong> connectés en ce moment dans <strong>:games</strong> parties',
-        'peak' => 'Pic, :count joueurs connectés',
+        'peak' => 'Pic de joueurs connectés: :count ',
         'players' => '<strong>:count</strong> joueurs inscrits',
         'title' => 'bienvenue',
-        'see_more_news' => 'voir plus de nouvelles',
+        'see_more_news' => 'voir plus d\'événements',
 
         'slogan' => [
             'main' => 'le meilleur jeu de rythme free-to-win',

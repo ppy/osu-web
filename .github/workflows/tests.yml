@@ -54,6 +54,7 @@ jobs:
       - name: Set php version
         uses: shivammathur/setup-php@v2
         with:
+          extensions: redis
           tools: composer:v2
           php-version: '7.4'
 

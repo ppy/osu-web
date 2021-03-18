@@ -378,7 +378,7 @@ class LegacyInterOpController extends Controller
             get_bool($params['is_action'] ?? null)
         );
 
-        return json_item($message, 'Chat/Message', ['sender']);
+        return json_item($message, 'Chat\Message', ['sender']);
     }
 
     public function userSessionsDestroy($userId)

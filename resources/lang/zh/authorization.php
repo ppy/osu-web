@@ -67,8 +67,8 @@ return [
         'friends_only' => '用户阻止了来自非好友的消息。',
         'moderated' => '该频道现在正在被管制中。',
         'no_access' => '你没有权限访问该频道。',
-        'restricted' => '在账户禁言、受限或被 ban 期间不能发消息。',
-        'silenced' => '',
+        'restricted' => '账户被禁言、受限或封禁期间不能发消息。',
+        'silenced' => '账户被禁言、受限或封禁期间不能发消息。',
     ],
 
     'comment' => [
@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => '投票已结束，无法修改投票。',
+
+        'entry' => [
+            'limit_reached' => '您提交的参赛文件大小超出限制',
+            'over' => '感谢参与！提交已经关闭，投票即将开始。',
+        ],
     ],
 
     'forum' => [

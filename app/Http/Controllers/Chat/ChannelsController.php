@@ -8,6 +8,7 @@ namespace App\Http\Controllers\Chat;
 use App\Models\Chat\Channel;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
+use App\Transformers\Chat\ChannelTransformer;
 use Auth;
 
 /**
@@ -39,7 +40,7 @@ class ChannelsController extends Controller
     {
         return json_collection(
             Channel::public()->get(),
-            'Chat\Channel'
+            ChannelTransformer::forUser(auth()->user())
         );
     }
 
@@ -65,13 +66,13 @@ class ChannelsController extends Controller
      *   "type": "public"
      * }
      */
-    public function join($channel_id, $user_id)
+    public function join($channelId, $userId)
     {
-        $channel = Channel::where('channel_id', $channel_id)->firstOrFail();
+        $channel = Channel::where('channel_id', $channelId)->firstOrFail();
 
         priv_check('ChatChannelJoin', $channel)->ensureCan();
 
-        if (Auth::user()->user_id !== get_int($user_id)) {
+        if (Auth::user()->user_id !== get_int($userId)) {
             abort(403);
         }
 
@@ -99,21 +100,92 @@ class ChannelsController extends Controller
      *
      * @response 204
      */
-    public function part($channel_id, $user_id)
+    public function part($channelId, $userId)
     {
-        $channel = Channel::where('channel_id', $channel_id)->firstOrFail();
+        $channel = Channel::where('channel_id', $channelId)->firstOrFail();
 
         // TODO: the order of these check seems wrong?
         // FIXME: doesn't seem right authorizing leaving channel
         priv_check('ChatChannelPart', $channel)->ensureCan();
 
-        if (Auth::user()->user_id !== get_int($user_id)) {
+        if (Auth::user()->user_id !== get_int($userId)) {
             abort(403);
         }
 
         $channel->removeUser(Auth::user());
 
         return response([], 204);
+    }
+
+    /**
+     * Get Channel
+     *
+     * Gets details of a chat channel.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field   | Type                        | Description
+     * ------- | --------------------------- | -----------
+     * channel | [ChatChannel](#chatchannel) | |
+     * users   | [UserCompact](#usercompact) | Users are only visible for PM channels.
+     *
+     * @response {
+     *   "channel": {
+     *     "channel_id": 1337,
+     *     "name": "test channel",
+     *     "description": "wheeeee",
+     *     "icon": "/images/layout/avatar-guest@2x.png",
+     *     "type": "PM",
+     *     "first_message_id": 10,
+     *     "last_read_id": 9150005005,
+     *     "last_message_id": 9150005005,
+     *     "moderated": false,
+     *     "users": [
+     *       2,
+     *       102
+     *     ]
+     *   },
+     *   "users": [
+     *     {
+     *       "id": 2,
+     *       "username": "peppy",
+     *       "profile_colour": "#3366FF",
+     *       "avatar_url": "https://a.ppy.sh/2?1519081077.png",
+     *       "country_code": "AU",
+     *       "is_active": true,
+     *       "is_bot": false,
+     *       "is_deleted": false,
+     *       "is_online": true,
+     *       "is_supporter": true
+     *     },
+     *     {
+     *       "id": 102,
+     *       "username": "lambchop",
+     *       "profile_colour": "#3366FF",
+     *       "icon": "/images/layout/avatar-guest@2x.png",
+     *       "country_code": "NZ",
+     *       "is_active": true,
+     *       "is_bot": false,
+     *       "is_deleted": false,
+     *       "is_online": false,
+     *       "is_supporter": false
+     *     }
+     *   ]
+     * }
+     */
+    public function show($channelId)
+    {
+        $channel = Channel::where('channel_id', $channelId)->firstOrFail();
+
+        priv_check('ChatChannelRead', $channel)->ensureCan();
+
+        return [
+            'channel' => json_item($channel, ChannelTransformer::forUser(auth()->user()), ['first_message_id', 'last_message_id', 'users']),
+            // TODO: probably going to need a better way to list/fetch/update users on larger channels without sending user on every message.
+            'users' => json_collection($channel->visibleUsers(), 'UserCompact'),
+        ];
     }
 
     /**
@@ -155,12 +227,13 @@ class ChannelsController extends Controller
         $params = request()->all();
         $params['type'] = $params['type'] ?? null;
 
+        $sender = auth()->user();
+
         if ($params['type'] === Channel::TYPES['pm']) {
             if (!isset($params['target_id'])) {
                 abort(422, 'missing target_id parameter');
             }
 
-            $sender = auth()->user();
             $target = User::findOrFail($params['target_id']);
 
             priv_check('ChatStart', $target)->ensureCan();
@@ -173,7 +246,7 @@ class ChannelsController extends Controller
         }
 
         if (isset($channel)) {
-            return json_item($channel, 'Chat\Channel', ['recent_messages.sender']);
+            return json_item($channel, ChannelTransformer::forUser($sender), ['recent_messages.sender']);
         } else {
             abort(422, 'unknown or missing type parameter');
         }

@@ -44,7 +44,7 @@ class ChannelMessage extends BroadcastNotificationBase
 
     public function getListeningUserIds(): array
     {
-        return $this->message->channel->users()->pluck('user_id')->all();
+        return $this->message->channel->userIds();
     }
 
     public function getNotifiable()

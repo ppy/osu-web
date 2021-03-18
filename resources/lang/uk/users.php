@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Учасники за режимом гри',
     ],
 
     'force_reactivation' => [
@@ -357,7 +357,6 @@ return [
             'interests' => 'Вподобання',
             'location' => 'Поточне місцезнаходження',
             'occupation' => 'Рід занять',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Сайт',
         ],
@@ -412,7 +411,7 @@ return [
 
     'silenced_banner' => [
         'title' => '',
-        'message' => '',
+        'message' => 'Деякі дії можуть бути недоступними.',
     ],
 
     'status' => [

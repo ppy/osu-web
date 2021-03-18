@@ -337,6 +337,7 @@ export class Main extends React.PureComponent
 
   discussionStarters: =>
     _ @discussions()
+      .filter (discussion) -> discussion.message_type != 'hype'
       .map 'user_id'
       .uniq()
       .map (user_id) => @users()[user_id]

@@ -117,6 +117,7 @@ return [
             'nsfw' => 'Explicitní obsah',
             'points-of-failure' => 'Body neúspěchů',
             'source' => 'Zdroj',
+            'storyboard' => '',
             'success-rate' => 'Úspěšnost',
             'tags' => 'Tagy',
         ],

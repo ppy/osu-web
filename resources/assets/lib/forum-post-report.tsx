@@ -9,7 +9,7 @@ interface State {
   username: string;
 }
 
-export default class ForumPostReport extends React.Component<{}, State> {
+export default class ForumPostReport extends React.Component<Record<string, never>, State> {
   state = {
     postId: '',
     username: '',

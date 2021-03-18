@@ -11,7 +11,7 @@ export function formatMessage(item: Notification, compact: boolean = false) {
     username: item.details.username,
   };
 
-  if (item.name === 'beatmapset_discussion_review_new') {
+  if (item.name === 'beatmapset_discussion_review_new' && item.details.embeds != null) {
     _.merge(replacements, {
       praises: item.details.embeds.praises,
       problems: item.details.embeds.problems,

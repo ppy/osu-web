@@ -117,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => 'Body Neúspechu',
             'source' => 'Zdroj',
+            'storyboard' => '',
             'success-rate' => 'Úspešnosť',
             'tags' => 'Tagy',
         ],

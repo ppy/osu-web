@@ -42,7 +42,6 @@
     "top_ranks",
     "medals"
   ],
-  "skype": null,
   "title": null,
   "twitter": "osuuser",
   "website": "https://osu.ppy.sh",
@@ -180,7 +179,6 @@ playmode         | [GameMode](#gamemode)              | |
 playstyle        | string[]                           | Device choices of the user.
 post_count       | number                             | number of forum posts
 profile_order    | [ProfilePage](#user-profilepage)[] | ordered array of sections in user profile page
-skype            | string?                            | |
 title            | string?                            | user-specific title
 twitter          | string?                            | |
 website          | string?                            | |

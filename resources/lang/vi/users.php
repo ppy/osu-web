@@ -357,7 +357,6 @@ return [
             'interests' => 'Sở Thích',
             'location' => 'Vị Trí Hiện Tại',
             'occupation' => 'Nghề Nghiệp',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Website',
         ],

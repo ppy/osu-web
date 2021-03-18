@@ -117,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => 'Epäonnistumiskohdat',
             'source' => 'Lähde',
+            'storyboard' => '',
             'success-rate' => 'Läpäisyprosentti',
             'tags' => 'Tunnisteet',
         ],

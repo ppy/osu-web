@@ -357,7 +357,6 @@ return [
             'interests' => 'Interesser',
             'location' => 'Nuværende Position',
             'occupation' => 'Stilling',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Hjemmeside',
         ],
@@ -411,8 +410,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Du er i øjeblikket gjort tavs.',
+        'message' => 'Nogle handlinger kan være utilgængelige.',
     ],
 
     'status' => [

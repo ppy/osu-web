@@ -35,7 +35,7 @@ export default class ChannelStore {
   get nonPmChannels(): Channel[] {
     const sortedChannels: Channel[] = [];
     this.channels.forEach((channel) => {
-      if (channel.type !== 'PM' && channel.metaLoaded) {
+      if (channel.type !== 'PM' && channel.isDisplayable) {
         sortedChannels.push(channel);
       }
     });
@@ -53,7 +53,7 @@ export default class ChannelStore {
   get pmChannels(): Channel[] {
     const sortedChannels: Channel[] = [];
     this.channels.forEach((channel) => {
-      if (channel.newPmChannel || (channel.type === 'PM' && channel.metaLoaded)) {
+      if (channel.newPmChannel || (channel.type === 'PM' && channel.isDisplayable)) {
         sortedChannels.push(channel);
       }
     });
@@ -187,7 +187,7 @@ export default class ChannelStore {
   }
 
   @action
-  async markAsRead(channelId: number) {
+  markAsRead(channelId: number) {
     const channel = this.get(channelId);
 
     if (channel == null || !channel.isUnread) {

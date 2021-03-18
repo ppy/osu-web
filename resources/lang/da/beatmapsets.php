@@ -117,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => 'Fejl-steder',
             'source' => 'Kilde',
+            'storyboard' => 'Dette beatmap indeholder storyboard',
             'success-rate' => 'Succesrate',
             'tags' => 'Tags',
         ],

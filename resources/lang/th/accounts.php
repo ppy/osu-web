@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'ที่อยู่ปัจจุบัน',
                 'user_interests' => 'สิ่งที่สนใจ',
-                'user_msnm' => '',
                 'user_occ' => 'อาชีพ',
                 'user_twitter' => '',
                 'user_website' => 'เว็บไซต์',
@@ -62,7 +61,7 @@ return [
             'comment_new' => 'ความคิดเห็นใหม่',
             'forum_topic_reply' => 'ข้อความตอบกลับในกระทู้',
             'mail' => 'อีเมล',
-            'mapping' => '',
+            'mapping' => 'ผู้ทำบีทแมพ',
             'push' => 'ส่งการแจ้งเตือน',
             'user_achievement_unlock' => 'ผู้เล่นได้ปลดล็อกเหรียญตรา',
         ],
@@ -75,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'ซ่อนคำเตือนเกี่ยวกับเนื้อหาที่ล่อแหลมในบีทแมพ',
         'beatmapset_title_show_original' => 'แสดงข้อมูลของ บีทแมพ ในภาษาดั้งเดิม',
         'title' => 'ตัวเลือก',
 

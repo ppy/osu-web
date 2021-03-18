@@ -68,7 +68,7 @@ return [
         'moderated' => 'Bu kanal şu anda modere ediliyor.',
         'no_access' => 'Bu kanala erişiminiz yok.',
         'restricted' => 'Susturulmuş, kısıtlanmış ya da banlanmış iken mesaj gönderemezsiniz.',
-        'silenced' => '',
+        'silenced' => 'Susturulmuşken, kısıtlıyken veya banlıyken mesaj gönderemezsiniz.',
     ],
 
     'comment' => [
@@ -79,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Yarışma için oylama süresi bittikten sonra oyunuzu değiştiremezsiniz.',
+
+        'entry' => [
+            'limit_reached' => 'Bu yarışma için girdi sınırına ulaştınız',
+            'over' => 'Girdileriniz için teşekkürler! Bu yarışma için gönderiler kapandı ve yakında oylamalara açılacak.',
+        ],
     ],
 
     'forum' => [

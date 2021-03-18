@@ -117,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => 'Tỉ Lệ Thất Bại',
             'source' => 'Nguồn',
+            'storyboard' => '',
             'success-rate' => 'Tỉ Lệ Thành Công',
             'tags' => 'Tags',
         ],

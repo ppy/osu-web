@@ -357,7 +357,6 @@ return [
             'interests' => 'Интересы',
             'location' => 'Текущее местоположение',
             'occupation' => 'Род деятельности',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Веб-сайт',
         ],
@@ -411,8 +410,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'У вас сайленс.',
+        'message' => 'Некоторые действия могут быть недоступны.',
     ],
 
     'status' => [

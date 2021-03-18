@@ -42,13 +42,14 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         static $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
 
         $this->user = $user;
-        $this->from = $this->pageAsFrom(get_int($request['page'] ?? null));
+        $this->page = get_int($request['page'] ?? null);
+        $this->from = $this->pageAsFrom($this->page);
         $this->requestQuery = $request['q'] ?? $request['query'] ?? null;
 
         $sort = $request['sort'] ?? null;
 
         if (priv_check_user($this->user, 'BeatmapsetAdvancedSearch')->can()) {
-            $this->queryString = es_query_escape_with_caveats($this->requestQuery);
+            $this->queryString = $this->requestQuery;
             $status = presence($request['s'] ?? null);
             $this->status = static::LEGACY_STATUS_MAP[$status] ?? $status;
 

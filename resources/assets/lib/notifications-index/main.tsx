@@ -34,7 +34,7 @@ export class Main extends React.Component {
     }));
   }
 
-  constructor(props: {}, context: NotificationContextData) {
+  constructor(props: Record<string, never>, context: NotificationContextData) {
     super(props);
 
     this.controller = new NotificationController(core.dataStore.notificationStore, context);
