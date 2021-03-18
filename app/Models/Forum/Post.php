@@ -18,6 +18,7 @@ use App\Models\Elasticsearch;
 use App\Models\Reportable;
 use App\Models\User;
 use App\Traits\Validatable;
+use App\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -60,7 +61,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Post extends Model implements AfterCommit, Indexable
 {
-    use Elasticsearch\PostTrait, Reportable, Validatable;
+    use Elasticsearch\PostTrait, Reportable, Validatable, WithDbCursorHelper;
     use SoftDeletes {
         restore as private origRestore;
     }
