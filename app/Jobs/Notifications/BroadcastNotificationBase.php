@@ -9,6 +9,7 @@ use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\InvalidNotificationException;
 use App\Models\Notification;
 use App\Models\User;
+use App\Models\UserGroup;
 use App\Models\UserNotification;
 use App\Models\UserNotificationOption;
 use App\Traits\NotificationQueue;
@@ -109,10 +110,16 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
     private static function excludeBotUserIds(array $userIds)
     {
-        // smaller return size from database compared to "group_id <> bot"
+        $botGroupId = app('groups')->byIdentifier('bot')->getKey();
+
+        $allBotUserIds = UserGroup
+            ::where('group_id', $botGroupId)
+            ->select('user_id');
+
+        // only consider users with bot as their primary group
         $botUserIds = User
-            ::whereIn('user_id', $userIds)
-            ->where('group_id', app('groups')->byIdentifier('bot')->getKey())
+            ::where('group_id', $botGroupId)
+            ->whereIn('user_id', $allBotUserIds)
             ->pluck('user_id')
             ->all();
 
