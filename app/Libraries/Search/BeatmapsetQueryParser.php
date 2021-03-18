@@ -5,6 +5,8 @@
 
 namespace App\Libraries\Search;
 
+use App\Models\Beatmapset;
+
 class BeatmapsetQueryParser
 {
     public static function parse(?string $query): array
@@ -37,7 +39,7 @@ class BeatmapsetQueryParser
                     $option = static::makeFloatRangeOption($m['op'], $parsed['value'], $parsed['scale'] / 2.0);
                     break;
                 case 'divisor':
-                    $option = static::makeRangeOption($m['op'], get_int($m['value']));
+                    $option = static::makeRangeOption($m['op'], $m['value']);
                     break;
                 case 'status':
                     $option = static::makeRangeOption($m['op'], Beatmapset::STATES[$m['value']] ?? null);
@@ -51,7 +53,11 @@ class BeatmapsetQueryParser
             }
 
             if (isset($option)) {
-                $options[$key] = array_merge($options[$key] ?? [], $option);
+                if (is_array($option)) {
+                    $options[$key] = array_merge($options[$key] ?? [], $option);
+                } else {
+                    $options[$key] = $option;
+                }
 
                 return '';
             }
@@ -67,11 +73,15 @@ class BeatmapsetQueryParser
 
     private static function makeFloatRangeOption($operator, $value, $tolerance)
     {
-        $value = get_float($value);
+        // Some locales have `,` as decimal separator.
+        // Note that thousand separator is not (yet?) supported.
+        $value = str_replace(',', '.', $value);
 
-        if ($value === null) {
+        if (!is_numeric($value)) {
             return;
         }
+
+        $value = get_float($value);
 
         switch ($operator) {
             case '=':
@@ -103,15 +113,18 @@ class BeatmapsetQueryParser
 
     private static function makeRangeOption($operator, $value)
     {
-        if ($value === null) {
+        if ($value === null || !is_numeric($value)) {
             return;
         }
+
+        $value = get_int($value);
 
         switch ($operator) {
             case '=':
             case ':':
                 return [
-                    'eq' => $value,
+                    'gte' => $value,
+                    'lte' => $value,
                 ];
             case '<':
                 return [
