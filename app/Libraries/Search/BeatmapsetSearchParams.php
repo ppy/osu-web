@@ -13,6 +13,27 @@ class BeatmapsetSearchParams extends SearchParams
     const PLAYED_STATES = ['played', 'unplayed'];
     const STATUSES_NO_CACHE = ['favourites', 'mine'];
 
+    /** @var array|null */
+    public $ar;
+
+    /** @var string|null */
+    public $artist;
+
+    /** @var array|null */
+    public $bpm;
+
+    /** @var string|null */
+    public $creator;
+
+    /** @var array|null */
+    public $cs;
+
+    /** @var array|null */
+    public $difficultyRating;
+
+    /** @var array|null */
+    public $drain;
+
     /** @var array */
     public $extra = [];
 
@@ -25,18 +46,21 @@ class BeatmapsetSearchParams extends SearchParams
     /** @var bool */
     public $includeNsfw = false;
 
-    /**
-     * null means any state.
-     *
-     * @var string|null
-     */
-    public $playedFilter = null;
+    /** @var array|null */
+    public $keys;
 
     /** @var int|null */
     public $language = null;
 
     /** @var int|null */
     public $mode = null;
+
+    /**
+     * null means any state.
+     *
+     * @var string|null
+     */
+    public $playedFilter = null;
 
     /** @var string|null */
     public $queryString = null;
@@ -52,6 +76,12 @@ class BeatmapsetSearchParams extends SearchParams
 
     /** @var string|null */
     public $status = null;
+
+    /** @var array|null */
+    public $statusRange;
+
+    /** @var array|null */
+    public $hitLength;
 
     /** @var User|null */
     public $user = null;
