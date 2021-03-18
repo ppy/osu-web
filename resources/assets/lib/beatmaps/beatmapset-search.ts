@@ -98,7 +98,7 @@ export class BeatmapsetSearch implements DispatchListener {
     this.recommendedDifficulties.clear();
   }
 
-  private fetch(filters: BeatmapsetSearchFilters, from: number): PromiseLike<{}> {
+  private fetch(filters: BeatmapsetSearchFilters, from: number): PromiseLike<SearchResponse | Record<string, never>> {
     this.cancel();
 
     const params = filters.queryParams;

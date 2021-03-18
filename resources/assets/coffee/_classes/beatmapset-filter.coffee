@@ -103,6 +103,7 @@ class @BeatmapsetFilter
     ret
 
 
+  # TODO: look at combining with the one in beatmapset-search-filter.ts
   @keys: [
     'general'
     'extra'
