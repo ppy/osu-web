@@ -16,7 +16,7 @@ class BeatmapsetSearchParams extends SearchParams
     /** @var array|null */
     public $ar;
 
-    /** @var artist|null */
+    /** @var string|null */
     public $artist;
 
     /** @var array|null */
