@@ -13,7 +13,7 @@ interface Props {
 
 const bn = 'click-to-copy';
 
-export default class ClickToCopy extends React.Component<Props, {}> {
+export default class ClickToCopy extends React.Component<Props> {
   static defaultProps = {
     showIcon: false,
     valueAsUrl: false,
