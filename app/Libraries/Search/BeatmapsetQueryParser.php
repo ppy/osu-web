@@ -116,7 +116,7 @@ class BeatmapsetQueryParser
 
     private static function makeIntRangeOption($operator, $value)
     {
-        if ($value === null || !is_numeric($value)) {
+        if (!is_numeric($value)) {
             return;
         }
 
