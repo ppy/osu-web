@@ -78,7 +78,7 @@ $(document).on 'turbolinks:load', ->
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply({ @bbcodePreview, @forum, @stickyFooter })
 @nav2 ?= new Nav2(@clickMenu)
-@osuEnchant ?= new _exported.Enchant(@, @turbolinksReload)
+@osuEnchant ?= new _exported.Enchant(@turbolinksReload)
 @twitchPlayer ?= new TwitchPlayer(@turbolinksReload)
 _exported.WindowVHPatcher.init(window)
 
