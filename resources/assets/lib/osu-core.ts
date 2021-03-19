@@ -2,13 +2,23 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controller';
+import Captcha from 'captcha';
 import ChatWorker from 'chat/chat-worker';
+import ClickMenu from 'click-menu';
+import Enchant from 'enchant';
+import ForumPoll from 'forum-poll';
 import CurrentUser from 'interfaces/current-user';
 import UserJson from 'interfaces/user-json';
+import Localtime from 'localtime';
+import MobileToggle from 'mobile-toggle';
 import NotificationsWorker from 'notifications/worker';
+import OsuAudio from 'osu-audio/main';
+import OsuLayzr from 'osu-layzr';
 import SocketWorker from 'socket-worker';
 import RootDataStore from 'stores/root-data-store';
+import TurbolinksReload from 'turbolinks-reload';
 import UserLoginObserver from 'user-login-observer';
+import WindowVHPatcher from 'window-vh-patcher';
 import WindowFocusObserver from './window-focus-observer';
 
 declare global {
@@ -19,16 +29,32 @@ declare global {
 
 // will this replace main.coffee eventually?
 export default class OsuCore {
+  get currentUser() {
+    // FIXME: id is  not nullable but guest user does not have id.
+    return window.currentUser.id != null ? window.currentUser : null;
+  }
+
   beatmapsetSearchController: BeatmapsetSearchController;
+  readonly captcha = new Captcha();
   chatWorker: ChatWorker;
+  readonly clickMenu = new ClickMenu();
   dataStore: RootDataStore;
+  readonly enchant: Enchant;
+  readonly forumPoll = new ForumPoll();
+  readonly localtime = new Localtime();
+  readonly mobileToggle = new MobileToggle();
   notificationsWorker: NotificationsWorker;
+  readonly osuAudio = new OsuAudio();
+  readonly osuLayzr = new OsuLayzr();
   socketWorker: SocketWorker;
+  readonly turbolinksReload = new TurbolinksReload();
   userLoginObserver: UserLoginObserver;
   window: Window;
   windowFocusObserver: WindowFocusObserver;
+  readonly windowVHPatcher = new WindowVHPatcher();
 
   constructor(window: Window) {
+    this.enchant = new Enchant(this.turbolinksReload);
     this.window = window;
     // should probably figure how to conditionally or lazy initialize these so they don't all init when not needed.
     // TODO: requires dynamic imports to lazy load modules.
@@ -52,11 +78,6 @@ export default class OsuCore {
 
     $.subscribe('user:update', this.setUser);
     $(() => this.socketWorker.setUserId(currentUser.id));
-  }
-
-  get currentUser() {
-    // FIXME: id is  not nullable but guest user does not have id.
-    return window.currentUser.id != null ? window.currentUser : null;
   }
 
   private setUser = (event: JQuery.Event, user: UserJson) => {
