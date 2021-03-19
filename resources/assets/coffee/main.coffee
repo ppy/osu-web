@@ -51,7 +51,7 @@ $(document).on 'turbolinks:load', ->
 @forum ?= new Forum
 @forumAutoClick ?= new ForumAutoClick
 @forumCover ?= new ForumCover
-@forumPoll ?= new _exported.ForumPoll(@)
+@forumPoll ?= new _exported.ForumPoll
 @forumTopicTitle ?= new ForumTopicTitle
 @forumTopicWatchAjax ?= new ForumTopicWatchAjax
 @globalDrag ?= new GlobalDrag
