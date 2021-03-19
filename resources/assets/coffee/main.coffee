@@ -80,7 +80,7 @@ $(document).on 'turbolinks:load', ->
 @nav2 ?= new Nav2(@clickMenu)
 @osuEnchant ?= new _exported.Enchant(@turbolinksReload)
 @twitchPlayer ?= new TwitchPlayer(@turbolinksReload)
-_exported.WindowVHPatcher.init(window)
+@windowVHPatcher ?= new _exported.WindowVHPatcher
 
 
 $(document).on 'change', '.js-url-selector', (e) ->
