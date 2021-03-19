@@ -6,8 +6,8 @@
 // importable coffeescript modules
 declare module 'back-to-top' {
   interface Props {
-    anchor: React.RefObject<{}>;
-    ref: React.RefObject<{}>;
+    anchor: React.RefObject<HTMLElement>;
+    ref: React.RefObject<BackToTop>;
   }
 
   class BackToTop extends React.PureComponent<Props> {
@@ -47,13 +47,6 @@ declare module 'img2x' {
   class Img2x extends React.PureComponent<any> {}
 }
 
-declare module 'spinner' {
-  interface Props {
-    modifiers?: string[];
-  }
-
-  class Spinner extends React.PureComponent<Props> {}
-}
 declare module 'user-avatar' {
   class UserAvatar extends React.PureComponent<any> {}
 }
@@ -81,6 +74,16 @@ declare module 'modal' {
   class Modal extends React.PureComponent<Props> {}
 }
 
+declare module 'notification-banner' {
+  interface Props {
+    message: React.ReactFragment;
+    title: string;
+    type: string;
+  }
+
+  class NotificationBanner extends React.PureComponent<Props> {}
+}
+
 declare module 'popup-menu' {
   type Children = (dismiss: () => void) => React.ReactFragment;
 
@@ -99,7 +102,7 @@ declare module 'react/beatmaps/search-content' {
 
   interface Props {
     availableFilters: AvailableFilters;
-    backToTopAnchor: React.RefObject<{}>;
+    backToTopAnchor: React.RefObject<HTMLElement>;
   }
 
   class SearchContent extends React.PureComponent<Props> {}

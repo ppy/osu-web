@@ -15,8 +15,18 @@ return [
     'top' => 'Komentar Terbaik',
     'username' => 'Nama Pengguna',
 
+    'forum_posts' => [
+        'created' => 'Waktu posting',
+        'relevance' => 'Relevansi',
+    ],
+
     'forum_topics' => [
-        'new' => 'Balasan Terakhir',
         'feature_votes' => 'Prioritas',
+        'new' => 'Balasan Terakhir',
+    ],
+
+    'users' => [
+        'relevance' => 'Relevansi',
+        'username' => 'Nama',
     ],
 ];

@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => '自動播放下一首曲目',
     ],
 
     'defaults' => [
@@ -77,7 +77,7 @@ return [
         ],
         'help' => [
             '_' => '幫助',
-            'getAbuse' => '',
+            'getAbuse' => '檢舉違規行為',
             'getFaq' => '常見問題',
             'getRules' => '規則',
             'getSupport' => '支援服務',
@@ -159,6 +159,10 @@ return [
             'error' => '',
             'description' => '',
         ],
+        '429' => [
+            'error' => '已達速率限制',
+            'description' => '',
+        ],
         '500' => [
             'error' => '糟糕，伺服器崩潰了',
             'description' => "我們會自動回報任何一個錯誤，請返回到上一個頁面。",
@@ -171,8 +175,8 @@ return [
             'error' => '啊...伺服器正在維護中',
             'description' => "每次維護需要5秒到10分鐘的時間。如果維護時間太長，查看 :link 以取得更多資訊。",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -180,7 +184,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => '登入/註冊',
 
         'login' => [
             'forgot' => "忘記登入資訊？",
@@ -204,6 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '設定',
+            'follows' => '追蹤清單',
             'friends' => '好友',
             'logout' => '登出',
             'profile' => '我的資料',

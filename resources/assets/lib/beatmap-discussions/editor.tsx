@@ -13,6 +13,7 @@ import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
 import { Spinner } from 'spinner';
 import { sortWithMode } from 'utils/beatmap-helper';
+import { nominationsCount } from 'utils/beatmapset-helper';
 import { DraftsContext } from './drafts-context';
 import EditorDiscussionComponent from './editor-discussion-component';
 import {
@@ -67,6 +68,7 @@ export default class Editor extends React.Component<Props, State> {
 
   bn = 'beatmap-discussion-editor';
   cache: CacheInterface = {};
+  context!: React.ContextType<typeof ReviewEditorConfigContext>;
   emptyDocTemplate = [{children: [{text: ''}], type: 'paragraph'}];
   insertMenuRef: React.RefObject<EditorInsertionMenu>;
   localStorageKey: string;
@@ -391,7 +393,7 @@ export default class Editor extends React.Component<Props, State> {
     const canReset = currentUser.is_admin || currentUser.is_nat || currentUser.is_bng;
     const willReset =
       this.props.beatmapset.status === 'pending' &&
-      this.props.beatmapset.nominations && this.props.beatmapset.nominations.current > 0 &&
+      this.props.beatmapset.nominations && nominationsCount(this.props.beatmapset.nominations, 'current') > 0 &&
       docContainsProblem;
 
     if (canDisqualify && willDisqualify) {
@@ -420,7 +422,15 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   withNormalization = (editor: ReactEditor) => {
-    const { normalizeNode } = editor;
+    const { insertData, normalizeNode } = editor;
+
+    editor.insertData = (data) => {
+      if (insideEmbed(this.slateEditor)) {
+        editor.insertText(data.getData('text/plain'));
+      } else {
+        insertData(data);
+      }
+    };
 
     editor.normalizeNode = (entry) => {
       const [node, path] = entry;
@@ -453,7 +463,7 @@ export default class Editor extends React.Component<Props, State> {
         }
       }
 
-      return normalizeNode(entry);
+      normalizeNode(entry);
     };
 
     return editor;

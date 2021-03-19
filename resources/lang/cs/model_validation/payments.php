@@ -5,13 +5,13 @@
 
 return [
     'signature' => [
-        'not_match' => 'Podpisy se neshodují',
+        'not_match' => '',
     ],
     'notification_type' => '',
     'order' => [
-        'invalid' => 'Neplatný formát',
+        'invalid' => '',
         'items' => [
-            'virtual_only' => '`:provider` platba není platná pro fyzické zboží.',
+            'virtual_only' => '',
         ],
         'status' => [
             'not_checkout' => '',

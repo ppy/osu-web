@@ -22,6 +22,7 @@ return [
             '401-verification' => '계정 인증',
             '405' => '찾을 수 없음',
             '422' => '잘못된 요청',
+            '429' => '요청이 너무 많습니다',
             '500' => '내부 서버 오류',
             '503' => '서비스 점검 중',
         ],
@@ -74,6 +75,9 @@ return [
         ],
         'contests_controller' => [
             '_' => '콘테스트',
+        ],
+        'follows_controller' => [
+            'index' => '대시보드',
         ],
         'friends_controller' => [
             'index' => '대시보드',

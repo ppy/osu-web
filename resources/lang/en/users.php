@@ -310,7 +310,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Download Replay',
-                'not_ranked' => 'Only ranked beatmaps give out pp.',
+                'not_ranked' => 'Only ranked beatmaps award pp',
                 'pp_weight' => 'weighted :percentage',
                 'view_details' => 'View Details',
                 'title' => 'Ranks',
@@ -357,7 +357,6 @@ return [
             'interests' => 'Interests',
             'location' => 'Current Location',
             'occupation' => 'Occupation',
-            'skype' => 'Skype',
             'twitter' => 'Twitter',
             'website' => 'Website',
         ],
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Pending Beatmaps',
             'graveyard_beatmapset_count' => 'Graveyarded Beatmaps',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'You are currently silenced.',
+        'message' => 'Some actions may be unavailable.',
     ],
 
     'status' => [

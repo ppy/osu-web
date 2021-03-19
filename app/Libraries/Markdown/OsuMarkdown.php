@@ -6,9 +6,11 @@
 namespace App\Libraries\Markdown;
 
 use App\Libraries\Markdown\Indexing\RendererExtension as IndexingRendererExtension;
+use League\CommonMark\Block\Element\ListItem;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
 use League\CommonMark\Event\DocumentParsedEvent;
+use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\Autolink\AutolinkExtension;
 use League\CommonMark\Extension\Table as TableExtension;
 use Symfony\Component\Yaml\Exception\ParseException as YamlParseException;
@@ -29,6 +31,7 @@ class OsuMarkdown
         'block_modifiers' => [],
         'block_name' => 'osu-md',
         'generate_toc' => false,
+        'parse_attribute_id' => false,
         'parse_yaml_header' => true,
         'record_first_image' => false,
         'relative_url_root' => null,
@@ -61,9 +64,10 @@ class OsuMarkdown
             'block_modifiers' => ['store-product', 'store-product-small'],
         ],
         'wiki' => [
-            'generate_toc' => true,
-            'title_from_document' => true,
             'block_modifiers' => ['wiki'],
+            'generate_toc' => true,
+            'parse_attribute_id' => true,
+            'title_from_document' => true,
         ],
     ];
 
@@ -106,10 +110,21 @@ class OsuMarkdown
 
         $env = Environment::createCommonMarkEnvironment();
         $this->processor = new OsuMarkdownProcessor($env);
+
+        if ($this->config['parse_attribute_id']) {
+            $env->addEventListener(DocumentParsedEvent::class, [new AttributesOnlyIdListener(), 'onDocumentParsed']);
+            // Manually call register here to make sure the listener for the extension is
+            // registered before $this->processor.
+            // Adding extension using addExtension doesn't actually register anything
+            // until the environment is used.
+            (new AttributesExtension())->register($env);
+        }
+
         $env->addEventListener(DocumentParsedEvent::class, [$this->processor, 'onDocumentParsed']);
 
         $env->addExtension(new TableExtension\TableExtension());
         $env->addBlockRenderer(TableExtension\Table::class, new OsuTableRenderer());
+        $env->addBlockRenderer(ListItem::class, new ListItemRenderer());
 
         $env->addExtension(new AutolinkExtension());
 

@@ -8,6 +8,11 @@ return [
         'disabled' => '該圖譜現在無法下載。',
         'parts-removed' => '因作者或第三方版權擁有者的要求，故該圖譜已經下架。',
         'more-info' => '點擊這裡查看更多資訊。',
+        'rule_violation' => '',
+    ],
+
+    'download' => [
+        'limit_exceeded' => '欲速則不達。',
     ],
 
     'index' => [
@@ -16,12 +21,32 @@ return [
     ],
 
     'panel' => [
+        'empty' => '沒有圖譜',
+
         'download' => [
             'all' => '下載',
             'video' => '下載並包含影片',
             'no_video' => '下載並不包含影片',
             'direct' => '在osu!direct中查看',
         ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -36,7 +61,7 @@ return [
 
             'download' => [
                 '_' => '下載',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => '不含影像',
                 'video' => '含影像',
             ],
@@ -48,7 +73,7 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
+            'approved' => '於:timeago批准',
             'loved' => '',
             'qualified' => '',
             'ranked' => '於:timeago進榜',
@@ -61,7 +86,7 @@ return [
         ],
 
         'hype' => [
-            'action' => '推薦這個圖譜如果你喜歡玩它來幫助它進度至 <strong>進榜</strong> 狀態。',
+            'action' => '如果你喜歡這張圖譜，請推薦它來幫助它進展至<strong>進榜</strong>狀態。',
 
             'current' => [
                 '_' => '此地圖目前是 :status 的。',
@@ -89,10 +114,23 @@ return [
             'genre' => '曲風',
             'language' => '語言',
             'no_scores' => '資料還在計算中。。。',
+            'nsfw' => '',
             'points-of-failure' => '失敗位置',
             'source' => '來源',
+            'storyboard' => '',
             'success-rate' => '成功率',
             'tags' => '標籤',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '關閉警告',
+                'listing' => '',
+                'show' => '顯示',
+            ],
         ],
 
         'scoreboard' => [
@@ -110,7 +148,7 @@ return [
                 'miss' => 'Miss',
                 'mods' => 'Mods',
                 'player' => '玩家',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => '排行榜',
                 'score_total' => '總分',
                 'score' => '得分',
@@ -149,7 +187,7 @@ return [
 
         'status' => [
             'ranked' => '已進榜',
-            'approved' => '已核準',
+            'approved' => '已批准',
             'loved' => 'Loved',
             'qualified' => '已提名',
             'wip' => '製作中',

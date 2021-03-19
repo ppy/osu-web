@@ -25,10 +25,16 @@ return [
         'language_edit' => 'Jazyk změněn z :old na :new.',
         'love' => 'Tuto mapu miluje :user',
         'nominate' => 'Nominováno uživatelem :user.',
+        'nominate_modes' => '',
         'nomination_reset' => 'Nový problém :discussion (:text) způsobil resetování nominace.',
         'qualify' => 'Tato beatmapa získala požadované množství nominací a byla kvalifikována.',
         'rank' => 'Hodnocené.',
         'remove_from_loved' => '',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -65,6 +71,7 @@ return [
         'love' => 'Obliba',
         'nominate' => 'Nominace',
         'nomination_reset' => 'Resetování nominací',
+        'nsfw_toggle' => '',
         'qualify' => 'Kvalifikace',
         'rank' => 'Hodnocení',
         'remove_from_loved' => '',

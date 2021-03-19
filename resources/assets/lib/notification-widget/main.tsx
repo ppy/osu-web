@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
-import * as _ from 'lodash';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { Name, typeNames } from 'models/notification-type';
@@ -126,7 +125,7 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private renderFilters() {
-    if (this.props.only != null) return null;
+    if (this.props.only != null || !core.notificationsWorker.hasData) return null;
 
     return (
       <div className='notification-popup__filters'>
@@ -187,7 +186,17 @@ export default class Main extends React.Component<Props, State> {
     });
 
     if (nodes.length === 0) {
-      const transKey = this.controller.currentFilter == null ? 'notifications.all_read' : 'notifications.none';
+      let transKey = 'notifications.loading';
+      if (core.notificationsWorker.hasData) {
+        if (this.controller.currentFilter == null) {
+          transKey = 'notifications.all_read';
+        } else {
+          transKey = 'notifications.none';
+        }
+      } else if (core.notificationsWorker.waitingVerification) {
+        transKey = 'notifications.verifying';
+      }
+
       return (
         <p key='empty' className='notification-popup__empty'>
           {osu.trans(transKey)}

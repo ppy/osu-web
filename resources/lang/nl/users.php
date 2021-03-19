@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Speelt met :devices',
         'title' => "Profiel van :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Verander Profiel Cover',
@@ -353,7 +357,6 @@ return [
             'interests' => 'Interesses',
             'location' => 'Huidige Locatie',
             'occupation' => 'Beroep',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Website',
         ],
@@ -404,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Afwachtende Beatmaps',
             'graveyard_beatmapset_count' => 'Graveyarded Beatmaps',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

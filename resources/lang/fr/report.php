@@ -15,8 +15,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Signaler',
+        'title' => 'Signaler la publication de :username ?',
     ],
 
     'scores' => [

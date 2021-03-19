@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Spiller med :devices',
         'title' => "Profilen til :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Endre profilbanner',
@@ -349,12 +353,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Interesser',
             'location' => 'Nåværende Plassering',
             'occupation' => 'Yrke',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => 'Nettside',
         ],
         'not_found' => [
@@ -404,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Ventende Beatmaps',
             'graveyard_beatmapset_count' => 'Gravlagte Beatmaps',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

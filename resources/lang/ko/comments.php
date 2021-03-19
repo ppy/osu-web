@@ -35,7 +35,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => '댓글',
         'nav_title' => '목록',
+        'no_comments' => '댓글이 없습니다...',
     ],
 
     'placeholder' => [

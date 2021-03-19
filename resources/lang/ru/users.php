@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Участники по игровому режиму',
     ],
 
     'force_reactivation' => [
@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Играет с :devices',
         'title' => "Профиль :username",
 
+        'comments_count' => [
+            '_' => 'Опубликовано :link',
+            'count' => ':count_delimited комментарий|:count_delimited комментария|:count_delimited комментариев',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Сменить обложку профиля',
@@ -307,7 +311,7 @@ return [
             'top_ranks' => [
                 'download_replay' => 'Скачать повтор',
                 'not_ranked' => 'Очки производительности выдаются только за прохождение рейтинговых карт.',
-                'pp_weight' => 'взвешено: :percentage',
+                'pp_weight' => 'засчитано: :percentage pp',
                 'view_details' => 'Подробнее',
                 'title' => 'Рейтинги',
 
@@ -349,12 +353,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Интересы',
             'location' => 'Текущее местоположение',
             'occupation' => 'Род деятельности',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => 'Веб-сайт',
         ],
         'not_found' => [
@@ -404,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Карты на рассмотрении',
             'graveyard_beatmapset_count' => 'Заброшенные карты',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'У вас сайленс.',
+        'message' => 'Некоторые действия могут быть недоступны.',
     ],
 
     'status' => [

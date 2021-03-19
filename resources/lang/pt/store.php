@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Pedido colocado em :date',
-
+        'cancel' => 'Cancelar o pedido',
+        'cancel_confirm' => 'Este pedido será cancelado e o seu pagamento não será aceite. O fornecedor de pagamento poderá não reembolsar imediatamente. Tens a certeza?',
+        'cancel_not_allowed' => 'Este pedido não pode ser cancelado de momento.',
         'invoice' => 'Ver fatura',
         'no_orders' => 'Sem pedidos para ver.',
+        'paid_on' => 'Pedido colocado em :date',
         'resume' => 'Retomar pagamento',
+        'shopify_expired' => 'O link de pagamento para este pedido expirou.',
 
         'item' => [
             'display_name' => [

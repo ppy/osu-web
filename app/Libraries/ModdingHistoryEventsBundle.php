@@ -118,45 +118,48 @@ class ModdingHistoryEventsBundle
 
                 $array['votes'] = $this->getVotes();
 
-                $kudosu = $this->user
-                    ->receivedKudosu()
-                    ->with('post', 'post.topic', 'giver')
-                    ->with(['kudosuable' => function (MorphTo $morphTo) {
-                        $morphTo->morphWith([BeatmapDiscussion::class => ['beatmap', 'beatmapset']]);
-                    }])
-                    ->orderBy('exchange_id', 'desc')
-                    ->limit(static::KUDOSU_PER_PAGE + 1)
-                    ->get();
+                if ($this->user !== null) {
+                    $kudosu = $this->user
+                        ->receivedKudosu()
+                        ->with('post', 'post.topic', 'giver')
+                        ->with(['kudosuable' => function (MorphTo $morphTo) {
+                            $morphTo->morphWith([BeatmapDiscussion::class => ['beatmap', 'beatmapset']]);
+                        }])
+                        ->orderBy('exchange_id', 'desc')
+                        ->limit(static::KUDOSU_PER_PAGE + 1)
+                        ->get();
 
-                $array['extras'] = [
-                    'recentlyReceivedKudosu' => json_collection($kudosu, 'KudosuHistory'),
-                ];
-                // only recentlyReceivedKudosu is set, do we even need it?
-                // every other item has a show more link that goes to a listing.
-                $array['perPage'] = [
-                    'recentlyReceivedKudosu' => static::KUDOSU_PER_PAGE,
-                ];
+                    $array['extras'] = [
+                        'recentlyReceivedKudosu' => json_collection($kudosu, 'KudosuHistory'),
+                    ];
+                    // only recentlyReceivedKudosu is set, do we even need it?
+                    // every other item has a show more link that goes to a listing.
+                    $array['perPage'] = [
+                        'recentlyReceivedKudosu' => static::KUDOSU_PER_PAGE,
+                    ];
 
-                $transformer = new UserTransformer();
-                $transformer->mode = $this->user->playmode;
-                $array['user'] = json_item(
-                    $this->user,
-                    $transformer,
-                    [
-                        'active_tournament_banner',
-                        'badges',
-                        'follower_count',
-                        'graveyard_beatmapset_count',
-                        'groups',
-                        'loved_beatmapset_count',
-                        'previous_usernames',
-                        'ranked_and_approved_beatmapset_count',
-                        'statistics',
-                        'statistics.rank',
-                        'support_level',
-                        'unranked_beatmapset_count',
-                    ]
-                );
+                    $transformer = new UserTransformer();
+                    $transformer->mode = $this->user->playmode;
+                    $array['user'] = json_item(
+                        $this->user,
+                        $transformer,
+                        [
+                            'active_tournament_banner',
+                            'badges',
+                            'follower_count',
+                            'graveyard_beatmapset_count',
+                            'groups',
+                            'loved_beatmapset_count',
+                            'previous_usernames',
+                            'ranked_and_approved_beatmapset_count',
+                            'statistics',
+                            'statistics.country_rank',
+                            'statistics.rank',
+                            'support_level',
+                            'unranked_beatmapset_count',
+                        ]
+                    );
+                }
             }
 
             return $array;
@@ -203,11 +206,6 @@ class ModdingHistoryEventsBundle
             }
 
             $discussions = $parents['query']->get();
-
-            // TODO: remove this when reviews are released
-            if (!config('osu.beatmapset.discussion_review_enabled')) {
-                return $discussions;
-            }
 
             $children = BeatmapDiscussion::whereIn('parent_id', $discussions->pluck('id'))->with($includes);
 
@@ -287,6 +285,7 @@ class ModdingHistoryEventsBundle
                 $posts->pluck('user_id')->toArray(),
                 $posts->pluck('last_editor_id')->toArray(),
                 $events->pluck('user_id')->toArray(),
+                $events->pluck('beatmapDiscussion')->pluck('user_id')->toArray(),
                 $votes['given']->pluck('user_id')->toArray(),
                 $votes['received']->pluck('user_id')->toArray()
             );

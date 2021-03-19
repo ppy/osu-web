@@ -35,7 +35,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => 'комментарии',
         'nav_title' => 'список',
+        'no_comments' => 'комментарии не найдены...',
     ],
 
     'placeholder' => [

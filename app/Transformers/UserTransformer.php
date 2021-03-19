@@ -30,7 +30,7 @@ class UserTransformer extends UserCompactTransformer
         $profileCustomization = $this->userProfileCustomization($user);
 
         return array_merge($result, [
-            'comments_count' => $user->comments()->count(),
+            'comments_count' => $user->comments()->withoutTrashed()->count(),
             'cover_url' => $profileCustomization->cover()->url(),
             'discord' => $user->user_discord,
             'has_supported' => $user->hasSupported(),
@@ -48,7 +48,6 @@ class UserTransformer extends UserCompactTransformer
             'playstyle' => $user->osu_playstyle,
             'post_count' => $user->user_posts,
             'profile_order' => $profileCustomization->extras_order,
-            'skype' => $user->user_msnm,
             'title' => $user->title(),
             'title_url' => $user->titleUrl(),
             'twitter' => $user->user_twitter,

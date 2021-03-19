@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Joue avec :devices',
         'title' => "Profil de :username",
 
+        'comments_count' => [
+            '_' => 'Publié :link',
+            'count' => ':count_delimited commentaire|:count_delimited commentaires',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Changer la bannière du profil',
@@ -349,12 +353,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Centres d\'intérêt',
             'location' => 'Position actuelle',
             'occupation' => 'Occupation',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => 'Site Internet',
         ],
         'not_found' => [
@@ -404,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Beatmaps en attente',
             'graveyard_beatmapset_count' => 'Beatmaps dans le cimetière',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Vous êtes actuellement réduit au silence.',
+        'message' => 'Certaines actions peuvent être indisponibles.',
     ],
 
     'status' => [

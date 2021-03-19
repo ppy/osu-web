@@ -34,9 +34,8 @@ class UserCompactTransformer extends TransformerAbstract
         'blocks',
         'country',
         'cover',
-        'current_mode_rank',
         'favourite_beatmapset_count',
-        'follow_user_modding',
+        'follow_user_mapping',
         'follower_count',
         'friends',
         'graveyard_beatmapset_count',
@@ -51,6 +50,7 @@ class UserCompactTransformer extends TransformerAbstract
         'is_restricted',
         'is_silenced',
         'loved_beatmapset_count',
+        'mapping_follower_count',
         'monthly_playcounts',
         'page',
         'previous_usernames',
@@ -60,6 +60,7 @@ class UserCompactTransformer extends TransformerAbstract
         'scores_first_count',
         'scores_recent_count',
         'statistics',
+        'statistics_rulesets',
         'support_level',
         'unranked_beatmapset_count',
         'unread_pm_count',
@@ -95,6 +96,7 @@ class UserCompactTransformer extends TransformerAbstract
             'id' => $user->user_id,
             'is_active' => $user->isActive(),
             'is_bot' => $user->isBot(),
+            'is_deleted' => $user->isDeleted(),
             'is_online' => $user->isOnline(),
             'is_supporter' => $user->isSupporter(),
             'last_visit' => json_time($user->displayed_last_visit),
@@ -164,13 +166,6 @@ class UserCompactTransformer extends TransformerAbstract
         ]);
     }
 
-    public function includeCurrentModeRank(User $user)
-    {
-        $currentModeStatistics = $user->statistics(auth()->user()->playmode ?? 'osu');
-
-        return $this->primitive($currentModeStatistics ? $currentModeStatistics->globalRank() : null);
-    }
-
     public function includeFavouriteBeatmapsetCount(User $user)
     {
         return $this->primitive($user->profileBeatmapsetsFavourite()->count());
@@ -184,12 +179,12 @@ class UserCompactTransformer extends TransformerAbstract
         );
     }
 
-    public function includeFollowUserModding(User $user)
+    public function includeFollowUserMapping(User $user)
     {
         return $this->primitive(
             $user->follows()->where([
                 'notifiable_type' => MorphMap::getType($user),
-                'subtype' => 'modding',
+                'subtype' => 'mapping',
             ])->pluck('notifiable_id')
         );
     }
@@ -257,6 +252,11 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeLovedBeatmapsetCount(User $user)
     {
         return $this->primitive($user->profileBeatmapsetsLoved()->count());
+    }
+
+    public function includeMappingFollowerCount(User $user)
+    {
+        return $this->primitive($user->mappingFollowerCount());
     }
 
     public function includeMonthlyPlaycounts(User $user)
@@ -332,6 +332,11 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->item($stats, new UserStatisticsTransformer());
     }
 
+    public function includeStatisticsRulesets(User $user)
+    {
+        return $this->item($user, new UserStatisticsRulesetsTransformer());
+    }
+
     public function includeSupportLevel(User $user)
     {
         return $this->primitive($user->supportLevel());
@@ -364,7 +369,9 @@ class UserCompactTransformer extends TransformerAbstract
             'audio_muted',
             'audio_volume',
             'beatmapset_download',
+            'beatmapset_show_nsfw',
             'beatmapset_title_show_original',
+            'comments_show_deleted',
             'forum_posts_show_deleted',
             'ranking_expanded',
             'user_list_filter',

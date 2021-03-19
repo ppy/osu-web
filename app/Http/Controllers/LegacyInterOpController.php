@@ -239,7 +239,11 @@ class LegacyInterOpController extends Controller
 
         $userIds = array_keys($userIds);
 
-        $users = User::whereIn('user_id', $userIds)->get()->keyBy('user_id');
+        $users = User
+            ::whereIn('user_id', $userIds)
+            ->with(['userGroups', 'blocks'])
+            ->get()
+            ->keyBy('user_id');
 
         foreach ($params as $id => $messageParams) {
             try {
@@ -374,7 +378,7 @@ class LegacyInterOpController extends Controller
             get_bool($params['is_action'] ?? null)
         );
 
-        return json_item($message, 'Chat/Message', ['sender']);
+        return json_item($message, 'Chat\Message', ['sender']);
     }
 
     public function userSessionsDestroy($userId)

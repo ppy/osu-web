@@ -132,15 +132,19 @@ export class Header extends React.Component
                 div className: 'user-list-popup__remainder-count',
                   osu.transChoice 'common.count.plus_others', @props.favcount - @filteredFavourites.length
 
-          a
-            className: 'beatmapset-header__details-text beatmapset-header__details-text--title'
-            href: laroute.route 'beatmapsets.index', q: getTitle(@props.beatmapset)
-            getTitle(@props.beatmapset)
+          span className: 'beatmapset-header__details-text beatmapset-header__details-text--title',
+            a
+              className: 'beatmapset-header__details-text-link'
+              href: laroute.route 'beatmapsets.index', q: getTitle(@props.beatmapset)
+              getTitle(@props.beatmapset)
+            if @props.beatmapset.nsfw
+              span className: 'nsfw-badge', osu.trans('beatmapsets.nsfw_badge.label')
 
-          a
-            className: 'beatmapset-header__details-text beatmapset-header__details-text--artist'
-            href: laroute.route 'beatmapsets.index', q: getArtist(@props.beatmapset)
-            getArtist(@props.beatmapset)
+          span className: 'beatmapset-header__details-text beatmapset-header__details-text--artist',
+            a
+              className: 'beatmapset-header__details-text-link'
+              href: laroute.route 'beatmapsets.index', q: getArtist(@props.beatmapset)
+              getArtist(@props.beatmapset)
 
           el BeatmapsetMapping, beatmapset: @props.beatmapset
 
@@ -179,7 +183,7 @@ export class Header extends React.Component
             @renderLoginButton()
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
-          div className: 'beatmapset-status beatmapset-status--show', osu.trans("beatmapsets.show.status.#{@props.currentBeatmap.status}")
+          @renderStatusBar()
           el Stats,
             beatmapset: @props.beatmapset
             beatmap: @props.currentBeatmap
@@ -252,6 +256,16 @@ export class Header extends React.Component
           top: osu.trans 'beatmapsets.show.details.login_required.top'
           bottom: osu.trans 'beatmapsets.show.details.login_required.bottom'
         icon: 'fas fa-lock'
+
+
+  renderStatusBar: =>
+    div className: 'beatmapset-header__status',
+      if @props.beatmapset.storyboard
+        div
+          className: 'beatmapset-status beatmapset-status--show-icon'
+          title: osu.trans('beatmapsets.show.info.storyboard')
+          i className: 'fas fa-image'
+      div className: 'beatmapset-status beatmapset-status--show', osu.trans("beatmapsets.show.status.#{@props.currentBeatmap.status}")
 
 
   downloadButton: ({key, href, icon = 'fas fa-download', topTextKey = '_', bottomTextKey, osuDirect = false}) =>

@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'настоящо местонахождение',
                 'user_interests' => 'интереси',
-                'user_msnm' => '',
                 'user_occ' => 'работа/занимание',
                 'user_twitter' => '',
                 'user_website' => 'уеб сайт',
@@ -44,7 +43,7 @@ return [
 
         'signature' => [
             'title' => 'Подпис',
-            'update' => 'актуализирайте',
+            'update' => 'обновяване',
         ],
     ],
 
@@ -62,6 +61,7 @@ return [
             'comment_new' => 'нови коментари ',
             'forum_topic_reply' => 'отговор на темата',
             'mail' => 'поща',
+            'mapping' => '',
             'push' => 'push',
             'user_achievement_unlock' => '',
         ],
@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'покажете метаданни на beatmap на оригиналния език',
         'title' => 'Hастройки',
 
         'beatmapset_download' => [
             '_' => 'тип на теглене на бийтмапове по подразбиране',
             'all' => 'с видео при наличност',
-            'no_video' => 'без видео',
             'direct' => 'отвори в osu!direct',
+            'no_video' => 'без видео',
         ],
-
-        'beatmapset_title_show_original' => 'покажете метаданни на beatmap на оригиналния език',
     ],
 
     'playstyles' => [

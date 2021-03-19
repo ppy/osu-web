@@ -32,12 +32,11 @@ return [
             'title' => 'Profiel',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'huidige locatie',
                 'user_interests' => 'interesses',
-                'user_msnm' => 'skype',
                 'user_occ' => 'bezigheid',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'website',
             ],
         ],
@@ -62,6 +61,7 @@ return [
             'comment_new' => 'nieuwe reacties',
             'forum_topic_reply' => 'topic antwoord',
             'mail' => 'e-mail',
+            'mapping' => '',
             'push' => 'push',
             'user_achievement_unlock' => 'medaille verdiend',
         ],
@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'beatmap metadata in originele taal weergeven',
         'title' => 'Opties',
 
         'beatmapset_download' => [
             '_' => 'standaard beatmap download type',
             'all' => 'met video als beschikbaar',
-            'no_video' => 'zonder video',
             'direct' => 'open in osu!direct',
+            'no_video' => 'zonder video',
         ],
-
-        'beatmapset_title_show_original' => 'beatmap metadata in originele taal weergeven',
     ],
 
     'playstyles' => [

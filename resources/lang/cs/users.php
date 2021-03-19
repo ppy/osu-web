@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Hraje s :devices',
         'title' => "profil uživatele :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Změnit záhlaví profilu',
@@ -353,7 +357,6 @@ return [
             'interests' => 'Zájmy',
             'location' => 'Současná poloha',
             'occupation' => 'Povolání',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Webové stránky',
         ],
@@ -404,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Čekající Beatmapy',
             'graveyard_beatmapset_count' => '',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

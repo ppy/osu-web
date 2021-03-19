@@ -15,7 +15,7 @@ import { BeatmapsetStore } from 'stores/beatmapset-store';
 
 export interface SearchResponse {
   beatmapsets: BeatmapsetJson[];
-  cursor: JSON;
+  cursor: unknown;
   error?: string;
   recommended_difficulty: number;
   total: number;
@@ -98,7 +98,7 @@ export class BeatmapsetSearch implements DispatchListener {
     this.recommendedDifficulties.clear();
   }
 
-  private fetch(filters: BeatmapsetSearchFilters, from: number): PromiseLike<{}> {
+  private fetch(filters: BeatmapsetSearchFilters, from: number): PromiseLike<SearchResponse | Record<string, never>> {
     this.cancel();
 
     const params = filters.queryParams;

@@ -8,6 +8,11 @@ return [
         'disabled' => 'Deze beatmap kan momenteel niet gedownload worden.',
         'parts-removed' => 'Delen van deze beatmap zijn verwijderd op verzoek van de maker of de houder van de rechten van een derde partij.',
         'more-info' => 'Klik hier voor meer informatie.',
+        'rule_violation' => '',
+    ],
+
+    'download' => [
+        'limit_exceeded' => '',
     ],
 
     'index' => [
@@ -16,12 +21,32 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'download',
             'video' => 'download met video',
             'no_video' => 'download zonder video',
             'direct' => 'open in osu!direct',
         ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -36,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'downloaden',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'zonder video',
                 'video' => 'met Video',
             ],
@@ -89,10 +114,23 @@ return [
             'genre' => 'Genre',
             'language' => 'Taal',
             'no_scores' => 'Data nog aan het berekenen...',
+            'nsfw' => '',
             'points-of-failure' => 'Faalpunten',
             'source' => 'Bron',
+            'storyboard' => '',
             'success-rate' => 'Slagingspercentage',
             'tags' => 'Labels',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

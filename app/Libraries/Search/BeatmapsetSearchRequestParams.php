@@ -17,7 +17,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 {
     const AVAILABLE_STATUSES = ['any', 'leaderboard', 'ranked', 'qualified', 'loved', 'favourites', 'pending', 'graveyard', 'mine'];
     const AVAILABLE_EXTRAS = ['video', 'storyboard'];
-    const AVAILABLE_GENERAL = ['recommended', 'converts'];
+    const AVAILABLE_GENERAL = ['recommended', 'converts', 'follows'];
     const AVAILABLE_PLAYED = ['any', 'played', 'unplayed'];
     const AVAILABLE_RANKS = ['XH', 'X', 'SH', 'S', 'A', 'B', 'C', 'D'];
 
@@ -42,13 +42,14 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         static $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
 
         $this->user = $user;
-        $this->from = $this->pageAsFrom(get_int($request['page'] ?? null));
+        $this->page = get_int($request['page'] ?? null);
+        $this->from = $this->pageAsFrom($this->page);
         $this->requestQuery = $request['q'] ?? $request['query'] ?? null;
 
         $sort = $request['sort'] ?? null;
 
         if (priv_check_user($this->user, 'BeatmapsetAdvancedSearch')->can()) {
-            $this->queryString = es_query_escape_with_caveats($this->requestQuery);
+            $this->parseQuery();
             $status = presence($request['s'] ?? null);
             $this->status = static::LEGACY_STATUS_MAP[$status] ?? $status;
 
@@ -66,7 +67,17 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
             $generals = explode('.', $request['c'] ?? null) ?? [];
             $this->includeConverts = in_array('converts', $generals, true);
+            $this->showFollows = in_array('follows', $generals, true);
             $this->showRecommended = in_array('recommended', $generals, true);
+
+            $includeNsfw = get_bool($request['nsfw'] ?? null);
+            if (!isset($includeNsfw) && $user !== null && $user->userProfileCustomization !== null) {
+                $includeNsfw = $user->userProfileCustomization->beatmapset_show_nsfw;
+            }
+
+            if (isset($includeNsfw)) {
+                $this->includeNsfw = $includeNsfw;
+            }
         } else {
             $sort = null;
         }
@@ -122,7 +133,12 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $statuses[] = ['id' => $id, 'name' => trans("beatmaps.status.{$id}")];
         }
 
-        return compact('extras', 'general', 'genres', 'languages', 'modes', 'played', 'ranks', 'statuses');
+        $nsfw = [
+            ['id' => false, 'name' => trans('beatmaps.nsfw.exclude')],
+            ['id' => true, 'name' => trans('beatmaps.nsfw.include')],
+        ];
+
+        return compact('extras', 'general', 'genres', 'languages', 'modes', 'nsfw', 'played', 'ranks', 'statuses');
     }
 
     public function isLoginRequired(): bool
@@ -225,6 +241,34 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         }
 
         return $newSort;
+    }
+
+    private function parseQuery(): void
+    {
+        static $optionMap = [
+            'ar' => 'ar',
+            'artist' => 'artist',
+            'bpm' => 'bpm',
+            'creator' => 'creator',
+            'cs' => 'cs',
+            'dr' => 'drain',
+            'keys' => 'keys',
+            'length' => 'hitLength',
+            'stars' => 'difficultyRating',
+            'status' => 'statusRange',
+        ];
+
+        $parsed = BeatmapsetQueryParser::parse($this->requestQuery);
+
+        $this->queryString = $parsed['keywords'];
+
+        foreach ($parsed['options'] as $optionKey => $optionValue) {
+            $propName = $optionMap[$optionKey] ?? null;
+
+            if ($propName !== null) {
+                $this->$propName = $optionValue;
+            }
+        }
     }
 
     private function parseSortOrder(?string $value)

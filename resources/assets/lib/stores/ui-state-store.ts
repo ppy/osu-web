@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { CommentBundleJson } from 'interfaces/comment-json';
+import { route } from 'laroute';
 import { Dictionary, orderBy } from 'lodash';
 import { action, observable } from 'mobx';
 import { Comment, CommentSort } from 'models/comment';
@@ -91,6 +92,23 @@ export default class UIStateStore {
     this.updatePinnedCommentIds(commentBundle);
 
     this.orderedCommentsByParentId = {};
+    this.comments.isShowDeleted = currentUser?.user_preferences?.comments_show_deleted ?? false;
+  }
+
+  @action
+  toggleShowDeletedComments() {
+    this.comments.isShowDeleted = !this.comments.isShowDeleted;
+
+    if (currentUser.id != null) {
+      $.ajax(route('account.options'), {
+        data: {
+          user_profile_customization: {
+            comments_show_deleted: this.comments.isShowDeleted,
+          },
+        },
+        method: 'PUT',
+      });
+    }
   }
 
   @action

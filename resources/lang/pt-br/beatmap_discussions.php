@@ -8,7 +8,7 @@ return [
         'update' => [
             'null_user' => 'Precisa estar conectado para editar.',
             'system_generated' => 'Postagens geradas pelo sistema não podem ser editadas.',
-            'wrong_user' => 'Precisa ser dono da postagem para editá-la.',
+            'wrong_user' => 'É necessário ser o dono da publicação para editá-la.',
         ],
     ],
 

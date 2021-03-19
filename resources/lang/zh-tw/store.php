@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => '下訂單 :date',
-
+        'cancel' => '取消訂單',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => '查看收據',
         'no_orders' => '沒有訂單',
+        'paid_on' => '下訂單 :date',
         'resume' => '繼續結賬',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

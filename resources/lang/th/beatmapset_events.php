@@ -25,10 +25,16 @@ return [
         'language_edit' => 'แก้ไขภาษาจาก :old เป็น :new',
         'love' => 'รักแล้วโดย :user',
         'nominate' => 'ถูกเสนอชื่อโดย :user',
+        'nominate_modes' => 'เสนอชื่อโดย :user (:modes)',
         'nomination_reset' => 'ปัญหาใหม่ :discussion (:text) ทำให้เกิดการรีเซทการเสนอชื่อ',
         'qualify' => 'บีทแมพนี้ได้รับจำนวนการเสนอชื่อครบแล้ว และได้ถูก Qualified',
         'rank' => 'จัดอันดับ',
         'remove_from_loved' => 'ถูกนำออกจาก Loved โดย :user (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => 'นำเครื่องหมายเนื้อหาล่อแหลมออก',
+            'to_1' => 'ตั้งไว้ว่าเป็นเนื้อหาล่อแหลม',
+        ],
     ],
 
     'index' => [
@@ -65,6 +71,7 @@ return [
         'love' => 'รักเลย',
         'nominate' => 'การเสนอชื่อ',
         'nomination_reset' => 'กำลังตั้งค่าการเสนอชื่อใหม่',
+        'nsfw_toggle' => 'เครื่องหมายเนื้อหาล่อแหลม',
         'qualify' => 'คุณสมบัติ',
         'rank' => 'อันดับ',
         'remove_from_loved' => 'ถูกนำออกจาก Loved',

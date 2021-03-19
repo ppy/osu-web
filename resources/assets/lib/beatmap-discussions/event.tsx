@@ -105,18 +105,25 @@ export default class Event extends React.PureComponent<Props> {
 
   private contentText() {
     let discussionLink = '';
+    let discussionUserLink = '[unknown user]';
     let text = '';
     let url = '';
     let user: string | undefined;
 
     if (this.discussionId != null) {
-      if (this.discussion != null) {
+      if (this.discussion == null) {
+        url = route('beatmapsets.discussions.show', { discussion: this.discussionId });
+        text = osu.trans('beatmapset_events.item.discussion_deleted');
+      } else {
         const firstPostMessage = this.firstPost?.message;
         url = BeatmapDiscussionHelper.url({ discussion: this.discussion });
         text = firstPostMessage != null ? BeatmapDiscussionHelper.previewMessage(firstPostMessage) : '[no preview]';
-      } else {
-        url = route('beatmap-discussions.show', { beatmap_discussion: this.discussionId });
-        text = osu.trans('beatmapset_events.item.discussion_deleted');
+
+        const discussionUser = this.props.users[this.discussion.user_id];
+
+        if (discussionUser != null) {
+          discussionUserLink = osu.link(route('users.show', { user: discussionUser.id }), discussionUser.username);
+        }
       }
 
       discussionLink = osu.link(url, `#${this.discussionId}`, { classNames: ['js-beatmap-discussion--jump'] });
@@ -134,6 +141,7 @@ export default class Event extends React.PureComponent<Props> {
 
     const params = {
       discussion: discussionLink,
+      discussion_user: discussionUserLink,
       text,
       user,
       ...this.props.event.comment,
@@ -145,6 +153,11 @@ export default class Event extends React.PureComponent<Props> {
       eventType = `nominate_modes`;
       const nominationModes = this.props.event.comment.modes.map((mode: GameMode) => osu.trans(`beatmaps.mode.${mode}`));
       params.modes = osu.transArray(nominationModes);
+    }
+
+    if (eventType === 'nsfw_toggle') {
+      const newState = this.props.event.comment?.new ? 'to_1' : 'to_0';
+      eventType += `.${newState}`;
     }
 
     const key = `beatmapset_events.event.${eventType}`;

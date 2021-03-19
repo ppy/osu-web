@@ -6,7 +6,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Silakan masuk untuk menyunting.',
+            'null_user' => 'Anda harus masuk untuk dapat menyunting.',
             'system_generated' => 'Post yang dihasilkan secara otomatis tidak dapat disunting.',
             'wrong_user' => 'Hanya pembuat post yang diperbolehkan untuk menyunting post.',
         ],
@@ -17,7 +17,7 @@ return [
     ],
 
     'index' => [
-        'deleted_beatmap' => 'terhapus',
+        'deleted_beatmap' => 'telah dihapus',
         'none_found' => 'Tidak ada diskusi yang memenuhi kriteria pencarian.',
         'title' => 'Laman Diskusi Beatmap',
 
@@ -93,6 +93,6 @@ return [
 
     'user_filter' => [
         'everyone' => 'Semua orang',
-        'label' => 'Filter berdasarkan pengguna',
+        'label' => 'Saring berdasarkan pengguna',
     ],
 ];

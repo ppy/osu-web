@@ -15,8 +15,18 @@ return [
     'top' => 'Mejor',
     'username' => 'Nombre de usuario',
 
+    'forum_posts' => [
+        'created' => 'Tiempo de publicación',
+        'relevance' => 'Relevancia',
+    ],
+
     'forum_topics' => [
-        'new' => 'Última respuesta',
         'feature_votes' => 'Prioridad de estrella',
+        'new' => 'Última respuesta',
+    ],
+
+    'users' => [
+        'relevance' => 'Relevancia',
+        'username' => 'Nombre',
     ],
 ];

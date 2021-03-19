@@ -220,14 +220,15 @@ return [
             'not-found' => 'no results',
             'not-found-quote' => '... nope, nothing found.',
             'filters' => [
+                'extra' => 'Extra',
                 'general' => 'General',
-                'mode' => 'Mode',
-                'status' => 'Categories',
                 'genre' => 'Genre',
                 'language' => 'Language',
-                'extra' => 'Extra',
-                'rank' => 'Rank Achieved',
+                'mode' => 'Mode',
+                'nsfw' => 'Explicit Content',
                 'played' => 'Played',
+                'rank' => 'Rank Achieved',
+                'status' => 'Categories',
             ],
             'sorting' => [
                 'title' => 'Title',
@@ -248,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Recommended difficulty',
         'converts' => 'Include converted beatmaps',
+        'follows' => 'Subscribed mappers',
+        'recommended' => 'Recommended difficulty',
     ],
     'mode' => [
         'all' => 'All',
@@ -330,6 +332,12 @@ return [
         'other' => 'Other',
         'unspecified' => 'Unspecified',
     ],
+
+    'nsfw' => [
+        'exclude' => 'Hide',
+        'include' => 'Show',
+    ],
+
     'played' => [
         'any' => 'Any',
         'played' => 'Played',

@@ -11,12 +11,18 @@ return [
         'rule_violation' => 'Some assets contained within this map have been removed after being judged as not being suitable for use in osu!.',
     ],
 
+    'download' => [
+        'limit_exceeded' => 'Slow down, play more.',
+    ],
+
     'index' => [
         'title' => 'Beatmaps Listing',
         'guest_title' => 'Beatmaps',
     ],
 
     'panel' => [
+        'empty' => 'no beatmaps',
+
         'download' => [
             'all' => 'download',
             'video' => 'download with video',
@@ -37,6 +43,10 @@ return [
             'hybrid_warning' => 'note: you may only nominate once, so please ensure that you are nominating for all game modes you intend to',
             'which_modes' => 'Nominate for which modes?',
         ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Explicit',
     ],
 
     'show' => [
@@ -104,10 +114,23 @@ return [
             'genre' => 'Genre',
             'language' => 'Language',
             'no_scores' => 'Data still being calculated...',
+            'nsfw' => 'Explicit content',
             'points-of-failure' => 'Points of Failure',
             'source' => 'Source',
+            'storyboard' => 'This beatmap contains storyboard',
             'success-rate' => 'Success Rate',
             'tags' => 'Tags',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'This beatmap contains explicit, offensive, or disturbing content. Would you like to view it anyway?',
+            'title' => 'Explicit Content',
+
+            'buttons' => [
+                'disable' => 'Disable warning',
+                'listing' => 'Beatmap listing',
+                'show' => 'Show',
+            ],
         ],
 
         'scoreboard' => [

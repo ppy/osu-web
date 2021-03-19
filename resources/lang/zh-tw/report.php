@@ -15,8 +15,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => '檢舉',
+        'title' => '檢舉 :username 的貼文？',
     ],
 
     'scores' => [

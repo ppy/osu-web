@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Hvad med at spille nogle osu! i stedet?',
     'require_login' => 'Log venligst ind for at fortsætte.',
     'require_verification' => 'Verificer venligst for at fortsætte.',
     'restricted' => "Det kan du ikke gøre, når du er tilbageholdt.",
@@ -18,11 +18,9 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Du har nået dit maksimale antal nomineringer i dag, prøv igen i morgen!',
-            'full_bn_required' => 'Du skal være en fuld nominator for at kunne udføre denne kvalificerende nominering.',
-            'full_bn_required_hybrid' => 'Du skal være en fuld nominator for at kunne nominere beatmap sæt med mere end en spiltilstand.',
             'incorrect_state' => 'Fejl i udføringen af handlingen, prøv at genindlæse siden.',
             'owner' => "Kan ikke nominere din egen beatmap.",
-            'set_metadata' => '',
+            'set_metadata' => 'Du skal vælge genren og sproget, før du nominerer.',
         ],
         'resolve' => [
             'not_owner' => 'Kun den oprindelige ejer af tråden og beatmap-ejeren kan løse en diskussion.',
@@ -33,7 +31,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "",
+            'bot' => "Kan ikke stemme på diskussion lavet af bot",
             'limit_exceeded' => 'Vent venligst før du stemmer igen',
             'owner' => "Du kan ikke stemme på din egen diskussion!",
             'wrong_beatmapset_state' => 'Kan kun stemme på diskussioner fra afventende beatmaps.',
@@ -60,7 +58,7 @@ return [
 
     'beatmapset' => [
         'metadata' => [
-            'nominated' => '',
+            'nominated' => 'Du kan ikke ændre metadata for et nomineret map. Kontakt et BAT- eller NAT-medlem, hvis du mener, at det er angivet forkert.',
         ],
     ],
 
@@ -70,6 +68,7 @@ return [
         'moderated' => 'Denne kanal er i øjeblikket modereret.',
         'no_access' => 'Du har ikke adgang til denne kanal.',
         'restricted' => 'Du kan ikke sende beskeder når du er enten muted, begrænset eller banned.',
+        'silenced' => 'Du kan ikke sende beskeder når du er enten muted, begrænset eller banned.',
     ],
 
     'comment' => [
@@ -80,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Du kan ikke ændre din stemme efter stemmeperioden for denne konkurrence er slut.',
+
+        'entry' => [
+            'limit_reached' => 'Du har nået dit maksimale antal bidrag for denne konkurrence',
+            'over' => 'Tak for jeres bidrag! Indsendelsen for denne konkurrence er slut, og afstemning vil finde sted snarest!.',
+        ],
     ],
 
     'forum' => [

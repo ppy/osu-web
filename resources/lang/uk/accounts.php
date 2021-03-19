@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'місце проживання',
                 'user_interests' => 'інтереси',
-                'user_msnm' => '',
                 'user_occ' => 'рід занять',
                 'user_twitter' => '',
                 'user_website' => 'веб-сайт',
@@ -62,6 +61,7 @@ return [
             'comment_new' => 'нові коментарі',
             'forum_topic_reply' => 'відповідь темі',
             'mail' => 'пошта',
+            'mapping' => '',
             'push' => 'push',
             'user_achievement_unlock' => 'медаль користувача розблоковано',
         ],
@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'показувати метадату мовою оригіналу',
         'title' => 'Налаштування',
 
         'beatmapset_download' => [
             '_' => 'стандартний тип скачування карти',
             'all' => 'з відео, якщо доступно',
-            'no_video' => 'без відео',
             'direct' => 'відкрити в osu!direct',
+            'no_video' => 'без відео',
         ],
-
-        'beatmapset_title_show_original' => 'показувати метадату мовою оригіналу',
     ],
 
     'playstyles' => [

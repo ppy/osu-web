@@ -12,7 +12,7 @@ use App\Models\UserNotificationOption;
 
 class UserBeatmapsetNew extends BroadcastNotificationBase
 {
-    const NOTIFICATION_OPTION_NAME = UserNotificationOption::BEATMAPSET_MODDING;
+    const NOTIFICATION_OPTION_NAME = UserNotificationOption::MAPPING;
 
     protected $beatmapset;
 
@@ -41,7 +41,7 @@ class UserBeatmapsetNew extends BroadcastNotificationBase
     public function getListeningUserIds(): array
     {
         return Follow::whereNotifiable($this->beatmapset->user)
-            ->where(['subtype' => 'modding'])
+            ->where(['subtype' => 'mapping'])
             ->pluck('user_id')
             ->all();
     }

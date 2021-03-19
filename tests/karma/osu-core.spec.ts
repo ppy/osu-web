@@ -32,6 +32,7 @@ describe('OsuCore user:update subscriber testing thing', () => {
       id: 1,
       is_active: true,
       is_bot: false,
+      is_deleted: false,
       is_online: true,
       is_supporter: true,
       last_visit: null,

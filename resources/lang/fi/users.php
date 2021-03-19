@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Pelityylinä :devices',
         'title' => ":username:n profiili",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Muuta profiilin kansikuvaa',
@@ -353,7 +357,6 @@ return [
             'interests' => 'Kiinnostuksen kohteet',
             'location' => 'Tämänhetkinen sijainti',
             'occupation' => 'Ammatti',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Verkkosivu',
         ],
@@ -404,6 +407,11 @@ return [
             'unranked_beatmapset_count' => '',
             'graveyard_beatmapset_count' => '',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

@@ -25,10 +25,16 @@ return [
         'language_edit' => 'Kieli :old muutettu kieleen :new.',
         'love' => ':user rakastaa',
         'nominate' => 'Käyttäjän :user suosittelema.',
+        'nominate_modes' => '',
         'nomination_reset' => 'Uusi ongelma :discussion (:text) nollasi suositukset.',
         'qualify' => 'Tämä beatmap sai vaaditun määrän suosituksia hyväksymisvaihetta varten.',
         'rank' => 'Hyväksytty.',
         'remove_from_loved' => '',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -65,6 +71,7 @@ return [
         'love' => 'Rakkaus',
         'nominate' => 'Äänestetty',
         'nomination_reset' => 'Äänestyksen resetointi',
+        'nsfw_toggle' => '',
         'qualify' => 'Hyväksyntä',
         'rank' => 'Luokittelu',
         'remove_from_loved' => '',

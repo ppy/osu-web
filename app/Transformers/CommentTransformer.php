@@ -9,6 +9,10 @@ use App\Models\Comment;
 
 class CommentTransformer extends TransformerAbstract
 {
+    protected $availableIncludes = [
+        'user',
+    ];
+
     protected $defaultIncludes = [
         'message',
         'message_html',
@@ -52,5 +56,10 @@ class CommentTransformer extends TransformerAbstract
     public function includeMessageHtml(Comment $comment)
     {
         return $this->primitive(markdown($comment->message, 'comment'));
+    }
+
+    public function includeUser(Comment $comment)
+    {
+        return $this->item($comment->user, new UserCompactTransformer());
     }
 }

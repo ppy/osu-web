@@ -47,11 +47,12 @@ return [
         'confirm_restore' => 'Vuoi veramente ripristinare il post?',
         'edited' => 'Ultima modifica di :user :when, modificato :count_delimited volta in totale.|Ultima modifica di :user :when, modificato :count_delimited volte in totale.',
         'posted_at' => 'postato :when',
+        'posted_by' => 'postato da :username',
 
         'actions' => [
             'destroy' => 'Elimina post',
             'edit' => 'Modifica post',
-            'report' => '',
+            'report' => 'Segnala post',
             'restore' => 'Ripristina post',
         ],
 
@@ -74,8 +75,10 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'discussione eliminata',
-        'go_to_latest' => 'guarda gli ultimi post',
+        'go_to_latest' => 'guarda l\'ultimo post',
         'has_replied' => 'Hai risposto a questo topic',
         'in_forum' => 'in :forum',
         'latest_post' => ':when da :user',
@@ -87,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'di :user',
         'started_by_verbose' => 'postato da :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'Chiudi',
@@ -127,7 +135,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'iscrizioni forum',
+            'title_compact' => 'topic del forum seguiti',
 
             'box' => [
                 'total' => 'Topic a cui sei iscritto',

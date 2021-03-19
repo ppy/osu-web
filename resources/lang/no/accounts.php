@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'nåværende plassering',
                 'user_interests' => 'interesser',
-                'user_msnm' => '',
                 'user_occ' => 'yrke',
                 'user_twitter' => '',
                 'user_website' => 'nettside',
@@ -62,6 +61,7 @@ return [
             'comment_new' => 'nye kommentar',
             'forum_topic_reply' => 'emne svar',
             'mail' => 'e-post',
+            'mapping' => '',
             'push' => 'trykk',
             'user_achievement_unlock' => 'brukerens medalje ulåst',
         ],
@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'vis beatmap metadata på originalspråket',
         'title' => 'Innstillinger',
 
         'beatmapset_download' => [
             '_' => 'standard nedlastingstype for beatmap',
             'all' => 'med video hvis tilgjengelig',
-            'no_video' => 'uten video',
             'direct' => 'åpne i osu!direct',
+            'no_video' => 'uten video',
         ],
-
-        'beatmapset_title_show_original' => 'vis beatmap metadata på originalspråket',
     ],
 
     'playstyles' => [

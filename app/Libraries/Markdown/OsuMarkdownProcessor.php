@@ -41,7 +41,9 @@ class OsuMarkdownProcessor
         $document = $event->getDocument();
         $walker = $document->walker();
 
-        $this->relativeUrlRoot = $this->environment->getConfig('relative_url_root');
+        // The config value should come from route() call which means it's percent encoded
+        // but it'll be reused as parameter for another route() call so decode it here.
+        $this->relativeUrlRoot = urldecode($this->environment->getConfig('relative_url_root'));
         $generateToc = $this->environment->getConfig('generate_toc');
         $recordFirstImage = $this->environment->getConfig('record_first_image');
         $titleFromDocument = $this->environment->getConfig('title_from_document');
@@ -80,6 +82,8 @@ class OsuMarkdownProcessor
 
             $this->proxyImage();
 
+            $this->addListStartAsVariable();
+
             // last to prevent possible conflict
             $this->addClass();
         }
@@ -96,6 +100,9 @@ class OsuMarkdownProcessor
         switch (get_class($this->node)) {
             case Block\ListBlock::class:
                 $class = "{$blockClass}__list";
+                if ($this->node->getListData()->type === Block\ListBlock::TYPE_ORDERED) {
+                    $class .= " {$blockClass}__list--ordered";
+                }
                 break;
             case Block\ListItem::class:
                 $class = "{$blockClass}__list-item";
@@ -134,6 +141,19 @@ class OsuMarkdownProcessor
         }
     }
 
+    public function addListStartAsVariable()
+    {
+        if (!$this->node instanceof Block\ListBlock || !$this->event->isEntering()) {
+            return;
+        }
+
+        if ($this->node->getListData()->type === Block\ListBlock::TYPE_ORDERED) {
+            $start = ($this->node->getListData()->start ?? 1) - 1;
+
+            $this->node->data['attributes']['style'] = "--list-start: {$start}";
+        }
+    }
+
     public function fixRelativeUrl()
     {
         if ($this->relativeUrlRoot === null) {
@@ -151,7 +171,7 @@ class OsuMarkdownProcessor
                 $src = substr($src, 2);
             }
 
-            $this->node->setUrl($this->environment->getConfig('relative_url_root').'/'.$src);
+            $this->node->setUrl($this->relativeUrlRoot.'/'.$src);
         }
     }
 
@@ -189,7 +209,7 @@ class OsuMarkdownProcessor
         }
 
         $title = $this->getText($this->node);
-        $slug = presence(mb_strtolower(str_replace(' ', '-', $title))) ?? 'page';
+        $slug = $this->node->data['attributes']['id'] ?? presence(mb_strtolower(str_replace(' ', '-', $title))) ?? 'page';
 
         if (array_key_exists($slug, $this->tocSlugs)) {
             $this->tocSlugs[$slug] += 1;
@@ -290,7 +310,7 @@ class OsuMarkdownProcessor
             return;
         }
 
-        $this->firstImage = $this->node->getUrl();
+        $this->firstImage = proxy_media($this->node->getUrl());
     }
 
     public function setTitle()

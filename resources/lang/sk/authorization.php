@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Dosiahli ste limit nominácii pre tento deň, prosím, skúste to znovu zajtra.',
-            'full_bn_required' => 'Musíte byť plný nominátor aby ste mohli kvalifikovať túto nomináciu.',
-            'full_bn_required_hybrid' => 'Musíte byť plný nominátor pre nominovanie setov beatmáp pre viacej ako jeden herný mód.',
             'incorrect_state' => 'Nastala chyba pri vykonávaní tejto činnosti, skús obnoviť túto stránku.',
             'owner' => "Nemôžete nominovať vlastnú beatmapu.",
             'set_metadata' => 'Musíš nastaviť žáner a jazyk pred nominovaním.',
@@ -70,6 +68,7 @@ return [
         'moderated' => 'Kanál je momentálne moderovaný.',
         'no_access' => 'Nemáte prístup k tomuto kanálu.',
         'restricted' => 'Nemôžete posielať správy, keď ste umlčaný, obmedzený alebo zabanovaný.',
+        'silenced' => '',
     ],
 
     'comment' => [
@@ -80,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Po tom, čo sa hlasovacie obdobie pre túto súťaž ukončilo, svoj hlas nemôžete zmeniť.',
+
+        'entry' => [
+            'limit_reached' => 'Dosiahol si limit vstupov pre túto súťaž',
+            'over' => 'Díky za vaše vstupy! Podania boli uzavreté a hlasovanie sa čoskoro otvorí.',
+        ],
     ],
 
     'forum' => [

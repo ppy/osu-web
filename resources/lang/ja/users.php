@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'ゲームモードによるメンバー',
     ],
 
     'force_reactivation' => [
@@ -154,6 +154,10 @@ return [
         'plays_with' => '使用デバイス :devices',
         'title' => ":usernameのプロフィール",
 
+        'comments_count' => [
+            '_' => '投稿 :link',
+            'count' => ':count_delimited コメント',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'カバー画像の変更',
@@ -176,7 +180,7 @@ return [
 
             'default_playmode' => [
                 'is_default_tooltip' => 'メインのゲームモード',
-                'set' => ':modeをメインのゲームモードに設定しました',
+                'set' => ':modeをメインのゲームモードに設定する',
             ],
         ],
 
@@ -349,12 +353,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => '趣味',
             'location' => '現在地',
             'occupation' => '職業',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => 'ウェブサイト',
         ],
         'not_found' => [
@@ -404,6 +407,11 @@ return [
             'unranked_beatmapset_count' => '保留中のビートマップ',
             'graveyard_beatmapset_count' => 'Graveyardのビートマップ',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

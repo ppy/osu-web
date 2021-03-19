@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Замовлення розміщено :date',
-
+        'cancel' => '',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'Переглянути рахунок',
         'no_orders' => 'Ви нічого не замовляли.',
+        'paid_on' => 'Замовлення розміщено :date',
         'resume' => 'Продовжити покупку',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

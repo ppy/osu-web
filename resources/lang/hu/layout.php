@@ -77,7 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'segítség',
-            'getAbuse' => '',
+            'getAbuse' => 'visszaélés jelentése',
             'getFaq' => 'gyik',
             'getRules' => 'szabályok',
             'getSupport' => 'nem, tényleg segítség kell!',
@@ -159,6 +159,10 @@ return [
             'error' => 'Érvénytelen lekérési paraméterek',
             'description' => '',
         ],
+        '429' => [
+            'error' => 'Ráta korlát túllépve',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Jaj ne! Valami elromlott! ;_;',
             'description' => "Automatikusan értesítve vagyunk minden hibáról.",
@@ -204,6 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Beállítások',
+            'follows' => 'Figyelőlisták',
             'friends' => 'Barátok',
             'logout' => 'Kijelentkezés',
             'profile' => 'Profilom',

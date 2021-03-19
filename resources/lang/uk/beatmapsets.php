@@ -8,6 +8,11 @@ return [
         'disabled' => 'Ця карта тимчасово недоступна для завантаження.',
         'parts-removed' => 'Деякі частини цієї карти були видалені на вимогу учасника або правовласників.',
         'more-info' => 'Натисніть тут для отримання більш детальної інформації.',
+        'rule_violation' => '',
+    ],
+
+    'download' => [
+        'limit_exceeded' => '',
     ],
 
     'index' => [
@@ -16,12 +21,32 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'завантажити',
             'video' => 'завантажити з вiдео',
             'no_video' => 'завантажити без вiдео',
             'direct' => 'відкрити в osu!direct',
         ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -89,10 +114,23 @@ return [
             'genre' => 'Жанр',
             'language' => 'Мова',
             'no_scores' => 'Дані все ще обробляються...',
+            'nsfw' => '',
             'points-of-failure' => 'Шкала провалів',
             'source' => 'Джерело',
+            'storyboard' => '',
             'success-rate' => 'Шанс успіху',
             'tags' => 'Теги',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

@@ -7,9 +7,10 @@ import { route } from 'laroute'
 import Mod from 'mod'
 import { PlayDetailMenu } from 'play-detail-menu'
 import * as React from 'react'
-import { a, div, tr, td } from 'react-dom-factories'
+import { a, div, span, tr, td } from 'react-dom-factories'
 import { hasMenu } from 'score-helper'
 import ScoreboardTime from 'scoreboard-time'
+import PpValue from 'scores/pp-value'
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
@@ -54,16 +55,19 @@ export class ScoreboardTableRow extends React.PureComponent
               country: score.user.country
               modifiers: ['flat']
 
-      td className: "#{cell} u-relative",
-        a
-          className: "#{bn}__cell-content #{bn}__cell-content--user-link js-usercard"
-          'data-user-id': score.user.id
-          href: laroute.route 'users.show', user: score.user.id, mode: @props.beatmap.mode
-          score.user.username
+      if score.user.is_deleted
+        el @tdLink, null, osu.trans('users.deleted')
+      else
+        td className: "#{cell} u-relative",
+          a
+            className: "#{bn}__cell-content #{bn}__cell-content--user-link js-usercard"
+            'data-user-id': score.user.id
+            href: laroute.route 'users.show', user: score.user.id, mode: @props.beatmap.mode
+            score.user.username
 
-        a
-          className: "#{bn}__cell-content"
-          href: route('scores.show', mode: @props.score.mode, score: @props.score.best_id)
+          a
+            className: "#{bn}__cell-content"
+            href: route('scores.show', mode: @props.score.mode, score: @props.score.best_id)
 
       el @tdLink,
         modifiers: ['perfect'] if score.max_combo == @props.beatmap.max_combo
@@ -79,9 +83,10 @@ export class ScoreboardTableRow extends React.PureComponent
         modifiers: ['zero'] if score.statistics.count_miss == 0
         osu.formatNumber(score.statistics.count_miss)
 
-      el @tdLink,
-        {}
-        round score.pp
+      if @props.showPp
+        el @tdLink,
+          {}
+          el PpValue, score: score
 
       el @tdLink,
         modifiers: ['time']

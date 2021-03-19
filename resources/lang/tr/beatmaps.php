@@ -196,7 +196,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Herhangi bir sorun bulunmazsa mapin tahminen dereceli olacağı vakit :date. :queue :position. sırada bulunuyor.',
-            'queue' => 'derecelendirme sırasında',
+            'queue' => 'Derecelendirme sırasında',
             'soon' => 'çok yakın',
         ],
 
@@ -220,14 +220,15 @@ return [
             'not-found' => 'sonuç bulunamadı',
             'not-found-quote' => '... yok, bir şey bulunamadı.',
             'filters' => [
+                'extra' => 'ekstra',
                 'general' => 'Genel',
-                'mode' => 'Mod',
-                'status' => 'Kategoriler',
                 'genre' => 'Tür',
                 'language' => 'Dil',
-                'extra' => 'ekstra',
-                'rank' => 'Alınan Derece',
+                'mode' => 'Mod',
+                'nsfw' => 'Müstehcen İçerik',
                 'played' => 'Oynanmışlık',
+                'rank' => 'Alınan Derece',
+                'status' => 'Kategoriler',
             ],
             'sorting' => [
                 'title' => 'Başlık',
@@ -248,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Önerilen zorluk seviyesi',
         'converts' => 'Dönüştürülmüş beatmapleri dahil et',
+        'follows' => 'Abone olunan mapperlar',
+        'recommended' => 'Önerilen zorluk seviyesi',
     ],
     'mode' => [
         'all' => 'Hepsi',
@@ -302,7 +304,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
-        'MR' => 'Ayna',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',
@@ -314,7 +316,7 @@ return [
         'V2' => 'Skor V2',
     ],
     'language' => [
-        'any' => '',
+        'any' => 'Herhangi biri',
         'english' => 'İngilizce',
         'chinese' => 'Çince',
         'french' => 'Fransızca',
@@ -330,6 +332,12 @@ return [
         'other' => 'Diğer',
         'unspecified' => 'Belirtilmemiş',
     ],
+
+    'nsfw' => [
+        'exclude' => 'Gizle',
+        'include' => 'Göster',
+    ],
+
     'played' => [
         'any' => 'Hepsi',
         'played' => 'Oynanmış',

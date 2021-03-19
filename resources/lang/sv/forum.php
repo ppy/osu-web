@@ -47,11 +47,12 @@ return [
         'confirm_restore' => 'Vill du verkligen återställa inlägget?',
         'edited' => 'Senast redigerad av :user :when, redigerad :count gånger totalt.',
         'posted_at' => 'upplagd :when',
+        'posted_by' => 'upplagd av :username',
 
         'actions' => [
             'destroy' => 'Radera inlägg',
             'edit' => 'Redigera inlägg',
-            'report' => '',
+            'report' => 'Anmäl inlägg',
             'restore' => 'Återställ inlägg',
         ],
 
@@ -74,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'raderat ämne',
         'go_to_latest' => 'visa senaste inlägg',
         'has_replied' => 'Du har svarat på detta ämne',
@@ -87,6 +90,11 @@ return [
         'reply_title_prefix' => 'Åter',
         'started_by' => 'av :user',
         'started_by_verbose' => 'startad av :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'Stäng',

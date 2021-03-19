@@ -15,8 +15,18 @@ return [
     'top' => 'บนสุด',
     'username' => 'ชื่อผู้ใช้',
 
+    'forum_posts' => [
+        'created' => '',
+        'relevance' => '',
+    ],
+
     'forum_topics' => [
-        'new' => 'ตอบกลับครั้งล่าสุด',
         'feature_votes' => 'ลำดับความสำคัญ',
+        'new' => 'ตอบกลับครั้งล่าสุด',
+    ],
+
+    'users' => [
+        'relevance' => '',
+        'username' => '',
     ],
 ];

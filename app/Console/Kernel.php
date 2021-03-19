@@ -35,6 +35,9 @@ class Kernel extends ConsoleKernel
         Commands\BuildsCreate::class,
         Commands\BuildsUpdatePropagationHistory::class,
 
+        // forum
+        Commands\ForumTopicCoversCleanup::class,
+
         // leaderboard recalculation
         Commands\RankingsRecalculateCountryStats::class,
 
@@ -61,6 +64,11 @@ class Kernel extends ConsoleKernel
 
         Commands\UserBestScoresCheckCommand::class,
         Commands\UserRecalculateRankCounts::class,
+
+        Commands\UserNotificationsCleanup::class,
+        Commands\NotificationsCleanup::class,
+
+        Commands\ChatChannelSetLastMessageId::class,
     ];
 
     /**
@@ -81,6 +89,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('builds:update-propagation-history')
             ->everyThirtyMinutes();
 
+        $schedule->command('forum:topic-cover-cleanup --yes')
+            ->daily()
+            ->withoutOverlapping();
+
         $schedule->command('rankings:recalculate-country')
             ->cron('25 0,3,6,9,12,15,18,21 * * *');
 
@@ -92,6 +104,14 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('notifications:send-mail')
             ->hourly()
+            ->withoutOverlapping();
+
+        $schedule->command('user-notifications:cleanup')
+            ->everyThirtyMinutes()
+            ->withoutOverlapping();
+
+        $schedule->command('notifications:cleanup')
+            ->cron('15,45 * * * *')
             ->withoutOverlapping();
     }
 

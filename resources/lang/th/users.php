@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'สมาชิกตามโหมดเกม',
     ],
 
     'force_reactivation' => [
@@ -155,6 +155,10 @@ return [
         'plays_with' => 'เล่นด้วย :devices',
         'title' => "โปรไฟล์ของ :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'เปลี่ยนรูปภาพปก',
@@ -350,12 +354,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'ดิสคอร์ด',
+            'discord' => '',
             'interests' => 'สิ่งที่สนใจ',
             'location' => 'ตำแหน่งปัจจุบัน',
             'occupation' => 'อาชีพ',
-            'skype' => 'Skype',
-            'twitter' => 'ทวิตเตอร์',
+            'twitter' => '',
             'website' => 'เว็บไซต์',
         ],
         'not_found' => [
@@ -405,6 +408,11 @@ return [
             'unranked_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
             'graveyard_beatmapset_count' => 'สุสานบีทแมพ',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

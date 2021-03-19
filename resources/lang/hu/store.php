@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Megrendelés feladva :date',
-
+        'cancel' => 'Megrendelés törlése',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'Számla megtekintése',
         'no_orders' => 'Nincs megtekinthető megrendelés.',
+        'paid_on' => 'Megrendelés feladva :date',
         'resume' => 'Fizetés Folytatása',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

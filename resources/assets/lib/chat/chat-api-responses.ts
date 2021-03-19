@@ -20,14 +20,19 @@ export interface ChannelJson {
   moderated: boolean;
   name: string;
   type: ChannelType;
-  users: number[];
+  users?: number[];
 }
 
 // This is the version used by 'presence'.
 export interface ChannelJsonExtended extends ChannelJson {
-  first_message_id: number;
   last_message_id: number;
   last_read_id: number;
+}
+
+export interface ChatInitialJson {
+  last_message_id: number | null;
+  presence: PresenceJson;
+  send_to?: SendToJson;
 }
 
 export type GetMessagesJson =

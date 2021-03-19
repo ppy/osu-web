@@ -159,6 +159,10 @@ return [
             'error' => '',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Ale ne, něco je rozbité!',
             'description' => "Jsme automaticky oznámeni o každé chybě.",
@@ -204,6 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Nastavení',
+            'follows' => '',
             'friends' => 'Přátelé',
             'logout' => 'Odhlásit se',
             'profile' => 'Můj profil',

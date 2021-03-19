@@ -13,6 +13,7 @@ import ForumPostReport from 'forum-post-report'
 import { FriendButton } from 'friend-button'
 import { LandingNews } from 'landing-news'
 import { keyBy } from 'lodash'
+import { deletedUser } from 'models/user'
 import MultiplayerSelectOptions from 'multiplayer-select-options'
 import NotificationIcon from 'notification-icon'
 import NotificationWidget from 'notification-widget/main'
@@ -21,6 +22,7 @@ import QuickSearch from 'quick-search/main'
 import QuickSearchButton from 'quick-search-button'
 import QuickSearchWorker from 'quick-search/worker'
 import RankingFilter from 'ranking-filter'
+import SocketWorker from 'socket-worker'
 import { SpotlightSelectOptions } from 'spotlight-select-options'
 import { UserCard } from 'user-card'
 import { UserCardStore } from 'user-card-store'
@@ -56,8 +58,7 @@ reactTurbolinks.register 'beatmap-discussion-events', Events, (container) ->
   # TODO: move to store?
   users = osu.parseJson('json-users')
   props.users = _.keyBy(users, 'id')
-  props.users[null] = props.users[undefined] =
-    username: osu.trans 'users.deleted'
+  props.users[null] = props.users[undefined] = deletedUser.toJson()
 
   props
 
@@ -79,22 +80,11 @@ reactTurbolinks.register 'comments', CommentsManager, (el) ->
 
   props
 
-notificationWorker = new NotificationWorker()
-resetNotificationWorker = -> notificationWorker.setUserId(currentUser.id)
-$(document).ready resetNotificationWorker
-$.subscribe 'user:update', resetNotificationWorker
-
 reactTurbolinks.registerPersistent 'chat-icon', ChatIcon, true, (el) ->
-  props = (try JSON.parse(el.dataset.chatIcon)) ? {}
-  props.worker = notificationWorker
-
-  props
+  (try JSON.parse(el.dataset.chatIcon)) ? {}
 
 reactTurbolinks.registerPersistent 'notification-icon', NotificationIcon, true, (el) ->
-  props = (try JSON.parse(el.dataset.notificationIcon)) ? {}
-  props.worker = notificationWorker
-
-  props
+  (try JSON.parse(el.dataset.notificationIcon)) ? {}
 
 reactTurbolinks.registerPersistent 'notification-widget', NotificationWidget, true, (el) ->
   try JSON.parse(el.dataset.notificationWidget)
@@ -114,10 +104,9 @@ reactTurbolinks.registerPersistent 'ranking-filter', RankingFilter, true, (el) -
 
 reactTurbolinks.register 'user-card', UserCard, (el) ->
   modifiers: try JSON.parse(el.dataset.modifiers)
-  user: try JSON.parse(el.dataset.user)
+  user: if el.dataset.isCurrentUser then currentUser else try JSON.parse(el.dataset.user)
 
 reactTurbolinks.register 'user-card-store', UserCardStore, (el) ->
-  container: el
   user: JSON.parse(el.dataset.user)
 
 reactTurbolinks.register 'user-card-tooltip', UserCardTooltip, (el) ->

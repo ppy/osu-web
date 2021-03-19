@@ -12,6 +12,55 @@ use Tests\TestCase;
 
 class ForumTopicsControllerTest extends TestCase
 {
+    public function testDestroy()
+    {
+        $forum = factory(Forum\Forum::class, 'child')->create();
+        $topic = factory(Forum\Topic::class)->create([
+            'forum_id' => $forum->forum_id,
+        ]);
+        $user = factory(User::class)->create()->fresh();
+        $group = app('groups')->byIdentifier('default');
+        $user->setDefaultGroup($group);
+        $authOption = Forum\AuthOption::firstOrCreate([
+            'auth_option' => 'f_reply',
+        ]);
+        Forum\Authorize::create([
+            'group_id' => $group->group_id,
+            'forum_id' => $forum->forum_id,
+            'auth_option_id' => $authOption->auth_option_id,
+            'auth_setting' => 1,
+        ]);
+
+        $initialPostCount = Forum\Post::count();
+        $initialTopicCount = Forum\Topic::count();
+
+        // fail because no plays =)
+        $this
+            ->actingAsVerified($user)
+            ->post(route('forum.topics.reply', $topic->topic_id), [
+                'body' => 'This is test reply',
+            ])
+            ->assertStatus(403);
+
+        $this->assertSame($initialPostCount, Forum\Post::count());
+        $this->assertSame($initialTopicCount, Forum\Topic::count());
+
+        // add some plays so it passes
+        $this->addPlaycount($user);
+        // reset auth
+        app()->make('OsuAuthorize')->cacheReset();
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('forum.topics.reply', $topic->topic_id), [
+                'body' => 'This is test reply',
+            ])
+            ->assertStatus(200);
+
+        $this->assertSame($initialPostCount + 1, Forum\Post::count());
+        $this->assertSame($initialTopicCount, Forum\Topic::count());
+    }
+
     public function testReply()
     {
         $forum = factory(Forum\Forum::class, 'child')->create();
@@ -59,6 +108,34 @@ class ForumTopicsControllerTest extends TestCase
 
         $this->assertSame($initialPostCount + 1, Forum\Post::count());
         $this->assertSame($initialTopicCount, Forum\Topic::count());
+    }
+
+    public function testRestore()
+    {
+        $forum = factory(Forum\Forum::class, 'child')->create();
+        $topic = factory(Forum\Topic::class)->create([
+            'forum_id' => $forum->forum_id,
+        ]);
+        $poster = factory(User::class)->create()->fresh();
+        $poster->setDefaultGroup(app('groups')->byIdentifier('default'));
+        Forum\Post::createNew($topic, $poster, 'test', false);
+
+        $topic->refresh();
+        $topic->delete();
+
+        $user = factory(User::class)->create()->fresh();
+        $user->setDefaultGroup(app('groups')->byIdentifier('gmt'));
+
+        $initialTopicCount = Forum\Topic::count();
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('forum.topics.restore', $topic))
+            ->assertSuccessful();
+
+        $topic->refresh();
+
+        $this->assertSame($initialTopicCount + 1, Forum\Topic::count());
     }
 
     public function testShow()

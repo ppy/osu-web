@@ -8,6 +8,11 @@ return [
         'disabled' => 'Този бийтмап в момента не може да бъде итеглен.',
         'parts-removed' => 'Части от този бийтмап са премахнати по искане на създателя или притежателя на авторските права.',
         'more-info' => 'Щракнете тук за още информация.',
+        'rule_violation' => '',
+    ],
+
+    'download' => [
+        'limit_exceeded' => '',
     ],
 
     'index' => [
@@ -16,12 +21,32 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'изтегли',
             'video' => 'изтегли с видео',
             'no_video' => 'изтегли без видео',
             'direct' => 'отвори в osu!direct',
         ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
     ],
 
     'show' => [
@@ -89,10 +114,23 @@ return [
             'genre' => 'Жанр',
             'language' => 'Език',
             'no_scores' => 'Информацията все още се обработва...',
+            'nsfw' => '',
             'points-of-failure' => 'Връхни точки на провал',
             'source' => 'Източник',
+            'storyboard' => '',
             'success-rate' => 'Степен на успех (%)',
             'tags' => 'Тагове',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

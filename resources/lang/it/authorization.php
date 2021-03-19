@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Hai raggiunto il limite di nomine per questa giornata, per favore riprova domani.',
-            'full_bn_required' => 'Devi essere un nominatore completo per eseguire questa nomina di qualifica.',
-            'full_bn_required_hybrid' => 'Devi essere un nominatore completo per nominare dei set di beatmap con più di una modalità di gioco.',
             'incorrect_state' => 'Errore nell\'eseguire questa azione, prova a ricaricare la pagina.',
             'owner' => "Non puoi nominare la tua beatmap.",
             'set_metadata' => 'Devi impostare il genere e la lingua prima di nominarla.',
@@ -70,6 +68,7 @@ return [
         'moderated' => 'Quel canale è attualmente moderato.',
         'no_access' => 'Non hai accesso a quel canale.',
         'restricted' => 'Non puoi inviare messaggi mentre sei silenziato, limitato o bannato.',
+        'silenced' => 'Non puoi inviare messaggi mentre sei silenziato, limitato o bannato.',
     ],
 
     'comment' => [
@@ -80,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Non puoi cambiare il tuo voto quando il periodo di votazione per questo contest è finito.',
+
+        'entry' => [
+            'limit_reached' => 'Hai raggiunto il limite massimo di iscrizioni per questo contest',
+            'over' => 'Grazie per le tue iscrizioni! Le richieste sono terminate per questo contest e le votazioni avverranno presto.',
+        ],
     ],
 
     'forum' => [

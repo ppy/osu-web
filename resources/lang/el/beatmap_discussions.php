@@ -30,7 +30,7 @@ return [
 
             'beatmapset_status' => [
                 '_' => '',
-                'all' => '',
+                'all' => 'Όλα',
                 'disqualified' => '',
                 'never_qualified' => '',
                 'qualified' => '',
@@ -67,9 +67,9 @@ return [
     'review' => [
         'block_count' => '',
         'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_child' => 'Προβολή Συζήτησης',
         'validation' => [
-            'block_too_large' => '',
+            'block_too_large' => 'κάθε block μπορεί να περιέχει μόνο έως :limit χαρακτήρες',
             'external_references' => '',
             'invalid_block_type' => '',
             'invalid_document' => '',
@@ -87,8 +87,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'γενικά',
+        'general_all' => 'γενικά (όλα)',
     ],
 
     'user_filter' => [

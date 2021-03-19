@@ -47,11 +47,12 @@ return [
         'confirm_restore' => 'Voulez-vous vraiment restaurer ce post ?',
         'edited' => 'Modifié par :user le :when, édité :count fois en tout.',
         'posted_at' => 'posté :when',
+        'posted_by' => 'posté par :username',
 
         'actions' => [
             'destroy' => 'Supprimer le post',
             'edit' => 'Modifier le post',
-            'report' => '',
+            'report' => 'Signaler la publication',
             'restore' => 'Restaurer le post',
         ],
 
@@ -74,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'Voulez-vous vraiment supprimer cette discussion ?',
+        'confirm_restore' => 'Voulez-vous vraiment restaurer cette discussion ?',
         'deleted' => 'sujet supprimé',
         'go_to_latest' => 'voir le dernier post',
         'has_replied' => 'Vous avez répondu à ce sujet',
@@ -87,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'par :user',
         'started_by_verbose' => 'suivi par :user',
+
+        'actions' => [
+            'destroy' => 'Supprimer le sujet',
+            'restore' => 'Restaurer le sujet',
+        ],
 
         'create' => [
             'close' => 'Fermer',

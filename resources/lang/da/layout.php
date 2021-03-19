@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Afspil næste sang automatisk',
     ],
 
     'defaults' => [
@@ -77,7 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'hjælp',
-            'getAbuse' => '',
+            'getAbuse' => 'anmeld misbrug',
             'getFaq' => 'faq',
             'getRules' => 'regler',
             'getSupport' => 'nej, jeg behøver virkelig noget hjælp!',
@@ -97,7 +97,7 @@ return [
             'country' => 'land',
             'index' => 'præstation',
             'kudosu' => 'kudosu',
-            'multiplayer' => '',
+            'multiplayer' => 'multiplayer',
             'score' => 'score',
         ],
         'store' => [
@@ -159,6 +159,10 @@ return [
             'error' => 'Ugyldige forespørgselsparametre',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Åh nej! Der er noget galt! ;_;',
             'description' => "Vi er blevet informeret om fejlen.",
@@ -171,8 +175,8 @@ return [
             'error' => 'Under Vedligeholdelse!',
             'description' => "Vedligeholdelse tager som regel mellem 5 sekunder og 10 minutter. Hvis siden er nede i længere tid, se :link for mere information.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -180,7 +184,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'log ind / Tilmeld',
 
         'login' => [
             'forgot' => "Jeg har glemt min login-info",
@@ -204,6 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Indstillinger',
+            'follows' => 'Overvågningsliste',
             'friends' => 'Venner',
             'logout' => 'Log ud',
             'profile' => 'Min Profil',

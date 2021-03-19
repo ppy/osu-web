@@ -32,12 +32,11 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'mevcut konum',
                 'user_interests' => 'ilgi alanları',
-                'user_msnm' => 'skype',
                 'user_occ' => 'meslek',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'web sitesi',
             ],
         ],
@@ -62,6 +61,7 @@ return [
             'comment_new' => 'yeni yorumlar',
             'forum_topic_reply' => 'konu yanıtı',
             'mail' => 'posta',
+            'mapping' => 'beatmap mapper',
             'push' => 'anlık',
             'user_achievement_unlock' => 'kullanıcı madalyası açıldı',
         ],
@@ -74,16 +74,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'beatmaplerdeki müstehcen içerik için uyarıları gizle',
+        'beatmapset_title_show_original' => 'beatmap metaverisini orijinal dilinde göster',
         'title' => 'Ayarlar',
 
         'beatmapset_download' => [
             '_' => 'varsayılan beatmap indirme tipi',
             'all' => 'eğer varsa video ile beraber',
-            'no_video' => 'video olmadan',
             'direct' => 'osu!direct\'de aç',
+            'no_video' => 'video olmadan',
         ],
-
-        'beatmapset_title_show_original' => 'beatmap metaverisini orijinal dilinde göster',
     ],
 
     'playstyles' => [

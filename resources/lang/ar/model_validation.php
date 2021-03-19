@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'غير مسموح بحذف منشور موارد الخريطة.',
             'beatmapset_post_no_edit' => 'غير مسموح بتعديل منشور موارد الخريطة.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => 'الرد الخاص بك يحتوي على اقتباس فقط.',
 
             'attributes' => [

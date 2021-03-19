@@ -8,6 +8,11 @@ return [
         'disabled' => 'Ez a beatmap jelenleg nem letölthető.',
         'parts-removed' => 'Ez a beatmap eltávolításra került a készítő vagy egy jogbirtokos harmadik fél kérésére.',
         'more-info' => 'Itt találsz több információt.',
+        'rule_violation' => 'Ennek a map-nek néhány elemét eltávolítottuk, mert nem találtuk őket megfelelőnek az osu!-ban történő használathoz.',
+    ],
+
+    'download' => [
+        'limit_exceeded' => 'Lassíts le, játssz többet.',
     ],
 
     'index' => [
@@ -16,12 +21,32 @@ return [
     ],
 
     'panel' => [
+        'empty' => 'nincs beatmap',
+
         'download' => [
             'all' => 'letöltés',
             'video' => 'letöltés videóval',
             'no_video' => 'letöltés videó nélkül',
             'direct' => 'megnyitás osu!direct-ben',
         ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => 'Nincs jogosultságod :mode módban nominálni',
+        'full_bn_required' => '',
+        'too_many' => 'A nominálási követelmények már teljesültek.',
+
+        'dialog' => [
+            'confirmation' => 'Biztosan nominálni szeretnéd ezt a Beatmap-et?',
+            'header' => 'Beatmap Nominálása',
+            'hybrid_warning' => '',
+            'which_modes' => '',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Felnőtt',
     ],
 
     'show' => [
@@ -36,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Letöltés',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'Videó nélkül',
                 'video' => 'Videóval',
             ],
@@ -89,10 +114,23 @@ return [
             'genre' => 'Műfaj',
             'language' => 'Nyelv',
             'no_scores' => 'Az adatok még számítás alatt...',
+            'nsfw' => 'Felnőtt tartalom',
             'points-of-failure' => 'Kibukási Alkalmak',
             'source' => 'Forrás',
+            'storyboard' => '',
             'success-rate' => 'Teljesítési arány',
             'tags' => 'Címkék',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => 'Felnőtt tartalom',
+
+            'buttons' => [
+                'disable' => 'Figyelmeztetés kikapcsolása',
+                'listing' => '',
+                'show' => 'Mutassa',
+            ],
         ],
 
         'scoreboard' => [

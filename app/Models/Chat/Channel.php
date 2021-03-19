@@ -9,6 +9,7 @@ use App\Exceptions\API;
 use App\Jobs\Notifications\ChannelMessage;
 use App\Models\Match\Match;
 use App\Models\User;
+use App\Traits\Memoizes;
 use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
 use Illuminate\Support\Str;
@@ -26,6 +27,8 @@ use LaravelRedis as Redis;
  */
 class Channel extends Model
 {
+    use Memoizes;
+
     protected $primaryKey = 'channel_id';
 
     protected $casts = [
@@ -35,6 +38,9 @@ class Channel extends Model
     protected $dates = [
         'creation_time',
     ];
+
+    /** @var \Illuminate\Support\Collection */
+    private $pmUsers;
 
     const TYPES = [
         'public' => 'PUBLIC',
@@ -58,6 +64,7 @@ class Channel extends Model
             $channel->save();
             $channel->addUser($user1);
             $channel->addUser($user2);
+            $channel->pmUsers = collect([$user1, $user2]);
         });
 
         return $channel;
@@ -67,7 +74,13 @@ class Channel extends Model
     {
         $channelName = static::getPMChannelName($user1, $user2);
 
-        return static::where('name', $channelName)->first();
+        $channel = static::where('name', $channelName)->first();
+
+        if ($channel !== null) {
+            $channel->pmUsers = collect([$user1, $user2]);
+        }
+
+        return $channel;
     }
 
     /**
@@ -82,6 +95,24 @@ class Channel extends Model
         sort($userIds);
 
         return '#pm_'.implode('-', $userIds);
+    }
+
+    public function displayIconFor(?User $user)
+    {
+        if (!$this->isPM() || $user === null) {
+            return;
+        }
+
+        return $this->pmTargetFor($user)->user_avatar;
+    }
+
+    public function displayNameFor(?User $user)
+    {
+        if (!$this->isPM() || $user === null) {
+            return $this->name;
+        }
+
+        return $this->pmTargetFor($user)->username;
     }
 
     public function messages()
@@ -107,10 +138,33 @@ class Channel extends Model
         return $this->hasMany(UserChannel::class);
     }
 
+    public function userIds(): array
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            // 4 = strlen('#pm_')
+            if ($this->isPM() && substr($this->name, 0, 4) === '#pm_') {
+                $userIds = get_arr(explode('-', substr($this->name, 4)), 'get_int');
+            }
+
+            return $userIds ?? $this->userChannels()->pluck('user_id')->all();
+        });
+    }
+
     public function users()
     {
-        // This isn't a has-many-through because the relationship is cross-database.
-        return User::whereIn('user_id', UserChannel::where('channel_id', $this->channel_id)->pluck('user_id'));
+        return $this->memoize(__FUNCTION__, function () {
+            // This isn't a has-many-through because the relationship is cross-database.
+            return User::whereIn('user_id', $this->userIds())->get();
+        });
+    }
+
+    public function visibleUsers()
+    {
+        if ($this->isPM()) {
+            return $this->users();
+        }
+
+        return collect();
     }
 
     public function scopePublic($query)
@@ -172,7 +226,13 @@ class Channel extends Model
             return;
         }
 
-        return $this->users()->where('user_id', '<>', $user->user_id)->first();
+        $userId = $user->getKey();
+
+        return $this->memoize(__FUNCTION__.':'.$userId, function () use ($userId) {
+            $users = $this->pmUsers ?? $this->users();
+
+            return $users->firstWhere('user_id', '<>', $userId);
+        });
     }
 
     public function receiveMessage(User $sender, string $content, bool $isAction = false)
@@ -222,10 +282,9 @@ class Channel extends Model
         $message->channel()->associate($this);
         $message->save();
 
-        $userChannel = UserChannel::where([
-            'channel_id' => $this->channel_id,
-            'user_id' => $sender->user_id,
-        ])->first();
+        $this->update(['last_message_id' => $message->getKey()]);
+
+        $userChannel = $this->userChannelFor($sender);
 
         if ($userChannel) {
             $userChannel->markAsRead($message->message_id);
@@ -243,10 +302,7 @@ class Channel extends Model
 
     public function addUser(User $user)
     {
-        $userChannel = UserChannel::where([
-            'channel_id' => $this->channel_id,
-            'user_id' => $user->user_id,
-        ])->first();
+        $userChannel = $this->userChannelFor($user);
 
         if ($userChannel) {
             if (!$userChannel->isHidden()) {
@@ -259,6 +315,7 @@ class Channel extends Model
             $userChannel->user()->associate($user);
             $userChannel->channel()->associate($this);
             $userChannel->save();
+            $this->resetMemoized();
         }
 
         Datadog::increment('chat.channel.join', 1, ['type' => $this->type]);
@@ -306,5 +363,23 @@ class Channel extends Model
         ])->update([
             'hidden' => false,
         ]);
+    }
+
+    private function userChannelFor(User $user)
+    {
+        $userId = $user->getKey();
+
+        return $this->memoize(__FUNCTION__.':'.$userId, function () use ($user, $userId) {
+            $userChannel = UserChannel::where([
+                'channel_id' => $this->channel_id,
+                'user_id' => $userId,
+            ])->first();
+
+            if ($userChannel !== null) {
+                $userChannel->setRelation('user', $user);
+            }
+
+            return $userChannel;
+        });
     }
 }

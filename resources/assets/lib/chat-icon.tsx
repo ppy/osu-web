@@ -3,13 +3,11 @@
 
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
-import Worker from 'notifications/worker';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
 interface Props {
   type?: string;
-  worker: Worker;
 }
 
 @observer
@@ -20,10 +18,6 @@ export default class ChatIcon extends React.Component<Props> {
   }
 
   render() {
-    if (!this.props.worker.isActive()) {
-      return null;
-    }
-
     return (
       <span className={this.mainClass()}>
         <i className='fas fa-comment-alt' />
@@ -49,7 +43,7 @@ export default class ChatIcon extends React.Component<Props> {
   }
 
   private unreadCountDisplay() {
-    if (this.props.worker.hasData) {
+    if (core.notificationsWorker.hasData) {
       return osu.formatNumber(this.unreadCount);
     } else {
       return '...';

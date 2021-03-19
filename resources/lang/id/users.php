@@ -23,11 +23,11 @@ return [
         ],
 
         'votes_received' => [
-            'title_most' => 'Paling banyak divote oleh (3 bulan terakhir)',
+            'title_most' => 'Paling banyak di-vote oleh (3 bulan terakhir)',
         ],
 
         'votes_made' => [
-            'title_most' => 'Paling banyak divote (3 bulan terakhir)',
+            'title_most' => 'Paling banyak di-vote (3 bulan terakhir)',
         ],
     ],
 
@@ -59,7 +59,7 @@ return [
         ],
 
         'reasons' => [
-            'compromised' => 'Akun Anda terindikasi telah disalahgunakan oleh pihak-pihak yang tidak bertanggung jawab untuk hal-hal yang membahayakan. Akun Anda mungkin akan dinonaktifkan untuk sementara waktu hingga identitas pengguna akun telah terkonfirmasi.',
+            'compromised' => 'Akun Anda terindikasi telah disalahgunakan oleh pihak-pihak yang tidak bertanggung jawab untuk hal-hal yang membahayakan. Akun Anda akan dinonaktifkan untuk sementara waktu hingga identitas pengguna akun telah terkonfirmasi.',
             'opening' => 'Ada sejumlah alasan yang dapat menyebabkan akun Anda dinonaktifkan:',
 
             'tos' => [
@@ -84,14 +84,14 @@ return [
         '_' => 'Masuk',
         'button' => 'Masuk',
         'button_posting' => 'Mencoba masuk...',
-        'email_login_disabled' => 'Masuk menggunakan email saat ini dinonaktifkan. Silakan masuk menggunakan nama pengguna.',
+        'email_login_disabled' => 'Anda tidak lagi dapat masuk dengan menggunakan alamat email. Silakan masuk dengan menggunakan nama pengguna.',
         'failed' => 'Gagal masuk',
         'forgot' => 'Lupa kata sandi?',
         'info' => 'Silahkan sign in untuk melanjutkan',
         'invalid_captcha' => 'Captcha tidak valid. Harap muat ulang halaman.',
         'locked_ip' => 'Alamat IP Anda dikunci. Mohon tunggu beberapa menit.',
         'password' => 'Kata Sandi',
-        'register' => "Belum memiliki akun osu!? Buat yang baru sekarang",
+        'register' => "Belum memiliki akun osu!? Buat sekarang",
         'remember' => 'Ingat perangkat ini',
         'title' => 'Mohon masuk untuk melanjutkan',
         'username' => 'Nama Pengguna',
@@ -116,7 +116,7 @@ return [
     'report' => [
         'button_text' => 'laporkan',
         'comments' => 'Komentar Tambahan',
-        'placeholder' => 'Mohon berikan informasi apa pun yang Anda yakini dapat bermanfaat.',
+        'placeholder' => 'Mohon berikan informasi apapun yang Anda yakini dapat bermanfaat.',
         'reason' => 'Alasan',
         'thanks' => 'Terima kasih atas laporan Anda!',
         'title' => 'Laporkan :username?',
@@ -148,12 +148,16 @@ return [
         'joined_at' => 'Bergabung :date',
         'lastvisit' => 'Terakhir terlihat :date',
         'lastvisit_online' => 'Saat ini online',
-        'missingtext' => 'Mungkin Anda salah ketik! (atau pengguna yang Anda hendak tuju mungkin telah di-ban sebelumnya)',
+        'missingtext' => 'Mungkin Anda salah ketik! (atau pengguna yang hendak Anda tuju telah di-ban sebelumnya)',
         'origin_country' => 'Dari :country',
         'previous_usernames' => 'dulu dikenal sebagai',
         'plays_with' => 'Bermain menggunakan :devices',
         'title' => "profil :username",
 
+        'comments_count' => [
+            '_' => 'Di-post :link',
+            'count' => ':count_delimited komentar|:count_delimited komentar',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Ganti Sampul Profil',
@@ -164,7 +168,7 @@ return [
                     'dropzone' => 'Letakkan di sini untuk mengunggah',
                     'dropzone_info' => 'Anda juga dapat meletakkan gambar Anda di sini untuk mengunggah.',
                     'size_info' => 'Ukuran gambar sampul yang optimal selayaknya adalah 2400x620',
-                    'too_large' => 'File yang diunggah terlalu besar.',
+                    'too_large' => 'Berkas yang diunggah terlalu besar.',
                     'unsupported_format' => 'Format tidak didukung.',
 
                     'restriction_info' => [
@@ -185,7 +189,7 @@ return [
             'unranked' => 'Tidak ada rekam jejak permainan yang tercatat dalam beberapa waktu ke belakang',
 
             'achievements' => [
-                'achieved-on' => 'Dicapai pada :date',
+                'achieved-on' => 'Diraih pada :date',
                 'locked' => 'Terkunci',
                 'title' => 'Pencapaian',
             ],
@@ -197,7 +201,7 @@ return [
                     'title' => 'Beatmap Favorit',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmap Graveyarded',
+                    'title' => 'Beatmap Graveyard',
                 ],
                 'loved' => [
                     'title' => 'Beatmap Loved',
@@ -232,7 +236,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'akurasi: :percentage',
-                    'title' => 'Permainan Terbaru (24 jam)',
+                    'title' => 'Rekam Jejak Permainan Terbaru (24 jam)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Riwayat Jumlah Tayangan Ulang yang Ditonton',
@@ -246,7 +250,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "Pengguna ini belum menerima kudosu!",
+                    'empty' => "Pengguna ini belum tercatat pernah menerima kudosu! sebelumnya.",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -284,7 +288,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Berdasarkan seberapa besar kontribusi yang telah dilakukan pengguna dalam moderasi beatmap. Kunjungi :link untuk informasi lebih lanjut.',
+                    '_' => 'Berdasarkan seberapa besar kontribusi yang telah diberikan oleh pengguna ini dalam hal moderasi beatmap. Kunjungi :link untuk informasi lebih lanjut.',
                     'link' => 'laman ini',
                 ],
             ],
@@ -292,21 +296,21 @@ return [
                 'title' => 'saya!',
             ],
             'medals' => [
-                'empty' => "Pengguna ini belum tercatat pernah mendapatkan medali sebelumnya. ;_;",
+                'empty' => "Pengguna ini belum membuka medali apapun. ;_;",
                 'recent' => 'Terbaru',
                 'title' => 'Medali',
             ],
             'posts' => [
                 'title' => 'Posting',
                 'title_longer' => 'Postingan Terbaru',
-                'show_more' => 'lihat lebih banyak posting',
+                'show_more' => 'lihat lebih banyak post',
             ],
             'recent_activity' => [
                 'title' => 'Terbaru',
             ],
             'top_ranks' => [
-                'download_replay' => 'Unduh Replay',
-                'not_ranked' => 'Hanya beatmap Ranked yang dapat memberikan pp.',
+                'download_replay' => 'Unduh Tayangan Ulang',
+                'not_ranked' => 'Hanya beatmap berstatus Ranked yang dapat memberikan pp.',
                 'pp_weight' => 'terbobotkan sejumlah :percentage',
                 'view_details' => 'Lihat Rincian',
                 'title' => 'Peringkat',
@@ -323,7 +327,7 @@ return [
                 'received' => 'Suara Diterima (3 bulan terakhir)',
                 'title' => 'Hak Suara',
                 'title_longer' => 'Pilihan Terbaru',
-                'vote_count' => ':count_delimited pilihan',
+                'vote_count' => ':count_delimited suara|:count_delimited suara',
             ],
             'account_standing' => [
                 'title' => 'Kondisi Akun',
@@ -349,18 +353,17 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Minat',
             'location' => 'Lokasi Saat Ini',
             'occupation' => 'Pekerjaan',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => 'Website',
         ],
         'not_found' => [
-            'reason_1' => 'Pengguna mungkin telah mengubah nama penggunanya.',
-            'reason_2' => 'Akun tersebut mungkin tidak tersedia untuk sementara waktu karena memiliki riwayat masalah yang berhubungan dengan keamanan atau penyalahgunaan akun.',
-            'reason_3' => 'Mungkin Anda salah ketik!',
+            'reason_1' => 'Pengguna yang hendak Anda tuju telah mengubah nama penggunanya.',
+            'reason_2' => 'Pengguna yang hendak Anda tuju telah dinonaktifkan untuk sementara waktu karena memiliki riwayat masalah yang berhubungan dengan keamanan atau penyalahgunaan akun.',
+            'reason_3' => 'Atau mungkin Anda salah ketik!',
             'reason_header' => 'Ada beberapa kemungkinan mengapa hal ini bisa terjadi:',
             'title' => 'Pengguna tidak ditemukan! ;_;',
         ],
@@ -371,13 +374,13 @@ return [
             'placeholder' => 'Ketik konten laman di sini',
 
             'restriction_info' => [
-                '_' => 'Anda harus memiliki :link untuk dapat menggunakan fitur ini.',
+                '_' => 'Anda harus menjadi seorang :link untuk dapat menggunakan fitur ini.',
                 'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
             '_' => 'Berkontribusi sebanyak :link',
-            'count' => ':count postingan forum',
+            'count' => ':count_delimited postingan forum|:count_delimited postingan forum',
         ],
         'rank' => [
             'country' => 'Peringkat negara untuk :mode',
@@ -402,8 +405,13 @@ return [
             'ranked_and_approved_beatmapset_count' => 'Beatmap Ranked & Approved',
             'loved_beatmapset_count' => 'Beatmap Loved',
             'unranked_beatmapset_count' => 'Beatmap Pending',
-            'graveyard_beatmapset_count' => 'Beatmap Graveyarded',
+            'graveyard_beatmapset_count' => 'Beatmap Graveyard',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Anda sedang di-silence.',
+        'message' => 'Anda tidak dapat melakukan tindakan-tindakan tertentu.',
     ],
 
     'status' => [

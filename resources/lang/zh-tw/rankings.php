@@ -5,12 +5,12 @@
 
 return [
     'countries' => [
-        'all' => '',
+        'all' => '全部',
         'title' => '國家',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => '顯示',
 
         'variant' => [
             'title' => '',
@@ -42,8 +42,8 @@ return [
         'ranked_score' => 'Ranked 總分',
         'average_score' => '平均總分',
         'average_performance' => '平均成績',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];

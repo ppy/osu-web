@@ -19,7 +19,7 @@ interface Props {
   markRead?: () => void;
   message: string;
   modifiers: string[];
-  url: string;
+  url?: string;
   withCategory: boolean;
   withCoverImage: boolean;
 }
@@ -27,6 +27,7 @@ interface Props {
 @observer
 export default class Item extends React.Component<Props> {
   static contextType = NotificationContext;
+  context!: React.ContextType<typeof NotificationContext>;
 
   private get canMarkAsRead() {
     return this.props.canMarkAsRead ?? this.props.item.canMarkRead;

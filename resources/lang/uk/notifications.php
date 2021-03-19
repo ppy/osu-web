@@ -6,10 +6,12 @@
 return [
     'all_read' => 'Всі сповіщення прочитані!',
     'delete' => '',
+    'loading' => '',
     'mark_read' => 'Очистити :type',
     'none' => 'Немає повідомлень',
     'see_all' => 'див. всі сповіщення ',
     'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'усе',
@@ -133,6 +135,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Досягнення',
 
@@ -200,6 +212,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username розблокував нову медаль, ":title"!',
                 'user_achievement_unlock_self' => 'Ви розблокували нову медаль, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

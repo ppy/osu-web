@@ -3,7 +3,7 @@
 
 @osu =
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
-  urlRegex: /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?))/ig
+  urlRegex: /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?(?:[^\.,:\s])))/ig
 
   bottomPage: ->
     osu.bottomPageDistance() == 0
@@ -161,6 +161,10 @@
 
 
   link: (url, text, options = {}) ->
+    if options.unescape
+      url = _.unescape(url)
+      text = _.unescape(text)
+
     el = document.createElement('a')
     el.setAttribute 'href', url
     el.setAttribute 'data-remote', true if options.isRemote
@@ -168,7 +172,7 @@
     el.textContent = text
     if options.props
       _.each options.props, (val, prop) ->
-        el.setAttribute prop, val
+        el.setAttribute prop, val if val?
     el.outerHTML
 
 
@@ -377,6 +381,7 @@
       message = "#{allErrors.join(', ')}."
 
     message ?= xhr?.responseJSON?.error
+    message ?= xhr?.responseJSON?.message
 
     if !message? || message == ''
       errorKey = "errors.codes.http-#{xhr?.status}"

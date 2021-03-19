@@ -25,10 +25,16 @@ return [
         'language_edit' => 'Nyelv megváltoztatva erről :old erre :new.',
         'love' => 'Kedvelte :user',
         'nominate' => 'Nominálva :user által.',
+        'nominate_modes' => 'Nominálva :user (:modes) által.',
         'nomination_reset' => 'Új probléma :discussion (:text) miatt a nominálás alaphelyzetbe állt.',
         'qualify' => 'Ez a beatmap elérte az elegendő számú nominálást és kvalifikálva lett.',
         'rank' => 'Rangsorolt.',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Eltávolítva szeretettek közül :user felhasználó által. (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => 'Felnőtt tartalom törlése',
+            'to_1' => 'Felnőtt tartalomként jelölés',
+        ],
     ],
 
     'index' => [
@@ -65,8 +71,9 @@ return [
         'love' => 'Love',
         'nominate' => 'Nominálás',
         'nomination_reset' => 'Nominálás visszaállítás',
+        'nsfw_toggle' => 'Felnőtt tartalom jel',
         'qualify' => 'Kvalifikáció',
         'rank' => 'Rangsorolás',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Szeretett eltávolítás',
     ],
 ];

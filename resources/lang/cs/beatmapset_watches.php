@@ -15,6 +15,7 @@ return [
 
         'table' => [
             'empty' => 'Nesledujete diskuzi žádné beatmapy.',
+            'last_update' => '',
             'open_issues' => 'Nevyřešené problémy',
             'state' => 'Stav',
             'title' => 'Název',

@@ -21,14 +21,7 @@ class VerifyUser
 
     public function handle(Request $request, Closure $next)
     {
-        if (
-            !$request->is([
-                'home/account/reissue-code',
-                'home/account/verify',
-                'home/notifications/endpoint',
-                'session',
-            ]) && $this->requiresVerification($request)
-        ) {
+        if (!$this->alwaysSkipVerification() && $this->requiresVerification($request)) {
             $verification = UserVerification::fromCurrentRequest();
 
             if (!$verification->isDone()) {
@@ -42,5 +35,26 @@ class VerifyUser
     public function requiresVerification($request)
     {
         return true;
+    }
+
+    private function alwaysSkipVerification()
+    {
+        $currentRouteData = app('route-section')->getCurrent();
+        $currentRoute = "{$currentRouteData['controller']}@{$currentRouteData['action']}";
+
+        static $routes = [
+            'account_controller@reissue_code',
+            'account_controller@verify',
+            'account_controller@verify_link',
+            'notifications_controller@endpoint',
+            'sessions_controller@destroy',
+            'sessions_controller@store',
+            'wiki_controller@image',
+            'wiki_controller@show',
+            'wiki_controller@sitemap',
+            'wiki_controller@suggestions',
+        ];
+
+        return in_array($currentRoute, $routes, true);
     }
 }

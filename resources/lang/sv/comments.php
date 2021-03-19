@@ -35,7 +35,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => 'kommentarer',
         'nav_title' => 'listning',
+        'no_comments' => 'inga kommentarer hittades...',
     ],
 
     'placeholder' => [

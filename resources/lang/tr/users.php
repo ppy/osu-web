@@ -54,7 +54,7 @@ return [
         'warning' => "Bir kuralı ihlal etmeniz durumunda, genellikle herhangi bir af(veya itiraz) talebini dikkate almayacağımız bir aylık bekleme süresinin olduğunu unutmayın.  Bu süreden sonra, gerekli olması halinde bizimle iletişime geçmekte özgürsünüz. Bir hesabı devre dışı bıraktıktan sonra yeni hesap oluşturmanın <strong>bu bir aylık bekleme süresinin uzatılmasına</strong> neden olacağını lütfen unutmayın. Ayrıca <strong> oluşturduğunuz her hesap için kuralları daha fazla ihlal ettiğinizi </strong> unutmayın. Bu yolda gitmemenizi önemle tavsiye ederiz!",
 
         'if_mistake' => [
-            '_' => 'Eğer bunun bir hata olduğunu düşünüyorsanız, bizimle iletişime geçebilirsiniz(:email ile veya sayfanın sağ alt koşesinde bulunan ? tuşu ile.). Çok sağlam verilere dayandığından, eylemlerimize her zaman tam olarak güvendiğimizi lütfen unutmayın.  Kasıtlı olarak sahtekâr olduğunuzu düşünürsek, isteğinizi göz ardı etme hakkını saklı tutarız.',
+            '_' => 'Eğer bir yanlışlık olduğunu düşünüyorsanız, bizimle (:email adresi üzerinden veya bu sayfanın sağ-alt köşesinde bulunan "?" ikonuna tıklayarak) iletişime geçebilirsiniz. Çok sağlam verilere dayandığından, eylemlerimize her daim tamamen güvendiğimizi lütfen unutmayın. Bilerek bizimle dürüst olmadığınızı fark ettiğimizde talebinizi göz ardı etme hakkını saklı tutarız.',
             'email' => 'e-posta',
         ],
 
@@ -154,6 +154,10 @@ return [
         'plays_with' => ':devices ile oynuyor',
         'title' => ":username kullanıcısının profili",
 
+        'comments_count' => [
+            '_' => ':link gönderdi',
+            'count' => ':count_delimited yorum|:count_delimited yorum',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Kapak Fotoğrafını Değiştir',
@@ -284,8 +288,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Beatmap yönetiminine kullanıcının ne kadar çok katkı yapmış olmuşluğuna dayanarak. Daha fazla bilgi için :link\'e bakınız.',
-                    'link' => 'bu sayfa',
+                    '_' => 'Kullanıcının beatmap modlamaya yaptığı katkının miktarına bağlıdır. Daha fazla bilgi için :link bakınız.',
+                    'link' => 'bu sayfaya',
                 ],
             ],
             'me' => [
@@ -353,7 +357,6 @@ return [
             'interests' => 'İlgi Alanları',
             'location' => 'Mevcut Konum',
             'occupation' => 'Meslek',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Web sitesi',
         ],
@@ -404,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Onay Bekleyen Beatmapler',
             'graveyard_beatmapset_count' => 'Mezarlıktaki Beatmapler',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Şu anda susturulmuş durumdasınız.',
+        'message' => 'Bazı eylemler kullanım dışı olabilir.',
     ],
 
     'status' => [

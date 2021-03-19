@@ -5,18 +5,24 @@
 @php
     $backgroundExtraClass = $params['backgroundExtraClass'] ?? '';
     $backgroundImage = $params['backgroundImage'] ?? null;
+    $currentActive = $params['currentActive'] ?? null;
     $headerExtraClass = $params['headerExtraClass'] ?? '';
     $links = $params['links'] ?? null;
     $linksBreadcrumb = $params['linksBreadcrumb'] ?? false;
     $theme = $params['theme'] ?? null;
     $showTitle = $params['showTitle'] ?? true;
+    $currentUser = auth()->user();
 
     $linksElement = $linksBreadcrumb ? 'ol' : 'ul';
 @endphp
 <div class="
     header-v4
-    {{ isset($theme) ? "header-v4--{$theme}" : '' }}
-    {{ (auth()->check() && auth()->user()->isRestricted()) ? 'header-v4--restricted' : '' }}
+    @if ($theme !== null)
+        header-v4--{{ $theme }}
+    @endif
+    @if ($currentUser !== null && ($currentUser->isRestricted() || ($currentActive === 'account_controller.edit' && $currentUser->isSilenced())))
+        header-v4--restricted
+    @endif
     {{ $headerExtraClass }}
 ">
     <div class="header-v4__container header-v4__container--main">

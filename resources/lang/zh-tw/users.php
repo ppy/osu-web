@@ -154,6 +154,10 @@ return [
         'plays_with' => '慣用 :devices',
         'title' => ":username 的個人簡介",
 
+        'comments_count' => [
+            '_' => '發表了 :link',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '變更個人簡介封面',
@@ -349,12 +353,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => '興趣愛好',
             'location' => '所在地',
             'occupation' => '職業',
-            'skype' => 'Skype',
-            'twitter' => '推特',
+            'twitter' => '',
             'website' => '個人網站',
         ],
         'not_found' => [
@@ -404,6 +407,11 @@ return [
             'unranked_beatmapset_count' => '待處理的圖譜',
             'graveyard_beatmapset_count' => '已拋棄的圖譜',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '您正被禁言。',
+        'message' => '可能無法執行某些動作。',
     ],
 
     'status' => [

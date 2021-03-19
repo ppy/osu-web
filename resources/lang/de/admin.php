@@ -6,20 +6,20 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Erneuern',
-            'regenerating' => 'Erneuert...',
-            'remove' => 'Entfernen',
-            'removing' => 'Entfernt...',
-            'title' => 'Beatmapset covers',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
+            'title' => '',
         ],
         'show' => [
-            'covers' => 'Beatmapset-Banner bearbeiten',
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modding v2',
-                'activate' => 'aktivieren',
-                'activate_confirm' => 'modding v2 für diese beatmap aktivieren?',
-                'active' => 'aktiv',
-                'inactive' => 'inaktiv',
+                '_' => '',
+                'activate' => '',
+                'activate_confirm' => '',
+                'active' => '',
+                'inactive' => '',
             ],
         ],
     ],
@@ -27,22 +27,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Löschen',
+                'delete' => '',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => '',
 
-                'no-cover' => 'Kein Banner ausgewählt',
+                'no-cover' => '',
 
                 'submit' => [
-                    'save' => 'Speichern',
-                    'update' => 'Aktualisieren',
+                    'save' => '',
+                    'update' => '',
                 ],
 
-                'title' => 'Liste der Forenbanner',
+                'title' => '',
 
                 'type-title' => [
-                    'default-topic' => 'Standard-Threadbanner',
-                    'main' => 'Forenbanner',
+                    'default-topic' => '',
+                    'main' => '',
                 ],
             ],
         ],
@@ -50,17 +50,17 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Logs einsehen',
+            'title' => '',
         ],
     ],
 
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => 'Beatmapsets',
-                'forum' => 'Forum',
-                'general' => 'Allgemein',
-                'store' => 'Shop',
+                'beatmapsets' => '',
+                'forum' => '',
+                'general' => '',
+                'store' => '',
             ],
         ],
     ],
@@ -68,15 +68,15 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Bestellungen',
+                'title' => '',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Dieser Benutzer ist momentan restricted.',
-            'message' => '(nur admins können dies sehen)',
+            'title' => '',
+            'message' => '',
         ],
     ],
 

@@ -154,6 +154,10 @@ return [
         'plays_with' => 'Παίζει με :devices',
         'title' => "Το προφίλ του :username",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Αλλάξτε το Εξώφυλλο του Προφίλ σας',
@@ -353,7 +357,6 @@ return [
             'interests' => 'Ενδιαφέροντα',
             'location' => 'Τρέχουσα Τοποθεσία',
             'occupation' => 'Ενασχόληση',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Ιστοσελίδα',
         ],
@@ -404,6 +407,11 @@ return [
             'unranked_beatmapset_count' => '',
             'graveyard_beatmapset_count' => '',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

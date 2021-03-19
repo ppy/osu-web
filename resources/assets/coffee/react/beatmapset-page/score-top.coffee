@@ -4,9 +4,11 @@
 import FlagCountry from 'flag-country'
 import { route } from 'laroute'
 import Mod from 'mod'
+import PpValue from 'scores/pp-value'
 import * as React from 'react'
-import { div, a } from 'react-dom-factories'
+import { a, div, span } from 'react-dom-factories'
 import ScoreboardTime from 'scoreboard-time'
+import { shouldShowPp } from 'utils/beatmap-helper'
 import { classWithModifiers } from 'utils/css'
 
 el = React.createElement
@@ -18,6 +20,7 @@ export ScoreTop = (props) ->
     .join ' '
 
   position = if props.position? then "##{props.position}" else '-'
+  showPp = shouldShowPp(props.beatmap)
 
   div className: "#{bn} #{topClasses}",
     a
@@ -33,18 +36,26 @@ export ScoreTop = (props) ->
           div className: "score-rank score-rank--tiny score-rank--#{props.score.rank}"
 
         div className: "#{bn}__avatar",
-          a
-            href: route 'users.show', user: props.score.user.id
-            className: "avatar u-hover"
-            style:
-              backgroundImage: osu.urlPresence(props.score.user.avatar_url)
+          if props.score.user.is_deleted
+            span className: 'avatar avatar--guest'
+          else
+            a
+              href: route 'users.show', user: props.score.user.id
+              className: "avatar u-hover"
+              style:
+                backgroundImage: osu.urlPresence(props.score.user.avatar_url)
 
         div className: "#{bn}__user-box",
-          a
-            className: "#{bn}__username js-usercard u-hover"
-            'data-user-id': props.score.user.id
-            href: route 'users.show', user: props.score.user.id, mode: props.score.mode
-            props.score.user.username
+          if props.score.user.is_deleted
+            span
+              className: "#{bn}__username"
+              osu.trans('users.deleted')
+          else
+            a
+              className: "#{bn}__username js-usercard u-hover"
+              'data-user-id': props.score.user.id
+              href: route 'users.show', user: props.score.user.id, mode: props.score.mode
+              props.score.user.username
 
           div
             className: "#{bn}__achieved u-hover"
@@ -98,11 +109,12 @@ export ScoreTop = (props) ->
             div className: "#{bn}__stat-value #{bn}__stat-value--smaller",
               osu.formatNumber(props.score.statistics.count_miss)
 
-          div className: "#{bn}__stat",
-            div className: "#{bn}__stat-header",
-              osu.trans 'beatmapsets.show.scoreboard.headers.pp'
-            div className: "#{bn}__stat-value #{bn}__stat-value--smaller",
-              _.round props.score.pp
+          if showPp
+            div className: "#{bn}__stat",
+              div className: "#{bn}__stat-header",
+                osu.trans 'beatmapsets.show.scoreboard.headers.pp'
+              div className: "#{bn}__stat-value #{bn}__stat-value--smaller",
+                el PpValue, score: props.score
 
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header",

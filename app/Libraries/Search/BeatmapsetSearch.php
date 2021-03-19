@@ -11,12 +11,11 @@ use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
+use App\Models\Follow;
 use App\Models\Score;
 
 class BeatmapsetSearch extends RecordSearch
 {
-    public $recommendedDifficulty;
-
     /**
      * @param BeatmapsetSearchParams $params
      */
@@ -55,9 +54,11 @@ class BeatmapsetSearch extends RecordSearch
 
         $this->addBlacklistFilter($query);
         $this->addBlockedUsersFilter($query);
+        $this->addFollowsFilter($query);
         $this->addGenreFilter($query);
         $this->addLanguageFilter($query);
         $this->addExtraFilter($query);
+        $this->addNsfwFilter($query);
         $this->addStatusFilter($query);
 
         $nested = new BoolQuery();
@@ -65,6 +66,8 @@ class BeatmapsetSearch extends RecordSearch
         $this->addPlayedFilter($query, $nested);
         $this->addRankFilter($nested);
         $this->addRecommendedFilter($nested);
+
+        $this->addSimpleFilters($query, $nested);
 
         $query->filter([
             'nested' => [
@@ -131,6 +134,15 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
+    private function addFollowsFilter($query)
+    {
+        if ($this->params->showFollows && $this->params->user !== null) {
+            $followIds = Follow::where(['subtype' => 'mapping', 'user_id' => $this->params->user->getKey()])->pluck('notifiable_id')->all();
+
+            $query->filter(['terms' => ['user_id' => $followIds]]);
+        }
+    }
+
     private function addGenreFilter($query)
     {
         if ($this->params->genre !== null) {
@@ -153,6 +165,13 @@ class BeatmapsetSearch extends RecordSearch
 
         if ($this->params->mode !== null) {
             $query->filter(['term' => ['beatmaps.playmode' => $this->params->mode]]);
+        }
+    }
+
+    private function addNsfwFilter($query)
+    {
+        if (!$this->params->includeNsfw) {
+            $query->filter(['term' => ['nsfw' => false]]);
         }
     }
 
@@ -194,6 +213,35 @@ class BeatmapsetSearch extends RecordSearch
                     ],
                 ],
             ]);
+        }
+    }
+
+    private function addSimpleFilters(BoolQuery $query, BoolQuery $nested): void
+    {
+        static $filters = [
+            'ar' => ['field' => 'beatmaps.diff_approach', 'type' => 'range'],
+            'artist' => ['field' => 'artist', 'type' => 'term'],
+            'bpm' => ['field' => 'bpm', 'type' => 'range'],
+            'creator' => ['field' => 'creator', 'type' => 'term'],
+            'cs' => ['field' => 'beatmaps.diff_size', 'type' => 'range'],
+            'difficultyRating' => ['field' => 'beatmaps.difficultyrating', 'type' => 'range'],
+            'drain' => ['field' => 'beatmaps.diff_drain', 'type' => 'range'],
+            'hitLength' => ['field' => 'beatmaps.hit_length', 'type' => 'range'],
+            'keys' => ['field' => 'beatmaps.diff_size', 'type' => 'range'],
+            'statusRange' => ['field' => 'beatmaps.approved', 'type' => 'range'],
+            // (unsupported) 'divisor' => ['field' => ???, 'type' => 'range'],
+        ];
+
+        static $nestedPrefix = 'beatmaps.';
+        $nestedPrefixLength = strlen($nestedPrefix);
+
+        foreach ($filters as $prop => $options) {
+            if ($this->params->$prop === null) {
+                continue;
+            }
+
+            $q = substr($options['field'], 0, $nestedPrefixLength) === $nestedPrefix ? $nested : $query;
+            $q->filter([$options['type'] => [$options['field'] => $this->params->$prop]]);
         }
     }
 

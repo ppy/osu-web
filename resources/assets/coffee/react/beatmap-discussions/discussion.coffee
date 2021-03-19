@@ -77,8 +77,8 @@ export class Discussion extends React.PureComponent
       unread: !@isRead(firstPost)
     topClasses += ' js-beatmap-discussion-jump'
 
-    user = @props.users[@props.discussion.user_id]
-    group = if user.id == @props.beatmapset.user_id then mapperGroup else user.groups[0]
+    user = @props.users[@props.discussion.user_id] ? @props.users[null]
+    group = if user.id == @props.beatmapset.user_id then mapperGroup else user.groups?[0]
 
     div
       className: topClasses
@@ -167,7 +167,7 @@ export class Discussion extends React.PureComponent
 
     topClasses = "#{vbn} #{vbn}--#{type}"
     topClasses += " #{vbn}--inactive" if score != 0
-    user = @props.users[@props.discussion.user_id]
+    user = @props.users[@props.discussion.user_id] ? @props.users[null]
     disabled = @isOwner() || user.is_bot || (type == 'down' && !@canDownvote()) || !@canBeRepliedTo()
 
     button
@@ -225,7 +225,7 @@ export class Discussion extends React.PureComponent
 
     @voteXhr?.abort()
 
-    @voteXhr = $.ajax laroute.route('beatmap-discussions.vote', beatmap_discussion: @props.discussion.id),
+    @voteXhr = $.ajax laroute.route('beatmapsets.discussions.vote', discussion: @props.discussion.id),
       method: 'PUT',
       data:
         beatmap_discussion_vote:
@@ -286,8 +286,8 @@ export class Discussion extends React.PureComponent
       type: type
       read: @isRead(post)
       users: @props.users
-      user: @props.users[post.user_id]
-      lastEditor: @props.users[post.last_editor_id]
+      user: @props.users[post.user_id] ? @props.users[null]
+      lastEditor: @props.users[post.last_editor_id] ? @props.users[null]
       canBeEdited: @props.currentUser.is_admin || canBeEdited
       canBeDeleted: canBeDeleted
       canBeRestored: canModeratePosts

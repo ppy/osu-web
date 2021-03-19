@@ -1,25 +1,28 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { PresenceJson, SendToJson } from 'chat/chat-api-responses';
+import { ChatInitialJson } from 'chat/chat-api-responses';
 import MainView from 'chat/main-view';
-import { isEmpty } from 'lodash';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 
-const dataStore = core.dataStore;
-const presence = osu.parseJson<PresenceJson>('json-presence');
-
-if (!isEmpty(presence)) {
-  // initial population of channel/presence data
-  dataStore.channelStore.updateWithPresence(presence);
-}
-
 reactTurbolinks.register('chat', MainView, () => {
-  let initialChannel: number | undefined;
-  const sendTo: SendToJson = osu.parseJson('json-sendto');
+  const dataStore = core.dataStore;
+  const initial = osu.parseJson<ChatInitialJson | null>('json-chat-initial', true);
 
-  if (!isEmpty(sendTo)) {
+  if (initial != null) {
+    if (Array.isArray(initial.presence)) {
+      // initial population of channel/presence data
+      dataStore.channelStore.updateWithPresence(initial.presence);
+    }
+
+    dataStore.channelStore.lastPolledMessageId = initial.last_message_id ?? 0;
+  }
+
+  let initialChannel = dataStore.chatState.selected;
+  const sendTo = initial?.send_to;
+
+  if ((sendTo != null)) {
     const target = dataStore.userStore.getOrCreate(sendTo.target.id, sendTo.target); // pre-populate userStore with target
     let channel = dataStore.channelStore.findPM(target.id);
 
@@ -32,18 +35,15 @@ reactTurbolinks.register('chat', MainView, () => {
       dataStore.channelStore.loaded = true;
       initialChannel = channel.channelId;
     }
-  } else if (dataStore.channelStore.loaded) {
-    const hasNonPmChannels = dataStore.channelStore.nonPmChannels.length > 0;
-    const hasPmChannels = dataStore.channelStore.pmChannels.length > 0;
-
-    if (hasNonPmChannels) {
+  } else if (initialChannel === 0 && dataStore.channelStore.loaded) {
+    if (dataStore.channelStore.nonPmChannels.length > 0) {
       initialChannel = dataStore.channelStore.nonPmChannels[0].channelId;
-    } else if (hasPmChannels) {
+    } else if (dataStore.channelStore.pmChannels.length > 0) {
       initialChannel = dataStore.channelStore.pmChannels[0].channelId;
     }
   }
 
-  if (initialChannel != null) {
+  if (initialChannel !== 0) {
     dataStore.chatState.selectChannel(initialChannel);
   }
 

@@ -12,13 +12,18 @@ return [
         ],
 
         'player' => [
-            'by' => 'Tarafından oynandı',
-            'submitted_on' => 'Tarihinde gönderildi',
+            'by' => 'Oynayan:',
+            'submitted_on' => 'Gönderilme:',
 
             'rank' => [
-                'country' => 'Ülke sıralaması',
+                'country' => 'Ülke Sıralaması',
                 'global' => 'Küresel Sıralama',
             ],
         ],
+    ],
+
+    'status' => [
+        'non_best' => 'Yalnızca en iyi bireysel skorlar pp kazandırır',
+        'processing' => 'Bu skor halen daha hesaplanıyor ve çok yakında gösterilecek',
     ],
 ];

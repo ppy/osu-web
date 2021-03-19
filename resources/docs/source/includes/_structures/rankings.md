@@ -23,7 +23,7 @@
       "play_count": 228050,
       "play_time": null,
       "pp": 990,
-      "pp_rank": 87468,
+      "global_rank": 87468,
       "ranked_score": 1502995536,
       "replays_watched_by_others": 0,
       "total_hits": 5856573,

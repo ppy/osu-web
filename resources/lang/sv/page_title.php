@@ -22,6 +22,7 @@ return [
             '401-verification' => 'kontobekräftelse',
             '405' => 'saknas',
             '422' => 'ogiltig begäran',
+            '429' => 'för många förfrågningar',
             '500' => 'någonting gick fel',
             '503' => 'underhåll',
         ],
@@ -74,6 +75,9 @@ return [
         ],
         'contests_controller' => [
             '_' => 'tävlingar',
+        ],
+        'follows_controller' => [
+            'index' => 'kontrollpanel',
         ],
         'friends_controller' => [
             'index' => 'kontrollpanel',
