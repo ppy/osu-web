@@ -184,16 +184,28 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
         $pushReceiverIds = [];
         $notification->getConnection()->transaction(function () use ($deliverySettings, $notification, &$pushReceiverIds) {
-            $timestamp = $this->getTimestamp();
+            $timestamp = (string) $this->getTimestamp();
+            $notificationId = $notification->getKey();
+            $tempUserNotification = new UserNotification();
 
+            $userNotifications = [];
             foreach ($deliverySettings as $userId => $delivery) {
-                $userNotification = $notification->userNotifications()->create([
-                    'delivery' => $delivery,
-                    'user_id' => $userId,
+                $userNotifications[] = [
                     'created_at' => $timestamp,
-                ]);
-                $userNotification->isPush() && $pushReceiverIds[] = $userId;
+                    'delivery' => $delivery,
+                    'notification_id' => $notificationId,
+                    'updated_at' => $timestamp,
+                    'user_id' => $userId,
+                ];
+                $tempUserNotification->delivery = $delivery;
+                $tempUserNotification->isPush() && $pushReceiverIds[] = $userId;
+
+                if (count($userNotifications) === 1000) {
+                    UserNotification::insert($userNotifications);
+                    $userNotifications = [];
+                }
             }
+            UserNotification::insert($userNotifications);
         });
 
         if (!empty($pushReceiverIds)) {
