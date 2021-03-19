@@ -8,7 +8,6 @@ import Gallery from 'gallery'
 import * as laroute from 'laroute'
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
-import TextareaAutosize from 'react-autosize-textarea'
 import OsuUrlHelper from 'osu-url-helper'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
 
@@ -35,4 +34,3 @@ window._styles =
     heightMobile: 50 # @navbar-height
 
 window.StoreCheckout = StoreCheckout
-window.TextareaAutosize = TextareaAutosize
