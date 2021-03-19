@@ -49,19 +49,17 @@ export default class OsuCore {
   socketWorker: SocketWorker;
   readonly turbolinksReload = new TurbolinksReload();
   userLoginObserver: UserLoginObserver;
-  window: Window;
   windowFocusObserver: WindowFocusObserver;
   readonly windowVHPatcher = new WindowVHPatcher();
 
-  constructor(window: Window) {
+  constructor() {
     this.enchant = new Enchant(this.turbolinksReload);
-    this.window = window;
     // should probably figure how to conditionally or lazy initialize these so they don't all init when not needed.
     // TODO: requires dynamic imports to lazy load modules.
     this.dataStore = new RootDataStore();
     this.chatWorker = new ChatWorker(this.dataStore.channelStore);
-    this.userLoginObserver = new UserLoginObserver(this.window);
-    this.windowFocusObserver = new WindowFocusObserver(this.window);
+    this.userLoginObserver = new UserLoginObserver();
+    this.windowFocusObserver = new WindowFocusObserver();
 
     this.beatmapsetSearchController = new BeatmapsetSearchController(this.dataStore.beatmapsetSearch);
 

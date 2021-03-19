@@ -8,7 +8,7 @@ declare global {
   }
 }
 
-const core = new OsuCore(window);
+const core = new OsuCore();
 window.osuCore = core; // for legacy and debugging
 
 export default core;
