@@ -33,7 +33,7 @@ return [
         ],
         'no_diff_reduction' => [
             '_' => '',
-            'link' => '',
+            'link' => 'Mods för minskad svårighetsgrad',
         ],
     ],
 

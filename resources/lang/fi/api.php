@@ -20,6 +20,10 @@ return [
             'write' => 'Lähetä viestejä puolestasi.',
         ],
 
+        'forum' => [
+            'write' => '',
+        ],
+
         'friends' => [
             'read' => 'Näe ketä seuraat.',
         ],
