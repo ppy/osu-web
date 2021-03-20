@@ -117,7 +117,7 @@ return [
             'nsfw' => '露骨なコンテンツ',
             'points-of-failure' => '失敗地点',
             'source' => 'ソース',
-            'storyboard' => '',
+            'storyboard' => 'このビートマップにはストーリーボードが含まれています',
             'success-rate' => 'クリア率',
             'tags' => 'タグ',
         ],
