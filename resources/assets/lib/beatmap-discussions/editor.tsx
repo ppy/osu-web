@@ -164,7 +164,7 @@ export default class Editor extends React.Component<Props, State> {
     const regex = RegExp(BeatmapDiscussionHelper.TIMESTAMP_REGEX, 'g');
     let match;
 
-    // eslint-disable-next-line no-cond-assign
+    // tslint:disable-next-line no-conditional-assignment
     while ((match = regex.exec(node.text)) !== null) {
       ranges.push({
         anchor: {path, offset: match.index},

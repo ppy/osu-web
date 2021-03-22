@@ -8,7 +8,6 @@ import DispatcherAction from 'actions/dispatcher-action';
 import NotificationJson, { NotificationBundleJson } from 'interfaces/notification-json';
 import { fromJson, NotificationIdentity, NotificationIdentityJson } from 'notifications/notification-identity';
 
-/* eslint-disable max-classes-per-file */
 export interface NotificationEventLogoutJson {
   event: 'logout';
 }
