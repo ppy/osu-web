@@ -20,6 +20,10 @@ return [
             'write' => 'Nachrichten unter deinem Namen versenden.',
         ],
 
+        'forum' => [
+            'write' => '',
+        ],
+
         'friends' => [
             'read' => 'Sehen, wem du folgst.',
         ],

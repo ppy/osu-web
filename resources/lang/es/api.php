@@ -20,6 +20,10 @@ return [
             'write' => 'Enviar mensajes en su nombre.',
         ],
 
+        'forum' => [
+            'write' => '',
+        ],
+
         'friends' => [
             'read' => 'Ver a quién sigues.',
         ],

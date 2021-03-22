@@ -410,8 +410,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Twoje konto jest obecnie wyciszone.',
+        'message' => 'Niektóre działania mogą być niedostępne.',
     ],
 
     'status' => [

@@ -89,15 +89,3 @@ $(document).on 'change', '.js-url-selector', (e) ->
 
 $(document).on 'keydown', (e) ->
   $.publish 'key:esc' if e.keyCode == 27
-
-
-rootUrl = "#{document.location.protocol}//#{document.location.host}"
-rootUrl += ":#{document.location.port}" if document.location.port
-rootUrl += '/'
-
-# Internal Helper
-$.expr[':'].internal = (obj, index, meta, stack) ->
-  # Prepare
-  $this = $(obj)
-  url = $this.attr('href') or ''
-  url.substring(0, rootUrl.length) == rootUrl or url.indexOf(':') == -1

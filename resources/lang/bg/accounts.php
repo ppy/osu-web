@@ -57,7 +57,7 @@ return [
         'options' => [
             '_' => 'опции за доставка',
             'beatmapset:modding' => 'бийтмап modding',
-            'channel_message' => '',
+            'channel_message' => 'лични съобщения',
             'comment_new' => 'нови коментари ',
             'forum_topic_reply' => 'отговор на темата',
             'mail' => 'поща',
