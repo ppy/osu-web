@@ -62,8 +62,8 @@ export class Main extends React.Component<Props> {
   }
 
   private scrollPositionHandler = (change: IValueDidChange<SearchStatus>) => {
-    if (change.newValue.restore) { return; }
-    if (isEqual(change.oldValue, change.newValue)) { return; }
+    if (change.newValue.restore) return;
+    if (isEqual(change.oldValue, change.newValue)) return;
 
     if (change.newValue.state === 'completed' && change.newValue.from === 0) {
       if (this.backToTopAnchor.current) {

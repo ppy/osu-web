@@ -72,7 +72,7 @@ export default class NotificationType implements NotificationReadable, Notificat
 
   @action
   loadMore(context: NotificationContextData) {
-    if (this.cursor === null) { return; }
+    if (this.cursor === null) return;
 
     this.isLoading = true;
 

@@ -71,7 +71,7 @@ export class AuthorizedClient extends React.Component<Props> {
   }
 
   revokeClicked = (event: React.MouseEvent<HTMLElement>) => {
-    if (!confirm(osu.trans('oauth.authorized_clients.confirm_revoke'))) { return; }
+    if (!confirm(osu.trans('oauth.authorized_clients.confirm_revoke'))) return;
 
     this.props.client.revoke().catch(osu.ajaxError);
   }

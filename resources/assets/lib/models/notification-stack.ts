@@ -105,13 +105,13 @@ export default class NotificationStack implements NotificationReadable, Notifica
   @action
   deleteItem(notification?: Notification) {
     // not from this stack, ignore.
-    if (notification == null || !this.notifications.has(notification.id)) { return; }
+    if (notification == null || !this.notifications.has(notification.id)) return;
     this.resolver.delete(notification);
   }
 
   @action
   loadMore(context: NotificationContextData) {
-    if (this.cursor == null) { return; }
+    if (this.cursor == null) return;
 
     this.isLoading = true;
 
@@ -124,7 +124,7 @@ export default class NotificationStack implements NotificationReadable, Notifica
   @action
   markAsRead(notification?: Notification) {
     // not from this stack, ignore.
-    if (notification == null || !this.notifications.has(notification.id)) { return; }
+    if (notification == null || !this.notifications.has(notification.id)) return;
     this.resolver.queueMarkAsRead(notification);
   }
 

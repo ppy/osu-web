@@ -62,7 +62,7 @@ export default class Item extends React.Component<Props> {
   }
 
   private handleContainerClick = (event: React.SyntheticEvent) => {
-    if (osu.isClickable(event.target as HTMLElement)) { return; }
+    if (osu.isClickable(event.target as HTMLElement)) return;
 
     if (this.props.markRead != null) {
       this.props.markRead();

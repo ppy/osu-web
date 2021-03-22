@@ -122,7 +122,7 @@ export class ReportReportable extends React.PureComponent<Props, State> {
   }
 
   private onShowFormButtonClick = (e: React.MouseEvent<HTMLElement>) => {
-    if (e.button !== 0) { return; }
+    if (e.button !== 0) return;
     e.preventDefault();
 
     this.showForm();

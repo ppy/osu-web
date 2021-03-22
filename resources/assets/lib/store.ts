@@ -37,7 +37,7 @@ export class Store {
   }
 
   async beginCheckout(event: Event) {
-    if (event.target == null) { return; }
+    if (event.target == null) return;
 
     const dataset = (event.target as HTMLElement).dataset;
     const orderId = dataset.orderId;
@@ -89,7 +89,7 @@ export class Store {
   }
 
   resumeCheckout(event: Event) {
-    if (event.target == null) { return; }
+    if (event.target == null) return;
 
     const target = event.target as HTMLElement;
     const { provider, providerReference, status } = target.dataset;

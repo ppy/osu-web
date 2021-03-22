@@ -39,8 +39,8 @@ export class ClientDetails extends React.Component<Props, State> {
 
   @action
   handleDelete = () => {
-    if (this.props.client.isRevoking) { return; }
-    if (!confirm(osu.trans('oauth.own_clients.confirm_delete'))) { return; }
+    if (this.props.client.isRevoking) return;
+    if (!confirm(osu.trans('oauth.own_clients.confirm_delete'))) return;
 
     this.props.client.delete().then(() => {
       uiState.account.client = null;
@@ -59,8 +59,8 @@ export class ClientDetails extends React.Component<Props, State> {
 
   @action
   handleReset = () => {
-    if (!confirm(osu.trans('oauth.own_clients.confirm_reset'))) { return; }
-    if (this.props.client.isResetting) { return; }
+    if (!confirm(osu.trans('oauth.own_clients.confirm_reset'))) return;
+    if (this.props.client.isResetting) return;
 
     this.props.client.resetSecret()
     .then(() => this.setState({ isSecretVisible: true }))
@@ -74,7 +74,7 @@ export class ClientDetails extends React.Component<Props, State> {
 
   @action
   handleUpdate = () => {
-    if (this.props.client.isUpdating) { return; }
+    if (this.props.client.isUpdating) return;
     this.props.client.updateWith(this.state).then(() => {
       this.errors.clear();
     }).catch(this.errors.handleResponse);

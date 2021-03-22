@@ -145,9 +145,9 @@ export class BeatmapsetSearchController {
 
   private filterChangedHandler = (change: IObjectDidChange) => {
     const valueChange = change as IValueDidChange<BeatmapsetSearchFilters>; // actual object is a union of types.
-    if (valueChange.oldValue === valueChange.newValue) { return; }
+    if (valueChange.oldValue === valueChange.newValue) return;
     // FIXME: sort = null changes ignored because search triggered too early during filter update.
-    if (change.name === 'sort' && valueChange.newValue == null) { return; }
+    if (change.name === 'sort' && valueChange.newValue == null) return;
 
     this.searchStatus.state = 'input';
     this.debouncedFilterChangedSearch();
