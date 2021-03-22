@@ -234,7 +234,8 @@ return [
         'ban_persist_days' => get_int(env('BAN_PERSIST_DAYS')) ?? 28,
     ],
     'user_report_notification' => [
-        'endpoint' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT')),
+        'endpoint_moderation' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_MODERATION')),
+        'endpoint_cheating' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_CHEATING')),
     ],
     'wiki' => [
         'branch' => presence(env('WIKI_BRANCH'), 'master'),
