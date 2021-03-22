@@ -17,10 +17,6 @@ class BeatmapCompactTransformer extends TransformerAbstract
         'max_combo',
     ];
 
-    protected $defaultIncludes = [
-        'checksum',
-    ];
-
     protected $beatmapsetTransformer = BeatmapsetCompactTransformer::class;
 
     public function transform(Beatmap $beatmap)
