@@ -6,6 +6,7 @@
 namespace App\Libraries\Search;
 
 use App\Models\Beatmapset;
+use Carbon\Carbon;
 
 class BeatmapsetQueryParser
 {
@@ -54,6 +55,12 @@ class BeatmapsetQueryParser
                 case 'artist':
                     $option = static::makeTextOption($op, $m['value']);
                     break;
+                case 'created':
+                    $option = static::makeDateRangeOption($op, $m['value']);
+                    break;
+                case 'ranked':
+                    $option = static::makeDateRangeOption($op, $m['value']);
+                    break;
             }
 
             if (isset($option)) {
@@ -73,6 +80,53 @@ class BeatmapsetQueryParser
             'keywords' => presence(trim($keywords)),
             'options' => $options,
         ];
+    }
+
+    private static function makeDateRangeOption(string $operator, string $value): ?array
+    {
+        $value = presence(trim($value, '"'));
+
+        if (preg_match('#^\d{4}$#', $value) === 1) {
+            $startTime = Carbon::create($value, 1, 1, 0, 0, 0, 'UTC');
+            $endTimeFunction = 'addYear';
+        } elseif (preg_match('#^(?<year>\d{4})[-./]?(?<month>\d{1,2})$#', $value, $m) === 1) {
+            $startTime = Carbon::create($m['year'], $m['month'], 1, 0, 0, 0, 'UTC');
+            $endTimeFunction = 'addMonth';
+        } elseif (preg_match('#^(?<year>\d{4})[-./]?(?<month>\d{1,2})[-./]?(?<day>\d{1,2})$#', $value, $m) === 1) {
+            $startTime = Carbon::create($m['year'], $m['month'], $m['day'], 0, 0, 0, 'UTC');
+            $endTimeFunction = 'addDay';
+        } else {
+            $startTime = parse_time_to_carbon($value);
+            $endTimeFunction = 'addSecond';
+        }
+
+        if (isset($startTime) && isset($endTimeFunction)) {
+            switch ($operator) {
+                case '=':
+                    return [
+                        'gte' => json_time($startTime),
+                        'lt' => json_time($startTime->$endTimeFunction()),
+                    ];
+                case '<':
+                    return [
+                        'lt' => json_time($startTime),
+                    ];
+                case '<=':
+                    return [
+                        'lt' => json_time($startTime->$endTimeFunction()),
+                    ];
+                case '>':
+                    return [
+                        'gte' => json_time($startTime->$endTimeFunction()),
+                    ];
+                case '>=':
+                    return [
+                        'gte' => json_time($startTime),
+                    ];
+            }
+        }
+
+        return null;
     }
 
     private static function makeFloatRangeOption($operator, $value, $tolerance)

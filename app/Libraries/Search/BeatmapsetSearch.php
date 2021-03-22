@@ -71,6 +71,7 @@ class BeatmapsetSearch extends RecordSearch
         $this->addLanguageFilter($query);
         $this->addExtraFilter($query);
         $this->addNsfwFilter($query);
+        $this->addRankedFilter($query);
         $this->addStatusFilter($query);
 
         $nested = new BoolQuery();
@@ -230,11 +231,21 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
+    private function addRankedFilter(BoolQuery $query): void
+    {
+        if ($this->params->ranked !== null) {
+            $query
+                ->filter(['term' => ['approved' => Beatmapset::STATES['ranked']]])
+                ->filter(['range' => ['approved_date' => $this->params->ranked]]);
+        }
+    }
+
     private function addSimpleFilters(BoolQuery $query, BoolQuery $nested): void
     {
         static $filters = [
             'ar' => ['field' => 'beatmaps.diff_approach', 'type' => 'range'],
             'bpm' => ['field' => 'bpm', 'type' => 'range'],
+            'created' => ['field' => 'submit_date', 'type' => 'range'],
             'cs' => ['field' => 'beatmaps.diff_size', 'type' => 'range'],
             'difficultyRating' => ['field' => 'beatmaps.difficultyrating', 'type' => 'range'],
             'drain' => ['field' => 'beatmaps.diff_drain', 'type' => 'range'],
