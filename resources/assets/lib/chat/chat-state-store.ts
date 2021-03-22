@@ -6,12 +6,13 @@ import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatchListener } from 'app-dispatcher';
+import DispatchListener from 'dispatch-listener';
 import { clamp } from 'lodash';
 import { action, computed, makeObservable, observable, observe } from 'mobx';
 import ChannelStore from 'stores/channel-store';
 
 @dispatchListener
-export default class ChatStateStore {
+export default class ChatStateStore implements DispatchListener {
   @observable autoScroll = false;
   @observable selectedBoxed = observable.box(0);
   private selectedIndex = 0;
