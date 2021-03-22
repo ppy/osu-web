@@ -68,7 +68,6 @@ return [
         'channel_limit' => get_int(env('CHAT_CHANNEL_LIMIT')) ?? 10000,
         'message_length_limit' => get_int(env('CHAT_MESSAGE_LENGTH_LIMIT')) ?? 100,
         'public_backlog_limit' => get_int(env('CHAT_PUBLIC_BACKLOG_LIMIT_HOURS')) ?? 24,
-        'queue_name' => presence(env('CHAT_QUEUE'), 'notification'), // use notification queue if no chat queue set.
         'rate_limits' => [
             'public' => [
                 'limit' => get_int(env('CHAT_PUBLIC_LIMIT')) ?? 1,

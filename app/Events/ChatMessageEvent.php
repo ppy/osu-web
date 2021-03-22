@@ -9,23 +9,16 @@ use App\Models\Chat\Message;
 use App\Models\User;
 use App\Transformers\Chat\MessageTransformer;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class ChatMessageEvent implements ShouldBroadcast
+class ChatMessageEvent implements ShouldBroadcastNow
 {
-    use SerializesModels;
-
-    public $broadcastQueue;
     public $message;
     public $sender;
 
     // TODO: just get sender from message?
     public function __construct(Message $message, User $sender)
     {
-        $this->broadcastQueue = config('osu.chat.queue_name');
-
-        // TODO: avoid serializing so handle doesn't need to perform queries to deserialize.
         $this->message = $message;
         $this->sender = $sender;
     }

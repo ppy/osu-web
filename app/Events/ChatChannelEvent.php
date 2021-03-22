@@ -9,24 +9,17 @@ use App\Models\Chat\Channel as ChatChannel;
 use App\Models\User;
 use App\Transformers\Chat\ChannelTransformer;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class ChatChannelEvent implements ShouldBroadcast
+class ChatChannelEvent implements ShouldBroadcastNow
 {
-    use SerializesModels;
-
-    public $broadcastQueue;
     public $action;
     public $channel;
     public $user;
 
     public function __construct(ChatChannel $channel, User $user, string $action)
     {
-        $this->broadcastQueue = config('osu.chat.queue_name');
-
         $this->action = $action;
-        // TODO: don't seralize laravel model to skip lookup.
         $this->channel = $channel;
         $this->user = $user;
     }
