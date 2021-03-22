@@ -19,7 +19,7 @@ export class OwnClient extends React.Component<Props> {
     if (!confirm(osu.trans('oauth.own_clients.confirm_delete'))) return;
 
     this.props.client.delete().catch(osu.ajaxError);
-  }
+  };
 
   render() {
     const client = this.props.client;
@@ -57,5 +57,5 @@ export class OwnClient extends React.Component<Props> {
 
   showClientDetails = () => {
     uiState.account.client = this.props.client;
-  }
+  };
 }

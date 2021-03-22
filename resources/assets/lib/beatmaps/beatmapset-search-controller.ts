@@ -13,10 +13,10 @@ export interface SearchStatus {
   from: number;
   restore?: boolean;
   state: 'completed' // search not doing anything
-    | 'input'        // receiving input but not searching
-    | 'paging'       // getting more pages
-    | 'searching'    // actually doing a search
-    ;
+  | 'input'        // receiving input but not searching
+  | 'paging'       // getting more pages
+  | 'searching'    // actually doing a search
+  ;
 }
 
 export class BeatmapsetSearchController {
@@ -155,7 +155,7 @@ export class BeatmapsetSearchController {
     if (change.name !== 'query') {
       this.debouncedFilterChangedSearch.flush();
     }
-  }
+  };
 
   private filterChangedSearch() {
     const url = route('beatmapsets.index', this.filters.queryParams);

@@ -58,5 +58,5 @@ export default class ForumPostReport extends React.Component<Record<string, neve
         this.reportRef.current.showForm();
       }
     });
-  }
+  };
 }

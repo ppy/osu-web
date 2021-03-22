@@ -9,7 +9,7 @@ import * as React from 'react';
 import { SupporterIcon } from 'supporter-icon';
 import UserGroupBadges from 'user-group-badges';
 
-export default function User({ user, modifiers = [] }: { modifiers?: string[], user: UserJson }) {
+export default function User({ user, modifiers = [] }: { modifiers?: string[]; user: UserJson }) {
   const url = route('users.show', { user: user.id });
 
   return (
@@ -34,7 +34,7 @@ export default function User({ user, modifiers = [] }: { modifiers?: string[], u
             </div>
           ) : null}
 
-        <UserGroupBadges groups={user.groups} short={true} wrapper='user-search-card__col user-search-card__col--icon' />
+        <UserGroupBadges groups={user.groups} short wrapper='user-search-card__col user-search-card__col--icon' />
 
         <div className='user-search-card__col user-search-card__col--icon'>
           <FriendButton userId={user.id} modifiers={['quick-search']} />

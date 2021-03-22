@@ -67,7 +67,7 @@ export default class Item extends React.Component<Props> {
     if (this.props.markRead != null) {
       this.props.markRead();
     }
-  }
+  };
 
   private renderCategory() {
     if (!this.props.withCategory) {
@@ -105,13 +105,11 @@ export default class Item extends React.Component<Props> {
       return null;
     }
 
-    return this.props.icons.map((icon) => {
-      return (
-        <div key={icon} className='notification-popup-item__cover-icon'>
-          <span className={icon} />
-        </div>
-      );
-    });
+    return this.props.icons.map((icon) => (
+      <div key={icon} className='notification-popup-item__cover-icon'>
+        <span className={icon} />
+      </div>
+    ));
   }
 
   private renderDeleteButton() {

@@ -12,9 +12,9 @@ export default class UserLoginObserver {
 
   userLogin = () => {
     dispatch(new UserLoginAction());
-  }
+  };
 
   userLogout = () => {
     dispatch(new UserLogoutAction());
-  }
+  };
 }

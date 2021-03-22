@@ -67,13 +67,13 @@ export default function Main(props: Props) {
           const initialExpand = first;
           first = false;
 
-          return <MonthListing
+          return (<MonthListing
             currentPost={props.currentPost}
             date={date}
             initialExpand={initialExpand}
             key={key}
             posts={groupedPosts[key]}
-          />;
+          />);
         })}
       </div>
     </div>

@@ -119,11 +119,9 @@ export class Store {
   }
 
   private collectShopifyItems() {
-    return $('.js-store-order-item').map((_, element) => {
-      return {
-        quantity: Number(element.dataset.quantity),
-        variantId: toShopifyVariantGid(element.dataset.shopifyId),
-      };
-    }).get();
+    return $('.js-store-order-item').map((_, element) => ({
+      quantity: Number(element.dataset.quantity),
+      variantId: toShopifyVariantGid(element.dataset.shopifyId),
+    })).get();
   }
 }

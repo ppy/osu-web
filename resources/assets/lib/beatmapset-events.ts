@@ -3,12 +3,10 @@
 
 import Events from 'beatmap-discussions/events';
 
-reactTurbolinks.register('beatmap-discussion-events', Events, (container: HTMLElement) => {
-  return {
-    container,
-    discussions: osu.parseJson('json-discussions'),
-    events: osu.parseJson('json-events'),
-    posts: osu.parseJson('json-posts'),
-    users: osu.parseJson('json-users'),
-  };
-});
+reactTurbolinks.register('beatmap-discussion-events', Events, (container: HTMLElement) => ({
+  container,
+  discussions: osu.parseJson('json-discussions'),
+  events: osu.parseJson('json-events'),
+  posts: osu.parseJson('json-posts'),
+  users: osu.parseJson('json-users'),
+}));

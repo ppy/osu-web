@@ -34,13 +34,13 @@ export class WikiSearch extends React.Component {
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.controller.updateQuery(event.target.value);
-  }
+  };
 
   handleEsc = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       this.controller.unselect(true);
     }
-  }
+  };
 
   handleKeyDown = (e: React.KeyboardEvent) => {
     const key = e.key;
@@ -55,7 +55,7 @@ export class WikiSearch extends React.Component {
       this.keepSelectionInView = true;
       this.controller.shiftSelectedIndex(key === 'ArrowDown' ? 1 : -1);
     }
-  }
+  };
 
   handleMouseDown = (e: MouseEvent) => {
     if (this.ref.current == null) return;
@@ -63,22 +63,22 @@ export class WikiSearch extends React.Component {
     if (!e.composedPath().includes(this.ref.current)) {
       this.controller.unselect(true);
     }
-  }
+  };
 
   handleMouseLeave = () => {
     this.controller.unselect(false);
-  }
+  };
 
   handleSearch = () => {
     this.controller.search();
-  }
+  };
 
   render() {
     return (
       <div className='wiki-search'>
         <div className='wiki-search__bar'>
           <input
-            autoFocus={true}
+            autoFocus
             className='wiki-search__input'
             value={this.controller.displayText}
             onChange={this.handleChange}

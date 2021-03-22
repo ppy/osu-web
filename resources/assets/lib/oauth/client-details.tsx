@@ -35,7 +35,7 @@ export class ClientDetails extends React.Component<Props, State> {
   @action
   handleClose = () => {
     uiState.account.client = null;
-  }
+  };
 
   @action
   handleDelete = () => {
@@ -45,7 +45,7 @@ export class ClientDetails extends React.Component<Props, State> {
     this.props.client.delete().then(() => {
       uiState.account.client = null;
     });
-  }
+  };
 
   @action
   handleInputChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
@@ -55,7 +55,7 @@ export class ClientDetails extends React.Component<Props, State> {
     this.setState({
       [name]: value,
     });
-  }
+  };
 
   @action
   handleReset = () => {
@@ -63,14 +63,14 @@ export class ClientDetails extends React.Component<Props, State> {
     if (this.props.client.isResetting) return;
 
     this.props.client.resetSecret()
-    .then(() => this.setState({ isSecretVisible: true }))
-    .catch(osu.ajaxError);
-  }
+      .then(() => this.setState({ isSecretVisible: true }))
+      .catch(osu.ajaxError);
+  };
 
   @action
   handleToggleSecret = () => {
     this.setState({ isSecretVisible: !this.state.isSecretVisible });
-  }
+  };
 
   @action
   handleUpdate = () => {
@@ -78,7 +78,7 @@ export class ClientDetails extends React.Component<Props, State> {
     this.props.client.updateWith(this.state).then(() => {
       this.errors.clear();
     }).catch(this.errors.handleResponse);
-  }
+  };
 
   render() {
     return (
@@ -106,7 +106,7 @@ export class ClientDetails extends React.Component<Props, State> {
               onClick={this.handleToggleSecret}
               type='button'
             >
-                {osu.trans(`oauth.client.secret_visible.${this.state.isSecretVisible}`)}
+              {osu.trans(`oauth.client.secret_visible.${this.state.isSecretVisible}`)}
             </button>
             <button
               className='btn-osu-big btn-osu-big--danger'
@@ -114,7 +114,7 @@ export class ClientDetails extends React.Component<Props, State> {
               onClick={this.handleReset}
               type='button'
             >
-                {this.props.client.isResetting ? <Spinner /> : osu.trans('oauth.client.reset')}
+              {this.props.client.isResetting ? <Spinner /> : osu.trans('oauth.client.reset')}
             </button>
           </div>
         </div>

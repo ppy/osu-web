@@ -7,7 +7,7 @@ import { route } from 'laroute';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
 
-export default function Beatmapset({ beatmapset, modifiers = [] }: { beatmapset: BeatmapsetJson, modifiers?: string[] }) {
+export default function Beatmapset({ beatmapset, modifiers = [] }: { beatmapset: BeatmapsetJson; modifiers?: string[] }) {
   const url = route('beatmapsets.show', { beatmapset: beatmapset.id });
 
   return (

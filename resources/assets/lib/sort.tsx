@@ -36,8 +36,8 @@ export class Sort extends React.PureComponent<Props> {
           {/* FIXME: add icon support */}
           {value === 'rank'
             ? <span>
-                <i className={`fas fa-extra-mode-${currentUser.playmode ?? 'osu'}`} /> {osu.trans('sort.rank')}
-              </span>
+              <i className={`fas fa-extra-mode-${currentUser.playmode ?? 'osu'}`} /> {osu.trans('sort.rank')}
+            </span>
             : osu.trans(`${this.props.transPrefix}${value}`)
           }
         </button>

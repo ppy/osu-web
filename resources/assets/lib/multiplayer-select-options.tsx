@@ -40,22 +40,20 @@ export default class MultiplayerSelectOptions extends React.PureComponent<Props>
 
   private handleChange = (option: Option<number>) => {
     osu.navigate(this.href(option.id));
-  }
+  };
 
   private href(id: number | null) {
     return route('multiplayer.rooms.show', { room: id ?? 'latest' });
   }
 
-  private renderOption = (props: OptionRenderProps<number>) => {
-    return (
-      <a
-        className={props.cssClasses}
-        href={this.href(props.option.id)}
-        key={props.option.id ?? -1}
-        onClick={props.onClick}
-      >
-        {props.children}
-      </a>
-    );
-  }
+  private renderOption = (props: OptionRenderProps<number>) => (
+    <a
+      className={props.cssClasses}
+      href={this.href(props.option.id)}
+      key={props.option.id ?? -1}
+      onClick={props.onClick}
+    >
+      {props.children}
+    </a>
+  );
 }

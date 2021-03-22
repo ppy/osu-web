@@ -47,5 +47,5 @@ export class FormErrors {
     for (const key of Object.keys(errors)) {
       this.errors.set(key, errors[key]);
     }
-  }
+  };
 }

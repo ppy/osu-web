@@ -24,7 +24,7 @@ export class NewClient extends React.Component {
   handleCancel = () => {
     uiState.account.newClientVisible = false;
     uiState.account.isCreatingNewClient = false;
-  }
+  };
 
   handleInputChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
@@ -33,7 +33,7 @@ export class NewClient extends React.Component {
     this.setState({
       [name]: value,
     });
-  }
+  };
 
   @action
   handleSubmit = () => {
@@ -52,10 +52,10 @@ export class NewClient extends React.Component {
       uiState.account.newClientVisible = false;
       uiState.account.client = client;
     }).catch(this.errors.handleResponse)
-    .always(() => {
-      uiState.account.isCreatingNewClient = false;
-    });
-  }
+      .always(() => {
+        uiState.account.isCreatingNewClient = false;
+      });
+  };
 
   render() {
     const link = (
@@ -68,47 +68,43 @@ export class NewClient extends React.Component {
     );
 
     return (
-        <div className='oauth-client-details'>
-          <div className='oauth-client-details__header'>
-            {osu.trans('oauth.new_client.header')}
+      <div className='oauth-client-details'>
+        <div className='oauth-client-details__header'>
+          {osu.trans('oauth.new_client.header')}
+        </div>
+
+        <form className='oauth-client-details__content' autoComplete='off'>
+          {this.renderRemainingErrors()}
+
+          {NewClient.inputFields.map((name) => (
+            <div className='oauth-client-details__group' key={name}>
+              <div className='oauth-client-details__label'>{osu.trans(`oauth.client.${name}`)}</div>
+              <ValidatingInput
+                blockName='oauth-client-details'
+                errors={this.errors}
+                name={name}
+                onChange={this.handleInputChange}
+                type='text'
+              />
+            </div>
+          ))}
+
+          <div>
+            <StringWithComponent pattern={osu.trans('oauth.new_client.terms_of_use._')} mappings={{ ':link': link }} />
           </div>
 
-          <form className='oauth-client-details__content' autoComplete='off'>
-            {this.renderRemainingErrors()}
-
-            {NewClient.inputFields.map((name) => {
-              return (
-                <div className='oauth-client-details__group' key={name}>
-                  <div className='oauth-client-details__label'>{osu.trans(`oauth.client.${name}`)}</div>
-                  <ValidatingInput
-                    blockName='oauth-client-details'
-                    errors={this.errors}
-                    name={name}
-                    onChange={this.handleInputChange}
-                    type='text'
-                  />
-                </div>
-              );
-            })}
-
-            <div>
-              <StringWithComponent pattern={osu.trans('oauth.new_client.terms_of_use._')} mappings={{ ':link': link }} />
-            </div>
-
-            <div className='oauth-client-details__buttons'>
-              <button className='btn-osu-big' type='button' onClick={this.handleSubmit}>
-                {uiState.account.isCreatingNewClient ? <Spinner /> : osu.trans('oauth.new_client.register')}
-              </button>
-              <button className='btn-osu-big' type='button' onClick={this.handleCancel}>{osu.trans('common.buttons.cancel')}</button>
-            </div>
-          </form>
-        </div>
+          <div className='oauth-client-details__buttons'>
+            <button className='btn-osu-big' type='button' onClick={this.handleSubmit}>
+              {uiState.account.isCreatingNewClient ? <Spinner /> : osu.trans('oauth.new_client.register')}
+            </button>
+            <button className='btn-osu-big' type='button' onClick={this.handleCancel}>{osu.trans('common.buttons.cancel')}</button>
+          </div>
+        </form>
+      </div>
     );
   }
 
   renderRemainingErrors() {
-    return this.errors.except(NewClient.inputFields).map((error, index) => {
-      return <div className='oauth-client-details__error' key={index}>{error}</div>;
-    });
+    return this.errors.except(NewClient.inputFields).map((error, index) => <div className='oauth-client-details__error' key={index}>{error}</div>);
   }
 }

@@ -162,7 +162,7 @@ export class UserCardTooltip extends React.PureComponent<Props, State> {
     if (key == null && !inCard) {
       $(`.${userCardTooltipClass}`).qtip('hide');
     }
-  }
+  };
 
   componentDidMount() {
     this.getUser().then((user) => {

@@ -17,9 +17,9 @@ export interface NotificationEventNewJson {
 
 export interface NotificationEventDeleteJson {
   data: {
-    notifications: NotificationIdentityJson[],
-    read_count: number,
-    timestamp: string,
+    notifications: NotificationIdentityJson[];
+    read_count: number;
+    timestamp: string;
   };
   event: 'delete';
 }
@@ -30,9 +30,9 @@ export interface NotificationEventMoreLoadedContext {
 
 export interface NotificationEventReadJson {
   data: {
-    notifications: NotificationIdentityJson[],
-    read_count: number,
-    timestamp: string,
+    notifications: NotificationIdentityJson[];
+    read_count: number;
+    timestamp: string;
   };
   event: 'read';
 }

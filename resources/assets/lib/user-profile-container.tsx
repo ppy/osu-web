@@ -65,5 +65,5 @@ export default class UserProfileContainer extends React.PureComponent<Props, Sta
 
   private handleClick = () => {
     this.setState({ forceShow: !this.state.forceShow });
-  }
+  };
 }
