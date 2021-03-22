@@ -33,7 +33,19 @@ class BeatmapsetSearch extends RecordSearch
      */
     public function getQuery()
     {
-        static $partialMatchFields = ['artist', 'artist.*', 'artist_unicode', 'creator', 'title', 'title.raw', 'title.*', 'title_unicode', 'tags^0.5'];
+        static $partialMatchFields = [
+            'artist',
+            'artist.*',
+            'artist_unicode',
+            'artist_unicode.*',
+            'creator',
+            'title',
+            'title.raw',
+            'title.*',
+            'title_unicode',
+            'title_unicode.*',
+            'tags^0.5',
+        ];
 
         $query = new BoolQuery();
 
@@ -68,6 +80,8 @@ class BeatmapsetSearch extends RecordSearch
         $this->addRecommendedFilter($nested);
 
         $this->addSimpleFilters($query, $nested);
+        $this->addTextFilter($query, 'artist', ['artist', 'artist_unicode']);
+        $this->addTextFilter($query, 'creator', ['creator']);
 
         $query->filter([
             'nested' => [
@@ -220,9 +234,7 @@ class BeatmapsetSearch extends RecordSearch
     {
         static $filters = [
             'ar' => ['field' => 'beatmaps.diff_approach', 'type' => 'range'],
-            'artist' => ['field' => 'artist', 'type' => 'term'],
             'bpm' => ['field' => 'bpm', 'type' => 'range'],
-            'creator' => ['field' => 'creator', 'type' => 'term'],
             'cs' => ['field' => 'beatmaps.diff_size', 'type' => 'range'],
             'difficultyRating' => ['field' => 'beatmaps.difficultyrating', 'type' => 'range'],
             'drain' => ['field' => 'beatmaps.diff_drain', 'type' => 'range'],
@@ -291,6 +303,29 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         $mainQuery->filter($query);
+    }
+
+    private function addTextFilter($query, $paramField, $fields)
+    {
+        $value = $this->params->$paramField;
+
+        if (!present($value)) {
+            return;
+        }
+
+        $subQuery = (new BoolQuery())->shouldMatch(1);
+
+        $searchFields = [];
+        foreach ($fields as $field) {
+            $searchFields[] = $field;
+            $searchFields[] = "{$field}.*";
+
+            $subQuery->should(['term' => ["{$field}.raw" => ['value' => $value, 'boost' => 100]]]);
+        }
+
+        $subQuery->should(QueryHelper::queryString($value, $searchFields, 'and'));
+
+        $query->must($subQuery);
     }
 
     private function getPlayedBeatmapIds(?array $rank = null)
