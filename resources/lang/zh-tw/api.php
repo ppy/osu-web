@@ -20,6 +20,10 @@ return [
             'write' => '',
         ],
 
+        'forum' => [
+            'write' => '',
+        ],
+
         'friends' => [
             'read' => '查看您追蹤的玩家們。',
         ],

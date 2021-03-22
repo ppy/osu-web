@@ -250,7 +250,7 @@ return [
     ],
     'general' => [
         'converts' => 'コンバートビートマップを含める',
-        'follows' => '',
+        'follows' => '購読中のマッパー',
         'recommended' => '推奨難易度',
     ],
     'mode' => [
