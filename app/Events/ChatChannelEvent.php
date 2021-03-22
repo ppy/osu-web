@@ -23,8 +23,7 @@ class ChatChannelEvent implements ShouldBroadcast
 
     public function __construct(ChatChannel $channel, User $user, string $action)
     {
-        // TODO: different queue? conditional queue?
-        $this->broadcastQueue = config('osu.notification.queue_name');
+        $this->broadcastQueue = config('osu.chat.queue_name');
 
         $this->action = $action;
         // TODO: don't seralize laravel model to skip lookup.

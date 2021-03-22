@@ -23,8 +23,7 @@ class ChatMessageEvent implements ShouldBroadcast
     // TODO: just get sender from message?
     public function __construct(Message $message, User $sender)
     {
-        // TODO: different queue? conditional queue?
-        $this->broadcastQueue = config('osu.notification.queue_name');
+        $this->broadcastQueue = config('osu.chat.queue_name');
 
         // TODO: avoid serializing so handle doesn't need to perform queries to deserialize.
         $this->message = $message;
