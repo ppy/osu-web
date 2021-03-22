@@ -305,7 +305,7 @@ class BeatmapsetSearch extends RecordSearch
         $mainQuery->filter($query);
     }
 
-    private function addTextFilter($query, $paramField, $fields)
+    private function addTextFilter(BoolQuery $query, string $paramField, array $fields): void
     {
         $value = $this->params->$paramField;
 
