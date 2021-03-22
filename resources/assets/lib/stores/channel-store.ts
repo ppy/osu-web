@@ -8,6 +8,8 @@ import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import ChatAPI from 'chat/chat-api';
+import { ChatChannelNewMessagesEvent, ChatMessageNewEvent } from 'chat/chat-events';
+import DispatchListener from 'dispatch-listener';
 import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
 import ChatUpdatesJson from 'interfaces/chat/chat-updates-json';
 import MessageJson from 'interfaces/chat/message-json';
@@ -21,7 +23,7 @@ import UserStore from './user-store';
 const skippedChannelTypes = new Set<ChannelType>(['MULTIPLAYER', 'TEMPORARY']);
 
 @dispatchListener
-export default class ChannelStore {
+export default class ChannelStore implements DispatchListener {
   @observable channels = observable.map<number, Channel>();
   lastPolledMessageId = 0;
 
@@ -129,7 +131,11 @@ export default class ChannelStore {
   }
 
   handleDispatchAction(event: DispatcherAction) {
-    if (event instanceof ChatMessageSendAction) {
+    if (event instanceof ChatChannelNewMessagesEvent) {
+      this.handleChatChannelNewMessages(event.channelId, event.json);
+    } else if (event instanceof ChatMessageNewEvent) {
+      this.handleChatMessageNewEvent(event);
+    } else if (event instanceof ChatMessageSendAction) {
       this.handleChatMessageSendAction(event);
     }
   }
@@ -266,7 +272,15 @@ export default class ChannelStore {
     }
 
     channel.addMessages(messages);
-    channel.loaded = true;
+  }
+
+  @action
+  private handleChatMessageNewEvent(event: ChatMessageNewEvent) {
+
+    const channel = this.channels.get(event.message.channelId);
+    if (channel == null) return;
+
+    channel.addMessages([event.message]);
   }
 
   @action

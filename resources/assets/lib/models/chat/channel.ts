@@ -21,8 +21,6 @@ export default class Channel {
   @observable icon?: string;
   @observable inputText = '';
   @observable lastReadId?: number;
-  @observable loaded = false;
-  @observable loading = false;
   @observable loadingEarlierMessages = false;
   @observable loadingState = {
     // null: not loaded
@@ -78,6 +76,17 @@ export default class Channel {
   @computed
   get isDisplayable() {
     return this.name.length > 0 && this.icon != null;
+  }
+
+  @computed
+  get loaded() {
+    console.log(this.loadingState.messages, this.loadingState.metadata);
+    return this.loadingState.messages && this.loadingState.metadata;
+  }
+
+  @computed
+  get loading() {
+    return this.loadingState.messages == false || this.loadingState.metadata == false;
   }
 
   @computed
@@ -160,11 +169,12 @@ export default class Channel {
 
     try {
       const response = await api.getMessages(this.channelId);
-      dispatch(new ChatChannelNewMessagesEvent(this.channelId, response));
-    } finally {
       runInAction(() => {
+        dispatch(new ChatChannelNewMessagesEvent(this.channelId, response));
         this.loadingState.messages = true;
       });
+    } catch {
+      // TODO: revert state
     }
   }
 
@@ -173,14 +183,16 @@ export default class Channel {
     if (this.loadingState.metadata != null) return;
 
     this.loadingState.metadata = false;
-    const response = await api.getChannel(this.channelId);
 
     try {
-      this.updateWithJson(response.channel);
-    } finally {
+      const response = await api.getChannel(this.channelId);
+
       runInAction(() => {
+        this.updateWithJson(response.channel);
         this.loadingState.metadata = true;
       });
+    } catch {
+      // TODO: revert state
     }
   }
 
