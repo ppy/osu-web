@@ -16,42 +16,43 @@ class BeatmapsetQueryParser
         // reference: https://github.com/ppy/osu/blob/f6baf49ad6b42c662a729ad05e18bd99bc48b4c7/osu.Game/Screens/Select/FilterQueryParser.cs
         $keywords = preg_replace_callback('#\b(?<key>\w+)(?<op>(:|=|(>|<)(:|=)?))(?<value>(".*")|(\S*))#i', function ($m) use (&$options) {
             $key = strtolower($m['key']);
+            $op = str_replace(':', '=', $m['op']);
             switch ($key) {
                 case 'stars':
-                    $option = static::makeFloatRangeOption($m['op'], $m['value'], 0.01 / 2);
+                    $option = static::makeFloatRangeOption($op, $m['value'], 0.01 / 2);
                     break;
                 case 'ar':
-                    $option = static::makeFloatRangeOption($m['op'], $m['value'], 0.1 / 2);
+                    $option = static::makeFloatRangeOption($op, $m['value'], 0.1 / 2);
                     break;
                 case 'dr':
                 case 'hp':
                     $key = 'dr';
-                    $option = static::makeFloatRangeOption($m['op'], $m['value'], 0.1 / 2);
+                    $option = static::makeFloatRangeOption($op, $m['value'], 0.1 / 2);
                     break;
                 case 'cs':
-                    $option = static::makeFloatRangeOption($m['op'], $m['value'], 0.1 / 2);
+                    $option = static::makeFloatRangeOption($op, $m['value'], 0.1 / 2);
                     break;
                 case 'bpm':
-                    $option = static::makeFloatRangeOption($m['op'], $m['value'], 0.01 / 2);
+                    $option = static::makeFloatRangeOption($op, $m['value'], 0.01 / 2);
                     break;
                 case 'length':
                     $parsed = static::parseLength($m['value']);
-                    $option = static::makeFloatRangeOption($m['op'], $parsed['value'], $parsed['scale'] / 2.0);
+                    $option = static::makeFloatRangeOption($op, $parsed['value'], $parsed['scale'] / 2.0);
                     break;
                 case 'keys':
-                    $option = static::makeIntRangeOption($m['op'], $m['value']);
+                    $option = static::makeIntRangeOption($op, $m['value']);
                     break;
                 case 'divisor':
-                    $option = static::makeIntRangeOption($m['op'], $m['value']);
+                    $option = static::makeIntRangeOption($op, $m['value']);
                     break;
                 case 'status':
-                    $option = static::makeIntRangeOption($m['op'], Beatmapset::STATES[$m['value']] ?? null);
+                    $option = static::makeIntRangeOption($op, Beatmapset::STATES[$m['value']] ?? null);
                     break;
                 case 'creator':
-                    $option = static::makeTextOption($m['op'], $m['value']);
+                    $option = static::makeTextOption($op, $m['value']);
                     break;
                 case 'artist':
-                    $option = static::makeTextOption($m['op'], $m['value']);
+                    $option = static::makeTextOption($op, $m['value']);
                     break;
             }
 
@@ -88,7 +89,6 @@ class BeatmapsetQueryParser
 
         switch ($operator) {
             case '=':
-            case ':':
                 return [
                     'gte' => $value - $tolerance,
                     'lte' => $value + $tolerance,
@@ -98,7 +98,6 @@ class BeatmapsetQueryParser
                     'lte' => $value - $tolerance,
                 ];
             case '<=':
-            case '<:':
                 return [
                     'lte' => $value + $tolerance,
                 ];
@@ -107,7 +106,6 @@ class BeatmapsetQueryParser
                     'gte' => $value + $tolerance,
                 ];
             case '>=':
-            case '>:':
                 return [
                     'gte' => $value - $tolerance,
                 ];
@@ -124,7 +122,6 @@ class BeatmapsetQueryParser
 
         switch ($operator) {
             case '=':
-            case ':':
                 return [
                     'gte' => $value,
                     'lte' => $value,
@@ -134,7 +131,6 @@ class BeatmapsetQueryParser
                     'lt' => $value,
                 ];
             case '<=':
-            case '<:':
                 return [
                     'lte' => $value,
                 ];
@@ -143,7 +139,6 @@ class BeatmapsetQueryParser
                     'gt' => $value,
                 ];
             case '>=':
-            case '>:':
                 return [
                     'gte' => $value,
                 ];
@@ -152,7 +147,7 @@ class BeatmapsetQueryParser
 
     private static function makeTextOption($operator, $value)
     {
-        if ($operator === ':' || $operator === '=') {
+        if ($operator === '=') {
             return presence(trim($value, '"'));
         }
     }
