@@ -13,13 +13,28 @@
         "artist": {
           "type": "text",
           "fields": {
+            "_prefix": {
+              "type": "text",
+              "analyzer": "prefix",
+              "search_analyzer": "standard"
+            },
             "raw": {
               "type": "keyword"
             }
           }
         },
         "artist_unicode": {
-          "type": "text"
+          "type": "text",
+          "fields": {
+            "_prefix": {
+              "type": "text",
+              "analyzer": "prefix",
+              "search_analyzer": "standard"
+            },
+            "raw": {
+              "type": "keyword"
+            }
+          }
         },
         "beatmaps": {
           "dynamic": false,
@@ -84,6 +99,11 @@
         "creator": {
           "type": "text",
           "fields": {
+            "_prefix": {
+              "type": "text",
+              "analyzer": "prefix",
+              "search_analyzer": "standard"
+            },
             "raw": {
               "type": "keyword"
             }
@@ -189,7 +209,17 @@
           }
         },
         "title_unicode": {
-          "type": "text"
+          "type": "text",
+          "fields": {
+            "_prefix": {
+              "type": "text",
+              "analyzer": "prefix",
+              "search_analyzer": "standard"
+            },
+            "raw": {
+              "type": "keyword"
+            }
+          }
         },
         "user_id": {
           "type": "long"
