@@ -92,8 +92,14 @@
         "difficulties": {
           "dynamic": false,
           "properties": {
+            "beatmap_id": {
+              "type": "long"
+            },
             "playmode": {
               "type": "long"
+            },
+            "version": {
+              "type": "text"
             }
           }
         },
