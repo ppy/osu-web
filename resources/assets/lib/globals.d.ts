@@ -67,7 +67,7 @@ interface JQueryStatic {
   unsubscribe: (eventName: string) => void;
 }
 
-type AjaxError = (xhr: JQueryXHR) => void;
+type AjaxError = (xhr: JQuery.jqXHR) => void;
 
 interface OsuCommon {
   ajaxError: AjaxError;
@@ -85,7 +85,7 @@ interface OsuCommon {
   popupShowing: () => boolean;
   presence: (str?: string | null) => string | null;
   present: (str?: string | null) => boolean;
-  promisify: (xhr: JQueryXHR) => Promise<any>;
+  promisify: (xhr: JQuery.jqXHR) => Promise<any>;
   reloadPage: () => void;
   timeago: (time?: string) => string;
   trans: (...args: any[]) => string;
@@ -95,7 +95,7 @@ interface OsuCommon {
   urlPresence: (url?: string | null) => string;
   urlRegex: RegExp;
   uuid: () => string;
-  xhrErrorMessage: (xhr: JQueryXHR) => string;
+  xhrErrorMessage: (xhr: JQuery.jqXHR) => string;
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
   isDesktop(): boolean;

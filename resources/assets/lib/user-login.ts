@@ -45,7 +45,7 @@ export default class UserLogin {
     }, 0);
   }
 
-  showOnError = (e: { target?: unknown }, xhr: JQueryXHR) => {
+  showOnError = (e: { target?: unknown }, xhr: JQuery.jqXHR) => {
     if (xhr.status !== 401 || xhr.responseJSON?.authentication !== 'basic') {
       return false;
     }
@@ -65,7 +65,7 @@ export default class UserLogin {
     $('.js-login-form--error').text('');
   }
 
-  private loginError = (e: JQuery.Event, xhr: JQueryXHR) => {
+  private loginError = (e: JQuery.Event, xhr: JQuery.jqXHR) => {
     e.preventDefault();
     e.stopPropagation();
     $('.js-login-form--error').text(osu.xhrErrorMessage(xhr));
