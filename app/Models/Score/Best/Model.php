@@ -12,6 +12,7 @@ use App\Models\ReplayViewCount;
 use App\Models\Reportable;
 use App\Models\Score\Model as BaseModel;
 use App\Models\User;
+use App\Traits\WithDbCursorHelper;
 use Datadog;
 use DB;
 use Exception;
@@ -22,7 +23,7 @@ use GuzzleHttp\Client;
  */
 abstract class Model extends BaseModel
 {
-    use Reportable;
+    use Reportable, WithDbCursorHelper;
 
     public $position = null;
     public $weight = null;
@@ -32,6 +33,15 @@ abstract class Model extends BaseModel
         'forListing',
         'userBest',
     ];
+
+    const SORTS = [
+        'score_asc' => [
+            ['column' => 'score', 'order' => 'ASC'],
+            ['column' => 'score_id', 'columnInput' => 'id', 'order' => 'DESC'],
+        ],
+    ];
+
+    const DEFAULT_SORT = 'score_asc';
 
     const RANK_TO_STATS_COLUMN_MAPPING = [
         'A' => 'a_rank_count',
@@ -123,9 +133,9 @@ abstract class Model extends BaseModel
 
         $query = static
             ::where('beatmap_id', '=', $this->beatmap_id)
-            ->cursorWhere([
-                ['column' => 'score', 'order' => 'ASC', 'value' => $this->score],
-                ['column' => 'score_id', 'order' => 'DESC', 'value' => $this->getKey()],
+            ->cursorSort('score_asc', [
+                'score' => $this->score,
+                'id' => $this->getKey(),
             ]);
 
         if (isset($options['type'])) {

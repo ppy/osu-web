@@ -12,23 +12,23 @@ interface ProcessEnv {
   [key: string]: string | undefined;
 }
 
-declare var process: Process;
+declare const process: Process;
 
 // TODO: Turbolinks 5.3 is Typescript, so this should be updated then.
-declare var Turbolinks: import('turbolinks').default;
+declare const Turbolinks: import('turbolinks').default;
 
 // our helpers
-declare var tooltipDefault: TooltipDefault;
-declare var osu: OsuCommon;
-declare var currentUser: import('interfaces/current-user').default;
-declare var reactTurbolinks: any;
-declare var userVerification: any;
+declare const tooltipDefault: TooltipDefault;
+declare const osu: OsuCommon;
+declare const currentUser: import('interfaces/current-user').default;
+declare const reactTurbolinks: any;
+declare const userVerification: any;
 
 // external (to typescript) classes
-declare var BeatmapsetFilter: any;
-declare var BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
-declare var LoadingOverlay: any;
-declare var Timeout: any;
+declare const BeatmapsetFilter: import('interfaces/beatmapset-filter-class').default;
+declare const BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
+declare const LoadingOverlay: any;
+declare const Timeout: any;
 declare const Lang: LangClass;
 declare const fallbackLocale: string;
 declare const currentLocale: string;
@@ -79,7 +79,7 @@ interface OsuCommon {
   jsonClone: (obj: any) => any;
   link: (url: string, text: string, options?: OsuLinkOptions) => string;
   linkify: (text: string, newWindow?: boolean) => string;
-  navigate: (url: string, keepScroll?: boolean, action?: object) => void;
+  navigate: (url: string, keepScroll?: boolean, action?: Record<string, unknown>) => void;
   popup: (message: string, type: string) => void;
   popupShowing: () => boolean;
   presence: (str?: string | null) => string | null;

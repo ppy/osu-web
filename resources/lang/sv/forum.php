@@ -92,8 +92,8 @@ return [
         'started_by_verbose' => 'startad av :user',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Ta bort ämne',
+            'restore' => 'Återställ ämne',
         ],
 
         'create' => [

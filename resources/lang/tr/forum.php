@@ -75,8 +75,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => 'Gerçekten konuyu silmek istiyor musun?',
-        'confirm_restore' => 'Gerçekten konu geri yüklensin mi?',
+        'confirm_destroy' => 'Konu gerçekten silinsin mi?',
+        'confirm_restore' => 'Konu gerçekten geri yüklensin mi?',
         'deleted' => 'silinmiş konu',
         'go_to_latest' => 'son yazılan mesajı göster',
         'has_replied' => 'Bu konuyu yanıtladınız',

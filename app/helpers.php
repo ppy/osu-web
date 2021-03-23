@@ -1159,9 +1159,13 @@ function fast_imagesize($url)
     }
 }
 
-function get_arr($input, $callback)
+function get_arr($input, $callback = null)
 {
     if (is_array($input)) {
+        if ($callback === null) {
+            return $input;
+        }
+
         $result = [];
         foreach ($input as $value) {
             $casted = call_user_func($callback, $value);
