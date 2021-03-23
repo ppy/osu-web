@@ -6,6 +6,7 @@ import { Stats } from './stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
 import { BigButton } from 'big-button'
 import { route } from 'laroute'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
@@ -284,6 +285,6 @@ export class Header extends React.Component
 
   toggleFavourite: (e) ->
     if !currentUser.id?
-      userLogin.show e.target
+      core.userLogin.show e.target
     else
       $.publish 'beatmapset:favourite:toggle'

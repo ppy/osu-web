@@ -1,107 +1,140 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-class @UserLogin
+import Captcha from 'captcha';
+import UserJson from 'interfaces/user-json';
+import * as Cookies from 'js-cookie';
 
+declare global {
+  interface Window {
+    showLoginModal?: boolean;
+  }
+}
 
-  constructor: ->
-    # Used as callback on original action (where login was required)
-    @clickAfterLogin = null
+interface LoginSuccessJson {
+  header: string;
+  header_popup: string;
+  user: UserJson;
+}
 
-    $(document).on 'ajax:success', '.js-login-form', @loginSuccess
-    $(document).on 'ajax:error', '.js-login-form', @loginError
-    $(document).on 'submit', '.js-login-form', @clearError
-    $(document).on 'input', '.js-login-form-input', @clearError
+export default class UserLogin {
+  // Used as callback on original action (where login was required)
+  private clickAfterLogin?: HTMLElement;
 
-    $(document).on 'click', '.js-user-link', @showOnClick
-    $(document).on 'click', '.js-login-required--click', @showToContinue
-    $(document).on 'ajax:before', '.js-login-required--click', -> currentUser.id?
+  constructor(private readonly captcha: Captcha) {
+    $(document).on('ajax:success', '.js-login-form', this.loginSuccess);
+    $(document).on('ajax:error', '.js-login-form', this.loginError);
+    $(document).on('submit', '.js-login-form', this.clearError);
+    $(document).on('input', '.js-login-form-input', this.clearError);
 
-    $(document).on 'ajax:error', @showOnError
-    $(document).on 'turbolinks:load', @showOnLoad
-    $.subscribe 'nav:popup:hidden', @reset
+    $(document).on('click', '.js-user-link', this.showOnClick);
+    $(document).on('click', '.js-login-required--click', this.showToContinue);
+    $(document).on('ajax:before', '.js-login-required--click', () => currentUser.id != null);
 
+    $(document).on('ajax:error', this.showOnError);
+    $(document).on('turbolinks:load', this.showOnLoad);
+    $.subscribe('nav:popup:hidden', this.reset);
+  }
 
-  clearError: (_e) ->
-    $('.js-login-form--error').text('')
+  show = (target?: HTMLElement) => {
+    this.clickAfterLogin = target;
 
+    window.setTimeout(() => {
+      $(document).trigger('gallery:close');
+      $('.js-user-login--menu')[0]?.click();
+    }, 0);
+  }
 
-  loginError: (e, xhr) =>
-    e.preventDefault()
-    e.stopPropagation()
-    $('.js-login-form--error').text(osu.xhrErrorMessage(xhr))
+  showOnError = (e: { target?: unknown }, xhr: JQueryXHR) => {
+    if (xhr.status !== 401 || xhr.responseJSON?.authentication !== 'basic') {
+      return false;
+    }
 
-    # Timeout here is to let ujs events fire first, so that the disabling of the submit button
-    # in captcha.reset() happens _after_ the button has been re-enabled
-    Timeout.set 0, =>
-      osuCore.captcha.trigger() if (xhr?.responseJSON?.captcha_triggered)
-      osuCore.captcha.reset()
+    if (currentUser.id != null) {
+      // broken page state
+      osu.reloadPage();
+    } else {
+      const target = e.target instanceof HTMLElement ? e.target : undefined;
+      this.show(target);
+    }
 
+    return true;
+  }
 
-  loginSuccess: (_event, data) =>
-    toClick = @clickAfterLogin
-    @clickAfterLogin = null
+  private clearError() {
+    $('.js-login-form--error').text('');
+  }
 
-    @refreshToken()
+  private loginError = (e: JQuery.Event, xhr: JQueryXHR) => {
+    e.preventDefault();
+    e.stopPropagation();
+    $('.js-login-form--error').text(osu.xhrErrorMessage(xhr));
 
-    $.publish 'user:update', data.user
+    // Timeout here is to let ujs events fire first, so that the disabling of the submit button
+    // in captcha.reset() happens _after_ the button has been re-enabled
+    window.setTimeout(() => {
+      if (xhr?.responseJSON?.captcha_triggered) {
+        this.captcha.trigger();
+      }
+      this.captcha.reset();
+    }, 0);
+  }
 
-    # To allow other ajax:* events attached to header menu
-    # to be triggered before the element is removed.
-    Timeout.set 0, =>
-      $('.js-user-login--menu')[0]?.click()
-      $('.js-user-header').replaceWith data.header
-      $('.js-user-header-popup').html data.header_popup
-      osuCore.captcha.untrigger()
+  private loginSuccess = (event: unknown, data: LoginSuccessJson) => {
+    const toClick = this.clickAfterLogin;
+    this.reset();
 
-      osu.executeAction toClick
+    this.refreshToken();
 
+    $.publish('user:update', data.user);
 
-  refreshToken: =>
-    token = Cookies.get('XSRF-TOKEN')
-    $('[name="_token"]').attr 'value', token
-    $('[name="csrf-token"]').attr 'content', token
+    // To allow other ajax:* events attached to header menu
+    // to be triggered before the element is removed.
+    window.setTimeout(() => {
+      $('.js-user-login--menu')[0]?.click();
+      $('.js-user-header').replaceWith(data.header);
+      $('.js-user-header-popup').html(data.header_popup);
+      this.captcha.untrigger();
 
+      osu.executeAction(toClick);
+    }, 0);
+  }
 
-  reset: =>
-    @clickAfterLogin = null
+  private refreshToken = () => {
+    const token = Cookies.get('XSRF-TOKEN') ?? null;
+    $('[name="_token"]').attr('value', token);
+    $('[name="csrf-token"]').attr('content', token);
+  }
 
+  private reset = () => {
+    this.clickAfterLogin = undefined;
+  }
 
-  show: (target) =>
-    @clickAfterLogin = target
+  private showOnClick = (e: JQuery.Event) => {
+    e.preventDefault();
+    this.show();
+  }
 
-    Timeout.set 0, ->
-      $(document).trigger 'gallery:close'
-      $('.js-user-login--menu')[0].click()
+  // for pages which require authentication
+  // and being visited directly from outside
+  private showOnLoad = () => {
+    if (!window.showLoginModal) {
+      return;
+    }
 
+    window.showLoginModal = undefined;
+    this.show();
+  }
 
-  showOnClick: (e) =>
-    e.preventDefault()
-    @show()
+  private showToContinue = (e: JQuery.ClickEvent) => {
+    if (currentUser.id != null) {
+      return;
+    }
 
-
-  showOnError: (e, xhr) =>
-    return false unless xhr.status == 401 && xhr.responseJSON?.authentication == 'basic'
-
-    if currentUser.id?
-      # broken page state
-      osu.reloadPage()
-    else
-      @show e.target
-
-    true
-
-
-  # for pages which require authentication
-  # and being visited directly from outside
-  showOnLoad: =>
-      return unless window.showLoginModal?
-
-      window.showLoginModal = null
-      @show()
-
-
-  showToContinue: (e) =>
-    return if currentUser.id?
-    e.preventDefault()
-    Timeout.set 0, => @show e.target
+    e.preventDefault();
+    const target = e.target;
+    window.setTimeout(() => {
+      this.show(target);
+    }, 0);
+  }
+}

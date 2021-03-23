@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div,a,i } from 'react-dom-factories'
 el = React.createElement
@@ -29,7 +30,7 @@ export class Voter extends React.Component
     return unless @isSelected() || @props.selected.length < @props.contest.max_votes
 
     if !currentUser.id?
-      userLogin.show e.target
+      core.userLogin.show e.target
     else if !@props.waitingForResponse
       $.publish 'contest:vote:click', contest_id: @props.contest.id, entry_id: @props.entry.id
       @sendVote()

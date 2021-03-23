@@ -74,6 +74,7 @@ interface OsuCommon {
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
   diffColour: (difficultyRating?: string | null) => React.CSSProperties;
   emitAjaxError: (el?: HTMLElement | null) => AjaxError;
+  executeAction: (el?: HTMLElement | null) => void;
   groupColour: (group?: GroupJson) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
@@ -85,6 +86,7 @@ interface OsuCommon {
   presence: (str?: string | null) => string | null;
   present: (str?: string | null) => boolean;
   promisify: (xhr: JQueryXHR) => Promise<any>;
+  reloadPage: () => void;
   timeago: (time?: string) => string;
   trans: (...args: any[]) => string;
   transArray: (array: any[], key?: string) => string;
@@ -93,6 +95,7 @@ interface OsuCommon {
   urlPresence: (url?: string | null) => string;
   urlRegex: RegExp;
   uuid: () => string;
+  xhrErrorMessage: (xhr: JQueryXHR) => string;
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
   isDesktop(): boolean;
