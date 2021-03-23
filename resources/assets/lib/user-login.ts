@@ -132,7 +132,7 @@ export default class UserLogin {
     }
 
     e.preventDefault();
-    const target = e.target;
+    const target = e.target instanceof HTMLElement ? e.target : undefined;
     window.setTimeout(() => {
       this.show(target);
     }, 0);
