@@ -1,15 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { dispatch } from 'app-dispatcher';
+
 import ChatAPI from 'chat/chat-api';
-import { ChatChannelNewMessagesEvent } from 'chat/chat-events';
 import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
 import * as _ from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import Message from 'models/chat/message';
 import User from 'models/user';
-import Message from './message';
 
 export default class Channel {
   private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
@@ -80,7 +79,6 @@ export default class Channel {
 
   @computed
   get loaded() {
-    console.log(this.loadingState.messages, this.loadingState.metadata);
     return this.loadingState.messages && this.loadingState.metadata;
   }
 
@@ -169,8 +167,18 @@ export default class Channel {
 
     try {
       const response = await api.getMessages(this.channelId);
+
       runInAction(() => {
-        dispatch(new ChatChannelNewMessagesEvent(this.channelId, response));
+        // TODO: something about User; map in api? or lazy load?
+        const messages = response.map((messageJson) => Message.fromJson(messageJson));
+
+        if (messages.length === 0) {
+          // assume no more messages.
+          this.firstMessageId = this.minMessageId;
+          return;
+        }
+
+        this.addMessages(messages);
         this.loadingState.messages = true;
       });
     } catch {

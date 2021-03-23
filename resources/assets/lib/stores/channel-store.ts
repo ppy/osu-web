@@ -8,7 +8,7 @@ import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import ChatAPI from 'chat/chat-api';
-import { ChatChannelNewMessagesEvent, ChatMessageNewEvent } from 'chat/chat-events';
+import { ChatMessageNewEvent } from 'chat/chat-events';
 import DispatchListener from 'dispatch-listener';
 import ChannelJson, { ChannelType } from 'interfaces/chat/channel-json';
 import ChatUpdatesJson from 'interfaces/chat/chat-updates-json';
@@ -86,7 +86,8 @@ export default class ChannelStore implements DispatchListener {
     // prevent new PM channel from being deleted from presence updates requested before the new conversation but
     // the response arrives after.
     channel.newPmChannelTransient = true;
-    this.handleChatChannelNewMessages(channel.channelId, [message]);
+    // TODO: need to handle user
+    channel.addMessages([Message.fromJson(message)]);
 
     return channel;
   }
@@ -131,9 +132,7 @@ export default class ChannelStore implements DispatchListener {
   }
 
   handleDispatchAction(event: DispatcherAction) {
-    if (event instanceof ChatChannelNewMessagesEvent) {
-      this.handleChatChannelNewMessages(event.channelId, event.json);
-    } else if (event instanceof ChatMessageNewEvent) {
+    if (event instanceof ChatMessageNewEvent) {
       this.handleChatMessageNewEvent(event);
     } else if (event instanceof ChatMessageSendAction) {
       this.handleChatMessageSendAction(event);
@@ -168,7 +167,7 @@ export default class ChannelStore implements DispatchListener {
 
     try {
       const response = await this.api.getMessages(channel.channelId, { until });
-      this.handleChatChannelNewMessages(channelId, response);
+      channel.addMessages(response.map(Message.fromJson));
     } finally {
       runInAction(() => {
         channel.loadingEarlierMessages = false;
@@ -227,7 +226,8 @@ export default class ChannelStore implements DispatchListener {
     const groups = groupBy(updateJson.messages, 'channel_id');
     for (const key of Object.keys(groups)) {
       const channelId = parseInt(key, 10);
-      this.handleChatChannelNewMessages(channelId, groups[channelId]);
+      const messages = groups[channelId].map(Message.fromJson);
+      this.channels.get(channelId)?.addMessages(messages);
     }
 
     // TODO: convert silence handling back to action when updating through websocket is figured out.
@@ -253,25 +253,6 @@ export default class ChannelStore implements DispatchListener {
         this.channels.delete(channel.channelId);
       }
     });
-  }
-
-  @action
-  private handleChatChannelNewMessages(channelId: number, json: MessageJson[]) {
-    const messages = json.map((messageJson) => {
-      if (messageJson.sender != null) this.userStore.getOrCreate(messageJson.sender_id, messageJson.sender);
-      return Message.fromJson(messageJson);
-    });
-
-    const channel = this.channels.get(channelId);
-    if (channel == null) return;
-
-    if (messages.length === 0) {
-      // assume no more messages.
-      channel.firstMessageId = channel.minMessageId;
-      return;
-    }
-
-    channel.addMessages(messages);
   }
 
   @action

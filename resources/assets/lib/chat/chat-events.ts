@@ -27,12 +27,6 @@ export class ChatChannelJoinEvent extends DispatcherAction {
   }
 }
 
-export class ChatChannelNewMessagesEvent extends DispatcherAction {
-  constructor(readonly channelId: number, readonly json: MessageJson[]) {
-    super();
-  }
-}
-
 export class ChatChannelPartEvent extends DispatcherAction {
   constructor(readonly channelId: number) {
     super();
