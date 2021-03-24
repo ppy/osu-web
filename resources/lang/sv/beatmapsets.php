@@ -8,7 +8,7 @@ return [
         'disabled' => 'Denna beatmap är för närvarande inte tillgänglig för nedladdning.',
         'parts-removed' => 'Portioner av denna beatmap har blivit borttagna på förfrågan av skaparen eller en tredje-parts rättighets hållare.',
         'more-info' => 'Klicka här för mer information.',
-        'rule_violation' => '',
+        'rule_violation' => 'Vissa delar av denna map har tagits bort då de anses vara olämpliga i osu!.',
     ],
 
     'download' => [

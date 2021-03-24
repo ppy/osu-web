@@ -47,7 +47,8 @@ export default class GalleryContestVoteButton extends React.PureComponent<Props,
       return;
     }
 
-    const id = this.props.pswp.currItem.element.dataset.buttonId;
+    // FIXME: possibly string | undefined
+    const id: string = this.props.pswp.currItem.element.dataset.buttonId;
 
     return document.querySelector(`.js-contest-vote-button[data-button-id='${id}']`) as HTMLElement;
   }

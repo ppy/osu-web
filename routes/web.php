@@ -177,7 +177,7 @@ Route::group(['middleware' => ['web']], function () {
                 Route::delete('{channel}/users/{user}', 'ChannelsController@part')->name('part');
                 Route::put('{channel}/mark-as-read/{message}', 'ChannelsController@markAsRead')->name('mark-as-read');
             });
-            Route::apiResource('channels', 'ChannelsController', ['only' => ['index']]);
+            Route::apiResource('channels', 'ChannelsController', ['only' => ['index', 'show']]);
         });
         Route::resource('chat', 'ChatController', ['only' => ['index']]);
     });
@@ -384,6 +384,14 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets'], function () {
             Route::apiResource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
+
+            Route::group(['as' => 'discussions.', 'prefix' => 'discussions'], function () {
+                Route::apiResource('posts', 'BeatmapDiscussionPostsController', ['only' => ['index']]);
+                Route::apiResource('votes', 'BeatmapsetDiscussionVotesController', ['only' => ['index']]);
+            });
+
+            Route::resource('discussions', 'BeatmapDiscussionsController', ['only' => ['index']]);
+
             // TODO: move other beatmapset routes here
             Route::group(['namespace' => 'Beatmapsets'], function () {
                 Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
@@ -404,7 +412,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
                 Route::delete('{channel}/users/{user}', 'ChannelsController@part')->name('part');
                 Route::put('{channel}/mark-as-read/{message}', 'ChannelsController@markAsRead')->name('mark-as-read');
             });
-            Route::apiResource('channels', 'ChannelsController', ['only' => ['index', 'store']]);
+            Route::apiResource('channels', 'ChannelsController', ['only' => ['index', 'show', 'store']]);
         });
 
         Route::get('changelog/{stream}/{build}', 'ChangelogController@build')->name('changelog.build');

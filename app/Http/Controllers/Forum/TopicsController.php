@@ -7,7 +7,6 @@ namespace App\Http\Controllers\Forum;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\Notifications\ForumTopicReply;
-use App\Libraries\DbCursorHelper;
 use App\Libraries\NewForumTopic;
 use App\Models\Forum\FeatureVote;
 use App\Models\Forum\Forum;
@@ -313,13 +312,10 @@ class TopicsController extends Controller
         $skipLayout = $params['skip_layout'];
         $showDeleted = $params['with_deleted'];
 
-        $cursorHelper = new DbCursorHelper(Post::SORTS, Post::DEFAULT_SORT, $params['sort']);
+        $cursorHelper = Post::makeDbCursorHelper($params['sort']);
 
         $postsQueryBase = $topic->posts()->showDeleted($showDeleted)->limit($params['limit']);
-        $posts = (clone $postsQueryBase)->cursorSort(
-            $cursorHelper->getSort(),
-            $cursorHelper->prepare($params['cursor'])
-        )->get();
+        $posts = (clone $postsQueryBase)->cursorSort($cursorHelper, $params['cursor'])->get();
 
         $isJsonRequest = is_api_request();
 
@@ -345,13 +341,7 @@ class TopicsController extends Controller
                 $extraSort = 'id_asc';
             }
             if (isset($extraSort)) {
-                $extraCursorHelper = new DbCursorHelper(Post::SORTS, $extraSort);
-                $extraPosts = (clone $postsQueryBase)
-                    ->cursorSort(
-                        $extraCursorHelper->getSort(),
-                        $extraCursorHelper->prepare(['id' => $jumpTo])
-                    )->get()
-                    ->reverse();
+                $extraPosts = (clone $postsQueryBase)->cursorSort($extraSort, ['id' => $jumpTo])->get()->reverse();
 
                 $posts = $extraPosts->concat($posts);
             }
