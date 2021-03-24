@@ -34,8 +34,8 @@ class @UserLogin
     # Timeout here is to let ujs events fire first, so that the disabling of the submit button
     # in captcha.reset() happens _after_ the button has been re-enabled
     Timeout.set 0, =>
-      captcha.trigger() if (xhr?.responseJSON?.captcha_triggered)
-      captcha.reset()
+      osuCore.captcha.trigger() if (xhr?.responseJSON?.captcha_triggered)
+      osuCore.captcha.reset()
 
 
   loginSuccess: (_event, data) =>
@@ -52,7 +52,7 @@ class @UserLogin
       $('.js-user-login--menu')[0]?.click()
       $('.js-user-header').replaceWith data.header
       $('.js-user-header-popup').html data.header_popup
-      captcha.untrigger()
+      osuCore.captcha.untrigger()
 
       osu.executeAction toClick
 
