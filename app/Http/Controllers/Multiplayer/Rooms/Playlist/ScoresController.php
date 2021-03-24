@@ -9,7 +9,6 @@ use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
 use App\Libraries\ClientCheck;
 use App\Libraries\Multiplayer\Mod;
-use App\Models\Build;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Room;
