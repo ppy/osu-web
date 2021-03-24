@@ -49,7 +49,7 @@ export default class OsuCore {
   readonly osuLayzr = new OsuLayzr();
   socketWorker: SocketWorker;
   readonly turbolinksReload = new TurbolinksReload();
-  userLogin: UserLogin;
+  readonly userLogin: UserLogin;
   userLoginObserver: UserLoginObserver;
   windowFocusObserver: WindowFocusObserver;
   readonly windowVHPatcher = new WindowVHPatcher();
