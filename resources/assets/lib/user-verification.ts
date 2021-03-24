@@ -1,178 +1,217 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-class @UserVerification
-  constructor: ->
-    addEventListener 'turbolinks:load', @setModal
-    $(document).on 'ajax:error', @showOnError
-    $(document).on 'turbolinks:load', @showOnLoad
-    $(document).on 'turbolinks:visit', @setDelayShow
-    $(document).on 'input', '.js-user-verification--input', @autoSubmit
-    $(document).on 'click', '.js-user-verification--reissue', @reissue
-    $.subscribe 'user-verification:success', @success
+import Fade from 'fade';
+import { route } from 'laroute';
 
-    $(window).on 'resize scroll', @reposition
+interface ReissueCodeJson {
+  message: string;
+}
 
-    # set to true on turbolinks:visit so the box will be rendered on navigation
-    @delayShow = false
-    # actual function to "store" the parameter original used for delayed show call
-    @delayShowCallback = null
+export default class UserVerification {
+  // Used as callback on original action (where verification was required)
+  private clickAfterVerification?: HTMLElement;
+  // set to true on turbolinks:visit so the box will be rendered on navigation
+  private delayShow = false;
+  // actual function to "store" the parameter original used for delayed show call
+  private delayShowCallback?: () => void;
 
-    # Used as callback on original action (where verification was required)
-    @clickAfterVerification = null
+  private readonly inputBox = document.getElementsByClassName('js-user-verification--input');
+  private readonly message = document.getElementsByClassName('js-user-verification--message');
+  private readonly messageSpinner = document.getElementsByClassName('js-user-verification--message-spinner');
+  private readonly messageText = document.getElementsByClassName('js-user-verification--message-text');
+  private modal?: HTMLElement;
+  private readonly reference = document.getElementsByClassName('js-user-verification--reference');
+  private request?: JQuery.jqXHR;
 
-    @inputBox = document.getElementsByClassName('js-user-verification--input')
-    @message = document.getElementsByClassName('js-user-verification--message')
-    @messageSpinner = document.getElementsByClassName('js-user-verification--message-spinner')
-    @messageText = document.getElementsByClassName('js-user-verification--message-text')
-    @reference = document.getElementsByClassName('js-user-verification--reference')
+  constructor() {
+    document.addEventListener('turbolinks:load', this.setModal);
+    $(document).on('ajax:error', this.showOnError);
+    $(document).on('turbolinks:load', this.showOnLoad);
+    $(document).on('turbolinks:visit', this.setDelayShow);
+    $(document).on('input', '.js-user-verification--input', this.autoSubmit);
+    $(document).on('click', '.js-user-verification--reissue', this.reissue);
+    $.subscribe('user-verification:success', this.success);
 
+    $(window).on('resize scroll', this.reposition);
+  }
 
-  $modal: => $('.js-user-verification')
+  showOnError = (e: { target: unknown }, xhr: JQuery.jqXHR) => {
+    if (xhr.status !== 401 || xhr.responseJSON?.authentication !== 'verify') return false;
 
+    const target = e.target instanceof HTMLElement ? e.target : undefined;
+    this.show(target, xhr.responseJSON.box);
 
-  autoSubmit: (e) =>
-    target = @inputBox[0]
-    inputKey = target.value.replace /\s/g, ''
-    lastKey = target.dataset.lastKey
-    keyLength = parseInt(target.dataset.verificationKeyLength, 10)
+    return true;
+  }
 
-    if inputKey.length == 0
-      @setMessage()
+  private $modal() {
+    return $('.js-user-verification');
+  }
 
-    return if keyLength != inputKey.length
-    return if inputKey == lastKey
+  private autoSubmit = () => {
+    const target = this.inputBox[0];
 
-    target.dataset.lastKey = inputKey
+    if (!(target instanceof HTMLInputElement)) return;
 
-    @prepareForRequest 'verifying'
+    const inputKey = target.value.replace(/\s/g, '');
+    const lastKey = target.dataset.lastKey;
+    const keyLength = parseInt(target.dataset.verificationKeyLength ?? '', 10);
 
-    @request =
-      $.post laroute.route('account.verify'),
-        verification_key: inputKey
-      .done @success
-      .fail @error
+    if (inputKey.length === 0) this.setMessage();
 
+    if (keyLength !== inputKey.length) return;
+    if (inputKey === lastKey) return;
 
-  isVerificationPage: ->
-    document.querySelector('.js-user-verification--on-load')?
+    target.dataset.lastKey = inputKey;
 
+    this.prepareForRequest('verifying');
 
-  error: (xhr) =>
-    @setMessage osu.xhrErrorMessage(xhr)
+    this.request = $
+      .post(route('account.verify'), { verification_key: inputKey })
+      .done(this.success)
+      .fail(this.error);
+  }
 
+  private error = (xhr: JQuery.jqXHR) => {
+    this.setMessage(osu.xhrErrorMessage(xhr));
+  }
 
-  float: (float, modal = @modal, referenceBottom) =>
-    if float
-      modal.classList.add 'js-user-verification--center'
-      modal.style.paddingTop = null
-    else
-      modal.classList.remove 'js-user-verification--center'
-      modal.style.paddingTop = "#{referenceBottom}px"
+  private float = (float: boolean, modal: HTMLElement, referenceBottom?: number) => {
+    if (float) {
+      modal.classList.add('js-user-verification--center');
+      modal.style.paddingTop = '';
+    } else {
+      modal.classList.remove('js-user-verification--center');
+      modal.style.paddingTop = `${referenceBottom ?? 0}px`;
+    }
+  }
 
+  private isActive = () => {
+    return this.modal?.classList.contains('js-user-verification--active');
+  }
 
-  isActive: =>
-    @modal?.classList.contains('js-user-verification--active')
+  private isVerificationPage() {
+    return document.querySelector('.js-user-verification--on-load') != null;
+  }
 
+  private prepareForRequest = (type: string) => {
+    this.request?.abort();
+    this.setMessage(osu.trans(`user_verification.box.${type}`), true);
+  }
 
-  prepareForRequest: (type) =>
-    @request?.abort()
-    @setMessage osu.trans("user_verification.box.#{type}"), true
+  private reissue = (e: JQuery.Event) => {
+    e.preventDefault();
 
+    this.prepareForRequest('issuing');
 
-  reissue: (e) =>
-    e.preventDefault()
+    this.request = $
+      .post(route('account.reissue-code'))
+      .done((data: ReissueCodeJson) => {
+        this.setMessage(data.message);
+      })
+      .fail(this.error);
+  }
 
-    @prepareForRequest 'issuing'
+  private reposition = () => {
+    if (!this.isActive() || this.modal == null) return;
 
-    @request =
-      $.post laroute.route('account.reissue-code')
-      .done (data) =>
-        @setMessage data.message
-      .fail @error
+    if (osu.isMobile()) {
+      this.float(true, this.modal);
+    } else {
+      const referenceBottom = this.reference[0]?.getBoundingClientRect().bottom;
 
+      this.float(referenceBottom < 0, this.modal, referenceBottom);
+    }
+  }
 
-  reposition: =>
-    return unless @isActive()
+  private setDelayShow = () => {
+    this.delayShow = true;
+  }
 
-    if osu.isMobile()
-      @float(true, @modal)
-    else
-      referenceBottom = @reference[0]?.getBoundingClientRect().bottom
+  private setMessage = (text?: string, withSpinner: boolean = false) => {
+    const message = this.message[0];
+    if (!(message instanceof HTMLElement)) return;
 
-      @float(referenceBottom < 0, @modal, referenceBottom)
+    if (text == null || text.length === 0) {
+      Fade.out(message);
+      return;
+    }
 
+    const messageText = this.messageText[0];
+    const spinner = this.messageSpinner[0];
 
-  setDelayShow: =>
-    @delayShow = true
+    if (!(messageText instanceof HTMLElement) || !(spinner instanceof HTMLElement)) return;
 
+    messageText.textContent = text;
+    Fade.toggle(spinner, withSpinner);
+    Fade.in(message);
+  }
 
-  setMessage: (text, withSpinner = false) =>
-    if !text? || text.length == 0
-      Fade.out @message[0]
-      return
+  private setModal = () => {
+    const modal = document.querySelector('.js-user-verification');
 
-    @messageText[0].textContent = text
-    Fade.toggle @messageSpinner[0], withSpinner
-    Fade.in @message[0]
+    this.modal = modal instanceof HTMLElement ? modal : undefined;
+  }
 
+  private show = (target?: HTMLElement, html?: string) => {
+    if (this.delayShow) {
+      this.delayShowCallback = () => this.show(target, html);
+      return;
+    }
 
-  setModal: =>
-    @modal = document.querySelector('.js-user-verification')
+    this.clickAfterVerification = target;
 
+    if (html != null) {
+      $('.js-user-verification--box').html(html);
+    }
 
-  success: =>
-    return unless @isActive()
+    this.$modal()
+    .modal({
+      backdrop: 'static',
+      keyboard: false,
+      show: true,
+    })
+    .addClass('js-user-verification--active');
 
-    @$modal().modal 'hide'
-    @modal.classList.remove('js-user-verification--active')
+    this.reposition();
+  }
 
-    toClick = @clickAfterVerification
-    @clickAfterVerification = null
-    @setMessage()
-    @inputBox[0].value = ''
-    @inputBox[0].dataset.lastKey = ''
+  // for pages which require authentication
+  // and being visited directly from outside
+  private showOnLoad = () => {
+    this.delayShow = false;
 
-    return osu.reloadPage() if @isVerificationPage()
+    if (this.delayShowCallback != null) {
+      this.delayShowCallback();
+      this.delayShowCallback = undefined;
+    } else if (this.isVerificationPage()) {
+      this.show();
+    }
+  }
 
-    osu.executeAction(toClick) if toClick?
+  private success = () => {
+    if (!this.isActive() || this.modal == null) return;
 
+    const inputBox = this.inputBox[0];
 
-  show: (target, html) =>
-    if @delayShow
-      @delayShowCallback = => @show(target, html)
-      return
+    if (!(inputBox instanceof HTMLInputElement)) return;
 
-    @clickAfterVerification = target
+    this.$modal().modal('hide');
+    this.modal.classList.remove('js-user-verification--active');
 
-    if html?
-      $('.js-user-verification--box').html html
+    const toClick = this.clickAfterVerification;
+    this.clickAfterVerification = undefined;
+    this.setMessage();
+    inputBox.value = '';
+    inputBox.dataset.lastKey = '';
 
-    @$modal()
-    .modal
-      backdrop: 'static'
-      keyboard: false
-      show: true
-    .addClass 'js-user-verification--active'
+    if (this.isVerificationPage()) {
+      return osu.reloadPage();
+    }
 
-    @reposition()
-
-
-  showOnError: ({target}, xhr) =>
-    return false unless xhr.status == 401 && xhr.responseJSON?.authentication == 'verify'
-
-    @show target, xhr.responseJSON.box
-
-    true
-
-
-  # for pages which require authentication
-  # and being visited directly from outside
-  showOnLoad: =>
-    @delayShow = false
-
-    if @delayShowCallback?
-      @delayShowCallback()
-      @delayShowCallback = null
-    else if @isVerificationPage()
-      @show()
+    if (toClick != null) {
+      osu.executeAction(toClick);
+    }
+  }
+}

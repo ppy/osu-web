@@ -22,7 +22,6 @@ declare const tooltipDefault: TooltipDefault;
 declare const osu: OsuCommon;
 declare const currentUser: import('interfaces/current-user').default;
 declare const reactTurbolinks: any;
-declare const userVerification: any;
 
 // external (to typescript) classes
 declare const BeatmapsetFilter: import('interfaces/beatmapset-filter-class').default;
