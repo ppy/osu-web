@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+use App\Models\Beatmapset;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -48,5 +50,17 @@ $factory->define(App\Models\Beatmap::class, function (Faker\Generator $faker) {
 $factory->state(App\Models\Beatmap::class, 'approved', function (Faker\Generator $faker) {
     return [
         'approved' => 3,
+    ];
+});
+
+$factory->state(App\Models\Beatmap::class, 'wip', function (Faker\Generator $faker) {
+    return [
+        'approved' => Beatmapset::STATES['wip'],
+    ];
+});
+
+$factory->state(App\Models\Beatmap::class, 'ranked', function (Faker\Generator $faker) {
+    return [
+        'approved' => Beatmapset::STATES['ranked'],
     ];
 });
