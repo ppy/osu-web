@@ -20,6 +20,10 @@ return [
             'write' => 'Küldjön üzeneteket az Ön nevében.',
         ],
 
+        'forum' => [
+            'write' => '',
+        ],
+
         'friends' => [
             'read' => 'Lásd, hogy kit követsz.',
         ],

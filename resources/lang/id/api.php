@@ -20,6 +20,10 @@ return [
             'write' => 'Mengirimkan pesan-pesan atas nama akun Anda.',
         ],
 
+        'forum' => [
+            'write' => '',
+        ],
+
         'friends' => [
             'read' => 'Melihat siapa saja yang Anda ikuti.',
         ],
