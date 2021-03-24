@@ -28,7 +28,7 @@ return [
 
     'songs' => [
         '_' => 'Lieder',
-        'count' => ':count Lied|:count Lieder',
+        'count' => ':count_delimited Lied|:count_delimited Lieder',
         'exclusive' => 'osu!-exklusiv',
     ],
 

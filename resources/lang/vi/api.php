@@ -20,6 +20,10 @@ return [
             'write' => 'Gửi tin nhắn dưới tư cách của bạn.',
         ],
 
+        'forum' => [
+            'write' => '',
+        ],
+
         'friends' => [
             'read' => 'Xem những ai bạn đang theo dõi.',
         ],

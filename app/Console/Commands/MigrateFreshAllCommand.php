@@ -55,6 +55,7 @@ class MigrateFreshAllCommand extends FreshCommand
         ]);
 
         $this->call('es:index-wiki', [
+            '--cleanup' => true,
             '--create-only' => true,
             '--yes' => $this->option('yes'),
         ]);
