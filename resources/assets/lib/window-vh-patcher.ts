@@ -7,29 +7,13 @@
  * height: calc(var(--vh, 1vh) ~'*' 100);
  */
 export default class WindowVHPatcher {
-  private static instance: WindowVHPatcher;
-  private window: Window;
-
-  private constructor(window: Window) {
-    this.window = window;
-    $(this.window).on('resize.windowVHPatch', this.handleResize);
+  constructor() {
+    $(window).on('resize.windowVHPatch', this.handleResize);
     this.handleResize();
   }
 
-  static init(window: Window) {
-    if (this.instance != null) {
-      return this.instance;
-    }
-
-    this.instance = new WindowVHPatcher(window);
-
-    return this.instance;
-  }
-
   private handleResize() {
-    const vh = this.window.innerHeight * 0.01;
-    if (this.window.document.documentElement !== null) {
-      this.window.document.documentElement.style.setProperty('--vh', `${vh}px`);
-    }
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
   }
 }
