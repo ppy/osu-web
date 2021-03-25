@@ -80,6 +80,7 @@ return [
         ],
     ],
     'client' => [
+        'check_version' => get_bool(env('CLIENT_CHECK_VERSION')) ?? true,
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
