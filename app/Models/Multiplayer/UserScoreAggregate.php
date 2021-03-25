@@ -7,6 +7,7 @@ namespace App\Models\Multiplayer;
 
 use App\Models\Model;
 use App\Models\User;
+use App\Traits\WithDbCursorHelper;
 
 /**
  * Aggregate root for user multiplayer high scores.
@@ -25,6 +26,17 @@ use App\Models\User;
  */
 class UserScoreAggregate extends Model
 {
+    use WithDbCursorHelper;
+
+    const SORTS = [
+        'score_asc' => [
+            ['column' => 'total_score', 'order' => 'ASC'],
+            ['column' => 'last_score_id', 'order' => 'DESC'],
+        ],
+    ];
+
+    const DEFAULT_SORT = 'score_asc';
+
     protected $table = 'multiplayer_rooms_high';
 
     public $isNew = false;
@@ -174,10 +186,7 @@ class UserScoreAggregate extends Model
         }
 
         $query = static::where('room_id', $this->room_id)->forRanking()
-            ->cursorWhere([
-                ['column' => 'total_score', 'order' => 'ASC', 'value' => $this->total_score],
-                ['column' => 'last_score_id', 'order' => 'DESC', 'value' => $this->last_score_id],
-            ]);
+            ->cursorSort('score_asc', $this);
 
         return 1 + $query->count();
     }

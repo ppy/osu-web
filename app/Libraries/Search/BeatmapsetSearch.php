@@ -16,8 +16,6 @@ use App\Models\Score;
 
 class BeatmapsetSearch extends RecordSearch
 {
-    public $recommendedDifficulty;
-
     /**
      * @param BeatmapsetSearchParams $params
      */
@@ -68,6 +66,8 @@ class BeatmapsetSearch extends RecordSearch
         $this->addPlayedFilter($query, $nested);
         $this->addRankFilter($nested);
         $this->addRecommendedFilter($nested);
+
+        $this->addSimpleFilters($query, $nested);
 
         $query->filter([
             'nested' => [
@@ -213,6 +213,35 @@ class BeatmapsetSearch extends RecordSearch
                     ],
                 ],
             ]);
+        }
+    }
+
+    private function addSimpleFilters(BoolQuery $query, BoolQuery $nested): void
+    {
+        static $filters = [
+            'ar' => ['field' => 'beatmaps.diff_approach', 'type' => 'range'],
+            'artist' => ['field' => 'artist', 'type' => 'term'],
+            'bpm' => ['field' => 'bpm', 'type' => 'range'],
+            'creator' => ['field' => 'creator', 'type' => 'term'],
+            'cs' => ['field' => 'beatmaps.diff_size', 'type' => 'range'],
+            'difficultyRating' => ['field' => 'beatmaps.difficultyrating', 'type' => 'range'],
+            'drain' => ['field' => 'beatmaps.diff_drain', 'type' => 'range'],
+            'hitLength' => ['field' => 'beatmaps.hit_length', 'type' => 'range'],
+            'keys' => ['field' => 'beatmaps.diff_size', 'type' => 'range'],
+            'statusRange' => ['field' => 'beatmaps.approved', 'type' => 'range'],
+            // (unsupported) 'divisor' => ['field' => ???, 'type' => 'range'],
+        ];
+
+        static $nestedPrefix = 'beatmaps.';
+        $nestedPrefixLength = strlen($nestedPrefix);
+
+        foreach ($filters as $prop => $options) {
+            if ($this->params->$prop === null) {
+                continue;
+            }
+
+            $q = substr($options['field'], 0, $nestedPrefixLength) === $nestedPrefix ? $nested : $query;
+            $q->filter([$options['type'] => [$options['field'] => $this->params->$prop]]);
         }
     }
 

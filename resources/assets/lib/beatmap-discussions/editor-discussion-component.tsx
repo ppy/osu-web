@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import { BeatmapReviewDiscussionType } from 'interfaces/beatmap-discussion-review';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as _ from 'lodash';
 import * as React from 'react';
@@ -86,8 +87,11 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   }
 
   createTooltip = (event: (React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>)) => {
+    const timestamp = this.timestamp();
+    if (timestamp == null) return;
+
     const target = event.currentTarget;
-    const tooltipId = `${this.selectedBeatmap()}-${this.timestamp()}`;
+    const tooltipId = `${this.selectedBeatmap()}-${timestamp}`;
 
     // if the tooltipId hasn't changed, we don't need to re-render the tooltip
     if (this.tooltipEl && this.tooltipEl._tooltip === tooltipId) {
@@ -139,7 +143,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     }
   }
 
-  discussionType = () => this.props.element.discussionType;
+  // FIXME: element should be typed properly instead.
+  discussionType = () => this.props.element.discussionType as BeatmapReviewDiscussionType;
 
   editable = () => {
     return !(this.props.editMode && this.props.element.discussionId);

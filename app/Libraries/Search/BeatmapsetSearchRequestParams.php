@@ -49,7 +49,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         $sort = $request['sort'] ?? null;
 
         if (priv_check_user($this->user, 'BeatmapsetAdvancedSearch')->can()) {
-            $this->queryString = es_query_escape_with_caveats($this->requestQuery);
+            $this->parseQuery();
             $status = presence($request['s'] ?? null);
             $this->status = static::LEGACY_STATUS_MAP[$status] ?? $status;
 
@@ -241,6 +241,34 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         }
 
         return $newSort;
+    }
+
+    private function parseQuery(): void
+    {
+        static $optionMap = [
+            'ar' => 'ar',
+            'artist' => 'artist',
+            'bpm' => 'bpm',
+            'creator' => 'creator',
+            'cs' => 'cs',
+            'dr' => 'drain',
+            'keys' => 'keys',
+            'length' => 'hitLength',
+            'stars' => 'difficultyRating',
+            'status' => 'statusRange',
+        ];
+
+        $parsed = BeatmapsetQueryParser::parse($this->requestQuery);
+
+        $this->queryString = $parsed['keywords'];
+
+        foreach ($parsed['options'] as $optionKey => $optionValue) {
+            $propName = $optionMap[$optionKey] ?? null;
+
+            if ($propName !== null) {
+                $this->$propName = $optionValue;
+            }
+        }
     }
 
     private function parseSortOrder(?string $value)

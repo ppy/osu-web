@@ -410,8 +410,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'あなたは現在サイレンス中です。',
+        'message' => 'いくつかのアクションが利用できない可能性があります。',
     ],
 
     'status' => [

@@ -63,6 +63,7 @@ class BeatmapDiscussion extends Model
     const VALID_BEATMAPSET_STATUSES = ['ranked', 'qualified', 'disqualified', 'never_qualified'];
     const VOTES_TO_SHOW = 50;
 
+    // FIXME: This and other static search functions should be extracted out.
     public static function search($rawParams = [])
     {
         $pagination = pagination($rawParams);
@@ -88,7 +89,7 @@ class BeatmapDiscussion extends Model
         }
 
         if (isset($rawParams['sort'])) {
-            $sort = explode('-', strtolower($rawParams['sort']));
+            $sort = explode('_', strtolower($rawParams['sort']));
 
             if (in_array($sort[0] ?? null, ['id'], true)) {
                 $sortField = $sort[0];
@@ -102,7 +103,7 @@ class BeatmapDiscussion extends Model
         $sortField ?? ($sortField = 'id');
         $sortOrder ?? ($sortOrder = 'desc');
 
-        $params['sort'] = "{$sortField}-{$sortOrder}";
+        $params['sort'] = "{$sortField}_{$sortOrder}";
         $query->orderBy($sortField, $sortOrder);
 
         if (isset($rawParams['message_types'])) {
@@ -121,6 +122,16 @@ class BeatmapDiscussion extends Model
             });
         }
 
+        $params['beatmapset_id'] = get_int($rawParams['beatmapset_id'] ?? null);
+        if ($params['beatmapset_id'] !== null) {
+            $query->where('beatmapset_id', $params['beatmapset_id']);
+        }
+
+        $params['beatmap_id'] = get_int($rawParams['beatmap_id'] ?? null);
+        if ($params['beatmap_id'] !== null) {
+            $query->where('beatmap_id', $params['beatmap_id']);
+        }
+
         $params['only_unresolved'] = get_bool($rawParams['only_unresolved'] ?? null) ?? false;
 
         if ($params['only_unresolved']) {
@@ -131,12 +142,6 @@ class BeatmapDiscussion extends Model
 
         if (!$params['with_deleted']) {
             $query->withoutTrashed();
-        }
-
-        if (!($rawParams['is_moderator'] ?? false)) {
-            $query->whereHas('user', function ($userQuery) {
-                $userQuery->default();
-            });
         }
 
         return ['query' => $query, 'params' => $params];
