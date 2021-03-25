@@ -25,12 +25,13 @@ export default class UserVerification {
   private request?: JQuery.jqXHR;
 
   constructor() {
-    document.addEventListener('turbolinks:load', this.setModal);
-    $(document).on('ajax:error', this.showOnError);
-    $(document).on('turbolinks:load', this.showOnLoad);
-    $(document).on('turbolinks:visit', this.setDelayShow);
-    $(document).on('input', '.js-user-verification--input', this.autoSubmit);
-    $(document).on('click', '.js-user-verification--reissue', this.reissue);
+    $(document)
+      .on('ajax:error', this.showOnError)
+      .on('turbolinks:load', this.setModal)
+      .on('turbolinks:load', this.showOnLoad)
+      .on('turbolinks:visit', this.setDelayShow)
+      .on('input', '.js-user-verification--input', this.autoSubmit)
+      .on('click', '.js-user-verification--reissue', this.reissue);
     $.subscribe('user-verification:success', this.success);
 
     $(window).on('resize scroll', this.reposition);
