@@ -2,9 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 export default class ForumPoll {
-  constructor(window: Window) {
-    $(window.document).on('click', '.js-forum-poll--switch-page', this.switchPage);
-    $(window.document).on('click', '.js-forum-poll--switch-edit', this.switchEdit);
+  constructor() {
+    $(document)
+      .on('click', '.js-forum-poll--switch-page', this.switchPage)
+      .on('click', '.js-forum-poll--switch-edit', this.switchEdit);
   }
 
   switchEdit = (event: JQuery.ClickEvent) => {

@@ -18,7 +18,7 @@ export default function PpValue(props: Props) {
     );
   }
 
-  if (props.score.pp == null || props.score.pp === 0) {
+  if (props.score.pp == null) {
     return (
       <span
         className='fas fa-exclamation-triangle'
