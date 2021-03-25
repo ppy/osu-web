@@ -32,7 +32,26 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         '8' => 'loved',
     ];
 
+    const SORT_FIELD_MAP = [
+        'artist' => 'artist.raw',
+        'creator' => 'creator.raw',
+        'difficulty' => 'beatmaps.difficultyrating',
+        'favourites' => 'favourite_count',
+        'nominations' => 'nominations',
+        'plays' => 'play_count',
+        'ranked' => 'approved_date',
+        'rating' => 'rating',
+        'relevance' => '_score',
+        'title' => 'title.raw',
+        'updated' => 'last_update',
+    ];
+
     private $requestQuery;
+
+    /** @var string|null */
+    private $sortField;
+    /** @var string|null */
+    private $sortOrder;
 
     public function __construct(array $request, ?User $user = null)
     {
@@ -82,7 +101,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $sort = null;
         }
 
-        $this->parseSortOrder($sort);
+        $this->parseSort($sort);
         $this->searchAfter = $this->getSearchAfter($request['cursor'] ?? null);
 
         // Supporter-only options.
@@ -141,29 +160,33 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         return compact('extras', 'general', 'genres', 'languages', 'modes', 'nsfw', 'played', 'ranks', 'statuses');
     }
 
+    public function getSort(): ?string
+    {
+        if ($this->sortField !== null && $this->sortOrder !== null) {
+            return "{$this->sortField}_{$this->sortOrder}";
+        }
+    }
+
     public function isLoginRequired(): bool
     {
         return present($this->requestQuery);
     }
 
-    private function getDefaultSort(string $order): array
+    private function getDefaultSortField(): string
     {
         if (present($this->queryString)) {
-            return [new Sort('_score', $order)];
+            return 'relevance';
         }
 
         if ($this->status === 'qualified') {
-            return [
-                new Sort('queued_at', $order),
-                new Sort('approved_date', $order), // fallback
-            ];
+            return 'ranked';
         }
 
         if (in_array($this->status, ['pending', 'graveyard', 'mine'], true)) {
-            return [new Sort('last_update', $order)];
+            return 'updated';
         }
 
-        return [new Sort('approved_date', $order)];
+        return 'ranked';
     }
 
     /**
@@ -190,57 +213,6 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         }
 
         return $searchAfter;
-    }
-
-    /**
-     * Generate sort parameters for the elasticsearch query.
-     */
-    private function normalizeSort(Sort $sort): array
-    {
-        // additional options
-        static $orderOptions = [
-            'beatmaps.difficultyrating' => [
-                'asc' => ['mode' => 'min'],
-                'desc' => ['mode' => 'max'],
-            ],
-        ];
-
-        $newSort = [];
-        // assign sort modes if any.
-        $options = ($orderOptions[$sort->field] ?? [])[$sort->order] ?? [];
-
-        // use relevant mode when sorting on nested field
-        if (starts_with($sort->field, 'beatmaps.')) {
-            $sortFilter = new BoolQuery();
-
-            if (!$this->includeConverts) {
-                $sortFilter->filter(['term' => ['beatmaps.convert' => false]]);
-            }
-
-            if ($this->mode !== null) {
-                $sortFilter->filter(['term' => ['beatmaps.playmode' => $this->mode]]);
-            }
-
-            $options['nested'] = [
-                'path' => 'beatmaps',
-                'filter' => $sortFilter->toArray(),
-            ];
-        }
-
-        if ($options !== []) {
-            $sort->extras = $options;
-        }
-
-        $newSort[] = $sort;
-
-        // append/prepend extra sort orders.
-        if ($sort->field === 'nominations') {
-            $newSort[] = new Sort('hype', $sort->order);
-        } elseif ($sort->field === 'approved_date' && $this->status === 'qualified') {
-            array_unshift($newSort, new Sort('queued_at', $sort->order));
-        }
-
-        return $newSort;
     }
 
     private function parseQuery(): void
@@ -271,42 +243,73 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         }
     }
 
-    private function parseSortOrder(?string $value)
+    private function parseSort(?string $value): void
     {
         $array = explode('_', $value);
-        $field = static::remapSortField($array[0]);
-        $order = $array[1] ?? null;
+        $this->sortField = $array[0];
+        $this->sortOrder = $array[1] ?? null;
 
-        if (!in_array($order, ['asc', 'desc'], true)) {
-            $order = 'desc';
+        if (!array_key_exists($this->sortField, static::SORT_FIELD_MAP)) {
+            $this->sortField = $this->getDefaultSortField();
         }
 
-        if (empty($field)) {
-            $this->sorts = $this->getDefaultSort($order);
-        } else {
-            $this->sorts = $this->normalizeSort(new Sort($field, $order));
+        if (!in_array($this->sortOrder, ['asc', 'desc'], true)) {
+            $this->sortOrder = 'desc';
+        }
+
+        $this->setSorts();
+    }
+
+    /**
+     * Set sort parameters for the elasticsearch query.
+     */
+    private function setSorts(): void
+    {
+        // additional options
+        static $orderOptions = [
+            'beatmaps.difficultyrating' => [
+                'asc' => ['mode' => 'min'],
+                'desc' => ['mode' => 'max'],
+            ],
+        ];
+
+        $sort = new Sort(static::SORT_FIELD_MAP[$this->sortField], $this->sortOrder);
+
+        // assign sort modes if any.
+        $options = ($orderOptions[$sort->field] ?? [])[$sort->order] ?? [];
+
+        // use relevant mode when sorting on nested field
+        if (starts_with($sort->field, 'beatmaps.')) {
+            $sortFilter = new BoolQuery();
+
+            if (!$this->includeConverts) {
+                $sortFilter->filter(['term' => ['beatmaps.convert' => false]]);
+            }
+
+            if ($this->mode !== null) {
+                $sortFilter->filter(['term' => ['beatmaps.playmode' => $this->mode]]);
+            }
+
+            $options['nested'] = [
+                'path' => 'beatmaps',
+                'filter' => $sortFilter->toArray(),
+            ];
+        }
+
+        if ($options !== []) {
+            $sort->extras = $options;
+        }
+
+        $this->sorts = [$sort];
+
+        // append/prepend extra sort orders.
+        if ($sort->field === 'nominations') {
+            $this->sorts[] = new Sort('hype', $sort->order);
+        } elseif ($sort->field === 'approved_date' && $this->status === 'qualified') {
+            array_unshift($this->sorts, new Sort('queued_at', $sort->order));
         }
 
         // generic tie-breaker.
-        $this->sorts[] = new Sort('_id', $order);
-    }
-
-    private static function remapSortField(?string $name)
-    {
-        static $fields = [
-            'artist' => 'artist.raw',
-            'creator' => 'creator.raw',
-            'difficulty' => 'beatmaps.difficultyrating',
-            'favourites' => 'favourite_count',
-            'nominations' => 'nominations',
-            'plays' => 'play_count',
-            'ranked' => 'approved_date',
-            'rating' => 'rating',
-            'relevance' => '_score',
-            'title' => 'title.raw',
-            'updated' => 'last_update',
-        ];
-
-        return $fields[$name] ?? null;
+        $this->sorts[] = new Sort('_id', $sort->order);
     }
 }
