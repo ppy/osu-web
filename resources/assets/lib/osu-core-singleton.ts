@@ -4,11 +4,11 @@ import OsuCore from 'osu-core';
 
 declare global {
   interface Window {
-    OsuCore: OsuCore;
+    osuCore: OsuCore;
   }
 }
 
-const core = new OsuCore(window);
-window.OsuCore = core; // for debugging
+const core = new OsuCore();
+window.osuCore = core; // for legacy and debugging
 
 export default core;

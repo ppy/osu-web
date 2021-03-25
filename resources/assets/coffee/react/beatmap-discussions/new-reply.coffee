@@ -4,6 +4,7 @@
 import { MessageLengthCounter } from './message-length-counter'
 import { BigButton } from 'big-button'
 import * as React from 'react'
+import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, form, input, label, span, i } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
 el = React.createElement

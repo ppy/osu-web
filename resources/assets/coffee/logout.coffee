@@ -7,6 +7,6 @@ $(document).on 'ajax:success', '.js-logout-link', (_event, data) ->
   osu.reloadPage()
 
   if (data?.captcha_triggered == true)
-    captcha.trigger();
+    osuCore.captcha.trigger();
   else
-    captcha.untrigger();
+    osuCore.captcha.untrigger();
