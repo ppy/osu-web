@@ -244,12 +244,6 @@ export default class UserVerification {
       return osu.reloadPage();
     }
 
-    if (typeof callback === 'function') {
-      callback();
-    }
-
-    if (callback instanceof HTMLElement) {
-      osu.executeAction(callback);
-    }
+    callback?.();
   }
 }
