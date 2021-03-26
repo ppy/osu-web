@@ -4,6 +4,7 @@
 import Captcha from 'captcha';
 import UserJson from 'interfaces/user-json';
 import * as Cookies from 'js-cookie';
+import { createClickCallback } from 'utils/html';
 
 declare global {
   interface Window {
@@ -19,7 +20,7 @@ interface LoginSuccessJson {
 
 export default class UserLogin {
   // Used as callback on original action (where login was required)
-  private clickAfterLogin?: HTMLElement;
+  private callback?: () => void;
 
   constructor(private readonly captcha: Captcha) {
     $(document)
@@ -30,13 +31,13 @@ export default class UserLogin {
       .on('click', '.js-user-link', this.showOnClick)
       .on('click', '.js-login-required--click', this.showToContinue)
       .on('ajax:before', '.js-login-required--click', () => currentUser.id != null)
-      .on('ajax:error', this.showOnError)
+      .on('ajax:error', this.onError)
       .on('turbolinks:load', this.showOnLoad);
     $.subscribe('nav:popup:hidden', this.reset);
   }
 
-  show = (target?: HTMLElement) => {
-    this.clickAfterLogin = target;
+  show = (callback?: () => void) => {
+    this.callback = callback;
 
     window.setTimeout(() => {
       $(document).trigger('gallery:close');
@@ -44,7 +45,17 @@ export default class UserLogin {
     }, 0);
   }
 
-  showOnError = (e: { target?: unknown }, xhr: JQuery.jqXHR) => {
+  showIfGuest = (callback?: () => void) => {
+    if (currentUser.id != null) {
+      return false;
+    }
+
+    this.show(callback);
+
+    return true;
+  }
+
+  showOnError = (xhr: JQuery.jqXHR, callback?: () => void) => {
     if (xhr.status !== 401 || xhr.responseJSON?.authentication !== 'basic') {
       return false;
     }
@@ -53,8 +64,7 @@ export default class UserLogin {
       // broken page state
       osu.reloadPage();
     } else {
-      const target = e.target instanceof HTMLElement ? e.target : undefined;
-      this.show(target);
+      this.show(callback);
     }
 
     return true;
@@ -80,7 +90,7 @@ export default class UserLogin {
   }
 
   private loginSuccess = (event: unknown, data: LoginSuccessJson) => {
-    const toClick = this.clickAfterLogin;
+    const callback = this.callback;
     this.reset();
 
     this.refreshToken();
@@ -95,8 +105,12 @@ export default class UserLogin {
       $('.js-user-header-popup').html(data.header_popup);
       this.captcha.untrigger();
 
-      osu.executeAction(toClick);
+      (callback ?? osu.reloadPage)();
     }, 0);
+  }
+
+  private onError = (e: { target: unknown }, xhr: JQuery.jqXHR) => {
+    this.showOnError(xhr, createClickCallback(e.target));
   }
 
   private refreshToken = () => {
@@ -106,7 +120,7 @@ export default class UserLogin {
   }
 
   private reset = () => {
-    this.clickAfterLogin = undefined;
+    this.callback = undefined;
   }
 
   private showOnClick = (e: JQuery.Event) => {
@@ -131,9 +145,9 @@ export default class UserLogin {
     }
 
     e.preventDefault();
-    const target = e.target instanceof HTMLElement ? e.target : undefined;
+    const callback = createClickCallback(e.target);
     window.setTimeout(() => {
-      this.show(target);
+      this.show(callback);
     }, 0);
   }
 }
