@@ -4,6 +4,7 @@
 import { route } from 'laroute';
 import * as React from 'react';
 import { Spinner } from 'spinner';
+import { onErrorWithClick } from 'utils/ajax';
 import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
@@ -108,7 +109,7 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
 
       this.xhr = $.ajax(params)
         .done(this.updateData)
-        .fail(osu.emitAjaxError(this.buttonRef.current))
+        .fail(onErrorWithClick(this.buttonRef.current))
         .always(() => this.setState({ loading: false }));
     });
   }

@@ -72,7 +72,6 @@ interface OsuCommon {
   ajaxError: AjaxError;
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
   diffColour: (difficultyRating?: string | null) => React.CSSProperties;
-  emitAjaxError: (el?: HTMLElement | null) => AjaxError;
   executeAction: (el?: HTMLElement | null) => void;
   groupColour: (group?: GroupJson) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
