@@ -16,13 +16,28 @@ export default class UserVerification {
   // actual function to "store" the parameter original used for delayed show call
   private delayShowCallback?: () => void;
 
-  private readonly inputBox = document.getElementsByClassName('js-user-verification--input');
-  private readonly message = document.getElementsByClassName('js-user-verification--message');
-  private readonly messageSpinner = document.getElementsByClassName('js-user-verification--message-spinner');
-  private readonly messageText = document.getElementsByClassName('js-user-verification--message-text');
   private modal?: HTMLElement;
-  private readonly reference = document.getElementsByClassName('js-user-verification--reference');
   private request?: JQuery.jqXHR;
+
+  private get inputBox() {
+    return document.querySelector<HTMLInputElement>('.js-user-verification--input');
+  }
+
+  private get message() {
+    return document.querySelector<HTMLElement>('.js-user-verification--message');
+  }
+
+  private get messageSpinner() {
+    return document.querySelector<HTMLElement>('.js-user-verification--message-spinner');
+  }
+
+  private get messageText() {
+    return document.querySelector<HTMLElement>('.js-user-verification--message-text');
+  }
+
+  private get reference() {
+    return document.querySelector<HTMLElement>('.js-user-verification--reference');
+  }
 
   constructor() {
     $(document)
@@ -51,9 +66,9 @@ export default class UserVerification {
   }
 
   private autoSubmit = () => {
-    const target = this.inputBox[0];
+    const target = this.inputBox;
 
-    if (!(target instanceof HTMLInputElement)) return;
+    if (target == null) return;
 
     const inputKey = target.value.replace(/\s/g, '');
     const lastKey = target.dataset.lastKey;
@@ -120,7 +135,7 @@ export default class UserVerification {
     if (osu.isMobile()) {
       this.float(true, this.modal);
     } else {
-      const referenceBottom = this.reference[0]?.getBoundingClientRect().bottom;
+      const referenceBottom = this.reference?.getBoundingClientRect().bottom ?? 0;
 
       this.float(referenceBottom < 0, this.modal, referenceBottom);
     }
@@ -131,18 +146,18 @@ export default class UserVerification {
   }
 
   private setMessage = (text?: string, withSpinner: boolean = false) => {
-    const message = this.message[0];
-    if (!(message instanceof HTMLElement)) return;
+    const message = this.message;
+    if (message == null) return;
 
     if (text == null || text.length === 0) {
       Fade.out(message);
       return;
     }
 
-    const messageText = this.messageText[0];
-    const spinner = this.messageSpinner[0];
+    const messageText = this.messageText;
+    const spinner = this.messageSpinner;
 
-    if (!(messageText instanceof HTMLElement) || !(spinner instanceof HTMLElement)) return;
+    if (messageText == null || spinner == null) return;
 
     messageText.textContent = text;
     Fade.toggle(spinner, withSpinner);
@@ -194,9 +209,9 @@ export default class UserVerification {
   private success = () => {
     if (!this.isActive() || this.modal == null) return;
 
-    const inputBox = this.inputBox[0];
+    const inputBox = this.inputBox;
 
-    if (!(inputBox instanceof HTMLInputElement)) return;
+    if (inputBox == null) return;
 
     this.$modal().modal('hide');
     this.modal.classList.remove('js-user-verification--active');
