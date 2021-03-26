@@ -19,6 +19,7 @@ import RootDataStore from 'stores/root-data-store';
 import TurbolinksReload from 'turbolinks-reload';
 import UserLogin from 'user-login';
 import UserLoginObserver from 'user-login-observer';
+import UserVerification from 'user-verification';
 import WindowVHPatcher from 'window-vh-patcher';
 import WindowFocusObserver from './window-focus-observer';
 
@@ -51,6 +52,7 @@ export default class OsuCore {
   readonly turbolinksReload = new TurbolinksReload();
   readonly userLogin: UserLogin;
   userLoginObserver: UserLoginObserver;
+  readonly userVerification = new UserVerification();
   windowFocusObserver: WindowFocusObserver;
   readonly windowVHPatcher = new WindowVHPatcher();
 
