@@ -22,17 +22,16 @@ export default class UserLogin {
   private clickAfterLogin?: HTMLElement;
 
   constructor(private readonly captcha: Captcha) {
-    $(document).on('ajax:success', '.js-login-form', this.loginSuccess);
-    $(document).on('ajax:error', '.js-login-form', this.loginError);
-    $(document).on('submit', '.js-login-form', this.clearError);
-    $(document).on('input', '.js-login-form-input', this.clearError);
-
-    $(document).on('click', '.js-user-link', this.showOnClick);
-    $(document).on('click', '.js-login-required--click', this.showToContinue);
-    $(document).on('ajax:before', '.js-login-required--click', () => currentUser.id != null);
-
-    $(document).on('ajax:error', this.showOnError);
-    $(document).on('turbolinks:load', this.showOnLoad);
+    $(document)
+      .on('ajax:success', '.js-login-form', this.loginSuccess)
+      .on('ajax:error', '.js-login-form', this.loginError)
+      .on('submit', '.js-login-form', this.clearError)
+      .on('input', '.js-login-form-input', this.clearError)
+      .on('click', '.js-user-link', this.showOnClick)
+      .on('click', '.js-login-required--click', this.showToContinue)
+      .on('ajax:before', '.js-login-required--click', () => currentUser.id != null)
+      .on('ajax:error', this.showOnError)
+      .on('turbolinks:load', this.showOnLoad);
     $.subscribe('nav:popup:hidden', this.reset);
   }
 
