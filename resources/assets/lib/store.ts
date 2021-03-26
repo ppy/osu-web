@@ -5,6 +5,7 @@ import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import Shopify from 'shopify-buy';
 import { toShopifyVariantGid } from 'shopify-gid';
+import { createClickCallback } from 'utils/html';
 
 declare global {
   interface Window {
@@ -52,7 +53,7 @@ export class Store {
         await this.beginShopifyCheckout(orderId);
       } catch (error) {
         LoadingOverlay.hide();
-        core.userVerification.showOnError({ target: event.target }, error);
+        core.userVerification.showOnError(error, createClickCallback(event.target));
       }
 
       return;
