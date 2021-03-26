@@ -305,6 +305,9 @@ class BeatmapsetsController extends Controller
                 'beatmaps.max_combo'
             ),
             'cursor' => $search->getSortCursor(),
+            'search' => [
+                'sort' => $search->getParams()->getSort(),
+            ],
             'recommended_difficulty' => $params->getRecommendedDifficulty(),
             'error' => search_error_message($search->getError()),
             'total' => $search->count(),
