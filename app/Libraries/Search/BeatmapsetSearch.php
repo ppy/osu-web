@@ -40,7 +40,6 @@ class BeatmapsetSearch extends RecordSearch
             'artist_unicode.*',
             'creator',
             'title',
-            'title.raw',
             'title.*',
             'title_unicode',
             'title_unicode.*',
