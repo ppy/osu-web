@@ -8,6 +8,20 @@ interface ReissueCodeJson {
   message: string;
 }
 
+interface UserVerificationJson {
+  authentication: 'verify';
+  box: string;
+}
+
+interface UserVerificationXhr extends JQuery.jqXHR {
+  responseJSON: UserVerificationJson;
+  status: 401;
+}
+
+const isUserVerificationXhr = (arg: JQuery.jqXHR): arg is UserVerificationXhr => (
+    arg.status === 401 && arg.responseJSON?.authentication === 'verify'
+);
+
 export default class UserVerification {
   // Used as callback on original action (where verification was required)
   private clickAfterVerification?: HTMLElement;
@@ -53,7 +67,7 @@ export default class UserVerification {
   }
 
   showOnError = (e: { target: unknown }, xhr: JQuery.jqXHR) => {
-    if (xhr.status !== 401 || xhr.responseJSON?.authentication !== 'verify') return false;
+    if (!isUserVerificationXhr(xhr)) return;
 
     const target = e.target instanceof HTMLElement ? e.target : undefined;
     this.show(target, xhr.responseJSON.box);
