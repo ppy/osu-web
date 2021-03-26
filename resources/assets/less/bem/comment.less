@@ -8,8 +8,8 @@
   @_line-margin: 10px;
   @_top: comment;
   @_spacing: 10px;
-  @_gutter-desktop-left: @gutter-desktop;
-  @_gutter-desktop-right: @gutter-desktop;
+  @_gutter-desktop-left: @gutter-v2-desktop;
+  @_gutter-desktop-right: @gutter-v2-desktop;
 
   margin-top: @_spacing;
   font-size: @font-size--normal-2;
@@ -19,7 +19,7 @@
   &--top {
     border-bottom-width: 1px;
     margin-top: 0;
-    padding: (@_spacing + 5px) @gutter;
+    padding: (@_spacing + 5px) @gutter-v2;
 
     .@{_top}--single& {
       border-bottom-width: 0;
