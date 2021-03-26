@@ -11,7 +11,7 @@ class ClientCheck
 {
     public static function assert($user, $params)
     {
-        if ($user->findUserGroup(app('groups')->byIdentifier('admin'), true) !== null) {
+        if (!config('osu.client.check_version') || $user->findUserGroup(app('groups')->byIdentifier('admin'), true) !== null) {
             return;
         }
 
