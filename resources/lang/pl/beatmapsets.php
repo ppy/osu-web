@@ -12,7 +12,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Zwolnij, pograj więcej!',
     ],
 
     'index' => [
@@ -114,17 +114,17 @@ return [
             'genre' => 'Gatunek',
             'language' => 'Język',
             'no_scores' => 'Dane są nadal ładowane...',
-            'nsfw' => '',
+            'nsfw' => 'Treść dla pełnoletnich',
             'points-of-failure' => 'Wykres porażek',
             'source' => 'Źródło',
-            'storyboard' => '',
+            'storyboard' => 'Ta beatmapa zawiera scenorys',
             'success-rate' => 'Wskaźnik ukończonych zagrań',
             'tags' => 'Tagi',
         ],
 
         'nsfw_warning' => [
             'details' => '',
-            'title' => '',
+            'title' => 'Treść dla pełnoletnich',
 
             'buttons' => [
                 'disable' => 'Wyłącz ostrzeżenia',

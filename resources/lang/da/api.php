@@ -20,6 +20,10 @@ return [
             'write' => 'Send beskeder på dine vegne.',
         ],
 
+        'forum' => [
+            'write' => '',
+        ],
+
         'friends' => [
             'read' => 'Se hvem du følger.',
         ],
