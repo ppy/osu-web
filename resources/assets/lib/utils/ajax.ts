@@ -12,6 +12,10 @@ const error = (xhr: JQuery.jqXHR, status: string, callback?: () => void) => {
   osu.popup(osu.xhrErrorMessage(xhr), 'danger');
 };
 
+export const fileuploadFailCallback = (event: unknown, data: JQueryFileUploadDone) => {
+  error(data.jqXHR, data.textStatus, () => data.submit?.());
+};
+
 export const onErrorWithCallback = (callback?: () => void) => {
   return (xhr: JQuery.jqXHR, status: string) => {
     error(xhr, status, callback);

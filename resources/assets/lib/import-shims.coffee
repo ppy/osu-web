@@ -9,6 +9,7 @@ import * as laroute from 'laroute'
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 import OsuUrlHelper from 'osu-url-helper'
+import { fileuploadFailCallback } from 'utils/ajax'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
 
 # polyfill non-Edge IE
@@ -19,8 +20,9 @@ window.Fade = Fade
 window.gallery ?= new Gallery
 
 window._exported = {
-  discussionLinkify
   OsuUrlHelper
+  discussionLinkify
+  fileuploadFailCallback
 }
 
 # FIXME: remove once everything imports instead of using global

@@ -498,6 +498,13 @@
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-3.3.13.tgz#d5daabb0af47bcddee40597acf6e804433bab439"
   integrity sha512-iczmLoIiVymaD1TIr2UctxjFkNEslVE/QtNAUmpDsD71cZfZBAsPCUv1Y+8AwsfA8bLx2ccr7d95T9w/UAirlQ==
 
+"@types/jquery.fileupload@^9.22.1":
+  version "9.22.1"
+  resolved "https://registry.yarnpkg.com/@types/jquery.fileupload/-/jquery.fileupload-9.22.1.tgz#1033388fff540b02192f4ebc95831eb140cffbef"
+  integrity sha512-WEYp2h84uSe7N7kE1FXiTsp3RxZgM12jmSa2FzjTfEBQyHWETir3AyHOz47mwIaN4i2jF3W/wPQB/co5rqWYdw==
+  dependencies:
+    "@types/jquery" "*"
+
 "@types/jquery@*", "@types/jquery@^3.3.0":
   version "3.5.5"
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.5.5.tgz#2c63f47c9c8d96693d272f5453602afd8338c903"
