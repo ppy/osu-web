@@ -221,11 +221,13 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             'ar' => 'ar',
             'artist' => 'artist',
             'bpm' => 'bpm',
+            'created' => 'created',
             'creator' => 'creator',
             'cs' => 'cs',
             'dr' => 'drain',
             'keys' => 'keys',
             'length' => 'hitLength',
+            'ranked' => 'ranked',
             'stars' => 'difficultyRating',
             'status' => 'statusRange',
         ];
