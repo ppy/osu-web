@@ -5,13 +5,13 @@
 
 return [
     'all_read' => 'Alle meldingen gelezen!',
-    'delete' => '',
-    'loading' => '',
+    'delete' => ':type verwijderen',
+    'loading' => 'Ongelezen meldingen laden...',
     'mark_read' => 'Wissen :type',
     'none' => 'Geen meldingen',
     'see_all' => 'alle meldingen bekijken',
-    'see_channel' => '',
-    'verifying' => '',
+    'see_channel' => 'ga naar chat',
+    'verifying' => 'Verifieer de sessie om meldingen te bekijken',
 
     'filters' => [
         '_' => 'alle',
@@ -61,8 +61,8 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmap staat in de ranked wachtlijst',
                 'beatmapset_rank' => '":title" is geranked',
                 'beatmapset_rank_compact' => 'Beatmap was geranked',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved' => '":title" is verwijderd van Loved',
+                'beatmapset_remove_from_loved_compact' => 'Beatmap is verwijderd uit Loved',
                 'beatmapset_reset_nominations' => 'Probleem geplaatst door :username reset nominatie van beatmap ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Nominatie is gereset',
             ],
@@ -137,11 +137,11 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Nieuwe beatmap',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Nieuwe beatmap ":title" door :username',
+                'user_beatmapset_new_compact' => 'Nieuwe beatmap ":title"',
+                'user_beatmapset_new_group' => 'Nieuwe beatmaps door :username',
             ],
         ],
 
@@ -152,7 +152,7 @@ return [
                 '_' => 'Nieuwe medaille',
                 'user_achievement_unlock' => '":title" ontgrendeld!',
                 'user_achievement_unlock_compact' => '":title" ontgrendeld!',
-                'user_achievement_unlock_group' => '',
+                'user_achievement_unlock_group' => 'Medailles ontgrendeld!',
             ],
         ],
     ],
@@ -175,7 +175,7 @@ return [
                 'beatmapset_nominate' => '":title" is genomineerd',
                 'beatmapset_qualify' => '":title" heeft genoeg nominaties gekregen en de rij van rangen ingevoerd',
                 'beatmapset_rank' => '":title" is gerangschikt',
-                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved' => '":title" is verwijderd uit Loved',
                 'beatmapset_reset_nominations' => 'Nominatie van ":title" is gereset',
             ],
 
@@ -215,7 +215,7 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username heeft nieuwe beatmaps aangemaakt',
             ],
         ],
     ],

@@ -8,11 +8,11 @@ return [
         'disabled' => 'Deze beatmap kan momenteel niet gedownload worden.',
         'parts-removed' => 'Delen van deze beatmap zijn verwijderd op verzoek van de maker of de houder van de rechten van een derde partij.',
         'more-info' => 'Klik hier voor meer informatie.',
-        'rule_violation' => '',
+        'rule_violation' => 'Sommige activa die op deze map staan zijn verwijderd nadat ze zijn beschouwd als niet geschikt voor gebruik in osu!.',
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Niet zo snel, speel meer.',
     ],
 
     'index' => [
@@ -21,7 +21,7 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'geen beatmaps',
 
         'download' => [
             'all' => 'download',
@@ -32,21 +32,21 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'hybrid_requires_modes' => 'Een hybride beatmapset vereist dat je ten minste één speelmodus selecteert om voor te nomineren.',
+        'incorrect_mode' => 'Je hebt geen toestemming om te nomineren voor modus: :mode',
+        'full_bn_required' => 'Je moet een volledige nominator zijn om deze nominatie uit te voeren.',
+        'too_many' => 'Nominatievereiste is al vervuld.',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'confirmation' => 'Weet je zeker dat je deze Beatmap wilt nomineren?',
+            'header' => 'Nomineer Beatmap',
+            'hybrid_warning' => 'opmerking: je mag maar één keer nomineren, dus zorg er alstublieft voor dat je nomineert voor alle spelmodus die je van plan bent te gebruiken',
+            'which_modes' => 'Welke modus benoemen?',
         ],
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Expliciet',
     ],
 
     'show' => [
@@ -114,22 +114,22 @@ return [
             'genre' => 'Genre',
             'language' => 'Taal',
             'no_scores' => 'Data nog aan het berekenen...',
-            'nsfw' => '',
+            'nsfw' => 'Expliciete inhoud',
             'points-of-failure' => 'Faalpunten',
             'source' => 'Bron',
-            'storyboard' => '',
+            'storyboard' => 'Deze beatmap bevat verhaalborden',
             'success-rate' => 'Slagingspercentage',
             'tags' => 'Labels',
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'Deze beatmap bevat expliciet, beledigende of verontrustende inhoud. Wilt je het toch bekijken?',
+            'title' => 'Expliciete inhoud',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Waarschuwing uitschakelen',
+                'listing' => 'Beatmap Lijst',
+                'show' => 'Weergeven',
             ],
         ],
 

@@ -36,7 +36,7 @@ return [
         'forum_post' => [
             'all' => '所有論壇',
             'link' => '在論壇中搜尋',
-            'login_required' => '',
+            'login_required' => '登入以搜尋論壇',
             'more_simple' => '查看更多搜尋結果',
             'title' => '論壇',
 
