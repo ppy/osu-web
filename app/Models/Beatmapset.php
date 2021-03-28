@@ -1289,7 +1289,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     {
         $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
         if ($profileCustomization->beatmapset_title_show_original) {
-            return presence($this->title_unicode) ?? $this->title;
+            return $this->title_unicode;
         }
 
         return $this->title;
@@ -1304,6 +1304,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         }
 
         return Forum\Post::find($topic->topic_first_post_id);
+    }
+
+    public function getTitleUnicodeAttribute()
+    {
+        return presence($this->attributes['title_unicode']) ?? $this->title;
     }
 
     public function freshHype()

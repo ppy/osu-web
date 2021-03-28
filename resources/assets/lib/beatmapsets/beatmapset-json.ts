@@ -93,6 +93,6 @@ export interface BeatmapsetJson {
   nsfw: boolean;
   status: BeatmapsetStatus;
   title: string;
-  title_unicode: string | null;
+  title_unicode: string;
   user_id: number;
 }
