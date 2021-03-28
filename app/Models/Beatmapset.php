@@ -1277,7 +1277,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function getArtistUnicodeAttribute()
     {
-        return presence($this->attributes['artist_unicode']) ?? $this->artist;
+        return $this->attributes['artist_unicode'] ?? $this->artist;
     }
 
     public function getDisplayArtist(?User $user)
@@ -1313,7 +1313,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function getTitleUnicodeAttribute()
     {
-        return presence($this->attributes['title_unicode']) ?? $this->title;
+        return $this->attributes['title_unicode'] ?? $this->title;
     }
 
     public function freshHype()
