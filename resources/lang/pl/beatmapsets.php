@@ -35,7 +35,7 @@ return [
         'hybrid_requires_modes' => '',
         'incorrect_mode' => 'Nie posiadasz uprawnień do nominowania beatmap dla tych trybów (:mode)',
         'full_bn_required' => 'Musisz posiadać pełne uprawnienia nominatora, by zakwalifikować tę beatmapę.',
-        'too_many' => '',
+        'too_many' => 'Osiągnięto już wystarczającą liczbę nominacji.',
 
         'dialog' => [
             'confirmation' => 'Czy na pewno chcesz nominować tę beatmapę?',

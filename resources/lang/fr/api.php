@@ -13,7 +13,7 @@ return [
     ],
 
     'scopes' => [
-        'bot' => 'Agir en tant que ChatBot',
+        'bot' => 'Agir en tant que ChatBot.',
         'identify' => 'Vous identifier et lire votre profil public.',
 
         'chat' => [
@@ -21,7 +21,7 @@ return [
         ],
 
         'forum' => [
-            'write' => '',
+            'write' => 'Créer et modifier les sujets et les messages du forum en votre nom.',
         ],
 
         'friends' => [

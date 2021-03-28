@@ -251,7 +251,7 @@ return [
     ],
     'general' => [
         'converts' => 'Incluir beatmaps convertidos',
-        'follows' => '',
+        'follows' => 'Mapeadores subscritos',
         'recommended' => 'Dificuldade recomendada',
     ],
     'mode' => [
@@ -317,7 +317,7 @@ return [
         'V2' => 'Pontuação V2',
     ],
     'language' => [
-        'any' => '',
+        'any' => 'Qualquer',
         'english' => 'Inglês',
         'chinese' => 'Chinês',
         'french' => 'Francês',

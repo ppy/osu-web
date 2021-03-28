@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'description' => 'Collection de beatmaps basées sur un thème',
+        'description' => 'Des collections pré-packagées de beatmaps autour d\'un thème commun.',
         'nav_title' => 'liste',
         'title' => 'Collections de Beatmaps',
 
@@ -39,7 +39,7 @@ return [
 
     'mode' => [
         'artist' => 'Artiste/Album',
-        'chart' => 'Classement',
+        'chart' => 'En avant',
         'standard' => 'Standard',
         'theme' => 'Thème',
     ],
