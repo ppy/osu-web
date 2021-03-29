@@ -164,7 +164,8 @@ module.exports = {
       "@typescript-eslint/prefer-regexp-exec": "error",
       "@typescript-eslint/quotes": [
           "error",
-          "single"
+          "single",
+          { "avoidEscape": true },
       ],
       "@typescript-eslint/require-await": "error",
       "@typescript-eslint/restrict-plus-operands": "error",
