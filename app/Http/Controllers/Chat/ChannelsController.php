@@ -225,13 +225,15 @@ class ChannelsController extends Controller
      */
     public function store()
     {
-        $params = request()->all();
-        $params['type'] = $params['type'] ?? null;
+        $params = get_params(request()->all(), null, [
+            'target_id:number',
+            'type:string',
+        ], ['null_missing' => true]);
 
         $sender = auth()->user();
 
         if ($params['type'] === Channel::TYPES['pm']) {
-            if (!isset($params['target_id'])) {
+            if ($params['target_id'] === null) {
                 abort(422, 'missing target_id parameter');
             }
 
