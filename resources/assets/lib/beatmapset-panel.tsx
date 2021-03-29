@@ -5,7 +5,6 @@ import { BeatmapsetJson, BeatmapsetStatus } from 'beatmapsets/beatmapset-json';
 import { CircularProgress } from 'circular-progress';
 import { Img2x } from 'img2x';
 import BeatmapJson from 'interfaces/beatmap-json';
-import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { sum, values } from 'lodash';
 import { computed, observable } from 'mobx';
@@ -171,7 +170,6 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   }
 
   @observable private beatmapsPopup = false;
-  @observable private beatmapsPopupMode: GameMode = 'osu';
   private timeouts: Record<string, number> = {};
 
   componentWillUnmount() {
@@ -243,8 +241,6 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   }
 
   private onBeatmapsEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-    this.beatmapsPopupMode = e.currentTarget.dataset.mode as GameMode;
-
     this.beatmapsPopupDelayedShow();
   }
 
@@ -270,9 +266,6 @@ export default class BeatmapsetPanel extends React.Component<Props> {
         <div
           className='beatmapset-panel__beatmaps'
           key={mode}
-          onMouseEnter={this.onBeatmapsEnter}
-          onMouseLeave={this.beatmapsPopupDelayedHide}
-          data-mode={mode}
         >
           <div className='beatmapset-panel__beatmap-icon'>
             <i className={`fal fa-extra-mode-${mode}`} />
@@ -296,31 +289,39 @@ export default class BeatmapsetPanel extends React.Component<Props> {
         onMouseLeave={this.beatmapsPopupDelayedHide}
       >
         <div className='beatmapset-panel__beatmaps-popup'>
-          {(this.groupedBeatmaps[this.beatmapsPopupMode] ?? []).map((beatmap) => {
+          {BeatmapHelper.modes.map((mode) => {
+            const beatmaps = this.groupedBeatmaps[mode];
+
+            if (beatmaps == null) return;
+
             return (
-              <a
-                key={beatmap.id}
-                className='beatmaps-popup-item'
-                href={route('beatmaps.show', { beatmap: beatmap.id })}
-              >
-                <span className='beatmaps-popup-item__col beatmaps-popup-item__col--mode'>
-                  <span className={`fal fa-extra-mode-${beatmap.mode}`} />
-                </span>
-                <span
-                  className='beatmaps-popup-item__col beatmaps-popup-item__col--difficulty'
-                  style={{
-                    '--bg': `var(--diff-${BeatmapHelper.getDiffRating(beatmap.difficulty_rating)})`,
-                  } as React.CSSProperties}
-                >
-                  <span className='beatmaps-popup-item__difficulty-icon'>
-                    <span className='fas fa-star' />
-                  </span>
-                  {osu.formatNumber(beatmap.difficulty_rating)}
-                </span>
-                <span className='beatmaps-popup-item__col beatmaps-popup-item__col--name'>
-                  {beatmap.version}
-                </span>
-              </a>
+              <div key={mode} className='beatmapset-panel__beatmaps-popup-group'>
+                {(this.groupedBeatmaps[mode] ?? []).map((beatmap) => (
+                  <a
+                    key={beatmap.id}
+                    className='beatmaps-popup-item'
+                    href={route('beatmaps.show', { beatmap: beatmap.id })}
+                  >
+                    <span className='beatmaps-popup-item__col beatmaps-popup-item__col--mode'>
+                      <span className={`fal fa-extra-mode-${beatmap.mode}`} />
+                    </span>
+                    <span
+                      className='beatmaps-popup-item__col beatmaps-popup-item__col--difficulty'
+                      style={{
+                        '--bg': `var(--diff-${BeatmapHelper.getDiffRating(beatmap.difficulty_rating)})`,
+                      } as React.CSSProperties}
+                    >
+                      <span className='beatmaps-popup-item__difficulty-icon'>
+                        <span className='fas fa-star' />
+                      </span>
+                      {osu.formatNumber(beatmap.difficulty_rating)}
+                    </span>
+                    <span className='beatmaps-popup-item__col beatmaps-popup-item__col--name'>
+                      {beatmap.version}
+                    </span>
+                  </a>
+                ))}
+              </div>
             );
           })}
         </div>
@@ -419,7 +420,11 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           >
             {osu.trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
           </div>
-          <div className='beatmapset-panel__beatmaps-all'>
+          <div
+            className='beatmapset-panel__beatmaps-all'
+            onMouseEnter={this.onBeatmapsEnter}
+            onMouseLeave={this.beatmapsPopupDelayedHide}
+          >
             {this.renderBeatmapIcons()}
           </div>
         </div>

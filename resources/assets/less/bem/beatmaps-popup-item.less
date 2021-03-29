@@ -4,8 +4,9 @@
 .beatmaps-popup-item {
   font-size: @font-size--normal;
   font-weight: 600;
-  margin: 1px -2px;
-  display: flex;
+  display: grid;
+  grid-gap: 4px;
+  grid-template-columns: auto 55px 1fr;
   align-items: center;
   color: hsl(var(--hsl-c1));
   width: max-content;
@@ -17,8 +18,6 @@
   });
 
   &__col {
-    margin: 0 2px;
-
     &--difficulty {
       --diff-expert-plus: @diff-expert-plus-light;
       border-radius: 10000px;

@@ -74,7 +74,6 @@
     padding: 5px;
     display: flex;
     align-items: center;
-    pointer-events: auto;
     line-height: 12px;
     height: $padding * 2 + $line-height;
   }
@@ -82,14 +81,20 @@
   &__beatmaps-all {
     margin: -5px;
     display: flex;
+    pointer-events: auto;
   }
 
   &__beatmaps-popup {
     max-height: 50vh;
     overflow: auto;
     padding: 0 5px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-gap: 10px;
+  }
+
+  &__beatmaps-popup-group {
+    display: grid;
+    grid-gap: 2px;
   }
 
   &__beatmaps-popup-container {
@@ -318,6 +323,7 @@
   &__play-progress {
     .full-size();
     .center-content();
+    .fade-element(@_hover-transition-duration);
     opacity: var(--play-icon-opacity);
   }
 
