@@ -3,7 +3,7 @@
 
 import { ReactTurbolinks } from 'react-turbolinks'
 import Events from 'beatmap-discussions/events'
-import { BeatmapsetPanel } from 'beatmapset-panel'
+import BeatmapsetPanel from 'beatmapset-panel'
 import { BlockButton } from 'block-button'
 import ChatIcon from 'chat-icon'
 import { Comments } from 'comments'

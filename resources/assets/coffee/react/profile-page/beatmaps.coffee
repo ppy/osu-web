@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { ExtraHeader } from './extra-header'
-import { BeatmapsetPanel } from 'beatmapset-panel'
+import BeatmapsetPanel from 'beatmapset-panel'
 import * as React from 'react'
 import { div, h2, h3, ul, li, a, p, pre, span } from 'react-dom-factories'
 import { ShowMoreLink } from 'show-more-link'

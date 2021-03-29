@@ -4,7 +4,7 @@
 import { Paginator } from './paginator'
 import { SearchPanel } from './search-panel'
 import { SearchSort } from './search-sort'
-import { BeatmapsetPanel } from 'beatmapset-panel'
+import BeatmapsetPanel from 'beatmapset-panel'
 import { Img2x } from 'img2x'
 import { observe, observable } from 'mobx'
 import { Observer } from 'mobx-react'
