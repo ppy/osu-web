@@ -21,7 +21,7 @@ return [
         ],
 
         'forum' => [
-            'write' => '',
+            'write' => 'tworzyć i edytować posty oraz wątki na forum w twoim imieniu',
         ],
 
         'friends' => [

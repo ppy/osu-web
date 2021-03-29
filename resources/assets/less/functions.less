@@ -103,16 +103,6 @@
   transition: @property @duration @function;
 }
 
-.default-gutter() {
-  padding-left: @gutter;
-  padding-right: @gutter;
-
-  @media @desktop {
-    padding-left: @gutter-desktop;
-    padding-right: @gutter-desktop;
-  }
-}
-
 .default-gutter-v2(@adjustment: 0) {
   padding-left: (@gutter-v2 + @adjustment);
   padding-right: (@gutter-v2 + @adjustment);

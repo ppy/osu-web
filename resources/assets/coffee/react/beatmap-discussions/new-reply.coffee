@@ -3,6 +3,7 @@
 
 import { MessageLengthCounter } from './message-length-counter'
 import { BigButton } from 'big-button'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, form, input, label, span, i } from 'react-dom-factories'
@@ -129,7 +130,7 @@ export class NewReply extends React.PureComponent
 
   editStart: =>
     if !@props.currentUser.id?
-      userLogin.show()
+      core.userLogin.show()
       return
 
     @setState editing: true, =>

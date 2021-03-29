@@ -23,7 +23,7 @@ return [
     ],
 
     'status' => [
-        'non_best' => '',
+        'non_best' => 'Tylko twoje najlepsze wyniki przyznają pp',
         'processing' => '',
     ],
 ];

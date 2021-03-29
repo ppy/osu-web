@@ -23,7 +23,7 @@ return [
     ],
 
     'status' => [
-        'non_best' => '',
+        'non_best' => 'Seuls les meilleurs scores en pp personnels sont récompensés',
         'processing' => 'Ce score est toujours en cours de calcul et sera affiché bientôt',
     ],
 ];

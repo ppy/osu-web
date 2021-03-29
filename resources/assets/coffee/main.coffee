@@ -62,8 +62,6 @@ $(document).on 'turbolinks:load', ->
 @timeago ?= new Timeago
 @tooltipBeatmap ?= new TooltipBeatmap
 @tooltipDefault ?= new TooltipDefault
-@userLogin ?= new UserLogin
-@userVerification ?= new UserVerification
 
 @formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)

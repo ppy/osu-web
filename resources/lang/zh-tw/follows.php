@@ -7,7 +7,7 @@ return [
     'comment' => [
         'empty' => '',
         'page_title' => '',
-        'title' => '',
+        'title' => '評論',
 
         'table' => [
             'latest_comment_empty' => '',
@@ -27,7 +27,7 @@ return [
         'empty' => '',
         'followers' => '',
         'page_title' => '',
-        'title' => '',
+        'title' => '作圖者',
         'to_0' => '',
         'to_1' => '',
     ],

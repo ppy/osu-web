@@ -21,7 +21,7 @@ return [
         ],
 
         'forum' => [
-            'write' => '',
+            'write' => 'Crea e modifica i topic e i post del forum a nome tuo.',
         ],
 
         'friends' => [
