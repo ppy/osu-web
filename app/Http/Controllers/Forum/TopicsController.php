@@ -602,8 +602,8 @@ class TopicsController extends Controller
                 $params['start'] = get_int($params['start']);
             }
 
-            if ($params['n'] !== null) {
-                $post = $topic->nthPost($params['n']);
+            if ($params['n'] !== null && $params['n'] > 0) {
+                $post = $topic->nthPost($params['n']) ?? $topic->posts()->last();
                 if ($post !== null) {
                     $params['cursor'] = ['id' => $post->getKey() - 1];
                     $params['sort'] = 'id_asc';
