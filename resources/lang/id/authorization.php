@@ -157,7 +157,7 @@ return [
                 'not_owner' => 'Hanya pemilik topik yang dapat menyunting sampul.',
             ],
             'store' => [
-                'forum_not_allowed' => 'Forum ini tidak dapat dipasang sampul topik.',
+                'forum_not_allowed' => 'Gambar sampul tidak dapat dipasang pada forum ini.',
             ],
         ],
 

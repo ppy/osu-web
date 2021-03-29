@@ -21,7 +21,7 @@ return [
         ],
 
         'forum' => [
-            'write' => '',
+            'write' => 'Membuat dan menyunting postingan forum atas nama akun Anda.',
         ],
 
         'friends' => [

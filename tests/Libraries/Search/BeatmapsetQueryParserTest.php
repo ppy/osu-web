@@ -41,6 +41,16 @@ class BeatmapsetQueryParserTest extends TestCase
             ['creator=hello', ['keywords' => null, 'options' => ['creator' => 'hello']]],
             ['artist=hello', ['keywords' => null, 'options' => ['artist' => 'hello']]],
             ['artist="hello world"', ['keywords' => null, 'options' => ['artist' => 'hello world']]],
+            ['created=2017', ['keywords' => null, 'options' => ['created' => ['gte' => '2017-01-01T00:00:00+00:00', 'lt' => '2018-01-01T00:00:00+00:00']]]],
+            ['ranked>2018', ['keywords' => null, 'options' => ['ranked' => ['gte' => '2019-01-01T00:00:00+00:00']]]],
+            ['ranked<2018-05', ['keywords' => null, 'options' => ['ranked' => ['lt' => '2018-05-01T00:00:00+00:00']]]],
+            ['ranked<=2018.05', ['keywords' => null, 'options' => ['ranked' => ['lt' => '2018-06-01T00:00:00+00:00']]]],
+            ['ranked=2018/05', ['keywords' => null, 'options' => ['ranked' => ['gte' => '2018-05-01T00:00:00+00:00', 'lt' => '2018-06-01T00:00:00+00:00']]]],
+            ['ranked=2018.05.01', ['keywords' => null, 'options' => ['ranked' => ['gte' => '2018-05-01T00:00:00+00:00', 'lt' => '2018-05-02T00:00:00+00:00']]]],
+            ['ranked>2018/05/01', ['keywords' => null, 'options' => ['ranked' => ['gte' => '2018-05-02T00:00:00+00:00']]]],
+            ['ranked>="2020-07-21 12:30:30 +09:00"', ['keywords' => null, 'options' => ['ranked' => ['gte' => '2020-07-21T12:30:30+09:00']]]],
+            ['ranked="2020-07-21 12:30:30 +09:00"', ['keywords' => null, 'options' => ['ranked' => ['gte' => '2020-07-21T12:30:30+09:00', 'lt' => '2020-07-21T12:30:31+09:00']]]],
+            ['ranked="invalid date format"', ['keywords' => 'ranked="invalid date format"', 'options' => []]],
 
             // multiple options
             ['artist=hello creator:world', ['keywords' => null, 'options' => ['artist' => 'hello', 'creator' => 'world']]],

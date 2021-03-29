@@ -174,7 +174,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
     private function getDefaultSortField(): string
     {
-        if (present($this->queryString)) {
+        if (present($this->queryString) || present($this->artist) || present($this->creator)) {
             return 'relevance';
         }
 
@@ -221,11 +221,13 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             'ar' => 'ar',
             'artist' => 'artist',
             'bpm' => 'bpm',
+            'created' => 'created',
             'creator' => 'creator',
             'cs' => 'cs',
             'dr' => 'drain',
             'keys' => 'keys',
             'length' => 'hitLength',
+            'ranked' => 'ranked',
             'stars' => 'difficultyRating',
             'status' => 'statusRange',
         ];

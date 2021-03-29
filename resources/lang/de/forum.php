@@ -75,8 +75,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Thread wirklich löschen?',
+        'confirm_restore' => 'Thread wirklich wiederherstellen?',
         'deleted' => 'gelöschter thread',
         'go_to_latest' => 'letzten beitrag anschauen',
         'has_replied' => 'Du hast auf diesen Thread geantwortet',
@@ -92,8 +92,8 @@ return [
         'started_by_verbose' => 'gestartet von :user',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Thread löschen',
+            'restore' => 'Thread wiederherstellen',
         ],
 
         'create' => [

@@ -13,15 +13,15 @@ return [
     ],
 
     'scopes' => [
-        'bot' => '',
+        'bot' => 'Handel als een chatbot.',
         'identify' => 'Identificeer je en lees je openbare profiel.',
 
         'chat' => [
-            'write' => '',
+            'write' => 'Berichten namens jou verzenden.',
         ],
 
         'forum' => [
-            'write' => '',
+            'write' => 'Maak en bewerk forumonderwerpen en berichten namens u.',
         ],
 
         'friends' => [

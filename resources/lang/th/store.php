@@ -69,14 +69,14 @@ return [
     ],
 
     'order' => [
-        'cancel' => '',
+        'cancel' => 'ยกเลิกคำสั่งซื้อ',
         'cancel_confirm' => '',
-        'cancel_not_allowed' => '',
+        'cancel_not_allowed' => 'คำสั่งซื้อนี้ยังไม่สามารถยกเลิกได้ในตอนนี้',
         'invoice' => 'ดูใบเสร็จ',
         'no_orders' => 'ไม่มีรายการให้ดู',
         'paid_on' => 'สั่งซื้อเมื่อ :date',
         'resume' => 'ดำเนินการชำระเงินต่อ',
-        'shopify_expired' => '',
+        'shopify_expired' => 'ลิงค์ชำระเงินสำหรับคำสั่งซื้อนี้หมดอายุแล้ว',
 
         'item' => [
             'display_name' => [
