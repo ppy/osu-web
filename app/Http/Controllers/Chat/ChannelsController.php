@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Chat;
 
 use App\Models\Chat\Channel;
 use App\Models\Chat\UserChannel;
+use App\Models\Multiplayer\Room;
 use App\Models\User;
 use App\Transformers\Chat\ChannelTransformer;
 use Auth;
@@ -246,6 +247,13 @@ class ChannelsController extends Controller
             if ($channel->exists) {
                 $channel->addUser($sender);
             }
+        } else if ($params['type'] === Channel::TYPES['multiplayer']) {
+            abort_if($params['target_id'] === null, 422, 'missing target_id parameter');
+
+            $room = Room::findOrFail($params['target_id']);
+            // TODO: premission check.
+            $channel = $room->channel;
+            $channel->addUser($sender);
         }
 
         if (isset($channel)) {
