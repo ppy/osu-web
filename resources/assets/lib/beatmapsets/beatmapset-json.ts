@@ -76,7 +76,7 @@ export interface CurrentUserAttributes {
 // TODO: incomplete
 export interface BeatmapsetJson {
   artist: string;
-  artist_unicode: string | null;
+  artist_unicode: string;
   beatmaps?: BeatmapJson[];
   covers: BeatmapsetCovers;
   creator: string;
