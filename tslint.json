@@ -19,7 +19,7 @@
     "object-literal-sort-keys": {
       "options": "ignore-case"
     },
-    "quotemark": [true, "single"],
+    "quotemark": [true, "single", "avoid-escape"],
     "max-line-length": false,
     "member-access": [true, "no-public"],
     "member-ordering": [
