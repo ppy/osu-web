@@ -232,12 +232,9 @@ class ChannelsController extends Controller
         ], ['null_missing' => true]);
 
         $sender = auth()->user();
+        abort_if($params['target_id'] === null, 422, 'missing target_id parameter');
 
         if ($params['type'] === Channel::TYPES['pm']) {
-            if ($params['target_id'] === null) {
-                abort(422, 'missing target_id parameter');
-            }
-
             $target = User::findOrFail($params['target_id']);
 
             priv_check('ChatStart', $target)->ensureCan();
@@ -248,8 +245,6 @@ class ChannelsController extends Controller
                 $channel->addUser($sender);
             }
         } else if ($params['type'] === Channel::TYPES['multiplayer']) {
-            abort_if($params['target_id'] === null, 422, 'missing target_id parameter');
-
             $room = Room::findOrFail($params['target_id']);
             // TODO: premission check.
             $channel = $room->channel;
