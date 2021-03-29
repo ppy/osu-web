@@ -57,8 +57,8 @@ export class EditorToolbar extends React.Component {
           className={bn}
           ref={this.ref}
         >
-          <EditorToolbarButton format='bold' />;
-          <EditorToolbarButton format='italic' />;
+          <EditorToolbarButton format='bold' />
+          <EditorToolbarButton format='italic' />
           <div className={`${bn}__popup-tail`}/>
         </div>
       </Portal>

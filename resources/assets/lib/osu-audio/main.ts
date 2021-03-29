@@ -85,7 +85,7 @@ export default class Main {
 
   audio = new Audio();
   private currentSlider?: Slider;
-  private durationFormatted = '\'0:00\'';
+  private durationFormatted = "'0:00'";
   private hasWorkingVolumeControl = true;
   private hideMainPlayerTimeout = -1;
   private mainPlayer?: HTMLElement;
