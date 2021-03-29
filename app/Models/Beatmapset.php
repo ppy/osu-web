@@ -1275,9 +1275,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return new BBCodeFromDB($description, $post->bbcode_uid, $options);
     }
 
-    public function getArtistUnicodeAttribute()
+    public function getArtistUnicodeAttribute($value)
     {
-        return $this->attributes['artist_unicode'] ?? $this->artist;
+        return $value ?? $this->artist;
     }
 
     public function getDisplayArtist(?User $user)
@@ -1311,9 +1311,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return Forum\Post::find($topic->topic_first_post_id);
     }
 
-    public function getTitleUnicodeAttribute()
+    public function getTitleUnicodeAttribute($value)
     {
-        return $this->attributes['title_unicode'] ?? $this->title;
+        return $value ?? $this->title;
     }
 
     public function freshHype()
