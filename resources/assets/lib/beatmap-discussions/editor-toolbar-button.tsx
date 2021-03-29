@@ -14,7 +14,7 @@ export const EditorToolbarButton = (props: Props) => {
   const handleClick = React.useCallback((event: React.SyntheticEvent<HTMLButtonElement>) => {
     event.preventDefault();
     toggleFormat(context, props.format);
-  }, []);
+  }, [context, props.format]);
 
   return (
     <button
