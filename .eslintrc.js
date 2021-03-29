@@ -331,6 +331,7 @@ module.exports = {
       "react/prop-types": "error",
       "react/react-in-jsx-scope": "error",
       "react/require-render-return": "error",
+      "react-hooks/exhaustive-deps": "error",
       "require-await": "off",
       "space-before-function-paren": [
           "error",
