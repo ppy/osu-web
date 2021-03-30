@@ -217,7 +217,7 @@ export default class NotificationStackStore implements DispatchListener {
 
       this.total--;
     }
-  }
+  };
 
   private removeByStack(identity: NotificationIdentity, readCount: number) {
     const stack = this.getStack(identity);

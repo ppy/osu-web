@@ -20,12 +20,12 @@ export class OwnClients extends React.Component {
   handleModalClose = () => {
     uiState.account.client = null;
     uiState.account.newClientVisible = false;
-  }
+  };
 
   @action
   handleNewClientClicked = () => {
     uiState.account.newClientVisible = true;
-  }
+  };
 
   render() {
     return (
@@ -48,13 +48,11 @@ export class OwnClients extends React.Component {
   }
 
   renderClients() {
-    return [...store.clients.values()].map((client) => {
-      return (
-        <div className='oauth-clients__client' key={client.id}>
-          <OwnClient client={client} />
-        </div>
-      );
-    });
+    return [...store.clients.values()].map((client) => (
+      <div className='oauth-clients__client' key={client.id}>
+        <OwnClient client={client} />
+      </div>
+    ));
   }
 
   renderEmpty() {
@@ -72,7 +70,7 @@ export class OwnClients extends React.Component {
     }
 
     return (
-      <Modal visible={true} onClose={this.handleModalClose}>
+      <Modal visible onClose={this.handleModalClose}>
         {component}
       </Modal>
     );

@@ -15,9 +15,7 @@ export default class NotificationController {
 
   @computed
   get stacks() {
-    return this.store.orderedStacksOfType(this.currentFilter).filter((stack) => {
-      return stack.hasVisibleNotifications && !this.isExcluded(stack.objectType);
-    });
+    return this.store.orderedStacksOfType(this.currentFilter).filter((stack) => stack.hasVisibleNotifications && !this.isExcluded(stack.objectType));
   }
 
   @computed
@@ -44,9 +42,7 @@ export default class NotificationController {
 
   getTotal(type: NotificationType) {
     if (type.name == null) {
-      return this.typeNamesWithoutNull.reduce((acc, current) => {
-        return acc + this.store.getOrCreateType({ objectType: current }).total;
-      }, 0);
+      return this.typeNamesWithoutNull.reduce((acc, current) => acc + this.store.getOrCreateType({ objectType: current }).total, 0);
     }
 
     return type.total;

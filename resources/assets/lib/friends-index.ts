@@ -3,8 +3,6 @@
 
 import { Main } from 'friends-index/main';
 
-reactTurbolinks.registerPersistent('friends-index', Main, true, (container: HTMLElement) => {
-  return {
-    friends: osu.parseJson('json-users'),
-  };
-});
+reactTurbolinks.registerPersistent('friends-index', Main, true, (container: HTMLElement) => ({
+  friends: osu.parseJson('json-users'),
+}));

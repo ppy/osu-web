@@ -138,20 +138,20 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
       } },
       method: 'PATCH',
     }).done((beatmapset: BeatmapsetJson) => $.publish('beatmapset:set', { beatmapset }))
-    .fail(osu.ajaxError)
-    .always(() => this.setState({ isBusy: false }))
-    .done(this.props.onClose);
-  }
+      .fail(osu.ajaxError)
+      .always(() => this.setState({ isBusy: false }))
+      .done(this.props.onClose);
+  };
 
   private setGenreId = (e: React.ChangeEvent<HTMLSelectElement>) => {
     this.setState({ genreId: parseInt(e.currentTarget.value, 10) });
-  }
+  };
 
   private setLanguageId = (e: React.ChangeEvent<HTMLSelectElement>) => {
     this.setState({ languageId: parseInt(e.currentTarget.value, 10) });
-  }
+  };
 
   private setNsfw = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ nsfw: e.currentTarget.checked });
-  }
+  };
 }

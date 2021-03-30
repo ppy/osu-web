@@ -33,7 +33,7 @@ export default function NewsHeader(props: Props) {
     <HeaderV4
       theme='news'
       links={links}
-      linksBreadcrumb={true}
+      linksBreadcrumb
     />
   );
 }

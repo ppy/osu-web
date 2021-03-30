@@ -24,7 +24,7 @@ export default class Localtime {
     elem.classList.add('js-tooltip-time');
     elem.title = elem.dateTime;
     elem.innerText = moment(elem.dateTime).format('LLL');
-  }
+  };
 
   private formatElems = (elems?: HTMLTimeElement[]) => {
     if (elems == null) {
@@ -32,7 +32,7 @@ export default class Localtime {
     }
 
     return elems.map(this.formatElem);
-  }
+  };
 
   private getElems = (parent: Node): HTMLTimeElement[] => {
     if (!(parent instanceof HTMLElement)) {
@@ -46,7 +46,7 @@ export default class Localtime {
       // 'time.class-name' query as array of time elements.
       return [...parent.querySelectorAll<HTMLTimeElement>('time.js-localtime')];
     }
-  }
+  };
 
   private mutationHandler = (mutations: MutationRecord[]) => {
     const timeElems: HTMLTimeElement[] = [];
@@ -58,5 +58,5 @@ export default class Localtime {
     });
 
     this.formatElems(timeElems);
-  }
+  };
 }

@@ -21,7 +21,9 @@ export default class ResultSet implements SearchResults {
 
   @computed
   get isExpired() {
-    if (this.fetchedAt == null) { return true; }
+    if (this.fetchedAt == null) {
+      return true;
+    }
 
     return new Date().getTime() - this.fetchedAt.getTime() > ResultSet.CACHE_DURATION_MS;
   }

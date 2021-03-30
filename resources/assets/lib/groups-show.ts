@@ -3,9 +3,7 @@
 
 import { Main } from 'groups-show/main';
 
-reactTurbolinks.registerPersistent('groups-show', Main, true, (container: HTMLElement) => {
-  return {
-    group: osu.parseJson('json-group'),
-    users: osu.parseJson('json-users'),
-  };
-});
+reactTurbolinks.registerPersistent('groups-show', Main, true, (container: HTMLElement) => ({
+  group: osu.parseJson('json-group'),
+  users: osu.parseJson('json-users'),
+}));

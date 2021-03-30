@@ -110,7 +110,7 @@ interface OsuLinkOptions {
 
 interface ChangelogBuild {
   update_stream: {
-    name: string,
+    name: string;
   };
   version: string;
 }

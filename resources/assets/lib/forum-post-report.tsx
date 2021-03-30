@@ -40,11 +40,11 @@ export default class ForumPostReport extends React.Component<Record<string, neve
   }
 
   private onClickReportButton = (e: JQuery.ClickEvent<Document>) => {
-    if (e.button !== 0) { return; }
+    if (e.button !== 0) return;
 
     const post = e.currentTarget.closest('.js-forum-post');
 
-    if (post == null) { return; }
+    if (post == null) return;
 
     const postId = post.dataset.postId;
     const username = post.dataset.postUsername;
@@ -58,5 +58,5 @@ export default class ForumPostReport extends React.Component<Record<string, neve
         this.reportRef.current.showForm();
       }
     });
-  }
+  };
 }

@@ -45,7 +45,7 @@ export default class InputBox extends React.Component<Props> implements Dispatch
   buttonClicked = () => {
     this.sendMessage(this.currentChannel?.inputText);
     this.currentChannel?.setInputText('');
-  }
+  };
 
   checkIfEnterPressed = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.keyCode === 13) {
@@ -53,7 +53,7 @@ export default class InputBox extends React.Component<Props> implements Dispatch
       this.sendMessage(this.currentChannel?.inputText);
       this.currentChannel?.setInputText('');
     }
-  }
+  };
 
   componentDidMount() {
     this.focusInput();
@@ -72,7 +72,7 @@ export default class InputBox extends React.Component<Props> implements Dispatch
   handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const message = e.target.value;
     this.currentChannel?.setInputText(message);
-  }
+  };
 
   handleDispatchAction(action: DispatcherAction) {
     if (action instanceof WindowFocusAction) {

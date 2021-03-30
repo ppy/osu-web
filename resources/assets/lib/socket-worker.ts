@@ -9,13 +9,9 @@ import { action, computed, observable } from 'mobx';
 import { NotificationEventLogoutJson, NotificationEventVerifiedJson } from 'notifications/notification-events';
 import SocketMessageEvent from 'socket-message-event';
 
-const isNotificationEventLogoutJson = (arg: any): arg is NotificationEventLogoutJson => {
-  return arg.event === 'logout';
-};
+const isNotificationEventLogoutJson = (arg: any): arg is NotificationEventLogoutJson => arg.event === 'logout';
 
-const isNotificationEventVerifiedJson = (arg: any): arg is NotificationEventVerifiedJson => {
-  return arg.event === 'verified';
-};
+const isNotificationEventVerifiedJson = (arg: any): arg is NotificationEventVerifiedJson => arg.event === 'verified';
 
 interface NotificationFeedMetaJson {
   url: string;
@@ -27,7 +23,7 @@ export default class SocketWorker {
   @observable connectionStatus: ConnectionStatus = 'disconnected';
   @observable hasConnectedOnce = false;
   userId: number | null = null;
-  @observable private active: boolean = false;
+  @observable private active = false;
   private endpoint?: string;
   private timeout: Record<string, number> = {};
   private ws: WebSocket | null | undefined;
@@ -120,7 +116,7 @@ export default class SocketWorker {
     } else {
       dispatch(new SocketMessageEvent(eventData));
     }
-  }
+  };
 
   @action
   private reconnectWebSocket = () => {
@@ -133,7 +129,7 @@ export default class SocketWorker {
       this.ws = null;
       this.connectWebSocket();
     }));
-  }
+  };
 
   private startWebSocket = () => {
     if (this.endpoint != null) {
@@ -156,5 +152,5 @@ export default class SocketWorker {
       })).fail(action(() => {
         this.timeout.startWebSocket = Timeout.set(10000, this.startWebSocket);
       }));
-  }
+  };
 }

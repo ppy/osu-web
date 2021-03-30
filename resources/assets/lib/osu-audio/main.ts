@@ -85,7 +85,7 @@ export default class Main {
 
   audio = new Audio();
   private currentSlider?: Slider;
-  private durationFormatted: string = `'0:00'`;
+  private durationFormatted = "'0:00'";
   private hasWorkingVolumeControl = true;
   private hideMainPlayerTimeout = -1;
   private mainPlayer?: HTMLElement;
@@ -128,13 +128,13 @@ export default class Main {
       this.settings.volume = prevVolume;
       this.syncVolumeDisplay();
     }, 0);
-  }
+  };
 
   private ensurePagePlayerIsAttached = () => {
     if (this.pagePlayer != null && !document.body.contains(this.pagePlayer)) {
       this.pagePlayer = undefined;
     }
-  }
+  };
 
   private findPlayer(elem: HTMLElement) {
     const player = (this.mainPlayer?.contains(elem) ?? false) ? this.pagePlayer : elem.closest('.js-audio--player');
@@ -174,7 +174,7 @@ export default class Main {
     });
 
     this.setNavigation();
-  }
+  };
 
   private nav = (e: JQuery.ClickEvent) => {
     const button = e.currentTarget;
@@ -188,7 +188,7 @@ export default class Main {
     } else if (button.dataset.audioNav === 'next' && this.playerNext != null) {
       this.load(this.playerNext);
     }
-  }
+  };
 
   private observePage = (mutations: MutationRecord[]) => {
     this.ensurePagePlayerIsAttached();
@@ -222,7 +222,7 @@ export default class Main {
 
     newPlayers.push(...this.replaceAudioElems(audioElems));
     this.reattachPagePlayer(newPlayers);
-  }
+  };
 
   private onClickPlay = (e: JQuery.ClickEvent) => {
     e.preventDefault();
@@ -238,7 +238,7 @@ export default class Main {
     } else {
       this.load(pagePlayer);
     }
-  }
+  };
 
   private onDocumentReady = () => {
     if (this.mainPlayer == null) {
@@ -266,7 +266,7 @@ export default class Main {
     this.observer.observe(document.body, { childList: true, subtree: true });
     this.replaceAudioElems();
     this.reattachPagePlayer();
-  }
+  };
 
   private onEnded = () => {
     this.stop();
@@ -274,13 +274,13 @@ export default class Main {
     if (this.playerNext != null && this.settings.autoplay) {
       this.load(this.playerNext);
     }
-  }
+  };
 
   private onPlaying = () => {
     this.setTimeFormat();
     this.durationFormatted = format(this.audio.duration, this.timeFormat);
     this.setState('playing');
-  }
+  };
 
   private onSeekEnd = (slider: Slider) => {
     this.currentSlider = undefined;
@@ -289,7 +289,7 @@ export default class Main {
       : this.audio.duration * slider.getPercentage();
 
     this.setTime(targetTime);
-  }
+  };
 
   private onSeekStart = (e: JQuery.TouchStartEvent) => {
     const bar = e.currentTarget;
@@ -305,23 +305,23 @@ export default class Main {
       endCallback: this.onSeekEnd,
       initialEvent: e,
     });
-  }
+  };
 
   private onTimeupdate = () => {
     // time update when playing is already handled by a requestAnimationFrame loop
     if (this.audio.paused) {
       this.syncProgress();
     }
-  }
+  };
 
   private onVolumeChangeEnd = () => {
     this.currentSlider = undefined;
     this.settings.save();
-  }
+  };
 
   private onVolumeChangeMove = (slider: Slider) => {
     this.settings.volume = slider.getPercentage();
-  }
+  };
 
   private onVolumeChangeStart = (e: JQuery.TouchStartEvent) => {
     const bar = e.currentTarget;
@@ -334,12 +334,12 @@ export default class Main {
       initialEvent: e,
       moveCallback: this.onVolumeChangeMove,
     });
-  }
+  };
 
   private pause = () => {
     this.audio.pause();
     this.setState('paused');
-  }
+  };
 
   private reattachPagePlayer = (elems?: Element[]) => {
     this.ensurePagePlayerIsAttached();
@@ -359,7 +359,7 @@ export default class Main {
     }
 
     this.setNavigation();
-  }
+  };
 
   private replaceAudioElem = (elem: HTMLAudioElement) => {
     const src = osu.presence(elem.src) ?? osu.presence(elem.querySelector('source')?.src);
@@ -375,7 +375,7 @@ export default class Main {
     elem.replaceWith(player);
 
     return player;
-  }
+  };
 
   private replaceAudioElems = (elems?: HTMLAudioElement[]) => {
     if (elems == null) {
@@ -383,7 +383,7 @@ export default class Main {
     }
 
     return elems.map(this.replaceAudioElem);
-  }
+  };
 
   private setNavigation = () => {
     if (this.settingNavigation) {
@@ -426,7 +426,7 @@ export default class Main {
 
       this.settingNavigation = false;
     });
-  }
+  };
 
   private setState = (state: PlayState) => {
     this.state = state;
@@ -444,12 +444,12 @@ export default class Main {
         }
       }, 4000);
     }
-  }
+  };
 
   private setTime = (t: number) => {
     this.audio.currentTime = t;
     this.syncProgress();
-  }
+  };
 
   private setTimeFormat = () => {
     if (this.audio.duration < 600) {
@@ -461,14 +461,14 @@ export default class Main {
     } else {
       this.timeFormat = 'hour';
     }
-  }
+  };
 
   private stop = () => {
     this.audio.pause();
     this.currentSlider?.end();
     this.audio.currentTime = 0;
     this.pause();
-  }
+  };
 
   private syncProgress = () => {
     if (this.audio.duration > 0) {
@@ -483,7 +483,7 @@ export default class Main {
     if (!this.audio.paused) {
       requestAnimationFrame(this.syncProgress);
     }
-  }
+  };
 
   private syncState = () => {
     this.updatePlayers((player) => {
@@ -496,7 +496,7 @@ export default class Main {
 
     this.syncProgress();
     this.syncVolumeDisplay();
-  }
+  };
 
   private syncVolumeDisplay = () => {
     if (this.mainPlayer == null) return;
@@ -504,18 +504,18 @@ export default class Main {
     this.mainPlayer.dataset.audioVolumeBarVisible = this.hasWorkingVolumeControl ? '1' : '0';
     this.mainPlayer.dataset.audioVolume = this.volumeIcon();
     this.mainPlayer.style.setProperty('--volume', this.settings.volume.toString());
-  }
+  };
 
   private toggleAutoplay = () => {
     this.settings.toggleAutoplay();
     this.settings.save();
     this.syncState();
-  }
+  };
 
   private toggleMute = () => {
     this.settings.toggleMuted();
     this.settings.save();
-  }
+  };
 
   private togglePlay = () => {
     if (this.url == null) {
@@ -527,7 +527,7 @@ export default class Main {
     } else {
       this.pause();
     }
-  }
+  };
 
   private updatePlayers = (func: (player: HTMLElement) => void) => {
     [this.mainPlayer, this.pagePlayer].forEach((player) => {
@@ -535,7 +535,7 @@ export default class Main {
         func(player);
       }
     });
-  }
+  };
 
   private volumeIcon = () => {
     if (this.settings.muted) {
@@ -549,5 +549,5 @@ export default class Main {
         return 'normal';
       }
     }
-  }
+  };
 }

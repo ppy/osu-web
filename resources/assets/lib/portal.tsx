@@ -31,13 +31,13 @@ export class Portal extends PureComponent<Props> {
     this.removePortal();
 
     $(document).off(`turbolinks:before-cache.${this.uuid}`);
-  }
+  };
 
   removePortal = () => {
     if (this.container.parentElement === document.body) {
       document.body.removeChild(this.container);
     }
-  }
+  };
 
   render = () => createPortal(this.props.children, this.container);
 }

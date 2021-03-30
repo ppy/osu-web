@@ -20,7 +20,7 @@ interface Props {
   sidebarMeta: NewsSidebarMetaJson;
 }
 
-function NavPost({ post, subtitle, modifiers }: { modifiers: string[]; post?: NewsPostJson; subtitle: string; }) {
+function NavPost({ post, subtitle, modifiers }: { modifiers: string[]; post?: NewsPostJson; subtitle: string }) {
   if (post == null) {
     return null;
   }
@@ -69,13 +69,13 @@ export default class Main extends React.Component<Props> {
                 <PostItem post={this.props.post} modifiers={['show']} />
 
                 <div className='news-show__info'>
-                    <h1 className='news-show__title'>{this.props.post.title}</h1>
-                    <p className='news-show__author'>
-                      <StringWithComponent
-                        pattern={osu.trans('news.show.by')}
-                        mappings={{ ':user': <strong key='author'>{this.props.post.author}</strong> }}
-                      />
-                    </p>
+                  <h1 className='news-show__title'>{this.props.post.title}</h1>
+                  <p className='news-show__author'>
+                    <StringWithComponent
+                      pattern={osu.trans('news.show.by')}
+                      mappings={{ ':user': <strong key='author'>{this.props.post.author}</strong> }}
+                    />
+                  </p>
                 </div>
 
                 <div className='js-audio--group' dangerouslySetInnerHTML={{ __html: content }} />
@@ -143,7 +143,7 @@ export default class Main extends React.Component<Props> {
     content = contentHTML.innerHTML;
 
     return { content };
-  }
+  };
 
   private renderNav = () => {
     if (this.props.post.navigation == null) {
@@ -159,5 +159,5 @@ export default class Main extends React.Component<Props> {
         <NavPost post={olderPost} modifiers={['prev']} subtitle={osu.trans('news.show.nav.older')} />
       </>
     );
-  }
+  };
 }

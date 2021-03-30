@@ -20,7 +20,7 @@ export default class CommentStore {
 
   @action
   addVoted(commentIds: number[] | undefined | null) {
-    if (commentIds == null) { return; }
+    if (commentIds == null) return;
     commentIds.forEach((value) => this.userVotes.add(value));
   }
 
@@ -56,7 +56,7 @@ export default class CommentStore {
 
   @action
   updateWithJson(data: CommentJson[] | undefined | null) {
-    if (data == null) { return; }
+    if (data == null) return;
 
     for (const json of data) {
       const comment = new Comment(json);

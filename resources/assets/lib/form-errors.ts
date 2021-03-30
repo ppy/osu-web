@@ -41,11 +41,11 @@ export class FormErrors {
   handleResponse = (xhr: JQueryXHR) => {
     const errors = xhr.responseJSON.form_error;
     // only handle responses with form_error
-    if (errors == null) { return; }
+    if (errors == null) return;
 
     this.errors.clear();
     for (const key of Object.keys(errors)) {
       this.errors.set(key, errors[key]);
     }
-  }
+  };
 }
