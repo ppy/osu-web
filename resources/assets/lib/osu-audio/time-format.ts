@@ -3,9 +3,7 @@
 
 export type TimeFormat = 'minute_minimal' | 'minute' | 'hour_minimal' | 'hour';
 
-const pad = (num: number) => {
-  return num.toString().padStart(2, '0');
-};
+const pad = (num: number) => num.toString().padStart(2, '0');
 
 interface FormatTimeCache {
   format?: TimeFormat;

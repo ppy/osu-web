@@ -4,7 +4,7 @@
 import * as _ from 'lodash';
 import Notification from 'models/notification';
 
-export function formatMessage(item: Notification, compact: boolean = false) {
+export function formatMessage(item: Notification, compact = false) {
   const replacements = {
     content: item.details.content,
     title: item.title,

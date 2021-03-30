@@ -90,7 +90,7 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
           this.setState({ toggling: false });
         });
     });
-  }
+  };
 
   private refresh = () => {
     if (this.props.follow.subtype === 'mapping') {
@@ -98,7 +98,7 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
         following: currentUser.follow_user_mapping.includes(this.props.follow.notifiable_id),
       });
     }
-  }
+  };
 
   private renderToggleIcon() {
     if (this.state.toggling) {

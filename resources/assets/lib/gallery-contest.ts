@@ -21,5 +21,5 @@ export default class GalleryContest {
   destroy = () => {
     unmountComponentAtNode(this.root);
     $(document).off(`.${this.eventId}`);
-  }
+  };
 }

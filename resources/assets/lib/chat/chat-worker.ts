@@ -67,7 +67,7 @@ export default class ChatWorker implements DispatchListener {
           this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);
         }
       });
-  }
+  };
 
   pollingTime(): number {
     return this.windowIsActive ? this.pollTime : this.pollTimeIdle;

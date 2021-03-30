@@ -38,7 +38,7 @@ export class Store {
   }
 
   async beginCheckout(event: Event) {
-    if (event.target == null) { return; }
+    if (event.target == null) return;
 
     const dataset = (event.target as HTMLElement).dataset;
     const orderId = dataset.orderId;
@@ -90,7 +90,7 @@ export class Store {
   }
 
   resumeCheckout(event: Event) {
-    if (event.target == null) { return; }
+    if (event.target == null) return;
 
     const target = event.target as HTMLElement;
     const { provider, providerReference, status } = target.dataset;
@@ -120,11 +120,9 @@ export class Store {
   }
 
   private collectShopifyItems() {
-    return $('.js-store-order-item').map((_, element) => {
-      return {
-        quantity: Number(element.dataset.quantity),
-        variantId: toShopifyVariantGid(element.dataset.shopifyId),
-      };
-    }).get();
+    return $('.js-store-order-item').map((_, element) => ({
+      quantity: Number(element.dataset.quantity),
+      variantId: toShopifyVariantGid(element.dataset.shopifyId),
+    })).get();
   }
 }

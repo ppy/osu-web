@@ -74,8 +74,8 @@ export default class NsfwWarning extends React.PureComponent<Props, State> {
       data: { user_profile_customization: { beatmapset_show_nsfw: true } },
       method: 'PUT',
     })
-    .fail(osu.ajaxError)
-    .always(() => this.setState({ busy: false }))
-    .done(this.props.onClose);
-  }
+      .fail(osu.ajaxError)
+      .always(() => this.setState({ busy: false }))
+      .done(this.props.onClose);
+  };
 }

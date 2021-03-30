@@ -22,8 +22,8 @@ export default class LegacyPm extends React.Component {
         message={osu.transChoice('notifications.item.legacy_pm.legacy_pm.legacy_pm', item.count)}
         modifiers={['one']}
         url='/forum/ucp.php?i=pm&folder=inbox'
-        withCategory={true}
-        withCoverImage={true}
+        withCategory
+        withCoverImage
       />
     );
   }

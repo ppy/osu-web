@@ -25,31 +25,29 @@ export class ReviewPost extends React.Component<Props> {
 
   paragraph(source: string) {
     return (
-        <ReactMarkdown
-          plugins={[
-            [
-              disableTokenizersPlugin,
-              {
-                allowedBlocks: ['paragraph'],
-                allowedInlines: ['emphasis', 'strong'],
-              },
-            ],
-            autolinkPlugin,
-            timestampPlugin,
-          ]}
-          key={osu.uuid()}
-          source={source}
-          unwrapDisallowed={true}
-          renderers={{
-            link: this.linkRenderer,
-            paragraph: (props) => {
-              return <div className='beatmap-discussion-review-post__block'>
-                <div className='beatmapset-discussion-message' {...props}/>
-              </div>;
+      <ReactMarkdown
+        plugins={[
+          [
+            disableTokenizersPlugin,
+            {
+              allowedBlocks: ['paragraph'],
+              allowedInlines: ['emphasis', 'strong'],
             },
-            timestamp: (props) => <a className='beatmap-discussion-timestamp-decoration' {...props}/>,
-          }}
-        />
+          ],
+          autolinkPlugin,
+          timestampPlugin,
+        ]}
+        key={osu.uuid()}
+        source={source}
+        unwrapDisallowed
+        renderers={{
+          link: this.linkRenderer,
+          paragraph: (props) => (<div className='beatmap-discussion-review-post__block'>
+            <div className='beatmapset-discussion-message' {...props}/>
+          </div>),
+          timestamp: (props) => <a className='beatmap-discussion-timestamp-decoration' {...props}/>,
+        }}
+      />
     );
   }
 
@@ -88,5 +86,5 @@ export class ReviewPost extends React.Component<Props> {
     const extraProps = propsFromHref(props.href);
 
     return <a {...props} {...extraProps}/>;
-  }
+  };
 }

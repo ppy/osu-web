@@ -86,5 +86,5 @@ export default class OsuCore {
   private setUser = (event: JQuery.Event, user: UserJson) => {
     this.dataStore.userStore.getOrCreate(user.id, user);
     this.socketWorker.setUserId(user.id);
-  }
+  };
 }
