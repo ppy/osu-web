@@ -246,7 +246,6 @@ class ChannelsController extends Controller
             }
         } else if ($params['type'] === Channel::TYPES['multiplayer']) {
             $room = Room::findOrFail($params['target_id']);
-            // TODO: premission check.
             $channel = $room->channel;
             $channel->addUser($sender);
         }
