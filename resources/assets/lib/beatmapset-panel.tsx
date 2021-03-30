@@ -478,7 +478,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
             max={1}
             theme='beatmapset-panel'
             onlyShowAsWarning={false}
-            ignoreProgress={true}
+            ignoreProgress
           />
         </div>
       </div>
