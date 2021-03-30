@@ -35,11 +35,11 @@ return [
         'hybrid_requires_modes' => '',
         'incorrect_mode' => '',
         'full_bn_required' => '',
-        'too_many' => '',
+        'too_many' => '提名需求已達成。',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
+            'confirmation' => '您確定要提名這張圖譜嗎？',
+            'header' => '提名圖譜',
             'hybrid_warning' => '',
             'which_modes' => '',
         ],
@@ -128,7 +128,7 @@ return [
 
             'buttons' => [
                 'disable' => '關閉警告',
-                'listing' => '',
+                'listing' => '圖譜列表',
                 'show' => '顯示',
             ],
         ],

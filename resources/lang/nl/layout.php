@@ -77,7 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'hulp',
-            'getAbuse' => '',
+            'getAbuse' => 'rapporteer misbruik',
             'getFaq' => 'faq',
             'getRules' => 'regels',
             'getSupport' => 'ondersteuning',
@@ -160,7 +160,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Snelheids limiet overschreden',
             'description' => '',
         ],
         '500' => [
@@ -208,7 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Instellingen',
-            'follows' => '',
+            'follows' => 'Volglijsten',
             'friends' => 'Vrienden',
             'logout' => 'Log Uit',
             'profile' => 'Mijn Profiel',

@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
+import core from 'osu-core-singleton';
 import Shopify from 'shopify-buy';
 import { toShopifyVariantGid } from 'shopify-gid';
 
@@ -51,7 +52,7 @@ export class Store {
         await this.beginShopifyCheckout(orderId);
       } catch (error) {
         LoadingOverlay.hide();
-        userVerification.showOnError({ target: event.target }, error);
+        core.userVerification.showOnError({ target: event.target }, error);
       }
 
       return;

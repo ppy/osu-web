@@ -17,7 +17,9 @@ import OsuLayzr from 'osu-layzr';
 import SocketWorker from 'socket-worker';
 import RootDataStore from 'stores/root-data-store';
 import TurbolinksReload from 'turbolinks-reload';
+import UserLogin from 'user-login';
 import UserLoginObserver from 'user-login-observer';
+import UserVerification from 'user-verification';
 import WindowVHPatcher from 'window-vh-patcher';
 import WindowFocusObserver from './window-focus-observer';
 
@@ -48,12 +50,15 @@ export default class OsuCore {
   readonly osuLayzr = new OsuLayzr();
   socketWorker: SocketWorker;
   readonly turbolinksReload = new TurbolinksReload();
+  readonly userLogin: UserLogin;
   userLoginObserver: UserLoginObserver;
+  readonly userVerification = new UserVerification();
   windowFocusObserver: WindowFocusObserver;
   readonly windowVHPatcher = new WindowVHPatcher();
 
   constructor() {
     this.enchant = new Enchant(this.turbolinksReload);
+    this.userLogin = new UserLogin(this.captcha);
     // should probably figure how to conditionally or lazy initialize these so they don't all init when not needed.
     // TODO: requires dynamic imports to lazy load modules.
     this.dataStore = new RootDataStore();

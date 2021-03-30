@@ -84,7 +84,7 @@ export function getDiffRating(rating: number) {
 // TODO: should make a Beatmapset proxy object or something
 export function getArtist(beatmapset: BeatmapsetJson) {
   if (currentUser?.user_preferences?.beatmapset_title_show_original) {
-    return osu.presence(beatmapset.artist_unicode) ?? beatmapset.artist;
+    return beatmapset.artist_unicode;
   }
 
   return beatmapset.artist;
@@ -92,7 +92,7 @@ export function getArtist(beatmapset: BeatmapsetJson) {
 
 export function getTitle(beatmapset: BeatmapsetJson) {
   if (currentUser?.user_preferences?.beatmapset_title_show_original) {
-    return osu.presence(beatmapset.title_unicode) ?? beatmapset.title;
+    return beatmapset.title_unicode;
   }
 
   return beatmapset.title;

@@ -91,6 +91,7 @@ Field             | Type                                  | Description
 ----------------- | ------------------------------------- | --------------------------------------------------------------
 commentable_meta  | [CommentableMeta](#commentablemeta)[] | ID of the object the comment is attached to
 comments          | [Comment](#comment)[]                 | Array of comments ordered according to `sort`;
+cursor            | [Cursor](#cursor)                     |
 has_more          | boolean                               | If there are more comments or replies available
 has_more_id       | number?                               |
 included_comments | [Comment](#comment)[]                 | Related comments; e.g. parent comments and nested replies
