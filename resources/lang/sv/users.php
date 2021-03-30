@@ -411,7 +411,7 @@ return [
 
     'silenced_banner' => [
         'title' => 'Du är för närvarande tystad.',
-        'message' => '',
+        'message' => 'Vissa åtgärder kan vara otillgängliga.',
     ],
 
     'status' => [

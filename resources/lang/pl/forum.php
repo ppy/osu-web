@@ -47,7 +47,7 @@ return [
         'confirm_restore' => 'Czy na pewno chcesz przywrócić post?',
         'edited' => 'Ostatnio edytowane przez :user :when, łącznie edytowane :count_delimited raz.|Ostatnio edytowane przez :user :when, łącznie edytowane :count_delimited razy.|Ostatnio edytowane przez :user :when, łącznie edytowane :count_delimited razy.',
         'posted_at' => 'opublikowane :when',
-        'posted_by' => '',
+        'posted_by' => 'opublikowane przez :username',
 
         'actions' => [
             'destroy' => 'Usuń post',
@@ -75,8 +75,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Czy na pewno chcesz usunąć wątek?',
+        'confirm_restore' => 'Czy na pewno chcesz przywrócić wątek?',
         'deleted' => 'usunięty wątek',
         'go_to_latest' => 'pokaż najnowszy post',
         'has_replied' => 'Twoja odpowiedź znajduje się w tym wątku',
@@ -92,8 +92,8 @@ return [
         'started_by_verbose' => 'utworzony przez :user',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Usuń wątek',
+            'restore' => 'Przywróć wątek',
         ],
 
         'create' => [

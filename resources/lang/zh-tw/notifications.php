@@ -5,9 +5,9 @@
 
 return [
     'all_read' => '已閱畢所有通知！',
-    'delete' => '',
+    'delete' => '刪除 :type',
     'loading' => '',
-    'mark_read' => '',
+    'mark_read' => '清除 :type',
     'none' => '沒有通知',
     'see_all' => '查看所有通知',
     'see_channel' => '前往聊天',
@@ -152,7 +152,7 @@ return [
                 '_' => '新成就',
                 'user_achievement_unlock' => '解鎖「:title」！',
                 'user_achievement_unlock_compact' => '解鎖「:title」！',
-                'user_achievement_unlock_group' => '',
+                'user_achievement_unlock_group' => '勳章解鎖！',
             ],
         ],
     ],

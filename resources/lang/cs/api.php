@@ -20,6 +20,10 @@ return [
             'write' => '',
         ],
 
+        'forum' => [
+            'write' => '',
+        ],
+
         'friends' => [
             'read' => 'Koukněte se, koho sledujete.',
         ],

@@ -12,7 +12,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Abranda, joga mais.',
     ],
 
     'index' => [
@@ -117,7 +117,7 @@ return [
             'nsfw' => 'Conteúdo explícito',
             'points-of-failure' => 'Pontos de falha',
             'source' => 'Fonte',
-            'storyboard' => '',
+            'storyboard' => 'Este beatmap contém um cenário',
             'success-rate' => 'Taxa de sucesso',
             'tags' => 'Etiquetas',
         ],

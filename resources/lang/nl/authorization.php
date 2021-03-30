@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Wat dacht je anders van osu! ?',
     'require_login' => 'Log in om verder te gaan.',
     'require_verification' => 'Gelieve te verifiëren om verder te gaan.',
     'restricted' => "Je kan dit niet doen terwijl je restricted bent.",
@@ -68,7 +68,7 @@ return [
         'moderated' => 'Dat kanaal wordt op dit moment gemodereerd.',
         'no_access' => 'Je hebt geen toegang tot dat kanaal.',
         'restricted' => 'Je kunt geen berichten versturen wanneer je het zwijgen is opgelegd, wanneer je bent beperkt of verbannen.',
-        'silenced' => '',
+        'silenced' => 'Je kunt geen berichten verzenden als je op stil staat, bent beperkt of bent verbannen.',
     ],
 
     'comment' => [

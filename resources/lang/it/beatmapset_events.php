@@ -32,7 +32,7 @@ return [
         'remove_from_loved' => 'Rimossa dalle amate da :user. (:text)',
 
         'nsfw_toggle' => [
-            'to_0' => '',
+            'to_0' => 'Rimosso il marchio di contenuto esplicito',
             'to_1' => '',
         ],
     ],

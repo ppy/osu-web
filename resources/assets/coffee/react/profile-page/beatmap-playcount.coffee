@@ -49,7 +49,7 @@ export class BeatmapPlaycount extends React.PureComponent
                   ':artist':
                     strong
                       key: 'artist'
-                      _.escape(getArtist(beatmapset))
+                      getArtist(beatmapset)
             ' ' # separator for overflow tooltip
             span
               className: "#{bn}__mapper"

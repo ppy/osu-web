@@ -22,6 +22,9 @@ class BeatmapsetSearchParams extends SearchParams
     /** @var array|null */
     public $bpm;
 
+    /** @var array|null */
+    public $created;
+
     /** @var string|null */
     public $creator;
 
@@ -67,6 +70,9 @@ class BeatmapsetSearchParams extends SearchParams
 
     /** @var array */
     public $rank = [];
+
+    /** @var array|null */
+    public $ranked;
 
     /** @var bool */
     public $showFollows = false;

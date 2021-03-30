@@ -73,7 +73,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Nie możesz usunąć posta z metadanymi beatmapy.',
             'beatmapset_post_no_edit' => 'Nie możesz edytować posta z metadanymi beatmapy.',
-            'first_post_no_delete' => '',
+            'first_post_no_delete' => 'Nie możesz usunąć posta rozpoczynającego',
             'missing_topic' => '',
             'only_quote' => 'Twoja odpowiedź zawiera tylko cytat.',
 

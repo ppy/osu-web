@@ -5,34 +5,34 @@
 
 return [
     'comment' => [
-        'empty' => '',
-        'page_title' => '',
-        'title' => '',
+        'empty' => 'Geen reacties bekeken.',
+        'page_title' => 'reactie volglijst',
+        'title' => 'reageren',
 
         'table' => [
-            'latest_comment_empty' => '',
-            'latest_comment_value' => '',
+            'latest_comment_empty' => 'geen commentaar',
+            'latest_comment_value' => ':time door :username',
         ],
     ],
 
     'forum_topic' => [
-        'title' => '',
+        'title' => 'forum onderwerp',
     ],
 
     'index' => [
-        'title_compact' => '',
+        'title_compact' => 'volglijsten',
     ],
 
     'mapping' => [
-        'empty' => '',
-        'followers' => '',
-        'page_title' => '',
-        'title' => '',
-        'to_0' => '',
-        'to_1' => '',
+        'empty' => 'Geen mappers bekeken.',
+        'followers' => 'mapping abonnees',
+        'page_title' => 'mapper volglijst',
+        'title' => 'mapper',
+        'to_0' => 'stop notificatie wanneer deze gebruiker een nieuwe beatmap upload',
+        'to_1' => 'laat me weten wanneer deze gebruiker een nieuwe beatmap upload',
     ],
 
     'modding' => [
-        'title' => '',
+        'title' => 'beatmap discussie',
     ],
 ];

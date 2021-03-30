@@ -20,6 +20,10 @@ return [
             'write' => 'Mandare messaggi per tuo conto.',
         ],
 
+        'forum' => [
+            'write' => 'Crea e modifica i topic e i post del forum a nome tuo.',
+        ],
+
         'friends' => [
             'read' => 'Vedere chi stai seguendo.',
         ],
