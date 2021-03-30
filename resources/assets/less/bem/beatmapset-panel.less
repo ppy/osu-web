@@ -3,38 +3,67 @@
 
 .beatmapset-panel {
   --progress: 0;
-  @_menu-width: 10px;
-  @_menu-width-hover: 30px;
   @_border-radius: 10px; // also affects the hardcoded `clip-path` values.
   @_hover-transition-duration: 150ms;
-  .own-layer();
-  height: 100px;
+  // Adjust radius to prevent bleeding of the underneath cover
+  // when hover background (of &__play) is active.
+  @_info-radius:(@_border-radius - 1px) 0 0 (@_border-radius - 1px);
+  @_main-bg: hsl(var(--hsl-b2));
+  @_menu-width: 10px;
+  @_menu-width-visible: 30px;
   position: relative;
-  background-color: hsl(var(--hsl-b3));
+  background-color: @_main-bg;
   border-radius: @_border-radius;
   font-size: @font-size--normal;
-  --menu-width: @_menu-width;
-  --info-bg: linear-gradient(0.25turn, hsl(var(--hsl-b2)), hsla(var(--hsl-b2), 0.8));
-  --info-bg-opacity: 1;
-  --info-bg-hover-opacity: 0;
-  --info-bg-hover: linear-gradient(0.25turn, hsl(var(--hsl-b1)), hsla(var(--hsl-b1), 0.8));
-  --play-bg: transparent;
-  --play-icon: @fa-var-play;
-  --play-icon-opacity: 0;
-  --stats-opacity: 0;
-  --menu-opacity: 0;
+  height: var(--panel-height);
+  transition: var(--transition);
+
   --beatmaps-popup-opacity: 0;
   --beatmaps-popup-pointer-events: none;
+  --global-beatmap-link-pointer-events: none;
+  --info-bg: transparent;
+  --info-radius: @_border-radius;
+  --main-height: 90px;
+  --menu-bg: transparent;
+  --menu-container-opacity: 0;
+  --menu-opacity: 0;
+  --menu-container-width: 0px;
+  --mobile-extra-bar-height: calc(var(--panel-height) - var(--main-height));
+  --panel-height: 115px;
+  --play-bg: transparent;
+  --play-icon-opacity: 0;
+  --play-icon: @fa-var-play;
+  --play-width: 60px;
+  --stats-opacity: 1;
+  --transition: all 150ms ease-in-out;
 
-  &:hover {
-    --menu-width: @_menu-width-hover;
-    --play-bg: hsla(var(--hsl-b6), 0.8);
-    --play-icon-opacity: 1;
-    --info-bg: linear-gradient(0.25turn, hsl(var(--hsl-b4)), hsla(var(--hsl-b4), 0.8));
-    --info-bg-opacity: 0;
-    --info-bg-hover-opacity: 1;
-    --stats-opacity: 1;
-    --menu-opacity: 1;
+  .show-beatmaps-popup() {
+    border-radius: @_border-radius @_border-radius 0 0;
+    --beatmaps-popup-opacity: 1;
+    --beatmaps-popup-pointer-events: auto;
+  }
+
+  @media @desktop {
+    --global-beatmap-link-pointer-events: auto;
+    --info-bg: linear-gradient(0.25turn, hsl(var(--hsl-b2)), hsla(var(--hsl-b2), 0.8));
+    --info-radius: @_info-radius;
+    --main-height: 100%;
+    --menu-bg: hsl(var(--hsl-b3));
+    --menu-container-opacity: 1;
+    --menu-container-width: @_menu-width;
+    --panel-height: 100px;
+    --play-width: 90px;
+    --stats-opacity: 0;
+
+    &:hover {
+      --info-bg: linear-gradient(0.25turn, hsl(var(--hsl-b4)), hsla(var(--hsl-b4), 0.8));
+      --info-radius: @_info-radius;
+      --menu-opacity: 1;
+      --menu-container-width: @_menu-width-visible;
+      --play-bg: hsla(var(--hsl-b6), 0.8);
+      --play-icon-opacity: 1;
+      --stats-opacity: 1;
+    }
   }
 
   &[data-audio-state="loading"],
@@ -44,23 +73,37 @@
     --play-icon: @fa-var-pause;
   }
 
+  &--mobile-expanded {
+    @media @mobile {
+      .show-beatmaps-popup();
+
+      --info-radius: @_info-radius;
+      --menu-container-opacity: 1;
+      --menu-opacity: 1;
+      --menu-container-width: @_menu-width-visible;
+      --play-bg: hsla(var(--hsl-b6), 0.8);
+      --play-icon-opacity: 1;
+      --stats-opacity: 1;
+    }
+  }
+
   &--with-beatmaps-popup {
-    z-index: @z-index--beatmaps-panel;
-    --beatmaps-popup-opacity: 1;
-    --beatmaps-popup-pointer-events: auto;
+    @media @desktop {
+      .show-beatmaps-popup();
+    }
   }
 
   &__beatmap {
     margin-right: 1px;
-    width: 4px;
-    height: 7px;
+    width: 6px;
+    height: 12px;
     border-radius: 10000px;
     background-color: var(--bg);
   }
 
   &__beatmap-icon {
     margin-right: 2px;
-    font-size: 12px; // icon size
+    font-size: 14px; // icon size
   }
 
   &__beatmap-more {
@@ -81,13 +124,12 @@
   &__beatmaps-all {
     margin: -5px;
     display: flex;
-    pointer-events: auto;
   }
 
   &__beatmaps-popup {
     max-height: 50vh;
     overflow: auto;
-    padding: 0 5px;
+    padding: 2px 5px;
     display: grid;
     grid-gap: 10px;
   }
@@ -104,26 +146,44 @@
     position: absolute;
     top: 100%;
     width: 100%;
-    margin-top: -@_border-radius;
-    background-color: hsl(var(--hsl-b2));
-    padding: (2 * @_border-radius) 0 @_border-radius;
+    background-color: @_main-bg;
+    padding: 5px 0 @_border-radius;
     border-radius: 0 0 @_border-radius @_border-radius;
-    .fade-element(@_hover-transition-duration);
+    transition: var(--transition);
+    z-index: @z-index--beatmaps-panel;
+
+    @media @desktop {
+      padding-top: @_border-radius;
+    }
+
+    // hide top shadow
+    &::before {
+      content: '';
+      .thick-box-shadow();
+      border: 2px solid hsl(var(--hsl-h1));
+      height: calc(100% + var(--panel-height));
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      pointer-events: none;
+      opacity: inherit;
+      border-radius: @_border-radius;
+    }
   }
 
   &__content {
     pointer-events: none;
     position: relative;
     display: flex;
-    height: 100%;
     width: 100%;
+    height: var(--main-height);
   }
 
   &__cover {
     .full-size();
-    width: calc(100% - @_menu-width);
-    border-radius: @_border-radius 0 0 @_border-radius;
     object-fit: cover;
+    border-radius: var(--border-radius);
 
     &--default {
       .at2x('~@images/layout/beatmaps/default-bg.png');
@@ -132,9 +192,46 @@
     }
   }
 
+  &__cover-col {
+    position: relative;
+    --border-radius: 0;
+
+    &--play {
+      --border-radius: @_border-radius 0 0 @_border-radius;
+      width: calc(var(--play-width) + 10px);
+      flex: none;
+    }
+
+    &--info {
+      margin-right: @_menu-width;
+      flex: 1;
+    }
+  }
+
   &__cover-container {
     .full-size();
-    border-radius: @_border-radius;
+    height: var(--main-height);
+    display: flex;
+    pointer-events: var(--global-beatmap-link-pointer-events);
+
+    // solid cover for mobile
+    &::after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: calc(100% - var(--play-width));
+      height: 100%;
+      right: 0;
+      top: 0;
+      // Adjust radius to prevent bleeding of the underneath cover
+      // when hover background (of &__play) is active.
+      border-radius: @_border-radius - 1px;
+      background-color: hsl(var(--hsl-b4));
+
+      @media @desktop {
+        display: none;
+      }
+    }
   }
 
   &__extra-icon {
@@ -157,14 +254,12 @@
   &__info {
     flex: 1;
     min-width: 10px;
-    // Adjust radius to prevent bleeding of the underneath cover
-    // when hover background (of &__play) is active.
-    border-radius: (@_border-radius - 1px) 0 0 (@_border-radius - 1px);
     padding: 4px @_border-radius 6px;
     position: relative;
     background: var(--info-bg);
     display: flex;
     flex-direction: column;
+    border-radius: var(--info-radius);
   }
 
   &__info-row {
@@ -173,12 +268,26 @@
     display: flex;
     align-items: baseline;
     position: relative;
-    z-index: 1;
 
     &--artist {
       .default-text-shadow();
       font-size: @font-size--title-small;
       font-weight: 600;
+    }
+
+    &--extra {
+      .link-plain();
+      pointer-events: var(--global-beatmap-link-pointer-events);
+
+      @media @mobile {
+        position: absolute;
+        left: calc(var(--play-width) * -1);
+        top: 100%;
+        height: var(--mobile-extra-bar-height);
+        width: calc(100% + var(--play-width));
+        align-items: center;
+        padding: 0 30px 0 5px; // right padding to account for the expand button
+      }
     }
 
     &--mapper {
@@ -191,6 +300,11 @@
     &--stats {
       margin: 0 -5px;
       opacity: var(--stats-opacity);
+      overflow: hidden;
+
+      @media @desktop {
+        margin-bottom: 3px;
+      }
     }
 
     &--title {
@@ -215,18 +329,24 @@
     align-items: center;
     font-size: 12px; // icon size
     color: hsl(var(--hsl-c2));
-    .fade-element(@_hover-transition-duration);
+    transition: var(--transition);
     pointer-events: auto;
     overflow: hidden;
   }
 
   &__menu-container {
-    width: var(--menu-width);
+    opacity: var(--menu-container-opacity);
+    width: var(--menu-container-width);
+    overflow: hidden;
     flex: none;
-    background-color: hsl(var(--hsl-b3));
+    background-color: var(--menu-bg);
     position: relative;
     border-radius: 0 @_border-radius @_border-radius 0;
-    .fade-element(@_hover-transition-duration);
+    transition: var(--transition);
+
+    @media @desktop {
+      overflow: visible;
+    }
 
     &::after, &::before {
       content: '';
@@ -265,11 +385,25 @@
     });
   }
 
+  &__mobile-expand {
+    .reset-input();
+    pointer-events: auto;
+    padding: 5px 10px;
+    color: hsl(var(--hsl-c2));
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    @media @desktop {
+      display: none;
+    }
+  }
+
   &__play {
     .reset-input();
+    .full-size();
     .center-content();
     .fas();
-    .fade-element(@_hover-transition-duration);
     font-size: 14px; // icon size
     padding: 15px;
     pointer-events: auto;
@@ -283,18 +417,20 @@
       display: block;
       content: var(--play-icon);
     }
+
+    @media @mobile {
+      transition: var(--transition);
+    }
   }
 
   &__play-container {
-    .center-content();
-    width: 90px;
+    width: var(--play-width);
     flex: none;
     background-color: var(--play-bg);
     position: relative;
     // Adjust radius to prevent bleeding of the underneath cover
     // when hover background is active.
     border-radius: (@_border-radius - 1px) 0 0 (@_border-radius - 1px);
-    .fade-element(@_hover-transition-duration);
 
     &::after, &::before {
       content: '';
@@ -323,18 +459,19 @@
   &__play-progress {
     .full-size();
     .center-content();
-    .fade-element(@_hover-transition-duration);
+    transition: var(--transition);
     opacity: var(--play-icon-opacity);
   }
 
   &__stats-item {
-    margin: 2px 5px;
+    margin: 0 5px;
     display: flex;
     align-items: center;
     flex: none;
   }
 
   &__stats-item-icon {
+    font-size: 8px;
     margin-right: 4px;
     color: hsl(var(--hsl-c2));
   }

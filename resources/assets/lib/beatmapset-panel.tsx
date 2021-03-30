@@ -24,6 +24,11 @@ interface Props {
   beatmapset: BeatmapsetJson;
 }
 
+interface BeatmapGroup {
+  beatmaps: BeatmapJson[];
+  mode: GameMode;
+}
+
 const displayDateMap: Record<BeatmapsetStatus, 'last_updated' | 'ranked_date'> = {
   approved: 'ranked_date',
   graveyard: 'last_updated',
@@ -134,8 +139,20 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   }
 
   @computed
-  private get groupedBeatmaps() {
-    return BeatmapHelper.group(this.props.beatmapset.beatmaps ?? []);
+  private get groupedBeatmaps(): BeatmapGroup[] {
+    const byMode = BeatmapHelper.group(this.props.beatmapset.beatmaps ?? []);
+
+    const ret: BeatmapGroup[] = [];
+
+    BeatmapHelper.modes.forEach((mode) => {
+      const beatmaps = byMode[mode];
+
+      if (beatmaps != null) {
+        ret.push({ mode, beatmaps });
+      }
+    });
+
+    return ret;
   }
 
   @computed
@@ -170,11 +187,14 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   private get url() {
     return route('beatmapsets.show', { beatmapset: this.props.beatmapset.id});
   }
-
   @observable private beatmapsPopup = false;
+  private blockRef = React.createRef<HTMLDivElement>();
+
+  @observable private mobileExpanded = false;
   private timeouts: Record<string, number> = {};
 
   componentWillUnmount() {
+    $(document).off('click', this.onDocumentClick);
     Object.values(this.timeouts).forEach((timeout) => {
       window.clearTimeout(timeout);
     });
@@ -182,6 +202,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
   render() {
     let blockClass = classWithModifiers('beatmapset-panel', {
+      'mobile-expanded': this.mobileExpanded,
       'with-beatmaps-popup': this.beatmapsPopup,
     });
     if (this.showVisual) {
@@ -190,6 +211,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
     return (
       <div
+        ref={this.blockRef}
         className={blockClass}
         data-audio-url={this.props.beatmapset.preview_url}
         onMouseLeave={this.beatmapsPopupHide}
@@ -201,6 +223,9 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           {this.renderInfoArea()}
           {this.renderMenuArea()}
         </div>
+        <button type='button' onClick={this.onMobileExpandToggleClick} className='beatmapset-panel__mobile-expand'>
+          <span className={`fas fa-angle-${this.mobileExpanded ? 'up' : 'down'}`} />
+        </button>
       </div>
     );
   }
@@ -222,7 +247,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
     this.timeouts.beatmapsPopup = window.setTimeout(() => {
       this.beatmapsPopup = true;
-    }, 500);
+    }, 100);
   }
 
   private beatmapsPopupHide = () => {
@@ -242,8 +267,27 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     e.currentTarget.style.display = 'none';
   }
 
-  private onBeatmapsEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+  private onDocumentClick = (e: JQuery.ClickEvent) => {
+    // only for shrinking
+    if (!this.mobileExpanded) return;
+    // sanity check; make sure the panel is rendered
+    if (this.blockRef.current == null) return;
+    // clicking on anything on the panel itself is handled by the relevant element
+    if (this.blockRef.current.contains(e.target)) return;
+
+    $(document).off('click', this.onDocumentClick);
+    this.mobileExpanded = false;
+  }
+
+  private onExtraRowEnter = () => {
     this.beatmapsPopupDelayedShow();
+  }
+
+  private onMobileExpandToggleClick = () => {
+    this.mobileExpanded = !this.mobileExpanded;
+    if (this.mobileExpanded) {
+      $(document).on('click', this.onDocumentClick);
+    }
   }
 
   private renderBeatmapIcon(beatmap: BeatmapJson) {
@@ -258,7 +302,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     );
   }
 
-  private renderBeatmapIcons = (mode: GameMode, beatmaps: BeatmapJson[]) => {
+  private renderBeatmapIcons = ({ mode, beatmaps }: BeatmapGroup) => {
     return (
       <div
         className='beatmapset-panel__beatmaps'
@@ -285,7 +329,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
         onMouseLeave={this.beatmapsPopupDelayedHide}
       >
         <div className='beatmapset-panel__beatmaps-popup'>
-          {this.withGroupedBeatmaps((mode: GameMode, beatmaps: BeatmapJson[]) => (
+          {this.groupedBeatmaps.map(({ mode, beatmaps }: BeatmapGroup) => (
             <div key={mode} className='beatmapset-panel__beatmaps-popup-group'>
               {beatmaps.map((beatmap) => (
                 <a
@@ -305,7 +349,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
                     <span className='beatmaps-popup-item__difficulty-icon'>
                       <span className='fas fa-star' />
                     </span>
-                    {osu.formatNumber(beatmap.difficulty_rating)}
+                    {osu.formatNumber(beatmap.difficulty_rating, 2)}
                   </span>
                   <span className='beatmaps-popup-item__col beatmaps-popup-item__col--name'>
                     {beatmap.version}
@@ -322,14 +366,26 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   private renderCover() {
     return (
       <a href={this.url} className='beatmapset-panel__cover-container'>
-        <div className='beatmapset-panel__cover beatmapset-panel__cover--default' />
-        {this.showVisual && (
-          <Img2x
-            className='beatmapset-panel__cover'
-            onError={this.hideImage}
-            src={this.props.beatmapset.covers.card}
-          />
-        )}
+        <div className='beatmapset-panel__cover-col beatmapset-panel__cover-col--play'>
+          <div className='beatmapset-panel__cover beatmapset-panel__cover--default' />
+          {this.showVisual && (
+            <Img2x
+              className='beatmapset-panel__cover'
+              onError={this.hideImage}
+              src={this.props.beatmapset.covers.card}
+            />
+          )}
+        </div>
+        <div className='beatmapset-panel__cover-col beatmapset-panel__cover-col--info'>
+          <div className='beatmapset-panel__cover beatmapset-panel__cover--default' />
+          {this.showVisual && (
+            <Img2x
+              className='beatmapset-panel__cover'
+              onError={this.hideImage}
+              src={this.props.beatmapset.covers.card}
+            />
+          )}
+        </div>
       </a>
     );
   }
@@ -400,7 +456,12 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           </div>
         </div>
 
-        <div className='beatmapset-panel__info-row'>
+        <a
+          className='beatmapset-panel__info-row beatmapset-panel__info-row--extra'
+          href={this.url}
+          onMouseEnter={this.onExtraRowEnter}
+          onMouseLeave={this.beatmapsPopupDelayedHide}
+        >
           <div
             className='beatmapset-status beatmapset-status--panel'
             style={{
@@ -410,14 +471,10 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           >
             {osu.trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
           </div>
-          <div
-            className='beatmapset-panel__beatmaps-all'
-            onMouseEnter={this.onBeatmapsEnter}
-            onMouseLeave={this.beatmapsPopupDelayedHide}
-          >
-            {this.withGroupedBeatmaps(this.renderBeatmapIcons)}
+          <div className='beatmapset-panel__beatmaps-all'>
+            {this.groupedBeatmaps.map(this.renderBeatmapIcons)}
           </div>
-        </div>
+        </a>
       </div>
     );
   }
@@ -467,10 +524,6 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   private renderPlayArea() {
     return (
       <div className='beatmapset-panel__play-container'>
-        <div className='beatmapset-panel__extra-icons'>
-          {this.props.beatmapset.video && <ExtraIcon icon='fas fa-film' titleVariant='video' />}
-          {this.props.beatmapset.storyboard && <ExtraIcon icon='fas fa-image' titleVariant='storyboard' />}
-        </div>
         {this.showVisual && <button type='button' className='beatmapset-panel__play js-audio--play' />}
         <div className='beatmapset-panel__play-progress'>
           <CircularProgress
@@ -481,6 +534,10 @@ export default class BeatmapsetPanel extends React.Component<Props> {
             ignoreProgress
           />
         </div>
+        <div className='beatmapset-panel__extra-icons'>
+          {this.props.beatmapset.video && <ExtraIcon icon='fas fa-film' titleVariant='video' />}
+          {this.props.beatmapset.storyboard && <ExtraIcon icon='fas fa-image' titleVariant='storyboard' />}
+        </div>
       </div>
     );
   }
@@ -489,15 +546,5 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     if (core.userLogin.showIfGuest(this.toggleFavourite)) return;
 
     toggleFavourite(this.props.beatmapset);
-  }
-
-  private withGroupedBeatmaps(callback: (mode: GameMode, beatmaps: BeatmapJson[]) => void) {
-    return BeatmapHelper.modes.map((mode) => {
-      const beatmaps = this.groupedBeatmaps[mode];
-
-      if (beatmaps == null) return null;
-
-      return callback(mode, beatmaps);
-    });
   }
 }
