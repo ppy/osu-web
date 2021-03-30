@@ -1,17 +1,17 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { inject, observer } from 'mobx-react';
+import { observer } from 'mobx-react';
 import Channel from 'models/chat/channel';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import ConversationListItem from './conversation-list-item';
 
-@inject('dataStore')
 @observer
-export default class ConversationList extends React.Component<any> {
+export default class ConversationList extends React.Component {
   render(): React.ReactNode {
-    const nonPmChannels: Channel[] = this.props.dataStore.channelStore.nonPmChannels;
-    const pmChannels: Channel[] = this.props.dataStore.channelStore.pmChannels;
+    const nonPmChannels: Channel[] = core.dataStore.channelStore.nonPmChannels;
+    const pmChannels: Channel[] = core.dataStore.channelStore.pmChannels;
     const conversationList: React.ReactNode[] = [];
 
     nonPmChannels.forEach((conversation) => {
