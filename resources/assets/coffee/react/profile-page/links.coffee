@@ -3,7 +3,7 @@
 
 import ClickToCopy from 'click-to-copy'
 import * as React from 'react'
-import { a, button, div, span } from 'react-dom-factories'
+import { a, div, span } from 'react-dom-factories'
 el = React.createElement
 
 
@@ -101,12 +101,12 @@ export class Links extends React.PureComponent
         div key: j, className: "#{bn}__row #{bn}__row--#{j}", row
 
       div
-        className: 'edit-profile-links'
+        className: "#{bn}__edit"
         a
+          className: 'profile-page-toggle'
           href: laroute.route('account.edit')
-          button
-            title: osu.trans('users.show.page.button')
-            span className: 'fas fa-pencil-alt'
+          title: osu.trans('users.show.page.button')
+          span className: 'fas fa-pencil-alt'
 
 
   renderLink: (key) =>

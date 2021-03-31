@@ -5,7 +5,7 @@
   .inner-shadow-top();
   position: relative;
   display: flex;
-  min-height: 70px;
+  min-height: @gutter-profile-page-desktop;
   justify-content: center;
   flex-direction: column;
   padding: @padding-profile-page @gutter-profile-page;
@@ -15,6 +15,21 @@
   @media @desktop {
     padding-left: @gutter-profile-page-desktop;
     padding-right: @gutter-profile-page-desktop;
+  }
+
+  &__edit {
+    position: absolute;
+    top: 0;
+    right: @gutter-profile-page;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    @media @desktop {
+      right: 0;
+      width: @gutter-profile-page-desktop;
+    }
   }
 
   &__icon {
@@ -30,7 +45,6 @@
   &__row {
     display: flex;
     flex-wrap: wrap;
-    flex-basis: 100%;
     margin: -2px -5px;
 
     &--0 + & {
@@ -41,28 +55,5 @@
   &__value {
     font-weight: 600;
     word-wrap: break-word;
-  }
-
-  .edit-profile-links {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 70px;
-    height: 100%;
-
-    a {
-      color: @osu-colour-c1;
-      button {
-        background-color: @osu-colour-b2;
-        outline: none;
-        border: none;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-      }
-    }
   }
 }
