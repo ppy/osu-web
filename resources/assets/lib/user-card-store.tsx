@@ -33,5 +33,5 @@ export class UserCardStore extends React.PureComponent<Props, State> {
 
   setUser = (event: JQuery.Event, user?: UserJson) => {
     this.setState({ user });
-  }
+  };
 }

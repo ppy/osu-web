@@ -96,7 +96,7 @@ export default class Event extends React.PureComponent<Props> {
             }}
           />
           <div className='beatmap-discussion-post__info'>
-            <TimeWithTooltip dateTime={this.props.event.created_at} relative={true} />
+            <TimeWithTooltip dateTime={this.props.event.created_at} relative />
           </div>
         </div>
       </div>
@@ -150,7 +150,7 @@ export default class Event extends React.PureComponent<Props> {
     let eventType = this.props.event.type === 'disqualify' && this.discussion == null ? 'disqualify_legacy' : this.props.event.type;
 
     if (eventType === 'nominate' && this.props.event.comment?.modes.length > 0) {
-      eventType = `nominate_modes`;
+      eventType = 'nominate_modes';
       const nominationModes = this.props.event.comment.modes.map((mode: GameMode) => osu.trans(`beatmaps.mode.${mode}`));
       params.modes = osu.transArray(nominationModes);
     }

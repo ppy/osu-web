@@ -120,7 +120,7 @@ export class UserList extends React.PureComponent<Props> {
 
     Turbolinks.controller.advanceHistory(url);
     this.setState({ sortMode: value }, this.saveOptions);
-  }
+  };
 
   onViewSelected = (event: React.SyntheticEvent) => {
     const value = (event.currentTarget as HTMLElement).dataset.value;
@@ -128,7 +128,7 @@ export class UserList extends React.PureComponent<Props> {
 
     Turbolinks.controller.advanceHistory(url);
     this.setState({ viewMode: value }, this.saveOptions);
-  }
+  };
 
   optionSelected = (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -137,7 +137,7 @@ export class UserList extends React.PureComponent<Props> {
 
     Turbolinks.controller.advanceHistory(url);
     this.setState({ filter: key }, this.saveOptions);
-  }
+  };
 
   playmodeSelected = (event: React.SyntheticEvent) => {
     const value = (event.currentTarget as HTMLElement).dataset.value;
@@ -145,7 +145,7 @@ export class UserList extends React.PureComponent<Props> {
 
     Turbolinks.controller.advanceHistory(url);
     this.setState({ playMode: value });
-  }
+  };
 
   render(): React.ReactNode {
     return (
@@ -203,9 +203,7 @@ export class UserList extends React.PureComponent<Props> {
       <div className='update-streams-v2 update-streams-v2--with-active update-streams-v2--user-list'>
         <div className='update-streams-v2__container'>
           {
-            filters.map((filter) => {
-              return this.renderOption(filter, this.getFilteredUsers(filter).length, filter === this.state.filter);
-            })
+            filters.map((filter) => this.renderOption(filter, this.getFilteredUsers(filter).length, filter === this.state.filter))
           }
         </div>
       </div>
@@ -292,23 +290,21 @@ export class UserList extends React.PureComponent<Props> {
   }
 
   private renderPlaymodeFilter() {
-    const playmodeButtons = playModes.map((mode) => {
-      return (
-        <button
-          className={osu.classWithModifiers('user-list__view-mode', this.state.playMode === mode ? ['active'] : [])}
-          data-value={mode}
-          title={osu.trans(`beatmaps.mode.${mode}`)}
-          onClick={this.playmodeSelected}
-          key={mode}
-        >
-          {mode === 'all' ?
-            <span>{osu.trans('beatmaps.mode.all')}</span>
-            :
-            <span className={`fal fa-extra-mode-${mode}`}/>
-          }
-        </button>
-      );
-    });
+    const playmodeButtons = playModes.map((mode) => (
+      <button
+        className={osu.classWithModifiers('user-list__view-mode', this.state.playMode === mode ? ['active'] : [])}
+        data-value={mode}
+        title={osu.trans(`beatmaps.mode.${mode}`)}
+        onClick={this.playmodeSelected}
+        key={mode}
+      >
+        {mode === 'all' ?
+          <span>{osu.trans('beatmaps.mode.all')}</span>
+          :
+          <span className={`fal fa-extra-mode-${mode}`}/>
+        }
+      </button>
+    ));
 
     return (
       <div className='user-list__view-modes'>

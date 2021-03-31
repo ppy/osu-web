@@ -12,16 +12,16 @@ export default class Channel {
 
   @observable channelId: number;
   @observable description?: string;
-  @observable firstMessageId: number = -1;
+  @observable firstMessageId = -1;
   @observable icon?: string;
-  @observable inputText: string = '';
+  @observable inputText = '';
   @observable lastReadId?: number;
-  @observable loaded: boolean = false;
-  @observable loading: boolean = false;
-  @observable loadingEarlierMessages: boolean = false;
+  @observable loaded = false;
+  @observable loading = false;
+  @observable loadingEarlierMessages = false;
   @observable messages: Message[] = observable([]);
-  @observable moderated: boolean = false;
-  @observable name: string = '';
+  @observable moderated = false;
+  @observable name = '';
   @observable newPmChannel = false;
   newPmChannelTransient = false;
   @observable type: ChannelType = 'NEW';
@@ -119,7 +119,7 @@ export default class Channel {
   }
 
   @action
-  addMessages(messages: Message[], skipSort: boolean = false) {
+  addMessages(messages: Message[], skipSort = false) {
     this.messages.push(...messages);
 
     if (!skipSort) {
@@ -170,7 +170,7 @@ export default class Channel {
       this.newPmChannelTransient = false;
     }
     this.setLastReadId(json.last_read_id);
-  }
+  };
 
   @action
   updateWithJson(json: ChannelJson) {

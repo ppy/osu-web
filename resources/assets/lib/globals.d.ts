@@ -22,7 +22,6 @@ declare const tooltipDefault: TooltipDefault;
 declare const osu: OsuCommon;
 declare const currentUser: import('interfaces/current-user').default;
 declare const reactTurbolinks: any;
-declare const userVerification: any;
 
 // external (to typescript) classes
 declare const BeatmapsetFilter: import('interfaces/beatmapset-filter-class').default;
@@ -67,13 +66,14 @@ interface JQueryStatic {
   unsubscribe: (eventName: string) => void;
 }
 
-type AjaxError = (xhr: JQueryXHR) => void;
+type AjaxError = (xhr: JQuery.jqXHR) => void;
 
 interface OsuCommon {
   ajaxError: AjaxError;
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
   diffColour: (difficultyRating?: string | null) => React.CSSProperties;
   emitAjaxError: (el?: HTMLElement | null) => AjaxError;
+  executeAction: (el?: HTMLElement | null) => void;
   groupColour: (group?: GroupJson) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
@@ -84,7 +84,8 @@ interface OsuCommon {
   popupShowing: () => boolean;
   presence: (str?: string | null) => string | null;
   present: (str?: string | null) => boolean;
-  promisify: (xhr: JQueryXHR) => Promise<any>;
+  promisify: (xhr: JQuery.jqXHR) => Promise<any>;
+  reloadPage: () => void;
   timeago: (time?: string) => string;
   trans: (...args: any[]) => string;
   transArray: (array: any[], key?: string) => string;
@@ -93,6 +94,7 @@ interface OsuCommon {
   urlPresence: (url?: string | null) => string;
   urlRegex: RegExp;
   uuid: () => string;
+  xhrErrorMessage: (xhr: JQuery.jqXHR) => string;
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
   isDesktop(): boolean;
@@ -110,7 +112,7 @@ interface OsuLinkOptions {
 
 interface ChangelogBuild {
   update_stream: {
-    name: string,
+    name: string;
   };
   version: string;
 }

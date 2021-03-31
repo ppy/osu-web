@@ -6,7 +6,7 @@ import DispatchListener from './dispatch-listener';
 
 export default class Dispatcher {
   private listeners = new Set<DispatchListener>();
-  private trace: boolean = false;
+  private trace = false;
 
   dispatch(action: DispatcherAction) {
     if (this.trace) {

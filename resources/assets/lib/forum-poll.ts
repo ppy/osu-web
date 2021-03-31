@@ -2,9 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 export default class ForumPoll {
-  constructor(window: Window) {
-    $(window.document).on('click', '.js-forum-poll--switch-page', this.switchPage);
-    $(window.document).on('click', '.js-forum-poll--switch-edit', this.switchEdit);
+  constructor() {
+    $(document)
+      .on('click', '.js-forum-poll--switch-page', this.switchPage)
+      .on('click', '.js-forum-poll--switch-edit', this.switchEdit);
   }
 
   switchEdit = (event: JQuery.ClickEvent) => {
@@ -21,7 +22,7 @@ export default class ForumPoll {
     } else {
       $container.attr('data-edit', '1');
     }
-  }
+  };
 
   switchPage = (event: JQuery.ClickEvent) => {
     const target = event.currentTarget;
@@ -35,5 +36,5 @@ export default class ForumPoll {
     if (typeof targetPage === 'string') {
       $(event.target).parents('.js-forum-poll--container').attr('data-page', targetPage);
     }
-  }
+  };
 }

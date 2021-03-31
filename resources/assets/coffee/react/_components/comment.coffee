@@ -537,7 +537,7 @@ export class Comment extends React.PureComponent
     target = e.target
 
     if !currentUser.id?
-      userLogin.show target
+      core.userLogin.show target
 
       return
 

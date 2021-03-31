@@ -5,7 +5,7 @@ import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-action
 import { dispatch } from 'app-dispatcher';
 
 export default class WindowFocusObserver {
-  constructor(window: Window) {
+  constructor() {
     $(window).on('blur focus', this.focusChange);
   }
 
@@ -15,5 +15,5 @@ export default class WindowFocusObserver {
     } else {
       dispatch(new WindowBlurAction());
     }
-  }
+  };
 }

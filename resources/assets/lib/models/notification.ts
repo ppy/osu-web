@@ -87,5 +87,5 @@ export default class Notification implements NotificationReadable, NotificationD
     }
 
     return this;
-  }
+  };
 }

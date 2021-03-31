@@ -21,7 +21,7 @@ import UserStore from './user-store';
 export default class ChannelStore {
   @observable channels = observable.map<number, Channel>();
   lastPolledMessageId = 0;
-  @observable loaded: boolean = false;
+  @observable loaded = false;
 
   private api = new ChatAPI();
   private markingAsRead: Record<number, number> = {};
@@ -295,9 +295,7 @@ export default class ChannelStore {
     try {
       if (channel.newPmChannel) {
         const users = channel.users.slice();
-        const userId = users.find((user) => {
-          return user !== currentUser.id;
-        });
+        const userId = users.find((user) => user !== currentUser.id);
 
         if (userId == null) {
           console.debug('sendMessage:: userId not found?? this shouldn\'t happen');

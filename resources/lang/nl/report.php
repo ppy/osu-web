@@ -15,8 +15,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Rapporteren',
+        'title' => 'Rapporteer :username\'s bericht?',
     ],
 
     'scores' => [

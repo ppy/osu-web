@@ -180,6 +180,7 @@ playstyle        | string[]                           | Device choices of the us
 post_count       | number                             | number of forum posts
 profile_order    | [ProfilePage](#user-profilepage)[] | ordered array of sections in user profile page
 title            | string?                            | user-specific title
+title_url        | string?                            | |
 twitter          | string?                            | |
 website          | string?                            | |
 

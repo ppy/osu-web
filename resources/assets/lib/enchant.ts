@@ -3,14 +3,16 @@
 
 import TurbolinksReload from 'turbolinks-reload';
 
-const src = '//platform.enchant.com';
-
-interface WindowWithEnchant extends Window {
-  enchant?: any;
+declare global {
+  interface Window {
+    enchant: any;
+  }
 }
 
+const src = '//platform.enchant.com';
+
 export default class Enchant {
-  constructor(private window: WindowWithEnchant, private turbolinksReload: TurbolinksReload) {
+  constructor(private turbolinksReload: TurbolinksReload) {
     $(document).on('turbolinks:load', this.load);
     $(document).on('turbolinks:before-cache', this.unload);
     $(document).on('click', '.js-enchant--show', this.showMessageWindow);
@@ -23,17 +25,17 @@ export default class Enchant {
       return;
     }
 
-    this.window.enchant = [];
+    window.enchant = [];
     this.turbolinksReload.load(src);
-  }
+  };
 
   showMessageWindow = (e: JQuery.ClickEvent) => {
     e.preventDefault();
 
-    if (this.window.enchant != null && this.window.enchant.messenger != null && typeof this.window.enchant.messenger.open === 'function') {
-      this.window.enchant.messenger.open();
+    if (window.enchant != null && window.enchant.messenger != null && typeof window.enchant.messenger.open === 'function') {
+      window.enchant.messenger.open();
     }
-  }
+  };
 
   unload = () => {
     this.turbolinksReload.forget(src);
@@ -46,5 +48,5 @@ export default class Enchant {
         $(el).remove();
       }
     });
-  }
+  };
 }

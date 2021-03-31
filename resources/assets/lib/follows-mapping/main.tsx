@@ -82,5 +82,5 @@ export default class Main extends React.PureComponent<Props> {
         </div>
       </div>
     );
-  }
+  };
 }

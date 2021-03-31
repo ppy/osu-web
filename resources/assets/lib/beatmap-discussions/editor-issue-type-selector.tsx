@@ -30,13 +30,11 @@ export default class EditorIssueTypeSelector extends React.Component<Props> {
   context!: React.ContextType<typeof SlateContext>;
 
   render(): React.ReactNode {
-    const menuOptions: MenuItem[] = selectableTypes.map((type) => {
-      return {
-        icon: <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={`${discussionTypeIcons[type]}`} /></span>,
-        id: type,
-        label: osu.trans(`beatmaps.discussions.message_type.${type}`),
-      };
-    });
+    const menuOptions: MenuItem[] = selectableTypes.map((type) => ({
+      icon: <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={`${discussionTypeIcons[type]}`} /></span>,
+      id: type,
+      label: osu.trans(`beatmaps.discussions.message_type.${type}`),
+    }));
 
     return (
       <IconDropdownMenu
@@ -51,5 +49,5 @@ export default class EditorIssueTypeSelector extends React.Component<Props> {
   select = (discussionType: string) => {
     const path = ReactEditor.findPath(this.context, this.props.element);
     Transforms.setNodes(this.context, {discussionType}, {at: path});
-  }
+  };
 }

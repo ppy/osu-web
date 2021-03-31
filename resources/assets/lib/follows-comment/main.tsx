@@ -72,7 +72,7 @@ export default class Main extends React.PureComponent<Props> {
               <StringWithComponent
                 pattern={osu.trans('follows.comment.table.latest_comment_value')}
                 mappings={{
-                  ':time': <TimeWithTooltip key='time' dateTime={follow.latest_comment.created_at} relative={true} />,
+                  ':time': <TimeWithTooltip key='time' dateTime={follow.latest_comment.created_at} relative />,
                   ':username': follow.latest_comment.user?.username ?? '???',
                 }}
               />
@@ -85,5 +85,5 @@ export default class Main extends React.PureComponent<Props> {
         </td>
       </tr>
     );
-  }
+  };
 }

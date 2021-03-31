@@ -23,7 +23,7 @@ export default class DeletedCommentsCount extends React.Component<Props> {
         <span className='deleted-comments-count__icon'>
           <span className='far fa-trash-alt' />
         </span>
-          {osu.transChoice('comments.deleted_count', deletedCount)}
+        {osu.transChoice('comments.deleted_count', deletedCount)}
       </div>
     );
   }

@@ -51,17 +51,15 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
     );
   };
 
-  const timestamp = () => {
-    return (
-      <div className={`${bn}__timestamp-text`}>
-        {
-          discussion.timestamp !== null
-            ? BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)
-            : osu.trans(`beatmap_discussions.timestamp_display.general`)
-        }
-      </div>
-    );
-  };
+  const timestamp = () => (
+    <div className={`${bn}__timestamp-text`}>
+      {
+        discussion.timestamp !== null
+          ? BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)
+          : osu.trans('beatmap_discussions.timestamp_display.general')
+      }
+    </div>
+  );
 
   const parentLink = () => {
     if (!discussion.parent_id) {
@@ -71,11 +69,11 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
     return (
       <div className={`${bn}__link`}>
         <a
-            href={BeatmapDiscussionHelper.url({discussion})}
-            className={`${bn}__link-text js-beatmap-discussion--jump`}
-            title={osu.trans('beatmap_discussions.review.go_to_child')}
+          href={BeatmapDiscussionHelper.url({discussion})}
+          className={`${bn}__link-text js-beatmap-discussion--jump`}
+          title={osu.trans('beatmap_discussions.review.go_to_child')}
         >
-            <i className='fas fa-external-link-alt'/>
+          <i className='fas fa-external-link-alt'/>
         </a>
       </div>
     );

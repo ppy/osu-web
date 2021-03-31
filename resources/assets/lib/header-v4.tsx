@@ -172,7 +172,7 @@ export default class HeaderV4 extends React.Component<Props> {
           data-click-menu-id='header-nav-mobile'
           data-visibility='hidden'
         >
-            {items}
+          {items}
         </ul>
       </div>
     );

@@ -31,7 +31,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
       this.inputRef.current?.focus();
     }
-  }
+  };
 
   render() {
     let blockClass = osu.classWithModifiers('quick-search', this.props.modifiers);
@@ -100,11 +100,11 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     if (key === 'ArrowUp' || key === 'ArrowDown') {
       this.props.worker.cycleSelectedItem(key === 'ArrowDown' ? 1 : -1);
     }
-  }
+  };
 
   private onMouseLeave = (event: React.MouseEvent<HTMLInputElement>) => {
     this.props.worker.selectNone();
-  }
+  };
 
   private renderBeatmapsets() {
     if (this.props.worker.searchResult === null) {
@@ -177,13 +177,11 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
     return (
       <div className='quick-search-items quick-search-items--empty'>
-        {modes.map((mode) => {
-          return (
-            <div key={mode} className='quick-search-items__item'>
-              {osu.trans('quick_search.result.empty_for', { modes: osu.trans(`quick_search.mode.${mode}`) })}
-            </div>
-          );
-        })}
+        {modes.map((mode) => (
+          <div key={mode} className='quick-search-items__item'>
+            {osu.trans('quick_search.result.empty_for', { modes: osu.trans(`quick_search.mode.${mode}`) })}
+          </div>
+        ))}
       </div>
     );
   }
@@ -233,7 +231,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     );
   }
 
-  private renderResultLink(mode: ResultMode, active: boolean = false) {
+  private renderResultLink(mode: ResultMode, active = false) {
     let key = 'quick_search.result.';
 
     key += otherModes.includes(mode) ? 'title' : 'more';
@@ -316,7 +314,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
   private selectBeatmapsetOthers = () => this.selectBox('beatmapset_others');
 
-  private selectBox(section: Section, index: number = 0) {
+  private selectBox(section: Section, index = 0) {
     this.props.worker.setSelected(section, index);
   }
 
@@ -324,5 +322,5 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
   private updateQuery = (event: React.SyntheticEvent<HTMLInputElement>) => {
     this.props.worker.updateQuery(event.currentTarget.value);
-  }
+  };
 }
