@@ -15,6 +15,11 @@ use PDOException;
 
 class ScoresController extends BaseController
 {
+    private static function getBeatmapOrFail($beatmapId)
+    {
+        return Beatmap::scoreable()->findOrFail($beatmapId);
+    }
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -22,7 +27,7 @@ class ScoresController extends BaseController
 
     public function store($beatmapId)
     {
-        $beatmap = $this->getBeatmapOrFail($beatmapId);
+        $beatmap = static::getBeatmapOrFail($beatmapId);
         $user = auth()->user();
         $params = request()->all();
 
@@ -46,7 +51,7 @@ class ScoresController extends BaseController
 
     public function update($beatmapId, $id)
     {
-        $this->getBeatmapOrFail($beatmapId);
+        static::getBeatmapOrFail($beatmapId);
 
         $score = Score::findOrFail($id);
 
@@ -65,10 +70,5 @@ class ScoresController extends BaseController
         $score->complete($params);
 
         return json_item($score, 'Solo\Score');
-    }
-
-    private function getBeatmapOrFail($beatmapId)
-    {
-        return Beatmap::scoreable()->findOrFail($beatmapId);
     }
 }
