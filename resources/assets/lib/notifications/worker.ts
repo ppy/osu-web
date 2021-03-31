@@ -25,17 +25,11 @@ interface NotificationBootJson extends NotificationBundleJson {
   notification_endpoint: string;
 }
 
-const isNotificationEventDeleteJson = (arg: any): arg is NotificationEventDeleteJson => {
-  return arg.event === 'delete';
-};
+const isNotificationEventDeleteJson = (arg: any): arg is NotificationEventDeleteJson => arg.event === 'delete';
 
-const isNotificationEventNewJson = (arg: any): arg is NotificationEventNewJson => {
-  return arg.event === 'new';
-};
+const isNotificationEventNewJson = (arg: any): arg is NotificationEventNewJson => arg.event === 'new';
 
-const isNotificationEventReadJson = (arg: any): arg is NotificationEventReadJson => {
-  return arg.event === 'read';
-};
+const isNotificationEventReadJson = (arg: any): arg is NotificationEventReadJson => arg.event === 'read';
 
 /**
  * Handles initial notifications bootstrapping and parsing of web socket messages into notification events.
@@ -132,5 +126,5 @@ export default class Worker implements DispatchListener {
         }
         this.delayedRetryInitialLoadMore();
       });
-  }
+  };
 }

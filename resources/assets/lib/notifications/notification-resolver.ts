@@ -41,11 +41,11 @@ export class NotificationResolver {
       method: 'DELETE',
       url: route('notifications.index'),
     })
-    .then(action(() => {
-      dispatch(new NotificationEventDelete([deletable.identity], 0));
-    }))
-    .catch(osu.ajaxError)
-    .always(action(() => deletable.isDeleting = false));
+      .then(action(() => {
+        dispatch(new NotificationEventDelete([deletable.identity], 0));
+      }))
+      .catch(osu.ajaxError)
+      .always(action(() => deletable.isDeleting = false));
   }
 
   @action
@@ -75,10 +75,10 @@ export class NotificationResolver {
     if (resolveIdentityType(identity) === 'stack') {
       // stacks can't be queued because we need the read counts in the broadcasted websocket event to be separate.
       this.sendMarkAsReadRequest({ identities: [toJson(readable.identity)] })
-      .then(action(() => {
-        dispatch(new NotificationEventRead([identity], 0));
-      }))
-      .always(action(() => readable.isMarkingAsRead = false));
+        .then(action(() => {
+          dispatch(new NotificationEventRead([identity], 0));
+        }))
+        .always(action(() => readable.isMarkingAsRead = false));
 
       return;
     }
@@ -87,7 +87,7 @@ export class NotificationResolver {
     // from display while the user is clicking.
     // types are also batched because of they're now called separately.
     if (readable instanceof Notification && readable.canMarkRead) {
-        this.queuedMarkedAsRead.set(readable.id, readable);
+      this.queuedMarkedAsRead.set(readable.id, readable);
     } else {
       this.queuedMarkedAsReadIdentities.set(toString(identity), readable);
     }
@@ -108,10 +108,10 @@ export class NotificationResolver {
       method: 'DELETE',
       url: route('notifications.index'),
     })
-    .then(action(() => {
-      dispatch(new NotificationEventDelete(identities, 0));
-    }))
-    .always(action(() => notifications.forEach((notification) => notification.isDeleting = false)));
+      .then(action(() => {
+        dispatch(new NotificationEventDelete(identities, 0));
+      }))
+      .always(action(() => notifications.forEach((notification) => notification.isDeleting = false)));
   }
 
   private sendMarkAsReadRequest(data: any) {
@@ -121,7 +121,7 @@ export class NotificationResolver {
       method: 'POST',
       url: route('notifications.mark-read'),
     })
-    .catch(osu.ajaxError);
+      .catch(osu.ajaxError);
   }
 
   private sendQueuedMarkedAsRead() {
@@ -132,10 +132,10 @@ export class NotificationResolver {
       this.queuedMarkedAsRead.clear();
 
       this.sendMarkAsReadRequest({ notifications: identities.map(toJson) })
-      .then(action(() => {
-        dispatch(new NotificationEventRead(identities, 0));
-      }))
-      .always(action(() => queuedItems.forEach((notification) => notification.isMarkingAsRead = false)));
+        .then(action(() => {
+          dispatch(new NotificationEventRead(identities, 0));
+        }))
+        .always(action(() => queuedItems.forEach((notification) => notification.isMarkingAsRead = false)));
     }
 
     if (this.queuedMarkedAsReadIdentities.size > 0) {
@@ -144,10 +144,10 @@ export class NotificationResolver {
       this.queuedMarkedAsReadIdentities.clear();
 
       this.sendMarkAsReadRequest({ identities: identities.map(toJson) })
-      .then(action(() => {
-        dispatch(new NotificationEventRead(identities, 0));
-      }))
-      .always(action(() => notifications.forEach((notification) => notification.isMarkingAsRead = false)));
+        .then(action(() => {
+          dispatch(new NotificationEventRead(identities, 0));
+        }))
+        .always(action(() => notifications.forEach((notification) => notification.isMarkingAsRead = false)));
     }
   }
 }

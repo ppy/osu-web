@@ -59,7 +59,7 @@ export default class NewReview extends React.Component<Props, State> {
     }
 
     return window.stickyHeader.headerHeight() + this.props.stickTo?.current?.getBoundingClientRect().height;
-  }
+  };
 
   onFocus = () => this.setSticky(true);
 
@@ -96,19 +96,17 @@ export default class NewReview extends React.Component<Props, State> {
                   this.props.currentUser.id ?
                     <DiscussionsContext.Consumer>
                       {
-                        (discussions) => {
-                          return <Editor
-                            beatmapset={this.props.beatmapset}
-                            beatmaps={this.props.beatmaps}
-                            currentBeatmap={this.props.currentBeatmap}
-                            currentDiscussions={this.props.currentDiscussions}
-                            discussions={discussions}
-                            onFocus={this.onFocus}
-                          />;
-                        }
+                        (discussions) => (<Editor
+                          beatmapset={this.props.beatmapset}
+                          beatmaps={this.props.beatmaps}
+                          currentBeatmap={this.props.currentBeatmap}
+                          currentDiscussions={this.props.currentDiscussions}
+                          discussions={discussions}
+                          onFocus={this.onFocus}
+                        />)
                       }
                     </DiscussionsContext.Consumer>
-                  :
+                    :
                     <div className='beatmap-discussion-new__login-required'>{osu.trans('beatmaps.discussions.require-login')}</div>
                 }
               </div>
@@ -128,15 +126,15 @@ export default class NewReview extends React.Component<Props, State> {
     if (this.props.setPinned) {
       this.props.setPinned(sticky);
     }
-  }
+  };
 
   setTop = () => {
     this.setState({
       cssTop: this.cssTop(this.props.pinned ?? false),
     });
-  }
+  };
 
   toggleSticky = () => {
     this.setSticky(!this.props.pinned);
-  }
+  };
 }

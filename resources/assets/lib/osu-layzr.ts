@@ -18,9 +18,9 @@ export default class OsuLayzr {
 
     this.reinit();
     this.observer.observe(document.body, { childList: true, subtree: true });
-  }
+  };
 
   reinit = () => {
     this.layzr?.update().check().handlers(true);
-  }
+  };
 }

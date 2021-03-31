@@ -3,7 +3,7 @@
 
 // `number` function is taken from: https://github.com/less/less.js/blob/master/lib/less/functions/color.js
 module.exports = {
-  install: function(less, pluginManager, functions) {
+  install(less, pluginManager, functions) {
     const getNumber = (n) => {
       if (n instanceof less.tree.Dimension) {
         return parseFloat(n.unit.is('%') ? n.value / 100 : n.value);

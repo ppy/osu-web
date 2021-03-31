@@ -94,7 +94,7 @@ export function parseFromJson(json: string, discussions: Record<number, Beatmaps
 //   becomes:
 // paragraph -> text (with bold and italic properties set)
 //
-function squash(items: SlateNode[], currentMarks?: {bold: boolean, italic: boolean}) {
+function squash(items: SlateNode[], currentMarks?: {bold: boolean; italic: boolean}) {
   let flat: SlateNode[] = [];
   const marks = currentMarks ?? {
     bold: false,

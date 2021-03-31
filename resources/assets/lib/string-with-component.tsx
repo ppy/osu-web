@@ -16,9 +16,7 @@ export function StringWithComponent(props: Props) {
   return (
     <>
       {
-        parts.map((part) => {
-          return props.mappings[part] ? props.mappings[part] : part;
-        })
+        parts.map((part) => props.mappings[part] ? props.mappings[part] : part)
       }
     </>
   );

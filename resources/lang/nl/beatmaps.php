@@ -187,17 +187,17 @@ return [
         'nominate_confirm' => 'Nomineer deze beatmap?',
         'nominated_by' => 'genomineerd door :gebruikers',
         'not_enough_hype' => "Er is niet genoeg hype.",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'remove_from_loved' => 'Verwijderen uit Loved',
+        'remove_from_loved_prompt' => 'Reden voor het verwijderen uit Loved:',
         'required_text' => 'Nimonaties: :current/:required',
         'reset_message_deleted' => 'verwijderd',
         'title' => 'Nominatiestatus',
         'unresolved_issues' => 'Er zijn nog steeds onopgeloste problemen die eerst moeten worden aangepakt.',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
-            'soon' => '',
+            '_' => 'Deze map staat gepland om ranked te worden op :date als er geen problemen worden gevonden. Het is #:position in de :queue.',
+            'queue' => 'ranking wachtlijst',
+            'soon' => 'binnenkort',
         ],
 
         'reset_at' => [
@@ -225,7 +225,7 @@ return [
                 'genre' => 'Genre',
                 'language' => 'Taal',
                 'mode' => 'Mode',
-                'nsfw' => '',
+                'nsfw' => 'Expliciete inhoud',
                 'played' => 'Gespeeld',
                 'rank' => 'Rank Behaald',
                 'status' => 'Categorieën',
@@ -250,11 +250,11 @@ return [
     ],
     'general' => [
         'converts' => 'Tel geconverteerde beatmaps mee',
-        'follows' => '',
+        'follows' => 'Geabonneerde mappers',
         'recommended' => 'Aanbevolen moeilijkheid',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Alle',
         'any' => 'Alles',
         'osu' => '',
         'taiko' => '',
@@ -334,8 +334,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Verbergen',
+        'include' => 'Weergeven',
     ],
 
     'played' => [

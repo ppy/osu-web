@@ -49,14 +49,14 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => '在以下模式的 qualified 圖譜上接收新問題通知',
-        'beatmapset_disqualify' => '',
-        'comment_reply' => '',
+        'beatmapset_disqualify' => '在以下模式的圖譜被標記為取消提名時收到通知',
+        'comment_reply' => '在您的留言被回覆時收到通知',
         'title' => '通知',
         'topic_auto_subscribe' => '自動啟用自己創建的主題的通知',
 
         'options' => [
             '_' => '傳送選項',
-            'beatmapset:modding' => '',
+            'beatmapset:modding' => '圖譜製作',
             'channel_message' => '私人訊息',
             'comment_new' => '新評論',
             'forum_topic_reply' => '主題回覆',
@@ -74,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => '隱藏兒童不宜圖譜的警告',
         'beatmapset_title_show_original' => '以原語言顯示圖譜資料',
         'title' => '選項',
 

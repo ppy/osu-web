@@ -76,9 +76,9 @@ export default class UserCardBrick extends React.PureComponent<Props> {
     } else if (isFriend && !this.context.isFriendsPage) {
       modifiers.push('friend');
     }
-  }
+  };
 
   private refresh = () => {
     this.forceUpdate();
-  }
+  };
 }

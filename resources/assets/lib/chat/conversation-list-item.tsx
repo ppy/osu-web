@@ -56,9 +56,9 @@ export default class ConversationListItem extends React.Component<Props> {
 
   private part = () => {
     this.dataStore.channelStore.partChannel(this.props.channelId);
-  }
+  };
 
   private switch = () => {
     this.dataStore.chatState.selectChannel(this.props.channelId);
-  }
+  };
 }

@@ -39,10 +39,8 @@ export async function fetchAllVariants(): Promise<any[]> {
 export async function fetchAllVariantIds(): Promise<{ }> {
   const variants = await this.fetchAllVariants();
 
-  return variants.map((x: any) => {
-    return {
-      gid: x.id,
-      name: x.title,
-    };
-  });
+  return variants.map((x: any) => ({
+    gid: x.id,
+    name: x.title,
+  }));
 }
