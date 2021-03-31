@@ -55,11 +55,11 @@ export default class Main extends React.Component<Props, State> {
 
   componentDidMount = () => {
     $(document).on(`turbolinks:before-cache.${this.eventId}`, this.saveState);
-  }
+  };
 
   componentWillUnmount = () => {
     $(document).off(`.${this.eventId}`);
-  }
+  };
 
   render() {
     return (
@@ -133,7 +133,7 @@ export default class Main extends React.Component<Props, State> {
     }
 
     return {posts, hasMore, loading};
-  }
+  };
 
   private restoreState = () => {
     const savedState = this.props.container.dataset.lastState;
@@ -141,11 +141,11 @@ export default class Main extends React.Component<Props, State> {
       this.state = JSON.parse(savedState) as State;
       delete this.props.container.dataset.lastState;
     }
-  }
+  };
 
   private saveState = () => {
     this.props.container.dataset.lastState = JSON.stringify(this.state);
-  }
+  };
 
   private showMore = () => {
     if (!this.state.hasMore) {
@@ -171,10 +171,10 @@ export default class Main extends React.Component<Props, State> {
     this.setState({loading: true});
 
     $.get(route('news.index'), search)
-    .done((data) => {
-      this.setState(this.newStateFromData(data as PostsJson));
-    }).always(() => {
-      this.setState({loading: false});
-    });
-  }
+      .done((data) => {
+        this.setState(this.newStateFromData(data as PostsJson));
+      }).always(() => {
+        this.setState({loading: false});
+      });
+  };
 }

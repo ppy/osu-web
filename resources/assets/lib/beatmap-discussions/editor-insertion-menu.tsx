@@ -24,7 +24,9 @@ export class EditorInsertionMenu extends React.Component<Props> {
   mouseOver = false;
   scrollContainer: HTMLElement | undefined;
   // setTimeout delay is to prevent flashing when hovering the menu (the portal is not inside the container, so it fires a mouseleave)
-  throttledContainerMouseExit = _.throttle(() => { setTimeout(this.hideMenu.bind(this), 100); }, 10);
+  throttledContainerMouseExit = _.throttle(() => {
+    setTimeout(this.hideMenu.bind(this), 100);
+  }, 10);
   throttledContainerMouseMove = _.throttle(this.containerMouseMove.bind(this), 10);
   throttledMenuMouseEnter = _.throttle(this.menuMouseEnter.bind(this), 10);
   throttledMenuMouseExit = _.throttle(this.menuMouseLeave.bind(this), 10);
@@ -173,7 +175,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
     }
 
     Transforms.insertNodes(ed, insertNode, { at: insertAt });
-  }
+  };
 
   insertButton = (type: string) => {
     let icon = 'fas fa-question';
@@ -200,7 +202,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
         <i className={icon}/>
       </button>
     );
-  }
+  };
 
   menuMouseEnter() {
     this.mouseOver = true;
@@ -213,22 +215,22 @@ export class EditorInsertionMenu extends React.Component<Props> {
 
   render() {
     return (
-        <Portal>
-          <div
-            className={`${this.bn}`}
-            ref={this.insertRef}
-          >
-            <div className={`${this.bn}__body`}>
-              <i className='fas fa-plus' />
-              <div className={`${this.bn}__buttons`}>
-                {this.insertButton('suggestion')}
-                {this.insertButton('problem')}
-                {this.insertButton('praise')}
-                {this.insertButton('paragraph')}
-              </div>
+      <Portal>
+        <div
+          className={`${this.bn}`}
+          ref={this.insertRef}
+        >
+          <div className={`${this.bn}__body`}>
+            <i className='fas fa-plus' />
+            <div className={`${this.bn}__buttons`}>
+              {this.insertButton('suggestion')}
+              {this.insertButton('problem')}
+              {this.insertButton('praise')}
+              {this.insertButton('paragraph')}
             </div>
           </div>
-        </Portal>
+        </div>
+      </Portal>
     );
   }
 

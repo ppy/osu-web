@@ -31,5 +31,5 @@ export default class MobileToggle {
 
     button.classList.toggle(activeClass, toActive);
     target.classList.toggle('hidden-xs', !toActive);
-  }
+  };
 }

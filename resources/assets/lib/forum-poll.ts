@@ -22,7 +22,7 @@ export default class ForumPoll {
     } else {
       $container.attr('data-edit', '1');
     }
-  }
+  };
 
   switchPage = (event: JQuery.ClickEvent) => {
     const target = event.currentTarget;
@@ -36,5 +36,5 @@ export default class ForumPoll {
     if (typeof targetPage === 'string') {
       $(event.target).parents('.js-forum-poll--container').attr('data-page', targetPage);
     }
-  }
+  };
 }

@@ -105,26 +105,26 @@ export default class NotificationStack implements NotificationReadable, Notifica
   @action
   deleteItem(notification?: Notification) {
     // not from this stack, ignore.
-    if (notification == null || !this.notifications.has(notification.id)) { return; }
+    if (notification == null || !this.notifications.has(notification.id)) return;
     this.resolver.delete(notification);
   }
 
   @action
   loadMore(context: NotificationContextData) {
-    if (this.cursor == null) { return; }
+    if (this.cursor == null) return;
 
     this.isLoading = true;
 
     this.resolver.loadMore(this.identity, context, this.cursor)
-    .always(action(() => {
-      this.isLoading = false;
-    }));
+      .always(action(() => {
+        this.isLoading = false;
+      }));
   }
 
   @action
   markAsRead(notification?: Notification) {
     // not from this stack, ignore.
-    if (notification == null || !this.notifications.has(notification.id)) { return; }
+    if (notification == null || !this.notifications.has(notification.id)) return;
     this.resolver.queueMarkAsRead(notification);
   }
 

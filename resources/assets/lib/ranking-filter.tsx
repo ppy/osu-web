@@ -75,15 +75,15 @@ export default class RankingFilter extends React.PureComponent<Props> {
   // TODO: rename component prop to onChange
   handleCountryChange = (option: Option) => {
     osu.navigate(osu.updateQueryString(null, { country: option.id, page: null }));
-  }
+  };
 
   handleFilterChange = (event: React.MouseEvent<HTMLButtonElement>) => {
     osu.navigate(osu.updateQueryString(null, { filter: event.currentTarget.dataset.value, page: null }));
-  }
+  };
 
   handleVariantChange = (event: React.MouseEvent<HTMLButtonElement>) => {
     osu.navigate(osu.updateQueryString(null, { variant: event.currentTarget.dataset.value, page: null }));
-  }
+  };
 
   render() {
     // TODO: consider using memoize-one?

@@ -15,5 +15,5 @@ export default class WindowFocusObserver {
     } else {
       dispatch(new WindowBlurAction());
     }
-  }
+  };
 }

@@ -27,7 +27,7 @@ export default class Enchant {
 
     window.enchant = [];
     this.turbolinksReload.load(src);
-  }
+  };
 
   showMessageWindow = (e: JQuery.ClickEvent) => {
     e.preventDefault();
@@ -35,7 +35,7 @@ export default class Enchant {
     if (window.enchant != null && window.enchant.messenger != null && typeof window.enchant.messenger.open === 'function') {
       window.enchant.messenger.open();
     }
-  }
+  };
 
   unload = () => {
     this.turbolinksReload.forget(src);
@@ -48,5 +48,5 @@ export default class Enchant {
         $(el).remove();
       }
     });
-  }
+  };
 }

@@ -3,8 +3,6 @@
 
 import Main from 'follows-mapping/main';
 
-reactTurbolinks.registerPersistent('follows-mapping', Main, true, () => {
-  return {
-    follows: osu.parseJson('json-follows-mapping'),
-  };
-});
+reactTurbolinks.registerPersistent('follows-mapping', Main, true, () => ({
+  follows: osu.parseJson('json-follows-mapping'),
+}));

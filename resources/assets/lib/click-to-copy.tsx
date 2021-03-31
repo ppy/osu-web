@@ -46,7 +46,7 @@ export default class ClickToCopy extends React.Component<Props> {
     if (this.title == null) {
       this.title = el.getAttribute('title') || el.dataset.origTitle || null;
     }
-   }
+  };
 
   componentWillMount() {
     this.restoreTooltipText();
@@ -60,7 +60,7 @@ export default class ClickToCopy extends React.Component<Props> {
     return (
       <a
         className={bn}
-        data-tooltip-pin-position={true}
+        data-tooltip-pin-position
         data-tooltip-position='bottom center'
         data-tooltip-hide-events='mouseleave'
         href={this.props.valueAsUrl ? this.props.value : '#'}
@@ -81,5 +81,5 @@ export default class ClickToCopy extends React.Component<Props> {
         this.api.set('content.text', this.title);
       });
     }
-  }
+  };
 }
