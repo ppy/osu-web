@@ -287,7 +287,7 @@ export class Discussion extends React.PureComponent
       read: @isRead(post)
       users: @props.users
       user: @props.users[post.user_id] ? @props.users[null]
-      lastEditor: @props.users[post.last_editor_id] ? @props.users[null]
+      lastEditor: @props.users[post.last_editor_id] ? @props.users[null] if post.last_editor_id?
       canBeEdited: @props.currentUser.is_admin || canBeEdited
       canBeDeleted: canBeDeleted
       canBeRestored: canModeratePosts

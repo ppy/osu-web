@@ -186,7 +186,7 @@ export class Post extends React.PureComponent
                   classNames: ["#{bn}__info-user"]
                 delete_time: osu.timeago deleteModel.deleted_at
 
-        if @props.post.updated_at != @props.post.created_at && @props.lastEditor?.id
+        if @props.post.updated_at != @props.post.created_at && @props.lastEditor?
           span
             className: "#{bn}__info #{bn}__info--edited"
             dangerouslySetInnerHTML:
