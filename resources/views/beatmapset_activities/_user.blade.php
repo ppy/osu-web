@@ -27,7 +27,7 @@
                 <a class="{{$bn}}__user-link" href="{{route('users.show', $user)}}">
                     <span class="{{$bn}}__user-text u-ellipsis-overflow">{{$user->username}}</span>
                 </a>
-                @if (!$user->is_bot)
+                @if (!$user->isBot())
                     <a class="{{$bn}}__user-modding-history-link" href="{{route('users.modding.index', $user)}}" title="{{trans('beatmap_discussion_posts.item.modding_history_link')}}">
                         <i class='fas fa-align-left'></i>
                     </a>
