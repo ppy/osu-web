@@ -31,7 +31,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "",
+            'bot' => "不能為機器人建立的討論投票。",
             'limit_exceeded' => '在投更多票之前請稍等一會',
             'owner' => "不能為自己的討論投票。",
             'wrong_beatmapset_state' => '只能對待處理的圖譜討論進行投票。',
@@ -68,6 +68,7 @@ return [
         'moderated' => '該頻道目前正在被管制中。',
         'no_access' => '你沒有權限訪問該頻道。',
         'restricted' => '你不能在帳戶被禁言、限制或封鎖的時候發送訊息。',
+        'silenced' => '你不能在帳戶被禁言、限制或封鎖的時候傳送訊息。',
     ],
 
     'comment' => [
@@ -78,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => '投票已結束，禁止重新投票。',
+
+        'entry' => [
+            'limit_reached' => '您提交的參賽文件大小超出限制',
+            'over' => '感謝參與！提交已經關閉，投票即將開始。',
+        ],
     ],
 
     'forum' => [
@@ -103,7 +109,7 @@ return [
 
             'store' => [
                 'play_more' => '在发帖之前先玩上两局吧！如果你在游戏时遇到问题，请在 Help and Support 版块发帖求助。',
-                'too_many_help_posts' => "如果你想发更多的帖子，再多玩几把吧！如果你仍然在游戏时遇到问题请邮件联系 support@ppy.sh", // FIXME: unhardcode email address.
+                'too_many_help_posts' => "您需要再玩久一點才可以發布更多貼文，如果您仍然在遊戲中遇到問題，請聯繫support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 

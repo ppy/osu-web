@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Deleting beatmap metadata post is not allowed.',
             'beatmapset_post_no_edit' => 'Editing beatmap metadata post is not allowed.',
+            'first_post_no_delete' => 'Can\'t delete starting post',
+            'missing_topic' => 'Post is missing topic',
             'only_quote' => 'Your reply contains only a quote.',
 
             'attributes' => [

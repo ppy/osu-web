@@ -22,6 +22,7 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Ds\Set;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Exception;
@@ -214,14 +215,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         'user_discord' => 37, // max 32char username + # + 4-digit discriminator
         'user_from' => 30,
         'user_interests' => 30,
-        'user_msnm' => 255,
         'user_occ' => 30,
         'user_sig' => 3000,
         'user_twitter' => 255,
         'user_website' => 200,
     ];
-
-    public $shouldReindex = false;
 
     private $validateCurrentPassword = false;
     private $validatePasswordConfirmation = false;
@@ -341,7 +339,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
             $skipValidations = in_array($type, ['inactive', 'revert'], true);
             $this->saveOrExplode(['skipValidations' => $skipValidations]);
-            $this->shouldReindex = true;
 
             return $history;
         });
@@ -706,17 +703,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function getUserDiscordAttribute($value)
     {
         return presence($this->user_jabber);
-    }
-
-    public function getUserMsnmAttribute($value)
-    {
-        return presence($value);
-    }
-
-    public function setUserMsnmAttribute($value)
-    {
-        // skype does not allow accents in usernames.
-        $this->attributes['user_msnm'] = unzalgo($value, 0);
     }
 
     public function getOsuPlaystyleAttribute($value)
@@ -1538,17 +1524,23 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function hasBlocked(self $user)
     {
-        return $this->blocks->where('user_id', $user->user_id)->count() > 0;
+        return $this->memoize(__FUNCTION__, function () {
+            return new Set($this->blocks->pluck('user_id'));
+        })->contains($user->getKey());
     }
 
     public function hasFriended(self $user)
     {
-        return $this->friends->where('user_id', $user->user_id)->count() > 0;
+        return $this->memoize(__FUNCTION__, function () {
+            return new Set($this->friends->pluck('user_id'));
+        })->contains($user->getKey());
     }
 
     public function hasFavourited($beatmapset)
     {
-        return $this->favourites->contains('beatmapset_id', $beatmapset->getKey());
+        return $this->memoize(__FUNCTION__, function () {
+            return new Set($this->favourites->pluck('beatmapset_id'));
+        })->contains($beatmapset->getKey());
     }
 
     public function remainingHype()
@@ -1698,11 +1690,38 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function recommendedStarDifficulty(string $mode)
     {
         $stats = $this->statistics($mode);
-        if ($stats) {
-            return pow($stats->rank_score, 0.4) * 0.195;
-        }
 
-        return 1.0;
+        return UserStatistics\Model::calculateRecommendedStarDifficulty($stats);
+    }
+
+    /**
+     * Recommended star difficulty for all modes.
+     *
+     * @return float
+     */
+    public function recommendedStarDifficultyAll()
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            $unionQuery = null;
+
+            foreach (Beatmap::MODES as $key => $_value) {
+                $query = $this->statistics($key, true)->selectRaw("'{$key}' AS game_mode, rank_score");
+
+                if ($unionQuery === null) {
+                    $unionQuery = $query;
+                } else {
+                    $unionQuery->unionAll($query);
+                }
+            }
+
+            $stats = $unionQuery->get()->keyBy('game_mode');
+
+            foreach (Beatmap::MODES as $key => $_value) {
+                $recs[$key] = UserStatistics\Model::calculateRecommendedStarDifficulty($stats[$key] ?? null);
+            }
+
+            return $recs;
+        });
     }
 
     public function refreshForumCache($forum = null, $postsChangeCount = 0)
@@ -2139,10 +2158,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function afterCommit()
     {
-        if ($this->shouldReindex) {
-            $this->shouldReindex = false;
-            dispatch(new EsIndexDocument($this));
-        }
+        dispatch(new EsIndexDocument($this));
     }
 
     protected function newReportableExtraParams(): array

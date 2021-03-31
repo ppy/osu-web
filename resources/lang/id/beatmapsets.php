@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus setelah tim kami memutuskan bahwa aset-aset yang bersangkutan tidak layak untuk dipergunakan secara luas di dalam lingkungan osu!.',
     ],
 
+    'download' => [
+        'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Harap mainkan beatmap-beatmap yang sudah Anda miliki terlebih dahulu.',
+    ],
+
     'index' => [
         'title' => 'Daftar Beatmap',
         'guest_title' => 'Beatmap',
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Unduh',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'tanpa Video',
                 'video' => 'dengan Video',
             ],
@@ -113,12 +117,13 @@ return [
             'nsfw' => 'Konten eksplisit',
             'points-of-failure' => 'Titik-Titik Kegagalan',
             'source' => 'Sumber',
+            'storyboard' => 'Beatmap ini mengandung storyboard',
             'success-rate' => 'Tingkat Keberhasilan',
             'tags' => 'Tag',
         ],
 
         'nsfw_warning' => [
-            'details' => 'Beatmap ini ditenggarai mengandung konten yang eksplisit atau yang berpotensi menyinggung kalangan tertentu. Apakah Anda tetap ingin melihat beatmap ini?',
+            'details' => 'Beatmap ini ditenggarai mengandung konten yang bersifat eksplisit dan/atau konten yang dapat dianggap menyinggung bagi kalangan tertentu. Apakah Anda tetap ingin melihat beatmap ini?',
             'title' => 'Konten Eksplisit',
 
             'buttons' => [
@@ -129,7 +134,7 @@ return [
         ],
 
         'scoreboard' => [
-            'achieved' => 'dicapai pada :when',
+            'achieved' => 'diraih pada :when',
             'country' => 'Peringkat Negara',
             'friend' => 'Peringkat Teman',
             'global' => 'Peringkat Global',
@@ -143,7 +148,7 @@ return [
                 'miss' => 'Miss',
                 'mods' => 'Mod',
                 'player' => 'Pemain',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Peringkat',
                 'score_total' => 'Jumlah Skor',
                 'score' => 'Skor',

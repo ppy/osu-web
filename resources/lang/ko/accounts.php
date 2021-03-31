@@ -32,12 +32,11 @@ return [
             'title' => '프로필',
 
             'user' => [
-                'user_discord' => 'Discord',
+                'user_discord' => '',
                 'user_from' => '거주지',
                 'user_interests' => '관심 분야',
-                'user_msnm' => 'Skype',
                 'user_occ' => '직업',
-                'user_twitter' => 'Twitter',
+                'user_twitter' => '',
                 'user_website' => '웹사이트',
             ],
         ],
@@ -62,6 +61,7 @@ return [
             'comment_new' => '새 댓글',
             'forum_topic_reply' => '주제 답글',
             'mail' => '메일',
+            'mapping' => '비트맵 제작자',
             'push' => '푸시 알림',
             'user_achievement_unlock' => '메달 획득',
         ],

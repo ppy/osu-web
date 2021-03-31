@@ -13,10 +13,14 @@ return [
     ],
 
     'scopes' => [
-        'bot' => '',
+        'bot' => 'Csevegőrobotként működjön.',
         'identify' => 'Azonosíthat téged és olvashat a nyilvános profilodból.',
 
         'chat' => [
+            'write' => 'Küldjön üzeneteket az Ön nevében.',
+        ],
+
+        'forum' => [
             'write' => '',
         ],
 

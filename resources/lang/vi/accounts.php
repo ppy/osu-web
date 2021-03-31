@@ -32,12 +32,11 @@ return [
             'title' => 'Trang cá nhân',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'vị trí hiện tại',
                 'user_interests' => 'sở thích',
-                'user_msnm' => 'skype',
                 'user_occ' => 'nghề nghiệp',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'trang web',
             ],
         ],
@@ -62,6 +61,7 @@ return [
             'comment_new' => 'bình luận mới',
             'forum_topic_reply' => 'trả lời chủ đề',
             'mail' => 'thư',
+            'mapping' => '',
             'push' => 'push',
             'user_achievement_unlock' => 'mở khoá huy chương',
         ],
@@ -74,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'ẩn cảnh báo nội dung không phù hợp trong beatmap',
         'beatmapset_title_show_original' => 'hiển thị metadata của beatmap ở ngôn ngữ gốc',
         'title' => 'Tuỳ chọn',
 

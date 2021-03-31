@@ -21,4 +21,9 @@ return [
             ],
         ],
     ],
+
+    'status' => [
+        'non_best' => 'Apenas as melhores pontuações pessoais dão pp',
+        'processing' => 'Esta pontuação ainda está a ser calculada e será exibida em breve',
+    ],
 ];

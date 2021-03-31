@@ -20,7 +20,7 @@ export function LandingNews({posts}: {posts: PostJson[]}) {
           </div>
           <div className='landing-news__link'>
             <ShowMoreLink
-              hasMore={true}
+              hasMore
               loading={false}
               modifiers={['no-icon']}
               label={osu.trans('home.landing.see_more_news')}

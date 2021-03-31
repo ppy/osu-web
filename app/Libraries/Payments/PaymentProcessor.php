@@ -13,6 +13,7 @@ use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
+use Datadog;
 use DB;
 use Exception;
 
@@ -131,20 +132,31 @@ abstract class PaymentProcessor implements \ArrayAccess
         $type = $this->getNotificationType();
         switch ($type) {
             case NotificationType::IGNORED:
-                return;
+                break;
             case NotificationType::PAYMENT:
-                return $this->apply();
+                $this->apply();
+                break;
             case NotificationType::PENDING:
-                return $this->pending();
+                $this->pending();
+                break;
             case NotificationType::REFUND:
-                return $this->cancel();
+                $this->cancel();
+                break;
             case NotificationType::REJECTED:
-                return $this->rejected();
+                $this->rejected();
+                break;
             case NotificationType::USER_SEARCH:
-                return $this->userSearch();
+                $this->userSearch();
+                break;
             default:
                 throw new UnsupportedNotificationTypeException($type);
         }
+
+        Datadog::increment(
+            config('datadog-helper.prefix_web').'.payment_processor.run',
+            1,
+            ['provider' => $this->getPaymentProvider(), 'type' => $type]
+        );
     }
 
     /**

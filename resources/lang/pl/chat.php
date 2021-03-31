@@ -18,6 +18,7 @@ return [
             'not_enough_plays' => '',
             'not_verified' => 'Twoja sesja nie została zweryfikowana',
             'restricted' => 'Twoje konto zostało zablokowane',
+            'silenced' => 'Twoje konto jest obecnie wyciszone',
             'target_restricted' => 'Konto tego użytkownika jest obecnie zablokowane',
         ],
     ],

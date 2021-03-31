@@ -68,6 +68,7 @@ return [
         'moderated' => 'Ce canal est actuellement modéré.',
         'no_access' => 'Vous n’avez pas accès à ce canal.',
         'restricted' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
+        'silenced' => 'Vous ne pouvez pas envoyez de message quand vous êtes réduit au silence, restreint ou banni.',
     ],
 
     'comment' => [
@@ -78,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Vous ne pouvez pas changer votre vote une fois la période de vote terminée.',
+
+        'entry' => [
+            'limit_reached' => 'Vous avez atteint la limite d\'entrée pour ce concours',
+            'over' => 'Merci pour vos inscriptions ! Les soumissions sont fermées pour ce concours et le vote va bientôt ouvrir.',
+        ],
     ],
 
     'forum' => [
@@ -87,7 +93,7 @@ return [
 
         'post' => [
             'delete' => [
-                'only_last_post' => 'Seul le dernier message peut être supprimé.',
+                'only_last_post' => 'Seul le dernier post peut être supprimé.',
                 'locked' => 'Impossible de supprimer un message sur un sujet verrouillé.',
                 'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
                 'not_owner' => 'Seul l\'auteur de ce post peut le supprimer.',

@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Спіс бітмап',
         'guest_title' => 'Бітмапы',
@@ -113,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => 'Колькасць правалаў',
             'source' => 'Крыніца',
+            'storyboard' => '',
             'success-rate' => 'Шанц поспеху',
             'tags' => 'Тэгі',
         ],

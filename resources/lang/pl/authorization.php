@@ -68,6 +68,7 @@ return [
         'moderated' => 'Ten kanał jest obecnie w trybie tylko dla moderatorów.',
         'no_access' => 'Nie masz dostępu do tego kanału.',
         'restricted' => 'Nie możesz wysyłać wiadomości podczas uciszenia czy blokady konta.',
+        'silenced' => 'Nie możesz wysyłać wiadomości podczas uciszenia czy blokady konta.',
     ],
 
     'comment' => [
@@ -78,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Nie możesz zmieniać swojego głosu po zakończeniu głosowania.',
+
+        'entry' => [
+            'limit_reached' => 'Osiągnięto limit zgłoszeń dla tego konkursu',
+            'over' => 'Dziękujemy za zgłoszenia! Przesyłanie prac zakończyło się i wkrótce rozpocznie się głosowanie.',
+        ],
     ],
 
     'forum' => [

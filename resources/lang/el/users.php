@@ -357,7 +357,6 @@ return [
             'interests' => 'Ενδιαφέροντα',
             'location' => 'Τρέχουσα Τοποθεσία',
             'occupation' => 'Ενασχόληση',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Ιστοσελίδα',
         ],
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => '',
             'graveyard_beatmapset_count' => '',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

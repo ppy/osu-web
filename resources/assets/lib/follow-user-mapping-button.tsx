@@ -60,7 +60,7 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
 
     const title = canToggle
       ? osu.trans(`follows.mapping.${this.state.following ? 'to_0' : 'to_1'}`)
-      : osu.trans(`follows.mapping.followers`);
+      : osu.trans('follows.mapping.followers');
 
     let blockClass = classWithModifiers(bn, this.props.modifiers);
     blockClass += classWithModifiers(bn, { friend: this.state.following }, true);
@@ -111,13 +111,13 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
         .fail(osu.emitAjaxError(this.buttonRef.current))
         .always(() => this.setState({ loading: false }));
     });
-  }
+  };
 
   private refresh = () => {
     this.setState({
       following: currentUser.follow_user_mapping.includes(this.props.userId),
     });
-  }
+  };
 
   private renderCounter() {
     if (this.props.showFollowerCounter == null || this.props.followers == null) {
@@ -145,5 +145,5 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
 
   private updateData = () => {
     $.publish('user:followUserMapping:update', { following: !this.state.following, userId: this.props.userId });
-  }
+  };
 }

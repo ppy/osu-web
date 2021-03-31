@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => '不允许删除谱面信息帖。',
             'beatmapset_post_no_edit' => '不允许编辑谱面信息帖。',
+            'first_post_no_delete' => '无法删除第一个帖子',
+            'missing_topic' => '该帖子缺少主题',
             'only_quote' => '你的回复仅包含引用',
 
             'attributes' => [

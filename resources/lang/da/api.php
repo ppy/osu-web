@@ -13,10 +13,14 @@ return [
     ],
 
     'scopes' => [
-        'bot' => '',
+        'bot' => 'Handl som en chat bot.',
         'identify' => 'Identificere dig og læse din offentlige profil.',
 
         'chat' => [
+            'write' => 'Send beskeder på dine vegne.',
+        ],
+
+        'forum' => [
             'write' => '',
         ],
 

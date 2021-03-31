@@ -22,6 +22,7 @@ return [
             '401-verification' => 'account verificatie',
             '405' => 'ontbrekend',
             '422' => 'ongeldige aanvraag',
+            '429' => 'te veel aanvragen',
             '500' => 'iets gaat er mis',
             '503' => 'onderhoud',
         ],
@@ -76,7 +77,7 @@ return [
             '_' => 'wedstrijden',
         ],
         'follows_controller' => [
-            'index' => '',
+            'index' => 'dashboard',
         ],
         'friends_controller' => [
             'index' => 'dashboard',

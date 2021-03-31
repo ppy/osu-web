@@ -17,11 +17,16 @@ return [
 
     'forum_posts' => [
         'created' => '投稿時間',
-        'relevance' => '関連性',
+        'relevance' => '関連',
     ],
 
     'forum_topics' => [
         'feature_votes' => 'スターの優先度',
         'new' => '最後の返信',
+    ],
+
+    'users' => [
+        'relevance' => '関連性',
+        'username' => '名前',
     ],
 ];

@@ -21,7 +21,7 @@ return [
         'kudosu_denied' => 'Αδύνατη η απόκτηση kudosu.',
         'message_placeholder_deleted_beatmap' => 'Η δυσκολία αυτή έχει διαγραφεί για αυτό δεν συζητιέται πλέον.',
         'message_placeholder_locked' => 'Η συζήτηση για αυτό το beatmap έχει απενεργοποιηθεί.',
-        'message_placeholder_silenced' => "",
+        'message_placeholder_silenced' => "Δεν είναι δυνατή η δημοσίευση συζήτησης ενώ σιγασμένη.",
         'message_type_select' => 'Επιλέξτε Τύπο Σχολίου',
         'reply_notice' => 'Πατήστε enter για να απαντήσετε.',
         'reply_placeholder' => 'Πληκτρολογήστε την απάντησή σας εδώ',
@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Προτεινόμενη δυσκολία',
         'converts' => 'Συμπεριλάμβανε beatmaps που έχουν μετατραπεί',
+        'follows' => '',
+        'recommended' => 'Προτεινόμενη δυσκολία',
     ],
     'mode' => [
         'all' => 'Όλα',
@@ -286,7 +287,7 @@ return [
         'metal' => '',
         'classical' => '',
         'folk' => '',
-        'jazz' => '',
+        'jazz' => 'Τζάζ',
     ],
     'mods' => [
         '4K' => '',
@@ -315,7 +316,7 @@ return [
         'V2' => 'Σκορ V2',
     ],
     'language' => [
-        'any' => '',
+        'any' => 'Όλα',
         'english' => 'Αγγλικά',
         'chinese' => 'Κινέζικα',
         'french' => 'Γαλλικά',

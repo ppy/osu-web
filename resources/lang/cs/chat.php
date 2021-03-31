@@ -18,6 +18,7 @@ return [
             'not_enough_plays' => '',
             'not_verified' => '',
             'restricted' => 'Váš účet je teď zablokován',
+            'silenced' => '',
             'target_restricted' => 'Účet příjemce je právě zablokován',
         ],
     ],

@@ -172,7 +172,7 @@ return [
                     'unsupported_format' => 'Formato no soportado.',
 
                     'restriction_info' => [
-                        '_' => 'Carga disponible solo para :link',
+                        '_' => 'Carga disponible sólo para :link',
                         'link' => 'osu!supporters',
                     ],
                 ],
@@ -353,12 +353,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Intereses',
             'location' => 'Ubicación actual',
             'occupation' => 'Ocupación',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => 'Sitio web',
         ],
         'not_found' => [
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Mapas Pendientes',
             'graveyard_beatmapset_count' => 'Mapas Abandonados',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Actualmente está silenciado.',
+        'message' => 'Es posible que algunas acciones no estén disponibles.',
     ],
 
     'status' => [

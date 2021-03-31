@@ -21,4 +21,9 @@ return [
             ],
         ],
     ],
+
+    'status' => [
+        'non_best' => 'Solo i punteggi personali migliori attribuiscono pp',
+        'processing' => 'Questo punteggio dev\'essere ancora calcolato e verrà mostrato presto',
+    ],
 ];

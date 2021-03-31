@@ -32,12 +32,11 @@ return [
             'title' => 'Профиль',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'место проживания',
                 'user_interests' => 'интересы',
-                'user_msnm' => 'skype',
                 'user_occ' => 'род деятельности',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'веб-сайт',
             ],
         ],
@@ -62,6 +61,7 @@ return [
             'comment_new' => 'новые комментарии',
             'forum_topic_reply' => 'ответы на форуме',
             'mail' => 'почта',
+            'mapping' => 'маппер карты',
             'push' => 'пуши',
             'user_achievement_unlock' => 'новые медали',
         ],

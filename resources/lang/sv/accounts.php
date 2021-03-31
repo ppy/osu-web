@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'nuvarande position',
                 'user_interests' => 'intressen',
-                'user_msnm' => '',
                 'user_occ' => 'sysselsättning',
                 'user_twitter' => '',
                 'user_website' => 'hemsida',
@@ -62,6 +61,7 @@ return [
             'comment_new' => 'nya kommentarer',
             'forum_topic_reply' => 'ämnessvar',
             'mail' => 'mail',
+            'mapping' => '',
             'push' => 'push',
             'user_achievement_unlock' => 'användarmedalj upplåst',
         ],
@@ -74,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'dölj varningar för explicit innehåll i beatmaps',
         'beatmapset_title_show_original' => 'visa beatmapmetadata på originalspråk',
         'title' => 'Alternativ',
 

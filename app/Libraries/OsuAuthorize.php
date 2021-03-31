@@ -784,7 +784,10 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
-        $this->ensureHasPlayed($user);
+
+        if (!config('osu.user.min_plays_allow_verified_bypass')) {
+            $this->ensureHasPlayed($user);
+        }
 
         if ($user->isModerator()) {
             return 'ok';
@@ -1171,10 +1174,7 @@ class OsuAuthorize
             return $prefix.'locked';
         }
 
-        $position = $post->postPosition;
-        $topicPostsCount = $post->topic->postsCount();
-
-        if ($position !== $topicPostsCount) {
+        if ($post->getKey() !== $post->topic->topic_last_post_id) {
             return $prefix.'only_last_post';
         }
 
@@ -1255,6 +1255,17 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    /**
+     * @param User|null $user
+     * @param Topic $topic
+     * @return string
+     * @throws AuthorizationException
+     */
+    public function checkForumTopicDelete(?User $user, Topic $topic): string
+    {
+        return $this->checkForumPostDelete($user, $topic->firstPost);
     }
 
     /**

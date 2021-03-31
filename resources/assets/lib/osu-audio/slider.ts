@@ -12,9 +12,7 @@ interface Params {
 
 type Callback = (slider: Slider) => void;
 
-const getX = (e: JQuery.TouchMoveEvent | JQuery.TouchStartEvent) => {
-  return e.clientX ?? e.touches[0].clientX;
-};
+const getX = (e: JQuery.TouchMoveEvent | JQuery.TouchStartEvent) => e.clientX ?? e.touches[0].clientX;
 
 let current: Slider | null = null;
 
@@ -25,7 +23,7 @@ export default class Slider {
   private bar: HTMLElement;
   private endCallback?: Callback;
   private moveCallback?: Callback;
-  private percentage: number = 0;
+  private percentage = 0;
 
   private constructor(params: Params) {
     this.endCallback = params.endCallback;
@@ -70,11 +68,9 @@ export default class Slider {
     this.bar.dataset.audioDragging = '0';
 
     current = null;
-  }
+  };
 
-  getPercentage = () => {
-    return this.percentage;
-  }
+  getPercentage = () => this.percentage;
 
   private move = (clientX: number) => {
     // this function is async (called by rAF) so make sure the object is still valid
@@ -90,7 +86,7 @@ export default class Slider {
     }
 
     this.bar.style.setProperty('--bar', this.percentage.toString());
-  }
+  };
 
   private onMove = (e: JQuery.TouchMoveEvent) => {
     const x = getX(e);
@@ -98,5 +94,5 @@ export default class Slider {
     requestAnimationFrame(() => {
       this.move(x);
     });
-  }
+  };
 }

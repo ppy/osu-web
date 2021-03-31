@@ -15,6 +15,7 @@ return [
 
         'table' => [
             'empty' => '沒有正在關注的圖譜',
+            'last_update' => '最後更新',
             'open_issues' => '進行中的議題',
             'state' => '狀態',
             'title' => '標題',

@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Бібліотека карт',
         'guest_title' => 'Карти',
@@ -113,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => 'Шкала провалів',
             'source' => 'Джерело',
+            'storyboard' => '',
             'success-rate' => 'Шанс успіху',
             'tags' => 'Теги',
         ],

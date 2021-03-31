@@ -20,7 +20,8 @@ import UserStore from './user-store';
 @dispatchListener
 export default class ChannelStore {
   @observable channels = observable.map<number, Channel>();
-  @observable loaded: boolean = false;
+  lastPolledMessageId = 0;
+  @observable loaded = false;
 
   private api = new ChatAPI();
   private markingAsRead: Record<number, number> = {};
@@ -31,18 +32,10 @@ export default class ChannelStore {
   }
 
   @computed
-  get maxMessageId(): number {
-    const channelArray = Array.from(this.channels.toJS().values());
-    const max = maxBy(channelArray, 'lastMessageId');
-
-    return max == null ? -1 : max.lastMessageId;
-  }
-
-  @computed
   get nonPmChannels(): Channel[] {
     const sortedChannels: Channel[] = [];
     this.channels.forEach((channel) => {
-      if (channel.type !== 'PM' && channel.metaLoaded) {
+      if (channel.type !== 'PM' && channel.isDisplayable) {
         sortedChannels.push(channel);
       }
     });
@@ -60,7 +53,7 @@ export default class ChannelStore {
   get pmChannels(): Channel[] {
     const sortedChannels: Channel[] = [];
     this.channels.forEach((channel) => {
-      if (channel.newPmChannel || (channel.type === 'PM' && channel.metaLoaded)) {
+      if (channel.newPmChannel || (channel.type === 'PM' && channel.isDisplayable)) {
         sortedChannels.push(channel);
       }
     });
@@ -194,7 +187,7 @@ export default class ChannelStore {
   }
 
   @action
-  async markAsRead(channelId: number) {
+  markAsRead(channelId: number) {
     const channel = this.get(channelId);
 
     if (channel == null || !channel.isUnread) {
@@ -239,6 +232,8 @@ export default class ChannelStore {
   updateWithJson(updateJson: GetUpdatesJson) {
     this.updateWithPresence(updateJson.presence);
 
+    this.lastPolledMessageId = maxBy(updateJson.messages, 'message_id')?.message_id ?? this.lastPolledMessageId;
+
     const groups = groupBy(updateJson.messages, 'channel_id');
     for (const key of Object.keys(groups)) {
       const channelId = parseInt(key, 10);
@@ -277,10 +272,14 @@ export default class ChannelStore {
       return Message.fromJson(messageJson);
     });
 
-    if (messages.length === 0) return;
-
     const channel = this.channels.get(channelId);
     if (channel == null) return;
+
+    if (messages.length === 0) {
+      // assume no more messages.
+      channel.firstMessageId = channel.minMessageId;
+      return;
+    }
 
     channel.addMessages(messages);
     channel.loaded = true;
@@ -296,9 +295,7 @@ export default class ChannelStore {
     try {
       if (channel.newPmChannel) {
         const users = channel.users.slice();
-        const userId = users.find((user) => {
-          return user !== currentUser.id;
-        });
+        const userId = users.find((user) => user !== currentUser.id);
 
         if (userId == null) {
           console.debug('sendMessage:: userId not found?? this shouldn\'t happen');

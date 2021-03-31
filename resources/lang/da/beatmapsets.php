@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Beatmap-Liste',
         'guest_title' => 'Beatmaps',
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Download',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'uden video',
                 'video' => 'med video',
             ],
@@ -113,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => 'Fejl-steder',
             'source' => 'Kilde',
+            'storyboard' => 'Dette beatmap indeholder storyboard',
             'success-rate' => 'Succesrate',
             'tags' => 'Tags',
         ],

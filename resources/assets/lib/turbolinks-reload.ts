@@ -16,11 +16,11 @@ export default class TurbolinksReload {
 
   cleanup = () => {
     $(`.${className}`).remove();
-  }
+  };
 
   forget = (src: string) => {
     delete this.loaded[src];
-  }
+  };
 
   load = (src: string, onload?: () => void) => {
     if (this.loaded[src]) {
@@ -45,5 +45,5 @@ export default class TurbolinksReload {
     el.src = src;
     document.body.appendChild(el);
     return this.loaded[src] = true;
-  }
+  };
 }

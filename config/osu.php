@@ -80,6 +80,7 @@ return [
         ],
     ],
     'client' => [
+        'check_version' => get_bool(env('CLIENT_CHECK_VERSION')) ?? true,
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
@@ -115,6 +116,9 @@ return [
     ],
     'legacy' => [
         'shared_interop_secret' => env('SHARED_INTEROP_SECRET', ''),
+    ],
+    'multiplayer' => [
+        'max_attempts_limit' => get_int(env('MULTIPLAYER_MAX_ATTEMPTS_LIMIT')) ?? 128,
     ],
     'notification' => [
         'endpoint' => presence(env('NOTIFICATION_ENDPOINT'), '/home/notifications/feed'),
@@ -231,7 +235,8 @@ return [
         'ban_persist_days' => get_int(env('BAN_PERSIST_DAYS')) ?? 28,
     ],
     'user_report_notification' => [
-        'endpoint' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT')),
+        'endpoint_moderation' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_MODERATION')),
+        'endpoint_cheating' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_CHEATING')),
     ],
     'wiki' => [
         'branch' => presence(env('WIKI_BRANCH'), 'master'),

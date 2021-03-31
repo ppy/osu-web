@@ -8,9 +8,7 @@ const Fade = {
     el?.setAttribute('data-visibility', 'visible');
   },
 
-  isVisible: (el: MaybeHTMLElement) => {
-    return el?.getAttribute('data-visibility') !== 'hidden';
-  },
+  isVisible: (el: MaybeHTMLElement) => el?.getAttribute('data-visibility') !== 'hidden',
 
   out: (el: MaybeHTMLElement) => {
     el?.setAttribute('data-visibility', 'hidden');

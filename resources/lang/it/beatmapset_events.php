@@ -25,14 +25,14 @@ return [
         'language_edit' => 'Lingua modificata da :old a :new.',
         'love' => 'Amata da :user.',
         'nominate' => 'Nominata da :user.',
-        'nominate_modes' => '',
+        'nominate_modes' => 'Nominata da :user (:modes).',
         'nomination_reset' => 'Il nuovo problema :discussion (:text) ha comportato un reset di nomina.',
         'qualify' => 'Questa beatmap ha raggiunto il numero richiesto di nomine ed è stata qualificata.',
         'rank' => 'Rankata.',
         'remove_from_loved' => 'Rimossa dalle amate da :user. (:text)',
 
         'nsfw_toggle' => [
-            'to_0' => '',
+            'to_0' => 'Rimosso il marchio di contenuto esplicito',
             'to_1' => '',
         ],
     ],

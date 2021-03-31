@@ -16,12 +16,17 @@ return [
     'username' => 'Gebruikersnaam',
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Post tijd',
+        'relevance' => 'Relevantie',
     ],
 
     'forum_topics' => [
         'feature_votes' => 'Ster prioriteit',
         'new' => 'Laatste antwoord',
+    ],
+
+    'users' => [
+        'relevance' => 'Relevantie',
+        'username' => 'Naam',
     ],
 ];

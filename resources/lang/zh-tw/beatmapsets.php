@@ -11,13 +11,17 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '欲速則不達。',
+    ],
+
     'index' => [
         'title' => '圖譜列表',
         'guest_title' => '圖譜',
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => '沒有圖譜',
 
         'download' => [
             'all' => '下載',
@@ -31,11 +35,11 @@ return [
         'hybrid_requires_modes' => '',
         'incorrect_mode' => '',
         'full_bn_required' => '',
-        'too_many' => '',
+        'too_many' => '提名需求已達成。',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
+            'confirmation' => '您確定要提名這張圖譜嗎？',
+            'header' => '提名圖譜',
             'hybrid_warning' => '',
             'which_modes' => '',
         ],
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => '下載',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => '不含影像',
                 'video' => '含影像',
             ],
@@ -69,7 +73,7 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
+            'approved' => '於:timeago批准',
             'loved' => '',
             'qualified' => '',
             'ranked' => '於:timeago進榜',
@@ -82,7 +86,7 @@ return [
         ],
 
         'hype' => [
-            'action' => '推薦這個圖譜如果你喜歡玩它來幫助它進度至 <strong>進榜</strong> 狀態。',
+            'action' => '如果你喜歡這張圖譜，請推薦它來幫助它進展至<strong>進榜</strong>狀態。',
 
             'current' => [
                 '_' => '此地圖目前是 :status 的。',
@@ -113,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => '失敗位置',
             'source' => '來源',
+            'storyboard' => '',
             'success-rate' => '成功率',
             'tags' => '標籤',
         ],
@@ -122,9 +127,9 @@ return [
             'title' => '',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => '關閉警告',
+                'listing' => '圖譜列表',
+                'show' => '顯示',
             ],
         ],
 
@@ -143,7 +148,7 @@ return [
                 'miss' => 'Miss',
                 'mods' => 'Mods',
                 'player' => '玩家',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => '排行榜',
                 'score_total' => '總分',
                 'score' => '得分',
@@ -182,7 +187,7 @@ return [
 
         'status' => [
             'ranked' => '已進榜',
-            'approved' => '已核準',
+            'approved' => '已批准',
             'loved' => 'Loved',
             'qualified' => '已提名',
             'wip' => '製作中',

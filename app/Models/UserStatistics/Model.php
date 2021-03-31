@@ -10,6 +10,7 @@ use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
 use App\Models\Score\Best;
 use App\Models\User;
+use App\Traits\Memoizes;
 
 /**
  * @property mixed $country_acronym
@@ -17,6 +18,8 @@ use App\Models\User;
  */
 abstract class Model extends BaseModel
 {
+    use Memoizes;
+
     protected $primaryKey = 'user_id';
 
     public $timestamps = false;
@@ -67,6 +70,15 @@ abstract class Model extends BaseModel
     public function totalHits()
     {
         return $this->count300 + $this->count100 + $this->count50;
+    }
+
+    public static function calculateRecommendedStarDifficulty(?self $stats)
+    {
+        if ($stats !== null && $stats->rank_score > 0) {
+            return pow($stats->rank_score, 0.4) * 0.195;
+        }
+
+        return 1.0;
     }
 
     public static function getClass($modeStr, $variant = null)
@@ -139,24 +151,26 @@ abstract class Model extends BaseModel
 
     public function countryRank()
     {
-        if (!$this->isRanked()) {
-            return;
-        }
+        return $this->memoize(__FUNCTION__, function () {
+            if (!$this->isRanked()) {
+                return;
+            }
 
-        if ($this->country_acronym === null) {
-            return;
-        }
+            if ($this->country_acronym === null) {
+                return;
+            }
 
-        // Using $this->rank_score isn't accurate because it's a float value.
-        // Hence the raw sql query.
-        // There's this alternative
-        //   rank_score_index < $this->rank_score_index AND rank_score_index > 0 AND rank_score > 0
-        // but it is slower.
-        return static::where('country_acronym', $this->country_acronym)
-            ->where('rank_score', '>', function ($q) {
-                $q->from($this->table)->where('user_id', $this->user_id)->select('rank_score');
-            })
-            ->count() + 1;
+            // Using $this->rank_score isn't accurate because it's a float value.
+            // Hence the raw sql query.
+            // There's this alternative
+            //   rank_score_index < $this->rank_score_index AND rank_score_index > 0 AND rank_score > 0
+            // but it is slower.
+            return static::where('country_acronym', $this->country_acronym)
+                ->where('rank_score', '>', function ($q) {
+                    $q->from($this->table)->where('user_id', $this->user_id)->select('rank_score');
+                })
+                ->count() + 1;
+        });
     }
 
     public function globalRank()

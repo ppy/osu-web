@@ -54,7 +54,7 @@ return [
     'nearby_posts' => [
         'confirm' => 'Không bài đăng nào đề cập đến vấn đề của tôi',
         'notice' => 'Có một vài bài đăng vào khoảng :timestamp (:existing_timestamps). Hãy xem chúng trước khi đăng.',
-        'unsaved' => '',
+        'unsaved' => ':count trong bài đánh giá này',
     ],
 
     'reply' => [
@@ -72,7 +72,7 @@ return [
             'block_too_large' => '',
             'external_references' => '',
             'invalid_block_type' => '',
-            'invalid_document' => '',
+            'invalid_document' => 'đánh giá không phù hợp',
             'minimum_issues' => '',
             'missing_text' => '',
             'too_many_blocks' => '',

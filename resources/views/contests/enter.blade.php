@@ -15,7 +15,7 @@
       @else
         @if (!$contestMeta->isSubmissionOpen())
           @if ($contestMeta->entry_starts_at !== null && $contestMeta->entry_starts_at->isPast())
-            <div class='contest__voting-notice'>{{trans('contest.entry.over')}}</div>
+            <div class='contest__voting-notice'>{{trans('authorization.contest.entry.over')}}</div>
             <div class='js-react--userContestEntry'></div>
           @else
             <div class='contest__voting-notice contest__voting-notice--padding'>{{trans('contest.entry.preparation')}}</div>

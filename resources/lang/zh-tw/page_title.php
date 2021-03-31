@@ -5,13 +5,13 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => '管理員',
     ],
     'admin_forum' => [
-        '_' => '',
+        '_' => '管理',
     ],
     'admin_store' => [
-        '_' => '',
+        '_' => '管理員',
     ],
     'error' => [
         'error' => [
@@ -19,9 +19,10 @@ return [
             '404' => '頁面不存在',
             '403' => '拒絕存取',
             '401' => '',
-            '401-verification' => '',
+            '401-verification' => '帳號驗證',
             '405' => '',
-            '422' => '',
+            '422' => '請求無效',
+            '429' => '要求數過多',
             '500' => '伺服器發生了一些問題...',
             '503' => '伺服器維護中',
         ],
@@ -44,13 +45,13 @@ return [
             '_' => '',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => '圖譜討論',
         ],
         'beatmap_packs_controller' => [
             '_' => '圖譜壓縮檔',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => '圖譜討論投票',
         ],
         'beatmapset_events_controller' => [
             '_' => '圖譜歷史',
@@ -76,19 +77,19 @@ return [
             '_' => '評選',
         ],
         'follows_controller' => [
-            'index' => '',
+            'index' => '看板',
         ],
         'friends_controller' => [
             'index' => '主頁',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => '群組',
         ],
         'home_controller' => [
             'get_download' => '下載',
             'index' => '主頁',
             'search' => '搜尋',
-            'support_the_game' => '',
+            'support_the_game' => '贊助 osu!',
             'testflight' => 'testflight 測試',
         ],
         'legal_controller' => [
@@ -123,7 +124,7 @@ return [
         ],
         'users_controller' => [
             '_' => '玩家資訊',
-            'disabled' => '',
+            'disabled' => '通知',
         ],
         'wiki_controller' => [
             '_' => '知識庫',

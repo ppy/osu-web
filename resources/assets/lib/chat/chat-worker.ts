@@ -39,9 +39,7 @@ export default class ChatWorker implements DispatchListener {
 
     this.updateXHR = true;
 
-    const maxMessageId = this.channelStore.maxMessageId;
-
-    this.api.getUpdates(maxMessageId, this.lastHistoryId)
+    this.api.getUpdates(this.channelStore.lastPolledMessageId, this.lastHistoryId)
       .then((updateJson) => {
         this.updateXHR = false;
         if (this.pollingEnabled) {
@@ -69,7 +67,7 @@ export default class ChatWorker implements DispatchListener {
           this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);
         }
       });
-  }
+  };
 
   pollingTime(): number {
     return this.windowIsActive ? this.pollTime : this.pollTimeIdle;

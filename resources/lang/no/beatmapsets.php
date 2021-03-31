@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Beatmapsliste',
         'guest_title' => 'Beatmaps',
@@ -113,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => 'Feilpunkter',
             'source' => 'Kilde',
+            'storyboard' => '',
             'success-rate' => 'Suksessrate',
             'tags' => 'Stikkord',
         ],

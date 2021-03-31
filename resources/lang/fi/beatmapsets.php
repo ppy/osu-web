@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Beatmapit',
         'guest_title' => 'Beatmapit',
@@ -113,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => 'Epäonnistumiskohdat',
             'source' => 'Lähde',
+            'storyboard' => '',
             'success-rate' => 'Läpäisyprosentti',
             'tags' => 'Tunnisteet',
         ],

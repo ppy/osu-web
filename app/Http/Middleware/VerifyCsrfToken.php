@@ -5,7 +5,7 @@
 
 namespace App\Http\Middleware;
 
-use Auth;
+use App\Libraries\User\DatadogLoginAttempt;
 use Closure;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 use Illuminate\Session\TokenMismatchException;
@@ -13,21 +13,28 @@ use Illuminate\Session\TokenMismatchException;
 class VerifyCsrfToken extends BaseVerifier
 {
     protected $except = [
+        'home/changelog/github',
         'oauth/authorize',
-        'oauth/access_token',
+        'payments/centili/callback',
+        'payments/paypal/ipn',
+        'payments/shopify/callback',
+        'payments/xsolla/callback',
+        'users',
     ];
 
     public function handle($request, Closure $next)
     {
         try {
             return parent::handle($request, $next);
-        } catch (TokenMismatchException $_e) {
-            $request->session()->flush();
-            Auth::logout();
-            $request->attributes->set('skip_session', true);
-            $request->attributes->set('csrf', false);
+        } catch (TokenMismatchException $e) {
+            $currentRouteData = app('route-section')->getCurrent();
+            $currentRoute = "{$currentRouteData['controller']}@{$currentRouteData['action']}";
 
-            return $next($request);
+            if ($currentRoute === 'sessions_controller@store') {
+                DatadogLoginAttempt::log('invalid_csrf');
+            }
+
+            throw new $e('Reload page and try again');
         }
     }
 }

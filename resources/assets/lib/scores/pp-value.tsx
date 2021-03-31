@@ -18,13 +18,13 @@ export default function PpValue(props: Props) {
     );
   }
 
-  if (props.score.pp == null || props.score.pp === 0) {
-      return (
-        <span
-          className='fas fa-exclamation-triangle'
-          title={osu.trans('scores.status.processing')}
-        />
-      );
+  if (props.score.pp == null) {
+    return (
+      <span
+        className='fas fa-exclamation-triangle'
+        title={osu.trans('scores.status.processing')}
+      />
+    );
   }
 
   return (

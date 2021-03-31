@@ -8,6 +8,7 @@ import { ReviewPost } from 'beatmap-discussions/review-post'
 import { BigButton } from 'big-button'
 import ClickToCopy from 'click-to-copy'
 import * as React from 'react'
+import TextareaAutosize from 'react-autosize-textarea'
 import { a, button, div, span } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
 import Editor from 'beatmap-discussions/editor'
@@ -315,7 +316,7 @@ export class Post extends React.PureComponent
 
 
   userGroup: ->
-    if @isOwner() then mapperGroup else @props.user.groups[0]
+    if @isOwner() then mapperGroup else @props.user.groups?[0]
 
 
   validPost: =>

@@ -32,12 +32,11 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'obecna lokalizacja',
                 'user_interests' => 'zainteresowania',
-                'user_msnm' => 'skype',
                 'user_occ' => 'zajęcia',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'strona internetowa',
             ],
         ],
@@ -62,6 +61,7 @@ return [
             'comment_new' => 'nowe komentarze',
             'forum_topic_reply' => 'odpowiedzi do wątków',
             'mail' => 'e-mail',
+            'mapping' => 'twórca',
             'push' => 'push',
             'user_achievement_unlock' => 'odblokowanie medalu',
         ],
@@ -74,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'ukryj ostrzeżenia o treściach dla pełnoletnich w beatmapach',
         'beatmapset_title_show_original' => 'pokaż metadane beatmapy w oryginalnym języku',
         'title' => 'Ustawienia strony',
 

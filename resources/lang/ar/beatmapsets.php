@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'تمت ازالة بعض المحتويات من هذه الخريطة بعد معرفة انها غير ملائِمة لـosu!.',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'قائمة الخرائط',
         'guest_title' => 'الخرائط',
@@ -113,6 +117,7 @@ return [
             'nsfw' => 'محتوى حَساس',
             'points-of-failure' => 'نقاط الفشل',
             'source' => 'المصدر',
+            'storyboard' => '',
             'success-rate' => 'معدل النجاح',
             'tags' => 'ألعلامات',
         ],

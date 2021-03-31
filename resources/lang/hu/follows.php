@@ -7,7 +7,7 @@ return [
     'comment' => [
         'empty' => '',
         'page_title' => '',
-        'title' => '',
+        'title' => 'hozzászólás',
 
         'table' => [
             'latest_comment_empty' => 'nincsenek hozzászólások',
@@ -20,19 +20,19 @@ return [
     ],
 
     'index' => [
-        'title_compact' => '',
+        'title_compact' => 'figyelőlisták',
     ],
 
     'mapping' => [
-        'empty' => '',
-        'followers' => '',
-        'page_title' => '',
-        'title' => '',
-        'to_0' => '',
-        'to_1' => '',
+        'empty' => 'Egy készítő sincs követve.',
+        'followers' => 'készítő feliratkozók',
+        'page_title' => 'készítő figyelőlista',
+        'title' => 'készítő',
+        'to_0' => 'ne értesíts többet mikor ez a felhasználó új beatmapet tölt fel',
+        'to_1' => 'értesíts mikor ez a felhasználó új beatmapet tölt fel',
     ],
 
     'modding' => [
-        'title' => '',
+        'title' => 'beatmap megbeszélés',
     ],
 ];

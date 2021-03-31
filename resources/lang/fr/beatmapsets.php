@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Certains éléments contenus dans cette map ont été supprimés après avoir été jugés inappropriés pour être utilisés dans osu!.',
     ],
 
+    'download' => [
+        'limit_exceeded' => 'Ralentissez, jouez plus.',
+    ],
+
     'index' => [
         'title' => 'Liste des beatmaps',
         'guest_title' => 'Beatmaps',
@@ -30,7 +34,7 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Un beatmapset hybride nécessite de sélectionner au moins un mode de jeu à nominer.',
         'incorrect_mode' => 'Vous n\'avez pas la permission de nominer pour le mode :mode',
-        'full_bn_required' => '',
+        'full_bn_required' => 'Vous devez être un Beatmap Nominator avec toutes les autorisations pour effectuer cette qualification.',
         'too_many' => 'L\'exigence de nomination est déjà remplie.',
 
         'dialog' => [
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'télécharger',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'sans Vidéo',
                 'video' => 'avec Vidéo',
             ],
@@ -113,6 +117,7 @@ return [
             'nsfw' => 'Contenu explicite',
             'points-of-failure' => 'Répartition des échecs',
             'source' => 'Source',
+            'storyboard' => 'Ce beatmap contient un storyboard',
             'success-rate' => 'Taux de réussite',
             'tags' => 'Tags',
         ],
@@ -143,7 +148,7 @@ return [
                 'miss' => 'Raté',
                 'mods' => 'Mods',
                 'player' => 'Joueur',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Rang',
                 'score_total' => 'Score total',
                 'score' => 'Score',
@@ -153,7 +158,7 @@ return [
             'no_scores' => [
                 'country' => 'Personne de votre pays n\'a encore fait un score !',
                 'friend' => 'Aucun de vos amis n\'a de score sur cette map !',
-                'global' => 'Pas de scores. Peut-être vous dans le classement ?',
+                'global' => 'Pas de scores. Peut-être devriez vous en faire un ?',
                 'loading' => 'Chargement des scores...',
                 'unranked' => 'Beatmap non classifié.',
             ],

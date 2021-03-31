@@ -25,15 +25,15 @@ return [
         'language_edit' => 'Taal veranderd van :old naar :new.',
         'love' => 'Geloved door :user',
         'nominate' => 'Genomineerd door :user.',
-        'nominate_modes' => '',
+        'nominate_modes' => 'Genomineerd door :user (:modes).',
         'nomination_reset' => 'Nieuw probleem: discussie (: tekst) veroorzaakte een nominatie reset.',
         'qualify' => 'Deze beatmap heeft het benodigde aantal nominaties bereikt en is nu gekwalificeerd.',
         'rank' => 'Ranked.',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Verwijderd uit Loved door :user. (:text)',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Expliciete beoordeling verwijderd',
+            'to_1' => 'Gemarkeerd als expliciet',
         ],
     ],
 
@@ -71,9 +71,9 @@ return [
         'love' => 'Liefde',
         'nominate' => 'Nominatie',
         'nomination_reset' => 'Nominatie opnieuw instellen',
-        'nsfw_toggle' => '',
+        'nsfw_toggle' => 'Expliciete markering',
         'qualify' => 'Kwalificatie',
         'rank' => 'Postitionering',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Loved verwijdering',
     ],
 ];

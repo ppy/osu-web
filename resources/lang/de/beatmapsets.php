@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Einige in dieser Beatmap enthaltene Assets wurden entfernt, nachdem sie als nicht für die Verwendung in osu! geeignet eingestuft worden waren.',
     ],
 
+    'download' => [
+        'limit_exceeded' => 'Nur langsam, spiel mehr.',
+    ],
+
     'index' => [
         'title' => 'Beatmaps: Liste',
         'guest_title' => 'Beatmaps',
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Herunterladen',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'ohne Video',
                 'video' => 'mit Video',
             ],
@@ -113,6 +117,7 @@ return [
             'nsfw' => 'Expliziter Inhalt',
             'points-of-failure' => 'Stellen, an denen Spieler gescheitert sind',
             'source' => 'Quelle',
+            'storyboard' => '',
             'success-rate' => 'Erfolgsrate',
             'tags' => 'Tags',
         ],
@@ -143,7 +148,7 @@ return [
                 'miss' => 'Miss',
                 'mods' => 'Mods',
                 'player' => 'Spieler',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Rang',
                 'score_total' => 'Gesamtpunktzahl',
                 'score' => 'Punktzahl',

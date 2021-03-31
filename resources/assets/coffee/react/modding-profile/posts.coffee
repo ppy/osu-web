@@ -19,7 +19,6 @@ export class Posts extends React.Component
           [
             for post in @props.posts
               canModeratePosts = BeatmapDiscussionHelper.canModeratePosts(currentUser)
-              canBeDeleted = canModeratePosts || currentUser.id? == post.user_id
 
               discussionClasses = 'beatmap-discussion beatmap-discussion--preview'
 
@@ -53,8 +52,10 @@ export class Posts extends React.Component
                       user: @props.users[post.user_id]
                       read: true
                       lastEditor: @props.users[post.last_editor_id]
-                      canBeEdited: currentUser.is_admin || currentUser.id? == post.user_id
-                      canBeDeleted: canBeDeleted
+                      # FIXME: These permissions are more restrictive than the correct ones in discussion
+                      # because they don't have the right data to check.
+                      canBeEdited: currentUser.is_admin
+                      canBeDeleted: canModeratePosts
                       canBeRestored: canModeratePosts
                       currentUser: currentUser
             a

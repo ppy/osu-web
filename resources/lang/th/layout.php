@@ -160,6 +160,10 @@ return [
             'error' => 'คำร้องขอมีลักษณะไม่ถูกต้อง',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'โอ ไม่! บางอย่างพัง! ;_;',
             'description' => "เราได้รับแจ้งโดยอัตโนมัติจากทุกข้อผิดพลาด",
@@ -172,8 +176,8 @@ return [
             'error' => 'ปิดปรับปรุง!',
             'description' => "การปิดปรับปรุงส่วนมากใช้เวลาจาก 5 วินาทีถึง 10 นาที ถ้าเราปิดนานกว่า ดู :link เพื่อรายละเอียด",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error

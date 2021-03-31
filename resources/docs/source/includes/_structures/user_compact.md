@@ -45,7 +45,6 @@ beatmap_playcounts_count             | number
 blocks                               | |
 country                              | |
 cover                                | |
-current_mode_rank                    | |
 favourite_beatmapset_count           | number
 follower_count                       | number
 friends                              | |
@@ -70,6 +69,7 @@ scores_best_count                    | number
 scores_first_count                   | number
 scores_recent_count                  | number
 statistics                           | |
+statistics_rulesets                  | UserStatisticsRulesets
 support_level                        | |
 unranked_beatmapset_count            | |
 unread_pm_count                      | |

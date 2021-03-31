@@ -8,7 +8,11 @@ return [
         'disabled' => 'Denna beatmap är för närvarande inte tillgänglig för nedladdning.',
         'parts-removed' => 'Portioner av denna beatmap har blivit borttagna på förfrågan av skaparen eller en tredje-parts rättighets hållare.',
         'more-info' => 'Klicka här för mer information.',
-        'rule_violation' => '',
+        'rule_violation' => 'Vissa delar av denna map har tagits bort då de anses vara olämpliga i osu!.',
+    ],
+
+    'download' => [
+        'limit_exceeded' => 'Sakta ner, spela mer.',
     ],
 
     'index' => [
@@ -42,7 +46,7 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Explicit',
     ],
 
     'show' => [
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Ladda Ner',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'utan Video',
                 'video' => 'med Video',
             ],
@@ -110,21 +114,22 @@ return [
             'genre' => 'Genre',
             'language' => 'Språk',
             'no_scores' => 'Data beräknas...',
-            'nsfw' => '',
+            'nsfw' => 'Explicit innehåll',
             'points-of-failure' => 'Punkter av Misslyckande',
             'source' => 'Källa',
+            'storyboard' => '',
             'success-rate' => 'Genomsnittig Succe',
             'tags' => 'Taggar',
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'Denna beatmap innehåller explicit, kränkande eller störande innehåll. Vill du se den ändå?',
+            'title' => 'Explicit innehåll',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Inaktivera varning',
+                'listing' => 'Beatmaplistningar',
+                'show' => 'Visa',
             ],
         ],
 

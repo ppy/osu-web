@@ -310,7 +310,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Pobierz powtórkę',
-                'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp.',
+                'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp',
                 'pp_weight' => 'ważone :percentage',
                 'view_details' => 'Pokaż szczegóły',
                 'title' => 'Wyniki',
@@ -353,12 +353,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Zainteresowania',
             'location' => 'Obecna lokalizacja',
             'occupation' => 'Zajęcia',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => 'Strona internetowa',
         ],
         'not_found' => [
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Oczekujące beatmapy',
             'graveyard_beatmapset_count' => 'Porzucone beatmapy',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Twoje konto jest obecnie wyciszone.',
+        'message' => 'Niektóre działania mogą być niedostępne.',
     ],
 
     'status' => [

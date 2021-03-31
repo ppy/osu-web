@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Không cho phép xóa beatmap metadata.',
             'beatmapset_post_no_edit' => 'Không cho phép chỉnh sửa beatmap metadata.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => 'Câu trả lời của bạn chỉ có một trích dẫn.',
 
             'attributes' => [

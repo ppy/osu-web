@@ -11,7 +11,7 @@ return [
     'none' => 'Pas de notifications',
     'see_all' => 'voir toutes les notifications',
     'see_channel' => 'accéder au chat',
-    'verifying' => '',
+    'verifying' => 'Veuillez vérifier la session pour voir les notifications',
 
     'filters' => [
         '_' => 'tout',
@@ -61,8 +61,8 @@ return [
                 'beatmapset_qualify_compact' => 'La Beatmap est entrée dans la file d’attente de classement',
                 'beatmapset_rank' => '":title" a été classé',
                 'beatmapset_rank_compact' => 'La Beatmap a été classée',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved' => '":title" a été supprimé de Loved',
+                'beatmapset_remove_from_loved_compact' => 'Beatmap a été retiré de Loved',
                 'beatmapset_reset_nominations' => 'Problème posté par :username reset nomination de beatmap ":title" ',
                 'beatmapset_reset_nominations_compact' => 'La nomination a été réinitialisée',
             ],
@@ -137,11 +137,11 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Nouvelle beatmap',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Nouvelle beatmap ":title" par :username',
+                'user_beatmapset_new_compact' => 'Nouvelle beatmap ":title"',
+                'user_beatmapset_new_group' => 'Nouvelles beatmaps par :username',
             ],
         ],
 
@@ -175,7 +175,7 @@ return [
                 'beatmapset_nominate' => '":title" a été nominée',
                 'beatmapset_qualify' => '":title" a atteint suffisament de nominations et est entrée dans la file d\'attente de classement',
                 'beatmapset_rank' => '":title" a été classée',
-                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved' => '":title" a été supprimé de Loved',
                 'beatmapset_reset_nominations' => 'La nomination de ":title" a été réinitialisée',
             ],
 
@@ -215,7 +215,7 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username a créé de nouvelles beatmaps',
             ],
         ],
     ],

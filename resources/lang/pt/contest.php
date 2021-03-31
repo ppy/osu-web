@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'A votação para este concurso terminou',
         'login_required' => 'Por favor inicia sessão para votar.',
+        'over' => 'A votação para este concurso terminou',
+        'show_voted_only' => 'Mostrar votados',
 
         'best_of' => [
             'none_played' => "Não parece que jogaste nenhuns beatmaps que se qualificam para este concurso!",
@@ -32,8 +33,6 @@ return [
         'login_required' => 'Por favor inicia sessão para entrar no concurso.',
         'silenced_or_restricted' => 'Não podes entrar em concursos enquanto estiveres restrito ou silenciado.',
         'preparation' => 'Atualmente, estamos a preparar este concurso. Por favor espera pacientemente!',
-        'over' => 'Obrigado pelas tuas inscrições! As submissões foram fechadas para este concurso e a votação irá abrir em breve.',
-        'limit_reached' => 'Chegaste ao limite de inscrições para este concurso',
         'drop_here' => 'Larga a tua inscrição aqui',
         'download' => 'Transferir .osz',
         'wrong_type' => [

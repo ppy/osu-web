@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Algunos de los elementos contenidos en este mapa han sido eliminados después de ser considerados no aptos para su uso en osu!.',
     ],
 
+    'download' => [
+        'limit_exceeded' => 'Reduzca la velocidad, juegue más.',
+    ],
+
     'index' => [
         'title' => 'Listado de Mapas',
         'guest_title' => 'Mapas',
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Descargar',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'sin vídeo',
                 'video' => 'con vídeo',
             ],
@@ -113,12 +117,13 @@ return [
             'nsfw' => 'Contenido explícito',
             'points-of-failure' => 'Puntos de fracaso',
             'source' => 'Fuente',
+            'storyboard' => 'Este mapa contiene storyboard',
             'success-rate' => 'Tasa de éxito',
             'tags' => 'Etiquetas',
         ],
 
         'nsfw_warning' => [
-            'details' => 'Este mapa contiene contenido explícito, ofensivo o perturbador. ¿Le gustaría verlo de todos modos?',
+            'details' => 'Este mapa del tiempo contiene contenido explícito, ofensivo o perturbador. ¿Desea verlo de todos modos?',
             'title' => 'Contenido explícito',
 
             'buttons' => [
@@ -143,7 +148,7 @@ return [
                 'miss' => 'Fallos',
                 'mods' => 'Mods',
                 'player' => 'Jugador',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Puesto',
                 'score_total' => 'Puntuación total',
                 'score' => 'Puntuación',

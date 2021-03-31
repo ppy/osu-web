@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Списък с бийтмапове',
         'guest_title' => 'Бийтмапове',
@@ -113,6 +117,7 @@ return [
             'nsfw' => '',
             'points-of-failure' => 'Връхни точки на провал',
             'source' => 'Източник',
+            'storyboard' => '',
             'success-rate' => 'Степен на успех (%)',
             'tags' => 'Тагове',
         ],

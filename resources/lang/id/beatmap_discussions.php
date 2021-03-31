@@ -17,7 +17,7 @@ return [
     ],
 
     'index' => [
-        'deleted_beatmap' => 'terhapus',
+        'deleted_beatmap' => 'telah dihapus',
         'none_found' => 'Tidak ada diskusi yang memenuhi kriteria pencarian.',
         'title' => 'Laman Diskusi Beatmap',
 
@@ -93,6 +93,6 @@ return [
 
     'user_filter' => [
         'everyone' => 'Semua orang',
-        'label' => 'Filter berdasarkan pengguna',
+        'label' => 'Saring berdasarkan pengguna',
     ],
 ];

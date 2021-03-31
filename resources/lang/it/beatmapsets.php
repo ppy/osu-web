@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => 'Rallenta, gioca di più.',
+    ],
+
     'index' => [
         'title' => 'Lista Beatmap',
         'guest_title' => 'Beatmap',
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Scarica',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'senza Video',
                 'video' => 'con Video',
             ],
@@ -113,6 +117,7 @@ return [
             'nsfw' => 'Contenuto esplicito',
             'points-of-failure' => 'Punti di Fallimento',
             'source' => 'Sorgente',
+            'storyboard' => 'Questa beatmap contiene storyboard',
             'success-rate' => 'Rateo di Successo',
             'tags' => 'Tag',
         ],

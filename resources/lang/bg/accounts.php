@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'настоящо местонахождение',
                 'user_interests' => 'интереси',
-                'user_msnm' => '',
                 'user_occ' => 'работа/занимание',
                 'user_twitter' => '',
                 'user_website' => 'уеб сайт',
@@ -44,7 +43,7 @@ return [
 
         'signature' => [
             'title' => 'Подпис',
-            'update' => 'актуализирайте',
+            'update' => 'обновяване',
         ],
     ],
 
@@ -58,10 +57,11 @@ return [
         'options' => [
             '_' => 'опции за доставка',
             'beatmapset:modding' => 'бийтмап modding',
-            'channel_message' => '',
+            'channel_message' => 'лични съобщения',
             'comment_new' => 'нови коментари ',
             'forum_topic_reply' => 'отговор на темата',
             'mail' => 'поща',
+            'mapping' => '',
             'push' => 'push',
             'user_achievement_unlock' => '',
         ],

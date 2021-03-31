@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Önerilen zorluk seviyesi',
         'converts' => 'Dönüştürülmüş beatmapleri dahil et',
+        'follows' => 'Abone olunan mapperlar',
+        'recommended' => 'Önerilen zorluk seviyesi',
     ],
     'mode' => [
         'all' => 'Hepsi',
@@ -303,7 +304,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
-        'MR' => 'Ayna',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',
@@ -315,7 +316,7 @@ return [
         'V2' => 'Skor V2',
     ],
     'language' => [
-        'any' => '',
+        'any' => 'Herhangi biri',
         'english' => 'İngilizce',
         'chinese' => 'Çince',
         'french' => 'Fransızca',

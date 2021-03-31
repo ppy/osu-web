@@ -7,7 +7,7 @@ return [
     'comment' => [
         'empty' => '',
         'page_title' => '',
-        'title' => '',
+        'title' => '評論',
 
         'table' => [
             'latest_comment_empty' => '',
@@ -16,23 +16,23 @@ return [
     ],
 
     'forum_topic' => [
-        'title' => '',
+        'title' => '論壇主題',
     ],
 
     'index' => [
-        'title_compact' => '',
+        'title_compact' => '追蹤清單',
     ],
 
     'mapping' => [
         'empty' => '',
         'followers' => '',
         'page_title' => '',
-        'title' => '',
+        'title' => '作圖者',
         'to_0' => '',
         'to_1' => '',
     ],
 
     'modding' => [
-        'title' => '',
+        'title' => '圖譜討論',
     ],
 ];

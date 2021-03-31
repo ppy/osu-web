@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Pemungutan suara untuk kontes ini telah berakhir',
         'login_required' => 'Silakan masuk untuk memberikan suara.',
+        'over' => 'Pemungutan suara untuk kontes ini telah berakhir',
+        'show_voted_only' => 'Tampilkan yang Anda pilih',
 
         'best_of' => [
             'none_played' => "Tampaknya Anda belum pernah memainkan map-map yang tercatat diikutsertakan dalam kontes ini!",
@@ -32,8 +33,6 @@ return [
         'login_required' => 'Silakan masuk untuk mengikuti kontes.',
         'silenced_or_restricted' => 'Anda tidak dapat mengikuti kontes ketika akun Anda sedang di-restrict atau di-silence.',
         'preparation' => 'Kami sedang mempersiapkan kontes ini. Harap tunggu dengan sabar!',
-        'over' => 'Terima kasih telah mengirimkan entri Anda! Meskipun demikian, dengan sangat menyesal kami harus memberi tahu Anda bahwa tahapan penyerahan entri untuk kontes ini telah berakhir. Mohon maaf sebelumnya!',
-        'limit_reached' => 'Anda telah mencapai batas entri untuk kontes ini',
         'drop_here' => 'Letakkan entri Anda di sini',
         'download' => 'Unduh .osz',
         'wrong_type' => [

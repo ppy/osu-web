@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Alguns elementos contidos neste mapa foram removidos após serem avaliados como não sendo adequados para uso no osu!.',
     ],
 
+    'download' => [
+        'limit_exceeded' => 'Abranda, joga mais.',
+    ],
+
     'index' => [
         'title' => 'Listagem de beatmaps',
         'guest_title' => 'Beatmaps',
@@ -113,6 +117,7 @@ return [
             'nsfw' => 'Conteúdo explícito',
             'points-of-failure' => 'Pontos de falha',
             'source' => 'Fonte',
+            'storyboard' => 'Este beatmap contém um cenário',
             'success-rate' => 'Taxa de sucesso',
             'tags' => 'Etiquetas',
         ],

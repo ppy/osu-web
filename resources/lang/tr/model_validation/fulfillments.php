@@ -5,9 +5,9 @@
 
 return [
     'username_change' => [
-        'only_one' => 'Gerçekleştirilen her sipariş başına kullanıcı adı değiştirme işlemi 1 defaya mahsustur.',
-        'insufficient_paid' => 'Kullanıcı adı değiştirme ücreti ödenen miktarı (:expected > :actual) aşıyor',
-        'reverting_username_mismatch' => 'Şuanki kullanıcı adı (:current), değiştirmek istediğiniz kullanıcı adı (:username) ile eşleşmemektedir',
+        'only_one' => '',
+        'insufficient_paid' => '',
+        'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
         'insufficient_paid' => 'Yapılan bağış, osu!supporter etiketi hediyesi için yeterli miktarda değil. (:actual > :expected)',

@@ -31,7 +31,7 @@ export class PlayDetail extends PureComponent
     blockClass += " #{bn}--compact" if @state.compact
 
     hasPp = score.beatmapset.status in ['ranked', 'approved']
-    validPp = hasPp && score.pp > 0
+    validPp = hasPp && score.pp?
 
     div
       className: blockClass
@@ -78,7 +78,7 @@ export class PlayDetail extends PureComponent
               if score.weight?
                 span
                   className: "#{bn}__weighted-pp"
-                  if score.pp > 0
+                  if score.pp?
                     "#{osu.formatNumber(Math.round(score.weight.pp))}pp"
             if score.weight?
               div

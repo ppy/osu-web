@@ -5,12 +5,12 @@
 
 return [
     'all_read' => '已閱畢所有通知！',
-    'delete' => '',
+    'delete' => '刪除 :type',
     'loading' => '',
-    'mark_read' => '',
+    'mark_read' => '清除 :type',
     'none' => '沒有通知',
     'see_all' => '查看所有通知',
-    'see_channel' => '',
+    'see_channel' => '前往聊天',
     'verifying' => '',
 
     'filters' => [
@@ -31,7 +31,7 @@ return [
                 '_' => '圖譜討論',
                 'beatmapset_discussion_lock' => '已鎖定「:title」的討論',
                 'beatmapset_discussion_lock_compact' => '討論已被鎖定',
-                'beatmapset_discussion_post_new' => '新帖子於 ":title" 的 :username',
+                'beatmapset_discussion_post_new' => ':username 在":title"中發布了新的貼文:":content"',
                 'beatmapset_discussion_post_new_empty' => ':username發布了主題為:title的新貼文',
                 'beatmapset_discussion_post_new_compact' => ':username 的新主題',
                 'beatmapset_discussion_post_new_compact_empty' => ':username 的新主題',
@@ -137,9 +137,9 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => '新圖譜',
 
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username 上傳了標題為 “:title” 的新圖譜',
                 'user_beatmapset_new_compact' => '',
                 'user_beatmapset_new_group' => '',
             ],
@@ -152,7 +152,7 @@ return [
                 '_' => '新成就',
                 'user_achievement_unlock' => '解鎖「:title」！',
                 'user_achievement_unlock_compact' => '解鎖「:title」！',
-                'user_achievement_unlock_group' => '',
+                'user_achievement_unlock_group' => '勳章解鎖！',
             ],
         ],
     ],
@@ -172,7 +172,7 @@ return [
             'beatmapset_state' => [
                 'beatmapset_disqualify' => '',
                 'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
+                'beatmapset_nominate' => '":title" 已被提名',
                 'beatmapset_qualify' => '',
                 'beatmapset_rank' => '',
                 'beatmapset_remove_from_loved' => '',
@@ -186,7 +186,7 @@ return [
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => '您收到了來自 :username 的新訊息',
             ],
         ],
 
@@ -211,7 +211,7 @@ return [
         'user' => [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock_self' => '您已解鎖了新成就 ":title"！',
             ],
 
             'user_beatmapset_new' => [

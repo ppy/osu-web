@@ -34,7 +34,6 @@ class UserCompactTransformer extends TransformerAbstract
         'blocks',
         'country',
         'cover',
-        'current_mode_rank',
         'favourite_beatmapset_count',
         'follow_user_mapping',
         'follower_count',
@@ -61,6 +60,7 @@ class UserCompactTransformer extends TransformerAbstract
         'scores_first_count',
         'scores_recent_count',
         'statistics',
+        'statistics_rulesets',
         'support_level',
         'unranked_beatmapset_count',
         'unread_pm_count',
@@ -164,13 +164,6 @@ class UserCompactTransformer extends TransformerAbstract
             'url' => $profileCustomization->cover()->url(),
             'id' => $profileCustomization->cover()->id(),
         ]);
-    }
-
-    public function includeCurrentModeRank(User $user)
-    {
-        $currentModeStatistics = $user->statistics(auth()->user()->playmode ?? 'osu');
-
-        return $this->primitive($currentModeStatistics ? $currentModeStatistics->globalRank() : null);
     }
 
     public function includeFavouriteBeatmapsetCount(User $user)
@@ -339,6 +332,11 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->item($stats, new UserStatisticsTransformer());
     }
 
+    public function includeStatisticsRulesets(User $user)
+    {
+        return $this->item($user, new UserStatisticsRulesetsTransformer());
+    }
+
     public function includeSupportLevel(User $user)
     {
         return $this->primitive($user->supportLevel());
@@ -373,6 +371,7 @@ class UserCompactTransformer extends TransformerAbstract
             'beatmapset_download',
             'beatmapset_show_nsfw',
             'beatmapset_title_show_original',
+            'comments_show_deleted',
             'forum_posts_show_deleted',
             'ranking_expanded',
             'user_list_filter',

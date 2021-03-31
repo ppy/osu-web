@@ -22,6 +22,7 @@ return [
             '401-verification' => 'kontobekräftelse',
             '405' => 'saknas',
             '422' => 'ogiltig begäran',
+            '429' => 'för många förfrågningar',
             '500' => 'någonting gick fel',
             '503' => 'underhåll',
         ],

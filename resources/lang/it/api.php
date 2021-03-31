@@ -13,11 +13,15 @@ return [
     ],
 
     'scopes' => [
-        'bot' => '',
+        'bot' => 'Comportarsi come bot in chat.',
         'identify' => 'Identificarti e leggere il tuo profilo pubblico.',
 
         'chat' => [
-            'write' => '',
+            'write' => 'Mandare messaggi per tuo conto.',
+        ],
+
+        'forum' => [
+            'write' => 'Crea e modifica i topic e i post del forum a nome tuo.',
         ],
 
         'friends' => [

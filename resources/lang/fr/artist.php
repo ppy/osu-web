@@ -13,7 +13,7 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmaps',
-        'download' => 'Télécharger une beatmap type',
+        'download' => 'Télécharger une beatmap vide de cette musique',
         'download-na' => 'La beatmap type n\'est pas encore disponible',
     ],
 

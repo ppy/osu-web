@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Listarea beatmapurilor',
         'guest_title' => 'Beatmaps',
@@ -113,6 +117,7 @@ return [
             'nsfw' => 'Conținut explicit',
             'points-of-failure' => 'Puncte de eșec',
             'source' => 'Sursă',
+            'storyboard' => '',
             'success-rate' => 'Rata de succes',
             'tags' => 'Tag-uri',
         ],

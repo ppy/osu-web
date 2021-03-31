@@ -6,7 +6,7 @@ import { Portal } from 'portal';
 import * as React from 'react';
 import { Editor, Node, Range } from 'slate';
 import { ReactEditor } from 'slate-react';
-import { isFormatActive, toggleFormat } from './editor-helpers';
+import { EditorToolbarButton } from './editor-toolbar-button';
 import { SlateContext } from './slate-context';
 
 const bn = 'beatmap-discussion-editor-toolbar';
@@ -57,27 +57,11 @@ export class EditorToolbar extends React.Component {
           className={bn}
           ref={this.ref}
         >
-          {this.renderButton('bold')}
-          {this.renderButton('italic')}
+          <EditorToolbarButton format='bold' />
+          <EditorToolbarButton format='italic' />
           <div className={`${bn}__popup-tail`}/>
         </div>
       </Portal>
-    );
-  }
-
-  renderButton(format: string) {
-    return (
-      <button
-        className={osu.classWithModifiers(`${bn}__button`, [isFormatActive(this.context, format) ? 'active' : ''])}
-        // we use onMouseDown instead of onClick here so the popup remains visible after clicking
-        // tslint:disable-next-line:jsx-no-lambda
-        onMouseDown={(event) => {
-          event.preventDefault();
-          toggleFormat(this.context, format);
-        }}
-      >
-        <i className={`fas fa-${format}`}/>
-      </button>
     );
   }
 

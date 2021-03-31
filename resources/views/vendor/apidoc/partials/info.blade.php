@@ -270,6 +270,7 @@ The following scopes are currently supported:
 $scopeDescriptions = [
     'bot' => "[Chat Bot]({$wikiUrl}) and [Client Credentials Grant](#client-credentials-grant) exclusive scope.",
     'chat.write' => "Allows sending chat messages on a user's behalf; exclusive to [Chat Bot]({$wikiUrl})s",
+    'forum.write' => "Allows creating and editing forum posts on a user's behalf.",
     'friends.read' => 'Allows reading of the user\'s friend list.',
     'identify' => 'Allows reading of the public profile of the user (`/me`).',
     'public' => 'Allows reading of publicly available data on behalf of the user.',
@@ -302,6 +303,12 @@ For a full list of changes, see the
 [Changelog on the site]({{ route('changelog.show', ['changelog' => 'web']) }}).
 
 ## Breaking Changes
+
+### 2021-02-25
+- `current_mode_rank` has been removed from [UserCompact](#usercompact)
+- attributes in [UserStatistics](#userstatistics) have been moved around
+  - `rank.country` is deprecated, replaced by `country_rank`
+  - `rank.global` and `pp_rank` are removed, replaced by `global_rank`
 
 ### 2020-09-08
 - `presence` removed from `chat/new` response.

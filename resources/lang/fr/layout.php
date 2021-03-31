@@ -159,6 +159,10 @@ return [
             'error' => 'Paramètre de requête invalide',
             'description' => '',
         ],
+        '429' => [
+            'error' => 'Limite de tentatives atteinte',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Oh non ! Quelque chose s\'est cassé ! ;_;',
             'description' => "Nous avons automatiquement été notifié de cette erreur.",
@@ -171,8 +175,8 @@ return [
             'error' => 'Maintenance en cours!',
             'description' => "Les maintenances prennent en général 5 à 10 minutes. Si c'est plus long, regardez :link pour plus d'informations.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error

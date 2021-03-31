@@ -32,12 +32,11 @@ return [
             'title' => 'Perfil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'ubicación actual',
                 'user_interests' => 'intereses',
-                'user_msnm' => 'skype',
                 'user_occ' => 'ocupación',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'sitio web',
             ],
         ],
@@ -62,6 +61,7 @@ return [
             'comment_new' => 'nuevos comentarios',
             'forum_topic_reply' => 'respuestas a temas',
             'mail' => 'correo electrónico',
+            'mapping' => 'creadores de mapas',
             'push' => 'push',
             'user_achievement_unlock' => 'medallas desbloqueadas',
         ],

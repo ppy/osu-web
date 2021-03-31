@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'download' => [
+        'limit_exceeded' => '',
+    ],
+
     'index' => [
         'title' => 'Seznam Beatmap',
         'guest_title' => 'Beatmapy',
@@ -113,6 +117,7 @@ return [
             'nsfw' => 'Explicitní obsah',
             'points-of-failure' => 'Body neúspěchů',
             'source' => 'Zdroj',
+            'storyboard' => '',
             'success-rate' => 'Úspěšnost',
             'tags' => 'Tagy',
         ],

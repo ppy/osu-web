@@ -3,11 +3,8 @@
 
 import Main from 'news-show/main';
 
-reactTurbolinks.registerPersistent('news-show', Main, true, (container: HTMLElement) => {
-
-  return {
-    container,
-    post: osu.parseJson('json-show'),
-    sidebarMeta: osu.parseJson('json-sidebar'),
-  };
-});
+reactTurbolinks.registerPersistent('news-show', Main, true, (container: HTMLElement) => ({
+  container,
+  post: osu.parseJson('json-show'),
+  sidebarMeta: osu.parseJson('json-sidebar'),
+}));

@@ -6,6 +6,7 @@ import { Stats } from './stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
 import { BigButton } from 'big-button'
 import { route } from 'laroute'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
@@ -183,7 +184,7 @@ export class Header extends React.Component
             @renderLoginButton()
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
-          div className: 'beatmapset-status beatmapset-status--show', osu.trans("beatmapsets.show.status.#{@props.currentBeatmap.status}")
+          @renderStatusBar()
           el Stats,
             beatmapset: @props.beatmapset
             beatmap: @props.currentBeatmap
@@ -258,6 +259,16 @@ export class Header extends React.Component
         icon: 'fas fa-lock'
 
 
+  renderStatusBar: =>
+    div className: 'beatmapset-header__status',
+      if @props.beatmapset.storyboard
+        div
+          className: 'beatmapset-status beatmapset-status--show-icon'
+          title: osu.trans('beatmapsets.show.info.storyboard')
+          i className: 'fas fa-image'
+      div className: 'beatmapset-status beatmapset-status--show', osu.trans("beatmapsets.show.status.#{@props.currentBeatmap.status}")
+
+
   downloadButton: ({key, href, icon = 'fas fa-download', topTextKey = '_', bottomTextKey, osuDirect = false}) =>
     el BigButton,
       key: key
@@ -274,6 +285,6 @@ export class Header extends React.Component
 
   toggleFavourite: (e) ->
     if !currentUser.id?
-      userLogin.show e.target
+      core.userLogin.show e.target
     else
       $.publish 'beatmapset:favourite:toggle'

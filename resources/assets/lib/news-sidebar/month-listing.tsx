@@ -86,7 +86,7 @@ export default class MonthListing extends React.Component<Props, State> {
     if (this.stateRecord != null) {
       this.stateRecord.dataset[this.stateRecordKey] = this.state.expanded ? '1' : '';
     }
-  }
+  };
 
   private renderPost = (post: NewsPostJson) => {
     let linkClass = 'news-sidebar-month__item';
@@ -105,9 +105,9 @@ export default class MonthListing extends React.Component<Props, State> {
         </a>
       </li>
     );
-  }
+  };
 
   private toggleExpand = () => {
     this.setState({ expanded: !this.state.expanded }, this.recordState);
-  }
+  };
 }

@@ -13,11 +13,15 @@ return [
     ],
 
     'scopes' => [
-        'bot' => '',
+        'bot' => 'działać jako chatbot',
         'identify' => 'zidentyfikować cię i uzyskać publiczne informacje z twojego profilu.',
 
         'chat' => [
-            'write' => '',
+            'write' => 'wysyłać wiadomości w twoim imieniu',
+        ],
+
+        'forum' => [
+            'write' => 'tworzyć i edytować posty oraz wątki na forum w twoim imieniu',
         ],
 
         'friends' => [

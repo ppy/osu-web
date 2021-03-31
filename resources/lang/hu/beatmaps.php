@@ -225,7 +225,7 @@ return [
                 'genre' => 'Műfaj',
                 'language' => 'Nyelv',
                 'mode' => 'Mód',
-                'nsfw' => '',
+                'nsfw' => 'Felnőtt tartalom',
                 'played' => 'Lejátszott',
                 'rank' => 'Elért Rang',
                 'status' => 'Kategóriák',
@@ -249,8 +249,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Ajánlott nehézség',
         'converts' => 'Konvertált beatmap-ek tartalmazása',
+        'follows' => 'Követett készítők',
+        'recommended' => 'Ajánlott nehézség',
     ],
     'mode' => [
         'all' => 'Összes',
@@ -303,7 +304,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
-        'MR' => 'Mirror',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',
@@ -315,7 +316,7 @@ return [
         'V2' => 'Score V2',
     ],
     'language' => [
-        'any' => '',
+        'any' => 'Összes',
         'english' => 'Angol',
         'chinese' => 'Kínai',
         'french' => 'Francia',
@@ -333,8 +334,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Elrejtés',
+        'include' => 'Mutasson',
     ],
 
     'played' => [

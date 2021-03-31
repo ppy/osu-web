@@ -20,10 +20,14 @@ return [
             'write' => '',
         ],
 
+        'forum' => [
+            'write' => '',
+        ],
+
         'friends' => [
             'read' => '查看您追蹤的玩家們。',
         ],
 
-        'public' => '',
+        'public' => '以你的身份讀取公開資料。',
     ],
 ];

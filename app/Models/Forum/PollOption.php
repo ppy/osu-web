@@ -53,14 +53,14 @@ class PollOption extends Model
         ];
 
         if ($topic->poll()->exists()) {
-            $userVotes = [];
-
-            if ($user !== null) {
-                $userVotes = model_pluck($topic->pollVotes()->where('vote_user_id', $user->getKey()), 'poll_option_id');
+            if ($user === null) {
+                $userVotes = [];
+            } else {
+                $userVotes = array_flip(model_pluck($topic->pollVotes()->where('vote_user_id', $user->getKey()), 'poll_option_id'));
             }
 
             foreach ($topic->pollOptions as $poll) {
-                $votedByUser = in_array($poll->poll_option_id, $userVotes, true);
+                $votedByUser = array_key_exists($poll->poll_option_id, $userVotes);
 
                 $summary['options'][$poll->poll_option_id] = [
                     'textHTML' => $poll->optionTextHTML(),

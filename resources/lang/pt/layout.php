@@ -159,6 +159,10 @@ return [
             'error' => 'Parâmetro de pedido inválido',
             'description' => '',
         ],
+        '429' => [
+            'error' => 'Taxa limite excedida',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Oh não! Algo se quebrou! ;_;',
             'description' => "Somos automaticamente notificados de todos os erros.",

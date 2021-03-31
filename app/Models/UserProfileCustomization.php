@@ -164,6 +164,20 @@ class UserProfileCustomization extends Model
         $this->setOption('beatmapset_title_show_original', $value);
     }
 
+    public function setCommentsShowDeletedAttribute($value)
+    {
+        if (!is_bool($value)) {
+            $value = null;
+        }
+
+        $this->setOption('comments_show_deleted', $value);
+    }
+
+    public function getCommentsShowDeletedAttribute()
+    {
+        return $this->getOptions()['comments_show_deleted'] ?? false;
+    }
+
     public function getCommentsSortAttribute()
     {
         return $this->getOptions()['comments_sort'] ?? Comment::DEFAULT_SORT;

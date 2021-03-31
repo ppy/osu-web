@@ -22,6 +22,7 @@ return [
             '401-verification' => 'Fiók hitelesítése',
             '405' => 'hiányzó',
             '422' => 'Érvénytelen lekérés',
+            '429' => 'túl sok kérés',
             '500' => 'Valami nincs rendben',
             '503' => 'karbantartás',
         ],
@@ -76,7 +77,7 @@ return [
             '_' => 'versenyek',
         ],
         'follows_controller' => [
-            'index' => '',
+            'index' => 'áttekintés',
         ],
         'friends_controller' => [
             'index' => 'irányítópult',

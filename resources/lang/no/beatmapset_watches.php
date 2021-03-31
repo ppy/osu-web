@@ -15,6 +15,7 @@ return [
 
         'table' => [
             'empty' => 'Ingen beatmapdiskusjon overvåket.',
+            'last_update' => '',
             'open_issues' => 'Åpne problemstillinger',
             'state' => 'Tilstand',
             'title' => 'Tittel',

@@ -357,7 +357,6 @@ return [
             'interests' => 'Záujmy',
             'location' => 'Súčasná Poloha',
             'occupation' => 'Povolanie',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Web Stránka',
         ],
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Čakajúce Beatmapy',
             'graveyard_beatmapset_count' => 'Irelevantné beatmapy',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

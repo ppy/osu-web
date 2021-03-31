@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import { BeatmapReviewDiscussionType } from 'interfaces/beatmap-discussion-review';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as _ from 'lodash';
 import * as React from 'react';
@@ -45,7 +46,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     if (this.editable()) {
       Transforms.setNodes(this.context, {timestamp: null}, {at: this.path()});
     }
-  }
+  };
 
   componentDidUpdate = () => {
     if (!this.editable()) {
@@ -79,15 +80,18 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
       this.cache = {};
       this.destroyTooltip();
     }
-  }
+  };
 
   componentWillUnmount() {
     this.destroyTooltip();
   }
 
   createTooltip = (event: (React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>)) => {
+    const timestamp = this.timestamp();
+    if (timestamp == null) return;
+
     const target = event.currentTarget;
-    const tooltipId = `${this.selectedBeatmap()}-${this.timestamp()}`;
+    const tooltipId = `${this.selectedBeatmap()}-${timestamp}`;
 
     // if the tooltipId hasn't changed, we don't need to re-render the tooltip
     if (this.tooltipEl && this.tooltipEl._tooltip === tooltipId) {
@@ -120,12 +124,12 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     });
 
     this.tooltipEl = target;
-  }
+  };
 
   delete = () => {
     // Timeout is used to let Slate handle the click event before the node is removed - otherwise a "Cannot find a descendant at path" error gets thrown.
     Timeout.set(0, () => Transforms.delete(this.context, {at: this.path()}));
-  }
+  };
 
   destroyTooltip = () => {
     if (!this.tooltipEl) {
@@ -137,13 +141,12 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
       qtip.destroy();
       this.tooltipEl = undefined;
     }
-  }
+  };
 
-  discussionType = () => this.props.element.discussionType;
+  // FIXME: element should be typed properly instead.
+  discussionType = () => this.props.element.discussionType as BeatmapReviewDiscussionType;
 
-  editable = () => {
-    return !(this.props.editMode && this.props.element.discussionId);
-  }
+  editable = () => !(this.props.editMode && this.props.element.discussionId);
 
   nearbyDiscussions = () => {
     const timestamp = this.timestamp();
@@ -161,7 +164,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     }
 
     return this.cache.nearbyDiscussions?.discussions;
-  }
+  };
 
   nearbyDraftEmbeds = (drafts: SlateElement[]) => {
     const timestamp = this.timestamp();
@@ -181,7 +184,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
       return Math.abs(ts - timestamp) <= 5000;
     });
-  }
+  };
 
   nearbyIndicator = (drafts: SlateElement[]) => {
     if (this.timestamp() == null || this.discussionType() === 'praise') {
@@ -237,7 +240,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         </div>
       );
     }
-  }
+  };
 
   path = (): Path => ReactEditor.findPath(this.context, this.props.element);
 
@@ -246,8 +249,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     const classMods = canEdit ? [] : ['read-only'];
     const timestampTooltipType = this.props.element.beatmapId ? 'diff' : 'all-diff';
     const timestampTooltip = osu.trans(`beatmaps.discussions.review.embed.timestamp.${timestampTooltipType}`, {
-        type: osu.trans(`beatmaps.discussions.message_type.${this.discussionType()}`),
-      });
+      type: osu.trans(`beatmaps.discussions.message_type.${this.discussionType()}`),
+    });
 
     const deleteButton =
       (
@@ -276,13 +279,13 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
             <i className='fas fa-pencil-alt'/>
           </div>
         )
-      : null;
+        : null;
 
     return (
       <div
         className='beatmap-discussion beatmap-discussion--preview'
         contentEditable={canEdit}
-        suppressContentEditableWarning={true}
+        suppressContentEditableWarning
         {...this.props.attributes}
       >
         <div className={osu.classWithModifiers(this.bn, classMods)}>

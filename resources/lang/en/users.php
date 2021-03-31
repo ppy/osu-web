@@ -357,7 +357,6 @@ return [
             'interests' => 'Interests',
             'location' => 'Current Location',
             'occupation' => 'Occupation',
-            'skype' => 'Skype',
             'twitter' => 'Twitter',
             'website' => 'Website',
         ],
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Pending Beatmaps',
             'graveyard_beatmapset_count' => 'Graveyarded Beatmaps',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'You are currently silenced.',
+        'message' => 'Some actions may be unavailable.',
     ],
 
     'status' => [

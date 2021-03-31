@@ -37,8 +37,8 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '將論壇標為已讀',
-        'forums' => '將論壇標為已讀',
+        'forum' => '將該板塊標記為已讀',
+        'forums' => '將該板塊標記為已讀',
         'busy' => '標記為已讀…',
     ],
 
@@ -47,11 +47,12 @@ return [
         'confirm_restore' => '恢復此回覆？',
         'edited' => '最後由 :user 於 :when 編輯，總共編輯了 :count 次。',
         'posted_at' => '發表於 :when',
+        'posted_by' => '由 :username 發布',
 
         'actions' => [
             'destroy' => '刪除回覆',
             'edit' => '編輯回覆',
-            'report' => '',
+            'report' => '檢舉貼文',
             'restore' => '恢復回覆',
         ],
 
@@ -74,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '確定要刪除這個主題嗎？',
+        'confirm_restore' => '確定要復原這個主題嗎？',
         'deleted' => '已刪除的主題',
         'go_to_latest' => '查看最後的貼文',
         'has_replied' => '您已回覆此主題',
@@ -87,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => '發表人： :user',
         'started_by_verbose' => '由 :user 發起',
+
+        'actions' => [
+            'destroy' => '刪除主題',
+            'restore' => '恢復主題',
+        ],
 
         'create' => [
             'close' => '關閉',

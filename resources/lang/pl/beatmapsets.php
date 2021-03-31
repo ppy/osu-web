@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Część zawartości tej beatmapy została usunięta po uznaniu jej za nieodpowiednią do użycia w osu!.',
     ],
 
+    'download' => [
+        'limit_exceeded' => 'Zwolnij, pograj więcej!',
+    ],
+
     'index' => [
         'title' => 'Lista beatmap',
         'guest_title' => 'Beatmapy',
@@ -31,18 +35,18 @@ return [
         'hybrid_requires_modes' => '',
         'incorrect_mode' => 'Nie posiadasz uprawnień do nominowania beatmap dla tych trybów (:mode)',
         'full_bn_required' => 'Musisz posiadać pełne uprawnienia nominatora, by zakwalifikować tę beatmapę.',
-        'too_many' => '',
+        'too_many' => 'Osiągnięto już wystarczającą liczbę nominacji.',
 
         'dialog' => [
             'confirmation' => 'Czy na pewno chcesz nominować tę beatmapę?',
             'header' => 'Nominuj beatmapę',
             'hybrid_warning' => '',
-            'which_modes' => 'Na jaki tryb chcesz nominować?',
+            'which_modes' => 'Dla jakich trybów chcesz nominować tę beatmapę?',
         ],
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Dla pełnoletnich',
     ],
 
     'show' => [
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Pobierz',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'bez wideo',
                 'video' => 'z wideo',
             ],
@@ -110,21 +114,22 @@ return [
             'genre' => 'Gatunek',
             'language' => 'Język',
             'no_scores' => 'Dane są nadal ładowane...',
-            'nsfw' => '',
+            'nsfw' => 'Treść dla pełnoletnich',
             'points-of-failure' => 'Wykres porażek',
             'source' => 'Źródło',
+            'storyboard' => 'Ta beatmapa zawiera scenorys',
             'success-rate' => 'Wskaźnik ukończonych zagrań',
             'tags' => 'Tagi',
         ],
 
         'nsfw_warning' => [
             'details' => '',
-            'title' => '',
+            'title' => 'Treść dla pełnoletnich',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Wyłącz ostrzeżenia',
+                'listing' => 'Wróć do listy beatmap',
+                'show' => 'Pokaż',
             ],
         ],
 
@@ -143,7 +148,7 @@ return [
                 'miss' => 'Pudła',
                 'mods' => 'Modyfikatory',
                 'player' => 'Gracz',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Pozycja',
                 'score_total' => 'Wynik',
                 'score' => 'Wynik',

@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Alguns arquivos contidos neste mapa foram removidos depois de serem julgados como não sendo adequados para uso no osu!.',
     ],
 
+    'download' => [
+        'limit_exceeded' => 'Vá devagar, jogue mais.',
+    ],
+
     'index' => [
         'title' => 'Lista de Beatmaps',
         'guest_title' => 'Beatmaps',
@@ -57,7 +61,7 @@ return [
 
             'download' => [
                 '_' => 'Baixar',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'sem Vídeo',
                 'video' => 'com Vídeo',
             ],
@@ -113,6 +117,7 @@ return [
             'nsfw' => 'Conteúdo explícito',
             'points-of-failure' => 'Pontos de Falha',
             'source' => 'Fonte',
+            'storyboard' => 'Este beatmap contém storyboard',
             'success-rate' => 'Taxa de Sucesso',
             'tags' => 'Tags',
         ],
@@ -143,7 +148,7 @@ return [
                 'miss' => 'Erros',
                 'mods' => 'Mods',
                 'player' => 'Jogador',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Rank',
                 'score_total' => 'Pontuação Total',
                 'score' => 'Pontuação',

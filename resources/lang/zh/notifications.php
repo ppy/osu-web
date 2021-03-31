@@ -11,7 +11,7 @@ return [
     'none' => '没有新通知',
     'see_all' => '显示所有通知',
     'see_channel' => '前往聊天',
-    'verifying' => '',
+    'verifying' => '请验证会话以查看通知',
 
     'filters' => [
         '_' => '所有',
@@ -50,7 +50,7 @@ return [
             ],
 
             'beatmapset_state' => [
-                '_' => '谱面状态已被改变',
+                '_' => '谱面状态已改变',
                 'beatmapset_disqualify' => '谱面 :title 被 :username 取消提名。',
                 'beatmapset_disqualify_compact' => '谱面被取消资格',
                 'beatmapset_love' => '谱面 :title 已经被 :username 推荐为 loved 。',

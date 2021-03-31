@@ -7,7 +7,7 @@ import * as moment from 'moment';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 
-export default function PostItem({modifiers, post}: {modifiers?: string[], post: PostJson}) {
+export default function PostItem({modifiers, post}: {modifiers?: string[]; post: PostJson}) {
   let cover;
 
   if (post.first_image != null) {

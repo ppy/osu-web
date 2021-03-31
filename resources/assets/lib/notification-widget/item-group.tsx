@@ -33,7 +33,9 @@ export default class ItemGroup extends React.Component<Props, State> {
 
   render() {
     const item = this.props.stack.first;
-    if (item == null) { return null; }
+    if (item == null) {
+      return null;
+    }
 
     return (
       <div className='notification-popup-item-group'>
@@ -49,8 +51,8 @@ export default class ItemGroup extends React.Component<Props, State> {
           message={formatMessageGroup(item)}
           modifiers={['group']}
           url={urlGroup(item)}
-          withCategory={true}
-          withCoverImage={true}
+          withCategory
+          withCoverImage
         />
         {this.renderItems()}
       </div>
@@ -59,19 +61,19 @@ export default class ItemGroup extends React.Component<Props, State> {
 
   private handleDelete = () => {
     this.props.stack.delete();
-  }
+  };
 
   private handleMarkAsRead = () => {
     this.props.stack.markStackAsRead();
-  }
+  };
 
   private handleShowLess = () => {
     this.setState({ expanded: false });
-  }
+  };
 
   private handleShowMore = () => {
     this.props.stack.loadMore(this.context);
-  }
+  };
 
   private renderExpandButton() {
     const count = this.props.stack.total;
@@ -95,13 +97,11 @@ export default class ItemGroup extends React.Component<Props, State> {
     );
   }
 
-  private renderItem = (item: Notification) => {
-    return (
-      <div className='notification-popup-item-group__item' key={item.id}>
-        <ItemCompact item={item} stack={this.props.stack} />
-      </div>
-    );
-  }
+  private renderItem = (item: Notification) => (
+    <div className='notification-popup-item-group__item' key={item.id}>
+      <ItemCompact item={item} stack={this.props.stack} />
+    </div>
+  );
 
   private renderItems() {
     if (!this.state.expanded) {
@@ -135,7 +135,7 @@ export default class ItemGroup extends React.Component<Props, State> {
       <ShowMoreLink
         callback={this.handleShowLess}
         direction='up'
-        hasMore={true}
+        hasMore
         label={osu.trans('common.buttons.show_less')}
         modifiers={['notification-group']}
       />
@@ -144,7 +144,9 @@ export default class ItemGroup extends React.Component<Props, State> {
 
   private renderShowMore() {
     const stack = this.props.stack;
-    if (!stack.hasMore) { return null; }
+    if (!stack.hasMore) {
+      return null;
+    }
 
     return (
       <ShowMoreLink
@@ -158,5 +160,5 @@ export default class ItemGroup extends React.Component<Props, State> {
 
   private toggleExpand = () => {
     this.setState({ expanded: !this.state.expanded });
-  }
+  };
 }

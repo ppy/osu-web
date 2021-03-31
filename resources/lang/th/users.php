@@ -354,12 +354,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'ดิสคอร์ด',
+            'discord' => '',
             'interests' => 'สิ่งที่สนใจ',
             'location' => 'ตำแหน่งปัจจุบัน',
             'occupation' => 'อาชีพ',
-            'skype' => 'Skype',
-            'twitter' => 'ทวิตเตอร์',
+            'twitter' => '',
             'website' => 'เว็บไซต์',
         ],
         'not_found' => [
@@ -409,6 +408,11 @@ return [
             'unranked_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
             'graveyard_beatmapset_count' => 'สุสานบีทแมพ',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

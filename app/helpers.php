@@ -288,80 +288,6 @@ function default_mode()
     return optional(auth()->user())->playmode ?? 'osu';
 }
 
-function es_query_and_words($words)
-{
-    $parts = preg_split("/\s+/", $words, null, PREG_SPLIT_NO_EMPTY);
-
-    if (empty($parts)) {
-        return;
-    }
-
-    $partsEscaped = [];
-
-    foreach ($parts as $part) {
-        $partsEscaped[] = str_replace('-', '%2D', urlencode(strtolower($part)));
-    }
-
-    return implode(' AND ', $partsEscaped);
-}
-
-/*
- * Remove some (but not all) elasticsearch reserved characters.
- * Those characters seem to be ignored anyway even escaped so might as well
- * just remove them. Note that double quotes are not escaped so they can be
- * used for "exact" match. As a result, this doesn't always produce
- * valid query. The execution must be wrapped within a try/catch.
- *
- * This also doesn't add keyword (OR/AND). Elasticsearch default is OR.
- *
- * Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html
- */
-function es_query_escape_with_caveats($query)
-{
-    return str_replace(
-        ['+', '-', '=', '&&', '||', '>', '<', '!', '(', ')', '{', '}', '[', ']', '^', '~', '*', '?', ':', '\\', '/'],
-        [' ', ' ', ' ', '  ', '  ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '  ', ' '],
-        $query
-    );
-}
-
-/**
- * Takes an Elasticsearch resultset and retrieves the matching models from the database,
- *  returning them in the same order as the Elasticsearch results.
- *
- *
- * @param $results Elasticsesarch results.
- * @param $class Class name of the model.
- * @return array Records matching the Elasticsearch results.
- */
-function es_records($results, $class)
-{
-    $keyName = (new $class())->getKeyName();
-
-    $hits = $results['hits']['hits'];
-    $ids = [];
-    foreach ($hits as $hit) {
-        $ids[] = $hit['_id'];
-    }
-
-    $query = $class::whereIn($keyName, $ids);
-    $keyed = [];
-    foreach ($query->get() as $result) {
-        // save for lookup.
-        $keyed[$result->user_id] = $result;
-    }
-
-    // match records with elasticsearch results.
-    $records = [];
-    foreach ($ids as $id) {
-        if (isset($keyed[$id])) {
-            $records[] = $keyed[$id];
-        }
-    }
-
-    return $records;
-}
-
 function get_valid_locale($requestedLocale)
 {
     if (in_array($requestedLocale, config('app.available_locales'), true)) {
@@ -1201,7 +1127,7 @@ function json_collection($model, $transformer, $includes = null)
 
 function json_item($model, $transformer, $includes = null)
 {
-    return json_collection([$model], $transformer, $includes)[0];
+    return json_collection([$model], $transformer, $includes)[0] ?? null;
 }
 
 function fast_imagesize($url)
@@ -1233,9 +1159,13 @@ function fast_imagesize($url)
     }
 }
 
-function get_arr($input, $callback)
+function get_arr($input, $callback = null)
 {
     if (is_array($input)) {
+        if ($callback === null) {
+            return $input;
+        }
+
         $result = [];
         foreach ($input as $value) {
             $casted = call_user_func($callback, $value);
@@ -1386,7 +1316,7 @@ function get_param_value($input, $type)
     }
 }
 
-function get_params($input, $namespace, $keys)
+function get_params($input, $namespace, $keys, $options = [])
 {
     if ($namespace !== null) {
         $input = array_get($input, $namespace);
@@ -1395,6 +1325,8 @@ function get_params($input, $namespace, $keys)
     $params = [];
 
     if (is_array($input) || ($input instanceof ArrayAccess)) {
+        $options['null_missing'] = $options['null_missing'] ?? false;
+
         foreach ($keys as $keyAndType) {
             $keyAndType = explode(':', $keyAndType);
 
@@ -1403,8 +1335,11 @@ function get_params($input, $namespace, $keys)
 
             if (array_has($input, $key)) {
                 $value = get_param_value(array_get($input, $key), $type);
-
                 array_set($params, $key, $value);
+            } else {
+                if ($options['null_missing']) {
+                    array_set($params, $key, null);
+                }
             }
         }
     }

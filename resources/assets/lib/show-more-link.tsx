@@ -63,7 +63,7 @@ const ShowMoreLink = React.forwardRef((props: Props, ref: React.RefObject<any>) 
   let onClick = props.callback;
 
   if (onClick == null && url == null) {
-   onClick = () => $.publish(props.event, props.data);
+    onClick = () => $.publish(props.event, props.data);
   }
 
   if (url == null) {

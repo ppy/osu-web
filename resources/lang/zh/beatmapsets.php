@@ -11,6 +11,10 @@ return [
         'rule_violation' => '谱面中不适合 osu! 的内容已在审核后被移除。',
     ],
 
+    'download' => [
+        'limit_exceeded' => '慢一点，打几张图再回来吧。',
+    ],
+
     'index' => [
         'title' => '谱面列表',
         'guest_title' => '谱面',
@@ -51,13 +55,13 @@ return [
         'details' => [
             'favourite' => '收藏这张谱面',
             'logged-out' => '下载谱面前请先登录！',
-            'mapped_by' => '谱师：:mapper',
+            'mapped_by' => '作图者: :mapper',
             'unfavourite' => '取消收藏',
             'updated_timeago' => '上次更新于 :timeago',
 
             'download' => [
                 '_' => '下载',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => '不包含视频',
                 'video' => '包含视频',
             ],
@@ -113,6 +117,7 @@ return [
             'nsfw' => '少儿不宜内容',
             'points-of-failure' => '失败位置',
             'source' => '来源',
+            'storyboard' => '此谱面包含故事板',
             'success-rate' => '成功率',
             'tags' => '标签',
         ],
@@ -143,7 +148,7 @@ return [
                 'miss' => 'Miss',
                 'mods' => 'Mod',
                 'player' => '玩家',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => '排名',
                 'score_total' => '得分',
                 'score' => '得分',

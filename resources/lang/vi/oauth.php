@@ -14,13 +14,13 @@ return [
 
     'authorized_clients' => [
         'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
+        'scopes_title' => 'Ứng dụng này có thể:',
+        'owned_by' => 'Được sở hữu bởi :user',
         'none' => '',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Thu hồi quyền truy cập',
+            'true' => 'Đã thu hồi quyền truy cập',
         ],
     ],
 
@@ -43,14 +43,14 @@ return [
         'register' => '',
         'terms_of_use' => [
             '_' => '',
-            'link' => '',
+            'link' => 'Điều khoản sử dụng',
         ],
     ],
 
     'own_clients' => [
         'confirm_delete' => '',
         'confirm_reset' => '',
-        'new' => '',
+        'new' => 'Ứng dụng OAuth mới',
         'none' => '',
 
         'revoked' => [

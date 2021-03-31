@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
+import core from 'osu-core-singleton';
 import Shopify from 'shopify-buy';
 import { toShopifyVariantGid } from 'shopify-gid';
 
@@ -37,7 +38,7 @@ export class Store {
   }
 
   async beginCheckout(event: Event) {
-    if (event.target == null) { return; }
+    if (event.target == null) return;
 
     const dataset = (event.target as HTMLElement).dataset;
     const orderId = dataset.orderId;
@@ -51,7 +52,7 @@ export class Store {
         await this.beginShopifyCheckout(orderId);
       } catch (error) {
         LoadingOverlay.hide();
-        userVerification.showOnError({ target: event.target }, error);
+        core.userVerification.showOnError({ target: event.target }, error);
       }
 
       return;
@@ -88,8 +89,8 @@ export class Store {
     window.location.href = checkout.webUrl;
   }
 
-  async resumeCheckout(event: Event) {
-    if (event.target == null) { return; }
+  resumeCheckout(event: Event) {
+    if (event.target == null) return;
 
     const target = event.target as HTMLElement;
     const { provider, providerReference, status } = target.dataset;
@@ -119,11 +120,9 @@ export class Store {
   }
 
   private collectShopifyItems() {
-    return $('.js-store-order-item').map((_, element) => {
-      return {
-        quantity: Number(element.dataset.quantity),
-        variantId: toShopifyVariantGid(element.dataset.shopifyId),
-      };
-    }).get();
+    return $('.js-store-order-item').map((_, element) => ({
+      quantity: Number(element.dataset.quantity),
+      variantId: toShopifyVariantGid(element.dataset.shopifyId),
+    })).get();
   }
 }

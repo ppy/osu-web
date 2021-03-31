@@ -32,12 +32,11 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'lokasi saat ini',
                 'user_interests' => 'minat',
-                'user_msnm' => 'skype',
                 'user_occ' => 'pekerjaan',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'situs web',
             ],
         ],
@@ -62,6 +61,7 @@ return [
             'comment_new' => 'komentar baru',
             'forum_topic_reply' => 'balasan pada topik',
             'mail' => 'email',
+            'mapping' => 'pembuat beatmap',
             'push' => 'web',
             'user_achievement_unlock' => 'terbukanya medali baru',
         ],

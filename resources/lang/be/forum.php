@@ -47,6 +47,7 @@ return [
         'confirm_restore' => 'Аднавіць допіс?',
         'edited' => 'Апошняе рэдагаванне :user а :when, адрэдагавана :count раз.',
         'posted_at' => 'апублікаваны :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Выдаліць допіс',
@@ -74,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'выдаленая тэма',
         'go_to_latest' => 'праглядзець апошні допіс',
         'has_replied' => '',
@@ -87,6 +90,11 @@ return [
         'reply_title_prefix' => 'Адказ',
         'started_by' => 'ад :user',
         'started_by_verbose' => 'пачата :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'Закрыць',

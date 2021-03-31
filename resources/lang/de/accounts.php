@@ -32,12 +32,11 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'aktueller standort',
                 'user_interests' => 'interessen',
-                'user_msnm' => 'skype',
                 'user_occ' => 'beschäftigung',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'webseite',
             ],
         ],
@@ -62,6 +61,7 @@ return [
             'comment_new' => 'neue kommentare',
             'forum_topic_reply' => 'antwort auf einen thread',
             'mail' => 'mail',
+            'mapping' => 'beatmap-mapper',
             'push' => 'push',
             'user_achievement_unlock' => 'medaille freigeschaltet',
         ],

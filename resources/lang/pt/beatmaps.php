@@ -250,8 +250,9 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Dificuldade recomendada',
         'converts' => 'Incluir beatmaps convertidos',
+        'follows' => 'Mapeadores subscritos',
+        'recommended' => 'Dificuldade recomendada',
     ],
     'mode' => [
         'all' => 'Todos',
@@ -304,7 +305,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
-        'MR' => 'Link alternativo',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',
@@ -316,7 +317,7 @@ return [
         'V2' => 'Pontuação V2',
     ],
     'language' => [
-        'any' => '',
+        'any' => 'Qualquer',
         'english' => 'Inglês',
         'chinese' => 'Chinês',
         'french' => 'Francês',

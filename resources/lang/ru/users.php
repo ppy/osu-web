@@ -353,12 +353,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Интересы',
             'location' => 'Текущее местоположение',
             'occupation' => 'Род деятельности',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => 'Веб-сайт',
         ],
         'not_found' => [
@@ -408,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Карты на рассмотрении',
             'graveyard_beatmapset_count' => 'Заброшенные карты',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'У вас сайленс.',
+        'message' => 'Некоторые действия могут быть недоступны.',
     ],
 
     'status' => [
