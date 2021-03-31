@@ -33,7 +33,6 @@ module.exports = {
       "eslint-plugin-import",
       "eslint-plugin-react",
       "@typescript-eslint",
-      "@typescript-eslint/tslint"
   ],
   "rules": {
       "@typescript-eslint/array-type": [
@@ -133,20 +132,6 @@ module.exports = {
           "error",
           "always"
       ],
-      "@typescript-eslint/tslint/config": [
-          "error",
-          {
-              "rules": {
-                  "import-spacing": true,
-                  "jsx-alignment": true,
-                  "jsx-no-lambda": true,
-                  "jsx-no-string-ref": true,
-                  "jsx-self-close": true,
-                  "object-literal-sort-keys": true,
-                  "whitespace": true
-              }
-          }
-      ],
       "@typescript-eslint/type-annotation-spacing": "error",
       "@typescript-eslint/unbound-method": "warn", // TODO: some calls are intentionally unbounded...
       "@typescript-eslint/unified-signatures": "error",
@@ -233,15 +218,18 @@ module.exports = {
               "when": "never"
           }
       ],
+      "react/jsx-max-props-per-line": ["error", { when: "multiline" }],
       "react/no-deprecated": "warn",
       "react/jsx-equals-spacing": [
           "error",
           "never"
       ],
       "react/jsx-no-bind": "error",
+      "react/self-closing-comp": "error",
       "react/jsx-wrap-multilines": "error",
       "react/no-unsafe": "off",
       "react-hooks/exhaustive-deps": "error",
+      "sort-keys": "error",
       "space-before-function-paren": [
           "error",
           {
