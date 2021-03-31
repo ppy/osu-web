@@ -184,9 +184,9 @@ export class Post extends React.PureComponent
                 editor: osu.link laroute.route('users.show', user: deleteModel.deleted_by_id),
                   @props.users[deleteModel.deleted_by_id]?.username
                   classNames: ["#{bn}__info-user"]
-                delete_time: osu.timeago @props.post.deleted_at
+                delete_time: osu.timeago deleteModel.deleted_at
 
-        if @props.post.updated_at != @props.post.created_at && @props.lastEditor?.id
+        if @props.post.updated_at != @props.post.created_at && @props.lastEditor?
           span
             className: "#{bn}__info #{bn}__info--edited"
             dangerouslySetInnerHTML:
