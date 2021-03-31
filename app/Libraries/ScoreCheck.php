@@ -9,7 +9,7 @@ use App\Exceptions\InvariantException;
 
 class ScoreCheck
 {
-    public static function assertCompleted($score)
+    public static function assertCompleted($score): void
     {
         if (!ScoreRank::isValid($score->rank)) {
             throw new InvariantException("'{$score->rank}' is not a valid rank.");

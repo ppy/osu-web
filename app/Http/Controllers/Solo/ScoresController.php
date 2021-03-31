@@ -15,7 +15,7 @@ use PDOException;
 
 class ScoresController extends BaseController
 {
-    private static function getBeatmapOrFail($beatmapId)
+    private static function getBeatmapOrFail($beatmapId): Beatmap
     {
         return Beatmap::scoreable()->findOrFail($beatmapId);
     }

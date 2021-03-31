@@ -48,12 +48,12 @@ class Score extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function isCompleted()
+    public function isCompleted(): bool
     {
         return $this->ended_at !== null;
     }
 
-    public function complete(array $params)
+    public function complete(array $params): void
     {
         if ($this->isCompleted()) {
             throw new GameCompletedException('cannot modify score after submission');
