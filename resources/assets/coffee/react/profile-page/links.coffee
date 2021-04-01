@@ -100,6 +100,15 @@ export class Links extends React.PureComponent
       for row, j in rows when _.compact(row).length > 0
         div key: j, className: "#{bn}__row #{bn}__row--#{j}", row
 
+      if @props.user.id == currentUser.id
+        div
+          className: "#{bn}__edit"
+          a
+            className: 'profile-page-toggle'
+            href: laroute.route('account.edit')
+            title: osu.trans('users.show.page.button')
+            span className: 'fas fa-pencil-alt'
+
 
   renderLink: (key) =>
     value = @props.user[key]
