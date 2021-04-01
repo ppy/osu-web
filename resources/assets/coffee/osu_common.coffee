@@ -31,24 +31,6 @@
     '--diff': "var(--diff-#{difficultyRating ? 'default'})"
 
 
-  executeAction: (element) =>
-    if !element?
-      osu.reloadPage()
-      return
-
-    if element.dataset.isFileupload == '1'
-      $(element).trigger 'fileuploadRetry'
-    else if element.submit
-      # plain javascript here doesn't trigger submit events
-      # which means jquery-ujs handler won't be triggered
-      # reference: https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit
-      $(element).submit()
-    else if element.click
-      # inversely, using jquery here won't actually click the thing
-      # reference: https://github.com/jquery/jquery/blob/f5aa89af7029ae6b9203c2d3e551a8554a0b4b89/src/event.js#L586
-      element.click()
-
-
   groupColour: (group) ->
     '--group-colour': group?.colour ? 'initial'
 
@@ -63,8 +45,8 @@
 
 
   ajaxError: (xhr) ->
-    return if osuCore.userLogin.showOnError({}, xhr)
-    return if osuCore.userVerification.showOnError({}, xhr)
+    return if osuCore.userLogin.showOnError(xhr)
+    return if osuCore.userVerification.showOnError(xhr)
 
     osu.popup osu.xhrErrorMessage(xhr), 'danger'
 
@@ -72,19 +54,6 @@
   emitAjaxError: (element = document.body) =>
     (xhr, status, error) =>
       $(element).trigger 'ajax:error', [xhr, status, error]
-
-
-  fileuploadFailCallback: ($elFunction) =>
-    (_e, data) =>
-      $el = $elFunction()
-      $el[0].dataset.isFileupload ?= '1'
-
-      $el
-      .off 'fileuploadRetry'
-      .one 'fileuploadRetry', =>
-        data.submit()
-
-      osu.emitAjaxError($el[0]) data.jqXHR
 
 
   pageChange: ->

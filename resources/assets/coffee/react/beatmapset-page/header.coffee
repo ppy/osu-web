@@ -11,6 +11,7 @@ import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
+import { createClickCallback } from 'utils/html'
 el = React.createElement
 
 export class Header extends React.Component
@@ -284,7 +285,6 @@ export class Header extends React.Component
 
 
   toggleFavourite: (e) ->
-    if !currentUser.id?
-      core.userLogin.show e.target
-    else
-      $.publish 'beatmapset:favourite:toggle'
+    return if core.userLogin.showIfGuest(createClickCallback(e.target))
+
+    $.publish 'beatmapset:favourite:toggle'

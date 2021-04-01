@@ -15,6 +15,7 @@ import { Spinner } from 'spinner'
 import { UserAvatar } from 'user-avatar'
 import { classWithModifiers } from 'utils/css'
 import { estimateMinLines } from 'utils/estimate-min-lines'
+import { createClickCallback } from 'utils/html'
 
 el = React.createElement
 
@@ -536,10 +537,7 @@ export class Comment extends React.PureComponent
   voteToggle: (e) =>
     target = e.target
 
-    if !currentUser.id?
-      core.userLogin.show target
-
-      return
+    return if core.userLogin.showIfGuest(createClickCallback(target))
 
     @setState postingVote: true
 
