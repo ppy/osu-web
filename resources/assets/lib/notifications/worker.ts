@@ -39,9 +39,9 @@ export default class Worker implements DispatchListener {
   @observable waitingVerification = false;
 
   @observable private firstLoadedAt?: Date;
-  private timeout: Record<string, number> = {};
-  private xhr: Record<string, JQueryXHR> = {};
-  private xhrLoadingState: Record<string, boolean> = {};
+  private timeout: Partial<Record<string, number>> = {};
+  private xhr: Partial<Record<string, JQueryXHR>> = {};
+  private xhrLoadingState: Partial<Record<string, boolean>> = {};
 
   @computed
   get hasData() {
@@ -90,7 +90,7 @@ export default class Worker implements DispatchListener {
   }
 
   private destroy() {
-    forEach(this.xhr, (xhr) => xhr.abort());
+    forEach(this.xhr, (xhr) => xhr?.abort());
     forEach(this.timeout, (timeout) => Timeout.clear(timeout));
   }
 

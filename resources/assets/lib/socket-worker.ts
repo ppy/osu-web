@@ -25,10 +25,10 @@ export default class SocketWorker {
   userId: number | null = null;
   @observable private active = false;
   private endpoint?: string;
-  private timeout: Record<string, number> = {};
+  private timeout: Partial<Record<string, number>> = {};
   private ws: WebSocket | null | undefined;
-  private xhr: Record<string, JQueryXHR> = {};
-  private xhrLoadingState: Record<string, boolean> = {};
+  private xhr: Partial<Record<string, JQueryXHR>> = {};
+  private xhrLoadingState: Partial<Record<string, boolean>> = {};
 
   @computed
   get isConnected() {
@@ -87,7 +87,7 @@ export default class SocketWorker {
 
     this.userId = null;
     this.active = false;
-    forEach(this.xhr, (xhr) => xhr.abort());
+    forEach(this.xhr, (xhr) => xhr?.abort());
     forEach(this.timeout, (timeout) => Timeout.clear(timeout));
 
     if (this.ws != null) {

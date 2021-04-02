@@ -14,5 +14,5 @@ export default interface CurrentUser extends UserJsonExtended {
   groups: GroupJson[];
   playmode: GameMode;
   unread_pm_count: number;
-  user_preferences: Record<string, any>;
+  user_preferences: Partial<Record<string, unknown>>;
 }
