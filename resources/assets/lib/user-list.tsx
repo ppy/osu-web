@@ -8,7 +8,7 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import * as React from 'react';
 import { Sort } from 'sort';
-import { viewModes, ViewMode } from 'user-card';
+import { ViewMode, viewModes } from 'user-card';
 import { UserCards } from 'user-cards';
 
 export type Filter = 'all' | 'online' | 'offline';
