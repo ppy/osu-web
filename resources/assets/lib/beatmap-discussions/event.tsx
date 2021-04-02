@@ -5,7 +5,7 @@ import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { kebabCase } from 'lodash';
+import { escape, kebabCase } from 'lodash';
 import { deletedUser } from 'models/user';
 import * as React from 'react';
 import TimeWithTooltip from 'time-with-tooltip';
@@ -137,8 +137,13 @@ export default class Event extends React.PureComponent<Props> {
     }
 
     if (this.props.event.user_id != null) {
-      const userData = this.props.users[this.props.event.user_id] ?? deletedUser;
-      user = osu.link(route('users.show', { user: userData.id }), userData.username);
+      const userData = this.props.users[this.props.event.user_id];
+
+      if (userData == null) {
+        user = escape(deletedUser.username);
+      } else {
+        user = osu.link(route('users.show', { user: userData.id }), userData.username);
+      }
     }
 
     const params = {
