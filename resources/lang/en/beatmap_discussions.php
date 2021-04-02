@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Search',
             'deleted' => 'Include deleted discussions',
+            'mode' => 'Beatmap mode',
             'only_unresolved' => 'Show only unresolved discussions',
             'types' => 'Message types',
             'username' => 'Username',
