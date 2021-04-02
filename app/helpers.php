@@ -1293,6 +1293,8 @@ function get_param_value($input, $type)
     switch ($type) {
         case 'any':
             return $input;
+        case 'array':
+            return get_arr($input);
         case 'bool':
             return get_bool($input);
         case 'int':
