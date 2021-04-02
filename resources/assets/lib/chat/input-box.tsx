@@ -9,7 +9,7 @@ import { BigButton } from 'big-button';
 import DispatchListener from 'dispatch-listener';
 import * as _ from 'lodash';
 import { computed, observe } from 'mobx';
-import { inject, observer } from 'mobx-react';
+import { disposeOnUnmount, inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
@@ -35,11 +35,15 @@ export default class InputBox extends React.Component<Props> implements Dispatch
   constructor(props: Props) {
     super(props);
 
-    observe(this.dataStore.chatState.selectedBoxed, (change) => {
-      if (change.newValue !== change.oldValue && osu.isDesktop()) {
-        this.focusInput();
-      }
-    });
+    disposeOnUnmount(
+      this,
+      observe(this.dataStore.chatState.selectedBoxed, (change) => {
+        console.log('change');
+        if (change.newValue !== change.oldValue && osu.isDesktop()) {
+          this.focusInput();
+        }
+      }),
+    );
   }
 
   buttonClicked = () => {

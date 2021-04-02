@@ -4,7 +4,7 @@
 import { route } from 'laroute';
 import { each, isEmpty, last, throttle } from 'lodash';
 import { computed, observe } from 'mobx';
-import { inject, observer } from 'mobx-react';
+import { disposeOnUnmount, inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
 import * as React from 'react';
@@ -108,11 +108,14 @@ export default class ConversationView extends React.Component<Props> {
 
     this.dataStore = props.dataStore!;
 
-    observe(this.dataStore.chatState.selectedBoxed, (change) => {
-      if (change.newValue !== change.oldValue) {
-        this.didSwitchChannel = true;
-      }
-    });
+    disposeOnUnmount(
+      this,
+      observe(this.dataStore.chatState.selectedBoxed, (change) => {
+        if (change.newValue !== change.oldValue) {
+          this.didSwitchChannel = true;
+        }
+      }),
+    );
   }
 
   componentDidMount() {
