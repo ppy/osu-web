@@ -8,17 +8,16 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import * as React from 'react';
 import { Sort } from 'sort';
-import { ViewMode } from 'user-card';
+import { viewModes, ViewMode } from 'user-card';
 import { UserCards } from 'user-cards';
 
-type Filter = 'all' | 'online' | 'offline';
+export type Filter = 'all' | 'online' | 'offline';
 type PlayModeFilter = 'all' | GameMode;
-type SortMode = 'last_visit' | 'rank' | 'username';
+export type SortMode = 'last_visit' | 'rank' | 'username';
 
 const filters: Filter[] = ['all', 'online', 'offline'];
 const playModes: PlayModeFilter[] = ['all', 'osu', 'taiko', 'fruits', 'mania'];
 const sortModes: SortMode[] = ['last_visit', 'rank', 'username'];
-const viewModes: ViewMode[] = ['card', 'list', 'brick'];
 
 interface Props {
   playmodeFilter?: boolean;

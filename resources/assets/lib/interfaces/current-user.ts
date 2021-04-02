@@ -4,7 +4,24 @@
 import GroupJson from 'interfaces/group-json';
 import UserJsonExtended from 'interfaces/user-json-extended';
 import UserRelationJson from 'interfaces/user-relation-json';
+import { ViewMode } from 'user-card';
+import { Filter, SortMode } from 'user-list';
 import GameMode from './game-mode';
+
+interface UserPreferences {
+  audio_autoplay: boolean;
+  audio_muted: boolean;
+  audio_volume?: number;
+  beatmapset_download: 'all' | 'no_video' | 'direct';
+  beatmapset_show_nsfw: boolean;
+  beatmapset_title_show_original: boolean;
+  comments_show_deleted: boolean;
+  forum_posts_show_deleted: boolean;
+  ranking_expanded: boolean;
+  user_list_filter: Filter;
+  user_list_sort: SortMode;
+  user_list_view: ViewMode;
+}
 
 export default interface CurrentUser extends UserJsonExtended {
   blocks: UserRelationJson[];
@@ -14,5 +31,5 @@ export default interface CurrentUser extends UserJsonExtended {
   groups: GroupJson[];
   playmode: GameMode;
   unread_pm_count: number;
-  user_preferences: Partial<Record<string, unknown>>;
+  user_preferences: UserPreferences;
 }
