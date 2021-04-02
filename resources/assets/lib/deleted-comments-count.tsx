@@ -7,14 +7,13 @@ import * as React from 'react';
 interface Props {
   comments: Comment[];
   modifiers: string[] | undefined;
-  showDeleted: boolean;
 }
 
 export default class DeletedCommentsCount extends React.Component<Props> {
   render() {
     const deletedCount = this.props.comments.filter((c) => c.deletedAt != null).length;
 
-    if (this.props.showDeleted || deletedCount === 0) {
+    if (deletedCount === 0) {
       return null;
     }
 
