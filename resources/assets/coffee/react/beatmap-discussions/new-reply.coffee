@@ -8,6 +8,7 @@ import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, form, input, label, span, i } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
+import { createClickCallback } from 'utils/html'
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -129,9 +130,7 @@ export class NewReply extends React.PureComponent
 
 
   editStart: =>
-    if !@props.currentUser.id?
-      core.userLogin.show()
-      return
+    return if core.userLogin.showIfGuest(@editStart)
 
     @setState editing: true, =>
       @box.current?.focus()

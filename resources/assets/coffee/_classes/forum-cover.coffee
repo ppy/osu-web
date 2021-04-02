@@ -64,7 +64,7 @@ class @ForumCover
       done: (_e, data) =>
         @update(data.result)
 
-      fail: osu.fileuploadFailCallback(@$uploadButton)
+      fail: _exported.fileuploadFailCallback
 
       complete: (_e, data) =>
         @uploadButton[0].dataset.state = ''

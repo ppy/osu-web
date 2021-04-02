@@ -3,44 +3,74 @@
 
 import Fade from 'fade';
 import { route } from 'laroute';
+import { createClickCallback } from 'utils/html';
 
 interface ReissueCodeJson {
   message: string;
 }
 
+interface UserVerificationJson {
+  authentication: 'verify';
+  box: string;
+}
+
+interface UserVerificationXhr extends JQuery.jqXHR {
+  responseJSON: UserVerificationJson;
+  status: 401;
+}
+
+const isUserVerificationXhr = (arg: JQuery.jqXHR): arg is UserVerificationXhr => (
+    arg.status === 401 && arg.responseJSON?.authentication === 'verify'
+);
+
 export default class UserVerification {
   // Used as callback on original action (where verification was required)
-  private clickAfterVerification?: HTMLElement;
+  private callback?: () => void;
   // set to true on turbolinks:visit so the box will be rendered on navigation
   private delayShow = false;
   // actual function to "store" the parameter original used for delayed show call
   private delayShowCallback?: () => void;
 
-  private readonly inputBox = document.getElementsByClassName('js-user-verification--input');
-  private readonly message = document.getElementsByClassName('js-user-verification--message');
-  private readonly messageSpinner = document.getElementsByClassName('js-user-verification--message-spinner');
-  private readonly messageText = document.getElementsByClassName('js-user-verification--message-text');
   private modal?: HTMLElement;
-  private readonly reference = document.getElementsByClassName('js-user-verification--reference');
   private request?: JQuery.jqXHR;
 
+  private get inputBox() {
+    return document.querySelector<HTMLInputElement>('.js-user-verification--input');
+  }
+
+  private get message() {
+    return document.querySelector<HTMLElement>('.js-user-verification--message');
+  }
+
+  private get messageSpinner() {
+    return document.querySelector<HTMLElement>('.js-user-verification--message-spinner');
+  }
+
+  private get messageText() {
+    return document.querySelector<HTMLElement>('.js-user-verification--message-text');
+  }
+
+  private get reference() {
+    return document.querySelector<HTMLElement>('.js-user-verification--reference');
+  }
+
   constructor() {
-    document.addEventListener('turbolinks:load', this.setModal);
-    $(document).on('ajax:error', this.showOnError);
-    $(document).on('turbolinks:load', this.showOnLoad);
-    $(document).on('turbolinks:visit', this.setDelayShow);
-    $(document).on('input', '.js-user-verification--input', this.autoSubmit);
-    $(document).on('click', '.js-user-verification--reissue', this.reissue);
+    $(document)
+      .on('ajax:error', this.onError)
+      .on('turbolinks:load', this.setModal)
+      .on('turbolinks:load', this.showOnLoad)
+      .on('turbolinks:visit', this.setDelayShow)
+      .on('input', '.js-user-verification--input', this.autoSubmit)
+      .on('click', '.js-user-verification--reissue', this.reissue);
     $.subscribe('user-verification:success', this.success);
 
     $(window).on('resize scroll', this.reposition);
   }
 
-  showOnError = (e: { target: unknown }, xhr: JQuery.jqXHR) => {
-    if (xhr.status !== 401 || xhr.responseJSON?.authentication !== 'verify') return false;
+  showOnError = (xhr: JQuery.jqXHR, callback?: () => void) => {
+    if (!isUserVerificationXhr(xhr)) return false;
 
-    const target = e.target instanceof HTMLElement ? e.target : undefined;
-    this.show(target, xhr.responseJSON.box);
+    this.show(xhr.responseJSON.box, callback);
 
     return true;
   }
@@ -50,9 +80,9 @@ export default class UserVerification {
   }
 
   private autoSubmit = () => {
-    const target = this.inputBox[0];
+    const target = this.inputBox;
 
-    if (!(target instanceof HTMLInputElement)) return;
+    if (target == null) return;
 
     const inputKey = target.value.replace(/\s/g, '');
     const lastKey = target.dataset.lastKey;
@@ -95,6 +125,10 @@ export default class UserVerification {
     return document.querySelector('.js-user-verification--on-load') != null;
   }
 
+  private onError = (e: { target: unknown }, xhr: JQuery.jqXHR) => (
+    this.showOnError(xhr, createClickCallback(e.target))
+  )
+
   private prepareForRequest = (type: string) => {
     this.request?.abort();
     this.setMessage(osu.trans(`user_verification.box.${type}`), true);
@@ -119,7 +153,7 @@ export default class UserVerification {
     if (osu.isMobile()) {
       this.float(true, this.modal);
     } else {
-      const referenceBottom = this.reference[0]?.getBoundingClientRect().bottom;
+      const referenceBottom = this.reference?.getBoundingClientRect().bottom ?? 0;
 
       this.float(referenceBottom < 0, this.modal, referenceBottom);
     }
@@ -130,18 +164,18 @@ export default class UserVerification {
   }
 
   private setMessage = (text?: string, withSpinner: boolean = false) => {
-    const message = this.message[0];
-    if (!(message instanceof HTMLElement)) return;
+    const message = this.message;
+    if (message == null) return;
 
     if (text == null || text.length === 0) {
       Fade.out(message);
       return;
     }
 
-    const messageText = this.messageText[0];
-    const spinner = this.messageSpinner[0];
+    const messageText = this.messageText;
+    const spinner = this.messageSpinner;
 
-    if (!(messageText instanceof HTMLElement) || !(spinner instanceof HTMLElement)) return;
+    if (messageText == null || spinner == null) return;
 
     messageText.textContent = text;
     Fade.toggle(spinner, withSpinner);
@@ -154,13 +188,13 @@ export default class UserVerification {
     this.modal = modal instanceof HTMLElement ? modal : undefined;
   }
 
-  private show = (target?: HTMLElement, html?: string) => {
+  private show = (html?: string, callback?: () => void) => {
     if (this.delayShow) {
-      this.delayShowCallback = () => this.show(target, html);
+      this.delayShowCallback = () => this.show(html, callback);
       return;
     }
 
-    this.clickAfterVerification = target;
+    this.callback = callback;
 
     if (html != null) {
       $('.js-user-verification--box').html(html);
@@ -193,15 +227,15 @@ export default class UserVerification {
   private success = () => {
     if (!this.isActive() || this.modal == null) return;
 
-    const inputBox = this.inputBox[0];
+    const inputBox = this.inputBox;
 
-    if (!(inputBox instanceof HTMLInputElement)) return;
+    if (inputBox == null) return;
 
     this.$modal().modal('hide');
     this.modal.classList.remove('js-user-verification--active');
 
-    const toClick = this.clickAfterVerification;
-    this.clickAfterVerification = undefined;
+    const callback = this.callback;
+    this.callback = undefined;
     this.setMessage();
     inputBox.value = '';
     inputBox.dataset.lastKey = '';
@@ -210,8 +244,6 @@ export default class UserVerification {
       return osu.reloadPage();
     }
 
-    if (toClick != null) {
-      osu.executeAction(toClick);
-    }
+    callback?.();
   }
 }
