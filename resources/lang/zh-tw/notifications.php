@@ -6,7 +6,7 @@
 return [
     'all_read' => '已閱畢所有通知！',
     'delete' => '刪除 :type',
-    'loading' => '',
+    'loading' => '正在載入未讀通知...',
     'mark_read' => '清除 :type',
     'none' => '沒有通知',
     'see_all' => '查看所有通知',
