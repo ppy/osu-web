@@ -16,7 +16,7 @@ return [
     ],
 
     'forum_topic' => [
-        'title' => 'topic dei forum',
+        'title' => 'topic del forum',
     ],
 
     'index' => [
