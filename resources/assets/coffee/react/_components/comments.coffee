@@ -54,7 +54,7 @@ export class Comments extends React.PureComponent
           div className: "comments__items #{if uiState.comments.loadingSort? then 'comments__items--loading' else ''}",
             @renderComments comments, false
 
-            el DeletedCommentsCount, { comments, showDeleted: uiState.comments.isShowDeleted, modifiers: ['top'] }
+            el DeletedCommentsCount, { comments, modifiers: ['top'] }
 
             el CommentShowMore,
               commentableType: @props.commentableType

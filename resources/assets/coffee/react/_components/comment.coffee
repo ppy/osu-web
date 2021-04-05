@@ -184,7 +184,7 @@ export class Comment extends React.PureComponent
             className: repliesClass
             @children.map @renderComment
 
-            el DeletedCommentsCount, { comments: @children, showDeleted: uiState.comments.isShowDeleted }
+            el DeletedCommentsCount, { comments: @children }
 
             el CommentShowMore,
               parent: @props.comment

@@ -7,7 +7,7 @@ namespace App\Models\Multiplayer;
 
 use App\Exceptions\GameCompletedException;
 use App\Exceptions\InvariantException;
-use App\Libraries\ScoreRank;
+use App\Libraries\ScoreCheck;
 use App\Models\Model;
 use App\Models\User;
 use Carbon\Carbon;
@@ -97,26 +97,6 @@ class Score extends Model
 
         $this->fill($params);
 
-        if (!ScoreRank::isValid($this->rank)) {
-            throw new InvariantException("'{$this->rank}' is not a valid rank.");
-        }
-
-        foreach (['total_score', 'accuracy', 'max_combo', 'passed'] as $field) {
-            if (!present($this->$field)) {
-                throw new InvariantException("field missing: '{$field}'");
-            }
-        }
-
-        foreach (['mods', 'statistics'] as $field) {
-            if (!is_array($this->$field)) {
-                throw new InvariantException("field must be an array: '{$field}'");
-            }
-        }
-
-        if (empty($this->statistics)) {
-            throw new InvariantException("field cannot be empty: 'statistics'");
-        }
-
         if (!empty($this->playlistItem->required_mods)) {
             $missingMods = array_diff(
                 array_column($this->playlistItem->required_mods, 'acronym'),
@@ -140,8 +120,7 @@ class Score extends Model
             }
         }
 
-        // todo: also, all the validationsz:
-        // - validate statistics json format
+        ScoreCheck::assertCompleted($this);
 
         $this->save();
     }
