@@ -493,13 +493,6 @@ export default class BeatmapsetPanel extends React.Component<Props> {
             <span className={this.favourite.icon} />
           </button>
 
-          <a
-            href={route('beatmapsets.discussion', { beatmapset: this.props.beatmapset.id })}
-            className='beatmapset-panel__menu-item'
-          >
-            <span className='fas fa-comment-alt' />
-          </a>
-
           {this.downloadLink.url == null ? (
             <span
               title={this.downloadLink.title}
