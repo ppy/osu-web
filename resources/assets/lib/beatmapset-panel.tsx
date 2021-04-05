@@ -5,6 +5,7 @@ import { BeatmapsetJson, BeatmapsetStatus } from 'beatmapsets/beatmapset-json';
 import { CircularProgress } from 'circular-progress';
 import { Img2x } from 'img2x';
 import BeatmapJson from 'interfaces/beatmap-json';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { sum, values } from 'lodash';
@@ -22,7 +23,7 @@ import { classWithModifiers } from 'utils/css';
 import { formatNumberSuffixed } from 'utils/html';
 
 interface Props {
-  beatmapset: BeatmapsetJson;
+  beatmapset: BeatmapsetExtendedJson;
 }
 
 interface BeatmapGroup {
