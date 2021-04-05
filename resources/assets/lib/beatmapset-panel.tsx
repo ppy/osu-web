@@ -19,6 +19,7 @@ import { UserLink } from 'user-link';
 import * as BeatmapHelper from 'utils/beatmap-helper';
 import { showVisual, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
+import { formatNumberSuffixed } from 'utils/html';
 
 interface Props {
   beatmapset: BeatmapsetJson;
@@ -66,7 +67,7 @@ const StatsItem = ({ icon, title, value }: { icon: string, title: string, value:
     <span className='beatmapset-panel__stats-item-icon'>
       <i className={icon} />
     </span>
-    <span>{osu.formatNumberSuffixed(value, 0)}</span>
+    <span>{formatNumberSuffixed(value, 0)}</span>
   </div>
 );
 

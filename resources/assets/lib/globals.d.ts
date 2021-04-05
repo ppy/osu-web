@@ -95,8 +95,6 @@ interface OsuCommon {
   xhrErrorMessage: (xhr: JQuery.jqXHR) => string;
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
-  formatNumberSuffixed(num: number, precision?: number, options?: Intl.NumberFormatOptions): string;
-  formatNumberSuffixed(num: null, precision?: number, options?: Intl.NumberFormatOptions): null;
   isDesktop(): boolean;
   isMobile(): boolean;
   parseJson<T = any>(id: string, remove?: boolean): T;
