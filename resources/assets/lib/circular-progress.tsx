@@ -9,7 +9,7 @@ interface Props {
   ignoreProgress: boolean;
   max: number;
   onlyShowAsWarning: boolean;
-  theme?: string;
+  theme: string;
   tooltip?: string;
 }
 
@@ -17,6 +17,7 @@ export class CircularProgress extends React.PureComponent<Props, any> {
   static defaultProps = {
     ignoreProgress: false,
     onlyShowAsWarning: false,
+    theme: '',
   };
 
   bn = 'circular-progress';
@@ -40,7 +41,7 @@ export class CircularProgress extends React.PureComponent<Props, any> {
           over: percentage === 1,
           over50: percentage > 0.5,
           warn: percentage >= warnThreshold && percentage < 1,
-          [this.props.theme ?? '']: !!this.props.theme,
+          [this.props.theme]: osu.present(this.props.theme),
         })}
         title={this.props.tooltip || `${this.props.current} / ${this.props.max}`}
       >
