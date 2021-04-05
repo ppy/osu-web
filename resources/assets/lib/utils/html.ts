@@ -17,6 +17,8 @@ export function createClickCallback(target: unknown) {
 }
 
 export function formatNumberSuffixed(num?: number, precision?: number, options?: Intl.NumberFormatOptions) {
+  if (num == null) return;
+
   const suffixes = ['', 'k', 'm', 'b', 't'];
   const k = 1000;
 
