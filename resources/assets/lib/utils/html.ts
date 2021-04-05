@@ -1,17 +1,21 @@
-  formatNumberSuffixed: (number, precision, options = {}) ->
-    suffixes = ['', 'k', 'm', 'b', 't']
-    k = 1000
+export function formatNumberSuffixed(num?: number, precision?: number, options?: Intl.NumberFormatOptions) {
+  const suffixes = ['', 'k', 'm', 'b', 't'];
+  const k = 1000;
 
-    format = (n) ->
-      options ?= {}
+  const format = (n: number) => {
+    options ??= {};
 
-      if precision?
-        options.minimumFractionDigits = precision
-        options.maximumFractionDigits = precision
+    if (precision != null) {
+      options.minimumFractionDigits = precision;
+      options.maximumFractionDigits = precision;
+    }
 
-      n.toLocaleString 'en', options
+    return n.toLocaleString('en', options);
+  };
 
-    return "#{format number}" if (number < k)
+  if (num < k) return format(num);
 
-    i = Math.min suffixes.length - 1, Math.floor(Math.log(number) / Math.log(k))
-    "#{format(number / Math.pow(k, i))}#{suffixes[i]}"
+  const i = Math.min(suffixes.length - 1, Math.floor(Math.log(num) / Math.log(k)));
+
+  return `${format(num / Math.pow(k, i))}${suffixes[i]}`;
+}
