@@ -252,10 +252,10 @@ export class EditorInsertionMenu extends React.Component<Props> {
 
   startHideTimer() {
     if (this.hideInsertMenuTimer) {
-      Timeout.clear(this.hideInsertMenuTimer);
+      window.clearTimeout(this.hideInsertMenuTimer);
     }
 
-    this.hideInsertMenuTimer = Timeout.set(2000, this.hideMenu.bind(this));
+    this.hideInsertMenuTimer = window.setTimeout(this.hideMenu.bind(this), 2000);
   }
 
   updatePosition() {

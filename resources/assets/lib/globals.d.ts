@@ -27,7 +27,6 @@ declare const reactTurbolinks: any;
 declare const BeatmapsetFilter: import('interfaces/beatmapset-filter-class').default;
 declare const BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
 declare const LoadingOverlay: any;
-declare const Timeout: any;
 declare const Lang: LangClass;
 declare const fallbackLocale: string;
 declare const currentLocale: string;
