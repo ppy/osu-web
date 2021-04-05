@@ -60,16 +60,6 @@ export type BeatmapsetNominationsInterface =
 export type BeatmapsetStatus =
   'graveyard' | 'wip' | 'pending' | 'ranked' | 'approved' | 'qualified' | 'loved';
 
-interface AvailabilityInterface {
-  download_disabled: boolean;
-  download_disabled_url: string;
-}
-
-interface NominationsSummaryInterface {
-  current: number;
-  required: number;
-}
-
 export interface CurrentUserAttributes {
   can_delete: boolean;
   can_edit_metadata: boolean;
@@ -86,8 +76,7 @@ export interface CurrentUserAttributes {
 // TODO: incomplete
 export interface BeatmapsetJson {
   artist: string;
-  artist_unicode: string | null;
-  availability?: AvailabilityInterface;
+  artist_unicode: string;
   beatmaps?: BeatmapJson[];
   covers: BeatmapsetCovers;
   creator: string;
@@ -104,13 +93,10 @@ export interface BeatmapsetJson {
   language: LanguageJson;
   last_updated: string;
   nominations?: BeatmapsetNominationsInterface;
-  nominations_summary?: NominationsSummaryInterface;
   nsfw: boolean;
   play_count: number;
   preview_url: string;
-  ranked_date: string;
   status: BeatmapsetStatus;
-  storyboard?: boolean;
   title: string;
   title_unicode: string;
   user_id: number;
