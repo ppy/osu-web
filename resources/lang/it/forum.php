@@ -188,7 +188,7 @@ return [
                 'options_info' => 'Posiziona ogni opzione su una nuova linea. Puoi inserire fino a 10 opzioni.',
                 'title' => 'Domanda',
                 'vote_change' => 'Consenti di rivotare.',
-                'vote_change_info' => 'Se consentito, gli utenti possono cambiare il loro voto.',
+                'vote_change_info' => 'Se abilitato, gli utenti possono cambiare il loro voto.',
             ],
         ],
 

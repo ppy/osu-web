@@ -20,14 +20,24 @@ export function discussionLinkify(text: string) {
 export function propsFromHref(href: string) {
   const current = BeatmapDiscussionHelper.urlParse(window.location.href);
 
-  const targetUrl = new URL(href);
   const props: AnchorHTMLAttributes<HTMLAnchorElement> = {
     children: href,
     rel: 'nofollow noreferrer',
     target: '_blank',
   };
 
-  if (targetUrl.host === window.location.host) {
+  let targetUrl: URL | undefined;
+
+  try {
+    // TODO: The regexp used sometimes catches invalid URL like "https://example.com]".
+    // Either accept that as fact of life or a better regexp is needed which is
+    // probably rather difficult especially if we're going to support parsing IDN.
+    targetUrl = new URL(href);
+  } catch (e: unknown) {
+    // ignore error
+  }
+
+  if (targetUrl != null && targetUrl.host === window.location.host) {
     const target = BeatmapDiscussionHelper.urlParse(targetUrl.href, null, { forceDiscussionId: true });
     if (target?.discussionId != null && target.beatmapsetId != null) {
       if (current?.beatmapsetId === target.beatmapsetId) {
