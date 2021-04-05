@@ -5,18 +5,18 @@
 
 return [
     'event' => [
-        'approve' => 'Approvato.',
+        'approve' => 'Approvata.',
         'discussion_delete' => 'Un moderatore ha cancellato la discussione :discussion.',
         'discussion_lock' => 'La discussione per questa beatmap è stata disattivata. (:text)',
         'discussion_post_delete' => 'Un moderatore ha cancellato un post dalla discussione :discussion.',
         'discussion_post_restore' => 'Un moderatore ha ripristinato un post dalla discussione :discussion.',
         'discussion_restore' => 'Un moderatore ha ripristinato la discussione :discussion.',
-        'discussion_unlock' => 'La discussione per questa beatmap è stata attivata.',
+        'discussion_unlock' => 'La discussione per questa beatmap è stata abilitata.',
         'disqualify' => 'Squalificata da :user. Motivazione: :discussion (:text).',
         'disqualify_legacy' => 'Squalificata da :user. Motivazione: :text.',
         'genre_edit' => 'Genere modificato da :old a :new.',
-        'issue_reopen' => 'Il problema risolto :discussion è stato riaperto.',
-        'issue_resolve' => 'Il problema :discussion è stato segnato come risolto.',
+        'issue_reopen' => 'Il problema risolto :discussion di :discussion_user è stato riaperto da :user.',
+        'issue_resolve' => 'Il problema :discussion di :discussion_user è stato segnato come risolto da :user.',
         'kudosu_allow' => 'La negazione di kudosu per la discussione :discussion è stata rimossa.',
         'kudosu_deny' => 'Discussione :discussion negata per kudosu.',
         'kudosu_gain' => 'La discussione :discussion di :user ha ottenuto abbastanza voti per kudosu.',
@@ -32,8 +32,8 @@ return [
         'remove_from_loved' => 'Rimossa dalle amate da :user. (:text)',
 
         'nsfw_toggle' => [
-            'to_0' => 'Rimosso il marchio di contenuto esplicito',
-            'to_1' => '',
+            'to_0' => 'Rimosso il contrassegno esplicito',
+            'to_1' => 'Contrassegnata come esplicita',
         ],
     ],
 
