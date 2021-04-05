@@ -2,34 +2,45 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-panel {
-  --progress: 0;
-  @_border-radius: 10px; // also affects the hardcoded `clip-path` values.
+  .show-beatmaps-popup() {
+    border-radius: @border-radius--large @border-radius--large 0 0;
+    --beatmaps-popup-opacity: 1;
+    --beatmaps-popup-pointer-events: auto;
+  }
+
   @_hover-transition-duration: 150ms;
-  // Adjust radius to prevent bleeding of the underneath cover
-  // when hover background (of &__play) is active.
-  @_info-radius:(@_border-radius - 1px) 0 0 (@_border-radius - 1px);
   @_main-bg: hsl(var(--hsl-b2));
   @_menu-width: 10px;
   @_menu-width-visible: 30px;
-  position: relative;
-  background-color: @_main-bg;
-  border-radius: @_border-radius;
-  font-size: @font-size--normal;
-  height: var(--panel-height);
-  transition: var(--transition);
 
+  // Extend by 1px on respective corner to prevent gap on some zoom levels.
+  // Sizing is based on @border-radius--large.
+  @_top-left-inverted-corner-path: path('M-1 -1 L-1 10 L0 10 A10 10 0 0 1 10 0 L10 -1 Z');
+  @_bottom-left-inverted-corner-path: path('M-1 11 L-1 0 L0 0 A10 10 0 0 0 10 10 L10 11 Z');
+  @_top-right-inverted-corner-path: path('M11 -1 L11 10 L10 10 A10 10 0 0 0 0 0 L0 -1 Z');
+  @_bottom-right-inverted-corner-path: path('M11 11 L11 0 L10 0 A10 10 0 0 1 0 10 L 0 11 Z');
+
+  // Those two toggles visibility of beatmaps popup (detailed beatmap list)
   --beatmaps-popup-opacity: 0;
   --beatmaps-popup-pointer-events: none;
+  // For elements which provide overall beatmap link.
+  // The link is disabled on mobile so it's easier to target
+  // other elements like expand button and mapper name.
   --global-beatmap-link-pointer-events: none;
+  // This changes on hover on desktop and irrelevant in mobile.
+  // Background in mobile is controlled by &__cover-container::after.
   --info-bg: transparent;
-  --info-radius: @_border-radius;
+  // Height of the card main content. A bit shorter on mobile than
+  // the actual card because of the extra row.
   --main-height: 90px;
+  // Similar to --info-bg variable.
   --menu-bg: transparent;
-  --menu-container-opacity: 0;
+  --menu-container-width: 0;
   --menu-opacity: 0;
-  --menu-container-width: 0px;
   --mobile-extra-bar-height: calc(var(--panel-height) - var(--main-height));
   --panel-height: 115px;
+  // Audio player progress (to be overridden)
+  --progress: 0;
   --play-bg: transparent;
   --play-icon-opacity: 0;
   --play-icon: @fa-var-play;
@@ -37,19 +48,18 @@
   --stats-opacity: 1;
   --transition: all 150ms ease-in-out;
 
-  .show-beatmaps-popup() {
-    border-radius: @_border-radius @_border-radius 0 0;
-    --beatmaps-popup-opacity: 1;
-    --beatmaps-popup-pointer-events: auto;
-  }
+  position: relative;
+  background-color: @_main-bg;
+  border-radius: @border-radius--large;
+  font-size: @font-size--normal;
+  height: var(--panel-height);
+  transition: var(--transition);
 
   @media @desktop {
     --global-beatmap-link-pointer-events: auto;
     --info-bg: linear-gradient(0.25turn, hsl(var(--hsl-b2)), hsla(var(--hsl-b2), 0.8));
-    --info-radius: @_info-radius;
     --main-height: 100%;
     --menu-bg: hsl(var(--hsl-b3));
-    --menu-container-opacity: 1;
     --menu-container-width: @_menu-width;
     --panel-height: 100px;
     --play-width: 90px;
@@ -57,7 +67,6 @@
 
     &:hover {
       --info-bg: linear-gradient(0.25turn, hsl(var(--hsl-b4)), hsla(var(--hsl-b4), 0.8));
-      --info-radius: @_info-radius;
       --menu-opacity: 1;
       --menu-container-width: @_menu-width-visible;
       --play-bg: hsla(var(--hsl-b6), 0.8);
@@ -77,8 +86,6 @@
     @media @mobile {
       .show-beatmaps-popup();
 
-      --info-radius: @_info-radius;
-      --menu-container-opacity: 1;
       --menu-opacity: 1;
       --menu-container-width: @_menu-width-visible;
       --play-bg: hsla(var(--hsl-b6), 0.8);
@@ -147,13 +154,13 @@
     top: 100%;
     width: 100%;
     background-color: @_main-bg;
-    padding: 5px 0 @_border-radius;
-    border-radius: 0 0 @_border-radius @_border-radius;
+    padding: 5px 0 @border-radius--large;
+    border-radius: 0 0 @border-radius--large @border-radius--large;
     transition: var(--transition);
     z-index: @z-index--beatmaps-panel;
 
     @media @desktop {
-      padding-top: @_border-radius;
+      padding-top: @border-radius--large;
     }
 
     // hide top shadow
@@ -168,7 +175,7 @@
       left: 0;
       pointer-events: none;
       opacity: inherit;
-      border-radius: @_border-radius;
+      border-radius: @border-radius--large;
     }
   }
 
@@ -197,7 +204,7 @@
     --border-radius: 0;
 
     &--play {
-      --border-radius: @_border-radius 0 0 @_border-radius;
+      --border-radius: @border-radius--large 0 0 @border-radius--large;
       width: calc(var(--play-width) + 10px);
       flex: none;
     }
@@ -225,7 +232,7 @@
       top: 0;
       // Adjust radius to prevent bleeding of the underneath cover
       // when hover background (of &__play) is active.
-      border-radius: @_border-radius - 1px;
+      border-radius: @border-radius--large - 1px;
       background-color: hsl(var(--hsl-b4));
 
       @media @desktop {
@@ -254,12 +261,14 @@
   &__info {
     flex: 1;
     min-width: 10px;
-    padding: 4px @_border-radius 6px;
+    padding: 4px @border-radius--large 6px;
     position: relative;
     background: var(--info-bg);
     display: flex;
     flex-direction: column;
-    border-radius: var(--info-radius);
+    // Adjust radius to prevent bleeding of the underneath cover
+    // when hover background (of &__play) is active.
+    border-radius: (@border-radius--large - 1px) 0 0 (@border-radius--large - 1px);
   }
 
   &__info-row {
@@ -277,6 +286,7 @@
 
     &--extra {
       .link-plain();
+      .link-white();
       pointer-events: var(--global-beatmap-link-pointer-events);
 
       @media @mobile {
@@ -335,13 +345,12 @@
   }
 
   &__menu-container {
-    opacity: var(--menu-container-opacity);
     width: var(--menu-container-width);
     overflow: hidden;
     flex: none;
     background-color: var(--menu-bg);
     position: relative;
-    border-radius: 0 @_border-radius @_border-radius 0;
+    border-radius: 0 @border-radius--large @border-radius--large 0;
     transition: var(--transition);
 
     @media @desktop {
@@ -350,7 +359,7 @@
 
     &::after, &::before {
       content: '';
-      width: @_border-radius;
+      width: @border-radius--large;
       height: $width;
       position: absolute;
       background-color: inherit;
@@ -359,16 +368,12 @@
 
     &::before {
       top: 0;
-      // Extend to the top and right by 1px to prevent gap on some zoom levels.
-      // Sizing is based on @_border-radius.
-      clip-path: path('M11 -1 L11 10 L10 10 A10 10 0 0 0 0 0 L0 -1 Z');
+      clip-path: @_top-right-inverted-corner-path;
     }
 
     &::after {
       bottom: 0;
-      // Extend to the bottom and right by 1px to prevent gap on some zoom levels.
-      // Sizing is based on @_border-radius.
-      clip-path: path('M11 11 L11 0 L10 0 A10 10 0 0 1 0 10 L 0 11 Z');
+      clip-path: @_bottom-right-inverted-corner-path;
     }
   }
 
@@ -430,11 +435,11 @@
     position: relative;
     // Adjust radius to prevent bleeding of the underneath cover
     // when hover background is active.
-    border-radius: (@_border-radius - 1px) 0 0 (@_border-radius - 1px);
+    border-radius: (@border-radius--large - 1px) 0 0 (@border-radius--large - 1px);
 
     &::after, &::before {
       content: '';
-      width: @_border-radius;
+      width: @border-radius--large;
       height: $width;
       position: absolute;
       background-color: inherit;
@@ -443,16 +448,12 @@
 
     &::before {
       top: 0;
-      // Extend to the top and left by 1px to prevent gap on some zoom levels.
-      // Sizing is based on @_border-radius.
-      clip-path: path('M-1 -1 L-1 10 L0 10 A10 10 0 0 1 10 0 L10 -1 Z');
+      clip-path: @_top-left-inverted-corner-path;
     }
 
     &::after {
       bottom: 0;
-      // Extend to the bottom left by 1px to prevent gap on some zoom levels.
-      // Sizing is based on @_border-radius.
-      clip-path: path('M-1 11 L-1 0 L0 0 A10 10 0 0 0 10 10 L10 11 Z');
+      clip-path: @_bottom-left-inverted-corner-path;
     }
   }
 
