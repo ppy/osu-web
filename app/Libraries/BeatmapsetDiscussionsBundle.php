@@ -18,7 +18,7 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
 {
     use Memoizes;
 
-    private const DISCUSSION_WITHS = ['beatmapDiscussionVotes', 'beatmapset', 'startingPost'];
+    private const DISCUSSION_WITHS = ['beatmapDiscussionVotes', 'beatmap', 'beatmapset', 'startingPost'];
 
     private $searchParams;
 
