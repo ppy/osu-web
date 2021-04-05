@@ -13,7 +13,7 @@ interface NominationsSummaryInterface {
   required: number;
 }
 
-export interface BeatmapsetExtendedJson extends BeatmapsetJson {
+export default interface BeatmapsetExtendedJson extends BeatmapsetJson {
   availability?: AvailabilityInterface;
   nominations_summary?: NominationsSummaryInterface;
   ranked_date: string;
