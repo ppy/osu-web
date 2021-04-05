@@ -74,6 +74,11 @@ const StatsItem = ({ icon, title, value }: { icon: string, title: string, value:
 
 @observer
 export default class BeatmapsetPanel extends React.Component<Props> {
+  @observable private beatmapsPopup = false;
+  private blockRef = React.createRef<HTMLDivElement>();
+  @observable private mobileExpanded = false;
+  private timeouts: Partial<Record<string, number>> = {};
+
   @computed
   private get displayDate() {
     const attribute = displayDateMap[this.props.beatmapset.status];
@@ -189,12 +194,6 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   private get url() {
     return route('beatmapsets.show', { beatmapset: this.props.beatmapset.id});
   }
-  @observable private beatmapsPopup = false;
-  private blockRef = React.createRef<HTMLDivElement>();
-
-  @observable private mobileExpanded = false;
-  private timeouts: Record<string, number> = {};
-
   componentWillUnmount() {
     $(document).off('click', this.onDocumentClick);
     Object.values(this.timeouts).forEach((timeout) => {
