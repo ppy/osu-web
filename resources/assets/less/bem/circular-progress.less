@@ -8,6 +8,11 @@
   @thickness: 0.1em;
   @label-size: 0.4em;
 
+  .over50() {
+    --circle-fill-transform: rotate(0.5turn);
+    --slice-clip: rect(auto, auto, auto, auto);
+  }
+
   font-size: @size;
   width: 1em;
   height: 1em;
@@ -39,8 +44,7 @@
   }
 
   &--over50 {
-    --circle-fill-transform: rotate(0.5turn);
-    --slice-clip: rect(auto, auto, auto, auto);
+    .over50();
   }
 
   &--beatmapset-panel {
@@ -51,9 +55,8 @@
     --label-colour: transparent;
     --circle-transform: rotate(calc(var(--progress) * 1turn));
 
-    [data-audio-over-half="1"] & {
-      --circle-fill-transform: rotate(0.5turn);
-      --slice-clip: rect(auto, auto, auto, auto);
+    [data-audio-over50="1"] & {
+      .over50();
     }
   }
 
