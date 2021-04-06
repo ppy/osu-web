@@ -70,9 +70,9 @@ export default class UserLogin {
     return true;
   };
 
-  private clearError() {
+  private clearError = () => {
     $('.js-login-form--error').text('');
-  }
+  };
 
   private loginError = (e: JQuery.Event, xhr: JQuery.jqXHR) => {
     e.preventDefault();

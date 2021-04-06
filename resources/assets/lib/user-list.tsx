@@ -118,7 +118,7 @@ export class UserList extends React.PureComponent<Props> {
     const url = osu.updateQueryString(null, { sort: value });
 
     Turbolinks.controller.advanceHistory(url);
-    this.setState({ sortMode: value }, this.saveOptions);
+    this.setState({ sortMode: value }, this.handleSaveOptions);
   };
 
   onViewSelected = (event: React.SyntheticEvent) => {
@@ -126,7 +126,7 @@ export class UserList extends React.PureComponent<Props> {
     const url = osu.updateQueryString(null, { view: value });
 
     Turbolinks.controller.advanceHistory(url);
-    this.setState({ viewMode: value }, this.saveOptions);
+    this.setState({ viewMode: value }, this.handleSaveOptions);
   };
 
   optionSelected = (event: React.SyntheticEvent) => {
@@ -135,7 +135,7 @@ export class UserList extends React.PureComponent<Props> {
     const url = osu.updateQueryString(null, { filter: key });
 
     Turbolinks.controller.advanceHistory(url);
-    this.setState({ filter: key }, this.saveOptions);
+    this.setState({ filter: key }, this.handleSaveOptions);
   };
 
   playmodeSelected = (event: React.SyntheticEvent) => {
@@ -288,6 +288,23 @@ export class UserList extends React.PureComponent<Props> {
     }
   }
 
+  private handleSaveOptions = () => {
+    if (currentUser.id == null) {
+      return;
+    }
+
+    $.ajax(route('account.options'), {
+      dataType: 'JSON',
+      method: 'PUT',
+
+      data: { user_profile_customization: {
+        user_list_filter: this.state.filter,
+        user_list_sort: this.state.sortMode,
+        user_list_view: this.state.viewMode,
+      } },
+    }).done((user: UserJson) => $.publish('user:update', user));
+  };
+
   private renderPlaymodeFilter() {
     const playmodeButtons = playModes.map((mode) => (
       <button
@@ -310,22 +327,5 @@ export class UserList extends React.PureComponent<Props> {
         <span className='user-list__view-mode-title'>{osu.trans('users.filtering.by_game_mode')}</span> {playmodeButtons}
       </div>
     );
-  }
-
-  private saveOptions() {
-    if (currentUser.id == null) {
-      return;
-    }
-
-    $.ajax(route('account.options'), {
-      dataType: 'JSON',
-      method: 'PUT',
-
-      data: { user_profile_customization: {
-        user_list_filter: this.state.filter,
-        user_list_sort: this.state.sortMode,
-        user_list_view: this.state.viewMode,
-      } },
-    }).done((user: UserJson) => $.publish('user:update', user));
   }
 }

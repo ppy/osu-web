@@ -47,7 +47,7 @@ export const toggleFormat = (editor: ReactEditor, format: string) => {
   Transforms.setNodes(
     editor,
     { [format]: isFormatActive(editor, format) ? null : true },
-    { match: Text.isText, split: true },
+    { match: (node) => Text.isText(node), split: true },
   );
 };
 

@@ -137,25 +137,23 @@ export default class RankingFilter extends React.PureComponent<Props> {
           bn='ranking-select-options'
           onChange={this.handleCountryChange}
           options={[...this.options.values()]} // TODO: change to iterable
-          renderOption={this.renderOption}
+          renderOption={this.handleRenderOption}
           selected={this.selectedOption}
         />
       </>
     );
   }
 
-  renderOption(props: OptionRenderProps) {
-    return (
-      <a
-        className={props.cssClasses}
-        href={osu.updateQueryString(null, { country: props.option.id, page: null })}
-        key={props.option.id ?? ''}
-        onClick={props.onClick}
-      >
-        {props.children}
-      </a>
-    );
-  }
+  handleRenderOption = (props: OptionRenderProps) => (
+    <a
+      className={props.cssClasses}
+      href={osu.updateQueryString(null, { country: props.option.id, page: null })}
+      key={props.option.id ?? ''}
+      onClick={props.onClick}
+    >
+      {props.children}
+    </a>
+  );
 
   renderVariants() {
     if (this.props.variants == null) return null;
