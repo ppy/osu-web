@@ -81,6 +81,17 @@ export default class RankingFilter extends React.PureComponent<Props> {
     osu.navigate(osu.updateQueryString(null, { filter: event.currentTarget.dataset.value, page: null }));
   };
 
+  handleRenderOption = (props: OptionRenderProps) => (
+    <a
+      className={props.cssClasses}
+      href={osu.updateQueryString(null, { country: props.option.id, page: null })}
+      key={props.option.id ?? ''}
+      onClick={props.onClick}
+    >
+      {props.children}
+    </a>
+  );
+
   handleVariantChange = (event: React.MouseEvent<HTMLButtonElement>) => {
     osu.navigate(osu.updateQueryString(null, { variant: event.currentTarget.dataset.value, page: null }));
   };
@@ -143,17 +154,6 @@ export default class RankingFilter extends React.PureComponent<Props> {
       </>
     );
   }
-
-  handleRenderOption = (props: OptionRenderProps) => (
-    <a
-      className={props.cssClasses}
-      href={osu.updateQueryString(null, { country: props.option.id, page: null })}
-      key={props.option.id ?? ''}
-      onClick={props.onClick}
-    >
-      {props.children}
-    </a>
-  );
 
   renderVariants() {
     if (this.props.variants == null) return null;
