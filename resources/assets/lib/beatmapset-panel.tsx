@@ -333,9 +333,9 @@ export default class BeatmapsetPanel extends React.Component<Props> {
             <div key={mode} className='beatmapset-panel__beatmaps-popup-group'>
               {beatmaps.map((beatmap) => (
                 <a
-                  key={beatmap.id}
                   className='beatmaps-popup-item'
                   href={route('beatmaps.show', { beatmap: beatmap.id })}
+                  key={beatmap.id}
                 >
                   <span className='beatmaps-popup-item__col beatmaps-popup-item__col--mode'>
                     <span className={`fal fa-extra-mode-${beatmap.mode}`} />
@@ -503,17 +503,17 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
           {this.downloadLink.url == null ? (
             <span
-              title={this.downloadLink.title}
               className='beatmapset-panel__menu-item beatmapset-panel__menu-item--disabled'
+              title={this.downloadLink.title}
             >
               <span className='fas fa-file-download' />
             </span>
           ) : (
             <a
-              href={this.downloadLink.url}
-              title={this.downloadLink.title}
               className='beatmapset-panel__menu-item'
               data-turbolinks='false'
+              href={this.downloadLink.url}
+              title={this.downloadLink.title}
             >
               <span className='fas fa-file-download' />
             </a>
@@ -530,10 +530,10 @@ export default class BeatmapsetPanel extends React.Component<Props> {
         <div className='beatmapset-panel__play-progress'>
           <CircularProgress
             current={0}
-            max={1}
-            theme='beatmapset-panel'
-            onlyShowAsWarning={false}
             ignoreProgress
+            max={1}
+            onlyShowAsWarning={false}
+            theme='beatmapset-panel'
           />
         </div>
         <div className='beatmapset-panel__extra-icons'>
