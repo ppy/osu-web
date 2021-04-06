@@ -11,7 +11,6 @@ import { route } from 'laroute';
 import { sum, values } from 'lodash';
 import { computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import core from 'osu-core-singleton';
 import OsuUrlHelper from 'osu-url-helper';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
@@ -537,8 +536,6 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   }
 
   private toggleFavourite = () => {
-    if (core.userLogin.showIfGuest(this.toggleFavourite)) return;
-
     toggleFavourite(this.props.beatmapset);
   }
 }

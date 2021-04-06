@@ -4,6 +4,7 @@
 import { BeatmapsetJson, BeatmapsetNominationsInterface, isLegacyNominationsInterface } from 'beatmapsets/beatmapset-json';
 import { route } from 'laroute';
 import { sum } from 'lodash';
+import core from 'osu-core-singleton';
 import { error } from 'utils/ajax';
 
 interface FavouriteResponse {
@@ -23,6 +24,10 @@ export function showVisual(beatmapset: BeatmapsetJson) {
 }
 
 export function toggleFavourite(beatmapset: BeatmapsetJson) {
+  const retryCallback = () => toggleFavourite(beatmapset);
+
+  if (core.userLogin.showIfGuest(retryCallback)) return;
+
   const add = !beatmapset.has_favourited;
 
   // fake immediate change
@@ -40,7 +45,7 @@ export function toggleFavourite(beatmapset: BeatmapsetJson) {
     beatmapset.has_favourited = !add;
     beatmapset.favourite_count += add ? -1 : 1;
 
-    error(xhr, status, () => toggleFavourite(beatmapset));
+    error(xhr, status, retryCallback);
   })
   .done((data: FavouriteResponse) => {
     beatmapset.favourite_count = data.favourite_count;
