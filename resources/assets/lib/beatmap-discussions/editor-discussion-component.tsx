@@ -150,7 +150,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   isRelevantDiscussion = (discussion?: BeatmapsetDiscussionJson): discussion is BeatmapsetDiscussionJson => (
     discussion != null && discussion.beatmap_id === this.selectedBeatmap()
-  )
+  );
 
   nearbyDiscussions = () => {
     const timestamp = this.timestamp();

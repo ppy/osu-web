@@ -184,7 +184,7 @@ export default class Editor extends React.Component<Props, State> {
    */
   isCurrentBeatmap = (beatmap?: BeatmapJsonExtended): beatmap is BeatmapJsonExtended => (
     beatmap != null && beatmap.beatmapset_id === this.props.beatmapset.id
-  )
+  );
 
   onChange = (value: SlateElement[]) => {
     // prevent document from becoming empty (and invalid) - ideally this would be handled in `withNormalization`, but that isn't run on every change
