@@ -1,6 +1,6 @@
 name: ES Lint
 
-on: [push, pull_request]
+on: workflow_dispatch
 
 env:
   APP_ENV: testing
