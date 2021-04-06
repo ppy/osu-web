@@ -5,11 +5,11 @@ import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
-  discussions: Record<string, BeatmapsetDiscussionJson>;
+  discussions: Partial<Record<string, BeatmapsetDiscussionJson>>;
   duration: number;
 }
 
-const messageTypeCss: Record<string, string> = {
+const messageTypeCss: Partial<Record<string, string>> = {
   mapper_note: 'mapper-note',
   praise: 'praise',
   problem: 'problem',
@@ -21,7 +21,7 @@ export default function Chart(props: Props) {
 
   if (props.duration !== 0) {
     Object.values(props.discussions).forEach((discussion) => {
-      if (discussion.timestamp == null) return;
+      if (discussion == null || discussion.timestamp == null) return;
 
       let className = classWithModifiers('beatmapset-discussions-chart__item', [
         (discussion.resolved ? 'resolved' : messageTypeCss[discussion.message_type]),

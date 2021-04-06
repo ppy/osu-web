@@ -37,12 +37,12 @@ interface CacheInterface {
 }
 
 interface Props {
-  beatmaps: Record<number, BeatmapJsonExtended>;
+  beatmaps: Partial<Record<number, BeatmapJsonExtended>>;
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapJsonExtended;
   currentDiscussions: BeatmapsetDiscussionJson[];
   discussion?: BeatmapsetDiscussionJson;
-  discussions: Record<number, BeatmapsetDiscussionJson>;
+  discussions: Partial<Record<number, BeatmapsetDiscussionJson>>;
   document?: string;
   editing: boolean;
   editMode?: boolean;
@@ -175,6 +175,16 @@ export default class Editor extends React.Component<Props, State> {
 
     return ranges;
   };
+
+  /**
+   * Type guard for checking if the beatmap is part of currently selected beatmapset
+   *
+   * @param beatmap
+   * @returns boolean
+   */
+  isCurrentBeatmap = (beatmap?: BeatmapJsonExtended): beatmap is BeatmapJsonExtended => (
+    beatmap != null && beatmap.beatmapset_id === this.props.beatmapset.id
+  )
 
   onChange = (value: SlateElement[]) => {
     // prevent document from becoming empty (and invalid) - ideally this would be handled in `withNormalization`, but that isn't run on every change
@@ -406,7 +416,7 @@ export default class Editor extends React.Component<Props, State> {
   sortedBeatmaps = () => {
     if (this.cache.sortedBeatmaps == null) {
       // filter to only include beatmaps from the current discussion's beatmapset (for the modding profile page)
-      const beatmaps = _.filter(this.props.beatmaps, {beatmapset_id: this.props.beatmapset.id});
+      const beatmaps = _.filter(this.props.beatmaps, this.isCurrentBeatmap);
       this.cache.sortedBeatmaps = sortWithMode(beatmaps);
     }
 
@@ -452,8 +462,8 @@ export default class Editor extends React.Component<Props, State> {
           }
 
           // clear invalid beatmapId references (for pasted embed content)
-          const beatmapId = node.beatmapId as number | undefined;
-          if (beatmapId && (!this.props.beatmaps[beatmapId] || this.props.beatmaps[beatmapId].deleted_at)) {
+          const beatmap = typeof node.beatmapId === 'number' ? this.props.beatmaps[node.beatmapId] : undefined;
+          if (beatmap == null || beatmap.deleted_at != null) {
             Transforms.setNodes(editor, {beatmapId: null}, {at: path});
           }
         }

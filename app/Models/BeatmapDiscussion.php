@@ -132,6 +132,11 @@ class BeatmapDiscussion extends Model
             $query->where('beatmap_id', $params['beatmap_id']);
         }
 
+        if (isset($rawParams['mode']) && isset(Beatmap::MODES[$rawParams['mode']])) {
+            $params['mode'] = $rawParams['mode'];
+            $query->forMode($params['mode']);
+        }
+
         $params['only_unresolved'] = get_bool($rawParams['only_unresolved'] ?? null) ?? false;
 
         if ($params['only_unresolved']) {
@@ -671,6 +676,32 @@ class BeatmapDiscussion extends Model
     public function trashed()
     {
         return $this->deleted_at !== null;
+    }
+
+    /**
+     * Filter based on mode
+     *
+     * Either:
+     * - null beatmap_id (general all) which beatmapset contain beatmap of $mode
+     * - beatmap_id which beatmap of $mode
+     */
+    public function scopeForMode($query, string $modeStr)
+    {
+        $modeInt = Beatmap::MODES[$modeStr];
+
+        $query->where(function ($q) use ($modeInt) {
+            return $q
+                ->where(function ($qq) use ($modeInt) {
+                    return $qq
+                        ->whereNull('beatmap_id')
+                        ->whereHas('visibleBeatmapset', function ($beatmapsetQuery) use ($modeInt) {
+                            return $beatmapsetQuery->hasMode($modeInt);
+                        });
+                })
+                ->orWhereHas('visibleBeatmap', function ($beatmapQuery) use ($modeInt) {
+                    $beatmapQuery->where('playmode', $modeInt);
+                });
+        });
     }
 
     public function scopeOfType($query, $types)

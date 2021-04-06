@@ -27,7 +27,6 @@ declare const reactTurbolinks: any;
 declare const BeatmapsetFilter: import('interfaces/beatmapset-filter-class').default;
 declare const BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
 declare const LoadingOverlay: any;
-declare const Timeout: any;
 declare const Lang: LangClass;
 declare const fallbackLocale: string;
 declare const currentLocale: string;
@@ -77,7 +76,7 @@ interface OsuCommon {
   jsonClone: (obj: any) => any;
   link: (url: string, text: string, options?: OsuLinkOptions) => string;
   linkify: (text: string, newWindow?: boolean) => string;
-  navigate: (url: string, keepScroll?: boolean, action?: Record<string, unknown>) => void;
+  navigate: (url: string, keepScroll?: boolean, action?: Partial<Record<string, unknown>>) => void;
   popup: (message: string, type: string) => void;
   popupShowing: () => boolean;
   presence: (str?: string | null) => string | null;
@@ -104,7 +103,7 @@ interface OsuCommon {
 interface OsuLinkOptions {
   classNames?: string[];
   isRemote?: boolean;
-  props?: Record<string, any>;
+  props?: Partial<Record<string, any>>;
   unescape?: boolean;
 }
 

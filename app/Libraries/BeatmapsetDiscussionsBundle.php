@@ -54,7 +54,7 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
             // using all beatmaps of the beatmapsets for the beatmap selector when editing.
             $beatmapsetIds = $this->getDiscussions()->pluck('beatmapset_id')->unique()->values();
 
-            return Beatmap::whereIn('beatmapset_id', $beatmapsetIds)->get();
+            return Beatmap::withTrashed()->whereIn('beatmapset_id', $beatmapsetIds)->get();
         });
     }
 

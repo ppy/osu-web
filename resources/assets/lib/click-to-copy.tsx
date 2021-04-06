@@ -21,7 +21,7 @@ export default class ClickToCopy extends React.Component<Props> {
 
   // TODO: figure out if possible to use the qtip typescript types
   api: any;
-  timer: number|null = null;
+  timer?: number;
   title: string|null = null;
 
   click = (e: React.MouseEvent) => {
@@ -40,8 +40,8 @@ export default class ClickToCopy extends React.Component<Props> {
     this.api.set('content.text', osu.trans('common.buttons.click_to_copy_copied'));
 
     // set timer to reset tooltip text
-    Timeout.clear(this.timer);
-    this.timer = Timeout.set(1000, this.restoreTooltipText);
+    window.clearTimeout(this.timer);
+    this.timer = window.setTimeout(this.restoreTooltipText, 1000);
 
     if (this.title == null) {
       this.title = el.getAttribute('title') || el.dataset.origTitle || null;
@@ -77,9 +77,9 @@ export default class ClickToCopy extends React.Component<Props> {
     if (this.title != null) {
       this.api.hide();
 
-      Timeout.set(100, () => {
+      window.setTimeout(() => {
         this.api.set('content.text', this.title);
-      });
+      }, 100);
     }
   };
 }
