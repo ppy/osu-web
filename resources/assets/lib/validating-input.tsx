@@ -22,7 +22,7 @@ export class ValidatingInput extends React.Component<Props> {
     } = this.props;
 
     const messages = errors.get(name) || [];
-    const jsx = messages.map((message, index) => <div key={index} className={`${blockName}__error`}>{message}</div>);
+    const jsx = messages.map((message, index) => <div className={`${blockName}__error`} key={index}>{message}</div>);
 
     return (
       <>

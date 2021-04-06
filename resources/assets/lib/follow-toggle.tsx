@@ -50,10 +50,10 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
   render() {
     return (
       <button
-        type='button'
         className={classWithModifiers('btn-circle', this.props.modifiers)}
-        onClick={this.onClick}
         disabled={this.state.toggling}
+        onClick={this.onClick}
+        type='button'
       >
         <span className='btn-circle__content'>
           {this.renderToggleIcon()}

@@ -193,11 +193,11 @@ export class EditorInsertionMenu extends React.Component<Props> {
 
     return (
       <button
-        type='button'
         className={`${this.bn}__menu-button ${this.bn}__menu-button--${type}`}
         data-discussion-type={type}
         onClick={this.insertBlock}
         title={osu.trans(`beatmaps.discussions.review.insert-block.${type}`)}
+        type='button'
       >
         <i className={icon}/>
       </button>

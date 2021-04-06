@@ -269,20 +269,20 @@ export default class Editor extends React.Component<Props, State> {
           <SlateContext.Provider value={this.slateEditor}>
             <Slate
               editor={this.slateEditor}
-              value={this.state.value}
               onChange={this.onChange}
+              value={this.state.value}
             >
-              <div ref={this.scrollContainerRef} className={`${editorClass}__input-area`}>
+              <div className={`${editorClass}__input-area`} ref={this.scrollContainerRef}>
                 <EditorToolbar ref={this.toolbarRef} />
                 <EditorInsertionMenu currentBeatmap={this.props.currentBeatmap} ref={this.insertMenuRef} />
                 <DraftsContext.Provider value={this.cache.draftEmbeds || []}>
                   <Editable
                     decorate={this.decorateTimestamps}
                     onKeyDown={this.onKeyDown}
+                    placeholder={osu.trans('beatmaps.discussions.message_placeholder.review')}
                     readOnly={this.state.posting}
                     renderElement={this.renderElement}
                     renderLeaf={this.renderLeaf}
-                    placeholder={osu.trans('beatmaps.discussions.message_placeholder.review')}
                   />
                 </DraftsContext.Provider>
               </div>
@@ -296,8 +296,8 @@ export default class Editor extends React.Component<Props, State> {
                   <button
                     className='btn-osu-big btn-osu-big--forum-secondary'
                     disabled={this.state.posting}
-                    type='button'
                     onClick={this.resetInput}
+                    type='button'
                   >
                     {osu.trans('common.buttons.clear')}
                   </button>
@@ -308,8 +308,8 @@ export default class Editor extends React.Component<Props, State> {
                     <button
                       className='btn-osu-big btn-osu-big--forum-primary'
                       disabled={!this.canSave}
-                      type='submit'
                       onClick={this.post}
+                      type='submit'
                     >
                       {this.state.posting ? <Spinner /> : osu.trans('common.buttons.post')}
                     </button>
@@ -340,11 +340,11 @@ export default class Editor extends React.Component<Props, State> {
       case 'embed':
         el = (
           <EditorDiscussionComponent
+            beatmaps={this.sortedBeatmaps()}
             beatmapset={this.props.beatmapset}
             currentBeatmap={this.props.currentBeatmap}
             discussions={this.props.discussions}
             editMode={this.props.editMode}
-            beatmaps={this.sortedBeatmaps()}
             readOnly={this.state.posting}
             {...props}
           />

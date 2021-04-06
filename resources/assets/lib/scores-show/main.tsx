@@ -29,7 +29,7 @@ export default function Main(props: Props) {
 
         <Info score={props.score} />
 
-        <Stats score={props.score} beatmap={beatmap} />
+        <Stats beatmap={beatmap} score={props.score} />
       </div>
     </>
   );

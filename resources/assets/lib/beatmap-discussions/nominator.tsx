@@ -162,12 +162,12 @@ export class Nominator extends React.PureComponent<Props, State> {
 
     const button = (disabled = false) => (
       <BigButton
-        text={osu.trans('beatmaps.nominations.nominate')}
         icon='fas fa-thumbs-up'
         props={{
           disabled,
           onClick: this.showNominationModal,
         }}
+        text={osu.trans('beatmaps.nominations.nominate')}
       />
     );
 
@@ -187,27 +187,27 @@ export class Nominator extends React.PureComponent<Props, State> {
     const content = this.hybridMode() ? this.modalContentHybrid() : this.modalContentNormal();
 
     return (
-      <Modal visible={this.state.visible} onClose={this.hideNominationModal}>
+      <Modal onClose={this.hideNominationModal} visible={this.state.visible}>
         <div className={this.bn}>
           <div className={`${this.bn}__header`}>{osu.trans('beatmapsets.nominate.dialog.header')}</div>
           {content}
           <div className={`${this.bn}__buttons`}>
             <BigButton
-              text={osu.trans('beatmaps.nominations.nominate')}
               icon='fas fa-thumbs-up'
               isBusy={this.state.loading}
               props={{
                 disabled: (this.hybridMode() && this.state.selectedModes.length < 1) || this.state.loading,
                 onClick: this.nominate,
               }}
+              text={osu.trans('beatmaps.nominations.nominate')}
             />
             <BigButton
-              text={osu.trans('common.buttons.cancel')}
               icon='fas fa-times'
               props={{
                 disabled: this.state.loading,
                 onClick: this.hideNominationModal,
               }}
+              text={osu.trans('common.buttons.cancel')}
             />
           </div>
         </div>
@@ -287,13 +287,13 @@ export class Nominator extends React.PureComponent<Props, State> {
           key={mode}
         >
           <input
+            checked={this.state.selectedModes.includes(mode)}
             className='osu-switch-v2__input'
-            type='checkbox'
+            disabled={disabled}
             name='nomination_modes'
             onChange={this.updateCheckboxes}
+            type='checkbox'
             value={mode}
-            checked={this.state.selectedModes.includes(mode)}
-            disabled={disabled}
           />
           <span className='osu-switch-v2__content'/>
           <div

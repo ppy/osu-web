@@ -20,7 +20,7 @@ export default function Player(props: Props) {
 
         <div className='score-player__mods'>
           {props.score.mods.map((mod) => (
-            <div key={mod} className='score-player__mod'>
+            <div className='score-player__mod' key={mod}>
               <Mod mod={mod} />
             </div>
           ))}

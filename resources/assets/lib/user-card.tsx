@@ -185,8 +185,8 @@ export class UserCard extends React.PureComponent<Props, State> {
     if (this.isUserVisible) {
       backgroundLink = (
         <a
-          href={route('users.show', { user: this.user.id })}
           className='user-card__background-container'
+          href={route('users.show', { user: this.user.id })}
         >
           {background}
         </a>
@@ -220,10 +220,10 @@ export class UserCard extends React.PureComponent<Props, State> {
               </a>
             )}
             <div className='user-card__icon'>
-              <FriendButton userId={this.user.id} modifiers={['user-card']} />
+              <FriendButton modifiers={['user-card']} userId={this.user.id} />
             </div>
             <div className='user-card__icon'>
-              <FollowUserMappingButton userId={this.user.id} modifiers={['user-card']} />
+              <FollowUserMappingButton modifiers={['user-card']} userId={this.user.id} />
             </div>
           </>
         )}
@@ -245,11 +245,11 @@ export class UserCard extends React.PureComponent<Props, State> {
         )}
 
         <div className='user-card__icon'>
-          <FriendButton userId={this.user.id} modifiers={['user-list']} />
+          <FriendButton modifiers={['user-list']} userId={this.user.id} />
         </div>
 
         <div className='user-card__icon'>
-          <FollowUserMappingButton userId={this.user.id} modifiers={['user-list']} />
+          <FollowUserMappingButton modifiers={['user-list']} userId={this.user.id} />
         </div>
       </div>
     );
@@ -275,7 +275,7 @@ export class UserCard extends React.PureComponent<Props, State> {
           ) : null
         }
 
-        <BlockButton onClick={dismiss} modifiers={['inline']} userId={this.user.id} wrapperClass='simple-menu__item' />
+        <BlockButton modifiers={['inline']} onClick={dismiss} userId={this.user.id} wrapperClass='simple-menu__item' />
         <ReportReportable
           className='simple-menu__item'
           icon

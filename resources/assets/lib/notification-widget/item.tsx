@@ -106,7 +106,7 @@ export default class Item extends React.Component<Props> {
     }
 
     return this.props.icons.map((icon) => (
-      <div key={icon} className='notification-popup-item__cover-icon'>
+      <div className='notification-popup-item__cover-icon' key={icon}>
         <span className={icon} />
       </div>
     ));
@@ -151,9 +151,9 @@ export default class Item extends React.Component<Props> {
   private renderMessage() {
     return (
       <a
-        onClick={this.props.markRead}
-        href={this.props.url}
         className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'
+        href={this.props.url}
+        onClick={this.props.markRead}
       >
         {this.props.message}
       </a>

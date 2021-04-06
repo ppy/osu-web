@@ -212,9 +212,9 @@ export class UserList extends React.PureComponent<Props> {
   renderSorter() {
     return (
       <Sort
+        currentValue={this.state.sortMode}
         modifiers={['user-list']}
         onChange={this.handleSortChange}
-        currentValue={this.state.sortMode}
         values={sortModes}
       />
     );
@@ -226,24 +226,24 @@ export class UserList extends React.PureComponent<Props> {
         <button
           className={osu.classWithModifiers('user-list__view-mode', this.state.viewMode === 'card' ? ['active'] : [])}
           data-value='card'
-          title={osu.trans('users.view_mode.card')}
           onClick={this.onViewSelected}
+          title={osu.trans('users.view_mode.card')}
         >
           <span className='fas fa-square' />
         </button>
         <button
           className={osu.classWithModifiers('user-list__view-mode', this.state.viewMode === 'list' ? ['active'] : [])}
           data-value='list'
-          title={osu.trans('users.view_mode.list')}
           onClick={this.onViewSelected}
+          title={osu.trans('users.view_mode.list')}
         >
           <span className='fas fa-bars' />
         </button>
         <button
           className={osu.classWithModifiers('user-list__view-mode', this.state.viewMode === 'brick' ? ['active'] : [])}
           data-value='brick'
-          title={osu.trans('users.view_mode.brick')}
           onClick={this.onViewSelected}
+          title={osu.trans('users.view_mode.brick')}
         >
           <span className='fas fa-th' />
         </button>
@@ -310,9 +310,9 @@ export class UserList extends React.PureComponent<Props> {
       <button
         className={osu.classWithModifiers('user-list__view-mode', this.state.playMode === mode ? ['active'] : [])}
         data-value={mode}
-        title={osu.trans(`beatmaps.mode.${mode}`)}
-        onClick={this.playmodeSelected}
         key={mode}
+        onClick={this.playmodeSelected}
+        title={osu.trans(`beatmaps.mode.${mode}`)}
       >
         {mode === 'all' ?
           <span>{osu.trans('beatmaps.mode.all')}</span>

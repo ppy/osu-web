@@ -30,7 +30,7 @@ export default class MessageGroup extends React.Component<Props, any> {
     return (
       <div className={className}>
         <div className='chat-message-group__sender'>
-          <a className='js-usercard' data-user-id={sender.id} data-tooltip-position='top center' href={route('users.show', { user: sender.id })}>
+          <a className='js-usercard' data-tooltip-position='top center' data-user-id={sender.id} href={route('users.show', { user: sender.id })}>
             <img className='chat-message-group__avatar' src={sender.avatarUrl} />
           </a>
           <div className='u-ellipsis-overflow' style={{maxWidth: '60px'}}>

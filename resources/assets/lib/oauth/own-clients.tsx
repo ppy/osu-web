@@ -33,7 +33,7 @@ export class OwnClients extends React.Component {
         <div className='oauth-clients'>
           {store.clients.size > 0 ? this.renderClients() : this.renderEmpty()}
         </div>
-        <div id='new-oauth-application' className='fragment-target' />
+        <div className='fragment-target' id='new-oauth-application' />
         <BigButton
           icon={'fas fa-plus'}
           props={{
@@ -70,7 +70,7 @@ export class OwnClients extends React.Component {
     }
 
     return (
-      <Modal visible onClose={this.handleModalClose}>
+      <Modal onClose={this.handleModalClose} visible>
         {component}
       </Modal>
     );

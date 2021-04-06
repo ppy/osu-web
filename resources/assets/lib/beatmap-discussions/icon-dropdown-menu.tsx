@@ -70,8 +70,8 @@ export default class IconDropdownMenu extends React.Component<Props> {
     return (
       <button
         className={osu.classWithModifiers(baseClass, mods)}
-        key={menuItem.id}
         data-id={menuItem.id}
+        key={menuItem.id}
         onClick={this.select}
       >
         <div className={osu.classWithModifiers(iconClass, ['icon-dropdown-menu'])}>

@@ -43,8 +43,8 @@ export default function PostItem({modifiers, post}: {modifiers?: string[]; post:
         />
         <div className='news-card__row news-card__row--author'>
           <StringWithComponent
-            pattern={osu.trans('news.show.by')}
             mappings={{ ':user': <strong key='author'>{post.author}</strong> }}
+            pattern={osu.trans('news.show.by')}
           />
         </div>
       </div>

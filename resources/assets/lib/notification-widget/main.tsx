@@ -189,7 +189,7 @@ export default class Main extends React.Component<Props, State> {
       }
 
       return (
-        <p key='empty' className='notification-popup__empty'>
+        <p className='notification-popup__empty' key='empty'>
           {osu.trans(transKey)}
         </p>
       );

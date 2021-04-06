@@ -80,10 +80,10 @@ export class WikiSearch extends React.Component {
           <input
             autoFocus
             className='wiki-search__input'
-            value={this.controller.displayText}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
             placeholder={osu.trans('common.input.search')}
+            value={this.controller.displayText}
           />
           <button className='wiki-search__button' onClick={this.handleSearch}>
             <i className='fa fa-search'/>
@@ -98,7 +98,7 @@ export class WikiSearch extends React.Component {
     if (!this.controller.isSuggestionsVisible) return null;
 
     return (
-      <div ref={this.ref} className='wiki-search__suggestions u-fancy-scrollbar' onMouseLeave={this.handleMouseLeave}>
+      <div className='wiki-search__suggestions u-fancy-scrollbar' onMouseLeave={this.handleMouseLeave} ref={this.ref}>
         {
           this.controller.suggestions.map((item, index) => {
             const setIndex = () => {

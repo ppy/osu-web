@@ -12,10 +12,10 @@ interface Props {
 export const MessageDivider = React.forwardRef<HTMLDivElement, Props>(({timestamp, type}, innerRef) => {
   switch (type) {
     case 'DAY_MARKER':
-      return (<div ref={innerRef} className='chat-conversation__day-divider'>{moment(timestamp).format('LL')}</div>);
+      return (<div className='chat-conversation__day-divider' ref={innerRef}>{moment(timestamp).format('LL')}</div>);
 
     case 'UNREAD_MARKER':
-      return (<div ref={innerRef} className='chat-conversation__unread-marker' data-content='unread messages' />);
+      return (<div className='chat-conversation__unread-marker' data-content='unread messages' ref={innerRef} />);
 
     default:
       return null;

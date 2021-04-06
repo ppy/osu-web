@@ -73,7 +73,7 @@ export class NewClient extends React.Component {
           {osu.trans('oauth.new_client.header')}
         </div>
 
-        <form className='oauth-client-details__content' autoComplete='off'>
+        <form autoComplete='off' className='oauth-client-details__content'>
           {this.renderRemainingErrors()}
 
           {NewClient.inputFields.map((name) => (
@@ -90,14 +90,14 @@ export class NewClient extends React.Component {
           ))}
 
           <div>
-            <StringWithComponent pattern={osu.trans('oauth.new_client.terms_of_use._')} mappings={{ ':link': link }} />
+            <StringWithComponent mappings={{ ':link': link }} pattern={osu.trans('oauth.new_client.terms_of_use._')} />
           </div>
 
           <div className='oauth-client-details__buttons'>
-            <button className='btn-osu-big' type='button' onClick={this.handleSubmit}>
+            <button className='btn-osu-big' onClick={this.handleSubmit} type='button'>
               {uiState.account.isCreatingNewClient ? <Spinner /> : osu.trans('oauth.new_client.register')}
             </button>
-            <button className='btn-osu-big' type='button' onClick={this.handleCancel}>{osu.trans('common.buttons.cancel')}</button>
+            <button className='btn-osu-big' onClick={this.handleCancel} type='button'>{osu.trans('common.buttons.cancel')}</button>
           </div>
         </form>
       </div>

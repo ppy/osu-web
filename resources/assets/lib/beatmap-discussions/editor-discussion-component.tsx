@@ -234,11 +234,11 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
           onTouchStart={this.createTooltip}
         >
           <script
-            type='text/html'
-            ref={this.tooltipContent}
             dangerouslySetInnerHTML={{
               __html: nearbyText,
             }}
+            ref={this.tooltipContent}
+            type='text/html'
           />
           <i className='fas fa-exclamation-triangle' />
         </div>
@@ -260,9 +260,9 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
       (
         <button
           className={`${this.bn}__delete`}
+          contentEditable={false}
           disabled={this.props.readOnly}
           onClick={this.delete}
-          contentEditable={false}
           title={osu.trans(`beatmaps.discussions.review.embed.${canEdit ? 'delete' : 'unlink'}`)}
         >
           <i className={`fas fa-${canEdit ? 'trash-alt' : 'link'}`} />
@@ -312,8 +312,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
               {nearbyIndicator}
             </div>
             <div
-              contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
-              className={`${this.bn}__stripe`}
+              className={`${this.bn}__stripe`} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+              contentEditable={false}
             />
             <div className={`${this.bn}__message-container`}>
               <div className='beatmapset-discussion-message'>{this.props.children}</div>

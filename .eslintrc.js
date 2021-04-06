@@ -219,6 +219,7 @@ module.exports = {
           }
       ],
       "react/jsx-max-props-per-line": ["error", { when: "multiline" }],
+      "react/jsx-sort-props": "error",
       "react/no-deprecated": "warn",
       "react/jsx-equals-spacing": [
           "error",

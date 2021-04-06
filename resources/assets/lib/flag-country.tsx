@@ -16,10 +16,10 @@ export default function FlagCountry({country, modifiers}: Props) {
   return (
     <div
       className={osu.classWithModifiers('flag-country', modifiers)}
-      title={country.name}
       style={{
         backgroundImage: `url('/images/flags/${country.code}.png')`,
       }}
+      title={country.name}
     />
   );
 }
