@@ -483,14 +483,23 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     return (
       <div className='beatmapset-panel__menu-container'>
         <div className='beatmapset-panel__menu'>
-          <button
-            className='beatmapset-panel__menu-item'
-            onClick={this.toggleFavourite}
-            title={osu.trans(`beatmapsets.show.details.${this.favourite.toggleTitleVariant}`)}
-            type='button'
-          >
-            <span className={this.favourite.icon} />
-          </button>
+          {currentUser.id == null ? (
+            <span
+              className='beatmapset-panel__menu-item beatmapset-panel__menu-item--disabled'
+              title={osu.trans('beatmapsets.show.details.favourite_login')}
+            >
+              <span className={this.favourite.icon} />
+            </span>
+          ) : (
+            <button
+              className='beatmapset-panel__menu-item'
+              onClick={this.toggleFavourite}
+              title={osu.trans(`beatmapsets.show.details.${this.favourite.toggleTitleVariant}`)}
+              type='button'
+            >
+              <span className={this.favourite.icon} />
+            </button>
+          )}
 
           {this.downloadLink.url == null ? (
             <span
