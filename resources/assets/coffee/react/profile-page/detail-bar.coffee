@@ -124,11 +124,11 @@ export class DetailBar extends React.PureComponent
       button
         className: 'profile-page-toggle js-click-menu'
         title: osu.trans('common.buttons.show_more_options')
-        'data-click-menu-target': "profile-page-bar-#{@id}"
+        'data-click-menu-target': "profile-page-bar-#{@eventId}"
         span className: 'fas fa-ellipsis-v'
       div
         className: 'simple-menu simple-menu--profile-page-bar js-click-menu'
-        'data-click-menu-id': "profile-page-bar-#{@id}"
+        'data-click-menu-id': "profile-page-bar-#{@eventId}"
         'data-visibility': 'hidden'
         items
 
