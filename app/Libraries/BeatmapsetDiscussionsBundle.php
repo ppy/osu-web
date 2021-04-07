@@ -18,7 +18,7 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
 {
     use Memoizes;
 
-    private const DISCUSSION_WITHS = ['beatmapDiscussionVotes', 'beatmapset', 'startingPost'];
+    private const DISCUSSION_WITHS = ['beatmapDiscussionVotes', 'beatmap', 'beatmapset', 'startingPost'];
 
     private $searchParams;
 
@@ -54,7 +54,7 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
             // using all beatmaps of the beatmapsets for the beatmap selector when editing.
             $beatmapsetIds = $this->getDiscussions()->pluck('beatmapset_id')->unique()->values();
 
-            return Beatmap::withTrashed()->whereIn('beatmapset_id', $beatmapsetIds)->get();
+            return Beatmap::withTrashed()->whereIn('beatmapset_id', $beatmapsetIds)->with('beatmapset')->get();
         });
     }
 
