@@ -5,19 +5,16 @@ import { BeatmapIcon } from 'beatmap-icon';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as React from 'react';
 import { generate as generateHash } from 'utils/beatmapset-page-hash';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   active: boolean;
   beatmap: BeatmapJsonExtended;
 }
 
-export default class BeatmapSelection extends React.Component<Props> {
-
+export default class BeatmapSelection extends React.PureComponent<Props> {
   render() {
-    let className = 'beatmapset-beatmap-picker__beatmap';
-    if (this.props.active) {
-      className += ' beatmapset-beatmap-picker__beatmap--active';
-    }
+    const className = classWithModifiers('beatmapset-beatmap-picker__beatmap', { active: this.props.active });
 
     return (
       <a
