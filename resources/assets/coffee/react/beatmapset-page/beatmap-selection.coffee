@@ -4,6 +4,7 @@
 import { BeatmapIcon } from 'beatmap-icon'
 import * as React from 'react'
 import { a } from 'react-dom-factories'
+import { generate as generateHash } from 'utils/beatmapset-page-hash'
 el = React.createElement
 
 export class BeatmapSelection extends React.Component
@@ -28,5 +29,5 @@ export class BeatmapSelection extends React.Component
       onClick: @onClick
       onMouseEnter: @onMouseEnter
       onMouseLeave: @onMouseLeave
-      href: BeatmapsetPageHash.generate beatmap: @props.beatmap
+      href: generateHash beatmap: @props.beatmap
       el BeatmapIcon, beatmap: @props.beatmap, modifier: 'beatmapset', showTitle: false
