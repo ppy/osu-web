@@ -186,6 +186,7 @@ class Mod
             'fixed_follow_circle_hit_area' => 'bool',
             'no_slider_head_accuracy' => 'bool',
             'no_slider_head_movement' => 'bool',
+            'always_play_tail_sample' => 'bool',
         ],
     ];
 

@@ -5,8 +5,8 @@ import { BackToTop } from 'back-to-top';
 import AvailableFilters from 'beatmaps/available-filters';
 import HeaderV4 from 'header-v4';
 import { isEqual } from 'lodash';
-import { IValueDidChange, Lambda, observe } from 'mobx';
-import { observer } from 'mobx-react';
+import { IValueDidChange, observe } from 'mobx';
+import { disposeOnUnmount, observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { SearchContent } from 'react/beatmaps/search-content';
@@ -22,16 +22,15 @@ interface Props {
 export class Main extends React.Component<Props> {
   readonly backToTop = React.createRef<BackToTop>();
   readonly backToTopAnchor = React.createRef<HTMLElement>();
-  readonly observerDisposers: Lambda[] = [];
 
   constructor(props: Props) {
     super(props);
 
-    this.observerDisposers.push(observe(controller, 'searchStatus', this.searchStatusErrorHandler));
+    disposeOnUnmount(this, observe(controller, 'searchStatus', this.searchStatusErrorHandler));
   }
 
   componentDidMount() {
-    this.observerDisposers.push(observe(controller, 'searchStatus', this.scrollPositionHandler));
+    disposeOnUnmount(this, observe(controller, 'searchStatus', this.scrollPositionHandler));
     $(document).on('turbolinks:before-visit.beatmaps-main', () => {
       controller.cancel();
     });
@@ -40,12 +39,6 @@ export class Main extends React.Component<Props> {
   componentWillUnmount() {
     $(document).off('.beatmaps-main');
     controller.cancel();
-
-    let disposer = this.observerDisposers.shift();
-    while (disposer) {
-      disposer();
-      disposer = this.observerDisposers.shift();
-    }
   }
 
   render() {

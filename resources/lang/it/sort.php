@@ -16,8 +16,8 @@ return [
     'username' => 'Nome utente',
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Data del post',
+        'relevance' => 'Pertinenza',
     ],
 
     'forum_topics' => [
@@ -26,7 +26,7 @@ return [
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'Pertinenza',
+        'username' => 'Nome',
     ],
 ];

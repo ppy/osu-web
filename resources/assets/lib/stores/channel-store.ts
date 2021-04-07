@@ -24,7 +24,7 @@ export default class ChannelStore {
   @observable loaded = false;
 
   private api = new ChatAPI();
-  private markingAsRead: Record<number, number> = {};
+  private markingAsRead: Partial<Record<number, number>> = {};
 
   @computed
   get channelList(): Channel[] {
