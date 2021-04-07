@@ -19,14 +19,14 @@ export function parse(hash: string) {
   const [mode, id] = hash.slice(1).split('/');
 
   return {
-    playmode: osu.presence(mode),
     beatmapId: getInt(id),
-  }
+    playmode: osu.presence(mode),
+  };
 }
 
 export function generate({ beatmap, mode }: { beatmap?: BeatmapJson; mode?: string }) {
   if (beatmap != null) {
-    return `#${beatmap.mode}/${beatmap.id}`
+    return `#${beatmap.mode}/${beatmap.id}`;
   }
 
   if (mode != null) {
