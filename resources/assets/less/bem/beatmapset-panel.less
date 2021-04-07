@@ -398,7 +398,12 @@
   &__mobile-expand {
     .reset-input();
     pointer-events: auto;
-    padding: 5px 10px;
+    height: var(--mobile-extra-bar-height);
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    align-items: center;
     color: hsl(var(--hsl-c2));
     position: absolute;
     bottom: 0;
