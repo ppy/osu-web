@@ -451,6 +451,8 @@ class UsersController extends Controller
      *
      * ### Response format
      *
+     * When `username` is passed for `user` parameter and the user exists, a redirect will be returned.
+     *
      * Returns [User](#user) object.
      * Following attributes are included in the response object when applicable.
      *
@@ -479,14 +481,16 @@ class UsersController extends Controller
      * unranked_beatmapset_count            | |
      * user_achievements                    | |
      *
-     * @urlParam user required Id of the user. Example: 1
+     * @urlParam user required Id or username of the user. Id lookup is prioritised unless `key` parameter is specified. Previous usernames are also checked in some cases. Example: 1
      * @urlParam mode [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
+     *
+     * @queryParam key Type of `user` passed in url parameter. Can be either `id` or `username` to limit lookup by their respective type. Passing empty or invalid value will result in id lookup followed by username lookup if not found.
      *
      * @response "See User object section"
      */
     public function show($id, $mode = null)
     {
-        $user = $this->lookupUser($id);
+        $user = $this->lookupUser($id, get_string(request('key')));
 
         if ($user === null) {
             if (is_json_request()) {
@@ -630,9 +634,9 @@ class UsersController extends Controller
     // Find matching id or username
     // If no user is found, search for a previous username
     // only if parameter is not a number (assume number is an id lookup).
-    private function lookupUser($id)
+    private function lookupUser($id, ?string $type = null)
     {
-        $user = User::lookupWithHistory($id, null, true);
+        $user = User::lookupWithHistory($id, $type, true);
 
         if ($user === null || !priv_check('UserShow', $user)->can()) {
             return null;
