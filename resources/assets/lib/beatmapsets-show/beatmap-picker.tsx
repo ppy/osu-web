@@ -1,15 +1,27 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import BeatmapSelection from 'beatmapsets-show/beatmap-selection'
-import * as React from 'react'
-import { div } from 'react-dom-factories'
-el = React.createElement
+import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import * as React from 'react';
+import BeatmapSelection from './beatmap-selection';
 
-export BeatmapPicker = ({beatmaps, currentBeatmap}) ->
-  div className: 'beatmapset-beatmap-picker',
-    for beatmap in beatmaps
-      el BeatmapSelection,
-        key: beatmap.id
-        beatmap: beatmap
-        active: currentBeatmap.id == beatmap.id
+interface Props {
+  beatmaps: BeatmapJsonExtended[];
+  currentBeatmap: BeatmapJsonExtended;
+}
+
+export default class BeatmapPicker extends React.PureComponent<Props> {
+  render() {
+    return (
+      <div className='beatmapset-beatmap-picker'>
+        {this.props.beatmaps.map((beatmap) => (
+          <BeatmapSelection
+            active={this.props.currentBeatmap.id === beatmap.id}
+            beatmap={beatmap}
+            key={beatmap.id}
+          />
+        ))}
+      </div>
+    );
+  }
+}
