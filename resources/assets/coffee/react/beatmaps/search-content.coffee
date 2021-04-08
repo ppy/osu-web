@@ -82,7 +82,6 @@ export class SearchContent extends React.Component
                 className: 'beatmapsets__sort'
                 el SearchSort,
                   filters: controller.filters
-                  sorting: controller.filters.searchSort # TODO: make SearchSort observable and move in.
 
             div
               className: 'beatmapsets__content js-audio--group'
