@@ -5,7 +5,7 @@ import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 
 interface AvailabilityInterface {
   download_disabled: boolean;
-  more_information: string;
+  more_information?: string;
 }
 
 interface NominationsSummaryInterface {
