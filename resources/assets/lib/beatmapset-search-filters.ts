@@ -52,7 +52,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
 
   @computed
   get searchSort() {
-    const [field, order] = this.displaySort.split('_')
+    const [field, order] = this.displaySort.split('_');
     return { field, order };
   }
 
