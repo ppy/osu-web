@@ -76,7 +76,7 @@ export class ReportReportable extends React.PureComponent<Props, State> {
     };
 
     $.ajax(params).done(() => {
-      this.timeout = Timeout.set(1000, this.onFormClose);
+      this.timeout = window.setTimeout(this.onFormClose, 1000);
       this.setState({ completed: true });
     }).fail((xhr) => {
       osu.ajaxError(xhr);
@@ -117,7 +117,7 @@ export class ReportReportable extends React.PureComponent<Props, State> {
   }
 
   showForm = () => {
-    Timeout.clear(this.timeout);
+    window.clearTimeout(this.timeout);
     this.setState({ disabled: false, showingForm: true });
   };
 

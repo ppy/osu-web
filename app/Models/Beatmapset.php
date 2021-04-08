@@ -322,6 +322,17 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return $query->where('active', '=', true);
     }
 
+    public function scopeHasMode($query, $modeInts)
+    {
+        if (!is_array($modeInts)) {
+            $modeInts = [$modeInts];
+        }
+
+        return $query->whereHas('beatmaps', function ($query) use ($modeInts) {
+            $query->whereIn('playmode', $modeInts);
+        });
+    }
+
     public function scopeWithModesForRanking($query, $modeInts)
     {
         if (!is_array($modeInts)) {
