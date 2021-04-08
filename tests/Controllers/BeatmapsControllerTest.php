@@ -9,7 +9,7 @@ use App\Models\Beatmap;
 use App\Models\User;
 use Tests\TestCase;
 
-class BeatmapControllerTest extends TestCase
+class BeatmapsControllerTest extends TestCase
 {
     private $user;
     private $beatmap;
