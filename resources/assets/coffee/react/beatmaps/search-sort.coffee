@@ -5,7 +5,6 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, a, i, span } from 'react-dom-factories'
 el = React.createElement
-controller = core.beatmapsetSearchController
 
 export class SearchSort extends React.PureComponent
   render: =>
@@ -68,7 +67,7 @@ export class SearchSort extends React.PureComponent
     else
       order = 'desc'
 
-    controller.updateFilters sort: "#{field}_#{order}"
+    core.beatmapsetSearchController.updateFilters sort: "#{field}_#{order}"
 
 
   selected: (field) =>

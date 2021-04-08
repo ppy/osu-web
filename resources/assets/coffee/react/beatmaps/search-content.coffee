@@ -15,8 +15,6 @@ import VirtualList from 'react-virtual-list'
 import { showVisual } from 'utils/beatmapset-helper'
 
 el = React.createElement
-beatmapsetStore = core.dataStore.beatmapsetStore
-controller = core.beatmapsetSearchController
 
 ITEM_HEIGHT = 205 # needs to be known in advance to calculate size of virtual scrolling area.
 
@@ -34,7 +32,7 @@ ListRender = ({ virtual, itemHeight }) ->
             div
               className: 'beatmapsets__item'
               key: beatmapsetId
-              el BeatmapsetPanel, beatmap: beatmapsetStore.get(beatmapsetId)
+              el BeatmapsetPanel, beatmap: core.dataStore.beatmapsetStore.get(beatmapsetId)
 
 # stored in an observable so a rerender will occur when the HOC gets updated.
 Observables = observable
@@ -59,9 +57,10 @@ export class SearchContent extends React.Component
 
   render: ->
     el Observer, null, () =>
+      controller = core.beatmapsetSearchController
       beatmapsetIds = controller.currentBeatmapsetIds
 
-      firstBeatmapset = beatmapsetStore.get(beatmapsetIds[0])
+      firstBeatmapset = core.dataStore.beatmapsetStore.get(beatmapsetIds[0])
       searchBackground = if firstBeatmapset? && showVisual(firstBeatmapset) then firstBeatmapset.covers?.cover else null
       supporterRequiredFilterText = controller.supporterRequiredFilterText
       listCssClasses = 'beatmapsets'
@@ -83,7 +82,7 @@ export class SearchContent extends React.Component
                 className: 'beatmapsets__sort'
                 el SearchSort,
                   filters: controller.filters
-                  sorting: sorting()
+                  sorting: controller.filters.searchSort # TODO: make SearchSort observable and move in.
 
             div
               className: 'beatmapsets__content js-audio--group'
@@ -117,12 +116,6 @@ export class SearchContent extends React.Component
                   error: controller.error
                   loading: controller.isPaging
                   more: controller.hasMore
-
-
-sorting = ->
-  [field, order] = controller.filters.displaySort.split('_')
-
-  { field, order }
 
 
 renderLinkToSupporterTag = (filterText) ->
