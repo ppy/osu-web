@@ -55,6 +55,29 @@
 
                 <div class="simple-form__row">
                     <div class="simple-form__label">
+                        {{ trans('beatmap_discussions.index.form.mode') }}
+                    </div>
+                    <div class="simple-form__select">
+                        <div class="form-select form-select--simple-form">
+                            <select class="form-select__input" name="mode">
+                                <option>
+                                    {{ trans('beatmaps.mode.all') }}
+                                </option>
+                                @foreach (App\Models\Beatmap::MODES as $modeStr => $modeInt)
+                                    <option
+                                        value="{{ $modeStr }}"
+                                        {{ isset($search['mode']) && $modeStr === $search['mode'] ? "selected" : "" }}
+                                    >
+                                        {{ trans("beatmaps.mode.{$modeStr}") }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="simple-form__row">
+                    <div class="simple-form__label">
                         {{ trans('beatmap_discussions.index.form.types') }}
                     </div>
                     <div class="simple-form__checkboxes-inline">
