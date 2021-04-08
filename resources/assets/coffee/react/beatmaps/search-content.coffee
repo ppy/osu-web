@@ -18,7 +18,10 @@ el = React.createElement
 beatmapsetStore = core.dataStore.beatmapsetStore
 controller = core.beatmapsetSearchController
 
-ITEM_HEIGHT = 110 # needs to be known in advance to calculate size of virtual scrolling area.
+# needs to be known in advance to calculate size of virtual scrolling area.
+ITEM_HEIGHT =
+  1: 125
+  2: 110
 
 ListRender = ({ virtual, itemHeight }) ->
   div
@@ -100,7 +103,7 @@ export class SearchContent extends React.Component
                   el Observables.BeatmapList,
                     items: _.chunk(beatmapsetIds, Observables.numberOfColumns)
                     itemBuffer: 5
-                    itemHeight: ITEM_HEIGHT
+                    itemHeight: ITEM_HEIGHT[Observables.numberOfColumns]
 
                 else
                   div className: 'beatmapsets__empty',
