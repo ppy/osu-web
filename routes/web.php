@@ -47,6 +47,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::group(['as' => 'beatmaps.', 'prefix' => '{beatmap}'], function () {
             Route::get('scores/users/{user}', 'BeatmapsController@userScore');
             Route::get('scores', 'BeatmapsController@scores')->name('scores');
+            Route::put('update-owner', 'BeatmapsController@updateOwner')->name('update-owner');
         });
     });
 

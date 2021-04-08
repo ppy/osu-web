@@ -12,6 +12,8 @@ import HeaderV4 from 'header-v4'
 import PlaymodeTabs from 'playmode-tabs'
 import * as React from 'react'
 import { a, div, h1, h2, p, span } from 'react-dom-factories'
+import { StringWithComponent } from 'string-with-component'
+import { UserLink } from 'user-link'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
 import { showVisual } from 'utils/beatmapset-helper'
 import Chart from 'beatmap-discussions/chart'
@@ -118,6 +120,13 @@ export class Header extends React.PureComponent
             duration: @props.currentBeatmap.total_length * 1000
 
           div className: "#{bn}__beatmap-stats",
+            div className: "#{bn}__guest",
+              if @props.currentBeatmap.user_id != @props.beatmapset.user_id
+                span null,
+                  el StringWithComponent,
+                    mappings:
+                      ':user': el(UserLink, key: 'user', user: @props.users[@props.currentBeatmap.user_id])
+                    pattern: osu.trans('beatmaps.discussions.guest')
             el BeatmapBasicStats, beatmap: @props.currentBeatmap
 
 

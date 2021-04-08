@@ -10,8 +10,10 @@
 
     right: 0;
     top: 0;
-    margin-right: 10px;
-    margin-top: 10px;
+    width: 100%;
+    padding: 10px 10px 0;
+    justify-content: space-between;
+    display: flex;
   }
 
   &__content {
@@ -72,6 +74,12 @@
       justify-content: space-between;
       flex-direction: row;
     }
+  }
+
+  &__guest {
+    font-size: @font-size--title-small;
+    display: flex;
+    align-items: center;
   }
 
   &__stats {

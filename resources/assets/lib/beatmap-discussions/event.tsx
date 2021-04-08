@@ -10,6 +10,19 @@ import { deletedUser } from 'models/user';
 import * as React from 'react';
 import TimeWithTooltip from 'time-with-tooltip';
 
+const isBeatmapOwnerChangeEventJson = (event: BeatmapsetEventJson): event is BeatmapOwnerChangeEventJson =>
+  event.type === 'beatmap_owner_change';
+
+interface BeatmapOwnerChangeEventJson extends BeatmapsetEventJson {
+  comment: {
+    beatmap_id: number;
+    beatmap_version: string;
+    new_user_id: number;
+    new_user_username: string;
+  };
+  type: 'beatmap_owner_change';
+}
+
 interface Props {
   discussions?: Partial<Record<string, BeatmapsetDiscussionJson>>;
   event: BeatmapsetEventJson;
@@ -165,6 +178,12 @@ export default class Event extends React.PureComponent<Props> {
     if (eventType === 'nsfw_toggle') {
       const newState = this.props.event.comment?.new ? 'to_1' : 'to_0';
       eventType += `.${newState}`;
+    }
+
+    if (isBeatmapOwnerChangeEventJson(this.props.event)) {
+      const data = this.props.event.comment;
+      params.new_user = osu.link(route('users.show', { user: data.new_user_id }), data.new_user_username);
+      params.beatmap = osu.link(route('beatmaps.show', { beatmap: data.beatmap_id }), data.beatmap_version);
     }
 
     const key = `beatmapset_events.event.${eventType}`;

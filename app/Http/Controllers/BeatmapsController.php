@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ScoreRetrievalException;
 use App\Models\Beatmap;
+use App\Models\BeatmapsetEvent;
 use App\Models\Score\Best\Model as BestModel;
 
 /**
@@ -106,6 +107,28 @@ class BeatmapsController extends Controller
         } catch (ScoreRetrievalException $ex) {
             return error_popup($ex->getMessage());
         }
+    }
+
+    public function updateOwner($id)
+    {
+        $beatmap = Beatmap::findOrFail($id);
+
+        priv_check('BeatmapUpdateOwner', $beatmap->beatmapset)->ensureCan();
+
+        $newUserId = get_int(request('beatmap.user_id'));
+
+        $beatmap->getConnection()->transaction(function () use ($beatmap, $newUserId) {
+            $beatmap->setOwner($newUserId);
+
+            BeatmapsetEvent::log(BeatmapsetEvent::BEATMAP_OWNER_CHANGE, auth()->user(), $beatmap->beatmapset, [
+                'beatmap_id' => $beatmap->getKey(),
+                'beatmap_version' => $beatmap->version,
+                'new_user_id' => $beatmap->user_id,
+                'new_user_username' => $beatmap->user->username,
+            ])->saveOrExplode();
+        });
+
+        return $beatmap->beatmapset->defaultDiscussionJson();
     }
 
     /**
