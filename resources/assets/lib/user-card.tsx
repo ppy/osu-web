@@ -18,6 +18,7 @@ import UserGroupBadges from 'user-group-badges';
 import { classWithModifiers } from 'utils/css';
 
 export type ViewMode = 'brick' | 'card' | 'list';
+export const viewModes: ViewMode[] = ['card', 'list', 'brick'];
 
 interface Props {
   activated: boolean;

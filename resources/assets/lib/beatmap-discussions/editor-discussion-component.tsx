@@ -27,7 +27,7 @@ interface Props extends RenderElementProps {
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapJsonExtended;
   discussionId?: number;
-  discussions: Record<number, BeatmapsetDiscussionJson>;
+  discussions: Partial<Record<number, BeatmapsetDiscussionJson>>;
   editMode?: boolean;
   readOnly?: boolean;
 }
@@ -128,7 +128,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   delete = () => {
     // Timeout is used to let Slate handle the click event before the node is removed - otherwise a "Cannot find a descendant at path" error gets thrown.
-    Timeout.set(0, () => Transforms.delete(this.context, {at: this.path()}));
+    window.setTimeout(() => Transforms.delete(this.context, {at: this.path()}), 0);
   };
 
   destroyTooltip = () => {
@@ -148,6 +148,10 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   editable = () => !(this.props.editMode && this.props.element.discussionId);
 
+  isRelevantDiscussion = (discussion?: BeatmapsetDiscussionJson): discussion is BeatmapsetDiscussionJson => (
+    discussion != null && discussion.beatmap_id === this.selectedBeatmap()
+  )
+
   nearbyDiscussions = () => {
     const timestamp = this.timestamp();
     if (timestamp == null) {
@@ -155,7 +159,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     }
 
     if (!this.cache.nearbyDiscussions || this.cache.nearbyDiscussions.timestamp !== timestamp || (this.cache.nearbyDiscussions.beatmap_id !== this.selectedBeatmap())) {
-      const relevantDiscussions = _.filter(this.props.discussions, (discussion: BeatmapsetDiscussionJson) => discussion.beatmap_id === this.selectedBeatmap());
+      const relevantDiscussions = _.filter(this.props.discussions, this.isRelevantDiscussion);
       this.cache.nearbyDiscussions = {
         beatmap_id: this.selectedBeatmap(),
         discussions: BeatmapDiscussionHelper.nearbyDiscussions(relevantDiscussions, timestamp),
