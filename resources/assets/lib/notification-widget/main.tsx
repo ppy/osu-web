@@ -29,11 +29,6 @@ interface State {
   hasError: boolean;
 }
 
-const linkMap: Record<string, string> = {
-  channel: 'chat.index',
-  null: 'notifications.index',
-};
-
 @observer
 export default class Main extends React.Component<Props, State> {
   static readonly defaultProps = {
@@ -133,7 +128,7 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private renderHistoryLink() {
-    const linkName = linkMap[this.props.only ?? 'null'];
+    const linkName = this.props.only === 'channel' ? 'chat.index' : 'notifications.index';
 
     return (
       <a className='notification-popup__filter' href={route(linkName)}>
