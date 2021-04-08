@@ -3,7 +3,7 @@
 
 import { forEach } from 'lodash';
 
-export type Modifiers = (string | null | undefined)[] | Record<string, boolean | null | undefined>;
+export type Modifiers = (string | null | undefined)[] | Partial<Record<string, boolean | null | undefined>>;
 
 export function classWithModifiers(className: string, modifiers?: Modifiers, modifiersOnly = false) {
   let ret = modifiersOnly ? '' : className;
