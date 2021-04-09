@@ -445,7 +445,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
             <span className='beatmapset-panel__stats-item-icon'>
               <i className='fas fa-fw fa-check-circle' />
             </span>
-            <TimeWithTooltip dateTime={this.displayDate} format='L' />
+            <TimeWithTooltip dateTime={this.displayDate} />
           </div>
         </div>
 
