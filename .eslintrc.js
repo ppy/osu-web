@@ -12,10 +12,9 @@ module.exports = {
   overrides: [{
     env: {
       browser: true,
-      es6: true,
+      node: false,
     },
     extends: [
-      "eslint:recommended",
       "plugin:@typescript-eslint/recommended",
       "plugin:@typescript-eslint/recommended-requiring-type-checking",
       "plugin:react/recommended",
@@ -28,8 +27,6 @@ module.exports = {
       sourceType: "module",
     },
     plugins: [
-      "eslint-plugin-jsdoc",
-      "eslint-plugin-import",
       "eslint-plugin-react",
       "@typescript-eslint",
     ],
@@ -134,82 +131,8 @@ module.exports = {
       "@typescript-eslint/type-annotation-spacing": "error",
       "@typescript-eslint/unbound-method": "warn", // TODO: some calls are intentionally unbounded...
       "@typescript-eslint/unified-signatures": "error",
-      "arrow-body-style": "error",
-      "arrow-parens": [
-        "error",
-        "always",
-      ],
-      "brace-style": [
-        "error",
-        "1tbs",
-      ],
-      "comma-dangle": [
-        "error",
-        "always-multiline",
-      ],
-      "complexity": "off",
-      "curly": [
-        "error",
-        "multi-line",
-      ],
-      "eol-last": "error",
-      "eqeqeq": [
-        "error",
-        "smart",
-      ],
-      "guard-for-in": "error",
-      "id-blacklist": [
-        "error",
-        "any",
-        "Number",
-        "number",
-        "String",
-        "string",
-        "Boolean",
-        "boolean",
-        "Undefined",
-        "undefined",
-      ],
-      "id-match": "error",
-      "import/order": "error",
-      "jsdoc/check-alignment": "error",
-      "jsdoc/check-indentation": "error",
-      "jsdoc/newline-after-description": "error",
-      "max-classes-per-file": [
-        "error",
-        1,
-      ],
-      "max-len": "off",
-      "new-parens": "error",
-      "no-bitwise": "error",
-      "no-caller": "error",
-      "no-console": "warn",
-      "no-eval": "error",
       "no-fallthrough": "off",
       "no-invalid-this": "off",
-      "no-multiple-empty-lines": "error",
-      "no-new-wrappers": "error",
-      "no-shadow": [
-        "error",
-        {
-          hoist: "all",
-        },
-      ],
-      "no-throw-literal": "error",
-      "no-trailing-spaces": "error",
-      "no-undef-init": "error",
-      "no-underscore-dangle": "error",
-      "no-unsafe-finally": "error",
-      "object-shorthand": "error",
-      "one-var": [
-        "error",
-        "never",
-      ],
-      "quote-props": [
-        "error",
-        "consistent-as-needed",
-      ],
-      "radix": "error",
       "react-hooks/exhaustive-deps": "error",
       "react/jsx-boolean-value": "error",
       "react/jsx-curly-spacing": [
@@ -229,24 +152,6 @@ module.exports = {
       "react/no-deprecated": "warn",
       "react/no-unsafe": "off",
       "react/self-closing-comp": "error",
-      "sort-keys": "error",
-      "space-before-function-paren": [
-        "error",
-        {
-          anonymous: "never",
-          asyncArrow: "always",
-          named: "never",
-        },
-      ],
-      "spaced-comment": [
-        "error",
-        "always",
-        {
-          markers: [
-            "/",
-          ],
-        },
-      ],
     },
     settings: {
       react: {
