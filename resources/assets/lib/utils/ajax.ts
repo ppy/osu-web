@@ -4,7 +4,7 @@
 import core from 'osu-core-singleton';
 import { createClickCallback } from 'utils/html';
 
-const error = (xhr: JQuery.jqXHR, status: string, callback?: () => void) => {
+export const error = (xhr: JQuery.jqXHR, status: string, callback?: () => void) => {
   if (status === 'abort') return;
   if (core.userLogin.showOnError(xhr, callback)) return;
   if (core.userVerification.showOnError(xhr, callback)) return;

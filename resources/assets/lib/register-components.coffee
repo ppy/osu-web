@@ -3,7 +3,7 @@
 
 import { ReactTurbolinks } from 'react-turbolinks'
 import Events from 'beatmap-discussions/events'
-import { BeatmapsetPanel } from 'beatmapset-panel'
+import BeatmapsetPanel from 'beatmapset-panel'
 import { BlockButton } from 'block-button'
 import ChatIcon from 'chat-icon'
 import { Comments } from 'comments'
@@ -13,6 +13,7 @@ import ForumPostReport from 'forum-post-report'
 import { FriendButton } from 'friend-button'
 import { LandingNews } from 'landing-news'
 import { keyBy } from 'lodash'
+import { observable } from 'mobx'
 import { deletedUser } from 'models/user'
 import MultiplayerSelectOptions from 'multiplayer-select-options'
 import NotificationIcon from 'notification-icon'
@@ -64,7 +65,7 @@ reactTurbolinks.register 'beatmap-discussion-events', Events, (container) ->
 
 
 reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
-  JSON.parse(el.dataset.beatmapsetPanel)
+  observable(JSON.parse(el.dataset.beatmapsetPanel))
 
 reactTurbolinks.registerPersistent 'forum-post-report', ForumPostReport
 

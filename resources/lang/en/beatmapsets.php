@@ -53,7 +53,9 @@ return [
         'discussion' => 'Discussion',
 
         'details' => [
+            'by_artist' => 'by :artist',
             'favourite' => 'Favourite this beatmapset',
+            'favourite_login' => 'Sign in to favourite this beatmap',
             'logged-out' => 'You need to sign in before downloading any beatmaps!',
             'mapped_by' => 'mapped by :mapper',
             'unfavourite' => 'Unfavourite this beatmapset',
@@ -120,6 +122,7 @@ return [
             'storyboard' => 'This beatmap contains storyboard',
             'success-rate' => 'Success Rate',
             'tags' => 'Tags',
+            'video' => 'This beatmap contains video',
         ],
 
         'nsfw_warning' => [

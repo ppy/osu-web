@@ -2,220 +2,488 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-panel {
-  @top: beatmapset-panel;
-  @padding: 10px;
-  @hover-transition-duration: 150ms;
-  .own-layer();
+  .show-beatmaps-popup() {
+    border-radius: @border-radius--large @border-radius--large 0 0;
+    --beatmaps-popup-opacity: 1;
+    --beatmaps-popup-pointer-events: auto;
+  }
+
+  @_hover-transition-duration: 150ms;
+  @_main-bg: hsl(var(--hsl-b2));
+  @_menu-width: 10px;
+  @_menu-width-visible: 30px;
+
+  // Extend by 1px on respective corner to prevent gap on some zoom levels.
+  // Sizing is based on @border-radius--large.
+  @_top-left-inverted-corner-path: path('M-1 -1 L-1 10 L0 10 A10 10 0 0 1 10 0 L10 -1 Z');
+  @_bottom-left-inverted-corner-path: path('M-1 11 L-1 0 L0 0 A10 10 0 0 0 10 10 L10 11 Z');
+  @_top-right-inverted-corner-path: path('M11 -1 L11 10 L10 10 A10 10 0 0 0 0 0 L0 -1 Z');
+  @_bottom-right-inverted-corner-path: path('M11 11 L11 0 L10 0 A10 10 0 0 1 0 10 L 0 11 Z');
+
+  // Those two toggles visibility of beatmaps popup (detailed beatmap list)
+  --beatmaps-popup-opacity: 0;
+  --beatmaps-popup-pointer-events: none;
+  // For elements which provide overall beatmap link.
+  // The link is disabled on mobile so it's easier to target
+  // other elements like expand button and mapper name.
+  --global-beatmap-link-pointer-events: none;
+  // This changes on hover on desktop and irrelevant in mobile.
+  // Background in mobile is controlled by &__cover-container::after.
+  --info-bg: transparent;
+  // Height of the card main content. A bit shorter on mobile than
+  // the actual card because of the extra row.
+  --main-height: 90px;
+  // Similar to --info-bg variable.
+  --menu-bg: transparent;
+  --menu-container-width: 0;
+  --menu-opacity: 0;
+  --mobile-extra-bar-height: calc(var(--panel-height) - var(--main-height));
+  --panel-height: 115px;
+  // Audio player progress (to be overridden)
   --progress: 0;
+  --play-bg: transparent;
+  --play-icon-opacity: 0;
+  --play-icon: @fa-var-play;
+  --play-width: 60px;
+  --stats-opacity: 1;
+  --transition: all 150ms ease-in-out;
 
-  &__content {
-    height: 75px;
-    padding: @padding;
-  }
+  position: relative;
+  background-color: @_main-bg;
+  border-radius: @border-radius--large;
+  font-size: @font-size--normal;
+  height: var(--panel-height);
+  transition: var(--transition);
 
-  &__count {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-left: 16px;
-  }
+  @media @desktop {
+    --global-beatmap-link-pointer-events: auto;
+    --info-bg: linear-gradient(0.25turn, hsl(var(--hsl-b2)), hsla(var(--hsl-b2), 0.8));
+    --main-height: 100%;
+    --menu-bg: hsl(var(--hsl-b3));
+    --menu-container-width: @_menu-width;
+    --panel-height: 100px;
+    --play-width: 90px;
+    --stats-opacity: 0;
 
-  &__count-number {
-    padding-right: 5px;
-  }
-
-  &__counts-box {
-    position: absolute;
-    right: @padding;
-    top: @padding;
-    display: flex;
-  }
-
-  &__difficulties {
-    position: absolute;
-    bottom: @padding;
-    left: @padding;
-    display: flex;
-    align-items: center;
-    font-size: @font-size--normal;
-  }
-
-  &__difficulty-icon {
-    margin-right: 5px;
-  }
-
-  &__difficulty-count {
-    margin-right: 10px;
-    margin-left: 3px;
-    font-weight: bold;
-  }
-
-  &__header {
-    display: block;
-    .link-white();
-    .link-plain();
-    .solid-text-shadow();
-
-    .at2x('~@images/layout/beatmaps/default-bg.png');
-    background-position: center;
-    background-size: cover;
-
-    font-weight: 400;
-    height: 120px;
-
-    border-radius: @border-radius-base @border-radius-base 0 0;
-    overflow: hidden;
-    position: relative;
-  }
-
-  &__header-text {
-    font-weight: 600;
-    font-size: @font-size--title-small;
-
-    &--title {
-      font-size: 1.3em;
-      display: flex;
-      align-items: center;
+    &:hover {
+      --info-bg: linear-gradient(0.25turn, hsl(var(--hsl-b4)), hsla(var(--hsl-b4), 0.8));
+      --menu-opacity: 1;
+      --menu-container-width: @_menu-width-visible;
+      --play-bg: hsla(var(--hsl-b6), 0.8);
+      --play-icon-opacity: 1;
+      --stats-opacity: 1;
     }
   }
 
-  &__icon {
+  &[data-audio-state="loading"],
+  &[data-audio-state="playing"] {
+    --play-bg: hsla(var(--hsl-b6), 0.8);
+    --play-icon-opacity: 1;
+    --play-icon: @fa-var-pause;
+  }
+
+  &--mobile-expanded {
+    @media @mobile {
+      .show-beatmaps-popup();
+
+      --menu-opacity: 1;
+      --menu-container-width: @_menu-width-visible;
+      --play-bg: hsla(var(--hsl-b6), 0.8);
+      --play-icon-opacity: 1;
+      --stats-opacity: 1;
+    }
+  }
+
+  &--with-beatmaps-popup-hover {
+    @media @desktop {
+      .show-beatmaps-popup();
+    }
+  }
+
+  &__beatmap-dot {
+    margin-right: 1px;
+    width: 6px;
+    height: 12px;
+    border-radius: 10000px;
+    background-color: var(--bg);
+  }
+
+  &__beatmap-dots {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    line-height: 12px;
+    height: $padding * 2 + $line-height;
+  }
+
+  &__beatmap-icon {
+    margin-right: 2px;
+    font-size: 14px; // icon size
+  }
+
+  &__beatmap-more {
+    font-weight: 600;
+    // Manual adjustment so it looks centered. The result is kind of different between Chromium and Firefox.
+    bottom: 2px;
+    position: relative;
+  }
+
+  &__beatmaps-all {
+    margin: -5px;
+    display: flex;
+  }
+
+  &__beatmaps-popup {
+    max-height: 50vh;
+    overflow: auto;
+    padding: 2px 5px;
+    display: grid;
+    grid-gap: 10px;
+  }
+
+  &__beatmaps-popup-group {
+    display: grid;
+    grid-gap: 2px;
+  }
+
+  &__beatmaps-popup-container {
+    .fancy-scrollbar();
+    opacity: var(--beatmaps-popup-opacity);
+    pointer-events: var(--beatmaps-popup-pointer-events);
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    background-color: @_main-bg;
+    padding: 5px 0 @border-radius--large;
+    border-radius: 0 0 @border-radius--large @border-radius--large;
+    transition: var(--transition);
+    z-index: @z-index--beatmaps-panel;
+
+    @media @desktop {
+      padding-top: @border-radius--large;
+    }
+
+    // hide top shadow
+    &::before {
+      content: '';
+      .thick-box-shadow();
+      border: 2px solid hsl(var(--hsl-h1));
+      height: calc(100% + var(--panel-height));
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      pointer-events: none;
+      opacity: inherit;
+      border-radius: @border-radius--large;
+    }
+  }
+
+  &__content {
+    pointer-events: none;
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: var(--main-height);
+  }
+
+  &__cover {
+    .full-size();
+    object-fit: cover;
+    border-radius: var(--border-radius);
+
+    &--default {
+      .at2x('~@images/layout/beatmaps/default-bg.png');
+      background-position: center;
+      background-size: cover;
+    }
+  }
+
+  &__cover-col {
+    position: relative;
+    --border-radius: 0;
+
+    &--play {
+      --border-radius: @border-radius--large 0 0 @border-radius--large;
+      width: calc(var(--play-width) + 10px);
+      flex: none;
+    }
+
+    &--info {
+      margin-right: @_menu-width;
+      flex: 1;
+    }
+  }
+
+  &__cover-container {
+    .full-size();
+    height: var(--main-height);
+    display: flex;
+    pointer-events: var(--global-beatmap-link-pointer-events);
+
+    // solid cover for mobile
+    &::after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: calc(100% - var(--play-width));
+      height: 100%;
+      right: 0;
+      top: 0;
+      // Adjust radius to prevent bleeding of the underneath cover
+      // when hover background (of &__play) is active.
+      border-radius: @border-radius--large - 1px;
+      background-color: hsl(var(--hsl-b4));
+
+      @media @desktop {
+        display: none;
+      }
+    }
+  }
+
+  &__extra-icon {
+    .circle(20px);
+    .center-content();
+    font-size: 10px;
+    background: hsla(var(--hsl-b6), 0.5);
+    margin: 1px;
+    padding-top: 1px; // adjust alignment
+    pointer-events: auto;
+  }
+
+  &__extra-icons {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    display: flex;
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 10px;
+    padding: 4px @border-radius--large 6px;
+    position: relative;
+    background: var(--info-bg);
+    display: flex;
+    flex-direction: column;
+    // Adjust radius to prevent bleeding of the underneath cover
+    // when hover background (of &__play) is active.
+    border-radius: (@border-radius--large - 1px) 0 0 (@border-radius--large - 1px);
+  }
+
+  &__info-row {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    position: relative;
+
+    &--artist {
+      .default-text-shadow();
+      font-size: @font-size--title-small;
+      font-weight: 600;
+    }
+
+    &--extra {
+      .link-plain();
+      .link-white();
+      pointer-events: var(--global-beatmap-link-pointer-events);
+
+      @media @mobile {
+        position: absolute;
+        left: calc(var(--play-width) * -1);
+        top: 100%;
+        height: var(--mobile-extra-bar-height);
+        width: calc(100% + var(--play-width));
+        align-items: center;
+        padding: 0 30px 0 5px; // right padding to account for the expand button
+      }
+    }
+
+    &--mapper {
+      color: hsl(var(--hsl-c2));
+      margin-top: 1px; // manual adjustment
+      font-weight: 600;
+      margin-bottom: auto;
+    }
+
+    &--stats {
+      margin: 0 -5px;
+      opacity: var(--stats-opacity);
+      overflow: hidden;
+
+      @media @desktop {
+        margin-bottom: 3px;
+      }
+    }
+
+    &--title {
+      .default-text-shadow();
+      font-size: @font-size--title-small-4;
+      font-weight: 600;
+    }
+  }
+
+  &__main-link {
+    .link-plain();
     .link-white();
-    padding-left: 5px;
+    pointer-events: auto;
+  }
+
+  &__menu {
+    .full-size();
+    opacity: var(--menu-opacity);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 12px; // icon size
+    color: hsl(var(--hsl-c2));
+    transition: var(--transition);
+    pointer-events: auto;
+    overflow: hidden;
+  }
+
+  &__menu-container {
+    width: var(--menu-container-width);
+    overflow: hidden;
+    flex: none;
+    background-color: var(--menu-bg);
+    position: relative;
+    border-radius: 0 @border-radius--large @border-radius--large 0;
+    transition: var(--transition);
+
+    @media @desktop {
+      overflow: visible;
+    }
+
+    &::after, &::before {
+      content: '';
+      width: @border-radius--large;
+      height: $width;
+      position: absolute;
+      background-color: inherit;
+      right: 100%;
+    }
+
+    &::before {
+      top: 0;
+      clip-path: @_top-right-inverted-corner-path;
+    }
+
+    &::after {
+      bottom: 0;
+      clip-path: @_bottom-right-inverted-corner-path;
+    }
+  }
+
+  &__menu-item {
+    .reset-input();
+    color: hsl(var(--hsl-l1));
+    width: 20px;
+    text-align: center;
+    padding: 3px 0;
+
+    .link-hover({
+      color: hsl(var(--hsl-c1));
+    });
 
     &--disabled {
-      color: #999;
-
       .link-hover({
-        color: #999;
+        color: hsl(var(--hsl-l1));
       });
     }
   }
 
-  &__icons-box {
-    flex: none;
-  }
-
-  &__image {
-    .full-size();
-    object-fit: cover;
-  }
-
-  &__image-overlay {
-    .full-size();
-    background-color: fade(#000, 40%);
-  }
-
-  &__mapper-source-box {
-    font-size: 70%;
-    flex: 1;
-    // avoid extending beyond container on long line
-    min-width: 0;
-  }
-
-  &__panel {
-    .own-layer();
-    .default-box-shadow();
-    border-radius: @border-radius-base + 2px @border-radius-base + 2px @border-radius-base @border-radius-base;
-
+  &__mobile-expand {
+    .reset-input();
+    pointer-events: auto;
+    height: var(--mobile-extra-bar-height);
     width: 100%;
-    background: @osu-colour-b3;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    align-items: center;
+    color: hsl(var(--hsl-c2));
+    position: absolute;
+    bottom: 0;
+    right: 0;
 
-    .@{top}:hover & {
-      background: @osu-colour-b2;
+    @media @desktop {
+      display: none;
     }
   }
 
   &__play {
     .reset-input();
+    .full-size();
+    .center-content();
     .fas();
-    .link-plain();
-    .fade-element(@hover-transition-duration);
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-size: 40px;
-    opacity: 0;
-    line-height: 1;
-    padding: (@padding / 2) @padding @padding;
-    color: @osu-colour-c1;
-    --icon: @fa-var-play;
+    font-size: 14px; // icon size
+    padding: 15px;
+    pointer-events: auto;
+    opacity: var(--play-icon-opacity);
 
     &:hover {
-      color: @yellow;
+      color: hsl(var(--hsl-orange-1));
     }
 
     &::before {
-      content: var(--icon);
+      display: block;
+      content: var(--play-icon);
     }
 
-    .@{top}:hover & {
-      opacity: 1;
-    }
-
-    .@{top}[data-audio-state="loading"] &,
-    .@{top}[data-audio-state="playing"] & {
-      color: @yellow;
-      opacity: 1;
-      --icon: @fa-var-pause;
+    @media @mobile {
+      transition: var(--transition);
     }
   }
 
-  &__preview-bar {
-    background-color: @yellow;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: calc(var(--progress) * 100%);
-    height: 3px;
-  }
+  &__play-container {
+    width: var(--play-width);
+    flex: none;
+    background-color: var(--play-bg);
+    position: relative;
+    // Adjust radius to prevent bleeding of the underneath cover
+    // when hover background is active.
+    border-radius: (@border-radius--large - 1px) 0 0 (@border-radius--large - 1px);
 
-  &__row {
-    display: flex;
-  }
+    &::after, &::before {
+      content: '';
+      width: @border-radius--large;
+      height: $width;
+      position: absolute;
+      background-color: inherit;
+      left: 100%;
+    }
 
-  &__status-container {
-    display: flex;
-    position: absolute;
-    margin: 5px;
+    &::before {
+      top: 0;
+      clip-path: @_top-left-inverted-corner-path;
+    }
 
-    .fade-element(@hover-transition-duration);
-
-    .@{top}:hover &,
-    .@{top}[data-audio-state="loading"] &,
-    .@{top}[data-audio-state="playing"] & {
-      opacity: 0;
+    &::after {
+      bottom: 0;
+      clip-path: @_bottom-left-inverted-corner-path;
     }
   }
 
-  &__shadow {
-    .default-border-radius();
-    .own-layer();
+  &__play-progress {
     .full-size();
-    .thicker-box-shadow();
-    .fade-element(@hover-transition-duration);
-
-    opacity: 0;
-    pointer-events: none;
-
-    .@{top}:hover & {
-      opacity: 1;
-    }
+    .center-content();
+    transition: var(--transition);
+    opacity: var(--play-icon-opacity);
   }
 
-  &__title-artist-box {
-    position: absolute;
-    left: @padding;
-    bottom: @padding;
-    width: calc(100% - (@padding * 2));
+  &__stats-item {
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+    flex: none;
   }
 
-  &__extra-icon {
-    font-size: 14px;
-    line-height: 28px;
-    background: osu-hsla(@osu-colour-b4, 70%);
-    padding: 0px 5px;
-    margin-right: 5px;
-    border-radius: 14px;
+  &__stats-item-icon {
+    font-size: 8px;
+    margin-right: 4px;
+    color: hsl(var(--hsl-c2));
   }
 }
