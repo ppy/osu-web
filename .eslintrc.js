@@ -2,43 +2,43 @@
 // See the LICENCE file in the repository root for full licence text.
 
 module.exports = {
-  "env": {
-    "es6": true,
-    "node": true,
+  env: {
+    es6: true,
+    node: true,
   },
-  "extends": [
+  extends: [
     "eslint:recommended",
   ],
-  "parserOptions": {
-    "sourceType": "module"
+  parserOptions: {
+    sourceType: "module",
   },
-  "plugins": [
+  plugins: [
     "eslint-plugin-jsdoc",
     "eslint-plugin-import",
   ],
-  "rules": {
+  rules: {
     "arrow-body-style": "error",
     "arrow-parens": [
       "error",
-      "always"
+      "always",
     ],
     "brace-style": [
       "error",
-      "1tbs"
+      "1tbs",
     ],
     "comma-dangle": [
       "error",
-      "always-multiline"
+      "always-multiline",
     ],
     "complexity": "off",
     "curly": [
       "error",
-      "multi-line"
+      "multi-line",
     ],
     "eol-last": "error",
     "eqeqeq": [
       "error",
-      "smart"
+      "smart",
     ],
     "guard-for-in": "error",
     "id-blacklist": [
@@ -51,7 +51,7 @@ module.exports = {
       "Boolean",
       "boolean",
       "Undefined",
-      "undefined"
+      "undefined",
     ],
     "id-match": "error",
     "import/order": "error",
@@ -60,7 +60,7 @@ module.exports = {
     "jsdoc/newline-after-description": "error",
     "max-classes-per-file": [
       "error",
-      1
+      1,
     ],
     "max-len": "off",
     "new-parens": "error",
@@ -73,8 +73,8 @@ module.exports = {
     "no-shadow": [
       "error",
       {
-        "hoist": "all"
-      }
+        hoist: "all",
+      },
     ],
     "no-throw-literal": "error",
     "no-trailing-spaces": "error",
@@ -84,30 +84,30 @@ module.exports = {
     "object-shorthand": "error",
     "one-var": [
       "error",
-      "never"
+      "never",
     ],
     "quote-props": [
       "error",
-      "consistent-as-needed"
+      "consistent-as-needed",
     ],
     "radix": "error",
     "sort-keys": "error",
     "space-before-function-paren": [
       "error",
       {
-        "anonymous": "never",
-        "asyncArrow": "always",
-        "named": "never"
-      }
+        anonymous: "never",
+        asyncArrow: "always",
+        named: "never",
+      },
     ],
     "spaced-comment": [
       "error",
       "always",
       {
-        "markers": [
-          "/"
-        ]
-      }
+        markers: [
+          "/",
+        ],
+      },
     ],
-  }
+  },
 };
