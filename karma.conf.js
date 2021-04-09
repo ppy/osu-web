@@ -51,7 +51,7 @@ function readWebpackConfig() {
 }
 
 process.env.SKIP_MANIFEST = true;
-webpackConfig = readWebpackConfig();
+const webpackConfig = readWebpackConfig();
 webpackConfig.plugins.push(new ExitOnErrorWebpackPlugin());
 webpackConfig.mode = 'development';
 webpackConfig.devtool = 'inline-source-map';
@@ -76,12 +76,12 @@ module.exports = function(config) {
     colors: true,
     concurrency: Infinity,
     exclude: [],
-    files: files,
+    files,
     frameworks: ['jasmine'],
     logLevel: config.LOG_INFO,
     mime: { 'text/x-typescript': ['ts', 'tsx'] },
     port: 9876,
-    preprocessors: preprocessors,
+    preprocessors,
     reporters: ['mocha'],
     singleRun: false, // set to true for the process to exit after completing.
     webpack: webpackConfig,
