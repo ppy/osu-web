@@ -91,7 +91,7 @@ const NsfwBadge = () => (
 );
 
 const StatsItem = ({ icon, title, value }: { icon: string; title: string; value: number }) => (
-  <div className='beatmapset-panel__stats-item u-hover' title={title}>
+  <div className='beatmapset-panel__stats-item' title={title}>
     <span className='beatmapset-panel__stats-item-icon'>
       <i className={icon} />
     </span>
