@@ -40,7 +40,21 @@ const displayDateMap: Record<BeatmapsetStatus, 'last_updated' | 'ranked_date'> =
   wip: 'last_updated',
 };
 
-const ExtraIcon = ({ icon, titleVariant }: { icon: string, titleVariant: string }) => (
+// hides img elements that have errored (hides native browser broken-image icons)
+const hideImage = (e: React.SyntheticEvent<HTMLElement>) => {
+  e.currentTarget.style.display = 'none';
+};
+
+const BeatmapDot = ({ beatmap }: { beatmap: BeatmapJson }) => (
+  <div
+    className='beatmapset-panel__beatmap-dot'
+    style={{
+      '--bg': `var(--diff-${BeatmapHelper.getDiffRating(beatmap.difficulty_rating)})`,
+    } as React.CSSProperties}
+  />
+);
+
+const ExtraIcon = ({ icon, titleVariant }: { icon: string; titleVariant: string }) => (
   <div
     className='beatmapset-panel__extra-icon'
     title={osu.trans(`beatmapsets.show.info.${titleVariant}`)}
@@ -51,8 +65,8 @@ const ExtraIcon = ({ icon, titleVariant }: { icon: string, titleVariant: string 
 
 const MapperLink = ({ beatmapset }: { beatmapset: BeatmapsetJson }) => (
   <UserLink
-    user={{ id: beatmapset.user_id, username: beatmapset.creator }}
     className='beatmapset-panel__mapper-link u-hover'
+    user={{ id: beatmapset.user_id, username: beatmapset.creator }}
   />
 );
 
@@ -62,7 +76,7 @@ const NsfwBadge = () => (
   </span>
 );
 
-const StatsItem = ({ icon, title, value }: { icon: string, title: string, value: number }) => (
+const StatsItem = ({ icon, title, value }: { icon: string; title: string; value: number }) => (
   <div className='beatmapset-panel__stats-item u-hover' title={title}>
     <span className='beatmapset-panel__stats-item-icon'>
       <i className={icon} />
@@ -104,8 +118,8 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     let titleVariant: string;
 
     if (type === 'direct') {
-        url = OsuUrlHelper.beatmapsetDownloadDirect(this.props.beatmapset.id);
-        titleVariant = 'direct';
+      url = OsuUrlHelper.beatmapsetDownloadDirect(this.props.beatmapset.id);
+      titleVariant = 'direct';
     } else {
       const params: Record<string, string|number> = {
         beatmapset: this.props.beatmapset.id,
@@ -154,7 +168,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
       const beatmaps = byMode[mode];
 
       if (beatmaps != null) {
-        ret.push({ mode, beatmaps });
+        ret.push({ beatmaps, mode });
       }
     });
 
@@ -193,6 +207,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   private get url() {
     return route('beatmapsets.show', { beatmapset: this.props.beatmapset.id});
   }
+
   componentWillUnmount() {
     $(document).off('click', this.onDocumentClick);
     Object.values(this.timeouts).forEach((timeout) => {
@@ -223,7 +238,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           {this.renderInfoArea()}
           {this.renderMenuArea()}
         </div>
-        <button type='button' onClick={this.onMobileExpandToggleClick} className='beatmapset-panel__mobile-expand'>
+        <button onClick={this.onMobileExpandToggleClick} className='beatmapset-panel__mobile-expand' type='button'>
           <span className={`fas fa-angle-${this.mobileExpanded ? 'up' : 'down'}`} />
         </button>
       </div>
@@ -262,11 +277,6 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     this.beatmapsPopup = true;
   }
 
-  private hideImage(e: React.SyntheticEvent<HTMLElement>) {
-    // hides img elements that have errored (hides native browser broken-image icons)
-    e.currentTarget.style.display = 'none';
-  }
-
   private onDocumentClick = (e: JQuery.ClickEvent) => {
     // only for shrinking
     if (!this.mobileExpanded) return;
@@ -290,36 +300,22 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     }
   }
 
-  private renderBeatmapIcon(beatmap: BeatmapJson) {
-    return (
-      <div
-        className='beatmapset-panel__beatmap'
-        style={{
-          '--bg': `var(--diff-${BeatmapHelper.getDiffRating(beatmap.difficulty_rating)})`,
-        } as React.CSSProperties}
-        key={`beatmap-${beatmap.id}`}
-      />
-    );
-  }
-
-  private renderBeatmapIcons = ({ mode, beatmaps }: BeatmapGroup) => {
-    return (
-      <div
-        className='beatmapset-panel__beatmaps'
-        key={mode}
-      >
-        <div className='beatmapset-panel__beatmap-icon'>
-          <i className={`fal fa-extra-mode-${mode}`} />
-        </div>
-        {beatmaps.slice(0, 10).map(this.renderBeatmapIcon)}
-        {beatmaps.length > 10 && (
-          <div className='beatmapset-panel__beatmap-more'>
-            +
-          </div>
-        )}
+  private renderBeatmapDots = ({ mode, beatmaps }: BeatmapGroup) => (
+    <div
+      className='beatmapset-panel__beatmap-dots'
+      key={mode}
+    >
+      <div className='beatmapset-panel__beatmap-icon'>
+        <i className={`fal fa-extra-mode-${mode}`} />
       </div>
-    );
-  }
+      {beatmaps.slice(0, 10).map((beatmap) => <BeatmapDot key={beatmap.id} beatmap={beatmap} />)}
+      {beatmaps.length > 10 && (
+        <div className='beatmapset-panel__beatmap-more'>
+          +
+        </div>
+      )}
+    </div>
+  );
 
   private renderBeatmapsPopup() {
     return (
@@ -365,13 +361,13 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
   private renderCover() {
     return (
-      <a href={this.url} className='beatmapset-panel__cover-container'>
+      <a className='beatmapset-panel__cover-container' href={this.url}>
         <div className='beatmapset-panel__cover-col beatmapset-panel__cover-col--play'>
           <div className='beatmapset-panel__cover beatmapset-panel__cover--default' />
           {this.showVisual && (
             <Img2x
               className='beatmapset-panel__cover'
-              onError={this.hideImage}
+              onError={hideImage}
               src={this.props.beatmapset.covers.card}
             />
           )}
@@ -381,7 +377,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           {this.showVisual && (
             <Img2x
               className='beatmapset-panel__cover'
-              onError={this.hideImage}
+              onError={hideImage}
               src={this.props.beatmapset.covers.card}
             />
           )}
@@ -408,7 +404,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           <div className='u-ellipsis-overflow'>
             <StringWithComponent
               pattern={osu.trans('beatmapsets.show.details.mapped_by')}
-              mappings={{ ':mapper': <MapperLink beatmapset={this.props.beatmapset} key='mapper' /> }}
+              mappings={{ ':mapper': <MapperLink key='mapper' beatmapset={this.props.beatmapset} /> }}
             />
           </div>
         </div>
@@ -472,7 +468,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
             {osu.trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
           </div>
           <div className='beatmapset-panel__beatmaps-all'>
-            {this.groupedBeatmaps.map(this.renderBeatmapIcons)}
+            {this.groupedBeatmaps.map(this.renderBeatmapDots)}
           </div>
         </a>
       </div>
@@ -526,7 +522,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   private renderPlayArea() {
     return (
       <div className='beatmapset-panel__play-container'>
-        {this.showVisual && <button type='button' className='beatmapset-panel__play js-audio--play' />}
+        {this.showVisual && <button className='beatmapset-panel__play js-audio--play' type='button' />}
         <div className='beatmapset-panel__play-progress'>
           <CircularProgress
             current={0}

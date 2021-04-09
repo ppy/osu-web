@@ -100,12 +100,20 @@
     }
   }
 
-  &__beatmap {
+  &__beatmap-dot {
     margin-right: 1px;
     width: 6px;
     height: 12px;
     border-radius: 10000px;
     background-color: var(--bg);
+  }
+
+  &__beatmap-dots {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    line-height: 12px;
+    height: $padding * 2 + $line-height;
   }
 
   &__beatmap-icon {
@@ -118,14 +126,6 @@
     // Manual adjustment so it looks centered. The result is kind of different between Chromium and Firefox.
     bottom: 2px;
     position: relative;
-  }
-
-  &__beatmaps {
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    line-height: 12px;
-    height: $padding * 2 + $line-height;
   }
 
   &__beatmaps-all {

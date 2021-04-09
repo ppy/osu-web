@@ -34,20 +34,18 @@ export function toggleFavourite(beatmapset: BeatmapsetJson) {
   beatmapset.has_favourited = add;
   beatmapset.favourite_count += add ? 1 : -1;
 
-  $.ajax(route('beatmapsets.favourites.store', { beatmapset: beatmapset.id }), {
+  void $.ajax(route('beatmapsets.favourites.store', { beatmapset: beatmapset.id }), {
     data: {
       action: add ? 'favourite' : 'unfavourite',
     },
     method: 'POST',
-  })
-  .fail((xhr: JQuery.jqXHR, status: string) => {
+  }).fail((xhr: JQuery.jqXHR, status: string) => {
     // undo faked change
     beatmapset.has_favourited = !add;
     beatmapset.favourite_count += add ? -1 : 1;
 
     error(xhr, status, retryCallback);
-  })
-  .done((data: FavouriteResponse) => {
+  }).done((data: FavouriteResponse) => {
     beatmapset.favourite_count = data.favourite_count;
   });
 }
