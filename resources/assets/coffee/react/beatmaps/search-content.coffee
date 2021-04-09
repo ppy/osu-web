@@ -34,7 +34,7 @@ ListRender = ({ virtual, itemHeight }) ->
             div
               className: 'beatmapsets__item'
               key: beatmapsetId
-              el BeatmapsetPanel, beatmap: core.dataStore.beatmapsetStore.get(beatmapsetId)
+              el BeatmapsetPanel, beatmapset: core.dataStore.beatmapsetStore.get(beatmapsetId)
 
 # stored in an observable so a rerender will occur when the HOC gets updated.
 Observables = observable
