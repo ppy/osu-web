@@ -50,7 +50,7 @@ export default class Main extends React.PureComponent<Props> {
     const beatmapset = follow.latest_beatmapset;
 
     return (
-      <div className='follows-table__row' key={follow.notifiable_id}>
+      <div key={follow.notifiable_id} className='follows-table__row'>
         <div className='follows-table__data follows-table__data--user'>
           <a
             className='follow-mapper js-usercard'

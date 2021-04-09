@@ -223,14 +223,14 @@ export default class ConversationView extends React.Component<Props> {
     }
 
     return (
-      <div className='chat-conversation' onScroll={this.onScroll} ref={this.chatViewRef}>
+      <div ref={this.chatViewRef} className='chat-conversation' onScroll={this.onScroll}>
         <div className='chat-conversation__new-chat-avatar'>
           <UserAvatar user={{id: 0, avatar_url: channel.icon}} />
         </div>
         <div className='chat-conversation__chat-label'>
           {channel.pmTarget != null ? (
             <StringWithComponent
-              mappings={{':name': <a className='js-usercard' data-user-id={channel.pmTarget} href={route('users.show', {user: channel.pmTarget})} key='user'>{channel.name}</a>}}
+              mappings={{':name': <a key='user' className='js-usercard' data-user-id={channel.pmTarget} href={route('users.show', {user: channel.pmTarget})}>{channel.name}</a>}}
               // TODO: rework this once the user class situation is resolved
               pattern={osu.trans('chat.talking_with')}
             />

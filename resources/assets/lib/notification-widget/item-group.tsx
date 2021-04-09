@@ -98,7 +98,7 @@ export default class ItemGroup extends React.Component<Props, State> {
   }
 
   private renderItem = (item: Notification) => (
-    <div className='notification-popup-item-group__item' key={item.id}>
+    <div key={item.id} className='notification-popup-item-group__item'>
       <ItemCompact item={item} stack={this.props.stack} />
     </div>
   );

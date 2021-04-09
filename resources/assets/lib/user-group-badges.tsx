@@ -29,7 +29,7 @@ export default function UserGroupBadges(props: Props) {
         mainGroupWasSet = true;
 
         return (
-          <span className={className} key={group.identifier}>
+          <span key={group.identifier} className={className}>
             <UserGroupBadge group={group} modifiers={modifiers} />
           </span>
         );

@@ -106,8 +106,8 @@ export default class Main extends React.Component<Props, State> {
 
     return (
       <button
-        className={osu.classWithModifiers('notification-popup__filter', modifiers)}
         key={link.title}
+        className={osu.classWithModifiers('notification-popup__filter', modifiers)}
         onClick={this.handleFilterClick}
         {...data}
       >
@@ -189,7 +189,7 @@ export default class Main extends React.Component<Props, State> {
       }
 
       return (
-        <p className='notification-popup__empty' key='empty'>
+        <p key='empty' className='notification-popup__empty'>
           {osu.trans(transKey)}
         </p>
       );

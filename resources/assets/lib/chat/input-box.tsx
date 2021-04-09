@@ -91,6 +91,7 @@ export default class InputBox extends React.Component<Props> implements Dispatch
     return (
       <div className='chat-input'>
         <TextareaAutosize
+          ref={this.inputBoxRef}
           autoComplete='off'
           className={`chat-input__box${disableInput ? ' chat-input__box--disabled' : ''}`}
           disabled={disableInput}
@@ -99,7 +100,6 @@ export default class InputBox extends React.Component<Props> implements Dispatch
           onChange={this.handleChange}
           onKeyDown={this.checkIfEnterPressed}
           placeholder={disableInput ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
-          ref={this.inputBoxRef}
           value={channel?.inputText}
         />
 

@@ -98,7 +98,7 @@ export class WikiSearch extends React.Component {
     if (!this.controller.isSuggestionsVisible) return null;
 
     return (
-      <div className='wiki-search__suggestions u-fancy-scrollbar' onMouseLeave={this.handleMouseLeave} ref={this.ref}>
+      <div ref={this.ref} className='wiki-search__suggestions u-fancy-scrollbar' onMouseLeave={this.handleMouseLeave}>
         {
           this.controller.suggestions.map((item, index) => {
             const setIndex = () => {
@@ -110,9 +110,9 @@ export class WikiSearch extends React.Component {
 
             return (
               <a
+                key={index}
                 className={osu.classWithModifiers('wiki-search__suggestion', this.controller.selectedIndex === index ? ['active'] : [])}
                 href={href}
-                key={index}
                 onMouseEnter={setIndex}
               >
                 <span dangerouslySetInnerHTML={{ __html: item.highlight }} />

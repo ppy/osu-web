@@ -33,11 +33,11 @@ export default function ScoreTower(props: Props) {
   return (
     <div className='score-tower'>{ranks.map((rank) => (
       <div
+        key={rank}
         className={classWithModifiers('score-tower__item', {
           missed: currentRankInt < rankIntMap[rank],
           passed: currentRankInt > rankIntMap[rank],
         })}
-        key={rank}
       >
         <div className={`score-rank score-rank--${rank}`} />
       </div>

@@ -283,8 +283,8 @@ export class Nominator extends React.PureComponent<Props, State> {
       const disabled = !this.userCanNominateMode(mode);
       return (
         <label
-          className={classWithModifiers('osu-switch-v2', { disabled })}
           key={mode}
+          className={classWithModifiers('osu-switch-v2', { disabled })}
         >
           <input
             checked={this.state.selectedModes.includes(mode)}
@@ -308,7 +308,7 @@ export class Nominator extends React.PureComponent<Props, State> {
     return (
       <>
         {osu.trans('beatmapsets.nominate.dialog.which_modes')}
-        <div className={`${this.bn}__checkboxes`} ref={this.checkboxContainerRef}>
+        <div ref={this.checkboxContainerRef} className={`${this.bn}__checkboxes`}>
           {renderPlaymodes}
         </div>
         <div className={`${this.bn}__warn`}>

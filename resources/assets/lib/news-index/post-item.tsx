@@ -38,8 +38,8 @@ export default function PostItem({modifiers, post}: {modifiers?: string[]; post:
       <div className='news-card__main'>
         <div className='news-card__row news-card__row--title'>{post.title}</div>
         <div
-          className='news-card__row news-card__row--preview'
           dangerouslySetInnerHTML={{ __html: preview }}
+          className='news-card__row news-card__row--preview'
         />
         <div className='news-card__row news-card__row--author'>
           <StringWithComponent

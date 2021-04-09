@@ -184,10 +184,10 @@ export class UserList extends React.PureComponent<Props> {
 
     return (
       <a
+        key={key}
         className={className}
         data-key={key}
         href={osu.updateQueryString(null, { filter: key })}
-        key={key}
         onClick={this.optionSelected}
       >
         <div className='update-streams-v2__bar u-changelog-stream--bg' />
@@ -308,9 +308,9 @@ export class UserList extends React.PureComponent<Props> {
   private renderPlaymodeFilter() {
     const playmodeButtons = playModes.map((mode) => (
       <button
+        key={mode}
         className={osu.classWithModifiers('user-list__view-mode', this.state.playMode === mode ? ['active'] : [])}
         data-value={mode}
-        key={mode}
         onClick={this.playmodeSelected}
         title={osu.trans(`beatmaps.mode.${mode}`)}
       >

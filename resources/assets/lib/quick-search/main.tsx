@@ -46,11 +46,11 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
             </span>
 
             <input
+              ref={this.inputRef}
               className='quick-search-input__input js-click-menu--autofocus'
               onChange={this.updateQuery}
               onKeyDown={this.onInputKeyDown}
               placeholder={osu.trans('home.search.placeholder')}
-              ref={this.inputRef}
               value={this.props.worker.query}
             />
           </div>
@@ -117,8 +117,8 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
           const selectBeatmapset = () => this.selectBox('beatmapset', idx);
           return (
             <div
-              className='quick-search-items__item'
               key={beatmapset.id}
+              className='quick-search-items__item'
               onMouseEnter={selectBeatmapset}
               onMouseLeave={this.onMouseLeave}
             >
@@ -155,8 +155,8 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
           return (
             <div
-              className='quick-search-items__item'
               key={mode}
+              className='quick-search-items__item'
               onMouseEnter={selectOthers}
               onMouseLeave={this.onMouseLeave}
             >
@@ -178,7 +178,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     return (
       <div className='quick-search-items quick-search-items--empty'>
         {modes.map((mode) => (
-          <div className='quick-search-items__item' key={mode}>
+          <div key={mode} className='quick-search-items__item'>
             {osu.trans('quick_search.result.empty_for', { modes: osu.trans(`quick_search.mode.${mode}`) })}
           </div>
         ))}
@@ -284,8 +284,8 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
           const selectUser = () => this.selectBox('user', idx);
           return (
             <div
-              className='quick-search-items__item'
               key={user.id}
+              className='quick-search-items__item'
               onMouseEnter={selectUser}
               onMouseLeave={this.onMouseLeave}
             >

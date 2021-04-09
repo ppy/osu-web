@@ -15,7 +15,7 @@ export const SupporterIcon = (props: Props) => {
   return (
     <span className={className} title={osu.trans('users.show.is_supporter')}>
       {
-        times(props.level || 1, (n) => <span className='fas fa-heart' key={n} />)
+        times(props.level || 1, (n) => <span key={n} className='fas fa-heart' />)
       }
     </span>
   );

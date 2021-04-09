@@ -83,9 +83,9 @@ export default class RankingFilter extends React.PureComponent<Props> {
 
   handleRenderOption = (props: OptionRenderProps) => (
     <a
+      key={props.option.id ?? ''}
       className={props.cssClasses}
       href={osu.updateQueryString(null, { country: props.option.id, page: null })}
-      key={props.option.id ?? ''}
       onClick={props.onClick}
     >
       {props.children}

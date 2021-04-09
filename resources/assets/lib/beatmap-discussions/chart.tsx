@@ -35,11 +35,11 @@ export default function Chart(props: Props) {
 
       items.push((
         <a
+          key={discussion.id}
           className={className}
           data-tooltip-modifiers='extra-padding'
           data-tooltip-position='bottom center'
           href={BeatmapDiscussionHelper.url({ discussion })}
-          key={discussion.id}
           style={{
             left: `${100 * relativeTimestamp}%`,
           }}

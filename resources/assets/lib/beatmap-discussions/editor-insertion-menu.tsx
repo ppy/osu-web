@@ -217,8 +217,8 @@ export class EditorInsertionMenu extends React.Component<Props> {
     return (
       <Portal>
         <div
-          className={`${this.bn}`}
           ref={this.insertRef}
+          className={`${this.bn}`}
         >
           <div className={`${this.bn}__body`}>
             <i className='fas fa-plus' />

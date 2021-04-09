@@ -77,16 +77,16 @@ export default function Dial(props: Props) {
           <g transform='translate(100, 100)'>
             {pie(refData).map((d) => (
               <path
+                key={d.index}
                 className={`score-dial__inner score-dial__inner--${d.index}`}
                 d={arc({ innerRadius: 68, outerRadius: 73, ...d }) ?? undefined}
-                key={d.index}
               />
             ))}
             {pie(valueData).map((d) => (
               <path
+                key={d.index}
                 className={`score-dial__outer score-dial__outer--${d.index}`}
                 d={arc({ innerRadius: 75, outerRadius: 100, ...d }) ?? undefined}
-                key={d.index}
               />
             ))}
           </g>

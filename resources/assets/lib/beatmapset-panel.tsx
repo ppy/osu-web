@@ -252,7 +252,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           {this.renderInfoArea()}
           {this.renderMenuArea()}
         </div>
-        <button onClick={this.onMobileExpandToggleClick} className='beatmapset-panel__mobile-expand' type='button'>
+        <button className='beatmapset-panel__mobile-expand' onClick={this.onMobileExpandToggleClick} type='button'>
           <span className={`fas fa-angle-${this.mobileExpanded ? 'up' : 'down'}`} />
         </button>
       </div>
@@ -267,7 +267,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     this.timeouts.beatmapsPopup = window.setTimeout(() => {
       this.beatmapsPopupHover = false;
     }, 500);
-  }
+  };
 
   private beatmapsPopupDelayedShow = () => {
     window.clearTimeout(this.timeouts.beatmapsPopup);
@@ -277,19 +277,19 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     this.timeouts.beatmapsPopup = window.setTimeout(() => {
       this.beatmapsPopupHover = true;
     }, 100);
-  }
+  };
 
   private beatmapsPopupHide = () => {
     window.clearTimeout(this.timeouts.beatmapsPopup);
 
     this.beatmapsPopupHover = false;
-  }
+  };
 
   private beatmapsPopupKeep = () => {
     window.clearTimeout(this.timeouts.beatmapsPopup);
 
     this.beatmapsPopupHover = true;
-  }
+  };
 
   private onDocumentClick = (e: JQuery.ClickEvent) => {
     // only for shrinking
@@ -301,18 +301,18 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
     $(document).off('click', this.onDocumentClick);
     this.mobileExpanded = false;
-  }
+  };
 
   private onExtraRowEnter = () => {
     this.beatmapsPopupDelayedShow();
-  }
+  };
 
   private onMobileExpandToggleClick = () => {
     this.mobileExpanded = !this.mobileExpanded;
     if (this.mobileExpanded) {
       $(document).on('click', this.onDocumentClick);
     }
-  }
+  };
 
   private renderBeatmapsPopup() {
     return (
@@ -326,9 +326,9 @@ export default class BeatmapsetPanel extends React.Component<Props> {
             <div key={mode} className='beatmapset-panel__beatmaps-popup-group'>
               {beatmaps.map((beatmap) => (
                 <a
+                  key={beatmap.id}
                   className='beatmaps-popup-item'
                   href={route('beatmaps.show', { beatmap: beatmap.id })}
-                  key={beatmap.id}
                 >
                   <span className='beatmaps-popup-item__col beatmaps-popup-item__col--mode'>
                     <span className={`fal fa-extra-mode-${beatmap.mode}`} />
@@ -400,8 +400,8 @@ export default class BeatmapsetPanel extends React.Component<Props> {
         <div className='beatmapset-panel__info-row beatmapset-panel__info-row--mapper'>
           <div className='u-ellipsis-overflow'>
             <StringWithComponent
-              pattern={osu.trans('beatmapsets.show.details.mapped_by')}
               mappings={{ ':mapper': <MapperLink key='mapper' beatmapset={this.props.beatmapset} /> }}
+              pattern={osu.trans('beatmapsets.show.details.mapped_by')}
             />
           </div>
         </div>
@@ -539,5 +539,5 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
   private toggleFavourite = () => {
     toggleFavourite(this.props.beatmapset);
-  }
+  };
 }

@@ -106,7 +106,7 @@ export default class Item extends React.Component<Props> {
     }
 
     return this.props.icons.map((icon) => (
-      <div className='notification-popup-item__cover-icon' key={icon}>
+      <div key={icon} className='notification-popup-item__cover-icon'>
         <span className={icon} />
       </div>
     ));

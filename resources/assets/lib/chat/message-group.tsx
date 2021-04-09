@@ -61,9 +61,9 @@ export default class MessageGroup extends React.Component<Props, any> {
               (moment(message.timestamp).format('LT') !== moment(messages[key + 1].timestamp).format('LT'));
 
             return (
-              <div className={classes} key={message.uuid}>
+              <div key={message.uuid} className={classes}>
                 <div className='chat-message-group__message-entry'>
-                  <span className={contentClasses} dangerouslySetInnerHTML={{__html: message.parsedContent}} />
+                  <span dangerouslySetInnerHTML={{__html: message.parsedContent}} className={contentClasses} />
                   {!message.persisted && !message.errored &&
                     <div className='chat-message-group__message-status'>
                       <Spinner />

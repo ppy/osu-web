@@ -53,7 +53,7 @@ export default class Main extends React.PureComponent<Props> {
     const key = `${follow.notifiable_type}:${follow.notifiable_id}`;
 
     return (
-      <tr className='follows-table__row' key={key}>
+      <tr key={key} className='follows-table__row'>
         <td className='follows-table__data'>
           <div className='type-badge'>
             {osu.trans(`comments.commentable_name.${follow.notifiable_type}`)}
@@ -71,7 +71,7 @@ export default class Main extends React.PureComponent<Props> {
             <a href={route('comments.show', { comment: follow.latest_comment.id })}>
               <StringWithComponent
                 mappings={{
-                  ':time': <TimeWithTooltip dateTime={follow.latest_comment.created_at} key='time' relative />,
+                  ':time': <TimeWithTooltip key='time' dateTime={follow.latest_comment.created_at} relative />,
                   ':username': follow.latest_comment.user?.username ?? '???',
                 }}
                 pattern={osu.trans('follows.comment.table.latest_comment_value')}

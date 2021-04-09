@@ -272,9 +272,9 @@ export default class Editor extends React.Component<Props, State> {
               onChange={this.onChange}
               value={this.state.value}
             >
-              <div className={`${editorClass}__input-area`} ref={this.scrollContainerRef}>
+              <div ref={this.scrollContainerRef} className={`${editorClass}__input-area`}>
                 <EditorToolbar ref={this.toolbarRef} />
-                <EditorInsertionMenu currentBeatmap={this.props.currentBeatmap} ref={this.insertMenuRef} />
+                <EditorInsertionMenu ref={this.insertMenuRef} currentBeatmap={this.props.currentBeatmap} />
                 <DraftsContext.Provider value={this.cache.draftEmbeds || []}>
                   <Editable
                     decorate={this.decorateTimestamps}

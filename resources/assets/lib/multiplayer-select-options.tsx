@@ -48,9 +48,9 @@ export default class MultiplayerSelectOptions extends React.PureComponent<Props>
 
   private renderOption = (props: OptionRenderProps<number>) => (
     <a
+      key={props.option.id ?? -1}
       className={props.cssClasses}
       href={this.href(props.option.id)}
-      key={props.option.id ?? -1}
       onClick={props.onClick}
     >
       {props.children}

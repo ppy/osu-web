@@ -15,17 +15,17 @@ export default class ConversationList extends React.Component<any> {
     const conversationList: React.ReactNode[] = [];
 
     nonPmChannels.forEach((conversation) => {
-      conversationList.push(<ConversationListItem channelId={conversation.channelId} key={conversation.channelId} />);
+      conversationList.push(<ConversationListItem key={conversation.channelId} channelId={conversation.channelId} />);
     });
 
     if (nonPmChannels.length > 0 && pmChannels.length > 0) {
       conversationList.push(
-        <div className='chat-conversation-list-separator' key='separator' />,
+        <div key='separator' className='chat-conversation-list-separator' />,
       );
     }
 
     pmChannels.forEach((conversation) => {
-      conversationList.push(<ConversationListItem channelId={conversation.channelId} key={conversation.channelId} />);
+      conversationList.push(<ConversationListItem key={conversation.channelId} channelId={conversation.channelId} />);
     });
 
     return <div className='chat-conversation-list'>{conversationList}</div>;
