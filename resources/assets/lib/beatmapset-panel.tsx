@@ -45,16 +45,16 @@ const hideImage = (e: React.SyntheticEvent<HTMLElement>) => {
   e.currentTarget.style.display = 'none';
 };
 
-const BeatmapDot = ({ beatmap }: { beatmap: BeatmapJson }) => (
+const BeatmapDot = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
   <div
     className='beatmapset-panel__beatmap-dot'
     style={{
       '--bg': `var(--diff-${BeatmapHelper.getDiffRating(beatmap.difficulty_rating)})`,
     } as React.CSSProperties}
   />
-);
+));
 
-const BeatmapDots = ({ beatmaps, mode }: BeatmapGroup) => (
+const BeatmapDots = observer(({ beatmaps, mode }: BeatmapGroup) => (
   <div className='beatmapset-panel__beatmap-dots'>
     <div className='beatmapset-panel__beatmap-icon'>
       <i className={`fal fa-extra-mode-${mode}`} />
@@ -66,7 +66,7 @@ const BeatmapDots = ({ beatmaps, mode }: BeatmapGroup) => (
       </div>
     )}
   </div>
-);
+));
 
 const ExtraIcon = ({ icon, titleVariant }: { icon: string; titleVariant: string }) => (
   <div
@@ -77,12 +77,12 @@ const ExtraIcon = ({ icon, titleVariant }: { icon: string; titleVariant: string 
   </div>
 );
 
-const MapperLink = ({ beatmapset }: { beatmapset: BeatmapsetJson }) => (
+const MapperLink = observer(({ beatmapset }: { beatmapset: BeatmapsetJson }) => (
   <UserLink
     className='beatmapset-panel__mapper-link u-hover'
     user={{ id: beatmapset.user_id, username: beatmapset.creator }}
   />
-);
+));
 
 const NsfwBadge = () => (
   <span className='nsfw-badge nsfw-badge--panel'>
