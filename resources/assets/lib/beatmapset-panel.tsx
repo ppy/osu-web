@@ -54,6 +54,20 @@ const BeatmapDot = ({ beatmap }: { beatmap: BeatmapJson }) => (
   />
 );
 
+const BeatmapDots = ({ beatmaps, mode }: BeatmapGroup) => (
+  <div className='beatmapset-panel__beatmap-dots'>
+    <div className='beatmapset-panel__beatmap-icon'>
+      <i className={`fal fa-extra-mode-${mode}`} />
+    </div>
+    {beatmaps.slice(0, 10).map((beatmap) => <BeatmapDot key={beatmap.id} beatmap={beatmap} />)}
+    {beatmaps.length > 10 && (
+      <div className='beatmapset-panel__beatmap-more'>
+        +
+      </div>
+    )}
+  </div>
+);
+
 const ExtraIcon = ({ icon, titleVariant }: { icon: string; titleVariant: string }) => (
   <div
     className='beatmapset-panel__extra-icon'
@@ -300,23 +314,6 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     }
   }
 
-  private renderBeatmapDots = ({ mode, beatmaps }: BeatmapGroup) => (
-    <div
-      className='beatmapset-panel__beatmap-dots'
-      key={mode}
-    >
-      <div className='beatmapset-panel__beatmap-icon'>
-        <i className={`fal fa-extra-mode-${mode}`} />
-      </div>
-      {beatmaps.slice(0, 10).map((beatmap) => <BeatmapDot key={beatmap.id} beatmap={beatmap} />)}
-      {beatmaps.length > 10 && (
-        <div className='beatmapset-panel__beatmap-more'>
-          +
-        </div>
-      )}
-    </div>
-  );
-
   private renderBeatmapsPopup() {
     return (
       <div
@@ -468,7 +465,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
             {osu.trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
           </div>
           <div className='beatmapset-panel__beatmaps-all'>
-            {this.groupedBeatmaps.map(this.renderBeatmapDots)}
+            {this.groupedBeatmaps.map((props) => <BeatmapDots key={props.mode} {...props} />)}
           </div>
         </a>
       </div>
