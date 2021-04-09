@@ -241,7 +241,7 @@ module.exports = {
       "consistent-as-needed",
     ],
     "radix": "error",
-    "sort-keys": "error",
+    "sort-keys": ["error", "asc", { caseSensitive: false }],
     "space-before-function-paren": [
       "error",
       {
