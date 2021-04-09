@@ -121,10 +121,10 @@ module.exports = {
       "@typescript-eslint/restrict-template-expressions": [
         "error",
         {
-          allowNumber: true,
-          allowBoolean: true,
           allowAny: false,
+          allowBoolean: true,
           allowNullish: true,
+          allowNumber: true,
         },
       ],
       "@typescript-eslint/semi": [
@@ -210,6 +210,7 @@ module.exports = {
         "consistent-as-needed",
       ],
       "radix": "error",
+      "react-hooks/exhaustive-deps": "error",
       "react/jsx-boolean-value": "error",
       "react/jsx-curly-spacing": [
         "error",
@@ -217,18 +218,17 @@ module.exports = {
           when: "never",
         },
       ],
-      "react/jsx-max-props-per-line": ["error", { when: "multiline" }],
-      "react/jsx-sort-props": ["error", { reservedFirst: true }],
-      "react/no-deprecated": "warn",
       "react/jsx-equals-spacing": [
         "error",
         "never",
       ],
+      "react/jsx-max-props-per-line": ["error", { when: "multiline" }],
       "react/jsx-no-bind": "error",
-      "react/self-closing-comp": "error",
+      "react/jsx-sort-props": ["error", { reservedFirst: true }],
       "react/jsx-wrap-multilines": "error",
+      "react/no-deprecated": "warn",
       "react/no-unsafe": "off",
-      "react-hooks/exhaustive-deps": "error",
+      "react/self-closing-comp": "error",
       "sort-keys": "error",
       "space-before-function-paren": [
         "error",
