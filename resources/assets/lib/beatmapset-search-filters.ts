@@ -50,6 +50,12 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
     return BeatmapsetFilter.queryParamsFromFilters(values);
   }
 
+  @computed
+  get searchSort() {
+    const [field, order] = this.displaySort.split('_');
+    return { field, order };
+  }
+
   selectedValue(key: FilterKey) {
     const value = this[key];
     if (value == null) {
