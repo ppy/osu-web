@@ -53,7 +53,8 @@ class ScoresController extends BaseController
     {
         static::getBeatmapOrFail($beatmapId);
 
-        $score = Score::findOrFail($id);
+        $user = auth()->user();
+        $score = Score::where('user_id', $user->getKey())->findOrFail($id);
 
         $params = get_params(request()->all(), null, [
             'accuracy:float',
