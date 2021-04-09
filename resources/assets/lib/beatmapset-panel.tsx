@@ -87,7 +87,7 @@ const StatsItem = ({ icon, title, value }: { icon: string; title: string; value:
 
 @observer
 export default class BeatmapsetPanel extends React.Component<Props> {
-  @observable private beatmapsPopup = false;
+  @observable private beatmapsPopupHover = false;
   private blockRef = React.createRef<HTMLDivElement>();
   @observable private mobileExpanded = false;
   private timeouts: Partial<Record<string, number>> = {};
@@ -218,7 +218,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   render() {
     let blockClass = classWithModifiers('beatmapset-panel', {
       'mobile-expanded': this.mobileExpanded,
-      'with-beatmaps-popup': this.beatmapsPopup,
+      'with-beatmaps-popup-hover': this.beatmapsPopupHover,
     });
     if (this.showVisual) {
       blockClass += ' js-audio--player';
@@ -248,33 +248,33 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   private beatmapsPopupDelayedHide = () => {
     window.clearTimeout(this.timeouts.beatmapsPopup);
 
-    if (!this.beatmapsPopup) return;
+    if (!this.beatmapsPopupHover) return;
 
     this.timeouts.beatmapsPopup = window.setTimeout(() => {
-      this.beatmapsPopup = false;
+      this.beatmapsPopupHover = false;
     }, 500);
   }
 
   private beatmapsPopupDelayedShow = () => {
     window.clearTimeout(this.timeouts.beatmapsPopup);
 
-    if (this.beatmapsPopup) return;
+    if (this.beatmapsPopupHover) return;
 
     this.timeouts.beatmapsPopup = window.setTimeout(() => {
-      this.beatmapsPopup = true;
+      this.beatmapsPopupHover = true;
     }, 100);
   }
 
   private beatmapsPopupHide = () => {
     window.clearTimeout(this.timeouts.beatmapsPopup);
 
-    this.beatmapsPopup = false;
+    this.beatmapsPopupHover = false;
   }
 
   private beatmapsPopupKeep = () => {
     window.clearTimeout(this.timeouts.beatmapsPopup);
 
-    this.beatmapsPopup = true;
+    this.beatmapsPopupHover = true;
   }
 
   private onDocumentClick = (e: JQuery.ClickEvent) => {
