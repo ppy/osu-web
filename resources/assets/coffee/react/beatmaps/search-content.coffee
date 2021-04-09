@@ -4,7 +4,7 @@
 import { Paginator } from './paginator'
 import { SearchPanel } from './search-panel'
 import { SearchSort } from './search-sort'
-import { BeatmapsetPanel } from 'beatmapset-panel'
+import BeatmapsetPanel from 'beatmapset-panel'
 import { Img2x } from 'img2x'
 import { observe, observable } from 'mobx'
 import { Observer } from 'mobx-react'
@@ -16,12 +16,14 @@ import { showVisual } from 'utils/beatmapset-helper'
 
 el = React.createElement
 
-ITEM_HEIGHT = 205 # needs to be known in advance to calculate size of virtual scrolling area.
+# needs to be known in advance to calculate size of virtual scrolling area.
+ITEM_HEIGHT =
+  1: 125
+  2: 110
 
 ListRender = ({ virtual, itemHeight }) ->
-  style = _.extend {}, virtual.style
   div
-    style: style
+    style: virtual.style
     div
       className: 'beatmapsets__items'
       virtual.items.map (row) ->
@@ -32,7 +34,7 @@ ListRender = ({ virtual, itemHeight }) ->
             div
               className: 'beatmapsets__item'
               key: beatmapsetId
-              el BeatmapsetPanel, beatmap: core.dataStore.beatmapsetStore.get(beatmapsetId)
+              el BeatmapsetPanel, beatmapset: core.dataStore.beatmapsetStore.get(beatmapsetId)
 
 # stored in an observable so a rerender will occur when the HOC gets updated.
 Observables = observable
@@ -99,7 +101,7 @@ export class SearchContent extends React.Component
                   el Observables.BeatmapList,
                     items: _.chunk(beatmapsetIds, Observables.numberOfColumns)
                     itemBuffer: 5
-                    itemHeight: ITEM_HEIGHT
+                    itemHeight: ITEM_HEIGHT[Observables.numberOfColumns]
 
                 else
                   div className: 'beatmapsets__empty',
