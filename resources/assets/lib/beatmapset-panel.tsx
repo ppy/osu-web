@@ -19,7 +19,7 @@ import { UserLink } from 'user-link';
 import * as BeatmapHelper from 'utils/beatmap-helper';
 import { showVisual, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
-import { formatNumberSuffixed } from 'utils/html';
+import { formatNumberSuffixed, make2x } from 'utils/html';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
@@ -54,7 +54,7 @@ const BeatmapDot = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
   />
 ));
 
-const BeatmapDots = observer(({ beatmaps, mode }: BeatmapGroup) => (
+const BeatmapDots = observer(({ mode, beatmaps }: BeatmapGroup) => (
   <div className='beatmapset-panel__beatmap-dots'>
     <div className='beatmapset-panel__beatmap-icon'>
       <i className={`fal fa-extra-mode-${mode}`} />
@@ -362,10 +362,10 @@ export default class BeatmapsetPanel extends React.Component<Props> {
         <div className='beatmapset-panel__cover-col beatmapset-panel__cover-col--play'>
           <div className='beatmapset-panel__cover beatmapset-panel__cover--default' />
           {this.showVisual && (
-            <Img2x
+            <img
               className='beatmapset-panel__cover'
               onError={hideImage}
-              src={this.props.beatmapset.covers.card}
+              src={make2x(this.props.beatmapset.covers.list)}
             />
           )}
         </div>
