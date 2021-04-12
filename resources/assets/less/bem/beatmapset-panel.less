@@ -2,12 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-panel {
-  .show-beatmaps-popup() {
-    border-radius: @border-radius--large @border-radius--large 0 0;
-    --beatmaps-popup-opacity: 1;
-    --beatmaps-popup-pointer-events: auto;
-  }
-
   @_hover-transition-duration: 150ms;
   @_main-bg: hsl(var(--hsl-b2));
   @_menu-width: 10px;
@@ -20,9 +14,7 @@
   @_top-right-inverted-corner-path: path('M11 -1 L11 10 L10 10 A10 10 0 0 0 0 0 L0 -1 Z');
   @_bottom-right-inverted-corner-path: path('M11 11 L11 0 L10 0 A10 10 0 0 1 0 10 L 0 11 Z');
 
-  // Those two toggles visibility of beatmaps popup (detailed beatmap list)
-  --beatmaps-popup-opacity: 0;
-  --beatmaps-popup-pointer-events: none;
+  --border-cover-opacity: 0;
   // For elements which provide overall beatmap link.
   // The link is disabled on mobile so it's easier to target
   // other elements like expand button and mapper name.
@@ -75,6 +67,18 @@
     }
   }
 
+  &::before {
+    content: '';
+    background-color: inherit;
+    height: @border-radius--large;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    opacity: var(--border-cover-opacity);
+    transition: inherit;
+  }
+
   &[data-audio-state="loading"],
   &[data-audio-state="playing"] {
     --play-bg: hsla(var(--hsl-b6), 0.8);
@@ -82,21 +86,17 @@
     --play-icon: @fa-var-pause;
   }
 
+  &--beatmaps-popup-visible {
+    --border-cover-opacity: 1;
+  }
+
   &--mobile-expanded {
     @media @mobile {
-      .show-beatmaps-popup();
-
       --menu-opacity: 1;
       --menu-container-width: @_menu-width-visible;
       --play-bg: hsla(var(--hsl-b6), 0.8);
       --play-icon-opacity: 1;
       --stats-opacity: 1;
-    }
-  }
-
-  &--with-beatmaps-popup-hover {
-    @media @desktop {
-      .show-beatmaps-popup();
     }
   }
 
@@ -148,8 +148,7 @@
 
   &__beatmaps-popup-container {
     .fancy-scrollbar();
-    opacity: var(--beatmaps-popup-opacity);
-    pointer-events: var(--beatmaps-popup-pointer-events);
+    pointer-events: auto;
     position: absolute;
     top: 100%;
     width: 100%;
