@@ -54,7 +54,7 @@ const BeatmapDot = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
   />
 ));
 
-const BeatmapDots = observer(({ mode, beatmaps }: BeatmapGroup) => (
+const BeatmapDots = observer(({ beatmaps, mode }: BeatmapGroup) => (
   <div className='beatmapset-panel__beatmap-dots'>
     <div className='beatmapset-panel__beatmap-icon'>
       <i className={`fal fa-extra-mode-${mode}`} />
