@@ -55,7 +55,7 @@ const BeatmapDot = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
 ));
 
 const BeatmapDots = observer(({ compact, group }: { compact: boolean; group: BeatmapGroup }) => (
-  <div className='beatmapset-panel__beatmap-dots'>
+  <div className='beatmapset-panel__extra-item beatmapset-panel__extra-item--dots'>
     <div className='beatmapset-panel__beatmap-icon'>
       <i className={`fal fa-extra-mode-${group.mode}`} />
     </div>
@@ -461,24 +461,24 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           onMouseEnter={this.onExtraRowEnter}
           onMouseLeave={this.beatmapsPopupDelayedHide}
         >
-          <div
-            className='beatmapset-status beatmapset-status--panel'
-            style={{
-              '--bg': `var(--beatmapset-${this.props.beatmapset.status}-bg)`,
-              '--colour': `var(--beatmapset-${this.props.beatmapset.status}-colour)`,
-            } as React.CSSProperties}
-          >
-            {osu.trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
+          <div className='beatmapset-panel__extra-item'>
+            <div
+              className='beatmapset-status beatmapset-status--panel'
+              style={{
+                '--bg': `var(--beatmapset-${this.props.beatmapset.status}-bg)`,
+                '--colour': `var(--beatmapset-${this.props.beatmapset.status}-colour)`,
+              } as React.CSSProperties}
+            >
+              {osu.trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
+            </div>
           </div>
-          <div className='beatmapset-panel__beatmaps-all'>
-            {this.groupedBeatmaps.map((group) => (
-              <BeatmapDots
-                key={group.mode}
-                compact={this.beatmapDotsCompact}
-                group={group}
-              />
-            ))}
-          </div>
+          {this.groupedBeatmaps.map((group) => (
+            <BeatmapDots
+              key={group.mode}
+              compact={this.beatmapDotsCompact}
+              group={group}
+            />
+          ))}
         </a>
       </div>
     );

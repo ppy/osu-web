@@ -112,21 +112,9 @@
     background-color: var(--bg);
   }
 
-  &__beatmap-dots {
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    line-height: 12px;
-    height: $padding * 2 + $line-height;
-  }
-
   &__beatmap-icon {
     margin-right: 2px;
     font-size: 14px; // icon size
-  }
-
-  &__beatmaps-all {
-    margin: -5px;
     display: flex;
   }
 
@@ -238,6 +226,15 @@
     }
   }
 
+  &__extra-item {
+    margin: 0 var(--gutter);
+    display: flex;
+
+    &--dots {
+      align-items: center;
+    }
+  }
+
   &__info {
     flex: 1;
     min-width: 10px;
@@ -267,15 +264,17 @@
     &--extra {
       .link-plain();
       .link-white();
+      --gutter: 3px;
       pointer-events: var(--global-beatmap-link-pointer-events);
+      margin: 0 calc(var(--gutter) * -1);
+      align-items: center;
 
       @media @mobile {
         position: absolute;
         left: calc(var(--play-width) * -1);
         top: 100%;
         height: var(--mobile-extra-bar-height);
-        width: calc(100% + var(--play-width));
-        align-items: center;
+        width: calc(100% + var(--play-width) + var(--gutter) * 2);
         padding: 0 30px 0 5px; // right padding to account for the expand button
       }
     }
@@ -293,7 +292,7 @@
       overflow: hidden;
 
       @media @desktop {
-        margin-bottom: 3px;
+        margin-bottom: 2px;
       }
     }
 
