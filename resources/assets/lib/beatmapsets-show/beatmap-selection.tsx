@@ -19,28 +19,29 @@ export default class BeatmapSelection extends React.PureComponent<Props> {
     return (
       <a
         className={className}
+        href={generateHash({ beatmap: this.props.beatmap })}
         onClick={this.onClick}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
-        href={generateHash({ beatmap: this.props.beatmap })}
       >
         <BeatmapIcon beatmap={this.props.beatmap} modifier='beatmapset' showTitle={false} />
       </a>
     );
   }
+
   private onClick = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     if (this.props.active) return;
 
     $.publish('beatmapset:beatmap:set', { beatmap: this.props.beatmap });
-  }
+  };
 
   private onMouseEnter = () => {
     $.publish('beatmapset:hoveredbeatmap:set', this.props.beatmap);
-  }
+  };
 
   private onMouseLeave = () => {
     $.publish('beatmapset:hoveredbeatmap:set', null);
-  }
+  };
 }
