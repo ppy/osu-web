@@ -89,9 +89,9 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
           </div>
 
           <div className='form-text form-text--no-padding'>
-            <input 
-              type="text"
-              name="beatmapset[offset]"
+            <input
+              type='text'
+              name='beatmapset[offset]'
               className='form-select__input'
               maxLength={6}
               value={this.state.offset}
