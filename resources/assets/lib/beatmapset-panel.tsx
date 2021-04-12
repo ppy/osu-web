@@ -69,15 +69,6 @@ const BeatmapDots = observer(({ compact, group }: { compact: boolean; group: Bea
   </div>
 ));
 
-const ExtraIcon = ({ icon, titleVariant }: { icon: string; titleVariant: string }) => (
-  <div
-    className='beatmapset-panel__extra-icon'
-    title={osu.trans(`beatmapsets.show.info.${titleVariant}`)}
-  >
-    <i className={icon} />
-  </div>
-);
-
 const MapperLink = observer(({ beatmapset }: { beatmapset: BeatmapsetJson }) => (
   <UserLink
     className='beatmapset-panel__mapper-link u-hover'
@@ -89,6 +80,15 @@ const NsfwBadge = () => (
   <span className='nsfw-badge nsfw-badge--panel'>
     {osu.trans('beatmapsets.nsfw_badge.label')}
   </span>
+);
+
+const PlayIcon = ({ icon, titleVariant }: { icon: string; titleVariant: string }) => (
+  <div
+    className='beatmapset-panel__play-icon'
+    title={osu.trans(`beatmapsets.show.info.${titleVariant}`)}
+  >
+    <i className={icon} />
+  </div>
 );
 
 const StatsItem = ({ icon, title, value }: { icon: string; title: string; value: number }) => (
@@ -541,9 +541,9 @@ export default class BeatmapsetPanel extends React.Component<Props> {
             theme='beatmapset-panel'
           />
         </div>
-        <div className='beatmapset-panel__extra-icons'>
-          {this.props.beatmapset.video && <ExtraIcon icon='fas fa-film' titleVariant='video' />}
-          {this.props.beatmapset.storyboard && <ExtraIcon icon='fas fa-image' titleVariant='storyboard' />}
+        <div className='beatmapset-panel__play-icons'>
+          {this.props.beatmapset.video && <PlayIcon icon='fas fa-film' titleVariant='video' />}
+          {this.props.beatmapset.storyboard && <PlayIcon icon='fas fa-image' titleVariant='storyboard' />}
         </div>
       </div>
     );
