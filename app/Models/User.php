@@ -441,7 +441,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         switch ($type) {
-            case 'string':
+            case 'username':
                 $user = static::where(function ($query) use ($usernameOrId) {
                     $query->where('username', (string) $usernameOrId)->orWhere('username_clean', '=', (string) $usernameOrId);
                 });
@@ -456,7 +456,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
                     $user = static::lookup($usernameOrId, 'id', $findAll);
                 }
 
-                return $user ?? static::lookup($usernameOrId, 'string', $findAll);
+                return $user ?? static::lookup($usernameOrId, 'username', $findAll);
         }
 
         if (!$findAll) {

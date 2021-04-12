@@ -26,7 +26,7 @@ interface State {
 @observer
 export default class ItemGroup extends React.Component<Props, State> {
   static readonly contextType = NotificationContext;
-  context!: React.ContextType<typeof NotificationContext>;
+  declare context: React.ContextType<typeof NotificationContext>;
   readonly state = {
     expanded: false,
   };
