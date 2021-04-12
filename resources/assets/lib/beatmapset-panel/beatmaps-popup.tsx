@@ -11,6 +11,7 @@ import { TransitionStatus } from 'react-transition-group';
 import { getDiffRating } from 'utils/beatmap-helper';
 
 interface Props {
+  contentRef: React.RefObject<HTMLDivElement>;
   groupedBeatmaps: BeatmapGroup[];
   onMouseEnter: () => void;
   onMouseLeave: () => void;
@@ -82,6 +83,7 @@ export default class BeatmapsPopup extends React.Component<Props> {
           className='beatmaps-popup'
           onMouseEnter={this.props.onMouseEnter}
           onMouseLeave={this.props.onMouseLeave}
+          ref={this.props.contentRef}
           style={style}
         >
           <div className='beatmaps-popup__content'>

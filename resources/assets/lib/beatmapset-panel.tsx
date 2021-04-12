@@ -106,6 +106,7 @@ const StatsItem = ({ icon, title, value }: { icon: string; title: string; value:
 @observer
 export default class BeatmapsetPanel extends React.Component<Props> {
   @observable private beatmapsPopupHover = false;
+  private beatmapsPopupRef = React.createRef<HTMLDivElement>();
   private blockRef = React.createRef<HTMLDivElement>();
   @observable private mobileExpanded = false;
   private timeouts: Partial<Record<string, number>> = {};
@@ -315,6 +316,9 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     if (this.blockRef.current == null) return;
     // clicking on anything on the panel itself is handled by the relevant element
     if (this.blockRef.current.contains(e.target)) return;
+    // same thing but for beatmaps popup
+    if (this.beatmapsPopupRef.current == null) return;
+    if (this.beatmapsPopupRef.current.contains(e.target)) return;
 
     $(document).off('click', this.onDocumentClick);
     this.mobileExpanded = false;
@@ -348,6 +352,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
       >
         {(state) => (
           <BeatmapsPopup
+            contentRef={this.beatmapsPopupRef}
             groupedBeatmaps={this.groupedBeatmaps}
             onMouseEnter={this.onBeatmapsPopupEnter}
             onMouseLeave={this.onBeatmapsPopupLeave}
