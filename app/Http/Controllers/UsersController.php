@@ -103,7 +103,7 @@ class UsersController extends Controller
     public function checkUsernameExists()
     {
         $username = Request::input('username');
-        $user = User::lookup($username, 'string') ?? UserNotFound::instance();
+        $user = User::lookup($username, 'username') ?? UserNotFound::instance();
 
         return json_item($user, 'UserCompact', ['cover', 'country']);
     }
