@@ -15,7 +15,7 @@ import { Spinner } from 'spinner'
 import { UserAvatar } from 'user-avatar'
 import { classWithModifiers } from 'utils/css'
 import { estimateMinLines } from 'utils/estimate-min-lines'
-import { createClickCallback } from 'utils/html'
+import { createClickCallback, formatNumberSuffixed } from 'utils/html'
 
 el = React.createElement
 
@@ -395,7 +395,7 @@ export class Comment extends React.PureComponent
       onClick: @voteToggle
       disabled: @state.postingVote || !@props.comment.canVote
       span className: 'comment-vote__text',
-        "+#{osu.formatNumberSuffixed(@props.comment.votesCount, null, maximumFractionDigits: 1)}"
+        "+#{formatNumberSuffixed(@props.comment.votesCount, null, maximumFractionDigits: 1)}"
       if @state.postingVote
         span className: 'comment-vote__spinner', el Spinner
       hover

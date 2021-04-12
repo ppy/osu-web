@@ -472,11 +472,14 @@ export default class Main {
 
   private syncProgress = () => {
     if (this.audio.duration > 0) {
-      const progress = (this.audio.currentTime / this.audio.duration).toString();
+      const progress = this.audio.currentTime / this.audio.duration;
+      const over50 = progress >= 0.5 ? '1' : '0';
+      const progressFormatted = progress.toString();
       const currentTimeFormatted = format(this.audio.currentTime, this.timeFormat);
       this.updatePlayers((player) => {
         player.style.setProperty('--current-time', currentTimeFormatted);
-        player.style.setProperty('--progress', progress);
+        player.style.setProperty('--progress', progressFormatted);
+        player.dataset.audioOver50 = over50;
       });
     }
 

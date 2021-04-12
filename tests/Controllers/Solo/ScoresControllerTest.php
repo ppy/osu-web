@@ -151,4 +151,38 @@ class ScoresControllerTest extends TestCase
 
         $this->assertSame($initialScoreUpdate, json_time($score->fresh()->updated_at));
     }
+
+    public function testUpdateWrongUser()
+    {
+        $user = factory(User::class)->create();
+        $otherUser = factory(User::class)->create();
+        $beatmap = factory(Beatmap::class)->states('ranked')->create();
+        $score = Score::create([
+            'beatmap_id' => $beatmap->getKey(),
+            'ruleset_id' => $beatmap->playmode,
+            'user_id' => $user->getKey(),
+            'updated_at' => now()->subHour(1), // prevent same time if run too fast
+        ]);
+        $initialScoreUpdate = json_time($score->updated_at);
+
+        $this->actAsScopedUser($otherUser, ['*']);
+
+        $this->json(
+            'PUT',
+            route('api.beatmaps.solo.scores.update', [
+                'beatmap' => $beatmap->getKey(),
+                'score' => $score->getKey(),
+            ]),
+            [
+                'accuracy' => 1,
+                'max_combo' => 10,
+                'passed' => true,
+                'rank' => 'A',
+                'statistics' => ['Good' => 1],
+                'total_score' => 10,
+            ]
+        )->assertStatus(404);
+
+        $this->assertSame($initialScoreUpdate, json_time($score->fresh()->updated_at));
+    }
 }
