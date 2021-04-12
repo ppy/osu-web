@@ -55,6 +55,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             ] : null,
             'id' => $beatmapset->beatmapset_id,
             'nsfw' => $beatmapset->nsfw,
+            'offset' => $beatmapset->offset,
             'play_count' => $beatmapset->play_count,
             'preview_url' => $beatmapset->previewURL(),
             'source' => $beatmapset->source,

@@ -17,6 +17,7 @@ interface State {
   isBusy: boolean;
   languageId: number;
   nsfw: boolean;
+  offset: number | string;
 }
 
 export default class MetadataEditor extends React.PureComponent<Props, State> {
@@ -31,6 +32,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
       isBusy: false,
       languageId: props.beatmapset.language.id ?? 0,
       nsfw: props.beatmapset.nsfw ?? false,
+      offset: props.beatmapset.offset ?? 0,
     };
   }
 
@@ -78,6 +80,23 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
                   </option>
               ))}
             </select>
+          </div>
+        </label>
+
+        <label className='simple-form__row'>
+          <div className='simple-form__label'>
+            {osu.trans('beatmapsets.show.info.offset')}
+          </div>
+
+          <div className='form-text form-text--no-padding'>
+            <input 
+              type="text"
+              name="beatmapset[offset]"
+              className='form-select__input'
+              maxLength={6}
+              value={this.state.offset}
+              onChange={this.setOffset}
+            />
           </div>
         </label>
 
@@ -135,6 +154,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
         genre_id: this.state.genreId,
         language_id: this.state.languageId,
         nsfw: this.state.nsfw,
+        offset: this.state.offset || 0,
       } },
       method: 'PATCH',
     }).done((beatmapset: BeatmapsetJson) => $.publish('beatmapset:set', { beatmapset }))
@@ -154,4 +174,17 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
   private setNsfw = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ nsfw: e.currentTarget.checked });
   };
+
+  private setOffset = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
+
+    // workaround for negative numbers
+    if (value === '' || value === '-') {
+      this.setState({ offset: value });
+    } else if (isNaN(parseInt(value, 10))) {
+      this.setState({ offset: '' });
+    } else {
+      this.setState({ offset: parseInt(value, 10) });
+    }
+  }
 }

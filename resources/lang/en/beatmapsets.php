@@ -117,6 +117,7 @@ return [
             'language' => 'Language',
             'no_scores' => 'Data still being calculated...',
             'nsfw' => 'Explicit content',
+            'offset' => 'Online offset',
             'points-of-failure' => 'Points of Failure',
             'source' => 'Source',
             'storyboard' => 'This beatmap contains storyboard',

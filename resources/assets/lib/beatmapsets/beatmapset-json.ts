@@ -94,6 +94,7 @@ export interface BeatmapsetJson {
   last_updated: string;
   nominations?: BeatmapsetNominationsInterface;
   nsfw: boolean;
+  offset: number;
   play_count: number;
   preview_url: string;
   status: BeatmapsetStatus;
