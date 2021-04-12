@@ -47,6 +47,19 @@
     .over50();
   }
 
+  &--beatmapset-panel {
+    font-size: 50px; // circle size
+    pointer-events: none;
+    background-color: transparent;
+    --circle-center-fill: transparent;
+    --label-colour: transparent;
+    --circle-transform: rotate(calc(var(--progress) * 1turn));
+
+    [data-audio-over50="1"] & {
+      .over50();
+    }
+  }
+
   &::after {
     position: absolute;
     margin-top: @thickness;
