@@ -2,6 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-panel {
+  .desktop-hover() {
+    --info-bg: linear-gradient(0.25turn, hsl(var(--hsl-b4)), hsla(var(--hsl-b4), 0.8));
+    --menu-opacity: 1;
+    --menu-container-width: @_menu-width-visible;
+    --play-bg: hsla(var(--hsl-b6), 0.8);
+    --play-icon-opacity: 1;
+    --stats-opacity: 1;
+  }
+
   @_hover-transition-duration: 150ms;
   @_menu-width: 10px;
   @_menu-width-visible: 30px;
@@ -45,6 +54,7 @@
   font-size: @font-size--normal;
   height: var(--panel-height);
   transition: var(--transition);
+  .own-layer();
 
   @media @desktop {
     --global-beatmap-link-pointer-events: auto;
@@ -57,12 +67,7 @@
     --stats-opacity: 0;
 
     &:hover {
-      --info-bg: linear-gradient(0.25turn, hsl(var(--hsl-b4)), hsla(var(--hsl-b4), 0.8));
-      --menu-opacity: 1;
-      --menu-container-width: @_menu-width-visible;
-      --play-bg: hsla(var(--hsl-b6), 0.8);
-      --play-icon-opacity: 1;
-      --stats-opacity: 1;
+      .desktop-hover();
     }
   }
 
@@ -87,6 +92,10 @@
 
   &--beatmaps-popup-visible {
     --border-cover-opacity: 1;
+
+    @media @desktop {
+      .desktop-hover();
+    }
   }
 
   &--mobile-expanded {

@@ -351,6 +351,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
             groupedBeatmaps={this.groupedBeatmaps}
             onMouseEnter={this.onBeatmapsPopupEnter}
             onMouseLeave={this.onBeatmapsPopupLeave}
+            parent={this.blockRef.current}
             state={state}
             transitionDuration={beatmapsPopupTransitionDuration}
           />

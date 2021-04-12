@@ -5,6 +5,7 @@ import { BeatmapGroup } from 'beatmapset-panel';
 import BeatmapJson from 'interfaces/beatmap-json';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
+import { Portal } from 'portal';
 import * as React from 'react';
 import { TransitionStatus } from 'react-transition-group';
 import { getDiffRating } from 'utils/beatmap-helper';
@@ -13,6 +14,7 @@ interface Props {
   groupedBeatmaps: BeatmapGroup[];
   onMouseEnter: () => void;
   onMouseLeave: () => void;
+  parent: HTMLElement | null;
   state: TransitionStatus;
   transitionDuration: number;
 }
@@ -60,21 +62,33 @@ const ItemRow = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
 @observer
 export default class BeatmapsPopup extends React.Component<Props> {
   render() {
+    const style: React.CSSProperties = {
+      opacity: 0,
+      transitionDuration: `${this.props.transitionDuration}ms`,
+      ...beatmapsPopupTransitionStyles[this.props.state],
+    };
+
+    if (this.props.parent != null) {
+      const parentRects = this.props.parent.getBoundingClientRect();
+
+      style.top = `${window.scrollY + parentRects.bottom}px`;
+      style.left = `${window.scrollX + parentRects.left}px`;
+      style.width = `${parentRects.width}px`;
+    }
+
     return (
-      <div
-        className='beatmaps-popup'
-        onMouseEnter={this.props.onMouseEnter}
-        onMouseLeave={this.props.onMouseLeave}
-        style={{
-          opacity: 0,
-          transitionDuration: `${this.props.transitionDuration}ms`,
-          ...beatmapsPopupTransitionStyles[this.props.state],
-        }}
-      >
-        <div className='beatmaps-popup__content'>
-          {this.props.groupedBeatmaps.map((props) => <Item key={props.mode} {...props} />)}
+      <Portal>
+        <div
+          className='beatmaps-popup'
+          onMouseEnter={this.props.onMouseEnter}
+          onMouseLeave={this.props.onMouseLeave}
+          style={style}
+        >
+          <div className='beatmaps-popup__content'>
+            {this.props.groupedBeatmaps.map((props) => <Item key={props.mode} {...props} />)}
+          </div>
         </div>
-      </div>
+      </Portal>
     );
   }
 }
