@@ -54,16 +54,17 @@ const BeatmapDot = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
   />
 ));
 
-const BeatmapDots = observer(({ beatmaps, mode }: BeatmapGroup) => (
+const BeatmapDots = observer(({ compact, group }: { compact: boolean; group: BeatmapGroup }) => (
   <div className='beatmapset-panel__beatmap-dots'>
     <div className='beatmapset-panel__beatmap-icon'>
-      <i className={`fal fa-extra-mode-${mode}`} />
+      <i className={`fal fa-extra-mode-${group.mode}`} />
     </div>
-    {beatmaps.slice(0, 10).map((beatmap) => <BeatmapDot key={beatmap.id} beatmap={beatmap} />)}
-    {beatmaps.length > 10 && (
-      <div className='beatmapset-panel__beatmap-more'>
-        +
+    {compact ? (
+      <div className='beatmapset-panel__beatmap-count'>
+        {group.beatmaps.length}
       </div>
+    ) : (
+      group.beatmaps.map((beatmap) => <BeatmapDot key={beatmap.id} beatmap={beatmap} />)
     )}
   </div>
 ));
@@ -105,6 +106,11 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   private blockRef = React.createRef<HTMLDivElement>();
   @observable private mobileExpanded = false;
   private timeouts: Partial<Record<string, number>> = {};
+
+  @computed
+  private get beatmapDotsCompact() {
+    return this.props.beatmapset.beatmaps != null && this.props.beatmapset.beatmaps.length > 12;
+  }
 
   @computed
   private get displayDate() {
@@ -465,7 +471,13 @@ export default class BeatmapsetPanel extends React.Component<Props> {
             {osu.trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
           </div>
           <div className='beatmapset-panel__beatmaps-all'>
-            {this.groupedBeatmaps.map((props) => <BeatmapDots key={props.mode} {...props} />)}
+            {this.groupedBeatmaps.map((group) => (
+              <BeatmapDots
+                key={group.mode}
+                compact={this.beatmapDotsCompact}
+                group={group}
+              />
+            ))}
           </div>
         </a>
       </div>
