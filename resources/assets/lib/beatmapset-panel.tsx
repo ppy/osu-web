@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapsPopup from 'beatmapset-panel/beatmaps-popup';
 import { BeatmapsetJson, BeatmapsetStatus } from 'beatmapsets/beatmapset-json';
 import { CircularProgress } from 'circular-progress';
 import { Img2x } from 'img2x';
@@ -13,7 +14,7 @@ import { computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import OsuUrlHelper from 'osu-url-helper';
 import * as React from 'react';
-import { Transition, TransitionStatus } from 'react-transition-group';
+import { Transition } from 'react-transition-group';
 import { StringWithComponent } from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { UserLink } from 'user-link';
@@ -26,20 +27,12 @@ interface Props {
   beatmapset: BeatmapsetExtendedJson;
 }
 
-interface BeatmapGroup {
+export interface BeatmapGroup {
   beatmaps: BeatmapJson[];
   mode: GameMode;
 }
 
 const beatmapsPopupTransitionDuration = 150;
-
-const beatmapsPopupTransitionStyles: Record<TransitionStatus, React.CSSProperties> = {
-  entered: { opacity: 1 },
-  entering: {},
-  exited: {},
-  exiting: {},
-  unmounted: {},
-};
 
 const displayDateMap: Record<BeatmapsetStatus, 'last_updated' | 'ranked_date'> = {
   approved: 'ranked_date',
@@ -344,50 +337,23 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
   private renderBeatmapsPopup() {
     return (
-      <Transition in={this.isBeatmapsPopupVisible} mountOnEnter unmountOnExit timeout={{ enter: 0, exit: beatmapsPopupTransitionDuration }}>
+      <Transition
+        in={this.isBeatmapsPopupVisible}
+        mountOnEnter
+        unmountOnExit
+        timeout={{
+          enter: 0,
+          exit: beatmapsPopupTransitionDuration,
+        }}
+      >
         {(state) => (
-          <div
-            className='beatmapset-panel__beatmaps-popup-container'
+          <BeatmapsPopup
+            groupedBeatmaps={this.groupedBeatmaps}
             onMouseEnter={this.onBeatmapsPopupEnter}
             onMouseLeave={this.onBeatmapsPopupLeave}
-            style={{
-              opacity: 0,
-              transitionDuration: `${beatmapsPopupTransitionDuration}ms`,
-              ...beatmapsPopupTransitionStyles[state],
-            }}
-          >
-            <div className='beatmapset-panel__beatmaps-popup'>
-              {this.groupedBeatmaps.map(({ mode, beatmaps }: BeatmapGroup) => (
-                <div key={mode} className='beatmapset-panel__beatmaps-popup-group'>
-                  {beatmaps.map((beatmap) => (
-                    <a
-                      className='beatmaps-popup-item'
-                      href={route('beatmaps.show', { beatmap: beatmap.id })}
-                      key={beatmap.id}
-                    >
-                      <span className='beatmaps-popup-item__col beatmaps-popup-item__col--mode'>
-                        <span className={`fal fa-extra-mode-${beatmap.mode}`} />
-                      </span>
-                      <span
-                        className='beatmaps-popup-item__col beatmaps-popup-item__col--difficulty'
-                        style={{
-                          '--bg': `var(--diff-${BeatmapHelper.getDiffRating(beatmap.difficulty_rating)})`,
-                        } as React.CSSProperties}
-                      >
-                        <span className='beatmaps-popup-item__difficulty-icon'>
-                          <span className='fas fa-star' />
-                        </span>
-                        {osu.formatNumber(beatmap.difficulty_rating, 2)}
-                      </span>
-                      <span className='beatmaps-popup-item__col beatmaps-popup-item__col--name'>
-                        {beatmap.version}
-                      </span>
-                    </a>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
+            state={state}
+            transitionDuration={beatmapsPopupTransitionDuration}
+          />
         )}
       </Transition>
     );
