@@ -126,7 +126,7 @@
 
   src2x: (mainUrl) ->
     src: mainUrl
-    srcSet: "#{mainUrl} 1x, #{mainUrl?.replace(/(\.[^.]+)$/, '@2x$1')} 2x"
+    srcSet: "#{mainUrl} 1x, #{_exported.make2x(mainUrl)} 2x"
 
 
   link: (url, text, options = {}) ->

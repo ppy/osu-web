@@ -39,3 +39,9 @@ export function formatNumberSuffixed(num?: number, precision?: number, options?:
 
   return `${format(num / Math.pow(k, i))}${suffixes[i]}`;
 }
+
+export function make2x(url?: string) {
+  if (url == null) return;
+
+  return url.replace(/(\.[^.]+)$/, '@2x$1');
+}
