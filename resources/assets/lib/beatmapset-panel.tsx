@@ -350,7 +350,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
                     </span>
                     {osu.formatNumber(beatmap.difficulty_rating, 2)}
                   </span>
-                  <span className='beatmaps-popup-item__col beatmaps-popup-item__col--name'>
+                  <span className='beatmaps-popup-item__col beatmaps-popup-item__col--name u-ellipsis-overflow'>
                     {beatmap.version}
                   </span>
                 </a>
