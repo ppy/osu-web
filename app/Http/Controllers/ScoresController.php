@@ -49,7 +49,7 @@ class ScoresController extends Controller
                 echo pack('i', strlen($content));
                 echo $content;
                 echo $replayFile->endChunk();
-            }, $filename, ['Content-Type' => 'application/octet-stream']);
+            }, $filename, ['Content-Type' => 'application/x-osu-replay']);
         } catch (FileNotFoundException $e) {
             // missing from storage.
             log_error($e);

@@ -175,6 +175,9 @@ class Mod
             'final_rate' => 'float',
             'adjust_pitch' => 'bool',
         ],
+        self::FLASHLIGHT => [
+            'follow_delay' => 'float',
+        ],
         self::OSU_GROW => [
             'start_scale' => 'float',
         ],

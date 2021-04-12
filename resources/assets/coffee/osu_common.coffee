@@ -126,7 +126,7 @@
 
   src2x: (mainUrl) ->
     src: mainUrl
-    srcSet: "#{mainUrl} 1x, #{mainUrl?.replace(/(\.[^.]+)$/, '@2x$1')} 2x"
+    srcSet: "#{mainUrl} 1x, #{_exported.make2x(mainUrl)} 2x"
 
 
   link: (url, text, options = {}) ->
@@ -177,25 +177,6 @@
       options.maximumFractionDigits = precision
 
     number.toLocaleString locale ? currentLocale, options
-
-
-  formatNumberSuffixed: (number, precision, options = {}) ->
-    suffixes = ['', 'k', 'm', 'b', 't']
-    k = 1000
-
-    format = (n) ->
-      options ?= {}
-
-      if precision?
-        options.minimumFractionDigits = precision
-        options.maximumFractionDigits = precision
-
-      n.toLocaleString 'en', options
-
-    return "#{format number}" if (number < k)
-
-    i = Math.min suffixes.length - 1, Math.floor(Math.log(number) / Math.log(k))
-    "#{format(number / Math.pow(k, i))}#{suffixes[i]}"
 
 
   reloadPage: (keepScroll = true) ->

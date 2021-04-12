@@ -44,7 +44,7 @@ export default class User {
     });
   }
 
-  is(user: User | UserJson | null) {
+  is(user?: User | UserJson | null) {
     if (user == null) return false;
     return user.id === this.id;
   }

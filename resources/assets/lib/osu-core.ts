@@ -8,9 +8,9 @@ import ClickMenu from 'click-menu';
 import Enchant from 'enchant';
 import ForumPoll from 'forum-poll';
 import CurrentUser from 'interfaces/current-user';
-import UserJson from 'interfaces/user-json';
 import Localtime from 'localtime';
 import MobileToggle from 'mobile-toggle';
+import { observable } from 'mobx';
 import NotificationsWorker from 'notifications/worker';
 import OsuAudio from 'osu-audio/main';
 import OsuLayzr from 'osu-layzr';
@@ -31,15 +31,11 @@ declare global {
 
 // will this replace main.coffee eventually?
 export default class OsuCore {
-  get currentUser() {
-    // FIXME: id is  not nullable but guest user does not have id.
-    return window.currentUser.id != null ? window.currentUser : null;
-  }
-
   beatmapsetSearchController: BeatmapsetSearchController;
   readonly captcha = new Captcha();
   chatWorker: ChatWorker;
   readonly clickMenu = new ClickMenu();
+  @observable currentUser?: CurrentUser;
   dataStore: RootDataStore;
   readonly enchant: Enchant;
   readonly forumPoll = new ForumPoll();
@@ -71,20 +67,22 @@ export default class OsuCore {
     this.socketWorker = new SocketWorker();
     this.notificationsWorker = new NotificationsWorker(this.socketWorker);
 
-    // script could load before currentUser is set, so wait until page loaded.
-    $(document).on('turbolinks:load.osu-core', () => {
-      if (window.currentUser != null) {
-        this.dataStore.userStore.getOrCreate(window.currentUser.id, window.currentUser);
-      }
-      $(document).off('turbolinks:load.osu-core');
-    });
-
-    $.subscribe('user:update', this.setUser);
-    $(() => this.socketWorker.setUserId(currentUser.id));
+    // refresh current user on page reload (and initial page load)
+    $(document).on('turbolinks:load.osu-core', this.onPageLoad);
+    $.subscribe('user:update', this.onCurrentUserUpdate);
   }
 
-  private setUser = (event: JQuery.Event, user: UserJson) => {
+  private onCurrentUserUpdate = (event: unknown, user: CurrentUser) => {
+    this.setCurrentUser(user);
+  }
+
+  private onPageLoad = () => {
+    this.setCurrentUser(window.currentUser);
+  }
+
+  private setCurrentUser = (user: CurrentUser) => {
     this.dataStore.userStore.getOrCreate(user.id, user);
     this.socketWorker.setUserId(user.id);
+    this.currentUser = user.id == null ? undefined : user;
   };
 }

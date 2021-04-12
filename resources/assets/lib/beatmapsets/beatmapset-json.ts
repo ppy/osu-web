@@ -82,17 +82,23 @@ export interface BeatmapsetJson {
   creator: string;
   current_user_attributes?: CurrentUserAttributes;
   events?: BeatmapsetEvent[];
+  favourite_count: number;
   genre: GenreJson;
+  has_favourited?: boolean;
   hype?: {
     current: number;
     required: number;
   };
   id: number;
   language: LanguageJson;
+  last_updated: string;
   nominations?: BeatmapsetNominationsInterface;
   nsfw: boolean;
+  play_count: number;
+  preview_url: string;
   status: BeatmapsetStatus;
   title: string;
   title_unicode: string;
   user_id: number;
+  video: boolean;
 }
