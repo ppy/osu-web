@@ -61,6 +61,8 @@ export class UserCard extends React.PureComponent<Props, State> {
     backgroundLoaded: false,
   };
 
+  private url?: string;
+
   private get canMessage() {
     return !this.isSelf
       && _.find(currentUser.blocks, { target_id: this.user.id }) == null;
@@ -112,6 +114,8 @@ export class UserCard extends React.PureComponent<Props, State> {
     modifiers.push(this.props.activated ? 'active' : 'highlightable');
     modifiers.push(this.props.mode);
 
+    this.url = this.isUserVisible ? route('users.show', { user: this.user.id }) : undefined;
+
     return (
       <div className={osu.classWithModifiers('user-card', modifiers)}>
         {this.renderBackground()}
@@ -124,7 +128,7 @@ export class UserCard extends React.PureComponent<Props, State> {
             <div className='user-card__details'>
               {this.renderIcons()}
               <div className='user-card__username-row'>
-                <div className='user-card__username u-ellipsis-pre-overflow'>{this.user.is_deleted ? osu.trans('users.deleted') : this.user.username}</div>
+                {this.renderUsername()}
                 <div className='user-card__group-badges'><UserGroupBadges groups={this.user.groups} short wrapper='user-card__group-badge' /></div>
               </div>
               {this.renderListModeIcons()}
@@ -184,10 +188,7 @@ export class UserCard extends React.PureComponent<Props, State> {
 
     if (this.isUserVisible) {
       backgroundLink = (
-        <a
-          href={route('users.show', { user: this.user.id })}
-          className='user-card__background-container'
-        >
+        <a href={this.url} className='user-card__background-container'>
           {background}
         </a>
       );
@@ -332,6 +333,18 @@ export class UserCard extends React.PureComponent<Props, State> {
       <div className='user-card__status-icon-container'>
         <div className={`user-card__status-icon user-card__status-icon--${this.isOnline ? 'online' : 'offline'}`} />
       </div>
+    );
+  }
+
+  private renderUsername() {
+    const displayName = this.user.is_deleted ? osu.trans('users.deleted') : this.user.username;
+
+    return this.url == null ? (
+      <div className='user-card__username u-ellipsis-pre-overflow'>{displayName}</div>
+    ) : (
+      <a href={this.url} className='user-card__username u-ellipsis-pre-overflow'>
+        {displayName}
+      </a>
     );
   }
 }
