@@ -68,7 +68,7 @@ export default class Editor extends React.Component<Props, State> {
 
   bn = 'beatmap-discussion-editor';
   cache: CacheInterface = {};
-  context!: React.ContextType<typeof ReviewEditorConfigContext>;
+  declare context: React.ContextType<typeof ReviewEditorConfigContext>;
   emptyDocTemplate = [{children: [{text: ''}], type: 'paragraph'}];
   insertMenuRef: React.RefObject<EditorInsertionMenu>;
   localStorageKey: string;

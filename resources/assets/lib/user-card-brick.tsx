@@ -23,7 +23,7 @@ export default class UserCardBrick extends React.PureComponent<Props> {
     modifiers: [],
   };
 
-  context!: React.ContextType<typeof UserCardTypeContext>;
+  declare context: React.ContextType<typeof UserCardTypeContext>;
 
   readonly eventId = `user-card-brick-${osu.uuid()}`;
 
