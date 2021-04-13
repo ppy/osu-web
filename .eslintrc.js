@@ -118,6 +118,7 @@ module.exports = {
       "@typescript-eslint/unbound-method": "warn", // TODO: some calls are intentionally unbounded...
       "@typescript-eslint/unified-signatures": "error",
       "no-invalid-this": "off", // @typescript-eslint/no-invalid-this
+      "quotes": "off",
       "react-hooks/exhaustive-deps": "error",
       "react/jsx-boolean-value": "error",
       "react/jsx-curly-spacing": "error",
@@ -188,6 +189,11 @@ module.exports = {
     "object-shorthand": "error",
     "one-var": ["error", "never"],
     "quote-props": ["error", "consistent-as-needed"],
+    "quotes": [
+      "error",
+      "single",
+      { avoidEscape: true },
+    ],
     "radix": "error",
     "sort-keys": ["error", "asc", { caseSensitive: false }],
     "space-before-function-paren": [
