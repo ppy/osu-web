@@ -113,26 +113,15 @@ module.exports = {
           allowNumber: true,
         },
       ],
-      "@typescript-eslint/semi": [
-        "error",
-        "always",
-      ],
+      "@typescript-eslint/semi": ["error", "always"],
       "@typescript-eslint/type-annotation-spacing": "error",
       "@typescript-eslint/unbound-method": "warn", // TODO: some calls are intentionally unbounded...
       "@typescript-eslint/unified-signatures": "error",
       "no-invalid-this": "off", // @typescript-eslint/no-invalid-this
       "react-hooks/exhaustive-deps": "error",
       "react/jsx-boolean-value": "error",
-      "react/jsx-curly-spacing": [
-        "error",
-        {
-          when: "never",
-        },
-      ],
-      "react/jsx-equals-spacing": [
-        "error",
-        "never",
-      ],
+      "react/jsx-curly-spacing": "error",
+      "react/jsx-equals-spacing": "error",
       "react/jsx-max-props-per-line": ["error", { when: "multiline" }],
       "react/jsx-no-bind": "error",
       "react/jsx-sort-props": ["error", { reservedFirst: true }],
@@ -156,28 +145,13 @@ module.exports = {
   ],
   rules: {
     "arrow-body-style": "error",
-    "arrow-parens": [
-      "error",
-      "always",
-    ],
-    "brace-style": [
-      "error",
-      "1tbs",
-    ],
-    "comma-dangle": [
-      "error",
-      "always-multiline",
-    ],
+    "arrow-parens": "error",
+    "brace-style": "error",
+    "comma-dangle": ["error", "always-multiline"],
     "complexity": "off",
-    "curly": [
-      "error",
-      "multi-line",
-    ],
+    "curly": ["error", "multi-line"],
     "eol-last": "error",
-    "eqeqeq": [
-      "error",
-      "smart",
-    ],
+    "eqeqeq": ["error", "smart"],
     "guard-for-in": "error",
     "id-blacklist": [
       "error",
@@ -196,10 +170,7 @@ module.exports = {
     "jsdoc/check-alignment": "error",
     "jsdoc/check-indentation": "error",
     "jsdoc/newline-after-description": "error",
-    "max-classes-per-file": [
-      "error",
-      1,
-    ],
+    "max-classes-per-file": "error",
     "max-len": "off",
     "new-parens": "error",
     "no-bitwise": "error",
@@ -208,26 +179,15 @@ module.exports = {
     "no-eval": "error",
     "no-multiple-empty-lines": "error",
     "no-new-wrappers": "error",
-    "no-shadow": [
-      "error",
-      {
-        hoist: "all",
-      },
-    ],
+    "no-shadow": ["error", { hoist: "all" }],
     "no-throw-literal": "error",
     "no-trailing-spaces": "error",
     "no-undef-init": "error",
     "no-underscore-dangle": "error",
     "no-unsafe-finally": "error",
     "object-shorthand": "error",
-    "one-var": [
-      "error",
-      "never",
-    ],
-    "quote-props": [
-      "error",
-      "consistent-as-needed",
-    ],
+    "one-var": ["error", "never"],
+    "quote-props": ["error", "consistent-as-needed"],
     "radix": "error",
     "sort-keys": ["error", "asc", { caseSensitive: false }],
     "space-before-function-paren": [
@@ -238,14 +198,6 @@ module.exports = {
         named: "never",
       },
     ],
-    "spaced-comment": [
-      "error",
-      "always",
-      {
-        markers: [
-          "/",
-        ],
-      },
-    ],
+    "spaced-comment": "error",
   },
 };
