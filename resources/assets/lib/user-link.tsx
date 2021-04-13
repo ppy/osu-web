@@ -6,6 +6,7 @@ import * as React from 'react';
 
 interface Props {
   className?: string;
+  children?: React.ReactNode;
   user: {
     id: number;
     username: string;
@@ -25,7 +26,7 @@ export class UserLink extends React.PureComponent<Props> {
         data-user-id={this.props.user.id}
         href={route('users.show', { user: this.props.user.id })}
       >
-        {this.props.user.username}
+        {this.props.children ?? this.props.user.username}
       </a>
     );
   }
