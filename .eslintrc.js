@@ -101,6 +101,7 @@ module.exports = {
       ],
       "@typescript-eslint/naming-convention": "off",
       "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-invalid-this": ["error"],
       "@typescript-eslint/no-parameter-properties": "off",
       "@typescript-eslint/no-unsafe-assignment": "warn",
       "@typescript-eslint/no-unsafe-call": "warn",
@@ -132,7 +133,7 @@ module.exports = {
       "@typescript-eslint/unbound-method": "warn", // TODO: some calls are intentionally unbounded...
       "@typescript-eslint/unified-signatures": "error",
       "no-fallthrough": "off",
-      "no-invalid-this": "off",
+      "no-invalid-this": "off", // @typescript-eslint/no-invalid-this
       "react-hooks/exhaustive-deps": "error",
       "react/jsx-boolean-value": "error",
       "react/jsx-curly-spacing": [
