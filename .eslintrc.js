@@ -89,7 +89,7 @@ module.exports = {
       ],
       '@typescript-eslint/naming-convention': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-invalid-this': ['error'],
+      '@typescript-eslint/no-invalid-this': 'error',
       '@typescript-eslint/no-parameter-properties': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'warn',
       '@typescript-eslint/no-unsafe-call': 'warn',
@@ -117,7 +117,8 @@ module.exports = {
       '@typescript-eslint/type-annotation-spacing': 'error',
       '@typescript-eslint/unbound-method': 'warn', // TODO: some calls are intentionally unbounded...
       '@typescript-eslint/unified-signatures': 'error',
-      'no-invalid-this': 'off', // @typescript-eslint/no-invalid-this
+      'dot-notation': 'off',
+      'no-invalid-this': 'off',
       'quotes': 'off',
       'react-hooks/exhaustive-deps': 'error',
       'react/jsx-boolean-value': 'error',
@@ -130,6 +131,7 @@ module.exports = {
       'react/no-deprecated': 'warn',
       'react/no-unsafe': 'off',
       'react/self-closing-comp': 'error',
+      'semi': 'off',
     },
     settings: {
       react: {
@@ -151,6 +153,7 @@ module.exports = {
     'comma-dangle': ['error', 'always-multiline'],
     'complexity': 'off',
     'curly': ['error', 'multi-line'],
+    'dot-notation': 'error',
     'eol-last': 'error',
     'eqeqeq': ['error', 'smart'],
     'guard-for-in': 'error',
@@ -177,7 +180,9 @@ module.exports = {
     'no-bitwise': 'error',
     'no-caller': 'error',
     'no-console': 'warn',
+    'no-empty-function': 'error',
     'no-eval': 'error',
+    'no-invalid-this': 'error',
     'no-multiple-empty-lines': 'error',
     'no-new-wrappers': 'error',
     'no-shadow': ['error', { hoist: 'all' }],
@@ -195,6 +200,7 @@ module.exports = {
       { avoidEscape: true },
     ],
     'radix': 'error',
+    'semi': ['error', 'always'],
     'sort-keys': ['error', 'asc', { caseSensitive: false }],
     'space-before-function-paren': [
       'error',
