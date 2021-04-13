@@ -11,6 +11,7 @@ import Promise from 'promise-polyfill'
 import OsuUrlHelper from 'osu-url-helper'
 import { fileuploadFailCallback } from 'utils/ajax'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
+import { make2x } from 'utils/html'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
@@ -23,6 +24,7 @@ window._exported = {
   OsuUrlHelper
   discussionLinkify
   fileuploadFailCallback
+  make2x
 }
 
 # FIXME: remove once everything imports instead of using global

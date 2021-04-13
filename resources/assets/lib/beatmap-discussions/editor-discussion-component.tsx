@@ -37,7 +37,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   bn = 'beatmap-discussion-review-post-embed-preview';
   cache: Cache = {};
-  context!: React.ContextType<typeof SlateContext>;
+  declare context: React.ContextType<typeof SlateContext>;
   tooltipContent = React.createRef<HTMLScriptElement>();
   tooltipEl?: HTMLElement;
 

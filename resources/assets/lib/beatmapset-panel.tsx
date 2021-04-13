@@ -19,7 +19,7 @@ import { UserLink } from 'user-link';
 import * as BeatmapHelper from 'utils/beatmap-helper';
 import { showVisual, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
-import { formatNumberSuffixed } from 'utils/html';
+import { formatNumberSuffixed, make2x } from 'utils/html';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
@@ -91,7 +91,7 @@ const NsfwBadge = () => (
 );
 
 const StatsItem = ({ icon, title, value }: { icon: string; title: string; value: number }) => (
-  <div className='beatmapset-panel__stats-item u-hover' title={title}>
+  <div className='beatmapset-panel__stats-item' title={title}>
     <span className='beatmapset-panel__stats-item-icon'>
       <i className={icon} />
     </span>
@@ -362,10 +362,10 @@ export default class BeatmapsetPanel extends React.Component<Props> {
         <div className='beatmapset-panel__cover-col beatmapset-panel__cover-col--play'>
           <div className='beatmapset-panel__cover beatmapset-panel__cover--default' />
           {this.showVisual && (
-            <Img2x
+            <img
               className='beatmapset-panel__cover'
               onError={hideImage}
-              src={this.props.beatmapset.covers.card}
+              src={make2x(this.props.beatmapset.covers.list)}
             />
           )}
         </div>
@@ -445,7 +445,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
             <span className='beatmapset-panel__stats-item-icon'>
               <i className='fas fa-fw fa-check-circle' />
             </span>
-            <TimeWithTooltip dateTime={this.displayDate} format='L' />
+            <TimeWithTooltip dateTime={this.displayDate} />
           </div>
         </div>
 

@@ -16,7 +16,7 @@ interface Props {
 export class EditorInsertionMenu extends React.Component<Props> {
   static contextType = SlateContext;
   bn = 'beatmap-discussion-editor-insertion-menu';
-  context!: React.ContextType<typeof SlateContext>;
+  declare context: React.ContextType<typeof SlateContext>;
   hideInsertMenuTimer?: number;
   hoveredBlock: HTMLElement | undefined;
   insertPosition: 'above' | 'below' | undefined;

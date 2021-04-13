@@ -21,7 +21,7 @@ interface Props {
 
 export default class IconDropdownMenu extends React.Component<Props> {
   static contextType = SlateContext;
-  context!: React.ContextType<typeof SlateContext>;
+  declare context: React.ContextType<typeof SlateContext>;
 
   render(): React.ReactNode {
     return (
