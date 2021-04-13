@@ -6,7 +6,7 @@
 return [
     'beatmapset' => [
         'button' => 'Report',
-        'title' => 'Report :username\'s beatmap?'
+        'title' => 'Report :username\'s beatmap?',
     ],
 
     'beatmapset_discussion_post' => [
