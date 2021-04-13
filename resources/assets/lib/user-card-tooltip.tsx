@@ -120,11 +120,11 @@ function onMouseOver(event: JQueryEventObject) {
   }
 }
 
-function showEffect() {
+function showEffect(this: JQuery<HTMLElement>) {
   $(this).fadeTo(110, 1);
 }
 
-function hideEffect() {
+function hideEffect(this: JQuery<HTMLElement>) {
   $(this).fadeTo(110, 0);
 }
 

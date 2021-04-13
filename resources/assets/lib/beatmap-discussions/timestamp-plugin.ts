@@ -3,9 +3,10 @@
 
 import OsuUrlHelper from 'osu-url-helper';
 import { Eat } from 'remark-parse';
+import { Plugin } from 'unified';
 
 // plugin to tokenize timestamps
-export function timestampPlugin() {
+export function timestampPlugin(this: Plugin) {
   function locator(value: string, fromIndex: number) {
     const match = value.substr(fromIndex).search(/[0-9]{2}:/);
 
