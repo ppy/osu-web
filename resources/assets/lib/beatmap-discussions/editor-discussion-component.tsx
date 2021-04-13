@@ -41,13 +41,6 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   tooltipContent = React.createRef<HTMLScriptElement>();
   tooltipEl?: HTMLElement;
 
-  componentDidMount = () => {
-    // reset timestamp to null on clone
-    if (this.editable()) {
-      Transforms.setNodes(this.context, {timestamp: null}, {at: this.path()});
-    }
-  };
-
   componentDidUpdate = () => {
     if (!this.editable()) {
       return;
