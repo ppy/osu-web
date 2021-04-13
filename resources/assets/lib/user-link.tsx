@@ -8,7 +8,7 @@ interface Props {
   className?: string;
   children?: React.ReactNode;
   user: {
-    id: number;
+    id?: number;
     username: string;
   };
 }
@@ -20,11 +20,13 @@ export class UserLink extends React.PureComponent<Props> {
       className += ` ${this.props.className}`;
     }
 
+    const href = this.props.user.id ? route('users.show', { user: this.props.user.id }) : undefined;
+
     return (
       <a
         className={className}
         data-user-id={this.props.user.id}
-        href={route('users.show', { user: this.props.user.id })}
+        href={href}
       >
         {this.props.children ?? this.props.user.username}
       </a>
