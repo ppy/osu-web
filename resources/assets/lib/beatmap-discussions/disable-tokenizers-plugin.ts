@@ -1,9 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { Plugin } from 'unified';
+import { Processor } from 'unified';
 
-export function disableTokenizersPlugin(this: Plugin, {allowedBlocks = [] as string[], allowedInlines = [] as string[]} = {}) {
+export function disableTokenizersPlugin(this: Processor, {allowedBlocks = [] as string[], allowedInlines = [] as string[]} = {}) {
   // Ensure core required tokenizers are always allowed (otherwise infinite loops and other bad things happen...)
   allowedBlocks.push('root', 'newline');
   allowedInlines.push('text');

@@ -2,9 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { Eat } from 'remark-parse';
-import { Plugin } from 'unified';
+import { Processor } from 'unified';
 
-export function autolinkPlugin(this: Plugin) {
+export function autolinkPlugin(this: Processor) {
   function locator(value: string, fromIndex: number) {
     return value.indexOf('http', fromIndex);
   }
