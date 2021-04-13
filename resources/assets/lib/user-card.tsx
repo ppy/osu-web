@@ -56,7 +56,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     username: osu.trans('users.card.loading'),
   };
 
-  readonly state: State = {
+  state: Readonly<State> = {
     avatarLoaded: false,
     backgroundLoaded: false,
   };

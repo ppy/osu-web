@@ -41,7 +41,7 @@ function usernameSortAscending(x: UserJson, y: UserJson) {
 }
 
 export class UserList extends React.PureComponent<Props> {
-  readonly state: State = {
+  state: Readonly<State> = {
     filter: this.filterFromUrl,
     playMode: this.playmodeFromUrl,
     sortMode: this.sortFromUrl,

@@ -152,8 +152,8 @@ export function startListening() {
  * This component's job is to get the data and bootstrap the actual UserCard component for tooltips.
  */
 export class UserCardTooltip extends React.PureComponent<Props, State> {
+  state: Readonly<State> = {};
   readonly contextActiveKeyDidChange = contextActiveKeyDidChange.bind(this);
-  readonly state: State = {};
   readonly activeKeyDidChange = (key: any) => {
     tooltipWithActiveMenu = key;
     this.contextActiveKeyDidChange(key);
