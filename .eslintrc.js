@@ -120,7 +120,6 @@ module.exports = {
       "@typescript-eslint/type-annotation-spacing": "error",
       "@typescript-eslint/unbound-method": "warn", // TODO: some calls are intentionally unbounded...
       "@typescript-eslint/unified-signatures": "error",
-      "no-fallthrough": "off",
       "no-invalid-this": "off", // @typescript-eslint/no-invalid-this
       "react-hooks/exhaustive-deps": "error",
       "react/jsx-boolean-value": "error",
