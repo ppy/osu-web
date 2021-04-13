@@ -41,6 +41,13 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   tooltipContent = React.createRef<HTMLScriptElement>();
   tooltipEl?: HTMLElement;
 
+  componentDidMount = () => {
+    // reset timestamp to null on clone
+    if (this.editable()) {
+      Transforms.setNodes(this.context, {timestamp: undefined}, {at: this.path()});
+    }
+  };
+
   componentDidUpdate = () => {
     if (!this.editable()) {
       return;
@@ -52,7 +59,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     if (this.props.element.beatmapId) {
       const content = this.props.element.children[0].text as string;
       const matches = content.match(BeatmapDiscussionHelper.TIMESTAMP_REGEX);
-      let timestamp = null;
+      let timestamp: string | undefined;
 
       // only extract timestamp if it occurs at the start of the issue
       if (matches !== null && matches.index === 0) {
@@ -65,7 +72,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
       Transforms.setNodes(this.context, {timestamp}, {at: path});
     } else {
-      Transforms.setNodes(this.context, {timestamp: null}, {at: path});
+      Transforms.setNodes(this.context, {timestamp: undefined}, {at: path});
       purgeCache = true;
     }
 
@@ -298,7 +305,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
                 contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
               >
                 <span title={canEdit ? timestampTooltip : ''}>
-                  {(this.props.element.timestamp as string) || osu.trans('beatmap_discussions.timestamp_display.general')}
+                  {(this.props.element.timestamp as string | undefined) ?? osu.trans('beatmap_discussions.timestamp_display.general')}
                 </span>
               </div>
               {unsavedIndicator}
@@ -322,5 +329,5 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   selectedBeatmap = () => this.props.element.beatmapId as number;
 
-  timestamp = () => BeatmapDiscussionHelper.parseTimestamp(this.props.element.timestamp as string);
+  timestamp = () => BeatmapDiscussionHelper.parseTimestamp(this.props.element.timestamp as string | undefined);
 }
