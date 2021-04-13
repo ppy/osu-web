@@ -153,16 +153,7 @@ export function startListening() {
  */
 export class UserCardTooltip extends React.PureComponent<Props, State> {
   state: Readonly<State> = {};
-  readonly contextActiveKeyDidChange = contextActiveKeyDidChange.bind(this);
-  readonly activeKeyDidChange = (key: any) => {
-    tooltipWithActiveMenu = key;
-    this.contextActiveKeyDidChange(key);
-    // close the tooltip if cursor is known to be not within the card
-    // when the menu closes.
-    if (key == null && !inCard) {
-      $(`.${userCardTooltipClass}`).qtip('hide');
-    }
-  };
+  private readonly contextActiveKeyDidChange = contextActiveKeyDidChange.bind(this);
 
   componentDidMount() {
     this.getUser().then((user) => {
@@ -193,4 +184,14 @@ export class UserCardTooltip extends React.PureComponent<Props, State> {
       </TooltipContext.Provider>
     );
   }
+
+  private readonly activeKeyDidChange = (key: any) => {
+    tooltipWithActiveMenu = key;
+    this.contextActiveKeyDidChange(key);
+    // close the tooltip if cursor is known to be not within the card
+    // when the menu closes.
+    if (key == null && !inCard) {
+      $(`.${userCardTooltipClass}`).qtip('hide');
+    }
+  };
 }
