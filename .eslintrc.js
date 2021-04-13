@@ -20,7 +20,7 @@ module.exports = {
       "plugin:react/recommended",
       "plugin:react-hooks/recommended",
     ],
-    files: ["resources/assets/lib/**/*.{js,jsx,ts,tsx}"],
+    files: ["resources/assets/lib/**/*.{ts,tsx}"],
     parser: "@typescript-eslint/parser",
     parserOptions: {
       project: "tsconfig.json",
