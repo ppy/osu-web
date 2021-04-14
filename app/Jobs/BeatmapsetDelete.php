@@ -72,6 +72,10 @@ class BeatmapsetDelete implements ShouldQueue
                 'deleted_at' => $this->beatmapset->deleted_at,
             ]);
 
+            if ($this->beatmapset->topic !== null) {
+                $this->beatmapset->topic->delete();
+            }
+
             $this->beatmapset->removeCovers();
         });
     }
