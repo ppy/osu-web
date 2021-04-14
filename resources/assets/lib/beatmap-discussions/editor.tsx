@@ -461,10 +461,11 @@ export default class Editor extends React.Component<Props, State> {
             return;
           }
 
-          // clear invalid beatmapId references (for pasted embed content)
-          const beatmap = typeof node.beatmapId === 'number' ? this.props.beatmaps[node.beatmapId] : undefined;
-          if (beatmap == null || beatmap.deleted_at != null) {
-            Transforms.setNodes(editor, {beatmapId: undefined}, {at: path});
+          if (node.beatmapId != null) {
+            const beatmap = typeof node.beatmapId === 'number' ? this.props.beatmaps[node.beatmapId] : undefined;
+            if (beatmap == null || beatmap.deleted_at != null) {
+              Transforms.setNodes(editor, {beatmapId: undefined}, {at: path});
+            }
           }
         }
       }
