@@ -72,7 +72,6 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
       Transforms.setNodes(this.context, {timestamp}, {at: path});
     } else {
-      // Transforms.setNodes(this.context, {timestamp: undefined}, {at: path});
       purgeCache = true;
     }
 
