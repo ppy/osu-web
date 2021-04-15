@@ -101,18 +101,24 @@ class Contest extends Model
         return 'over';
     }
 
-    public function getEntryShapeAttribute()
+    public function hasEntryImages(): bool
     {
-        if ($this->type !== 'art') {
-            return;
+        return $this->type === 'art' ||
+            ($this->type === 'external' && isset($this->extra_options['shape']));
+    }
+
+    public function getEntryShapeAttribute(): ?string
+    {
+        if (!$this->hasEntryImages()) {
+            return null;
         }
 
         return $this->extra_options['shape'] ?? 'square';
     }
 
-    public function setEntryShapeAttribute($shape)
+    public function setEntryShapeAttribute($shape): void
     {
-        if ($this->type !== 'art') {
+        if (!$this->hasEntryImages()) {
             return;
         }
 
@@ -240,7 +246,7 @@ class Contest extends Model
     {
         $includes = [];
 
-        if ($this->type === 'art') {
+        if ($this->hasEntryImages()) {
             $includes[] = 'artMeta';
         }
 
