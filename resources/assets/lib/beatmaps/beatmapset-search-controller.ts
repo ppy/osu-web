@@ -32,6 +32,7 @@ export class BeatmapsetSearchController {
     state: 'completed',
   };
 
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   private readonly debouncedFilterChangedSearch = debounce(this.filterChangedSearch, 500);
   private filtersObserver!: Lambda;
   private initialErrorMessage?: string;

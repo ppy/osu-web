@@ -60,8 +60,8 @@ export class NewClient extends React.Component {
   render() {
     const link = (
       <a
-        href={`${process.env.DOCS_URL}#terms-of-use`}
         key='link'
+        href={`${process.env.DOCS_URL}#terms-of-use`}
       >
         {osu.trans('oauth.new_client.terms_of_use.link')}
       </a>
@@ -73,11 +73,11 @@ export class NewClient extends React.Component {
           {osu.trans('oauth.new_client.header')}
         </div>
 
-        <form className='oauth-client-details__content' autoComplete='off'>
+        <form autoComplete='off' className='oauth-client-details__content'>
           {this.renderRemainingErrors()}
 
           {NewClient.inputFields.map((name) => (
-            <div className='oauth-client-details__group' key={name}>
+            <div key={name} className='oauth-client-details__group'>
               <div className='oauth-client-details__label'>{osu.trans(`oauth.client.${name}`)}</div>
               <ValidatingInput
                 blockName='oauth-client-details'
@@ -90,14 +90,14 @@ export class NewClient extends React.Component {
           ))}
 
           <div>
-            <StringWithComponent pattern={osu.trans('oauth.new_client.terms_of_use._')} mappings={{ ':link': link }} />
+            <StringWithComponent mappings={{ ':link': link }} pattern={osu.trans('oauth.new_client.terms_of_use._')} />
           </div>
 
           <div className='oauth-client-details__buttons'>
-            <button className='btn-osu-big' type='button' onClick={this.handleSubmit}>
+            <button className='btn-osu-big' onClick={this.handleSubmit} type='button'>
               {uiState.account.isCreatingNewClient ? <Spinner /> : osu.trans('oauth.new_client.register')}
             </button>
-            <button className='btn-osu-big' type='button' onClick={this.handleCancel}>{osu.trans('common.buttons.cancel')}</button>
+            <button className='btn-osu-big' onClick={this.handleCancel} type='button'>{osu.trans('common.buttons.cancel')}</button>
           </div>
         </form>
       </div>
@@ -105,6 +105,6 @@ export class NewClient extends React.Component {
   }
 
   renderRemainingErrors() {
-    return this.errors.except(NewClient.inputFields).map((error, index) => <div className='oauth-client-details__error' key={index}>{error}</div>);
+    return this.errors.except(NewClient.inputFields).map((error, index) => <div key={index} className='oauth-client-details__error'>{error}</div>);
   }
 }

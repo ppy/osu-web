@@ -70,11 +70,11 @@ export default class Main extends React.PureComponent<Props> {
           {follow.latest_comment != null ? (
             <a href={route('comments.show', { comment: follow.latest_comment.id })}>
               <StringWithComponent
-                pattern={osu.trans('follows.comment.table.latest_comment_value')}
                 mappings={{
                   ':time': <TimeWithTooltip key='time' dateTime={follow.latest_comment.created_at} relative />,
                   ':username': follow.latest_comment.user?.username ?? '???',
                 }}
+                pattern={osu.trans('follows.comment.table.latest_comment_value')}
               />
             </a>
           ) : osu.trans('follows.comment.table.latest_comment_empty')}

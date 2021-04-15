@@ -37,7 +37,7 @@ export default function User({ user, modifiers = [] }: { modifiers?: string[]; u
         <UserGroupBadges groups={user.groups} short wrapper='user-search-card__col user-search-card__col--icon' />
 
         <div className='user-search-card__col user-search-card__col--icon'>
-          <FriendButton userId={user.id} modifiers={['quick-search']} />
+          <FriendButton modifiers={['quick-search']} userId={user.id} />
         </div>
       </div>
     </div>

@@ -47,10 +47,10 @@ export default class IconDropdownMenu extends React.Component<Props> {
 
     return (
       <div
-        className={osu.classWithModifiers(bn, mods)}
-        contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
-        onClick={toggle}
         ref={ref}
+        className={osu.classWithModifiers(bn, mods)} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+        contentEditable={false}
+        onClick={toggle}
       >
         {selected.icon}
         {children}
@@ -69,8 +69,8 @@ export default class IconDropdownMenu extends React.Component<Props> {
 
     return (
       <button
-        className={osu.classWithModifiers(baseClass, mods)}
         key={menuItem.id}
+        className={osu.classWithModifiers(baseClass, mods)}
         data-id={menuItem.id}
         onClick={this.select}
       >

@@ -17,7 +17,7 @@ export default class AdminMenu extends React.PureComponent<Props> {
     }
 
     const items = this.props.items.map((item) => (
-      <item.component className='admin-menu-item' key={`${item.icon}-${item.text}`} {...item.props}>
+      <item.component key={`${item.icon}-${item.text}`} className='admin-menu-item' {...item.props}>
         <span className='admin-menu-item__content'>
           <span className='admin-menu-item__label admin-menu-item__label--icon'>
             <span className={item.icon} />

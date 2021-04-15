@@ -80,10 +80,10 @@ export class WikiSearch extends React.Component {
           <input
             autoFocus
             className='wiki-search__input'
-            value={this.controller.displayText}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
             placeholder={osu.trans('common.input.search')}
+            value={this.controller.displayText}
           />
           <button className='wiki-search__button' onClick={this.handleSearch}>
             <i className='fa fa-search'/>
@@ -110,9 +110,9 @@ export class WikiSearch extends React.Component {
 
             return (
               <a
+                key={index}
                 className={osu.classWithModifiers('wiki-search__suggestion', this.controller.selectedIndex === index ? ['active'] : [])}
                 href={href}
-                key={index}
                 onMouseEnter={setIndex}
               >
                 <span dangerouslySetInnerHTML={{ __html: item.highlight }} />
