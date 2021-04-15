@@ -13,10 +13,10 @@ export interface SearchStatus {
   from: number;
   restore?: boolean;
   state: 'completed' // search not doing anything
-    | 'input'        // receiving input but not searching
-    | 'paging'       // getting more pages
-    | 'searching'    // actually doing a search
-    ;
+  | 'input'        // receiving input but not searching
+  | 'paging'       // getting more pages
+  | 'searching'    // actually doing a search
+  ;
 }
 
 export class BeatmapsetSearchController {
@@ -94,7 +94,7 @@ export class BeatmapsetSearchController {
   }
 
   @action
-  async loadMore() {
+  loadMore() {
     if (this.isBusy || !this.hasMore) {
       return;
     }
@@ -145,9 +145,9 @@ export class BeatmapsetSearchController {
 
   private filterChangedHandler = (change: IObjectDidChange) => {
     const valueChange = change as IValueDidChange<BeatmapsetSearchFilters>; // actual object is a union of types.
-    if (valueChange.oldValue === valueChange.newValue) { return; }
+    if (valueChange.oldValue === valueChange.newValue) return;
     // FIXME: sort = null changes ignored because search triggered too early during filter update.
-    if (change.name === 'sort' && valueChange.newValue == null) { return; }
+    if (change.name === 'sort' && valueChange.newValue == null) return;
 
     this.searchStatus.state = 'input';
     this.debouncedFilterChangedSearch();
@@ -155,7 +155,7 @@ export class BeatmapsetSearchController {
     if (change.name !== 'query') {
       this.debouncedFilterChangedSearch.flush();
     }
-  }
+  };
 
   private filterChangedSearch() {
     const url = route('beatmapsets.index', this.filters.queryParams);

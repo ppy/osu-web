@@ -1,15 +1,17 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapPicker } from './beatmap-picker'
 import { Stats } from './stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
+import BeatmapPicker from 'beatmapsets-show/beatmap-picker'
 import { BigButton } from 'big-button'
 import { route } from 'laroute'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
+import { createClickCallback } from 'utils/html'
 el = React.createElement
 
 export class Header extends React.Component
@@ -283,7 +285,6 @@ export class Header extends React.Component
 
 
   toggleFavourite: (e) ->
-    if !currentUser.id?
-      userLogin.show e.target
-    else
-      $.publish 'beatmapset:favourite:toggle'
+    return if core.userLogin.showIfGuest(createClickCallback(e.target))
+
+    $.publish 'beatmapset:favourite:toggle'

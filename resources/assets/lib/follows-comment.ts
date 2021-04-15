@@ -3,8 +3,6 @@
 
 import Main from 'follows-comment/main';
 
-reactTurbolinks.registerPersistent('follows-comment', Main, true, () => {
-  return {
-    follows: osu.parseJson('json-follows-comment'),
-  };
-});
+reactTurbolinks.registerPersistent('follows-comment', Main, true, () => ({
+  follows: osu.parseJson('json-follows-comment'),
+}));

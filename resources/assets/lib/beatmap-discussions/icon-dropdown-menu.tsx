@@ -21,7 +21,7 @@ interface Props {
 
 export default class IconDropdownMenu extends React.Component<Props> {
   static contextType = SlateContext;
-  context!: React.ContextType<typeof SlateContext>;
+  declare context: React.ContextType<typeof SlateContext>;
 
   render(): React.ReactNode {
     return (
@@ -56,7 +56,7 @@ export default class IconDropdownMenu extends React.Component<Props> {
         {children}
       </div>
     );
-  }
+  };
 
   renderMenuItem = (menuItem: MenuItem) => {
     const baseClass = 'simple-menu__item';
@@ -82,7 +82,7 @@ export default class IconDropdownMenu extends React.Component<Props> {
         </div>
       </button>
     );
-  }
+  };
 
   select = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
@@ -94,5 +94,5 @@ export default class IconDropdownMenu extends React.Component<Props> {
     }
 
     this.props.onSelect(target.dataset.id ?? '');
-  }
+  };
 }

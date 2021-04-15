@@ -7,7 +7,6 @@ namespace App\Http\Controllers\Forum;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\Notifications\ForumTopicReply;
-use App\Libraries\DbCursorHelper;
 use App\Libraries\NewForumTopic;
 use App\Models\Forum\FeatureVote;
 use App\Models\Forum\Forum;
@@ -40,6 +39,7 @@ class TopicsController extends Controller
         ]]);
 
         $this->middleware('require-scopes:public', ['only' => ['show']]);
+        $this->middleware('require-scopes:forum.write', ['only' => ['reply', 'store', 'update']]);
     }
 
     public function create()
@@ -219,25 +219,41 @@ class TopicsController extends Controller
         return ext_view('forum.topics.replace_button', compact('topic', 'type', 'state'), 'js');
     }
 
+    /**
+     * Reply Topic
+     *
+     * Create a post replying to the specified topic.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * [ForumPost](#forum-post) with `body` included.
+     *
+     * @urlParam topic required Id of the topic to be replied to. Example: 1
+     *
+     * @bodyParam body string required Content of the reply post. Example: hello
+     */
     public function reply($id)
     {
         $topic = Topic::findOrFail($id);
 
         priv_check('ForumTopicReply', $topic)->ensureCan();
 
-        try {
-            $post = Post::createNew($topic, auth()->user(), get_string(request('body')));
-        } catch (ModelNotSavedException $e) {
-            return error_popup($e->getMessage());
-        }
-
-        $posts = collect([$post]);
-        $firstPostPosition = $topic->postPosition($post->getKey());
+        $post = Post::createNew($topic, auth()->user(), get_string(request('body')));
 
         $post->markRead(Auth::user());
         (new ForumTopicReply($post, auth()->user()))->dispatch();
 
-        return ext_view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
+        if (is_api_request()) {
+            return json_item($post, 'Forum\Post', ['body']);
+        } else {
+            return ext_view('forum.topics._posts', [
+                'firstPostPosition' => $topic->postPosition($post->post_id),
+                'posts' => collect([$post]),
+                'topic' => $topic,
+            ]);
+        }
     }
 
     /**
@@ -296,13 +312,10 @@ class TopicsController extends Controller
         $skipLayout = $params['skip_layout'];
         $showDeleted = $params['with_deleted'];
 
-        $cursorHelper = new DbCursorHelper(Post::SORTS, Post::DEFAULT_SORT, $params['sort']);
+        $cursorHelper = Post::makeDbCursorHelper($params['sort']);
 
         $postsQueryBase = $topic->posts()->showDeleted($showDeleted)->limit($params['limit']);
-        $posts = (clone $postsQueryBase)->cursorSort(
-            $cursorHelper->getSort(),
-            $cursorHelper->prepare($params['cursor'])
-        )->get();
+        $posts = (clone $postsQueryBase)->cursorSort($cursorHelper, $params['cursor'])->get();
 
         $isJsonRequest = is_api_request();
 
@@ -328,13 +341,7 @@ class TopicsController extends Controller
                 $extraSort = 'id_asc';
             }
             if (isset($extraSort)) {
-                $extraCursorHelper = new DbCursorHelper(Post::SORTS, $extraSort);
-                $extraPosts = (clone $postsQueryBase)
-                    ->cursorSort(
-                        $extraCursorHelper->getSort(),
-                        $extraCursorHelper->prepare(['id' => $jumpTo])
-                    )->get()
-                    ->reverse();
+                $extraPosts = (clone $postsQueryBase)->cursorSort($extraSort, ['id' => $jumpTo])->get()->reverse();
 
                 $posts = $extraPosts->concat($posts);
             }
@@ -415,6 +422,32 @@ class TopicsController extends Controller
         ));
     }
 
+
+    /**
+     * Create Topic
+     *
+     * Create a new topic.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field  | Type                       | Includes
+     * ------ | -------------------------- | --------
+     * topic  | [ForumTopic](#forum-topic) | |
+     * post   | [ForumPost](#forum-post)   | body
+     *
+     * @bodyParam body string required Content of the topic. Example: hello
+     * @bodyParam forum_id number required Forum to create the topic in. Example: 1
+     * @bodyParam title string required Title of the topic. Example: untitled
+     * @bodyParam with_poll boolean Enable this to also create poll in the topic (default: false). Example: 1
+     * @bodyParam forum_topic_poll[hide_results] boolean Enable this to hide result until voting period ends (default: false). No-example
+     * @bodyParam forum_topic_poll[length_days] number Number of days for voting period. 0 means the voting will never ends (default: 0). This parameter is required if `hide_results` option is enabled. No-example
+     * @bodyParam forum_topic_poll[max_options] number Maximum number of votes each user can cast (default: 1). No-example
+     * @bodyParam forum_topic_poll[options] string required Newline-separated list of voting options. BBCode is supported. Example: item A...
+     * @bodyParam forum_topic_poll[title] string required Title of the poll. Example: my poll
+     * @bodyParam forum_topic_poll[vote_change] boolean Enable this to allow user to change their votes (default: false). No-example
+     */
     public function store()
     {
         $params = get_params(request()->all(), null, [
@@ -445,11 +478,7 @@ class TopicsController extends Controller
             'cover' => TopicCover::findForUse($params['cover_id'], $user),
         ];
 
-        try {
-            $topic = Topic::createNew($forum, $topicParams, $poll ?? null);
-        } catch (ModelNotSavedException $e) {
-            return error_popup($e->getMessage());
-        }
+        $topic = Topic::createNew($forum, $topicParams, $poll ?? null);
 
         if ($user->user_notify || $forum->isHelpForum()) {
             TopicWatch::setState($topic, $user, 'watching_mail');
@@ -458,9 +487,30 @@ class TopicsController extends Controller
         $post = $topic->posts->last();
         $post->markRead($user);
 
-        return ujs_redirect(route('forum.topics.show', $topic));
+        if (is_api_request()) {
+            return [
+                'topic' => json_item($topic, 'Forum\Topic'),
+                'post' => json_item($post, 'Forum\Post', ['body']),
+            ];
+        } else {
+            return ujs_redirect(route('forum.topics.show', $topic));
+        }
     }
 
+    /**
+     * Edit Topic
+     *
+     * Edit topic. Only title can be edited through this endpoint.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * The edited [ForumTopic](#forum-topic).
+     *
+     * @urlParam topic required Id of the topic. Example: 1
+     * @bodyParam forum_topic[topic_title] string New topic title. Example: titled
+     */
     public function update($id)
     {
         $topic = Topic::withTrashed()->findOrFail($id);
@@ -480,7 +530,11 @@ class TopicsController extends Controller
                 );
             }
 
-            return [];
+            if (is_api_request()) {
+                return json_item($topic, 'Forum\Topic');
+            } else {
+                return response(null, 204);
+            }
         } else {
             return error_popup($topic->validationErrors()->toSentence());
         }
@@ -548,8 +602,8 @@ class TopicsController extends Controller
                 $params['start'] = get_int($params['start']);
             }
 
-            if ($params['n'] !== null) {
-                $post = $topic->nthPost($params['n']);
+            if ($params['n'] !== null && $params['n'] > 0) {
+                $post = $topic->nthPost($params['n']) ?? $topic->posts()->last();
                 if ($post !== null) {
                     $params['cursor'] = ['id' => $post->getKey() - 1];
                     $params['sort'] = 'id_asc';

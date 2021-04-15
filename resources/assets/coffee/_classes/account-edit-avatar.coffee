@@ -37,7 +37,7 @@ class @AccountEditAvatar
       done: (_e, data) =>
         $.publish 'user:update', data.result
 
-      fail: osu.fileuploadFailCallback(@$button)
+      fail: _exported.fileuploadFailCallback
 
       complete: =>
         @main[0].classList.remove 'js-account-edit-avatar--saving'

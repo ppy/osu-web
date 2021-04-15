@@ -33,15 +33,15 @@ return [
 
     'nominate' => [
         'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
+        'incorrect_mode' => '您沒有權限為 :mode 模式提名',
         'full_bn_required' => '',
-        'too_many' => '',
+        'too_many' => '提名需求已達成。',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'confirmation' => '您確定要提名這張圖譜嗎？',
+            'header' => '提名圖譜',
+            'hybrid_warning' => '注意: 您只能提名一次，所以請確保您的提名包含所有您想提名的模式。',
+            'which_modes' => '您想為哪個模式提名？',
         ],
     ],
 
@@ -117,18 +117,18 @@ return [
             'nsfw' => '',
             'points-of-failure' => '失敗位置',
             'source' => '來源',
-            'storyboard' => '',
+            'storyboard' => '這張圖譜包含 Storyboard',
             'success-rate' => '成功率',
             'tags' => '標籤',
         ],
 
         'nsfw_warning' => [
-            'details' => '',
+            'details' => '這張圖譜含有兒童不宜、具冒犯性、或令人不安的內容。您確定要查看嗎？',
             'title' => '',
 
             'buttons' => [
                 'disable' => '關閉警告',
-                'listing' => '',
+                'listing' => '圖譜列表',
                 'show' => '顯示',
             ],
         ],

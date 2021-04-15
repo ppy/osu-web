@@ -75,8 +75,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => '確定要刪除這個主題嗎？',
+        'confirm_restore' => '確定要復原這個主題嗎？',
         'deleted' => '已刪除的主題',
         'go_to_latest' => '查看最後的貼文',
         'has_replied' => '您已回覆此主題',
@@ -92,8 +92,8 @@ return [
         'started_by_verbose' => '由 :user 發起',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => '刪除主題',
+            'restore' => '恢復主題',
         ],
 
         'create' => [

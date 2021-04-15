@@ -139,7 +139,7 @@ return [
 
             'box' => [
                 'total' => 'Topik yang dilanggan',
-                'unread' => 'Topik-topik dengan balasan baru',
+                'unread' => 'Topik dengan balasan baru',
             ],
 
             'info' => [

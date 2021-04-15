@@ -52,9 +52,7 @@ export default class NotificationType implements NotificationReadable, Notificat
   }
 
   @computed get stackNotificationCount() {
-    return [...this.stacks.values()].reduce((acc, stack) => {
-      return acc + stack.total;
-    }, 0);
+    return [...this.stacks.values()].reduce((acc, stack) => acc + stack.total, 0);
   }
 
   constructor(readonly name: string | null, readonly resolver: NotificationResolver) {}
@@ -72,14 +70,14 @@ export default class NotificationType implements NotificationReadable, Notificat
 
   @action
   loadMore(context: NotificationContextData) {
-    if (this.cursor === null) { return; }
+    if (this.cursor === null) return;
 
     this.isLoading = true;
 
     this.resolver.loadMore(this.identity, context, this.cursor)
-    .always(action(() => {
-      this.isLoading = false;
-    }));
+      .always(action(() => {
+        this.isLoading = false;
+      }));
   }
 
   @action

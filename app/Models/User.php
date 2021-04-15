@@ -22,6 +22,7 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Ds\Set;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Exception;
@@ -440,7 +441,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         switch ($type) {
-            case 'string':
+            case 'username':
                 $user = static::where(function ($query) use ($usernameOrId) {
                     $query->where('username', (string) $usernameOrId)->orWhere('username_clean', '=', (string) $usernameOrId);
                 });
@@ -455,7 +456,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
                     $user = static::lookup($usernameOrId, 'id', $findAll);
                 }
 
-                return $user ?? static::lookup($usernameOrId, 'string', $findAll);
+                return $user ?? static::lookup($usernameOrId, 'username', $findAll);
         }
 
         if (!$findAll) {
@@ -1523,17 +1524,23 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function hasBlocked(self $user)
     {
-        return $this->blocks->where('user_id', $user->user_id)->count() > 0;
+        return $this->memoize(__FUNCTION__, function () {
+            return new Set($this->blocks->pluck('user_id'));
+        })->contains($user->getKey());
     }
 
     public function hasFriended(self $user)
     {
-        return $this->friends->where('user_id', $user->user_id)->count() > 0;
+        return $this->memoize(__FUNCTION__, function () {
+            return new Set($this->friends->pluck('user_id'));
+        })->contains($user->getKey());
     }
 
     public function hasFavourited($beatmapset)
     {
-        return $this->favourites->contains('beatmapset_id', $beatmapset->getKey());
+        return $this->memoize(__FUNCTION__, function () {
+            return new Set($this->favourites->pluck('beatmapset_id'));
+        })->contains($beatmapset->getKey());
     }
 
     public function remainingHype()

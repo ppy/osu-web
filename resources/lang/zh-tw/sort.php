@@ -17,7 +17,7 @@ return [
 
     'forum_posts' => [
         'created' => '發表時間',
-        'relevance' => '',
+        'relevance' => '相關度',
     ],
 
     'forum_topics' => [

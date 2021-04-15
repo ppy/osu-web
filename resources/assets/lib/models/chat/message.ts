@@ -9,12 +9,12 @@ import * as moment from 'moment';
 import core from 'osu-core-singleton';
 
 export default class Message {
-  @observable channelId: number = -1;
-  @observable content: string = '';
-  @observable errored: boolean = false;
-  @observable isAction: boolean = false;
+  @observable channelId = -1;
+  @observable content = '';
+  @observable errored = false;
+  @observable isAction = false;
   @observable messageId: number | string = osu.uuid();
-  @observable persisted: boolean = false;
+  @observable persisted = false;
   @observable senderId = -1;
   @observable timestamp: string = moment().toISOString();
   @observable uuid = this.messageId;

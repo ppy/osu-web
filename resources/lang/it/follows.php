@@ -5,18 +5,18 @@
 
 return [
     'comment' => [
-        'empty' => 'Non segui nessun commento.',
+        'empty' => 'Nessun commento seguito.',
         'page_title' => 'commenti seguiti',
         'title' => 'commenti',
 
         'table' => [
-            'latest_comment_empty' => '',
-            'latest_comment_value' => '',
+            'latest_comment_empty' => 'nessun commento',
+            'latest_comment_value' => ':time di :username',
         ],
     ],
 
     'forum_topic' => [
-        'title' => 'topic dei forum',
+        'title' => 'topic del forum',
     ],
 
     'index' => [

@@ -41,7 +41,7 @@ use Illuminate\Database\QueryException;
  * @property int|null $approvedby_id
  * @property User $approver
  * @property string $artist
- * @property string|null $artist_unicode
+ * @property string $artist_unicode
  * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussions BeatmapDiscussion
  * @property \Illuminate\Database\Eloquent\Collection $beatmaps Beatmap
  * @property int $beatmapset_id
@@ -88,7 +88,7 @@ use Illuminate\Database\QueryException;
  * @property \Carbon\Carbon|null $thread_icon_date
  * @property int $thread_id
  * @property string $title
- * @property string|null $title_unicode
+ * @property string $title_unicode
  * @property User $user
  * @property \Illuminate\Database\Eloquent\Collection $userRatings BeatmapsetUserRating
  * @property int $user_id
@@ -320,6 +320,17 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function scopeActive($query)
     {
         return $query->where('active', '=', true);
+    }
+
+    public function scopeHasMode($query, $modeInts)
+    {
+        if (!is_array($modeInts)) {
+            $modeInts = [$modeInts];
+        }
+
+        return $query->whereHas('beatmaps', function ($query) use ($modeInts) {
+            $query->whereIn('playmode', $modeInts);
+        });
     }
 
     public function scopeWithModesForRanking($query, $modeInts)
@@ -1275,11 +1286,16 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return new BBCodeFromDB($description, $post->bbcode_uid, $options);
     }
 
+    public function getArtistUnicodeAttribute($value)
+    {
+        return $value ?? $this->artist;
+    }
+
     public function getDisplayArtist(?User $user)
     {
         $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
         if ($profileCustomization->beatmapset_title_show_original) {
-            return presence($this->artist_unicode) ?? $this->artist;
+            return $this->artist_unicode;
         }
 
         return $this->artist;
@@ -1289,7 +1305,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     {
         $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
         if ($profileCustomization->beatmapset_title_show_original) {
-            return presence($this->title_unicode) ?? $this->title;
+            return $this->title_unicode;
         }
 
         return $this->title;
@@ -1304,6 +1320,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         }
 
         return Forum\Post::find($topic->topic_first_post_id);
+    }
+
+    public function getTitleUnicodeAttribute($value)
+    {
+        return $value ?? $this->title;
     }
 
     public function freshHype()

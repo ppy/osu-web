@@ -12,7 +12,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Zwolnij, pograj więcej!',
     ],
 
     'index' => [
@@ -35,7 +35,7 @@ return [
         'hybrid_requires_modes' => '',
         'incorrect_mode' => 'Nie posiadasz uprawnień do nominowania beatmap dla tych trybów (:mode)',
         'full_bn_required' => 'Musisz posiadać pełne uprawnienia nominatora, by zakwalifikować tę beatmapę.',
-        'too_many' => '',
+        'too_many' => 'Osiągnięto już wystarczającą liczbę nominacji.',
 
         'dialog' => [
             'confirmation' => 'Czy na pewno chcesz nominować tę beatmapę?',
@@ -114,17 +114,17 @@ return [
             'genre' => 'Gatunek',
             'language' => 'Język',
             'no_scores' => 'Dane są nadal ładowane...',
-            'nsfw' => '',
+            'nsfw' => 'Treść dla pełnoletnich',
             'points-of-failure' => 'Wykres porażek',
             'source' => 'Źródło',
-            'storyboard' => '',
+            'storyboard' => 'Ta beatmapa zawiera scenorys',
             'success-rate' => 'Wskaźnik ukończonych zagrań',
             'tags' => 'Tagi',
         ],
 
         'nsfw_warning' => [
             'details' => '',
-            'title' => '',
+            'title' => 'Treść dla pełnoletnich',
 
             'buttons' => [
                 'disable' => 'Wyłącz ostrzeżenia',

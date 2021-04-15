@@ -9,13 +9,9 @@ import { action, computed, observable } from 'mobx';
 import { NotificationEventLogoutJson, NotificationEventVerifiedJson } from 'notifications/notification-events';
 import SocketMessageEvent from 'socket-message-event';
 
-const isNotificationEventLogoutJson = (arg: any): arg is NotificationEventLogoutJson => {
-  return arg.event === 'logout';
-};
+const isNotificationEventLogoutJson = (arg: any): arg is NotificationEventLogoutJson => arg.event === 'logout';
 
-const isNotificationEventVerifiedJson = (arg: any): arg is NotificationEventVerifiedJson => {
-  return arg.event === 'verified';
-};
+const isNotificationEventVerifiedJson = (arg: any): arg is NotificationEventVerifiedJson => arg.event === 'verified';
 
 interface NotificationFeedMetaJson {
   url: string;
@@ -27,12 +23,12 @@ export default class SocketWorker {
   @observable connectionStatus: ConnectionStatus = 'disconnected';
   @observable hasConnectedOnce = false;
   userId: number | null = null;
-  @observable private active: boolean = false;
+  @observable private active = false;
   private endpoint?: string;
-  private timeout: Record<string, number> = {};
+  private timeout: Partial<Record<string, number>> = {};
   private ws: WebSocket | null | undefined;
-  private xhr: Record<string, JQueryXHR> = {};
-  private xhrLoadingState: Record<string, boolean> = {};
+  private xhr: Partial<Record<string, JQueryXHR>> = {};
+  private xhrLoadingState: Partial<Record<string, boolean>> = {};
 
   @computed
   get isConnected() {
@@ -67,7 +63,7 @@ export default class SocketWorker {
     }
 
     this.connectionStatus = 'connecting';
-    Timeout.clear(this.timeout.connectWebSocket);
+    window.clearTimeout(this.timeout.connectWebSocket);
 
     const tokenEl = document.querySelector('meta[name=csrf-token]');
 
@@ -91,8 +87,8 @@ export default class SocketWorker {
 
     this.userId = null;
     this.active = false;
-    forEach(this.xhr, (xhr) => xhr.abort());
-    forEach(this.timeout, (timeout) => Timeout.clear(timeout));
+    forEach(this.xhr, (xhr) => xhr?.abort());
+    forEach(this.timeout, (timeout) => window.clearTimeout(timeout));
 
     if (this.ws != null) {
       this.ws.close();
@@ -120,7 +116,7 @@ export default class SocketWorker {
     } else {
       dispatch(new SocketMessageEvent(eventData));
     }
-  }
+  };
 
   @action
   private reconnectWebSocket = () => {
@@ -129,11 +125,11 @@ export default class SocketWorker {
       return;
     }
 
-    this.timeout.connectWebSocket = Timeout.set(random(5000, 20000), action(() => {
+    this.timeout.connectWebSocket = window.setTimeout(action(() => {
       this.ws = null;
       this.connectWebSocket();
-    }));
-  }
+    }), random(5000, 20000));
+  };
 
   private startWebSocket = () => {
     if (this.endpoint != null) {
@@ -144,7 +140,7 @@ export default class SocketWorker {
       return;
     }
 
-    Timeout.clear(this.timeout.startWebSocket);
+    window.clearTimeout(this.timeout.startWebSocket);
 
     this.xhrLoadingState.startWebSocket = true;
 
@@ -154,7 +150,7 @@ export default class SocketWorker {
         this.endpoint = data.url;
         this.connectWebSocket();
       })).fail(action(() => {
-        this.timeout.startWebSocket = Timeout.set(10000, this.startWebSocket);
+        this.timeout.startWebSocket = window.setTimeout(this.startWebSocket, 10000);
       }));
-  }
+  };
 }

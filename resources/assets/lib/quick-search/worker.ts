@@ -131,12 +131,12 @@ export default class Worker {
     this.searching = true;
 
     this.xhr = $.get(route('quick-search'), { query })
-    .done(action((searchResult: SearchResult) => {
-      this.searchResult = searchResult;
-      this.selected = null;
-    })).always(action(() => {
-      this.searching = false;
-    }));
+      .done(action((searchResult: SearchResult) => {
+        this.searchResult = searchResult;
+        this.selected = null;
+      })).always(action(() => {
+        this.searching = false;
+      }));
   }
 
   @action selectNone() {

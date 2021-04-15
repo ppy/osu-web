@@ -3,9 +3,7 @@
 
 import Main from 'news-index/main';
 
-reactTurbolinks.registerPersistent('news-index', Main, true, (container: HTMLElement) => {
-  return {
-    container,
-    data: osu.parseJson('json-index'),
-  };
-});
+reactTurbolinks.registerPersistent('news-index', Main, true, (container: HTMLElement) => ({
+  container,
+  data: osu.parseJson('json-index'),
+}));

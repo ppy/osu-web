@@ -56,7 +56,7 @@ export class ReportReportable extends React.PureComponent<Props, State> {
 
   onFormClose = () => {
     this.setState({ disabled: false, showingForm: false }, this.props.onFormClose);
-  }
+  };
 
   onSubmit = (report: ReportData) => {
     this.setState({ disabled: true });
@@ -76,13 +76,13 @@ export class ReportReportable extends React.PureComponent<Props, State> {
     };
 
     $.ajax(params).done(() => {
-      this.timeout = Timeout.set(1000, this.onFormClose);
+      this.timeout = window.setTimeout(this.onFormClose, 1000);
       this.setState({ completed: true });
     }).fail((xhr) => {
       osu.ajaxError(xhr);
       this.setState({ disabled : false });
     });
-  }
+  };
 
   render(): React.ReactNode {
     const { baseKey, icon, onFormClose, reportableId, reportableType, user, ...attribs } = this.props;
@@ -108,7 +108,7 @@ export class ReportReportable extends React.PureComponent<Props, State> {
             onClose={this.onFormClose}
             onSubmit={this.onSubmit}
             title={osu.trans(`report.${groupKey}.title`, { username: `<strong>${user.username}</strong>` })}
-            visible={true}
+            visible
             visibleOptions={availableOptions[groupKey]}
           />
         )}
@@ -117,14 +117,14 @@ export class ReportReportable extends React.PureComponent<Props, State> {
   }
 
   showForm = () => {
-    Timeout.clear(this.timeout);
+    window.clearTimeout(this.timeout);
     this.setState({ disabled: false, showingForm: true });
-  }
+  };
 
   private onShowFormButtonClick = (e: React.MouseEvent<HTMLElement>) => {
-    if (e.button !== 0) { return; }
+    if (e.button !== 0) return;
     e.preventDefault();
 
     this.showForm();
-  }
+  };
 }

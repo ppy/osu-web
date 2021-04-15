@@ -29,11 +29,6 @@ interface State {
   hasError: boolean;
 }
 
-const linkMap: Record<string, string> = {
-  channel: 'chat.index',
-  null: 'notifications.index',
-};
-
 @observer
 export default class Main extends React.Component<Props, State> {
   static readonly defaultProps = {
@@ -53,9 +48,7 @@ export default class Main extends React.Component<Props, State> {
 
   @computed
   get links() {
-    return this.typeNames.map((type) => {
-      return { title: osu.trans(`notifications.filters.${type ?? '_'}`), type };
-    });
+    return this.typeNames.map((type) => ({ title: osu.trans(`notifications.filters.${type ?? '_'}`), type }));
   }
 
   static getDerivedStateFromError(error: Error) {
@@ -92,15 +85,15 @@ export default class Main extends React.Component<Props, State> {
   private handleFilterClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const type = ((event.currentTarget as HTMLButtonElement).dataset.type ?? null) as Name;
     this.controller.navigateTo(type);
-  }
+  };
 
   private handleMarkAsRead = () => {
     this.controller.markCurrentTypeAsRead();
-  }
+  };
 
   private handleShowMore = () => {
     this.controller.loadMore();
-  }
+  };
 
   private renderFilter = (link: Link) => {
     const type = this.controller.getType(link.type);
@@ -122,7 +115,7 @@ export default class Main extends React.Component<Props, State> {
         <span>{link.title}</span>
       </button>
     );
-  }
+  };
 
   private renderFilters() {
     if (this.props.only != null || !core.notificationsWorker.hasData) return null;
@@ -135,7 +128,7 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private renderHistoryLink() {
-    const linkName = linkMap[this.props.only ?? 'null'];
+    const linkName = this.props.only === 'channel' ? 'chat.index' : 'notifications.index';
 
     return (
       <a className='notification-popup__filter' href={route(linkName)}>
@@ -181,9 +174,7 @@ export default class Main extends React.Component<Props, State> {
       return;
     }
 
-    const nodes = this.controller.stacks.map((stack) => {
-      return <Stack key={stack.id} stack={stack} />;
-    });
+    const nodes = this.controller.stacks.map((stack) => <Stack key={stack.id} stack={stack} />);
 
     if (nodes.length === 0) {
       let transKey = 'notifications.loading';

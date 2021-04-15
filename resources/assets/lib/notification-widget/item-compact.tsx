@@ -35,9 +35,9 @@ export default class ItemCompact extends React.Component<Props> {
 
   private handleDelete = () => {
     this.props.stack.deleteItem(this.props.item);
-  }
+  };
 
   private handleMarkAsRead = () => {
     this.props.stack.markAsRead(this.props.item);
-  }
+  };
 }

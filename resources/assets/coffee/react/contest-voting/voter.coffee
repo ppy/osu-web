@@ -1,8 +1,10 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div,a,i } from 'react-dom-factories'
+import { createClickCallback } from 'utils/html'
 el = React.createElement
 
 export class Voter extends React.Component
@@ -28,9 +30,9 @@ export class Voter extends React.Component
     e.preventDefault()
     return unless @isSelected() || @props.selected.length < @props.contest.max_votes
 
-    if !currentUser.id?
-      userLogin.show e.target
-    else if !@props.waitingForResponse
+    return if core.userLogin.showIfGuest(createClickCallback(e.target))
+
+    if !@props.waitingForResponse
       $.publish 'contest:vote:click', contest_id: @props.contest.id, entry_id: @props.entry.id
       @sendVote()
 

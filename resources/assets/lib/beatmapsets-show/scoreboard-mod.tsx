@@ -25,5 +25,5 @@ export default class ScoreboardMod extends React.PureComponent<Props> {
 
   private onClick = () => {
     $.publish('beatmapset:scoreboard:set', { enabledMod: this.props.mod });
-  }
+  };
 }

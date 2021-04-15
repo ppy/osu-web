@@ -51,7 +51,7 @@ export default class UserStore {
 
   @action
   updateWithJson(data: UserJson[] | undefined | null) {
-    if (data == null) { return; }
+    if (data == null) return;
     for (const json of data) {
       const user = User.fromJson(json);
       this.users.set(user.id, user);

@@ -43,7 +43,7 @@ export default class ChatWorker implements DispatchListener {
       .then((updateJson) => {
         this.updateXHR = false;
         if (this.pollingEnabled) {
-          this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);
+          this.updateTimerId = window.setTimeout(this.pollForUpdates, this.pollingTime());
         }
 
         if (!updateJson) {
@@ -64,10 +64,10 @@ export default class ChatWorker implements DispatchListener {
         // silently ignore errors and continue polling
         this.updateXHR = false;
         if (this.pollingEnabled) {
-          this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);
+          this.updateTimerId = window.setTimeout(this.pollForUpdates, this.pollingTime());
         }
       });
-  }
+  };
 
   pollingTime(): number {
     return this.windowIsActive ? this.pollTime : this.pollTimeIdle;
@@ -75,13 +75,13 @@ export default class ChatWorker implements DispatchListener {
 
   startPolling() {
     if (!this.updateTimerId) {
-      this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);
+      this.updateTimerId = window.setTimeout(this.pollForUpdates, this.pollingTime());
     }
   }
 
   stopPolling() {
     if (this.updateTimerId) {
-      Timeout.clear(this.updateTimerId);
+      window.clearTimeout(this.updateTimerId);
       this.updateTimerId = undefined;
       this.updateXHR = false;
     }

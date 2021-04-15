@@ -5,21 +5,21 @@ import UserJson from 'interfaces/user-json';
 import { action, observable } from 'mobx';
 
 export default class User {
-  @observable avatarUrl: string = '/images/layout/avatar-guest.png'; // TODO: move to a global config store?
-  @observable countryCode: string = 'XX';
+  @observable avatarUrl = '/images/layout/avatar-guest.png'; // TODO: move to a global config store?
+  @observable countryCode = 'XX';
   @observable defaultGroup = '';
   @observable groups?: GroupJson[];
   @observable id: number;
-  @observable isActive: boolean = false;
-  @observable isBot: boolean = false;
+  @observable isActive = false;
+  @observable isBot = false;
   @observable isDeleted = false;
-  @observable isOnline: boolean = false;
-  @observable isSupporter: boolean = false;
+  @observable isOnline = false;
+  @observable isSupporter = false;
   @observable lastVisit: string | null = null;
-  @observable loaded: boolean = false;
-  @observable pmFriendsOnly: boolean = false;
-  @observable profileColour: string = '';
-  @observable username: string = '';
+  @observable loaded = false;
+  @observable pmFriendsOnly = false;
+  @observable profileColour = '';
+  @observable username = '';
 
   constructor(id: number) {
     this.id = id;
@@ -44,7 +44,7 @@ export default class User {
     });
   }
 
-  is(user: User | UserJson | null) {
+  is(user?: User | UserJson | null) {
     if (user == null) return false;
     return user.id === this.id;
   }

@@ -75,15 +75,15 @@ export default class RankingFilter extends React.PureComponent<Props> {
   // TODO: rename component prop to onChange
   handleCountryChange = (option: Option) => {
     osu.navigate(osu.updateQueryString(null, { country: option.id, page: null }));
-  }
+  };
 
   handleFilterChange = (event: React.MouseEvent<HTMLButtonElement>) => {
     osu.navigate(osu.updateQueryString(null, { filter: event.currentTarget.dataset.value, page: null }));
-  }
+  };
 
   handleVariantChange = (event: React.MouseEvent<HTMLButtonElement>) => {
     osu.navigate(osu.updateQueryString(null, { variant: event.currentTarget.dataset.value, page: null }));
-  }
+  };
 
   render() {
     // TODO: consider using memoize-one?
@@ -147,12 +147,13 @@ export default class RankingFilter extends React.PureComponent<Props> {
   renderOption(props: OptionRenderProps) {
     return (
       <a
-        children={props.children}
         className={props.cssClasses}
         href={osu.updateQueryString(null, { country: props.option.id, page: null })}
         key={props.option.id ?? ''}
         onClick={props.onClick}
-      />
+      >
+        {props.children}
+      </a>
     );
   }
 

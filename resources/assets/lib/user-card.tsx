@@ -18,6 +18,7 @@ import UserGroupBadges from 'user-group-badges';
 import { classWithModifiers } from 'utils/css';
 
 export type ViewMode = 'brick' | 'card' | 'list';
+export const viewModes: ViewMode[] = ['card', 'list', 'brick'];
 
 interface Props {
   activated: boolean;
@@ -60,6 +61,8 @@ export class UserCard extends React.PureComponent<Props, State> {
     backgroundLoaded: false,
   };
 
+  private url?: string;
+
   private get canMessage() {
     return !this.isSelf
       && _.find(currentUser.blocks, { target_id: this.user.id }) == null;
@@ -91,11 +94,11 @@ export class UserCard extends React.PureComponent<Props, State> {
 
   onAvatarLoad = () => {
     this.setState({ avatarLoaded: true });
-  }
+  };
 
   onBackgroundLoad = () => {
     this.setState({ backgroundLoaded: true });
-  }
+  };
 
   render() {
     if (this.props.mode === 'brick') {
@@ -111,6 +114,8 @@ export class UserCard extends React.PureComponent<Props, State> {
     modifiers.push(this.props.activated ? 'active' : 'highlightable');
     modifiers.push(this.props.mode);
 
+    this.url = this.isUserVisible ? route('users.show', { user: this.user.id }) : undefined;
+
     return (
       <div className={osu.classWithModifiers('user-card', modifiers)}>
         {this.renderBackground()}
@@ -123,8 +128,8 @@ export class UserCard extends React.PureComponent<Props, State> {
             <div className='user-card__details'>
               {this.renderIcons()}
               <div className='user-card__username-row'>
-                <div className='user-card__username u-ellipsis-pre-overflow'>{this.user.is_deleted ? osu.trans('users.deleted') : this.user.username}</div>
-                <div className='user-card__group-badges'><UserGroupBadges groups={this.user.groups} short={true} wrapper='user-card__group-badge' /></div>
+                {this.renderUsername()}
+                <div className='user-card__group-badges'><UserGroupBadges groups={this.user.groups} short wrapper='user-card__group-badge' /></div>
               </div>
               {this.renderListModeIcons()}
             </div>
@@ -145,12 +150,12 @@ export class UserCard extends React.PureComponent<Props, State> {
           {hasAvatar && <Spinner modifiers={modifiers} />}
         </div>
         {this.isUserLoaded && hasAvatar && (
-            <img
-              className={classWithModifiers('user-card__avatar', modifiers)}
-              onError={this.onAvatarLoad} // remove spinner if error
-              onLoad={this.onAvatarLoad}
-              src={this.user.avatar_url}
-            />
+          <img
+            className={classWithModifiers('user-card__avatar', modifiers)}
+            onError={this.onAvatarLoad} // remove spinner if error
+            onLoad={this.onAvatarLoad}
+            src={this.user.avatar_url}
+          />
         )}
       </div>
     );
@@ -183,10 +188,7 @@ export class UserCard extends React.PureComponent<Props, State> {
 
     if (this.isUserVisible) {
       backgroundLink = (
-        <a
-          href={route('users.show', { user: this.user.id })}
-          className='user-card__background-container'
-        >
+        <a href={this.url} className='user-card__background-container'>
           {background}
         </a>
       );
@@ -198,7 +200,9 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderIcons() {
-    if (!this.isUserVisible) { return null; }
+    if (!this.isUserVisible) {
+      return null;
+    }
 
     return (
       <div className='user-card__icons'>
@@ -229,7 +233,9 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderListModeIcons() {
-    if (this.props.mode !== 'list' || !this.isUserVisible) { return null; }
+    if (this.props.mode !== 'list' || !this.isUserVisible) {
+      return null;
+    }
 
     return (
       <div className='user-card__icons'>
@@ -251,7 +257,9 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderMenuButton() {
-    if (this.isSelf) { return null; }
+    if (this.isSelf) {
+      return null;
+    }
 
     const items = (dismiss: () => void) => (
       <>
@@ -271,7 +279,7 @@ export class UserCard extends React.PureComponent<Props, State> {
         <BlockButton onClick={dismiss} modifiers={['inline']} userId={this.user.id} wrapperClass='simple-menu__item' />
         <ReportReportable
           className='simple-menu__item'
-          icon={true}
+          icon
           onFormClose={dismiss}
           reportableId={this.user.id.toString()}
           reportableType='user'
@@ -288,7 +296,9 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderStatusBar() {
-    if (!this.isUserVisible) { return null; }
+    if (!this.isUserVisible) {
+      return null;
+    }
 
     const lastSeen = (!this.isOnline && this.user.last_visit != null) ? osu.trans('users.show.lastvisit', { date: osu.timeago(this.user.last_visit) }) : '';
     const status = this.isOnline ? osu.trans('users.status.online') : osu.trans('users.status.offline');
@@ -315,12 +325,26 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderStatusIcon() {
-    if (!this.isUserVisible) { return null; }
+    if (!this.isUserVisible) {
+      return null;
+    }
 
     return (
       <div className='user-card__status-icon-container'>
         <div className={`user-card__status-icon user-card__status-icon--${this.isOnline ? 'online' : 'offline'}`} />
       </div>
+    );
+  }
+
+  private renderUsername() {
+    const displayName = this.user.is_deleted ? osu.trans('users.deleted') : this.user.username;
+
+    return this.url == null ? (
+      <div className='user-card__username u-ellipsis-pre-overflow'>{displayName}</div>
+    ) : (
+      <a href={this.url} className='user-card__username u-ellipsis-pre-overflow'>
+        {displayName}
+      </a>
     );
   }
 }

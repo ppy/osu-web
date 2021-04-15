@@ -175,6 +175,9 @@ class Mod
             'final_rate' => 'float',
             'adjust_pitch' => 'bool',
         ],
+        self::FLASHLIGHT => [
+            'follow_delay' => 'float',
+        ],
         self::OSU_GROW => [
             'start_scale' => 'float',
         ],
@@ -186,6 +189,7 @@ class Mod
             'fixed_follow_circle_hit_area' => 'bool',
             'no_slider_head_accuracy' => 'bool',
             'no_slider_head_movement' => 'bool',
+            'always_play_tail_sample' => 'bool',
         ],
     ];
 

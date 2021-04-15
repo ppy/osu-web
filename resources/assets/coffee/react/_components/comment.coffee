@@ -15,6 +15,7 @@ import { Spinner } from 'spinner'
 import { UserAvatar } from 'user-avatar'
 import { classWithModifiers } from 'utils/css'
 import { estimateMinLines } from 'utils/estimate-min-lines'
+import { createClickCallback, formatNumberSuffixed } from 'utils/html'
 
 el = React.createElement
 
@@ -183,7 +184,7 @@ export class Comment extends React.PureComponent
             className: repliesClass
             @children.map @renderComment
 
-            el DeletedCommentsCount, { comments: @children, showDeleted: uiState.comments.isShowDeleted }
+            el DeletedCommentsCount, { comments: @children }
 
             el CommentShowMore,
               parent: @props.comment
@@ -394,7 +395,7 @@ export class Comment extends React.PureComponent
       onClick: @voteToggle
       disabled: @state.postingVote || !@props.comment.canVote
       span className: 'comment-vote__text',
-        "+#{osu.formatNumberSuffixed(@props.comment.votesCount, null, maximumFractionDigits: 1)}"
+        "+#{formatNumberSuffixed(@props.comment.votesCount, null, maximumFractionDigits: 1)}"
       if @state.postingVote
         span className: 'comment-vote__spinner', el Spinner
       hover
@@ -536,10 +537,7 @@ export class Comment extends React.PureComponent
   voteToggle: (e) =>
     target = e.target
 
-    if !currentUser.id?
-      userLogin.show target
-
-      return
+    return if core.userLogin.showIfGuest(createClickCallback(target))
 
     @setState postingVote: true
 

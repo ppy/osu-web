@@ -1,13 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+/* eslint-disable max-classes-per-file */
 /* tslint:disable:max-classes-per-file */
 
 // importable coffeescript modules
 declare module 'back-to-top' {
   interface Props {
-    anchor: React.RefObject<{}>;
-    ref: React.RefObject<{}>;
+    anchor: React.RefObject<HTMLElement>;
+    ref: React.RefObject<BackToTop>;
   }
 
   class BackToTop extends React.PureComponent<Props> {
@@ -102,7 +103,7 @@ declare module 'react/beatmaps/search-content' {
 
   interface Props {
     availableFilters: AvailableFilters;
-    backToTopAnchor: React.RefObject<{}>;
+    backToTopAnchor: React.RefObject<HTMLElement>;
   }
 
   class SearchContent extends React.PureComponent<Props> {}

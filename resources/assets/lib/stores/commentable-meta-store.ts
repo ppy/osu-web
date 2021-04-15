@@ -34,7 +34,7 @@ export default class CommentableMetaStore {
 
   @action
   updateWithJson(data: CommentableMetaJson[] | undefined | null) {
-    if (data == null) { return; }
+    if (data == null) return;
     for (const json of data) {
       const key = json.type != null && json.id != null ? `${json.type}-${json.id}` : null;
       this.meta.set(key, json);

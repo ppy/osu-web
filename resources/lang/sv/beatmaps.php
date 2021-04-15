@@ -195,7 +195,7 @@ return [
         'unresolved_issues' => 'Det finns fortfarande olösta problem som måste tas hand om först.',
 
         'rank_estimate' => [
-            '_' => '',
+            '_' => 'Denna map uppskattas vara rankad den :date, så länge inga fel uppstår. Den är #:position i kön :queue.',
             'queue' => 'rankkö',
             'soon' => 'snart',
         ],

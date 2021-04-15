@@ -4,14 +4,14 @@
 import * as _ from 'lodash';
 import Notification from 'models/notification';
 
-export function formatMessage(item: Notification, compact: boolean = false) {
+export function formatMessage(item: Notification, compact = false) {
   const replacements = {
     content: item.details.content,
     title: item.title,
     username: item.details.username,
   };
 
-  if (item.name === 'beatmapset_discussion_review_new') {
+  if (item.name === 'beatmapset_discussion_review_new' && item.details.embeds != null) {
     _.merge(replacements, {
       praises: item.details.embeds.praises,
       problems: item.details.embeds.problems,

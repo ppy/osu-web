@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Leden per spelmodus',
     ],
 
     'force_reactivation' => [
@@ -155,8 +155,8 @@ return [
         'title' => "Profiel van :username",
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'Geplaatst op :link',
+            'count' => ':count_delimited commentaar::count_delimited reacties',
         ],
         'edit' => [
             'cover' => [
@@ -410,8 +410,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Je bent momenteel gedempt.',
+        'message' => 'Sommige acties zijn mogelijk niet beschikbaar.',
     ],
 
     'status' => [

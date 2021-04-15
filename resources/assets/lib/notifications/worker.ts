@@ -25,17 +25,11 @@ interface NotificationBootJson extends NotificationBundleJson {
   notification_endpoint: string;
 }
 
-const isNotificationEventDeleteJson = (arg: any): arg is NotificationEventDeleteJson => {
-  return arg.event === 'delete';
-};
+const isNotificationEventDeleteJson = (arg: any): arg is NotificationEventDeleteJson => arg.event === 'delete';
 
-const isNotificationEventNewJson = (arg: any): arg is NotificationEventNewJson => {
-  return arg.event === 'new';
-};
+const isNotificationEventNewJson = (arg: any): arg is NotificationEventNewJson => arg.event === 'new';
 
-const isNotificationEventReadJson = (arg: any): arg is NotificationEventReadJson => {
-  return arg.event === 'read';
-};
+const isNotificationEventReadJson = (arg: any): arg is NotificationEventReadJson => arg.event === 'read';
 
 /**
  * Handles initial notifications bootstrapping and parsing of web socket messages into notification events.
@@ -45,9 +39,9 @@ export default class Worker implements DispatchListener {
   @observable waitingVerification = false;
 
   @observable private firstLoadedAt?: Date;
-  private timeout: Record<string, number> = {};
-  private xhr: Record<string, JQueryXHR> = {};
-  private xhrLoadingState: Record<string, boolean> = {};
+  private timeout: Partial<Record<string, number>> = {};
+  private xhr: Partial<Record<string, JQueryXHR>> = {};
+  private xhrLoadingState: Partial<Record<string, boolean>> = {};
 
   @computed
   get hasData() {
@@ -92,12 +86,12 @@ export default class Worker implements DispatchListener {
   }
 
   private delayedRetryInitialLoadMore() {
-    this.timeout.loadMore = Timeout.set(10000, this.loadMore);
+    this.timeout.loadMore = window.setTimeout(this.loadMore, 10000);
   }
 
   private destroy() {
-    forEach(this.xhr, (xhr) => xhr.abort());
-    forEach(this.timeout, (timeout) => Timeout.clear(timeout));
+    forEach(this.xhr, (xhr) => xhr?.abort());
+    forEach(this.timeout, (timeout) => window.clearTimeout(timeout));
   }
 
   @action
@@ -113,7 +107,7 @@ export default class Worker implements DispatchListener {
       return;
     }
 
-    Timeout.clear(this.timeout.loadMore);
+    window.clearTimeout(this.timeout.loadMore);
 
     this.xhrLoadingState.loadMore = true;
 
@@ -132,5 +126,5 @@ export default class Worker implements DispatchListener {
         }
         this.delayedRetryInitialLoadMore();
       });
-  }
+  };
 }

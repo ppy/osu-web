@@ -20,6 +20,10 @@ return [
             'write' => 'Sizin adınıza mesaj gönderebilir.',
         ],
 
+        'forum' => [
+            'write' => 'Sizin adınıza forum konuları ve gönderileri oluşturabilir ve düzenleyebilir.',
+        ],
+
         'friends' => [
             'read' => 'Kimi takip ettiğinizi görebilir.',
         ],

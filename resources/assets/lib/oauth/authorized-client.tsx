@@ -56,14 +56,12 @@ export class AuthorizedClient extends React.Component<Props> {
         <div>{osu.trans('oauth.authorized_clients.scopes_title')}</div>
         <ul className='oauth-scopes'>
           {
-            scopes.map((scope) => {
-              return (
-                <li key={scope}>
-                  <span className='oauth-scopes__icon'><span className='fas fa-check' /></span>
-                  {osu.trans(`api.scopes.${scope}`)}
-                </li>
-              );
-            })
+            scopes.map((scope) => (
+              <li key={scope}>
+                <span className='oauth-scopes__icon'><span className='fas fa-check' /></span>
+                {osu.trans(`api.scopes.${scope}`)}
+              </li>
+            ))
           }
         </ul>
       </>
@@ -71,8 +69,8 @@ export class AuthorizedClient extends React.Component<Props> {
   }
 
   revokeClicked = (event: React.MouseEvent<HTMLElement>) => {
-    if (!confirm(osu.trans('oauth.authorized_clients.confirm_revoke'))) { return; }
+    if (!confirm(osu.trans('oauth.authorized_clients.confirm_revoke'))) return;
 
     this.props.client.revoke().catch(osu.ajaxError);
-  }
+  };
 }

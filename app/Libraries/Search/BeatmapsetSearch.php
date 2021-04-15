@@ -16,8 +16,6 @@ use App\Models\Score;
 
 class BeatmapsetSearch extends RecordSearch
 {
-    public $recommendedDifficulty;
-
     /**
      * @param BeatmapsetSearchParams $params
      */
@@ -35,7 +33,18 @@ class BeatmapsetSearch extends RecordSearch
      */
     public function getQuery()
     {
-        static $partialMatchFields = ['artist', 'artist.*', 'artist_unicode', 'creator', 'title', 'title.raw', 'title.*', 'title_unicode', 'tags^0.5'];
+        static $partialMatchFields = [
+            'artist',
+            'artist.*',
+            'artist_unicode',
+            'artist_unicode.*',
+            'creator',
+            'title',
+            'title.*',
+            'title_unicode',
+            'title_unicode.*',
+            'tags^0.5',
+        ];
 
         $query = new BoolQuery();
 
@@ -61,6 +70,7 @@ class BeatmapsetSearch extends RecordSearch
         $this->addLanguageFilter($query);
         $this->addExtraFilter($query);
         $this->addNsfwFilter($query);
+        $this->addRankedFilter($query);
         $this->addStatusFilter($query);
 
         $nested = new BoolQuery();
@@ -68,6 +78,10 @@ class BeatmapsetSearch extends RecordSearch
         $this->addPlayedFilter($query, $nested);
         $this->addRankFilter($nested);
         $this->addRecommendedFilter($nested);
+
+        $this->addSimpleFilters($query, $nested);
+        $this->addTextFilter($query, 'artist', ['artist', 'artist_unicode']);
+        $this->addTextFilter($query, 'creator', ['creator']);
 
         $query->filter([
             'nested' => [
@@ -216,6 +230,43 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
+    private function addRankedFilter(BoolQuery $query): void
+    {
+        if ($this->params->ranked !== null) {
+            $query
+                ->filter(['term' => ['approved' => Beatmapset::STATES['ranked']]])
+                ->filter(['range' => ['approved_date' => $this->params->ranked]]);
+        }
+    }
+
+    private function addSimpleFilters(BoolQuery $query, BoolQuery $nested): void
+    {
+        static $filters = [
+            'ar' => ['field' => 'beatmaps.diff_approach', 'type' => 'range'],
+            'bpm' => ['field' => 'bpm', 'type' => 'range'],
+            'created' => ['field' => 'submit_date', 'type' => 'range'],
+            'cs' => ['field' => 'beatmaps.diff_size', 'type' => 'range'],
+            'difficultyRating' => ['field' => 'beatmaps.difficultyrating', 'type' => 'range'],
+            'drain' => ['field' => 'beatmaps.diff_drain', 'type' => 'range'],
+            'hitLength' => ['field' => 'beatmaps.hit_length', 'type' => 'range'],
+            'keys' => ['field' => 'beatmaps.diff_size', 'type' => 'range'],
+            'statusRange' => ['field' => 'beatmaps.approved', 'type' => 'range'],
+            // (unsupported) 'divisor' => ['field' => ???, 'type' => 'range'],
+        ];
+
+        static $nestedPrefix = 'beatmaps.';
+        $nestedPrefixLength = strlen($nestedPrefix);
+
+        foreach ($filters as $prop => $options) {
+            if ($this->params->$prop === null) {
+                continue;
+            }
+
+            $q = substr($options['field'], 0, $nestedPrefixLength) === $nestedPrefix ? $nested : $query;
+            $q->filter([$options['type'] => [$options['field'] => $this->params->$prop]]);
+        }
+    }
+
     // statuses are non scoring for the query context.
     private function addStatusFilter($mainQuery)
     {
@@ -262,6 +313,29 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         $mainQuery->filter($query);
+    }
+
+    private function addTextFilter(BoolQuery $query, string $paramField, array $fields): void
+    {
+        $value = $this->params->$paramField;
+
+        if (!present($value)) {
+            return;
+        }
+
+        $subQuery = (new BoolQuery())->shouldMatch(1);
+
+        $searchFields = [];
+        foreach ($fields as $field) {
+            $searchFields[] = $field;
+            $searchFields[] = "{$field}.*";
+
+            $subQuery->should(['term' => ["{$field}.raw" => ['value' => $value, 'boost' => 100]]]);
+        }
+
+        $subQuery->should(QueryHelper::queryString($value, $searchFields, 'and'));
+
+        $query->must($subQuery);
     }
 
     private function getPlayedBeatmapIds(?array $rank = null)

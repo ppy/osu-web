@@ -37,12 +37,12 @@ interface CacheInterface {
 }
 
 interface Props {
-  beatmaps: Record<number, BeatmapJsonExtended>;
+  beatmaps: Partial<Record<number, BeatmapJsonExtended>>;
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapJsonExtended;
   currentDiscussions: BeatmapsetDiscussionJson[];
   discussion?: BeatmapsetDiscussionJson;
-  discussions: Record<number, BeatmapsetDiscussionJson>;
+  discussions: Partial<Record<number, BeatmapsetDiscussionJson>>;
   document?: string;
   editing: boolean;
   editMode?: boolean;
@@ -68,7 +68,7 @@ export default class Editor extends React.Component<Props, State> {
 
   bn = 'beatmap-discussion-editor';
   cache: CacheInterface = {};
-  context!: React.ContextType<typeof ReviewEditorConfigContext>;
+  declare context: React.ContextType<typeof ReviewEditorConfigContext>;
   emptyDocTemplate = [{children: [{text: ''}], type: 'paragraph'}];
   insertMenuRef: React.RefObject<EditorInsertionMenu>;
   localStorageKey: string;
@@ -111,13 +111,11 @@ export default class Editor extends React.Component<Props, State> {
     };
   }
 
-  blockWrapper = (children: JSX.Element) => {
-    return (
-      <div className={`${this.bn}__block`}>
-        {children}
-      </div>
-    );
-  }
+  blockWrapper = (children: JSX.Element) => (
+    <div className={`${this.bn}__block`}>
+      {children}
+    </div>
+  );
 
   get canSave() {
     return !this.state.posting && this.state.blockCount <= this.context.max_blocks;
@@ -176,7 +174,17 @@ export default class Editor extends React.Component<Props, State> {
     }
 
     return ranges;
-  }
+  };
+
+  /**
+   * Type guard for checking if the beatmap is part of currently selected beatmapset
+   *
+   * @param beatmap
+   * @returns boolean
+   */
+  isCurrentBeatmap = (beatmap?: BeatmapJsonExtended): beatmap is BeatmapJsonExtended => (
+    beatmap != null && beatmap.beatmapset_id === this.props.beatmapset.id
+  )
 
   onChange = (value: SlateElement[]) => {
     // prevent document from becoming empty (and invalid) - ideally this would be handled in `withNormalization`, but that isn't run on every change
@@ -207,7 +215,7 @@ export default class Editor extends React.Component<Props, State> {
         this.props.onChange?.();
       },
     );
-  }
+  };
 
   onKeyDown = (event: KeyboardEvent) => {
     if (isHotkey('mod+b', event)) {
@@ -227,7 +235,7 @@ export default class Editor extends React.Component<Props, State> {
         Transforms.removeNodes(this.slateEditor);
       }
     }
-  }
+  };
 
   post = () => {
     if (this.showConfirmationIfRequired()) {
@@ -236,15 +244,15 @@ export default class Editor extends React.Component<Props, State> {
           data: {document: this.serialize()},
           method: 'POST',
         })
-        .done((data) => {
-          $.publish('beatmapsetDiscussions:update', {beatmapset: data});
-          this.resetInput();
-        })
-        .fail(osu.ajaxError)
-        .always(() => this.setState({posting: false}));
+          .done((data) => {
+            $.publish('beatmapsetDiscussions:update', {beatmapset: data});
+            this.resetInput();
+          })
+          .fail(osu.ajaxError)
+          .always(() => this.setState({posting: false}));
       });
     }
-  }
+  };
 
   render(): React.ReactNode {
     const editorClass = 'beatmap-discussion-editor';
@@ -315,17 +323,15 @@ export default class Editor extends React.Component<Props, State> {
     );
   }
 
-  renderBlockCount = (theme?: string) => {
-    return (
-      <CircularProgress
-        current={this.state.blockCount}
-        max={this.context.max_blocks}
-        onlyShowAsWarning={true}
-        theme={theme}
-        tooltip={osu.trans('beatmap_discussions.review.block_count', {used: this.state.blockCount, max: this.context.max_blocks})}
-      />
-    );
-  }
+  renderBlockCount = (theme?: string) => (
+    <CircularProgress
+      current={this.state.blockCount}
+      max={this.context.max_blocks}
+      onlyShowAsWarning
+      theme={theme}
+      tooltip={osu.trans('beatmap_discussions.review.block_count', {used: this.state.blockCount, max: this.context.max_blocks})}
+    />
+  );
 
   renderElement = (props: RenderElementProps) => {
     let el;
@@ -350,7 +356,7 @@ export default class Editor extends React.Component<Props, State> {
     }
 
     return this.blockWrapper(el);
-  }
+  };
 
   renderLeaf = (props: RenderLeafProps) => {
     let children = props.children;
@@ -369,7 +375,7 @@ export default class Editor extends React.Component<Props, State> {
     return (
       <span {...props.attributes}>{children}</span>
     );
-  }
+  };
 
   resetInput = (event?: React.MouseEvent) => {
     if (event) {
@@ -382,7 +388,7 @@ export default class Editor extends React.Component<Props, State> {
 
     Transforms.deselect(this.slateEditor);
     this.onChange(this.emptyDocTemplate);
-  }
+  };
 
   serialize = () => serializeSlateDocument(this.state.value);
 
@@ -405,21 +411,21 @@ export default class Editor extends React.Component<Props, State> {
     }
 
     return true;
-  }
+  };
 
   sortedBeatmaps = () => {
     if (this.cache.sortedBeatmaps == null) {
       // filter to only include beatmaps from the current discussion's beatmapset (for the modding profile page)
-      const beatmaps = _.filter(this.props.beatmaps, {beatmapset_id: this.props.beatmapset.id});
+      const beatmaps = _.filter(this.props.beatmaps, this.isCurrentBeatmap);
       this.cache.sortedBeatmaps = sortWithMode(beatmaps);
     }
 
     return this.cache.sortedBeatmaps;
-  }
+  };
 
   updateDrafts = () => {
     this.cache.draftEmbeds = this.state.value.filter((block) => block.type === 'embed' && !block.discussion_id);
-  }
+  };
 
   withNormalization = (editor: ReactEditor) => {
     const { insertData, normalizeNode } = editor;
@@ -456,8 +462,8 @@ export default class Editor extends React.Component<Props, State> {
           }
 
           // clear invalid beatmapId references (for pasted embed content)
-          const beatmapId = node.beatmapId as number | undefined;
-          if (beatmapId && (!this.props.beatmaps[beatmapId] || this.props.beatmaps[beatmapId].deleted_at)) {
+          const beatmap = typeof node.beatmapId === 'number' ? this.props.beatmaps[node.beatmapId] : undefined;
+          if (beatmap == null || beatmap.deleted_at != null) {
             Transforms.setNodes(editor, {beatmapId: null}, {at: path});
           }
         }
@@ -467,7 +473,7 @@ export default class Editor extends React.Component<Props, State> {
     };
 
     return editor;
-  }
+  };
 
   private valueFromProps() {
     if (!this.props.editing || this.props.document == null || this.props.discussions == null) {
