@@ -53,7 +53,9 @@ return [
         'discussion' => 'Góc Thảo Luận',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'Yêu thích beatmapset này',
+            'favourite_login' => '',
             'logged-out' => 'Bạn cần phải đăng nhập trước khi tải xuống beatmap!',
             'mapped_by' => 'được tạo bởi :mapper',
             'unfavourite' => 'Bỏ yêu thích beatmapset này',
@@ -120,6 +122,7 @@ return [
             'storyboard' => '',
             'success-rate' => 'Tỉ Lệ Thành Công',
             'tags' => 'Tags',
+            'video' => '',
         ],
 
         'nsfw_warning' => [

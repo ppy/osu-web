@@ -5,34 +5,36 @@
 
 return [
     'comment' => [
-        'empty' => '',
-        'page_title' => '',
-        'title' => '',
+        'empty' => 'Коментарів не переглянуто.',
+        'page_title' => 'список спостереження за коментарями',
+        'title' => 'коментар
+',
 
         'table' => [
-            'latest_comment_empty' => '',
-            'latest_comment_value' => '',
+            'latest_comment_empty' => 'без коментарів',
+            'latest_comment_value' => ':time від :username',
         ],
     ],
 
     'forum_topic' => [
-        'title' => '',
+        'title' => 'тема форуму',
     ],
 
     'index' => [
-        'title_compact' => '',
+        'title_compact' => 'список перегляду',
     ],
 
     'mapping' => [
-        'empty' => '',
-        'followers' => '',
-        'page_title' => '',
-        'title' => '',
-        'to_0' => '',
-        'to_1' => '',
+        'empty' => 'Жоден маппер не дивився',
+        'followers' => 'глядачі маппінгу',
+        'page_title' => 'список перегляду маппера',
+        'title' => 'маппер
+',
+        'to_0' => 'не сповіщувати мене, коли цей користувач завантажує нову карту',
+        'to_1' => 'сповіщувати мене, коли цей користувач завантажує нову карту',
     ],
 
     'modding' => [
-        'title' => '',
+        'title' => 'бітмап дискусія',
     ],
 ];

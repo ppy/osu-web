@@ -250,7 +250,7 @@ return [
     ],
     'general' => [
         'converts' => 'ادخال الخرائط المتحولة',
-        'follows' => '',
+        'follows' => 'ألمنشئين المشتركين',
         'recommended' => 'الصعوبة الموصاة',
     ],
     'mode' => [
@@ -316,7 +316,7 @@ return [
         'V2' => 'نَمَط V2',
     ],
     'language' => [
-        'any' => '',
+        'any' => 'الكل',
         'english' => 'إنكليزية',
         'chinese' => 'صينية',
         'french' => 'فرنسية',

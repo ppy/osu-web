@@ -53,7 +53,9 @@ return [
         'discussion' => '讨论',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => '收藏这张谱面',
+            'favourite_login' => '',
             'logged-out' => '下载谱面前请先登录！',
             'mapped_by' => '作图者: :mapper',
             'unfavourite' => '取消收藏',
@@ -120,6 +122,7 @@ return [
             'storyboard' => '此谱面包含故事板',
             'success-rate' => '成功率',
             'tags' => '标签',
+            'video' => '',
         ],
 
         'nsfw_warning' => [
