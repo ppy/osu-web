@@ -345,7 +345,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     return this.url == null ? (
       <div className='user-card__username u-ellipsis-pre-overflow'>{displayName}</div>
     ) : (
-      <a href={this.url} className='user-card__username u-ellipsis-pre-overflow'>
+      <a className='user-card__username u-ellipsis-pre-overflow' href={this.url}>
         {displayName}
       </a>
     );
