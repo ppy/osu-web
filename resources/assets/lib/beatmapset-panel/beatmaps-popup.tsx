@@ -38,7 +38,6 @@ const ItemRow = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
   <a
     className='beatmaps-popup-item'
     href={route('beatmaps.show', { beatmap: beatmap.id })}
-    key={beatmap.id}
   >
     <span className='beatmaps-popup-item__col beatmaps-popup-item__col--mode'>
       <span className={`fal fa-extra-mode-${beatmap.mode}`} />
