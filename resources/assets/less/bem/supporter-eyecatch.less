@@ -13,7 +13,7 @@
   &::before {
     content: ' ';
     .full-size();
-    background: linear-gradient(to bottom, osu-hsla(@osu-colour-b5, 1) 4%, osu-hsla(@osu-colour-b5, 0) 100%);
+    background: linear-gradient(to bottom, hsla(var(--hsl-b5), 1) 4%, hsla(var(--hsl-b5), 0) 100%);
   }
 
   &::after {
@@ -37,7 +37,7 @@
 
     @media @mobile {
       z-index: 1;
-      background: osu-hsla(@osu-colour-b4, 0.9);
+      background: hsla(var(--hsl-b4), 0.9);
       width: 100%;
     }
   }

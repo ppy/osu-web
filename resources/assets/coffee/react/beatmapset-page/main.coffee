@@ -13,6 +13,7 @@ import { PlaymodeTabs } from 'playmode-tabs'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 import * as BeatmapHelper from 'utils/beatmap-helper'
+import * as BeatmapsetPageHash from 'utils/beatmapset-page-hash'
 
 el = React.createElement
 

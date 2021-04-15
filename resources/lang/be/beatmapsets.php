@@ -53,7 +53,9 @@ return [
         'discussion' => 'Абмеркаванне',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'Дадаць да абраных',
+            'favourite_login' => '',
             'logged-out' => 'Каб спампаваць нейкую бітмапу, вам трэба ўвайсці!',
             'mapped_by' => 'створана :mapper',
             'unfavourite' => 'Выдаліць з абраных',
@@ -120,6 +122,7 @@ return [
             'storyboard' => '',
             'success-rate' => 'Шанц поспеху',
             'tags' => 'Тэгі',
+            'video' => '',
         ],
 
         'nsfw_warning' => [

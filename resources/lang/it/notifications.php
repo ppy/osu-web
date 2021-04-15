@@ -6,12 +6,12 @@
 return [
     'all_read' => 'Lette tutte le notifiche!',
     'delete' => 'Elimina :type',
-    'loading' => '',
+    'loading' => 'Caricamento notifiche non lette...',
     'mark_read' => 'Segna :type come letto',
     'none' => 'Nessuna notifica',
     'see_all' => 'vedi tutte le notifiche',
     'see_channel' => 'vai alla chat',
-    'verifying' => '',
+    'verifying' => 'Verifica la sessione per visualizzare le notifiche',
 
     'filters' => [
         '_' => 'tutto',
