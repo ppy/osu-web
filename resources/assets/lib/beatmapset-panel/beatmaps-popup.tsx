@@ -79,10 +79,10 @@ export default class BeatmapsPopup extends React.Component<Props> {
     return (
       <Portal>
         <div
+          ref={this.props.contentRef}
           className='beatmaps-popup'
           onMouseEnter={this.props.onMouseEnter}
           onMouseLeave={this.props.onMouseLeave}
-          ref={this.props.contentRef}
           style={style}
         >
           <div className='beatmaps-popup__content'>

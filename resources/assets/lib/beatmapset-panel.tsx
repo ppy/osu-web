@@ -350,11 +350,11 @@ export default class BeatmapsetPanel extends React.Component<Props> {
       <Transition
         in={this.isBeatmapsPopupVisible}
         mountOnEnter
-        unmountOnExit
         timeout={{
           enter: 0,
           exit: beatmapsPopupTransitionDuration,
         }}
+        unmountOnExit
       >
         {(state) => (
           <BeatmapsPopup
