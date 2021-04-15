@@ -61,7 +61,7 @@ return [
             'comment_new' => 'нові коментарі',
             'forum_topic_reply' => 'відповідь темі',
             'mail' => 'пошта',
-            'mapping' => '',
+            'mapping' => 'Маппер біткарти',
             'push' => 'push',
             'user_achievement_unlock' => 'медаль користувача розблоковано',
         ],
@@ -69,13 +69,13 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'авторизовані клієнти',
-        'own_clients' => 'свої клієнти',
+        'own_clients' => 'власні клієнти',
         'title' => 'OAuth',
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
-        'beatmapset_title_show_original' => 'показувати метадату мовою оригіналу',
+        'beatmapset_show_nsfw' => 'Приховати попередження щодо явного вмісту в біткартах',
+        'beatmapset_title_show_original' => 'Показувати метадані мовою оригіналу',
         'title' => 'Налаштування',
 
         'beatmapset_download' => [

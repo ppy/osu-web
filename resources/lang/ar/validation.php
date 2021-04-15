@@ -4,6 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'mixture' => ':attribute يفتقد الى رقم أو حرف',
+    'mixture' => ':attribute يفقد رقم أو حرف',
     'required' => ':attribute مطلوب',
 ];

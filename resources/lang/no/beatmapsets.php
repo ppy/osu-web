@@ -53,7 +53,9 @@ return [
         'discussion' => 'Diskusjon',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'Marker dette beatmapsettet som en favoritt',
+            'favourite_login' => '',
             'logged-out' => 'Du må logge inn før du kan laste ned beatmaps!',
             'mapped_by' => 'mappet av :mapper',
             'unfavourite' => 'Fjern dette beatmapsettet som en favoritt',
@@ -120,6 +122,7 @@ return [
             'storyboard' => '',
             'success-rate' => 'Suksessrate',
             'tags' => 'Stikkord',
+            'video' => '',
         ],
 
         'nsfw_warning' => [
