@@ -28,9 +28,9 @@ export class Sort extends React.PureComponent<Props> {
 
       return (
         <button
+          key={value}
           className={cssClasses}
           data-value={value}
-          key={value}
           onClick={this.props.onChange}
         >
           {/* FIXME: add icon support */}

@@ -81,9 +81,9 @@ export default class ItemGroup extends React.Component<Props, State> {
 
     return (
       <button
-        type='button'
         className='show-more-link show-more-link--notification-group'
         onClick={this.toggleExpand}
+        type='button'
       >
         <span className='show-more-link__label'>
           <span className='show-more-link__label-text'>
@@ -98,7 +98,7 @@ export default class ItemGroup extends React.Component<Props, State> {
   }
 
   private renderItem = (item: Notification) => (
-    <div className='notification-popup-item-group__item' key={item.id}>
+    <div key={item.id} className='notification-popup-item-group__item'>
       <ItemCompact item={item} stack={this.props.stack} />
     </div>
   );

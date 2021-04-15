@@ -13,17 +13,17 @@ export function LandingNews({posts}: {posts: PostJson[]}) {
       {posts.length > 0 &&
         <>
           <div className='landing-news__posts'>
-            {<PostItem post={posts[0]} modifiers={['landing', 'hover']} />}
+            {<PostItem modifiers={['landing', 'hover']} post={posts[0]} />}
           </div>
           <div className='landing-news__posts'>
-            {_.slice(posts, 1).map((post: PostJson, i: number) => <PostItem post={post} modifiers={['landing', 'hover']} key={i}/>)}
+            {_.slice(posts, 1).map((post: PostJson, i: number) => <PostItem key={i} modifiers={['landing', 'hover']} post={post}/>)}
           </div>
           <div className='landing-news__link'>
             <ShowMoreLink
               hasMore
+              label={osu.trans('home.landing.see_more_news')}
               loading={false}
               modifiers={['no-icon']}
-              label={osu.trans('home.landing.see_more_news')}
               url={route('news.index')}
             />
           </div>

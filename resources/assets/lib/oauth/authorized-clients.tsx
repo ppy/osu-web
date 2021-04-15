@@ -20,7 +20,7 @@ export class AuthorizedClients extends React.Component {
 
   renderClients() {
     return [...store.clients.values()].map((client) => (
-      <div className='oauth-clients__client' key={client.id}>
+      <div key={client.id} className='oauth-clients__client'>
         <AuthorizedClient client={client} />
       </div>
 

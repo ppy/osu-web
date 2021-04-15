@@ -20,6 +20,6 @@ export default class Stack extends React.Component<Props> {
 
     const Component = this.props.stack.isSingle ? ItemSingular : ItemGroup;
 
-    return <Component stack={this.props.stack} key={this.props.stack.id} />;
+    return <Component key={this.props.stack.id} stack={this.props.stack} />;
   }
 }
