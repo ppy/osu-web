@@ -9,6 +9,7 @@ import { Stats } from './stats'
 import * as React from 'react'
 import HeaderV4 from 'header-v4'
 import { Img2x } from 'img2x'
+import headerLinks from 'profile-page/header-links'
 import { a, div, h1, li, span, ul } from 'react-dom-factories'
 el = React.createElement
 
@@ -20,7 +21,7 @@ export class Header extends React.Component
       el HeaderV4,
         backgroundImage: @props.user.cover_url
         contentPrepend: @renderTournamentBanner()
-        links: @headerLinks()
+        links: headerLinks(@props.user, 'modding')
         theme: 'users'
       div className: 'osu-page osu-page--users',
         div className: 'profile-header',
@@ -51,17 +52,3 @@ export class Header extends React.Component
       el Img2x,
         src: @props.user.active_tournament_banner.image
         className: 'profile-tournament-banner__image'
-
-
-  headerLinks: =>
-    [
-      {
-        url: laroute.route('users.show', user: @props.user.id)
-        title: osu.trans 'layout.header.users.show'
-      }
-      {
-        active: true
-        title: osu.trans 'layout.header.users.modding'
-        url: laroute.route('users.modding.index', user: @props.user.id)
-      }
-    ]

@@ -14,6 +14,7 @@ import * as React from 'react'
 import HeaderV4 from 'header-v4'
 import { Img2x } from 'img2x'
 import DetailBot from 'profile-page/detail-bot'
+import headerLinks from 'profile-page/header-links'
 import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-factories'
 import { Spinner } from 'spinner'
 el = React.createElement
@@ -62,7 +63,7 @@ export class Header extends React.Component
       el HeaderV4,
         backgroundImage: @state.coverUrl
         isCoverUpdating: @state.isCoverUpdating
-        links: @headerLinks()
+        links: headerLinks(@props.user, 'show')
         theme: 'users'
         contentPrepend: @renderTournamentBanner()
         titleAppend: el GameModeSwitcher,
@@ -155,23 +156,6 @@ export class Header extends React.Component
 
   coverUploadState: (_e, state) =>
     @setState isCoverUpdating: state
-
-
-  headerLinks: =>
-    links = [
-      {
-        url: laroute.route('users.show', user: @props.user.id)
-        active: true
-        title: osu.trans 'layout.header.users.show'
-      }
-    ]
-
-    if !@props.user.is_bot
-      links.push
-        url: laroute.route('users.modding.index', user: @props.user.id)
-        title: osu.trans 'layout.header.users.modding'
-
-    links
 
 
   openEdit: =>
