@@ -16,7 +16,7 @@ return [
     'voting' => [
         'login_required' => 'Zum Abstimmen bitte einloggen.',
         'over' => 'Die Abstimmung für diesen Wettbewerb ist beendet',
-        'show_voted_only' => '',
+        'show_voted_only' => 'Stimmen anzeigen',
 
         'best_of' => [
             'none_played' => "Es scheint, als hättest du keine der Beatmaps gespielt, die dich für den Wettbewerb qualifiziert hätten!",

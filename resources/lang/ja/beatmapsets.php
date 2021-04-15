@@ -53,7 +53,9 @@ return [
         'discussion' => 'ディスカッション',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'ビートマップセットをお気に入りに追加する',
+            'favourite_login' => '',
             'logged-out' => 'ビートマップをダウンロードするにはログインが必要です！',
             'mapped_by' => '作者 :mapper',
             'unfavourite' => 'ビートマップをお気に入りから外す',
@@ -120,6 +122,7 @@ return [
             'storyboard' => 'このビートマップにはストーリーボードが含まれています',
             'success-rate' => 'クリア率',
             'tags' => 'タグ',
+            'video' => '',
         ],
 
         'nsfw_warning' => [
