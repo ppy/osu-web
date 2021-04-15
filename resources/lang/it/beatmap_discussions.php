@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Cerca',
             'deleted' => 'Includi discussioni eliminate',
+            'mode' => '',
             'only_unresolved' => 'Mostra solo le discussioni in sospeso',
             'types' => 'Tipi di messaggio',
             'username' => 'Nome Utente',

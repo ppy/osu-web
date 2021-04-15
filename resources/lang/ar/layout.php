@@ -160,7 +160,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'تجاوزت افصى حد',
             'description' => '',
         ],
         '500' => [

@@ -59,7 +59,7 @@ return [
         'discussion_post_restore' => '恢復已刪除的討論的回覆',
         'discussion_restore' => '恢復已刪除的討論',
         'disqualify' => 'Disqualification',
-        'genre_edit' => '',
+        'genre_edit' => '編輯曲風',
         'issue_reopen' => '重新打開討論',
         'issue_resolve' => '討論被解決',
         'kudosu_allow' => '給予 Kudosu',

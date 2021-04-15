@@ -53,7 +53,9 @@ return [
         'discussion' => 'Συζήτηση',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'Προσθέστε αυτό το beatmapset στα αγαπημένα',
+            'favourite_login' => '',
             'logged-out' => 'Πρέπει να συνδεθείτε πριν κάνετε λήψη κάποιου beatmap!',
             'mapped_by' => 'δημιουργήθηκε από :mapper',
             'unfavourite' => 'Αφαιρέστε αυτό το beatmapset από τα αγαπημένα',
@@ -120,6 +122,7 @@ return [
             'storyboard' => '',
             'success-rate' => 'Ποσοστό Επιτυχίας',
             'tags' => 'Ετικέτες',
+            'video' => '',
         ],
 
         'nsfw_warning' => [

@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Søg',
             'deleted' => 'Inkluder slettede diskussioner',
+            'mode' => '',
             'only_unresolved' => 'Vis kun uløste diskussioner',
             'types' => 'Meddelelsestyper',
             'username' => 'Brugernavn',

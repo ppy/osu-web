@@ -32,8 +32,8 @@ return [
         'remove_from_loved' => 'تمت إزالتها من "المحبوبة" من قِبَل :user. (:text)',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'تصيف "محتوى حساس" مَلغي',
+            'to_1' => 'مٌصنف كـ "محتوى حساس"',
         ],
     ],
 
@@ -71,7 +71,7 @@ return [
         'love' => 'حُب',
         'nominate' => 'ترشيح',
         'nomination_reset' => 'إعادة تعيين الترشيح',
-        'nsfw_toggle' => '',
+        'nsfw_toggle' => 'تصنيف حساس',
         'qualify' => 'المؤهل',
         'rank' => 'الترتيب',
         'remove_from_loved' => 'اِزبالة من "المحبوبة"',

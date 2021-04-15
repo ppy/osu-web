@@ -15,7 +15,7 @@ return [
 
         'table' => [
             'empty' => 'Nem követsz beatmap beszélgetéseket.',
-            'last_update' => '',
+            'last_update' => 'Utolsó frissítés',
             'open_issues' => 'Nyitott problémák',
             'state' => 'Állapot',
             'title' => 'Cím',
