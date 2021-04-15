@@ -16,9 +16,9 @@ export default class BeatmapPicker extends React.PureComponent<Props> {
       <div className='beatmapset-beatmap-picker'>
         {this.props.beatmaps.map((beatmap) => (
           <BeatmapSelection
+            key={beatmap.id}
             active={this.props.currentBeatmap.id === beatmap.id}
             beatmap={beatmap}
-            key={beatmap.id}
           />
         ))}
       </div>
