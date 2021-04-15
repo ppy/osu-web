@@ -71,6 +71,7 @@
     }
   }
 
+  // hide bottom radius when cover is shown
   &::before {
     content: '';
     background-color: inherit;
@@ -81,6 +82,7 @@
     position: absolute;
     opacity: var(--border-cover-opacity);
     transition: inherit;
+    transition-duration: var(--beatmaps-popup-transition-duration);
   }
 
   &[data-audio-state="loading"],

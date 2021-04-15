@@ -260,6 +260,9 @@ export default class BeatmapsetPanel extends React.Component<Props> {
         className={blockClass}
         data-audio-url={this.props.beatmapset.preview_url}
         onMouseLeave={this.beatmapsPopupHide}
+        style={{
+          '--beatmaps-popup-transition-duration': `${beatmapsPopupTransitionDuration}ms`,
+        } as React.CSSProperties}
       >
         {this.renderBeatmapsPopup()}
         {this.renderCover()}
