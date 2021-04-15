@@ -12,7 +12,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'تَمهل, أِلعب أكثر.',
     ],
 
     'index' => [
@@ -53,7 +53,9 @@ return [
         'discussion' => 'مناقشة',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'الاِعجاب بالخريطة',
+            'favourite_login' => '',
             'logged-out' => 'يتجوب عليك تسجيل الدخول قبل تحميل اي خريطة!',
             'mapped_by' => 'نشأت بواسطة :mapper',
             'unfavourite' => 'الغاء الاِعجاب بالخريطة',
@@ -117,9 +119,10 @@ return [
             'nsfw' => 'محتوى حَساس',
             'points-of-failure' => 'نقاط الفشل',
             'source' => 'المصدر',
-            'storyboard' => '',
+            'storyboard' => 'هذه الخريطة تحتوي على لوحة قصصية',
             'success-rate' => 'معدل النجاح',
             'tags' => 'ألعلامات',
+            'video' => '',
         ],
 
         'nsfw_warning' => [

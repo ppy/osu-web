@@ -74,11 +74,11 @@ export default class OsuCore {
 
   private onCurrentUserUpdate = (event: unknown, user: CurrentUser) => {
     this.setCurrentUser(user);
-  }
+  };
 
   private onPageLoad = () => {
     this.setCurrentUser(window.currentUser);
-  }
+  };
 
   private setCurrentUser = (user: CurrentUser) => {
     this.dataStore.userStore.getOrCreate(user.id, user);

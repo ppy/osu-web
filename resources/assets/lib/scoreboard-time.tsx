@@ -17,7 +17,7 @@ function setupScoreboardLocale() {
 
   moment.defineLocale('scoreboard', {
     // tslint complains that M should be before m. And m should be before M.
-    // tslint:disable: object-literal-sort-keys
+    /* tslint:disable  */
     relativeTime: {
       future: '',
       past: osu.trans('common.scoreboard_time.past'),
@@ -33,7 +33,7 @@ function setupScoreboardLocale() {
       y: osu.trans('common.scoreboard_time.y'),
       yy: osu.trans('common.scoreboard_time.yy'),
     },
-    // tslint:enable: object-literal-sort-keys
+    /* tslint:enable */
   });
 
   moment.locale(previousLocale);

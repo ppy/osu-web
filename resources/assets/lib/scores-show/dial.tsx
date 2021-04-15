@@ -69,24 +69,24 @@ export default function Dial(props: Props) {
       <div className='score-dial__layer'>
         <svg viewBox='0 0 200 200'>
           <defs>
-            <linearGradient id='dial-outer' gradientTransform='rotate(90)'>
-              <stop offset='0%' className='score-dial__outer-gradient score-dial__outer-gradient--start' />
-              <stop offset='100%' className='score-dial__outer-gradient score-dial__outer-gradient--end' />
+            <linearGradient gradientTransform='rotate(90)' id='dial-outer'>
+              <stop className='score-dial__outer-gradient score-dial__outer-gradient--start' offset='0%' />
+              <stop className='score-dial__outer-gradient score-dial__outer-gradient--end' offset='100%' />
             </linearGradient>
           </defs>
           <g transform='translate(100, 100)'>
             {pie(refData).map((d) => (
               <path
                 key={d.index}
-                d={arc({ innerRadius: 68, outerRadius: 73, ...d }) ?? undefined}
                 className={`score-dial__inner score-dial__inner--${d.index}`}
+                d={arc({ innerRadius: 68, outerRadius: 73, ...d }) ?? undefined}
               />
             ))}
             {pie(valueData).map((d) => (
               <path
                 key={d.index}
-                d={arc({ innerRadius: 75, outerRadius: 100, ...d }) ?? undefined}
                 className={`score-dial__outer score-dial__outer--${d.index}`}
+                d={arc({ innerRadius: 75, outerRadius: 100, ...d }) ?? undefined}
               />
             ))}
           </g>

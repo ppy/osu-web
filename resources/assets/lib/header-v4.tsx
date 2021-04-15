@@ -95,7 +95,7 @@ export default class HeaderV4 extends React.Component<Props> {
       }
 
       return (
-        <li className='header-nav-v4__item' key={`${link.url}-${link.title}`}>
+        <li key={`${link.url}-${link.title}`} className='header-nav-v4__item'>
           <a
             className={osu.classWithModifiers('header-nav-v4__link', linkModifiers)}
             href={link.url}

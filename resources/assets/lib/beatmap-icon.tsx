@@ -39,8 +39,8 @@ export const BeatmapIcon = (props: Props) => {
     <div
       className={className}
       data-beatmap-title={showTitle ? beatmap.version : null}
-      data-stars={_.round(beatmap.difficulty_rating, 2)}
       data-difficulty={difficultyRating}
+      data-stars={_.round(beatmap.difficulty_rating, 2)}
       style={style}
     >
       <i className={`fal fa-extra-mode-${mode}`} />

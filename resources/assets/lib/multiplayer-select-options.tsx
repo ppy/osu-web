@@ -30,9 +30,9 @@ export default class MultiplayerSelectOptions extends React.PureComponent<Props>
     return (
       <SelectOptions
         bn='spotlight-select-options'
-        renderOption={this.renderOption}
         onChange={this.handleChange}
         options={options}
+        renderOption={this.renderOption}
         selected={selected}
       />
     );
@@ -48,9 +48,9 @@ export default class MultiplayerSelectOptions extends React.PureComponent<Props>
 
   private renderOption = (props: OptionRenderProps<number>) => (
     <a
+      key={props.option.id ?? -1}
       className={props.cssClasses}
       href={this.href(props.option.id)}
-      key={props.option.id ?? -1}
       onClick={props.onClick}
     >
       {props.children}

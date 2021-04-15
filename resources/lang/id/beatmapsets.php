@@ -53,7 +53,9 @@ return [
         'discussion' => 'Diskusi',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'Tambahkan beatmapset ini ke dalam daftar Beatmap Favorit',
+            'favourite_login' => '',
             'logged-out' => 'Anda harus masuk sebelum mengunduh beatmap!',
             'mapped_by' => 'dibuat oleh :mapper',
             'unfavourite' => 'Hapus beatmapset ini dari daftar Beatmap Favorit',
@@ -120,6 +122,7 @@ return [
             'storyboard' => 'Beatmap ini mengandung storyboard',
             'success-rate' => 'Tingkat Keberhasilan',
             'tags' => 'Tag',
+            'video' => '',
         ],
 
         'nsfw_warning' => [

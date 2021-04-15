@@ -31,9 +31,9 @@ export default class NotificationReadButton extends React.Component<Props> {
     } else {
       return (
         <button
-          type='button'
           className={osu.classWithModifiers('notification-action-button', this.props.modifiers)}
           onClick={this.props.onMarkAsRead}
+          type='button'
         >
           <span className='notification-action-button__text'>{this.props.text}</span>
           <div className='notification-action-button__icon'>
