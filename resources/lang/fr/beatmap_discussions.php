@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Rechercher',
             'deleted' => 'Inclure les discussions supprimées',
+            'mode' => '',
             'only_unresolved' => 'Afficher uniquement les discussions non résolues',
             'types' => 'Types de message',
             'username' => 'Nom d’utilisateur',

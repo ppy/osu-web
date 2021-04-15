@@ -53,7 +53,9 @@ return [
         'discussion' => 'Discuție',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'Adaugă acest beatmapset la favorite',
+            'favourite_login' => '',
             'logged-out' => 'Trebuie să te autentifici înainte de a descărca vreun beatmap!',
             'mapped_by' => 'mapat de :mapper',
             'unfavourite' => 'Elimină acest beatmapset de la favorite',
@@ -120,6 +122,7 @@ return [
             'storyboard' => '',
             'success-rate' => 'Rata de succes',
             'tags' => 'Tag-uri',
+            'video' => '',
         ],
 
         'nsfw_warning' => [
