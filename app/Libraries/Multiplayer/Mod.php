@@ -38,6 +38,7 @@ class Mod
     const OSU_SPININ = 'SI';
     const OSU_TRACEABLE = 'TC';
     const OSU_CLASSIC = 'CL';
+    const OSU_BARRELROLL = 'BR';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -191,6 +192,10 @@ class Mod
             'no_slider_head_movement' => 'bool',
             'always_play_tail_sample' => 'bool',
         ],
+        self::OSU_BARRELROLL => [
+            'spin_speed' => 'float',
+            'direction' => 'int',
+        ],
     ];
 
     public static function assertValidExclusivity($requiredIds, $allowedIds, $ruleset)
@@ -260,6 +265,7 @@ class Mod
                         self::OSU_SPININ,
                         self::OSU_TRACEABLE,
                         self::OSU_CLASSIC,
+                        self::OSU_BARRELROLL,
                     ]
                 ),
 
