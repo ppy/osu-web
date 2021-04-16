@@ -107,9 +107,9 @@ export default class Channel {
     });
   }
 
-  static newPM(target: User): Channel {
-    const channel = new Channel(-1);
-    channel.newPmChannel = true;
+  static newPM(target: User, channelId: number | null): Channel {
+    const channel = new Channel(channelId ?? -1);
+    channel.newPmChannel = channelId == null;
     channel.type = 'PM';
     channel.name = target.username;
     channel.icon = target.avatarUrl;

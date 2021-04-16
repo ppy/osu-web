@@ -25,15 +25,15 @@ return [
         'language_edit' => 'Мова змінена з :old на :new.',
         'love' => 'Додано :user в улюблене',
         'nominate' => 'Номіновано :user.',
-        'nominate_modes' => '',
+        'nominate_modes' => 'Номінована від :user (:modes)',
         'nomination_reset' => 'Через нову проблему в :discussion (:text) статус номінації був скинутий.',
         'qualify' => 'Ця карта була номінована достатню кількість разів для кваліфікації.',
         'rank' => 'Рейтинговий.',
         'remove_from_loved' => 'Вилучено з категорії Loved користувачем :user. (:text)',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Видалена явна позначка',
+            'to_1' => 'Позначено як явне',
         ],
     ],
 
@@ -71,9 +71,9 @@ return [
         'love' => 'Любов',
         'nominate' => 'Номінація',
         'nomination_reset' => 'Скинути номінацію',
-        'nsfw_toggle' => '',
+        'nsfw_toggle' => 'Явна позначка',
         'qualify' => 'Кваліфікація',
         'rank' => 'Рейтинг',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Улюблене видалення',
     ],
 ];

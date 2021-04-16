@@ -71,7 +71,7 @@ return [
         'love' => 'Ama',
         'nominate' => 'Nominazione',
         'nomination_reset' => 'Reset delle nominazioni',
-        'nsfw_toggle' => '',
+        'nsfw_toggle' => 'Esplicito',
         'qualify' => 'Qualificazione',
         'rank' => 'Classificazione',
         'remove_from_loved' => 'Rimozione da amata',

@@ -5,8 +5,8 @@
 
 const { spawnSync } = require('child_process');
 const fs = require('fs');
-const glob = require('glob');
 const path = require('path');
+const glob = require('glob');
 
 const buildPath = path.resolve(__dirname, 'resources/assets/build');
 const localesPath = path.resolve(buildPath, 'locales');

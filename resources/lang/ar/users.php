@@ -7,32 +7,32 @@ return [
     'deleted' => '[مستخدم محذوف]',
 
     'beatmapset_activities' => [
-        'title' => "سِجِل اِقتراحات:user",
-        'title_compact' => 'ألأِقتِراحات',
+        'title' => "سجل اقتراحات :user",
+        'title_compact' => 'الإقتراحات',
 
         'discussions' => [
-            'title_recent' => 'مناقشة بدأت مؤخرا',
+            'title_recent' => 'المناقشات التي بدأت مؤخرا',
         ],
 
         'events' => [
-            'title_recent' => 'الأحداث الأخيرة',
+            'title_recent' => 'آخر الأحداث',
         ],
 
         'posts' => [
-            'title_recent' => 'المنشورات الحديثة',
+            'title_recent' => 'المنشورات الأخيرة',
         ],
 
         'votes_received' => [
-            'title_most' => 'الاكثر تصويتاََ بواسطة (اخر ٣ اشهر)',
+            'title_most' => 'الأكثر تصويتاََ بواسطة (آخر ٣ اشهر)',
         ],
 
         'votes_made' => [
-            'title_most' => 'الاكثر تصويتاََ (اخر ٣ اشهر)',
+            'title_most' => 'الأكثر تصويتاََ (آخر ٣ اشهر)',
         ],
     ],
 
     'blocks' => [
-        'banner_text' => 'لقد حظرت هذا المستخدم.',
+        'banner_text' => 'لقد قمت بحظر هذا المستخدم.',
         'blocked_count' => 'المستخدمون المحظورون (:count)',
         'hide_profile' => 'إخفاء الملف الشخصي',
         'not_blocked' => 'هذا المستخدم ليس محظوراََ.',
@@ -410,8 +410,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'أنت مُقيد (صامت) حاليا.',
+        'message' => 'قد تكون بعض الإجراءات غير متوفرة.',
     ],
 
     'status' => [

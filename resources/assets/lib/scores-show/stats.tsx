@@ -59,7 +59,7 @@ export default function Stats(props: Props) {
         </div>
         <div className='score-stats__group-row'>
           {modeAttributesMap[props.score.mode].map((attr) => (
-            <div className='score-stats__stat' key={attr.attribute}>
+            <div key={attr.attribute} className='score-stats__stat'>
               <div className='score-stats__stat-row score-stats__stat-row--label'>
                 {attr.label}
               </div>

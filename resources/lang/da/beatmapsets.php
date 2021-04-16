@@ -53,7 +53,9 @@ return [
         'discussion' => 'Diskussion',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'Markér dette beatmapset som favorit',
+            'favourite_login' => '',
             'logged-out' => 'Du skal være logget ind for at kunne downloade beatmaps!',
             'mapped_by' => 'mappet af :mapper',
             'unfavourite' => 'Fjern dette beatmapset fra dine favoritter',
@@ -120,6 +122,7 @@ return [
             'storyboard' => 'Dette beatmap indeholder storyboard',
             'success-rate' => 'Succesrate',
             'tags' => 'Tags',
+            'video' => '',
         ],
 
         'nsfw_warning' => [

@@ -15,7 +15,7 @@ return [
 
         'table' => [
             'empty' => 'لم يتم تتبع اي مناقشات خرائط.',
-            'last_update' => '',
+            'last_update' => 'آخر تحديث',
             'open_issues' => 'القضايا المفتوحة',
             'state' => 'الحالة',
             'title' => 'العنوان',

@@ -14,9 +14,9 @@ export default function Years(props: Props) {
     <div className='news-sidebar-years'>
       {props.years.map((year) => (
         <a
-          href={route('news.index', { year })}
           key={year}
           className={`news-sidebar-years__item ${year === props.currentYear ? 'news-sidebar-years__item--active' : ''}`}
+          href={route('news.index', { year })}
         >
           {year}
         </a>
