@@ -15,6 +15,7 @@ import HeaderV4 from 'header-v4'
 import { Img2x } from 'img2x'
 import DetailBot from 'profile-page/detail-bot'
 import headerLinks from 'profile-page/header-links'
+import ProfileTournamentBanner from 'profile-tournament-banner'
 import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-factories'
 import { Spinner } from 'spinner'
 el = React.createElement
@@ -65,7 +66,8 @@ export class Header extends React.Component
         isCoverUpdating: @state.isCoverUpdating
         links: headerLinks(@props.user, 'show')
         theme: 'users'
-        contentPrepend: @renderTournamentBanner()
+        contentPrepend: el ProfileTournamentBanner,
+          banner: @props.user.active_tournament_banner
         titleAppend: el GameModeSwitcher,
           currentMode: @props.currentMode
           user: @props.user
@@ -118,17 +120,6 @@ export class Header extends React.Component
           el CoverSelector,
             canUpload: @props.user.is_supporter
             cover: @props.user.cover
-
-
-  renderTournamentBanner: ({modifiers} = {}) =>
-    return if !@props.user.active_tournament_banner?.id?
-
-    a
-      href: laroute.route('tournaments.show', tournament: @props.user.active_tournament_banner.tournament_id)
-      className: osu.classWithModifiers 'profile-tournament-banner', modifiers
-      el Img2x,
-        src: @props.user.active_tournament_banner.image
-        className: 'profile-tournament-banner__image'
 
 
   closeEdit: (e) =>

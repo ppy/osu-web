@@ -10,7 +10,9 @@ import * as React from 'react'
 import HeaderV4 from 'header-v4'
 import { Img2x } from 'img2x'
 import headerLinks from 'profile-page/header-links'
+import ProfileTournamentBanner from 'profile-tournament-banner'
 import { a, div, h1, li, span, ul } from 'react-dom-factories'
+
 el = React.createElement
 
 export class Header extends React.Component
@@ -20,7 +22,8 @@ export class Header extends React.Component
       'data-page-id': 'main'
       el HeaderV4,
         backgroundImage: @props.user.cover_url
-        contentPrepend: @renderTournamentBanner()
+        contentPrepend: el ProfileTournamentBanner,
+          banner: @props.user.active_tournament_banner
         links: headerLinks(@props.user, 'modding')
         theme: 'users'
       div className: 'osu-page osu-page--users',
@@ -41,14 +44,3 @@ export class Header extends React.Component
             el Badges, badges: @props.user.badges
 
           el Links, user: @props.user
-
-
-  renderTournamentBanner: ({modifiers} = {}) =>
-    return if !@props.user.active_tournament_banner?.id?
-
-    a
-      href: laroute.route('tournaments.show', tournament: @props.user.active_tournament_banner.tournament_id)
-      className: osu.classWithModifiers 'profile-tournament-banner', modifiers
-      el Img2x,
-        src: @props.user.active_tournament_banner.image
-        className: 'profile-tournament-banner__image'
