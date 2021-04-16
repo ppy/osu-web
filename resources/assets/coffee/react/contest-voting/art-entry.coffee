@@ -24,31 +24,26 @@ export class ArtEntry extends React.Component
       place = @props.displayIndex + 1
       top3 = place <= 3
 
-    linkClasses =
-      _.compact([
-        'js-gallery' if @props.contest.type == 'art'
-        'contest-art-entry__thumbnail',
-        'contest-art-entry--selected' if isSelected,
-      ]).join(' ')
+    linkClasses = 'contest-art-entry__thumbnail'
+    linkClasses += ' contest-art-entry--selected' if isSelected
+    linkClasses += ' js-gallery' if @props.contest.type == 'art'
 
     entryLink =
       if @props.contest.type == 'art'
-        a {
-          className: linkClasses,
-          href: @props.entry.preview,
-          'data-width': @props.entry.artMeta.width,
-          'data-height': @props.entry.artMeta.height,
-          'data-gallery-id': galleryId,
-          'data-index': @props.displayIndex,
-          'data-button-id': buttonId,
-        }
+        a
+          className: linkClasses
+          href: @props.entry.preview
+          'data-width': @props.entry.artMeta.width
+          'data-height': @props.entry.artMeta.height
+          'data-gallery-id': galleryId
+          'data-index': @props.displayIndex
+          'data-button-id': buttonId
       else
-        a {
-          className: linkClasses,
-          href: @props.entry.preview,
-          'rel': 'nofollow noreferrer',
-          'target': '_blank',
-        }
+        a
+          className: linkClasses
+          href: @props.entry.preview
+          rel: 'nofollow noreferrer'
+          target: '_blank'
 
     divClasses = [
       'contest-art-entry',

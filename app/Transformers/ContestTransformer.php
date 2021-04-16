@@ -29,7 +29,6 @@ class ContestTransformer extends TransformerAbstract
             'voting_ends_at' => json_time($contest->voting_ends_at),
             'show_votes' => $contest->show_votes,
             'link_icon' => $contest->link_icon,
-            'has_entry_images' => $contest->hasEntryImages(),
         ];
 
         if ($contest->hasEntryImages()) {

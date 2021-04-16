@@ -44,15 +44,15 @@ class ContestEntryTransformer extends TransformerAbstract
         }
 
         return $this->item($entry, function ($entry) {
-            $preview_url = presence($entry->preview_url) ?? $entry->entry_url;
+            $previewUrl = presence($entry->preview_url) ?? $entry->entry_url;
 
             // suffix urls when contests are made live to ensure image dimensions are forcibly rechecked
             if ($entry->contest->visible) {
-                $urlSuffix = str_contains($preview_url, '?') ? '&live' : '?live';
+                $urlSuffix = str_contains($previewUrl, '?') ? '&live' : '?live';
             }
 
-            $size = fast_imagesize($preview_url.($urlSuffix ?? ''));
-            $thumb = mini_asset($preview_url);
+            $size = fast_imagesize($previewUrl.($urlSuffix ?? ''));
+            $thumb = mini_asset($previewUrl);
 
             return [
                 'width' => $size[0],
