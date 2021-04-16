@@ -100,7 +100,7 @@ const StatsItem = ({ icon, title, value }: { icon: string; title: string; value:
     <span className='beatmapset-panel__stats-item-icon'>
       <i className={icon} />
     </span>
-    <span>{formatNumberSuffixed(value, 0)}</span>
+    <span>{formatNumberSuffixed(value, undefined, { maximumFractionDigits: 1, minimumFractionDigits: 0 })}</span>
   </div>
 );
 
