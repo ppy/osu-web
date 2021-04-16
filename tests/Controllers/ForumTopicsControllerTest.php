@@ -154,6 +154,55 @@ class ForumTopicsControllerTest extends TestCase
             ->assertStatus(200);
     }
 
+    public function testShowNoMorePosts()
+    {
+        $forum = factory(Forum\Forum::class, 'child')->create();
+        $topic = factory(Forum\Topic::class)->create([
+            'forum_id' => $forum->forum_id,
+        ]);
+        $post = factory(Forum\Post::class)->create([
+            'forum_id' => $forum->forum_id,
+            'topic_id' => $topic->topic_id,
+        ]);
+
+        $this
+            ->get(route('forum.topics.show', [
+                'start' => $post->getKey() + 1,
+                'topic' => $topic->getKey(),
+            ]))->assertStatus(302);
+    }
+
+    public function testShowNoMorePostsWithSkipLayout()
+    {
+        $forum = factory(Forum\Forum::class, 'child')->create();
+        $topic = factory(Forum\Topic::class)->create([
+            'forum_id' => $forum->forum_id,
+        ]);
+        $post = factory(Forum\Post::class)->create([
+            'forum_id' => $forum->forum_id,
+            'topic_id' => $topic->topic_id,
+        ]);
+
+        $this
+            ->get(route('forum.topics.show', [
+                'skip_layout' => 1,
+                'start' => $post->getKey() + 1,
+                'topic' => $topic->getKey(),
+            ]))->assertStatus(204);
+    }
+
+    public function testShowMissingPosts()
+    {
+        $forum = factory(Forum\Forum::class, 'child')->create();
+        $topic = factory(Forum\Topic::class)->create([
+            'forum_id' => $forum->forum_id,
+        ]);
+
+        $this
+            ->get(route('forum.topics.show', $topic->topic_id))
+            ->assertStatus(404);
+    }
+
     public function testShowNewUser()
     {
         $forum = factory(Forum\Forum::class, 'child')->create();

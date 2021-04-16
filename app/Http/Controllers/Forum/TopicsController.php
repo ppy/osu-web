@@ -323,7 +323,12 @@ class TopicsController extends Controller
             if ($skipLayout) {
                 return response(null, 204);
             } else {
-                return ujs_redirect(route('forum.topics.show', $topic));
+                // make sure topic has posts at all otherwise this will be a redirect loop
+                if ($topic->posts()->showDeleted($showDeleted)->exists()) {
+                    return ujs_redirect(route('forum.topics.show', $topic));
+                } else {
+                    abort(404);
+                }
             }
         }
 
