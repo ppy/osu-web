@@ -45,15 +45,20 @@ export class ArtEntry extends React.Component
           rel: 'nofollow noreferrer'
           target: '_blank'
 
-    divClasses = [
-      'contest-art-entry',
-      'contest-art-entry--result' if showVotes,
-      "contest-art-entry--placed contest-art-entry--placed-#{place}" if showVotes && top3,
-      'contest-art-entry--smaller' if showVotes && !top3,
-      "contest-art-entry--#{thumbnailShape}" if thumbnailShape
-    ]
+    divClasses = 'contest-art-entry'
+    divClasses += " contest-art-entry--#{thumbnailShape}" if thumbnailShape
 
-    div style: { backgroundImage: osu.urlPresence(@props.entry.artMeta.thumb) }, className: _.compact(divClasses).join(' '),
+    if showVotes
+      divClasses += ' contest-art-entry--result'
+      if top3
+        divClasses += " contest-art-entry--placed contest-art-entry--placed-#{place}"
+      else
+        divClasses += ' contest-art-entry--smaller'
+
+    div
+      style:
+        backgroundImage: osu.urlPresence(@props.entry.thumbnail)
+      className: divClasses
       entryLink
 
       div

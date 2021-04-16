@@ -104,7 +104,7 @@ class Contest extends Model
         return 'over';
     }
 
-    public function hasEntryImages(): bool
+    public function hasThumbnails(): bool
     {
         return $this->type === 'art' ||
             ($this->type === 'external' && isset($this->getExtraOptions()['thumbnail_shape']));
@@ -112,7 +112,7 @@ class Contest extends Model
 
     public function getThumbnailShapeAttribute(): ?string
     {
-        if (!$this->hasEntryImages()) {
+        if (!$this->hasThumbnails()) {
             return null;
         }
 
@@ -230,7 +230,7 @@ class Contest extends Model
     {
         $includes = [];
 
-        if ($this->hasEntryImages()) {
+        if ($this->type === 'art') {
             $includes[] = 'artMeta';
         }
 
