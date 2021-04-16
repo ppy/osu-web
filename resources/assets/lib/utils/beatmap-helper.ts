@@ -108,6 +108,26 @@ export function group<T extends BeatmapJson>(beatmaps: T[]): Partial<Record<Game
   return grouped;
 }
 
+export interface BeatmapGroup<T extends BeatmapJson> {
+  beatmaps: T[];
+  mode: GameMode;
+}
+
+export function groupArray<T extends BeatmapJson>(beatmaps?: T[] | null): BeatmapGroup<T>[] {
+  const byMode = group(beatmaps ?? []);
+  const ret: BeatmapGroup<T>[] = [];
+
+  modes.forEach((mode) => {
+    const items = byMode[mode];
+
+    if (items != null) {
+      ret.push({ beatmaps: items, mode });
+    }
+  });
+
+  return ret;
+}
+
 export function shouldShowPp(beatmap: BeatmapJson) {
   return beatmap.status === 'ranked' || beatmap.status === 'approved';
 }

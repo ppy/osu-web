@@ -7,7 +7,6 @@ import { CircularProgress } from 'circular-progress';
 import { Img2x } from 'img2x';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { sum, values } from 'lodash';
 import { computed, observable } from 'mobx';
@@ -18,18 +17,13 @@ import { Transition } from 'react-transition-group';
 import { StringWithComponent } from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { UserLink } from 'user-link';
-import * as BeatmapHelper from 'utils/beatmap-helper';
+import { BeatmapGroup, getArtist, getDiffRating, getTitle, groupArray } from 'utils/beatmap-helper';
 import { showVisual, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumberSuffixed, make2x } from 'utils/html';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
-}
-
-export interface BeatmapGroup {
-  beatmaps: BeatmapJson[];
-  mode: GameMode;
 }
 
 const beatmapsPopupTransitionDuration = 150;
@@ -53,12 +47,12 @@ const BeatmapDot = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
   <div
     className='beatmapset-panel__beatmap-dot'
     style={{
-      '--bg': `var(--diff-${BeatmapHelper.getDiffRating(beatmap.difficulty_rating)})`,
+      '--bg': `var(--diff-${getDiffRating(beatmap.difficulty_rating)})`,
     } as React.CSSProperties}
   />
 ));
 
-const BeatmapDots = observer(({ compact, group }: { compact: boolean; group: BeatmapGroup }) => (
+const BeatmapDots = observer(({ compact, group }: { compact: boolean; group: BeatmapGroup<BeatmapJson> }) => (
   <div className='beatmapset-panel__extra-item beatmapset-panel__extra-item--dots'>
     <div className='beatmapset-panel__beatmap-icon'>
       <i className={`fal fa-extra-mode-${group.mode}`} />
@@ -184,20 +178,8 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   }
 
   @computed
-  private get groupedBeatmaps(): BeatmapGroup[] {
-    const byMode = BeatmapHelper.group(this.props.beatmapset.beatmaps ?? []);
-
-    const ret: BeatmapGroup[] = [];
-
-    BeatmapHelper.modes.forEach((mode) => {
-      const beatmaps = byMode[mode];
-
-      if (beatmaps != null) {
-        ret.push({ beatmaps, mode });
-      }
-    });
-
-    return ret;
+  private get groupedBeatmaps() {
+    return groupArray(this.props.beatmapset.beatmaps);
   }
 
   @computed
@@ -403,13 +385,13 @@ export default class BeatmapsetPanel extends React.Component<Props> {
       <div className='beatmapset-panel__info'>
         <div className='beatmapset-panel__info-row beatmapset-panel__info-row--title'>
           <a className='beatmapset-panel__main-link u-ellipsis-overflow' href={this.url}>
-            {BeatmapHelper.getTitle(this.props.beatmapset)}
+            {getTitle(this.props.beatmapset)}
           </a>
           {this.props.beatmapset.nsfw && <NsfwBadge />}
         </div>
         <div className='beatmapset-panel__info-row beatmapset-panel__info-row--artist'>
           <a className='beatmapset-panel__main-link u-ellipsis-overflow' href={this.url}>
-            {osu.trans('beatmapsets.show.details.by_artist', { artist: BeatmapHelper.getArtist(this.props.beatmapset) })}
+            {osu.trans('beatmapsets.show.details.by_artist', { artist: getArtist(this.props.beatmapset) })}
           </a>
         </div>
         <div className='beatmapset-panel__info-row beatmapset-panel__info-row--mapper'>

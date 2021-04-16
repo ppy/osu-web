@@ -1,17 +1,16 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapGroup } from 'beatmapset-panel';
 import BeatmapJson from 'interfaces/beatmap-json';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import { Portal } from 'portal';
 import * as React from 'react';
 import { TransitionStatus } from 'react-transition-group';
-import { getDiffRating } from 'utils/beatmap-helper';
+import { BeatmapGroup, getDiffRating } from 'utils/beatmap-helper';
 
 interface Props {
-  groupedBeatmaps: BeatmapGroup[];
+  groupedBeatmaps: BeatmapGroup<BeatmapJson>[];
   onMouseEnter: () => void;
   onMouseLeave: () => void;
   parent: HTMLElement | null;
@@ -27,7 +26,7 @@ const beatmapsPopupTransitionStyles: Record<TransitionStatus, React.CSSPropertie
   unmounted: {},
 };
 
-const Item = observer(({ beatmaps, mode }: BeatmapGroup) => (
+const Item = observer(({ beatmaps }: BeatmapGroup<BeatmapJson>) => (
   <div className='beatmaps-popup__group'>
     {beatmaps.map((beatmap) => <ItemRow key={beatmap.id} beatmap={beatmap} />)}
   </div>
