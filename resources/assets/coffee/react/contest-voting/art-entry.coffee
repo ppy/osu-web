@@ -24,6 +24,27 @@ export class ArtEntry extends React.Component
       place = @props.displayIndex + 1
       top3 = place <= 3
 
+    linkClasses = 'contest-art-entry__thumbnail'
+    linkClasses += ' contest-art-entry--selected' if isSelected
+    linkClasses += ' js-gallery' if @props.contest.type == 'art'
+
+    entryLink =
+      if @props.contest.type == 'art'
+        a
+          className: linkClasses
+          href: @props.entry.preview
+          'data-width': @props.entry.artMeta.width
+          'data-height': @props.entry.artMeta.height
+          'data-gallery-id': galleryId
+          'data-index': @props.displayIndex
+          'data-button-id': buttonId
+      else
+        a
+          className: linkClasses
+          href: @props.entry.preview
+          rel: 'nofollow noreferrer'
+          target: '_blank'
+
     divClasses = [
       'contest-art-entry',
       'contest-art-entry--result' if showVotes,
@@ -33,18 +54,7 @@ export class ArtEntry extends React.Component
     ]
 
     div style: { backgroundImage: osu.urlPresence(@props.entry.artMeta.thumb) }, className: _.compact(divClasses).join(' '),
-      a {
-        className: _.compact([
-          'js-gallery contest-art-entry__thumbnail',
-          'contest-art-entry--selected' if isSelected,
-        ]).join(' '),
-        href: @props.entry.preview,
-        'data-width': @props.entry.artMeta.width,
-        'data-height': @props.entry.artMeta.height,
-        'data-gallery-id': galleryId,
-        'data-index': @props.displayIndex,
-        'data-button-id': buttonId
-      }
+      entryLink
 
       div
         className: _([

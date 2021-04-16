@@ -37,20 +37,22 @@ class ContestEntryTransformer extends TransformerAbstract
 
     public function includeArtMeta(ContestEntry $entry)
     {
-        if ($entry->contest->type !== 'art' || !presence($entry->entry_url)) {
+        if (!$entry->contest->hasEntryImages() || !presence($entry->entry_url)) {
             return $this->item($entry, function ($entry) {
                 return [];
             });
         }
 
         return $this->item($entry, function ($entry) {
+            $thumbnailUrl = presence($entry->thumbnail_url) ?? $entry->entry_url;
+
             // suffix urls when contests are made live to ensure image dimensions are forcibly rechecked
             if ($entry->contest->visible) {
-                $urlSuffix = str_contains($entry->entry_url, '?') ? '&live' : '?live';
+                $urlSuffix = str_contains($thumbnailUrl, '?') ? '&live' : '?live';
             }
 
-            $size = fast_imagesize($entry->entry_url.($urlSuffix ?? ''));
-            $thumb = mini_asset($entry->entry_url);
+            $size = fast_imagesize($thumbnailUrl.($urlSuffix ?? ''));
+            $thumb = mini_asset($thumbnailUrl);
 
             return [
                 'width' => $size[0],

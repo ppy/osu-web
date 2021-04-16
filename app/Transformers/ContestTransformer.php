@@ -31,7 +31,7 @@ class ContestTransformer extends TransformerAbstract
             'link_icon' => $contest->link_icon,
         ];
 
-        if ($contest->type === 'art') {
+        if ($contest->hasEntryImages()) {
             $response['shape'] = $contest->entry_shape;
         }
 
