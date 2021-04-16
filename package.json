@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "yarn run development",
     "development": "cross-env NODE_ENV=development webpack --progress --hide-modules --config=webpack.config.js",
-    "eslint": "eslint 'resources/assets/lib/**/*.{js,ts,tsx}' '*.js'",
+    "eslint": "eslint --cache 'resources/assets/lib/**/*.{js,ts,tsx}' '*.js'",
     "generate-localizations": "node generate-localizations.js",
     "lint": "tslint -c tslint.json 'resources/assets/lib/**/*.{js,jsx,ts,tsx}' *.js",
     "localize": "yarn run generate-localizations",
