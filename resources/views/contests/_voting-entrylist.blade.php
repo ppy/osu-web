@@ -11,9 +11,9 @@
     {!! $contest->defaultJson(Auth::user()) !!}
 </script>
 
-@if ($contest->type == 'beatmap' && isset($contest->extra_options['beatmapset_dl']))
+@if ($contest->type === 'beatmap' && isset($contest->getExtraOptions()['beatmapset_dl']))
     <div class='contest__buttons'>
-        <a class="btn-osu-big btn-osu-big--contest-download" href="{{$contest->extra_options['beatmapset_dl']}}">
+        <a class="btn-osu-big btn-osu-big--contest-download" href="{{$contest->getExtraOptions()['beatmapset_dl']}}">
             <div class="btn-osu-big__content">
                 <div class="btn-osu-big__left"><span class="btn-osu-big__text-top">{{ trans('contest.entry.download') }}</span></div>
                 <span class="fas fa-download"></span>
