@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPreviewUrlToContestEntries extends Migration
+class AddThumbnailUrlToContestEntries extends Migration
 {
     /**
      * Run the migrations.
@@ -17,7 +17,7 @@ class AddPreviewUrlToContestEntries extends Migration
     public function up()
     {
         Schema::table('contest_entries', function (Blueprint $table) {
-            $table->string('preview_url')->after('entry_url')->nullable();
+            $table->string('thumbnail_url')->after('entry_url')->nullable();
         });
     }
 
@@ -29,7 +29,7 @@ class AddPreviewUrlToContestEntries extends Migration
     public function down()
     {
         Schema::table('contest_entries', function (Blueprint $table) {
-            $table->dropColumn('preview_url');
+            $table->dropColumn('thumbnail_url');
         });
     }
 }
