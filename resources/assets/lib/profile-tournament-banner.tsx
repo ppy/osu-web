@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function ProfileTournamentBanner({ banner }: Props) {
-  if (banner?.id == null) return null;
+  if (banner == null) return null;
 
   return (
     <a
