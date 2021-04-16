@@ -14,7 +14,7 @@ export class ArtEntry extends React.Component
 
     votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
     showVotes = @props.contest.show_votes
-    shape = @props.contest.shape
+    thumbnailShape = @props.contest.thumbnail_shape
     galleryId = "contest-#{@props.contest.id}"
     buttonId = "#{galleryId}:#{@props.displayIndex}"
     hideVoteButton = (@props.selected.length >= @props.contest.max_votes || votingOver) && !isSelected
@@ -50,7 +50,7 @@ export class ArtEntry extends React.Component
       'contest-art-entry--result' if showVotes,
       "contest-art-entry--placed contest-art-entry--placed-#{place}" if showVotes && top3,
       'contest-art-entry--smaller' if showVotes && !top3,
-      "contest-art-entry--#{shape}" if shape
+      "contest-art-entry--#{thumbnailShape}" if thumbnailShape
     ]
 
     div style: { backgroundImage: osu.urlPresence(@props.entry.artMeta.thumb) }, className: _.compact(divClasses).join(' '),

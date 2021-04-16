@@ -32,7 +32,7 @@ class ContestTransformer extends TransformerAbstract
         ];
 
         if ($contest->hasEntryImages()) {
-            $response['shape'] = $contest->entry_shape;
+            $response['thumbnail_shape'] = $contest->thumbnail_shape;
         }
 
         if ($contest->isBestOf()) {
