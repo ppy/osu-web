@@ -1,54 +1,86 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import * as React from 'react'
-import { a, div, li, span, ul } from 'react-dom-factories'
-import { modes } from 'utils/beatmap-helper'
+import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import GameMode from 'interfaces/game-mode';
+import { sumBy } from 'lodash';
+import * as React from 'react';
+import { modes } from 'utils/beatmap-helper';
+import { classWithModifiers } from 'utils/css';
 
-export class PlaymodeTabs extends React.Component
-  render: =>
-    div className: 'game-mode game-mode--beatmapsets',
-      ul className: 'game-mode__items',
-        for mode in modes
-          disabled = !(@props.enableAll || @props.beatmaps[mode]?)
-          active = mode == @props.currentMode
+interface Props {
+  beatmaps: Partial<Record<GameMode, BeatmapJsonExtended[]>>;
+  counts?: Partial<Record<GameMode, number>>;
+  currentMode: GameMode;
+  enableAll: boolean;
+  hrefFunc?: (mode: GameMode) => string;
+  showCounts: boolean;
+}
 
-          linkClass = 'game-mode-link'
-          linkClass += ' game-mode-link--active' if active
-          linkClass += ' game-mode-link--disabled' if disabled
+export default class PlaymodeTabs extends React.Component<Props> {
+  static defaultProps = {
+    enableAll: false,
+    showCounts: false,
+  };
 
-          count = @count(mode)
+  render() {
+    return (
+      <div className='game-mode game-mode--beatmapsets'>
+        <ul className='game-mode__items'>
+          {modes.map((mode) => {
+            const disabled = !(this.props.enableAll || this.props.beatmaps[mode] != null);
 
-          li
-            className: 'game-mode__item'
-            key: mode
-            a
-              className: linkClass
-              onClick: @switchMode
-              href: @props.hrefFunc?(mode) ? '#'
-              'data-mode': mode
-              'data-disabled': disabled
-              osu.trans "beatmaps.mode.#{mode}"
-              if count?
-                span className: 'game-mode-link__badge', count
+            const linkClass = classWithModifiers('game-mode-link', {
+              active: mode === this.props.currentMode,
+              disabled,
+            });
 
+            const count = this.count(mode);
 
-  count: (mode) =>
-    if @props.counts?[mode]?
-      return @props.counts[mode]
+            return (
+              <li
+                key={mode}
+                className='game-mode__item'
+              >
+                <a
+                  className={linkClass}
+                  data-disabled={disabled.toString()}
+                  data-mode={mode}
+                  href={this.props.hrefFunc?.(mode) ?? '#'}
+                  onClick={this.switchMode}
+                >
+                  {osu.trans(`beatmaps.mode.${mode}`)}
+                  {count != null && <span className='game-mode-link__badge'>{count}</span>}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  }
 
-    if @props.showCounts
-      count = Number(_.sumBy(@props.beatmaps[mode], (beatmap) -> !beatmap.convert))
+  private count = (mode: GameMode) => {
+    if (this.props.counts?.[mode] != null) {
+      return this.props.counts[mode];
+    }
 
-      return count if count > 0
+    if (this.props.showCounts) {
+      const count = Number(sumBy(this.props.beatmaps[mode], (beatmap) => beatmap.convert ? 0 : 1));
 
+      return count > 0 ? count : undefined;
+    }
+  };
 
-  switchMode: (e) =>
-    e.preventDefault()
-    target = e.currentTarget
-    mode = target.dataset.mode
+  private switchMode = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const target = e.currentTarget;
 
-    return if @props.currentMode == mode || !mode?
-    return if target.dataset.disabled == 'true'
+    const mode = target.dataset.mode as GameMode;
 
-    $.publish 'playmode:set', mode: mode
+    if (this.props.currentMode === mode) return;
+    if (target.dataset.disabled === 'true') return;
+
+    $.publish('playmode:set', { mode });
+  };
+}
