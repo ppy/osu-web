@@ -19,8 +19,7 @@ reactTurbolinks.register('chat', MainView, () => {
     dataStore.channelStore.lastPolledMessageId = initial.last_message_id ?? 0;
   }
 
-  const channelId = parseInt(new URL(location.href).searchParams.get('channel_id') ?? '', 10);
-  let initialChannel = Number.isFinite(channelId) ? channelId : dataStore.chatState.selected;
+  let initialChannel = 0;
   const sendTo = initial?.send_to;
 
   if ((sendTo != null)) {
@@ -36,11 +35,16 @@ reactTurbolinks.register('chat', MainView, () => {
       dataStore.channelStore.loaded = true;
       initialChannel = channel.channelId;
     }
-  } else if (initialChannel === 0 && dataStore.channelStore.loaded) {
-    if (dataStore.channelStore.nonPmChannels.length > 0) {
-      initialChannel = dataStore.channelStore.nonPmChannels[0].channelId;
-    } else if (dataStore.channelStore.pmChannels.length > 0) {
-      initialChannel = dataStore.channelStore.pmChannels[0].channelId;
+  } else {
+    const channelId = parseInt(new URL(location.href).searchParams.get('channel_id') ?? '', 10);
+    initialChannel = Number.isFinite(channelId) ? channelId : dataStore.chatState.selected;
+
+    if (initialChannel === 0 && dataStore.channelStore.loaded) {
+      if (dataStore.channelStore.nonPmChannels.length > 0) {
+        initialChannel = dataStore.channelStore.nonPmChannels[0].channelId;
+      } else if (dataStore.channelStore.pmChannels.length > 0) {
+        initialChannel = dataStore.channelStore.pmChannels[0].channelId;
+      }
     }
   }
 
