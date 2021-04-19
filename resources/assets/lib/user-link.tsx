@@ -5,8 +5,8 @@ import { route } from 'laroute';
 import * as React from 'react';
 
 interface Props {
-  className?: string;
   children?: React.ReactNode;
+  className?: string;
   user: {
     id?: number;
     username: string;
