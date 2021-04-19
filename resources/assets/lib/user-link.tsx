@@ -7,6 +7,7 @@ import * as React from 'react';
 interface Props {
   children?: React.ReactNode;
   className?: string;
+  tooltipPosition?: string;
   user: {
     id?: number;
     username: string;
@@ -25,6 +26,7 @@ export class UserLink extends React.PureComponent<Props> {
     return (
       <a
         className={className}
+        data-tooltip-position={this.props.tooltipPosition}
         data-user-id={this.props.user.id}
         href={href}
       >
