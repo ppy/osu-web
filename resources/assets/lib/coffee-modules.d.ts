@@ -109,6 +109,39 @@ declare module 'react/beatmaps/search-content' {
   class SearchContent extends React.PureComponent<Props> {}
 }
 
+declare module 'react/profile-page/badges' {
+  import UserBadgeJson from 'interfaces/user-badge-json';
+
+  interface Props {
+    badges?: UserBadgeJson[];
+  }
+
+  class Badges extends React.PureComponent<Props> {}
+}
+
+declare module 'react/profile-page/header-info' {
+  import GameMode from 'interfaces/game-mode';
+  import UserJsonExtended from 'interfaces/user-json-extended';
+
+  interface Props {
+    coverUrl: string | null;
+    currentMode: GameMode | null;
+    user: UserJsonExtended;
+  }
+
+  class HeaderInfo extends React.PureComponent<Props> {}
+}
+
+declare module 'react/profile-page/links' {
+  import UserJsonExtended from 'interfaces/user-json-extended';
+
+  interface Props {
+    user: UserJsonExtended;
+  }
+
+  class Links extends React.PureComponent<Props> {}
+}
+
 declare module 'report-form' {
   interface ReportFormProps {
     completed: boolean;

@@ -2,10 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import GroupJson from './group-json';
+import ProfileBannerJson from './profile-banner';
+import UserBadgeJson from './user-badge-json';
 import UserStatisticsJson from './user-statistics-json';
 
 export default interface UserJson {
+  active_tournament_banner?: ProfileBannerJson | null;
   avatar_url: string;
+  badges?: UserBadgeJson[];
   country?: Country;
   country_code: string; // TODO: country object?
   cover?: Cover;

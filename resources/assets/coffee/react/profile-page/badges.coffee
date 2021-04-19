@@ -7,7 +7,7 @@ el = React.createElement
 
 export class Badges extends React.PureComponent
   render: =>
-    return null if @props.badges.length == 0
+    return null unless @props.badges.length > 0
 
     div className: 'profile-badges',
       for badge in @props.badges

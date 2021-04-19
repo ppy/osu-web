@@ -16,5 +16,5 @@ export default interface UserJsonExtended extends UserJson {
   is_nat: boolean;
   is_restricted: boolean;
   is_silenced: boolean;
-  playmode?: GameMode;
+  playmode: GameMode | null;
 }

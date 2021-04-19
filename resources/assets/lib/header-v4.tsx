@@ -6,7 +6,7 @@ import * as React from 'react';
 import { Spinner } from 'spinner';
 
 interface Props {
-  backgroundImage?: string;
+  backgroundImage?: string | null;
   contentAppend?: React.ReactNode;
   contentPrepend?: React.ReactNode;
   isCoverUpdating?: boolean;
