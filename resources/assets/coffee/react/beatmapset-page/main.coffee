@@ -246,7 +246,6 @@ export class Main extends React.Component
         beatmaps: @state.beatmaps
         currentMode: @state.currentBeatmap.mode
         hrefFunc: @tabHrefFunc
-        showCounts: true
 
     el HeaderV4,
       theme: 'beatmapsets'

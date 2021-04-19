@@ -23,9 +23,9 @@ export class Header extends React.PureComponent
       el HeaderV4,
         theme: 'beatmapsets'
         titleAppend: el PlaymodeTabs,
-          currentMode: @props.currentBeatmap.mode
           beatmaps: @props.beatmaps
           counts: @props.currentDiscussions.countsByPlaymode
+          currentMode: @props.currentBeatmap.mode
 
       div
         className: 'osu-page'

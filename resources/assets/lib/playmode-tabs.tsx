@@ -13,14 +13,9 @@ interface Props {
   counts?: Partial<Record<GameMode, number>>;
   currentMode: GameMode;
   hrefFunc?: (mode: GameMode) => string;
-  showCounts: boolean;
 }
 
 export default class PlaymodeTabs extends React.Component<Props> {
-  static defaultProps = {
-    showCounts: false,
-  };
-
   render() {
     return (
       <div className='game-mode game-mode--beatmapsets'>
@@ -63,11 +58,9 @@ export default class PlaymodeTabs extends React.Component<Props> {
       return this.props.counts[mode];
     }
 
-    if (this.props.showCounts) {
-      const count = sumBy(this.props.beatmaps[mode], (beatmap) => beatmap.convert ? 0 : 1);
+    const count = sumBy(this.props.beatmaps[mode], (beatmap) => beatmap.convert ? 0 : 1);
 
-      return count > 0 ? count : undefined;
-    }
+    return count > 0 ? count : undefined;
   };
 
   private switchMode = (e: React.MouseEvent<HTMLAnchorElement>) => {
