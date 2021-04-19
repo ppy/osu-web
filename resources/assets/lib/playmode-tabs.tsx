@@ -31,10 +31,7 @@ export default class PlaymodeTabs extends React.Component<Props> {
             const count = this.count(mode);
 
             return (
-              <li
-                key={mode}
-                className='game-mode__item'
-              >
+              <li key={mode} className='game-mode__item'>
                 <a
                   className={linkClass}
                   data-disabled={disabled.toString()}
