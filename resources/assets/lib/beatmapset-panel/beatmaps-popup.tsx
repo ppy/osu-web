@@ -2,15 +2,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapJson from 'interfaces/beatmap-json';
+import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import { Portal } from 'portal';
 import * as React from 'react';
 import { TransitionStatus } from 'react-transition-group';
-import { BeatmapGroup, getDiffRating } from 'utils/beatmap-helper';
+import { getDiffRating } from 'utils/beatmap-helper';
 
 interface Props {
-  groupedBeatmaps: BeatmapGroup<BeatmapJson>[];
+  groupedBeatmaps: Map<GameMode, BeatmapJson[]>;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
   parent: HTMLElement | null;
@@ -26,7 +27,7 @@ const beatmapsPopupTransitionStyles: Record<TransitionStatus, React.CSSPropertie
   unmounted: {},
 };
 
-const Item = observer(({ beatmaps }: BeatmapGroup<BeatmapJson>) => (
+const Item = observer(({ beatmaps }: { beatmaps: BeatmapJson[] }) => (
   <div className='beatmaps-popup__group'>
     {beatmaps.map((beatmap) => <ItemRow key={beatmap.id} beatmap={beatmap} />)}
   </div>
@@ -86,7 +87,9 @@ export default class BeatmapsPopup extends React.Component<Props> {
           style={style}
         >
           <div className='beatmaps-popup__content'>
-            {this.props.groupedBeatmaps.map((props) => <Item key={props.mode} {...props} />)}
+            {[...this.props.groupedBeatmaps].map(([mode, beatmaps]) => (
+              beatmaps.length > 0 && <Item key={mode} beatmaps={beatmaps} />
+            ))}
           </div>
         </div>
       </Portal>
