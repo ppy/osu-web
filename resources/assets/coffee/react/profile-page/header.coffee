@@ -63,11 +63,11 @@ export class Header extends React.Component
       'data-page-id': 'main'
       el HeaderV4,
         backgroundImage: @state.coverUrl
+        contentPrepend: el ProfileTournamentBanner,
+          banner: @props.user.active_tournament_banner
         isCoverUpdating: @state.isCoverUpdating
         links: headerLinks(@props.user, 'show')
         theme: 'users'
-        contentPrepend: el ProfileTournamentBanner,
-          banner: @props.user.active_tournament_banner
         titleAppend: el GameModeSwitcher,
           currentMode: @props.currentMode
           user: @props.user
