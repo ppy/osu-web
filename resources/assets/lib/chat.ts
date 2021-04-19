@@ -19,7 +19,8 @@ reactTurbolinks.register('chat', MainView, () => {
     dataStore.channelStore.lastPolledMessageId = initial.last_message_id ?? 0;
   }
 
-  let initialChannel = dataStore.chatState.selected;
+  const channelId = parseInt(new URL(location.href).searchParams.get('channel_id') ?? '', 10);
+  let initialChannel = Number.isFinite(channelId) ? channelId : dataStore.chatState.selected;
   const sendTo = initial?.send_to;
 
   if ((sendTo != null)) {
@@ -44,7 +45,7 @@ reactTurbolinks.register('chat', MainView, () => {
   }
 
   if (initialChannel !== 0) {
-    dataStore.chatState.selectChannel(initialChannel);
+    void dataStore.chatState.selectChannel(initialChannel);
   }
 
   return {
