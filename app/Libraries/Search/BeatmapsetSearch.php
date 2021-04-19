@@ -74,6 +74,7 @@ class BeatmapsetSearch extends RecordSearch
         $this->addStatusFilter($query);
 
         $nested = new BoolQuery();
+        $this->addManiaKeysFilter($nested);
         $this->addModeFilter($nested);
         $this->addPlayedFilter($query, $nested);
         $this->addRankFilter($nested);
@@ -171,6 +172,17 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
+    private function addManiaKeysFilter(BoolQuery $nestedQuery): void
+    {
+        if ($this->params->keys === null) {
+            return;
+        }
+
+        $nestedQuery
+            ->filter(['range' => ['beatmaps.diff_size' => $this->params->keys]])
+            ->filter(['term' => ['beatmaps.playmode' => Beatmap::MODES['mania']]]);
+    }
+
     private function addModeFilter($query)
     {
         if (!$this->params->includeConverts) {
@@ -252,7 +264,6 @@ class BeatmapsetSearch extends RecordSearch
             'difficultyRating' => ['field' => 'beatmaps.difficultyrating', 'type' => 'range'],
             'drain' => ['field' => 'beatmaps.diff_drain', 'type' => 'range'],
             'hitLength' => ['field' => 'beatmaps.hit_length', 'type' => 'range'],
-            'keys' => ['field' => 'beatmaps.diff_size', 'type' => 'range'],
             'statusRange' => ['field' => 'beatmaps.approved', 'type' => 'range'],
             // (unsupported) 'divisor' => ['field' => ???, 'type' => 'range'],
         ];
