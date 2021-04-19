@@ -12,14 +12,12 @@ interface Props {
   beatmaps: Partial<Record<GameMode, BeatmapJsonExtended[]>>;
   counts?: Partial<Record<GameMode, number>>;
   currentMode: GameMode;
-  enableAll: boolean;
   hrefFunc?: (mode: GameMode) => string;
   showCounts: boolean;
 }
 
 export default class PlaymodeTabs extends React.Component<Props> {
   static defaultProps = {
-    enableAll: false,
     showCounts: false,
   };
 
@@ -28,7 +26,7 @@ export default class PlaymodeTabs extends React.Component<Props> {
       <div className='game-mode game-mode--beatmapsets'>
         <ul className='game-mode__items'>
           {modes.map((mode) => {
-            const disabled = !(this.props.enableAll || this.props.beatmaps[mode] != null);
+            const disabled = this.props.beatmaps[mode] !== null;
 
             const linkClass = classWithModifiers('game-mode-link', {
               active: mode === this.props.currentMode,
