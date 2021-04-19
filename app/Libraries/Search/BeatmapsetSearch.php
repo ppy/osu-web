@@ -234,8 +234,11 @@ class BeatmapsetSearch extends RecordSearch
     {
         if ($this->params->ranked !== null) {
             $query
-                ->filter(['term' => ['approved' => Beatmapset::STATES['ranked']]])
-                ->filter(['range' => ['approved_date' => $this->params->ranked]]);
+                ->filter(['terms' => ['approved' => [
+                    Beatmapset::STATES['ranked'],
+                    Beatmapset::STATES['approved'],
+                    Beatmapset::STATES['loved'],
+                ]]])->filter(['range' => ['approved_date' => $this->params->ranked]]);
         }
     }
 
