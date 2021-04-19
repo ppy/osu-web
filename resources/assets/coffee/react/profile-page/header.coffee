@@ -27,7 +27,7 @@ export class Header extends React.Component
 
     @state =
       editing: false
-      coverUrl: props.user.cover_url
+      coverUrl: props.user.cover.url
       isCoverUpdating: false
       settingDefaultMode: false
 

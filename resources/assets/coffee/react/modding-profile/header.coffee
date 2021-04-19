@@ -21,7 +21,7 @@ export class Header extends React.Component
       className: 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
       'data-page-id': 'main'
       el HeaderV4,
-        backgroundImage: @props.user.cover_url
+        backgroundImage: @props.user.cover.url
         contentPrepend: el ProfileTournamentBanner,
           banner: @props.user.active_tournament_banner
         links: headerLinks(@props.user, 'modding')
@@ -29,7 +29,7 @@ export class Header extends React.Component
       div className: 'osu-page osu-page--users',
         div className: 'profile-header',
           div className: 'profile-header__top',
-            el HeaderInfo, user: @props.user, currentMode: @props.user.playmode, coverUrl: @props.user.cover_url
+            el HeaderInfo, user: @props.user, currentMode: @props.user.playmode, coverUrl: @props.user.cover.url
 
             if !@props.user.is_bot
               el Stats, user: @props.user
