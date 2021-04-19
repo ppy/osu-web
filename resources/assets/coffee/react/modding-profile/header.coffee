@@ -12,7 +12,6 @@ import { Img2x } from 'img2x'
 import headerLinks from 'profile-page/header-links'
 import ProfileTournamentBanner from 'profile-tournament-banner'
 import { a, div, h1, li, span, ul } from 'react-dom-factories'
-
 el = React.createElement
 
 export class Header extends React.Component
