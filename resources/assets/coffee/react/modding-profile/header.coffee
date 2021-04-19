@@ -40,7 +40,6 @@ export class Header extends React.Component
               userAchievements: @props.userAchievements
               user: @props.user
 
-          if @props.user.badges.length > 0
-            el Badges, badges: @props.user.badges
+          el Badges, badges: @props.user.badges
 
           el Links, user: @props.user

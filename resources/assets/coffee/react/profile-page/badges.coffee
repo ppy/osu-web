@@ -7,6 +7,8 @@ el = React.createElement
 
 export class Badges extends React.PureComponent
   render: =>
+    return null if @props.badges.length == 0
+
     div className: 'profile-badges',
       for badge in @props.badges
         element = if osu.present badge.url then a else div
