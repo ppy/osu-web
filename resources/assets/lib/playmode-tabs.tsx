@@ -64,7 +64,7 @@ export default class PlaymodeTabs extends React.Component<Props> {
     }
 
     if (this.props.showCounts) {
-      const count = Number(sumBy(this.props.beatmaps[mode], (beatmap) => beatmap.convert ? 0 : 1));
+      const count = sumBy(this.props.beatmaps[mode], (beatmap) => beatmap.convert ? 0 : 1);
 
       return count > 0 ? count : undefined;
     }
