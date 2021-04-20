@@ -19,9 +19,7 @@ export default function UserAvatar(props: Props) {
   return (
     <div
       className={`${classWithModifiers(bn, props.modifiers)} ${bn}--guest`}
-      style={{
-        backgroundImage: osu.urlPresence(props.user.avatar_url),
-      }}
+      style={{ backgroundImage: osu.urlPresence(props.user.avatar_url) }}
     />
   );
 }
