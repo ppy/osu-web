@@ -15,7 +15,7 @@ interface Props {
 
 export default function UserAvatar(props: Props) {
   return (
-    <div
+    <span
       className={`${classWithModifiers('avatar', props.modifiers)} avatar--guest`}
       style={{ backgroundImage: osu.urlPresence(props.user.avatar_url) }}
     />
