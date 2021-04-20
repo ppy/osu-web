@@ -4,8 +4,6 @@
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 
-const bn = 'avatar';
-
 interface UserForAvatarJson {
   avatar_url?: string | null;
 }
@@ -18,7 +16,7 @@ interface Props {
 export default function UserAvatar(props: Props) {
   return (
     <div
-      className={`${classWithModifiers(bn, props.modifiers)} ${bn}--guest`}
+      className={`${classWithModifiers('avatar', props.modifiers)} avatar--guest`}
       style={{ backgroundImage: osu.urlPresence(props.user.avatar_url) }}
     />
   );
