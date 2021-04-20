@@ -15,15 +15,13 @@ interface Props {
   user: UserForAvatarJson;
 }
 
-export default class UserAvatar extends React.PureComponent<Props> {
-  render() {
-    let blockClass = classWithModifiers(bn, this.props.modifiers);
-    blockClass += ` ${bn}--guest`;
-
-    const style = {
-      backgroundImage: osu.urlPresence(this.props.user.avatar_url),
-    };
-
-    return <div className={blockClass} style={style} />;
-  }
+export default function UserAvatar(props: Props) {
+  return (
+    <div
+      className={`${classWithModifiers(bn, props.modifiers)} ${bn}--guest`}
+      style={{
+        backgroundImage: osu.urlPresence(props.user.avatar_url),
+      }}
+    />
+  );
 }
