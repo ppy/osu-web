@@ -18,14 +18,11 @@ interface Props {
 export default class UserAvatar extends React.PureComponent<Props> {
   render() {
     let blockClass = classWithModifiers(bn, this.props.modifiers);
+    blockClass += ` ${bn}--guest`;
 
     const style = {
       backgroundImage: osu.urlPresence(this.props.user.avatar_url),
     };
-
-    if (style.backgroundImage == null) {
-      blockClass += classWithModifiers(bn, ['guest'], true);
-    }
 
     return <div className={blockClass} style={style} />;
   }
