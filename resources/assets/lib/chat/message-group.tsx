@@ -1,12 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { route } from 'laroute';
-import * as _ from 'lodash';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
 import * as React from 'react';
 import { Spinner } from 'spinner';
+import { UserLink } from 'user-link';
 
 interface Props {
   messages: Message[];
@@ -30,9 +29,9 @@ export default class MessageGroup extends React.Component<Props, any> {
     return (
       <div className={className}>
         <div className='chat-message-group__sender'>
-          <a className='js-usercard' data-tooltip-position='top center' data-user-id={sender.id} href={route('users.show', { user: sender.id })}>
+          <UserLink tooltipPosition='top center' user={sender}>
             <img className='chat-message-group__avatar' src={sender.avatarUrl} />
-          </a>
+          </UserLink>
           <div className='u-ellipsis-overflow' style={{maxWidth: '60px'}}>
             {sender.username}
           </div>
