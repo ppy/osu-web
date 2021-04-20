@@ -5,6 +5,7 @@ import Message from 'models/chat/message';
 import * as moment from 'moment';
 import * as React from 'react';
 import { Spinner } from 'spinner';
+import UserAvatar from 'user-avatar';
 import { UserLink } from 'user-link';
 
 interface Props {
@@ -30,7 +31,9 @@ export default class MessageGroup extends React.Component<Props, any> {
       <div className={className}>
         <div className='chat-message-group__sender'>
           <UserLink tooltipPosition='top center' user={sender}>
-            <img className='chat-message-group__avatar' src={sender.avatarUrl} />
+            <div className='chat-message-group__avatar'>
+              <UserAvatar modifiers={['full-circle']} user={{ avatar_url: sender.avatarUrl }} />
+            </div>
           </UserLink>
           <div className='u-ellipsis-overflow' style={{maxWidth: '60px'}}>
             {sender.username}
@@ -62,7 +65,7 @@ export default class MessageGroup extends React.Component<Props, any> {
             return (
               <div key={message.uuid} className={classes}>
                 <div className='chat-message-group__message-entry'>
-                  <span dangerouslySetInnerHTML={{__html: message.parsedContent}} className={contentClasses} />
+                  <span className={contentClasses} dangerouslySetInnerHTML={{__html: message.parsedContent}} />
                   {!message.persisted && !message.errored &&
                     <div className='chat-message-group__message-status'>
                       <Spinner />
