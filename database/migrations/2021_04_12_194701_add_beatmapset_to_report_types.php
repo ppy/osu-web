@@ -17,10 +17,6 @@ class AddBeatmapsetToReportTypes extends Migration
         DB::statement("ALTER TABLE osu_user_reports
                        MODIFY COLUMN reportable_type
                        enum('user', 'comment', 'score_best_osu', 'score_best_taiko', 'score_best_fruits', 'score_best_mania', 'beatmapset_discussion_post', 'forum_post', 'beatmapset')");
-
-        DB::statement("ALTER TABLE osu_user_reports
-                       MODIFY COLUMN reason
-                       enum('Insults', 'Spam', 'Cheating', 'UnwantedContent', 'Nonsense', 'Other', 'BeatmapStealing')");
     }
 
     /**
@@ -33,9 +29,5 @@ class AddBeatmapsetToReportTypes extends Migration
         DB::statement("ALTER TABLE osu_user_reports
                        MODIFY COLUMN reportable_type
                        enum('user', 'comment', 'score_best_osu', 'score_best_taiko', 'score_best_fruits', 'score_best_mania', 'beatmapset_discussion_post', 'forum_post')");
-
-        DB::statement("ALTER TABLE osu_user_reports
-                       MODIFY COLUMN reason
-                       enum('Insults', 'Spam', 'Cheating', 'UnwantedContent', 'Nonsense', 'Other'')");
     }
 }

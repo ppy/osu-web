@@ -136,10 +136,6 @@ return [
             ],
         ],
 
-        'report' => [
-            'beatmap_stealing' => 'Beatmap stealing',
-        ],
-
         'scoreboard' => [
             'achieved' => 'achieved :when',
             'country' => 'Country Ranking',

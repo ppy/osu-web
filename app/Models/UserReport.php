@@ -34,7 +34,7 @@ class UserReport extends Model
 {
     use RoutesNotifications, Validatable;
 
-    const BEATMAPSET_TYPE_REASONS = ['UnwantedContent', 'BeatmapStealing', 'Other'];
+    const BEATMAPSET_TYPE_REASONS = ['UnwantedContent', 'Other'];
     const POST_TYPE_REASONS = ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'];
     const SCORE_TYPE_REASONS = ['Cheating', 'Other'];
 

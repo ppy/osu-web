@@ -30,7 +30,7 @@ interface State {
 }
 
 const availableOptions: Dictionary<string[]> = {
-  beatmapset: ['UnwantedContent', 'BeatmapStealing', 'Other'],
+  beatmapset: ['UnwantedContent', 'Other'],
   beatmapset_discussion_post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
   comment: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
   forum_post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],

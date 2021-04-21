@@ -20,7 +20,6 @@ export class ReportForm extends PureComponent
       { id: 'Spam', text: osu.trans 'users.report.options.spam' },
       { id: 'UnwantedContent', text: osu.trans 'users.report.options.unwanted_content' },
       { id: 'Nonsense', text: osu.trans 'users.report.options.nonsense' },
-      { id: 'BeatmapStealing', text: osu.trans 'beatmapsets.report.beatmap_stealing'}
       { id: 'Other', text: osu.trans 'users.report.options.other' },
     ]
 
