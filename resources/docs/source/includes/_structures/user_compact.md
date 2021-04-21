@@ -93,7 +93,7 @@ image         | string      | |
 
 Field       | Type      | Description
 ------------|-----------|------------
-id          | number    | |
+description | string    |
 type        | string    | `note`, `restriction`, or `silence`.
 timestamp   | Timestamp | |
 length      | number    | In seconds.
