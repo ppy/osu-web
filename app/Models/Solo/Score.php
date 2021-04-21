@@ -73,7 +73,7 @@ class Score extends Model
     public function createLegacyEntry()
     {
         if (!$this->isCompleted()) {
-            throw new InvariantException('legacy entry requires completed score');
+            throw new InvariantException('creating legacy entry requires completed score');
         }
 
         $statAttrs = [
