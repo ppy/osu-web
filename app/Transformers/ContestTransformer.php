@@ -31,8 +31,8 @@ class ContestTransformer extends TransformerAbstract
             'link_icon' => $contest->link_icon,
         ];
 
-        if ($contest->hasEntryImages()) {
-            $response['shape'] = $contest->entry_shape;
+        if ($contest->hasThumbnails()) {
+            $response['thumbnail_shape'] = $contest->thumbnail_shape;
         }
 
         if ($contest->isBestOf()) {
