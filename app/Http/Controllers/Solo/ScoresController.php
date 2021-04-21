@@ -68,8 +68,10 @@ class ScoresController extends BaseController
         $params['ended_at'] = now();
         $params['mods'] = Mod::parseInputArray($params['mods'] ?? [], $score->ruleset_id);
 
-        $score->complete($params);
-        $score->createLegacyEntry();
+        $score->getConnection()->transaction(function () use ($params, $score) {
+            $score->complete($params);
+            $score->createLegacyEntry();
+        });
 
         return json_item($score, 'Solo\Score');
     }
