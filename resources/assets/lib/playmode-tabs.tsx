@@ -21,7 +21,7 @@ export default class PlaymodeTabs extends React.Component<Props> {
       <div className='game-mode game-mode--beatmapsets'>
         <ul className='game-mode__items'>
           {modes.map((mode) => {
-            const disabled = this.props.beatmaps[mode] !== null;
+            const disabled = this.props.beatmaps[mode] == null;
 
             const linkClass = classWithModifiers('game-mode-link', {
               active: mode === this.props.currentMode,
