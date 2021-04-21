@@ -99,7 +99,7 @@ class Score extends Model
             'perfect' => $statistics['Miss'] + $statistics['LargeTickMiss'] === 0,
             'rank' => $this->rank,
             'score' => $this->total_score,
-            'scorechecksum' => 0,
+            'scorechecksum' => "\0",
             'user_id' => $this->user_id,
         ]);
 
