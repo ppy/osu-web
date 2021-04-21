@@ -15,7 +15,8 @@ use Tests\TestCase;
 
 class BeatmapsetsControllerTest extends TestCase
 {
-    public function testDestroy() {
+    public function testDestroy()
+    {
         $owner = factory(User::class)->create();
         $forum = factory(Forum::class, 'parent')->create();
         $topic = factory(Topic::class)->create([
