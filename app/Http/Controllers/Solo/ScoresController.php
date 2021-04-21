@@ -69,6 +69,7 @@ class ScoresController extends BaseController
         $params['mods'] = Mod::parseInputArray($params['mods'] ?? [], $score->ruleset_id);
 
         $score->complete($params);
+        $score->createLegacyEntry();
 
         return json_item($score, 'Solo\Score');
     }
