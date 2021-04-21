@@ -4,10 +4,13 @@
 import { Voter } from './voter'
 import * as React from 'react'
 import { div, span, a, i } from 'react-dom-factories'
+import { classWithModifiers } from 'utils/css'
+
 el = React.createElement
 
 export class ArtEntry extends React.Component
   render: ->
+    bn = 'contest-art-entry'
     isSelected = _.includes @props.selected, @props.entry.id
 
     return null if @props.hideIfNotVoted && !isSelected
@@ -24,8 +27,8 @@ export class ArtEntry extends React.Component
       place = @props.displayIndex + 1
       top3 = place <= 3
 
-    linkClasses = 'contest-art-entry__thumbnail'
-    linkClasses += ' contest-art-entry--selected' if isSelected
+    linkClasses = "#{bn}__thumbnail"
+    linkClasses += " #{bn}--selected" if isSelected
     linkClasses += ' js-gallery' if @props.contest.type == 'art'
 
     entryLink =
@@ -45,20 +48,15 @@ export class ArtEntry extends React.Component
           rel: 'nofollow noreferrer'
           target: '_blank'
 
-    divClasses = 'contest-art-entry'
-    divClasses += " contest-art-entry--#{thumbnailShape}" if thumbnailShape
-
-    if showVotes
-      divClasses += ' contest-art-entry--result'
-      if top3
-        divClasses += " contest-art-entry--placed contest-art-entry--placed-#{place}"
-      else
-        divClasses += ' contest-art-entry--smaller'
-
     div
       style:
         backgroundImage: osu.urlPresence(@props.entry.thumbnail)
-      className: divClasses
+      className: classWithModifiers bn,
+        "#{thumbnailShape}": thumbnailShape?
+        result: showVotes
+        placed: showVotes && top3
+        "placed-#{place}": showVotes && top3
+        smaller: showVotes && !top3
       entryLink
 
       div
@@ -79,23 +77,23 @@ export class ArtEntry extends React.Component
           buttonId: buttonId
 
       if showVotes
-        div className: 'contest-art-entry__result',
-          div className: 'contest-art-entry__result-ranking',
-            div className: 'contest-art-entry__result-place',
+        div className: "#{bn}__result",
+          div className: "#{bn}__result-ranking",
+            div className: "#{bn}__result-place",
               if top3
-                i className: "fas fa-fw fa-trophy contest-art-entry__trophy--#{place}"
+                i className: "fas fa-fw fa-trophy #{bn}__trophy--#{place}"
               span {}, "##{place}"
             if @props.entry.results.user_id
               a
-                className: 'contest-art-entry__entrant js-usercard',
+                className: "#{bn}__entrant js-usercard",
                 'data-user-id': @props.entry.results.user_id,
                 href: laroute.route('users.show', user: @props.entry.results.user_id),
                   @props.entry.results.username
             else
-              span className: 'contest-art-entry__entrant', @props.entry.results.actual_name
-          div className: 'contest-art-entry__result-pane',
-            span className: 'contest-art-entry__result-votes',
+              span className: "#{bn}__entrant', @props.entry.results.actual_name"
+          div className: "#{bn}__result-pane",
+            span className: "#{bn}__result-votes",
               osu.transChoice 'contest.vote.count', @props.entry.results.votes
             if not isNaN(votePercentage)
-              span className: 'contest-art-entry__result-votes contest-art-entry__result-votes--percentage',
+              span className: "#{bn}__result-votes #{bn}__result-votes--percentage",
                 " (#{osu.formatNumber(votePercentage)}%)"
