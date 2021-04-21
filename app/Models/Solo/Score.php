@@ -89,8 +89,7 @@ class Score extends Model
         }
 
         $scoreClass = LegacyScore\Model::getClass($this->ruleset_id);
-        $score = new $scoreClass();
-        $score->fill([
+        $score = new $scoreClass([
             'beatmap_id' => $this->beatmap_id,
             'beatmapset_id' => optional($this->beatmap)->beatmapset_id ?? 0,
             'countmiss' => $statistics['Miss'],
