@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+	<ShortName>osu!</ShortName>
+	<Description>osu! search</Description>
+	<Url method="get" template="https://osu.ppy.sh/home/search?query={searchTerms}" type="text/html"/>
+	<Image height="16" width="16" type="image/png">https://osu.ppy.sh/favicon-16x16.png</Image>
+	<Image height="32" width="32" type="image/png">https://osu.ppy.sh/favicon-32x32.png</Image>
+	<moz:SearchForm>https://osu.ppy.sh/home/search</moz:SearchForm>
+	<Url type="application/opensearchdescription+xml" rel="self" template="https://osu.ppy.sh/opensearch.xml" />
+</OpenSearchDescription>
