@@ -6,6 +6,7 @@
 namespace App\Models\Solo;
 
 use App\Exceptions\GameCompletedException;
+use App\Exceptions\InvariantException;
 use App\Libraries\ModsHelper;
 use App\Libraries\ScoreCheck;
 use App\Models\Beatmap;
@@ -71,6 +72,10 @@ class Score extends Model
 
     public function createLegacyEntry()
     {
+        if (!$this->isCompleted()) {
+            throw new InvariantException('legacy entry requires completed score');
+        }
+
         $statAttrs = [
             'Good',
             'Great',
