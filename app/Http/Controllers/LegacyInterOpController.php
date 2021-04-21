@@ -6,7 +6,6 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\Handler as ExceptionHandler;
-use App\Jobs\BeatmapsetDelete;
 use App\Jobs\EsIndexDocument;
 use App\Jobs\Notifications\ForumTopicReply;
 use App\Jobs\Notifications\UserAchievementUnlock;
@@ -35,16 +34,6 @@ use stdClass;
 class LegacyInterOpController extends Controller
 {
     use DispatchesJobs;
-
-    public function destroyBeatmapset($id)
-    {
-        $beatmapset = Beatmapset::findOrFail($id);
-        $user = User::findOrFail(config('osu.legacy.bancho_bot_user_id'));
-
-        (new BeatmapsetDelete($beatmapset, $user))->handle();
-
-        return response(null, 204);
-    }
 
     public function generateNotification()
     {
