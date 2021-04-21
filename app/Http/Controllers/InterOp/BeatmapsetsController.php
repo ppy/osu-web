@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\BeatmapsetDelete;
 use App\Jobs\Notifications\UserBeatmapsetNew;
 use App\Models\Beatmapset;
+use App\Models\User;
 
 class BeatmapsetsController extends Controller
 {
