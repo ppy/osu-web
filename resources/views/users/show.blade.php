@@ -3,8 +3,19 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('master', [
+    'canonicalUrl' => $user->url(),
     'titlePrepend' => blade_safe(str_replace(' ', '&nbsp;', e($user->username))),
-    'pageDescription' => page_description($user->username),
+    'pageDescription' => trans('users.show.rank_summary', [
+      'username' => $user->username,
+      'global' => $data["statistics"]["global_rank"],
+      'local' => $data["statistics"]["country_rank"],
+      'country' => $data["country"]["name"],
+    ]),
+    'opengraph' => [
+        'title' => $user->username . "'s Profile",
+        'image' =>  str_replace('http://localhost:8080', 'https://ffvyiglk.tunnelto.dev', $data["avatar_url"])
+        // 'image' =>  json_encode($data),
+    ]
 ])
 
 @section('content')
