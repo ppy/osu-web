@@ -6,8 +6,6 @@
 namespace Tests\Controllers\InterOp;
 
 use App\Models\Beatmapset;
-use App\Models\Forum\Forum;
-use App\Models\Forum\Topic;
 use App\Models\Log;
 use App\Models\User;
 use Tests\TestCase;
@@ -17,13 +15,8 @@ class BeatmapsetsControllerTest extends TestCase
     public function testDestroy()
     {
         $owner = factory(User::class)->create();
-        $forum = factory(Forum::class, 'parent')->create();
-        $topic = factory(Topic::class)->create([
-            'forum_id' => $forum->getKey(),
-        ]);
         $beatmapset = factory(Beatmapset::class)->create([
             'approved' => Beatmapset::STATES['pending'],
-            'thread_id' => $topic->getKey(),
             'user_id' => $owner->getKey(),
         ]);
 
