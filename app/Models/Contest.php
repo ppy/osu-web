@@ -17,7 +17,7 @@ use Cache;
  * @property string|null $description_voting
  * @property \Illuminate\Database\Eloquent\Collection $entries ContestEntry
  * @property \Carbon\Carbon|null $entry_ends_at
- * @property mixed $entry_shape
+ * @property mixed $thumbnail_shape
  * @property \Carbon\Carbon|null $entry_starts_at
  * @property json|null $extra_options
  * @property string $header_url
@@ -104,19 +104,19 @@ class Contest extends Model
         return 'over';
     }
 
-    public function hasEntryImages(): bool
+    public function hasThumbnails(): bool
     {
         return $this->type === 'art' ||
-            ($this->type === 'external' && isset($this->getExtraOptions()['shape']));
+            ($this->type === 'external' && isset($this->getExtraOptions()['thumbnail_shape']));
     }
 
-    public function getEntryShapeAttribute(): ?string
+    public function getThumbnailShapeAttribute(): ?string
     {
-        if (!$this->hasEntryImages()) {
+        if (!$this->hasThumbnails()) {
             return null;
         }
 
-        return $this->getExtraOptions()['shape'] ?? 'square';
+        return $this->getExtraOptions()['thumbnail_shape'] ?? 'square';
     }
 
     public function getUnmaskedAttribute()
@@ -230,7 +230,7 @@ class Contest extends Model
     {
         $includes = [];
 
-        if ($this->hasEntryImages()) {
+        if ($this->type === 'art') {
             $includes[] = 'artMeta';
         }
 

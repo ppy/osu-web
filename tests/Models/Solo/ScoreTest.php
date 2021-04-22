@@ -5,12 +5,22 @@
 
 namespace Tests\Models\Solo;
 
+use App\Exceptions\InvariantException;
 use App\Models\Solo\Score;
 use stdClass;
 use Tests\TestCase;
 
 class ScoreTest extends TestCase
 {
+    public function testCreateLegacyEntryIncompletePlay()
+    {
+        $score = new Score();
+
+        $this->expectException(InvariantException::class);
+
+        $score->createLegacyEntry();
+    }
+
     public function testModsPropertyType()
     {
         $score = new Score(['mods' => [new stdClass()]]);
