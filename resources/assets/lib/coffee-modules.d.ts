@@ -48,10 +48,6 @@ declare module 'img2x' {
   class Img2x extends React.PureComponent<any> {}
 }
 
-declare module 'user-avatar' {
-  class UserAvatar extends React.PureComponent<any> {}
-}
-
 declare module 'comments' {
   class Comments extends React.PureComponent<any> {}
 }

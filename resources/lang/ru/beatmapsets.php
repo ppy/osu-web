@@ -53,7 +53,9 @@ return [
         'discussion' => 'Обсуждение',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'Добавить в избранное',
+            'favourite_login' => '',
             'logged-out' => 'Вы должны войти для загрузки карты!',
             'mapped_by' => 'сделана :mapper',
             'unfavourite' => 'Удалить из избранного',
@@ -120,6 +122,7 @@ return [
             'storyboard' => 'Эта карта содержит сториборд',
             'success-rate' => 'Шанс успеха',
             'tags' => 'Теги',
+            'video' => '',
         ],
 
         'nsfw_warning' => [

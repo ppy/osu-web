@@ -91,26 +91,26 @@ export default class InputBox extends React.Component<Props> implements Dispatch
     return (
       <div className='chat-input'>
         <TextareaAutosize
-          className={`chat-input__box${disableInput ? ' chat-input__box--disabled' : ''}`}
-          name='textbox'
-          placeholder={disableInput ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
-          onKeyDown={this.checkIfEnterPressed}
-          disabled={disableInput}
-          autoComplete='off'
           ref={this.inputBoxRef}
-          onChange={this.handleChange}
-          value={channel?.inputText}
+          autoComplete='off'
+          className={`chat-input__box${disableInput ? ' chat-input__box--disabled' : ''}`}
+          disabled={disableInput}
           maxRows={3}
+          name='textbox'
+          onChange={this.handleChange}
+          onKeyDown={this.checkIfEnterPressed}
+          placeholder={disableInput ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
+          value={channel?.inputText}
         />
 
         <BigButton
-          text={osu.trans('chat.input.send')}
           icon='fas fa-reply'
           modifiers={['chat-send']}
           props={{
             disabled: disableInput,
             onClick: this.buttonClicked,
           }}
+          text={osu.trans('chat.input.send')}
         />
       </div>
     );

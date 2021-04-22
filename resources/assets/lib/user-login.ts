@@ -43,7 +43,7 @@ export default class UserLogin {
       $(document).trigger('gallery:close');
       $('.js-user-login--menu')[0]?.click();
     }, 0);
-  }
+  };
 
   showIfGuest = (callback?: () => void) => {
     if (currentUser.id != null) {
@@ -53,7 +53,7 @@ export default class UserLogin {
     this.show(callback);
 
     return true;
-  }
+  };
 
   showOnError = (xhr: JQuery.jqXHR, callback?: () => void) => {
     if (xhr.status !== 401 || xhr.responseJSON?.authentication !== 'basic') {
@@ -68,11 +68,11 @@ export default class UserLogin {
     }
 
     return true;
-  }
+  };
 
-  private clearError() {
+  private clearError = () => {
     $('.js-login-form--error').text('');
-  }
+  };
 
   private loginError = (e: JQuery.Event, xhr: JQuery.jqXHR) => {
     e.preventDefault();
@@ -87,7 +87,7 @@ export default class UserLogin {
       }
       this.captcha.reset();
     }, 0);
-  }
+  };
 
   private loginSuccess = (event: unknown, data: LoginSuccessJson) => {
     const callback = this.callback;
@@ -107,26 +107,26 @@ export default class UserLogin {
 
       (callback ?? osu.reloadPage)();
     }, 0);
-  }
+  };
 
   private onError = (e: { target: unknown }, xhr: JQuery.jqXHR) => {
     this.showOnError(xhr, createClickCallback(e.target));
-  }
+  };
 
   private refreshToken = () => {
     const token = Cookies.get('XSRF-TOKEN') ?? null;
     $('[name="_token"]').attr('value', token);
     $('[name="csrf-token"]').attr('content', token);
-  }
+  };
 
   private reset = () => {
     this.callback = undefined;
-  }
+  };
 
   private showOnClick = (e: JQuery.Event) => {
     e.preventDefault();
     this.show();
-  }
+  };
 
   // for pages which require authentication
   // and being visited directly from outside
@@ -137,7 +137,7 @@ export default class UserLogin {
 
     window.showLoginModal = undefined;
     this.show();
-  }
+  };
 
   private showToContinue = (e: JQuery.ClickEvent) => {
     if (currentUser.id != null) {
@@ -149,5 +149,5 @@ export default class UserLogin {
     window.setTimeout(() => {
       this.show(callback);
     }, 0);
-  }
+  };
 }

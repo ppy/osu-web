@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Zoeken',
             'deleted' => 'Verwijderde discussies toevoegen',
+            'mode' => '',
             'only_unresolved' => 'Alleen niet-afgehandelde discussies weergeven',
             'types' => 'Berichttypen',
             'username' => 'Gebruikersnaam',

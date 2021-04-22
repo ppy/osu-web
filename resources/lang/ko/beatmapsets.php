@@ -53,7 +53,9 @@ return [
         'discussion' => '토론',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => '즐겨찾기',
+            'favourite_login' => '',
             'logged-out' => '로그인 후 비트맵을 다운로드하세요!',
             'mapped_by' => ':mapper님의 맵',
             'unfavourite' => '즐겨찾기 해제',
@@ -120,6 +122,7 @@ return [
             'storyboard' => '이 비트맵은 스토리보드를 포함합니다',
             'success-rate' => '클리어 비율',
             'tags' => '태그',
+            'video' => '',
         ],
 
         'nsfw_warning' => [

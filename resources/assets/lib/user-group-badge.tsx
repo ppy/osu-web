@@ -23,7 +23,7 @@ export default function UserGroupBadge({group, modifiers}: Props) {
   });
   blockClass += classWithModifiers('user-group-badge', modifiers, true);
 
-  const playModes: JSX.Element[] = (group.playmodes ?? []).map((mode) => <i className={`fal fa-extra-mode-${mode}`} key={mode} />);
+  const playModes: JSX.Element[] = (group.playmodes ?? []).map((mode) => <i key={mode} className={`fal fa-extra-mode-${mode}`} />);
 
   return (
     <div

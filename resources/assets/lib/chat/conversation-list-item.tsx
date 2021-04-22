@@ -4,6 +4,7 @@
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
+import UserAvatar from 'user-avatar';
 
 interface Props {
   channelId: number;
@@ -44,7 +45,9 @@ export default class ConversationListItem extends React.Component<Props> {
         </button>
 
         <button className={`${baseClassName}__tile`} onClick={this.switch}>
-          <img className={`${baseClassName}__avatar`} src={conversation.icon} />
+          <div className={`${baseClassName}__avatar`}>
+            <UserAvatar modifiers={['full-circle']} user={{ avatar_url: conversation.icon }} />
+          </div>
           <div className={`${baseClassName}__name`}>{conversation.name}</div>
           <div className={`${baseClassName}__chevron`}>
             <i className='fas fa-chevron-right' />

@@ -53,7 +53,9 @@ return [
         'discussion' => 'Tartışma',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'Beatmap setini favorilere ekle',
+            'favourite_login' => '',
             'logged-out' => 'Herhangi bir beatmapi indirmeden önce giriş yapmalısınız!',
             'mapped_by' => ':mapper tarafından yapıldı',
             'unfavourite' => 'Beatmap setini favorilerden çıkar',
@@ -120,6 +122,7 @@ return [
             'storyboard' => 'Bu beatmap storyboard içeriyor',
             'success-rate' => 'Başarı Oranı',
             'tags' => 'Etiketler',
+            'video' => '',
         ],
 
         'nsfw_warning' => [

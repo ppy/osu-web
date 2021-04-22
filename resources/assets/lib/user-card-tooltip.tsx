@@ -34,6 +34,8 @@ let inCard = false;
 let tooltipWithActiveMenu: any;
 
 function createTooltipOptions(card: HTMLElement) {
+  const at = card.dataset.tooltipPosition ?? 'right center';
+
   return {
     content: {
       text: card,
@@ -49,8 +51,8 @@ function createTooltipOptions(card: HTMLElement) {
     },
     position: {
       adjust: { scroll: false },
-      at: 'right center',
-      my: 'left center',
+      at,
+      my: my(at),
       viewport: $(window),
     },
     show: {
@@ -75,8 +77,24 @@ function createTooltip(element: HTMLElement) {
   card.classList.remove('js-react--user-card');
   card.classList.add('js-react--user-card-tooltip');
   card.dataset.lookup = userId;
+  if (element.dataset.tooltipPosition != null) {
+    card.dataset.tooltipPosition = element.dataset.tooltipPosition;
+  }
 
   $(element).qtip(createTooltipOptions(card));
+}
+
+function my(at: string) {
+  switch (at) {
+    case 'top center':
+      return 'bottom center';
+    case 'left center':
+      return 'right center';
+    case 'bottom center':
+      return 'top center';
+  }
+
+  return 'left center';
 }
 
 function onBeforeCache() {
@@ -120,11 +138,11 @@ function onMouseOver(event: JQueryEventObject) {
   }
 }
 
-function showEffect() {
+function showEffect(this: JQuery<HTMLElement>) {
   $(this).fadeTo(110, 1);
 }
 
-function hideEffect() {
+function hideEffect(this: JQuery<HTMLElement>) {
   $(this).fadeTo(110, 0);
 }
 
@@ -152,17 +170,8 @@ export function startListening() {
  * This component's job is to get the data and bootstrap the actual UserCard component for tooltips.
  */
 export class UserCardTooltip extends React.PureComponent<Props, State> {
-  readonly contextActiveKeyDidChange = contextActiveKeyDidChange.bind(this);
-  readonly state: State = {};
-  readonly activeKeyDidChange = (key: any) => {
-    tooltipWithActiveMenu = key;
-    this.contextActiveKeyDidChange(key);
-    // close the tooltip if cursor is known to be not within the card
-    // when the menu closes.
-    if (key == null && !inCard) {
-      $(`.${userCardTooltipClass}`).qtip('hide');
-    }
-  };
+  state: Readonly<State> = {};
+  private readonly contextActiveKeyDidChange = contextActiveKeyDidChange.bind(this);
 
   componentDidMount() {
     this.getUser().then((user) => {
@@ -193,4 +202,14 @@ export class UserCardTooltip extends React.PureComponent<Props, State> {
       </TooltipContext.Provider>
     );
   }
+
+  private readonly activeKeyDidChange = (key: any) => {
+    tooltipWithActiveMenu = key;
+    this.contextActiveKeyDidChange(key);
+    // close the tooltip if cursor is known to be not within the card
+    // when the menu closes.
+    if (key == null && !inCard) {
+      $(`.${userCardTooltipClass}`).qtip('hide');
+    }
+  };
 }

@@ -3,7 +3,7 @@
 
 import * as React from 'react'
 import { a, div, h1, h2, span } from 'react-dom-factories'
-import { UserAvatar } from 'user-avatar'
+import UserAvatar from 'user-avatar'
 import UserGroupBadge from 'user-group-badge'
 
 el = React.createElement

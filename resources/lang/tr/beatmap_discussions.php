@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Ara',
             'deleted' => 'Silinmiş tartışmaları içer',
+            'mode' => '',
             'only_unresolved' => 'Sadece çözülmemiş tartışmaları göster',
             'types' => 'Mesaj türü',
             'username' => 'Kullanıcı adı',
