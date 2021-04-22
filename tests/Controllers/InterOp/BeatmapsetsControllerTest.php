@@ -6,7 +6,6 @@
 namespace Tests\Controllers\InterOp;
 
 use App\Models\Beatmapset;
-use App\Models\Event;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Topic;
 use App\Models\Log;
