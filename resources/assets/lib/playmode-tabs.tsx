@@ -5,11 +5,10 @@ import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import GameMode from 'interfaces/game-mode';
 import { sumBy } from 'lodash';
 import * as React from 'react';
-import { modes } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
-  beatmaps: Partial<Record<GameMode, BeatmapJsonExtended[]>>;
+  beatmaps: Map<GameMode, BeatmapJsonExtended[]>;
   counts?: Partial<Record<GameMode, number>>;
   currentMode: GameMode;
   hrefFunc?: (mode: GameMode) => string;
@@ -20,8 +19,8 @@ export default class PlaymodeTabs extends React.Component<Props> {
     return (
       <div className='game-mode game-mode--beatmapsets'>
         <ul className='game-mode__items'>
-          {modes.map((mode) => {
-            const disabled = this.props.beatmaps[mode] == null;
+          {[...this.props.beatmaps].map(([mode, beatmaps]) => {
+            const disabled = beatmaps.length === 0;
 
             const linkClass = classWithModifiers('game-mode-link', {
               active: mode === this.props.currentMode,
@@ -55,7 +54,7 @@ export default class PlaymodeTabs extends React.Component<Props> {
       return this.props.counts[mode];
     }
 
-    const count = sumBy(this.props.beatmaps[mode], (beatmap) => beatmap.convert ? 0 : 1);
+    const count = sumBy(this.props.beatmaps.get(mode), (beatmap) => beatmap.convert ? 0 : 1);
 
     return count > 0 ? count : undefined;
   };
