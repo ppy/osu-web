@@ -64,7 +64,12 @@ export default class Event extends React.PureComponent<Props> {
 
     return (
       <div className='beatmapset-event'>
-        <div className={osu.classWithModifiers('beatmapset-event__icon', [kebabCase(this.props.event.type)])} />
+        <div
+          className='beatmapset-event__icon'
+          style={{
+            '--bg': `var(--bg-${kebabCase(this.props.event.type)})`,
+          } as React.CSSProperties}
+        />
         <div className='beatmapset-event__time'>
           <TimeWithTooltip dateTime={eventTime} format='LT' />
         </div>
