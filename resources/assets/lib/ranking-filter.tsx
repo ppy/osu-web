@@ -93,7 +93,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
   );
 
   handleVariantChange = (event: React.MouseEvent<HTMLButtonElement>) => {
-    osu.navigate(osu.updateQueryString(null, { variant: event.currentTarget.dataset.value, page: null }));
+    osu.navigate(osu.updateQueryString(null, { page: null, variant: event.currentTarget.dataset.value }));
   };
 
   render() {
