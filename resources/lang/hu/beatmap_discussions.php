@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Keresés',
             'deleted' => 'Törölt beszélgetések mellékelése',
+            'mode' => '',
             'only_unresolved' => 'Csak a megoldatlan beszélgetéseket mutasd',
             'types' => 'Üzenettípusok',
             'username' => 'Felhasználónév',

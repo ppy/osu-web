@@ -54,8 +54,8 @@ export class EditorToolbar extends React.Component {
     return (
       <Portal>
         <div
-          className={bn}
           ref={this.ref}
+          className={bn}
         >
           <EditorToolbarButton format='bold' />
           <EditorToolbarButton format='italic' />

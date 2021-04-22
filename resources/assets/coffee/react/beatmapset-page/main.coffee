@@ -9,7 +9,7 @@ import NsfwWarning from 'beatmapsets-show/nsfw-warning'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
 import HeaderV4 from 'header-v4'
-import { PlaymodeTabs } from 'playmode-tabs'
+import PlaymodeTabs from 'playmode-tabs'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 import * as BeatmapHelper from 'utils/beatmap-helper'
@@ -246,7 +246,6 @@ export class Main extends React.Component
         beatmaps: @state.beatmaps
         currentMode: @state.currentBeatmap.mode
         hrefFunc: @tabHrefFunc
-        showCounts: true
 
     el HeaderV4,
       theme: 'beatmapsets'

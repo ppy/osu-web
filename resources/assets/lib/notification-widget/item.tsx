@@ -151,9 +151,9 @@ export default class Item extends React.Component<Props> {
   private renderMessage() {
     return (
       <a
-        onClick={this.props.markRead}
-        href={this.props.url}
         className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'
+        href={this.props.url}
+        onClick={this.props.markRead}
       >
         {this.props.message}
       </a>

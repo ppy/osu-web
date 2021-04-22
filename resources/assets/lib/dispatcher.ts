@@ -10,7 +10,7 @@ export default class Dispatcher {
 
   dispatch(action: DispatcherAction) {
     if (this.trace) {
-      // tslint:disable-next-line: no-console
+      // eslint-disable-next-line no-console
       console.debug('Dispatcher::dispatch', action);
     }
     this.listeners.forEach((listener) => {

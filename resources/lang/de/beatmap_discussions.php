@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Suche',
             'deleted' => 'Gelöschte Diskussionen einbeziehen',
+            'mode' => '',
             'only_unresolved' => 'Nur ungelöste Diskussionen anzeigen',
             'types' => 'Nachrichtentyp',
             'username' => 'Benutzername',
