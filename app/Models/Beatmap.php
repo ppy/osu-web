@@ -293,9 +293,11 @@ class Beatmap extends Model
             throw new InvariantException('invalid user_id');
         }
 
-        if ($newUserId !== $this->user_id) {
-            $this->fill(['user_id' => $newUserId])->saveOrExplode();
+        if ($newUserId === $this->user_id) {
+            throw new InvariantException('the specified user_id is already the owner');
         }
+
+        $this->fill(['user_id' => $newUserId])->saveOrExplode();
     }
 
     public function status()

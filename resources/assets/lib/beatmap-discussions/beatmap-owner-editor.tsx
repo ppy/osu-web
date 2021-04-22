@@ -199,6 +199,12 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   private updateOwner = (userId: number) => {
     this.xhr.updateOwner?.abort();
 
+    if (this.props.beatmap.user_id === userId) {
+      this.editing = false;
+
+      return;
+    }
+
     this.updatingOwner = true;
 
     this.xhr.updateOwner = $.ajax(route('beatmaps.update-owner', { beatmap: this.props.beatmap.id }), {
