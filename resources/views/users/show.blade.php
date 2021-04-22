@@ -12,7 +12,7 @@
       'country' => $data["country"]["name"],
     ]),
     'opengraph' => [
-        'title' => $user->username . "'s Profile",
+        'title' => trans('users.show.title', ["username" => $user->username]),
         'image' =>  str_replace('http://localhost:8080', 'https://ffvyiglk.tunnelto.dev', $data["avatar_url"])
         // 'image' =>  json_encode($data),
     ]
