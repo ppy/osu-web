@@ -10,6 +10,7 @@ namespace App\Models;
  * @property int $contest_id
  * @property \Carbon\Carbon|null $created_at
  * @property string|null $entry_url
+ * @property string|null $thumbnail_url
  * @property int $id
  * @property string $masked_name
  * @property string $name
@@ -33,5 +34,14 @@ class ContestEntry extends Model
     public function votes()
     {
         return $this->hasMany(ContestVote::class);
+    }
+
+    public function thumbnail(): ?string
+    {
+        if (!$this->contest->hasThumbnails()) {
+            return null;
+        }
+
+        return presence($this->thumbnail_url) ?? $this->entry_url;
     }
 }
