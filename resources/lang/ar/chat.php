@@ -18,7 +18,7 @@ return [
             'not_enough_plays' => 'لم تلعب اللعبة بما فيه الكفاية',
             'not_verified' => 'لم يتم التحقق من الجلسة الخاصة بك',
             'restricted' => 'أنت مقيد حاليا',
-            'silenced' => '',
+            'silenced' => 'أنت مُقيد (صامت) حاليا',
             'target_restricted' => 'المستلم مقيد حاليا',
         ],
     ],

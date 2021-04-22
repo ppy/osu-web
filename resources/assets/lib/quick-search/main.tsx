@@ -46,20 +46,20 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
             </span>
 
             <input
-              className='quick-search-input__input js-click-menu--autofocus'
               ref={this.inputRef}
-              placeholder={osu.trans('home.search.placeholder')}
-              value={this.props.worker.query}
+              className='quick-search-input__input js-click-menu--autofocus'
               onChange={this.updateQuery}
               onKeyDown={this.onInputKeyDown}
+              placeholder={osu.trans('home.search.placeholder')}
+              value={this.props.worker.query}
             />
           </div>
 
           {this.props.onClose != null && (
             <button
-              type='button'
               className='btn-osu-big btn-osu-big--quick-search-close'
               onClick={this.props.onClose}
+              type='button'
             >
               {osu.trans('common.buttons.close')}
             </button>
@@ -238,8 +238,8 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
     return (
       <a
-        href={route('search', { mode, query: this.props.worker.query })}
         className={osu.classWithModifiers('search-result-more', active ? ['active'] : [])}
+        href={route('search', { mode, query: this.props.worker.query })}
       >
         <div className='search-result-more__content'>
           {osu.trans(key, { mode: osu.trans(`quick_search.mode.${mode}`) })}
@@ -258,8 +258,8 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     return (
       <h2 className='title'>
         <StringWithComponent
-          pattern={osu.trans('quick_search.result.title')}
           mappings={{ ':mode': <strong key='mode'>{osu.trans(`quick_search.mode.${mode}`)}</strong> }}
+          pattern={osu.trans('quick_search.result.title')}
         />
       </h2>
     );
@@ -290,8 +290,8 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
               onMouseLeave={this.onMouseLeave}
             >
               <User
-                user={user}
                 modifiers={this.boxIsActive('user', idx) ? ['active'] : []}
+                user={user}
               />
             </div>
           );

@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Caută',
             'deleted' => 'Include discuțiile șterse',
+            'mode' => '',
             'only_unresolved' => 'Arată doar discuții nerezolvate',
             'types' => 'Tipuri de mesaje',
             'username' => 'Nume de utilizator',

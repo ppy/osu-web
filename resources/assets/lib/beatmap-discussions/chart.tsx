@@ -36,14 +36,14 @@ export default function Chart(props: Props) {
       items.push((
         <a
           key={discussion.id}
-          href={BeatmapDiscussionHelper.url({ discussion })}
           className={className}
+          data-tooltip-modifiers='extra-padding'
+          data-tooltip-position='bottom center'
+          href={BeatmapDiscussionHelper.url({ discussion })}
           style={{
             left: `${100 * relativeTimestamp}%`,
           }}
           title={BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)}
-          data-tooltip-position='bottom center'
-          data-tooltip-modifiers='extra-padding'
         />
       ));
     });

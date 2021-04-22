@@ -53,7 +53,9 @@ return [
         'discussion' => 'Diskussion',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'Dieses Beatmapset zu deinen Favoriten hinzufügen',
+            'favourite_login' => '',
             'logged-out' => 'Zum Herunterladen von Beatmaps muss man eingeloggt sein!',
             'mapped_by' => 'erstellt von :mapper',
             'unfavourite' => 'Dieses Beatmapset von deinen Favoriten entfernen',
@@ -120,6 +122,7 @@ return [
             'storyboard' => '',
             'success-rate' => 'Erfolgsrate',
             'tags' => 'Tags',
+            'video' => '',
         ],
 
         'nsfw_warning' => [

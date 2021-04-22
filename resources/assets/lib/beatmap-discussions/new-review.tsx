@@ -97,8 +97,8 @@ export default class NewReview extends React.Component<Props, State> {
                     <DiscussionsContext.Consumer>
                       {
                         (discussions) => (<Editor
-                          beatmapset={this.props.beatmapset}
                           beatmaps={this.props.beatmaps}
+                          beatmapset={this.props.beatmapset}
                           currentBeatmap={this.props.currentBeatmap}
                           currentDiscussions={this.props.currentDiscussions}
                           discussions={discussions}

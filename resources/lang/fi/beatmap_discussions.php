@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Hae',
             'deleted' => 'Sisällytä poistetut keskustelut',
+            'mode' => '',
             'only_unresolved' => '',
             'types' => 'Viestityypit',
             'username' => 'Käyttäjänimi',

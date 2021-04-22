@@ -73,8 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Cancellare i metadata di una beatmap non è consentito.',
             'beatmapset_post_no_edit' => 'Modificare i metadata di una beatmap non è consentito.',
-            'first_post_no_delete' => '',
-            'missing_topic' => '',
+            'first_post_no_delete' => 'Impossibile eliminare il post iniziale',
+            'missing_topic' => 'Il post non contiene un argomento',
             'only_quote' => 'La tua risposta contiene solo una citazione.',
 
             'attributes' => [

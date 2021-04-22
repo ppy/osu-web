@@ -32,16 +32,16 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
+        'hybrid_requires_modes' => 'Egy hibrid beatmap szettet legalább egy játékmódra nominálni kell.',
         'incorrect_mode' => 'Nincs jogosultságod :mode módban nominálni',
-        'full_bn_required' => '',
+        'full_bn_required' => 'Teljes jogú nominátornak kell lenned a kvalifikálásra nomináláshoz.',
         'too_many' => 'A nominálási követelmények már teljesültek.',
 
         'dialog' => [
             'confirmation' => 'Biztosan nominálni szeretnéd ezt a Beatmap-et?',
             'header' => 'Beatmap Nominálása',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'hybrid_warning' => 'megjegyzés: csak egyszer nominálhatsz, ezért kérlek győződj meg róla, hogy minden játékmódra nominálsz, amire szeretnél',
+            'which_modes' => 'Mely módokra nominálsz?',
         ],
     ],
 
@@ -53,7 +53,9 @@ return [
         'discussion' => 'Beszélgetés',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'A beatmap szett kedvencek közé tétele',
+            'favourite_login' => '',
             'logged-out' => 'Beatmap letöltéshez be kell jelentkezned!',
             'mapped_by' => 'mappolva :mapper által',
             'unfavourite' => 'Beatmap eltávolitása a kedvencek közül',
@@ -117,18 +119,19 @@ return [
             'nsfw' => 'Felnőtt tartalom',
             'points-of-failure' => 'Kibukási Alkalmak',
             'source' => 'Forrás',
-            'storyboard' => '',
+            'storyboard' => 'Ez a meatmap storyboard-ot tartalmaz',
             'success-rate' => 'Teljesítési arány',
             'tags' => 'Címkék',
+            'video' => '',
         ],
 
         'nsfw_warning' => [
-            'details' => '',
+            'details' => 'Ez a beatmap szókimondó, sértő vagy felkavaró tartalmú. Továbbra is meg szeretnéd tekinteni?',
             'title' => 'Felnőtt tartalom',
 
             'buttons' => [
                 'disable' => 'Figyelmeztetés kikapcsolása',
-                'listing' => '',
+                'listing' => 'Beatmap lista',
                 'show' => 'Mutassa',
             ],
         ],

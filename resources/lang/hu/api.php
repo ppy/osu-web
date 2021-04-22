@@ -21,7 +21,7 @@ return [
         ],
 
         'forum' => [
-            'write' => '',
+            'write' => 'Csak a saját nevedben hozz létre és szerkessz fórum posztokat.',
         ],
 
         'friends' => [

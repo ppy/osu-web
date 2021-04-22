@@ -67,7 +67,7 @@ const ShowMoreLink = React.forwardRef((props: Props, ref: React.RefObject<any>) 
   }
 
   if (url == null) {
-    return <button type='button' onClick={onClick} {...sharedProps} />;
+    return <button onClick={onClick} type='button' {...sharedProps} />;
   } else {
     return <a href={url} onClick={onClick} {...sharedProps} />;
   }

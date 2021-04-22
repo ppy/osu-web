@@ -65,7 +65,7 @@ export default class MonthListing extends React.Component<Props, State> {
   render() {
     return (
       <div className='news-sidebar-month'>
-        <button className='news-sidebar-month__toggle' type='button' onClick={this.toggleExpand}>
+        <button className='news-sidebar-month__toggle' onClick={this.toggleExpand} type='button'>
           {this.props.date.format(osu.trans('common.datetime.year_month_short.moment'))}
 
           <span className='news-sidebar-month__toggle-icon'>
@@ -98,8 +98,8 @@ export default class MonthListing extends React.Component<Props, State> {
     return (
       <li key={post.id}>
         <a
-          href={route('news.show', { news: post.slug })}
           className={linkClass}
+          href={route('news.show', { news: post.slug })}
         >
           {post.title}
         </a>

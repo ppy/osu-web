@@ -44,10 +44,10 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
 
           <div className='form-select form-select--full'>
             <select
-              name='beatmapset[language_id]'
               className='form-select__input'
-              value={this.state.languageId}
+              name='beatmapset[language_id]'
               onChange={this.setLanguageId}
+              value={this.state.languageId}
             >
               {this.languages.map((language) => (
                 language.id === null ? null :
@@ -66,10 +66,10 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
 
           <div className='form-select form-select--full'>
             <select
-              name='beatmapset[genre_id]'
               className='form-select__input'
-              value={this.state.genreId}
+              name='beatmapset[genre_id]'
               onChange={this.setGenreId}
+              value={this.state.genreId}
             >
               {this.genres.map((genre) => (
                 genre.id === null ? null :
@@ -102,10 +102,10 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
           <div className='simple-form__buttons'>
             <div className='simple-form__button'>
               <button
-                type='button'
                 className='btn-osu-big btn-osu-big--rounded-thin'
                 disabled={this.state.isBusy}
                 onClick={this.save}
+                type='button'
               >
                 {osu.trans('common.buttons.save')}
               </button>
@@ -113,10 +113,10 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
 
             <div className='simple-form__button'>
               <button
-                type='button'
                 className='btn-osu-big btn-osu-big--rounded-thin'
                 disabled={this.state.isBusy}
                 onClick={this.props.onClose}
+                type='button'
               >
                 {osu.trans('common.buttons.cancel')}
               </button>

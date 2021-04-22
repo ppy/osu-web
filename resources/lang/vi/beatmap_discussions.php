@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Tìm kiếm',
             'deleted' => 'Bao gồm cuộc thảo luận đã xóa',
+            'mode' => '',
             'only_unresolved' => 'Chỉ hiện các cuộc thảo luận chưa được giải quyết',
             'types' => 'Kiểu tin nhắn',
             'username' => 'Tên người dùng',

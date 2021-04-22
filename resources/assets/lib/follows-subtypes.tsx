@@ -14,9 +14,9 @@ export default function FollowsSubtypes(props: Props) {
     <div className='page-tabs page-tabs--follows'>
       {['comment', 'forum_topic', 'mapping', 'modding'].map((t) => (
         <a
+          key={t}
           className={classWithModifiers('page-tabs__tab', { active: t === props.currentSubtype })}
           href={route('follows.index', { subtype: t })}
-          key={t}
         >
           {osu.trans(`follows.${t}.title`)}
         </a>
