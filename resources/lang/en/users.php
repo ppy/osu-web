@@ -141,6 +141,7 @@ return [
     ],
     'show' => [
         'age' => ':age years old',
+        'rank_summary' => ':username is rank :global worldwide and rank :local in :country.',
         'change_avatar' => 'change your avatar!',
         'first_members' => 'Here since the beginning',
         'is_developer' => 'osu!developer',
