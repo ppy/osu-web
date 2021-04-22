@@ -9,6 +9,7 @@ import { UserFilter } from './user-filter'
 import { BeatmapBasicStats } from 'beatmap-basic-stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
 import HeaderV4 from 'header-v4'
+import { deletedUser } from 'models/user'
 import PlaymodeTabs from 'playmode-tabs'
 import * as React from 'react'
 import { a, div, h1, h2, p, span } from 'react-dom-factories'
@@ -18,6 +19,8 @@ import { getArtist, getTitle } from 'utils/beatmap-helper'
 import { showVisual } from 'utils/beatmapset-helper'
 import Chart from 'beatmap-discussions/chart'
 el = React.createElement
+
+deletedUserJson = deletedUser.toJson()
 
 export class Header extends React.PureComponent
   render: =>
@@ -125,7 +128,7 @@ export class Header extends React.PureComponent
                 span null,
                   el StringWithComponent,
                     mappings:
-                      ':user': el(UserLink, key: 'user', user: @props.users[@props.currentBeatmap.user_id])
+                      ':user': el(UserLink, key: 'user', user: @props.users[@props.currentBeatmap.user_id] ? deletedUserJson)
                     pattern: osu.trans('beatmaps.discussions.guest')
             el BeatmapBasicStats, beatmap: @props.currentBeatmap
 
