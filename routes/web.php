@@ -521,7 +521,7 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::apiResource('users', 'InterOp\UsersController', ['only' => ['store']]);
 
     Route::group(['namespace' => 'InterOp'], function () {
-        Route::delete('beatmapsets/{beatmapset}', 'BeatmapsetsController@destroy')->name('beatmapsets.destroy');
+        Route::resource('beatmapsets', 'BeatmapsetsController')->only(['destroy']);
         Route::post('beatmapsets/{beatmapset}/broadcast-new', 'BeatmapsetsController@broadcastNew');
 
         Route::group(['as' => 'indexing.', 'prefix' => 'indexing'], function () {
