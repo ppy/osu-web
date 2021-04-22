@@ -108,6 +108,7 @@ class OsuAuthorize
             $user !== null
             && $beatmapset !== null
             && in_array($beatmapset->status(), ['wip', 'graveyard', 'pending'], true)
+            && !$beatmapset->hasNominations()
             && $beatmapset->user_id === $user->getKey()
         ) {
             return 'ok';
