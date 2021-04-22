@@ -27,10 +27,8 @@ class BeatmapsetsControllerTest extends TestCase
             'thread_id' => $topic->getKey(),
             'user_id' => $owner->getKey(),
         ]);
-        $eventBeforeCount = Event::count();
-        $logBeforeCount = Log::where('log_operation', 'LOG_BEATMAPSET_DELETE')->count();
 
-        factory(User::class)->create([
+        $banchoBotUser = factory(User::class)->create([
             'user_id' => config('osu.legacy.bancho_bot_user_id'),
         ]);
 
@@ -44,12 +42,6 @@ class BeatmapsetsControllerTest extends TestCase
             ->delete($url)
             ->assertStatus(204);
 
-        $beatmapset->refresh();
-        $topic->refresh();
-
-        $this->assertTrue($beatmapset->trashed());
-        $this->assertTrue($topic->trashed());
-        $this->assertSame($eventBeforeCount, Event::count());
-        $this->assertSame($logBeforeCount + 1, Log::where('log_operation', 'LOG_BEATMAPSET_DELETE')->count());
+        $this->assertSame(Log::orderBy('log_time', 'desc')->first()->user_id, $banchoBotUser->getKey());
     }
 }
