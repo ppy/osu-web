@@ -9,7 +9,7 @@ import { route } from 'laroute'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
-import { UserAvatar } from 'user-avatar'
+import UserAvatar from 'user-avatar'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
 import { createClickCallback } from 'utils/html'
 el = React.createElement
@@ -86,7 +86,7 @@ export class Header extends React.Component
         div className: 'beatmapset-header__box beatmapset-header__box--main',
           div className: 'beatmapset-header__beatmap-picker-box',
             el BeatmapPicker,
-              beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
+              beatmaps: @props.beatmaps.get(@props.currentBeatmap.mode)
               currentBeatmap: @props.currentBeatmap
 
             span className: 'beatmapset-header__diff-name',

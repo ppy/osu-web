@@ -9,7 +9,7 @@ import { UserFilter } from './user-filter'
 import { BeatmapBasicStats } from 'beatmap-basic-stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
 import HeaderV4 from 'header-v4'
-import { PlaymodeTabs } from 'playmode-tabs'
+import PlaymodeTabs from 'playmode-tabs'
 import * as React from 'react'
 import { a, div, h1, h2, p, span } from 'react-dom-factories'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
@@ -23,9 +23,9 @@ export class Header extends React.PureComponent
       el HeaderV4,
         theme: 'beatmapsets'
         titleAppend: el PlaymodeTabs,
-          currentMode: @props.currentBeatmap.mode
           beatmaps: @props.beatmaps
           counts: @props.currentDiscussions.countsByPlaymode
+          currentMode: @props.currentBeatmap.mode
 
       div
         className: 'osu-page'
@@ -99,7 +99,7 @@ export class Header extends React.PureComponent
               beatmapset: @props.beatmapset
               currentBeatmap: @props.currentBeatmap
               currentDiscussions: @props.currentDiscussions
-              beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
+              beatmaps: @props.beatmaps.get(@props.currentBeatmap.mode)
 
           div
             className: "#{bn}__filter-group #{bn}__filter-group--stats"

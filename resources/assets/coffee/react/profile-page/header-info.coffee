@@ -4,7 +4,7 @@
 import FlagCountry from 'flag-country'
 import * as React from 'react'
 import { a, div, h1, span } from 'react-dom-factories'
-import { UserAvatar } from 'user-avatar'
+import UserAvatar from 'user-avatar'
 import UserGroupBadges from 'user-group-badges'
 el = React.createElement
 
