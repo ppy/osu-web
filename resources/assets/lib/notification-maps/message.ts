@@ -5,11 +5,15 @@ import * as _ from 'lodash';
 import Notification from 'models/notification';
 
 export function formatMessage(item: Notification, compact = false) {
-  const replacements = {
+  const replacements: Partial<Record<string, string>> = {
     content: item.details.content,
     title: item.title,
     username: item.details.username,
   };
+
+  if (item.name === 'beatmap_owner_change') {
+    replacements.beatmap = item.details.version;
+  }
 
   if (item.name === 'beatmapset_discussion_review_new' && item.details.embeds != null) {
     _.merge(replacements, {

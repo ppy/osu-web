@@ -5,6 +5,10 @@ import { route } from 'laroute';
 import Notification from 'models/notification';
 
 export function urlGroup(item: Notification) {
+  if (item.name === 'beatmap_owner_change') {
+    return route('beatmapsets.discussion', { beatmap: '-', beatmapset: item.objectId, mode: 'events' });
+  }
+
   if (item.name === 'comment_new' || item.name === 'comment_reply') {
     switch (item.objectType) {
       case 'beatmapset':
@@ -32,6 +36,8 @@ export function urlGroup(item: Notification) {
 
 export function urlSingular(item: Notification) {
   switch (item.name) {
+    case 'beatmap_owner_change':
+      return route('beatmapsets.discussion', { beatmapset: item.objectId, beatmap: item.details.betamapId });
     case 'beatmapset_discussion_lock':
     case 'beatmapset_discussion_unlock':
     case 'beatmapset_disqualify':
