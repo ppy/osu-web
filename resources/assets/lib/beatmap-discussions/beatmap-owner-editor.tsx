@@ -112,10 +112,6 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
     this.inputUsername = this.props.user.username;
   };
 
-  private handleUsernameInputKeyup = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.keyCode === 13) this.handleSaveClick();
-  }
-
   private handleUsernameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.inputUsername = e.currentTarget.value;
 
@@ -127,6 +123,10 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
       this.checkingUser = true;
       window.setTimeout(this.userLookup, 500);
     }
+  };
+
+  private handleUsernameInputKeyup = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.keyCode === 13) this.handleSaveClick();
   };
 
   private renderAvatar() {
