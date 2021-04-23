@@ -6,6 +6,7 @@
 namespace App\Transformers;
 
 use App\Models\ContestEntry;
+use App\Models\DeletedUser;
 
 class ContestEntryTransformer extends TransformerAbstract
 {
@@ -16,11 +17,17 @@ class ContestEntryTransformer extends TransformerAbstract
 
     public function transform(ContestEntry $entry)
     {
-        return [
+        $return = [
             'id' => $entry->id,
             'title' => $entry->contest->unmasked ? $entry->name : $entry->masked_name,
             'preview' => $entry->entry_url,
         ];
+
+        if ($entry->contest->hasThumbnails()) {
+            $return['thumbnail'] = mini_asset($entry->thumbnail());
+        }
+
+        return $return;
     }
 
     public function includeResults(ContestEntry $entry)
@@ -29,7 +36,7 @@ class ContestEntryTransformer extends TransformerAbstract
             return [
                 'actual_name' => $entry->name,
                 'user_id' => $entry->user_id,
-                'username' => ($entry->user ?? (new \App\Models\DeletedUser()))->username,
+                'username' => ($entry->user ?? (new DeletedUser()))->username,
                 'votes' => (int) $entry->votes_count,
             ];
         });
@@ -37,27 +44,23 @@ class ContestEntryTransformer extends TransformerAbstract
 
     public function includeArtMeta(ContestEntry $entry)
     {
-        if (!$entry->contest->hasEntryImages() || !presence($entry->entry_url)) {
+        if (!$entry->contest->hasThumbnails() || !presence($entry->entry_url)) {
             return $this->item($entry, function ($entry) {
                 return [];
             });
         }
 
         return $this->item($entry, function ($entry) {
-            $thumbnailUrl = presence($entry->thumbnail_url) ?? $entry->entry_url;
-
             // suffix urls when contests are made live to ensure image dimensions are forcibly rechecked
             if ($entry->contest->visible) {
-                $urlSuffix = str_contains($thumbnailUrl, '?') ? '&live' : '?live';
+                $urlSuffix = str_contains($entry->thumbnail(), '?') ? '&live' : '?live';
             }
 
-            $size = fast_imagesize($thumbnailUrl.($urlSuffix ?? ''));
-            $thumb = mini_asset($thumbnailUrl);
+            $size = fast_imagesize($entry->thumbnail().($urlSuffix ?? ''));
 
             return [
                 'width' => $size[0],
                 'height' => $size[1],
-                'thumb' => $thumb,
             ];
         });
     }

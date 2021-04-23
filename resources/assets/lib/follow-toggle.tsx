@@ -76,7 +76,7 @@ export default class FollowToggle extends React.PureComponent<Props, State> {
     this.toggleXhr?.abort();
 
     this.setState({ toggling: true }, () => {
-      this.toggleXhr = $.ajax(route('follows.store'), { method, data: params })
+      this.toggleXhr = $.ajax(route('follows.store'), { data: params, method })
         .done(() => {
           if (this.props.follow.subtype === 'mapping') {
             $.publish('user:followUserMapping:update', {

@@ -462,7 +462,7 @@ export class Main extends React.PureComponent
       newState.beatmapset.current_user_attributes.is_watching = watching
 
     if playmode?
-      beatmap = BeatmapHelper.findDefault items: @groupedBeatmaps()[playmode]
+      beatmap = BeatmapHelper.findDefault items: @groupedBeatmaps().get(playmode)
       beatmapId = beatmap?.id
 
     if beatmapId? && beatmapId != @currentBeatmap().id

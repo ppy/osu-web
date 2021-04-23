@@ -9,7 +9,7 @@ import NsfwWarning from 'beatmapsets-show/nsfw-warning'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
 import HeaderV4 from 'header-v4'
-import { PlaymodeTabs } from 'playmode-tabs'
+import PlaymodeTabs from 'playmode-tabs'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 import * as BeatmapHelper from 'utils/beatmap-helper'
@@ -27,7 +27,9 @@ export class Main extends React.Component
     @state = JSON.parse(@props.container.dataset.state ? 'null')
     @restoredState = @state?
 
-    if !@restoredState
+    if @restoredState
+      @state.beatmaps = new Map(@state.beatmapsArray)
+    else
       optionsHash = BeatmapsetPageHash.parse location.hash
 
       beatmaps = _.concat props.beatmapset.beatmaps, props.beatmapset.converts
@@ -39,7 +41,7 @@ export class Main extends React.Component
         mode: optionsHash.playmode
 
       # fall back to the first mode that has beatmaps in this mapset
-      currentBeatmap ?= BeatmapHelper.findDefault items: beatmaps[optionsHash.playmode]
+      currentBeatmap ?= BeatmapHelper.findDefault items: beatmaps.get(optionsHash.playmode)
       currentBeatmap ?= BeatmapHelper.findDefault group: beatmaps
 
       @state =
@@ -142,7 +144,7 @@ export class Main extends React.Component
     return if @state.currentBeatmap.mode == mode
 
     beatmap = BeatmapHelper.find id: @state.currentBeatmap.id, mode: mode, group: @state.beatmaps
-    beatmap ?= BeatmapHelper.findDefault items: @state.beatmaps[mode]
+    beatmap ?= BeatmapHelper.findDefault items: @state.beatmaps.get(mode)
     @setCurrentBeatmap null, { beatmap }
 
 
@@ -246,13 +248,13 @@ export class Main extends React.Component
         beatmaps: @state.beatmaps
         currentMode: @state.currentBeatmap.mode
         hrefFunc: @tabHrefFunc
-        showCounts: true
 
     el HeaderV4,
       theme: 'beatmapsets'
       titleAppend: titleAppend
 
   saveStateToContainer: =>
+    @state.beatmapsArray = Array.from(@state.beatmaps)
     @props.container.dataset.state = JSON.stringify(@state)
 
 
