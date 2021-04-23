@@ -35,7 +35,7 @@ export default class OsuUrlHelper {
   }
 
   static changelogBuild(build: ChangelogBuild): string {
-    return laroute.route('changelog.build', {stream: build.update_stream.name, build: build.version});
+    return laroute.route('changelog.build', { build: build.version, stream: build.update_stream.name });
   }
 
   static isHTML(location: TurbolinksLocation): boolean {

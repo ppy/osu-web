@@ -12,7 +12,7 @@ export function urlGroup(item: Notification) {
       case 'build':
         return route('changelog.show', { changelog: item.objectId, key: 'id' });
       case 'news_post':
-        return route('news.show', { news: item.objectId, key: 'id' });
+        return route('news.show', { key: 'id', news: item.objectId });
     }
   } else if (item.name === 'user_achievement_unlock') {
     return userAchievementUrl(item);
@@ -26,7 +26,7 @@ export function urlGroup(item: Notification) {
     case 'channel':
       return route('chat.index', { sendto: item.sourceUserId });
     case 'forum_topic':
-      return route('forum.topics.show', { topic: item.objectId, start: 'unread' });
+      return route('forum.topics.show', { start: 'unread', topic: item.objectId });
   }
 }
 

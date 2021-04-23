@@ -294,14 +294,13 @@ export class UserList extends React.PureComponent<Props> {
     }
 
     $.ajax(route('account.options'), {
-      dataType: 'JSON',
-      method: 'PUT',
-
       data: { user_profile_customization: {
         user_list_filter: this.state.filter,
         user_list_sort: this.state.sortMode,
         user_list_view: this.state.viewMode,
       } },
+      dataType: 'JSON',
+      method: 'PUT',
     }).done((user: UserJson) => $.publish('user:update', user));
   };
 
