@@ -146,7 +146,8 @@ class ChannelsControllerTest extends TestCase
             'channel' => $this->publicChannel->channel_id,
             'user' => $this->user->user_id,
         ]))
-            ->assertStatus(204);
+            ->assertStatus(200)
+            ->assertJsonFragment(['channel_id' => $this->publicChannel->channel_id]);
 
         // ensure now in channel
         $this->actAsScopedUser($this->user, ['*']);
@@ -169,7 +170,8 @@ class ChannelsControllerTest extends TestCase
             'channel' => $this->publicChannel->channel_id,
             'user' => $this->user->user_id,
         ]))
-            ->assertStatus(204);
+            ->assertStatus(200)
+            ->assertJsonFragment(['channel_id' => $this->publicChannel->channel_id]);
 
         // ensure now in channel
         $this->actAsScopedUser($this->user, ['*']);
@@ -183,7 +185,8 @@ class ChannelsControllerTest extends TestCase
             'channel' => $this->publicChannel->channel_id,
             'user' => $this->user->user_id,
         ]))
-            ->assertStatus(204);
+            ->assertStatus(200)
+            ->assertJsonFragment(['channel_id' => $this->publicChannel->channel_id]);
 
         // ensure still in channel
         $this->actAsScopedUser($this->user, ['*']);
@@ -206,7 +209,8 @@ class ChannelsControllerTest extends TestCase
             'channel' => $this->tourneyChannel->channel_id,
             'user' => $this->user->user_id,
         ]))
-            ->assertStatus(204);
+            ->assertStatus(200)
+            ->assertJsonFragment(['channel_id' => $this->tourneyChannel->channel_id]);
 
         // ensure now in channel
         $this->actAsScopedUser($this->user, ['*']);
@@ -375,7 +379,8 @@ class ChannelsControllerTest extends TestCase
             'channel' => $this->publicChannel->channel_id,
             'user' => $this->user->user_id,
         ]))
-            ->assertStatus(204);
+            ->assertStatus(200)
+            ->assertJsonFragment(['channel_id' => $this->publicChannel->channel_id]);
 
         // ensure now in channel
         $this->actAsScopedUser($this->user, ['*']);
@@ -412,7 +417,8 @@ class ChannelsControllerTest extends TestCase
             'channel' => $this->tourneyChannel->channel_id,
             'user' => $this->user->user_id,
         ]))
-            ->assertStatus(204);
+            ->assertStatus(200)
+            ->assertJsonFragment(['channel_id' => $this->tourneyChannel->channel_id]);
 
         // ensure now in channel
         $this->actAsScopedUser($this->user, ['*']);
