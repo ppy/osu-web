@@ -198,6 +198,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
         className={classWithModifiers('beatmap-owner-editor__input', {
           error: this.inputUser == null,
         })}
+        disabled={this.updatingOwner}
         onChange={this.handleUsernameInput}
         onKeyUp={this.handleUsernameInputKeyup}
         value={this.inputUsername}
