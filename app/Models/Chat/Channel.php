@@ -7,6 +7,7 @@ namespace App\Models\Chat;
 
 use App\Exceptions\API;
 use App\Jobs\Notifications\ChannelMessage;
+use App\Models\ChatFilter;
 use App\Models\Match\Match;
 use App\Models\User;
 use App\Traits\Memoizes;
@@ -272,6 +273,14 @@ class Channel extends Model
 
         if (!present($content)) {
             throw new API\ChatMessageEmptyException(trans('api.error.chat.empty'));
+        }
+
+        if ($this->isPublic()) {
+            $chatFilters = ChatFilter::all();
+
+            foreach ($chatFilters as $filter) {
+                $content = str_replace($filter->match, $filter->replacement, $content);
+            }
         }
 
         $message = new Message();
