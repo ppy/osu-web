@@ -22,7 +22,6 @@
     ]
 ])
 
-
 @section('content')
     @if (Auth::user() && Auth::user()->isAdmin() && $user->isRestricted())
         @include('objects._notification_banner', [
@@ -34,7 +33,6 @@
 
     <div class="js-react--profile-page osu-layout osu-layout--full"></div>
 @endsection
-
 
 @section ("script")
     @parent
