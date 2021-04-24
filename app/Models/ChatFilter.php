@@ -6,8 +6,8 @@
 namespace App\Models;
 
 /**
+ * @property string $match
  * @property string $replacement
- * @property string $text
  */
 class ChatFilter extends Model
 {
