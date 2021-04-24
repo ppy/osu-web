@@ -11,5 +11,4 @@ namespace App\Models;
  */
 class ChatFilter extends Model
 {
-    //
 }
