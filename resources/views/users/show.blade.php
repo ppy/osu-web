@@ -2,20 +2,26 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+
+@php
+    $userData = $jsonChunks["user"];
+    $stats = $userData["statistics"];
+    $globalRankLabel = trans('users.show.rank.global_simple');
+    $globalRankValue = number_format($stats["global_rank"]);
+    $countryRankLabel = trans('users.show.rank.country_simple');
+    $countryRankValue = number_format($stats["country_rank"]);
+@endphp
+
 @extends('master', [
     'canonicalUrl' => $user->url(),
     'titlePrepend' => blade_safe(str_replace(' ', '&nbsp;', e($user->username))),
-    'pageDescription' => trans('users.show.rank_summary', [
-      'username' => $user->username,
-      'global' => $data["statistics"]["global_rank"],
-      'local' => $data["statistics"]["country_rank"],
-      'country' => $data["country"]["name"],
-    ]),
+    'pageDescription' => "{$globalRankLabel}: #{$globalRankValue}\n{$countryRankLabel}: #{$countryRankValue}",
     'opengraph' => [
         'title' => trans('users.show.title', ["username" => $user->username]),
-        'image' => $data["avatar_url"]
+        'image' => $userData["avatar_url"]
     ]
 ])
+
 
 @section('content')
     @if (Auth::user() && Auth::user()->isAdmin() && $user->isRestricted())
@@ -28,6 +34,7 @@
 
     <div class="js-react--profile-page osu-layout osu-layout--full"></div>
 @endsection
+
 
 @section ("script")
     @parent
