@@ -20,6 +20,8 @@ class FallbackController extends Controller
 
     public function index()
     {
+        app('route-section')->setError(404);
+
         if (is_json_request()) {
             return error_popup(trans('errors.missing_route'), 404);
         }
