@@ -62,29 +62,33 @@ module.exports = {
       ],
       '@typescript-eslint/member-delimiter-style': 'error',
       '@typescript-eslint/member-ordering': [
-        'error',
+        // TODO: flip to error once tslint is turned off. The order is case sensitive while the tslint one isn't.
+        'warn',
         {
-          default: [
-            'public-static-field',
-            'protected-static-field',
-            'private-static-field',
+          default: {
+            memberTypes: [
+              'public-static-field',
+              'protected-static-field',
+              'private-static-field',
 
-            'public-instance-field',
-            'protected-instance-field',
-            'private-instance-field',
+              'public-instance-field',
+              'protected-instance-field',
+              'private-instance-field',
 
-            'public-constructor',
-            'protected-constructor',
-            'private-constructor',
+              'public-constructor',
+              'protected-constructor',
+              'private-constructor',
 
-            'public-static-method',
-            'protected-static-method',
-            'private-static-method',
+              'public-static-method',
+              'protected-static-method',
+              'private-static-method',
 
-            'public-instance-method',
-            'protected-instance-method',
-            'private-instance-method',
-          ],
+              'public-instance-method',
+              'protected-instance-method',
+              'private-instance-method',
+            ],
+            order: 'alphabetically',
+          },
         },
       ],
       '@typescript-eslint/naming-convention': 'off',
