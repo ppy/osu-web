@@ -62,7 +62,8 @@ module.exports = {
       ],
       '@typescript-eslint/member-delimiter-style': 'error',
       '@typescript-eslint/member-ordering': [
-        'error',
+        // TODO: flip to error once tslint is turned off. The order is case sensitive while the tslint one isn't.
+        'warning',
         {
           default: {
             memberTypes: [
