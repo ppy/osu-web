@@ -20,6 +20,10 @@ class FallbackController extends Controller
 
     public function index()
     {
-        abort(404, trans('errors.missing_route'));
+        if (is_json_request()) {
+            return error_popup(trans('errors.missing_route'), 404);
+        }
+
+        return ext_view('layout.error', ['statusCode' => 404], 'html', 404);
     }
 }
