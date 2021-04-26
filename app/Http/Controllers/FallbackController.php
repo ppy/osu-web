@@ -22,10 +22,6 @@ class FallbackController extends Controller
 
     public function index()
     {
-        if (is_json_request()) {
-            return response(null, 404);
-        }
-
-        return ext_view('layout.error', ['statusCode' => 404], 'html', 404);
+        abort(404, trans('errors.missing_route'));
     }
 }
