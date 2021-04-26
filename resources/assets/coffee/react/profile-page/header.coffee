@@ -1,7 +1,6 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Badges } from './badges'
 import { CoverSelector } from './cover-selector'
 import { Detail } from './detail'
 import { DetailMobile } from './detail-mobile'
@@ -13,6 +12,7 @@ import { Stats } from './stats'
 import * as React from 'react'
 import HeaderV4 from 'header-v4'
 import { Img2x } from 'img2x'
+import Badges from 'profile-page/badges'
 import DetailBot from 'profile-page/detail-bot'
 import headerLinks from 'profile-page/header-links'
 import ProfileTournamentBanner from 'profile-tournament-banner'
