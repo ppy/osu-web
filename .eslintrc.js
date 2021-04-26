@@ -64,27 +64,30 @@ module.exports = {
       '@typescript-eslint/member-ordering': [
         'error',
         {
-          default: [
-            'public-static-field',
-            'protected-static-field',
-            'private-static-field',
+          default: {
+            memberTypes: [
+              'public-static-field',
+              'protected-static-field',
+              'private-static-field',
 
-            'public-instance-field',
-            'protected-instance-field',
-            'private-instance-field',
+              'public-instance-field',
+              'protected-instance-field',
+              'private-instance-field',
 
-            'public-constructor',
-            'protected-constructor',
-            'private-constructor',
+              'public-constructor',
+              'protected-constructor',
+              'private-constructor',
 
-            'public-static-method',
-            'protected-static-method',
-            'private-static-method',
+              'public-static-method',
+              'protected-static-method',
+              'private-static-method',
 
-            'public-instance-method',
-            'protected-instance-method',
-            'private-instance-method',
-          ],
+              'public-instance-method',
+              'protected-instance-method',
+              'private-instance-method',
+            ],
+            order: 'alphabetically',
+          },
         },
       ],
       '@typescript-eslint/naming-convention': 'off',
