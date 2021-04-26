@@ -16,8 +16,6 @@ class FallbackController extends Controller
         }
 
         parent::__construct();
-
-        app('route-section')->setError(404);
     }
 
     public function index()
