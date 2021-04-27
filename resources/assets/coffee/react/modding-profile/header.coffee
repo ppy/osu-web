@@ -2,13 +2,13 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { Detail } from './detail'
-import { HeaderInfo } from '../profile-page/header-info'
 import { Links } from '../profile-page/links'
 import { Stats } from './stats'
 import * as React from 'react'
 import HeaderV4 from 'header-v4'
 import { Img2x } from 'img2x'
 import Badges from 'profile-page/badges'
+import HeaderInfo from 'profile-page/header-info'
 import headerLinks from 'profile-page/header-links'
 import ProfileTournamentBanner from 'profile-tournament-banner'
 import { a, div, h1, li, span, ul } from 'react-dom-factories'
