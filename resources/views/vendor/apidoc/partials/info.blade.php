@@ -304,6 +304,9 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2021-04-20
+- `cover_url` in [User](#user) is deprecated, use `cover.url` instead.
+
 ### 2021-02-25
 - `current_mode_rank` has been removed from [UserCompact](#usercompact)
 - attributes in [UserStatistics](#userstatistics) have been moved around
