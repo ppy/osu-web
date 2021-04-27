@@ -34,6 +34,8 @@ let inCard = false;
 let tooltipWithActiveMenu: any;
 
 function createTooltipOptions(card: HTMLElement) {
+  const at = card.dataset.tooltipPosition ?? 'right center';
+
   return {
     content: {
       text: card,
@@ -49,8 +51,8 @@ function createTooltipOptions(card: HTMLElement) {
     },
     position: {
       adjust: { scroll: false },
-      at: 'right center',
-      my: 'left center',
+      at,
+      my: my(at),
       viewport: $(window),
     },
     show: {
@@ -75,8 +77,24 @@ function createTooltip(element: HTMLElement) {
   card.classList.remove('js-react--user-card');
   card.classList.add('js-react--user-card-tooltip');
   card.dataset.lookup = userId;
+  if (element.dataset.tooltipPosition != null) {
+    card.dataset.tooltipPosition = element.dataset.tooltipPosition;
+  }
 
   $(element).qtip(createTooltipOptions(card));
+}
+
+function my(at: string) {
+  switch (at) {
+    case 'top center':
+      return 'bottom center';
+    case 'left center':
+      return 'right center';
+    case 'bottom center':
+      return 'top center';
+  }
+
+  return 'left center';
 }
 
 function onBeforeCache() {

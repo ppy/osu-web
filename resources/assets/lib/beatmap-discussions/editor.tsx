@@ -167,8 +167,8 @@ export default class Editor extends React.Component<Props, State> {
     // tslint:disable-next-line no-conditional-assignment
     while ((match = regex.exec(node.text)) !== null) {
       ranges.push({
-        anchor: {path, offset: match.index},
-        focus: {path, offset: match.index + match[0].length},
+        anchor: { offset: match.index, path },
+        focus: { offset: match.index + match[0].length, path },
         timestamp: match[0],
       });
     }
@@ -329,7 +329,10 @@ export default class Editor extends React.Component<Props, State> {
       max={this.context.max_blocks}
       onlyShowAsWarning
       theme={theme}
-      tooltip={osu.trans('beatmap_discussions.review.block_count', {used: this.state.blockCount, max: this.context.max_blocks})}
+      tooltip={osu.trans('beatmap_discussions.review.block_count', {
+        max: this.context.max_blocks,
+        used: this.state.blockCount,
+      })}
     />
   );
 
