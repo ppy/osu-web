@@ -8,5 +8,5 @@ return [
             'connect_timeout' => get_float(env('ES_CLIENT_CONNECT_TIMEOUT')) ?? 0.5,
         ],
     ],
-    'connectionPool' => '\Elasticsearch\ConnectionPool\SimpleConnectionPool',
+    'connectionPool' => ['\Elasticsearch\ConnectionPool\SimpleConnectionPool'],
 ];

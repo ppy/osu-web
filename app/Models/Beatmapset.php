@@ -1180,6 +1180,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return $this->belongsTo(User::class, 'user_id', 'approvedby_id');
     }
 
+    public function topic()
+    {
+        return $this->belongsTo(Forum\Topic::class, 'thread_id');
+    }
+
     public function userRatings()
     {
         return $this->hasMany(BeatmapsetUserRating::class);
@@ -1313,7 +1318,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function getPost()
     {
-        $topic = Forum\Topic::find($this->thread_id);
+        $topic = $this->topic;
 
         if ($topic === null) {
             return;

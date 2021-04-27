@@ -12,7 +12,7 @@ import { ShowMoreLink } from 'show-more-link';
 import { Spinner } from 'spinner';
 import RootDataStore from 'stores/root-data-store';
 import { StringWithComponent } from 'string-with-component';
-import { UserAvatar } from 'user-avatar';
+import UserAvatar from 'user-avatar';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
 
@@ -225,7 +225,7 @@ export default class ConversationView extends React.Component<Props> {
     return (
       <div ref={this.chatViewRef} className='chat-conversation' onScroll={this.onScroll}>
         <div className='chat-conversation__new-chat-avatar'>
-          <UserAvatar user={{id: 0, avatar_url: channel.icon}} />
+          <UserAvatar user={{ avatar_url: channel.icon }} />
         </div>
         <div className='chat-conversation__chat-label'>
           {channel.pmTarget != null ? (

@@ -211,7 +211,7 @@ export class UserCard extends React.PureComponent<Props, State> {
       <div className='user-card__icons'>
         <a
           className='user-card__icon user-card__icon--flag'
-          href={route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}
+          href={route('rankings', { country: this.user.country_code, mode: 'osu', type: 'performance' })}
         >
           <FlagCountry country={this.user.country} />
         </a>

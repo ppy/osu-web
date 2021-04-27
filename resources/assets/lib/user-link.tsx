@@ -5,9 +5,11 @@ import { route } from 'laroute';
 import * as React from 'react';
 
 interface Props {
+  children?: React.ReactNode;
   className?: string;
+  tooltipPosition?: string;
   user: {
-    id: number;
+    id?: number;
     username: string;
   };
 }
@@ -19,13 +21,16 @@ export class UserLink extends React.PureComponent<Props> {
       className += ` ${this.props.className}`;
     }
 
+    const href = this.props.user.id ? route('users.show', { user: this.props.user.id }) : undefined;
+
     return (
       <a
         className={className}
+        data-tooltip-position={this.props.tooltipPosition}
         data-user-id={this.props.user.id}
-        href={route('users.show', { user: this.props.user.id })}
+        href={href}
       >
-        {this.props.user.username}
+        {this.props.children ?? this.props.user.username}
       </a>
     );
   }

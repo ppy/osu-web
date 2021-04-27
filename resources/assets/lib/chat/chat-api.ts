@@ -11,7 +11,7 @@ export default class ChatAPI {
   }
 
   getUpdates(since: number, lastHistoryId?: number | null): JQuery.jqXHR<ApiResponses.GetUpdatesJson> {
-    return $.get(route('chat.updates'), { since, history_since: lastHistoryId });
+    return $.get(route('chat.updates'), { history_since: lastHistoryId, since });
   }
 
   markAsRead(channelId: number, messageId: number): JQuery.jqXHR<ApiResponses.MarkAsReadJson> {

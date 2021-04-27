@@ -58,6 +58,9 @@ class Mod
     const MANIA_INVERT = 'IN';
     const MANIA_CONSTANTSPEED = 'CS';
 
+    // catch-specific
+    const CATCH_FLOATINGFRUIT = 'FF';
+
     // taiko-specific
     const TAIKO_RANDOM = 'RD';
 
@@ -279,7 +282,7 @@ class Mod
                 Ruleset::CATCH => array_merge(
                     self::SCORABLE_COMMON,
                     [
-                        // catch-specific mods go here
+                        self::CATCH_FLOATINGFRUIT,
                     ]
                 ),
 

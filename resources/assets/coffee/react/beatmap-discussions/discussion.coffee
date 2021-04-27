@@ -9,7 +9,7 @@ import mapperGroup from 'beatmap-discussions/mapper-group'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { button, div, i, span, a } from 'react-dom-factories'
-import { UserAvatar } from 'user-avatar'
+import UserAvatar from 'user-avatar'
 import { classWithModifiers } from 'utils/css'
 
 el = React.createElement

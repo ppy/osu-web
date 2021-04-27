@@ -155,7 +155,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
           insertAt = SlateEditor.end(ed, ReactEditor.findPath(ed, node));
         } else {
           // if there's no previous block, that means we're at the start of the review/document, so insert there.
-          insertAt = {path: [], offset: 0};
+          insertAt = { offset: 0, path: [] };
         }
       } else {
         const nextSlateElement = this.hoveredBlock?.previousSibling?.lastChild;

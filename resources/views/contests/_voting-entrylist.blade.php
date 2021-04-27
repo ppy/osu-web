@@ -2,7 +2,7 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@if ($contest->hasEntryImages())
+@if ($contest->hasThumbnails())
     <div class="js-react--contestArtList" data-src="contest-{{$contest->id}}"></div>
 @else
     <div class="js-react--contestList" data-src="contest-{{$contest->id}}"></div>
