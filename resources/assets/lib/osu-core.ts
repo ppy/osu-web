@@ -57,6 +57,10 @@ export default class OsuCore {
   readonly windowVHPatcher = new WindowVHPatcher();
 
   constructor() {
+    // refresh current user on page reload (and initial page load)
+    $(document).on('turbolinks:load.osu-core', this.onPageLoad);
+    $.subscribe('user:update', this.onCurrentUserUpdate);
+
     this.enchant = new Enchant(this.turbolinksReload);
     this.osuAudio = new OsuAudio(this.userPreferences);
     this.userLogin = new UserLogin(this.captcha);
@@ -71,10 +75,6 @@ export default class OsuCore {
 
     this.socketWorker = new SocketWorker();
     this.notificationsWorker = new NotificationsWorker(this.socketWorker);
-
-    // refresh current user on page reload (and initial page load)
-    $(document).on('turbolinks:load.osu-core', this.onPageLoad);
-    $.subscribe('user:update', this.onCurrentUserUpdate);
   }
 
   private onCurrentUserUpdate = (event: unknown, user: CurrentUser) => {
