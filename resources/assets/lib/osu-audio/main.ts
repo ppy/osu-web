@@ -163,7 +163,7 @@ export default class Main {
     this.setState('loading');
     const promise = this.audio.play();
     // old api returns undefined
-    promise?.catch((error) => {
+    promise?.catch((error: { name: string }) => {
       if (Main.ignoredErrors.includes(error.name)) {
         console.debug('playback failed:', error.name);
         this.stop();
@@ -176,11 +176,9 @@ export default class Main {
   };
 
   private nav = (e: JQuery.ClickEvent) => {
-    const button = e.currentTarget;
+    const button: unknown = e.currentTarget;
 
-    if (!(button instanceof HTMLElement)) {
-      return;
-    }
+    if (!(button instanceof HTMLElement)) return;
 
     if (button.dataset.audioNav === 'prev' && this.playerPrev != null) {
       this.load(this.playerPrev);
@@ -294,7 +292,7 @@ export default class Main {
   };
 
   private onSeekStart = (e: JQuery.TouchStartEvent) => {
-    const bar = e.currentTarget;
+    const bar: unknown = e.currentTarget;
 
     if (!(bar instanceof HTMLElement)) return;
 
@@ -326,7 +324,7 @@ export default class Main {
   };
 
   private onVolumeChangeStart = (e: JQuery.TouchStartEvent) => {
-    const bar = e.currentTarget;
+    const bar: unknown = e.currentTarget;
 
     if (!(bar instanceof HTMLElement)) return;
 
