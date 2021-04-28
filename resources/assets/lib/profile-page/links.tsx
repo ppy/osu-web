@@ -1,154 +1,188 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import ClickToCopy from 'click-to-copy'
-import * as React from 'react'
-import { a, div, span } from 'react-dom-factories'
-el = React.createElement
+import ClickToCopy from 'click-to-copy';
+import UserJson from 'interfaces/user-json';
+import UserJsonExtended from 'interfaces/user-json-extended';
+import { route } from 'laroute';
+import { compact } from 'lodash';
+import * as moment from 'moment';
+import * as React from 'react';
 
+interface Props {
+  user: UserJsonExtended;
+}
 
-export class Links extends React.PureComponent
-  bn = 'profile-links'
+const bn = 'profile-links';
 
-  rowValue = (value, attributes = {}, modifiers = []) ->
-    if attributes.href?
-      tagName = 'a'
-      modifiers.push 'link'
-    else
-      tagName = 'span'
+const linkMapping = {
+  twitter: (val: string) => ({
+    icon: 'fab fa-twitter',
+    url: `https://twitter.com/${val}`,
+    text: `@${val}`,
+  }),
+  discord: (val: string) => ({
+    icon: 'fab fa-discord',
+    text: <ClickToCopy showIcon value={val} />,
+  }),
+  interests: () => ({
+    icon: 'far fa-heart',
+  }),
+  location: () => ({
+    icon: 'fas fa-map-marker-alt',
+  }),
+  occupation: () => ({
+    icon: 'fas fa-suitcase',
+  }),
+  website: (val: string) => ({
 
-    elem = document.createElement(tagName)
-    elem[k] = v for own k, v of attributes
-    elem.className += " #{osu.classWithModifiers "#{bn}__value", modifiers}"
-    elem.innerHTML = value
+    icon: 'fas fa-link',
+    url: val,
+    text: val.replace(/^https?:\/\//, ''),
+  }),
+};
 
-    elem.outerHTML
+const textMapping = {
+  comments_count: (val: string, user: UserJson) => {
+    const count = osu.transChoice('users.show.comments_count.count', val)
+    const url = route('comments.index', { user_id: user.id })
 
+    return {
+      html: osu.trans('users.show.comments_count._'),
+      link: rowValue(count, { href: url }),
+    }
+  },
+  join_date: (val: string) => {
+    const joinDate = moment(val)
+    const joinDateTitle = joinDate.toISOString()
 
-  linkMapping =
-    twitter: (val) ->
-      icon: 'fab fa-twitter'
-      url: "https://twitter.com/#{val}"
-      text: "@#{val}"
-    discord: (val) ->
-      icon: 'fab fa-discord'
-      text:
-        el ClickToCopy, value: val, showIcon: true
-    interests: ->
-      icon: 'far fa-heart'
-    location: ->
-      icon: 'fas fa-map-marker-alt'
-    occupation: ->
-      icon: 'fas fa-suitcase'
-    website: (val) ->
-      icon: 'fas fa-link'
-      url: val
-      text: val.replace(/^https?:\/\//, '')
+    if (joinDate.isBefore(moment.utc([2008]))) {
+      return {
+        extraClasses: 'js-tooltip-time',
+        html: osu.trans('users.show.first_members'),
+        title: joinDateTitle,
+      };
+    }
 
+    return {
+      html: osu.trans('users.show.joined_at', {
+        date: rowValue(
+          joinDate.format(osu.trans('common.datetime.year_month.moment')),
+          { className: 'js-tooltip-time', title: joinDateTitle }
+        ),
+      }),
+    };
+  },
+  last_visit: (val: string, user: UserJson) => {
+    if (user.is_online) {
+      return { html: osu.trans('users.show.lastvisit_online') };
+    }
 
-  textMapping =
-    comments_count: (val, user) ->
-      count = osu.transChoice 'users.show.comments_count.count', val
-      url = laroute.route('comments.index', user_id: user.id)
+    return {
+      date: rowValue(osu.timeago(val)),
+      html: osu.trans('users.show.lastvisit'),
+    };
+  },
+  playstyle: (val: string[]) => {
+    const playsWith = val.map((s) => osu.trans(`common.device.${s}`)).join(', ');
 
-      html:
-        osu.trans 'users.show.comments_count._', link: rowValue(count, href: url)
+    return {
+      devices: rowValue(playsWith),
+      html: osu.trans('users.show.plays_with'),
+    };
+  },
+  post_count: (val: string, user: UserJson) => {
+    const count = osu.transChoice('users.show.post_count.count', val);
+    const url = route('users.posts', { user: user.id });
 
-    join_date: (val) ->
-      joinDate = moment(val)
-      joinDateTitle = joinDate.toISOString()
+    return {
+      html: osu.trans('users.show.post_count._'),
+      link: rowValue(count, { href: url }),
+    }
+  },
+}
 
-      if joinDate.isBefore moment.utc([2008])
-        title: joinDateTitle
-        extraClasses: 'js-tooltip-time'
-        html: osu.trans 'users.show.first_members'
-      else
-        html: osu.trans 'users.show.joined_at',
-          date: rowValue joinDate.format(osu.trans('common.datetime.year_month.moment')),
-            className: 'js-tooltip-time'
-            title: joinDateTitle
+function rowValue(value: any, attributes: Record<string, any> = {}, modifiers: string[] = []) {
+  let tagName: string;
+  if (attributes.href != null) {
+    tagName = 'a';
+    modifiers.push('link');
+  } else {
+    tagName = 'span';
+  }
 
-    last_visit: (val, user) ->
-      return html: osu.trans('users.show.lastvisit_online') if user.is_online
+  const elem = document.createElement(tagName);
+  for (const [k, v] of Object.entries(attributes)) {
+    elem[k] = v;
+  }
 
-      html: osu.trans 'users.show.lastvisit',
-        date: rowValue osu.timeago(val)
+  elem.innerHTML = value;
 
-    playstyle: (val) ->
-      playsWith = val.map (s) ->
-        osu.trans "common.device.#{s}"
-      .join ', '
+  return elem.outerHTML;
+}
 
-      html: osu.trans 'users.show.plays_with', devices: rowValue(playsWith)
+export default class Links extends React.PureComponent<Props> {
+  render() {
+    const rows = [
+      ['join_date', 'last_visit', 'playstyle', 'post_count', 'comments_count'].map(this.renderText),
+      ['location', 'interests', 'occupation'].map(this.renderLink),
+      ['twitter', 'discord', 'website'].map(this.renderLink),
+    ].map((row) => compact(row)).filter((x) => x.length > 0);
 
-    post_count: (val, user) ->
-      count = osu.transChoice 'users.show.post_count.count', val
-      url = laroute.route('users.posts', user: user.id)
+    return (
+      <div className={bn}>
+        {rows.map((row, index) => (
+          <div key={index} className={`${bn}__row ${bn}__row--${index}`}>{row}</div>
+        ))}
+        {this.props.user.id === currentUser.id && (
+          <div className={`${bn}__edit`}>
+            <a className='profile-page-toggle' href={route('account.edit')} title={osu.trans('users.show.page.button')}>
+              <span className='fas fa-pencil-alt' />
+            </a>
+          </div>
+        )}
+      </div>
+    );
+  }
 
-      html:
-        osu.trans 'users.show.post_count._', link: rowValue(count, href: url)
+  renderLink = (key: string) => {
+    const value = this.props.user[key];
+    if (value == null) return null;
 
+    const { url, icon, text, title } = linkMapping[key](value);
 
-  render: =>
-    rows = [
-      ['join_date', 'last_visit', 'playstyle', 'post_count', 'comments_count'].map @renderText
-      ['location', 'interests', 'occupation'].map @renderLink
-      ['twitter', 'discord', 'website'].map @renderLink
-    ]
+    return (
+      <div key={key} className={`${bn}__item`}>
+        <span className={`${bn}__icon`} title={title ?? osu.trans(`users.show.info.${key}`)}>
+          <span className={`fa-fw ${icon}`} />
+        </span>
+        {url != null ? (
+          <a className={`${bn}__value`} href={url}>
+            {text ?? value}
+          </a>
+        ) : (
+          <span className={`${bn}__value`}>
+            {text ?? value}
+          </span>
+        )}
+      </div>
+    );
+  };
 
-    div className: bn,
-      for row, j in rows when _.compact(row).length > 0
-        div key: j, className: "#{bn}__row #{bn}__row--#{j}", row
+  renderText = (key: string) => {
+    const value = this.props.user[key]
+    if (value == null) return null;
 
-      if @props.user.id == currentUser.id
-        div
-          className: "#{bn}__edit"
-          a
-            className: 'profile-page-toggle'
-            href: laroute.route('account.edit')
-            title: osu.trans('users.show.page.button')
-            span className: 'fas fa-pencil-alt'
+    const { extraClasses, html, title } = textMapping[key](value, this.props.user);
+    const className = `${bn}__item ${extraClasses ?? ''}`;
 
-
-  renderLink: (key) =>
-    value = @props.user[key]
-
-    return unless value?
-
-    {url, icon, text, title} = linkMapping[key](value)
-
-    title ?= osu.trans "users.show.info.#{key}"
-    text ?= value
-
-    componentClass = "#{bn}__value"
-
-    component = if url? then a else span
-
-    div
-      className: "#{bn}__item"
-      key: key
-
-      span
-        className: "#{bn}__icon"
-        title: title
-        span className: "fa-fw #{icon}"
-
-      component
-        href: url
-        className: componentClass
-        text
-
-
-  renderText: (key) =>
-    value = @props.user[key]
-
-    return unless value?
-
-    {extraClasses, html, title} = textMapping[key](value, @props.user)
-
-    div
-      className: "#{bn}__item #{extraClasses ? ''}"
-      key: key
-      title: title
-      dangerouslySetInnerHTML:
-        __html: html
+    return (
+      <div
+        key={key}
+        className={className}
+        dangerouslySetInnerHTML={{ __html: html }}
+        title={title}
+      />
+    );
+  };
+}

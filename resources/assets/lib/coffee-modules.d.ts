@@ -105,16 +105,6 @@ declare module 'react/beatmaps/search-content' {
   class SearchContent extends React.PureComponent<Props> {}
 }
 
-declare module 'react/profile-page/links' {
-  import UserJsonExtended from 'interfaces/user-json-extended';
-
-  interface Props {
-    user: UserJsonExtended;
-  }
-
-  class Links extends React.PureComponent<Props> {}
-}
-
 declare module 'report-form' {
   interface ReportFormProps {
     completed: boolean;
