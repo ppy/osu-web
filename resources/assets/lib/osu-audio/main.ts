@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import Settings from './settings';
+import UserPreferences from 'user-preferences';
 import Slider from './slider';
 import { format, TimeFormat } from './time-format';
 
@@ -94,13 +94,12 @@ export default class Main {
   private playerNext?: HTMLElement;
   private playerPrev?: HTMLElement;
   private settingNavigation = false;
-  private settings = new Settings(this);
   private state: PlayState = 'paused';
   private timeFormat: TimeFormat = 'minute_minimal';
   private url?: string;
 
-  constructor() {
-    this.settings.volume = 0;
+  constructor(private userPreferences: UserPreferences) {
+    this.audio.volume = 0;
     this.audio.addEventListener('playing', this.onPlaying);
     this.audio.addEventListener('ended', this.onEnded);
     this.audio.addEventListener('timeupdate', this.onTimeupdate);
@@ -117,15 +116,15 @@ export default class Main {
   }
 
   private checkVolumeSettings = () => {
-    const prevVolume = this.settings.volume;
+    const prevVolume = this.audio.volume;
     const testVolume = prevVolume === 0.1 ? 0.2 : 0.1;
-    this.settings.volume = testVolume;
+    this.audio.volume = testVolume;
     // Volume control doesn't work on iOS. It sets the value but reset it
     // a moment later; hence use setTimeout to test changing volume.
     // For actual volume settings, see onDocumentReady.
     setTimeout(() => {
-      this.hasWorkingVolumeControl = this.settings.volume === testVolume;
-      this.settings.volume = prevVolume;
+      this.hasWorkingVolumeControl = this.audio.volume === testVolume;
+      this.audio.volume = prevVolume;
       this.syncVolumeDisplay();
     }, 0);
   };
@@ -253,8 +252,11 @@ export default class Main {
       mainPlayerPlaceholder.replaceWith(this.mainPlayer);
 
       // This requires currentUser and should only be run once so it's done in here.
-      this.settings.apply();
-      // Only check after initial volume is set otherwise it'll be replaced with the volume at current point.
+      this.audio.muted = this.userPreferences.audioMuted;
+      this.audio.volume = this.userPreferences.audioVolume;
+
+      // Only check after initial volume is set otherwise it'll be replaced with the volume at current point
+      // due to the check being async.
       this.checkVolumeSettings();
 
       this.syncState();
@@ -271,7 +273,7 @@ export default class Main {
   private onEnded = () => {
     this.stop();
 
-    if (this.playerNext != null && this.settings.autoplay) {
+    if (this.playerNext != null && this.userPreferences.audioAutoplay) {
       this.load(this.playerNext);
     }
   };
@@ -316,11 +318,11 @@ export default class Main {
 
   private onVolumeChangeEnd = () => {
     this.currentSlider = undefined;
-    this.settings.save();
+    this.userPreferences.audioVolume = this.audio.volume;
   };
 
   private onVolumeChangeMove = (slider: Slider) => {
-    this.settings.volume = slider.getPercentage();
+    this.audio.volume = slider.getPercentage();
   };
 
   private onVolumeChangeStart = (e: JQuery.TouchStartEvent) => {
@@ -490,7 +492,7 @@ export default class Main {
 
   private syncState = () => {
     this.updatePlayers((player) => {
-      player.dataset.audioAutoplay = this.settings.autoplay ? '1' : '0';
+      player.dataset.audioAutoplay = this.userPreferences.audioAutoplay ? '1' : '0';
       player.dataset.audioHasDuration = Number.isFinite(this.audio.duration) ? '1' : '0';
       player.dataset.audioState = this.state;
       player.dataset.audioTimeFormat = this.timeFormat;
@@ -506,18 +508,17 @@ export default class Main {
 
     this.mainPlayer.dataset.audioVolumeBarVisible = this.hasWorkingVolumeControl ? '1' : '0';
     this.mainPlayer.dataset.audioVolume = this.volumeIcon();
-    this.mainPlayer.style.setProperty('--volume', this.settings.volume.toString());
+    this.mainPlayer.style.setProperty('--volume', this.audio.volume.toString());
   };
 
   private toggleAutoplay = () => {
-    this.settings.toggleAutoplay();
-    this.settings.save();
+    this.userPreferences.audioAutoplay = !this.userPreferences.audioAutoplay;
     this.syncState();
   };
 
   private toggleMute = () => {
-    this.settings.toggleMuted();
-    this.settings.save();
+    this.audio.muted = !this.audio.muted;
+    this.userPreferences.audioMuted = this.audio.muted;
   };
 
   private togglePlay = () => {
@@ -526,7 +527,7 @@ export default class Main {
     }
 
     if (this.audio.paused) {
-      this.audio.play();
+      void this.audio.play();
     } else {
       this.pause();
     }
@@ -541,12 +542,12 @@ export default class Main {
   };
 
   private volumeIcon = () => {
-    if (this.settings.muted) {
+    if (this.audio.muted) {
       return 'muted';
     } else {
-      if (this.settings.volume === 0) {
+      if (this.audio.volume === 0) {
         return 'silent';
-      } else if (this.settings.volume < 0.4) {
+      } else if (this.audio.volume < 0.4) {
         return 'quiet';
       } else {
         return 'normal';
