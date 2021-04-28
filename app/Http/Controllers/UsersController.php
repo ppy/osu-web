@@ -447,11 +447,13 @@ class UsersController extends Controller
      *
      * This endpoint returns the detail of specified user.
      *
+     * <aside class="notice">
+     * It's highly recommended to pass <code>key</code> parameter to avoid getting unexpected result (mainly when looking up user with numeric username or nonexistent user id).
+     * </aside>
+     *
      * ---
      *
      * ### Response format
-     *
-     * When `username` is passed for `user` parameter and the user exists, a redirect will be returned.
      *
      * Returns [User](#user) object.
      * Following attributes are included in the response object when applicable.
@@ -500,10 +502,8 @@ class UsersController extends Controller
             return ext_view('users.show_not_found', null, null, 404);
         }
 
-        if ((string) $user->user_id !== (string) $id) {
-            $route = is_api_request() ? 'api.users.show' : 'users.show';
-
-            return ujs_redirect(route($route, compact('user', 'mode')));
+        if (!is_api_request() && (string) $user->user_id !== (string) $id) {
+            return ujs_redirect(route('users.show', compact('user', 'mode')));
         }
 
         $currentMode = $mode ?? $user->playmode;
