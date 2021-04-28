@@ -17,6 +17,7 @@ export class ArtEntry extends React.Component
 
     votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
     showVotes = @props.contest.show_votes
+    showNames = @props.contest.show_names
     thumbnailShape = @props.contest.thumbnail_shape
     galleryId = "contest-#{@props.contest.id}"
     buttonId = "#{galleryId}:#{@props.displayIndex}"
@@ -54,6 +55,7 @@ export class ArtEntry extends React.Component
       className: classWithModifiers bn,
         "#{thumbnailShape}": thumbnailShape?
         result: showVotes
+        'show-name': showNames && !showVotes
         placed: showVotes && top3
         "placed-#{place}": showVotes && top3
         smaller: showVotes && !top3
@@ -97,3 +99,11 @@ export class ArtEntry extends React.Component
             if not isNaN(votePercentage)
               span className: "#{bn}__result-votes #{bn}__result-votes--percentage",
                 " (#{osu.formatNumber(votePercentage)}%)"
+      else if showNames
+        div className: "#{bn}__result",
+          a
+            href: @props.entry.preview
+            rel: 'nofollow noreferrer'
+            target: '_blank'
+
+            @props.entry.title
