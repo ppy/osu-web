@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { autorun } from 'mobx';
 import UserPreferences from 'user-preferences';
 import Slider from './slider';
 import { format, TimeFormat } from './time-format';
@@ -250,8 +251,8 @@ export default class Main {
       mainPlayerPlaceholder.replaceWith(this.mainPlayer);
 
       // This requires currentUser and should only be run once so it's done in here.
-      this.audio.muted = this.userPreferences.audioMuted;
-      this.audio.volume = this.userPreferences.audioVolume;
+      autorun(() => this.audio.muted = this.userPreferences.audioMuted);
+      autorun(() => this.audio.volume = this.userPreferences.audioVolume);
 
       // Only check after initial volume is set otherwise it'll be replaced with the volume at current point
       // due to the check being async.
@@ -515,8 +516,7 @@ export default class Main {
   };
 
   private toggleMute = () => {
-    this.audio.muted = !this.audio.muted;
-    this.userPreferences.audioMuted = this.audio.muted;
+    this.userPreferences.audioMuted = !this.audio.muted;
   };
 
   private togglePlay = () => {
