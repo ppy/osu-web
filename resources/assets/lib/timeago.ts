@@ -8,7 +8,7 @@ export default class Timeago {
 
   constructor() {
     this.observer = new MutationObserver(this.observePage);
-    this.observer.observe(document, { childList: true, subtree: true })
+    this.observer.observe(document, { childList: true, subtree: true });
   }
 
   private observePage = (mutations: MutationRecord[]) => {
@@ -21,5 +21,5 @@ export default class Timeago {
         .addBack(searchQuery)
         .timeago();
     });
-  }
+  };
 }
