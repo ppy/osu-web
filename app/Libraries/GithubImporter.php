@@ -48,6 +48,6 @@ class GithubImporter
     public function isMasterPush()
     {
         return $this->eventType === 'push' &&
-            $this->data['ref'] === 'refs/heads/master';
+            $this->data['ref'] === 'refs/heads/'.OsuWiki::branch();
     }
 }
