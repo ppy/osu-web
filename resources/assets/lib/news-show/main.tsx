@@ -127,6 +127,7 @@ export default class Main extends React.Component<Props> {
 
   private processContent = () => {
     let content = this.props.post.content;
+    const firstImageUrl = this.props.post.first_image;
 
     if (content == null) {
       content = '';
@@ -135,9 +136,18 @@ export default class Main extends React.Component<Props> {
     const contentHTML = document.createElement('div');
     contentHTML.innerHTML = content;
 
-    const firstImage = contentHTML.querySelector('img');
-    if (firstImage != null && firstImage.parentElement != null) {
-      firstImage.parentElement.remove();
+    if (firstImageUrl != null) {
+      const firstImage = contentHTML.querySelector(`img[src="${firstImageUrl}"]`);
+
+      if (firstImage != null) {
+        const firstImageParent = firstImage.parentElement;
+
+        if (firstImageParent?.tagName === 'P' && firstImageParent.children.length === 1) {
+          firstImageParent.remove();
+        } else {
+          firstImage.remove();
+        }
+      }
     }
 
     content = contentHTML.innerHTML;
