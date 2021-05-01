@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => '',
+    'no_restricted_access' => 'Anda tidak dapat melakukan tindakan ini ketika akun Anda sedang di-restrict.',
+    'supporter_only' => 'Anda harus menjadi seorang osu!supporter untuk dapat menggunakan fitur ini.',
+    'unknown' => 'Terjadi kesalahan yang tidak diketahui.',
+
     'codes' => [
         'http-401' => 'Mohon masuk untuk melanjutkan.',
         'http-403' => 'Akses ditolak.',
@@ -26,8 +31,4 @@ return [
         'default' => 'Hasil tidak ditemukan, coba lagi nanti.',
         'operation_timeout_exception' => 'Aktivitas pencarian saat ini lebih sibuk dari biasanya, coba lagi nanti.',
     ],
-
-    'supporter_only' => 'Anda harus menjadi seorang osu!supporter untuk dapat menggunakan fitur ini.',
-    'no_restricted_access' => 'Anda tidak dapat melakukan tindakan ini ketika akun Anda sedang di-restrict.',
-    'unknown' => 'Terjadi kesalahan yang tidak diketahui.',
 ];

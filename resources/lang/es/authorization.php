@@ -140,7 +140,7 @@ return [
                 'voted' => 'Cambiar el voto no está permitido.',
 
                 'user' => [
-                    'require_login' => 'Por favor, Inicia sesión para votar.',
+                    'require_login' => 'Inicie sesión para votar.',
                     'restricted' => "No puede votar mientras esté restringido.",
                     'silenced' => "No puede votar mientras esté silenciado.",
                 ],

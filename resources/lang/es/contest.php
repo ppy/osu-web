@@ -14,7 +14,7 @@ return [
     ],
 
     'voting' => [
-        'login_required' => 'Por favor, inicia sesión para votar.',
+        'login_required' => 'Inicie sesión para votar.',
         'over' => 'Las votaciones para este concurso ya han terminado',
         'show_voted_only' => 'Mostrar votado',
 

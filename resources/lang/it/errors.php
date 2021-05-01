@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => '',
+    'no_restricted_access' => 'Non puoi fare questa azione mentre il tuo account è limitato.',
+    'supporter_only' => 'Devi essere un supporter per poter usare questa funzionalità.',
+    'unknown' => 'Si è verificato un errore sconosciuto.',
+
     'codes' => [
         'http-401' => 'Per favore effettua il login per poter continuare.',
         'http-403' => 'Accesso Negato.',
@@ -26,8 +31,4 @@ return [
         'default' => 'Impossibile ottenere alcun risultato, riprova più tardi.',
         'operation_timeout_exception' => 'Attualmente la ricerca è più occupata del solito, riprova più tardi.',
     ],
-
-    'supporter_only' => 'Devi essere un supporter per poter usare questa funzionalità.',
-    'no_restricted_access' => 'Non puoi fare questa azione mentre il tuo account è limitato.',
-    'unknown' => 'Si è verificato un errore sconosciuto.',
 ];

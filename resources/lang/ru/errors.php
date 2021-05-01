@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => '',
+    'no_restricted_access' => 'Вы не можете использовать данную функцию пока ваши права ограничены.',
+    'supporter_only' => 'Вы должны иметь osu!supporter для использования этой возможности.',
+    'unknown' => 'Возникла неизвестная ошибка.',
+
     'codes' => [
         'http-401' => 'Войдите для продолжения.',
         'http-403' => 'Доступ запрещён.',
@@ -26,8 +31,4 @@ return [
         'default' => 'Ничего не найдено, попробуйте позже.',
         'operation_timeout_exception' => 'Поиск сейчас перегружен, попробуйте позже.',
     ],
-
-    'supporter_only' => 'Вы должны иметь osu!supporter для использования этой возможности.',
-    'no_restricted_access' => 'Вы не можете использовать данную функцию пока ваши права ограничены.',
-    'unknown' => 'Возникла неизвестная ошибка.',
 ];
