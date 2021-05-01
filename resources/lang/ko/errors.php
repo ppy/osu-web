@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => '',
+    'no_restricted_access' => '계정이 제한된 상태에서는 이 작업을 수행할 수 없습니다.',
+    'supporter_only' => '이 기능을 사용하려면 서포터가 되셔야 합니다.',
+    'unknown' => '알 수 없는 문제가 발생했습니다.',
+
     'codes' => [
         'http-401' => '계속하려면 로그인해주세요.',
         'http-403' => '접근이 거부되었습니다.',
@@ -26,8 +31,4 @@ return [
         'default' => '결과를 불러오지 못했습니다. 나중에 다시 시도해주세요.',
         'operation_timeout_exception' => '검색 기능의 사용량이 평소보다 많습니다, 잠시 후 다시 시도해 주세요.',
     ],
-
-    'supporter_only' => '이 기능을 사용하려면 서포터가 되셔야 합니다.',
-    'no_restricted_access' => '계정이 제한된 상태에서는 이 작업을 수행할 수 없습니다.',
-    'unknown' => '알 수 없는 문제가 발생했습니다.',
 ];

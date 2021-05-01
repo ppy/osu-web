@@ -4,8 +4,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => '',
+    'no_restricted_access' => 'Vous ne pouvez pas effectuer cette action avec un compte restreint.',
+    'supporter_only' => 'Vous devez être un osu!supporter pour utiliser cette fonctionnalité.',
+    'unknown' => 'Une erreur inconnue est survenue.',
+
     'codes' => [
-        'http-401' => 'Veuillez vous connecter pour continuer.',
+        'http-401' => 'Merci de vous connecter pour continuer.',
         'http-403' => 'Accès refusé.',
         'http-404' => 'Introuvable.',
         'http-429' => 'Trop de tentatives ! Réessayez plus tard.',
@@ -24,10 +29,6 @@ return [
     ],
     'search' => [
         'default' => 'Impossible d\'obtenir des résultats, réessayez plus tard.',
-        'operation_timeout_exception' => 'La recherche est actuellement plus active que d\'habitude, réessayez plus tard.',
+        'operation_timeout_exception' => 'La recherche est actuellement plus chargée que d\'habitude, réessayez plus tard.',
     ],
-
-    'supporter_only' => 'Vous devez être un osu!supporter pour utiliser cette fonctionnalité.',
-    'no_restricted_access' => 'Vous ne pouvez pas effectuer cette action avec un compte restreint.',
-    'unknown' => 'Une erreur inconnue est survenue.',
 ];

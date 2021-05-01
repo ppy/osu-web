@@ -53,9 +53,9 @@ return [
         'discussion' => 'Tartışma',
 
         'details' => [
-            'by_artist' => '',
+            'by_artist' => ':artist tarafından',
             'favourite' => 'Beatmap setini favorilere ekle',
-            'favourite_login' => '',
+            'favourite_login' => 'Beatmapi favorilere eklemek için giriş yap',
             'logged-out' => 'Herhangi bir beatmapi indirmeden önce giriş yapmalısınız!',
             'mapped_by' => ':mapper tarafından yapıldı',
             'unfavourite' => 'Beatmap setini favorilerden çıkar',
@@ -101,13 +101,13 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Eğer bu beatmap\'de bir sorun bulduysanız, lütfen diskalifiye ediniz :link.',
+                '_' => 'Eğer bu beatmapte bir sorun bulduysanız, lütfen :link diskalifiye edin.',
             ],
 
             'report' => [
-                '_' => 'Eğer bu beatmap ile ilgili bir sorun bulursanız, takımı uyarmak için lütfen :link üzerinden raporlayın.',
-                'button' => 'Sorun bildir',
-                'link' => 'burası',
+                '_' => 'Eğer bu beatmapte bir sorun bulduysanız, takımı uyarmak için lütfen :link bildirin.',
+                'button' => 'Sorun Bildir',
+                'link' => 'buradan',
             ],
         ],
 
@@ -122,7 +122,7 @@ return [
             'storyboard' => 'Bu beatmap storyboard içeriyor',
             'success-rate' => 'Başarı Oranı',
             'tags' => 'Etiketler',
-            'video' => '',
+            'video' => 'Bu beatmap video içeriyor',
         ],
 
         'nsfw_warning' => [
@@ -182,8 +182,8 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Daire Sayısı',
             'count_sliders' => 'Slider Sayısı',
-            'user-rating' => 'Kullanıcı Derecelendirmesi',
-            'rating-spread' => 'Değerlendirme Puanı',
+            'user-rating' => 'Kullanıcı Reytingi',
+            'rating-spread' => 'Reyting Dağılımı',
             'nominations' => 'Adaylıklar',
             'playcount' => 'Oynama sayısı',
         ],

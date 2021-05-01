@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => '',
+    'no_restricted_access' => '由於您的帳號已受限，故無法執行該操作。',
+    'supporter_only' => '您需要成為 osu!贊助者才能使用此功能 。',
+    'unknown' => '發生了未知的錯誤。',
+
     'codes' => [
         'http-401' => '請登入以繼續.',
         'http-403' => '拒絕存取。',
@@ -26,8 +31,4 @@ return [
         'default' => '無法獲得任何結果，請稍後再試。',
         'operation_timeout_exception' => '搜索目前比平常更繁忙，稍後再試。',
     ],
-
-    'supporter_only' => '您需要成為 osu!贊助者才能使用此功能 。',
-    'no_restricted_access' => '由於您的帳號已受限，故無法執行該操作。',
-    'unknown' => '發生了未知的錯誤。',
 ];

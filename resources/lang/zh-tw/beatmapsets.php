@@ -53,9 +53,9 @@ return [
         'discussion' => '討論',
 
         'details' => [
-            'by_artist' => '',
+            'by_artist' => '作者：:artist',
             'favourite' => '收藏這張圖譜',
-            'favourite_login' => '',
+            'favourite_login' => '登入後才能把這張圖譜加到最愛',
             'logged-out' => '下載圖譜前請先登入！',
             'mapped_by' => '由 :mapper 製作',
             'unfavourite' => '取消收藏',
@@ -122,7 +122,7 @@ return [
             'storyboard' => '這張圖譜包含 Storyboard',
             'success-rate' => '成功率',
             'tags' => '標籤',
-            'video' => '',
+            'video' => '此圖譜包含背景影片',
         ],
 
         'nsfw_warning' => [
