@@ -68,6 +68,8 @@ class OsuMarkdown
         'wiki' => [
             'block_modifiers' => ['wiki'],
             'generate_toc' => true,
+            'html_block_prefix' => 'wiki-content__',
+            'html_input' => 'allow',
             'parse_attribute_id' => true,
             'title_from_document' => true,
         ],
