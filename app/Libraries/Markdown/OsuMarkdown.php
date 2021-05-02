@@ -6,6 +6,7 @@
 namespace App\Libraries\Markdown;
 
 use App\Libraries\Markdown\Indexing\RendererExtension as IndexingRendererExtension;
+use League\CommonMark\Block\Element\HtmlBlock;
 use League\CommonMark\Block\Element\ListItem;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
@@ -31,6 +32,7 @@ class OsuMarkdown
         'block_modifiers' => [],
         'block_name' => 'osu-md',
         'generate_toc' => false,
+        'html_block_prefix' => null,
         'parse_attribute_id' => false,
         'parse_yaml_header' => true,
         'record_first_image' => false,
@@ -125,6 +127,7 @@ class OsuMarkdown
         $env->addExtension(new TableExtension\TableExtension());
         $env->addBlockRenderer(TableExtension\Table::class, new OsuTableRenderer());
         $env->addBlockRenderer(ListItem::class, new ListItemRenderer());
+        $env->addBlockRenderer(HtmlBlock::class, new HtmlBlockRenderer());
 
         $env->addExtension(new AutolinkExtension());
 
