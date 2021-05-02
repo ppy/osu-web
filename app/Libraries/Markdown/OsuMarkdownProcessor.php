@@ -203,12 +203,12 @@ class OsuMarkdownProcessor
         if (
             !$this->node instanceof Block\Heading ||
             !$this->event->isEntering() ||
-            ($this->titleFromDocument && $this->title === null) ||
-            $this->node->getLevel() > 3
+            ($this->titleFromDocument && $this->title === null)
         ) {
             return;
         }
 
+        $level = $this->node->getLevel();
         $title = $this->getText($this->node);
         $slug = $this->node->data['attributes']['id'] ?? presence(mb_strtolower(str_replace(' ', '-', $title))) ?? 'page';
 
@@ -220,10 +220,9 @@ class OsuMarkdownProcessor
             $this->tocSlugs[$slug] = 0;
         }
 
-        $this->toc[$slug] = [
-            'title' => $title,
-            'level' => $this->node->getLevel(),
-        ];
+        if ($level <= 3) {
+            $this->toc[$slug] = compact('title', 'level');
+        }
 
         $this->node->data['attributes']['id'] = $slug;
     }
