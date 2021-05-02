@@ -27,6 +27,7 @@ class OsuMarkdownProcessor
     private $tocSlugs;
 
     private $relativeUrlRoot;
+    private $titleFromDocument;
     private $wikiLocale;
     private $wikiPathToRoot;
     private $wikiAbsoluteRootPath;
@@ -46,7 +47,7 @@ class OsuMarkdownProcessor
         $this->relativeUrlRoot = urldecode($this->environment->getConfig('relative_url_root'));
         $generateToc = $this->environment->getConfig('generate_toc');
         $recordFirstImage = $this->environment->getConfig('record_first_image');
-        $titleFromDocument = $this->environment->getConfig('title_from_document');
+        $this->titleFromDocument = $this->environment->getConfig('title_from_document');
         $this->wikiLocale = $this->environment->getConfig('wiki_locale');
 
         $this->setWikiPaths();
@@ -70,7 +71,7 @@ class OsuMarkdownProcessor
 
             $this->trackListLevel();
 
-            if ($titleFromDocument) {
+            if ($this->titleFromDocument) {
                 $this->setTitle();
             }
 
@@ -202,7 +203,7 @@ class OsuMarkdownProcessor
         if (
             !$this->node instanceof Block\Heading ||
             !$this->event->isEntering() ||
-            $this->title === null ||
+            ($this->titleFromDocument && $this->title === null) ||
             $this->node->getLevel() > 3
         ) {
             return;
