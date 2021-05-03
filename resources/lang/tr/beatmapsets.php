@@ -16,7 +16,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Beatmap Listesi',
+        'title' => 'Beatmap Kataloğu',
         'guest_title' => 'Beatmapler',
     ],
 
@@ -38,7 +38,7 @@ return [
         'too_many' => 'Adaylık şartı zaten yerine getirildi.',
 
         'dialog' => [
-            'confirmation' => 'Bu Beatmap\'i aday göstermek istediğinize emin misiniz?',
+            'confirmation' => 'Bu beatmapi aday göstermek istediğinize emin misiniz?',
             'header' => 'Beatmap aday gösterin',
             'hybrid_warning' => 'not: sadece bir kez aday gösterebilirsiniz, bu yüzden lütfen istediğiniz tüm oyun modlarını aday gösterdiğinizden emin olun',
             'which_modes' => 'Hangi modlar için aday gösterilsin?',
@@ -131,14 +131,14 @@ return [
 
             'buttons' => [
                 'disable' => 'Uyarıyı devre dışı bırak',
-                'listing' => 'Beatmap listesi',
+                'listing' => 'Beatmap kataloğu',
                 'show' => 'Göster',
             ],
         ],
 
         'scoreboard' => [
             'achieved' => ':when oynandı',
-            'country' => 'Ülke sıralaması',
+            'country' => 'Ülke Sıralaması',
             'friend' => 'Arkadaş Sıralaması',
             'global' => 'Dünya Sıralaması',
             'supporter-link' => 'Aldığınız tüm süslü özellikleri görmek için buraya <a href=":link">tıklayın</a>!',
