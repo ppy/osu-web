@@ -32,7 +32,7 @@ return [
         ],
         'no_diff_reduction' => [
             '_' => '',
-            'link' => '',
+            'link' => '降低難度的 mod',
         ],
     ],
 

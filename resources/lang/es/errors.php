@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'missing_route' => '',
+    'missing_route' => 'URL no válida o método de solicitud incorrecto.',
     'no_restricted_access' => 'No puede realizar esta acción mientras su cuenta esté en un estado restringido.',
     'supporter_only' => 'Debes ser un osu!supporter para usar esta característica.',
     'unknown' => 'Se produjo un error desconocido.',
