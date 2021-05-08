@@ -24,7 +24,9 @@ class UserGroupEvent extends Model
     const GROUP_REMOVE = 'group_remove';
     const GROUP_RENAME = 'group_rename';
     const USER_ADD = 'user_add';
+    const USER_ADD_MODES = 'user_add_modes';
     const USER_REMOVE = 'user_remove';
+    const USER_REMOVE_MODES = 'user_remove_modes';
     const USER_SET_DEFAULT = 'user_set_default';
 
     const UPDATED_AT = null;

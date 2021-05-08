@@ -60,6 +60,68 @@ class UserGroupsControllerTest extends TestCase
         );
     }
 
+    public function testUserGroupAddWhenHasSameModes()
+    {
+        $modes = ['osu'];
+        $user = $this->createUserWithGroupModes('nat', $modes);
+        $group = app('groups')->byIdentifier('nat');
+        $userAddModesEventCount = $this->eventCount(UserGroupEvent::USER_ADD_MODES, $user, $group);
+        $url = route('interop.user-groups.store', [
+            'group_id' => $group->getKey(),
+            'modes' => $modes,
+            'timestamp' => time(),
+            'user_id' => $user->getKey(),
+        ]);
+
+        $this
+            ->withInterOpHeader($url)
+            ->post($url)
+            ->assertStatus(204);
+
+        $this->assertSame(
+            $this->eventCount(UserGroupEvent::USER_ADD_MODES, $user, $group),
+            $userAddModesEventCount,
+        );
+    }
+
+    public function testUserGroupChangeModes()
+    {
+        $modes = ['fruits', 'mania'];
+        $user = $this->createUserWithGroupModes('nat', ['osu', 'taiko']);
+        $group = app('groups')->byIdentifier('nat');
+        $userAddEventCount = $this->eventCount(UserGroupEvent::USER_ADD, $user, $group);
+        $userAddModesEventCount = $this->eventCount(UserGroupEvent::USER_ADD_MODES, $user, $group);
+        $userRemoveModesEventCount = $this->eventCount(UserGroupEvent::USER_REMOVE_MODES, $user, $group);
+        $url = route('interop.user-groups.store', [
+            'group_id' => $group->getKey(),
+            'modes' => $modes,
+            'timestamp' => time(),
+            'user_id' => $user->getKey(),
+        ]);
+
+        $res = $this
+            ->withInterOpHeader($url)
+            ->post($url)
+            ->assertStatus(204);
+
+        $actualModes = $this->getUserGroupModes($user, $group);
+
+        $this->assertCount(count($modes), $actualModes);
+        $this->assertArraySubset($modes, $actualModes);
+        $this->assertSame(
+            $this->eventCount(UserGroupEvent::USER_ADD, $user, $group),
+            $userAddEventCount,
+        );
+        $this->assertSame(
+            $this->eventCount(UserGroupEvent::USER_ADD_MODES, $user, $group),
+            $userAddModesEventCount + 1,
+        );
+        $this->assertSame(
+            $this->eventCount(UserGroupEvent::USER_REMOVE_MODES, $user, $group),
+            $userRemoveModesEventCount + 1,
+        );
+    }
+
     public function testUserGroupRemove()
     {
         $user = $this->createUserWithGroup('gmt');
@@ -140,6 +202,30 @@ class UserGroupsControllerTest extends TestCase
         );
     }
 
+    public function testUserGroupSetDefaultLeavesModesUnchanged()
+    {
+        $modes = ['osu'];
+        $user = $this->createUserWithGroupModes('nat', $modes, false);
+        $group = app('groups')->byIdentifier('nat');
+        $url = route('interop.user-groups.store-default', [
+            'group_id' => $group->getKey(),
+            'timestamp' => time(),
+            'user_id' => $user->getKey(),
+        ]);
+
+        $this
+            ->withInterOpHeader($url)
+            ->post($url)
+            ->assertStatus(204);
+
+        $user->refresh();
+
+        $actualModes = $this->getUserGroupModes($user, $group);
+
+        $this->assertCount(count($modes), $actualModes);
+        $this->assertArraySubset($modes, $actualModes);
+    }
+
     public function testUserGroupSetDefaultWhenNotMember()
     {
         $user = factory(User::class)->create();
@@ -171,6 +257,23 @@ class UserGroupsControllerTest extends TestCase
         );
     }
 
+    public function testInvalidModes()
+    {
+        $user = factory(User::class)->create();
+        $group = $this->getGroupWithModes('nat');
+        $url = route('interop.user-groups.store', [
+            'group_id' => $group->getKey(),
+            'modes' => ['osu', 'invalid_mode'],
+            'timestamp' => time(),
+            'user_id' => $user->getKey(),
+        ]);
+
+        $this
+            ->withInterOpHeader($url)
+            ->post($url)
+            ->assertStatus(422);
+    }
+
     public function testMissingUserOrGroup()
     {
         $url = route('interop.user-groups.store', [
@@ -183,6 +286,41 @@ class UserGroupsControllerTest extends TestCase
             ->assertStatus(404);
     }
 
+    public function testModesWithoutGroupModesSet()
+    {
+        $user = factory(User::class)->create();
+        $group = app('groups')->byIdentifier('gmt');
+        $url = route('interop.user-groups.store', [
+            'group_id' => $group->getKey(),
+            'modes' => ['osu'],
+            'timestamp' => time(),
+            'user_id' => $user->getKey(),
+        ]);
+
+        $this
+            ->withInterOpHeader($url)
+            ->post($url)
+            ->assertStatus(422);
+    }
+
+    private function createUserWithGroupModes(string $identifier, array $modes, bool $defaultGroup = true): User
+    {
+        $user = factory(User::class)->create();
+        $groupId = $this->getGroupWithModes($identifier)->getKey();
+
+        $user->userGroups()->create([
+            'group_id' => $groupId,
+            'playmodes' => $modes,
+            'user_pending' => false,
+        ]);
+
+        if ($defaultGroup) {
+            $user->update(['group_id' => $groupId]);
+        }
+
+        return $user;
+    }
+
     private function eventCount(string $type, User $user, Group $group): int
     {
         return UserGroupEvent
@@ -192,5 +330,26 @@ class UserGroupsControllerTest extends TestCase
                 'user_id' => $user->getKey(),
             ])
             ->count();
+    }
+
+    private function getGroupWithModes(string $identifier): Group
+    {
+        $group = app('groups')->byIdentifier($identifier);
+
+        $group->update(['has_playmodes' => true]);
+        app('groups')->resetCache();
+
+        return $group;
+    }
+
+    private function getUserGroupModes(User $user, Group $group): ?array
+    {
+        return optional(
+            $user
+                ->userGroups()
+                ->where('group_id', $group->getKey())
+                ->first()
+        )
+            ->playmodes;
     }
 }
