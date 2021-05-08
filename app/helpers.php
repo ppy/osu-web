@@ -1655,3 +1655,13 @@ function unmix(string $resource)
 
     return new HtmlString($manifest[$resource]);
 }
+
+/**
+ * Checks if two arrays contain the same values in any order. Input arrays
+ * must not contain duplicate values.
+ */
+function array_same_values(array $array1, array $array2): bool
+{
+    return count($array1) === count($array2)
+        && empty(array_diff($array1, $array2));
+}

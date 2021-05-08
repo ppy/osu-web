@@ -6,6 +6,7 @@
 namespace App\Models;
 
 use App\Exceptions\ChangeUsernameException;
+use App\Exceptions\InvariantException;
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
@@ -495,21 +496,64 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
     }
 
-    public function addToGroup(Group $group, ?self $actor = null): void
+    public function addToGroup(Group $group, ?array $modes = null, ?self $actor = null): void
     {
-        if ($this->findUserGroup($group, true) !== null) {
+        $this->addOrUpdateGroup($group, $modes, $actor, false);
+    }
+
+    public function addOrUpdateGroup(Group $group, ?array $modes = null, ?self $actor = null, bool $allowUpdate = true): void
+    {
+        $modes = array_unique($modes ?? []);
+
+        if (!$group->has_playmodes && $modes !== []) {
+            throw new InvariantException('Group does not allow modes');
+        }
+
+        $invalidModes = array_diff($modes, array_keys(Beatmap::MODES));
+
+        if ($invalidModes !== []) {
+            throw new InvariantException('Invalid modes: '.implode(', ', $invalidModes));
+        }
+
+        $userGroup = $this->findUserGroup($group, true);
+
+        if (
+            $userGroup !== null &&
+            (!$allowUpdate || array_same_values($modes, $userGroup->playmodes ?? []))
+        ) {
             return;
         }
 
-        $this->getConnection()->transaction(function () use ($actor, $group) {
-            $this
-                ->userGroups()
-                ->firstOrNew(['group_id' => $group->getKey()])
-                ->fill(['user_pending' => false])
+        $this->getConnection()->transaction(function () use ($actor, $group, $modes, $userGroup) {
+            if ($userGroup === null) {
+                UserGroupEvent::logUserAdd($actor, $this, $group, $modes);
+            } else {
+                $previousModes = $userGroup->playmodes ?? [];
+                $modesAdded = array_diff($modes, $previousModes);
+                $modesRemoved = array_diff($previousModes, $modes);
+
+                if ($modesAdded !== []) {
+                    UserGroupEvent::logUserAddModes($actor, $this, $group, $modesAdded);
+                }
+
+                if ($modesRemoved !== []) {
+                    UserGroupEvent::logUserRemoveModes($actor, $this, $group, $modesRemoved);
+                }
+            }
+
+            // Even if $userGroup is unset, we need to query for existing group
+            // because there might be a legacy entry with `user_pending` set.
+            ($userGroup ??
+                $this->userGroups()->firstOrNew(['group_id' => $group->getKey()])
+            )
+                ->fill([
+                    'playmodes' => $modes === [] ? null : $modes,
+                    'user_pending' => false,
+                ])
                 ->save();
+
             $this->unsetRelation('userGroups');
             $this->resetMemoized();
-            UserGroupEvent::logUserAdd($actor, $this, $group);
         });
     }
 
@@ -539,7 +583,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function setDefaultGroup(Group $group, ?self $actor = null): void
     {
-        $this->addToGroup($group, $actor);
+        $this->addToGroup($group, null, $actor);
 
         $this->getConnection()->transaction(function () use ($actor, $group) {
             $this->update([
