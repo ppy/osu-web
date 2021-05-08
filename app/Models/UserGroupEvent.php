@@ -40,8 +40,9 @@ class UserGroupEvent extends Model
     {
         return static::log($actor, static::GROUP_RENAME, $group, [
             'details' => [
-                'old_name' => $oldName,
+                'group_name' => null,
                 'new_name' => $newName,
+                'old_name' => $oldName,
             ],
         ]);
     }
@@ -51,6 +52,7 @@ class UserGroupEvent extends Model
         return static::log($actor, static::USER_ADD, $group, [
             'details' => [
                 'modes' => $modes,
+                'user_name' => $user->username,
             ],
             'user_id' => $user->getKey(),
         ]);
@@ -61,6 +63,7 @@ class UserGroupEvent extends Model
         return static::log($actor, static::USER_ADD_MODES, $group, [
             'details' => [
                 'modes' => $modes,
+                'user_name' => $user->username,
             ],
             'user_id' => $user->getKey(),
         ]);
@@ -69,6 +72,9 @@ class UserGroupEvent extends Model
     public static function logUserRemove(?User $actor, User $user, Group $group): self
     {
         return static::log($actor, static::USER_REMOVE, $group, [
+            'details' => [
+                'user_name' => $user->username,
+            ],
             'user_id' => $user->getKey(),
         ]);
     }
@@ -78,6 +84,7 @@ class UserGroupEvent extends Model
         return static::log($actor, static::USER_REMOVE_MODES, $group, [
             'details' => [
                 'modes' => $modes,
+                'user_name' => $user->username,
             ],
             'user_id' => $user->getKey(),
         ]);
@@ -87,6 +94,9 @@ class UserGroupEvent extends Model
     public static function logUserSetDefault(?User $actor, User $user, Group $group): self
     {
         return static::log($actor, static::USER_SET_DEFAULT, $group, [
+            'details' => [
+                'user_name' => $user->username,
+            ],
             'hidden' => true,
             'user_id' => $user->getKey(),
         ]);
@@ -94,9 +104,20 @@ class UserGroupEvent extends Model
 
     private static function log(?User $actor, string $type, Group $group, array $attributes = []): self
     {
+        $details = [
+            'actor_name' => optional($actor)->username,
+            'group_name' => $group->group_name,
+        ];
+
+        if (isset($attributes['details'])) {
+            $details = array_merge($details, $attributes['details']);
+            unset($attributes['details']);
+        }
+
         return static::create(array_merge(
             [
                 'actor_id' => optional($actor)->getKey(),
+                'details' => $details,
                 'group_id' => $group->getKey(),
                 'hidden' => !$group->isVisible(),
                 'type' => $type,
