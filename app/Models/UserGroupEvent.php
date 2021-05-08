@@ -46,9 +46,22 @@ class UserGroupEvent extends Model
         ]);
     }
 
-    public static function logUserAdd(?User $actor, User $user, Group $group): self
+    public static function logUserAdd(?User $actor, User $user, Group $group, array $modes): self
     {
         return static::log($actor, static::USER_ADD, $group, [
+            'details' => [
+                'modes' => $modes,
+            ],
+            'user_id' => $user->getKey(),
+        ]);
+    }
+
+    public static function logUserAddModes(?User $actor, User $user, Group $group, array $modes): self
+    {
+        return static::log($actor, static::USER_ADD_MODES, $group, [
+            'details' => [
+                'modes' => $modes,
+            ],
             'user_id' => $user->getKey(),
         ]);
     }
@@ -59,6 +72,17 @@ class UserGroupEvent extends Model
             'user_id' => $user->getKey(),
         ]);
     }
+
+    public static function logUserRemoveModes(?User $actor, User $user, Group $group, array $modes): self
+    {
+        return static::log($actor, static::USER_REMOVE_MODES, $group, [
+            'details' => [
+                'modes' => $modes,
+            ],
+            'user_id' => $user->getKey(),
+        ]);
+    }
+
 
     public static function logUserSetDefault(?User $actor, User $user, Group $group): self
     {
