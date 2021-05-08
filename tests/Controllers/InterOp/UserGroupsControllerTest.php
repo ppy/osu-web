@@ -17,7 +17,7 @@ class UserGroupsControllerTest extends TestCase
         $user = factory(User::class)->create();
         $group = app('groups')->byIdentifier('gmt');
         $userAddEventCount = $this->eventCount(UserGroupEvent::USER_ADD, $user, $group);
-        $url = route('interop.user-groups.store', [
+        $url = route('interop.user-group.update', [
             'group_id' => $group->getKey(),
             'timestamp' => time(),
             'user_id' => $user->getKey(),
@@ -25,7 +25,7 @@ class UserGroupsControllerTest extends TestCase
 
         $this
             ->withInterOpHeader($url)
-            ->post($url)
+            ->put($url)
             ->assertStatus(204);
 
         $user->refresh();
@@ -42,7 +42,7 @@ class UserGroupsControllerTest extends TestCase
         $user = $this->createUserWithGroup('gmt');
         $group = app('groups')->byIdentifier('gmt');
         $userAddEventCount = $this->eventCount(UserGroupEvent::USER_ADD, $user, $group);
-        $url = route('interop.user-groups.store', [
+        $url = route('interop.user-group.update', [
             'group_id' => $group->getKey(),
             'timestamp' => time(),
             'user_id' => $user->getKey(),
@@ -50,7 +50,7 @@ class UserGroupsControllerTest extends TestCase
 
         $this
             ->withInterOpHeader($url)
-            ->post($url)
+            ->put($url)
             ->assertStatus(204);
 
         $this->assertTrue($user->isGroup($group));
@@ -66,7 +66,7 @@ class UserGroupsControllerTest extends TestCase
         $user = $this->createUserWithGroupModes('nat', $modes);
         $group = app('groups')->byIdentifier('nat');
         $userAddModesEventCount = $this->eventCount(UserGroupEvent::USER_ADD_MODES, $user, $group);
-        $url = route('interop.user-groups.store', [
+        $url = route('interop.user-group.update', [
             'group_id' => $group->getKey(),
             'modes' => $modes,
             'timestamp' => time(),
@@ -75,7 +75,7 @@ class UserGroupsControllerTest extends TestCase
 
         $this
             ->withInterOpHeader($url)
-            ->post($url)
+            ->put($url)
             ->assertStatus(204);
 
         $this->assertSame(
@@ -92,7 +92,7 @@ class UserGroupsControllerTest extends TestCase
         $userAddEventCount = $this->eventCount(UserGroupEvent::USER_ADD, $user, $group);
         $userAddModesEventCount = $this->eventCount(UserGroupEvent::USER_ADD_MODES, $user, $group);
         $userRemoveModesEventCount = $this->eventCount(UserGroupEvent::USER_REMOVE_MODES, $user, $group);
-        $url = route('interop.user-groups.store', [
+        $url = route('interop.user-group.update', [
             'group_id' => $group->getKey(),
             'modes' => $modes,
             'timestamp' => time(),
@@ -101,7 +101,7 @@ class UserGroupsControllerTest extends TestCase
 
         $this
             ->withInterOpHeader($url)
-            ->post($url)
+            ->put($url)
             ->assertStatus(204);
 
         $actualModes = $this->getUserGroupModes($user, $group);
@@ -127,7 +127,7 @@ class UserGroupsControllerTest extends TestCase
         $user = $this->createUserWithGroup('gmt');
         $group = app('groups')->byIdentifier('gmt');
         $userRemoveEventCount = $this->eventCount(UserGroupEvent::USER_REMOVE, $user, $group);
-        $url = route('interop.user-groups.destroy', [
+        $url = route('interop.user-group.destroy', [
             'group_id' => $group->getKey(),
             'timestamp' => time(),
             'user_id' => $user->getKey(),
@@ -153,7 +153,7 @@ class UserGroupsControllerTest extends TestCase
         $user = factory(User::class)->create();
         $group = app('groups')->byIdentifier('gmt');
         $userRemoveEventCount = $this->eventCount(UserGroupEvent::USER_REMOVE, $user, $group);
-        $url = route('interop.user-groups.destroy', [
+        $url = route('interop.user-group.destroy', [
             'group_id' => $group->getKey(),
             'timestamp' => time(),
             'user_id' => $user->getKey(),
@@ -177,7 +177,7 @@ class UserGroupsControllerTest extends TestCase
         $group = app('groups')->byIdentifier('gmt');
         $userAddEventCount = $this->eventCount(UserGroupEvent::USER_ADD, $user, $group);
         $userSetDefaultEventCount = $this->eventCount(UserGroupEvent::USER_SET_DEFAULT, $user, $group);
-        $url = route('interop.user-groups.store-default', [
+        $url = route('interop.user-group.set-default', [
             'group_id' => $group->getKey(),
             'timestamp' => time(),
             'user_id' => $user->getKey(),
@@ -185,7 +185,7 @@ class UserGroupsControllerTest extends TestCase
 
         $this
             ->withInterOpHeader($url)
-            ->post($url)
+            ->put($url)
             ->assertStatus(204);
 
         $user->refresh();
@@ -207,7 +207,7 @@ class UserGroupsControllerTest extends TestCase
         $modes = ['osu'];
         $user = $this->createUserWithGroupModes('nat', $modes, false);
         $group = app('groups')->byIdentifier('nat');
-        $url = route('interop.user-groups.store-default', [
+        $url = route('interop.user-group.set-default', [
             'group_id' => $group->getKey(),
             'timestamp' => time(),
             'user_id' => $user->getKey(),
@@ -215,7 +215,7 @@ class UserGroupsControllerTest extends TestCase
 
         $this
             ->withInterOpHeader($url)
-            ->post($url)
+            ->put($url)
             ->assertStatus(204);
 
         $user->refresh();
@@ -232,7 +232,7 @@ class UserGroupsControllerTest extends TestCase
         $group = app('groups')->byIdentifier('gmt');
         $userAddEventCount = $this->eventCount(UserGroupEvent::USER_ADD, $user, $group);
         $userSetDefaultEventCount = $this->eventCount(UserGroupEvent::USER_SET_DEFAULT, $user, $group);
-        $url = route('interop.user-groups.store-default', [
+        $url = route('interop.user-group.set-default', [
             'group_id' => $group->getKey(),
             'timestamp' => time(),
             'user_id' => $user->getKey(),
@@ -240,7 +240,7 @@ class UserGroupsControllerTest extends TestCase
 
         $this
             ->withInterOpHeader($url)
-            ->post($url)
+            ->put($url)
             ->assertStatus(204);
 
         $user->refresh();
@@ -261,7 +261,7 @@ class UserGroupsControllerTest extends TestCase
     {
         $user = factory(User::class)->create();
         $group = $this->getGroupWithModes('nat');
-        $url = route('interop.user-groups.store', [
+        $url = route('interop.user-group.update', [
             'group_id' => $group->getKey(),
             'modes' => ['osu', 'invalid_mode'],
             'timestamp' => time(),
@@ -270,19 +270,19 @@ class UserGroupsControllerTest extends TestCase
 
         $this
             ->withInterOpHeader($url)
-            ->post($url)
+            ->put($url)
             ->assertStatus(422);
     }
 
     public function testMissingUserOrGroup()
     {
-        $url = route('interop.user-groups.store', [
+        $url = route('interop.user-group.update', [
             'timestamp' => time(),
         ]);
 
         $this
             ->withInterOpHeader($url)
-            ->post($url)
+            ->put($url)
             ->assertStatus(404);
     }
 
@@ -290,7 +290,7 @@ class UserGroupsControllerTest extends TestCase
     {
         $user = factory(User::class)->create();
         $group = app('groups')->byIdentifier('gmt');
-        $url = route('interop.user-groups.store', [
+        $url = route('interop.user-group.update', [
             'group_id' => $group->getKey(),
             'modes' => ['osu'],
             'timestamp' => time(),
@@ -299,7 +299,7 @@ class UserGroupsControllerTest extends TestCase
 
         $this
             ->withInterOpHeader($url)
-            ->post($url)
+            ->put($url)
             ->assertStatus(422);
     }
 

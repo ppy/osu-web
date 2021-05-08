@@ -10,7 +10,7 @@ use App\Models\User;
 
 class UserGroupsController extends Controller
 {
-    public function store()
+    public function update()
     {
         [$user, $group] = $this->getUserAndGroupModels();
         $modes = get_param_value(request()->input('modes'), 'string[]');
