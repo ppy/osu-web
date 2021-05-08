@@ -99,7 +99,7 @@ class UserGroupsControllerTest extends TestCase
             'user_id' => $user->getKey(),
         ]);
 
-        $res = $this
+        $this
             ->withInterOpHeader($url)
             ->post($url)
             ->assertStatus(204);
