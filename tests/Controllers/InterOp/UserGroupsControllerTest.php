@@ -78,6 +78,7 @@ class UserGroupsControllerTest extends TestCase
 
         $user->refresh();
 
+        $this->assertNotSame($user->group_id, $group->getKey());
         $this->assertFalse($user->isGroup($group));
         $this->assertSame(
             $this->eventCount(UserGroupEvent::USER_REMOVE, $user, $group),
