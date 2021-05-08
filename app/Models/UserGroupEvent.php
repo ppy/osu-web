@@ -6,7 +6,7 @@
 namespace App\Models;
 
 /**
- * @property User $actor
+ * @property User|null $actor
  * @property int|null $actor_id
  * @property \Carbon\Carbon $created_at
  * @property array|null $details
@@ -15,7 +15,7 @@ namespace App\Models;
  * @property bool $hidden
  * @property int $id
  * @property string $type
- * @property User $user
+ * @property User|null $user
  * @property int|null $user_id
  */
 class UserGroupEvent extends Model
