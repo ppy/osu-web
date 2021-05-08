@@ -13,8 +13,9 @@ class UserGroupsController extends Controller
     public function store()
     {
         [$user, $group] = $this->getUserAndGroupModels();
+        $modes = get_param_value(request()->input('modes'), 'string[]');
 
-        $user->addToGroup($group);
+        $user->addOrUpdateGroup($group, $modes);
 
         return response(null, 204);
     }
