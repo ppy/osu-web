@@ -38,7 +38,7 @@ return [
         'too_many' => 'Nomination requirement already fulfilled.',
 
         'dialog' => [
-            'confirmation' => 'Are you sure you want to nominate this Beatmap?',
+            'confirmation' => 'Are you sure you want to nominate this beatmap?',
             'header' => 'Nominate Beatmap',
             'hybrid_warning' => 'note: you may only nominate once, so please ensure that you are nominating for all game modes you intend to',
             'which_modes' => 'Nominate for which modes?',

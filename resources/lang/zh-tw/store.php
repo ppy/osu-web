@@ -76,7 +76,7 @@ return [
         'no_orders' => '沒有訂單',
         'paid_on' => '下訂單 :date',
         'resume' => '繼續結賬',
-        'shopify_expired' => '',
+        'shopify_expired' => '此訂單的結帳網址已經過期。',
 
         'item' => [
             'display_name' => [

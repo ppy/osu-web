@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'missing_route' => '',
+    'missing_route' => '网址无效或请求方法错误。',
     'no_restricted_access' => '账户处于限制模式，无法执行该操作。',
     'supporter_only' => '要使用此功能，请先成为 osu! Supporter 。',
     'unknown' => '发生了未知的错误。',

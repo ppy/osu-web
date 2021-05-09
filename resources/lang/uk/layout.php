@@ -208,7 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Налаштування',
-            'follows' => 'Списки перегляду',
+            'follows' => 'Список перегляду',
             'friends' => 'Друзі',
             'logout' => 'Вийти',
             'profile' => 'Мій профайл',
