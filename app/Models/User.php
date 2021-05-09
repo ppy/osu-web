@@ -402,7 +402,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             return Carbon::now()->addYears(10);
         }
 
-        if ($this->user_type === 1) {
+        if ($this->isRestricted()) {
             $minDays = 0;
             $expMod = 0.35;
             $linMod = 0.75;
