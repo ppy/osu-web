@@ -8,6 +8,7 @@ import { UserList } from 'user-list';
 
 interface Group {
   group_desc?: string;
+  group_id: number;
   group_name: string;
   has_playmodes: boolean;
 }
@@ -24,7 +25,12 @@ export class Main extends React.PureComponent<Props> {
         <HeaderV4 theme='friends' />
 
         <div className='osu-page osu-page--users'>
-          <UserList playmodeFilter={this.props.group.has_playmodes} title={this.props.group.group_name} users={this.props.users} />
+          <UserList
+            playmodeFilter={this.props.group.has_playmodes}
+            playmodeFilterGroupId={this.props.group.group_id}
+            title={this.props.group.group_name}
+            users={this.props.users}
+          />
         </div>
       </div>
     );

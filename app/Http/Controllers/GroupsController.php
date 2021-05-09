@@ -22,7 +22,7 @@ class GroupsController extends Controller
             ->orderBy('username', 'asc')
             ->get();
 
-        $groupJson = $group->only('group_name', 'group_desc', 'has_playmodes');
+        $groupJson = $group->only('group_id', 'group_name', 'group_desc', 'has_playmodes');
         $transformer = new UserCompactTransformer();
         $transformer->mode = $currentMode;
         $usersJson = json_collection($users, $transformer, [

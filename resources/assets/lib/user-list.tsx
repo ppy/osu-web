@@ -21,6 +21,7 @@ const sortModes: SortMode[] = ['last_visit', 'rank', 'username'];
 
 interface Props {
   playmodeFilter?: boolean;
+  playmodeFilterGroupId?: number;
   title?: string;
   users: UserJson[];
 }
@@ -271,6 +272,11 @@ export class UserList extends React.PureComponent<Props> {
     if (this.props.playmodeFilter && this.state.playMode !== 'all') {
       users = users.filter((user) => {
         if (user.groups && user.groups.length > 0) {
+          if (this.props.playmodeFilterGroupId != null) {
+            const filterGroup = user.groups.find((group) => group.id === this.props.playmodeFilterGroupId);
+            return filterGroup?.playmodes?.includes(this.state.playMode as GameMode);
+          }
+
           return user.groups.some((group) => group.playmodes && (group.playmodes as PlayModeFilter[]).includes(this.state.playMode));
         } else {
           return false;
