@@ -47,6 +47,7 @@ use Illuminate\Database\QueryException;
  * @property int $beatmapset_id
  * @property mixed|null $body_hash
  * @property float $bpm
+ * @property string $commentable_identifier
  * @property Comment $comments
  * @property \Carbon\Carbon|null $cover_updated_at
  * @property string $creator
