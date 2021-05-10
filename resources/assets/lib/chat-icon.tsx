@@ -15,9 +15,7 @@ interface Props {
 export default class ChatIcon extends React.Component<Props> {
   @computed
   private get unreadCount() {
-    const count = core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: 'channel' }).total;
-
-    return count > 0 ? count : 0;
+    return core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: 'channel' }).total;
   }
 
   render() {

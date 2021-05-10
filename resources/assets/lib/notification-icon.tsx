@@ -4,6 +4,7 @@
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   type?: string;
@@ -13,8 +14,13 @@ interface Props {
 @observer
 export default class NotificationIcon extends React.Component<Props> {
   render() {
+    const modifiers = {
+      glow: this.props.count > 0,
+      mobile: this.props.type === 'mobile',
+    };
+
     return (
-      <span className={this.mainClass()}>
+      <span className={classWithModifiers('notification-icon', modifiers)}>
         <i className='fas fa-comment-alt' />
         <span className='notification-icon__count'>
           {this.unreadCountDisplay()}
@@ -23,23 +29,11 @@ export default class NotificationIcon extends React.Component<Props> {
     );
   }
 
-  private mainClass() {
-    let ret = 'notification-icon';
-
-    if (this.props.count > 0) {
-      ret += ' notification-icon--glow';
-    }
-
-    if (this.props.type === 'mobile') {
-      ret += ' notification-icon--mobile';
-    }
-
-    return ret;
-  }
-
   private unreadCountDisplay() {
     if (core.notificationsWorker.hasData) {
-      return osu.formatNumber(this.props.count);
+      // combination of latency and delays processing marking as read can cause the display count to go negative.
+      const count = this.props.count > 0 ? this.props.count : 0;
+      return osu.formatNumber(count);
     } else {
       return '...';
     }
