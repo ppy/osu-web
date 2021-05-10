@@ -53,9 +53,9 @@ return [
         'discussion' => 'Discusión',
 
         'details' => [
-            'by_artist' => '',
+            'by_artist' => 'por :artist',
             'favourite' => 'Marcar como favorito',
-            'favourite_login' => '',
+            'favourite_login' => 'Inicie sesión para marcar este mapa como favorito',
             'logged-out' => '¡Necesitas iniciar sesión antes de descargar cualquier mapa!',
             'mapped_by' => 'mapeado por :mapper',
             'unfavourite' => 'Desmarcar como favorito',
@@ -122,7 +122,7 @@ return [
             'storyboard' => 'Este mapa contiene storyboard',
             'success-rate' => 'Tasa de éxito',
             'tags' => 'Etiquetas',
-            'video' => '',
+            'video' => 'Este mapa contiene vídeo',
         ],
 
         'nsfw_warning' => [
