@@ -58,7 +58,7 @@ return [
 
     'beatmapset' => [
         'metadata' => [
-            'nominated' => '',
+            'nominated' => '你不能修改已提名的圖譜資訊。如果你認為有誤，請聯繫 BN 或 NAT 成員。',
         ],
     ],
 

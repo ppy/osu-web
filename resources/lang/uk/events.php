@@ -21,7 +21,7 @@ return [
 
     'beatmapset_status' => [
         'approved' => 'одобрена',
-        'loved' => '',
+        'loved' => 'улюблені',
         'qualified' => 'кваліфікована',
         'ranked' => 'рейтингова',
     ],

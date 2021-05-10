@@ -12,7 +12,7 @@ return [
     'new' => 'En son',
     'old' => 'En eski',
     'rank' => 'Sıralama',
-    'top' => 'En üst',
+    'top' => 'En çok oy',
     'username' => 'Kullanıcı adı',
 
     'forum_posts' => [

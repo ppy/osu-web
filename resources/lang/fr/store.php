@@ -9,7 +9,7 @@ return [
     ],
 
     'cart' => [
-        'checkout' => 'Paiement',
+        'checkout' => 'Acheter',
         'info' => ':count_delimited produit dans le panier ($:subtotal)|:count_delimited produits dans le panier ($:subtotal)',
         'more_goodies' => 'Je souhaite regarder d\'autres goodies avant de passer commande',
         'shipping_fees' => 'frais de livraison',
@@ -17,14 +17,14 @@ return [
         'total' => 'total',
 
         'errors_no_checkout' => [
-            'line_1' => 'Uh oh, des problèmes avec votre panier empêchent le paiement!',
+            'line_1' => 'Uh oh, des problèmes avec votre panier empêchent le paiement !',
             'line_2' => 'Supprimez ou mettez à jour les articles ci-dessus pour continuer.',
         ],
 
         'empty' => [
             'text' => 'Votre panier est vide.',
             'return_link' => [
-                '_' => 'Retourner à :link pour trouver quelques goodies!',
+                '_' => 'Retourner à :link pour trouver quelques goodies !',
                 'link_text' => 'articles',
             ],
         ],
@@ -40,7 +40,7 @@ return [
         'title_compact' => 'commander',
 
         'has_pending' => [
-            '_' => 'Vous avez un paiement en attente, cliquez :link pour y accéder.',
+            '_' => 'Vous avez un paiement en attente, cliquez sur :link pour y accéder.',
             'link_text' => 'ici',
         ],
 
@@ -53,7 +53,7 @@ return [
     'discount' => 'économisez :percent%',
 
     'invoice' => [
-        'echeck_delay' => 'Si votre paiement est en eCheck, comptez jusqu\'à 10 jours supplémentaires pour le paiement via PayPal!',
+        'echeck_delay' => 'Si votre paiement est en eCheck, comptez jusqu\'à 10 jours supplémentaires pour le paiement via PayPal !',
         'title_compact' => 'facture',
 
         'status' => [
@@ -70,7 +70,7 @@ return [
 
     'order' => [
         'cancel' => 'Annuler la commande',
-        'cancel_confirm' => 'Cette commande sera annulée et le paiement ne sera pas accepté. Le fournisseur de paiement peut ne pas libérer immédiatement des fonds réservés. Êtes-vous sûr ?',
+        'cancel_confirm' => 'Cette commande sera annulée et le paiement ne sera pas accepté. Le fournisseur de paiement peut ne pas libérer immédiatement les fonds réservés. Êtes-vous sûr ?',
         'cancel_not_allowed' => 'Cette commande ne peut pas être annulée pour le moment.',
         'invoice' => 'Afficher la facture',
         'no_orders' => 'Aucune commande à voir.',
@@ -101,7 +101,7 @@ return [
             'delivered' => 'Livrée',
             'paid' => 'Payée',
             'processing' => 'En attente de confirmation',
-            'shipped' => 'En transit',
+            'shipped' => 'Expédié',
         ],
     ],
 
@@ -125,7 +125,7 @@ return [
     'supporter_tag' => [
         'gift' => 'offrir à un joueur',
         'require_login' => [
-            '_' => 'Vous devez être :link pour obtenir un tag supporter !',
+            '_' => 'Vous devez être :link pour obtenir un tag osu!supporter !',
             'link_text' => 'connecté',
         ],
     ],
