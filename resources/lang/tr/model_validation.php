@@ -12,8 +12,8 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Zaman damgası belirtildi, ancak beatmap eksik.',
-        'beatmapset_no_hype' => "Bu beatmap'e destek oyu verilemez.",
-        'hype_requires_null_beatmap' => 'Gaz Genel (tüm zorluklar) sekmesinde verilmelidir.',
+        'beatmapset_no_hype' => "Beatmap gazlanamaz.",
+        'hype_requires_null_beatmap' => 'Gaz, Genel (tüm zorluklar) sekmesinde verilmelidir.',
         'invalid_beatmap_id' => 'Yanlış zorluk belirtildi.',
         'invalid_beatmapset_id' => 'Yanlış beatmap belirtildi.',
         'locked' => 'Tartışma kilitli.',
@@ -24,12 +24,12 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Bu beatmap şu anda tartışmaya kapalı ve gazlanamaz",
-            'guest' => 'Destek oyu vermek için giriş yapmalısın.',
-            'hyped' => 'Bu beatmap\'e zaten destek oyu kullandın.',
-            'limit_exceeded' => 'Tüm destek oylarını kullandın.',
-            'not_hypeable' => 'Bu beatmap gaza getirilemez',
-            'owner' => 'Kendi beatmapine destek oy kullanamazsın.',
+            'discussion_locked' => "Bu beatmap şu anda tartışmaya kapalıdır ve gazlanamaz",
+            'guest' => 'Gazlamak giriş yapmalısın.',
+            'hyped' => 'Bu beatmapi çoktan gazladın.',
+            'limit_exceeded' => 'Bütün gazını kullandın.',
+            'not_hypeable' => 'Bu beatmap gazlanamaz',
+            'owner' => 'Kendi beatmapini gazlayamazsın.',
         ],
 
         'timestamp' => [

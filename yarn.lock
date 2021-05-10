@@ -613,6 +613,13 @@
   resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-1.0.6.tgz#a9ca4b70a18b270ccb2bc0aaafefd1d486b7ea74"
   integrity sha512-W+bw9ds02rAQaMvaLYxAbJ6cvguW/iJXNT6lTssS1ps6QdrMKttqEAMEG/b5CR8TZl3/L7/lH0ZV5nNR1LXikA==
 
+"@types/timeago@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@types/timeago/-/timeago-1.6.0.tgz#67c9c5db18e49cc6e47bbaa096dbc4721b79f295"
+  integrity sha512-dceiGGFid1+p/+QXv5GT2Kz+ihVUvNLKVdVPWRgsdr0ozot8qnlImla4nFN3kHpfAye/5YJ/d0nNGb+vZuxW/g==
+  dependencies:
+    "@types/jquery" "*"
+
 "@types/uglify-js@*":
   version "3.9.3"
   resolved "https://registry.yarnpkg.com/@types/uglify-js/-/uglify-js-3.9.3.tgz#d94ed608e295bc5424c9600e6b8565407b6b4b6b"

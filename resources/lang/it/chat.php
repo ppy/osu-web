@@ -15,7 +15,7 @@ return [
             'blocked' => 'Sei stato bloccato dal destinatario',
             'channel_moderated' => 'Questo canale è stato moderato',
             'friends_only' => 'Il destinatario accetta messaggi solamente da utenti nella sua lista amici',
-            'not_enough_plays' => 'Non hai ancora giocato',
+            'not_enough_plays' => 'Non hai giocato abbastanza',
             'not_verified' => 'La tua sessione non è stata verificata',
             'restricted' => 'Sei attualmente limitato',
             'silenced' => 'Sei attualmente silenziato',

@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => '',
+    'no_restricted_access' => 'Felfüggesztett állapot erre nem vagy alkalmas.',
+    'supporter_only' => 'Támogatónak kell lenned a funkció használatához.',
+    'unknown' => 'Ismeretlen hiba történt.',
+
     'codes' => [
         'http-401' => 'Kérlek jelentkezz be a folytatáshoz.',
         'http-403' => 'Hozzáférés megtagadva.',
@@ -26,8 +31,4 @@ return [
         'default' => 'Nem sikerült bármi eredményt kapni, kérlek próbáld meg később.',
         'operation_timeout_exception' => 'A keresés a szokásosnál jobban leterhelt, kérlek próbáld meg később.',
     ],
-
-    'supporter_only' => 'Támogatónak kell lenned a funkció használatához.',
-    'no_restricted_access' => 'Felfüggesztett állapot erre nem vagy alkalmas.',
-    'unknown' => 'Ismeretlen hiba történt.',
 ];

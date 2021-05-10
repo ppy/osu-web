@@ -20,6 +20,7 @@
     "@types/jquery.fileupload": "^9.22.1",
     "@types/js-cookie": "^2.2.6",
     "@types/react-transition-group": "^4.4.1",
+    "@types/timeago": "^1.6.0",
     "blueimp-file-upload": "^9.11.2",
     "bootstrap": "^3.3.6",
     "clipboard-polyfill": "^2.3.0",

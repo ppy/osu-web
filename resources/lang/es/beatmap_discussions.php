@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Buscar',
             'deleted' => 'Incluir discusiones eliminadas',
-            'mode' => '',
+            'mode' => 'Modo del mapa',
             'only_unresolved' => 'Mostrar sólo discusiones no resueltas',
             'types' => 'Tipos de mensaje',
             'username' => 'Nombre de usuario',
