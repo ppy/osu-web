@@ -3,9 +3,10 @@
 
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
+import NotificationIcon from 'notification-icon';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import NotificationIcon from 'notification-icon';
+
 
 interface Props {
   type?: string;
