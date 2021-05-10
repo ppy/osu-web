@@ -122,6 +122,7 @@ class OsuMarkdown
 
         $env->addEventListener(DocumentParsedEvent::class, [$this->processor, 'onDocumentParsed']);
 
+        $env->addExtension(new StyleBlock\Extension());
         $env->addExtension(new TableExtension\TableExtension());
         $env->addBlockRenderer(TableExtension\Table::class, new OsuTableRenderer());
         $env->addBlockRenderer(ListItem::class, new ListItemRenderer());
