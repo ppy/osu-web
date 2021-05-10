@@ -53,9 +53,9 @@ return [
         'discussion' => 'Discussão',
 
         'details' => [
-            'by_artist' => '',
+            'by_artist' => 'por :artist',
             'favourite' => 'Favoritar este beatmap',
-            'favourite_login' => '',
+            'favourite_login' => 'Inicie a sessão favoritar este beatmap',
             'logged-out' => 'Você precisa conectar-se antes de baixar qualquer beatmap!',
             'mapped_by' => 'mapeado por :mapper',
             'unfavourite' => 'Remover dos favoritos',
@@ -122,7 +122,7 @@ return [
             'storyboard' => 'Este beatmap contém storyboard',
             'success-rate' => 'Taxa de Sucesso',
             'tags' => 'Tags',
-            'video' => '',
+            'video' => 'Esse beatmap contém vídeo',
         ],
 
         'nsfw_warning' => [

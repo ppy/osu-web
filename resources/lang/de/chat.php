@@ -18,7 +18,7 @@ return [
             'not_enough_plays' => 'Du hast das Spiel nicht genug gespielt',
             'not_verified' => 'Deine Sitzung wurde noch nicht verifiziert',
             'restricted' => 'Du bist zurzeit eingeschränkt',
-            'silenced' => '',
+            'silenced' => 'Du bist derzeit stumm',
             'target_restricted' => 'Der Empfänger ist zurzeit eingeschränkt',
         ],
     ],

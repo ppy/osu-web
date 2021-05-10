@@ -5,7 +5,7 @@
 
 return [
     'header' => [
-        'small' => 'Rivalisez avec d\'autres moyens que juste cliquer sur des cercles',
+        'small' => 'Rivalisez avec d\'autres moyens que juste cliquer sur des cercles.',
         'large' => 'Concours Communautaires',
     ],
 
@@ -30,10 +30,10 @@ return [
     ],
     'entry' => [
         '_' => 'inscription',
-        'login_required' => 'Merci de vous connecter pour participer.',
+        'login_required' => 'Veuillez vous connecter pour participer au concours.',
         'silenced_or_restricted' => 'Vous ne pouvez pas entrer dans un concours quand vous êtes réduit au silence ou restreint.',
         'preparation' => 'Nous sommes en train de préparer le concours. Merci de patienter !',
-        'drop_here' => '"Droppez" votre entrée ici',
+        'drop_here' => 'Déposez votre entrée ici',
         'download' => 'Télécharger .osz',
         'wrong_type' => [
             'art' => 'Seuls les fichiers .jpg et .png sont acceptés pour ce concours.',
@@ -47,8 +47,8 @@ return [
     ],
     'vote' => [
         'list' => 'votes',
-        'count' => ':count vote | :count: votes',
-        'points' => ':count point|:count points',
+        'count' => ':count_delimited vote|:count_delimited votes',
+        'points' => ':count_delimited point|:count_delimited points',
     ],
     'dates' => [
         'ended' => 'Terminé le :date',
