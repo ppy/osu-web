@@ -127,7 +127,6 @@ export default class Main extends React.Component<Props> {
 
   private processContent = () => {
     let content = this.props.post.content;
-    const firstImageUrl = this.props.post.first_image;
 
     if (content == null) {
       content = '';
@@ -135,6 +134,8 @@ export default class Main extends React.Component<Props> {
 
     const contentHTML = document.createElement('div');
     contentHTML.innerHTML = content;
+
+    const firstImageUrl = this.props.post.first_image;
 
     if (firstImageUrl != null) {
       const firstImage = contentHTML.querySelector(`img[src="${firstImageUrl}"]`);
