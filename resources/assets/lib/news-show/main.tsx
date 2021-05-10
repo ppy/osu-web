@@ -143,7 +143,7 @@ export default class Main extends React.Component<Props> {
       if (firstImage != null) {
         const firstImageParent = firstImage.parentElement;
 
-        if (firstImageParent?.tagName === 'P' && firstImageParent.children.length === 1) {
+        if (firstImageParent?.children.length === 1) {
           firstImageParent.remove();
         } else {
           firstImage.remove();
