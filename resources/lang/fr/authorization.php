@@ -27,7 +27,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Seul le propriétaire de la beatmap ou un membre du groupe BN/QAT peut poster des notes sur cette beatmap.',
+            'mapper_note_wrong_user' => 'Seul le propriétaire de la beatmap ou le nominateur/membre du groupe NAT peut publier des notes sur le mapper.',
         ],
 
         'vote' => [
@@ -52,7 +52,7 @@ return [
         ],
 
         'store' => [
-            'beatmapset_locked' => 'La discussion de cette beatmap a été bloquée.',
+            'beatmapset_locked' => 'Cette beatmap est verrouillée pour la discussion.',
         ],
     ],
 
@@ -68,7 +68,7 @@ return [
         'moderated' => 'Ce canal est actuellement modéré.',
         'no_access' => 'Vous n’avez pas accès à ce canal.',
         'restricted' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
-        'silenced' => 'Vous ne pouvez pas envoyez de message quand vous êtes réduit au silence, restreint ou banni.',
+        'silenced' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
     ],
 
     'comment' => [
@@ -101,7 +101,7 @@ return [
 
             'edit' => [
                 'deleted' => 'Impossible de modifier un post supprimé.',
-                'locked' => 'Ce post ne peut pas être édité.',
+                'locked' => 'Ce post est verrouillé à l\'édition.',
                 'no_forum_access' => 'L\'accès au forum demandé est requis.',
                 'not_owner' => 'Seul l\'auteur de ce post peut l\'éditer.',
                 'topic_locked' => 'Impossible d\'éditer un post sur un sujet verrouillé.',
@@ -169,9 +169,9 @@ return [
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'La page utilisateur est verrouillée.',
+                'locked' => 'La page de l\'utilisateur est verrouillée.',
                 'not_owner' => 'Vous ne pouvez éditer que votre propre page, pas celle d\'autres utilisateurs.',
-                'require_supporter_tag' => 'le tag supporter est requis.',
+                'require_supporter_tag' => 'le tag osu!supporter est requis.',
             ],
         ],
     ],
