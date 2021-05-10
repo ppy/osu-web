@@ -7,7 +7,6 @@ import NotificationIcon from 'notification-icon';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
-
 interface Props {
   type?: string;
 }

@@ -7,8 +7,8 @@ import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
-  type?: string;
   count: number;
+  type?: string;
 }
 
 @observer
