@@ -138,7 +138,7 @@ export default class Main extends React.Component<Props> {
     const firstImageUrl = this.props.post.first_image;
 
     if (firstImageUrl != null) {
-      const firstImage = contentHTML.querySelector(`img[src="${firstImageUrl}"]`);
+      const firstImage = contentHTML.querySelector(`img[src="${CSS.escape(firstImageUrl)}"]`);
 
       if (firstImage != null) {
         const firstImageParent = firstImage.parentElement;
