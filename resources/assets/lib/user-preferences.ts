@@ -7,39 +7,6 @@ import { route } from 'laroute';
 import { observable } from 'mobx';
 
 export default class UserPreferences {
-
-  get audioAutoplay() {
-    return this.current.audio_autoplay;
-  }
-
-  set audioAutoplay(value: boolean) {
-    if (this.audioAutoplay === value) return;
-
-    this.current.audio_autoplay = value;
-    this.updateOptions({ audio_autoplay: value });
-  }
-
-  get audioMuted() {
-    return this.current.audio_muted;
-  }
-
-  set audioMuted(value: boolean) {
-    if (this.audioMuted === value) return;
-
-    this.current.audio_muted = value;
-    this.updateOptions({ audio_muted: value });
-  }
-
-  get audioVolume() {
-    return this.current.audio_volume ?? 0.45;
-  }
-
-  set audioVolume(value: number) {
-    if (this.audioVolume === value) return;
-
-    this.current.audio_volume = value;
-    this.updateOptions({ audio_volume: value });
-  }
   @observable private current: UserPreferencesJson;
   private updatingOptions = false;
   private user?: CurrentUser;
@@ -47,6 +14,28 @@ export default class UserPreferences {
   constructor() {
     this.current = Object.assign({}, defaultUserPreferencesJson, this.fromStorage());
   }
+
+  getOpt = <T extends keyof UserPreferencesJson>(key: T) => this.current[key];
+
+  setOpt = <T extends keyof UserPreferencesJson>(key: T, value: UserPreferencesJson[T]) => {
+    if (this.current[key] === value) return Promise.resolve(null);
+
+    this.current[key] = value;
+    localStorage.userPreferences = JSON.stringify(this.current);
+
+    if (this.user == null) return Promise.resolve(null);
+
+    this.updatingOptions = true;
+
+    return $.ajax(route('account.options'), {
+      data: { user_profile_customization: { [key]: value } },
+      dataType: 'JSON',
+      method: 'PUT',
+    }).done((user: CurrentUser) => {
+      this.updatingOptions = false;
+      $.publish('user:update', user);
+    });
+  };
 
   setUser(user?: CurrentUser) {
     this.user = user;
@@ -62,22 +51,5 @@ export default class UserPreferences {
     } catch {
       return {};
     }
-  }
-
-  private updateOptions(newOptions: Partial<UserPreferencesJson>) {
-    localStorage.userPreferences = JSON.stringify(Object.assign(this.fromStorage(), newOptions));
-
-    if (this.user == null) return;
-
-    this.updatingOptions = true;
-
-    void $.ajax(route('account.options'), {
-      data: { user_profile_customization: newOptions },
-      dataType: 'JSON',
-      method: 'PUT',
-    }).done((user: CurrentUser) => {
-      this.updatingOptions = false;
-      $.publish('user:update', user);
-    });
   }
 }

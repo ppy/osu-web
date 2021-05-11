@@ -251,8 +251,8 @@ export default class Main {
       mainPlayerPlaceholder.replaceWith(this.mainPlayer);
 
       // This requires currentUser and should only be run once so it's done in here.
-      autorun(() => this.audio.muted = this.userPreferences.audioMuted);
-      autorun(() => this.audio.volume = this.userPreferences.audioVolume);
+      autorun(() => this.audio.muted = this.userPreferences.getOpt('audio_muted'));
+      autorun(() => this.audio.volume = this.userPreferences.getOpt('audio_volume'));
 
       // Only check after initial volume is set otherwise it'll be replaced with the volume at current point
       // due to the check being async.
@@ -272,7 +272,7 @@ export default class Main {
   private onEnded = () => {
     this.stop();
 
-    if (this.playerNext != null && this.userPreferences.audioAutoplay) {
+    if (this.playerNext != null && this.userPreferences.getOpt('audio_autoplay')) {
       this.load(this.playerNext);
     }
   };
@@ -317,7 +317,7 @@ export default class Main {
 
   private onVolumeChangeEnd = () => {
     this.currentSlider = undefined;
-    this.userPreferences.audioVolume = this.audio.volume;
+    void this.userPreferences.setOpt('audio_volume', this.audio.volume);
   };
 
   private onVolumeChangeMove = (slider: Slider) => {
@@ -491,7 +491,7 @@ export default class Main {
 
   private syncState = () => {
     this.updatePlayers((player) => {
-      player.dataset.audioAutoplay = this.userPreferences.audioAutoplay ? '1' : '0';
+      player.dataset.audioAutoplay = this.userPreferences.getOpt('audio_autoplay') ? '1' : '0';
       player.dataset.audioHasDuration = Number.isFinite(this.audio.duration) ? '1' : '0';
       player.dataset.audioState = this.state;
       player.dataset.audioTimeFormat = this.timeFormat;
@@ -511,12 +511,12 @@ export default class Main {
   };
 
   private toggleAutoplay = () => {
-    this.userPreferences.audioAutoplay = !this.userPreferences.audioAutoplay;
+    void this.userPreferences.setOpt('audio_autoplay', !this.userPreferences.getOpt('audio_autoplay'));
     this.syncState();
   };
 
   private toggleMute = () => {
-    this.userPreferences.audioMuted = !this.audio.muted;
+    void this.userPreferences.setOpt('audio_muted', !this.userPreferences.getOpt('audio_muted'));
   };
 
   private togglePlay = () => {

@@ -22,7 +22,7 @@ export default interface CurrentUser extends UserJsonExtended {
 export interface UserPreferencesJson {
   audio_autoplay: boolean;
   audio_muted: boolean;
-  audio_volume?: number;
+  audio_volume: number;
   beatmapset_download: 'all' | 'no_video' | 'direct';
   beatmapset_show_nsfw: boolean;
   beatmapset_title_show_original: boolean;
@@ -37,7 +37,7 @@ export interface UserPreferencesJson {
 export const defaultUserPreferencesJson: UserPreferencesJson = {
   audio_autoplay: false,
   audio_muted: false,
-  audio_volume: undefined,
+  audio_volume: 0.45,
   beatmapset_download: 'all',
   beatmapset_show_nsfw: false,
   beatmapset_title_show_original: false,
