@@ -44,17 +44,17 @@ const linkMapping = {
 
 const textMapping = {
   comments_count: (val: string, user: UserJson) => {
-    const count = osu.transChoice('users.show.comments_count.count', val)
-    const url = route('comments.index', { user_id: user.id })
+    const count = osu.transChoice('users.show.comments_count.count', val);
+    const url = route('comments.index', { user_id: user.id });
 
     return {
       html: osu.trans('users.show.comments_count._'),
       link: rowValue(count, { href: url }),
-    }
+    };
   },
   join_date: (val: string) => {
-    const joinDate = moment(val)
-    const joinDateTitle = joinDate.toISOString()
+    const joinDate = moment(val);
+    const joinDateTitle = joinDate.toISOString();
 
     if (joinDate.isBefore(moment.utc([2008]))) {
       return {
@@ -68,7 +68,7 @@ const textMapping = {
       html: osu.trans('users.show.joined_at', {
         date: rowValue(
           joinDate.format(osu.trans('common.datetime.year_month.moment')),
-          { className: 'js-tooltip-time', title: joinDateTitle }
+          { className: 'js-tooltip-time', title: joinDateTitle },
         ),
       }),
     };
@@ -98,9 +98,9 @@ const textMapping = {
     return {
       html: osu.trans('users.show.post_count._'),
       link: rowValue(count, { href: url }),
-    }
+    };
   },
-}
+};
 
 function rowValue(value: any, attributes: Record<string, any> = {}, modifiers: string[] = []) {
   let tagName: string;
@@ -132,10 +132,10 @@ export default class Links extends React.PureComponent<Props> {
     return (
       <div className={bn}>
         {rows.map((row, index) => (
-          <div key={index} className={`${bn}__row ${bn}__row--${index}`}>{row}</div>
+          <div key={index} className={`profile-links__row profile-links__row--${index}`}>{row}</div>
         ))}
         {this.props.user.id === currentUser.id && (
-          <div className={`${bn}__edit`}>
+          <div className='profile-links__edit'>
             <a className='profile-page-toggle' href={route('account.edit')} title={osu.trans('users.show.page.button')}>
               <span className='fas fa-pencil-alt' />
             </a>
@@ -152,16 +152,16 @@ export default class Links extends React.PureComponent<Props> {
     const { url, icon, text, title } = linkMapping[key](value);
 
     return (
-      <div key={key} className={`${bn}__item`}>
-        <span className={`${bn}__icon`} title={title ?? osu.trans(`users.show.info.${key}`)}>
+      <div key={key} className='profile-links__item'>
+        <span className='profile-links__icon' title={title ?? osu.trans(`users.show.info.${key}`)}>
           <span className={`fa-fw ${icon}`} />
         </span>
         {url != null ? (
-          <a className={`${bn}__value`} href={url}>
+          <a className='profile-links__value' href={url}>
             {text ?? value}
           </a>
         ) : (
-          <span className={`${bn}__value`}>
+          <span className='profile-links__value'>
             {text ?? value}
           </span>
         )}
