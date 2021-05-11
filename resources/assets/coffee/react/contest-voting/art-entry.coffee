@@ -78,6 +78,15 @@ export class ArtEntry extends React.Component
           theme: if showVotes && place > 2 then 'art-smaller' else 'art'
           buttonId: buttonId
 
+      if showNames
+        div className: "#{bn}__result",
+          a
+            href: @props.entry.preview
+            rel: 'nofollow noreferrer'
+            target: '_blank'
+
+            @props.entry.title
+
       if showVotes
         div className: "#{bn}__result",
           div className: "#{bn}__result-ranking",
@@ -99,11 +108,3 @@ export class ArtEntry extends React.Component
             if not isNaN(votePercentage)
               span className: "#{bn}__result-votes #{bn}__result-votes--percentage",
                 " (#{osu.formatNumber(votePercentage)}%)"
-      else if showNames
-        div className: "#{bn}__result",
-          a
-            href: @props.entry.preview
-            rel: 'nofollow noreferrer'
-            target: '_blank'
-
-            @props.entry.title
