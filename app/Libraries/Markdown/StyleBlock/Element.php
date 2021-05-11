@@ -7,7 +7,6 @@ namespace App\Libraries\Markdown\StyleBlock;
 
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Cursor;
-use League\CommonMark\Util\ConfigurationInterface;
 
 class Element extends AbstractBlock
 {
