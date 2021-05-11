@@ -4,8 +4,8 @@ paragraph
 
 }}}
 
-{{{ Class Name 2
+{{{ Class Name
 
   }}}
 
-still inside class-name-2
+still inside class-name

@@ -1,4 +1,4 @@
-{{{ This is ignored
+{{{ Class Name
 
 paragraph
 

@@ -1,6 +1,6 @@
 {{{ Class Name
 
-{{{ Nested
+{{{ Class Name
 
 }}}
 

@@ -4,7 +4,7 @@
 
 }}}
 
-{{{class name 2
+{{{class name
 
 
 }}}
