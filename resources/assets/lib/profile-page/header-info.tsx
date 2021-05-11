@@ -89,7 +89,7 @@ export default class HeaderInfo extends React.PureComponent<Props> {
   };
 
   private previousUsernames() {
-    if (this.props.user.previous_usernames.length === 0) return null;
+    if (this.props.user.previous_usernames == null || this.props.user.previous_usernames.length === 0) return null;
 
     const previousUsernames = this.props.user.previous_usernames.join(', ');
 
