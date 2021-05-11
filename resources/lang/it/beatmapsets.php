@@ -8,7 +8,7 @@ return [
         'disabled' => 'Questa beatmap non è al momento disponibile per il download.',
         'parts-removed' => 'Porzioni di questa beatmap sono state rimosse su richiesta del creatore o di un titolare di copyright di terze parti.',
         'more-info' => 'Controlla qui per maggiori informazioni.',
-        'rule_violation' => 'Alcuni elementi contenuti in questa mappa sono stati rimossi dopo essere stati giudicati come non adatti per l\'uso in osu!.',
+        'rule_violation' => 'Alcuni elementi contenuti in questa mappa sono stati rimossi dopo che sono stati giudicati non idonei per l\'uso in osu!.',
     ],
 
     'download' => [
@@ -32,7 +32,7 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => 'Un beatmapset ibrido richiede che sia selezionato almeno una modalità di gioco in cui essere nominata.',
+        'hybrid_requires_modes' => 'Un beatmapset ibrido richiede che venga selezionata almeno una modalità di gioco per poterla nominare.',
         'incorrect_mode' => 'Non hai il permesso di nominare per la modalità: :mode',
         'full_bn_required' => 'Devi essere un nominatore completo per eseguire questa nomina qualificante.',
         'too_many' => 'Requisito di nomina già soddisfatto.',

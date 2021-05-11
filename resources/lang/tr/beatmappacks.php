@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Benzer bir tema etrafında toplanmış, önceden paketlenmiş beatmap paketleri.',
-        'nav_title' => 'liste',
+        'nav_title' => 'katalog',
         'title' => 'Beatmap Paketleri',
 
         'blurb' => [
