@@ -61,7 +61,7 @@ const textMapping: Record<string, (val: string | string[] | number, user: UserJs
   comments_count: (val: number, user: UserJson) => {
     const count = osu.transChoice('users.show.comments_count.count', val);
     const url = route('comments.index', { user_id: user.id });
-    const mappings = { ':link': <a className={classWithModifiers('profile-links__value', ['link'])} href={url}>{count}</a> };
+    const mappings = { ':link': <a key='link' className={classWithModifiers('profile-links__value', ['link'])} href={url}>{count}</a> };
 
     return (
       <div className='profile-links__item'>
@@ -84,6 +84,7 @@ const textMapping: Record<string, (val: string | string[] | number, user: UserJs
     const mappings = {
       ':date': (
         <span
+          key='date'
           className='profile-links__value js-tooltip-time'
           title={joinDateTitle}
         >
@@ -103,7 +104,7 @@ const textMapping: Record<string, (val: string | string[] | number, user: UserJs
       return <div className='profile-links__item'>{osu.trans('users.show.lastvisit_online')}</div>;
     }
 
-    const mappings = { ':date': <TimeWithTooltip dateTime={val} /> };
+    const mappings = { ':date': <TimeWithTooltip key='date' dateTime={val} /> };
 
     return (
       <div className='profile-links__item'>
@@ -113,7 +114,7 @@ const textMapping: Record<string, (val: string | string[] | number, user: UserJs
   },
   playstyle: (val: string[]) => {
     const playsWith = val.map((s) => osu.trans(`common.device.${s}`)).join(', ');
-    const mappings = { ':devices': <span className='profile-links__value'>{playsWith}</span> };
+    const mappings = { ':devices': <span key='devices' className='profile-links__value'>{playsWith}</span> };
 
     return (
       <div className='profile-links__item'>
@@ -125,7 +126,7 @@ const textMapping: Record<string, (val: string | string[] | number, user: UserJs
     const count = osu.transChoice('users.show.post_count.count', val);
     const url = route('users.posts', { user: user.id });
 
-    const mappings = { ':link': <a className={classWithModifiers('profile-links__value', ['link'])} href={url}>{count}</a> };
+    const mappings = { ':link': <a key='link' className={classWithModifiers('profile-links__value', ['link'])} href={url}>{count}</a> };
 
     return (
       <div className='profile-links__item'>

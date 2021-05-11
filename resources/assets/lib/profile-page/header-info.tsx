@@ -71,18 +71,17 @@ export default class HeaderInfo extends React.PureComponent<Props> {
     if (this.props.user.title == null) return null;
 
     const props = {
+      children: this.props.user.title,
       className: 'profile-info__title',
-      href: this.props.user.title_url,
-      style: { color: this.props.user.profile_colour },
+      style: { color: this.props.user.profile_colour ?? undefined },
     };
 
     return this.props.user.title_url != null ? (
-      <a {...props}>{this.props.user.title}</a>
+      <a href={this.props.user.title_url} {...props} />
     ) : (
-      <span {...props}>{this.props.user.title}</span>
+      <span {...props} />
     );
   }
-
 
   private doNothing = () => {
     //
