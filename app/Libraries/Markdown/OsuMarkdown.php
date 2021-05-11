@@ -35,6 +35,7 @@ class OsuMarkdown
         'parse_yaml_header' => true,
         'record_first_image' => false,
         'relative_url_root' => null,
+        'style_block_allowed_classes' => null,
         'title_from_document' => false,
     ];
 
@@ -67,6 +68,7 @@ class OsuMarkdown
             'block_modifiers' => ['wiki'],
             'generate_toc' => true,
             'parse_attribute_id' => true,
+            'style_block_allowed_classes' => ['infobox'],
             'title_from_document' => true,
         ],
     ];
@@ -122,7 +124,10 @@ class OsuMarkdown
 
         $env->addEventListener(DocumentParsedEvent::class, [$this->processor, 'onDocumentParsed']);
 
-        $env->addExtension(new StyleBlock\Extension());
+        if ($this->config['style_block_allowed_classes'] !== null) {
+            $env->addExtension(new StyleBlock\Extension());
+        }
+
         $env->addExtension(new TableExtension\TableExtension());
         $env->addBlockRenderer(TableExtension\Table::class, new OsuTableRenderer());
         $env->addBlockRenderer(ListItem::class, new ListItemRenderer());

@@ -10,13 +10,26 @@ use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Renderer\BlockRendererInterface;
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
+use League\CommonMark\Util\ConfigurationAwareInterface;
+use League\CommonMark\Util\ConfigurationInterface;
 
-class Renderer implements BlockRendererInterface
+class Renderer implements BlockRendererInterface, ConfigurationAwareInterface
 {
+    /**
+     * @var string[]
+     */
+    private $allowedClasses;
+
     public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, bool $inTightList = false)
     {
         if (!$block instanceof Element) {
             throw new InvalidArgumentException('Incompatible block type: '.get_class($block));
+        }
+
+        $renderedChildren = $htmlRenderer->renderBlocks($block->children());
+
+        if (!in_array($block->getClass(), $this->allowedClasses, true)) {
+            return $renderedChildren;
         }
 
         $separator = $htmlRenderer->getOption('inner_separator', "\n");
@@ -24,7 +37,12 @@ class Renderer implements BlockRendererInterface
         return new HtmlElement(
             'div',
             $block->getData('attributes', []),
-            $separator.$htmlRenderer->renderBlocks($block->children()).$separator,
+            $separator.$renderedChildren.$separator,
         );
+    }
+
+    public function setConfiguration(ConfigurationInterface $configuration): void
+    {
+        $this->allowedClasses = $configuration->get('style_block_allowed_classes', []);
     }
 }
