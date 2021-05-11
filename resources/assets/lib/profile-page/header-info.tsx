@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import FlagCountry from 'flag-country';
-import GameMode from 'interfaces/game-mode';;
+import GameMode from 'interfaces/game-mode';
 import UserJsonExtended from 'interfaces/user-json-extended';
 import { route } from 'laroute';
 import * as _ from 'lodash';
@@ -16,46 +16,44 @@ interface Props {
   user: UserJsonExtended;
 }
 
-const bn = 'profile-info';
-
 export default class HeaderInfo extends React.PureComponent<Props> {
   render() {
     const avatar = <UserAvatar modifiers={['full']} user={this.props.user} />;
     return (
-      <div className={bn}>
-        <div className={`${bn}_bg`} style={{ backgroundImage: osu.urlPresence(this.props.coverUrl) }} />
+      <div className='profile-info'>
+        <div className='profile-info_bg' style={{ backgroundImage: osu.urlPresence(this.props.coverUrl) }} />
         {this.props.user.id === currentUser.id ? (
-          <a className={`${bn}__avatar`} href={`${route('account.edit')}$avatar`} title={osu.trans('users.show.change_avatar')}>{avatar}</a>
+          <a className='profile-info__avatar' href={`${route('account.edit')}#avatar`} title={osu.trans('users.show.change_avatar')}>{avatar}</a>
         ) : (
-          <div className={`${bn}__avatar`}>{avatar}</div>
+          <div className='profile-info__avatar'>{avatar}</div>
         )}
-        <div className={`${bn}__details`}>
-          <h1 className={`${bn}__name`}>
+        <div className='profile-info__details'>
+          <h1 className='profile-info__name'>
             <span className='u-ellipsis-pre-overflow'>{this.props.user.username}</span>
-            <div className={`${bn}__previous-usernames`}>{this.previousUsernames()}</div>
+            <div className='profile-info__previous-usernames'>{this.previousUsernames()}</div>
           </h1>
           {this.renderTitle()}
-          <div className={`${bn}__icon-group`}>
-            <div className={`${bn}__icons`}>
+          <div className='profile-info__icon-group'>
+            <div className='profile-info__icons'>
               {this.props.user.is_supporter && (
-                <span className={`${bn}__icon ${bn}__icon--supporter`} title={osu.trans('users.show.is_supporter')}>
+                <span className='profile-info__icon profile-info__icon--supporter' title={osu.trans('users.show.is_supporter')}>
                   {
                     _(this.props.user.support_level).times((i) => <span key={i} className='fas fa-heart'/>)
                   }
                 </span>
               )}
-              <UserGroupBadges groups={this.props.user.groups} modifiers={['profile-page']} wrapper={`${bn}__icon`} />
+              <UserGroupBadges groups={this.props.user.groups} modifiers={['profile-page']} wrapper='profile-info__icon' />
             </div>
-            <div className={`${bn}__icons ${bn}__icons--flag`}>
+            <div className='profile-info__icons profile-info__icons--flag'>
               {this.props.user.country?.code != null && (
                 <a
-                  className={`${bn}__flag ${bn}__flag--country`}
+                  className='profile-info__flag profile-info__flag--country'
                   href={route('rankings', { country: this.props.user.country.code, mode: this.props.currentMode, type: 'performance' })}
                 >
-                  <span className={`${bn}__flag-flag`}>
+                  <span className='profile-info__flag-flag'>
                     <FlagCountry country={this.props.user.country} />
                   </span>
-                  <span className={`${bn}__flag-text`}>{this.props.user.country.name}</span>
+                  <span className='profile-info__flag-text'>{this.props.user.country.name}</span>
                 </a>
               )}
             </div>
@@ -73,7 +71,7 @@ export default class HeaderInfo extends React.PureComponent<Props> {
     if (this.props.user.title == null) return null;
 
     const props = {
-      className: `${bn}__title`,
+      className: 'profile-info__title',
       href: this.props.user.title_url,
       style: { color: this.props.user.profile_colour },
     };
