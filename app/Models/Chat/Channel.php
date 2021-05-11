@@ -7,7 +7,6 @@ namespace App\Models\Chat;
 
 use App\Exceptions\API;
 use App\Jobs\Notifications\ChannelMessage;
-use App\Models\ChatFilter;
 use App\Models\Match\Match;
 use App\Models\User;
 use App\Traits\Memoizes;

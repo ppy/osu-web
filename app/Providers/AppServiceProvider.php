@@ -67,7 +67,7 @@ class AppServiceProvider extends ServiceProvider
             'App\Services\Registrar'
         );
 
-        $this->app->singleton('chat-filters', function() {
+        $this->app->singleton('chat-filters', function () {
             return new ChatFilters();
         });
 
