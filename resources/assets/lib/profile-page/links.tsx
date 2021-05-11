@@ -12,6 +12,9 @@ import { StringWithComponent } from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { classWithModifiers } from 'utils/css';
 
+const itemNames = ['join_date', 'last_visit', 'playstyle', 'post_count', 'comments_count', 'location', 'interests', 'occupation', 'twitter', 'discord', 'website'] as const;
+type Name = (typeof itemNames)[number];
+
 interface LinkProps {
   icon: string;
   text: string | React.ReactNode;
@@ -175,9 +178,9 @@ export default class Links extends React.PureComponent<Props> {
     );
   }
 
-  renderLink = (key: string) => {
+  renderLink = (key: Name) => {
     const value = this.props.user[key];
-    if (value == null) return null;
+    if (typeof value !== 'string') return null;
 
     const props = linkMapping[key](value);
     props.title ??= osu.trans(`users.show.info.${key}`);
@@ -185,8 +188,8 @@ export default class Links extends React.PureComponent<Props> {
     return <Link key={key} {...props} />;
   };
 
-  renderText = (key: string) => {
-    const value = this.props.user[key]
+  renderText = (key: Name) => {
+    const value = this.props.user[key];
     if (value == null) return null;
 
     return textMapping[key](value, this.props.user);
