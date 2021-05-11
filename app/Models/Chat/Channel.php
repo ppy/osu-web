@@ -276,7 +276,7 @@ class Channel extends Model
         }
 
         if ($this->isPublic()) {
-            $chatFilters = ChatFilter::all();
+            $chatFilters = app('chat-filters')->all();
 
             foreach ($chatFilters as $filter) {
                 $content = str_replace($filter->match, $filter->replacement, $content);
