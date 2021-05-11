@@ -5,25 +5,25 @@
 
 return [
     'admin' => [
-        '_' => 'admin',
+        '_' => 'administrateur',
     ],
     'admin_forum' => [
-        '_' => 'admin',
+        '_' => 'administrateur',
     ],
     'admin_store' => [
-        '_' => 'admin',
+        '_' => 'administrateur',
     ],
     'error' => [
         'error' => [
             '400' => 'requête invalide',
             '404' => 'manquant',
-            '403' => 'interdite',
+            '403' => 'interdit',
             '401' => 'non autorisé',
             '401-verification' => 'vérification du compte',
             '405' => 'manquant',
             '422' => 'requête invalide',
             '429' => 'trop de requêtes',
-            '500' => 'quelque chose a cassé',
+            '500' => 'quelque chose est cassé',
             '503' => 'maintenance',
         ],
     ],
@@ -42,7 +42,7 @@ return [
             '_' => 'artistes en vedette',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'messages de discussion beatmap',
+            '_' => 'posts de discussion sur la beatmap',
         ],
         'beatmap_discussions_controller' => [
             '_' => 'discussions sur la beatmap',
@@ -51,7 +51,7 @@ return [
             '_' => 'collections de beatmaps',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => 'votes de la discussion beatmap',
+            '_' => 'votes de discussion de la beatmap',
         ],
         'beatmapset_events_controller' => [
             '_' => 'historique de la beatmap',
@@ -65,10 +65,10 @@ return [
             'show' => 'informations de la beatmap',
         ],
         'changelog_controller' => [
-            '_' => 'notes de MàJ',
+            '_' => 'changelog',
         ],
         'chat_controller' => [
-            '_' => 'chat',
+            '_' => 'tchat',
         ],
         'comments_controller' => [
             '_' => 'commentaires',
@@ -96,13 +96,13 @@ return [
             '_' => 'information',
         ],
         'livestreams_controller' => [
-            '_' => 'diffusions en direct',
+            '_' => 'streams en direct',
         ],
         'matches_controller' => [
-            '_' => 'matches',
+            '_' => 'matchs',
         ],
         'news_controller' => [
-            '_' => 'actualités',
+            '_' => 'news',
         ],
         'notifications_controller' => [
             '_' => 'historique des notifications',

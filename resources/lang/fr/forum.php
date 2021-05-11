@@ -5,16 +5,16 @@
 
 return [
     'pinned_topics' => 'Sujets épinglés',
-    'slogan' => "it's dangerous to play alone.",
+    'slogan' => "c'est dangereux de jouer seul.",
     'subforums' => 'Sous-forums',
-    'title' => 'osu! forum',
+    'title' => 'Forums',
 
     'covers' => [
         'edit' => 'Modifier la couverture',
 
         'create' => [
-            '_' => 'Définir la bannière',
-            'button' => 'Uploader une image',
+            '_' => 'Définir l\'image de couverture',
+            'button' => 'Télécharger la couverture',
             'info' => 'La bannière devrait avoir les résolutions :dimensions. Vous pouvez aussi faire glisser l\'image ici pour l\'uploader',
         ],
 
@@ -32,7 +32,7 @@ return [
         ],
 
         'topics' => [
-            'empty' => 'Pas de sujets!',
+            'empty' => 'Pas de sujets !',
         ],
     ],
 
@@ -45,14 +45,14 @@ return [
     'post' => [
         'confirm_destroy' => 'Voulez-vous vraiment supprimer ce post ?',
         'confirm_restore' => 'Voulez-vous vraiment restaurer ce post ?',
-        'edited' => 'Modifié par :user le :when, édité :count fois en tout.',
-        'posted_at' => 'posté :when',
+        'edited' => 'Dernière édition par :user :when, modifié :count_delimited fois au total.|Dernière édition par :user :when, modifié :count_delimited fois au total.',
+        'posted_at' => 'posté le :when',
         'posted_by' => 'posté par :username',
 
         'actions' => [
             'destroy' => 'Supprimer le post',
             'edit' => 'Modifier le post',
-            'report' => 'Signaler la publication',
+            'report' => 'Signaler le post',
             'restore' => 'Restaurer le post',
         ],
 
@@ -105,10 +105,10 @@ return [
             'submit' => 'Poster',
 
             'necropost' => [
-                'default' => 'Cette discussion a été inactive depuis un certain temps. Postez ici seulement si vous avez une raison particulière de le faire.',
+                'default' => 'Ce sujet est inactif depuis un certain temps. Ne postez ici que si vous avez une raison spécifique de le faire.',
 
                 'new_topic' => [
-                    '_' => "Cette discussion a été inactive pendant un certain temps. Si vous n’avez pas de raison particulière de poster ici, s’il vous plaît :create au lieu de cela.",
+                    '_' => "Ce sujet est inactif depuis un certain temps. Si vous n'avez pas de raison spécifique de poster ici, merci de :create à la place.",
                     'create' => 'créer une nouvelle discussion',
                 ],
             ],
@@ -123,8 +123,8 @@ return [
             'enter' => 'cliquez pour entrer un numéro de post spécifique',
             'first' => 'aller au premier post',
             'last' => 'aller au dernier post',
-            'next' => 'passer de 10 posts suivants',
-            'previous' => 'revenir 10 posts en arrière',
+            'next' => 'sauter les 10 prochains messages',
+            'previous' => 'retournez 10 postes en arrière',
         ],
 
         'post_edit' => [
@@ -135,7 +135,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'abonnements',
+            'title_compact' => 'liste d\'abonnement des sujets du forum',
 
             'box' => [
                 'total' => 'Sujets suivis',
@@ -150,7 +150,7 @@ return [
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Se désabonner du sujet?',
+                'confirmation' => 'Se désabonner du sujet ?',
                 'title' => 'Désabonner',
             ],
         ],
@@ -160,7 +160,7 @@ return [
         '_' => 'Sujets',
 
         'actions' => [
-            'login_reply' => 'Connectez-vous pour Répondre',
+            'login_reply' => 'Connectez-vous pour répondre',
             'reply' => 'Répondre',
             'reply_with_quote' => 'Citer un post et répondre',
             'search' => 'Rechercher',
@@ -182,9 +182,9 @@ return [
                 'length' => 'Durée du sondage',
                 'length_days_suffix' => 'jours',
                 'length_info' => 'Laissez vide pour un sondage sans fin',
-                'max_options' => 'Réponses par utlisateur',
-                'max_options_info' => 'C\'est le nombre de réponses qu\'un utilisateur peut choisir.',
-                'options' => 'Réponses',
+                'max_options' => 'Réponses par utilisateur',
+                'max_options_info' => 'Il s\'agit du nombre d\'options que chaque utilisateur peut sélectionner lors du vote.',
+                'options' => 'Options',
                 'options_info' => 'Entrez chaque réponse sur une nouvelle ligne. Vous pouvez entrer jusqu\'à 10 réponses.',
                 'title' => 'Question',
                 'vote_change' => 'Autoriser le changement de vote.',
@@ -255,7 +255,7 @@ return [
         ],
 
         'moderate_move' => [
-            'title' => 'Se déplacer dans un autre forum',
+            'title' => 'Déplacer vers un autre forum',
         ],
 
         'moderate_pin' => [
@@ -276,11 +276,11 @@ return [
         ],
 
         'show' => [
-            'deleted-posts' => 'Posts Supprimés',
-            'total_posts' => 'Total des Posts',
+            'deleted-posts' => 'Posts supprimés',
+            'total_posts' => 'Total des posts',
 
             'feature_vote' => [
-                'current' => 'Priorité : +:count',
+                'current' => 'Priorité actuelle : +:count',
                 'do' => 'Promouvoir cette requête',
 
                 'info' => [
@@ -290,7 +290,7 @@ return [
                 ],
 
                 'user' => [
-                    'count' => '{0} pas de vote|{1} :count vote|[2,*] :count votes',
+                    'count' => '{0} pas de votes|{1} :count_delimited vote|[2,*] :count_delimited votes',
                     'current' => 'Il vous reste :votes.',
                     'not_enough' => "Vous n'avez plus de votes disponibles",
                 ],
@@ -309,10 +309,10 @@ return [
                 ],
 
                 'detail' => [
-                    'end_time' => 'Le sondage termine à :time',
-                    'ended' => 'Sondage terminé :time',
+                    'end_time' => 'Le sondage se termine le :time',
+                    'ended' => 'Sondage terminé le :time',
                     'results_hidden' => 'Les résultats seront affichés après la fin du sondage.',
-                    'total' => 'Total de votes: :count',
+                    'total' => 'Total de votes : :count',
                 ],
             ],
         ],
