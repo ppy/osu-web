@@ -21,7 +21,7 @@ return [
     ],
 
     'forum_topics' => [
-        'feature_votes' => 'Priorité Star',
+        'feature_votes' => 'Priorité d\'étoiles',
         'new' => 'Dernière réponse',
     ],
 

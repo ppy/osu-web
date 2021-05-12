@@ -19,7 +19,7 @@
     "chaseconey/laravel-datadog-helper": ">=1.2.0",
     "doctrine/dbal": "^2.0",
     "egulias/email-validator": "*",
-    "elasticsearch/elasticsearch": "^6.7.0",
+    "elasticsearch/elasticsearch": "^7.12.0",
     "ezyang/htmlpurifier": "*",
     "firebase/php-jwt": "^5.2",
     "graham-campbell/github": "*",

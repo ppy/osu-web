@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Sök',
             'deleted' => 'Inkludera raderade diskussioner',
-            'mode' => '',
+            'mode' => 'Beatmapläge',
             'only_unresolved' => 'Visa bara olösta diskussioner',
             'types' => 'Typ av meddelande',
             'username' => 'Användarnamn',

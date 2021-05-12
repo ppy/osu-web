@@ -4,11 +4,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => 'URL yang dituju tidak valid, atau terdapat suatu masalah dalam proses pengambilan data dari server.',
+    'no_restricted_access' => 'Anda tidak dapat melakukan tindakan ini ketika akun Anda sedang di-restrict.',
+    'supporter_only' => 'Anda harus menjadi seorang osu!supporter untuk dapat menggunakan fitur ini.',
+    'unknown' => 'Terdapat masalah yang tidak diketahui.',
+
     'codes' => [
         'http-401' => 'Mohon masuk untuk melanjutkan.',
         'http-403' => 'Akses ditolak.',
         'http-404' => 'Tidak ditemukan.',
-        'http-429' => 'Terlalu banyak percobaan. Coba lagi nanti.',
+        'http-429' => 'Terlalu banyak percobaan. Mohon coba lagi nanti.',
     ],
     'account' => [
         'profile-order' => [
@@ -16,18 +21,14 @@ return [
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => 'Mode tidak valid.',
-        'standard_converts_only' => 'Tidak ada skor yang tersedia untuk mode yang diminta pada beatmap dengan tingkat kesulitan ini.',
+        'invalid_mode' => 'Mode permainan yang dikehendaki tidak valid.',
+        'standard_converts_only' => 'Tidak ada skor yang tercatat pada mode permainan yang dikehendaki di tingkat kesulitan ini.',
     ],
     'checkout' => [
         'generic' => 'Terjadi kesalahan ketika akan melangsungkan proses checkout.',
     ],
     'search' => [
-        'default' => 'Hasil tidak ditemukan, coba lagi nanti.',
-        'operation_timeout_exception' => 'Aktivitas pencarian saat ini lebih sibuk dari biasanya, coba lagi nanti.',
+        'default' => 'Hasil pencarian tidak dapat ditampilkan pada saat ini. Mohon coba lagi nanti.',
+        'operation_timeout_exception' => 'Aktivitas pencarian saat ini lebih sibuk dari biasanya. Mohon coba lagi nanti.',
     ],
-
-    'supporter_only' => 'Anda harus menjadi seorang osu!supporter untuk dapat menggunakan fitur ini.',
-    'no_restricted_access' => 'Anda tidak dapat melakukan tindakan ini ketika akun Anda sedang di-restrict.',
-    'unknown' => 'Terjadi kesalahan yang tidak diketahui.',
 ];

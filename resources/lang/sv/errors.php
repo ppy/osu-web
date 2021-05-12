@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => '',
+    'no_restricted_access' => 'Du kan inte utföra denna återgärd medans ditt konto är begränsad.',
+    'supporter_only' => 'Du måste vara en supporter för att använda denna funktion.',
+    'unknown' => 'Okänt fel uppstod.',
+
     'codes' => [
         'http-401' => 'Var vänlig logga in för att fortsätta.',
         'http-403' => 'Åtkomst nekad.',
@@ -26,8 +31,4 @@ return [
         'default' => 'Kunde inte få några resultat, försök igen senare.',
         'operation_timeout_exception' => 'Sökning är för närvarande mer aktiv än vanligt, försök igen senare.',
     ],
-
-    'supporter_only' => 'Du måste vara en supporter för att använda denna funktion.',
-    'no_restricted_access' => 'Du kan inte utföra denna återgärd medans ditt konto är begränsad.',
-    'unknown' => 'Okänt fel uppstod.',
 ];

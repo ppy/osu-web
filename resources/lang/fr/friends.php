@@ -5,11 +5,11 @@
 
 return [
     'title_compact' => 'amis',
-    'too_many' => 'Limite d\'amis atteinte.',
+    'too_many' => 'Limite d\'amis atteinte',
 
     'buttons' => [
         'add' => 'ajouter aux amis',
-        'disabled' => 'amis',
+        'disabled' => 'abonnés',
         'remove' => 'supprimer des amis',
     ],
 ];

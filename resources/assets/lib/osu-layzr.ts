@@ -8,19 +8,31 @@ export default class OsuLayzr {
   private observer: MutationObserver;
 
   constructor() {
-    this.observer = new MutationObserver(this.reinit);
+    this.observer = new MutationObserver(this.observePage);
+    this.observer.observe(document, { childList: true, subtree: true });
 
-    $(document).on('turbolinks:load', this.init);
+    // Layzr depends on document.body which is only available after document is ready.
+    $(() => {
+      this.layzr ??= Layzr();
+      this.reinit();
+    });
   }
 
-  init = () => {
-    this.layzr ??= Layzr();
+  private observePage = (mutations: MutationRecord[]) => {
+    if (this.layzr == null) return;
 
-    this.reinit();
-    this.observer.observe(document.body, { childList: true, subtree: true });
+    for (const mutation of mutations) {
+      for (const node of mutation.addedNodes) {
+        if (node instanceof HTMLElement && (node.dataset.normal != null || node.querySelector('[data-normal]') != null)) {
+          this.reinit();
+
+          return;
+        }
+      }
+    }
   };
 
-  reinit = () => {
+  private reinit() {
     this.layzr?.update().check().handlers(true);
-  };
+  }
 }
