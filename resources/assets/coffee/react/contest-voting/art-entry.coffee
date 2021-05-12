@@ -65,7 +65,7 @@ export class ArtEntry extends React.Component
             voteCount: @props.selected.length,
             contest: @props.contest,
             selected: @props.selected,
-            theme: if showVotes && place > 2 then 'art-smaller' else 'art'
+            theme: 'art'
             buttonId: buttonId
 
       if showNames
@@ -82,7 +82,7 @@ export class ArtEntry extends React.Component
           div className: "#{bn}__result-ranking",
             div className: "#{bn}__result-place",
               if top3
-                i className: "fas fa-fw fa-trophy #{bn}__trophy--#{place}"
+                i className: "fas fa-fw fa-trophy #{bn}__trophy"
               span {}, "##{place}"
             if @props.entry.results.user_id
               a
@@ -91,7 +91,7 @@ export class ArtEntry extends React.Component
                 href: laroute.route('users.show', user: @props.entry.results.user_id),
                   @props.entry.results.username
             else
-              span className: "#{bn}__entrant', @props.entry.results.actual_name"
+              span className: "#{bn}__entrant", @props.entry.results.actual_name
           div className: "#{bn}__result-pane",
             span className: "#{bn}__result-votes",
               osu.transChoice 'contest.vote.count', @props.entry.results.votes
