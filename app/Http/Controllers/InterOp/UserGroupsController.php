@@ -13,7 +13,7 @@ class UserGroupsController extends Controller
     public function update()
     {
         [$user, $group] = $this->getUserAndGroupModels();
-        $modes = get_param_value(request()->input('modes'), 'string[]');
+        $modes = get_arr(request()->input('playmodes'), 'get_string');
 
         $user->addOrUpdateGroup($group, $modes);
 
