@@ -13,8 +13,6 @@ export class ArtEntry extends React.Component
     bn = 'contest-art-entry'
     isSelected = _.includes @props.selected, @props.entry.id
 
-    return null if @props.hideIfNotVoted && !isSelected
-
     votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
     showVotes = @props.contest.show_votes
     showNames = @props.contest.show_names

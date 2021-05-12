@@ -25,7 +25,6 @@ export class ArtEntryList extends BaseEntryList
         key: index,
         displayIndex: index,
         entry: entry,
-        hideIfNotVoted: @state.showVotedOnly
         waitingForResponse: @state.waitingForResponse,
         options: @state.options,
         contest: @state.contest,
