@@ -3,9 +3,9 @@
 
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
-import { route } from 'laroute';
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Sort } from 'sort';
 import { ViewMode, viewModes } from 'user-card';
@@ -54,7 +54,7 @@ export class UserList extends React.PureComponent<Props> {
     return this.getAllowedQueryStringValue(
       filters,
       url.searchParams.get('filter'),
-      currentUser?.user_preferences?.user_list_filter,
+      core.userPreferences.getOpt('user_list_filter'),
     );
   }
 
@@ -99,7 +99,7 @@ export class UserList extends React.PureComponent<Props> {
     return this.getAllowedQueryStringValue(
       sortModes,
       url.searchParams.get('sort'),
-      currentUser?.user_preferences?.user_list_sort,
+      core.userPreferences.getOpt('user_list_sort'),
     );
   }
 
@@ -109,7 +109,7 @@ export class UserList extends React.PureComponent<Props> {
     return this.getAllowedQueryStringValue(
       viewModes,
       url.searchParams.get('view'),
-      currentUser?.user_preferences?.user_list_view,
+      core.userPreferences.getOpt('user_list_view'),
     );
   }
 
@@ -118,7 +118,9 @@ export class UserList extends React.PureComponent<Props> {
     const url = osu.updateQueryString(null, { sort: value });
 
     Turbolinks.controller.advanceHistory(url);
-    this.setState({ sortMode: value }, this.handleSaveOptions);
+    this.setState({ sortMode: value }, () => {
+      core.userPreferences.setOpt('user_list_sort', this.state.sortMode);
+    });
   };
 
   onViewSelected = (event: React.SyntheticEvent) => {
@@ -126,7 +128,9 @@ export class UserList extends React.PureComponent<Props> {
     const url = osu.updateQueryString(null, { view: value });
 
     Turbolinks.controller.advanceHistory(url);
-    this.setState({ viewMode: value }, this.handleSaveOptions);
+    this.setState({ viewMode: value }, () => {
+      core.userPreferences.setOpt('user_list_view', this.state.viewMode);
+    });
   };
 
   optionSelected = (event: React.SyntheticEvent) => {
@@ -135,7 +139,9 @@ export class UserList extends React.PureComponent<Props> {
     const url = osu.updateQueryString(null, { filter: key });
 
     Turbolinks.controller.advanceHistory(url);
-    this.setState({ filter: key }, this.handleSaveOptions);
+    this.setState({ filter: key }, () => {
+      core.userPreferences.setOpt('user_list_filter', this.state.filter);
+    });
   };
 
   playmodeSelected = (event: React.SyntheticEvent) => {
@@ -287,22 +293,6 @@ export class UserList extends React.PureComponent<Props> {
         return users;
     }
   }
-
-  private handleSaveOptions = () => {
-    if (currentUser.id == null) {
-      return;
-    }
-
-    $.ajax(route('account.options'), {
-      data: { user_profile_customization: {
-        user_list_filter: this.state.filter,
-        user_list_sort: this.state.sortMode,
-        user_list_view: this.state.viewMode,
-      } },
-      dataType: 'JSON',
-      method: 'PUT',
-    }).done((user: UserJson) => $.publish('user:update', user));
-  };
 
   private renderPlaymodeFilter() {
     const playmodeButtons = playModes.map((mode) => (

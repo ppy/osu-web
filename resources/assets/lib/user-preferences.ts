@@ -5,6 +5,7 @@ import CurrentUser from 'interfaces/current-user';
 import { defaultUserPreferencesJson, UserPreferencesJson } from 'interfaces/current-user';
 import { route } from 'laroute';
 import { observable } from 'mobx';
+import { onErrorWithCallback } from 'utils/ajax';
 
 export default class UserPreferences {
   @observable private current: UserPreferencesJson;
@@ -18,12 +19,12 @@ export default class UserPreferences {
   getOpt = <T extends keyof UserPreferencesJson>(key: T) => this.current[key];
 
   setOpt = <T extends keyof UserPreferencesJson>(key: T, value: UserPreferencesJson[T]) => {
-    if (this.current[key] === value) return Promise.resolve(null);
+    if (this.current[key] === value) return;
 
     this.current[key] = value;
     localStorage.userPreferences = JSON.stringify(this.current);
 
-    if (this.user == null) return Promise.resolve(null);
+    if (this.user == null) return;
 
     this.updatingOptions = true;
 
@@ -32,8 +33,10 @@ export default class UserPreferences {
       dataType: 'JSON',
       method: 'PUT',
     }).done((user: CurrentUser) => {
-      this.updatingOptions = false;
       $.publish('user:update', user);
+    }).fail(onErrorWithCallback())
+    .always(() => {
+      this.updatingOptions = false;
     });
   };
 

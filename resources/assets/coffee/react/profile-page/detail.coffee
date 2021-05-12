@@ -8,6 +8,7 @@ import { Pp } from './pp'
 import { Rank } from './rank'
 import { RankChart } from './rank-chart'
 import { RankCount } from './rank-count'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 el = React.createElement
@@ -66,13 +67,5 @@ export class Detail extends React.PureComponent
 
 
   toggleExtend: =>
-    if currentUser.id?
-      $.ajax laroute.route('account.options'),
-        method: 'put',
-        dataType: 'json',
-        data:
-          user_profile_customization:
-            ranking_expanded:
-              !@state.expanded
-
+    core.userPreferences.setOpt('ranking_expanded', !@state.expanded)
     @setState expanded: !@state.expanded

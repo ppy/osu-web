@@ -217,11 +217,14 @@ class @Forum
   toggleDeleted: =>
     return if !@showDeleted()? # you don't see this option unless you're a moderator, anyway
 
-    osuCore
-      .userPreferences
-      .setOpt('forum_posts_show_deleted', !@showDeleted())
-      .done =>
-        Turbolinks.visit @postUrlN(@currentPostPosition)
+    xhr = osuCore.userPreferences.setOpt('forum_posts_show_deleted', !@showDeleted())
+
+    callback = => Turbolinks.visit @postUrlN(@currentPostPosition)
+
+    if xhr?
+      xhr.done callback
+    else
+      callback()
 
 
   initialScrollTo: =>

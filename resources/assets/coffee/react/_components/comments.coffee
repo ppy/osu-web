@@ -70,14 +70,13 @@ export class Comments extends React.PureComponent
 
 
   renderComment: (comment, pinned = false) =>
-    return null if comment.isDeleted && !uiState.comments.isShowDeleted
+    return null if comment.isDeleted && !core.userPreferences.getOpt('comments_show_deleted')
 
     el Comment,
       key: comment.id
       comment: comment
       depth: 0
       modifiers: @props.modifiers
-      showDeleted: uiState.comments.isShowDeleted
       expandReplies: if pinned then false else null
 
 
@@ -91,7 +90,7 @@ export class Comments extends React.PureComponent
       className: 'sort__item sort__item--button'
       onClick: @toggleShowDeleted
       span className: 'sort__item-icon',
-        span className: if uiState.comments.isShowDeleted then 'fas fa-check-square' else 'far fa-square'
+        span className: if core.userPreferences.getOpt('comments_show_deleted') then 'fas fa-check-square' else 'far fa-square'
       osu.trans('common.buttons.show_deleted')
 
 
@@ -119,7 +118,7 @@ export class Comments extends React.PureComponent
 
 
   toggleShowDeleted: ->
-    $.publish 'comments:toggle-show-deleted'
+    core.userPreferences.setOpt('comments_show_deleted', !core.userPreferences.getOpt('comments_show_deleted'))
 
 
   toggleFollow: ->

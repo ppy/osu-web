@@ -33,7 +33,6 @@ export class CommentsManager extends React.PureComponent
     $.subscribe "comments:added.#{@id}", @handleCommentsAdded
     $.subscribe "comments:new.#{@id}", @handleCommentsNew
     $.subscribe "comments:sort.#{@id}", @updateSort
-    $.subscribe "comments:toggle-show-deleted.#{@id}", @toggleShowDeleted
     $.subscribe "comments:toggle-follow.#{@id}", @toggleFollow
     $.subscribe "comment:updated.#{@id}", @handleCommentUpdated
     $(document).on "turbolinks:before-cache.#{@id}", @saveState
@@ -80,10 +79,6 @@ export class CommentsManager extends React.PureComponent
       osu.storeJson @jsonStorageId(), uiState.exportCommentsUIState()
 
 
-  toggleShowDeleted: =>
-    uiState.toggleShowDeletedComments()
-
-
   toggleFollow: =>
     params = follow:
       notifiable_type: @props.commentableType
@@ -126,9 +121,7 @@ export class CommentsManager extends React.PureComponent
       data: params
       dataType: 'json'
     .done (data) =>
-      $.ajax laroute.route('account.options'),
-        method: 'PUT'
-        data: user_profile_customization: comments_sort: sort
+      core.userPreferences.setOpt('comments_sort', sort)
 
       runInAction () ->
         core.dataStore.commentStore.flushStore()
