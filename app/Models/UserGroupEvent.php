@@ -38,7 +38,7 @@ class UserGroupEvent extends Model
 
     public static function logGroupRename(?User $actor, Group $group, string $oldName, string $newName): self
     {
-        return static::log($actor, static::GROUP_RENAME, $group, [
+        return static::log($actor, static::GROUP_RENAME, null, $group, [
             'details' => [
                 'group_name' => null,
                 'new_name' => $newName,
@@ -49,64 +49,43 @@ class UserGroupEvent extends Model
 
     public static function logUserAdd(?User $actor, User $user, Group $group, array $modes): self
     {
-        return static::log($actor, static::USER_ADD, $group, [
-            'details' => [
-                'modes' => $modes,
-                'user_name' => $user->username,
-            ],
-            'user_id' => $user->getKey(),
+        return static::log($actor, static::USER_ADD, $user, $group, [
+            'details' => compact('modes'),
         ]);
     }
 
     public static function logUserAddModes(?User $actor, User $user, Group $group, array $modes): self
     {
-        return static::log($actor, static::USER_ADD_MODES, $group, [
-            'details' => [
-                'modes' => $modes,
-                'user_name' => $user->username,
-            ],
-            'user_id' => $user->getKey(),
+        return static::log($actor, static::USER_ADD_MODES, $user, $group, [
+            'details' => compact('modes'),
         ]);
     }
 
     public static function logUserRemove(?User $actor, User $user, Group $group): self
     {
-        return static::log($actor, static::USER_REMOVE, $group, [
-            'details' => [
-                'user_name' => $user->username,
-            ],
-            'user_id' => $user->getKey(),
-        ]);
+        return static::log($actor, static::USER_REMOVE, $user, $group);
     }
 
     public static function logUserRemoveModes(?User $actor, User $user, Group $group, array $modes): self
     {
-        return static::log($actor, static::USER_REMOVE_MODES, $group, [
-            'details' => [
-                'modes' => $modes,
-                'user_name' => $user->username,
-            ],
-            'user_id' => $user->getKey(),
+        return static::log($actor, static::USER_REMOVE_MODES, $user, $group, [
+            'details' => compact('modes'),
         ]);
     }
-
 
     public static function logUserSetDefault(?User $actor, User $user, Group $group): self
     {
-        return static::log($actor, static::USER_SET_DEFAULT, $group, [
-            'details' => [
-                'user_name' => $user->username,
-            ],
+        return static::log($actor, static::USER_SET_DEFAULT, $user, $group, [
             'hidden' => true,
-            'user_id' => $user->getKey(),
         ]);
     }
 
-    private static function log(?User $actor, string $type, Group $group, array $attributes = []): self
+    private static function log(?User $actor, string $type, ?User $user, Group $group, array $attributes = []): self
     {
         $details = [
             'actor_name' => optional($actor)->username,
             'group_name' => $group->group_name,
+            'user_name' => optional($user)->username,
         ];
 
         if (isset($attributes['details'])) {
@@ -121,6 +100,7 @@ class UserGroupEvent extends Model
                 'group_id' => $group->getKey(),
                 'hidden' => !$group->isVisible(),
                 'type' => $type,
+                'user_id' => optional($user)->getKey(),
             ],
             $attributes,
         ));
