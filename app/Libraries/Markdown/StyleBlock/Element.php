@@ -15,9 +15,15 @@ class Element extends AbstractBlock
      */
     protected $class;
 
+    /**
+     * @var static[]
+     */
+    protected $containedStyleBlocks;
+
     public function __construct(string $class)
     {
         $this->class = $class;
+        $this->containedStyleBlocks = [];
     }
 
     public function getClass(): string
@@ -27,6 +33,10 @@ class Element extends AbstractBlock
 
     public function canContain(AbstractBlock $block): bool
     {
+        if ($block instanceof static) {
+            $this->containedStyleBlocks[] = $block;
+        }
+
         return true;
     }
 
@@ -49,17 +59,9 @@ class Element extends AbstractBlock
 
     private function containsOpenStyleBlock(): bool
     {
-        $walker = $this->walker();
-        $walker->next();
-
-        while (($event = $walker->next()) !== null) {
-            if (!$event->isEntering()) {
-                continue;
-            }
-
-            $node = $event->getNode();
-
-            if ($node instanceof static && $node->isOpen()) {
+        // Assumes that these StyleBlocks are never removed from descendant tree
+        foreach ($this->containedStyleBlocks as $styleBlock) {
+            if ($styleBlock->isOpen()) {
                 return true;
             }
         }
