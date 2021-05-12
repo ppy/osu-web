@@ -18,12 +18,11 @@ class Element extends AbstractBlock
     /**
      * @var static[]
      */
-    protected $containedStyleBlocks;
+    protected $containedStyleBlocks = [];
 
     public function __construct(string $class)
     {
         $this->class = $class;
-        $this->containedStyleBlocks = [];
     }
 
     public function getClass(): string
