@@ -15,7 +15,12 @@ export class ArtEntryList extends BaseEntryList
     if @state.contest.show_votes
       totalVotes = _.sumBy @state.contest.entries, (i) -> i.results.votes
 
-    entries = @state.contest.entries.map (entry, index) =>
+    entries = @state.contest.entries
+    if @state.showVotedOnly
+      selected = new Set(@state.selected)
+      entries = entries.filter (entry) -> selected.has(entry.id)
+
+    entries = entries.map (entry, index) =>
       el ArtEntry,
         key: index,
         displayIndex: index,
