@@ -16,8 +16,9 @@ export class ArtEntryList extends BaseEntryList
       totalVotes = _.sumBy @state.contest.entries, (i) -> i.results.votes
 
     entries = @state.contest.entries
+    selected = new Set(@state.selected)
+
     if @state.showVotedOnly
-      selected = new Set(@state.selected)
       entries = entries.filter (entry) -> selected.has(entry.id)
 
     entries = entries.map (entry, index) =>
@@ -28,6 +29,7 @@ export class ArtEntryList extends BaseEntryList
         waitingForResponse: @state.waitingForResponse,
         options: @state.options,
         contest: @state.contest,
+        isSelected: selected.has(entry.id)
         selected: @state.selected,
         totalVotes: if @state.contest.show_votes then totalVotes
 
