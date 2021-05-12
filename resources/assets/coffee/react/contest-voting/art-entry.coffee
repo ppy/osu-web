@@ -11,9 +11,7 @@ bn = 'contest-art-entry'
 
 export class ArtEntry extends React.Component
   render: ->
-    isSelected = _.includes @props.selected, @props.entry.id
-
-    return null if @props.hideIfNotVoted && !isSelected
+    isSelected = @props.isSelected
 
     votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
     showVotes = @props.contest.show_votes
