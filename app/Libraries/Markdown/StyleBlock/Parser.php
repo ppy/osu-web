@@ -13,9 +13,11 @@ class Parser implements BlockParserInterface
 {
     public function parse(ContextInterface $context, Cursor $cursor): bool
     {
-        if ($cursor->match('#^\{{3}[ \t]*#') === null) {
+        if (!starts_with($cursor->getRemainder(), '{{{')) {
             return false;
         }
+
+        $cursor->advanceBy(3);
 
         $class = mb_strtolower(str_replace(' ', '-', trim($cursor->getRemainder())));
 
