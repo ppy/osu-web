@@ -44,6 +44,6 @@ class Renderer implements BlockRendererInterface, ConfigurationAwareInterface
 
     public function setConfiguration(ConfigurationInterface $configuration): void
     {
-        $this->allowedClasses = new Set($configuration->get('style_block_allowed_classes'));
+        $this->allowedClasses = new Set($configuration->get('style_block_allowed_classes') ?? []);
     }
 }
