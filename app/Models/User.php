@@ -514,7 +514,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         if (
             $activeUserGroup !== null &&
-            array_same_set($modes, $activeUserGroup->playmodes ?? [])
+            (new Set($modes))->xor(new Set($activeUserGroup->playmodes ?? []))->isEmpty()
         ) {
             return;
         }

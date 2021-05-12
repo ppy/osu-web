@@ -1655,12 +1655,3 @@ function unmix(string $resource)
 
     return new HtmlString($manifest[$resource]);
 }
-
-/**
- * Checks if two arrays are the same set of values.
- */
-function array_same_set(array $array1, array $array2): bool
-{
-    return array_diff($array1, $array2) === []
-        && array_diff($array2, $array1) === [];
-}
