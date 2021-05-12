@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'missing_route' => '',
+    'missing_route' => 'Некоректна URL-адреса або неправильний метод запиту.',
     'no_restricted_access' => 'Ви не може виконати цю дію, доки права доступу облікового запису обмежені.',
     'supporter_only' => 'Ви повинні мати osu!прихильник для використання цієї можливості.',
     'unknown' => 'Сталася невідома помилка.',

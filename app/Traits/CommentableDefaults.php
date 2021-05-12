@@ -14,6 +14,11 @@ trait CommentableDefaults
         return $this->morphMany(Comment::class, 'commentable');
     }
 
+    public function getCommentableIdentifierAttribute()
+    {
+        return "{$this->getMorphClass()}:{$this->getKey()}";
+    }
+
     // title for display in comments listing
     abstract public function commentableTitle();
 }

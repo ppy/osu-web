@@ -206,8 +206,7 @@ class OsuMarkdownProcessor
         if (
             !$this->node instanceof Block\Heading ||
             !$this->event->isEntering() ||
-            $this->title === null ||
-            $this->node->getLevel() > 3
+            ($level = $this->node->getLevel()) === 1
         ) {
             return;
         }
@@ -223,10 +222,9 @@ class OsuMarkdownProcessor
             $this->tocSlugs[$slug] = 0;
         }
 
-        $this->toc[$slug] = [
-            'title' => $title,
-            'level' => $this->node->getLevel(),
-        ];
+        if ($level <= 3) {
+            $this->toc[$slug] = compact('title', 'level');
+        }
 
         $this->node->data['attributes']['id'] = $slug;
     }
