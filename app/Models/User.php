@@ -498,11 +498,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function addToGroup(Group $group, ?array $modes = null, ?self $actor = null): void
     {
-        $this->addOrUpdateGroup($group, $modes, $actor, false);
-    }
-
-    public function addOrUpdateGroup(Group $group, ?array $modes = null, ?self $actor = null, bool $allowUpdate = true): void
-    {
         $modes = array_unique($modes ?? []);
 
         if (!$group->has_playmodes && $modes !== []) {
@@ -519,7 +514,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         if (
             $activeUserGroup !== null &&
-            (!$allowUpdate || array_same_set($modes, $activeUserGroup->playmodes ?? []))
+            array_same_set($modes, $activeUserGroup->playmodes ?? [])
         ) {
             return;
         }
@@ -581,7 +576,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function setDefaultGroup(Group $group, ?self $actor = null): void
     {
-        $this->addToGroup($group, null, $actor);
+        if (!$this->isGroup($group)) {
+            $this->addToGroup($group, null, $actor);
+        }
 
         $this->getConnection()->transaction(function () use ($actor, $group) {
             $this->update([
