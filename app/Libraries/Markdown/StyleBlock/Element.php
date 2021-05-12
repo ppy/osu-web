@@ -47,7 +47,7 @@ class Element extends AbstractBlock
     public function matchesNextLine(Cursor $cursor): bool
     {
         // Make sure the most nested open StyleBlock tries to handle this first
-        if ($cursor->getLine() === '}}}' && !$this->containsOpenStyleBlock()) {
+        if ($cursor->getRemainder() === '}}}' && !$this->containsOpenStyleBlock()) {
             $cursor->advanceToEnd();
 
             return false;
