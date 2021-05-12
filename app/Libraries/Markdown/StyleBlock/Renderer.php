@@ -5,6 +5,7 @@
 
 namespace App\Libraries\Markdown\StyleBlock;
 
+use Ds\Set;
 use InvalidArgumentException;
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Renderer\BlockRendererInterface;
@@ -16,7 +17,7 @@ use League\CommonMark\Util\ConfigurationInterface;
 class Renderer implements BlockRendererInterface, ConfigurationAwareInterface
 {
     /**
-     * @var string[]
+     * @var Set
      */
     private $allowedClasses;
 
@@ -28,7 +29,7 @@ class Renderer implements BlockRendererInterface, ConfigurationAwareInterface
 
         $renderedChildren = $htmlRenderer->renderBlocks($block->children());
 
-        if (!in_array($block->getClass(), $this->allowedClasses, true)) {
+        if (!$this->allowedClasses->contains($block->getClass())) {
             return $renderedChildren;
         }
 
@@ -43,6 +44,6 @@ class Renderer implements BlockRendererInterface, ConfigurationAwareInterface
 
     public function setConfiguration(ConfigurationInterface $configuration): void
     {
-        $this->allowedClasses = $configuration->get('style_block_allowed_classes', []);
+        $this->allowedClasses = new Set($configuration->get('style_block_allowed_classes'));
     }
 }
