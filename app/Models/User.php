@@ -519,7 +519,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         if (
             $userGroup !== null &&
-            (!$allowUpdate || array_same_values($modes, $userGroup->playmodes ?? []))
+            (!$allowUpdate || array_same_set($modes, $userGroup->playmodes ?? []))
         ) {
             return;
         }

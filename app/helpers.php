@@ -1657,11 +1657,10 @@ function unmix(string $resource)
 }
 
 /**
- * Checks if two arrays contain the same values in any order. Input arrays
- * must not contain duplicate values.
+ * Checks if two arrays are the same set of values.
  */
-function array_same_values(array $array1, array $array2): bool
+function array_same_set(array $array1, array $array2): bool
 {
-    return count($array1) === count($array2)
-        && empty(array_diff($array1, $array2));
+    return array_diff($array1, $array2) === []
+        && array_diff($array2, $array1) === [];
 }
