@@ -68,7 +68,7 @@ class UserGroupsControllerTest extends TestCase
         $userAddModesEventCount = $this->eventCount(UserGroupEvent::USER_ADD_MODES, $user, $group);
         $url = route('interop.user-group.update', [
             'group_id' => $group->getKey(),
-            'modes' => $modes,
+            'playmodes' => $modes,
             'timestamp' => time(),
             'user_id' => $user->getKey(),
         ]);
@@ -94,7 +94,7 @@ class UserGroupsControllerTest extends TestCase
         $userRemoveModesEventCount = $this->eventCount(UserGroupEvent::USER_REMOVE_MODES, $user, $group);
         $url = route('interop.user-group.update', [
             'group_id' => $group->getKey(),
-            'modes' => $modes,
+            'playmodes' => $modes,
             'timestamp' => time(),
             'user_id' => $user->getKey(),
         ]);
@@ -263,7 +263,7 @@ class UserGroupsControllerTest extends TestCase
         $group = $this->getGroupWithModes('nat');
         $url = route('interop.user-group.update', [
             'group_id' => $group->getKey(),
-            'modes' => ['osu', 'invalid_mode'],
+            'playmodes' => ['osu', 'invalid_mode'],
             'timestamp' => time(),
             'user_id' => $user->getKey(),
         ]);
@@ -292,7 +292,7 @@ class UserGroupsControllerTest extends TestCase
         $group = app('groups')->byIdentifier('gmt');
         $url = route('interop.user-group.update', [
             'group_id' => $group->getKey(),
-            'modes' => ['osu'],
+            'playmodes' => ['osu'],
             'timestamp' => time(),
             'user_id' => $user->getKey(),
         ]);
