@@ -2,75 +2,42 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .contest-art-entry {
-  @base-size: 256px;
   @_top: contest-art-entry;
 
-  .contest-art-sizes(@base-width, @base-height) {
-      width: @base-width;
-      height: @base-height;
-
-      &.@{_top}--placed-2 {
-        width: @base-width * 0.75;
-        height: @base-height * 0.75;
-      }
-
-      &.@{_top}--placed-3 {
-        width: @base-width * 0.5;
-        height: @base-height * 0.5;
-      }
-
-      &.@{_top}--smaller {
-        width: @base-width * 0.5;
-        height: @base-height * 0.5;
-      }
-  }
-
   margin: 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-  background-size: cover;
-  background-position: top;
   transform: translateZ(0);
+  --thumbnail-border-colour: transparent;
+  --thumbnail-height-multiplier: 1;
+  --thumbnail-scale: 1;
+  --thumbnail-size: 128px;
+  --thumbnail-width-multiplier: 1;
+  --trophy-colour: chocolate;
+  --vote-link-banner-colour: hsl(var(--hsl-b2));
+  --vote-link-banner-scale: 1;
 
-  .contest-art-sizes(@base-size, @base-size);
-  &--portrait {
-    .contest-art-sizes(@base-size/(4/3), @base-size);
+  &--placed-1 {
+    --thumbnail-scale: 2;
+    --trophy-colour: gold;
+    --vote-link-banner-scale: 2;
   }
+
+  &--placed-2 {
+    --thumbnail-scale: 1.5;
+    --trophy-colour: silver;
+    --vote-link-banner-scale: 2;
+  }
+
+  &--portrait {
+    --thumbnail-width-multiplier: calc(3 / 4);
+  }
+
   &--landscape {
-    .contest-art-sizes(@base-size, @base-size/(16/9));
+    --thumbnail-height-multiplier: calc(9 / 16);
   }
 
   &--selected {
-      border: 4px solid @contest-selected-colour;
-  }
-
-  &--result {
-    margin-bottom: 58px;
-  }
-
-  &--show-name {
-    margin-bottom: 40px;
-  }
-
-  &--placed {
-    margin-bottom: 68px;
-  }
-
-  &__thumbnail {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-
-  &__trophy {
-    &--1 {
-      color: gold;
-    }
-    &--2 {
-      color: silver;
-    }
-    &--3 {
-      color: chocolate;
-    }
+    --thumbnail-border-colour: @contest-selected-colour;
+    --vote-link-banner-colour: var(--thumbnail-border-colour);
   }
 
   &__entrant {
@@ -94,22 +61,61 @@
     text-align: center;
   }
 
-  &__result-ranking {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-  }
-
   &__result-place {
     padding-right: 5px;
+
     .@{_top}--placed & {
       font-size: 20px;
       white-space: nowrap;
     }
   }
 
+  &__result-ranking {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  }
+
   &__result-votes {
     font-size: 10px;
     color: @osu-colour-f1;
+  }
+
+  &__thumbnail {
+    width: calc(var(--thumbnail-size) * var(--thumbnail-scale) * var(--thumbnail-width-multiplier));
+    height: calc(var(--thumbnail-size) * var(--thumbnail-scale) * var(--thumbnail-height-multiplier));
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    margin: auto;
+  }
+
+  &__thumbnail-link {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 4px solid var(--thumbnail-border-colour);
+  }
+
+  &__trophy {
+    color: var(--trophy-colour);
+  }
+
+  &__vote-link-banner {
+    --base-size: calc(16px * var(--vote-link-banner-scale));
+    --border-size: calc(2 * var(--base-size));
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: var(--base-size);
+    height: var(--base-size);
+    border-style: solid;
+    border-width: 0 0 var(--border-size) var(--border-size);
+    border-color: transparent transparent var(--vote-link-banner-colour) transparent;
+    font-size: calc(10px * var(--vote-link-banner-scale));
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
