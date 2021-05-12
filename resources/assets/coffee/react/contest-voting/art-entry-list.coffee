@@ -24,14 +24,14 @@ export class ArtEntryList extends BaseEntryList
     entries = entries.map (entry, index) =>
       el ArtEntry,
         key: index,
+        contest: @state.contest,
         displayIndex: index,
         entry: entry,
-        waitingForResponse: @state.waitingForResponse,
-        options: @state.options,
-        contest: @state.contest,
         isSelected: selected.has(entry.id)
+        options: @state.options,
         selected: @state.selected,
         totalVotes: if @state.contest.show_votes then totalVotes
+        waitingForResponse: @state.waitingForResponse,
 
     if @state.contest.show_votes
       partitions = _.partition entries, (i) ->
