@@ -515,20 +515,20 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             throw new InvariantException('Invalid modes: '.implode(', ', $invalidModes));
         }
 
-        $userGroup = $this->findUserGroup($group, true);
+        $activeUserGroup = $this->findUserGroup($group, true);
 
         if (
-            $userGroup !== null &&
-            (!$allowUpdate || array_same_set($modes, $userGroup->playmodes ?? []))
+            $activeUserGroup !== null &&
+            (!$allowUpdate || array_same_set($modes, $activeUserGroup->playmodes ?? []))
         ) {
             return;
         }
 
-        $this->getConnection()->transaction(function () use ($actor, $group, $modes, $userGroup) {
-            if ($userGroup === null) {
+        $this->getConnection()->transaction(function () use ($actor, $group, $modes, $activeUserGroup) {
+            if ($activeUserGroup === null) {
                 UserGroupEvent::logUserAdd($actor, $this, $group, $modes);
             } else {
-                $previousModes = $userGroup->playmodes ?? [];
+                $previousModes = $activeUserGroup->playmodes ?? [];
                 $modesAdded = array_diff($modes, $previousModes);
                 $modesRemoved = array_diff($previousModes, $modes);
 
@@ -541,9 +541,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
                 }
             }
 
-            // Even if $userGroup is unset, we need to query for existing group
-            // because there might be a legacy entry with `user_pending` set.
-            ($userGroup ??
+            ($activeUserGroup ??
                 $this->userGroups()->firstOrNew(['group_id' => $group->getKey()])
             )
                 ->fill([
