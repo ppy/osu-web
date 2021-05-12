@@ -21,8 +21,10 @@ use LaravelRedis as Redis;
  * @property \Carbon\Carbon $creation_time
  * @property string $description
  * @property \Illuminate\Database\Eloquent\Collection $messages Message
+ * @property int|null $match_id
  * @property int $moderated
  * @property string $name
+ * @property int|null $room_id
  * @property mixed $type
  */
 class Channel extends Model
@@ -182,6 +184,11 @@ class Channel extends Model
         return $allowed_groups === null ? [] : array_map('intval', explode(',', $allowed_groups));
     }
 
+    public function isMultiplayer()
+    {
+        return $this->type === static::TYPES['multiplayer'];
+    }
+
     public function isPublic()
     {
         return $this->type === self::TYPES['public'];
@@ -212,6 +219,14 @@ class Channel extends Model
         // TODO: add lazer mp support?
         if ($this->isBanchoMultiplayerChat()) {
             return intval(str_replace('#mp_', '', $this->name));
+        }
+    }
+
+    public function getRoomIdAttribute()
+    {
+        // 9 = strlen('#lazermp_')
+        if ($this->isMultiplayer() && substr($this->name, 0, 9) === '#lazermp_') {
+            return get_int(substr($this->name, 9));
         }
     }
 
