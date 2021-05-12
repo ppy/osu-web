@@ -124,7 +124,7 @@ class CommentBundle
             $result['total'] = $this->commentsQuery()->count();
         }
 
-        $commentables = $comments->pluck('commentable')->concat([null]);
+        $commentables = $comments->pluck('commentable')->uniqueStrict('commentable_identifier')->concat([null]);
         $result['commentable_meta'] = json_collection($commentables, 'CommentableMeta');
 
         return $result;

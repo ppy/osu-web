@@ -262,8 +262,8 @@ export default class Main {
 
     if (this.observer == null) {
       this.observer = new MutationObserver(this.observePage);
+      this.observer.observe(document, { childList: true, subtree: true });
     }
-    this.observer.observe(document.body, { childList: true, subtree: true });
     this.replaceAudioElems();
     this.reattachPagePlayer();
   };

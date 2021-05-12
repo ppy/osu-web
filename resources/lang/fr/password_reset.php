@@ -13,7 +13,7 @@ return [
 
     'error' => [
         'contact_support' => 'Veuillez contacter le support pour récupérer votre compte.',
-        'is_privileged' => 'Contacter peppy lulz.',
+        'is_privileged' => 'Veuillez contacter un administrateur de haut niveau pour récupérer le compte.',
         'missing_key' => 'Requis.',
         'too_many_tries' => 'Trop de tentatives ratées.',
         'user_not_found' => 'L\'utilisateur demandé n\'existe pas.',
@@ -22,7 +22,7 @@ return [
 
     'notice' => [
         'sent' => 'Vérifiez votre email pour le code de vérification.',
-        'saved' => 'Nouveau mot de passe sauvegardé!',
+        'saved' => 'Nouveau mot de passe sauvegardé !',
     ],
 
     'started' => [

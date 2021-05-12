@@ -35,9 +35,9 @@ return [
     ],
 
     'index' => [
-        'nav_comments' => '',
+        'nav_comments' => 'коментарі',
         'nav_title' => 'список',
-        'no_comments' => '',
+        'no_comments' => 'коментарів не знайдено...',
     ],
 
     'placeholder' => [
