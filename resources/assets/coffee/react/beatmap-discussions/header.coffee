@@ -20,8 +20,6 @@ import { showVisual } from 'utils/beatmapset-helper'
 import Chart from 'beatmap-discussions/chart'
 el = React.createElement
 
-deletedUserJson = deletedUser.toJson()
-
 export class Header extends React.PureComponent
   render: =>
     el React.Fragment, null,
@@ -128,7 +126,7 @@ export class Header extends React.PureComponent
                 span null,
                   el StringWithComponent,
                     mappings:
-                      ':user': el(UserLink, key: 'user', user: @props.users[@props.currentBeatmap.user_id] ? deletedUserJson)
+                      ':user': el(UserLink, key: 'user', user: @props.users[@props.currentBeatmap.user_id] ? deletedUser)
                     pattern: osu.trans('beatmaps.discussions.guest')
             el BeatmapBasicStats, beatmap: @props.currentBeatmap
 
