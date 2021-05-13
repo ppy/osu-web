@@ -12,8 +12,13 @@
     top: 0;
     width: 100%;
     padding: 10px 10px 0;
-    justify-content: space-between;
+    flex-direction: column;
     display: flex;
+
+    @media @narrow-up {
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 
   &__content {
