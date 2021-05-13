@@ -37,7 +37,7 @@ export function urlGroup(item: Notification) {
 export function urlSingular(item: Notification) {
   switch (item.name) {
     case 'beatmap_owner_change':
-      return route('beatmapsets.discussion', { beatmapset: item.objectId, beatmap: item.details.betamapId });
+      return route('beatmapsets.discussion', { beatmap: item.details.betamapId, beatmapset: item.objectId });
     case 'beatmapset_discussion_lock':
     case 'beatmapset_discussion_unlock':
     case 'beatmapset_disqualify':
