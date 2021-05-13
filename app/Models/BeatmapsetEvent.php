@@ -209,7 +209,7 @@ class BeatmapsetEvent extends Model
                     static::ISSUE_RESOLVE,
                     static::ISSUE_REOPEN,
 
-                    static:: BEATMAP_OWNER_CHANGE,
+                    static::BEATMAP_OWNER_CHANGE,
                 ],
                 'kudosuModeration' => [
                     static::KUDOSU_ALLOW,
