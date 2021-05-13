@@ -67,5 +67,5 @@ export class Detail extends React.PureComponent
 
 
   toggleExtend: =>
-    core.userPreferences.setOpt('ranking_expanded', !@state.expanded)
+    core.userPreferences.set('ranking_expanded', !@state.expanded)
     @setState expanded: !@state.expanded

@@ -54,7 +54,7 @@ export class UserList extends React.PureComponent<Props> {
     return this.getAllowedQueryStringValue(
       filters,
       url.searchParams.get('filter'),
-      core.userPreferences.getOpt('user_list_filter'),
+      core.userPreferences.get('user_list_filter'),
     );
   }
 
@@ -99,7 +99,7 @@ export class UserList extends React.PureComponent<Props> {
     return this.getAllowedQueryStringValue(
       sortModes,
       url.searchParams.get('sort'),
-      core.userPreferences.getOpt('user_list_sort'),
+      core.userPreferences.get('user_list_sort'),
     );
   }
 
@@ -109,7 +109,7 @@ export class UserList extends React.PureComponent<Props> {
     return this.getAllowedQueryStringValue(
       viewModes,
       url.searchParams.get('view'),
-      core.userPreferences.getOpt('user_list_view'),
+      core.userPreferences.get('user_list_view'),
     );
   }
 
@@ -119,7 +119,7 @@ export class UserList extends React.PureComponent<Props> {
 
     Turbolinks.controller.advanceHistory(url);
     this.setState({ sortMode: value }, () => {
-      core.userPreferences.setOpt('user_list_sort', this.state.sortMode);
+      core.userPreferences.set('user_list_sort', this.state.sortMode);
     });
   };
 
@@ -129,7 +129,7 @@ export class UserList extends React.PureComponent<Props> {
 
     Turbolinks.controller.advanceHistory(url);
     this.setState({ viewMode: value }, () => {
-      core.userPreferences.setOpt('user_list_view', this.state.viewMode);
+      core.userPreferences.set('user_list_view', this.state.viewMode);
     });
   };
 
@@ -140,7 +140,7 @@ export class UserList extends React.PureComponent<Props> {
 
     Turbolinks.controller.advanceHistory(url);
     this.setState({ filter: key }, () => {
-      core.userPreferences.setOpt('user_list_filter', this.state.filter);
+      core.userPreferences.set('user_list_filter', this.state.filter);
     });
   };
 

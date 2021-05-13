@@ -121,7 +121,7 @@ export class CommentsManager extends React.PureComponent
       data: params
       dataType: 'json'
     .done (data) =>
-      core.userPreferences.setOpt('comments_sort', sort)
+      core.userPreferences.set('comments_sort', sort)
 
       runInAction () ->
         core.dataStore.commentStore.flushStore()

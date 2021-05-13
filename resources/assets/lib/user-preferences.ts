@@ -16,9 +16,9 @@ export default class UserPreferences {
     this.current = Object.assign({}, defaultUserPreferencesJson, this.fromStorage());
   }
 
-  getOpt = <T extends keyof UserPreferencesJson>(key: T) => this.current[key];
+  get = <T extends keyof UserPreferencesJson>(key: T) => this.current[key];
 
-  setOpt = <T extends keyof UserPreferencesJson>(key: T, value: UserPreferencesJson[T]) => {
+  set = <T extends keyof UserPreferencesJson>(key: T, value: UserPreferencesJson[T]) => {
     if (this.current[key] === value) return;
 
     this.current[key] = value;
