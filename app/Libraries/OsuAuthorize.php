@@ -228,14 +228,11 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($discussion->beatmapset->approved !== Beatmapset::STATES['qualified']) {
-            if ($discussion->beatmap === null) {
-                if ($userId === $discussion->beatmapset->user_id) {
-                    return 'ok';
-                }
-            } elseif ($userId === $discussion->beatmap->user_id) {
-                return 'ok';
-            }
+        if (
+            $discussion->beatmapset->approved !== Beatmapset::STATES['qualified']
+            && $discussion->responsibleUserId() === $userId
+        ) {
+            return 'ok';
         }
 
         if ($user->isModerator()) {
@@ -320,11 +317,7 @@ class OsuAuthorize
         if ($discussion->message_type === 'mapper_note') {
             $userId = $user->getKey();
 
-            if ($discussion->beatmap === null) {
-                if ($userId === $discussion->beatmapset->user_id) {
-                    return 'ok';
-                }
-            } elseif ($userId === $discussion->beatmap->user_id) {
+            if ($discussion->responsibleUserId() === $userId) {
                 return 'ok';
             }
 
