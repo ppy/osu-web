@@ -3,6 +3,7 @@
 
 import * as _ from 'lodash';
 import Notification from 'models/notification';
+import { isBeatmapOwnerChangeNotification } from 'models/notification/beatmap-owner-change-notification';
 
 type Replacements = { title: string } & Partial<Record<string, string>>;
 
@@ -13,7 +14,7 @@ export function formatMessage(item: Notification, compact = false) {
     username: item.details.username,
   };
 
-  if (item.name === 'beatmap_owner_change') {
+  if (isBeatmapOwnerChangeNotification(item)) {
     replacements.beatmap = item.details.version;
   }
 
