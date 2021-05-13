@@ -3,9 +3,10 @@
 
 import { route } from 'laroute';
 import Notification from 'models/notification';
+import { isBeatmapOwnerChangeNotification } from 'models/notification/beatmap-owner-change-notification';
 
 export function urlGroup(item: Notification) {
-  if (item.name === 'beatmap_owner_change') {
+  if (isBeatmapOwnerChangeNotification(item)) {
     return route('beatmapsets.discussion', { beatmap: '-', beatmapset: item.objectId, mode: 'events' });
   }
 
@@ -35,9 +36,11 @@ export function urlGroup(item: Notification) {
 }
 
 export function urlSingular(item: Notification) {
+  if (isBeatmapOwnerChangeNotification(item)) {
+    return route('beatmapsets.discussion', { beatmap: item.details.beatmapId, beatmapset: item.objectId });
+  }
+
   switch (item.name) {
-    case 'beatmap_owner_change':
-      return route('beatmapsets.discussion', { beatmap: item.details.betamapId, beatmapset: item.objectId });
     case 'beatmapset_discussion_lock':
     case 'beatmapset_discussion_unlock':
     case 'beatmapset_disqualify':
