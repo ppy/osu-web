@@ -4,8 +4,10 @@
 import * as _ from 'lodash';
 import Notification from 'models/notification';
 
+type Replacements = { title: string } & Partial<Record<string, string>>;
+
 export function formatMessage(item: Notification, compact = false) {
-  const replacements: Partial<Record<string, string>> = {
+  const replacements: Replacements = {
     content: item.details.content,
     title: item.title,
     username: item.details.username,
