@@ -6,6 +6,8 @@
 namespace Tests\Controllers;
 
 use App\Models\Beatmap;
+use App\Models\Beatmapset;
+use App\Models\BeatmapsetEvent;
 use App\Models\User;
 use Tests\TestCase;
 
@@ -53,6 +55,116 @@ class BeatmapsControllerTest extends TestCase
             ->json('GET', route('beatmaps.scores', $this->beatmap), [
                 'type' => 'country',
             ])->assertStatus(200);
+    }
+
+    public function testUpdateOwner(): void
+    {
+        $otherUser = factory(User::class)->create();
+        $beatmapset = factory(Beatmapset::class)->create([
+            'approved' => Beatmapset::STATES['pending'],
+            'user_id' => $this->user->getKey(),
+        ]);
+        $this->beatmap->update([
+            'beatmapset_id' => $beatmapset->getKey(),
+            'user_id' => $this->user->getKey(),
+        ]);
+
+        $beatmapsetEventCount = BeatmapsetEvent::count();
+
+        $this->actingAsVerified($this->user)
+            ->json('PUT', route('beatmaps.update-owner', $this->beatmap), [
+                'beatmap' => ['user_id' => $otherUser->getKey()],
+            ])->assertSuccessful();
+
+        $this->assertSame($otherUser->getKey(), $this->beatmap->fresh()->user_id);
+        $this->assertSame($beatmapsetEventCount + 1, BeatmapsetEvent::count());
+    }
+
+    public function testUpdateOwnerInvalidState(): void
+    {
+        $otherUser = factory(User::class)->create();
+        $beatmapset = factory(Beatmapset::class)->create([
+            'approved' => Beatmapset::STATES['qualified'],
+            'user_id' => $this->user->getKey(),
+        ]);
+        $this->beatmap->update([
+            'beatmapset_id' => $beatmapset->getKey(),
+            'user_id' => $this->user->getKey(),
+        ]);
+
+        $beatmapsetEventCount = BeatmapsetEvent::count();
+
+        $this->actingAsVerified($this->user)
+            ->json('PUT', route('beatmaps.update-owner', $this->beatmap), [
+                'beatmap' => ['user_id' => $otherUser->getKey()],
+            ])->assertStatus(403);
+
+        $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);
+        $this->assertSame($beatmapsetEventCount, BeatmapsetEvent::count());
+    }
+
+    public function testUpdateOwnerInvalidUser(): void
+    {
+        $beatmapset = factory(Beatmapset::class)->create([
+            'approved' => Beatmapset::STATES['pending'],
+            'user_id' => $this->user->getKey(),
+        ]);
+        $this->beatmap->update([
+            'beatmapset_id' => $beatmapset->getKey(),
+            'user_id' => $this->user->getKey(),
+        ]);
+
+        $beatmapsetEventCount = BeatmapsetEvent::count();
+
+        $this->actingAsVerified($this->user)
+            ->json('PUT', route('beatmaps.update-owner', $this->beatmap), [
+                'beatmap' => ['user_id' => User::max('user_id') + 1],
+            ])->assertStatus(422);
+
+        $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);
+        $this->assertSame($beatmapsetEventCount, BeatmapsetEvent::count());
+    }
+
+    public function testUpdateOwnerNotOwner(): void
+    {
+        $otherUser = factory(User::class)->create();
+        $beatmapset = factory(Beatmapset::class)->create(['user_id' => $this->user->getKey()]);
+        $this->beatmap->update([
+            'beatmapset_id' => $beatmapset->getKey(),
+            'user_id' => $this->user->getKey(),
+        ]);
+
+        $beatmapsetEventCount = BeatmapsetEvent::count();
+
+        $this->actingAsVerified($otherUser)
+            ->json('PUT', route('beatmaps.update-owner', $this->beatmap), [
+                'beatmap' => ['user_id' => $otherUser->getKey()],
+            ])->assertStatus(403);
+
+        $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);
+        $this->assertSame($beatmapsetEventCount, BeatmapsetEvent::count());
+    }
+
+    public function testUpdateOwnerSameOwner(): void
+    {
+        $beatmapset = factory(Beatmapset::class)->create([
+            'approved' => Beatmapset::STATES['pending'],
+            'user_id' => $this->user->getKey(),
+        ]);
+        $this->beatmap->update([
+            'beatmapset_id' => $beatmapset->getKey(),
+            'user_id' => $this->user->getKey(),
+        ]);
+
+        $beatmapsetEventCount = BeatmapsetEvent::count();
+
+        $this->actingAsVerified($this->user)
+            ->json('PUT', route('beatmaps.update-owner', $this->beatmap), [
+                'beatmap' => ['user_id' => $this->user->getKey()],
+            ])->assertStatus(422);
+
+        $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);
+        $this->assertSame($beatmapsetEventCount, BeatmapsetEvent::count());
     }
 
     protected function setUp(): void

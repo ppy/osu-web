@@ -3,8 +3,13 @@
 
 import { route } from 'laroute';
 import Notification from 'models/notification';
+import { isBeatmapOwnerChangeNotification } from 'models/notification/beatmap-owner-change-notification';
 
 export function urlGroup(item: Notification) {
+  if (isBeatmapOwnerChangeNotification(item)) {
+    return route('beatmapsets.discussion', { beatmap: '-', beatmapset: item.objectId, mode: 'events' });
+  }
+
   if (item.name === 'comment_new' || item.name === 'comment_reply') {
     switch (item.objectType) {
       case 'beatmapset':
@@ -31,6 +36,10 @@ export function urlGroup(item: Notification) {
 }
 
 export function urlSingular(item: Notification) {
+  if (isBeatmapOwnerChangeNotification(item)) {
+    return route('beatmapsets.discussion', { beatmap: item.details.beatmapId, beatmapset: item.objectId });
+  }
+
   switch (item.name) {
     case 'beatmapset_discussion_lock':
     case 'beatmapset_discussion_unlock':
