@@ -30,8 +30,10 @@ class ChannelsController extends Controller
      * @response [
      *   {
      *     "channel_id": 5,
-     *     "name": "#osu",
      *     "description": "The official osu! channel (english only).",
+     *     "icon": "https://a.ppy.sh/2?1519081077.png",
+     *     "moderated": false,
+     *     "name": "#osu",
      *     "type": "public"
      *   }
      * ]
@@ -47,7 +49,7 @@ class ChannelsController extends Controller
     /**
      * Join Channel
      *
-     * This endpoint allows you to join a public channel.
+     * This endpoint allows you to join a public or multiplayer channel.
      *
      * ---
      *
@@ -55,15 +57,16 @@ class ChannelsController extends Controller
      *
      * Returns the joined [ChatChannel](#chatchannel).
      *
-     * <aside class="notice">
-     *   This endpoint will only allow the joining of public channels initially.
-     * </aside>
-     *
      * @response {
      *   "channel_id": 5,
-     *   "name": "#osu",
      *   "description": "The official osu! channel (english only).",
+     *   "first_message_id": 1,
+     *   "icon": "https://a.ppy.sh/2?1519081077.png",
+     *   "last_message_id": 1029,
+     *   "moderated": false,
+     *   "name": "#osu",
      *   "type": "public"
+     *   "users": []
      * }
      */
     public function join($channelId, $userId)
