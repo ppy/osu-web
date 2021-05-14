@@ -1,108 +1,124 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
-isTurbolinksPermanent = (element) =>
-  element.dataset.turbolinksPermanent? && element.id != ''
+function isTurbolinksPermanent(element: Element) {
+  return element instanceof HTMLElement && element.id !== '' && element.dataset.turbolinksPermanent != null;
+}
 
+type ElementFn = (target: Element) => React.ReactElement;
 
-export class ReactTurbolinks
-  constructor: (@components = {}) ->
-    @documentReady = false
-    @targets = new Set
-    @newVisit = true
-    @scrolled = false
+interface Component {
+  elementFn: ElementFn;
+  loaded: boolean;
+  persistent: boolean;
+  targets: HTMLCollection;
+}
 
-    $(document).on 'turbolinks:before-cache', @onBeforeCache
-    $(document).on 'turbolinks:before-visit', @onBeforeVisit
-    $(document).on 'turbolinks:load', @onLoad
+export default class ReactTurbolinks {
+  private components = new Map<string, Component>();
+  private documentReady = false;
+  private newVisit = true;
+  private scrolled = false;
+  private scrollTimeout?: number;
+  private targets = new Set<Element>();
 
+  constructor() {
+    $(document).on('turbolinks:before-cache', this.onBeforeCache);
+    $(document).on('turbolinks:before-visit', this.onBeforeVisit);
+    $(document).on('turbolinks:load', this.onLoad);
+  }
 
-  allTargets: (callback) =>
-    for own name, component of @components
-      for target in component.targets
-        callback({ name, component, target })
+  allTargets = (callback: (params: { component: Component; name: string; target: Element }) => void) => {
+    for (const [name, component] of this.components.entries()) {
+      for (const target of component.targets) {
+        callback({ component, name, target });
+      }
+    }
+  };
 
+  boot = () => {
+    if (!this.documentReady) return;
 
-  boot: =>
-    return unless @documentReady
+    this.allTargets(({ target, component }) => {
+      if (this.targets.has(target)) return;
 
-    @allTargets ({ target, component }) =>
-      return if @targets.has(target)
+      this.targets.add(target);
+      ReactDOM.render(component.elementFn(target), target);
+    });
+  };
 
-      @targets.add target
-      ReactDOM.render React.createElement(component.element, component.propsFunction(target)), target
+  destroy = () => {
+    this.allTargets(({ target, component }) => {
+      if (!isTurbolinksPermanent(target) && this.targets.has(target) && !component.persistent) {
+        ReactDOM.unmountComponentAtNode(target);
+      }
+    });
+  };
 
+  destroyPersisted = () => {
+    for (const target of this.targets.values()) {
+      if (isTurbolinksPermanent(target) && document.body.contains(target)) continue;
 
-  destroy: =>
-    @allTargets ({ target, component }) =>
-      if !isTurbolinksPermanent(target) && @targets.has(target) && !component.persistent
-        ReactDOM.unmountComponentAtNode target
+      ReactDOM.unmountComponentAtNode(target);
+      this.targets.delete(target);
+    }
+  };
 
+  onBeforeCache = () => {
+    window.clearTimeout(this.scrollTimeout);
+    this.documentReady = false;
+    this.destroy();
+  };
 
-  destroyPersisted: =>
-    for target from @targets.values()
-      continue if isTurbolinksPermanent(target) && document.body.contains(target)
+  onBeforeVisit = () => {
+    this.newVisit = true;
+  };
 
-      ReactDOM.unmountComponentAtNode(target)
-      @targets.delete target
+  onLoad = () => {
+    this.scrolled = false;
+    $(window).off('scroll', this.onWindowScroll);
+    $(window).on('scroll', this.onWindowScroll);
 
+    // Delayed to wait until cacheSnapshot finishes. The delay matches Turbolinks' defer.
+    window.setTimeout(() => {
+      this.destroyPersisted();
+      this.documentReady = true;
+      this.boot();
+      this.scrollTimeout = window.setTimeout(this.scrollOnNewVisit, 100);
+    }, 1);
+  };
 
-  onBeforeCache: =>
-    Timeout.clear @scrollTimeout
-    @documentReady = false
-    @destroy()
+  onWindowScroll = () => {
+    this.scrolled = this.scrolled || window.scrollX !== 0 || window.scrollY !== 0;
+  };
 
+  register(name: string, persistent: boolean, elementFn: ElementFn) {
+    if (this.components.has(name)) return;
 
-  onBeforeVisit: =>
-    @newVisit = true
+    this.components.set(name, {
+      elementFn,
+      loaded: false,
+      persistent,
+      targets: document.getElementsByClassName(`js-react--${name}`),
+    });
 
+    this.boot();
+  }
 
-  onLoad: =>
-    @scrolled = false
-    $(window).off 'scroll', @onWindowScroll
-    $(window).on 'scroll', @onWindowScroll
+  scrollOnNewVisit = () => {
+    $(window).off('scroll', this.onWindowScroll);
+    const newVisit = this.newVisit;
+    this.newVisit = false;
 
-    # Delayed to wait until cacheSnapshot finishes. The delay matches Turbolinks' defer.
-    Timeout.set 1, =>
-      @destroyPersisted()
-      @documentReady = true
-      @boot()
-      @scrollTimeout = Timeout.set 100, @scrollOnNewVisit
+    if (!newVisit || this.scrolled) return;
 
+    const targetId = decodeURIComponent(document.location.hash.substr(1));
 
-  onWindowScroll: =>
-    @scrolled = @scrolled || window.scrollX != 0 || window.scrollY != 0
+    if (targetId === '') return;
 
-
-  register: (name, element, propsFunction = ->) =>
-    @registerPersistent name, element, false, propsFunction
-
-
-  registerPersistent: (name, element, persistent = true, propsFunction = ->) =>
-    return if @components[name]
-
-    @components[name] =
-      loaded: false
-      persistent: persistent
-      targets: document.getElementsByClassName("js-react--#{name}")
-      element: element
-      propsFunction: propsFunction
-
-    @boot()
-
-
-  scrollOnNewVisit: =>
-    $(window).off 'scroll', @onWindowScroll
-    newVisit = @newVisit
-    @newVisit = false
-
-    return if !newVisit || @scrolled
-
-    targetId = decodeURIComponent document.location.hash.substr(1)
-
-    return if targetId == ''
-
-    document.getElementById(targetId)?.scrollIntoView()
+    document.getElementById(targetId)?.scrollIntoView();
+  };
+}

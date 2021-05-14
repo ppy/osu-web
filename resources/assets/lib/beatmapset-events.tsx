@@ -2,11 +2,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Events from 'beatmap-discussions/events';
+import core from 'osu-core-singleton';
+import * as React from 'react';
 
-reactTurbolinks.register('beatmap-discussion-events', Events, (container: HTMLElement) => ({
-  container,
-  discussions: osu.parseJson('json-discussions'),
-  events: osu.parseJson('json-events'),
-  posts: osu.parseJson('json-posts'),
-  users: osu.parseJson('json-users'),
-}));
+core.reactTurbolinks.register('beatmap-discussion-events', false, (container: HTMLElement) => (
+  <Events
+    events={osu.parseJson('json-events')}
+    users={osu.parseJson('json-users')}
+  />
+));

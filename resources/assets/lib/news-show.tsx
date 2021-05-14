@@ -2,9 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Main from 'news-show/main';
+import core from 'osu-core-singleton';
+import * as React from 'react';
 
-reactTurbolinks.registerPersistent('news-show', Main, true, (container: HTMLElement) => ({
-  container,
-  post: osu.parseJson('json-show'),
-  sidebarMeta: osu.parseJson('json-sidebar'),
-}));
+core.reactTurbolinks.register('news-show', true, (container: HTMLElement) => (
+  <Main
+    container={container}
+    post={osu.parseJson('json-show')}
+    sidebarMeta={osu.parseJson('json-sidebar')}
+  />
+));

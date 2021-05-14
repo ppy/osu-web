@@ -2,7 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { Main } from 'friends-index/main';
+import core from 'osu-core-singleton';
+import * as React from 'react';
 
-reactTurbolinks.registerPersistent('friends-index', Main, true, (container: HTMLElement) => ({
-  friends: osu.parseJson('json-users'),
-}));
+core.reactTurbolinks.register('friends-index', true, () => (
+  <Main friends={osu.parseJson('json-users')} />
+));
