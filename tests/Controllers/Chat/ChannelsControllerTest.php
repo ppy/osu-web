@@ -7,6 +7,7 @@ namespace Tests\Controllers\Chat;
 
 use App\Models\Chat;
 use App\Models\Chat\Channel;
+use App\Models\Multiplayer\Score;
 use App\Models\User;
 use Faker;
 use Tests\TestCase;
@@ -193,6 +194,32 @@ class ChannelsControllerTest extends TestCase
         $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonFragment(['channel_id' => $this->publicChannel->channel_id]);
+    }
+
+    public function testChannelJoinMultiplayerWhenNotParticipated()
+    {
+        $score = factory(Score::class)->create();
+
+        $this->actAsScopedUser($this->user, ['*']);
+        $request = $this->json('PUT', route('api.chat.channels.join', [
+            'channel' => $score->room->channel_id,
+            'user' => $this->user->getKey(),
+        ]));
+
+        $request->assertStatus(403);
+    }
+
+    public function testChannelJoinMultiplayerWhenParticipated()
+    {
+        $score = factory(Score::class)->create(['user_id' => $this->user->getKey()]);
+
+        $this->actAsScopedUser($this->user, ['*']);
+        $request = $this->json('PUT', route('api.chat.channels.join', [
+            'channel' => $score->room->channel_id,
+            'user' => $this->user->getKey(),
+        ]));
+
+        $request->assertStatus(200)->assertJsonFragment(['channel_id' => $score->room->channel_id]);
     }
 
     public function testChannelJoinTourney() // succeed
