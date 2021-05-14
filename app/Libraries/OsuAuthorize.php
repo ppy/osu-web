@@ -882,8 +882,8 @@ class OsuAuthorize
 
         // This check is only for when joining the channel directly; joining via the Room
         // will always add the user to the channel.
-        if ($channel->type === Channel::TYPES['multiplayer']) {
-            $room = Room::hasParticipated($user)->where('channel_id', $channel->getKey())->first();
+        if ($channel->isMultiplayer()) {
+            $room = Room::hasParticipated($user)->find($channel->room_id);
             if ($room !== null) {
                 return 'ok';
             }
