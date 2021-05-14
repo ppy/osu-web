@@ -186,12 +186,12 @@ class Channel extends Model
 
     public function scopePublic($query)
     {
-        return $query->where('type', self::TYPES['public']);
+        return $query->where('type', static::TYPES['public']);
     }
 
     public function scopePM($query)
     {
-        return $query->where('type', self::TYPES['pm']);
+        return $query->where('type', static::TYPES['pm']);
     }
 
     public function getAllowedGroupsAttribute($allowed_groups)
@@ -206,27 +206,27 @@ class Channel extends Model
 
     public function isPublic()
     {
-        return $this->type === self::TYPES['public'];
+        return $this->type === static::TYPES['public'];
     }
 
     public function isPrivate()
     {
-        return $this->type === self::TYPES['private'];
+        return $this->type === static::TYPES['private'];
     }
 
     public function isPM()
     {
-        return $this->type === self::TYPES['pm'];
+        return $this->type === static::TYPES['pm'];
     }
 
     public function isGroup()
     {
-        return $this->type === self::TYPES['group'];
+        return $this->type === static::TYPES['group'];
     }
 
     public function isBanchoMultiplayerChat()
     {
-        return $this->type === self::TYPES['temporary'] && starts_with($this->name, '#mp_');
+        return $this->type === static::TYPES['temporary'] && starts_with($this->name, '#mp_');
     }
 
     public function getMatchIdAttribute()

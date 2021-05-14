@@ -874,7 +874,7 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
 
-        if ($channel->type === Channel::TYPES['public']) {
+        if ($channel->isPublic()) {
             return 'ok';
         }
 
