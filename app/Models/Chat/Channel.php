@@ -6,8 +6,10 @@
 namespace App\Models\Chat;
 
 use App\Exceptions\API;
+use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\ChannelMessage;
 use App\Models\Match\Match;
+use App\Models\Multiplayer\Room;
 use App\Models\User;
 use App\Traits\Memoizes;
 use Carbon\Carbon;
@@ -53,6 +55,19 @@ class Channel extends Model
         'pm' => 'PM',
         'group' => 'GROUP',
     ];
+
+    public static function createMultiplayer(Room $room)
+    {
+        if (!$room->exists) {
+            throw new InvariantException('cannot create Channel for a Room that has not been persisted.');
+        }
+
+        return static::create([
+            'name' => "#lazermp_{$room->getKey()}",
+            'type' => static::TYPES['multiplayer'],
+            'description' => $room->name,
+        ]);
+    }
 
     public static function createPM($user1, $user2)
     {
