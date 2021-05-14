@@ -6,7 +6,7 @@ import { ExtraHeader } from './extra-header'
 import { PlayDetailList } from 'play-detail-list'
 import * as React from 'react'
 import { a, div, h2, h3, img, p, small, span } from 'react-dom-factories'
-import { ShowMoreLink } from 'show-more-link'
+import ShowMoreLink from 'show-more-link'
 el = React.createElement
 
 
