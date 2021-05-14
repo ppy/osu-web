@@ -19,6 +19,6 @@ export default class ChatIcon extends React.Component<Props> {
   }
 
   render() {
-    return <NotificationIcon count={this.unreadCount} type={this.props.type} />;
+    return <NotificationIcon count={this.unreadCount} iconClassName='fas fa-comment-alt' type={this.props.type} />;
   }
 }

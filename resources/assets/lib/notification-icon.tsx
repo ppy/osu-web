@@ -8,11 +8,14 @@ import { classWithModifiers } from 'utils/css';
 
 interface Props {
   count: number;
+  iconClassName: string;
   type?: string;
 }
 
 @observer
 export default class NotificationIcon extends React.Component<Props> {
+  static defaultProps = { iconClassName: 'fas fa-inbox' };
+
   render() {
     const modifiers = {
       glow: this.props.count > 0,
@@ -21,7 +24,7 @@ export default class NotificationIcon extends React.Component<Props> {
 
     return (
       <span className={classWithModifiers('notification-icon', modifiers)}>
-        <i className='fas fa-comment-alt' />
+        <i className={this.props.iconClassName} />
         <span className='notification-icon__count'>
           {this.unreadCountDisplay()}
         </span>
