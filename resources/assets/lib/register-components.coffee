@@ -82,10 +82,10 @@ reactTurbolinks.register 'comments', CommentsManager, (el) ->
   props
 
 reactTurbolinks.registerPersistent 'chat-icon', ChatIcon, true, (el) ->
-  (try JSON.parse(el.dataset.chatIcon)) ? {}
+  type: el.dataset.type
 
 reactTurbolinks.registerPersistent 'main-notification-icon', MainNotificationIcon, true, (el) ->
-  (try JSON.parse(el.dataset.mainNotificationIcon)) ? {}
+  type: el.dataset.type
 
 reactTurbolinks.registerPersistent 'notification-widget', NotificationWidget, true, (el) ->
   try JSON.parse(el.dataset.notificationWidget)
