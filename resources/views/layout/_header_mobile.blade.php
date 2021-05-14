@@ -89,9 +89,9 @@
                         </span>
                     </button>
 
-                    <button class="mobile-menu-tab js-click-menu js-react--notification-icon"
+                    <button class="mobile-menu-tab js-click-menu js-react--main-notification-icon"
                         data-click-menu-target="mobile-notification"
-                        data-notification-icon="{{ json_encode(['type' => 'mobile']) }}"
+                        data-main-notification-icon="{{ json_encode(['type' => 'mobile']) }}"
                         data-turbolinks-permanent
                         id="notification-widget-icon-mobile"
                     >
