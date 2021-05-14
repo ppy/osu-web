@@ -11,32 +11,23 @@ interface Props {
   type?: string;
 }
 
-export default class NotificationIcon extends React.Component<Props> {
-  static defaultProps = { iconClassName: 'fas fa-inbox' };
+function format(count: number) {
+  // combination of latency and delays processing marking as read can cause the display count to go negative.
+  return osu.formatNumber(count > 0 ? count : 0);
+}
 
-  render() {
-    const modifiers = {
-      glow: this.props.count > 0,
-      mobile: this.props.type === 'mobile',
-    };
+export default function NotificationIcon(props: Props) {
+  const modifiers = {
+    glow: props.count > 0,
+    mobile: props.type === 'mobile',
+  };
 
-    return (
-      <span className={classWithModifiers('notification-icon', modifiers)}>
-        <i className={this.props.iconClassName} />
-        <span className='notification-icon__count'>
-          {this.unreadCountDisplay}
-        </span>
+  return (
+    <span className={classWithModifiers('notification-icon', modifiers)}>
+      <i className={props.iconClassName} />
+      <span className='notification-icon__count'>
+        {props.ready ? format(props.count) : '...'}
       </span>
-    );
-  }
-
-  private get unreadCountDisplay() {
-    if (this.props.ready) {
-      // combination of latency and delays processing marking as read can cause the display count to go negative.
-      const count = this.props.count > 0 ? this.props.count : 0;
-      return osu.formatNumber(count);
-    } else {
-      return '...';
-    }
-  }
+    </span>
+  );
 }
