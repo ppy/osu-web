@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import core from 'osu-core-singleton'
+import { createElement } from 'react'
 import { UserEntryList } from './contest-entry/user-entry-list'
 
 core.reactTurbolinks.register 'userContestEntry', false, ->
