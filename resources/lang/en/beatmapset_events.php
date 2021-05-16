@@ -73,6 +73,7 @@ return [
         'nominate' => 'Nomination',
         'nomination_reset' => 'Nomination resetting',
         'nsfw_toggle' => 'Explicit mark',
+        'offset_edit' => 'Offset edit',
         'qualify' => 'Qualification',
         'rank' => 'Ranking',
         'remove_from_loved' => 'Loved removal',
