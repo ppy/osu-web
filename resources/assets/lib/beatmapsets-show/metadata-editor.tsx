@@ -88,16 +88,14 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
             {osu.trans('beatmapsets.show.info.offset')}
           </div>
 
-          <div className='form-text form-text--no-padding'>
-            <input
-              type='text'
-              name='beatmapset[offset]'
-              className='form-select__input'
-              maxLength={6}
-              value={this.state.offset}
-              onChange={this.setOffset}
-            />
-          </div>
+          <input
+            type='text'
+            name='beatmapset[offset]'
+            className='simple-form__input simple-form__input--modal'
+            maxLength={6}
+            value={this.state.offset}
+            onChange={this.setOffset}
+          />
         </label>
 
         <div className='simple-form__row'>
