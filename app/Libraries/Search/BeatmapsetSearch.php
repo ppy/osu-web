@@ -63,6 +63,8 @@ class BeatmapsetSearch extends RecordSearch
             );
         }
 
+        $this->addArtistIdFilter($query);
+        $this->addFeaturedArtistsFilter($query);
         $this->addBlacklistFilter($query);
         $this->addBlockedUsersFilter($query);
         $this->addFollowsFilter($query);
@@ -115,6 +117,15 @@ class BeatmapsetSearch extends RecordSearch
             }])->get();
     }
 
+    private function addArtistIdFilter($query)
+    {
+        $artistId = $this->params->artistId;
+
+        if ($artistId) {
+            $query->filter(['term' => ['artist_id' => $artistId]]);
+        }
+    }
+
     private function addBlacklistFilter($query)
     {
         static $fields = ['artist', 'source', 'tags'];
@@ -146,6 +157,13 @@ class BeatmapsetSearch extends RecordSearch
     {
         foreach ($this->params->extra as $val) {
             $query->filter(['term' => [$val => true]]);
+        }
+    }
+
+    private function addFeaturedArtistsFilter($query)
+    {
+        if ($this->params->showFeaturedArtists) {
+            $query->filter(['term' => ['featured_artist' => true]]);
         }
     }
 

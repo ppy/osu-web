@@ -147,6 +147,11 @@ export class Header extends React.Component
               className: 'beatmapset-header__details-text-link'
               href: laroute.route 'beatmapsets.index', q: getArtist(@props.beatmapset)
               getArtist(@props.beatmapset)
+            if @props.beatmapset.artist_id != null && @props.beatmapset.featured_artist
+              a
+                className: 'featured-artist-badge'
+                href: laroute.route 'artists.show', @props.beatmapset.artist_id
+                osu.trans('beatmapsets.featured_artist_badge.label')
 
           el BeatmapsetMapping, beatmapset: @props.beatmapset
 

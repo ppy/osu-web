@@ -27,6 +27,7 @@ export class SearchFilter extends React.PureComponent
         for option, i in @props.options
           cssClasses = 'beatmapsets-search-filter__item'
           cssClasses += ' beatmapsets-search-filter__item--active' if @selected(option.id)
+          cssClasses += ' beatmapsets-search-filter__item--featured-artists' if option.id == 'featured_artists'
 
           text = option.name
           if @props.name == 'general' && option.id == 'recommended' && @props.recommendedDifficulty?

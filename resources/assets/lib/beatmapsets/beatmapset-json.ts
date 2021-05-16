@@ -76,6 +76,7 @@ export interface CurrentUserAttributes {
 // TODO: incomplete
 export interface BeatmapsetJson {
   artist: string;
+  artist_id: number;
   artist_unicode: string;
   beatmaps?: BeatmapJson[];
   covers: BeatmapsetCovers;
@@ -83,6 +84,7 @@ export interface BeatmapsetJson {
   current_user_attributes?: CurrentUserAttributes;
   events?: BeatmapsetEvent[];
   favourite_count: number;
+  featured_artist: boolean;
   genre: GenreJson;
   has_favourited?: boolean;
   hype?: {

@@ -16,6 +16,9 @@ class BeatmapsetSearchParams extends SearchParams
     /** @var array|null */
     public $ar;
 
+    /** @var int|null */
+    public $artistId;
+
     /** @var string|null */
     public $artist;
 
@@ -73,6 +76,9 @@ class BeatmapsetSearchParams extends SearchParams
 
     /** @var array|null */
     public $ranked;
+
+    /** @var bool */
+    public $showFeaturedArtists = false;
 
     /** @var bool */
     public $showFollows = false;

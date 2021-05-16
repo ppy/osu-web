@@ -68,6 +68,15 @@ class ArtistsController extends Controller
             ];
         }
 
+        if ($artist->beatmapsets()->count() > 0) {
+            $links[] = [
+                'title' => trans('artist.links.beatmaps'),
+                'url' => route('beatmapsets.index', ['a' => $artist->id]),
+                'icon' => 'fas fa-bars',
+                'class' => 'osu',
+            ];
+        }
+
         if ($artist->website) {
             $links[] = [
                 'title' => trans('artist.links.site'),

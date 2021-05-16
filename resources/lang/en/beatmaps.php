@@ -250,6 +250,7 @@ return [
     ],
     'general' => [
         'converts' => 'Include converted beatmaps',
+        'featured_artists' => 'Featured artists',
         'follows' => 'Subscribed mappers',
         'recommended' => 'Recommended difficulty',
     ],

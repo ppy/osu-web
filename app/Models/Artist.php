@@ -11,6 +11,7 @@ use Carbon\Carbon;
 /**
  * @property \Illuminate\Database\Eloquent\Collection $albums ArtistAlbum
  * @property string|null $bandcamp
+ * @property \Illuminate\Database\Eloquent\Collection $beatmapsets Beatmapset
  * @property string|null $cover_url
  * @property \Carbon\Carbon|null $created_at
  * @property string $description
@@ -43,6 +44,11 @@ class Artist extends Model
     public function albums()
     {
         return $this->hasMany(ArtistAlbum::class);
+    }
+
+    public function beatmapsets()
+    {
+        return $this->hasMany(Beatmapset::class);
     }
 
     public function tracks()

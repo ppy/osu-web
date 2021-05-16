@@ -15,6 +15,10 @@ return [
         'limit_exceeded' => 'Slow down, play more.',
     ],
 
+    'featured_artist_badge' => [
+        'label' => 'Featured artist',
+    ],
+
     'index' => [
         'title' => 'Beatmaps Listing',
         'guest_title' => 'Beatmaps',
