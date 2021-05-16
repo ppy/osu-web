@@ -32,7 +32,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
       isBusy: false,
       languageId: props.beatmapset.language.id ?? 0,
       nsfw: props.beatmapset.nsfw ?? false,
-      offset: props.beatmapset.offset ?? 0,
+      offset: props.beatmapset.offset,
     };
   }
 
@@ -154,7 +154,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
         genre_id: this.state.genreId,
         language_id: this.state.languageId,
         nsfw: this.state.nsfw,
-        offset: this.state.offset || 0,
+        offset: isNaN(Number(this.state.offset)) ? 0 : this.state.offset,
       } },
       method: 'PATCH',
     }).done((beatmapset: BeatmapsetJson) => $.publish('beatmapset:set', { beatmapset }))
@@ -178,13 +178,8 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
   private setOffset = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
 
-    // workaround for negative numbers
-    if (value === '' || value === '-') {
+    if (/^-?\d*$/.test(value)) {
       this.setState({ offset: value });
-    } else if (isNaN(parseInt(value, 10))) {
-      this.setState({ offset: '' });
-    } else {
-      this.setState({ offset: parseInt(value, 10) });
     }
   }
 }
