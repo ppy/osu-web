@@ -64,9 +64,9 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         $this->addArtistIdFilter($query);
-        $this->addFeaturedArtistsFilter($query);
         $this->addBlacklistFilter($query);
         $this->addBlockedUsersFilter($query);
+        $this->addFeaturedArtistsFilter($query);
         $this->addFollowsFilter($query);
         $this->addGenreFilter($query);
         $this->addLanguageFilter($query);
