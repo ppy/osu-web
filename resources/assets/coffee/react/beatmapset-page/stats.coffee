@@ -46,7 +46,7 @@ export class Stats extends React.Component
         div className: 'beatmapset-stats__elapsed-bar'
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--basic',
-        el BeatmapBasicStats, beatmap: @props.beatmap
+        el BeatmapBasicStats, beatmap: @props.beatmap, beatmapset: @props.beatmapset
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--advanced',
         table className: 'beatmap-stats-table',

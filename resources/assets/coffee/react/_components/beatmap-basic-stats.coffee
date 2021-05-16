@@ -18,7 +18,7 @@ formatDuration = (value) ->
     "#{m}:#{_.padStart s, 2, 0}"
 
 
-export BeatmapBasicStats = ({beatmap}) ->
+export BeatmapBasicStats = ({beatmap, beatmapset}) ->
   div
     className: bn
     for stat in ['total_length', 'bpm', 'count_circles', 'count_sliders']
@@ -32,12 +32,18 @@ export BeatmapBasicStats = ({beatmap}) ->
         else
           osu.formatNumber(value)
 
+      title =
+        osu.trans "beatmapsets.show.stats.#{stat}",
+          if stat == 'total_length'
+            hit_length: formatDuration(beatmap['hit_length'])
+
+      if stat == 'bpm' && beatmapset.offset != 0
+        title += " (#{osu.trans 'beatmapsets.show.stats.offset'}: #{beatmapset.offset})"
+
       div
         className: "#{bn}__entry"
         key: stat
-        title: osu.trans "beatmapsets.show.stats.#{stat}",
-          if stat == 'total_length'
-            hit_length: formatDuration(beatmap['hit_length'])
+        title: title
         div
           className: "#{bn}__entry-icon"
           style:
