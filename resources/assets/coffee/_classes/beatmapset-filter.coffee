@@ -24,7 +24,6 @@ class @BeatmapsetFilter
   @charToKey:
     c: 'general'
     e: 'extra'
-    featured_artists: 'featured_artists'
     g: 'genre'
     l: 'language'
     m: 'mode'
@@ -106,7 +105,6 @@ class @BeatmapsetFilter
 
   # TODO: look at combining with the one in beatmapset-search-filter.ts
   @keys: [
-    'featured_artists'
     'general'
     'extra'
     'genre'
