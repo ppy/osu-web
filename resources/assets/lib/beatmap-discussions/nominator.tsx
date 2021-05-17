@@ -263,7 +263,7 @@ export class Nominator extends React.PureComponent<Props, State> {
       (userNominatable[mode] === 'limited' && !this.requiresFullNomination(mode));
   };
 
-  userHasNominatePermission = () => !this.userIsOwner() && (this.props.currentUser.is_admin || this.props.currentUser.is_bng || this.props.currentUser.is_nat);
+  userHasNominatePermission = () => this.props.currentUser.is_admin || (!this.userIsOwner() && (this.props.currentUser.is_bng || this.props.currentUser.is_nat));
 
   userIsOwner = () => {
     const userId = this.props.currentUser?.id;
