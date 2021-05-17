@@ -265,7 +265,14 @@ export class Nominator extends React.PureComponent<Props, State> {
 
   userHasNominatePermission = () => !this.userIsOwner() && (this.props.currentUser.is_admin || this.props.currentUser.is_bng || this.props.currentUser.is_nat);
 
-  userIsOwner = () => this.props.currentUser?.id === this.props.beatmapset.user_id;
+  userIsOwner = () => {
+    const userId = this.props.currentUser?.id;
+
+    return (userId != null && (
+      userId === this.props.beatmapset.user_id
+      || (this.props.beatmapset.beatmaps ?? []).some((beatmap) => userId === beatmap.user_id)
+    ));
+  };
 
   userNominatableModes = () => {
     if (!this.mapCanBeNominated() || !this.userHasNominatePermission()) {
