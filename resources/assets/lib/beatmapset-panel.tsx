@@ -12,6 +12,7 @@ import { route } from 'laroute';
 import { sum, values } from 'lodash';
 import { computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import OsuUrlHelper from 'osu-url-helper';
 import * as React from 'react';
 import { Transition } from 'react-transition-group';
@@ -90,8 +91,18 @@ const PlayIcon = ({ icon, titleVariant }: { icon: string; titleVariant: string }
   </div>
 );
 
-const StatsItem = ({ icon, title, value }: { icon: string; title: string; value: number }) => (
-  <div className='beatmapset-panel__stats-item' title={title}>
+interface StatsItemProps {
+  icon: string;
+  title: string;
+  type: string;
+  value: number;
+}
+
+const StatsItem = ({ icon, title, type, value }: StatsItemProps) => (
+  <div
+    className={`beatmapset-panel__stats-item beatmapset-panel__stats-item--${type}`}
+    title={title}
+  >
     <span className='beatmapset-panel__stats-item-icon'>
       <i className={icon} />
     </span>
@@ -232,6 +243,8 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     let blockClass = classWithModifiers('beatmapset-panel', {
       'beatmaps-popup-visible': this.isBeatmapsPopupVisible,
       'mobile-expanded': this.mobileExpanded,
+      [`size-${core.userPreferences.get('beatmapset_card_size')}`]: true,
+      'with-hype-counts': this.showHypeCounts,
     });
     if (this.showVisual) {
       blockClass += ' js-audio--player';
@@ -395,6 +408,13 @@ export default class BeatmapsetPanel extends React.Component<Props> {
             {osu.trans('beatmapsets.show.details.by_artist', { artist: getArtist(this.props.beatmapset) })}
           </a>
         </div>
+
+        <div className='beatmapset-panel__info-row beatmapset-panel__info-row--source'>
+          <div className='u-ellipsis-overflow'>
+            {this.props.beatmapset.source}
+          </div>
+        </div>
+
         <div className='beatmapset-panel__info-row beatmapset-panel__info-row--mapper'>
           <div className='u-ellipsis-overflow'>
             <StringWithComponent
@@ -405,41 +425,51 @@ export default class BeatmapsetPanel extends React.Component<Props> {
         </div>
 
         <div className='beatmapset-panel__info-row beatmapset-panel__info-row--stats'>
-          {this.showHypeCounts && this.props.beatmapset.hype != null && (
-            <StatsItem
-              icon='fas fa-bullhorn'
-              title={osu.trans('beatmaps.hype.required_text', {
-                current: osu.formatNumber(this.props.beatmapset.hype.current),
-                required: osu.formatNumber(this.props.beatmapset.hype.required),
-              })}
-              value={this.props.beatmapset.hype.current}
-            />
-          )}
+          {this.showHypeCounts && this.props.beatmapset.hype != null
+            ? (
+              <StatsItem
+                icon='fas fa-bullhorn'
+                title={osu.trans('beatmaps.hype.required_text', {
+                  current: osu.formatNumber(this.props.beatmapset.hype.current),
+                  required: osu.formatNumber(this.props.beatmapset.hype.required),
+                })}
+                type='hype'
+                value={this.props.beatmapset.hype.current}
+              />
+            )
+            : <div className={classWithModifiers('beatmapset-panel__stats-item', ['hidden', 'hype'])} />
+          }
 
-          {this.showHypeCounts && this.nominations != null && (
-            <StatsItem
-              icon='fas fa-thumbs-up'
-              title={osu.trans('beatmaps.nominations.required_text', {
-                current: osu.formatNumber(this.nominations.current),
-                required: osu.formatNumber(this.nominations.required),
-              })}
-              value={this.nominations.current}
-            />
-          )}
-
-          <StatsItem
-            icon='fas fa-play-circle'
-            title={osu.trans('beatmaps.panel.playcount', { count: osu.formatNumber(this.props.beatmapset.play_count) })}
-            value={this.props.beatmapset.play_count}
-          />
+          {this.showHypeCounts && this.nominations != null
+            ? (
+              <StatsItem
+                icon='fas fa-thumbs-up'
+                title={osu.trans('beatmaps.nominations.required_text', {
+                  current: osu.formatNumber(this.nominations.current),
+                  required: osu.formatNumber(this.nominations.required),
+                })}
+                type='nominations'
+                value={this.nominations.current}
+              />
+            )
+            : <div className={classWithModifiers('beatmapset-panel__stats-item', ['hidden', 'nominations'])} />
+          }
 
           <StatsItem
             icon={this.favourite.icon}
             title={osu.trans('beatmaps.panel.favourites', { count: osu.formatNumber(this.props.beatmapset.favourite_count) })}
+            type='favourite-count'
             value={this.props.beatmapset.favourite_count}
           />
 
-          <div className='beatmapset-panel__stats-item'>
+          <StatsItem
+            icon='fas fa-play-circle'
+            title={osu.trans('beatmaps.panel.playcount', { count: osu.formatNumber(this.props.beatmapset.play_count) })}
+            type='play-count'
+            value={this.props.beatmapset.play_count}
+          />
+
+          <div className='beatmapset-panel__stats-item beatmapset-panel__stats-item--date'>
             <span className='beatmapset-panel__stats-item-icon'>
               <i className='fas fa-fw fa-check-circle' />
             </span>

@@ -2,11 +2,21 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { computed, observable } from 'mobx';
+import core from 'osu-core-singleton';
 
 export default class VirtualListMeta {
+  get cardHeight() {
+    if (this.isDesktop) {
+      return core.userPreferences.get('beatmapset_card_size') === 'normal' ? 100 : 140;
+    }
+
+    return 120;
+  }
+
   @computed
   get itemHeight() {
-    return this.itemHeightByColumns.get(this.numberOfColumns) ?? 0;
+    // 10px margin
+    return this.cardHeight + 10;
   }
 
   @computed
@@ -16,10 +26,6 @@ export default class VirtualListMeta {
 
   private eventId = `virtual-list-meta-osu.${osu.uuid()}`;
   @observable private isDesktop = true;
-  private itemHeightByColumns = new Map<number, number>([
-    [1, 125],
-    [2, 110],
-  ]);
 
   constructor() {
     this.checkIsDesktop();

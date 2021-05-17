@@ -4,9 +4,11 @@
 import { Paginator } from './paginator'
 import { SearchPanel } from './search-panel'
 import { SearchSort } from './search-sort'
+import BeatmapsetCardSizeSelector from 'beatmaps/beatmapset-card-size-selector'
 import VirtualListMeta from 'beatmaps/virtual-list-meta'
 import BeatmapsetPanel from 'beatmapset-panel'
 import { Img2x } from 'img2x'
+import { beatmapsetCardSizes } from 'interfaces/current-user'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
@@ -66,10 +68,16 @@ export class SearchContent extends React.Component
           className: 'osu-layout__row osu-layout__row--page-compact'
           div className: listCssClasses,
             if controller.advancedSearch
-              div
-                className: 'beatmapsets__sort'
-                el SearchSort,
-                  filters: controller.filters
+              div className: 'beatmapsets__toolbar',
+                div className: 'beatmapsets__toolbar-item',
+                  el SearchSort, filters: controller.filters
+                div className: 'beatmapsets__toolbar-item',
+                  div className: 'sort hidden-xs', div className: 'sort__items',
+                    beatmapsetCardSizes.map (size) =>
+                      el BeatmapsetCardSizeSelector,
+                        key: size
+                        classElement: 'sort__item'
+                        size: size
 
             div
               className: 'beatmapsets__content js-audio--group'

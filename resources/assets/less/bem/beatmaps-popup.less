@@ -12,11 +12,11 @@
   border-radius: 0 0 @border-radius--large @border-radius--large;
   transition: all 150ms ease-in-out;
   z-index: @z-index--beatmaps-panel;
-  --panel-height: @beatmapset-panel-height;
+  --panel-height: @beatmapset-panel-normal-height;
 
   @media @desktop {
     padding-top: @border-radius--large;
-    --panel-height: @beatmapset-panel-height-desktop;
+    --panel-height: @beatmapset-panel-normal-height-desktop;
   }
 
   &::before {
@@ -30,6 +30,14 @@
     left: 0;
     pointer-events: none;
     border-radius: @border-radius--large;
+  }
+
+  &--size-extra {
+    --panel-height: @beatmapset-panel-extra-height;
+
+    @media @desktop {
+      --panel-height: @beatmapset-panel-extra-height-desktop;
+    }
   }
 
   &__content {
