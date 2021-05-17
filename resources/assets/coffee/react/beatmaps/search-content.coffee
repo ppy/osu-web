@@ -41,10 +41,6 @@ Observables = observable
   BeatmapList: VirtualList()(ListRender)
   numberOfColumns: if osu.isDesktop() then 2 else 1
 
-observe Observables, 'numberOfColumns', (change) ->
-  if change.oldValue != change.newValue
-    Observables.BeatmapList = VirtualList()(ListRender)
-
 
 export class SearchContent extends React.Component
   componentDidMount: ->
