@@ -103,6 +103,7 @@ class OsuAuthorize
     public function checkBeatmapUpdateOwner(?User $user, ?Beatmapset $beatmapset): string
     {
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if (
             $beatmapset !== null
