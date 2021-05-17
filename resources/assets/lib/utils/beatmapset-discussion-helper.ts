@@ -24,7 +24,7 @@ export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: Bad
     return mapperGroup;
   }
 
-  if (discussion.beatmap_id === currentBeatmap.id && user.id === currentBeatmap.user_id) {
+  if (currentBeatmap != null && discussion.beatmap_id === currentBeatmap.id && user.id === currentBeatmap.user_id) {
     return guestGroup;
   }
 
