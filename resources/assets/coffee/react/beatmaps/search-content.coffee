@@ -4,9 +4,9 @@
 import { Paginator } from './paginator'
 import { SearchPanel } from './search-panel'
 import { SearchSort } from './search-sort'
+import VirtualListMeta from 'beatmaps/virtual-list-meta'
 import BeatmapsetPanel from 'beatmapset-panel'
 import { Img2x } from 'img2x'
-import { observe, observable } from 'mobx'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
@@ -15,11 +15,6 @@ import VirtualList from 'react-virtual-list'
 import { showVisual } from 'utils/beatmapset-helper'
 
 el = React.createElement
-
-# needs to be known in advance to calculate size of virtual scrolling area.
-ITEM_HEIGHT =
-  1: 125
-  2: 110
 
 ListRender = ({ virtual, itemHeight }) ->
   div
@@ -36,21 +31,16 @@ ListRender = ({ virtual, itemHeight }) ->
               key: beatmapsetId
               el BeatmapsetPanel, beatmapset: core.dataStore.beatmapsetStore.get(beatmapsetId)
 
-# stored in an observable so a rerender will occur when the HOC gets updated.
-Observables = observable
-  BeatmapList: VirtualList()(ListRender)
-  numberOfColumns: if osu.isDesktop() then 2 else 1
+BeatmapList = VirtualList()(ListRender)
 
 
 export class SearchContent extends React.Component
-  componentDidMount: ->
-    $(window).on 'resize.beatmaps-search-content', ->
-      count = if osu.isDesktop() then 2 else 1
-      Observables.numberOfColumns = count if Observables.numberOfColumns != count
+  constructor: ->
+    @virtualListMeta = new VirtualListMeta
 
 
   componentWillUnmount: ->
-    $(window).off '.beatmaps-search-content'
+    @virtualListMeta.destroy()
 
 
   render: ->
@@ -94,10 +84,10 @@ export class SearchContent extends React.Component
 
               else
                 if beatmapsetIds.length > 0
-                  el Observables.BeatmapList,
-                    items: _.chunk(beatmapsetIds, Observables.numberOfColumns)
+                  el BeatmapList,
+                    items: _.chunk(beatmapsetIds, @virtualListMeta.numberOfColumns)
                     itemBuffer: 5
-                    itemHeight: ITEM_HEIGHT[Observables.numberOfColumns]
+                    itemHeight: @virtualListMeta.itemHeight
 
                 else
                   div className: 'beatmapsets__empty',
