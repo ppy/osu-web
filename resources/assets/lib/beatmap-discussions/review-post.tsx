@@ -17,7 +17,7 @@ interface Props {
 export class ReviewPost extends React.Component<Props> {
   embed(id: number) {
     return (
-      <div className='beatmap-discussion-review-post__block' key={osu.uuid()}>
+      <div key={osu.uuid()} className='beatmap-discussion-review-post__block'>
         <ReviewPostEmbed data={{discussion_id: id}} />
       </div>
     );
@@ -26,6 +26,7 @@ export class ReviewPost extends React.Component<Props> {
   paragraph(source: string) {
     return (
       <ReactMarkdown
+        key={osu.uuid()}
         plugins={[
           [
             disableTokenizersPlugin,
@@ -37,9 +38,6 @@ export class ReviewPost extends React.Component<Props> {
           autolinkPlugin,
           timestampPlugin,
         ]}
-        key={osu.uuid()}
-        source={source}
-        unwrapDisallowed
         renderers={{
           link: this.linkRenderer,
           paragraph: (props) => (<div className='beatmap-discussion-review-post__block'>
@@ -47,6 +45,8 @@ export class ReviewPost extends React.Component<Props> {
           </div>),
           timestamp: (props) => <a className='beatmap-discussion-timestamp-decoration' {...props}/>,
         }}
+        source={source}
+        unwrapDisallowed
       />
     );
   }

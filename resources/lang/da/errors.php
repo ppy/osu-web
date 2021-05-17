@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => '',
+    'no_restricted_access' => 'Du kan ikke udføre denne handling mens din konto er begrænset.',
+    'supporter_only' => 'Du skal være osu!supporter for at kunne anvende denne funktion.',
+    'unknown' => 'En ukendt fejl er opstået.',
+
     'codes' => [
         'http-401' => 'Log venligst ind for at fortsætte.',
         'http-403' => 'Adgang nægtet.',
@@ -26,8 +31,4 @@ return [
         'default' => 'Kunne ikke få resultater, prøv igen senere.',
         'operation_timeout_exception' => 'Søgemaskinen er i øjeblikket travlere end ellers, prøv igen senere.',
     ],
-
-    'supporter_only' => 'Du skal være osu!supporter for at kunne anvende denne funktion.',
-    'no_restricted_access' => 'Du kan ikke udføre denne handling mens din konto er begrænset.',
-    'unknown' => 'En ukendt fejl er opstået.',
 ];

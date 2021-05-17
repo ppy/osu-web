@@ -56,9 +56,9 @@
             <dd class="contest">
                 <div class="contest__description">{!! markdown($contest->description_voting) !!}</div>
             </dd>
-            @if ($contest->extra_options !== null)
+            @if ($contest->getExtraOptions() !== null)
                 <dt class="admin-contest__meta-row"><br />Extra Options</dt>
-                <dd><pre>{{json_encode($contest->extra_options, JSON_PRETTY_PRINT)}}</pre></dd>
+                <dd><pre>{{json_encode($contest->getExtraOptions(), JSON_PRETTY_PRINT)}}</pre></dd>
             @endif
         </dl>
         <div class="js-react--admin-contest-user-entry-list"></div>

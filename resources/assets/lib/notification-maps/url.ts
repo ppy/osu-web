@@ -3,8 +3,13 @@
 
 import { route } from 'laroute';
 import Notification from 'models/notification';
+import { isBeatmapOwnerChangeNotification } from 'models/notification/beatmap-owner-change-notification';
 
 export function urlGroup(item: Notification) {
+  if (isBeatmapOwnerChangeNotification(item)) {
+    return route('beatmapsets.discussion', { beatmap: '-', beatmapset: item.objectId, mode: 'events' });
+  }
+
   if (item.name === 'comment_new' || item.name === 'comment_reply') {
     switch (item.objectType) {
       case 'beatmapset':
@@ -12,7 +17,7 @@ export function urlGroup(item: Notification) {
       case 'build':
         return route('changelog.show', { changelog: item.objectId, key: 'id' });
       case 'news_post':
-        return route('news.show', { news: item.objectId, key: 'id' });
+        return route('news.show', { key: 'id', news: item.objectId });
     }
   } else if (item.name === 'user_achievement_unlock') {
     return userAchievementUrl(item);
@@ -26,11 +31,15 @@ export function urlGroup(item: Notification) {
     case 'channel':
       return route('chat.index', { sendto: item.sourceUserId });
     case 'forum_topic':
-      return route('forum.topics.show', { topic: item.objectId, start: 'unread' });
+      return route('forum.topics.show', { start: 'unread', topic: item.objectId });
   }
 }
 
 export function urlSingular(item: Notification) {
+  if (isBeatmapOwnerChangeNotification(item)) {
+    return route('beatmapsets.discussion', { beatmap: item.details.beatmapId, beatmapset: item.objectId });
+  }
+
   switch (item.name) {
     case 'beatmapset_discussion_lock':
     case 'beatmapset_discussion_unlock':

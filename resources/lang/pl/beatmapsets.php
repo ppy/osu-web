@@ -53,7 +53,9 @@ return [
         'discussion' => 'Dyskusja',
 
         'details' => [
+            'by_artist' => ':artist',
             'favourite' => 'Dodaj do ulubionych',
+            'favourite_login' => 'Zaloguj się, by dodać tę beatmapę do ulubionych',
             'logged-out' => 'Zaloguj się, aby zacząć pobierać beatmapy!',
             'mapped_by' => 'autorstwa :mapper',
             'unfavourite' => 'Usuń z ulubionych',
@@ -120,6 +122,7 @@ return [
             'storyboard' => 'Ta beatmapa zawiera scenorys',
             'success-rate' => 'Wskaźnik ukończonych zagrań',
             'tags' => 'Tagi',
+            'video' => 'Ta beatmapa zawiera wideo w tle',
         ],
 
         'nsfw_warning' => [

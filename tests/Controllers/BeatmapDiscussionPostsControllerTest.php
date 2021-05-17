@@ -100,6 +100,40 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertSame($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
     }
 
+    public function testPostStoreNewDiscussionNoteByMapperOnGuestBeatmap()
+    {
+        $currentDiscussions = BeatmapDiscussion::count();
+        $currentDiscussionPosts = BeatmapDiscussionPost::count();
+        $this->beatmap->update(['user_id' => $this->user->getKey()]);
+
+        $params = $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'mapper_note');
+        $params['beatmap_discussion']['beatmap_id'] = $this->beatmap->getKey();
+        $this
+            ->actingAsVerified($this->mapper)
+            ->post(route('beatmapsets.discussions.posts.store'), $params)
+            ->assertStatus(403);
+
+        $this->assertSame($currentDiscussions, BeatmapDiscussion::count());
+        $this->assertSame($currentDiscussionPosts, BeatmapDiscussionPost::count());
+    }
+
+    public function testPostStoreNewDiscussionNoteByGuestOnGuestBeatmap()
+    {
+        $currentDiscussions = BeatmapDiscussion::count();
+        $currentDiscussionPosts = BeatmapDiscussionPost::count();
+        $this->beatmap->update(['user_id' => $this->user->getKey()]);
+
+        $params = $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'mapper_note');
+        $params['beatmap_discussion']['beatmap_id'] = $this->beatmap->getKey();
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('beatmapsets.discussions.posts.store'), $params)
+            ->assertSuccessful();
+
+        $this->assertSame($currentDiscussions + 1, BeatmapDiscussion::count());
+        $this->assertSame($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
+    }
+
     public function testPostStoreNewDiscussionNoteByNominator()
     {
         $currentDiscussions = BeatmapDiscussion::count();
@@ -238,6 +272,44 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             $this->assertSame($lastDiscussionPosts + 2, BeatmapDiscussionPost::count());
             $this->assertSame(!$lastResolved, $this->beatmapDiscussion->fresh()->resolved);
         }
+    }
+
+    public function testPostStoreNewReplyResolveByMapperOnGuestBeatmap()
+    {
+        $guest = factory(User::class)->create();
+        $this->beatmap->update(['user_id' => $guest->getKey()]);
+        $this->beatmapDiscussion->update([
+            'beatmap_id' => $this->beatmap->getKey(),
+            'message_type' => 'problem',
+            'resolved' => false,
+        ]);
+        $discussionPostCount = BeatmapDiscussionPost::count();
+
+        $this
+            ->postResolveDiscussion(true, $this->mapper)
+            ->assertStatus(403);
+
+        $this->assertSame($discussionPostCount, BeatmapDiscussionPost::count());
+        $this->assertFalse($this->beatmapDiscussion->fresh()->resolved);
+    }
+
+    public function testPostStoreNewReplyResolveByGuest()
+    {
+        $guest = factory(User::class)->create();
+        $this->beatmap->update(['user_id' => $guest->getKey()]);
+        $this->beatmapDiscussion->update([
+            'beatmap_id' => $this->beatmap->getKey(),
+            'message_type' => 'problem',
+            'resolved' => false,
+        ]);
+        $discussionPostCount = BeatmapDiscussionPost::count();
+
+        $this
+            ->postResolveDiscussion(true, $guest)
+            ->assertSuccessful();
+
+        $this->assertSame($discussionPostCount + 2, BeatmapDiscussionPost::count());
+        $this->assertTrue($this->beatmapDiscussion->fresh()->resolved);
     }
 
     public function testPostStoreNewReplyResolveByOtherUser()
@@ -724,7 +796,9 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->beatmapset = factory(Beatmapset::class)->create([
             'user_id' => $this->mapper->getKey(),
         ]);
-        $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make([
+            'user_id' => $this->mapper->getKey(),
+        ]));
         $this->beatmapDiscussion = factory(BeatmapDiscussion::class, 'timeline')->create([
             'beatmapset_id' => $this->beatmapset->getKey(),
             'beatmap_id' => $this->beatmap->getKey(),

@@ -53,7 +53,9 @@ return [
         'discussion' => 'Diskussion',
 
         'details' => [
+            'by_artist' => 'av :artist',
             'favourite' => 'Favorisera denna beatmapset',
+            'favourite_login' => '',
             'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!',
             'mapped_by' => 'skapad av :mapper',
             'unfavourite' => 'Ta bort favorisering på denna beatmapset',
@@ -117,9 +119,10 @@ return [
             'nsfw' => 'Explicit innehåll',
             'points-of-failure' => 'Punkter av Misslyckande',
             'source' => 'Källa',
-            'storyboard' => '',
+            'storyboard' => 'Denna beatmap innehåller storyboard',
             'success-rate' => 'Genomsnittig Succe',
             'tags' => 'Taggar',
+            'video' => 'Denna beatmap innehåller video',
         ],
 
         'nsfw_warning' => [

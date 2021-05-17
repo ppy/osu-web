@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Hledat',
             'deleted' => 'Zahrnout smazané diskuze',
+            'mode' => '',
             'only_unresolved' => 'Ukaž pouze nerozluštěné diskuze',
             'types' => 'Typy zpráv',
             'username' => 'Uživatelské jméno',

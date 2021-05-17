@@ -40,7 +40,9 @@ class BeatmapsetQueryParser
                     $parsed = static::parseLength($m['value']);
                     $option = static::makeFloatRangeOption($op, $parsed['value'], $parsed['scale'] / 2.0);
                     break;
+                case 'key':
                 case 'keys':
+                    $key = 'keys';
                     $option = static::makeIntRangeOption($op, $m['value']);
                     break;
                 case 'divisor':

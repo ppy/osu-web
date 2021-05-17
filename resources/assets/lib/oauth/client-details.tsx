@@ -25,7 +25,7 @@ interface State {
 
 @observer
 export class ClientDetails extends React.Component<Props, State> {
-  readonly state: State = {
+  state: Readonly<State> = {
     isSecretVisible: false,
     redirect: this.props.client.redirect,
   };

@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Beatmap',
 
+            'beatmap_owner_change' => [
+                '_' => 'Guest difficulty',
+                'beatmap_owner_change' => 'You\'re now owner of difficulty ":beatmap" for beatmap ":title"',
+                'beatmap_owner_change_compact' => 'You\'re now owner of difficulty ":beatmap"',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Beatmap discussion',
                 'beatmapset_discussion_lock' => 'Discussion on ":title" has been locked',
@@ -162,6 +168,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'You\'re now guest of beatmap ":title"',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'The discussion on ":title" has been locked',
                 'beatmapset_discussion_post_new' => 'The discussion on ":title" has new updates',

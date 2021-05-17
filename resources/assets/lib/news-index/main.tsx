@@ -132,7 +132,7 @@ export default class Main extends React.Component<Props, State> {
       posts.pop();
     }
 
-    return {posts, hasMore, loading};
+    return { hasMore, loading, posts };
   };
 
   private restoreState = () => {

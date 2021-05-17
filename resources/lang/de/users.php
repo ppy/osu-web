@@ -410,8 +410,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Du bist derzeit stumm.',
+        'message' => 'Einige Aktionen sind möglicherweise nicht verfügbar.',
     ],
 
     'status' => [

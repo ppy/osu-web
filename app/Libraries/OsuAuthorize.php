@@ -96,6 +96,29 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @param Beatmapset $beatmap
+     * @return string
+     * @throws AuthorizationException
+     */
+    public function checkBeatmapUpdateOwner(?User $user, ?Beatmapset $beatmapset): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if (
+            $beatmapset !== null
+            && in_array($beatmapset->status(), ['wip', 'graveyard', 'pending'], true)
+            && !$beatmapset->hasNominations()
+            && $beatmapset->user_id === $user->getKey()
+        ) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
+    /**
+     * @param User|null $user
      * @param BeatmapDiscussion|null $discussion
      * @return string
      * @throws AuthorizationException
@@ -200,11 +223,16 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->user_id === $discussion->user_id) {
+        $userId = $user->getKey();
+
+        if ($userId === $discussion->user_id) {
             return 'ok';
         }
 
-        if ($user->user_id === $discussion->beatmapset->user_id && $discussion->beatmapset->approved !== Beatmapset::STATES['qualified']) {
+        if (
+            $discussion->beatmapset->approved !== Beatmapset::STATES['qualified']
+            && $discussion->responsibleUserId() === $userId
+        ) {
             return 'ok';
         }
 
@@ -288,9 +316,17 @@ class OsuAuthorize
         $this->ensureHasPlayed($user);
 
         if ($discussion->message_type === 'mapper_note') {
-            if ($user->getKey() !== $discussion->beatmapset->user_id && !$user->isModerator() && !$user->isBNG()) {
-                return 'beatmap_discussion.store.mapper_note_wrong_user';
+            $userId = $user->getKey();
+
+            if ($discussion->responsibleUserId() === $userId) {
+                return 'ok';
             }
+
+            if ($user->isModerator() || $user->isBNG()) {
+                return 'ok';
+            }
+
+            return 'beatmap_discussion.store.mapper_note_wrong_user';
         }
 
         return 'ok';

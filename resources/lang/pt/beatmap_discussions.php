@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Pesquisar',
             'deleted' => 'Incluir discussões eliminadas',
+            'mode' => 'Modo beatmap',
             'only_unresolved' => 'Mostrar apenas as discussões não resolvidas',
             'types' => 'Tipos de mensagem',
             'username' => 'Nome de utilizador',

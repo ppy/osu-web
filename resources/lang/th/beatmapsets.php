@@ -53,7 +53,9 @@ return [
         'discussion' => 'การสนทนา',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'กดชื่นชอบ beatmapset นี้',
+            'favourite_login' => '',
             'logged-out' => 'คุณต้องเข้าสู่ระบบก่อนที่จะดาวน์โหลดบีทแมพ',
             'mapped_by' => 'แมพโดย :mapper',
             'unfavourite' => 'เลิก Favourite beatmapset นี้',
@@ -120,6 +122,7 @@ return [
             'storyboard' => '',
             'success-rate' => 'อัตราการผ่าน',
             'tags' => 'แท็ก',
+            'video' => '',
         ],
 
         'nsfw_warning' => [

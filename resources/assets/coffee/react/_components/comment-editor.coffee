@@ -6,7 +6,7 @@ import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, span } from 'react-dom-factories'
 import { Spinner } from 'spinner'
-import { UserAvatar } from 'user-avatar'
+import UserAvatar from 'user-avatar'
 import { onErrorWithCallback } from 'utils/ajax'
 el = React.createElement
 

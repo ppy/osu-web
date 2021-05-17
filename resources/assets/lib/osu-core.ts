@@ -16,6 +16,7 @@ import OsuAudio from 'osu-audio/main';
 import OsuLayzr from 'osu-layzr';
 import SocketWorker from 'socket-worker';
 import RootDataStore from 'stores/root-data-store';
+import Timeago from 'timeago';
 import TurbolinksReload from 'turbolinks-reload';
 import UserLogin from 'user-login';
 import UserLoginObserver from 'user-login-observer';
@@ -45,6 +46,7 @@ export default class OsuCore {
   readonly osuAudio = new OsuAudio();
   readonly osuLayzr = new OsuLayzr();
   socketWorker: SocketWorker;
+  readonly timeago = new Timeago();
   readonly turbolinksReload = new TurbolinksReload();
   readonly userLogin: UserLogin;
   userLoginObserver: UserLoginObserver;
@@ -74,11 +76,11 @@ export default class OsuCore {
 
   private onCurrentUserUpdate = (event: unknown, user: CurrentUser) => {
     this.setCurrentUser(user);
-  }
+  };
 
   private onPageLoad = () => {
     this.setCurrentUser(window.currentUser);
-  }
+  };
 
   private setCurrentUser = (user: CurrentUser) => {
     this.dataStore.userStore.getOrCreate(user.id, user);

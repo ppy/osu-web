@@ -60,9 +60,9 @@ export default class ClickToCopy extends React.Component<Props> {
     return (
       <a
         className={bn}
+        data-tooltip-hide-events='mouseleave'
         data-tooltip-pin-position
         data-tooltip-position='bottom center'
-        data-tooltip-hide-events='mouseleave'
         href={this.props.valueAsUrl ? this.props.value : '#'}
         onClick={this.click}
         title={osu.trans('common.buttons.click_to_copy')}

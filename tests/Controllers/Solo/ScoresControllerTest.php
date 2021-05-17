@@ -7,6 +7,7 @@ namespace Tests\Controllers\Solo;
 
 use App\Models\Beatmap;
 use App\Models\Build;
+use App\Models\Score as LegacyScore;
 use App\Models\Solo\Score;
 use App\Models\User;
 use Tests\TestCase;
@@ -101,7 +102,10 @@ class ScoresControllerTest extends TestCase
             'user_id' => $user->getKey(),
             'updated_at' => now()->subHour(1), // prevent same time if run too fast
         ]);
+        $legacyScoreClass = LegacyScore\Model::getClass($beatmap->playmode);
+
         $initialScoreUpdate = json_time($score->updated_at);
+        $initialLegacyScoreCount = $legacyScoreClass::count();
 
         $this->actAsScopedUser($user, ['*']);
 
@@ -121,6 +125,7 @@ class ScoresControllerTest extends TestCase
             ]
         )->assertSuccessful();
 
+        $this->assertSame($initialLegacyScoreCount + 1, $legacyScoreClass::count());
         $this->assertNotSame($initialScoreUpdate, json_time($score->fresh()->updated_at));
     }
 

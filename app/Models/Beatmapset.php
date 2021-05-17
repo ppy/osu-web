@@ -47,6 +47,7 @@ use Illuminate\Database\QueryException;
  * @property int $beatmapset_id
  * @property mixed|null $body_hash
  * @property float $bpm
+ * @property string $commentable_identifier
  * @property Comment $comments
  * @property \Carbon\Carbon|null $cover_updated_at
  * @property string $creator
@@ -1180,6 +1181,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return $this->belongsTo(User::class, 'user_id', 'approvedby_id');
     }
 
+    public function topic()
+    {
+        return $this->belongsTo(Forum\Topic::class, 'thread_id');
+    }
+
     public function userRatings()
     {
         return $this->hasMany(BeatmapsetUserRating::class);
@@ -1313,7 +1319,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function getPost()
     {
-        $topic = Forum\Topic::find($this->thread_id);
+        $topic = $this->topic;
 
         if ($topic === null) {
             return;

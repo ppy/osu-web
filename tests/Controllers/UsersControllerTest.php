@@ -219,6 +219,6 @@ class UsersControllerTest extends TestCase
 
         $this
             ->get(route('api.users.show', ['user' => $user->username]))
-            ->assertRedirect(route('api.users.show', ['user' => $user->getKey()]));
+            ->assertSuccessful();
     }
 }

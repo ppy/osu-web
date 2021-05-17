@@ -53,7 +53,9 @@ return [
         'discussion' => 'Keskustelu',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',
+            'favourite_login' => '',
             'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
             'mapped_by' => 'luonut: :mapper',
             'unfavourite' => 'Poista tämä beatmapkokoelma suosikeista',
@@ -120,6 +122,7 @@ return [
             'storyboard' => '',
             'success-rate' => 'Läpäisyprosentti',
             'tags' => 'Tunnisteet',
+            'video' => '',
         ],
 
         'nsfw_warning' => [

@@ -38,6 +38,7 @@ class Mod
     const OSU_SPININ = 'SI';
     const OSU_TRACEABLE = 'TC';
     const OSU_CLASSIC = 'CL';
+    const OSU_BARRELROLL = 'BR';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -56,6 +57,9 @@ class Mod
     const MANIA_RANDOM = 'RD';
     const MANIA_INVERT = 'IN';
     const MANIA_CONSTANTSPEED = 'CS';
+
+    // catch-specific
+    const CATCH_FLOATINGFRUIT = 'FF';
 
     // taiko-specific
     const TAIKO_RANDOM = 'RD';
@@ -191,6 +195,10 @@ class Mod
             'no_slider_head_movement' => 'bool',
             'always_play_tail_sample' => 'bool',
         ],
+        self::OSU_BARRELROLL => [
+            'spin_speed' => 'float',
+            'direction' => 'int',
+        ],
     ];
 
     public static function assertValidExclusivity($requiredIds, $allowedIds, $ruleset)
@@ -260,6 +268,7 @@ class Mod
                         self::OSU_SPININ,
                         self::OSU_TRACEABLE,
                         self::OSU_CLASSIC,
+                        self::OSU_BARRELROLL,
                     ]
                 ),
 
@@ -273,7 +282,7 @@ class Mod
                 Ruleset::CATCH => array_merge(
                     self::SCORABLE_COMMON,
                     [
-                        // catch-specific mods go here
+                        self::CATCH_FLOATINGFRUIT,
                     ]
                 ),
 

@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Hľadať',
             'deleted' => 'Zahrnúť odstránené diskusie',
+            'mode' => '',
             'only_unresolved' => 'Ukázať iba nevyriešené diskusie',
             'types' => 'Typy správ',
             'username' => 'Meno Uživateľa',

@@ -26,6 +26,7 @@ use App\Models\Forum\Topic;
  */
 class Notification extends Model
 {
+    const BEATMAP_OWNER_CHANGE = 'beatmap_owner_change';
     const BEATMAPSET_DISCUSSION_LOCK = 'beatmapset_discussion_lock';
     const BEATMAPSET_DISCUSSION_POST_NEW = 'beatmapset_discussion_post_new';
     const BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM = 'beatmapset_discussion_qualified_problem';
@@ -46,6 +47,7 @@ class Notification extends Model
     const USER_BEATMAPSET_REVIVE = 'user_beatmapset_revive';
 
     const NAME_TO_CATEGORY = [
+        self::BEATMAP_OWNER_CHANGE => 'beatmap_owner_change',
         self::BEATMAPSET_DISCUSSION_LOCK => 'beatmapset_discussion',
         self::BEATMAPSET_DISCUSSION_POST_NEW => 'beatmapset_discussion',
         self::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM => 'beatmapset_problem',

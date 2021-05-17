@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Cari',
             'deleted' => 'Sertakan diskusi yang telah dihapus',
+            'mode' => 'Mode beatmap',
             'only_unresolved' => 'Hanya tampilkan diskusi yang belum selesai',
             'types' => 'Tipe pesan',
             'username' => 'Nama Pengguna',

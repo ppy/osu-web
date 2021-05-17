@@ -77,7 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'допомога',
-            'getAbuse' => '',
+            'getAbuse' => 'Повідомити про зловживання ',
             'getFaq' => 'чапи',
             'getRules' => 'правила',
             'getSupport' => 'мені, насправді, потрібна допомога!',
@@ -160,7 +160,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Перевищений ліміт запитів',
             'description' => '',
         ],
         '500' => [
@@ -208,7 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Налаштування',
-            'follows' => '',
+            'follows' => 'Список перегляду',
             'friends' => 'Друзі',
             'logout' => 'Вийти',
             'profile' => 'Мій профайл',

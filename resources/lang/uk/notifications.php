@@ -5,13 +5,13 @@
 
 return [
     'all_read' => 'Всі сповіщення прочитані!',
-    'delete' => '',
-    'loading' => '',
+    'delete' => 'Видалити :type',
+    'loading' => 'Завантажити непрочитані сповіщення...',
     'mark_read' => 'Очистити :type',
     'none' => 'Немає повідомлень',
     'see_all' => 'див. всі сповіщення ',
-    'see_channel' => '',
-    'verifying' => '',
+    'see_channel' => 'перейти до чату',
+    'verifying' => 'Будь ласка, перевірте сеанс, щоб переглянути сповіщення',
 
     'filters' => [
         '_' => 'усе',
@@ -61,8 +61,8 @@ return [
                 'beatmapset_qualify_compact' => 'Карта увійшла до черги рейтингу',
                 'beatmapset_rank' => '":title" оцінено',
                 'beatmapset_rank_compact' => 'Карта була ранкнута',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved' => '":title" вилучений з Улюблені',
+                'beatmapset_remove_from_loved_compact' => 'Бітмапа була вилучена з Улюблені',
                 'beatmapset_reset_nominations' => 'Проблема опублікована :username викликала скидання процесу номінації карти ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Номінацію було скинуто',
             ],
@@ -137,11 +137,11 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Нова бітмапа',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Нова бітмапа ":title" від :username',
+                'user_beatmapset_new_compact' => 'Нова бітмапа ":title"',
+                'user_beatmapset_new_group' => 'Нова бітмапа від :username',
             ],
         ],
 
@@ -152,7 +152,7 @@ return [
                 '_' => 'Нова медаль',
                 'user_achievement_unlock' => 'Розблоковано ":title"!',
                 'user_achievement_unlock_compact' => 'Розблоковано ":title"!',
-                'user_achievement_unlock_group' => '',
+                'user_achievement_unlock_group' => 'Медалі розблоковано!',
             ],
         ],
     ],
@@ -175,7 +175,7 @@ return [
                 'beatmapset_nominate' => '":title" було номіновано',
                 'beatmapset_qualify' => '":title" отримав достатню кількість номінацій і увійшов до черги рейтингу',
                 'beatmapset_rank' => '":title" було оцінено',
-                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved' => '":title" видалений з Улюблені',
                 'beatmapset_reset_nominations' => 'Номінація ":title" була скинута',
             ],
 
@@ -215,7 +215,7 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username створив нову бітмапу',
             ],
         ],
     ],

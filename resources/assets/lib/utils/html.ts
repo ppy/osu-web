@@ -40,6 +40,8 @@ export function formatNumberSuffixed(num?: number, precision?: number, options?:
   return `${format(num / Math.pow(k, i))}${suffixes[i]}`;
 }
 
+export const transparentGif = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
 export function make2x(url?: string) {
   if (url == null) return;
 

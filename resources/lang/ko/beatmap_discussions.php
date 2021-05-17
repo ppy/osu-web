@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => '검색',
             'deleted' => '삭제된 토론 포함',
+            'mode' => '비트맵 모드',
             'only_unresolved' => '미해결 토론만 보기',
             'types' => '메시지 종류',
             'username' => '사용자 이름',
