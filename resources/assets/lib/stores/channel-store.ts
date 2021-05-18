@@ -248,7 +248,9 @@ export default class ChannelStore {
   @action
   updateWithPresence(presence: PresenceJson) {
     presence.forEach((json) => {
-      this.getOrCreate(json.channel_id).updatePresence(json);
+      if (json.type !== 'MULTIPLAYER') {
+        this.getOrCreate(json.channel_id).updatePresence(json);
+      }
     });
 
     // remove parted channels
