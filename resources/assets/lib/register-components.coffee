@@ -15,8 +15,8 @@ import { LandingNews } from 'landing-news'
 import { keyBy } from 'lodash'
 import { observable } from 'mobx'
 import { deletedUser } from 'models/user'
+import MainNotificationIcon from 'main-notification-icon'
 import MultiplayerSelectOptions from 'multiplayer-select-options'
-import NotificationIcon from 'notification-icon'
 import NotificationWidget from 'notification-widget/main'
 import NotificationWorker from 'notifications/worker'
 import QuickSearch from 'quick-search/main'
@@ -82,10 +82,10 @@ reactTurbolinks.register 'comments', CommentsManager, (el) ->
   props
 
 reactTurbolinks.registerPersistent 'chat-icon', ChatIcon, true, (el) ->
-  (try JSON.parse(el.dataset.chatIcon)) ? {}
+  type: el.dataset.type
 
-reactTurbolinks.registerPersistent 'notification-icon', NotificationIcon, true, (el) ->
-  (try JSON.parse(el.dataset.notificationIcon)) ? {}
+reactTurbolinks.registerPersistent 'main-notification-icon', MainNotificationIcon, true, (el) ->
+  type: el.dataset.type
 
 reactTurbolinks.registerPersistent 'notification-widget', NotificationWidget, true, (el) ->
   try JSON.parse(el.dataset.notificationWidget)

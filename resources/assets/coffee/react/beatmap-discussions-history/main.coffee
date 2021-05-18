@@ -117,6 +117,7 @@ export class Main extends React.PureComponent
                   el Discussion,
                     discussion: discussion
                     users: @users()
+                    currentBeatmap: @beatmaps()[discussion.beatmap_id]
                     currentUser: currentUser
                     beatmapset: discussion.beatmapset
                     isTimelineVisible: false

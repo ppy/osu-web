@@ -876,7 +876,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             || $this->isDev()
             || $this->isGMT()
             || $this->isBNG()
-            || $this->isNAT();
+            || $this->isNAT()
+            || $this->isProjectLoved();
     }
 
     public function isBanned()
