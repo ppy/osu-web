@@ -22,8 +22,8 @@ export default class ReactTurbolinks {
   private documentReady = false;
   private newVisit = true;
   private scrolled = false;
-  private scrollTimeout?: number;
   private targets = new Set<Element>();
+  private timeoutScroll?: number;
 
   constructor() {
     $(document).on('turbolinks:before-cache', this.onBeforeCache);
@@ -68,7 +68,7 @@ export default class ReactTurbolinks {
   };
 
   onBeforeCache = () => {
-    window.clearTimeout(this.scrollTimeout);
+    window.clearTimeout(this.timeoutScroll);
     this.documentReady = false;
     this.destroy();
   };
@@ -87,7 +87,7 @@ export default class ReactTurbolinks {
       this.destroyPersisted();
       this.documentReady = true;
       this.boot();
-      this.scrollTimeout = window.setTimeout(this.scrollOnNewVisit, 100);
+      this.timeoutScroll = window.setTimeout(this.scrollOnNewVisit, 100);
     }, 1);
   };
 
