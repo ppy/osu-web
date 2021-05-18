@@ -85,7 +85,7 @@ core.reactTurbolinks.register 'comments', false, (el) ->
 core.reactTurbolinks.register 'chat-icon', true, (el) ->
   createElement ChatIcon, type: el.dataset.type
 
-core.reactTurbolinks.register 'notification-icon', true, (el) ->
+core.reactTurbolinks.register 'main-notification-icon', true, (el) ->
   createElement MainNotificationIcon, type: el.dataset.type
 
 core.reactTurbolinks.register 'notification-widget', true, (el) ->
