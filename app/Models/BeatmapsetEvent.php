@@ -52,6 +52,8 @@ class BeatmapsetEvent extends Model
     const LANGUAGE_EDIT = 'language_edit';
     const NSFW_TOGGLE = 'nsfw_toggle';
 
+    const BEATMAP_OWNER_CHANGE = 'beatmap_owner_change';
+
     public static function log($type, $user, $object, $extraData = [])
     {
         if ($object instanceof BeatmapDiscussionPost) {
@@ -206,6 +208,8 @@ class BeatmapsetEvent extends Model
 
                     static::ISSUE_RESOLVE,
                     static::ISSUE_REOPEN,
+
+                    static::BEATMAP_OWNER_CHANGE,
                 ],
                 'kudosuModeration' => [
                     static::KUDOSU_ALLOW,
