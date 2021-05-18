@@ -132,7 +132,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
   @computed
   private get downloadLink() {
-    if (currentUser.id == null) {
+    if (core.currentUser == null) {
       return { title: osu.trans('beatmapsets.show.details.logged-out') };
     }
 
@@ -140,8 +140,8 @@ export default class BeatmapsetPanel extends React.Component<Props> {
       return { title: osu.trans('beatmapsets.availability.disabled') };
     }
 
-    let type = currentUser.user_preferences.beatmapset_download;
-    if (type === 'direct' && !currentUser.is_supporter) {
+    let type = core.userPreferences.get('beatmapset_download');
+    if (type === 'direct' && !core.currentUser.is_supporter) {
       type = 'all';
     }
 
@@ -507,7 +507,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     return (
       <div className='beatmapset-panel__menu-container'>
         <div className='beatmapset-panel__menu'>
-          {currentUser.id == null ? (
+          {core.currentUser == null ? (
             <span
               className='beatmapset-panel__menu-item beatmapset-panel__menu-item--disabled'
               title={osu.trans('beatmapsets.show.details.favourite_login')}

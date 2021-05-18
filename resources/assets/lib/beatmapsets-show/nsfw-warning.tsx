@@ -75,9 +75,11 @@ export default class NsfwWarning extends React.PureComponent<Props, State> {
   }
 
   private disableWarning = () => {
-    this.xhr = core.userPreferences.set('beatmapset_show_nsfw', false);
+    this.xhr = core.userPreferences.set('beatmapset_show_nsfw', true);
 
-    if (this.xhr != null) {
+    if (this.xhr == null) {
+      this.props.onClose();
+    } else {
       this.setState({ busy: true });
       this.xhr
         .always(() => this.setState({ busy: false }))
