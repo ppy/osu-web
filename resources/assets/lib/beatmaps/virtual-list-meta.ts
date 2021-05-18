@@ -24,16 +24,15 @@ export default class VirtualListMeta {
     return this.isDesktop ? 2 : 1;
   }
 
-  private eventId = `virtual-list-meta-osu.${osu.uuid()}`;
   @observable private isDesktop = true;
 
   constructor() {
     this.checkIsDesktop();
-    $(window).on(`resize.${this.eventId}`, this.checkIsDesktop);
+    $(window).on('resize', this.checkIsDesktop);
   }
 
   destroy() {
-    $(window).off(`.${this.eventId}`);
+    $(window).off('resize', this.checkIsDesktop);
   }
 
   private checkIsDesktop = () => {
