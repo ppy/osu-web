@@ -5,12 +5,11 @@ import { NewReply } from './new-reply'
 import { Post } from './post'
 import { SystemPost } from './system-post'
 import { UserCard } from './user-card'
-import guestGroup from 'beatmap-discussions/guest-group'
-import mapperGroup from 'beatmap-discussions/mapper-group'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { button, div, i, span, a } from 'react-dom-factories'
 import UserAvatar from 'user-avatar'
+import { badgeGroup } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers } from 'utils/css'
 
 el = React.createElement
@@ -79,13 +78,11 @@ export class Discussion extends React.PureComponent
     topClasses += ' js-beatmap-discussion-jump'
 
     user = @props.users[@props.discussion.user_id] ? @props.users[null]
-    group =
-      if user.id == @props.beatmapset.user_id
-        mapperGroup
-      else if @props.discussion.beatmap_id? && user.id == @props.currentBeatmap.user_id
-        guestGroup
-      else
-        user.groups?[0]
+    group = badgeGroup
+      beatmapset: @props.beatmapset
+      currentBeatmap: @props.currentBeatmap
+      discussion: @props.discussion
+      user: user
 
     div
       className: topClasses

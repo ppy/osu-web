@@ -163,7 +163,7 @@
 
             <div class="nav2__col">
                 <button
-                    class="nav-button nav-button--stadium js-click-menu js-react--notification-icon"
+                    class="nav-button nav-button--stadium js-click-menu js-react--main-notification-icon"
                     data-click-menu-target="nav2-notification-widget"
                     data-turbolinks-permanent
                     id="notification-widget-icon"

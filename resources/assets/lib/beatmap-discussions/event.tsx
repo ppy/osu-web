@@ -9,6 +9,7 @@ import { escape, kebabCase } from 'lodash';
 import { deletedUser } from 'models/user';
 import * as React from 'react';
 import TimeWithTooltip from 'time-with-tooltip';
+import { classWithModifiers } from 'utils/css';
 
 const isBeatmapOwnerChangeEventJson = (event: BeatmapsetEventJson): event is BeatmapOwnerChangeEventJson =>
   event.type === 'beatmap_owner_change';
@@ -64,12 +65,7 @@ export default class Event extends React.PureComponent<Props> {
 
     return (
       <div className='beatmapset-event'>
-        <div
-          className='beatmapset-event__icon'
-          style={{
-            '--bg': `var(--bg-${kebabCase(this.props.event.type)})`,
-          } as React.CSSProperties}
-        />
+        <div className='beatmapset-event__icon' style={this.iconStyle()} />
         <div className='beatmapset-event__time'>
           <TimeWithTooltip dateTime={eventTime} format='LT' />
         </div>
@@ -105,7 +101,10 @@ export default class Event extends React.PureComponent<Props> {
           // instead of a translation that overflows.
           <span className='beatmapset-cover'>beatmap deleted</span>
         )}
-        <div className={osu.classWithModifiers('beatmapset-event__icon', [kebabCase(this.props.event.type), 'beatmapset-activities'])} />
+        <div
+          className={classWithModifiers('beatmapset-event__icon', ['beatmapset-activities'])}
+          style={this.iconStyle()}
+        />
 
         <div>
           <div
@@ -201,5 +200,11 @@ export default class Event extends React.PureComponent<Props> {
     }
 
     return message;
+  }
+
+  private iconStyle() {
+    return {
+      '--bg': `var(--bg-${kebabCase(this.props.event.type)})`,
+    } as React.CSSProperties;
   }
 }
