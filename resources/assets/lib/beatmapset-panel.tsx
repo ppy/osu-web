@@ -425,35 +425,29 @@ export default class BeatmapsetPanel extends React.Component<Props> {
         </div>
 
         <div className='beatmapset-panel__info-row beatmapset-panel__info-row--stats'>
-          {this.showHypeCounts && this.props.beatmapset.hype != null
-            ? (
-              <StatsItem
-                icon='fas fa-bullhorn'
-                title={osu.trans('beatmaps.hype.required_text', {
-                  current: osu.formatNumber(this.props.beatmapset.hype.current),
-                  required: osu.formatNumber(this.props.beatmapset.hype.required),
-                })}
-                type='hype'
-                value={this.props.beatmapset.hype.current}
-              />
-            )
-            : <div className={classWithModifiers('beatmapset-panel__stats-item', ['hidden', 'hype'])} />
-          }
+          {this.showHypeCounts && this.props.beatmapset.hype != null && (
+            <StatsItem
+              icon='fas fa-bullhorn'
+              title={osu.trans('beatmaps.hype.required_text', {
+                current: osu.formatNumber(this.props.beatmapset.hype.current),
+                required: osu.formatNumber(this.props.beatmapset.hype.required),
+              })}
+              type='hype'
+              value={this.props.beatmapset.hype.current}
+            />
+          )}
 
-          {this.showHypeCounts && this.nominations != null
-            ? (
-              <StatsItem
-                icon='fas fa-thumbs-up'
-                title={osu.trans('beatmaps.nominations.required_text', {
-                  current: osu.formatNumber(this.nominations.current),
-                  required: osu.formatNumber(this.nominations.required),
-                })}
-                type='nominations'
-                value={this.nominations.current}
-              />
-            )
-            : <div className={classWithModifiers('beatmapset-panel__stats-item', ['hidden', 'nominations'])} />
-          }
+          {this.showHypeCounts && this.nominations != null && (
+            <StatsItem
+              icon='fas fa-thumbs-up'
+              title={osu.trans('beatmaps.nominations.required_text', {
+                current: osu.formatNumber(this.nominations.current),
+                required: osu.formatNumber(this.nominations.required),
+              })}
+              type='nominations'
+              value={this.nominations.current}
+            />
+          )}
 
           <StatsItem
             icon={this.favourite.icon}
