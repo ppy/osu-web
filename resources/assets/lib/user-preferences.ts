@@ -16,9 +16,11 @@ export default class UserPreferences {
     this.current = Object.assign({}, defaultUserPreferencesJson, this.fromStorage());
   }
 
-  get = <T extends keyof UserPreferencesJson>(key: T) => this.current[key];
+  get<T extends keyof UserPreferencesJson>(key: T) {
+    return this.current[key];
+  }
 
-  set = <T extends keyof UserPreferencesJson>(key: T, value: UserPreferencesJson[T]) => {
+  set<T extends keyof UserPreferencesJson>(key: T, value: UserPreferencesJson[T]) {
     if (this.current[key] === value) return;
 
     this.current[key] = value;
@@ -34,11 +36,12 @@ export default class UserPreferences {
       method: 'PUT',
     }).done((user: CurrentUser) => {
       $.publish('user:update', user);
-    }).fail(onErrorWithCallback())
-    .always(() => {
+    }).fail(
+      onErrorWithCallback(),
+    ).always(() => {
       this.updatingOptions = false;
     });
-  };
+  }
 
   setUser(user?: CurrentUser) {
     this.user = user;
