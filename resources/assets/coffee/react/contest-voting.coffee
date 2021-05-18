@@ -17,7 +17,8 @@ propsFunction = (target) ->
       showLink: data.contest['type'] == 'external' || (data.contest['type'] == 'beatmap' && _.some(data.contest.entries, 'preview'))
   }
 
-core.reactTurbolinks.register 'contestArtList', false, ->
-  createElement(ArtEntryList, propsFunction())
+core.reactTurbolinks.register 'contestArtList', false, (target) ->
+  createElement(ArtEntryList, propsFunction(target))
+
 core.reactTurbolinks.register 'contestList', false, ->
-  createElement(EntryList, propsFunction())
+  createElement(EntryList, propsFunction(target))
