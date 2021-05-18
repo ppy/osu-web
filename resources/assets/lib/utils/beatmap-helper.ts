@@ -101,7 +101,7 @@ export function getTitle(beatmapset: BeatmapsetJson) {
 
 export function group<T extends BeatmapJson>(beatmaps?: T[] | null): Map<GameMode, T[]> {
   const grouped = _.groupBy(beatmaps ?? [], 'mode');
-  const ret = new Map();
+  const ret = new Map<GameMode, T[]>();
 
   modes.forEach((mode) => {
     ret.set(mode, sort(grouped[mode] ?? []));
