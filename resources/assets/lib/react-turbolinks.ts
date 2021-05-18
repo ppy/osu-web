@@ -42,7 +42,7 @@ export default class ReactTurbolinks {
   boot = () => {
     if (!this.documentReady) return;
 
-    this.allTargets(({ target, component }) => {
+    this.allTargets(({ component, target }) => {
       if (this.targets.has(target)) return;
 
       this.targets.add(target);
@@ -51,7 +51,7 @@ export default class ReactTurbolinks {
   };
 
   destroy = () => {
-    this.allTargets(({ target, component }) => {
+    this.allTargets(({ component, target }) => {
       if (!isTurbolinksPermanent(target) && this.targets.has(target) && !component.persistent) {
         ReactDOM.unmountComponentAtNode(target);
       }
