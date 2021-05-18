@@ -53,9 +53,15 @@ export default class UserPreferences {
 
   private fromStorage(): Partial<UserPreferencesJson> {
     try {
-      return JSON.parse(localStorage.userPreferences) as Partial<UserPreferencesJson>;
+      const preferences: Partial<UserPreferencesJson> = JSON.parse(localStorage.userPreferences);
+
+      if (preferences != null && typeof preferences === 'object') {
+        return preferences;
+      }
     } catch {
-      return {};
+      // do nothing and let it be cleared on next update
     }
+
+    return {};
   }
 }
