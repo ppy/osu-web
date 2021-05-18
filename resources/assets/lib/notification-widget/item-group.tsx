@@ -117,7 +117,12 @@ export default class ItemGroup extends React.Component<Props, State> {
           </div>
           <div className='notification-popup-item-group__collapse'>
             {this.renderShowLess()}
-            <NotificationReadButton isMarkingAsRead={this.props.stack.isMarkingAsRead} onMarkAsRead={this.handleMarkAsRead} />
+            {this.props.stack.canMarkAsRead && (
+              <NotificationReadButton
+                isMarkingAsRead={this.props.stack.isMarkingAsRead}
+                onMarkAsRead={this.handleMarkAsRead}
+              />
+            )}
             {!this.context.isWidget && (
               <NotificationDeleteButton
                 isDeleting={this.props.stack.isDeleting}
