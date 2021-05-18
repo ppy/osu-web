@@ -20,7 +20,7 @@ export function nominationsCount(nominations: BeatmapsetNominationsInterface, ty
 }
 
 export function showVisual(beatmapset: BeatmapsetJson) {
-  return !beatmapset.nsfw || (currentUser?.user_preferences?.beatmapset_show_nsfw ?? false);
+  return !beatmapset.nsfw || core.userPreferences.get('beatmapset_show_nsfw');
 }
 
 export function toggleFavourite(beatmapset: BeatmapsetJson) {
