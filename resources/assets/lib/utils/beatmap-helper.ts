@@ -6,6 +6,7 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import { isValid as isBeatmapJsonExtended } from 'interfaces/beatmap-json-extended';
 import GameMode from 'interfaces/game-mode';
 import * as _ from 'lodash';
+import core from 'osu-core-singleton';
 
 export const modes: GameMode[] = ['osu', 'taiko', 'fruits', 'mania'];
 
@@ -83,7 +84,7 @@ export function getDiffRating(rating: number) {
 
 // TODO: should make a Beatmapset proxy object or something
 export function getArtist(beatmapset: BeatmapsetJson) {
-  if (currentUser?.user_preferences?.beatmapset_title_show_original) {
+  if (core.userPreferences.get('beatmapset_title_show_original')) {
     return beatmapset.artist_unicode;
   }
 
@@ -91,7 +92,7 @@ export function getArtist(beatmapset: BeatmapsetJson) {
 }
 
 export function getTitle(beatmapset: BeatmapsetJson) {
-  if (currentUser?.user_preferences?.beatmapset_title_show_original) {
+  if (core.userPreferences.get('beatmapset_title_show_original')) {
     return beatmapset.title_unicode;
   }
 
