@@ -187,7 +187,8 @@ class UsersController extends Controller
      *
      * ### Response format
      *
-     * Array of [Beatmapset](#beatmapset).
+     * Array of [BeatmapPlaycount](#beatmapplaycount) when `type` is `most_played`;
+     * array of [Beatmapset](#beatmapset), otherwise.
      *
      * @urlParam user required Id of the user. Example: 1
      * @urlParam type required Beatmap type. Example: favourite
