@@ -104,7 +104,7 @@ const StatsItem = ({ icon, title, type, value }: StatsItemProps) => (
     title={title}
   >
     <span className='beatmapset-panel__stats-item-icon'>
-      <i className={icon} />
+      <i className={`fa-fw ${icon}`} />
     </span>
     <span>{formatNumberSuffixed(value, undefined, { maximumFractionDigits: 1, minimumFractionDigits: 0 })}</span>
   </div>
@@ -465,7 +465,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
           <div className='beatmapset-panel__stats-item beatmapset-panel__stats-item--date'>
             <span className='beatmapset-panel__stats-item-icon'>
-              <i className='fas fa-fw fa-check-circle' />
+              <i className='fa-fw fas fa-check-circle' />
             </span>
             <TimeWithTooltip dateTime={this.displayDate} />
           </div>
