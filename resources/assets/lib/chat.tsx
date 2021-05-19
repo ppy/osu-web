@@ -5,8 +5,9 @@ import { ChatInitialJson } from 'chat/chat-api-responses';
 import MainView from 'chat/main-view';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
+import * as React from 'react';
 
-reactTurbolinks.register('chat', MainView, () => {
+core.reactTurbolinks.register('chat', false, () => {
   const dataStore = core.dataStore;
   const initial = osu.parseJson<ChatInitialJson | null>('json-chat-initial', true);
 
@@ -52,8 +53,5 @@ reactTurbolinks.register('chat', MainView, () => {
     void dataStore.chatState.selectChannel(initialChannel);
   }
 
-  return {
-    dataStore: core.dataStore,
-    worker: core.chatWorker,
-  };
+  return <MainView dataStore={core.dataStore} worker={core.chatWorker} />;
 });

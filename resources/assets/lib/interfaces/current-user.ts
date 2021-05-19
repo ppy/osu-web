@@ -8,10 +8,21 @@ import { ViewMode } from 'user-card';
 import { Filter, SortMode } from 'user-list';
 import GameMode from './game-mode';
 
-interface UserPreferences {
+export default interface CurrentUser extends UserJsonExtended {
+  blocks: UserRelationJson[];
+  follow_user_mapping: number[];
+  follower_count?: number;
+  friends: UserRelationJson[];
+  groups: GroupJson[];
+  playmode: GameMode;
+  unread_pm_count: number;
+  user_preferences: UserPreferencesJson;
+}
+
+export interface UserPreferencesJson {
   audio_autoplay: boolean;
   audio_muted: boolean;
-  audio_volume?: number;
+  audio_volume: number;
   beatmapset_download: 'all' | 'no_video' | 'direct';
   beatmapset_show_nsfw: boolean;
   beatmapset_title_show_original: boolean;
@@ -23,13 +34,17 @@ interface UserPreferences {
   user_list_view: ViewMode;
 }
 
-export default interface CurrentUser extends UserJsonExtended {
-  blocks: UserRelationJson[];
-  follow_user_mapping: number[];
-  follower_count?: number;
-  friends: UserRelationJson[];
-  groups: GroupJson[];
-  playmode: GameMode;
-  unread_pm_count: number;
-  user_preferences: UserPreferences;
-}
+export const defaultUserPreferencesJson: UserPreferencesJson = {
+  audio_autoplay: false,
+  audio_muted: false,
+  audio_volume: 0.45,
+  beatmapset_download: 'all',
+  beatmapset_show_nsfw: false,
+  beatmapset_title_show_original: false,
+  comments_show_deleted: false,
+  forum_posts_show_deleted: true,
+  ranking_expanded: true,
+  user_list_filter: 'all',
+  user_list_sort: 'last_visit',
+  user_list_view: 'card',
+};

@@ -53,7 +53,7 @@ export default class Notification implements NotificationReadable, NotificationD
   }
 
   @computed get title() {
-    if (core.currentUser?.user_preferences.beatmapset_title_show_original) {
+    if (core.userPreferences.get('beatmapset_title_show_original')) {
       return osu.presence(this.details.titleUnicode) ?? this.details.title;
     }
 

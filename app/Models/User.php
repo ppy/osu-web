@@ -876,7 +876,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             || $this->isDev()
             || $this->isGMT()
             || $this->isBNG()
-            || $this->isNAT();
+            || $this->isNAT()
+            || $this->isProjectLoved();
     }
 
     public function isBanned()
@@ -953,8 +954,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $groupId = $group->getKey();
 
         foreach ($this->userGroups as $userGroup) {
-            if ($userGroup->group_id === $groupId && (!$activeOnly || !$userGroup->user_pending)) {
-                return $userGroup;
+            if ($userGroup->group_id === $groupId) {
+                return $activeOnly && $userGroup->user_pending ? null : $userGroup;
             }
         }
     }
