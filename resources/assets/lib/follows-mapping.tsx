@@ -2,7 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Main from 'follows-mapping/main';
+import core from 'osu-core-singleton';
+import * as React from 'react';
 
-reactTurbolinks.registerPersistent('follows-mapping', Main, true, () => ({
-  follows: osu.parseJson('json-follows-mapping'),
-}));
+core.reactTurbolinks.register('follows-mapping', true, () => (
+  <Main follows={osu.parseJson('json-follows-mapping')} />
+));
