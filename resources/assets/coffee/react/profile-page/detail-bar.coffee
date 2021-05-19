@@ -23,7 +23,7 @@ export class DetailBar extends React.Component
 
   render: =>
     el Observer, null, =>
-      isBlocked = _.find(core.currentUser.blocks, target_id: @props.user.id)?
+      isBlocked = core.currentUser? && _.find(core.currentUser.blocks, target_id: @props.user.id)?
       expanded = core.userPreferences.get('ranking_expanded')
 
       div className: bn,
@@ -54,7 +54,7 @@ export class DetailBar extends React.Component
               modifiers: ['profile-page']
               alwaysVisible: true
 
-          if core.currentUser.id != @props.user.id && !isBlocked
+          if !core.currentUser? || (core.currentUser.id != @props.user.id && !isBlocked)
             div className: "#{bn}__entry",
               a
                 className: 'user-action-button user-action-button--profile-page'
