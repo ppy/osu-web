@@ -163,7 +163,7 @@ class BeatmapsetSearch extends RecordSearch
     private function addFeaturedArtistsFilter($query)
     {
         if ($this->params->showFeaturedArtists) {
-            $query->filter(['term' => ['featured_artist' => true]]);
+            $query->filter(['exists' => ['field' => 'artist_id']]);
         }
     }
 

@@ -64,7 +64,6 @@ use Illuminate\Database\QueryException;
  * @property \Illuminate\Database\Eloquent\Collection $events BeatmapsetEvent
  * @property int $favourite_count
  * @property \Illuminate\Database\Eloquent\Collection $favourites FavouriteBeatmapset
- * @property bool $featured_artist
  * @property string|null $filename
  * @property int $filesize
  * @property int|null $filesize_novideo
@@ -111,7 +110,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         'active' => 'boolean',
         'download_disabled' => 'boolean',
         'epilepsy' => 'boolean',
-        'featured_artist' => 'boolean',
         'nsfw' => 'boolean',
         'storyboard' => 'boolean',
         'video' => 'boolean',

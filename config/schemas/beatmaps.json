@@ -138,9 +138,6 @@
         "favourite_count": {
           "type": "long"
         },
-        "featured_artist": {
-          "type": "boolean"
-        },
         "filename": {
           "type": "text"
         },

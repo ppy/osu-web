@@ -18,7 +18,6 @@ class AddFeaturedArtistFieldsToBeatmapsets extends Migration
     {
         Schema::table('osu_beatmapsets', function (Blueprint $table) {
             $table->bigInteger('artist_id')->unsigned()->nullable();
-            $table->boolean('featured_artist')->default(false);
         });
     }
 
