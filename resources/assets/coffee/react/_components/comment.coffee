@@ -197,7 +197,7 @@ export class Comment extends React.PureComponent
 
   renderComment: (comment) =>
     comment = store.comments.get(comment.id)
-    return null if comment.isDeleted && !uiState.comments.isShowDeleted
+    return null if comment.isDeleted && !core.userPreferences.get('comments_show_deleted')
 
     el Comment,
       key: comment.id
@@ -434,7 +434,7 @@ export class Comment extends React.PureComponent
             className: 'sort__item sort__item--button'
             onClick: @onShowDeletedToggleClick
             span className: 'sort__item-icon',
-              span className: if uiState.comments.isShowDeleted then 'fas fa-check-square' else 'far fa-square'
+              span className: if core.userPreferences.get('comments_show_deleted') then 'fas fa-check-square' else 'far fa-square'
             osu.trans('common.buttons.show_deleted')
 
 
@@ -488,7 +488,7 @@ export class Comment extends React.PureComponent
 
 
   onShowDeletedToggleClick: ->
-    $.publish 'comments:toggle-show-deleted'
+    core.userPreferences.set('comments_show_deleted', !core.userPreferences.get('comments_show_deleted'))
 
 
   parentLink: (parent) =>

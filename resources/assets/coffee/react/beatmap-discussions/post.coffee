@@ -3,7 +3,6 @@
 
 import { MessageLengthCounter } from './message-length-counter'
 import { UserCard } from './user-card'
-import mapperGroup from 'beatmap-discussions/mapper-group'
 import { ReviewPost } from 'beatmap-discussions/review-post'
 import { BigButton } from 'big-button'
 import ClickToCopy from 'click-to-copy'
@@ -14,6 +13,7 @@ import { ReportReportable } from 'report-reportable'
 import Editor from 'beatmap-discussions/editor'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
+import { badgeGroup } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers } from 'utils/css'
 
 el = React.createElement
@@ -64,7 +64,11 @@ export class Post extends React.PureComponent
         if (!@props.hideUserCard)
           el UserCard,
             user: @props.user
-            group: @userGroup()
+            group: badgeGroup
+              beatmapset: @props.beatmapset
+              currentBeatmap: @props.beatmap
+              discussion: @props.discussion
+              user: @props.user
         if @state.editing
           @messageEditor()
         else
@@ -313,10 +317,6 @@ export class Post extends React.PureComponent
     .fail osu.ajaxError
 
     .always => @setState posting: false
-
-
-  userGroup: ->
-    if @isOwner() then mapperGroup else @props.user.groups?[0]
 
 
   validPost: =>

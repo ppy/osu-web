@@ -22,6 +22,7 @@ use App\Models\Forum\TopicCover;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\Match\Match;
+use App\Models\Multiplayer\Room;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Models\UserContestEntry;
@@ -103,6 +104,7 @@ class OsuAuthorize
     public function checkBeatmapUpdateOwner(?User $user, ?Beatmapset $beatmapset): string
     {
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if (
             $beatmapset !== null
@@ -610,8 +612,15 @@ class OsuAuthorize
             return $prefix.'incorrect_state';
         }
 
-        if ($user->getKey() === $beatmapset->user_id) {
+        $userId = $user->getKey();
+        if ($userId === $beatmapset->user_id) {
             return $prefix.'owner';
+        }
+
+        foreach ($beatmapset->beatmaps as $beatmap) {
+            if ($userId === $beatmap->user_id) {
+                return $prefix.'owner';
+            }
         }
 
         if ($beatmapset->genre_id === Genre::UNSPECIFIED || $beatmapset->language_id === Language::UNSPECIFIED) {
@@ -904,16 +913,24 @@ class OsuAuthorize
      */
     public function checkChatChannelJoin(?User $user, Channel $channel): string
     {
-        // TODO: be able to rejoin multiplayer channels you were a part of?
         $prefix = 'chat.';
 
         $this->ensureLoggedIn($user);
 
-        if ($channel->type === Channel::TYPES['public']) {
+        if ($channel->isPublic()) {
             return 'ok';
         }
 
         $this->ensureCleanRecord($user, $prefix);
+
+        // This check is only for when joining the channel directly; joining via the Room
+        // will always add the user to the channel.
+        if ($channel->isMultiplayer()) {
+            $room = Room::hasParticipated($user)->find($channel->room_id);
+            if ($room !== null) {
+                return 'ok';
+            }
+        }
 
         // allow joining of 'tournament' matches (for lazer/tournament client)
         if (optional($channel->multiplayerMatch)->isTournamentMatch()) {
