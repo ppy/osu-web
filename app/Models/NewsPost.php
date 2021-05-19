@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use Exception;
 
 /**
+ * @property string $commentable_identifier
  * @property Comment $comments
  * @property \Carbon\Carbon|null $created_at
  * @property string|null $hash

@@ -5,10 +5,12 @@ import { dispatch } from 'app-dispatcher';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import { Main } from 'notifications-index/main';
 import { NotificationEventMoreLoaded } from 'notifications/notification-events';
+import core from 'osu-core-singleton';
+import * as React from 'react';
 
-reactTurbolinks.registerPersistent('notifications-index', Main, true, (container: HTMLElement) => {
+core.reactTurbolinks.register('notifications-index', true, (container: HTMLElement) => {
   const bundle = osu.parseJson<NotificationBundleJson>('json-notifications');
   dispatch(new NotificationEventMoreLoaded(bundle, { isWidget: false }));
 
-  return {};
+  return <Main />;
 });

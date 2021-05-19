@@ -59,8 +59,8 @@ class ContestEntryTransformer extends TransformerAbstract
             $size = fast_imagesize($entry->thumbnail().($urlSuffix ?? ''));
 
             return [
-                'width' => $size[0],
-                'height' => $size[1],
+                'width' => $size[0] ?? 0,
+                'height' => $size[1] ?? 0,
             ];
         });
     }
