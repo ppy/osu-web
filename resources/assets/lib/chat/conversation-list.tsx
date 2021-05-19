@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { observer } from 'mobx-react';
+import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import ConversationListItem from './conversation-list-item';
@@ -19,19 +20,15 @@ export default class ConversationList extends React.Component {
   render(): React.ReactNode {
     return (
       <div className='chat-conversation-list'>
-        {this.renderNonPmChannels()}
+        {this.renderChannels(this.nonPmChannels)}
         {this.renderSeparator()}
-        {this.renderPmChannels()}
+        {this.renderChannels(this.pmChannels)}
       </div>
     );
   }
 
-  private renderNonPmChannels() {
-    return this.nonPmChannels.map((conversation) => <ConversationListItem key={conversation.channelId} channelId={conversation.channelId} />);
-  }
-
-  private renderPmChannels() {
-    return this.pmChannels.map((conversation) => <ConversationListItem key={conversation.channelId} channelId={conversation.channelId} />);
+  private renderChannels(channels: Channel[]) {
+    return channels.map((conversation) => <ConversationListItem key={conversation.channelId} channelId={conversation.channelId} />);
   }
 
   private renderSeparator() {
