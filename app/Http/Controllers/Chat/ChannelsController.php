@@ -30,8 +30,10 @@ class ChannelsController extends Controller
      * @response [
      *   {
      *     "channel_id": 5,
-     *     "name": "#osu",
      *     "description": "The official osu! channel (english only).",
+     *     "icon": "https://a.ppy.sh/2?1519081077.png",
+     *     "moderated": false,
+     *     "name": "#osu",
      *     "type": "public"
      *   }
      * ]
@@ -47,7 +49,7 @@ class ChannelsController extends Controller
     /**
      * Join Channel
      *
-     * This endpoint allows you to join a public channel.
+     * This endpoint allows you to join a public or multiplayer channel.
      *
      * ---
      *
@@ -55,32 +57,34 @@ class ChannelsController extends Controller
      *
      * Returns the joined [ChatChannel](#chatchannel).
      *
-     * <aside class="notice">
-     *   This endpoint will only allow the joining of public channels initially.
-     * </aside>
-     *
      * @response {
      *   "channel_id": 5,
-     *   "name": "#osu",
      *   "description": "The official osu! channel (english only).",
+     *   "first_message_id": 1,
+     *   "icon": "https://a.ppy.sh/2?1519081077.png",
+     *   "last_message_id": 1029,
+     *   "moderated": false,
+     *   "name": "#osu",
      *   "type": "public"
+     *   "users": []
      * }
      */
     public function join($channelId, $userId)
     {
         $channel = Channel::where('channel_id', $channelId)->firstOrFail();
+        $user = auth()->user();
 
         priv_check('ChatChannelJoin', $channel)->ensureCan();
 
-        if (Auth::user()->user_id !== get_int($userId)) {
+        if ($user->user_id !== get_int($userId)) {
             abort(403);
         }
 
-        if (!$channel->hasUser(Auth::user())) {
-            $channel->addUser(Auth::user());
+        if (!$channel->hasUser($user)) {
+            $channel->addUser($user);
         }
 
-        return response([], 204);
+        return json_item($channel, ChannelTransformer::forUser($user), ['first_message_id', 'last_message_id', 'users']);
     }
 
     /**
@@ -224,16 +228,15 @@ class ChannelsController extends Controller
      */
     public function store()
     {
-        $params = request()->all();
-        $params['type'] = $params['type'] ?? null;
+        $params = get_params(request()->all(), null, [
+            'target_id:number',
+            'type:string',
+        ], ['null_missing' => true]);
 
         $sender = auth()->user();
+        abort_if($params['target_id'] === null, 422, 'missing target_id parameter');
 
         if ($params['type'] === Channel::TYPES['pm']) {
-            if (!isset($params['target_id'])) {
-                abort(422, 'missing target_id parameter');
-            }
-
             $target = User::findOrFail($params['target_id']);
 
             priv_check('ChatStart', $target)->ensureCan();
