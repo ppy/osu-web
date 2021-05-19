@@ -39,6 +39,6 @@ export default class ConversationList extends React.Component {
       return null;
     }
 
-    return <div key='separator' className='chat-conversation-list-separator' />;
+    return <div className='chat-conversation-list-separator' />;
   }
 }
