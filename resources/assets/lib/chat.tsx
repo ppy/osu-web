@@ -23,7 +23,7 @@ core.reactTurbolinks.register('chat', false, () => {
   let initialChannel = 0;
   const sendTo = initial?.send_to;
 
-  if ((sendTo != null)) {
+  if (sendTo != null) {
     const target = dataStore.userStore.getOrCreate(sendTo.target.id, sendTo.target); // pre-populate userStore with target
     let channel = dataStore.channelStore.findPM(target.id);
 
