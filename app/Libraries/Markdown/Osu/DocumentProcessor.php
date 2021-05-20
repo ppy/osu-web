@@ -3,7 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Libraries\Markdown;
+namespace App\Libraries\Markdown\Osu;
 
 use App\Libraries\LocaleMeta;
 use App\Libraries\Markdown\StyleBlock\Element as StyleBlock;
@@ -14,7 +14,7 @@ use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\Table as TableExtension;
 use League\CommonMark\Inline\Element as Inline;
 
-class OsuMarkdownProcessor
+class DocumentProcessor
 {
     public $firstImage;
     public $title;
@@ -37,7 +37,7 @@ class OsuMarkdownProcessor
         $this->environment = $environment;
     }
 
-    public function onDocumentParsed(DocumentParsedEvent $event)
+    public function __invoke(DocumentParsedEvent $event): void
     {
         $document = $event->getDocument();
         $walker = $document->walker();

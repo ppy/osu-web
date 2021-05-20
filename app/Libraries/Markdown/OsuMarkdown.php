@@ -5,12 +5,11 @@
 
 namespace App\Libraries\Markdown;
 
-use League\CommonMark\Block\Element\ListItem;
 use League\CommonMark\Environment;
 use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\Autolink\AutolinkExtension;
-use League\CommonMark\Extension\Table as TableExtension;
+use League\CommonMark\Extension\Table\TableExtension;
 use League\CommonMark\MarkdownConverter;
 use Symfony\Component\Yaml\Exception\ParseException as YamlParseException;
 use Symfony\Component\Yaml\Yaml;
@@ -110,28 +109,20 @@ class OsuMarkdown
         );
 
         $env = Environment::createCommonMarkEnvironment();
-        $this->processor = new OsuMarkdownProcessor($env);
+        $this->processor = new Osu\DocumentProcessor($env);
 
         if ($this->config['parse_attribute_id']) {
-            $env->addEventListener(DocumentParsedEvent::class, [new Attributes\AttributesOnlyIdListener(), 'onDocumentParsed']);
-            // Manually call register here to make sure the listener for the extension is
-            // registered before $this->processor.
-            // Adding extension using addExtension doesn't actually register anything
-            // until the environment is used.
-            (new AttributesExtension())->register($env);
+            $env->addEventListener(DocumentParsedEvent::class, new Attributes\AttributesOnlyIdListener());
+            $env->addExtension(new AttributesExtension());
         }
-
-        $env->addEventListener(DocumentParsedEvent::class, [$this->processor, 'onDocumentParsed']);
 
         if ($this->config['style_block_allowed_classes'] !== null) {
             $env->addExtension(new StyleBlock\Extension());
         }
 
-        $env->addExtension(new TableExtension\TableExtension());
-        $env->addBlockRenderer(TableExtension\Table::class, new CommonMark\Renderers\TableRenderer());
-        $env->addBlockRenderer(ListItem::class, new CommonMark\Renderers\ListItemRenderer());
-
+        $env->addExtension(new TableExtension());
         $env->addExtension(new AutolinkExtension());
+        $env->addExtension(new Osu\Extension($this->processor));
 
         $env->mergeConfig($this->config);
         $this->converter = new MarkdownConverter($env);
@@ -184,7 +175,8 @@ class OsuMarkdown
             $env = Environment::createCommonMarkEnvironment();
             $env->addExtension(new AttributesExtension());
             $env->addExtension(new StyleBlock\Extension());
-            $env->addExtension(new TableExtension\TableExtension());
+            $env->addExtension(new TableExtension());
+            $env->addExtension(new Osu\Extension());
             $env->addExtension(new Indexing\Extension());
             $env->mergeConfig($this->config);
             $converter = new MarkdownConverter($env);
