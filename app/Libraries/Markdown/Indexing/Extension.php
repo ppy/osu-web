@@ -5,7 +5,6 @@
 
 namespace App\Libraries\Markdown\Indexing;
 
-use App\Libraries\Markdown\Indexing\Renderers;
 use App\Libraries\Markdown\StyleBlock\Element as StyleBlock;
 use League\CommonMark\Block\Element as Block;
 use League\CommonMark\ConfigurableEnvironmentInterface;
