@@ -310,7 +310,7 @@ return [
         'NF' => 'No Fail',
         'NM' => 'No mods',
         'PF' => 'Perfect',
-        'Relax' => 'Relax',
+        'RX' => 'Relax',
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
         'TD' => 'Touch Device',
