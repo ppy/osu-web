@@ -7,12 +7,12 @@ namespace App\Libraries\Markdown;
 
 use App\Libraries\Markdown\Indexing\RendererExtension as IndexingRendererExtension;
 use League\CommonMark\Block\Element\ListItem;
-use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
 use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\Autolink\AutolinkExtension;
 use League\CommonMark\Extension\Table as TableExtension;
+use League\CommonMark\MarkdownConverter;
 use Symfony\Component\Yaml\Exception\ParseException as YamlParseException;
 use Symfony\Component\Yaml\Yaml;
 
@@ -134,7 +134,8 @@ class OsuMarkdown
 
         $env->addExtension(new AutolinkExtension());
 
-        $this->converter = new CommonMarkConverter($this->config, $env);
+        $env->mergeConfig($this->config);
+        $this->converter = new MarkdownConverter($env);
     }
 
     public function html()
@@ -185,7 +186,8 @@ class OsuMarkdown
             $env->addExtension(new StyleBlock\Extension());
             $env->addExtension(new TableExtension\TableExtension());
             $env->addExtension(new IndexingRendererExtension());
-            $converter = new CommonMarkConverter($this->config, $env);
+            $env->mergeConfig($this->config);
+            $converter = new MarkdownConverter($env);
             $this->indexable = $converter->convertToHtml($this->document);
         }
 
