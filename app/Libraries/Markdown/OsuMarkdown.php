@@ -5,7 +5,6 @@
 
 namespace App\Libraries\Markdown;
 
-use App\Libraries\Markdown\Indexing\RendererExtension as IndexingRendererExtension;
 use League\CommonMark\Block\Element\ListItem;
 use League\CommonMark\Environment;
 use League\CommonMark\Event\DocumentParsedEvent;
@@ -186,7 +185,7 @@ class OsuMarkdown
             $env->addExtension(new AttributesExtension());
             $env->addExtension(new StyleBlock\Extension());
             $env->addExtension(new TableExtension\TableExtension());
-            $env->addExtension(new IndexingRendererExtension());
+            $env->addExtension(new Indexing\Extension());
             $env->mergeConfig($this->config);
             $converter = new MarkdownConverter($env);
             $this->indexable = $converter->convertToHtml($this->document);

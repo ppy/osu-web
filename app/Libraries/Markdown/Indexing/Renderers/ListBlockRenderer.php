@@ -3,13 +3,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Libraries\Markdown\Indexing;
+namespace App\Libraries\Markdown\Indexing\Renderers;
 
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Renderer\BlockRendererInterface;
 use League\CommonMark\ElementRendererInterface;
 
-class ListItemRenderer implements BlockRendererInterface
+class ListBlockRenderer implements BlockRendererInterface
 {
     /**
      * @param AbstractBlock $block
@@ -24,7 +24,7 @@ class ListItemRenderer implements BlockRendererInterface
 
         $children = $block->children();
         foreach ($children as $child) {
-            $rendered[] = $renderer->renderBlock($child, false);
+            $rendered[] = $renderer->renderBlock($child, true);
         }
 
         return implode('', $rendered);
