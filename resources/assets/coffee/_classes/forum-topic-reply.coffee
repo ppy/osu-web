@@ -70,7 +70,7 @@ class @ForumTopicReply
     currentInput = $input.val()
     data = "#{currentInput}\n\n#{data}" if currentInput
 
-    $input.val(data)
+    $input.val(data).trigger('input')
     $input[0].selectionStart = data.length
 
     @activate()
