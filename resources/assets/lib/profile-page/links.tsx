@@ -12,8 +12,11 @@ import { StringWithComponent } from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { classWithModifiers } from 'utils/css';
 
-const itemNames = ['join_date', 'last_visit', 'playstyle', 'post_count', 'comments_count', 'location', 'interests', 'occupation', 'twitter', 'discord', 'website'] as const;
-type Name = (typeof itemNames)[number];
+const linkNames = ['discord', 'interests', 'location', 'occupation', 'twitter', 'website'] as const;
+type LinkName = (typeof linkNames)[number];
+
+const textNames = ['comments_count', 'join_date', 'last_visit', 'playstyle', 'post_count'] as const;
+type TextName = (typeof textNames)[number];
 
 interface LinkProps {
   icon: string;
@@ -26,7 +29,7 @@ interface Props {
   user: UserJsonExtended;
 }
 
-const linkMapping: Record<string, (val: string) => LinkProps> = {
+const linkMapping: Record<LinkName, (val: string) => LinkProps> = {
   discord: (val: string) => ({
     icon: 'fab fa-discord',
     text: <ClickToCopy showIcon value={val} />,
@@ -49,7 +52,6 @@ const linkMapping: Record<string, (val: string) => LinkProps> = {
     url: `https://twitter.com/${val}`,
   }),
   website: (val: string) => ({
-
     icon: 'fas fa-link',
     text: val.replace(/^https?:\/\//, ''),
     url: val,
@@ -57,7 +59,7 @@ const linkMapping: Record<string, (val: string) => LinkProps> = {
 };
 
 /* eslint-disable react/display-name */
-const textMapping: Record<string, (val: string | string[] | number, user: UserJson) => React.ReactNode> = {
+const textMapping: Record<TextName, (val: string | string[] | number, user: UserJson) => React.ReactNode> = {
   comments_count: (val: number, user: UserJson) => {
     const count = osu.transChoice('users.show.comments_count.count', val);
     const url = route('comments.index', { user_id: user.id });
@@ -179,7 +181,7 @@ export default class Links extends React.PureComponent<Props> {
     );
   }
 
-  renderLink = (key: Name) => {
+  renderLink = (key: LinkName) => {
     const value = this.props.user[key];
     if (typeof value !== 'string') return null;
 
@@ -189,7 +191,7 @@ export default class Links extends React.PureComponent<Props> {
     return <Link key={key} {...props} />;
   };
 
-  renderText = (key: Name) => {
+  renderText = (key: TextName) => {
     const value = this.props.user[key];
     if (value == null) return null;
 
