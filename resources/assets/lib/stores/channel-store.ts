@@ -9,13 +9,15 @@ import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import ChatAPI from 'chat/chat-api';
-import { ChannelJson, GetUpdatesJson, MessageJson, PresenceJson } from 'chat/chat-api-responses';
+import { ChannelJson, ChannelType, GetUpdatesJson, MessageJson, PresenceJson } from 'chat/chat-api-responses';
 import { groupBy, maxBy } from 'lodash';
 import { action, computed, observable, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 import UserStore from './user-store';
+
+const skippedChannelTypes: ChannelType[] = ['MULTIPLAYER', 'TEMPORARY'];
 
 @dispatchListener
 export default class ChannelStore {
@@ -248,7 +250,7 @@ export default class ChannelStore {
   @action
   updateWithPresence(presence: PresenceJson) {
     presence.forEach((json) => {
-      if (json.type !== 'MULTIPLAYER') {
+      if (!skippedChannelTypes.includes(json.type)) {
         this.getOrCreate(json.channel_id).updatePresence(json);
       }
     });
