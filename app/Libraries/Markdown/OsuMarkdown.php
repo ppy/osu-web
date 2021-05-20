@@ -183,6 +183,7 @@ class OsuMarkdown
     {
         if ($this->indexable === null) {
             $env = Environment::createCommonMarkEnvironment();
+            $env->addExtension(new AttributesExtension());
             $env->addExtension(new StyleBlock\Extension());
             $env->addExtension(new TableExtension\TableExtension());
             $env->addExtension(new IndexingRendererExtension());
