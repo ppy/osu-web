@@ -15,7 +15,7 @@ import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { ShowMoreLink } from 'show-more-link';
+import ShowMoreLink from 'show-more-link';
 
 @observer
 export class Main extends React.Component {

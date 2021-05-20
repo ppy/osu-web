@@ -2,8 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { Main } from 'groups-show/main';
+import core from 'osu-core-singleton';
+import * as React from 'react';
 
-reactTurbolinks.registerPersistent('groups-show', Main, true, (container: HTMLElement) => ({
-  group: osu.parseJson('json-group'),
-  users: osu.parseJson('json-users'),
-}));
+core.reactTurbolinks.register('groups-show', true, () => (
+  <Main group={osu.parseJson('json-group')} users={osu.parseJson('json-users')} />
+));

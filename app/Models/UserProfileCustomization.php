@@ -110,7 +110,7 @@ class UserProfileCustomization extends Model
 
     public function getAudioVolumeAttribute()
     {
-        return $this->getOptions()['audio_volume'] ?? null;
+        return $this->getOptions()['audio_volume'] ?? 0.45;
     }
 
     public function setAudioVolumeAttribute($value)

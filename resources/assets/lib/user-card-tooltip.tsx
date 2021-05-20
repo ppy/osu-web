@@ -4,6 +4,7 @@
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { unmountComponentAtNode } from 'react-dom';
 import { activeKeyDidChange as contextActiveKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
@@ -41,7 +42,7 @@ function createTooltipOptions(card: HTMLElement) {
       text: card,
     },
     events: {
-      render: reactTurbolinks.boot,
+      render: core.reactTurbolinks.boot,
       show: shouldShow,
     },
     hide: {

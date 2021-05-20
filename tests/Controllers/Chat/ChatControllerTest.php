@@ -277,7 +277,7 @@ class ChatControllerTest extends TestCase
             'channel' => $publicChannel->channel_id,
             'user' => $this->user->user_id,
         ]))
-            ->assertStatus(204);
+            ->assertSuccessful();
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('GET', route('api.chat.presence'))
@@ -438,7 +438,7 @@ class ChatControllerTest extends TestCase
             'channel' => $publicChannel->channel_id,
             'user' => $this->user->user_id,
         ]))
-            ->assertStatus(204);
+            ->assertSuccessful();
 
         app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.updates'), ['since' => $publicMessage->message_id])
@@ -456,7 +456,7 @@ class ChatControllerTest extends TestCase
             'channel' => $publicChannel->channel_id,
             'user' => $this->user->user_id,
         ]))
-            ->assertStatus(204);
+            ->assertSuccessful();
 
         app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.updates'), ['since' => 0])

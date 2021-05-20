@@ -31,6 +31,7 @@ class UserNotificationOption extends Model
     const MAPPING = 'mapping';
 
     const HAS_DELIVERY_MODES = [
+        Notification::BEATMAP_OWNER_CHANGE,
         self::MAPPING,
         self::BEATMAPSET_MODDING,
         Notification::CHANNEL_MESSAGE,
