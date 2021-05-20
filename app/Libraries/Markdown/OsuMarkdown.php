@@ -5,6 +5,7 @@
 
 namespace App\Libraries\Markdown;
 
+use League\CommonMark\ConfigurableEnvironmentInterface;
 use League\CommonMark\Environment;
 use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\Attributes\AttributesExtension;
@@ -72,11 +73,13 @@ class OsuMarkdown
     ];
 
     private $config;
+    private $converter;
     private $document = '';
     private $firstImage;
     private $header;
     private $html;
     private $indexable;
+    private $indexableConverter;
     private $processor;
     private $toc;
 
@@ -108,24 +111,14 @@ class OsuMarkdown
             $config
         );
 
-        $env = Environment::createCommonMarkEnvironment();
-        $this->processor = new Osu\DocumentProcessor($env);
+        $environment = $this->createBaseEnvironment();
+        $this->processor = new Osu\DocumentProcessor($environment);
+        $environment->addExtension(new Osu\Extension($this->processor));
+        $this->converter = new MarkdownConverter($environment);
 
-        if ($this->config['parse_attribute_id']) {
-            $env->addEventListener(DocumentParsedEvent::class, new Attributes\AttributesOnlyIdListener());
-            $env->addExtension(new AttributesExtension());
-        }
-
-        if ($this->config['style_block_allowed_classes'] !== null) {
-            $env->addExtension(new StyleBlock\Extension());
-        }
-
-        $env->addExtension(new TableExtension());
-        $env->addExtension(new AutolinkExtension());
-        $env->addExtension(new Osu\Extension($this->processor));
-
-        $env->mergeConfig($this->config);
-        $this->converter = new MarkdownConverter($env);
+        $indexableEnvironment = $this->createBaseEnvironment();
+        $indexableEnvironment->addExtension(new Indexing\Extension());
+        $this->indexableConverter = new MarkdownConverter($indexableEnvironment);
     }
 
     public function html()
@@ -172,18 +165,30 @@ class OsuMarkdown
     public function toIndexable()
     {
         if ($this->indexable === null) {
-            $env = Environment::createCommonMarkEnvironment();
-            $env->addExtension(new AttributesExtension());
-            $env->addExtension(new StyleBlock\Extension());
-            $env->addExtension(new TableExtension());
-            $env->addExtension(new Osu\Extension());
-            $env->addExtension(new Indexing\Extension());
-            $env->mergeConfig($this->config);
-            $converter = new MarkdownConverter($env);
-            $this->indexable = $converter->convertToHtml($this->document);
+            $this->indexable = $this->indexableConverter->convertToHtml($this->document);
         }
 
         return $this->indexable;
+    }
+
+    private function createBaseEnvironment(): ConfigurableEnvironmentInterface
+    {
+        $environment = Environment::createCommonMarkEnvironment()
+            ->addExtension(new AutolinkExtension())
+            ->addExtension(new TableExtension());
+
+        if ($this->config['parse_attribute_id']) {
+            $environment->addEventListener(DocumentParsedEvent::class, new Attributes\AttributesOnlyIdListener());
+            $environment->addExtension(new AttributesExtension());
+        }
+
+        if ($this->config['style_block_allowed_classes'] !== null) {
+            $environment->addExtension(new StyleBlock\Extension());
+        }
+
+        $environment->mergeConfig($this->config);
+
+        return $environment;
     }
 
     private function process()
