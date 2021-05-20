@@ -187,11 +187,11 @@ export default class Links extends React.PureComponent<Props> {
     const value = this.props.user[key];
     if (value == null) return null;
 
-    const { mappings, pattern } = textMapping[key](value, this.props.user);
+    const props = textMapping[key](value, this.props.user);
 
     return (
       <div key={key} className='profile-links__item'>
-        <StringWithComponent mappings={mappings} pattern={pattern} />
+        <StringWithComponent {...props} />
       </div>
     );
   };
