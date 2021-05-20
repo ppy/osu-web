@@ -19,14 +19,13 @@ export default class Badges extends React.PureComponent<Props> {
         {this.props.badges.map((badge) => {
           const props = {
             className: 'profile-badges__badge',
-            href: osu.presence(badge.url) ?? undefined,
             key: badge.image_url,
             style: { backgroundImage: osu.urlPresence(badge.image_url) },
             title: badge.description,
           };
 
           return osu.present(badge.url) ? (
-            <a {...props} />
+            <a href={badge.url} {...props} />
           ) : (
             <span {...props} />
           );
