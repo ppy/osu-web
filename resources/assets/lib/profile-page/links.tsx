@@ -70,28 +70,37 @@ const textMapping: Record<TextName, (val: string | string[] | number, user: User
   join_date: (val: string) => {
     const joinDate = moment(val);
     const joinDateTitle = joinDate.toISOString();
+    let pattern: string;
+    let mappings: Record<string, React.ReactNode> | undefined;
 
     if (joinDate.isBefore(moment.utc([2008]))) {
-      return (
-        <span className='js-tooltip-time' title={joinDateTitle}>
-          {osu.trans('users.show.first_members')}
-        </span>
-      );
+      mappings = {
+        ':date': (
+          <span key='date' className='js-tooltip-time' title={joinDateTitle}>
+            {osu.trans('users.show.first_members')}
+          </span>
+        ),
+      };
+
+      pattern = ':date';
+    } else {
+      mappings = {
+        ':date': (
+          <span
+            key='date'
+            className='profile-links__value js-tooltip-time'
+            title={joinDateTitle}
+          >
+            {joinDate.format(osu.trans('common.datetime.year_month.moment'))}
+          </span>
+        ),
+      };
+
+      pattern = osu.trans('users.show.joined_at');
     }
 
-    const mappings = {
-      ':date': (
-        <span
-          key='date'
-          className='profile-links__value js-tooltip-time'
-          title={joinDateTitle}
-        >
-          {joinDate.format(osu.trans('common.datetime.year_month.moment'))}
-        </span>
-      ),
-    };
 
-    return <StringWithComponent mappings={mappings} pattern={osu.trans('users.show.joined_at')} />;
+    return <StringWithComponent mappings={mappings} pattern={pattern} />;
   },
   last_visit: (val: string, user: UserJson) => {
     if (user.is_online) {
