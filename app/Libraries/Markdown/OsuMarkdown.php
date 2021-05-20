@@ -128,8 +128,8 @@ class OsuMarkdown
         }
 
         $env->addExtension(new TableExtension\TableExtension());
-        $env->addBlockRenderer(TableExtension\Table::class, new OsuTableRenderer());
-        $env->addBlockRenderer(ListItem::class, new ListItemRenderer());
+        $env->addBlockRenderer(TableExtension\Table::class, new CommonMark\Renderers\TableRenderer());
+        $env->addBlockRenderer(ListItem::class, new CommonMark\Renderers\ListItemRenderer());
 
         $env->addExtension(new AutolinkExtension());
 
