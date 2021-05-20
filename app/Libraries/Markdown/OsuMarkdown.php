@@ -113,7 +113,7 @@ class OsuMarkdown
         $this->processor = new OsuMarkdownProcessor($env);
 
         if ($this->config['parse_attribute_id']) {
-            $env->addEventListener(DocumentParsedEvent::class, [new AttributesOnlyIdListener(), 'onDocumentParsed']);
+            $env->addEventListener(DocumentParsedEvent::class, [new Attributes\AttributesOnlyIdListener(), 'onDocumentParsed']);
             // Manually call register here to make sure the listener for the extension is
             // registered before $this->processor.
             // Adding extension using addExtension doesn't actually register anything
