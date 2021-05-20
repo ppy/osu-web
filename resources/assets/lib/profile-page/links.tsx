@@ -65,11 +65,7 @@ const textMapping: Record<TextName, (val: string | string[] | number, user: User
     const url = route('comments.index', { user_id: user.id });
     const mappings = { ':link': <a key='link' className={classWithModifiers('profile-links__value', ['link'])} href={url}>{count}</a> };
 
-    return (
-      <div className='profile-links__item'>
-        <StringWithComponent mappings={mappings} pattern={osu.trans('users.show.comments_count._')} />
-      </div>
-    );
+    return <StringWithComponent mappings={mappings} pattern={osu.trans('users.show.comments_count._')} />;
   },
   join_date: (val: string) => {
     const joinDate = moment(val);
@@ -77,9 +73,9 @@ const textMapping: Record<TextName, (val: string | string[] | number, user: User
 
     if (joinDate.isBefore(moment.utc([2008]))) {
       return (
-        <div className='profile-links__item js-tooltip-time' title={joinDateTitle}>
+        <span className='js-tooltip-time' title={joinDateTitle}>
           {osu.trans('users.show.first_members')}
-        </div>
+        </span>
       );
     }
 
@@ -95,34 +91,22 @@ const textMapping: Record<TextName, (val: string | string[] | number, user: User
       ),
     };
 
-    return (
-      <div className='profile-links__item'>
-        <StringWithComponent mappings={mappings} pattern={osu.trans('users.show.joined_at')} />
-      </div>
-    );
+    return <StringWithComponent mappings={mappings} pattern={osu.trans('users.show.joined_at')} />;
   },
   last_visit: (val: string, user: UserJson) => {
     if (user.is_online) {
-      return <div className='profile-links__item'>{osu.trans('users.show.lastvisit_online')}</div>;
+      return osu.trans('users.show.lastvisit_online');
     }
 
     const mappings = { ':date': <TimeWithTooltip key='date' dateTime={val} /> };
 
-    return (
-      <div className='profile-links__item'>
-        <StringWithComponent mappings={mappings} pattern={osu.trans('users.show.lastvisit')} />
-      </div>
-    );
+    return <StringWithComponent mappings={mappings} pattern={osu.trans('users.show.lastvisit')} />;
   },
   playstyle: (val: string[]) => {
     const playsWith = val.map((s) => osu.trans(`common.device.${s}`)).join(', ');
     const mappings = { ':devices': <span key='devices' className='profile-links__value'>{playsWith}</span> };
 
-    return (
-      <div className='profile-links__item'>
-        <StringWithComponent mappings={mappings} pattern={osu.trans('users.show.plays_with')} />
-      </div>
-    );
+    return <StringWithComponent mappings={mappings} pattern={osu.trans('users.show.plays_with')} />;
   },
   post_count: (val: number, user: UserJson) => {
     const count = osu.transChoice('users.show.post_count.count', val);
@@ -130,11 +114,7 @@ const textMapping: Record<TextName, (val: string | string[] | number, user: User
 
     const mappings = { ':link': <a key='link' className={classWithModifiers('profile-links__value', ['link'])} href={url}>{count}</a> };
 
-    return (
-      <div className='profile-links__item'>
-        <StringWithComponent mappings={mappings} pattern={osu.trans('users.show.post_count._')} />
-      </div>
-    );
+    return <StringWithComponent mappings={mappings} pattern={osu.trans('users.show.post_count._')} />;
   },
 };
 
@@ -195,6 +175,6 @@ export default class Links extends React.PureComponent<Props> {
     const value = this.props.user[key];
     if (value == null) return null;
 
-    return textMapping[key](value, this.props.user);
+    return <div key={key} className='profile-links__item'>{textMapping[key](value, this.props.user)}</div>;
   };
 }
