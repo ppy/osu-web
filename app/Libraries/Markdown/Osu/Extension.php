@@ -15,7 +15,7 @@ class Extension implements ExtensionInterface
 {
     private $processor;
 
-    public function __construct(?DocumentProcessor $processor = null)
+    public function __construct(DocumentProcessor $processor)
     {
         $this->processor = $processor;
     }
@@ -24,10 +24,7 @@ class Extension implements ExtensionInterface
     {
         $environment
             ->addBlockRenderer(ListItem::class, new Renderers\ListItemRenderer())
-            ->addBlockRenderer(Table::class, new Renderers\TableRenderer());
-
-        if ($this->processor !== null) {
-            $environment->addEventListener(DocumentParsedEvent::class, $this->processor);
-        }
+            ->addBlockRenderer(Table::class, new Renderers\TableRenderer())
+            ->addEventListener(DocumentParsedEvent::class, $this->processor);
     }
 }
