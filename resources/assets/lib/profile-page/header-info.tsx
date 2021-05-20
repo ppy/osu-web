@@ -94,6 +94,7 @@ export default class HeaderInfo extends React.PureComponent<Props> {
 
     return (
       <div className='profile-previous-usernames'>
+        {/* FIXME: doesn't quite work reliably. Link so title is shown in mobile (onClick is required) */}
         <a
           className='profile-previous-usernames__icon profile-previous-usernames__icon--with-title'
           onClick={this.doNothing}
