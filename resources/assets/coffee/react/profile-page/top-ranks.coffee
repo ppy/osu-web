@@ -5,7 +5,7 @@ import { ExtraHeader } from './extra-header'
 import { PlayDetailList } from 'play-detail-list'
 import * as React from 'react'
 import { div, h2, h3, ul, li, a, p, pre, span } from 'react-dom-factories'
-import { ShowMoreLink } from 'show-more-link'
+import ShowMoreLink from 'show-more-link'
 el = React.createElement
 
 export class TopRanks extends React.PureComponent

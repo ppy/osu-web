@@ -3,8 +3,9 @@
 
 import { Main } from 'beatmaps/main';
 import core from 'osu-core-singleton';
+import * as React from 'react';
 
-reactTurbolinks.registerPersistent('beatmaps', Main, true, (container: HTMLElement) => {
+core.reactTurbolinks.register('beatmaps', true, (container: HTMLElement) => {
   const beatmapsets = osu.parseJson('json-beatmaps', true);
   if (beatmapsets != null) {
     core.beatmapsetSearchController.initialize(beatmapsets);
@@ -14,7 +15,5 @@ reactTurbolinks.registerPersistent('beatmaps', Main, true, (container: HTMLEleme
   // includes an initial search to load the pre-initialized data properly.
   core.beatmapsetSearchController.restoreTurbolinks();
 
-  return {
-    availableFilters: osu.parseJson('json-filters'),
-  };
+  return <Main availableFilters={osu.parseJson('json-filters')} />;
 });

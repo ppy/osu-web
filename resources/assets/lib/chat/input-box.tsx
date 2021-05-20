@@ -38,7 +38,6 @@ export default class InputBox extends React.Component<Props> implements Dispatch
     disposeOnUnmount(
       this,
       observe(this.dataStore.chatState.selectedBoxed, (change) => {
-        console.log('change');
         if (change.newValue !== change.oldValue && osu.isDesktop()) {
           this.focusInput();
         }

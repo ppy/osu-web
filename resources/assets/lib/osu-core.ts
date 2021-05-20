@@ -14,6 +14,7 @@ import { observable } from 'mobx';
 import NotificationsWorker from 'notifications/worker';
 import OsuAudio from 'osu-audio/main';
 import OsuLayzr from 'osu-layzr';
+import ReactTurbolinks from 'react-turbolinks';
 import SocketWorker from 'socket-worker';
 import RootDataStore from 'stores/root-data-store';
 import Timeago from 'timeago';
@@ -46,6 +47,7 @@ export default class OsuCore {
   notificationsWorker: NotificationsWorker;
   readonly osuAudio: OsuAudio;
   readonly osuLayzr = new OsuLayzr();
+  readonly reactTurbolinks = new ReactTurbolinks();
   socketWorker: SocketWorker;
   readonly timeago = new Timeago();
   readonly turbolinksReload = new TurbolinksReload();
