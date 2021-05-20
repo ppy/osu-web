@@ -118,7 +118,7 @@ class @ForumTopicReply
     else
       @forum.setTotalPosts(@forum.totalPosts() + 1)
       @forum.endPost().insertAdjacentHTML 'afterend', data
-      osu.pageChange()
+      _exported.pageChange()
 
       @forum.endPost().scrollIntoView()
 
@@ -174,4 +174,4 @@ class @ForumTopicReply
     target.insertBefore(box, target.firstChild)
 
     $input.focus() if inputFocused
-    osu.pageChange() # sync reply box height
+    _exported.pageChange() # sync reply box height
