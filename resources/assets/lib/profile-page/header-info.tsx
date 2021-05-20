@@ -16,6 +16,10 @@ interface Props {
   user: UserJsonExtended;
 }
 
+function doNothing() {
+  //
+}
+
 export default class HeaderInfo extends React.PureComponent<Props> {
   render() {
     const avatar = <UserAvatar modifiers={['full']} user={this.props.user} />;
@@ -83,10 +87,6 @@ export default class HeaderInfo extends React.PureComponent<Props> {
     );
   }
 
-  private doNothing = () => {
-    //
-  };
-
   private previousUsernames() {
     if (this.props.user.previous_usernames == null || this.props.user.previous_usernames.length === 0) return null;
 
@@ -97,7 +97,7 @@ export default class HeaderInfo extends React.PureComponent<Props> {
         {/* FIXME: doesn't quite work reliably. Link so title is shown in mobile (onClick is required) */}
         <a
           className='profile-previous-usernames__icon profile-previous-usernames__icon--with-title'
-          onClick={this.doNothing}
+          onClick={doNothing}
           title={`${osu.trans('users.show.previous_usernames')}: ${previousUsernames}`}
         >
           <span className='fas fa-address-card' />
