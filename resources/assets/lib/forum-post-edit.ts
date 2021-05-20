@@ -13,6 +13,9 @@ export default class ForumPostEdit {
   private cancel = (e: JQuery.TriggeredEvent) => {
     e.preventDefault();
 
+    // clear before target is removed
+    $.publish('forum-post-input:clear', [e.target]);
+
     const $postBox = $(e.target).parents('.js-forum-post-edit--container');
     $postBox
       .html($postBox.attr('data-original-post') ?? '')
@@ -22,6 +25,9 @@ export default class ForumPostEdit {
   };
 
   private saved = (e: JQuery.TriggeredEvent, data: string, status: string, xhr: JQuery.jqXHR) => {
+    // clear before target is removed
+    $.publish('forum-post-input:clear', [e.target]);
+
     // ajax:complete needs to be triggered early since the form (target) is
     // removed in this callback.
     $(e.target)
@@ -43,6 +49,8 @@ export default class ForumPostEdit {
       .html(data)
       .find('[name=body]')
       .focus();
+
+    $.publish('forum-post-input:restore', [$postBox[0]]);
 
     pageChange();
   };

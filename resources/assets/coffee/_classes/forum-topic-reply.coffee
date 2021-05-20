@@ -17,7 +17,6 @@ class @ForumTopicReply
     $(document).on 'ajax:success', '.js-forum-topic-reply--quote', @activateWithReply
 
     $(document).on 'focus', '.js-forum-topic-reply--input', @activate
-    $(document).on 'input change', '.js-forum-topic-reply--input', _.debounce(@inputChange, 500)
 
     $.subscribe 'stickyFooter', @stickOrUnstick
 
@@ -32,7 +31,6 @@ class @ForumTopicReply
     return unless @available()
 
     @deleteState 'sticking'
-    @input[0].value = @getState('text') || ''
     @activate() if @getState('active') == '1'
 
 
@@ -73,7 +71,6 @@ class @ForumTopicReply
     data = "#{currentInput}\n\n#{data}" if currentInput
 
     $input.val(data)
-    @inputChange()
     $input[0].selectionStart = data.length
 
     @activate()
@@ -96,16 +93,11 @@ class @ForumTopicReply
     Timeout.set 500, @disableFlash # so animation doesn't play again when element gets transplanted from unsticking.
 
 
-  inputChange: =>
-    @setState 'text', @input[0].value
-
-
   posted: (e, data) =>
     input = @input[0]
 
     @deactivate()
     input.value = ''
-    @setState 'text', ''
     @bbcodePreview.hidePreview(target: input)
 
     $newPost = $(data)

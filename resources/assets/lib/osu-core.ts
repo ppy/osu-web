@@ -8,6 +8,7 @@ import ClickMenu from 'click-menu';
 import Enchant from 'enchant';
 import ForumPoll from 'forum-poll';
 import ForumPostEdit from 'forum-post-edit';
+import ForumPostInput from 'forum-post-input';
 import CurrentUser from 'interfaces/current-user';
 import Localtime from 'localtime';
 import MobileToggle from 'mobile-toggle';
@@ -44,6 +45,7 @@ export default class OsuCore {
   readonly enchant: Enchant;
   readonly forumPoll = new ForumPoll();
   readonly forumPostEdit = new ForumPostEdit();
+  readonly forumPostInput = new ForumPostInput();
   readonly localtime = new Localtime();
   readonly mobileToggle = new MobileToggle();
   notificationsWorker: NotificationsWorker;

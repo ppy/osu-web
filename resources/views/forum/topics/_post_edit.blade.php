@@ -10,6 +10,7 @@
 ]) !!}
     @include('forum.topics._post_edit_form', [
         'content' => $post->bodyRaw,
+        'inputId' => "post:{$post->getKey()}",
         'type' => 'edit',
     ])
 {!! Form::close() !!}

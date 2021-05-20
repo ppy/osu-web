@@ -41,6 +41,10 @@
             </div>
         @endif
 
-        @include('forum.topics._post_edit_form', ['type' => 'reply', 'enabled' => priv_check('ForumTopicReply', $topic)->can()])
+        @include('forum.topics._post_edit_form', [
+            'enabled' => priv_check('ForumTopicReply', $topic)->can(),
+            'inputId' => "topic:{$topic->getKey()}",
+            'type' => 'reply',
+        ])
     {!! Form::close() !!}
 </div>

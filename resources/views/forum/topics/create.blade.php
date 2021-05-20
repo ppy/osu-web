@@ -71,6 +71,10 @@
             <div class="forum-post-content js-post-preview--preview"></div>
         </div>
 
-        @include('forum.topics._post_edit_form', ['type' => 'create', 'content' => $post->post_text])
+        @include('forum.topics._post_edit_form', [
+            'content' => $post->post_text,
+            'inputId' => "forum:{$forum->getKey()}",
+            'type' => 'create',
+        ])
     {!! Form::close() !!}
 @endsection
