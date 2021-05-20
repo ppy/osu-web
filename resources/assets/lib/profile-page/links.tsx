@@ -70,35 +70,30 @@ const textMapping: Record<TextName, (val: string | string[] | number, user: User
   join_date: (val: string) => {
     const joinDate = moment(val);
     const joinDateTitle = joinDate.toISOString();
+    let className = 'js-tooltip-time';
     let pattern: string;
-    let mappings: Record<string, React.ReactNode> | undefined;
+    let text: string;
 
     if (joinDate.isBefore(moment.utc([2008]))) {
-      mappings = {
-        ':date': (
-          <span key='date' className='js-tooltip-time' title={joinDateTitle}>
-            {osu.trans('users.show.first_members')}
-          </span>
-        ),
-      };
-
       pattern = ':date';
+      text = osu.trans('users.show.first_members');
     } else {
-      mappings = {
-        ':date': (
-          <span
-            key='date'
-            className='profile-links__value js-tooltip-time'
-            title={joinDateTitle}
-          >
-            {joinDate.format(osu.trans('common.datetime.year_month.moment'))}
-          </span>
-        ),
-      };
-
+      className += ' profile-links__value';
       pattern = osu.trans('users.show.joined_at');
+      text = joinDate.format(osu.trans('common.datetime.year_month.moment'));
     }
 
+    const mappings = {
+      ':date': (
+        <span
+          key='date'
+          className={className}
+          title={joinDateTitle}
+        >
+          {text}
+        </span>
+      ),
+    };
 
     return <StringWithComponent mappings={mappings} pattern={pattern} />;
   },
