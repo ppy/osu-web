@@ -90,7 +90,7 @@ class OsuMarkdownProcessor
         }
     }
 
-    public function addClass()
+    private function addClass()
     {
         if ($this->event->isEntering() || isset($this->node->data['attributes']['class'])) {
             return;
@@ -145,7 +145,7 @@ class OsuMarkdownProcessor
         }
     }
 
-    public function addListStartAsVariable()
+    private function addListStartAsVariable()
     {
         if (!$this->node instanceof Block\ListBlock || !$this->event->isEntering()) {
             return;
@@ -158,7 +158,7 @@ class OsuMarkdownProcessor
         }
     }
 
-    public function fixRelativeUrl()
+    private function fixRelativeUrl()
     {
         if ($this->relativeUrlRoot === null) {
             return;
@@ -183,7 +183,7 @@ class OsuMarkdownProcessor
      * @param \League\CommonMark\Node\Node $node
      * @return string
      */
-    public function getText($node)
+    private function getText($node)
     {
         $text = '';
 
@@ -201,7 +201,7 @@ class OsuMarkdownProcessor
         return presence($text);
     }
 
-    public function loadToc()
+    private function loadToc()
     {
         if (
             !$this->node instanceof Block\Heading ||
@@ -229,7 +229,7 @@ class OsuMarkdownProcessor
         $this->node->data['attributes']['id'] = $slug;
     }
 
-    public function parseFigure()
+    private function parseFigure()
     {
         if (!$this->node instanceof Block\Paragraph || !$this->event->isEntering()) {
             return;
@@ -254,7 +254,7 @@ class OsuMarkdownProcessor
         }
     }
 
-    public function fixWikiUrl()
+    private function fixWikiUrl()
     {
         if (!$this->event->isEntering() || !($this->node instanceof Inline\AbstractWebResource)) {
             return;
@@ -293,7 +293,7 @@ class OsuMarkdownProcessor
         $this->node->setUrl($url);
     }
 
-    public function proxyImage()
+    private function proxyImage()
     {
         if (!$this->node instanceof Inline\Image || !$this->event->isEntering()) {
             return;
@@ -306,7 +306,7 @@ class OsuMarkdownProcessor
         }
     }
 
-    public function recordFirstImage()
+    private function recordFirstImage()
     {
         if ($this->firstImage !== null || !$this->node instanceof Inline\Image || !$this->event->isEntering()) {
             return;
@@ -315,7 +315,7 @@ class OsuMarkdownProcessor
         $this->firstImage = proxy_media($this->node->getUrl());
     }
 
-    public function setTitle()
+    private function setTitle()
     {
         // wait until leaving otherwise node->next will be null after detaching.
         if (!$this->node instanceof Block\Heading || $this->event->isEntering() || $this->title !== null) {
@@ -325,7 +325,7 @@ class OsuMarkdownProcessor
         $this->title = presence($this->node->getStringContent());
     }
 
-    public function trackListLevel()
+    private function trackListLevel()
     {
         if (!$this->node instanceof Block\ListBlock) {
             return;
@@ -338,7 +338,7 @@ class OsuMarkdownProcessor
         }
     }
 
-    public function updateLocaleLink()
+    private function updateLocaleLink()
     {
         if (!$this->node instanceof Inline\Link || !$this->event->isEntering()) {
             return;
