@@ -292,16 +292,23 @@ class ModdingHistoryEventsBundle
                 ...$votes['received']->pluck('user_id')
             );
 
-            // Always add current user to the result array (assuming no need to do too many additional preloads).
-            // This prevents them from potentially get removed by the `default` scope.
-            $userIds->remove($this->user->getKey());
+            if ($this->user !== null) {
+                // Always add current user to the result array (assuming no need to do too many additional preloads).
+                // This prevents them from potentially get removed by the `default` scope.
+                $userIds->remove($this->user->getKey());
+            }
 
             $users = User::whereIn('user_id', $userIds->toArray())->with('userGroups');
             if (!$this->isModerator) {
                 $users->default();
             }
 
-            return $users->get()->push($this->user);
+            $users = $users->get();
+            if ($this->user !== null) {
+                $users->push($this->user);
+            }
+
+            return $users;
         });
     }
 
