@@ -17,7 +17,7 @@ import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 import UserStore from './user-store';
 
-const skippedChannelTypes: ChannelType[] = ['MULTIPLAYER', 'TEMPORARY'];
+const skippedChannelTypes = new Set<ChannelType>(['MULTIPLAYER', 'TEMPORARY']);
 
 @dispatchListener
 export default class ChannelStore {
@@ -250,7 +250,7 @@ export default class ChannelStore {
   @action
   updateWithPresence(presence: PresenceJson) {
     presence.forEach((json) => {
-      if (!skippedChannelTypes.includes(json.type)) {
+      if (!skippedChannelTypes.has(json.type)) {
         this.getOrCreate(json.channel_id).updatePresence(json);
       }
     });
