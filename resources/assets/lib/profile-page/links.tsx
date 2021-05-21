@@ -12,11 +12,17 @@ import { Props as StringWithComponentProps, StringWithComponent } from 'string-w
 import TimeWithTooltip from 'time-with-tooltip';
 import { classWithModifiers } from 'utils/css';
 
-const linkNames = ['discord', 'interests', 'location', 'occupation', 'twitter', 'website'] as const;
-type LinkName = (typeof linkNames)[number];
+// these are ordered in the order they appear in.
+const textKeys = ['join_date', 'last_visit', 'playstyle', 'post_count', 'comments_count'] as const;
+type TextKey = (typeof textKeys)[number];
 
-const textNames = ['comments_count', 'join_date', 'last_visit', 'playstyle', 'post_count'] as const;
-type TextName = (typeof textNames)[number];
+const bioKeys = ['location', 'interests', 'occupation'] as const;
+type BioKey = (typeof bioKeys)[number];
+
+const mediaKeys = ['twitter', 'discord', 'website'] as const;
+type MediaKey = (typeof mediaKeys)[number];
+
+type LinkKey = BioKey | MediaKey;
 
 interface LinkProps {
   icon: string;
@@ -29,7 +35,7 @@ interface Props {
   user: UserJsonExtended;
 }
 
-const linkMapping: Record<LinkName, (val: string) => LinkProps> = {
+const linkMapping: Record<LinkKey, (val: string) => LinkProps> = {
   discord: (val: string) => ({
     icon: 'fab fa-discord',
     text: <ClickToCopy showIcon value={val} />,
@@ -58,7 +64,7 @@ const linkMapping: Record<LinkName, (val: string) => LinkProps> = {
   }),
 };
 
-const textMapping: Record<TextName, (val: string | string[] | number, user: UserJson) => StringWithComponentProps> = {
+const textMapping: Record<TextKey, (val: string | string[] | number, user: UserJson) => StringWithComponentProps> = {
   comments_count: (val: number, user: UserJson) => {
     const count = osu.transChoice('users.show.comments_count.count', val);
     const url = route('comments.index', { user_id: user.id });
@@ -152,9 +158,9 @@ function Link(props: LinkProps) {
 export default class Links extends React.PureComponent<Props> {
   render() {
     const rows = [
-      ['join_date', 'last_visit', 'playstyle', 'post_count', 'comments_count'].map(this.renderText),
-      ['location', 'interests', 'occupation'].map(this.renderLink),
-      ['twitter', 'discord', 'website'].map(this.renderLink),
+      textKeys.map(this.renderText),
+      bioKeys.map(this.renderLink),
+      mediaKeys.map(this.renderLink),
     ].map((row) => compact(row)).filter((x) => x.length > 0);
 
     return (
@@ -173,7 +179,7 @@ export default class Links extends React.PureComponent<Props> {
     );
   }
 
-  renderLink = (key: LinkName) => {
+  renderLink = (key: LinkKey) => {
     const value = this.props.user[key];
     if (typeof value !== 'string') return null;
 
@@ -183,7 +189,7 @@ export default class Links extends React.PureComponent<Props> {
     return <Link key={key} {...props} />;
   };
 
-  renderText = (key: TextName) => {
+  renderText = (key: TextKey) => {
     const value = this.props.user[key];
     if (value == null) return null;
 
