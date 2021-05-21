@@ -59,7 +59,6 @@ $(document).on 'turbolinks:load', ->
 @scale ?= new Scale
 @search ?= new Search
 @stickyFooter ?= new StickyFooter
-@timeago ?= new Timeago
 @tooltipBeatmap ?= new TooltipBeatmap
 @tooltipDefault ?= new TooltipDefault
 

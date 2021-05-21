@@ -3,6 +3,7 @@
 
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
+import NotificationIcon from 'notification-icon';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
@@ -18,35 +19,6 @@ export default class ChatIcon extends React.Component<Props> {
   }
 
   render() {
-    return (
-      <span className={this.mainClass()}>
-        <i className='fas fa-comment-alt' />
-        <span className='notification-icon__count'>
-          {this.unreadCountDisplay()}
-        </span>
-      </span>
-    );
-  }
-
-  private mainClass() {
-    let ret = 'notification-icon';
-
-    if (this.unreadCount > 0) {
-      ret += ' notification-icon--glow';
-    }
-
-    if (this.props.type === 'mobile') {
-      ret += ' notification-icon--mobile';
-    }
-
-    return ret;
-  }
-
-  private unreadCountDisplay() {
-    if (core.notificationsWorker.hasData) {
-      return osu.formatNumber(this.unreadCount);
-    } else {
-      return '...';
-    }
+    return <NotificationIcon count={this.unreadCount} iconClassName='fas fa-comment-alt' ready={core.notificationsWorker.hasData} type={this.props.type} />;
   }
 }

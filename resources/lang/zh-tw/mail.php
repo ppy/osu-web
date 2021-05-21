@@ -27,7 +27,7 @@ return [
 
         'benefit' => [
             'gift' => '',
-            'self' => '',
+            'self' => '您可以在接下來的 :duration 內享受 osu!direct 和其他 osu! 支持者享有的特權。',
         ],
 
         'support' => [
@@ -63,7 +63,7 @@ return [
     'supporter_gift' => [
         'anonymous_gift' => '贈送您贊助者標籤的人想要保持匿名，所以在這則通知中並沒有提到他(們)。',
         'anonymous_gift_maybe_not' => '',
-        'duration' => '',
+        'duration' => '因為他們，您可以在接下來的 :duration 內享受 osu!direct 和其他 osu! 支持者享有的特權。',
         'features' => '',
         'gifted' => '有人剛剛送給你了一份osu!贊助者標籤!',
         'subject' => '您已獲贈 osu!supporter 標籤！',

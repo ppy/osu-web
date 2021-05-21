@@ -5,6 +5,7 @@
 
 namespace App\Libraries\Markdown\Indexing;
 
+use App\Libraries\Markdown\StyleBlock\Element as StyleBlock;
 use League\CommonMark\Block\Element as Block;
 use League\CommonMark\ConfigurableEnvironmentInterface;
 use League\CommonMark\Extension\ExtensionInterface;
@@ -37,6 +38,7 @@ class RendererExtension implements ExtensionInterface
             Block\ListItem::class => new ListItemRenderer(),
             Block\Paragraph::class => new BlockRenderer(),
             Block\ThematicBreak::class => new BlockRenderer(),
+            StyleBlock::class => new BlockRenderer(),
             TableExtension\Table::class => new TableRenderer(),
             TableExtension\TableCaption::class => new NoopRenderer(),
             TableExtension\TableSection::class => new TableRenderer(),

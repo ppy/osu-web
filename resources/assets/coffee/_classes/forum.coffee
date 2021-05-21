@@ -217,14 +217,14 @@ class @Forum
   toggleDeleted: =>
     return if !@showDeleted()? # you don't see this option unless you're a moderator, anyway
 
-    $.ajax laroute.route('account.options'),
-      method: 'PUT'
-      data:
-        user_profile_customization:
-          forum_posts_show_deleted: !@showDeleted()
-    .done (user) =>
-      $.publish 'user:update', user
-      Turbolinks.visit @postUrlN(@currentPostPosition)
+    xhr = osuCore.userPreferences.set('forum_posts_show_deleted', !@showDeleted())
+
+    callback = => Turbolinks.visit @postUrlN(@currentPostPosition)
+
+    if xhr?
+      xhr.done callback
+    else
+      callback()
 
 
   initialScrollTo: =>

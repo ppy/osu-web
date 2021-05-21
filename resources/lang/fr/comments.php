@@ -5,7 +5,7 @@
 
 return [
     'deleted' => 'supprimé',
-    'deleted_count' => ':count_delimited a supprimé le commentaire|:count_delimited a supprimé les commentaires',
+    'deleted_count' => ':count_delimited commentaire supprimé|:count_delimited commentaires supprimés',
     'edited' => 'édité par :user il y a :timeago',
     'pinned' => 'épinglé',
     'empty' => 'Il n’y a pas encore de commentaires.',
