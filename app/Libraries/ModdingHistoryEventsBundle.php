@@ -284,12 +284,12 @@ class ModdingHistoryEventsBundle
             }
 
             $userIds->add(
-                ...$posts->pluck('user_id')->toArray(),
-                ...$posts->pluck('last_editor_id')->toArray(),
-                ...$events->pluck('user_id')->toArray(),
-                ...$events->pluck('beatmapDiscussion')->pluck('user_id')->toArray(),
-                ...$votes['given']->pluck('user_id')->toArray(),
-                ...$votes['received']->pluck('user_id')->toArray()
+                ...$posts->pluck('user_id'),
+                ...$posts->pluck('last_editor_id'),
+                ...$events->pluck('user_id'),
+                ...$events->pluck('beatmapDiscussion')->pluck('user_id'),
+                ...$votes['given']->pluck('user_id'),
+                ...$votes['received']->pluck('user_id')
             );
 
             $userIds->remove($this->user->getKey());
