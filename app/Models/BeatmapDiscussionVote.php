@@ -65,10 +65,12 @@ class BeatmapDiscussionVote extends Model
         ];
 
         $query = static::limit($params['limit'])->offset($pagination['offset']);
+        $isModerator = $rawParams['is_moderator'] ?? false;
 
         if (isset($rawParams['user'])) {
             $params['user'] = $rawParams['user'];
-            $user = User::lookup($params['user'], null, true);
+            $findAll = $isModerator || ($rawParams['current_user_id'] ?? null === $rawParams['user']);
+            $user = User::lookup($params['user'], null, $findAll);
 
             if ($user === null) {
                 $query->none();
@@ -120,7 +122,7 @@ class BeatmapDiscussionVote extends Model
         }
 
         // TODO: normalize with main beatmapset discussion behaviour (needs React-side fixing)
-        if (!($rawParams['is_moderator'] ?? false)) {
+        if (!isset($user) && !$isModerator) {
             $query->whereHas('user', function ($userQuery) {
                 $userQuery->default();
             });

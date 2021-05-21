@@ -31,7 +31,11 @@ class ModdingHistoryController extends Controller
                 return ext_view('users.show_not_found', null, null, 404);
             }
 
-            $this->searchParams = array_merge(request()->query(), ['user' => $this->user->user_id]);
+            $userId = $this->user->getKey();
+            $this->searchParams = array_merge(request()->query(), [
+                'current_user_id' => $userId,
+                'user' => $userId,
+            ]);
 
             if ((string) $this->user->user_id !== (string) $userId) {
                 return ujs_redirect(route(
