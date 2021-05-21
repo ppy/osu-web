@@ -77,7 +77,7 @@ class BeatmapDiscussion extends Model
 
         if (present($rawParams['user'] ?? null)) {
             $params['user'] = $rawParams['user'];
-            $user = User::lookup($params['user']);
+            $user = User::lookup($params['user'], null, true);
 
             if ($user === null) {
                 $query->none();
