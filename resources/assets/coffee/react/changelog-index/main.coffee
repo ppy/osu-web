@@ -6,7 +6,7 @@ import { ChangelogHeaderStreams } from 'changelog-header-streams'
 import HeaderV4 from 'header-v4'
 import * as React from 'react'
 import { button, div, h1, p, span } from 'react-dom-factories'
-import { ShowMoreLink } from 'show-more-link'
+import ShowMoreLink from 'show-more-link'
 el = React.createElement
 
 groupChangelogBuilds = (builds) ->

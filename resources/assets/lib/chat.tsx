@@ -5,8 +5,9 @@ import { ChatInitialJson } from 'chat/chat-api-responses';
 import MainView from 'chat/main-view';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
+import * as React from 'react';
 
-reactTurbolinks.register('chat', MainView, () => {
+core.reactTurbolinks.register('chat', false, () => {
   const dataStore = core.dataStore;
   const initial = osu.parseJson<ChatInitialJson | null>('json-chat-initial', true);
 
@@ -19,10 +20,10 @@ reactTurbolinks.register('chat', MainView, () => {
     dataStore.channelStore.lastPolledMessageId = initial.last_message_id ?? 0;
   }
 
-  let initialChannel = dataStore.chatState.selected;
+  let initialChannel = 0;
   const sendTo = initial?.send_to;
 
-  if ((sendTo != null)) {
+  if (sendTo != null) {
     const target = dataStore.userStore.getOrCreate(sendTo.target.id, sendTo.target); // pre-populate userStore with target
     let channel = dataStore.channelStore.findPM(target.id);
 
@@ -32,23 +33,25 @@ reactTurbolinks.register('chat', MainView, () => {
       channel = Channel.newPM(target, sendTo.channel_id);
       channel.moderated = !sendTo.can_message; // TODO: move can_message to a user prop?
       dataStore.channelStore.channels.set(channel.channelId, channel);
-      dataStore.channelStore.loaded = true;
       initialChannel = channel.channelId;
     }
-  } else if (initialChannel === 0 && dataStore.channelStore.loaded) {
-    if (dataStore.channelStore.nonPmChannels.length > 0) {
-      initialChannel = dataStore.channelStore.nonPmChannels[0].channelId;
-    } else if (dataStore.channelStore.pmChannels.length > 0) {
-      initialChannel = dataStore.channelStore.pmChannels[0].channelId;
+  } else {
+    const channelId = parseInt(new URL(location.href).searchParams.get('channel_id') ?? '', 10);
+    // TODO: should clear query string as well (and maybe update on channel selection?)
+    initialChannel = dataStore.channelStore.get(channelId) != null ? channelId : dataStore.chatState.selected;
+
+    if (initialChannel === 0) {
+      if (dataStore.channelStore.nonPmChannels.length > 0) {
+        initialChannel = dataStore.channelStore.nonPmChannels[0].channelId;
+      } else if (dataStore.channelStore.pmChannels.length > 0) {
+        initialChannel = dataStore.channelStore.pmChannels[0].channelId;
+      }
     }
   }
 
   if (initialChannel !== 0) {
-    dataStore.chatState.selectChannel(initialChannel);
+    void dataStore.chatState.selectChannel(initialChannel);
   }
 
-  return {
-    dataStore: core.dataStore,
-    worker: core.chatWorker,
-  };
+  return <MainView dataStore={core.dataStore} worker={core.chatWorker} />;
 });

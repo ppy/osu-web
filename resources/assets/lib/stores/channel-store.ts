@@ -23,7 +23,6 @@ const skippedChannelTypes = new Set<ChannelType>(['MULTIPLAYER', 'TEMPORARY']);
 export default class ChannelStore {
   @observable channels = observable.map<number, Channel>();
   lastPolledMessageId = 0;
-  @observable loaded = false;
 
   private api = new ChatAPI();
   private markingAsRead: Partial<Record<number, number>> = {};
@@ -109,7 +108,6 @@ export default class ChannelStore {
   @action
   flushStore() {
     this.channels.clear();
-    this.loaded = false;
   }
 
   get(channelId: number): Channel | undefined {
@@ -265,8 +263,6 @@ export default class ChannelStore {
         this.channels.delete(channel.channelId);
       }
     });
-
-    this.loaded = true;
   }
 
   @action

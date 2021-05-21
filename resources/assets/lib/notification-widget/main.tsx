@@ -11,7 +11,7 @@ import NotificationController from 'notifications/notification-controller';
 import NotificationReadButton from 'notifications/notification-read-button';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { ShowMoreLink } from 'show-more-link';
+import ShowMoreLink from 'show-more-link';
 import Stack from './stack';
 
 interface Link {
