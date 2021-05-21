@@ -78,7 +78,7 @@ class BeatmapDiscussion extends Model
 
         if (present($rawParams['user'] ?? null)) {
             $params['user'] = $rawParams['user'];
-            $findAll = $isModerator || ($rawParams['current_user_id'] ?? null === $rawParams['user']);
+            $findAll = $isModerator || (($rawParams['current_user_id'] ?? null) === $rawParams['user']);
             $user = User::lookup($params['user'], null, $findAll);
 
             if ($user === null) {
