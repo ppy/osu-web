@@ -3,12 +3,8 @@
 
 const className = 'js-extra-script';
 
-interface ScriptList {
-  [key: string]: boolean;
-}
-
 export default class TurbolinksReload {
-  private loaded: ScriptList = {};
+  private loaded = new Set<string>();
 
   constructor() {
     document.addEventListener('turbolinks:before-cache', this.cleanup);
@@ -19,11 +15,11 @@ export default class TurbolinksReload {
   };
 
   forget = (src: string) => {
-    delete this.loaded[src];
+    this.loaded.delete(src);
   };
 
   load = (src: string, onload?: () => void) => {
-    if (this.loaded[src]) {
+    if (this.loaded.has(src)) {
       return;
     }
 
@@ -44,6 +40,8 @@ export default class TurbolinksReload {
 
     el.src = src;
     document.body.appendChild(el);
-    return this.loaded[src] = true;
+    this.loaded.add(src);
+
+    return true;
   };
 }
