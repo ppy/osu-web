@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ClickToCopy from 'click-to-copy';
-import UserJson from 'interfaces/user-json';
 import UserJsonExtended from 'interfaces/user-json-extended';
 import { route } from 'laroute';
 import { compact } from 'lodash';
@@ -28,45 +27,45 @@ interface LinkProps {
   icon: string;
   text: string | React.ReactNode;
   title?: string;
-  url?: string;
+  url?: string | null;
 }
 
 interface Props {
   user: UserJsonExtended;
 }
 
-const linkMapping: Record<LinkKey, (val: string) => LinkProps> = {
-  discord: (val: string) => ({
+const linkMapping: Record<LinkKey, (user: UserJsonExtended) => LinkProps> = {
+  discord: (user: UserJsonExtended) => ({
     icon: 'fab fa-discord',
-    text: <ClickToCopy showIcon value={val} />,
+    text: <ClickToCopy showIcon value={user.discord ?? ''} />,
   }),
-  interests: (val: string) => ({
+  interests: (user: UserJsonExtended) => ({
     icon: 'far fa-heart',
-    text: val,
+    text: user.interests,
   }),
-  location: (val: string) => ({
+  location: (user: UserJsonExtended) => ({
     icon: 'fas fa-map-marker-alt',
-    text: val,
+    text: user.location,
   }),
-  occupation: (val: string) => ({
+  occupation: (user: UserJsonExtended) => ({
     icon: 'fas fa-suitcase',
-    text: val,
+    text: user.occupation,
   }),
-  twitter: (val: string) => ({
+  twitter: (user: UserJsonExtended) => ({
     icon: 'fab fa-twitter',
-    text: `@${val}`,
-    url: `https://twitter.com/${val}`,
+    text: `@${user.twitter}`,
+    url: `https://twitter.com/${user.twitter}`,
   }),
-  website: (val: string) => ({
+  website: (user: UserJsonExtended) => ({
     icon: 'fas fa-link',
-    text: val.replace(/^https?:\/\//, ''),
-    url: val,
+    text: (user.website ?? '').replace(/^https?:\/\//, ''),
+    url: user.website,
   }),
 };
 
-const textMapping: Record<TextKey, (val: string | string[] | number, user: UserJson) => StringWithComponentProps> = {
-  comments_count: (val: number, user: UserJson) => {
-    const count = osu.transChoice('users.show.comments_count.count', val);
+const textMapping: Record<TextKey, (user: UserJsonExtended) => StringWithComponentProps> = {
+  comments_count: (user: UserJsonExtended) => {
+    const count = osu.transChoice('users.show.comments_count.count', user.comments_count);
     const url = route('comments.index', { user_id: user.id });
 
     return {
@@ -74,8 +73,8 @@ const textMapping: Record<TextKey, (val: string | string[] | number, user: UserJ
       pattern: osu.trans('users.show.comments_count._'),
     };
   },
-  join_date: (val: string) => {
-    const joinDate = moment(val);
+  join_date: (user: UserJsonExtended) => {
+    const joinDate = moment(user.join_date);
     const joinDateTitle = joinDate.toISOString();
     let className = 'js-tooltip-time';
     let pattern: string;
@@ -104,7 +103,7 @@ const textMapping: Record<TextKey, (val: string | string[] | number, user: UserJ
 
     return { mappings, pattern };
   },
-  last_visit: (val: string, user: UserJson) => {
+  last_visit: (user: UserJsonExtended) => {
     if (user.is_online) {
       return {
         mappings: {},
@@ -113,20 +112,20 @@ const textMapping: Record<TextKey, (val: string | string[] | number, user: UserJ
     }
 
     return {
-      mappings: { ':date': <TimeWithTooltip key='date' dateTime={val} /> },
+      mappings: { ':date': <TimeWithTooltip key='date' dateTime={user.last_visit ?? ''} /> },
       pattern: osu.trans('users.show.lastvisit'),
     };
   },
-  playstyle: (val: string[]) => {
-    const playsWith = val.map((s) => osu.trans(`common.device.${s}`)).join(', ');
+  playstyle: (user: UserJsonExtended) => {
+    const playsWith = user.playstyle.map((s) => osu.trans(`common.device.${s}`)).join(', ');
 
     return {
       mappings: { ':devices': <span key='devices' className='profile-links__value'>{playsWith}</span> },
       pattern: osu.trans('users.show.plays_with'),
     };
   },
-  post_count: (val: number, user: UserJson) => {
-    const count = osu.transChoice('users.show.post_count.count', val);
+  post_count: (user: UserJsonExtended) => {
+    const count = osu.transChoice('users.show.post_count.count', user.post_count);
     const url = route('users.posts', { user: user.id });
 
     return {
@@ -183,7 +182,7 @@ export default class Links extends React.PureComponent<Props> {
     const value = this.props.user[key];
     if (typeof value !== 'string') return null;
 
-    const props = linkMapping[key](value);
+    const props = linkMapping[key](this.props.user);
     props.title ??= osu.trans(`users.show.info.${key}`);
 
     return <Link key={key} {...props} />;
@@ -193,7 +192,7 @@ export default class Links extends React.PureComponent<Props> {
     const value = this.props.user[key];
     if (value == null) return null;
 
-    const props = textMapping[key](value, this.props.user);
+    const props = textMapping[key](this.props.user);
 
     return (
       <div key={key} className='profile-links__item'>
