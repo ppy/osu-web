@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count dans cette review',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Connectez-vous pour répondre',

@@ -56,6 +56,7 @@ return [
 
         'options' => [
             '_' => 'phương thức giao hàng',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'sửa đổi beatmap',
             'channel_message' => 'tin nhắn riêng tư',
             'comment_new' => 'bình luận mới',

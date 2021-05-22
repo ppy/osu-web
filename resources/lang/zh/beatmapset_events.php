@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Approved.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => '管理员删除了 :discussion 。',
         'discussion_lock' => '针对该谱面的讨论已被禁用。（ :text ）',
         'discussion_post_delete' => '管理员在 :discussion 中删除了这条回复。',
@@ -55,6 +56,7 @@ return [
 
     'type' => [
         'approve' => '推荐',
+        'beatmap_owner_change' => '',
         'discussion_delete' => '删除讨论',
         'discussion_post_delete' => '删除讨论的回复',
         'discussion_post_restore' => '恢复已删除的讨论的回复',

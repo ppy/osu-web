@@ -78,7 +78,7 @@ return [
         'second_short_unit' => 's|s',
         'star_priority' => ':count_delimited stjärnprioritet|:count_delimited stjärnprioriteter',
         'update' => ':count_delimited uppdatering|:count_delimited uppdateringar',
-        'view' => ':count_delimited visa|:count_delimited visningar ',
+        'view' => ':count_delimited visning|:count_delimited visningar ',
         'years' => ':count år|:count år',
     ],
 

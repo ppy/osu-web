@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count 個がこのレビューにあります',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'ログインして返信する',

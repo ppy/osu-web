@@ -10,7 +10,7 @@ return [
         'peak' => 'Huipussaan :count käyttäjää paikalla',
         'players' => '<strong>:count</strong> rekisteröitynyttä pelaajaa',
         'title' => 'tervetuloa',
-        'see_more_news' => '',
+        'see_more_news' => 'näytä lisää uutisia',
 
         'slogan' => [
             'main' => 'parastakin parempi ilmainen rytmipeli',
@@ -22,12 +22,12 @@ return [
         'advanced_link' => 'Tarkempi haku',
         'button' => 'Hae',
         'empty_result' => 'Mitään ei löytynyt!',
-        'keyword_required' => '',
+        'keyword_required' => 'Syötä hakusana',
         'placeholder' => 'kirjoita hakeaksesi',
         'title' => 'Hae',
 
         'beatmapset' => [
-            'login_required' => '',
+            'login_required' => 'Kirjaudu sisään käyttääksesi beatmap-hakua',
             'more' => ':count lisää hakutulosta',
             'more_simple' => 'Katso lisää hakutuloksia',
             'title' => 'Beatmapit',
@@ -36,7 +36,7 @@ return [
         'forum_post' => [
             'all' => 'Kaikki foorumit',
             'link' => 'Etsi foorumilta',
-            'login_required' => '',
+            'login_required' => 'Kirjaudu sisään käyttääksesi foorumihakua',
             'more_simple' => 'Katso lisää foorumien hakutuloksia',
             'title' => 'Foorumi',
 
@@ -57,7 +57,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => '',
+            'login_required' => 'Kirjaudu sisään käyttääksesi käyttäjähakua',
             'more' => ':count hakutulosta lisää',
             'more_simple' => 'Näytä enemmän pelaajia hakutuloksista',
             'more_hidden' => 'Pelaajien etsintä on rajoitettu :max pelaajalle. Kokeile tarkentaa hakua.',
@@ -76,9 +76,9 @@ return [
         'action' => 'Lataa osu!',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => 'jos sinulla on ongelmia pelin käynnistämisessä tai tilin rekisteröinnissä, :help_forum_link tai :support_button.',
+            'help_forum_link' => 'katso apufoorumia',
+            'support_button' => 'ota yhteyttä tukeen',
         ],
 
         'os' => [

@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Được Chấp Nhận.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Moderator đã xóa cuộc thảo luận :discussion.',
         'discussion_lock' => 'Chức năng bàn luận của beatmap này đã bị vô hiệu hóa. (:text)',
         'discussion_post_delete' => 'Moderator đã xóa bài viết từ cuộc thảo luận :discussion.',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Chấp nhận',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Xóa cuộc thảo luận',
         'discussion_post_delete' => 'Xóa trả lời của cuộc thảo luận',
         'discussion_post_restore' => 'Phục hồi trả lời của cuộc thảo luận',

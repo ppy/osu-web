@@ -31,21 +31,21 @@ return [
         ],
 
         'support' => [
-            '_' => '',
-            'first' => '',
-            'repeat' => '',
+            '_' => 'Kiitos paljon :support osu!\'lle.',
+            'first' => 'tuestasi',
+            'repeat' => 'jatkuvasta tuestasi',
         ],
     ],
 
     'forum_new_reply' => [
-        'new' => '',
+        'new' => 'Tiedoksesi vain, että ":title" on saanut uuden vastauksen poissaolosi aikana.',
         'subject' => '[osu!] Uusi vastaus aiheessa ":title"',
         'unwatch' => '',
         'visit' => '',
     ],
 
     'password_reset' => [
-        'code' => '',
+        'code' => 'Vahvistuskoodisi on:',
         'requested' => '',
         'subject' => 'osu! tilin palauttaminen',
     ],
@@ -53,16 +53,16 @@ return [
     'store_payment_completed' => [
         'prepare_shipping' => '',
         'processing' => '',
-        'questions' => "",
-        'shipping' => '',
+        'questions' => "Jos sinulla on kysyttävää, älä epäröi vastata tähän sähköpostiin.",
+        'shipping' => 'Toimitus',
         'subject' => 'Vastaanotimme osu!kauppa-tilauksesi!',
-        'thank_you' => '',
-        'total' => '',
+        'thank_you' => 'Kiitos osu!kauppa-tilauksestasi!',
+        'total' => 'Yhteensä',
     ],
 
     'supporter_gift' => [
         'anonymous_gift' => '',
-        'anonymous_gift_maybe_not' => '',
+        'anonymous_gift_maybe_not' => 'Mutta taidat jo tietää kuka se mahtaa olla ;).',
         'duration' => '',
         'features' => '',
         'gifted' => '',
@@ -79,14 +79,14 @@ return [
     'user_force_reactivation' => [
         'main' => '',
         'perform_reset' => '',
-        'reason' => '',
+        'reason' => 'Syy:',
         'subject' => '',
     ],
 
     'user_notification_digest' => [
         'new' => '',
         'settings' => '',
-        'subject' => '',
+        'subject' => 'Uusia osu!-ilmoituksia',
     ],
 
     'user_password_updated' => [
@@ -95,10 +95,10 @@ return [
     ],
 
     'user_verification' => [
-        'code' => '',
+        'code' => 'Vahvistuskoodisi on:',
         'code_hint' => '',
         'link' => '',
-        'report' => '',
+        'report' => 'Jos et ole pyytänyt tätä, ole hyvä ja VASTAA HETI, koska tilisi voi olla vaarassa.',
         'subject' => 'osu! tilin vahvistaminen',
 
         'action_from' => [
