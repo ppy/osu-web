@@ -96,7 +96,7 @@ return [
             '_' => 'informação',
         ],
         'livestreams_controller' => [
-            '_' => 'transmissões ao vivo',
+            '_' => 'transmissões em direto',
         ],
         'matches_controller' => [
             '_' => 'partidas',

@@ -6,18 +6,18 @@
 return [
     '_' => 'Lajittele',
 
-    'all' => '',
-    'friends' => '',
+    'all' => 'Kaikki',
+    'friends' => 'Kaverit',
     'last_visit' => 'Äskettäin aktiivinen',
     'new' => 'Viimeisin',
     'old' => 'Vanha',
-    'rank' => '',
+    'rank' => 'Sijoitus',
     'top' => 'Paras',
     'username' => 'Käyttäjänimi',
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Viestin aika',
+        'relevance' => 'Osuvuus',
     ],
 
     'forum_topics' => [
@@ -26,7 +26,7 @@ return [
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'Osuvuus',
+        'username' => 'Nimi',
     ],
 ];

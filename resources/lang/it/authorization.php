@@ -13,11 +13,11 @@ return [
 
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Non è possibile annullare l\'hyping.',
+            'is_hype' => 'Non è possibile rimuovere l\'Hype.',
             'has_reply' => 'Impossibile eliminare una discussione con risposte',
         ],
         'nominate' => [
-            'exhausted' => 'Hai raggiunto il limite di nomine per questa giornata, per favore riprova domani.',
+            'exhausted' => 'Hai raggiunto il limite di nomine per oggi, per favore riprova domani.',
             'incorrect_state' => 'Errore nell\'eseguire questa azione, prova a ricaricare la pagina.',
             'owner' => "Non puoi nominare la tua beatmap.",
             'set_metadata' => 'Devi impostare il genere e la lingua prima di nominarla.',

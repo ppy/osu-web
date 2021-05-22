@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count pada kajian ini',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Masuk untuk Menanggapi',

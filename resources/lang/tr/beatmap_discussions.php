@@ -58,6 +58,13 @@ return [
         'unsaved' => 'bu incelemede :count',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Yanıtlamak için Giriş yapın',
