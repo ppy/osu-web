@@ -116,7 +116,7 @@ return [
 
             'sort_options' => [
                 'title' => '详细的排名',
-                'description' => '查看排名时可按 国家或地区/好友/所选MOD 进行排名。',
+                'description' => '查看排名时可按 国家/好友/所选MOD 进行排名。',
             ],
 
             'more_favourites' => [
