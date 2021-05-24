@@ -33,4 +33,11 @@ class UserGroup extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function getGroupAttribute(): Group
+    {
+        return $this->relationWithFallback('group', function () {
+            return app('groups')->byId($this->group_id);
+        });
+    }
 }
