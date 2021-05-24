@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count en esta revisión',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Inicia sesión para responder',

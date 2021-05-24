@@ -56,6 +56,7 @@ return [
 
         'options' => [
             '_' => 'способы доставки',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'новые моды',
             'channel_message' => 'личные сообщения',
             'comment_new' => 'новые комментарии',

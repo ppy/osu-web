@@ -28,6 +28,12 @@ return [
         'beatmapset' => [
             '_' => 'Beatmap',
 
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Beatmapdiskusjon',
                 'beatmapset_discussion_lock' => 'Beatmappen ":title" har blitt låst for diskusjon.',
@@ -160,6 +166,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'Diskusjonen om ":title" har blitt låst',
                 'beatmapset_discussion_post_new' => 'Diskusjonen om ":title" har nye oppdateringer',

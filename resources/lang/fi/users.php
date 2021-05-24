@@ -289,7 +289,7 @@ return [
 
                 'total_info' => [
                     '_' => '',
-                    'link' => '',
+                    'link' => 'tämä sivu',
                 ],
             ],
             'me' => [

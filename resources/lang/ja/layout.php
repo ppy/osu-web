@@ -184,7 +184,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => 'サインイン / 登録',
+        'button' => 'ログイン / 登録',
 
         'login' => [
             'forgot' => "ログイン情報を忘れた",

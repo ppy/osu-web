@@ -56,6 +56,7 @@ return [
 
         'options' => [
             '_' => 'leveringsmuligheder',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'privat beskeder',
             'comment_new' => 'nye kommentarer',

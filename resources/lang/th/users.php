@@ -156,8 +156,8 @@ return [
         'title' => "โปรไฟล์ของ :username",
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'โพสต์ :link',
+            'count' => ':count_delimited ความคิดเห็น|:count_delimited ความคิดเห็น',
         ],
         'edit' => [
             'cover' => [
@@ -411,8 +411,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'คุณกำลังถูกใบ้อยู่',
+        'message' => 'การกระทำบางอย่างอาจใช้ไม่ได้',
     ],
 
     'status' => [

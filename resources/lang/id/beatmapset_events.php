@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Approved.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Moderator menghapus diskusi :discussion.',
         'discussion_lock' => 'Laman diskusi pada beatmap ini telah ditutup. (:text)',
         'discussion_post_delete' => 'Moderator telah menghapus kiriman dari diskusi :discussion.',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Persetujuan',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Penghapusan topik diskusi',
         'discussion_post_delete' => 'Penghapusan pesan balasan pada topik diskusi',
         'discussion_post_restore' => 'Pengembalian pesan balasan yang terhapus pada topik diskusi',

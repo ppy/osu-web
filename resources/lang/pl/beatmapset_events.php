@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Zatwierdzona.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Moderator usunął dyskusję :discussion.',
         'discussion_lock' => 'Tworzenie dyskusji dla tej beatmapy zostało wyłączone (:text).',
         'discussion_post_delete' => 'Moderator usunął post z dyskusji :discussion.',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Zatwierdzenie',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Usunięcie dyskusji',
         'discussion_post_delete' => 'Usunięcie odpowiedzi w dyskusji',
         'discussion_post_restore' => 'Przywrócenie odpowiedzi w dyskusji',

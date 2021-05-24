@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count in deze review',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Log in om te Antwoorden',

@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count ellenőrzés alatt áll',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Jelentkezz be a válaszoláshoz',
