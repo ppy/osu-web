@@ -3,16 +3,34 @@
 
 export default class TurbolinksReload {
   private loaded = new Set<string>();
+  private loading = new Map<string, JQuery.jqXHR<void>>();
+
+  constructor() {
+    $(document).on('turbolinks:before-cache', this.abortLoading);
+  }
+
+  abortLoading = () => {
+    for (const xhr of this.loading.values()) {
+      xhr.abort();
+    }
+  };
 
   forget = (src: string) => {
     this.loaded.delete(src);
+    this.loading.get(src)?.abort();
   };
 
   load(src: string) {
     if (this.loaded.has(src)) return;
 
-    this.loaded.add(src);
+    const xhr = $.ajax(src, { dataType: 'script' }) as JQuery.jqXHR<void>;
 
-    return $.ajax(src, { dataType: 'script' }) as JQuery.jqXHR<void>;
+    this.loading.set(src, xhr);
+
+    void xhr
+      .done(() => this.loaded.add(src))
+      .always(() => this.loading.delete(src));
+
+    return xhr;
   }
 }
