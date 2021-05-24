@@ -5,7 +5,7 @@
 @php
     // this is pretty much a php conversion of beatmap-discussions/user-card.coffee
     $topClasses = $bn = 'beatmap-discussion-user-card';
-    $group = optional($user)->visibleGroups()[0] ?? null;
+    $group = optional($user)->firstGroupBadge();
     $hideStripe = $hideStripe ?? false;
 @endphp
 

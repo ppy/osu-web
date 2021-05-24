@@ -1449,43 +1449,60 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->blocks->pluck('user_id');
     }
 
-    public function visibleGroups()
+    /**
+     * Get `Group` and `UserGroup` information for display as the first badge.
+     *
+     * TODO: This is only used for some Blade views and can be removed when
+     * they're ported to React.
+     */
+    public function firstGroupBadge()
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            $userGroup = $this->userGroupsForBadges()->first();
+
+            if ($userGroup === null) {
+                return;
+            }
+
+            $group = clone $userGroup->group;
+            $group->playmodes = $userGroup->playmodes;
+
+            return $group;
+        });
+    }
+
+    public function userGroupsForBadges()
     {
         return $this->memoize(__FUNCTION__, function () {
             if ($this->isBot()) {
-                return [app('groups')->byIdentifier('bot')];
+                // Not a query because it's both unnecessary and not guaranteed
+                // that the usergroup for "bot" will exist
+                return collect([
+                    UserGroup::make([
+                        'group_id' => app('groups')->byIdentifier('bot')->getKey(),
+                        'user_id' => $this->getKey(),
+                        'user_pending' => false,
+                    ]),
+                ]);
             }
 
-            $groups = [];
-            foreach ($this->userGroups as $userGroup) {
-                $cachedGroup = app('groups')->byId($userGroup->group_id);
-                if ($cachedGroup === null || !$cachedGroup->hasBadge()) {
-                    continue;
-                }
+            return $this->userGroups
+                ->filter(function ($userGroup) {
+                    return optional($userGroup->group)->hasBadge();
+                })
+                ->sort(function ($a, $b) {
+                    // If the user has a default group, always show it first
+                    if ($a->group_id === $this->group_id) {
+                        return -1;
+                    }
+                    if ($b->group_id === $this->group_id) {
+                        return 1;
+                    }
 
-                if ($cachedGroup->has_playmodes) {
-                    $group = clone $cachedGroup;
-                    $group['playmodes'] = $userGroup->playmodes;
-                    $groups[] = $group;
-                } else {
-                    $groups[] = $cachedGroup;
-                }
-            }
-
-            usort($groups, function ($a, $b) {
-                // if the user has a default group, always show it first
-                if ($a->group_id === $this->group_id) {
-                    return -1;
-                }
-                if ($b->group_id === $this->group_id) {
-                    return 1;
-                }
-
-                // otherwise, sort by display order
-                return $a->display_order - $b->display_order;
-            });
-
-            return $groups;
+                    // Otherwise, sort by display order
+                    return $a->group->display_order - $b->group->display_order;
+                })
+                ->values();
         });
     }
 
