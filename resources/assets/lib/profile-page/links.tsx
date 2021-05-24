@@ -178,7 +178,7 @@ export default class Links extends React.PureComponent<Props> {
     );
   }
 
-  renderLink = (key: LinkKey) => {
+  private renderLink = (key: LinkKey) => {
     if (this.props.user[key] == null) return null;
 
     const props = linkMapping[key](this.props.user);
@@ -187,7 +187,7 @@ export default class Links extends React.PureComponent<Props> {
     return <Link key={key} {...props} />;
   };
 
-  renderText = (key: TextKey) => {
+  private renderText = (key: TextKey) => {
     if (this.props.user[key] == null) return null;
 
     const props = textMapping[key](this.props.user);
