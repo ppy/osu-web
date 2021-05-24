@@ -14,7 +14,6 @@ class GroupTransformer extends TransformerAbstract
         return [
             'colour' => $group->colour,
             'description' => $group->group_desc,
-            'has_badge' => $group->hasBadge(),
             'has_listing' => $group->hasListing(),
             'has_playmodes' => $group->has_playmodes,
             'id' => $group->getKey(),
