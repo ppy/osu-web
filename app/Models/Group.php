@@ -42,11 +42,6 @@ class Group extends Model implements AfterCommit
         'has_playmodes' => 'boolean',
     ];
 
-    public function scopeWithListing($query)
-    {
-        return $query->where('group_type', 1);
-    }
-
     public function getColourAttribute($value)
     {
         if (!present($value)) {

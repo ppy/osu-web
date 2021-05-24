@@ -5,16 +5,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Group;
 use App\Transformers\UserCompactTransformer;
 
 class GroupsController extends Controller
 {
     public function show($id)
     {
-        $group = Group::withListing()->findOrFail($id);
-        $currentMode = default_mode();
+        $group = app('groups')->byId($id);
+        abort_if($group === null || !$group->hasListing(), 404, 'Group not found');
 
+        $currentMode = default_mode();
         $users = $group->users()
             ->with('statistics'.studly_case($currentMode))
             ->eagerloadForListing()
