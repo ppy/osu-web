@@ -23,7 +23,7 @@ export default class TurbolinksReload {
   load(src: string) {
     if (this.loaded.has(src)) return;
 
-    const xhr = $.ajax(src, { dataType: 'script' }) as JQuery.jqXHR<void>;
+    const xhr = $.ajax(src, { cache: true, dataType: 'script' }) as JQuery.jqXHR<void>;
 
     this.loading.set(src, xhr);
 
