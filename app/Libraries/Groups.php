@@ -58,13 +58,23 @@ class Groups
      */
     public function byIdentifier(string $id): Group
     {
-        return $this->allByIdentifier()->get($id) ??
-            Group::create([
+        $group = $this->allByIdentifier()->get($id);
+
+        if ($group === null) {
+            $group = Group::create([
                 'identifier' => $id,
                 'group_name' => $id,
                 'group_desc' => $id,
                 'short_name' => $id,
             ]);
+
+            // TODO: This shouldn't have to be called here, since it's already
+            // called by `Group::afterCommit`, but `Group::afterCommit` isn't
+            // running in tests when creating/saving `Group`s.
+            $this->resetCache();
+        }
+
+        return $group;
     }
 
     /**

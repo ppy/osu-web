@@ -34,6 +34,15 @@ class GroupTest extends TestCase
         $this->assertSame($this->getGroupRenameEventCount($group), $groupRenameEventCount);
     }
 
+    public function testRefreshCacheOnSave()
+    {
+        $previousCacheVersion = cache()->get('groups_local_cache_version');
+
+        factory(Group::class)->create();
+
+        $this->assertNotSame($previousCacheVersion, cache()->get('groups_local_cache_version'));
+    }
+
     private function getGroupRenameEventCount(Group $group): int
     {
         return UserGroupEvent::where([
