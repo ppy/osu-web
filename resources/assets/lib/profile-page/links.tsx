@@ -180,7 +180,7 @@ export default class Links extends React.PureComponent<Props> {
 
   renderLink = (key: LinkKey) => {
     const value = this.props.user[key];
-    if (typeof value !== 'string') return null;
+    if (value == null) return null;
 
     const props = linkMapping[key](this.props.user);
     props.title ??= osu.trans(`users.show.info.${key}`);
