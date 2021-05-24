@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => 'kudosuyu reddet',
         'edit' => 'düzenle',
         'edited' => 'En son :editor tarafından :update_time tarihinde düzenlendi.',
+        'guest' => '',
         'kudosu_denied' => 'Kudosu almaktan mahrum bırakıldı.',
         'message_placeholder_deleted_beatmap' => 'Bu zorluk seviyesi silindi o yüzden hakkında daha fazla tartışılamaz.',
         'message_placeholder_locked' => 'Bu beatmap için tartışma devre dışı bırakıldı.',
@@ -207,7 +208,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Emin misin? Yeni bir sorun bildirmek aday gösterme sürecini sıfırlayacaktır.',
-            'disqualify' => 'Emin misiniz? Bu beatmap\'in niteliğini silecek ve adaylık süresine sıfırlayacak.',
+            'disqualify' => 'Emin misiniz? Bu, beatmapin nitelikli olmasını önleyecek ve aday gösterme sürecini sıfırlayacak.',
         ],
     ],
 
@@ -268,7 +269,7 @@ return [
         'graveyard' => 'Mezarlıkta',
         'leaderboard' => 'Liderlik tablosu olanlar',
         'loved' => 'Sevilen',
-        'mine' => 'Benim haritalarım',
+        'mine' => 'Benim Maplerim',
         'pending' => 'Beklemede & Yapım Aşamasında',
         'qualified' => 'Nitelikli',
         'ranked' => 'Dereceli',
@@ -309,7 +310,7 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',

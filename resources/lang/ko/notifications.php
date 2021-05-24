@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => '비트맵',
 
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => '비트맵 토론',
                 'beatmapset_discussion_lock' => '비트맵 ":title"의 토론이 잠겼습니다.',
@@ -159,6 +165,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => '토론 ":title" 의 토론이 잠겼습니다.',
                 'beatmapset_discussion_post_new' => '토론 ":title" 에 새로운 업데이트가 있습니다.',

@@ -56,6 +56,7 @@ return [
 
         'options' => [
             '_' => 'spôsoby doručenia',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'módovanie beatmáp',
             'channel_message' => 'súkromné správy',
             'comment_new' => 'nové komentáre

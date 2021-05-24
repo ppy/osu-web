@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count i denne anmeldelse',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Log ind for at svare',

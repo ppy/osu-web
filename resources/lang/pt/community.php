@@ -38,7 +38,7 @@ return [
             ],
             'bounty-program' => [
                 'title' => 'Programa de reputação de código-aberto',
-                'description' => 'Apoia os colaboradores da comunidade que deram o seu tempo e esforço para ajudar a fazer o osu! melhor.',
+                'description' => 'Apoia os colaboradores da comunidade que deram o seu tempo e esforço para ajudar a tornar o osu! melhor.',
                 'link_text' => 'Descobre mais &raquo;',
             ],
         ],

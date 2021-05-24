@@ -32,7 +32,7 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => 'A hybrid beatmapset requires you to select at least one playmode to nominate for.',
+        'hybrid_requires_modes' => 'A hybrid beatmap requires you to select at least one playmode to nominate for.',
         'incorrect_mode' => 'You do not have permission to nominate for mode: :mode',
         'full_bn_required' => 'You must be a full nominator to perform this qualifying nomination.',
         'too_many' => 'Nomination requirement already fulfilled.',
@@ -54,11 +54,11 @@ return [
 
         'details' => [
             'by_artist' => 'by :artist',
-            'favourite' => 'Favourite this beatmapset',
+            'favourite' => 'Favourite this beatmap',
             'favourite_login' => 'Sign in to favourite this beatmap',
             'logged-out' => 'You need to sign in before downloading any beatmaps!',
             'mapped_by' => 'mapped by :mapper',
-            'unfavourite' => 'Unfavourite this beatmapset',
+            'unfavourite' => 'Unfavourite this beatmap',
             'updated_timeago' => 'last updated :timeago',
 
             'download' => [

@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count trong bài đánh giá này',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Hãy đăng nhập để trả lời',

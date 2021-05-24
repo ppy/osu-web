@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Beatmap',
 
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Beatmap megbeszélés',
                 'beatmapset_discussion_lock' => '":title" megbeszélése lezárult',
@@ -160,6 +166,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'A hozzászolás le lett tiltva ezen a beamapen::title',
                 'beatmapset_discussion_post_new' => 'A hozzászólás frissült a következőn: :title',
