@@ -1,15 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { BeatmapsetCardSize } from 'beatmapset-panel';
 import GroupJson from 'interfaces/group-json';
 import UserJsonExtended from 'interfaces/user-json-extended';
 import UserRelationJson from 'interfaces/user-relation-json';
 import { ViewMode } from 'user-card';
 import { Filter, SortMode } from 'user-list';
 import GameMode from './game-mode';
-
-export const beatmapsetCardSizes = ['normal', 'extra'] as const;
-export type BeatmapsetCardSize = typeof beatmapsetCardSizes[number];
 
 export default interface CurrentUser extends UserJsonExtended {
   blocks: UserRelationJson[];

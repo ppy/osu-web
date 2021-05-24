@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetCardSize } from 'interfaces/current-user';
+import { BeatmapsetCardSize } from 'beatmapset-panel';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';

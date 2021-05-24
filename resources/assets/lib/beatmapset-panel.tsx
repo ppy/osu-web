@@ -24,6 +24,9 @@ import { showVisual, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumberSuffixed, make2x } from 'utils/html';
 
+export const beatmapsetCardSizes = ['normal', 'extra'] as const;
+export type BeatmapsetCardSize = typeof beatmapsetCardSizes[number];
+
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
 }
