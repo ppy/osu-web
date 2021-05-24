@@ -46,9 +46,9 @@ class Groups
     /**
      * Get a group by its ID.
      */
-    public function byId(int $id): ?Group
+    public function byId(?int $id): ?Group
     {
-        return $this->allById()[$id] ?? null;
+        return $this->allById()->get($id);
     }
 
     /**
@@ -58,7 +58,7 @@ class Groups
      */
     public function byIdentifier(string $id): Group
     {
-        return $this->allByIdentifier()[$id] ??
+        return $this->allByIdentifier()->get($id) ??
             Group::create([
                 'identifier' => $id,
                 'group_name' => $id,
