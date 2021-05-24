@@ -5,6 +5,9 @@ import GroupJson from 'interfaces/group-json';
 
 const guestGroup: Readonly<GroupJson> = Object.freeze({
   colour: 'hsl(var(--hsl-l1))',
+  description: '',
+  has_listing: false,
+  has_playmodes: false,
   id: -1,
   identifier: 'guest',
   is_probationary: false,

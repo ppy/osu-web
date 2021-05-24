@@ -5,6 +5,9 @@ import GroupJson from 'interfaces/group-json';
 
 const mapperGroup: Readonly<GroupJson> = Object.freeze({
   colour: 'hsl(var(--hsl-l1))',
+  description: '',
+  has_listing: false,
+  has_playmodes: false,
   id: -1,
   identifier: 'owner',
   is_probationary: false,
