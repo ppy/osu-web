@@ -12,7 +12,7 @@ class GroupsController extends Controller
 {
     public function show($id)
     {
-        $group = Group::visible()->findOrFail($id);
+        $group = Group::withListing()->findOrFail($id);
         $currentMode = default_mode();
 
         $users = $group->users()

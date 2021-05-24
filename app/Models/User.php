@@ -1459,7 +1459,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             $groups = [];
             foreach ($this->userGroups as $userGroup) {
                 $cachedGroup = app('groups')->byId($userGroup->group_id);
-                if (!$cachedGroup || $cachedGroup->display_order === null) {
+                if ($cachedGroup === null || !$cachedGroup->hasBadge()) {
                     continue;
                 }
 

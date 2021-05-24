@@ -42,7 +42,7 @@ class Group extends Model implements AfterCommit
         'has_playmodes' => 'boolean',
     ];
 
-    public function scopeVisible($query)
+    public function scopeWithListing($query)
     {
         return $query->where('group_type', 1);
     }
@@ -60,15 +60,20 @@ class Group extends Model implements AfterCommit
         return $value;
     }
 
+    public function hasBadge(): bool
+    {
+        return $this->display_order !== null;
+    }
+
+    public function hasListing(): bool
+    {
+        return $this->group_type === 1;
+    }
+
     public function isProbationary(): bool
     {
         // TODO: move this to a DB field or something if other groups end up needing 'probation'
         return $this->identifier === 'bng_limited';
-    }
-
-    public function isVisible(): bool
-    {
-        return $this->group_type === 1;
     }
 
     public function users()
