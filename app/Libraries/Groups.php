@@ -66,7 +66,7 @@ class Groups
                 'group_name' => $id,
                 'group_desc' => $id,
                 'short_name' => $id,
-            ]);
+            ])->fresh();
 
             // TODO: This shouldn't have to be called here, since it's already
             // called by `Group::afterCommit`, but `Group::afterCommit` isn't
