@@ -6,57 +6,79 @@
 namespace App\Libraries;
 
 use App\Models\Group;
+use App\Traits\Memoizes;
+use Illuminate\Database\Eloquent\Collection;
 
 class Groups
 {
-    private $groups;
-    private $groupsById;
-    private $groupsByIdentifier;
+    use Memoizes;
 
-    public function all()
+    /**
+     * Get all groups.
+     */
+    public function all(): Collection
     {
-        if (!isset($this->groups)) {
-            $this->fetch();
-        }
-
-        return $this->groups;
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->fetch();
+        });
     }
 
-    public function byId($id)
+    /**
+     * Get all groups keyed by ID.
+     */
+    public function allById(): Collection
     {
-        if (!isset($this->groupsById)) {
-            $this->groupsById = $this->all()->keyBy('group_id');
-        }
-
-        return $this->groupsById[$id] ?? null;
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->all()->keyBy('group_id');
+        });
     }
 
-    public function byIdentifier($id)
+    /**
+     * Get all groups keyed by identifier (e.g. "admin").
+     */
+    public function allByIdentifier(): Collection
     {
-        if (!isset($this->groupsByIdentifier)) {
-            $this->groupsByIdentifier = $this->all()->keyBy('identifier');
-        }
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->all()->keyBy('identifier');
+        });
+    }
 
-        $group = $this->groupsByIdentifier[$id] ?? null;
+    /**
+     * Get a group by its ID.
+     */
+    public function byId(int $id): ?Group
+    {
+        return $this->allById()[$id] ?? null;
+    }
 
-        if ($group === null) {
+    /**
+     * Get a group by its identifier (e.g. "admin").
+     *
+     * If the requested group doesn't exist, a new one is created.
+     */
+    public function byIdentifier(string $id): Group
+    {
+        return $this->allByIdentifier()[$id] ??
             Group::create([
                 'identifier' => $id,
                 'group_name' => $id,
                 'group_desc' => $id,
                 'short_name' => $id,
             ]);
-
-            $this->resetCache();
-
-            return $this->byIdentifier($id);
-        }
-
-        return $group;
     }
 
     /**
-     * Fetch groups data
+     * Reset groups cache.
+     */
+    public function resetCache(): void
+    {
+        cache()->put('groups_local_cache_version', hrtime(true));
+
+        $this->resetMemoized();
+    }
+
+    /**
+     * Fetch groups data.
      *
      * This data is being used on every request so fetching them directly
      * from external database will cause unnecessary load on network.
@@ -70,7 +92,7 @@ class Groups
      * In normal use where groups don't change there shouldn't be too many
      * files generated.
      */
-    public function fetch()
+    private function fetch(): Collection
     {
         $localCacheVersion = cache()->get('groups_local_cache_version');
         $localStorage = config('cache.local');
@@ -81,20 +103,13 @@ class Groups
         }
 
         $localCacheKey = "groups:v{$localCacheVersion}";
-        $this->groups = cache()->store($localStorage)->get($localCacheKey);
+        $groups = cache()->store($localStorage)->get($localCacheKey);
 
-        if ($this->groups === null) {
-            $this->groups = Group::orderBy('display_order')->get();
-            cache()->store($localStorage)->forever($localCacheKey, $this->groups);
+        if ($groups === null) {
+            $groups = Group::orderBy('display_order')->get();
+            cache()->store($localStorage)->forever($localCacheKey, $groups);
         }
-    }
 
-    public function resetCache()
-    {
-        cache()->put('groups_local_cache_version', hrtime(true));
-
-        $this->groups = null;
-        $this->groupsById = null;
-        $this->groupsByIdentifier = null;
+        return $groups;
     }
 }
