@@ -38,7 +38,7 @@ return [
         'too_many' => 'Requisito di nomina già soddisfatto.',
 
         'dialog' => [
-            'confirmation' => 'Sei sicuro di voler nominare questa Beatmap?',
+            'confirmation' => 'Sei sicuro di voler nominare questa beatmap?',
             'header' => 'Nomina Beatmap',
             'hybrid_warning' => 'nota: puoi nominare una sola volta, quindi assicurati di nominare per tutte le modalità di gioco che vuoi',
             'which_modes' => 'Nominare per quali modalità?',

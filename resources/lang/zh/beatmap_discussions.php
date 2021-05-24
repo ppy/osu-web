@@ -58,6 +58,13 @@ return [
         'unsaved' => '此审阅中有 :count',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => '登录以回复',

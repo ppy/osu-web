@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count i denna recension',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Logga in för att svara',

@@ -56,6 +56,7 @@ return [
 
         'options' => [
             '_' => 'kirimkan notifikasi melalui',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'modding beatmap',
             'channel_message' => 'pesan pribadi',
             'comment_new' => 'komentar baru',

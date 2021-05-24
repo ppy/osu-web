@@ -58,6 +58,13 @@ return [
         'unsaved' => '이 리뷰에서 :count개',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => '답글을 달려면 로그인하세요',

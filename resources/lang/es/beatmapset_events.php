@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Aprobado.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Un moderador eliminó la discusión :discussion.',
         'discussion_lock' => 'La discusión para este mapa ha sido desactivada. (:text)',
         'discussion_post_delete' => 'Un moderador eliminó una publicación en la discusión :discussion.',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Aprobación',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Eliminación de discusión',
         'discussion_post_delete' => 'Eliminación de respuesta a discusión',
         'discussion_post_restore' => 'Restauración de respuesta a discusión',

@@ -16,8 +16,8 @@ return [
     'username' => 'ชื่อผู้ใช้',
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'เวลาการโพสต์',
+        'relevance' => 'ความเกี่ยวข้อง',
     ],
 
     'forum_topics' => [
@@ -26,7 +26,7 @@ return [
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'ความเกี่ยวข้อง',
+        'username' => 'ชื่อ',
     ],
 ];

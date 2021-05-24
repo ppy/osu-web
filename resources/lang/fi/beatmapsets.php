@@ -132,7 +132,7 @@ return [
             'buttons' => [
                 'disable' => '',
                 'listing' => '',
-                'show' => '',
+                'show' => 'Näytä',
             ],
         ],
 
