@@ -39,7 +39,7 @@
   --menu-container-width: 0;
   --menu-opacity: 0;
   --mobile-extra-bar-height: calc(var(--panel-height) - var(--main-height));
-  --panel-height: @beatmapset-panel-normal-height;
+  --panel-height: @beatmapset-panel-height;
   // Audio player progress (to be overridden)
   --progress: 0;
   --play-bg: transparent;
@@ -114,8 +114,6 @@
   }
 
   &--size-extra {
-    --panel-height: @beatmapset-panel-extra-height;
-
     @media @desktop {
       --panel-height: @beatmapset-panel-extra-height-desktop;
       --stats-grid-template: "favourite-count hype date" "play-count nominations ." / auto auto auto;

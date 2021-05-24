@@ -12,7 +12,7 @@
   border-radius: 0 0 @border-radius--large @border-radius--large;
   transition: all 150ms ease-in-out;
   z-index: @z-index--beatmaps-panel;
-  --panel-height: @beatmapset-panel-normal-height;
+  --panel-height: @beatmapset-panel-height;
 
   @media @desktop {
     padding-top: @border-radius--large;
@@ -33,8 +33,6 @@
   }
 
   &--size-extra {
-    --panel-height: @beatmapset-panel-extra-height;
-
     @media @desktop {
       --panel-height: @beatmapset-panel-extra-height-desktop;
     }
