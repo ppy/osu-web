@@ -179,8 +179,7 @@ export default class Links extends React.PureComponent<Props> {
   }
 
   renderLink = (key: LinkKey) => {
-    const value = this.props.user[key];
-    if (value == null) return null;
+    if (this.props.user[key] == null) return null;
 
     const props = linkMapping[key](this.props.user);
     props.title ??= osu.trans(`users.show.info.${key}`);
@@ -189,8 +188,7 @@ export default class Links extends React.PureComponent<Props> {
   };
 
   renderText = (key: TextKey) => {
-    const value = this.props.user[key];
-    if (value == null) return null;
+    if (this.props.user[key] == null) return null;
 
     const props = textMapping[key](this.props.user);
 
