@@ -76,12 +76,9 @@ class OsuMarkdown
     ];
 
     private $config;
-    private $converter;
     private $document = '';
     private $firstImage;
     private $header;
-    private $indexableConverter;
-    private $processor;
     private $toc;
 
     public static function parseYamlHeader($input)
@@ -111,29 +108,25 @@ class OsuMarkdown
             static::PRESETS[$preset],
             $config
         );
-
-        $environment = $this->createBaseEnvironment();
-        $this->processor = new Osu\DocumentProcessor($environment);
-        $environment->addExtension(new Osu\Extension($this->processor));
-        $this->converter = new MarkdownConverter($environment);
-
-        $indexableEnvironment = $this->createBaseEnvironment();
-        $indexableEnvironment->addExtension(new Indexing\Extension());
-        $this->indexableConverter = new MarkdownConverter($indexableEnvironment);
     }
 
     public function html(): string
     {
         return $this->memoize(__FUNCTION__, function () {
+            $environment = $this->createBaseEnvironment();
+            $processor = new Osu\DocumentProcessor($environment);
+            $environment->addExtension(new Osu\Extension($processor));
+            $converter = new MarkdownConverter($environment);
+
             if ($this->config['title_from_document']) {
-                $this->header['title'] = $this->processor->title;
+                $this->header['title'] = $processor->title;
             }
 
-            $this->toc = $this->processor->toc;
-            $this->firstImage = $this->processor->firstImage;
+            $this->toc = $processor->toc;
+            $this->firstImage = $processor->firstImage;
 
             $blockClass = class_with_modifiers($this->config['block_name'], $this->config['block_modifiers']);
-            $converted = $this->converter->convertToHtml($this->document);
+            $converted = $converter->convertToHtml($this->document);
 
             return "<div class='{$blockClass}'>{$converted}</div>";
         });
@@ -174,7 +167,11 @@ class OsuMarkdown
     public function toIndexable(): string
     {
         return $this->memoize(__FUNCTION__, function () {
-            return $this->indexableConverter->convertToHtml($this->document);
+            $environment = $this->createBaseEnvironment();
+            $environment->addExtension(new Indexing\Extension());
+
+            return (new MarkdownConverter($environment))
+                ->convertToHtml($this->document);
         });
     }
 
