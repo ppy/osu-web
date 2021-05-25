@@ -164,7 +164,7 @@ Represents a User. Extends [UserCompact](#usercompact) object with additional at
 
 Field            | Type                               | Description
 ---------------- | ---------------------------------- | -----------------------------------------------------------
-cover_url        | string                             | url of profile cover
+cover_url        | string                             | url of profile cover. Deprecated, use cover.url instead.
 discord          | string?                            | |
 has_supported    | boolean                            | whether or not ever being a supporter in the past
 interests        | string?                            | |

@@ -121,9 +121,9 @@ interface Country {
 }
 
 interface Cover {
-  custom_url?: string;
-  id?: string;
-  url?: string;
+  custom_url: string | null;
+  id: string | null;
+  url: string | null;
 }
 
 interface BeatmapFailTimesArray {
