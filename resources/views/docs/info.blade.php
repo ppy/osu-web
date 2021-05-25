@@ -22,10 +22,6 @@ If you notice any errors in the documentation or encounter problems using the AP
 
 Code examples are provided in the dark area to the right, you can use the tabs at the top of the page to switch between bash and javascript samples.
 
-@if($showPostmanCollectionButton)
-If you use [Postman](https://getpostman.com), you can [download a collection here](collection.json).
-@endif
-
 # Terms of Use
 
 Use the API for good. Don't overdo it. If in doubt, ask before (ab)using :). _this section may expand as necessary_.
@@ -49,7 +45,7 @@ v1      | _legacy api provided by the old site, will be deprecated soon_
 
 # Authentication
 
-Routes marked with the <a class="scope scope--oauth" name="scope-oauth">OAuth</a> label require a valid OAuth2 token for access.
+Routes marked with the <a class="badge badge-scope badge-scope-oauth" name="scope-oauth">OAuth</a> label require a valid OAuth2 token for access.
 
 More information about applications you have registered and granted permissions to can be found [here](#managing-oauth-applications).
 
@@ -93,7 +89,7 @@ The flow to authorize users for your application is:
 
 To obtain an access token, you must first get an authorization code that is created when a user grants permissions to your application. To request permission from the user, they should be redirected to:
 
-`GET {{ route('oauth.authorizations.authorize') }}`
+@include('docs._route', ['method' => 'GET', 'url' => route('oauth.authorizations.authorize')])
 
 Parameters
 
@@ -137,7 +133,7 @@ fetch("{!! route('oauth.passport.token') !!}", {
 });
 ```
 
-`POST {!! route('oauth.passport.token') !!}`
+@include('docs._route', ['method' => 'POST', 'url' => route('oauth.passport.token')])
 
 Parameters
 
@@ -194,7 +190,7 @@ fetch("{!! route('oauth.passport.token') !!}", {
 });
 ```
 
-`POST {!! route('oauth.passport.token') !!}`
+@include('docs._route', ['method' => 'POST', 'url' => route('oauth.passport.token')])
 
 Parameters
 
@@ -285,7 +281,7 @@ Name   | Description
 
 `identify` is the default scope for the [Authorization Code Grant](#authorization-code-grant) and always implicitly provided. The [Client Credentials Grant](#client-credentials-grant) does not currently have any default scopes.
 
-Routes marked with <a class="scope scope--lazer" name="scope-lazer">lazer</a> are intended for use by the [osu!lazer](https://github.com/ppy/osu) client and not currently available for use with Authorization Code or Client Credentials grants.
+Routes marked with <a class="badge badge-scope badge-scope-lazer" name="scope-lazer">lazer</a> are intended for use by the [osu!lazer](https://github.com/ppy/osu) client and not currently available for use with Authorization Code or Client Credentials grants.
 
 
 ## Managing OAuth applications

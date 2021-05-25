@@ -1,9 +1,34 @@
-## {{ $route['metadata']['title'] ?: $route['uri']}}
+{{--
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
+--}}
+@php
+    use App\Libraries\ApidocRouteHelper;
+
+    $uri = $route['uri'];
+    $methods = $route['methods'];
+    $descriptions = explode("\n---\n", $route['metadata']['description'] ?? '');
+
+    $topDescription = $descriptions[0];
+    $bottomDescription = $descriptions[1] ?? '';
+
+    // cuts of api/v2 prefix
+    $displayUri = substr($uri, 6);
+
+    $helper = ApidocRouteHelper::instance();
+@endphp
+## {{ $route['metadata']['title'] ?: $displayUri }}
 
 @component('scribe::components.badges.auth', ['authenticated' => $route['metadata']['authenticated']])
 @endcomponent
 
-{!! $route['metadata']['description'] ?: ''!!}
+{!! $topDescription !!}
+
+<p>
+    @foreach($helper->getScopeTags($methods, $uri) as $scope)
+        {{ ApidocRouteHelper::scopeBadge($scope) }}
+    @endforeach
+</p>
 
 > Example request:
 
@@ -51,7 +76,7 @@
 </h3>
 @foreach($route['methods'] as $method)
 <p>
-@component('scribe::components.badges.http-method', ['method' => $method])@endcomponent <b><code>{{$route['uri']}}</code></b>
+@component('scribe::components.badges.http-method', ['method' => $method])@endcomponent <b><code>{{ $displayUri }}</code></b>
 </p>
 @endforeach
 @if($route['metadata']['authenticated'] && $auth['location'] === 'header')
@@ -114,3 +139,5 @@
 </p>
 @endforeach
 @endif
+
+{!! $bottomDescription !!}

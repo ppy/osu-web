@@ -30,7 +30,7 @@ class WikiController extends Controller
      *
      * Returns [WikiPage](#wikipage).
      *
-     * @urlParam page The path name of the wiki page.
+     * @urlParam path string required The path name of the wiki page.
      */
     public function show($locale = null, $path = null)
     {

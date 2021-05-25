@@ -26,7 +26,7 @@ class MessagesController extends BaseController
      *
      * Returns an array of [ChatMessage](#chatmessage)
      *
-     * @urlParam channel_id required The ID of the channel to retrieve messages for
+     * @urlParam channel integer required The ID of the channel to retrieve messages for
      * @queryParam limit number of messages to return (max of 50)
      * @queryParam since messages after the specified message id will be returned
      * @queryParam until messages up to but not including the specified message id will be returned
@@ -136,7 +136,7 @@ class MessagesController extends BaseController
      *   When sending a message, the <code>last_read_id</code> for the <a href='#chatchannel'>ChatChannel</a> is also updated to mark the new message as read.
      * </aside>
      *
-     * @queryParam channel_id required The `channel_id` of the channel to send message to
+     * @urlParam channel integer required The `channel_id` of the channel to send message to
      *
      * @bodyParam message string required message to send
      * @bodyParam is_action boolean required whether the message is an action

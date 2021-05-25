@@ -1,3 +1,7 @@
+{{--
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
+--}}
 title: {{ $settings['title'] }}
 
 language_tabs:
@@ -11,10 +15,15 @@ includes:
 - "./groups/*"
 - "./errors.md"
 - "./append.md"
+- "../views/docs/_notification_websocket.md"
+- "../views/docs/_structures.md"
+- "../views/docs/_structures/*.md"
 
 logo: {{ $settings['logo'] ?? false }}
 
 toc_footers:
+- <a href="https://github.com/ppy/osu-web">osu-web on GitHub</a>
+- <a href="https://osu.ppy.sh">osu!</a>
 @if($showPostmanCollectionButton)
 - <a href="{{ $postmanCollectionLink }}">View Postman collection</a>
 @endif

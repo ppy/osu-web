@@ -33,7 +33,7 @@ return [
                 /*
                  * Match only routes whose paths match this pattern (use * as a wildcard to match any characters). Example: 'users/*'.
                  */
-                'prefixes' => ['*'],
+                'prefixes' => ['api/v2/*'],
 
                 /*
                  * [Dingo router only] Match only routes registered under this version. Wildcards are not supported.
@@ -89,7 +89,7 @@ return [
                      */
                     'config' => [
                         'app.env' => 'documentation',
-                        // 'app.debug' => false,
+                        'app.debug' => false,
                     ],
 
                     /*
@@ -169,7 +169,7 @@ return [
      * Add a Try It Out button to your endpoints so consumers can test endpoints right from their browser.
      * Don't forget to enable CORS headers for your endpoints.
      */
-    'interactive' => true,
+    'interactive' => false,
 
     /*
      * How is your API authenticated? This information will be used in the displayed docs, generated examples and response calls.
@@ -178,7 +178,7 @@ return [
         /*
          * Set this to true if any endpoints in your API use authentication.
          */
-        'enabled' => false,
+        'enabled' => true,
 
         /*
          * Set this to true if your API should be authenticated by default. If so, you must also set `enabled` (above) to true.
@@ -281,7 +281,7 @@ INTRO
     /*
      * Name for the group of endpoints which do not have a @group set.
      */
-    'default_group' => 'Endpoints',
+    'default_group' => 'Undocumented',
 
     /*
      * Custom logo path. This will be used as the value of the src attribute for the <img> tag,
