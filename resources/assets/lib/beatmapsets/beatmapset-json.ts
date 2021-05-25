@@ -96,6 +96,7 @@ export interface BeatmapsetJson {
   nsfw: boolean;
   play_count: number;
   preview_url: string;
+  source: string;
   status: BeatmapsetStatus;
   title: string;
   title_unicode: string;
