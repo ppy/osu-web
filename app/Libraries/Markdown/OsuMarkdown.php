@@ -117,15 +117,15 @@ class OsuMarkdown
             $osuExtension = new Osu\Extension();
             $environment->addExtension($osuExtension);
 
+            $blockClass = class_with_modifiers($this->config['block_name'], $this->config['block_modifiers']);
+            $converted = (new MarkdownConverter($environment))->convertToHtml($this->document);
+
             if ($this->config['title_from_document']) {
                 $this->header['title'] = $osuExtension->processor->title;
             }
 
             $this->firstImage = $osuExtension->processor->firstImage;
             $this->toc = $osuExtension->processor->toc;
-
-            $blockClass = class_with_modifiers($this->config['block_name'], $this->config['block_modifiers']);
-            $converted = (new MarkdownConverter($environment))->convertToHtml($this->document);
 
             return "<div class='{$blockClass}'>{$converted}</div>";
         });
