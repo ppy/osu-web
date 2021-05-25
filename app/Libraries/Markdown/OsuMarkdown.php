@@ -5,6 +5,7 @@
 
 namespace App\Libraries\Markdown;
 
+use App\Traits\Memoizes;
 use League\CommonMark\ConfigurableEnvironmentInterface;
 use League\CommonMark\Environment;
 use League\CommonMark\Event\DocumentParsedEvent;
@@ -17,6 +18,8 @@ use Symfony\Component\Yaml\Yaml;
 
 class OsuMarkdown
 {
+    use Memoizes;
+
     const VERSION = 12;
 
     const DEFAULT_CONFIG = [
@@ -77,8 +80,6 @@ class OsuMarkdown
     private $document = '';
     private $firstImage;
     private $header;
-    private $html;
-    private $indexable;
     private $indexableConverter;
     private $processor;
     private $toc;
@@ -121,18 +122,16 @@ class OsuMarkdown
         $this->indexableConverter = new MarkdownConverter($indexableEnvironment);
     }
 
-    public function html()
+    public function html(): string
     {
-        if ($this->html === null) {
-            $this->process();
-        }
-
-        return $this->html;
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->process();
+        });
     }
 
     public function load($rawInput)
     {
-        $this->reset();
+        $this->resetMemoized();
 
         $rawInput = strip_utf8_bom($rawInput);
 
@@ -162,13 +161,11 @@ class OsuMarkdown
         ];
     }
 
-    public function toIndexable()
+    public function toIndexable(): string
     {
-        if ($this->indexable === null) {
-            $this->indexable = $this->indexableConverter->convertToHtml($this->document);
-        }
-
-        return $this->indexable;
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->indexableConverter->convertToHtml($this->document);
+        });
     }
 
     private function createBaseEnvironment(): ConfigurableEnvironmentInterface
@@ -191,25 +188,18 @@ class OsuMarkdown
         return $environment;
     }
 
-    private function process()
+    private function process(): string
     {
-        $converted = $this->converter->convertToHtml($this->document);
-
-        $blockClass = class_with_modifiers($this->config['block_name'], $this->config['block_modifiers']);
-
-        $this->html = "<div class='{$blockClass}'>{$converted}</div>";
-
         if ($this->config['title_from_document']) {
             $this->header['title'] = $this->processor->title;
         }
 
         $this->toc = $this->processor->toc;
         $this->firstImage = $this->processor->firstImage;
-    }
 
-    private function reset()
-    {
-        $this->html = null;
-        $this->indexable = null;
+        $blockClass = class_with_modifiers($this->config['block_name'], $this->config['block_modifiers']);
+        $converted = $this->converter->convertToHtml($this->document);
+
+        return "<div class='{$blockClass}'>{$converted}</div>";
     }
 }
