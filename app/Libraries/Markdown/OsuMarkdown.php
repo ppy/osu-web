@@ -81,6 +81,9 @@ class OsuMarkdown
     private $header;
     private $toc;
 
+    private $htmlConverterAndExtension;
+    private $indexableConverter;
+
     public static function parseYamlHeader($input)
     {
         $hasMatch = preg_match('#^(?:---\n(?<header>.+?)\n(?:---|\.\.\.)\n)(?<document>.+)$#s', $input, $matches);
@@ -113,12 +116,10 @@ class OsuMarkdown
     public function html(): string
     {
         return $this->memoize(__FUNCTION__, function () {
-            $environment = $this->createBaseEnvironment();
-            $osuExtension = new Osu\Extension();
-            $environment->addExtension($osuExtension);
+            [$converter, $osuExtension] = $this->getHtmlConverterAndExtension();
 
             $blockClass = class_with_modifiers($this->config['block_name'], $this->config['block_modifiers']);
-            $converted = (new MarkdownConverter($environment))->convertToHtml($this->document);
+            $converted = $converter->convertToHtml($this->document);
 
             if ($this->config['title_from_document']) {
                 $this->header['title'] = $osuExtension->processor->title;
@@ -166,11 +167,36 @@ class OsuMarkdown
     public function toIndexable(): string
     {
         return $this->memoize(__FUNCTION__, function () {
+            return $this->getIndexableConverter()->convertToHtml($this->document);
+        });
+    }
+
+    private function getHtmlConverterAndExtension(): array
+    {
+        if ($this->htmlConverterAndExtension === null) {
+            $environment = $this->createBaseEnvironment();
+            $osuExtension = new Osu\Extension();
+            $environment->addExtension($osuExtension);
+
+            $this->htmlConverterAndExtension = [
+                new MarkdownConverter($environment),
+                $osuExtension,
+            ];
+        }
+
+        return $this->htmlConverterAndExtension;
+    }
+
+    private function getIndexableConverter(): MarkdownConverter
+    {
+        if ($this->indexableConverter === null) {
             $environment = $this->createBaseEnvironment();
             $environment->addExtension(new Indexing\Extension());
 
-            return (new MarkdownConverter($environment))->convertToHtml($this->document);
-        });
+            $this->indexableConverter = new MarkdownConverter($environment);
+        }
+
+        return $this->indexableConverter;
     }
 
     private function createBaseEnvironment(): ConfigurableEnvironmentInterface
