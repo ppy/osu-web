@@ -116,7 +116,6 @@ class OsuMarkdown
             $environment = $this->createBaseEnvironment();
             $processor = new Osu\DocumentProcessor($environment);
             $environment->addExtension(new Osu\Extension($processor));
-            $converter = new MarkdownConverter($environment);
 
             if ($this->config['title_from_document']) {
                 $this->header['title'] = $processor->title;
@@ -126,7 +125,7 @@ class OsuMarkdown
             $this->firstImage = $processor->firstImage;
 
             $blockClass = class_with_modifiers($this->config['block_name'], $this->config['block_modifiers']);
-            $converted = $converter->convertToHtml($this->document);
+            $converted = (new MarkdownConverter($environment))->convertToHtml($this->document);
 
             return "<div class='{$blockClass}'>{$converted}</div>";
         });
@@ -170,8 +169,7 @@ class OsuMarkdown
             $environment = $this->createBaseEnvironment();
             $environment->addExtension(new Indexing\Extension());
 
-            return (new MarkdownConverter($environment))
-                ->convertToHtml($this->document);
+            return (new MarkdownConverter($environment))->convertToHtml($this->document);
         });
     }
 
