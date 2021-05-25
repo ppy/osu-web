@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Одобрен.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Модератор изтри дискусията :discussion.',
         'discussion_lock' => 'Дискусията за този бийтмап бе деактивирана. (:text)',
         'discussion_post_delete' => 'Модератор изтри съобщение от дискусията :discussion.',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Одобрение',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Изтриване на дискусия',
         'discussion_post_delete' => 'Изтриване на отговор от дискусия',
         'discussion_post_restore' => 'Възстановяване на отговор от дискусия',

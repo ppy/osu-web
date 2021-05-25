@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => '通知は全て既読です！',
+    'all_read' => '通知を全て既読にする！',
     'delete' => ':type を削除',
     'loading' => '通知を読み込み中...',
     'mark_read' => '消去 :type',
@@ -26,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'ビートマップ',
+
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'ビートマップディスカッション',
@@ -159,6 +165,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'ディスカッション「:title」はロックされています',
                 'beatmapset_discussion_post_new' => 'ディスカッション「:title」に新しい更新があります',

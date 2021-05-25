@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Одобрена.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Модератор видалив відгук в :discussion.',
         'discussion_lock' => 'Обговорення цієї карти було відключено. (:text)',
         'discussion_post_delete' => 'Модератор вилучив публікацію з відгуку :discussion.',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Одобрено',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Видалення дискусії',
         'discussion_post_delete' => 'Видалення відповідей в дискусії',
         'discussion_post_restore' => 'Відновлення відповідей в дискусії',

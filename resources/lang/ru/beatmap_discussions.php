@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count в этом отзыве',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Войдите, чтобы ответить',

@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Approved',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'モデレーターが:discussionを削除しました。',
         'discussion_lock' => 'このビートマップに関するディスカッションは無効になっています。 （:text）',
         'discussion_post_delete' => 'モデレーターが:discussionから投稿を削除しました。',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => '承認',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'ディスカッションの削除',
         'discussion_post_delete' => 'ディスカッションの返信を削除',
         'discussion_post_restore' => 'ディスカッションの返信を復元',

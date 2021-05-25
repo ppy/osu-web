@@ -58,6 +58,13 @@ return [
         'unsaved' => '',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Влезте в профила си за да Отговорите',

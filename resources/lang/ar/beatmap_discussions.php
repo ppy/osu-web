@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count في هذه المراجعة',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'سجل الدخول للرد',

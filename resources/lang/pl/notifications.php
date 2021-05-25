@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Beatmapa',
 
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Dyskusja beatmapy',
                 'beatmapset_discussion_lock' => 'Tworzenie dyskusji dla beatmapy „:title” zostało zablokowane.',
@@ -159,6 +165,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'Dyskusja do beatmapy „:title” została zamknięta',
                 'beatmapset_discussion_post_new' => 'W dyskusji do beatmapy „:title” pojawiły się nowe aktualizacje',

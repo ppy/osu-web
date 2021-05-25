@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Beatmap',
 
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Discussione beatmap',
                 'beatmapset_discussion_lock' => 'La discussione su ":title" è stata bloccata',
@@ -159,6 +165,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'La discussione su ":title" è stata bloccata',
                 'beatmapset_discussion_post_new' => 'La discussione su ":title" ha nuovi aggiornamenti',

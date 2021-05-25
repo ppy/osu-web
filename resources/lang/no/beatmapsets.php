@@ -12,7 +12,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Ro ned, spill mer.',
     ],
 
     'index' => [
@@ -33,27 +33,27 @@ return [
 
     'nominate' => [
         'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
+        'incorrect_mode' => 'Du har ikke tillatelse til å nominere for modus: :mode',
         'full_bn_required' => '',
-        'too_many' => '',
+        'too_many' => 'Nominasjonskravet er allerede oppfylt.',
 
         'dialog' => [
             'confirmation' => '',
             'header' => '',
             'hybrid_warning' => '',
-            'which_modes' => '',
+            'which_modes' => 'Nominer for hvilke moduser?',
         ],
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Eksplisitt',
     ],
 
     'show' => [
         'discussion' => 'Diskusjon',
 
         'details' => [
-            'by_artist' => '',
+            'by_artist' => 'av :artist',
             'favourite' => 'Marker dette beatmapsettet som en favoritt',
             'favourite_login' => '',
             'logged-out' => 'Du må logge inn før du kan laste ned beatmaps!',
@@ -116,7 +116,7 @@ return [
             'genre' => 'Sjanger',
             'language' => 'Språk',
             'no_scores' => 'Data blir fortsatt kalkulert...',
-            'nsfw' => '',
+            'nsfw' => 'Eksplisitt innhold',
             'points-of-failure' => 'Feilpunkter',
             'source' => 'Kilde',
             'storyboard' => '',

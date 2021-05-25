@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count în această recenzie',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Conectează-te pentru a răspunde',
