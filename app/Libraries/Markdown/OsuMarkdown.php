@@ -125,7 +125,17 @@ class OsuMarkdown
     public function html(): string
     {
         return $this->memoize(__FUNCTION__, function () {
-            return $this->process();
+            if ($this->config['title_from_document']) {
+                $this->header['title'] = $this->processor->title;
+            }
+
+            $this->toc = $this->processor->toc;
+            $this->firstImage = $this->processor->firstImage;
+
+            $blockClass = class_with_modifiers($this->config['block_name'], $this->config['block_modifiers']);
+            $converted = $this->converter->convertToHtml($this->document);
+
+            return "<div class='{$blockClass}'>{$converted}</div>";
         });
     }
 
@@ -186,20 +196,5 @@ class OsuMarkdown
         $environment->mergeConfig($this->config);
 
         return $environment;
-    }
-
-    private function process(): string
-    {
-        if ($this->config['title_from_document']) {
-            $this->header['title'] = $this->processor->title;
-        }
-
-        $this->toc = $this->processor->toc;
-        $this->firstImage = $this->processor->firstImage;
-
-        $blockClass = class_with_modifiers($this->config['block_name'], $this->config['block_modifiers']);
-        $converted = $this->converter->convertToHtml($this->document);
-
-        return "<div class='{$blockClass}'>{$converted}</div>";
     }
 }
