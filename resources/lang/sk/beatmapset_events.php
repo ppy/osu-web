@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Schválené.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Moderátor vymazal diskusiu :discussion.',
         'discussion_lock' => 'Diskusia o tejto beatmape bola zakázaná. (:text)',
         'discussion_post_delete' => 'Moderátor vymazal príspevok z diskusie :discussion.',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Schválenie',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Odstránenie diskusie',
         'discussion_post_delete' => 'Odstránenie odpovedi diskusie',
         'discussion_post_restore' => 'Obnovenie odpovedi diskusie',
