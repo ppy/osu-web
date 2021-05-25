@@ -213,7 +213,7 @@ class @LineChart
 
     @hoverStart()
     Timeout.clear @_autoEndHover
-    @_autoEndHover = Timeout.set(3000, @hoverEnd) if osu.isMobile()
+    @_autoEndHover = Timeout.set(3000, @hoverEnd) if osuCore.windowSize.isMobile
 
     d = if x - @data[i - 1].x <= @data[i].x - x then @data[i - 1] else @data[i]
     coords = ['x', 'y'].map (axis) =>
