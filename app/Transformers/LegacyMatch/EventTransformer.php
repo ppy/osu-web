@@ -3,9 +3,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Transformers\Match;
+namespace App\Transformers\LegacyMatch;
 
-use App\Models\Match\Event;
+use App\Models\LegacyMatch\Event;
 use App\Transformers\TransformerAbstract;
 use App\Transformers\UserCompactTransformer;
 

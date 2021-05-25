@@ -3,18 +3,18 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Transformers\Match;
+namespace App\Transformers\LegacyMatch;
 
-use App\Models\Match\Match;
+use App\Models\LegacyMatch\LegacyMatch;
 use App\Transformers\TransformerAbstract;
 
-class MatchTransformer extends TransformerAbstract
+class LegacyMatchTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'events',
     ];
 
-    public function transform(Match $match)
+    public function transform(LegacyMatch $match)
     {
         return [
             'id' => $match->match_id,
@@ -24,7 +24,7 @@ class MatchTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeEvents(Match $match)
+    public function includeEvents(LegacyMatch $match)
     {
         return $this->collection(
             $match->events()->default()->get(),

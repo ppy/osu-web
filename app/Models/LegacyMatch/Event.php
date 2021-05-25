@@ -3,7 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Models\Match;
+namespace App\Models\LegacyMatch;
 
 use App\Models\User;
 
@@ -12,7 +12,7 @@ use App\Models\User;
  * @property int $event_id
  * @property Game $game
  * @property int|null $game_id
- * @property Match $match
+ * @property LegacyMatch $legacyMatch
  * @property int $match_id
  * @property string|null $text
  * @property \Carbon\Carbon|null $timestamp
@@ -36,9 +36,9 @@ class Event extends Model
         'host-changed' => 'HOST',
     ];
 
-    public function match()
+    public function legacyMatch()
     {
-        return $this->belongsTo(Match::class, 'match_id');
+        return $this->belongsTo(LegacyMatch::class, 'match_id');
     }
 
     public function game()

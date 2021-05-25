@@ -3,7 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Models\Match;
+namespace App\Models\LegacyMatch;
 
 use App\Models\User;
 use App\Traits\WithDbCursorHelper;
@@ -19,7 +19,7 @@ use Cache;
  * @property mixed $private
  * @property \Carbon\Carbon|null $start_time
  */
-class Match extends Model
+class LegacyMatch extends Model
 {
     use WithDbCursorHelper;
 
@@ -34,6 +34,8 @@ class Match extends Model
 
     const DEFAULT_SORT = 'id_desc';
 
+    public $timestamps = false;
+
     protected $primaryKey = 'match_id';
     protected $hidden = ['private', 'keep_forever'];
     protected $casts = [
@@ -43,7 +45,7 @@ class Match extends Model
         'start_time',
         'end_time',
     ];
-    public $timestamps = false;
+    protected $table = 'matches';
 
     public function games()
     {
