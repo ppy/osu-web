@@ -117,10 +117,10 @@ class OsuMarkdown
     {
         return $this->memoize(__FUNCTION__, function () {
             [$converter, $osuExtension] = $this->getHtmlConverterAndExtension();
-            $processor = $osuExtension->processor;
 
             $blockClass = class_with_modifiers($this->config['block_name'], $this->config['block_modifiers']);
             $converted = $converter->convertToHtml($this->document);
+            $processor = $osuExtension->processor;
 
             if ($this->config['title_from_document']) {
                 $this->header['title'] = $processor->title;
