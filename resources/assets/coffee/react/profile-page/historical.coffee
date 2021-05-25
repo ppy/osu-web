@@ -3,6 +3,7 @@
 
 import { BeatmapPlaycount } from './beatmap-playcount'
 import { ExtraHeader } from './extra-header'
+import core from 'osu-core-singleton'
 import { PlayDetailList } from 'play-detail-list'
 import * as React from 'react'
 import { a, div, h2, h3, img, p, small, span } from 'react-dom-factories'
@@ -176,7 +177,7 @@ export class Historical extends React.PureComponent
 
 
   updateTicks: (chart, data) =>
-    if osu.isDesktop()
+    if core.windowSize.isDesktop
       chart.options.ticks.x = null
 
       data ?= chart.data
