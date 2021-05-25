@@ -23,6 +23,6 @@ return [
         'approved' => 'vahvistettu',
         'loved' => 'rakastettu',
         'qualified' => 'hyväksytty',
-        'ranked' => '',
+        'ranked' => 'hyväksytty',
     ],
 ];

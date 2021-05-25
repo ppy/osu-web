@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Godkendt.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Moderator slettede diskussion :discussion.',
         'discussion_lock' => 'Diskussion for dette beatmap er blevet deaktiveret. (:text)',
         'discussion_post_delete' => 'Moderator slettede et opslag fra diskussion :discussion.',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Godkendelse',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Diskussions-sletning',
         'discussion_post_delete' => 'Diskussions-svar sletning',
         'discussion_post_restore' => 'Diskussions-svar genoprettelse',

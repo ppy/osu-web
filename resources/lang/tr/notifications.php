@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Beatmap',
 
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Beatmap tartışması',
                 'beatmapset_discussion_lock' => '":title" setinin tartışması kilitlendi',
@@ -159,6 +165,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => '":title" setinin tartışması kilitlendi',
                 'beatmapset_discussion_post_new' => '":title" setinin tartışmasında yeni güncellemeler mevcut',

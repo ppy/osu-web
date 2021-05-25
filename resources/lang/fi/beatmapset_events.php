@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Vahvistettu.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Moderaattori poisti keskustelun :discussion.',
         'discussion_lock' => '',
         'discussion_post_delete' => 'Moderaattori poisti viestin keskustelusta :discussion.',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Hyväksyntä',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Poista keskustelu',
         'discussion_post_delete' => 'Keskustelun vastauksen poistaminen',
         'discussion_post_restore' => 'Keskustelun vastauksen palautus',

@@ -28,9 +28,9 @@ return [
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => 'foorumi',
         'topic_watches_controller' => [
-            'index' => '',
+            'index' => 'yleiskatsaus',
         ],
     ],
     'main' => [
@@ -74,7 +74,7 @@ return [
             '_' => '',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => 'kilpailut',
         ],
         'follows_controller' => [
             'index' => '',
@@ -86,7 +86,7 @@ return [
             'show' => '',
         ],
         'home_controller' => [
-            'get_download' => '',
+            'get_download' => 'lataa',
             'index' => '',
             'search' => '',
             'support_the_game' => '',
@@ -114,7 +114,7 @@ return [
             '_' => '',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'suorituskyky',
         ],
         'store_controller' => [
             '_' => '',

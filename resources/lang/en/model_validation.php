@@ -11,7 +11,7 @@ return [
     'wrong_confirmation' => 'Confirmation does not match.',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Timestamp is specified but beatmap is missing.',
+        'beatmap_missing' => 'Timestamp is specified but beatmap difficulty is missing.',
         'beatmapset_no_hype' => "Beatmap can't be hyped.",
         'hype_requires_null_beatmap' => 'Hype must be done in the General (all difficulties) section.',
         'invalid_beatmap_id' => 'Invalid difficulty specified.',

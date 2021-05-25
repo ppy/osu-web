@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Godkjent.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Moderator slettet diskusjonen :discussion.',
         'discussion_lock' => 'Diskusjon for dette beatmappet har blitt deaktivert. (:text)',
         'discussion_post_delete' => 'Moderator slettet innlegg fra diskusjonen :discussion.',
@@ -25,7 +26,7 @@ return [
         'language_edit' => 'Språk endret fra :old til :new.',
         'love' => 'Elsket av :user',
         'nominate' => 'Nominert av :user.',
-        'nominate_modes' => '',
+        'nominate_modes' => 'Nominert av :user (:modes).',
         'nomination_reset' => 'Nytt problem :discussion (:text) utløste en tilbakestilling av nominasjonen.',
         'qualify' => 'Dette beatmappet har nådd det nødvendige antallet med nominasjoner og har nå blitt kvalifisert.',
         'rank' => 'Rangert.',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Godkjenning',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Diskusjon sletting',
         'discussion_post_delete' => 'Diskusjonsvar sletting',
         'discussion_post_restore' => 'Diskusjonsvar gjenopprettelse',

@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => 'kudosuを拒否',
         'edit' => '編集',
         'edited' => ':editorが:update_timeに編集',
+        'guest' => '',
         'kudosu_denied' => 'kudosuの入手を拒否されました。',
         'message_placeholder_deleted_beatmap' => 'この難易度は削除された為これ以上ディスカッションに投稿できません。',
         'message_placeholder_locked' => 'このビートマップに関するディスカッションは無効になっています。',
@@ -250,7 +251,7 @@ return [
     ],
     'general' => [
         'converts' => 'コンバートビートマップを含める',
-        'follows' => '購読中のマッパー',
+        'follows' => 'サブスクライブ中のマッパー',
         'recommended' => '推奨難易度',
     ],
     'mode' => [
@@ -309,7 +310,7 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
