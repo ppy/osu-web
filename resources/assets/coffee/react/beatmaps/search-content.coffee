@@ -40,10 +40,6 @@ export class SearchContent extends React.Component
     @virtualListMeta = new VirtualListMeta
 
 
-  componentWillUnmount: ->
-    @virtualListMeta.destroy()
-
-
   render: ->
     el Observer, null, () =>
       controller = core.beatmapsetSearchController
