@@ -117,16 +117,17 @@ class OsuMarkdown
     {
         return $this->memoize(__FUNCTION__, function () {
             [$converter, $osuExtension] = $this->getHtmlConverterAndExtension();
+            $processor = $osuExtension->processor;
 
             $blockClass = class_with_modifiers($this->config['block_name'], $this->config['block_modifiers']);
             $converted = $converter->convertToHtml($this->document);
 
             if ($this->config['title_from_document']) {
-                $this->header['title'] = $osuExtension->processor->title;
+                $this->header['title'] = $processor->title;
             }
 
-            $this->firstImage = $osuExtension->processor->firstImage;
-            $this->toc = $osuExtension->processor->toc;
+            $this->firstImage = $processor->firstImage;
+            $this->toc = $processor->toc;
 
             return "<div class='{$blockClass}'>{$converted}</div>";
         });
