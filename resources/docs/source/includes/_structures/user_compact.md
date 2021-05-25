@@ -39,7 +39,7 @@ Following are attributes which may be additionally included in the response. Rel
 Field                                | Type
 -------------------------------------|------------------------------------------------------------------
 account_history                      | [UserAccountHistory](#usercompact-useraccounthistory)[]
-active_tournament_banner             | [UserCompact.ProfileBanner](#usercompact-profilebanner)
+active_tournament_banner             | [UserCompact.ProfileBanner](#usercompact-profilebanner)?
 badges                               | [UserBadge](#usercompact-userbadge)[]
 beatmap_playcounts_count             | number
 blocks                               | |

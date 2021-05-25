@@ -124,7 +124,11 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeActiveTournamentBanner(User $user)
     {
-        return $this->item($user->profileBanners()->active(), new ProfileBannerTransformer());
+        $banner = $user->profileBanners()->active();
+
+        return $banner === null
+            ? $this->primitive(null)
+            : $this->item($banner, new ProfileBannerTransformer());
     }
 
     public function includeBadges(User $user)
