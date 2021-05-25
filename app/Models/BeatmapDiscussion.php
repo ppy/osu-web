@@ -74,10 +74,12 @@ class BeatmapDiscussion extends Model
         ];
 
         $query = static::limit($params['limit'])->offset($pagination['offset']);
+        $isModerator = $rawParams['is_moderator'] ?? false;
 
         if (present($rawParams['user'] ?? null)) {
             $params['user'] = $rawParams['user'];
-            $user = User::lookup($params['user']);
+            $findAll = $isModerator || (($rawParams['current_user_id'] ?? null) === $rawParams['user']);
+            $user = User::lookup($params['user'], null, $findAll);
 
             if ($user === null) {
                 $query->none();
