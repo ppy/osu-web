@@ -385,7 +385,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
         </div>
         <div className='beatmapset-panel__cover-col beatmapset-panel__cover-col--info'>
           <div className='beatmapset-panel__cover beatmapset-panel__cover--default' />
-          {this.showVisual && (
+          {this.showVisual && core.windowSize.isDesktop && (
             <Img2x
               className='beatmapset-panel__cover'
               onError={hideImage}
