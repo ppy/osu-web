@@ -23,8 +23,8 @@ class Extension implements ExtensionInterface
         $this->processor = new DocumentProcessor($environment);
 
         $environment
-            ->addBlockRenderer(ListItem::class, new Renderers\ListItemRenderer())
-            ->addBlockRenderer(Table::class, new Renderers\TableRenderer())
+            ->addBlockRenderer(ListItem::class, new Renderers\ListItemRenderer(), 10)
+            ->addBlockRenderer(Table::class, new Renderers\TableRenderer(), 10)
             ->addEventListener(DocumentParsedEvent::class, $this->processor);
     }
 }
