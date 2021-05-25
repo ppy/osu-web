@@ -13,15 +13,15 @@ use League\CommonMark\Extension\Table\Table;
 
 class Extension implements ExtensionInterface
 {
-    private $processor;
-
-    public function __construct(DocumentProcessor $processor)
-    {
-        $this->processor = $processor;
-    }
+    /**
+     * @var DocumentProcessor|null
+     */
+    public $processor;
 
     public function register(ConfigurableEnvironmentInterface $environment): void
     {
+        $this->processor = new DocumentProcessor($environment);
+
         $environment
             ->addBlockRenderer(ListItem::class, new Renderers\ListItemRenderer())
             ->addBlockRenderer(Table::class, new Renderers\TableRenderer())

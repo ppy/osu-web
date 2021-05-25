@@ -114,15 +114,15 @@ class OsuMarkdown
     {
         return $this->memoize(__FUNCTION__, function () {
             $environment = $this->createBaseEnvironment();
-            $processor = new Osu\DocumentProcessor($environment);
-            $environment->addExtension(new Osu\Extension($processor));
+            $osuExtension = new Osu\Extension();
+            $environment->addExtension($osuExtension);
 
             if ($this->config['title_from_document']) {
-                $this->header['title'] = $processor->title;
+                $this->header['title'] = $osuExtension->processor->title;
             }
 
-            $this->toc = $processor->toc;
-            $this->firstImage = $processor->firstImage;
+            $this->firstImage = $osuExtension->processor->firstImage;
+            $this->toc = $osuExtension->processor->toc;
 
             $blockClass = class_with_modifiers($this->config['block_name'], $this->config['block_modifiers']);
             $converted = (new MarkdownConverter($environment))->convertToHtml($this->document);
