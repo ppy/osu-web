@@ -1,19 +1,21 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Badges } from './badges'
 import { CoverSelector } from './cover-selector'
 import { Detail } from './detail'
 import { DetailMobile } from './detail-mobile'
 import { GameModeSwitcher } from './game-mode-switcher'
-import { HeaderInfo } from './header-info'
-import { Links } from './links'
 import { RankCount } from './rank-count'
 import { Stats } from './stats'
 import * as React from 'react'
 import HeaderV4 from 'header-v4'
 import { Img2x } from 'img2x'
+import Badges from 'profile-page/badges'
 import DetailBot from 'profile-page/detail-bot'
+import HeaderInfo from 'profile-page/header-info'
+import headerLinks from 'profile-page/header-links'
+import Links from 'profile-page/links'
+import ProfileTournamentBanner from 'profile-tournament-banner'
 import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-factories'
 import { Spinner } from 'spinner'
 el = React.createElement
@@ -25,7 +27,7 @@ export class Header extends React.Component
 
     @state =
       editing: false
-      coverUrl: props.user.cover_url
+      coverUrl: props.user.cover.url
       isCoverUpdating: false
       settingDefaultMode: false
 
@@ -61,10 +63,11 @@ export class Header extends React.Component
       'data-page-id': 'main'
       el HeaderV4,
         backgroundImage: @state.coverUrl
+        contentPrepend: el ProfileTournamentBanner,
+          banner: @props.user.active_tournament_banner
         isCoverUpdating: @state.isCoverUpdating
-        links: @headerLinks()
+        links: headerLinks(@props.user, 'show')
         theme: 'users'
-        contentPrepend: @renderTournamentBanner()
         titleAppend: el GameModeSwitcher,
           currentMode: @props.currentMode
           user: @props.user
@@ -95,8 +98,7 @@ export class Header extends React.Component
               userAchievements: @props.userAchievements
               user: @props.user
 
-          if @props.user.badges.length > 0
-            el Badges, badges: @props.user.badges
+          el Badges, badges: @props.user.badges
 
           el Links, user: @props.user
 
@@ -117,17 +119,6 @@ export class Header extends React.Component
           el CoverSelector,
             canUpload: @props.user.is_supporter
             cover: @props.user.cover
-
-
-  renderTournamentBanner: ({modifiers} = {}) =>
-    return if !@props.user.active_tournament_banner?.id?
-
-    a
-      href: laroute.route('tournaments.show', tournament: @props.user.active_tournament_banner.tournament_id)
-      className: osu.classWithModifiers 'profile-tournament-banner', modifiers
-      el Img2x,
-        src: @props.user.active_tournament_banner.image
-        className: 'profile-tournament-banner__image'
 
 
   closeEdit: (e) =>
@@ -155,23 +146,6 @@ export class Header extends React.Component
 
   coverUploadState: (_e, state) =>
     @setState isCoverUpdating: state
-
-
-  headerLinks: =>
-    links = [
-      {
-        url: laroute.route('users.show', user: @props.user.id)
-        active: true
-        title: osu.trans 'layout.header.users.show'
-      }
-    ]
-
-    if !@props.user.is_bot
-      links.push
-        url: laroute.route('users.modding.index', user: @props.user.id)
-        title: osu.trans 'layout.header.users.modding'
-
-    links
 
 
   openEdit: =>

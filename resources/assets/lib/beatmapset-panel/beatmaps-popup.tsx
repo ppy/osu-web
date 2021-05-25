@@ -5,10 +5,12 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import { Portal } from 'portal';
 import * as React from 'react';
 import { TransitionStatus } from 'react-transition-group';
 import { getDiffRating } from 'utils/beatmap-helper';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   groupedBeatmaps: Map<GameMode, BeatmapJson[]>;
@@ -81,7 +83,7 @@ export default class BeatmapsPopup extends React.Component<Props> {
       <Portal>
         <div
           ref={this.contentRef}
-          className='beatmaps-popup'
+          className={classWithModifiers('beatmaps-popup', [`size-${core.userPreferences.get('beatmapset_card_size')}`])}
           onMouseEnter={this.props.onMouseEnter}
           onMouseLeave={this.props.onMouseLeave}
           style={style}

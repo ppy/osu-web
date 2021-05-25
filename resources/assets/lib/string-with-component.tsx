@@ -3,8 +3,8 @@
 
 import * as React from 'react';
 
-interface Props {
-  mappings: any;
+export interface Props {
+  mappings: Record<string, React.ReactNode>;
   pattern: string;
 }
 
