@@ -113,7 +113,7 @@ function onMouseLeave() {
 
 function onMouseOver(event: JQueryEventObject) {
   if (tooltipWithActiveMenu != null) return;
-  if (osu.isMobile()) return;
+  if (core.windowSize.isMobile) return;
 
   const el = event.currentTarget as HTMLElement;
   const userId = osu.presence(el.dataset.userId);
@@ -148,7 +148,7 @@ function hideEffect(this: JQuery<HTMLElement>) {
 }
 
 function shouldShow(event: JQueryEventObject, api: any) {
-  if (tooltipWithActiveMenu != null || osu.isMobile()) {
+  if (tooltipWithActiveMenu != null || core.windowSize.isMobile) {
     return event.preventDefault();
   }
 

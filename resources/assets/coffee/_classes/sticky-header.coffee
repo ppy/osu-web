@@ -30,7 +30,7 @@ class @StickyHeader
 
   headerHeight: ->
     styles = window._styles.header
-    if osu.isMobile()
+    if osuCore.windowSize.isMobile
       styles.heightMobile
     else
       styles.heightSticky
