@@ -56,6 +56,7 @@ return [
 
         'options' => [
             '_' => 'خيارات التوصيل',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'اقتراحات الخريطة',
             'channel_message' => 'الرسائل الخاصة',
             'comment_new' => 'تعليقات جديدة',

@@ -68,7 +68,7 @@ return [
         'moderated' => 'Den kanalen är för närvarande modererad.',
         'no_access' => 'Du har ingen behörighet till denna kanalen.',
         'restricted' => 'Du kan inte skicka meddelanden medan du är tystad, begränsad eller bannad.',
-        'silenced' => '',
+        'silenced' => 'Du kan inte skicka meddelanden medan du är tystad, begränsad eller bannad.',
     ],
 
     'comment' => [

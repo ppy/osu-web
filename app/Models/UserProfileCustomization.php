@@ -33,6 +33,8 @@ class UserProfileCustomization extends Model
         'kudosu',
     ];
 
+    const BEATMAPSET_CARD_SIZES = ['normal', 'extra'];
+
     const BEATMAPSET_DOWNLOAD = ['all', 'no_video', 'direct'];
 
     const USER_LIST = [
@@ -120,6 +122,20 @@ class UserProfileCustomization extends Model
         }
 
         $this->setOption('audio_volume', $value);
+    }
+
+    public function getBeatmapsetCardSizeAttribute()
+    {
+        return $this->getOptions()['beatmapset_card_size'] ?? static::BEATMAPSET_CARD_SIZES[0];
+    }
+
+    public function setBeatmapsetCardSizeAttribute($value)
+    {
+        if ($value !== null && !in_array($value, static::BEATMAPSET_CARD_SIZES, true)) {
+            $value = null;
+        }
+
+        $this->setOption('beatmapset_card_size', $value);
     }
 
     public function getBeatmapsetDownloadAttribute()

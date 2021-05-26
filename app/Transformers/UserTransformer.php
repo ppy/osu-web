@@ -31,7 +31,7 @@ class UserTransformer extends UserCompactTransformer
 
         return array_merge($result, [
             'comments_count' => $user->comments()->withoutTrashed()->count(),
-            'cover_url' => $profileCustomization->cover()->url(),
+            'cover_url' => $profileCustomization->cover()->url(), // TODO: deprecated.
             'discord' => $user->user_discord,
             'has_supported' => $user->hasSupported(),
             'interests' => $user->user_interests,

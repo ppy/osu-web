@@ -3,6 +3,7 @@
 
 import Fade from 'fade';
 import { route } from 'laroute';
+import core from 'osu-core-singleton';
 import { createClickCallback } from 'utils/html';
 
 interface ReissueCodeJson {
@@ -148,7 +149,7 @@ export default class UserVerification {
   private reposition = () => {
     if (!this.isActive() || this.modal == null) return;
 
-    if (osu.isMobile()) {
+    if (core.windowSize.isMobile) {
       this.float(true, this.modal);
     } else {
       const referenceBottom = this.reference?.getBoundingClientRect().bottom ?? 0;

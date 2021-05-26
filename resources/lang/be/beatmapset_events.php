@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Ухвалена.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Мадэратар выдаліў абмеркаванне «:discussion».',
         'discussion_lock' => 'Абмеркаванне для гэтай бітмапы было адключана. (:text)',
         'discussion_post_delete' => 'Мадэратар выдаліў допіс з абмеркавання «:discussion».',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Ухвалена',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Выдаленне абмеркавання',
         'discussion_post_delete' => 'Выдаленне адказаў абмеркавання',
         'discussion_post_restore' => 'Аднаўленне адказаў абмеркавання',

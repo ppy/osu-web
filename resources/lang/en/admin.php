@@ -10,10 +10,10 @@ return [
             'regenerating' => 'Regenerating...',
             'remove' => 'Remove',
             'removing' => 'Removing...',
-            'title' => 'Beatmapset covers',
+            'title' => 'Beatmap covers',
         ],
         'show' => [
-            'covers' => 'Manage Beatmapset Covers',
+            'covers' => 'Manage Beatmap Covers',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'activate',
@@ -57,7 +57,7 @@ return [
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => 'Beatmapsets',
+                'beatmapsets' => 'Beatmaps',
                 'forum' => 'Forum',
                 'general' => 'General',
                 'store' => 'Store',

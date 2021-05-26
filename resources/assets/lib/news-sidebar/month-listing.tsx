@@ -4,6 +4,7 @@
 import NewsPostJson from 'interfaces/news-post-json';
 import { route } from 'laroute';
 import * as moment from 'moment';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 
 interface Props {
@@ -37,7 +38,7 @@ export default class MonthListing extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    if (osu.isMobile()) {
+    if (core.windowSize.isMobile) {
       this.state.expanded = false;
     } else {
       if (props.currentPost == null) {

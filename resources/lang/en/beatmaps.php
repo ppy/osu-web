@@ -55,7 +55,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'This post will go to general beatmapset discussion. To mod this beatmap, start message with timestamp (e.g. 00:12:345).',
+            'in_general' => 'This post will go to general beatmap discussion. To mod this difficulty, start message with timestamp (e.g. 00:12:345).',
             'in_timeline' => 'To mod multiple timestamps, post multiple times (one post per timestamp).',
         ],
 
@@ -310,7 +310,7 @@ return [
         'NF' => 'No Fail',
         'NM' => 'No mods',
         'PF' => 'Perfect',
-        'Relax' => 'Relax',
+        'RX' => 'Relax',
         'SD' => 'Sudden Death',
         'SO' => 'Spun Out',
         'TD' => 'Touch Device',
