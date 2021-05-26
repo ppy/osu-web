@@ -267,7 +267,11 @@ Route::group(['middleware' => ['web']], function () {
     // extras
     Route::group(['as' => 'users.', 'prefix' => 'users/{user}'], function () {
         Route::put('page', 'UsersController@updatePage')->name('page');
+        Route::group(['namespace' => 'Users'], function () {
+            Route::resource('multiplayer', 'MultiplayerController', ['only' => 'index']);
+        });
     });
+
     Route::get('users/{user}/kudosu', 'UsersController@kudosu')->name('users.kudosu');
     Route::get('users/{user}/recent_activity', 'UsersController@recentActivity')->name('users.recent-activity');
     Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.scores');

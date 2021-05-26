@@ -5,7 +5,7 @@ import HeaderLink from 'interfaces/header-link';
 import UserJsonExtended from 'interfaces/user-json-extended';
 import { route } from 'laroute';
 
-export default function headerLinks(user: UserJsonExtended, active: 'modding' | 'show') {
+export default function headerLinks(user: UserJsonExtended, active: 'modding' | 'multiplayer' | 'show') {
   const links: HeaderLink[] = [{
     active: active === 'show',
     title: osu.trans('layout.header.users.show'),
@@ -17,6 +17,12 @@ export default function headerLinks(user: UserJsonExtended, active: 'modding' | 
       active: active === 'modding',
       title: osu.trans('layout.header.users.modding'),
       url: route('users.modding.index', { user: user.id }),
+    });
+
+    links.push({
+      active: active === 'multiplayer',
+      title: osu.trans('layout.header.users.multiplayer'),
+      url: route('users.multiplayer.index', { user: user.id }),
     });
   }
 
