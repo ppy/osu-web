@@ -13,6 +13,7 @@ use App\Models\BeatmapsetEvent;
 use App\Models\User;
 use App\Traits\Memoizes;
 use App\Transformers\UserTransformer;
+use Ds\Set;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -274,30 +275,40 @@ class ModdingHistoryEventsBundle
             $posts = $this->getPosts();
             $votes = $this->getVotes();
 
-            $userIds = [];
+            $userIds = new Set();
             foreach ($discussions as $discussion) {
-                $userIds[] = $discussion->user_id;
-                $userIds[] = $discussion->startingPost->last_editor_id;
+                $userIds->add(
+                    $discussion->user_id,
+                    $discussion->startingPost->last_editor_id
+                );
             }
 
-            $userIds = array_merge(
-                $userIds,
-                $posts->pluck('user_id')->toArray(),
-                $posts->pluck('last_editor_id')->toArray(),
-                $events->pluck('user_id')->toArray(),
-                $events->pluck('beatmapDiscussion')->pluck('user_id')->toArray(),
-                $votes['given']->pluck('user_id')->toArray(),
-                $votes['received']->pluck('user_id')->toArray()
+            $userIds->add(
+                ...$posts->pluck('user_id'),
+                ...$posts->pluck('last_editor_id'),
+                ...$events->pluck('user_id'),
+                ...$events->pluck('beatmapDiscussion')->pluck('user_id'),
+                ...$votes['given']->pluck('user_id'),
+                ...$votes['received']->pluck('user_id')
             );
 
-            $userIds = array_values(array_filter(array_unique($userIds)));
+            if ($this->user !== null) {
+                // Always add current user to the result array (assuming no need to do too many additional preloads).
+                // This prevents them from potentially get removed by the `default` scope.
+                $userIds->remove($this->user->getKey());
+            }
 
-            $users = User::whereIn('user_id', $userIds)->with('userGroups');
+            $users = User::whereIn('user_id', $userIds->toArray())->with('userGroups');
             if (!$this->isModerator) {
                 $users->default();
             }
 
-            return $users->get();
+            $users = $users->get();
+            if ($this->user !== null) {
+                $users->push($this->user);
+            }
+
+            return $users;
         });
     }
 

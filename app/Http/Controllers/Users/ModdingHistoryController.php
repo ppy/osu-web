@@ -25,13 +25,17 @@ class ModdingHistoryController extends Controller
             $userId = request()->route('user');
             $this->isModerator = priv_check('BeatmapDiscussionModerate')->can();
             $this->isKudosuModerator = priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
-            $this->user = User::lookupWithHistory($userId, null, $this->isModerator, true);
+            $this->user = User::lookupWithHistory($userId, null, true);
 
             if ($this->user === null || $this->user->isBot() || !priv_check('UserShow', $this->user)->can()) {
                 return ext_view('users.show_not_found', null, null, 404);
             }
 
-            $this->searchParams = array_merge(request()->query(), ['user' => $this->user->user_id]);
+            $userId = $this->user->getKey();
+            $this->searchParams = array_merge(request()->query(), [
+                'current_user_id' => $userId,
+                'user' => $userId,
+            ]);
 
             if ((string) $this->user->user_id !== (string) $userId) {
                 return ujs_redirect(route(
