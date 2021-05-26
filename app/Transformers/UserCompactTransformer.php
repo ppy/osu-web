@@ -81,7 +81,6 @@ class UserCompactTransformer extends TransformerAbstract
         'is_limited_bn' => 'IsNotOAuth',
         'is_moderator' => 'IsNotOAuth',
         'is_nat' => 'IsNotOAuth',
-        'is_restricted' => 'IsNotOAuth',
         'is_silenced' => 'IsNotOAuth',
     ];
 
