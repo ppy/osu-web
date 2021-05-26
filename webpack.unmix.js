@@ -148,6 +148,7 @@ const tsReactComponents = [
   'news-show',
   'notifications-index',
   'scores-show',
+  'user-multiplayer-index',
 ];
 
 const extraTs = [
