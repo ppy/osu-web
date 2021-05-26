@@ -40,4 +40,24 @@ class UserGroup extends Model
             return app('groups')->byId($this->group_id);
         });
     }
+
+    /**
+     * @param array|string|null $value
+     */
+    public function getPlaymodesAttribute($value): ?array
+    {
+        if ($this->group->has_playmodes) {
+            if (is_array($value)) {
+                return $value;
+            }
+
+            if (is_string($value)) {
+                return json_decode($value);
+            }
+
+            return [];
+        }
+
+        return null;
+    }
 }
