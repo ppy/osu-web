@@ -88,6 +88,10 @@ The flow to authorize users for your application is:
 2. Users are redirected back to your site
 3. Your application accesses the API with the user's access token
 
+<aside class="notice">
+Restricted users can grant authorization like anyone else. If your client should not support restricted users, it can check <code>is_restricted</code> from the <a href="#get-own-data">Get Own Data</a> response.
+</aside>
+
 
 ### Request authorization from a user
 
