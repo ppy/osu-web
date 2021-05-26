@@ -56,7 +56,6 @@
   border-radius: @border-radius--large;
   font-size: @font-size--normal;
   height: var(--panel-height);
-  transition: var(--transition);
   .own-layer();
 
   @media @desktop {
@@ -84,7 +83,7 @@
     left: 0;
     position: absolute;
     opacity: var(--border-cover-opacity);
-    transition: inherit;
+    transition: var(--transition);
     transition-duration: var(--beatmaps-popup-transition-duration);
   }
 
