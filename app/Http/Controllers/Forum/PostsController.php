@@ -76,7 +76,7 @@ class PostsController extends Controller
 
         priv_check('ForumPostEdit', $post)->ensureCan();
 
-        return ext_view('forum.topics._post_edit', compact('post'));
+        return ext_view('forum.posts.edit', compact('post'));
     }
 
     /**
