@@ -82,21 +82,18 @@ class UserGroupEvent extends Model
 
     private static function log(?User $actor, string $type, ?User $user, Group $group, array $attributes = []): self
     {
-        $details = [
-            'actor_name' => optional($actor)->username,
-            'group_name' => $group->group_name,
-            'user_name' => optional($user)->username,
-        ];
-
-        if (isset($attributes['details'])) {
-            $details = array_merge($details, $attributes['details']);
-            unset($attributes['details']);
-        }
+        $attributes['details'] = array_merge(
+            [
+                'actor_name' => optional($actor)->username,
+                'group_name' => $group->group_name,
+                'user_name' => optional($user)->username,
+            ],
+            $attributes['details'] ?? [],
+        );
 
         return static::create(array_merge(
             [
                 'actor_id' => optional($actor)->getKey(),
-                'details' => $details,
                 'group_id' => $group->getKey(),
                 'hidden' => !$group->isVisible(),
                 'type' => $type,
