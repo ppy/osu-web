@@ -60,15 +60,15 @@ class UserGroupsControllerTest extends TestCase
         );
     }
 
-    public function testUserGroupAddWhenHasSameModes()
+    public function testUserGroupAddWhenHasSamePlaymodes()
     {
-        $modes = ['osu'];
-        $user = $this->createUserWithGroupModes('nat', $modes);
+        $playmodes = ['osu'];
+        $user = $this->createUserWithGroupPlaymodes('nat', $playmodes);
         $group = app('groups')->byIdentifier('nat');
-        $userAddModesEventCount = $this->eventCount(UserGroupEvent::USER_ADD_MODES, $user, $group);
+        $userAddPlaymodesEventCount = $this->eventCount(UserGroupEvent::USER_ADD_PLAYMODES, $user, $group);
         $url = route('interop.user-group.update', [
             'group_id' => $group->getKey(),
-            'playmodes' => $modes,
+            'playmodes' => $playmodes,
             'timestamp' => time(),
             'user_id' => $user->getKey(),
         ]);
@@ -79,22 +79,22 @@ class UserGroupsControllerTest extends TestCase
             ->assertStatus(204);
 
         $this->assertSame(
-            $this->eventCount(UserGroupEvent::USER_ADD_MODES, $user, $group),
-            $userAddModesEventCount,
+            $this->eventCount(UserGroupEvent::USER_ADD_PLAYMODES, $user, $group),
+            $userAddPlaymodesEventCount,
         );
     }
 
-    public function testUserGroupChangeModes()
+    public function testUserGroupChangePlaymodes()
     {
-        $modes = ['fruits', 'mania'];
-        $user = $this->createUserWithGroupModes('nat', ['osu', 'taiko']);
+        $playmodes = ['fruits', 'mania'];
+        $user = $this->createUserWithGroupPlaymodes('nat', ['osu', 'taiko']);
         $group = app('groups')->byIdentifier('nat');
         $userAddEventCount = $this->eventCount(UserGroupEvent::USER_ADD, $user, $group);
-        $userAddModesEventCount = $this->eventCount(UserGroupEvent::USER_ADD_MODES, $user, $group);
-        $userRemoveModesEventCount = $this->eventCount(UserGroupEvent::USER_REMOVE_MODES, $user, $group);
+        $userAddPlaymodesEventCount = $this->eventCount(UserGroupEvent::USER_ADD_PLAYMODES, $user, $group);
+        $userRemovePlaymodesEventCount = $this->eventCount(UserGroupEvent::USER_REMOVE_PLAYMODES, $user, $group);
         $url = route('interop.user-group.update', [
             'group_id' => $group->getKey(),
-            'playmodes' => $modes,
+            'playmodes' => $playmodes,
             'timestamp' => time(),
             'user_id' => $user->getKey(),
         ]);
@@ -104,21 +104,21 @@ class UserGroupsControllerTest extends TestCase
             ->put($url)
             ->assertStatus(204);
 
-        $actualModes = $this->getUserGroupModes($user, $group);
+        $actualPlaymodes = $this->getUserGroupPlaymodes($user, $group);
 
-        $this->assertCount(count($modes), $actualModes);
-        $this->assertArraySubset($modes, $actualModes);
+        $this->assertCount(count($playmodes), $actualPlaymodes);
+        $this->assertArraySubset($playmodes, $actualPlaymodes);
         $this->assertSame(
             $this->eventCount(UserGroupEvent::USER_ADD, $user, $group),
             $userAddEventCount,
         );
         $this->assertSame(
-            $this->eventCount(UserGroupEvent::USER_ADD_MODES, $user, $group),
-            $userAddModesEventCount + 1,
+            $this->eventCount(UserGroupEvent::USER_ADD_PLAYMODES, $user, $group),
+            $userAddPlaymodesEventCount + 1,
         );
         $this->assertSame(
-            $this->eventCount(UserGroupEvent::USER_REMOVE_MODES, $user, $group),
-            $userRemoveModesEventCount + 1,
+            $this->eventCount(UserGroupEvent::USER_REMOVE_PLAYMODES, $user, $group),
+            $userRemovePlaymodesEventCount + 1,
         );
     }
 
@@ -202,10 +202,10 @@ class UserGroupsControllerTest extends TestCase
         );
     }
 
-    public function testUserGroupSetDefaultLeavesModesUnchanged()
+    public function testUserGroupSetDefaultLeavesPlaymodesUnchanged()
     {
-        $modes = ['osu'];
-        $user = $this->createUserWithGroupModes('nat', $modes, false);
+        $playmodes = ['osu'];
+        $user = $this->createUserWithGroupPlaymodes('nat', $playmodes, false);
         $group = app('groups')->byIdentifier('nat');
         $url = route('interop.user-group.set-default', [
             'group_id' => $group->getKey(),
@@ -220,10 +220,10 @@ class UserGroupsControllerTest extends TestCase
 
         $user->refresh();
 
-        $actualModes = $this->getUserGroupModes($user, $group);
+        $actualPlaymodes = $this->getUserGroupPlaymodes($user, $group);
 
-        $this->assertCount(count($modes), $actualModes);
-        $this->assertArraySubset($modes, $actualModes);
+        $this->assertCount(count($playmodes), $actualPlaymodes);
+        $this->assertArraySubset($playmodes, $actualPlaymodes);
     }
 
     public function testUserGroupSetDefaultWhenNotMember()
@@ -257,13 +257,13 @@ class UserGroupsControllerTest extends TestCase
         );
     }
 
-    public function testInvalidModes()
+    public function testInvalidPlaymodes()
     {
         $user = factory(User::class)->create();
-        $group = $this->getGroupWithModes('nat');
+        $group = $this->getGroupWithPlaymodes('nat');
         $url = route('interop.user-group.update', [
             'group_id' => $group->getKey(),
-            'playmodes' => ['osu', 'invalid_mode'],
+            'playmodes' => ['osu', 'invalid_playmode'],
             'timestamp' => time(),
             'user_id' => $user->getKey(),
         ]);
@@ -286,7 +286,7 @@ class UserGroupsControllerTest extends TestCase
             ->assertStatus(404);
     }
 
-    public function testModesWithoutGroupModesSet()
+    public function testPlaymodesWithoutGroupPlaymodesSet()
     {
         $user = factory(User::class)->create();
         $group = app('groups')->byIdentifier('gmt');
@@ -303,14 +303,14 @@ class UserGroupsControllerTest extends TestCase
             ->assertStatus(422);
     }
 
-    private function createUserWithGroupModes(string $identifier, array $modes, bool $defaultGroup = true): User
+    private function createUserWithGroupPlaymodes(string $identifier, array $playmodes, bool $defaultGroup = true): User
     {
         $user = factory(User::class)->create();
-        $groupId = $this->getGroupWithModes($identifier)->getKey();
+        $groupId = $this->getGroupWithPlaymodes($identifier)->getKey();
 
         $user->userGroups()->create([
             'group_id' => $groupId,
-            'playmodes' => $modes,
+            'playmodes' => $playmodes,
             'user_pending' => false,
         ]);
 
@@ -332,7 +332,7 @@ class UserGroupsControllerTest extends TestCase
             ->count();
     }
 
-    private function getGroupWithModes(string $identifier): Group
+    private function getGroupWithPlaymodes(string $identifier): Group
     {
         $group = app('groups')->byIdentifier($identifier);
 
@@ -342,7 +342,7 @@ class UserGroupsControllerTest extends TestCase
         return $group;
     }
 
-    private function getUserGroupModes(User $user, Group $group): ?array
+    private function getUserGroupPlaymodes(User $user, Group $group): ?array
     {
         return optional(
             $user

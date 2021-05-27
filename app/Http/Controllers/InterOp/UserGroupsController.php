@@ -13,9 +13,9 @@ class UserGroupsController extends Controller
     public function update()
     {
         [$user, $group] = $this->getUserAndGroupModels();
-        $modes = get_arr(request()->input('playmodes'), 'get_string');
+        $playmodes = get_arr(request()->input('playmodes'), 'get_string');
 
-        $user->addToGroup($group, $modes);
+        $user->addToGroup($group, $playmodes);
 
         return response(null, 204);
     }

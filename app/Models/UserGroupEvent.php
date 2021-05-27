@@ -24,9 +24,9 @@ class UserGroupEvent extends Model
     const GROUP_REMOVE = 'group_remove';
     const GROUP_RENAME = 'group_rename';
     const USER_ADD = 'user_add';
-    const USER_ADD_MODES = 'user_add_modes';
+    const USER_ADD_PLAYMODES = 'user_add_playmodes';
     const USER_REMOVE = 'user_remove';
-    const USER_REMOVE_MODES = 'user_remove_modes';
+    const USER_REMOVE_PLAYMODES = 'user_remove_playmodes';
     const USER_SET_DEFAULT = 'user_set_default';
 
     const UPDATED_AT = null;
@@ -46,17 +46,17 @@ class UserGroupEvent extends Model
         ]);
     }
 
-    public static function logUserAdd(?User $actor, User $user, Group $group, array $modes): self
+    public static function logUserAdd(?User $actor, User $user, Group $group, array $playmodes): self
     {
         return static::log($actor, static::USER_ADD, $user, $group, [
-            'details' => compact('modes'),
+            'details' => compact('playmodes'),
         ]);
     }
 
-    public static function logUserAddModes(?User $actor, User $user, Group $group, array $modes): self
+    public static function logUserAddPlaymodes(?User $actor, User $user, Group $group, array $playmodes): self
     {
-        return static::log($actor, static::USER_ADD_MODES, $user, $group, [
-            'details' => compact('modes'),
+        return static::log($actor, static::USER_ADD_PLAYMODES, $user, $group, [
+            'details' => compact('playmodes'),
         ]);
     }
 
@@ -65,10 +65,10 @@ class UserGroupEvent extends Model
         return static::log($actor, static::USER_REMOVE, $user, $group);
     }
 
-    public static function logUserRemoveModes(?User $actor, User $user, Group $group, array $modes): self
+    public static function logUserRemovePlaymodes(?User $actor, User $user, Group $group, array $playmodes): self
     {
-        return static::log($actor, static::USER_REMOVE_MODES, $user, $group, [
-            'details' => compact('modes'),
+        return static::log($actor, static::USER_REMOVE_PLAYMODES, $user, $group, [
+            'details' => compact('playmodes'),
         ]);
     }
 

@@ -5,7 +5,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class AddModeChangesToUserGroupEvents extends Migration
+class AddPlaymodeChangesToUserGroupEvents extends Migration
 {
     /**
      * Run the migrations.
@@ -19,9 +19,9 @@ class AddModeChangesToUserGroupEvents extends Migration
             'group_remove',
             'group_rename',
             'user_add',
-            'user_add_modes',
+            'user_add_playmodes',
             'user_remove',
-            'user_remove_modes',
+            'user_remove_playmodes',
             'user_set_default'
         )");
     }

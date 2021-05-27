@@ -496,43 +496,43 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
     }
 
-    public function addToGroup(Group $group, ?array $modes = null, ?self $actor = null): void
+    public function addToGroup(Group $group, ?array $playmodes = null, ?self $actor = null): void
     {
-        $modes = array_unique($modes ?? []);
+        $playmodes = array_unique($playmodes ?? []);
 
-        if (!$group->has_playmodes && $modes !== []) {
-            throw new InvariantException('Group does not allow modes');
+        if (!$group->has_playmodes && $playmodes !== []) {
+            throw new InvariantException('Group does not allow playmodes');
         }
 
-        $invalidModes = array_diff($modes, array_keys(Beatmap::MODES));
+        $invalidPlaymodes = array_diff($playmodes, array_keys(Beatmap::MODES));
 
-        if ($invalidModes !== []) {
-            throw new InvariantException('Invalid modes: '.implode(', ', $invalidModes));
+        if ($invalidPlaymodes !== []) {
+            throw new InvariantException('Invalid playmodes: '.implode(', ', $invalidPlaymodes));
         }
 
         $activeUserGroup = $this->findUserGroup($group, true);
 
         if (
             $activeUserGroup !== null &&
-            (new Set($modes))->xor(new Set($activeUserGroup->playmodes ?? []))->isEmpty()
+            (new Set($playmodes))->xor(new Set($activeUserGroup->playmodes ?? []))->isEmpty()
         ) {
             return;
         }
 
-        $this->getConnection()->transaction(function () use ($actor, $group, $modes, $activeUserGroup) {
+        $this->getConnection()->transaction(function () use ($actor, $group, $playmodes, $activeUserGroup) {
             if ($activeUserGroup === null) {
-                UserGroupEvent::logUserAdd($actor, $this, $group, $modes);
+                UserGroupEvent::logUserAdd($actor, $this, $group, $playmodes);
             } else {
-                $previousModes = $activeUserGroup->playmodes ?? [];
-                $modesAdded = array_values(array_diff($modes, $previousModes));
-                $modesRemoved = array_values(array_diff($previousModes, $modes));
+                $previousPlaymodes = $activeUserGroup->playmodes ?? [];
+                $playmodesAdded = array_values(array_diff($playmodes, $previousPlaymodes));
+                $playmodesRemoved = array_values(array_diff($previousPlaymodes, $playmodes));
 
-                if ($modesAdded !== []) {
-                    UserGroupEvent::logUserAddModes($actor, $this, $group, $modesAdded);
+                if ($playmodesAdded !== []) {
+                    UserGroupEvent::logUserAddPlaymodes($actor, $this, $group, $playmodesAdded);
                 }
 
-                if ($modesRemoved !== []) {
-                    UserGroupEvent::logUserRemoveModes($actor, $this, $group, $modesRemoved);
+                if ($playmodesRemoved !== []) {
+                    UserGroupEvent::logUserRemovePlaymodes($actor, $this, $group, $playmodesRemoved);
                 }
             }
 
@@ -540,7 +540,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
                 $this->userGroups()->firstOrNew(['group_id' => $group->getKey()])
             )
                 ->fill([
-                    'playmodes' => $modes === [] ? null : $modes,
+                    'playmodes' => $playmodes === [] ? null : $playmodes,
                     'user_pending' => false,
                 ])
                 ->save();
