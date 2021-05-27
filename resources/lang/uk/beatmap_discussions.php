@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count в цьому відгуку',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Увійдіть, щоб відповісти',

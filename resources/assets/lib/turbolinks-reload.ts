@@ -1,49 +1,38 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-const className = 'js-extra-script';
-
-interface ScriptList {
-  [key: string]: boolean;
-}
-
 export default class TurbolinksReload {
-  private loaded: ScriptList = {};
+  private loaded = new Set<string>();
+  private loading = new Map<string, JQuery.jqXHR<void>>();
 
   constructor() {
-    document.addEventListener('turbolinks:before-cache', this.cleanup);
+    $(document).on('turbolinks:before-cache', this.abortLoading);
   }
 
-  cleanup = () => {
-    $(`.${className}`).remove();
+  abortLoading = () => {
+    for (const xhr of this.loading.values()) {
+      xhr.abort();
+    }
   };
 
   forget = (src: string) => {
-    delete this.loaded[src];
+    this.loaded.delete(src);
+    this.loading.get(src)?.abort();
   };
 
-  load = (src: string, onload?: () => void) => {
-    if (this.loaded[src]) {
-      return;
+  load(src: string) {
+    if (this.loaded.has(src) || this.loading.has(src)) {
+      return this.loading.get(src);
     }
 
-    const el = document.createElement('script');
-    el.classList.add(className);
-    el.onload = () => {
-      // abort if the element has been removed (on navigation etc)
-      if (el.parentElement == null) {
-        return;
-      }
+    const xhr = $.ajax(src, { cache: true, dataType: 'script' }) as JQuery.jqXHR<void>;
 
-      el.parentElement.removeChild(el);
+    this.loading.set(src, xhr);
 
-      if (onload != null) {
-        onload();
-      }
-    };
+    void xhr
+      .done(() => this.loaded.add(src))
+      .always(() => this.loading.delete(src));
 
-    el.src = src;
-    document.body.appendChild(el);
-    return this.loaded[src] = true;
-  };
+    return xhr;
+  }
 }

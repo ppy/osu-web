@@ -125,7 +125,7 @@ class @ForumTopicReply
 
   stickOrUnstick: (_e, target) =>
     stick =
-      if osu.isDesktop()
+      if osuCore.windowSize.isDesktop
         target == 'forum-topic-reply'
       else
         @getState('active') == '1'
@@ -150,7 +150,7 @@ class @ForumTopicReply
     isSticking = @getState('sticking') == '1'
 
     document.body.style.overflow =
-      if !stick || osu.isDesktop()
+      if !stick || osuCore.windowSize.isDesktop
         ''
       else
         'hidden'

@@ -403,7 +403,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             return Carbon::now()->addYears(10);
         }
 
-        if ($this->user_type === 1) {
+        if ($this->isRestricted()) {
             $minDays = 0;
             $expMod = 0.35;
             $linMod = 0.75;
@@ -915,7 +915,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             || $this->isDev()
             || $this->isGMT()
             || $this->isBNG()
-            || $this->isNAT();
+            || $this->isNAT()
+            || $this->isProjectLoved();
     }
 
     public function isBanned()
@@ -992,8 +993,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $groupId = $group->getKey();
 
         foreach ($this->userGroups as $userGroup) {
-            if ($userGroup->group_id === $groupId && (!$activeOnly || !$userGroup->user_pending)) {
-                return $userGroup;
+            if ($userGroup->group_id === $groupId) {
+                return $activeOnly && $userGroup->user_pending ? null : $userGroup;
             }
         }
     }

@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'مقبولة.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'المشرف حذف المناقشة :discussion.',
         'discussion_lock' => 'تم ايقاف المناقشة لهذه الخريطة. (:text)',
         'discussion_post_delete' => 'المشرف حذف منشور من المناقشة :discussion.',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'موافقة',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'حذف المناقشة',
         'discussion_post_delete' => 'حذف رد المناقشة',
         'discussion_post_restore' => 'إعادة رد المناقشة',

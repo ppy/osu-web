@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Godkänd.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Moderator raderade diskussion :discussion.',
         'discussion_lock' => 'Diskussioner för denna beatmap har inaktiverats. (:text)',
         'discussion_post_delete' => 'Moderator raderade inlägg från diskussionen :discussion.',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Godkännande',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Borttagning av diskussioner',
         'discussion_post_delete' => 'Borttagning av diskussionssvar',
         'discussion_post_restore' => 'Återställning av diskussionssvar',

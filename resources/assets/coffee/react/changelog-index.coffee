@@ -1,9 +1,12 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import core from 'osu-core-singleton'
+import { createElement } from 'react'
 import { Main } from './changelog-index/main'
 
-reactTurbolinks.registerPersistent 'changelog-index', Main, true, (el) ->
-  container: el
-  updateStreams: osu.parseJson('json-update-streams')
-  data: osu.parseJson('json-index')
+core.reactTurbolinks.register 'changelog-index', true, (el) ->
+  createElement Main,
+    container: el
+    updateStreams: osu.parseJson('json-update-streams')
+    data: osu.parseJson('json-index')

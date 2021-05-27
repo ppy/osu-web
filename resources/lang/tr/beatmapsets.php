@@ -88,10 +88,10 @@ return [
         ],
 
         'hype' => [
-            'action' => '<strong>Dereceli</strong> statüsüne erişmesi için eğer beğendiyseniz bu haritayı gazlayın.',
+            'action' => 'Eğer beğendiyseniz <strong>Dereceli</strong> statüsüne erişmesine yardımcı olmak için bu mapi gazlayın.',
 
             'current' => [
-                '_' => 'Bu harita şu an :status.',
+                '_' => 'Bu map şu anda :status.',
 
                 'status' => [
                     'pending' => 'beklemede',
@@ -159,8 +159,8 @@ return [
             ],
 
             'no_scores' => [
-                'country' => 'Ülkenizde hiç kimse henüz bu haritada bir skora sahip değil!',
-                'friend' => 'Hiçbir arkadaşın henüz bu haritada bir skora sahip değil!',
+                'country' => 'Ülkenizde hiç kimse henüz bu mapte bir skora sahip değil!',
+                'friend' => 'Hiçbir arkadaşın henüz bu mapte bir skora sahip değil!',
                 'global' => 'Henüz skor yok. Biraz skor yapmaya ne dersin?',
                 'loading' => 'Skorlar yükleniyor...',
                 'unranked' => 'Derecelendirilmemiş beatmap.',

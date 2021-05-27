@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count in this review',
     ],
 
+    'owner_editor' => [
+        'button' => 'Difficulty Owner',
+        'reset_confirm' => 'Reset owner for this difficulty?',
+        'user' => 'Owner',
+        'version' => 'Difficulty',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Sign in to Respond',

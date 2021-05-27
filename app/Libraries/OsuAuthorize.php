@@ -22,6 +22,7 @@ use App\Models\Forum\TopicCover;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\Match\Match;
+use App\Models\Multiplayer\Room;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Models\UserContestEntry;
@@ -88,6 +89,29 @@ class OsuAuthorize
         }
 
         if ($this->doCheckUser($user, 'BeatmapsetShow', $beatmap->beatmapset)->can()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
+    /**
+     * @param User|null $user
+     * @param Beatmapset $beatmap
+     * @return string
+     * @throws AuthorizationException
+     */
+    public function checkBeatmapUpdateOwner(?User $user, ?Beatmapset $beatmapset): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if (
+            $beatmapset !== null
+            && in_array($beatmapset->status(), ['wip', 'graveyard', 'pending'], true)
+            && !$beatmapset->hasNominations()
+            && $beatmapset->user_id === $user->getKey()
+        ) {
             return 'ok';
         }
 
@@ -200,11 +224,16 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->user_id === $discussion->user_id) {
+        $userId = $user->getKey();
+
+        if ($userId === $discussion->user_id) {
             return 'ok';
         }
 
-        if ($user->user_id === $discussion->beatmapset->user_id && $discussion->beatmapset->approved !== Beatmapset::STATES['qualified']) {
+        if (
+            $discussion->beatmapset->approved !== Beatmapset::STATES['qualified']
+            && $discussion->responsibleUserId() === $userId
+        ) {
             return 'ok';
         }
 
@@ -288,9 +317,17 @@ class OsuAuthorize
         $this->ensureHasPlayed($user);
 
         if ($discussion->message_type === 'mapper_note') {
-            if ($user->getKey() !== $discussion->beatmapset->user_id && !$user->isModerator() && !$user->isBNG()) {
-                return 'beatmap_discussion.store.mapper_note_wrong_user';
+            $userId = $user->getKey();
+
+            if ($discussion->responsibleUserId() === $userId) {
+                return 'ok';
             }
+
+            if ($user->isModerator() || $user->isBNG()) {
+                return 'ok';
+            }
+
+            return 'beatmap_discussion.store.mapper_note_wrong_user';
         }
 
         return 'ok';
@@ -575,8 +612,15 @@ class OsuAuthorize
             return $prefix.'incorrect_state';
         }
 
-        if ($user->getKey() === $beatmapset->user_id) {
+        $userId = $user->getKey();
+        if ($userId === $beatmapset->user_id) {
             return $prefix.'owner';
+        }
+
+        foreach ($beatmapset->beatmaps as $beatmap) {
+            if ($userId === $beatmap->user_id) {
+                return $prefix.'owner';
+            }
         }
 
         if ($beatmapset->genre_id === Genre::UNSPECIFIED || $beatmapset->language_id === Language::UNSPECIFIED) {
@@ -869,16 +913,24 @@ class OsuAuthorize
      */
     public function checkChatChannelJoin(?User $user, Channel $channel): string
     {
-        // TODO: be able to rejoin multiplayer channels you were a part of?
         $prefix = 'chat.';
 
         $this->ensureLoggedIn($user);
 
-        if ($channel->type === Channel::TYPES['public']) {
+        if ($channel->isPublic()) {
             return 'ok';
         }
 
         $this->ensureCleanRecord($user, $prefix);
+
+        // This check is only for when joining the channel directly; joining via the Room
+        // will always add the user to the channel.
+        if ($channel->isMultiplayer()) {
+            $room = Room::hasParticipated($user)->find($channel->room_id);
+            if ($room !== null) {
+                return 'ok';
+            }
+        }
 
         // allow joining of 'tournament' matches (for lazer/tournament client)
         if (optional($channel->multiplayerMatch)->isTournamentMatch()) {

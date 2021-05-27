@@ -16,7 +16,7 @@
 
   @media @desktop {
     padding-top: @border-radius--large;
-    --panel-height: @beatmapset-panel-height-desktop;
+    --panel-height: @beatmapset-panel-normal-height-desktop;
   }
 
   &::before {
@@ -30,6 +30,12 @@
     left: 0;
     pointer-events: none;
     border-radius: @border-radius--large;
+  }
+
+  &--size-extra {
+    @media @desktop {
+      --panel-height: @beatmapset-panel-extra-height-desktop;
+    }
   }
 
   &__content {

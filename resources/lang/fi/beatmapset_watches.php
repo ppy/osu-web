@@ -9,13 +9,13 @@ return [
         'title_compact' => 'modiseuranta',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Beatmappeja seurattu',
+            'unread' => 'Beatmappeja, joissa on uusia tapahtumia',
         ],
 
         'table' => [
             'empty' => 'Ei seurattuja keskusteluja.',
-            'last_update' => '',
+            'last_update' => 'Viimeisin päivitys',
             'open_issues' => 'Avoimet ongelmat',
             'state' => 'Tila',
             'title' => 'Nimi',
