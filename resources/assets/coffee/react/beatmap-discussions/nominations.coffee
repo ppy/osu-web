@@ -9,6 +9,7 @@ import { StringWithComponent } from 'string-with-component'
 import BeatmapsOwnerEditor from 'beatmap-discussions/beatmaps-owner-editor'
 import { Nominator } from 'beatmap-discussions/nominator'
 import { nominationsCount } from 'utils/beatmapset-helper'
+import { pageChange } from 'utils/page-change'
 
 el = React.createElement
 
@@ -24,7 +25,7 @@ export class Nominations extends React.PureComponent
 
 
   componentDidMount: =>
-    osu.pageChange()
+    pageChange()
 
 
   componentWillUnmount: =>
@@ -33,7 +34,7 @@ export class Nominations extends React.PureComponent
 
 
   componentDidUpdate: =>
-    osu.pageChange()
+    pageChange()
 
 
   render: =>

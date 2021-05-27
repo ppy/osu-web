@@ -56,14 +56,6 @@
       $(element).trigger 'ajax:error', [xhr, status, error]
 
 
-  pageChange: ->
-    Timeout.set 0, osu.pageChangeImmediate
-
-
-  pageChangeImmediate: ->
-    $.publish 'osu:page:change'
-
-
   parseJson: (id, remove = false) ->
     element = document.getElementById(id)
     return unless element?

@@ -34,7 +34,7 @@ class @Nav2
       @centerPopup currentPopup, link
 
     $(window).on 'resize.nav2-center-popup', doCenter
-    osu.pageChangeImmediate() if @loginBoxVisible()
+    _exported.pageChangeImmediate() if @loginBoxVisible()
     doCenter()
     currentPopup.querySelector('.js-nav2--autofocus')?.focus()
 
