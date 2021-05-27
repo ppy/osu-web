@@ -9,7 +9,9 @@ class @TwitchPlayer
 
 
   initializeEmbed: =>
-    @turbolinksReload.load 'https://player.twitch.tv/js/embed/v1.js', @startAll
+    @turbolinksReload
+      .load 'https://player.twitch.tv/js/embed/v1.js'
+      ?.then @startAll
 
 
   startAll: =>

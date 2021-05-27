@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Mapa',
 
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Discusión del mapa',
                 'beatmapset_discussion_lock' => 'La discusión en ":title" se ha cerrado',
@@ -159,6 +165,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'La discusión en ":title" se ha cerrado',
                 'beatmapset_discussion_post_new' => 'La discusión en ":title" tiene nuevas actualizaciones',

@@ -3,7 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Libraries\Markdown;
+namespace App\Libraries\Markdown\Attributes;
 
 use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\Attributes\Node\Attributes;
@@ -11,7 +11,7 @@ use League\CommonMark\Extension\Attributes\Node\AttributesInline;
 
 class AttributesOnlyIdListener
 {
-    public function onDocumentParsed(DocumentParsedEvent $documentEvent): void
+    public function __invoke(DocumentParsedEvent $documentEvent): void
     {
         $walker = $documentEvent->getDocument()->walker();
         while ($event = $walker->next()) {

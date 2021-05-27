@@ -8,12 +8,6 @@
     "email": "support@ppy.sh",
     "issues": "https://github.com/ppy/osu-web/issues"
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/nanaya/xsolla-sdk-php"
-    }
-  ],
   "require": {
     "anhskohbo/no-captcha": "^3.2",
     "chaseconey/laravel-datadog-helper": ">=1.2.0",
@@ -32,7 +26,7 @@
     "laravel/slack-notification-channel": "^2.0",
     "laravel/tinker": "*",
     "laravelcollective/html": "*",
-    "league/commonmark": ">=0.16.0",
+    "league/commonmark": "^1.6",
     "league/flysystem-aws-s3-v3": "*",
     "league/fractal": "*",
     "league/html-to-markdown": "*",

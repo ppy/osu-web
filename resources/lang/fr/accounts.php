@@ -56,6 +56,7 @@ return [
 
         'options' => [
             '_' => 'types d\'alertes',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'modding de beatmap',
             'channel_message' => 'messages privés',
             'comment_new' => 'nouveaux commentaires',

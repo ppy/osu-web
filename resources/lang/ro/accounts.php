@@ -56,6 +56,7 @@ return [
 
         'options' => [
             '_' => 'opțiuni de livrare',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'modatul de beatmap',
             'channel_message' => 'mesaje chat private',
             'comment_new' => 'comentarii noi',

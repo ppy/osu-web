@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Aprovado.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Moderador excluiu a discussão :discussion.',
         'discussion_lock' => 'A discussão para este beatmap foi desabilitada. (:text)',
         'discussion_post_delete' => 'Um moderador excluiu a publicação da discussão :discussion.',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Aprovação',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Exclusão de Discussão',
         'discussion_post_delete' => 'Exclusão de respostas da discussão',
         'discussion_post_restore' => 'Restauração de respostas da discussão',

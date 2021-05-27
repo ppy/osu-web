@@ -27,7 +27,7 @@ describe('OsuCore user:update subscriber testing thing', () => {
     const json: UserJson = {
       avatar_url: '',
       country_code: '',
-      cover: {},
+      cover: { custom_url: null, id: null, url: null },
       default_group: '',
       id: 1,
       is_active: true,

@@ -25,8 +25,8 @@ import UserLogin from 'user-login';
 import UserLoginObserver from 'user-login-observer';
 import UserPreferences from 'user-preferences';
 import UserVerification from 'user-verification';
-import WindowVHPatcher from 'window-vh-patcher';
-import WindowFocusObserver from './window-focus-observer';
+import WindowFocusObserver from 'window-focus-observer';
+import WindowSize from 'window-size';
 
 declare global {
   interface Window {
@@ -60,7 +60,7 @@ export default class OsuCore {
   readonly userPreferences = new UserPreferences();
   readonly userVerification = new UserVerification();
   windowFocusObserver: WindowFocusObserver;
-  readonly windowVHPatcher = new WindowVHPatcher();
+  readonly windowSize = new WindowSize();
 
   constructor() {
     // refresh current user on page reload (and initial page load)

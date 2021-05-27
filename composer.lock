@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "061fcb69b7dadcb3e46cb1c1793e2462",
+    "content-hash": "a6e5b4cc63d9b50b7a60085b75d79182",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -3257,16 +3257,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "1.5.7",
+            "version": "1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "11df9b36fd4f1d2b727a73bf14931d81373b9a54"
+                "reference": "7d70d2f19c84bcc16275ea47edabee24747352eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/11df9b36fd4f1d2b727a73bf14931d81373b9a54",
-                "reference": "11df9b36fd4f1d2b727a73bf14931d81373b9a54",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/7d70d2f19c84bcc16275ea47edabee24747352eb",
+                "reference": "7d70d2f19c84bcc16275ea47edabee24747352eb",
                 "shasum": ""
             },
             "require": {
@@ -3354,7 +3354,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-10-31T13:49:32+00:00"
+            "time": "2021-05-12T11:39:41+00:00"
         },
         {
             "name": "league/event",
@@ -9713,26 +9713,26 @@
             "version": "v4.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nanaya/xsolla-sdk-php.git",
-                "reference": "75f94f22b7f9e1efc76bddcf4d62936e36607a5c"
+                "url": "https://github.com/xsolla/xsolla-sdk-php.git",
+                "reference": "07729c112547f84fe2d6f21e2fc5cc9f316f01ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nanaya/xsolla-sdk-php/zipball/75f94f22b7f9e1efc76bddcf4d62936e36607a5c",
-                "reference": "75f94f22b7f9e1efc76bddcf4d62936e36607a5c",
+                "url": "https://api.github.com/repos/xsolla/xsolla-sdk-php/zipball/07729c112547f84fe2d6f21e2fc5cc9f316f01ad",
+                "reference": "07729c112547f84fe2d6f21e2fc5cc9f316f01ad",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "ext-json": "*",
                 "guzzlehttp/guzzle": "~6.0",
-                "php": ">=7.1.3",
-                "symfony/http-foundation": "~2.3 || ~3.0 || ~4.0"
+                "php": "^7.3|~8.0.0",
+                "symfony/http-foundation": "~2.3 || ~3.0 || ~4.0 || ~5.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "~2.13",
                 "mtdowling/burgomaster": "^0.0.3",
-                "phpunit/phpunit": "~7.3",
+                "phpunit/phpunit": "^9.0",
                 "symfony/process": "~4.1"
             },
             "type": "library",
@@ -9741,16 +9741,12 @@
                     "Xsolla\\SDK\\": "src"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Xsolla\\SDK\\Tests\\": "tests"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "description": "Xsolla SDK for PHP. Xsolla is the authorized reseller and merchant providing e-commerce services for online games.",
-            "homepage": "http://xsolla.com",
+            "homepage": "https://xsolla.com",
             "keywords": [
                 "api",
                 "games",
@@ -9759,12 +9755,12 @@
                 "xsolla"
             ],
             "support": {
+                "docs": "https://developers.xsolla.com",
                 "email": "integration@xsolla.com",
                 "issues": "https://github.com/xsolla/xsolla-sdk-php/issues",
-                "docs": "http://developers.xsolla.com",
                 "source": "https://github.com/xsolla/xsolla-sdk-php/releases"
             },
-            "time": "2019-12-03T09:19:37+00:00"
+            "time": "2021-05-12T07:56:37+00:00"
         }
     ],
     "packages-dev": [

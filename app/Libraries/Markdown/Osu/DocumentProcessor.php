@@ -3,7 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Libraries\Markdown;
+namespace App\Libraries\Markdown\Osu;
 
 use App\Libraries\LocaleMeta;
 use App\Libraries\Markdown\StyleBlock\Element as StyleBlock;
@@ -14,7 +14,7 @@ use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\Table as TableExtension;
 use League\CommonMark\Inline\Element as Inline;
 
-class OsuMarkdownProcessor
+class DocumentProcessor
 {
     public $firstImage;
     public $title;
@@ -37,7 +37,7 @@ class OsuMarkdownProcessor
         $this->environment = $environment;
     }
 
-    public function onDocumentParsed(DocumentParsedEvent $event)
+    public function __invoke(DocumentParsedEvent $event): void
     {
         $document = $event->getDocument();
         $walker = $document->walker();
@@ -90,7 +90,7 @@ class OsuMarkdownProcessor
         }
     }
 
-    public function addClass()
+    private function addClass()
     {
         if ($this->event->isEntering() || isset($this->node->data['attributes']['class'])) {
             return;
@@ -132,7 +132,10 @@ class OsuMarkdownProcessor
                 break;
             case TableExtension\TableCell::class:
                 $class = "{$blockClass}__table-data";
-                $class .= " {$blockClass}__table-data--{$this->node->align}";
+
+                if ($this->node->align !== null) {
+                    $class .= " {$blockClass}__table-data--{$this->node->align}";
+                }
 
                 if ($this->node->type === 'th') {
                     $class .= " {$blockClass}__table-data--header";
@@ -145,7 +148,7 @@ class OsuMarkdownProcessor
         }
     }
 
-    public function addListStartAsVariable()
+    private function addListStartAsVariable()
     {
         if (!$this->node instanceof Block\ListBlock || !$this->event->isEntering()) {
             return;
@@ -158,7 +161,7 @@ class OsuMarkdownProcessor
         }
     }
 
-    public function fixRelativeUrl()
+    private function fixRelativeUrl()
     {
         if ($this->relativeUrlRoot === null) {
             return;
@@ -183,7 +186,7 @@ class OsuMarkdownProcessor
      * @param \League\CommonMark\Node\Node $node
      * @return string
      */
-    public function getText($node)
+    private function getText($node)
     {
         $text = '';
 
@@ -201,7 +204,7 @@ class OsuMarkdownProcessor
         return presence($text);
     }
 
-    public function loadToc()
+    private function loadToc()
     {
         if (
             !$this->node instanceof Block\Heading ||
@@ -229,7 +232,7 @@ class OsuMarkdownProcessor
         $this->node->data['attributes']['id'] = $slug;
     }
 
-    public function parseFigure()
+    private function parseFigure()
     {
         if (!$this->node instanceof Block\Paragraph || !$this->event->isEntering()) {
             return;
@@ -254,7 +257,7 @@ class OsuMarkdownProcessor
         }
     }
 
-    public function fixWikiUrl()
+    private function fixWikiUrl()
     {
         if (!$this->event->isEntering() || !($this->node instanceof Inline\AbstractWebResource)) {
             return;
@@ -293,7 +296,7 @@ class OsuMarkdownProcessor
         $this->node->setUrl($url);
     }
 
-    public function proxyImage()
+    private function proxyImage()
     {
         if (!$this->node instanceof Inline\Image || !$this->event->isEntering()) {
             return;
@@ -306,7 +309,7 @@ class OsuMarkdownProcessor
         }
     }
 
-    public function recordFirstImage()
+    private function recordFirstImage()
     {
         if ($this->firstImage !== null || !$this->node instanceof Inline\Image || !$this->event->isEntering()) {
             return;
@@ -315,7 +318,7 @@ class OsuMarkdownProcessor
         $this->firstImage = proxy_media($this->node->getUrl());
     }
 
-    public function setTitle()
+    private function setTitle()
     {
         // wait until leaving otherwise node->next will be null after detaching.
         if (!$this->node instanceof Block\Heading || $this->event->isEntering() || $this->title !== null) {
@@ -325,7 +328,7 @@ class OsuMarkdownProcessor
         $this->title = presence($this->node->getStringContent());
     }
 
-    public function trackListLevel()
+    private function trackListLevel()
     {
         if (!$this->node instanceof Block\ListBlock) {
             return;
@@ -338,7 +341,7 @@ class OsuMarkdownProcessor
         }
     }
 
-    public function updateLocaleLink()
+    private function updateLocaleLink()
     {
         if (!$this->node instanceof Inline\Link || !$this->event->isEntering()) {
             return;
