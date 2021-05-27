@@ -6,7 +6,7 @@ import * as React from 'react';
 import Room from './room';
 
 interface Props {
-  rooms: RoomJson[];
+  rooms: (RoomJson & Required<Pick<RoomJson, 'playlist'>>)[];
 }
 
 export default class MultiplayerHistory extends React.Component<Props> {

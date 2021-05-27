@@ -9,7 +9,7 @@ import MultiplayerHistory from 'profile-page/multiplayer-history';
 import Header from './header';
 
 interface Props {
-  rooms: RoomJson[];
+  rooms: (RoomJson  & Required<Pick<RoomJson, 'playlist'>>)[];
   user: UserJsonExtended;
 }
 

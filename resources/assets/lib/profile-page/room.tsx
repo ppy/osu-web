@@ -1,31 +1,87 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { RoomsContext } from 'beatmap-discussions/rooms-context';
+import Img2x from 'img2x';
 import RoomJson from 'interfaces/room-json';
+import { maxBy, minBy } from 'lodash';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { UserLink } from 'user-link';
 
 interface Props {
-  room: RoomJson;
+  room: RoomJson & Required<Pick<RoomJson, 'playlist'>>;
 }
 
+const endingSoonDiffMs = 60 * 60 * 1000; // 60 minutes.
+
 export default class Room extends React.Component<Props> {
+  static contextType = RoomsContext;
+  declare context: React.ContextType<typeof RoomsContext>;
+
+  get status() {
+    if (!this.props.room.active) {
+      return 'ended';
+    }
+
+    const diff = new Date(this.props.room.ends_at).getTime() - new Date().getTime();
+
+    return diff < endingSoonDiffMs ? 'soon' : 'active';
+  }
+
+  get maxDifficulty() {
+    const max = maxBy(this.props.room.playlist, (playlist) => this.context.beatmaps[playlist.beatmap_id]?.difficulty_rating);
+    return this.context.beatmaps[max?.beatmap_id ?? 0]?.difficulty_rating;
+  }
+
+  get minDifficulty() {
+    const min = minBy(this.props.room.playlist, (playlist) => this.context.beatmaps[playlist.beatmap_id]?.difficulty_rating);
+    return this.context.beatmaps[min?.beatmap_id ?? 0]?.difficulty_rating;
+  }
+
+  get background() {
+    const beatmap = this.context.beatmaps[this.props.room.playlist[0].beatmap_id];
+    const beatmapset = this.context.beatmapsets[beatmap?.beatmapset_id ?? 0];
+
+    if (beatmapset == null) return undefined;
+
+    return beatmapset.covers.cover;
+  }
+
+
   render() {
     return (
       <div className='multiplayer-room'>
-        <div className='multiplayer-room__details'>
-          <div className='multiplayer-room__ends'>
-            <TimeWithTooltip dateTime={this.props.room.ends_at} relative />
+        {this.renderCover()}
+        <div className='multiplayer-room__content'>
+          <div className='multiplayer-room__details'>
+            <div className='multiplayer-room__ends'>
+              <div className='multiplayer-room__badge'>
+                {osu.trans(`multiplayer.room.status.${this.status}`)}
+              </div>
+              <TimeWithTooltip dateTime={this.props.room.ends_at} relative />
+            </div>
+            <div className='multiplayer-room__name'>{this.props.room.name}</div>
+            <div className='multiplayer-room__badge'>
+              <div className='multiplayer-room__map-count'>{this.props.room.playlist.length} maps</div>
+              <div className='multiplayer-room__map-count'>{this.minDifficulty}</div>
+              <div className='multiplayer-room__map-count'>{this.maxDifficulty}</div>
+            </div>
           </div>
-          <div className='multiplayer-room__name'>{this.props.room.name}</div>
-          <div className='multiplayer-room__maps'>A number</div>
+          {this.renderHost()}
+          {this.renderParticipants()}
         </div>
-
-        {this.renderHost()}
-        {this.renderParticipants()}
       </div>
+    );
+  }
+
+  private renderCover() {
+    return (
+      <div className='multiplayer-room__cover-container'>
+        <Img2x className='multiplayer-room__cover' src={this.background} />
+      </div>
+
     );
   }
 
@@ -33,7 +89,7 @@ export default class Room extends React.Component<Props> {
     return (
       <div className='multiplayer-room__host'>
         <StringWithComponent
-          mappings={{ ':user': <UserLink user={this.props.room.host} /> }}
+          mappings={{ ':user': <UserLink key='user' user={this.props.room.host} /> }}
           pattern={osu.trans('multiplayer.room.hosted_by')}
         />
       </div>

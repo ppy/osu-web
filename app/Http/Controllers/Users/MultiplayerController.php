@@ -63,10 +63,17 @@ class MultiplayerController extends Controller
             ]
         );
 
-        $json = [
-            'rooms' => Room::search(['user' => $this->user, 'mode' => 'participated'], ['host'], ['host']),
-            'user' => $user,
-        ];
+        // TODO: cleaout the includes
+        $rooms = Room::search(
+            ['user' => $this->user, 'mode' => 'participated'],
+            ['host', 'playlist.beatmap.beatmapset'],
+            ['host', 'playlist.beatmap.beatmapset']
+        );
+
+        $beatmaps = collect($rooms)->pluck('playlist')->flatten(1)->pluck('beatmap')->unique()->values();
+        $beatmapsets = $beatmaps->pluck('beatmapset')->unique()->values();
+
+        $json = compact('beatmaps', 'beatmapsets', 'rooms', 'user');
 
         if (is_api_request()) {
             return $json;

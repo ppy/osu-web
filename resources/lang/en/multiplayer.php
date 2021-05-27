@@ -6,5 +6,11 @@
 return [
     'room' => [
         'hosted_by' => 'hosted by :user',
+
+        'status' => [
+            'active' => 'active',
+            'ended' => 'ended',
+            'soon' => 'ending soon',
+        ],
     ],
 ];

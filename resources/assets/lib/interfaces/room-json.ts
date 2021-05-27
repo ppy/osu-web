@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserJson from 'interfaces/user-json';
+import PlaylistItemJson from './playlistitem-json';
 
 export default interface RoomJson {
   active: boolean;
@@ -13,6 +14,8 @@ export default interface RoomJson {
   max_attempts: number | null;
   name: string;
   participant_count: number;
+  playlist?: PlaylistItemJson[];
   starts_at: string;
   user_id: number;
 }
+

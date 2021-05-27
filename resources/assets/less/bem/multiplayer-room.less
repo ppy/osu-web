@@ -2,18 +2,39 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .multiplayer-room {
-  display: flex;
-  background-color: @beatmapset-panel-bg;
-  border-radius: @border-radius--large;
-  font-size: @font-size--normal;
+  --border-radius: @border-radius--large;
 
-  padding: 6px 20px;
+  display: flex;
+  font-size: @font-size--normal;
 
   margin-top: 10px;
   margin-bottom: 10px;
 
+  position: relative;
+
   &__chat-button {
     .reset-input();
+  }
+
+  &__content {
+    position: relative;
+    display: flex;
+    background: linear-gradient(0.25turn, hsl(var(--hsl-b2)), hsla(var(--hsl-b2), 0.8));
+    border-radius: var(--border-radius);
+
+    padding: 6px 20px;
+    width: 100%;
+  }
+
+  &__cover {
+    .full-size();
+    object-fit: cover;
+    border-radius: var(--border-radius);
+  }
+
+  &__cover-container {
+    .full-size();
+    display: flex
   }
 
   &__details {
@@ -26,6 +47,19 @@
   &__ends {
     font-size: @font-size--small;
     margin-bottom: 3px;
+  }
+
+  &__badge {
+    display: flex;
+    flex: 0;
+  }
+
+  &__map-count {
+    border-radius: 20px;
+    background-color: hsla(var(--hsl-b6), 0.75);
+    padding: 2px 10px;
+    font-weight: 600;
+    color: var(--group-colour, @osu-colour-c1);
   }
 
   &__name {
