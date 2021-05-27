@@ -524,8 +524,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
                 UserGroupEvent::logUserAdd($actor, $this, $group, $modes);
             } else {
                 $previousModes = $activeUserGroup->playmodes ?? [];
-                $modesAdded = array_diff($modes, $previousModes);
-                $modesRemoved = array_diff($previousModes, $modes);
+                $modesAdded = array_values(array_diff($modes, $previousModes));
+                $modesRemoved = array_values(array_diff($previousModes, $modes));
 
                 if ($modesAdded !== []) {
                     UserGroupEvent::logUserAddModes($actor, $this, $group, $modesAdded);
