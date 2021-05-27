@@ -26,7 +26,7 @@
     "laravel/slack-notification-channel": "^2.0",
     "laravel/tinker": "*",
     "laravelcollective/html": "*",
-    "league/commonmark": ">=0.16.0",
+    "league/commonmark": "^1.6",
     "league/flysystem-aws-s3-v3": "*",
     "league/fractal": "*",
     "league/html-to-markdown": "*",
