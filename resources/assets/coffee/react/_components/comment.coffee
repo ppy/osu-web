@@ -46,7 +46,7 @@ export class Comment extends React.PureComponent
     @xhr = {}
     @loadMoreRef = React.createRef()
 
-    if osu.isMobile()
+    if osuCore.windowSize.isMobile
       # There's no indentation on mobile so don't expand by default otherwise it will be confusing.
       expandReplies = false
     else if @props.comment.isDeleted

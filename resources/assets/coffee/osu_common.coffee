@@ -105,14 +105,6 @@
       false
 
 
-  isDesktop: ->
-    # sync with boostrap-variables @screen-sm-min
-    window.matchMedia('(min-width: 900px)').matches
-
-
-  isMobile: -> !osu.isDesktop()
-
-
   # mobile safari zooms in on focus of input boxes with font-size < 16px, this works around that
   focus: (el) =>
     el = $(el)[0] # so we can handle both jquery'd and normal dom nodes
