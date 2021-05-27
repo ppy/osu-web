@@ -5,12 +5,13 @@ import { pageChange } from 'utils/page-change';
 
 export default class ForumPostEdit {
   constructor() {
-    $(document).on('ajax:success', '.js-edit-post-start', this.start);
-    $(document).on('click', '.js-edit-post-cancel', this.cancel);
-    $(document).on('ajax:success', '.js-forum-post-edit', this.saved);
+    $(document)
+      .on('ajax:success', '.js-edit-post-start', this.handleEditStart)
+      .on('click', '.js-edit-post-cancel', this.handleCancel)
+      .on('ajax:success', '.js-forum-post-edit', this.handleEditSaved);
   }
 
-  private cancel = (e: JQuery.TriggeredEvent) => {
+  private handleCancel = (e: JQuery.TriggeredEvent) => {
     e.preventDefault();
 
     // clear before target is removed
@@ -24,25 +25,40 @@ export default class ForumPostEdit {
     pageChange();
   };
 
-  private saved = (e: JQuery.TriggeredEvent, data: string, status: string, xhr: JQuery.jqXHR) => {
-    // clear before target is removed
-    $.publish('forum-post-input:clear', [e.target]);
+  private handleEditSaved = (e: JQuery.TriggeredEvent, data: string) => {
+    const target: unknown = e.target;
 
-    // ajax:complete needs to be triggered early since the form (target) is
-    // removed in this callback.
-    $(e.target)
-      .trigger('ajax:complete', [xhr, status])
-      .parents('.js-forum-post').replaceWith(data);
+    // allow another callbacks to finish before replacing form with new post.
+    setTimeout(() => {
+      this.saved(target, data);
+    });
+  };
+
+  private handleEditStart = (e: JQuery.TriggeredEvent, data: string) => {
+    const target: unknown = e.target;
+
+    // allow another callbacks to finish before replacing post with form.
+    setTimeout(() => {
+      this.start(target, data);
+    });
+  };
+
+  private saved = (target: unknown, data: string) => {
+    if (!(target instanceof HTMLElement)) {
+      throw new Error('target must be instance of HTMLElement');
+    }
+
+    $(target).parents('.js-forum-post').replaceWith(data);
 
     pageChange();
   };
 
-  private start = (e: JQuery.TriggeredEvent, data: string, status: string, xhr: JQuery.jqXHR) => {
-    // ajax:complete needs to be triggered early because the link (target) is
-    // removed in this callback.
-    $(e.target).trigger('ajax:complete', [xhr, status]);
+  private start = (target: unknown, data: string) => {
+    if (!(target instanceof HTMLElement)) {
+      throw new Error('target must be instance of HTMLElement');
+    }
 
-    const $postBox = $(e.target).parents('.js-forum-post-edit--container');
+    const $postBox = $(target).parents('.js-forum-post-edit--container');
 
     $postBox
       .attr('data-original-post', $postBox.html())

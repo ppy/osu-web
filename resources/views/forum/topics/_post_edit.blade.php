@@ -6,7 +6,7 @@
     'url' => route('forum.posts.update', $post),
     'method' => 'patch',
     'data-remote' => true,
-    'class' => 'js-forum-post-edit forum-post-edit-box',
+    'class' => 'forum-post-edit-box js-forum-post-edit js-forum-post-input--form',
 ]) !!}
     @include('forum.topics._post_edit_form', [
         'content' => $post->bodyRaw,

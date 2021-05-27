@@ -17,10 +17,21 @@ export function getInputFromElement(element: unknown) {
 
 export default class ForumPostInput {
   constructor() {
-    $(document).on('input change', '.js-forum-post-input', this.onInput);
-    $(document).on('turbolinks:load', this.handlePageLoad);
+    $(document)
+      .on('input change', '.js-forum-post-input', this.onInput)
+      .on('turbolinks:load', this.handlePageLoad)
+      .on('ajax:success', '.js-forum-post-input--form', this.handlePostSaved);
     $.subscribe('forum-post-input:restore', this.handleRestore);
     $.subscribe('forum-post-input:clear', this.handleClear);
+  }
+
+  private clearInput(input: HTMLTextAreaElement | undefined) {
+    if (input == null) return;
+
+    const key = this.getKeyFromInput(input);
+    if (key == null) return;
+
+    localStorage.removeItem(key);
   }
 
   private getKeyFromInput(input: HTMLTextAreaElement) {
@@ -28,19 +39,17 @@ export default class ForumPostInput {
   }
 
   private handleClear = (e: unknown, element: unknown) => {
-    const input = getInputFromElement(element);
-    if (input == null) return;
-
-    const key = this.getKeyFromInput(input);
-    if (key == null) return;
-
-    localStorage.removeItem(key);
+    this.clearInput(getInputFromElement(element));
   };
 
   private handlePageLoad = () => {
     for (const element of document.querySelectorAll('.js-forum-post-input')) {
       this.handleRestore(null, element);
     }
+  };
+
+  private handlePostSaved = (e: JQuery.TriggeredEvent) => {
+    this.clearInput(getInputFromElement(e.target));
   };
 
   private handleRestore = (e: unknown, element: unknown) => {

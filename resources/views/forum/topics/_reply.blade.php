@@ -24,7 +24,7 @@
 <div class="js-forum-topic-reply--container js-sync-height--target forum-topic-reply" data-sync-height-id="forum-topic-reply">
     {!! Form::open([
         'url' => route('forum.topics.reply', $topic->getKey()),
-        'class' => 'osu-page osu-page--forum-topic-reply js-forum-topic-reply js-sync-height--reference js-fixed-element',
+        'class' => 'osu-page osu-page--forum-topic-reply js-forum-post-input--form js-forum-topic-reply js-sync-height--reference js-fixed-element',
         'data-remote' => true,
         'data-sync-height-target' => 'forum-topic-reply',
         'data-force-reload' => Auth::check() ? '0' : '1',
