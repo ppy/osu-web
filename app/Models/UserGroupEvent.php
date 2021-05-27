@@ -36,13 +36,12 @@ class UserGroupEvent extends Model
         'hidden' => 'boolean',
     ];
 
-    public static function logGroupRename(?User $actor, Group $group, string $oldName, string $newName): self
+    public static function logGroupRename(?User $actor, Group $group, string $previousName, string $name): self
     {
         return static::log($actor, static::GROUP_RENAME, null, $group, [
             'details' => [
-                'group_name' => null,
-                'new_name' => $newName,
-                'old_name' => $oldName,
+                'group_name' => $name,
+                'previous_group_name' => $previousName,
             ],
         ]);
     }
