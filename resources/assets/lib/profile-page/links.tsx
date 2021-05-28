@@ -112,7 +112,7 @@ const textMapping: Record<TextKey, (user: UserJsonExtended) => StringWithCompone
     }
 
     return {
-      mappings: { ':date': <TimeWithTooltip key='date' dateTime={user.last_visit ?? ''} /> },
+      mappings: { ':date': <TimeWithTooltip key='date' dateTime={user.last_visit ?? ''} relative /> },
       pattern: osu.trans('users.show.lastvisit'),
     };
   },
