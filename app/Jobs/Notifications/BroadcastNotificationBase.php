@@ -78,8 +78,6 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
     private static function applyDeliverySettings(array $userIds)
     {
-        static $defaults = ['mail' => true, 'push' => true];
-
         if (static::NOTIFICATION_OPTION_NAME !== null) {
             $notificationOptionsQuery = UserNotificationOption
                 ::where(['name' => static::NOTIFICATION_OPTION_NAME])
@@ -99,10 +97,10 @@ abstract class BroadcastNotificationBase implements ShouldQueue
             }
 
             foreach ($chunkedUserIds as $userId) {
-                $details = $notificationOptions[$userId]->details ?? $defaults;
+                $details = $notificationOptions[$userId]->details ?? UserNotificationOption::DELIVERY_MODE_DEFAULTS;
                 $delivery = 0;
                 foreach (UserNotification::DELIVERY_OFFSETS as $type => $_offset) {
-                    if ($details[$type] ?? $defaults[$type]) {
+                    if ($details[$type] ?? UserNotificationOption::DELIVERY_MODE_DEFAULTS[$type]) {
                         $delivery |= UserNotification::deliveryMask($type);
                     }
                 }
