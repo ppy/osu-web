@@ -30,7 +30,8 @@ class WikiController extends Controller
      *
      * Returns [WikiPage](#wikipage).
      *
-     * @urlParam path string required The path name of the wiki page.
+     * @urlParam locale string required Two-letter language code of the wiki page. Example: en
+     * @urlParam path string required The path name of the wiki page. Example: Welcome
      */
     public function show($locale = null, $path = null)
     {
