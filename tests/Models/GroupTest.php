@@ -34,11 +34,11 @@ class GroupTest extends TestCase
         $this->assertSame($this->getGroupRenameEventCount($group), $groupRenameEventCount);
     }
 
-    public function testRefreshCacheOnSave()
+    public function testResetCacheOnSave()
     {
         $previousCacheVersion = cache()->get('groups_local_cache_version');
 
-        factory(Group::class)->create();
+        Group::create(['group_desc' => '']);
 
         $this->assertNotSame($previousCacheVersion, cache()->get('groups_local_cache_version'));
     }
