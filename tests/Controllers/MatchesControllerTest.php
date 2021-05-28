@@ -5,8 +5,8 @@
 
 namespace Tests\Controllers;
 
-use App\Models\Match\Event;
-use App\Models\Match\Match;
+use App\Models\LegacyMatch\Event;
+use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\User;
 use Tests\TestCase;
 
@@ -94,13 +94,13 @@ class MatchesControllerTest extends TestCase
 
         $this->user = factory(User::class)->create();
 
-        $this->publicMatch = factory(Match::class)->create();
+        $this->publicMatch = factory(LegacyMatch::class)->create();
         factory(Event::class)->states('create')->create([
             'match_id' => $this->publicMatch->match_id,
         ]);
         $this->publicMatchRoute = route('matches.show', $this->publicMatch->match_id);
 
-        $this->privateMatch = factory(Match::class)->states('private')->create();
+        $this->privateMatch = factory(LegacyMatch::class)->states('private')->create();
         factory(Event::class)->states('create')->create([
             'match_id' => $this->privateMatch->match_id,
         ]);

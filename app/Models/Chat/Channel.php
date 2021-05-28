@@ -8,7 +8,7 @@ namespace App\Models\Chat;
 use App\Exceptions\API;
 use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\ChannelMessage;
-use App\Models\Match\Match;
+use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
 use App\Traits\Memoizes;
@@ -247,7 +247,7 @@ class Channel extends Model
 
     public function multiplayerMatch()
     {
-        return $this->belongsTo(Match::class, 'match_id');
+        return $this->belongsTo(LegacyMatch::class, 'match_id');
     }
 
     public function pmTargetFor(User $user)

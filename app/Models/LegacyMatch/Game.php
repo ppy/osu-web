@@ -3,7 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Models\Match;
+namespace App\Models\LegacyMatch;
 
 use App\Libraries\ModsHelper;
 use App\Models\Beatmap;
@@ -14,7 +14,7 @@ use App\Models\Beatmap;
  * @property \Carbon\Carbon|null $end_time
  * @property \Illuminate\Database\Eloquent\Collection $events Event
  * @property int $game_id
- * @property Match $match
+ * @property LegacyMatch $legacyMatch
  * @property int|null $match_id
  * @property int|null $match_type
  * @property mixed $mode
@@ -64,9 +64,9 @@ class Game extends Model
         return $this->hasMany(Event::class);
     }
 
-    public function match()
+    public function legacyMatch()
     {
-        return $this->belongsTo(Match::class, 'match_id');
+        return $this->belongsTo(LegacyMatch::class, 'match_id');
     }
 
     public function beatmap()

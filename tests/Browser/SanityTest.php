@@ -136,8 +136,8 @@ class SanityTest extends DuskTestCase
             ]);
 
             // factory for matches
-            self::$scaffolding['match'] = factory(\App\Models\Match\Match::class)->create();
-            self::$scaffolding['event'] = factory(\App\Models\Match\Event::class)->states('join')->create([
+            self::$scaffolding['match'] = factory(\App\Models\LegacyMatch\LegacyMatch::class)->create();
+            self::$scaffolding['event'] = factory(\App\Models\LegacyMatch\Event::class)->states('join')->create([
                 'match_id' => self::$scaffolding['match']->getKey(),
             ]);
 
