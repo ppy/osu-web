@@ -412,6 +412,20 @@ function markdown($input, $preset = 'default')
     return $converter[$preset]->load($input)->html();
 }
 
+function markdown_plain($input)
+{
+    static $converter;
+
+    if (!isset($converter)) {
+        $converter = new League\CommonMark\CommonMarkConverter([
+            'allow_unsafe_links' => false,
+            'html_input' => 'escape',
+        ]);
+    }
+
+    return $converter->convertToHtml($input);
+}
+
 function max_offset($page, $limit)
 {
     $offset = ($page - 1) * $limit;

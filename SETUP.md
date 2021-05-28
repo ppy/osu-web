@@ -283,7 +283,7 @@ docker-compose run --rm php test js
 # Documentation
 
 ```bash
-$ php artisan apidoc:generate
+$ php artisan scribe:generate
 ```
 
 Documentation will be generated in the `docs` folder in both html and markdown formats.
