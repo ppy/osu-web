@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => '検索',
             'deleted' => '削除されたディスカッションを含める',
+            'mode' => 'ビートマップモード',
             'only_unresolved' => '未解決のディスカッションのみ表示',
             'types' => 'メッセージの種類',
             'username' => 'ユーザー名',
@@ -55,6 +56,13 @@ return [
         'confirm' => '私が知りたいことに関する投稿はまだありません',
         'notice' => ':timestamp付近に他の投稿(:existing_timestamps)があります。投稿する前に確認してください。',
         'unsaved' => ':count 個がこのレビューにあります',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [

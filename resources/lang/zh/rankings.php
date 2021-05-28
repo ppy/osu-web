@@ -20,7 +20,7 @@ return [
     'type' => [
         'charts' => '月赛',
         'country' => '国家和地区',
-        'multiplayer' => '多人游戏',
+        'multiplayer' => '聚光灯',
         'performance' => '表现',
         'score' => '总分',
     ],
@@ -42,8 +42,8 @@ return [
         'ranked_score' => 'Ranked 总分',
         'average_score' => '平均得分',
         'average_performance' => '平均表现',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];

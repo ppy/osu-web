@@ -5,9 +5,11 @@
 
 namespace App\Models;
 
+use App\Events\NotificationDeleteEvent;
 use App\Events\NotificationReadEvent;
-use App\Exceptions\InvariantException;
+use App\Libraries\Notification\BatchIdentities;
 use DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class UserNotification extends Model
 {
@@ -20,85 +22,93 @@ class UserNotification extends Model
         'is_read' => 'boolean',
     ];
 
-    public static function deliveryMask(string $type): int
+    public static function batchDestroy(User $user, BatchIdentities $batchIdentities)
     {
-        return 1 << self::DELIVERY_OFFSETS[$type];
-    }
+        $notificationIds = $batchIdentities->getNotificationIds();
+        $identities = $batchIdentities->getIdentities();
 
-    public static function markAsReadByIds(User $user, array $params)
-    {
-        $ids = [];
-        $identities = array_map(function ($param) use (&$ids) {
-            $identity = get_params($param, null, [
-                'category',
-                'id:int',
-                'object_id:int',
-                'object_type',
-            ]);
-
-            $ids[] = $identity['id'] ?? null;
-
-            return $identity;
-        }, $params);
+        if (empty($notificationIds)) {
+            return;
+        }
 
         $now = now();
-        $count = $user
+        // obtain and filter valid user notification ids
+        $ids = $user
             ->userNotifications()
-            ->hasPushDelivery()
-            ->where('is_read', false)
-            ->whereIn('notification_id', $ids)
-            ->update(['is_read' => true, 'updated_at' => $now]);
+            ->whereIn('notification_id', $notificationIds)
+            ->where('created_at', '<=', $now)
+            ->pluck('id')
+            ->all();
+
+        if (empty($ids)) {
+            return;
+        }
+
+        $readCount = 0;
+
+        foreach (array_chunk($ids, 1000) as $chunkedIds) {
+            $unreadCountQuery = $user
+                ->userNotifications()
+                ->hasPushDelivery()
+                ->where('is_read', false)
+                ->whereIn('id', $chunkedIds);
+            $unreadCountInitial = $unreadCountQuery->count();
+            $user
+                ->userNotifications()
+                ->whereIn('id', $chunkedIds)
+                ->delete();
+
+            $unreadCountCurrent = $unreadCountQuery->count();
+            $readCount += $unreadCountInitial - $unreadCountCurrent;
+        }
+
+        event(new NotificationDeleteEvent($user->getKey(), [
+            'notifications' => $identities,
+            'read_count' => $readCount,
+            'timestamp' => $now,
+        ]));
+    }
+
+    public static function batchMarkAsRead(User $user, BatchIdentities $batchIdentities)
+    {
+        $ids = $batchIdentities->getNotificationIds();
+        $identities = $batchIdentities->getIdentities();
+        $now = now();
+
+        if (empty($ids)) {
+            return;
+        } else if ($ids instanceof Builder) {
+            $instance = new static();
+            $tableName = $instance->getTable();
+            // force mysql optimizer to optimize properly with a fake multi-table update
+            // https://dev.mysql.com/doc/refman/8.0/en/subquery-optimization.html
+            // FIXME: this is supposedly fixed by mysql 8.0.22
+            $itemsQuery = $instance->getConnection()
+                ->table(DB::raw("{$tableName}, (SELECT 1) dummy"))
+                ->where('user_id', $user->getKey())
+                ->where('is_read', false)
+                ->whereIn('notification_id', $ids);
+            // raw builder doesn't have model scope magic.
+            $instance->scopeHasPushDelivery($itemsQuery);
+
+            $count = $itemsQuery->update(['is_read' => true, 'updated_at' => $now]);
+        } else {
+            $count = $user
+                ->userNotifications()
+                ->hasPushDelivery()
+                ->where('is_read', false)
+                ->whereIn('notification_id', $ids)
+                ->update(['is_read' => true, 'updated_at' => $now]);
+        }
 
         if ($count > 0) {
             event(new NotificationReadEvent($user->getKey(), ['notifications' => $identities, 'read_count' => $count, 'timestamp' => $now]));
         }
     }
 
-    public static function markAsReadByNotificationIdentifier(User $user, array $params)
+    public static function deliveryMask(string $type): int
     {
-        $params = get_params($params, null, [
-            'category',
-            'object_id:int',
-            'object_type',
-        ]);
-
-        $category = presence($params['category'] ?? null);
-        $objectId = $params['object_id'] ?? null;
-        $objectType = presence($params['object_type'] ?? null);
-
-        $notifications = Notification::query();
-        if ($objectType !== null) {
-            $notifications->where('notifiable_type', $objectType);
-        }
-
-        if ($objectId !== null && $category !== null) {
-            if ($objectType === null) {
-                throw new InvariantException('object_type is required.');
-            }
-
-            $names = Notification::namesInCategory($category);
-            $notifications
-                ->where('notifiable_id', $objectId)
-                ->whereIn('name', $names);
-        }
-
-        $instance = new static();
-        $tableName = $instance->getTable();
-        // force mysql optimizer to optimize properly with a fake multi-table update
-        // https://dev.mysql.com/doc/refman/8.0/en/subquery-optimization.html
-        $itemsQuery = $instance->getConnection()
-            ->table(DB::raw("{$tableName}, (SELECT 1) dummy"))
-            ->where('user_id', $user->getKey())
-            ->where('is_read', false)
-            ->whereIn('notification_id', $notifications->select('id'));
-        // raw builder doesn't have model scope magic.
-        $instance->scopeHasPushDelivery($itemsQuery);
-
-        $now = now();
-        $count = $itemsQuery->update(['is_read' => true, 'updated_at' => $now]);
-        if ($count > 0) {
-            event(new NotificationReadEvent($user->getKey(), ['notifications' => [$params], 'read_count' => $count, 'timestamp' => $now]));
-        }
+        return 1 << self::DELIVERY_OFFSETS[$type];
     }
 
     public function isDelivery(string $type): bool

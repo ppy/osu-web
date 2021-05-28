@@ -6,27 +6,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Transformers\UserCompactTransformer;
 
 class GroupsController extends Controller
 {
     public function show($id)
     {
         $group = Group::visible()->findOrFail($id);
-        $currentMode = studly_case(default_mode());
+        $currentMode = default_mode();
 
         $users = $group->users()
-            ->with('statistics'.$currentMode)
+            ->with('statistics'.studly_case($currentMode))
             ->eagerloadForListing()
             ->default()
             ->orderBy('username', 'asc')
             ->get();
 
-        $groupJson = $group->only('group_name', 'group_desc');
-        $usersJson = json_collection($users, 'UserCompact', [
-            'cover',
+        $groupJson = $group->only('group_name', 'group_desc', 'has_playmodes');
+        $transformer = new UserCompactTransformer();
+        $transformer->mode = $currentMode;
+        $usersJson = json_collection($users, $transformer, [
             'country',
-            'current_mode_rank',
+            'cover',
             'groups',
+            'statistics',
             'support_level',
         ]);
 

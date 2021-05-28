@@ -58,22 +58,21 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
     public function getNotificationType()
     {
-        static $ignored_statuses = ['masspay', 'new_case'];
-        static $payment_statuses = ['Completed'];
-        static $refund_statuses = ['Refunded', 'Reversed', 'Canceled_Reversal'];
-        static $pending_statuses = ['Pending'];
-        static $rejected_statuses = ['Declined', 'Denied', 'Expired', 'Failed', 'Voided'];
+        static $paymentStatuses = ['Completed'];
+        static $refundStatuses = ['Refunded', 'Reversed', 'Canceled_Reversal'];
+        static $pendingStatuses = ['Pending'];
+        static $rejectedStatuses = ['Declined', 'Denied', 'Expired', 'Failed', 'Voided'];
 
         $status = $this->getNotificationTypeRaw();
-        if (in_array($status, $payment_statuses, true)) {
+        if (in_array($status, $paymentStatuses, true)) {
             return NotificationType::PAYMENT;
-        } elseif (in_array($status, $refund_statuses, true)) {
+        } elseif (in_array($status, $refundStatuses, true)) {
             return NotificationType::REFUND;
-        } elseif (in_array($status, $pending_statuses, true)) {
+        } elseif (in_array($status, $pendingStatuses, true)) {
             return NotificationType::PENDING;
-        } elseif (in_array($status, $rejected_statuses, true)) {
+        } elseif (in_array($status, $rejectedStatuses, true)) {
             return NotificationType::REJECTED;
-        } elseif (in_array($status, $ignored_statuses, true)) {
+        } elseif ($this->shouldIgnore($status)) {
             return NotificationType::IGNORED;
         } else {
             return "unknown__{$status}";
@@ -141,30 +140,20 @@ class PaypalPaymentProcessor extends PaymentProcessor
      */
     protected function getOrder()
     {
-        if (!isset($this->order)) {
+        return $this->memoize(__FUNCTION__, function () {
             // Order number can come from anywhere when paypal is involved /tableflip.
             // Attempt to find order number, else fallback to paypal's parent transaction ID for refunds,
             //  since the IPN might not include the invoice id.
-            if ($this->getNotificationType() === NotificationType::REFUND) {
-                if ($this->getOrderNumber() === null) {
-                    $order = Order::withPayments()
-                        ->wherePaymentTransactionId($this['parent_txn_id'], Order::PROVIDER_PAYPAL)
-                        ->first();
-                } else {
-                    $order = Order::withPayments()
-                        ->whereOrderNumber($this->getOrderNumber())
-                        ->first();
-                }
-            } else {
-                $order = Order::withPayments()
-                    ->whereOrderNumber($this->getOrderNumber())
+            if ($this->getNotificationType() === NotificationType::REFUND && $this->getOrderNumber() === null) {
+                return Order::withPayments()
+                    ->wherePaymentTransactionId($this['parent_txn_id'], Order::PROVIDER_PAYPAL)
                     ->first();
             }
 
-            $this->order = [$order];
-        }
-
-        return $this->order[0];
+            return Order::withPayments()
+                ->whereOrderNumber($this->getOrderNumber())
+                ->first();
+        });
     }
 
     private function isPaymentOrPending()
@@ -172,6 +161,14 @@ class PaypalPaymentProcessor extends PaymentProcessor
         static $types = [NotificationType::PAYMENT, NotificationType::PENDING];
 
         return in_array($this->getNotificationType(), $types, true);
+    }
+
+    private function shouldIgnore($status)
+    {
+        static $ignoredStatuses = ['new_case'];
+
+        return in_array($status, $ignoredStatuses, true)
+            || $this['txn_type'] === 'masspay'; // masspay may have payment_status set.
     }
 
     /**

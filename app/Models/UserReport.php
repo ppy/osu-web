@@ -44,6 +44,7 @@ class UserReport extends Model
         MorphMap::MAP[Best\Osu::class] => self::SCORE_TYPE_REASONS,
         MorphMap::MAP[Best\Taiko::class] => self::SCORE_TYPE_REASONS,
         MorphMap::MAP[Comment::class] => self::POST_TYPE_REASONS,
+        MorphMap::MAP[Forum\Post::class] => self::POST_TYPE_REASONS,
     ];
 
     const CREATED_AT = 'timestamp';
@@ -67,7 +68,11 @@ class UserReport extends Model
 
     public function routeNotificationForSlack(?Notification $_notification): ?string
     {
-        return config('osu.user_report_notification.endpoint');
+        if ($this->reason === 'Cheating') {
+            return config('osu.user_report_notification.endpoint_cheating');
+        } else {
+            return config('osu.user_report_notification.endpoint_moderation');
+        }
     }
 
     public function score()

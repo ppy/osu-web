@@ -17,6 +17,7 @@ interface Props {
 
 export default class EditorBeatmapSelector extends React.Component<Props> {
   static contextType = SlateContext;
+  declare context: React.ContextType<typeof SlateContext>;
 
   render(): React.ReactNode {
     const menuOptions: MenuItem[] = [];
@@ -49,11 +50,9 @@ export default class EditorBeatmapSelector extends React.Component<Props> {
   }
 
   select = (id: string) => {
-    const beatmapId = id !== 'all' ? parseInt(id, 10) : 'all';
+    const beatmapId = id !== 'all' ? parseInt(id, 10) : undefined;
 
-    if (beatmapId) {
-      const path = ReactEditor.findPath(this.context, this.props.element);
-      Transforms.setNodes(this.context, {beatmapId}, {at: path});
-    }
-  }
+    const path = ReactEditor.findPath(this.context, this.props.element);
+    Transforms.setNodes(this.context, {beatmapId}, {at: path});
+  };
 }

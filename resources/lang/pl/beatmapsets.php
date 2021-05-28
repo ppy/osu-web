@@ -8,6 +8,11 @@ return [
         'disabled' => 'Nie możesz pobrać tej beatmapy.',
         'parts-removed' => 'Ta beatmapa została usunięta za prośbą twórcy materiałów w niej użytych.',
         'more-info' => 'Kliknij tutaj, aby dowiedzieć się więcej.',
+        'rule_violation' => 'Część zawartości tej beatmapy została usunięta po uznaniu jej za nieodpowiednią do użycia w osu!.',
+    ],
+
+    'download' => [
+        'limit_exceeded' => 'Zwolnij, pograj więcej!',
     ],
 
     'index' => [
@@ -16,6 +21,8 @@ return [
     ],
 
     'panel' => [
+        'empty' => 'brak beatmap',
+
         'download' => [
             'all' => 'pobierz',
             'video' => 'pobierz z wideo',
@@ -24,11 +31,31 @@ return [
         ],
     ],
 
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => 'Nie posiadasz uprawnień do nominowania beatmap dla tych trybów (:mode)',
+        'full_bn_required' => 'Musisz posiadać pełne uprawnienia nominatora, by zakwalifikować tę beatmapę.',
+        'too_many' => 'Osiągnięto już wystarczającą liczbę nominacji.',
+
+        'dialog' => [
+            'confirmation' => 'Czy na pewno chcesz nominować tę beatmapę?',
+            'header' => 'Nominuj beatmapę',
+            'hybrid_warning' => '',
+            'which_modes' => 'Dla jakich trybów chcesz nominować tę beatmapę?',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Dla pełnoletnich',
+    ],
+
     'show' => [
         'discussion' => 'Dyskusja',
 
         'details' => [
+            'by_artist' => ':artist',
             'favourite' => 'Dodaj do ulubionych',
+            'favourite_login' => 'Zaloguj się, by dodać tę beatmapę do ulubionych',
             'logged-out' => 'Zaloguj się, aby zacząć pobierać beatmapy!',
             'mapped_by' => 'autorstwa :mapper',
             'unfavourite' => 'Usuń z ulubionych',
@@ -36,7 +63,7 @@ return [
 
             'download' => [
                 '_' => 'Pobierz',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'bez wideo',
                 'video' => 'z wideo',
             ],
@@ -89,10 +116,24 @@ return [
             'genre' => 'Gatunek',
             'language' => 'Język',
             'no_scores' => 'Dane są nadal ładowane...',
+            'nsfw' => 'Treść dla pełnoletnich',
             'points-of-failure' => 'Wykres porażek',
             'source' => 'Źródło',
+            'storyboard' => 'Ta beatmapa zawiera scenorys',
             'success-rate' => 'Wskaźnik ukończonych zagrań',
             'tags' => 'Tagi',
+            'video' => 'Ta beatmapa zawiera wideo w tle',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => 'Treść dla pełnoletnich',
+
+            'buttons' => [
+                'disable' => 'Wyłącz ostrzeżenia',
+                'listing' => 'Wróć do listy beatmap',
+                'show' => 'Pokaż',
+            ],
         ],
 
         'scoreboard' => [
@@ -110,7 +151,7 @@ return [
                 'miss' => 'Pudła',
                 'mods' => 'Modyfikatory',
                 'player' => 'Gracz',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Pozycja',
                 'score_total' => 'Wynik',
                 'score' => 'Wynik',

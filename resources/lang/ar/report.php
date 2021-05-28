@@ -14,6 +14,11 @@ return [
         'title' => 'الاِبلاغ عن تعليق :username؟',
     ],
 
+    'forum_post' => [
+        'button' => 'إبلاغ',
+        'title' => 'الاِبلاغ عن منشور :username؟',
+    ],
+
     'scores' => [
         'button' => 'الاِبلاغ عن النتيجة',
         'title' => 'الاِبلاغ عن نتيجة :username ؟',

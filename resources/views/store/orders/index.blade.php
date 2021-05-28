@@ -51,6 +51,7 @@
                             data-order-id="{{ $order->getKey() }}"
                             data-provider="{{ $order->getPaymentProvider() }}"
                             data-provider-reference="{{ $order->getProviderReference() }}"
+                            data-status="{{ $order->status }}"
                         >
                             {{ $order->status === 'processing' ? trans('store.order.resume') : trans('store.order.invoice') }}
                         </button>
@@ -59,8 +60,22 @@
                             class="js-store-resume-checkout btn-osu-big btn-osu-big--rounded-thin"
                             data-order-id="{{ $order->getKey() }}"
                             data-provider="{{ $order->getPaymentProvider() }}"
+                            data-status="{{ $order->status }}"
                         >
                             {{ trans('store.order.invoice') }}
+                        </button>
+                    @endif
+
+                    @if ($order->canUserCancel())
+                        <button
+                            class="btn-osu-big btn-osu-big--rounded-thin btn-osu-big--danger"
+                            data-confirm="{{ trans('store.order.cancel_confirm') }}"
+                            data-method="DELETE"
+                            data-url="{{ route('store.orders.destroy', $order) }}"
+                            data-reload-on-success="1"
+                            data-remote="1"
+                        >
+                            {{ trans('store.order.cancel') }}
                         </button>
                     @endif
                 </div>

@@ -14,6 +14,11 @@ return [
         'title' => 'Reportoi :username\'n kommentti?',
     ],
 
+    'forum_post' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Ilmianna pisteet',
         'title' => 'Ilmiannetaanko käyttäjän :username pisteet?',

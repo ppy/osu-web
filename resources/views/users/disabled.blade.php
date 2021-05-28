@@ -21,7 +21,7 @@
                         'href' => osu_url('user.rules'),
                     ], trans('users.disabled.reasons.tos.community_rules')),
                     'tos' => tag('a', [
-                        'href' => route('legal', 'terms'),
+                        'href' => route('legal', ['locale' => app()->getLocale(), 'path' => 'terms']),
                     ], trans('users.disabled.reasons.tos.tos')),
                 ]) !!}
             </li>

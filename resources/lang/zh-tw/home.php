@@ -36,7 +36,7 @@ return [
         'forum_post' => [
             'all' => '所有論壇',
             'link' => '在論壇中搜尋',
-            'login_required' => '',
+            'login_required' => '登入以搜尋論壇',
             'more_simple' => '查看更多搜尋結果',
             'title' => '論壇',
 
@@ -76,9 +76,9 @@ return [
         'action' => '下載 osu!',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => '如果您在啟動遊戲或註冊帳號時遇到問題，請:help_forum_link或:support_button。',
+            'help_forum_link' => '查看幫助論壇',
+            'support_button' => '聯絡支援團隊',
         ],
 
         'os' => [

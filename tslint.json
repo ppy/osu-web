@@ -14,11 +14,12 @@
       "spaces"
     ],
     "interface-name": false,
+    "jsx-boolean-value": [true, "never"],
     "jsx-no-multiline-js": false,
     "object-literal-sort-keys": {
       "options": "ignore-case"
     },
-    "quotemark": [true, "single"],
+    "quotemark": [true, "single", "avoid-escape"],
     "max-line-length": false,
     "member-access": [true, "no-public"],
     "member-ordering": [
@@ -53,6 +54,11 @@
     "no-console": {
       "severity": "warning"
     },
+    "semicolon": [
+      true,
+      "always",
+      "ignore-bound-class-methods"
+    ],
     "triple-equals": [
       true,
       "allow-null-check"

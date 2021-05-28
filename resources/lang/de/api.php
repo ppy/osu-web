@@ -6,14 +6,23 @@
 return [
     'error' => [
         'chat' => [
-            'empty' => 'Leere Nachricht kann nicht gesendet werden.',
+            'empty' => 'Du kannst keine leeren Nachrichten senden.',
             'limit_exceeded' => 'Du sendest zu viele Nachrichten! Bitte warte kurz, bevor du es erneut versuchst.',
             'too_long' => 'Die Nachricht, die du versuchst zu senden, ist zu lang.',
         ],
     ],
 
     'scopes' => [
+        'bot' => 'Als Chat-Bot agieren.',
         'identify' => 'Dich identifizieren und dein öffentliches Profil lesen.',
+
+        'chat' => [
+            'write' => 'Nachrichten unter deinem Namen versenden.',
+        ],
+
+        'forum' => [
+            'write' => 'Forenthreads und -beiträge in deinem Namen erstellen und bearbeiten.',
+        ],
 
         'friends' => [
             'read' => 'Sehen, wem du folgst.',

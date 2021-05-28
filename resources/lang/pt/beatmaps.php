@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => 'recusar kudosu',
         'edit' => 'editar',
         'edited' => 'Editado pela última vez por :editor :update_time.',
+        'guest' => '',
         'kudosu_denied' => 'Estás recusado de obter kudosu.',
         'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi eliminada por isso poderá não ser mais discutida.',
         'message_placeholder_locked' => 'A discussão para este beatmap foi desativada.',
@@ -188,12 +189,18 @@ return [
         'nominate_confirm' => 'Pretendes nomear este beatmap?',
         'nominated_by' => 'nomeado por :users',
         'not_enough_hype' => "Não há hype suficiente.",
-        'qualified' => 'Estimado para ser classificado em :date, se não forem encontrados problemas.',
-        'qualified_soon' => 'Estimado para ser classificado em breve, se não forem encontrados problemas.',
+        'remove_from_loved' => 'Removido de Adorado',
+        'remove_from_loved_prompt' => 'Motivo pela remoção de Adorado:',
         'required_text' => 'Nomeações: :current/:required',
         'reset_message_deleted' => 'apagado',
         'title' => 'Estado da nomeação',
         'unresolved_issues' => 'Existem problemas ainda não resolvidos que devem ser abordados primeiro.',
+
+        'rank_estimate' => [
+            '_' => 'Este mapa está estimado a ser classificado em :date se não forem descobertos quaisquer problemas. Está em #:position na :queue.',
+            'queue' => 'fila de classificação',
+            'soon' => 'em breve',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Processo de nomeação redefinido :time_ago por :user com um novo problema :discussion (:message).',
@@ -215,14 +222,15 @@ return [
             'not-found' => 'sem resultados',
             'not-found-quote' => '... não, nada encontrado.',
             'filters' => [
+                'extra' => 'extra',
                 'general' => 'Geral',
-                'mode' => 'Modo',
-                'status' => 'Categorias',
                 'genre' => 'Género',
                 'language' => 'Língua',
-                'extra' => 'extra',
-                'rank' => 'Classificação alcançada',
+                'mode' => 'Modo',
+                'nsfw' => 'Mapas explícitos',
                 'played' => 'Jogado',
+                'rank' => 'Classificação alcançada',
+                'status' => 'Categorias',
             ],
             'sorting' => [
                 'title' => 'Título',
@@ -243,10 +251,12 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Dificuldade recomendada',
         'converts' => 'Incluir beatmaps convertidos',
+        'follows' => 'Mapeadores subscritos',
+        'recommended' => 'Dificuldade recomendada',
     ],
     'mode' => [
+        'all' => 'Todos',
         'any' => 'Qualquer',
         'osu' => '',
         'taiko' => '',
@@ -296,19 +306,19 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
-        'MR' => 'Link alternativo',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
         'V2' => 'Pontuação V2',
     ],
     'language' => [
-        'any' => '',
+        'any' => 'Qualquer',
         'english' => 'Inglês',
         'chinese' => 'Chinês',
         'french' => 'Francês',
@@ -324,6 +334,12 @@ return [
         'other' => 'Outro',
         'unspecified' => 'Não especificada',
     ],
+
+    'nsfw' => [
+        'exclude' => 'Ocultar',
+        'include' => 'Mostrar',
+    ],
+
     'played' => [
         'any' => 'Qualquer',
         'played' => 'Jogado',

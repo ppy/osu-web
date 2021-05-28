@@ -47,11 +47,13 @@ return [
         'confirm_restore' => 'Bạn muốn phục hồi bài viết?',
         'edited' => 'Chỉnh sửa lần cuối bởi :user :when, đã chỉnh sửa tổng cộng :count lần.',
         'posted_at' => 'đăng vào :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Xóa bài viết',
-            'restore' => 'Phục hồi bài viết',
             'edit' => 'Chỉnh sửa bài viết',
+            'report' => '',
+            'restore' => 'Phục hồi bài viết',
         ],
 
         'create' => [
@@ -62,7 +64,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited bài đăng',
-            'topic_starter' => 'Chủ đề mở đầu',
+            'topic_starter' => 'Người tạo topic',
         ],
     ],
 
@@ -73,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'chủ đề đã xóa',
         'go_to_latest' => 'xem bài viết mới nhất',
         'has_replied' => 'Bạn đã trả lời topic này',
@@ -86,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'bởi :user',
         'started_by_verbose' => 'bắt đầu bởi :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'Đóng',

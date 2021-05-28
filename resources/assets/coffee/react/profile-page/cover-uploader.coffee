@@ -45,7 +45,7 @@ export class CoverUploader extends React.Component
       done: (_e, data) ->
         $.publish 'user:update', data.result
 
-      fail: osu.fileuploadFailCallback(@$uploadButton)
+      fail: _exported.fileuploadFailCallback
 
       complete: ->
         $.publish 'user:cover:upload:state', false

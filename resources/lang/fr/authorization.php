@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Vous avez atteint la limite quotidienne de nominations, veuillez réessayer demain.',
-            'full_bn_required' => 'Vous devez être un Beatmap Nominator avec toutes les autorisations pour effectuer cette qualification.',
-            'full_bn_required_hybrid' => 'Vous devez être un Beatmap Nominator avec toutes les autorisations pour ajouter une nomination sur des beatmapsets avec plusieurs modes de jeu.',
             'incorrect_state' => 'Une erreur est survenue lors de l’exécution de cette action, essayez d’actualiser la page.',
             'owner' => "Vous ne pouvez pas nominer votre propre beatmap.",
             'set_metadata' => 'Veuillez définir le genre et la langue de cette musique avant de nominer cette beatmap.',
@@ -29,7 +27,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Seul le propriétaire de la beatmap ou un membre du groupe BN/QAT peut poster des notes sur cette beatmap.',
+            'mapper_note_wrong_user' => 'Seul le propriétaire de la beatmap ou le nominateur/membre du groupe NAT peut publier des notes sur le mapper.',
         ],
 
         'vote' => [
@@ -54,7 +52,7 @@ return [
         ],
 
         'store' => [
-            'beatmapset_locked' => 'La discussion de cette beatmap a été bloquée.',
+            'beatmapset_locked' => 'Cette beatmap est verrouillée pour la discussion.',
         ],
     ],
 
@@ -70,6 +68,7 @@ return [
         'moderated' => 'Ce canal est actuellement modéré.',
         'no_access' => 'Vous n’avez pas accès à ce canal.',
         'restricted' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
+        'silenced' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
     ],
 
     'comment' => [
@@ -80,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Vous ne pouvez pas changer votre vote une fois la période de vote terminée.',
+
+        'entry' => [
+            'limit_reached' => 'Vous avez atteint la limite d\'entrée pour ce concours',
+            'over' => 'Merci pour vos inscriptions ! Les soumissions sont fermées pour ce concours et le vote va bientôt ouvrir.',
+        ],
     ],
 
     'forum' => [
@@ -89,7 +93,7 @@ return [
 
         'post' => [
             'delete' => [
-                'only_last_post' => 'Seul le dernier message peut être supprimé.',
+                'only_last_post' => 'Seul le dernier post peut être supprimé.',
                 'locked' => 'Impossible de supprimer un message sur un sujet verrouillé.',
                 'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
                 'not_owner' => 'Seul l\'auteur de ce post peut le supprimer.',
@@ -97,7 +101,7 @@ return [
 
             'edit' => [
                 'deleted' => 'Impossible de modifier un post supprimé.',
-                'locked' => 'Ce post ne peut pas être édité.',
+                'locked' => 'Ce post est verrouillé à l\'édition.',
                 'no_forum_access' => 'L\'accès au forum demandé est requis.',
                 'not_owner' => 'Seul l\'auteur de ce post peut l\'éditer.',
                 'topic_locked' => 'Impossible d\'éditer un post sur un sujet verrouillé.',
@@ -165,9 +169,9 @@ return [
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'La page utilisateur est verrouillée.',
+                'locked' => 'La page de l\'utilisateur est verrouillée.',
                 'not_owner' => 'Vous ne pouvez éditer que votre propre page, pas celle d\'autres utilisateurs.',
-                'require_supporter_tag' => 'le tag supporter est requis.',
+                'require_supporter_tag' => 'le tag osu!supporter est requis.',
             ],
         ],
     ],

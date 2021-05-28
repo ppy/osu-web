@@ -3,23 +3,29 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 <?php
+    use App\Libraries\ApidocRouteHelper;
+
+    $uri = $route['uri'];
+    $methods = $route['methods'];
     $descriptions = explode("\n---\n", $route['metadata']['description'] ?? '');
 
     $topDescription = $descriptions[0];
     $bottomDescription = $descriptions[1] ?? '';
 
-    $displayUri = substr($route['uri'], strlen('api/v2'));
+    $displayUri = substr($uri, strlen('api/v2'));
+
+    $helper = ApidocRouteHelper::instance();
 ?>
 <!-- START_{{$route['id']}} -->
 @if($route['metadata']['title'] != '')## {{ $route['metadata']['title']}}
-@else## {{$route['uri']}}@endif
+@else## {{$uri}}@endif
 
 @foreach($settings['languages'] as $language)
 @include("apidoc::partials.example-requests.$language")
 
 @endforeach
 
-@if(in_array('GET',$route['methods']) || (isset($route['showresponse']) && $route['showresponse']))
+@if(in_array('GET',$methods) || (isset($route['showresponse']) && $route['showresponse']))
 @if(is_array($route['responses']))
 @foreach($route['responses'] as $response)
 > Example response ({{$response['status']}}):
@@ -45,14 +51,16 @@
 @endif
 @endif
 
-@if($route['metadata']['authenticated'])
-<small class="authenticated">Requires authentication</small>
-@endif
-
 {!! $topDescription !!}
 
+<span class="scope-list">
+    @foreach($helper->getScopeTags($methods, $uri) as $scope)
+        {{ ApidocRouteHelper::scopeBadge($scope) }}
+    @endforeach
+</span>
+
 ### HTTP Request
-@foreach($route['methods'] as $method)
+@foreach($methods as $method)
 `{{$method}} {{ $displayUri }}`
 
 @endforeach

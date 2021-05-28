@@ -47,11 +47,13 @@ return [
         'confirm_restore' => 'Наистина ли искате да възстановите публикацията?',
         'edited' => 'Последно редактирано от :user :when, Редактирано общо :count пъти.',
         'posted_at' => 'публикувано :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Изтрий публикацията',
-            'restore' => 'Възстанови публикацията',
             'edit' => 'Редактиране на публикацията',
+            'report' => '',
+            'restore' => 'Възстанови публикацията',
         ],
 
         'create' => [
@@ -73,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'изтрита тема',
         'go_to_latest' => 'виж най-новата публикация',
         'has_replied' => '',
@@ -86,6 +90,11 @@ return [
         'reply_title_prefix' => 'Отговор',
         'started_by' => 'от :user',
         'started_by_verbose' => 'започнато от :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'Затвори',

@@ -14,6 +14,11 @@ return [
         'title' => '檢舉 :username\'s 的評論？',
     ],
 
+    'forum_post' => [
+        'button' => '檢舉',
+        'title' => '檢舉 :username 的貼文？',
+    ],
+
     'scores' => [
         'button' => '檢舉成績',
         'title' => '檢舉 :username\'s 的成績？',

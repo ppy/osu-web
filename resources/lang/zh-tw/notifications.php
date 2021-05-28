@@ -5,9 +5,13 @@
 
 return [
     'all_read' => '已閱畢所有通知！',
-    'mark_read' => '',
+    'delete' => '刪除 :type',
+    'loading' => '正在載入未讀通知...',
+    'mark_read' => '清除 :type',
     'none' => '沒有通知',
     'see_all' => '查看所有通知',
+    'see_channel' => '前往聊天',
+    'verifying' => '',
 
     'filters' => [
         '_' => '全部',
@@ -23,11 +27,17 @@ return [
         'beatmapset' => [
             '_' => '圖譜',
 
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => '圖譜討論',
                 'beatmapset_discussion_lock' => '已鎖定「:title」的討論',
                 'beatmapset_discussion_lock_compact' => '討論已被鎖定',
-                'beatmapset_discussion_post_new' => '新帖子於 ":title" 的 :username',
+                'beatmapset_discussion_post_new' => ':username 在":title"中發布了新的貼文:":content"',
                 'beatmapset_discussion_post_new_empty' => ':username發布了主題為:title的新貼文',
                 'beatmapset_discussion_post_new_compact' => ':username 的新主題',
                 'beatmapset_discussion_post_new_compact_empty' => ':username 的新主題',
@@ -57,6 +67,8 @@ return [
                 'beatmapset_qualify_compact' => '圖譜已進入上架列隊',
                 'beatmapset_rank' => '「:title」已進榜',
                 'beatmapset_rank_compact' => '圖譜已進榜',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => '「:title」的提名已被重置',
                 'beatmapset_reset_nominations_compact' => '提名已被重置',
             ],
@@ -129,6 +141,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '新圖譜',
+
+                'user_beatmapset_new' => ':username 上傳了標題為 “:title” 的新圖譜',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => '成就',
 
@@ -136,12 +158,17 @@ return [
                 '_' => '新成就',
                 'user_achievement_unlock' => '解鎖「:title」！',
                 'user_achievement_unlock_compact' => '解鎖「:title」！',
+                'user_achievement_unlock_group' => '勳章解鎖！',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => '',
                 'beatmapset_discussion_post_new' => '',
@@ -155,9 +182,10 @@ return [
             'beatmapset_state' => [
                 'beatmapset_disqualify' => '',
                 'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
+                'beatmapset_nominate' => '":title" 已被提名',
                 'beatmapset_qualify' => '',
                 'beatmapset_rank' => '',
+                'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => '',
             ],
 
@@ -168,7 +196,7 @@ return [
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => '您收到了來自 :username 的新訊息',
             ],
         ],
 
@@ -193,7 +221,11 @@ return [
         'user' => [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock_self' => '您已解鎖了新成就 ":title"！',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':username 建立了新圖譜',
             ],
         ],
     ],

@@ -31,6 +31,10 @@ return [
             'cleared' => 'uitgespeeld',
             'not_cleared' => 'nog niet uitgespeeld',
         ],
+        'no_diff_reduction' => [
+            '_' => ':link kan niet worden gebruikt om dit pakket te wissen.',
+            'link' => 'Mods voor moeilijkheidsvermindering',
+        ],
     ],
 
     'mode' => [

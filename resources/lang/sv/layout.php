@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'hjälp',
+            'getAbuse' => 'rapportera missbruk',
             'getFaq' => 'faq',
             'getRules' => 'regler',
             'getSupport' => 'support',
@@ -159,6 +160,10 @@ return [
             'error' => 'Ogiltiga förfrågningsparametrar',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Oh nej! Något gick isönder! ;_;',
             'description' => "Vi blir automatiskt notifierade av varje fel",
@@ -171,8 +176,8 @@ return [
             'error' => 'Nere för underhåll!',
             'description' => "Underhåll brukar oftast ta från 5 sekunder till 10 minuter. Om vi är nere längre, se :link för mer information.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -204,6 +209,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Inställningar',
+            'follows' => 'Bevakningslista',
             'friends' => 'Vänner',
             'logout' => 'Logga Ut',
             'profile' => 'Min Profil',

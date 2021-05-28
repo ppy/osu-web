@@ -11,17 +11,18 @@ use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ModelNotSavedException;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
+use App\Traits\Memoizes;
 use App\Traits\Validatable;
+use Datadog;
 use DB;
 use Exception;
 
 abstract class PaymentProcessor implements \ArrayAccess
 {
-    use Validatable;
+    use Memoizes, Validatable;
 
     protected $params;
     protected $signature;
-    protected $order; // Stores memoized result in array, not to be used directly otherwise.
 
     public function __construct(array $params, PaymentSignature $signature)
     {
@@ -131,20 +132,31 @@ abstract class PaymentProcessor implements \ArrayAccess
         $type = $this->getNotificationType();
         switch ($type) {
             case NotificationType::IGNORED:
-                return;
+                break;
             case NotificationType::PAYMENT:
-                return $this->apply();
+                $this->apply();
+                break;
             case NotificationType::PENDING:
-                return $this->pending();
+                $this->pending();
+                break;
             case NotificationType::REFUND:
-                return $this->cancel();
+                $this->cancel();
+                break;
             case NotificationType::REJECTED:
-                return $this->rejected();
+                $this->rejected();
+                break;
             case NotificationType::USER_SEARCH:
-                return $this->userSearch();
+                $this->userSearch();
+                break;
             default:
                 throw new UnsupportedNotificationTypeException($type);
         }
+
+        Datadog::increment(
+            config('datadog-helper.prefix_web').'.payment_processor.run',
+            1,
+            ['provider' => $this->getPaymentProvider(), 'type' => $type]
+        );
     }
 
     /**
@@ -156,14 +168,15 @@ abstract class PaymentProcessor implements \ArrayAccess
     {
         $this->sandboxAssertion();
 
+        $order = $this->getOrder();
+        optional($order)->update(['transaction_id' => $this->getTransactionId()]);
+
         if (!$this->validateTransaction()) {
             $this->throwValidationFailed(new PaymentProcessorException($this->validationErrors()));
         }
 
-        DB::connection('mysql-store')->transaction(function () {
+        DB::connection('mysql-store')->transaction(function () use ($order) {
             try {
-                $order = $this->getOrder();
-
                 // FIXME: less hacky
                 if ($order->tracking_code === Order::PENDING_ECHECK) {
                     $order->tracking_code = Order::ECHECK_CLEARED;
@@ -323,15 +336,11 @@ abstract class PaymentProcessor implements \ArrayAccess
      */
     protected function getOrder()
     {
-        if (!isset($this->order)) {
-            $this->order = [
-                Order::withPayments()
-                    ->whereOrderNumber($this->getOrderNumber())
-                    ->first(),
-            ];
-        }
-
-        return $this->order[0];
+        return $this->memoize(__FUNCTION__, function () {
+            return Order::withPayments()
+                ->whereOrderNumber($this->getOrderNumber())
+                ->first();
+        });
     }
 
     /**

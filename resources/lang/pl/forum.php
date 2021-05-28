@@ -47,11 +47,13 @@ return [
         'confirm_restore' => 'Czy na pewno chcesz przywrócić post?',
         'edited' => 'Ostatnio edytowane przez :user :when, łącznie edytowane :count_delimited raz.|Ostatnio edytowane przez :user :when, łącznie edytowane :count_delimited razy.|Ostatnio edytowane przez :user :when, łącznie edytowane :count_delimited razy.',
         'posted_at' => 'opublikowane :when',
+        'posted_by' => 'opublikowane przez :username',
 
         'actions' => [
             'destroy' => 'Usuń post',
-            'restore' => 'Przywróć post',
             'edit' => 'Edytuj post',
+            'report' => 'Zgłoś post',
+            'restore' => 'Przywróć post',
         ],
 
         'create' => [
@@ -73,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'Czy na pewno chcesz usunąć wątek?',
+        'confirm_restore' => 'Czy na pewno chcesz przywrócić wątek?',
         'deleted' => 'usunięty wątek',
         'go_to_latest' => 'pokaż najnowszy post',
         'has_replied' => 'Twoja odpowiedź znajduje się w tym wątku',
@@ -87,12 +91,17 @@ return [
         'started_by' => 'autor: :user',
         'started_by_verbose' => 'utworzony przez :user',
 
+        'actions' => [
+            'destroy' => 'Usuń wątek',
+            'restore' => 'Przywróć wątek',
+        ],
+
         'create' => [
             'close' => 'Zamknij',
             'preview' => 'Podgląd',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Napisz',
+            'preview_hide' => 'Edytuj',
             'submit' => 'Opublikuj',
 
             'necropost' => [
@@ -126,7 +135,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'subskrybcje',
+            'title_compact' => 'lista obserwowanych wątków na forum',
 
             'box' => [
                 'total' => 'Zasubskrybowane wątki',

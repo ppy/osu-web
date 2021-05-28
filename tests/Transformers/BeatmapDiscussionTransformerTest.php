@@ -19,6 +19,7 @@ class BeatmapDiscussionTransformerTest extends TestCase
     public function testWithOAuth($groupIdentifier)
     {
         $viewer = $this->createUserWithGroup($groupIdentifier);
+
         $this->actAsScopedUser($viewer);
 
         $json = json_item($this->deletedBeatmapDiscussion, 'BeatmapDiscussion');
@@ -51,7 +52,6 @@ class BeatmapDiscussionTransformerTest extends TestCase
             ['gmt', true],
             ['nat', true],
             [[], false],
-            [null, false],
         ];
     }
 

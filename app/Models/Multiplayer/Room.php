@@ -6,10 +6,10 @@
 namespace App\Models\Multiplayer;
 
 use App\Exceptions\InvariantException;
-use App\Libraries\DbCursorHelper;
 use App\Models\Chat\Channel;
 use App\Models\Model;
 use App\Models\User;
+use App\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -32,7 +32,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Room extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, WithDbCursorHelper;
 
     const SORTS = [
         'ended' => [
@@ -43,6 +43,8 @@ class Room extends Model
             ['column' => 'id', 'order' => 'desc', 'type' => 'int'],
         ],
     ];
+
+    const DEFAULT_SORT = 'ended';
 
     protected $table = 'multiplayer_rooms';
     protected $dates = ['starts_at', 'ends_at'];
@@ -57,6 +59,13 @@ class Room extends Model
         $mode = presence(get_string($params['mode'] ?? null));
         $user = $params['user'];
         $sort = 'created';
+
+        $category = presence(get_string($params['category'] ?? null)) ?? 'any';
+        if ($category === 'any') {
+            $query->where('category', '<>', 'realtime');
+        } else {
+            $query->where('category', $category);
+        }
 
         switch ($mode) {
             case 'ended':
@@ -73,15 +82,7 @@ class Room extends Model
                 $query->active();
         }
 
-        $category = presence(get_string($params['category'] ?? null)) ?? 'any';
-        if ($category !== 'any') {
-            $query->where('category', $category);
-        }
-
-        $cursorHelper = new DbCursorHelper(static::SORTS, $sort);
-        $cursor = $cursorHelper->prepare($params['cursor'] ?? null);
-
-        $query->cursorSort($cursorHelper->getSort(), $cursor);
+        $query->cursorSort($sort, $params['cursor'] ?? null);
 
         foreach ($preloads ?? [] as $preload) {
             $query->with($preload);
@@ -122,7 +123,9 @@ class Room extends Model
     {
         return $query
             ->where('starts_at', '<', Carbon::now())
-            ->where('ends_at', '>', Carbon::now());
+            ->where(function ($q) {
+                $q->where('ends_at', '>', Carbon::now())->orWhereNull('ends_at');
+            });
     }
 
     public function scopeEnded($query)
@@ -147,13 +150,13 @@ class Room extends Model
 
     public function hasEnded()
     {
-        return Carbon::now()->gte($this->ends_at);
+        return $this->ends_at !== null && Carbon::now()->gte($this->ends_at);
     }
 
     public function isScoreSubmissionStillAllowed()
     {
-        // TODO: move grace period to config.
-        return Carbon::now()->lte($this->ends_at->addMinutes(5));
+        // TODO: move grace period to config or use the beatmap's duration
+        return $this->ends_at === null || Carbon::now()->lte($this->ends_at->addMinutes(5));
     }
 
     /**
@@ -201,15 +204,25 @@ class Room extends Model
             throw new InvariantException('number of simultaneously active rooms reached');
         }
 
-        $this->name = $params['name'] ?? null;
+        $this->name = get_string($params['name'] ?? null);
         $this->user_id = $owner->getKey();
         $this->max_attempts = get_int($params['max_attempts'] ?? null);
-        $this->starts_at = Carbon::parse($params['starts_at'] ?? null);
+        $this->starts_at = now();
 
-        if ($params['ends_at'] ?? null !== null) {
-            $this->ends_at = Carbon::parse($params['ends_at']);
-        } elseif ($params['duration'] ?? null !== null) {
-            $this->ends_at = $this->starts_at->copy()->addMinutes(get_int($params['duration']));
+        $category = $params['category'] ?? null;
+        if ($category === 'realtime') {
+            $this->category = $category;
+            $this->ends_at = now()->addSeconds(30);
+        } else {
+            $endsAt = parse_time_to_carbon($params['ends_at'] ?? null);
+            if ($endsAt !== null) {
+                $this->ends_at = $endsAt;
+            } else {
+                $duration = get_int($params['duration'] ?? null);
+                if ($duration !== null) {
+                    $this->ends_at = $this->starts_at->copy()->addMinutes($duration);
+                }
+            }
         }
 
         $this->assertValidStartGame();
@@ -224,7 +237,13 @@ class Room extends Model
             $playlistItems[] = PlaylistItem::fromJsonParams($item);
         }
 
-        if (count($playlistItems) < 1) {
+        $playlistItemsCount = count($playlistItems);
+
+        if ($this->category === 'realtime' && $playlistItemsCount !== 1) {
+            throw new InvariantException('realtime room must have exactly one playlist item');
+        }
+
+        if ($playlistItemsCount < 1) {
             throw new InvariantException('room must have at least one playlist item');
         }
 
@@ -233,13 +252,7 @@ class Room extends Model
         $this->getConnection()->transaction(function () use ($owner, $playlistItems) {
             $this->save(); // need to persist to get primary key for channel name.
 
-            // create the chat channel for the room
-            $channel = new Channel();
-            $channel->name = "#lazermp_{$this->getKey()}";
-            $channel->type = Channel::TYPES['multiplayer'];
-            $channel->description = $this->name;
-            $channel->save();
-
+            $channel = Channel::createMultiplayer($this);
             $channel->addUser($owner);
 
             $this->update(['channel_id' => $channel->channel_id]);
@@ -296,19 +309,20 @@ class Room extends Model
 
     private function assertValidStartGame()
     {
-        foreach (['name', 'starts_at', 'ends_at'] as $field) {
+        foreach (['ends_at', 'name'] as $field) {
             if (!present($this->$field)) {
                 throw new InvariantException("'{$field}' is required");
             }
         }
 
-        if ($this->starts_at->addMinutes(30)->gt($this->ends_at)) {
+        if ($this->category !== 'realtime' && $this->starts_at->addMinutes(30)->gt($this->ends_at)) {
             throw new InvariantException("'ends_at' must be at least 30 minutes after 'starts_at'");
         }
 
         if ($this->max_attempts !== null) {
-            if ($this->max_attempts < 1 || $this->max_attempts > 32) {
-                throw new InvariantException("field 'max_attempts' must be between 1 and 32");
+            $maxAttemptsLimit = config('osu.multiplayer.max_attempts_limit');
+            if ($this->max_attempts < 1 || $this->max_attempts > $maxAttemptsLimit) {
+                throw new InvariantException("field 'max_attempts' must be between 1 and {$maxAttemptsLimit}");
             }
         }
     }
@@ -321,11 +335,22 @@ class Room extends Model
             throw new InvariantException('Room has already ended.');
         }
 
-        if (
-            $this->max_attempts !== null
-            && $playlistItem->scores()->where('user_id', $user->getKey())->count() >= $this->max_attempts
-        ) {
-            throw new InvariantException('You have reached the maximum number of tries allowed.');
+        if ($this->max_attempts !== null) {
+            $roomStats = $this->userHighScores()->where('user_id', $user->getKey())->first();
+            if ($roomStats !== null && $roomStats->attempts >= $this->max_attempts) {
+                throw new InvariantException('You have reached the maximum number of tries allowed.');
+            }
+        }
+
+        if ($playlistItem->max_attempts !== null) {
+            $playlistAttempts = $playlistItem->scores()->where('user_id', $user->getKey())->count();
+            if ($playlistAttempts >= $playlistItem->max_attempts) {
+                throw new InvariantException('You have reached the maximum number of tries allowed.');
+            }
+        }
+
+        if ($playlistItem->expired) {
+            throw new InvariantException('Cannot play an expired playlist item.');
         }
     }
 }

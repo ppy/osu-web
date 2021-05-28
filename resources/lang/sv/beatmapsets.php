@@ -8,6 +8,11 @@ return [
         'disabled' => 'Denna beatmap är för närvarande inte tillgänglig för nedladdning.',
         'parts-removed' => 'Portioner av denna beatmap har blivit borttagna på förfrågan av skaparen eller en tredje-parts rättighets hållare.',
         'more-info' => 'Klicka här för mer information.',
+        'rule_violation' => 'Vissa delar av denna map har tagits bort då de anses vara olämpliga i osu!.',
+    ],
+
+    'download' => [
+        'limit_exceeded' => 'Sakta ner, spela mer.',
     ],
 
     'index' => [
@@ -16,6 +21,8 @@ return [
     ],
 
     'panel' => [
+        'empty' => 'inga beatmaps',
+
         'download' => [
             'all' => 'ladda ner',
             'video' => 'ladda ner med video',
@@ -24,11 +31,31 @@ return [
         ],
     ],
 
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => 'Du har inte behörighet att nominera för läge: :mode',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => 'Är du säker på att du vill nominera denna Beatmap?',
+            'header' => 'Nominera Beatmap',
+            'hybrid_warning' => '',
+            'which_modes' => '',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Explicit',
+    ],
+
     'show' => [
         'discussion' => 'Diskussion',
 
         'details' => [
+            'by_artist' => 'av :artist',
             'favourite' => 'Favorisera denna beatmapset',
+            'favourite_login' => '',
             'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!',
             'mapped_by' => 'skapad av :mapper',
             'unfavourite' => 'Ta bort favorisering på denna beatmapset',
@@ -36,7 +63,7 @@ return [
 
             'download' => [
                 '_' => 'Ladda Ner',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'utan Video',
                 'video' => 'med Video',
             ],
@@ -89,10 +116,24 @@ return [
             'genre' => 'Genre',
             'language' => 'Språk',
             'no_scores' => 'Data beräknas...',
+            'nsfw' => 'Explicit innehåll',
             'points-of-failure' => 'Punkter av Misslyckande',
             'source' => 'Källa',
+            'storyboard' => 'Denna beatmap innehåller storyboard',
             'success-rate' => 'Genomsnittig Succe',
             'tags' => 'Taggar',
+            'video' => 'Denna beatmap innehåller video',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'Denna beatmap innehåller explicit, kränkande eller störande innehåll. Vill du se den ändå?',
+            'title' => 'Explicit innehåll',
+
+            'buttons' => [
+                'disable' => 'Inaktivera varning',
+                'listing' => 'Beatmaplistningar',
+                'show' => 'Visa',
+            ],
         ],
 
         'scoreboard' => [

@@ -1,6 +1,6 @@
 {
   "mappings": {
-    "beatmaps": {
+    "_doc": {
       "dynamic": false,
       "properties": {
         "approved": {
@@ -13,57 +13,41 @@
         "artist": {
           "type": "text",
           "fields": {
+            "_prefix": {
+              "type": "text",
+              "analyzer": "prefix",
+              "search_analyzer": "standard"
+            },
             "raw": {
               "type": "keyword"
             }
           }
         },
         "artist_unicode": {
-          "type": "text"
-        },
-        "beatmaps": {
-          "dynamic": false,
-          "type": "nested",
-          "properties": {
-            "beatmap_id": {
-              "type": "long"
-            },
-            "convert": {
-              "type": "boolean"
-            },
-            "difficultyrating": {
-              "type": "double"
-            },
-            "playmode": {
-              "type": "byte"
-            }
-          }
-        },
-        "bpm": {
-          "type": "double"
-        },
-        "bundled": {
-          "type": "boolean"
-        },
-        "can_bundle": {
-          "type": "boolean"
-        },
-        "creator": {
           "type": "text",
           "fields": {
+            "_prefix": {
+              "type": "text",
+              "analyzer": "prefix",
+              "search_analyzer": "standard"
+            },
             "raw": {
               "type": "keyword"
             }
           }
         },
-        "difficulties": {
+        "beatmaps": {
           "dynamic": false,
+          "type": "nested",
           "properties": {
             "approved": {
               "type": "long"
             },
             "beatmap_id": {
               "type": "long"
+            },
+            "convert": {
+              "type": "boolean"
             },
             "countNormal": {
               "type": "long"
@@ -99,9 +83,45 @@
               "type": "long"
             },
             "playmode": {
-              "type": "long"
+              "type": "byte"
             },
             "total_length": {
+              "type": "long"
+            },
+            "version": {
+              "type": "text"
+            }
+          }
+        },
+        "bpm": {
+          "type": "double"
+        },
+        "bundled": {
+          "type": "boolean"
+        },
+        "can_bundle": {
+          "type": "boolean"
+        },
+        "creator": {
+          "type": "text",
+          "fields": {
+            "_prefix": {
+              "type": "text",
+              "analyzer": "prefix",
+              "search_analyzer": "standard"
+            },
+            "raw": {
+              "type": "keyword"
+            }
+          }
+        },
+        "difficulties": {
+          "dynamic": false,
+          "properties": {
+            "beatmap_id": {
+              "type": "long"
+            },
+            "playmode": {
               "type": "long"
             },
             "version": {
@@ -145,6 +165,9 @@
         },
         "nominations": {
           "type": "long"
+        },
+        "nsfw": {
+          "type": "boolean"
         },
         "offset": {
           "type": "long"
@@ -192,7 +215,17 @@
           }
         },
         "title_unicode": {
-          "type": "text"
+          "type": "text",
+          "fields": {
+            "_prefix": {
+              "type": "text",
+              "analyzer": "prefix",
+              "search_analyzer": "standard"
+            },
+            "raw": {
+              "type": "keyword"
+            }
+          }
         },
         "user_id": {
           "type": "long"
@@ -223,8 +256,10 @@
             "min_gram": "2",
             "max_gram": "20",
             "token_chars": [
+              "digit",
               "letter",
-              "digit"
+              "punctuation",
+              "symbol"
             ]
           }
         }

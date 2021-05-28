@@ -24,7 +24,7 @@ return [
             ],
             'featured-artists' => [
                 'title' => 'Artisti in primo piano',
-                'description' => 'Con il tuo supporto possiamo raggiungere tanti altri fantastici artisti e avere la licenza su più musica da usare su osu!',
+                'description' => 'Con il tuo supporto possiamo raggiungere tanti altri fantastici artisti e ottenere la licenza per poter utilizzare molta più musica su osu!',
                 'link_text' => 'Visualizza l\'elenco attuale &raquo;',
             ],
             'ads' => [
@@ -129,7 +129,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Carica più Beatmap',
-                'description' => 'Il numero di beatmap non classificate che puoi avere allo stesso tempo è calcolato da un valore base sommato ad un bonus aggiuntivo per ogni beatmap classificata che possiedi (fino ad un limite).<br/><br/>Normalmente sarebbe :base più :bonus per ogni beatmap classificata (fino a :bonus_max). Con il supporter, questo aumenta a :supporter_base più :supporter_bonus per beatmap classificata (fino a :supporter_bonus_max).',
+                'description' => 'Il numero di beatmap in attesa di rank che puoi avere allo stesso tempo è calcolato da un valore base sommato ad un bonus aggiuntivo per ogni beatmap classificata che possiedi (fino ad un limite).<br/><br/>Normalmente sarebbe :base più :bonus per ogni beatmap classificata (fino a :bonus_max). Con il supporter, questo aumenta a :supporter_base più :supporter_bonus per beatmap classificata (fino a :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Classifiche con Amici',

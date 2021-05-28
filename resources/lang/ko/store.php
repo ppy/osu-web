@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => ':date에 주문함',
-
+        'cancel' => '주문 취소',
+        'cancel_confirm' => '이 주문이 취소될 것이고, 결제가 처리되지 않습니다. 몇몇 경우에는 결제 공급자가 거래 대금을 즉시 반환하지 않을 수도 있습니다. 정말 계속할까요?',
+        'cancel_not_allowed' => '지금은 이 주문을 취소할 수 없습니다.',
         'invoice' => '청구서 보기',
         'no_orders' => '주문 내역이 없습니다.',
+        'paid_on' => ':date에 주문함',
         'resume' => '결제 계속하기',
+        'shopify_expired' => '이 주문의 결제 링크가 만료되었습니다.',
 
         'item' => [
             'display_name' => [

@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'title' => '',
+        'title' => ':username chơi :title [:version]',
 
         'beatmap' => [
             'by' => 'bởi :artist',
@@ -20,5 +20,10 @@ return [
                 'global' => 'Xếp hàng Toàn cầu',
             ],
         ],
+    ],
+
+    'status' => [
+        'non_best' => 'Chỉ điểm cá nhân tốt nhất thưởng pp',
+        'processing' => 'Điểm vẫn đang được tính toán và sẽ được hiển thị sớm',
     ],
 ];

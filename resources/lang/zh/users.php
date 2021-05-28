@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '成员按游戏模式筛选',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "您已经很长时间没有使用您的账户了。",
@@ -144,12 +148,16 @@ return [
         'joined_at' => '注册时间：:date',
         'lastvisit' => '上次登录：:date',
         'lastvisit_online' => '当前在线',
-        'missingtext' => '未找到用户！（或者该用户已经被 ban）',
+        'missingtext' => '你可能打错字了！（或者该用户已经被封禁）',
         'origin_country' => '来自 :country',
         'previous_usernames' => '曾用名',
         'plays_with' => '惯用 :devices',
         'title' => ":username 的个人资料",
 
+        'comments_count' => [
+            '_' => '发表了 :link',
+            'count' => ':count_delimited 条评论',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '更换个人资料头图',
@@ -345,13 +353,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => '兴趣爱好',
-            'lastfm' => 'Last.fm',
             'location' => '所在地',
             'occupation' => '职业',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => '网站',
         ],
         'not_found' => [
@@ -401,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Pending 的谱面',
             'graveyard_beatmapset_count' => '坟场里的谱面',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '你已被禁言。',
+        'message' => '部分操作将不可用。',
     ],
 
     'status' => [

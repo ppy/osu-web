@@ -19,32 +19,6 @@ class @BeatmapDiscussionHelper
     user.is_admin || user.is_moderator
 
 
-  # text should be pre-escaped.
-  @discussionLinkify: (text) =>
-    currentUrl = new URL(window.location)
-    currentBeatmapsetDiscussions = @urlParse(currentUrl.href)
-
-    text.replace osu.urlRegex, (url, _, displayUrl) =>
-      targetUrl = new URL(url)
-
-      if targetUrl.host == currentUrl.host
-        targetBeatmapsetDiscussions = @urlParse targetUrl.href, null, forceDiscussionId: true
-        if targetBeatmapsetDiscussions?.discussionId?
-          if currentBeatmapsetDiscussions? &&
-              currentBeatmapsetDiscussions.beatmapsetId == targetBeatmapsetDiscussions.beatmapsetId
-            # same beatmapset, format: #123
-            linkText = "##{targetBeatmapsetDiscussions.discussionId}"
-            attrs = 'class="js-beatmap-discussion--jump"'
-          else
-            # different beatmapset, format: 1234#567
-            linkText = "#{targetBeatmapsetDiscussions.beatmapsetId}##{targetBeatmapsetDiscussions.discussionId}"
-
-      linkText ?= displayUrl
-
-      "<a href='#{url}' rel='nofollow' #{attrs ? ''}>#{linkText ? url}</a>"
-
-
-
   @discussionMode: (discussion) ->
     if discussion.message_type == 'review'
       'reviews'
@@ -62,7 +36,7 @@ class @BeatmapDiscussionHelper
     blockName = 'beatmapset-discussion-message'
     text = _.escape text
     text = text.trim()
-    text = @discussionLinkify text
+    text = _exported.discussionLinkify text
     text = @linkTimestamp text, ['beatmap-discussion-timestamp-decoration']
 
     if options.newlines ? true

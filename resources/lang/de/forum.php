@@ -47,11 +47,13 @@ return [
         'confirm_restore' => 'Beitrag wirklich wiederherstellen?',
         'edited' => 'Zuletzt von :user :when bearbeitet, insgesamt :count_delimited Mal bearbeitet.',
         'posted_at' => 'erstellt :when',
+        'posted_by' => 'gepostet von :username',
 
         'actions' => [
             'destroy' => 'Beitrag löschen',
-            'restore' => 'Beitrag wiederherstellen',
             'edit' => 'Beitrag bearbeiten',
+            'report' => 'Beitrag melden',
+            'restore' => 'Beitrag wiederherstellen',
         ],
 
         'create' => [
@@ -73,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'Thread wirklich löschen?',
+        'confirm_restore' => 'Thread wirklich wiederherstellen?',
         'deleted' => 'gelöschter thread',
         'go_to_latest' => 'letzten beitrag anschauen',
         'has_replied' => 'Du hast auf diesen Thread geantwortet',
@@ -86,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'von :user',
         'started_by_verbose' => 'gestartet von :user',
+
+        'actions' => [
+            'destroy' => 'Thread löschen',
+            'restore' => 'Thread wiederherstellen',
+        ],
 
         'create' => [
             'close' => 'Schließen',

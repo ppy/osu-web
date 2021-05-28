@@ -7,7 +7,7 @@ return [
     'cancel' => 'Abbrechen',
 
     'authorise' => [
-        'request' => 'fordert die Berechtigung, auf Ihr Konto zuzugreifen.',
+        'request' => 'bittet um Erlaubnis, auf dein Konto zugreifen zu dürfen.',
         'scopes_title' => 'Diese Anwendung wird in der Lage sein:',
         'title' => 'Autorisierungsanfrage',
     ],

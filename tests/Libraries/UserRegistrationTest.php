@@ -22,6 +22,9 @@ class UserRegistrationTest extends TestCase
 
         $this->assertFalse($thrown);
         $this->assertSame($origCount + 1, User::count());
+        $this->assertTrue($reg->user()->userGroups->every(function ($userGroup) {
+            return $userGroup->user_pending === false;
+        }));
     }
 
     public function testRequiresUsername()

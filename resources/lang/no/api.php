@@ -13,7 +13,16 @@ return [
     ],
 
     'scopes' => [
+        'bot' => '',
         'identify' => 'Identifiser deg selv og les din offentlige profil.',
+
+        'chat' => [
+            'write' => 'Send meldinger på dine vegne.',
+        ],
+
+        'forum' => [
+            'write' => '',
+        ],
 
         'friends' => [
             'read' => 'Se hvem du følger.',

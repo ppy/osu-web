@@ -5,33 +5,33 @@
 
 return [
     'signature' => [
-        'not_match' => 'Allekirjoitukset eivät täsmää',
+        'not_match' => '',
     ],
-    'notification_type' => 'ilmoituksen_tyyppi ei kelpaa :tyyppi',
+    'notification_type' => '',
     'order' => [
-        'invalid' => 'Tilaus ei kelpaa',
+        'invalid' => '',
         'items' => [
-            'virtual_only' => '`:provider` maksu ei ole kelvollinen fyysisille tavaroille.',
+            'virtual_only' => '',
         ],
         'status' => [
             'not_checkout' => '',
-            'not_paid' => 'Maksun takaisinsaannin yrittäminen väärässä tilassa `:state`.',
+            'not_paid' => '',
         ],
     ],
     'param' => [
-        'invalid' => '`:param` parametri ei ole sama',
+        'invalid' => '',
     ],
     'paypal' => [
-        'not_echeck' => 'Odottava maksu ei ole emaksu. (:actual)',
+        'not_echeck' => '',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => 'Maksun summa ei ole sama: :actual != :expected',
-            'currency' => 'Maksu ei ole Yhdysvaltain dollareissa. (:type)',
+            'amount' => '',
+            'currency' => '',
         ],
     ],
     'order_number' => [
-        'malformed' => 'Vastaanotetun tilauksen maksutunnus on virheellinen',
-        'user_id_mismatch' => 'ulkoinen_tunnus sisältää väärän käyttäjätunnuksen',
+        'malformed' => '',
+        'user_id_mismatch' => '',
     ],
 ];

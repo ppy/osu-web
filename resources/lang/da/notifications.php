@@ -5,9 +5,13 @@
 
 return [
     'all_read' => 'Alle notifikationer læst!',
+    'delete' => '',
+    'loading' => '',
     'mark_read' => 'Ryd :type',
     'none' => 'Ingen notifikationer',
     'see_all' => 'se alle notifikationer',
+    'see_channel' => '',
+    'verifying' => 'Bekræft venligst session for at se notifikationer',
 
     'filters' => [
         '_' => 'alle',
@@ -22,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'Beatmap',
+
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'Beatmap diskussion',
@@ -57,6 +67,8 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmap er gået ind i ranking ventelisten',
                 'beatmapset_rank' => '":title" er blevet ranked',
                 'beatmapset_rank_compact' => 'Beatmap blev ranked',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'Nominering af ":title" blev nulstillet',
                 'beatmapset_reset_nominations_compact' => 'Nominering blev nulstillet',
             ],
@@ -129,6 +141,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medaljer',
 
@@ -136,12 +158,17 @@ return [
                 '_' => 'Ny medalje',
                 'user_achievement_unlock' => 'Optjent ":title"!',
                 'user_achievement_unlock_compact' => 'Opnået ":title"!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => '',
                 'beatmapset_discussion_post_new' => '',
@@ -158,6 +185,7 @@ return [
                 'beatmapset_nominate' => '',
                 'beatmapset_qualify' => '',
                 'beatmapset_rank' => '',
+                'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => '',
             ],
 
@@ -194,6 +222,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => '',
                 'user_achievement_unlock_self' => '',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

@@ -8,6 +8,11 @@ return [
         'disabled' => '该谱面现在无法下载。',
         'parts-removed' => '应 歌曲作者/第三方版权持有者 的要求，这张谱面已经下架。',
         'more-info' => '点击这里查看更多信息。',
+        'rule_violation' => '谱面中不适合 osu! 的内容已在审核后被移除。',
+    ],
+
+    'download' => [
+        'limit_exceeded' => '慢一点，打几张图再回来吧。',
     ],
 
     'index' => [
@@ -16,6 +21,8 @@ return [
     ],
 
     'panel' => [
+        'empty' => '没有谱面',
+
         'download' => [
             'all' => '下载',
             'video' => '下载并包含视频',
@@ -24,11 +31,31 @@ return [
         ],
     ],
 
+    'nominate' => [
+        'hybrid_requires_modes' => '有多于一个模式的谱面需要选择至少一个要提名的游戏模式。',
+        'incorrect_mode' => '你没有权限为该模式提名：:mode',
+        'full_bn_required' => '你必须是正式提名人才能进行此提名。',
+        'too_many' => '提名需求已达标。',
+
+        'dialog' => [
+            'confirmation' => '你确定要提名这张谱面吗？',
+            'header' => '提名谱面',
+            'hybrid_warning' => '注意：你只能提名一次，所以请确保你的提名包含所有你想要提名的游戏模式。',
+            'which_modes' => '你要提名哪种模式？',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '少儿不宜',
+    ],
+
     'show' => [
         'discussion' => '讨论',
 
         'details' => [
+            'by_artist' => '作者：:artist',
             'favourite' => '收藏这张谱面',
+            'favourite_login' => '登录以收藏这张谱面',
             'logged-out' => '下载谱面前请先登录！',
             'mapped_by' => '作图者: :mapper',
             'unfavourite' => '取消收藏',
@@ -36,7 +63,7 @@ return [
 
             'download' => [
                 '_' => '下载',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => '不包含视频',
                 'video' => '包含视频',
             ],
@@ -89,10 +116,24 @@ return [
             'genre' => '流派',
             'language' => '语言',
             'no_scores' => '数据还在计算中。。。',
+            'nsfw' => '少儿不宜内容',
             'points-of-failure' => '失败位置',
             'source' => '来源',
+            'storyboard' => '此谱面包含故事板',
             'success-rate' => '成功率',
             'tags' => '标签',
+            'video' => '此谱面包含视频',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '此谱面包含少儿不宜的、具有冒犯性的或令人不安的内容。您仍然想查看它吗？',
+            'title' => '少儿不宜内容',
+
+            'buttons' => [
+                'disable' => '关闭警告',
+                'listing' => '返回谱面列表',
+                'show' => '显示',
+            ],
         ],
 
         'scoreboard' => [
@@ -110,7 +151,7 @@ return [
                 'miss' => 'Miss',
                 'mods' => 'Mod',
                 'player' => '玩家',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => '排名',
                 'score_total' => '得分',
                 'score' => '得分',

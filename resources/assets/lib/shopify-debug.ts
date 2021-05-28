@@ -20,13 +20,13 @@ export async function fetchAllProducts(): Promise<any[]> {
 }
 
 export async function fetchAllProductIds(): Promise<string[]> {
-  const products = await this.fetchAllProducts();
+  const products = await fetchAllProducts();
 
   return products.map((x: any) => x.id);
 }
 
 export async function fetchAllVariants(): Promise<any[]> {
-  const products = await this.fetchAllProducts();
+  const products = await fetchAllProducts();
 
   let variants: any[] = [];
   for (const product of products) {
@@ -37,12 +37,10 @@ export async function fetchAllVariants(): Promise<any[]> {
 }
 
 export async function fetchAllVariantIds(): Promise<{ }> {
-  const variants = await this.fetchAllVariants();
+  const variants = await fetchAllVariants();
 
-  return variants.map((x: any) => {
-    return {
-      gid: x.id,
-      name: x.title,
-    };
-  });
+  return variants.map((x: any) => ({
+    gid: x.id,
+    name: x.title,
+  }));
 }

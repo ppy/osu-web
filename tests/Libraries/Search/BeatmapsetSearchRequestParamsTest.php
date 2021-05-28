@@ -30,7 +30,8 @@ class BeatmapsetSearchRequestParamsTest extends TestCase
             $this->expectException(InvariantException::class);
         }
 
-        $searchAfter = (new BeatmapsetSearchRequestParams($requestParams, new User()))->searchAfter;
+        $user = factory(User::class)->create();
+        $searchAfter = (new BeatmapsetSearchRequestParams($requestParams, $user))->searchAfter;
 
         $this->assertSame($expected, $searchAfter);
     }

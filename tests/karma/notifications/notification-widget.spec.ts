@@ -51,7 +51,7 @@ describe('Notification Widget', () => {
     store = new NotificationStore();
     store.unreadStacks.updateWithBundle(bundle);
 
-    controller = new NotificationController(store, { isWidget: true }, null);
+    controller = new NotificationController(store, { excludes: [], isWidget: true }, null);
   });
 
   it('should filter by All', () => {

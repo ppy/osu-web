@@ -4,8 +4,10 @@
 import { MessageLengthCounter } from './message-length-counter'
 import { BigButton } from 'big-button'
 import * as React from 'react'
+import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, input, label, p, i, span } from 'react-dom-factories'
-import { UserAvatar } from 'user-avatar'
+import UserAvatar from 'user-avatar'
+import { nominationsCount } from 'utils/beatmapset-helper'
 el = React.createElement
 
 bn = 'beatmap-discussion-new'
@@ -61,7 +63,8 @@ export class NewDiscussion extends React.PureComponent
       @props.mode == 'generalAll'
 
     canPostNote =
-      @props.currentUser.id == @props.beatmapset.user_id ||
+      (@props.currentUser.id == @props.beatmapset.user_id && @props.mode == 'generalAll') ||
+      (@props.currentUser.id == @props.currentBeatmap.user_id && @props.mode in ['general', 'timeline']) ||
       @props.currentUser.is_bng ||
       @props.currentUser.is_nat
 
@@ -264,7 +267,7 @@ export class NewDiscussion extends React.PureComponent
       beatmap_discussion_post:
         message: @state.message
 
-    @postXhr = $.ajax laroute.route('beatmap-discussion-posts.store'),
+    @postXhr = $.ajax laroute.route('beatmapsets.discussions.posts.store'),
       method: 'POST'
       data: data
 
@@ -290,7 +293,8 @@ export class NewDiscussion extends React.PureComponent
     return 'disqualify' if canDisqualify && willDisqualify
 
     canReset = currentUser.is_admin || currentUser.is_nat || currentUser.is_bng
-    willReset = @props.beatmapset.status == 'pending' && @props.beatmapset.nominations.current > 0
+    currentNominations = nominationsCount(@props.beatmapset.nominations, 'current')
+    willReset = @props.beatmapset.status == 'pending' && currentNominations > 0
 
     return 'nomination_reset' if canReset && willReset
 

@@ -5,10 +5,10 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'admin_forum' => [
-        '_' => '',
+        '_' => 'forum của admin',
     ],
     'admin_store' => [
         '_' => '',
@@ -22,6 +22,7 @@ return [
             '401-verification' => '',
             '405' => '',
             '422' => '',
+            '429' => '',
             '500' => '',
             '503' => '',
         ],
@@ -75,8 +76,11 @@ return [
         'contests_controller' => [
             '_' => '',
         ],
-        'friends_controller' => [
+        'follows_controller' => [
             'index' => '',
+        ],
+        'friends_controller' => [
+            'index' => 'trang chủ',
         ],
         'groups_controller' => [
             'show' => '',

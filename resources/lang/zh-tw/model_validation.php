@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => '不允許刪除譜面信息帖。',
             'beatmapset_post_no_edit' => '不允許編輯圖譜信息帖。',
+            'first_post_no_delete' => '無法刪除第一則貼文。',
+            'missing_topic' => '貼文缺少主題',
             'only_quote' => '您的回覆僅有引用。',
 
             'attributes' => [
@@ -121,8 +123,8 @@ return [
     'user' => [
         'contains_username' => '密碼不能包含使用者名稱。',
         'email_already_used' => '郵箱已被使用。',
-        'email_not_allowed' => '',
-        'invalid_country' => '國家或地區未被數據庫收錄。',
+        'email_not_allowed' => '電子郵件地址不允許。',
+        'invalid_country' => '國家未被數據庫收錄。',
         'invalid_discord' => 'Discord 用户名無效。',
         'invalid_email' => "無效的郵箱地址。",
         'invalid_twitter' => 'Twitter帳戶名無效',

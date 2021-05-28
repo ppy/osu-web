@@ -63,7 +63,7 @@ class @AccountEdit
       if input.type == 'checkbox'
         value = input.checked
       else
-        value = input.value.trim()
+        value = input.value
 
     { value, prevValue }
 

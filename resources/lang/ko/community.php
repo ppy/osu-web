@@ -6,21 +6,21 @@
 return [
     'support' => [
         'convinced' => [
-            'title' => '납득했습니다! :D',
+            'title' => '납득하셨나요? :D',
             'support' => 'osu! 지원하기',
             'gift' => '아니면 osu!를 지원하여 다른 플레이어에게 선물할 수도 있습니다.',
             'instructions' => '하트 버튼을 누르면 osu!store로 이동합니다.',
         ],
         'why-support' => [
-            'title' => '왜 osu! 를 지원해야하죠? 제 돈은 어디로 가나요?',
+            'title' => 'osu!를 지원하면 뭐가 좋은 거죠? 제 돈은 어디로 가나요?',
 
             'team' => [
-                'title' => '팀 지원하기',
-                'description' => '소규모의 팀이 osu! 를 개발하고 운영합니다. 여러분의 도움은, 네... 저희가 먹고사는데 도움을 준답니다.',
+                'title' => '개발진 지원',
+                'description' => '소규모 개발진들이 osu!를 개발하고 운영합니다. 여러분의 도움이 이들이 생존... 하는데 도움이 되겠죠.',
             ],
             'infra' => [
                 'title' => '서버 인프라',
-                'description' => '여러분의 지원은 웹사이트나 멀티플레이 서비스, 온라인 리더보드 등을 구동하는데 필요한 서버를 계속 운영할 수 있게 합니다.',
+                'description' => '여러분의 기부금은 웹사이트, 멀티플레이 서비스, 온라인 순위 등의 서버를 운영하는 곳에 사용됩니다.',
             ],
             'featured-artists' => [
                 'title' => '공식 아티스트',
@@ -28,8 +28,8 @@ return [
                 'link_text' => '현재 아티스트 명단 보기 &raquo;',
             ],
             'ads' => [
-                'title' => 'osu!를 자립하게 유지합니다',
-                'description' => '여러분의 기여가 게임을 독립적이고, 일체의 광고와 외부 스폰서 없이 유지할 수 있도록 돕습니다.',
+                'title' => 'osu!를 자립하게 유지',
+                'description' => '여러분의 기부금이 게임을 독립적이고, 일체의 광고와 외부 스폰서 없이 자립할 수 있도록 돕습니다.',
             ],
             'tournaments' => [
                 'title' => '공식 토너먼트',
@@ -38,15 +38,15 @@ return [
             ],
             'bounty-program' => [
                 'title' => '오픈 소스 포상금 프로그램',
-                'description' => '시간과 노력을 투자하여 osu! 를 더 좋게 만들 수 있도록 도와주시는 커뮤니티 기여자를 지원합니다.',
+                'description' => '시간과 노력을 투자하여 osu!가 더 나은 방향으로 갈 수 있게 도와주시는 커뮤니티 기여자들을 지원합니다.',
                 'link_text' => '더 알아보기 &raquo;',
             ],
         ],
         'perks' => [
-            'title' => '오? 뭘 받을 수 있나요?!',
+            'title' => '그래서 제가 받는 혜택은 뭐가 있는데요?',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => '게임 밖에서 비트맵을 찾을 필요 없이, 게임 내에서 쉽고 빠르게 다운로드 받을 수 있습니다.',
+                'description' => '게임 밖에서 비트맵을 찾을 필요 없이, 게임 내에서 비트맵을 쉽고 빠르게 다운로드 받을 수 있습니다.',
             ],
 
             'friend_ranking' => [
@@ -61,7 +61,7 @@ return [
 
             'mod_filtering' => [
                 'title' => '모드순 필터링',
-                'description' => 'HDHR을 플레이하는 사람들만 찾고 싶으신가요? 문제없어요!',
+                'description' => 'HDHR을 플레이하는 사람들만 찾고 싶으신가요? 문제없답니다.',
             ],
 
             'auto_downloads' => [
@@ -76,7 +76,7 @@ return [
 
             'early_access' => [
                 'title' => '얼리 엑세스',
-                'description' => 'osu!에 새 기능을 패치하기 전에, 미리 기능을 체험해볼 수 있습니다!',
+                'description' => 'osu!에 새 기능을 패치하기 전에, 미리 기능을 체험해 볼 수 있습니다!',
             ],
 
             'customisation' => [
@@ -91,7 +91,7 @@ return [
 
             'yellow_fellow' => [
                 'title' => '노란색 이름 태그',
-                'description' => '게임 내에서 여러분의 유저이름이 노란색으로 표시되어 자신이 서포터임을 과시합니다.',
+                'description' => '게임 내 유저 이름이 노란색으로 표시되어 서포터임을 주목받을 수 있습니다.',
             ],
 
             'speedy_downloads' => [
@@ -120,11 +120,11 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '더 많은 즐겨찾기',
+                'title' => '최대 즐겨찾기 수 증가',
                 'description' => '즐겨 찾을 수 있는 비트맵의 수가 :normally &rarr; :supporter 으로 늘어납니다.',
             ],
             'more_friends' => [
-                'title' => '더 많은 친구 수',
+                'title' => '최대 친구 수 증가',
                 'description' => '사귈 수 있는 친구의 숫자가 :normally &rarr; :supporter 으로 늘어납니다.',
             ],
             'more_beatmaps' => [
@@ -133,16 +133,16 @@ return [
             ],
             'friend_filtering' => [
                 'title' => '친구 리더보드',
-                'description' => '친구와 경쟁하고 친구보다 얼마나 더 한수 위인지 알아보세요!*<br/><br/><small>* 신 사이트에는 아직 사용할 수 없습니다. 커밍 순(tm)</small>',
+                'description' => '친구와 경쟁하고 친구보다 얼마나 더 한수위인지 알아보세요!',
             ],
 
         ],
         'supporter_status' => [
             'contribution' => '지금까지 지원해 주셔서 감사합니다! 총 :tags번의 결제로 :dollars를 후원하셨습니다.',
-            'gifted' => ":giftedTags번의 후원자 태그를 선물했습니다. (총 :giftedDollars 달러 선물 됨), 엄청나게 관대하시네요!",
-            'not_yet' => "아직 후원자가 아니시군요 :(",
-            'valid_until' => '당신의 현재 서포터는 :date까지 유효합니다!',
-            'was_valid_until' => '당신의 서포터는 :date까지였습니다.',
+            'gifted' => "총 :giftedTags번 서포터 태그를 선물하셨습니다. (총 :giftedDollars 달러 어치), 관대의 끝판왕이시네요!",
+            'not_yet' => "아직 osu!서포터 태그를 다셔보신 적이 없으시네요 :(",
+            'valid_until' => '현재 서포터 태그는 :date까지 유효합니다!',
+            'was_valid_until' => '지난 서포터 태그는 :date까지였습니다.',
         ],
     ],
 ];

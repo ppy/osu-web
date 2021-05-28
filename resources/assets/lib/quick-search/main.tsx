@@ -31,7 +31,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
       this.inputRef.current?.focus();
     }
-  }
+  };
 
   render() {
     let blockClass = osu.classWithModifiers('quick-search', this.props.modifiers);
@@ -46,20 +46,20 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
             </span>
 
             <input
-              className='quick-search-input__input js-click-menu--autofocus'
               ref={this.inputRef}
-              placeholder={osu.trans('home.search.placeholder')}
-              value={this.props.worker.query}
+              className='quick-search-input__input js-click-menu--autofocus'
               onChange={this.updateQuery}
               onKeyDown={this.onInputKeyDown}
+              placeholder={osu.trans('home.search.placeholder')}
+              value={this.props.worker.query}
             />
           </div>
 
           {this.props.onClose != null && (
             <button
-              type='button'
               className='btn-osu-big btn-osu-big--quick-search-close'
               onClick={this.props.onClose}
+              type='button'
             >
               {osu.trans('common.buttons.close')}
             </button>
@@ -100,11 +100,11 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     if (key === 'ArrowUp' || key === 'ArrowDown') {
       this.props.worker.cycleSelectedItem(key === 'ArrowDown' ? 1 : -1);
     }
-  }
+  };
 
   private onMouseLeave = (event: React.MouseEvent<HTMLInputElement>) => {
     this.props.worker.selectNone();
-  }
+  };
 
   private renderBeatmapsets() {
     if (this.props.worker.searchResult === null) {
@@ -177,13 +177,11 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
     return (
       <div className='quick-search-items quick-search-items--empty'>
-        {modes.map((mode) => {
-          return (
-            <div key={mode} className='quick-search-items__item'>
-              {osu.trans('quick_search.result.empty_for', { modes: osu.trans(`quick_search.mode.${mode}`) })}
-            </div>
-          );
-        })}
+        {modes.map((mode) => (
+          <div key={mode} className='quick-search-items__item'>
+            {osu.trans('quick_search.result.empty_for', { modes: osu.trans(`quick_search.mode.${mode}`) })}
+          </div>
+        ))}
       </div>
     );
   }
@@ -233,15 +231,15 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     );
   }
 
-  private renderResultLink(mode: ResultMode, active: boolean = false) {
+  private renderResultLink(mode: ResultMode, active = false) {
     let key = 'quick_search.result.';
 
     key += otherModes.includes(mode) ? 'title' : 'more';
 
     return (
       <a
-        href={route('search', { mode, query: this.props.worker.query })}
         className={osu.classWithModifiers('search-result-more', active ? ['active'] : [])}
+        href={route('search', { mode, query: this.props.worker.query })}
       >
         <div className='search-result-more__content'>
           {osu.trans(key, { mode: osu.trans(`quick_search.mode.${mode}`) })}
@@ -260,8 +258,8 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     return (
       <h2 className='title'>
         <StringWithComponent
-          pattern={osu.trans('quick_search.result.title')}
           mappings={{ ':mode': <strong key='mode'>{osu.trans(`quick_search.mode.${mode}`)}</strong> }}
+          pattern={osu.trans('quick_search.result.title')}
         />
       </h2>
     );
@@ -292,8 +290,8 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
               onMouseLeave={this.onMouseLeave}
             >
               <User
-                user={user}
                 modifiers={this.boxIsActive('user', idx) ? ['active'] : []}
+                user={user}
               />
             </div>
           );
@@ -316,7 +314,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
   private selectBeatmapsetOthers = () => this.selectBox('beatmapset_others');
 
-  private selectBox(section: Section, index: number = 0) {
+  private selectBox(section: Section, index = 0) {
     this.props.worker.setSelected(section, index);
   }
 
@@ -324,5 +322,5 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
   private updateQuery = (event: React.SyntheticEvent<HTMLInputElement>) => {
     this.props.worker.updateQuery(event.currentTarget.value);
-  }
+  };
 }

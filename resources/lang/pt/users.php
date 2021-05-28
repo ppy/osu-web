@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Membros por modo de jogo',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "A tua conta não foi usada há muito tempo.",
@@ -150,6 +154,10 @@ return [
         'plays_with' => 'Joga com :devices',
         'title' => "Perfil de :username",
 
+        'comments_count' => [
+            '_' => 'Publicou :link',
+            'count' => ':count_delimited comentário|:count_delimited comentários',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Mudar a capa do perfil',
@@ -347,10 +355,8 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Interesses',
-            'lastfm' => 'Last.fm',
             'location' => 'Localização atual',
             'occupation' => 'Ocupação',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Sítio web',
         ],
@@ -401,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Beatmaps pendentes',
             'graveyard_beatmapset_count' => 'Beatmaps no cemitério',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Estás silenciado de momento.',
+        'message' => 'Algumas ações podem não estar disponíveis.',
     ],
 
     'status' => [

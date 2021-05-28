@@ -2,6 +2,12 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    use App\Libraries\ApidocRouteHelper;
+
+    $wikiUrl = wiki_url('Bot_account', null, false);
+@endphp
+
 # Introduction
 
 Welcome to the documentation for osu!api v2. You can use this API to get information on various circles and those who click them.
@@ -43,7 +49,9 @@ v1      | _legacy api provided by the old site, will be deprecated soon_
 
 # Authentication
 
-osu!api uses OAuth2 to grant access to the API. More information about applications you have registered and granted permissions to can be found [here](#managing-oauth-applications).
+Routes marked with the <a class="scope scope--oauth" name="scope-oauth">OAuth</a> label require a valid OAuth2 token for access.
+
+More information about applications you have registered and granted permissions to can be found [here](#managing-oauth-applications).
 
 The API supports the following grant types:
 - [Authorization Code Grant](https://oauth.net/2/grant-types/authorization-code/)
@@ -245,17 +253,39 @@ You must replace <code>@{{token}}</code> with your OAuth2 token.
 </aside>
 
 
+## Resource Owner
+
+The `Resource Owner` is the user that a token acts on behalf of.
+
+For [Authorization Code Grant](#authorization-code-grant) tokens, the Resource Owner is the user authorizing the token.
+
+[Client Credentials Grant](#client-credentials-grant) tokens do not have a Resource Owner (i.e. is a guest user), unless they have been granted the {{ ApidocRouteHelper::scopeBadge('bot') }} scope. The Resource Owner of tokens with the {{ ApidocRouteHelper::scopeBadge('bot') }} scope is the owner of the OAuth Application that was granted the token. Currently, only [Chat Bot]({{ $wikiUrl }})s are allowed to request the {{ ApidocRouteHelper::scopeBadge('bot') }} scope.
+
+
 ## Scopes
 
 The following scopes are currently supported:
 
-Name          | Description
---------------|-------------------------------
-identify      | Allows reading of the public profile of the authorizing user (`/me`).
-friends.read  | Allows reading of the authorizing user's friend list.
-public        | Allows reading of publicly available data on behalf of the authorizing user.
+@php
+$scopeDescriptions = [
+    'bot' => "[Chat Bot]({$wikiUrl}) and [Client Credentials Grant](#client-credentials-grant) exclusive scope.",
+    'chat.write' => "Allows sending chat messages on a user's behalf; exclusive to [Chat Bot]({$wikiUrl})s",
+    'forum.write' => "Allows creating and editing forum posts on a user's behalf.",
+    'friends.read' => 'Allows reading of the user\'s friend list.',
+    'identify' => 'Allows reading of the public profile of the user (`/me`).',
+    'public' => 'Allows reading of publicly available data on behalf of the user.',
+];
+@endphp
+
+Name   | Description
+-------|-------------------------------
+@foreach ($scopeDescriptions as $scope => $description)
+<a class="scope scope--{{ $scope }}" name="scope-{{ $scope }}">{{ $scope }}</a> | {{ $description }}
+@endforeach
 
 `identify` is the default scope for the [Authorization Code Grant](#authorization-code-grant) and always implicitly provided. The [Client Credentials Grant](#client-credentials-grant) does not currently have any default scopes.
+
+Routes marked with <a class="scope scope--lazer" name="scope-lazer">lazer</a> are intended for use by the [osu!lazer](https://github.com/ppy/osu) client and not currently available for use with Authorization Code or Client Credentials grants.
 
 
 ## Managing OAuth applications
@@ -273,6 +303,15 @@ For a full list of changes, see the
 [Changelog on the site]({{ route('changelog.show', ['changelog' => 'web']) }}).
 
 ## Breaking Changes
+
+### 2021-04-20
+- `cover_url` in [User](#user) is deprecated, use `cover.url` instead.
+
+### 2021-02-25
+- `current_mode_rank` has been removed from [UserCompact](#usercompact)
+- attributes in [UserStatistics](#userstatistics) have been moved around
+  - `rank.country` is deprecated, replaced by `country_rank`
+  - `rank.global` and `pp_rank` are removed, replaced by `global_rank`
 
 ### 2020-09-08
 - `presence` removed from `chat/new` response.

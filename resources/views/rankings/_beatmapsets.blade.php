@@ -9,7 +9,7 @@
             <div class="osu-layout__col osu-layout__col--sm-6">
                 <div
                     class="js-react--beatmapset-panel"
-                    data-beatmapset-panel="{{ json_encode(['beatmap' => json_item($beatmapset, 'Beatmapset', ['beatmaps'])]) }}"
+                    data-beatmapset-panel="{{ json_encode(['beatmapset' => json_item($beatmapset, 'Beatmapset', ['beatmaps'])]) }}"
                 ></div>
             </div>
         @endforeach

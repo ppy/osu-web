@@ -76,9 +76,9 @@ return [
         'action' => 'Завантажити osu!',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => 'якщо у вас виникла проблема з запуском гри чи реєстрацією облікового запису, :help_forum_link або :support_button.',
+            'help_forum_link' => 'перевірте довідковий форум',
+            'support_button' => 'зверніться до служби підтримки',
         ],
 
         'os' => [

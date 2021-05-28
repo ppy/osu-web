@@ -14,6 +14,11 @@ return [
         'title' => 'Адправіць скаргу на каментарый :username?',
     ],
 
+    'forum_post' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Справаздача выніку',
         'title' => 'Справаздача выніку :username?',

@@ -2,9 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .user-group-badge {
+  @_top: user-group-badge;
   border-radius: 20px;
   font-size: 10px;
-  background-color: osu-hsla(@osu-colour-b6, 0.75);
+  background-color: hsla(var(--hsl-b6), 0.75);
   padding: 2px 10px;
   font-weight: 600;
   display: flex;
@@ -32,7 +33,33 @@
     }
   }
 
+  &--owner {
+    background-color: hsl(var(--hsl-l1));
+    color: hsl(var(--hsl-b6));
+  }
+
   &--profile-page {
     font-size: inherit;
+  }
+
+  &--probationary {
+    opacity: 0.6;
+    background-color: @osu-colour-b6;
+  }
+
+  &__modes {
+    color: white;
+    padding-left: 5px;
+    display: flex;
+
+    @media @mobile {
+      .@{_top}--t-forum & {
+        display: none;
+      }
+    }
+
+    & > i {
+      padding: 1px;
+    }
   }
 }

@@ -6,6 +6,7 @@
 namespace App\Models\Match;
 
 use App\Models\User;
+use App\Traits\WithDbCursorHelper;
 use Cache;
 
 /**
@@ -20,6 +21,19 @@ use Cache;
  */
 class Match extends Model
 {
+    use WithDbCursorHelper;
+
+    const SORTS = [
+        'id_asc' => [
+            ['column' => 'match_id', 'order' => 'ASC'],
+        ],
+        'id_desc' => [
+            ['column' => 'match_id', 'order' => 'DESC'],
+        ],
+    ];
+
+    const DEFAULT_SORT = 'id_desc';
+
     protected $primaryKey = 'match_id';
     protected $hidden = ['private', 'keep_forever'];
     protected $casts = [

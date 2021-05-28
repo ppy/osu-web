@@ -15,7 +15,6 @@ import 'spoilerbox.coffee';
 import 'store.coffee';
 import 'store-username-change.coffee';
 import 'forum/post-box.coffee';
-import 'forum/topic-ajax.coffee';
 import 'ujs-common.coffee';
 import 'bootstrap-modal.coffee';
 import 'logout.coffee';
@@ -24,6 +23,7 @@ import 'turbolinks-overrides.coffee';
 import 'lang-overrides';
 
 import 'import-shims';  // shim imports to window
+import 'osu-core-singleton';
 import 'main.coffee';
 
 import 'register-components.coffee';

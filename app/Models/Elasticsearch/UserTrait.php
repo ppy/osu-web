@@ -7,7 +7,6 @@ namespace App\Models\Elasticsearch;
 
 use App\Traits\EsIndexableModel;
 use Carbon\Carbon;
-use Schema;
 
 trait UserTrait
 {
@@ -20,12 +19,8 @@ trait UserTrait
 
     public static function esIndexingQuery()
     {
-        $columns = array_keys((new static())->esFilterFields());
-        array_unshift($columns, 'user_id');
-
         return static::withoutGlobalScopes()
-            ->with('usernameChangeHistoryPublic')
-            ->select($columns);
+            ->with('usernameChangeHistoryPublic');
     }
 
     public static function esSchemaFile()
@@ -33,51 +28,33 @@ trait UserTrait
         return config_path('schemas/users.json');
     }
 
-    public static function esType()
-    {
-        return 'users';
-    }
-
     public function toEsJson()
     {
-        $mappings = $this->esFilterFields();
+        $mappings = static::esMappings();
 
-        $values = [];
+        $document = [];
         foreach ($mappings as $field => $mapping) {
-            $value = $this[$field];
+            switch ($field) {
+                case 'is_old':
+                    $value = $this->isOld();
+                    break;
+                case 'previous_usernames':
+                    $value = $this->previousUsernames(true)->unique()->values();
+                    break;
+                case 'user_lastvisit':
+                    $value = $this->displayed_last_visit;
+                    break;
+                default:
+                    $value = $this[$field];
+            }
+
             if ($value instanceof Carbon) {
                 $value = $value->toIso8601String();
             }
 
-            $values[$field] = $value;
+            $document[$field] = $value;
         }
 
-        $values['is_old'] = $this->isOld();
-
-        $values['previous_usernames'] = $this->previousUsernames(true)->unique()->values();
-
-        return $values;
-    }
-
-    /**
-     * Returns the fields which have a directly corresponding column.
-     * This is intended to filter out fields calculated for indexing purposes.
-     */
-    protected function esFilterFields()
-    {
-        // get table columns to intersect with.
-        // getAttributes() doesn't return attributes that aren't populated.
-        // This involves reading the schema from the database;
-        static $columnMap;
-        // read once.
-        if (!isset($columnMap)) {
-            $columnMap = [];
-            $columns = Schema::getColumnListing($this->table);
-            foreach ($columns as $column) {
-                $columnMap[$column] = '';
-            }
-        }
-
-        return array_intersect_key(static::esMappings(), $columnMap);
+        return $document;
     }
 }

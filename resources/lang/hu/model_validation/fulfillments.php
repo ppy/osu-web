@@ -5,9 +5,9 @@
 
 return [
     'username_change' => [
-        'only_one' => 'rendelésenként csak 1 felhasználónév váltás engedélyezett.',
-        'insufficient_paid' => 'A felhasználónév váltás ára meghaladja a fizetett összeget (:expected > :actual)',
-        'reverting_username_mismatch' => 'A felhasználó jelenlegi neve (:current) nem egyezik a visszaállítandó névvel (:username)',
+        'only_one' => '',
+        'insufficient_paid' => '',
+        'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
         'insufficient_paid' => 'A fizetett összeg kevesebb, mint a támogatói cím ára (:actual > :expected)',

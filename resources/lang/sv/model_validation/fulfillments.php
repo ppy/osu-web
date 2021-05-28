@@ -5,9 +5,9 @@
 
 return [
     'username_change' => [
-        'only_one' => 'endast 1 ändring av användarnamn är tillåtet per order.',
-        'insufficient_paid' => 'Användarnamn ändring överskrider summa betald (:expected > :actual)',
-        'reverting_username_mismatch' => 'Nuvarande användarnamn (:current) är inte detsamma som ändring till återkallande (:username)',
+        'only_one' => '',
+        'insufficient_paid' => '',
+        'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
         'insufficient_paid' => 'Donationen är mindre än tillräckligt för supporter tagg gåvan(:actual > :expected)',

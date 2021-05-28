@@ -12,7 +12,7 @@ export Pp = ({stats}) ->
   variantTooltip = []
 
   for variant in stats.variants ? []
-    continue unless variant.pp > 0
+    continue unless variant.pp?
 
     name = osu.trans("beatmaps.variant.#{variant.mode}.#{variant.variant}")
     value = formatNumber(variant.pp)

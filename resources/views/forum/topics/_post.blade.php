@@ -9,20 +9,24 @@
     $options['buttons']['delete'] = $options['buttons']['delete'] ?? false;
     $options['buttons']['edit'] = $options['buttons']['edit'] ?? false;
     $options['buttons']['quote'] = $options['buttons']['quote'] ?? false;
+    $options['buttons']['report'] = auth()->check() && $post->poster_id !== auth()->user()->getKey();
 
     $buttons = [];
 
-    foreach (['edit', 'delete', 'quote'] as $buttonType) {
+    foreach (['edit', 'delete', 'quote', 'report'] as $buttonType) {
         if ($options['buttons'][$buttonType]) {
             $buttons[] = $buttonType;
         }
     }
 
     $user = $post->userNormalized();
+    $hidden = $post->trashed() || ($options['postPosition'] === 1 && $post->topic->trashed());
 ?>
 <div
-    class="js-forum-post {{ $post->trashed() ? 'js-forum-post--hidden' : '' }} forum-post"
+    {{-- js-forum-post is also used by js-forum-post-report for the postId and postUsername dataset --}}
+    class="js-forum-post {{ $hidden ? 'js-forum-post--hidden' : '' }} forum-post"
     data-post-id="{{ $post->getKey() }}"
+    data-post-username="{{ $user->username }}"
     data-post-position="{{ $options["postPosition"] }}"
 >
     @include('forum.topics._post_info', compact('user'))

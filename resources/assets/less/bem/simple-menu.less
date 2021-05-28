@@ -9,6 +9,11 @@
   @_gutter: 5px;
   @_border-radius: 20px;
 
+  --item-colour: inherit;
+  --item-hover-bg: hsl(var(--hsl-b5));
+  --item-hover-colour: var(--item-colour);
+  --stripe-bg: hsl(var(--hsl-h1));
+
   .own-layer();
   .default-box-shadow();
   border-radius: @_border-radius;
@@ -22,6 +27,7 @@
   overflow: hidden;
   z-index: @z-index--simple-menu;
   position: relative;
+  color: hsl(var(--hsl-c1));
 
   &--beatmapset-watch {
     position: absolute;
@@ -81,6 +87,7 @@
   }
 
   &--nav2-transparent {
+    --item-hover-bg: hsl(var(--hsl-b6));
     background-color: transparent;
     box-shadow: none;
   }
@@ -105,6 +112,22 @@
       right: auto;
       left: 0;
     }
+  }
+
+  &--wiki-locales {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    // manually calculated for roughly twice the actual button padding
+    margin-top: 20px;
+
+    --item-hover-bg: hsl(var(--hsl-h1));
+    --item-hover-colour: hsl(var(--hsl-b6));
+    --stripe-bg: hsl(var(--hsl-b6));
+    background-color: hsl(var(--hsl-h2));
+    color: hsl(var(--hsl-c1));
+    border-radius: @border-radius-large;
+    padding: 10px;
   }
 
   &__content {
@@ -181,7 +204,7 @@
         left: 10px;
         width: 3px;
         height: calc(100% - (@_item-padding-vertical * 2 + 4px));
-        background-color: @osu-colour-h1;
+        background-color: var(--stripe-bg);
       }
     }
 
@@ -189,22 +212,20 @@
     .link-white();
     .link-plain();
     .default-border-radius();
+    // undo <a> default transition, mainly for when the text also changes color on hover
+    transition: none;
     white-space: nowrap;
-    line-height: normal;
     padding: @_item-padding-vertical @_item-padding-horizontal;
-    color: #fff;
+    color: var(--item-colour);
     cursor: pointer;
     text-align: left;
     flex: none;
     position: relative;
 
     &:hover {
-      background-color: @osu-colour-b5;
       .highlight-stripe();
-
-      .@{_top}--nav2-transparent & {
-        background-color: @osu-colour-b6;
-      }
+      background-color: var(--item-hover-bg);
+      color: var(--item-hover-colour);
     }
 
     &--active {

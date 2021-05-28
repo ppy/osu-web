@@ -410,7 +410,7 @@ class Event extends Model
 
     public function scopeRecent($query)
     {
-        return $query->orderBy('date', 'desc')->orderBy('event_id', 'desc')->limit(5);
+        return $query->orderBy('event_id', 'desc')->limit(5);
     }
 
     private static function userParams($user)

@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Mazanie metadát beatmapy nie je povolené.',
             'beatmapset_post_no_edit' => 'Editovanie metadát beatmapy nie je povolené.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => '',
 
             'attributes' => [

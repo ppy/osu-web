@@ -48,10 +48,12 @@ class BeatmapDiscussionPost extends Model
         ];
 
         $query = static::limit($params['limit'])->offset($pagination['offset']);
+        $isModerator = $rawParams['is_moderator'] ?? false;
 
         if (isset($rawParams['user'])) {
             $params['user'] = $rawParams['user'];
-            $user = User::lookup($params['user']);
+            $findAll = $isModerator || (($rawParams['current_user_id'] ?? null) === $rawParams['user']);
+            $user = User::lookup($params['user'], null, $findAll);
 
             if ($user === null) {
                 $query->none();
@@ -73,7 +75,7 @@ class BeatmapDiscussionPost extends Model
         $query->where('system', 0);
 
         if (isset($rawParams['sort'])) {
-            $sort = explode('-', strtolower($rawParams['sort']));
+            $sort = explode('_', strtolower($rawParams['sort']));
 
             if (in_array($sort[0] ?? null, ['id'], true)) {
                 $sortField = $sort[0];
@@ -87,8 +89,14 @@ class BeatmapDiscussionPost extends Model
         $sortField ?? ($sortField = 'id');
         $sortOrder ?? ($sortOrder = 'desc');
 
-        $params['sort'] = "{$sortField}-{$sortOrder}";
+        $params['sort'] = "{$sortField}_{$sortOrder}";
         $query->orderBy($sortField, $sortOrder);
+
+        $params['beatmapset_discussion_id'] = get_int($rawParams['beatmapset_discussion_id'] ?? null);
+        if ($params['beatmapset_discussion_id'] !== null) {
+            // column name is beatmap_ =)
+            $query->where('beatmap_discussion_id', $params['beatmapset_discussion_id']);
+        }
 
         $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
 
@@ -96,7 +104,8 @@ class BeatmapDiscussionPost extends Model
             $query->withoutTrashed();
         }
 
-        if (!($rawParams['is_moderator'] ?? false)) {
+        // TODO: normalize with main beatmapset discussion behaviour (needs React-side fixing)
+        if (!isset($params['user']) && !$isModerator) {
             $query->whereHas('user', function ($userQuery) {
                 $userQuery->default();
             });

@@ -18,7 +18,7 @@
         @else
             <p>
                 Note that we may reset this link every few months to allow new users to test.<br/>
-                (because Apple have a limit on how many testers can be added)<br/>
+                (because Apple has a limit on how many testers can be added)<br/>
                 @if (!Auth::user())
                     If you are an osu!supporter, please login for a more permanent link.
                 @endif

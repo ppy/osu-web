@@ -25,6 +25,7 @@ class MorphMap
         Build::class => 'build',
         Channel::class => 'channel',
         Comment::class => 'comment',
+        Forum\Post::class => 'forum_post',
         Forum\Topic::class => 'forum_topic',
         NewsPost::class => 'news_post',
         Score\Best\Fruits::class => 'score_best_fruits',

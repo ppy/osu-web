@@ -7,6 +7,7 @@
   "id": 1,
   "is_active": true,
   "is_bot": false,
+  "is_deleted": false,
   "is_online": false,
   "is_supporter": true,
   "last_visit": "2020-01-01T00:00:00+00:00",
@@ -22,7 +23,6 @@
     "total": 20,
     "available": 10
   },
-  "lastfm": null,
   "location": null,
   "max_blocks": 50,
   "max_friends": 500,
@@ -42,7 +42,6 @@
     "top_ranks",
     "medals"
   ],
-  "skype": null,
   "title": null,
   "twitter": "osuuser",
   "website": "https://osu.ppy.sh",
@@ -56,7 +55,7 @@
     "id": null
   },
   "account_history": [],
-  "active_tournament_banner": [],
+  "active_tournament_banner": null,
   "badges": [
     {
       "awarded_at": "2015-01-01T00:00:00+00:00",
@@ -120,7 +119,7 @@
       "progress": 55
     },
     "pp": 100,
-    "pp_rank": 2000,
+    "global_rank": 2000,
     "ranked_score": 2000000,
     "hit_accuracy": 90.5,
     "play_count": 1000,
@@ -165,14 +164,13 @@ Represents a User. Extends [UserCompact](#usercompact) object with additional at
 
 Field            | Type                               | Description
 ---------------- | ---------------------------------- | -----------------------------------------------------------
-cover_url        | string                             | url of profile cover
+cover_url        | string                             | url of profile cover. Deprecated, use cover.url instead.
 discord          | string?                            | |
 has_supported    | boolean                            | whether or not ever being a supporter in the past
 interests        | string?                            | |
 join_date        | Timestamp                          | |
 kudosu.available | number                             | |
 kudosu.total     | number                             | |
-lastfm           | string?                            | |
 location         | string?                            | |
 max_blocks       | number                             | maximum number of users allowed to be blocked
 max_friends      | number                             | maximum number of friends allowed to be added
@@ -181,8 +179,8 @@ playmode         | [GameMode](#gamemode)              | |
 playstyle        | string[]                           | Device choices of the user.
 post_count       | number                             | number of forum posts
 profile_order    | [ProfilePage](#user-profilepage)[] | ordered array of sections in user profile page
-skype            | string?                            | |
 title            | string?                            | user-specific title
+title_url        | string?                            | |
 twitter          | string?                            | |
 website          | string?                            | |
 

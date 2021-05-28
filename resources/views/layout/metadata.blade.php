@@ -2,11 +2,11 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-<link rel="apple-touch-icon" sizes="180x180" href="{{ config('osu.static') }}/apple-touch-icon.png">
-<link rel="icon" sizes="32x32" href="{{ config('osu.static') }}/favicon-32x32.png">
-<link rel="icon" sizes="16x16" href="{{ config('osu.static') }}/favicon-16x16.png">
-<link rel="manifest" href="{{ config('osu.static') }}/site.webmanifest">
-<link rel="mask-icon" href="{{ config('osu.static') }}/safari-pinned-tab.svg" color="#e2609a">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ config('app.url') }}/apple-touch-icon.png">
+<link rel="icon" sizes="32x32" href="{{ config('app.url') }}/favicon-32x32.png">
+<link rel="icon" sizes="16x16" href="{{ config('app.url') }}/favicon-16x16.png">
+<link rel="manifest" href="{{ config('app.url') }}/site.webmanifest">
+<link rel="mask-icon" href="{{ config('app.url') }}/safari-pinned-tab.svg" color="#e2609a">
 <meta name="msapplication-TileColor" content="#603cba">
 <meta name="theme-color" content="hsl({{ $currentHue }}, 10%, 40%)"> {{-- @osu-colour-b1 --}}
 
@@ -57,6 +57,13 @@
     <style>
         :root {
             --font-default-override: var(--font-default-zh-tw);
+        }
+    </style>
+@elseif (App::getLocale() === 'th')
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap&subset=thai" rel="stylesheet">
+    <style>
+        :root {
+            --font-default-override: var(--font-default-th);
         }
     </style>
 @endif

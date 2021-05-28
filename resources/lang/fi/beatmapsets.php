@@ -8,6 +8,11 @@ return [
         'disabled' => 'Beatmap ei ole tällä hetkellä saatavilla.',
         'parts-removed' => 'Joitain osia tästä beatmapista on poistettu joko sen tekijän tai kolmannen osapuolen oikeuksien omaavan pyynnöstä.',
         'more-info' => 'Klikkaa nähdäksesi lisätietoja.',
+        'rule_violation' => '',
+    ],
+
+    'download' => [
+        'limit_exceeded' => '',
     ],
 
     'index' => [
@@ -16,6 +21,8 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'lataa',
             'video' => 'lataa videon kanssa',
@@ -24,11 +31,31 @@ return [
         ],
     ],
 
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
+    ],
+
     'show' => [
         'discussion' => 'Keskustelu',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',
+            'favourite_login' => '',
             'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
             'mapped_by' => 'luonut: :mapper',
             'unfavourite' => 'Poista tämä beatmapkokoelma suosikeista',
@@ -89,10 +116,24 @@ return [
             'genre' => 'Tyylilaji',
             'language' => 'Kieli',
             'no_scores' => 'Dataa lasketaan...',
+            'nsfw' => '',
             'points-of-failure' => 'Epäonnistumiskohdat',
             'source' => 'Lähde',
+            'storyboard' => '',
             'success-rate' => 'Läpäisyprosentti',
             'tags' => 'Tunnisteet',
+            'video' => '',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => 'Näytä',
+            ],
         ],
 
         'scoreboard' => [

@@ -35,7 +35,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => 'التعليقات',
         'nav_title' => 'القائمة',
+        'no_comments' => 'لا توجد تعليقات...',
     ],
 
     'placeholder' => [

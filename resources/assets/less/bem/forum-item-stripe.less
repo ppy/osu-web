@@ -5,12 +5,13 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 25px;
+  width: 10px;
   padding-right: 5px;
   height: 100%;
   overflow: hidden;
   .center-content();
   color: transparent;
+  transition: @forum-item-animate;
 
   &::after {
     content: '';
@@ -36,6 +37,7 @@
 
   .forum-item:hover &, .forum-topic-entry:hover & {
     color: @forum-item-background-color-hover;
+    width: 25px;
 
     &::after {
       background-color: @forum-item-background-color-hover;

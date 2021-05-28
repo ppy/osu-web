@@ -286,7 +286,7 @@ class Forum extends Model
     {
         $this->getConnection()->transaction(function () {
             $this->setTopicsCountCache();
-            $this->setPostsCountCache();
+            $this->setPostCountCache();
             $this->setLastPostCache();
 
             $this->saveOrExplode();
@@ -304,12 +304,12 @@ class Forum extends Model
         $this->forum_topics = $this->topics()->where('topic_approved', true)->count();
     }
 
-    public function setPostsCountCache()
+    public function setPostCountCache()
     {
-        $postsCount = $this->forum_topics;
-        $postsCount += $this->topics()->sum('topic_replies');
+        $postCount = $this->forum_topics;
+        $postCount += $this->topics()->sum('topic_replies');
 
-        $this->forum_posts = $postsCount;
+        $this->forum_posts = $postCount;
     }
 
     public function setLastPostCache()

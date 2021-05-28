@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\Notification\BatchIdentities;
 use App\Libraries\NotificationsBundle;
 use App\Models\UserNotification;
 
@@ -20,6 +21,16 @@ class NotificationsController extends Controller
         parent::__construct();
 
         $this->middleware('auth');
+    }
+
+    public function batchDestroy()
+    {
+        UserNotification::batchDestroy(
+            auth()->user(),
+            BatchIdentities::fromParams(request()->all())
+        );
+
+        return response(null, 204);
     }
 
     public function endpoint()
@@ -44,8 +55,6 @@ class NotificationsController extends Controller
      * notifications         | array of [Notification](#notification)
      * unread_count          | total unread notifications
      * notification_endpoint | url to connect to websocket server
-     *
-     * @authenticated
      *
      * @queryParam max_id Maximum `id` fetched. Can be used to load earlier notifications. Defaults to no limit (fetch latest notifications)
      *
@@ -97,21 +106,16 @@ class NotificationsController extends Controller
      *
      * _empty response_
      *
-     * @authenticated
-     *
      * @bodyParam ids integer[] required `id` of notifications to be marked as read  Example: [1, 2, 3]
      *
      * @response 204
      */
     public function markRead()
     {
-        $params = request()->all();
-
-        if (isset($params['notifications'])) {
-            UserNotification::markAsReadByIds(auth()->user(), $params['notifications']);
-        } else {
-            UserNotification::markAsReadByNotificationIdentifier(auth()->user(), $params);
-        }
+        UserNotification::batchMarkAsRead(
+            auth()->user(),
+            BatchIdentities::fromParams(request()->all())
+        );
 
         return response(null, 204);
     }

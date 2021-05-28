@@ -27,6 +27,7 @@ export class Main extends React.PureComponent
           el Comment,
             comment: @comment
             showCommentableMeta: true
+            showToolbar: true
             depth: 0
             linkParent: true
             modifiers: ['dark', 'single']

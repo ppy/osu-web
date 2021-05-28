@@ -6,8 +6,8 @@
 return [
     'top-headers' => [
         'headline' => 'Siaran Langsung',
-        'description' => 'Data diambil dari twitch.tv setiap lima menit berdasarkan daftar direktori. Jangan ragu untuk memulai siaran dan daftarkan dirimu! Untuk informasi lebih lanjut tentang cara penyiapan, mohon kunjungi laman wiki bagian siaran langsung.',
+        'description' => 'Data di bawah ini diambil dari twitch.tv setiap lima menit berdasarkan direktori yang disediakan oleh Twitch. Jangan ragu untuk mulai menyiarkan dirimu di mata dunia! Untuk mengetahui informasi lebih lanjut seputar cara menyiarkan osu! secara langsung, harap kunjungi :link.',
 
-        'link' => 'laman wiki bagian siaran langsung',
+        'link' => 'panduan livestreaming di osu!wiki berikut',
     ],
 ];

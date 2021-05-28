@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Изтриването на метаданните на този бийтмап не е позволено.',
             'beatmapset_post_no_edit' => 'Редактирането на метаданните на този бийтмап не е позволено.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => 'Вашият отговор съдържа само цитат.',
 
             'attributes' => [

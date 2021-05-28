@@ -97,19 +97,8 @@
       height: @nav2-avatar-height--pinned;
     }
 
-    &::after {
-      .full-size();
-      content: '';
-      border-radius: 50%;
-      box-shadow: inset 0 0 0 3px #fff;
-      opacity: 0;
-      will-change: opacity;
-    }
-
     &.js-click-menu--active, &:hover {
-      &::after {
-        opacity: 1;
-      }
+      box-shadow: inset 0 0 0 3px hsl(var(--hsl-c1));
     }
   }
 

@@ -31,6 +31,10 @@ return [
             'cleared' => 'fullført',
             'not_cleared' => 'ikke fullført',
         ],
+        'no_diff_reduction' => [
+            '_' => '',
+            'link' => '',
+        ],
     ],
 
     'mode' => [

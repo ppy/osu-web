@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => '搜索',
             'deleted' => '包含已经删除的讨论',
+            'mode' => '谱面模式',
             'only_unresolved' => '只显示未解决的讨论',
             'types' => '评论类型',
             'username' => '用户名',
@@ -31,10 +32,10 @@ return [
             'beatmapset_status' => [
                 '_' => '谱面状态',
                 'all' => '所有',
-                'disqualified' => '已被Disqualified',
+                'disqualified' => 'Disqualified',
                 'never_qualified' => '从未被Qualified',
-                'qualified' => '已被Qualified',
-                'ranked' => '已被Ranked',
+                'qualified' => 'Qualified',
+                'ranked' => 'Ranked',
             ],
 
             'user' => [
@@ -54,7 +55,14 @@ return [
     'nearby_posts' => [
         'confirm' => '在这个时间点上没有相关的讨论记录。',
         'notice' => '在 :timestamp 附近（:existing_timestamps）有讨论记录，发表前请检查。',
-        'unsaved' => '',
+        'unsaved' => '此审阅中有 :count',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [
@@ -73,9 +81,9 @@ return [
             'external_references' => '审阅包含不属于此审阅的 issues 的引用',
             'invalid_block_type' => '板块类型无效',
             'invalid_document' => '审阅无效',
-            'minimum_issues' => '审阅时必须提出最少 :count 个 issue |审阅时必须提出最少 :count 个 issue',
+            'minimum_issues' => '审阅时必须指出最少 :count 个问题',
             'missing_text' => '该版块缺少文本。',
-            'too_many_blocks' => '审阅只能包含 :count 个段落或 issue|审阅最多只能包含 :count 个段落或 issue',
+            'too_many_blocks' => '审阅只能包含 :count 个段落或问题',
         ],
     ],
 

@@ -27,9 +27,9 @@ export class UserFilter extends React.PureComponent
 
 
   render: =>
-    options = [allUsers]
-    for own _id, user of @props.users
-      options.push @mapUserProperties(user)
+    options = for own _id, user of @props.users when user.id?
+      @mapUserProperties(user)
+    options.unshift(allUsers)
 
     selected = if @props.selectedUser?
                  @mapUserProperties(@props.selectedUser)

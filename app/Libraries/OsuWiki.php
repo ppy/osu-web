@@ -16,8 +16,6 @@ class OsuWiki
 {
     const CACHE_DURATION = 60;
 
-    const IMAGE_EXTENSIONS = ['gif', 'jpeg', 'jpg', 'png'];
-
     public $path;
     public $data;
 
@@ -39,7 +37,7 @@ class OsuWiki
 
     public static function getTree()
     {
-        return Github::gitData()->trees()->show(static::user(), static::repository(), config('osu.wiki.branch'), true);
+        return Github::gitData()->trees()->show(static::user(), static::repository(), static::branch(), true);
     }
 
     public static function fetch($path)
@@ -47,7 +45,7 @@ class OsuWiki
         try {
             return GitHub::repo()
                 ->contents()
-                ->show(static::user(), static::repository(), $path, config('osu.wiki.branch'));
+                ->show(static::user(), static::repository(), $path, static::branch());
         } catch (GithubException $e) {
             $message = $e->getMessage();
 
@@ -122,9 +120,12 @@ class OsuWiki
 
     public static function isImage($path)
     {
-        $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+        return preg_match('/\.(?:jpe?g|gif|png)$/i', $path) === 1;
+    }
 
-        return in_array($extension, static::IMAGE_EXTENSIONS, true);
+    public static function branch()
+    {
+        return config('osu.wiki.branch');
     }
 
     public static function repository()

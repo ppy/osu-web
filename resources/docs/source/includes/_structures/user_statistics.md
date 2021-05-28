@@ -18,7 +18,7 @@
   "play_count": 228050,
   "play_time": null,
   "pp": 990,
-  "pp_rank": 87468,
+  "global_rank": 87468,
   "ranked_score": 1502995536,
   "replays_watched_by_others": 0,
   "total_hits": 5856573,
@@ -60,13 +60,13 @@ grade_counts.ss           | number                      | Number of SS ranked sc
 grade_counts.ssh          | number                      | Number of Silver SS ranked scores.
 hit_accuracy              | number                      | Hit accuracy percentage
 is_ranked                 | boolean                     | Is actively ranked
-level.cuurent             | number                      | Current level.
+level.current             | number                      | Current level.
 level.progress            | number                      | Progress to next level.
 maximum_combo             | number                      | Highest maximum combo.
 play_count                | number                      | Number of maps played.
-play_time                 | number                      | Cummulative time played.
+play_time                 | number                      | Cumulative time played.
 pp                        | number                      | Performance points
-pp_rank                   | number                      | Current rank according to pp.
+global_rank               | number?                     | Current rank according to pp.
 ranked_score              | number                      | Current ranked score.
 replays_watched_by_others | number                      | Number of replays watched by other users.
 total_hits                | number                      | Total number of hits.

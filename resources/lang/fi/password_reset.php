@@ -37,7 +37,7 @@ return [
 
         'support' => [
             '_' => 'Tarvitsetko lisäapua? Ota yhteyttä meihin: :button.',
-            'button' => '',
+            'button' => 'tukijärjestelmä',
         ],
     ],
 ];

@@ -10,6 +10,7 @@ use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
 use App\Models\UserAccountHistory;
+use App\Transformers\Chat\ChannelTransformer;
 use Auth;
 
 /**
@@ -19,6 +20,7 @@ class ChatController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('require-scopes:chat.write', ['only' => 'newConversation']);
         $this->middleware('auth');
 
         return parent::__construct();
@@ -41,8 +43,6 @@ class ChatController extends Controller
      * <aside class="notice">
      *   Note that this returns messages for all channels the user has joined.
      * </aside>
-     *
-     * @authenticated
      *
      * @queryParam since required The `message_id` of the last message to retrieve messages since
      * @queryParam channel_id If provided, will only return messages for the given channel
@@ -202,8 +202,6 @@ class ChatController extends Controller
      *   This endpoint will only allow the creation of PMs initially, group chat support will come later.
      * </aside>
      *
-     * @authenticated
-     *
      * @bodyParam target_id integer required `user_id` of user to start PM with
      * @bodyParam message string required message to send
      * @bodyParam is_action boolean required whether the message is an action
@@ -249,23 +247,23 @@ class ChatController extends Controller
             abort(422, 'target user not found');
         }
 
+        $sender = auth()->user();
+
         /** @var Message $message */
         $message = Chat::sendPrivateMessage(
-            auth()->user(),
+            $sender,
             $target,
             presence($params['message'] ?? null),
             get_bool($params['is_action'] ?? null)
         );
 
-        $channelJson = json_item($message->channel, 'Chat\Channel', ['first_message_id', 'last_message_id', 'users']);
-        $channelJson['icon'] = $target->user_avatar;
-        $channelJson['name'] = $target->username;
+        $channelJson = json_item($message->channel, ChannelTransformer::forUser($sender), ['first_message_id', 'last_message_id', 'users']);
 
         return [
             'channel' => $channelJson,
             'message' => json_item(
                 $message,
-                'Chat/Message',
+                'Chat\Message',
                 ['sender']
             ),
             'new_channel_id' => $message->channel_id,

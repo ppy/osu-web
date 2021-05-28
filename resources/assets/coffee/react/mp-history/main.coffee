@@ -29,35 +29,46 @@ export class Main extends React.Component
 
 
   componentDidMount: =>
-    @timeouts.autoload = Timeout.set REFRESH_TIMEOUT, @autoload
+    @delayedAutoload()
 
 
   render: =>
-    div className: 'osu-layout__section',
+    el React.Fragment, null,
       el HeaderV4,
         theme: 'mp-history'
 
-      el Content,
-        match: @state.match
-        events: @state.events
-        currentGameId: @state.currentGameId
-        allEventsCount: @state.allEventsCount
-        users: @state.users
-        hasNext: @hasNext()
-        hasPrevious: @hasPrevious()
-        loadingNext: @state.loadingNext
-        loadingPrevious: @state.loadingPrevious
-        loadNext: @loadNext
-        loadPrevious: @loadPrevious
-        isAutoloading: @isAutoloading()
+      div className: 'osu-page osu-page--generic',
+        el Content,
+          match: @state.match
+          events: @state.events
+          currentGameId: @state.currentGameId
+          allEventsCount: @state.allEventsCount
+          users: @state.users
+          hasNext: @hasNext()
+          hasPrevious: @hasPrevious()
+          loadingNext: @state.loadingNext
+          loadingPrevious: @state.loadingPrevious
+          loadNext: @loadNext
+          loadPrevious: @loadPrevious
+          isAutoloading: @isAutoloading()
 
 
   componentWillUnmount: ->
     Timeout.clear timeout for _name, timeout of @timeouts
 
 
+  isOngoing: =>
+    !@state.match.end_time?
+
+
+  hasLatest: =>
+    lastEvent = _.last(@state.events)
+
+    lastEvent? && lastEvent.id == @state.latestEventId
+
+
   isAutoloading: =>
-    @state.latestEventId == _.last(@state.events)?.id
+    @isOngoing() && @hasLatest()
 
 
   autoload: =>
@@ -71,7 +82,7 @@ export class Main extends React.Component
 
 
   hasNext: =>
-    !@state.match.end_time?
+    @isOngoing() || !@hasLatest()
 
 
   loadNext: =>
@@ -80,7 +91,7 @@ export class Main extends React.Component
     Timeout.clear @timeouts.autoload
     @setState loadingNext: true
 
-    $.ajax laroute.route('matches.history', match: @state.match.id),
+    $.ajax laroute.route('matches.show', match: @state.match.id),
       method: 'GET'
       dataType: 'JSON'
       data:
@@ -118,7 +129,9 @@ export class Main extends React.Component
 
 
   hasPrevious: =>
-    @state.events[0].detail.type != 'match-created'
+    firstEvent = @state.events[0]
+
+    firstEvent? && firstEvent.id != @props.events.first_event_id
 
 
   loadPrevious: =>
@@ -126,7 +139,7 @@ export class Main extends React.Component
 
     @setState loadingPrevious: true
 
-    $.ajax laroute.route('matches.history', match: @state.match.id),
+    $.ajax laroute.route('matches.show', match: @state.match.id),
       method: 'GET'
       dataType: 'JSON'
       data:

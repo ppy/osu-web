@@ -37,7 +37,7 @@ return [
         'delayed_shipping' => 'Olemme tällä hetkellä hukkumassa tilauksiin! Olet vapaa tilaamaan, mutta ole valmis odottamaan **1-2 viikkoa lisää** kunnes olemme saaneet nykyiset tilaukset lähetettyä.',
         'old_cart' => 'Korisi näyttää olevan vanhentunut ja on ladattu uudestaan, yritä uudelleen.',
         'pay' => 'Maksa Paypalilla',
-        'title_compact' => '',
+        'title_compact' => 'kassa',
 
         'has_pending' => [
             '_' => 'Sinulla on keskeneräisiä ostoksia, klikkaa :link nähdäksesi ne.',
@@ -54,7 +54,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Koska maksusi oli eCheck, anna maksimissaan 10 päivää että maksu pääsee PayPalin läpi!',
-        'title_compact' => '',
+        'title_compact' => 'lasku',
 
         'status' => [
             'processing' => [
@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Tilaus laitettu :date',
-
+        'cancel' => 'Peruuta tilaus',
+        'cancel_confirm' => '',
+        'cancel_not_allowed' => '',
         'invoice' => 'Näytä lasku',
         'no_orders' => 'Ei tilauksia katsottavissa.',
+        'paid_on' => 'Tilaus laitettu :date',
         'resume' => 'Jatka Kassalle',
+        'shopify_expired' => '',
 
         'item' => [
             'display_name' => [

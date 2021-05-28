@@ -30,11 +30,15 @@
     width: 1.5em;
     height: 1.5em;
     display: flex;
-    color: osu-hsla(@osu-colour-h1, 0.5);
+    color: hsla(var(--hsl-h1), 0.5);
     border: 2px solid currentColor;
 
     &::after {
       opacity: 0;
+    }
+
+    .@{_top}--disabled & {
+      opacity: 0.5;
     }
 
     .@{_top}__input:checked + & {

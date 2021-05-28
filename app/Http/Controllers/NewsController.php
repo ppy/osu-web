@@ -24,7 +24,7 @@ class NewsController extends Controller
         $isFeed = $format === 'atom' || $format === 'rss';
         $limit = $isFeed ? 20 : 12;
 
-        $search = NewsPost::search(array_merge(['limit' => $limit, 'year' => date('Y')], $params));
+        $search = NewsPost::search(array_merge(compact('limit'), $params));
 
         $posts = $search['query']->get();
 
@@ -34,6 +34,7 @@ class NewsController extends Controller
 
         $postsJson = [
             'news_posts' => json_collection($posts, 'NewsPost', ['preview']),
+            'news_sidebar' => $this->sidebarMeta($posts[0] ?? null),
             'search' => $search['params'],
             'cursor' => $search['cursorHelper']->next($posts),
         ];
@@ -47,7 +48,6 @@ class NewsController extends Controller
                     'title' => 'osu!news Feed',
                 ],
                 'postsJson' => $postsJson,
-                'sidebarMeta' => $this->sidebarMeta($posts[0] ?? null),
             ]);
         }
     }
@@ -57,7 +57,9 @@ class NewsController extends Controller
         if (request('key') === 'id') {
             $post = NewsPost::findOrFail($slug);
 
-            return ujs_redirect(route('news.show', $post->slug));
+            $routeName = (is_api_request() ? 'api.' : '').'news.show';
+
+            return ujs_redirect(route($routeName, $post->slug));
         }
 
         $post = NewsPost::lookup($slug)->sync();
@@ -66,10 +68,16 @@ class NewsController extends Controller
             abort(404);
         }
 
+        $postJson = json_item($post, 'NewsPost', ['content', 'navigation']);
+
+        if (is_json_request()) {
+            return $postJson;
+        }
+
         return ext_view('news.show', [
             'commentBundle' => CommentBundle::forEmbed($post),
             'post' => $post,
-            'postJson' => json_item($post, 'NewsPost', ['content', 'navigation']),
+            'postJson' => $postJson,
             'sidebarMeta' => $this->sidebarMeta($post),
         ]);
     }
@@ -99,19 +107,27 @@ class NewsController extends Controller
         }
 
         $currentYear = $currentYear ?? date('Y');
+        $latestPost = NewsPost::select('updated_at')->default()->first();
+        $lastUpdate = $latestPost === null ? 0 : $latestPost->updated_at->timestamp;
 
-        $years = NewsPost::selectRaw('DISTINCT YEAR(published_at) year')
-            ->whereNotNull('published_at')
-            ->orderBy('year', 'DESC')
-            ->pluck('year')
-            ->toArray();
+        return cache_remember_with_fallback(
+            "news_sidebar_meta_{$currentYear}_{$lastUpdate}",
+            3600,
+            function () use ($currentYear) {
+                $years = NewsPost::selectRaw('DISTINCT YEAR(published_at) year')
+                    ->whereNotNull('published_at')
+                    ->orderBy('year', 'DESC')
+                    ->pluck('year')
+                    ->toArray();
 
-        $posts = NewsPost::default()->year($currentYear)->get();
+                $posts = NewsPost::default()->year($currentYear)->get();
 
-        return [
-            'current_year' => $currentYear,
-            'news_posts' => json_collection($posts, 'NewsPost'),
-            'years' => $years,
-        ];
+                return [
+                    'current_year' => $currentYear,
+                    'news_posts' => json_collection($posts, 'NewsPost'),
+                    'years' => $years,
+                ];
+            }
+        );
     }
 }

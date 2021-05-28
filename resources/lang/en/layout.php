@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'help',
+            'getAbuse' => 'report abuse',
             'getFaq' => 'faq',
             'getRules' => 'rules',
             'getSupport' => 'no, really, i need help!',
@@ -158,6 +159,10 @@ return [
             'error' => 'Invalid request parameter',
             'description' => '',
         ],
+        '429' => [
+            'error' => 'Rate limit exceeded',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Oh no! Something broke! ;_;',
             'description' => "We're automatically notified of every error.",
@@ -203,6 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Settings',
+            'follows' => 'Watchlists',
             'friends' => 'Friends',
             'logout' => 'Sign Out',
             'profile' => 'My Profile',

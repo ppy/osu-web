@@ -17,14 +17,22 @@
   }
 
   &__toolbar {
-    display: flex;
     padding: 20px @gutter-v2;
     font-size: @font-size--title-small;
-    justify-content: flex-end;
 
     @media @desktop {
       padding-left: @gutter-v2-desktop;
       padding-right: $padding-left;
+    }
+  }
+
+  &__toolbar-row {
+    display: flex;
+    justify-content: flex-end;
+
+    @media @mobile {
+      flex-direction: column;
+      align-items: center;
     }
   }
 
@@ -46,5 +54,9 @@
     &--active {
       color: @osu-colour-l1;
     }
+  }
+
+  &__view-mode-title {
+    margin-right: 10px;
   }
 }

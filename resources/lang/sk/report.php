@@ -14,6 +14,11 @@ return [
         'title' => '',
     ],
 
+    'forum_post' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Nahlásiť skóre',
         'title' => 'Nahlásiť skóre :username?',

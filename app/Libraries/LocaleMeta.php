@@ -49,7 +49,7 @@ class LocaleMeta
             'flag' => 'FI',
         ],
         'fr' => [
-            'name' => 'Français',
+            'name' => 'français',
             'flag' => 'FR',
         ],
         'hu' => [
@@ -81,7 +81,7 @@ class LocaleMeta
             'flag' => 'NO',
         ],
         'pl' => [
-            'name' => 'Polski',
+            'name' => 'polski',
             'flag' => 'PL',
         ],
         'pt' => [
@@ -156,6 +156,11 @@ class LocaleMeta
     public static function flagFor($locale)
     {
         return static::find($locale)['flag'];
+    }
+
+    public static function isValid($locale)
+    {
+        return isset(static::MAPPINGS[$locale]);
     }
 
     public static function nameFor($locale)

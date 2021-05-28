@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Suche',
             'deleted' => 'Gelöschte Diskussionen einbeziehen',
+            'mode' => 'Beatmap-Modus',
             'only_unresolved' => 'Nur ungelöste Diskussionen anzeigen',
             'types' => 'Nachrichtentyp',
             'username' => 'Benutzername',
@@ -55,6 +56,13 @@ return [
         'confirm' => 'Keiner dieser Beiträge behandelt mein Anliegen.',
         'notice' => 'Es gibt bereits Beiträge in der Nähe von :timestamp (:existing_timestamps). Bitte überprüfe sie, bevor du diesen absendest.',
         'unsaved' => ':count in dieser Bewertung',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [

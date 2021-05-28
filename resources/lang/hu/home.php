@@ -77,8 +77,8 @@ return [
 
         'help' => [
             '_' => 'ha meccs indításakor vagy fiók létrehozásánál problémába ütközöl, :help_forum_link vagy :support_button.',
-            'help_forum_link' => '',
-            'support_button' => '',
+            'help_forum_link' => 'segítő fórum megtekintése',
+            'support_button' => 'kapcsolatfelvétel',
         ],
 
         'os' => [

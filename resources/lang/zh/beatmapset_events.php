@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Approved.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => '管理员删除了 :discussion 。',
         'discussion_lock' => '针对该谱面的讨论已被禁用。（ :text ）',
         'discussion_post_delete' => '管理员在 :discussion 中删除了这条回复。',
@@ -25,9 +26,17 @@ return [
         'language_edit' => '语言由:old更改为:new。',
         'love' => '受到 :user 的喜爱',
         'nominate' => '被 :user 提名。',
+        'nominate_modes' => '由 :user 提名 (:modes)。',
         'nomination_reset' => '新问题 :discussion（:text）导致提名被重置。',
         'qualify' => '这张谱面已经有了足够数量的提名并已经 Qualified。',
         'rank' => 'Ranked.',
+        'remove_from_loved' => '由 :user 从 Loved 中移除。（:text）',
+
+        'nsfw_toggle' => [
+            'to_0' => '移除少儿不宜标识
+',
+            'to_1' => '已标为少儿不宜',
+        ],
     ],
 
     'index' => [
@@ -47,6 +56,7 @@ return [
 
     'type' => [
         'approve' => '推荐',
+        'beatmap_owner_change' => '',
         'discussion_delete' => '删除讨论',
         'discussion_post_delete' => '删除讨论的回复',
         'discussion_post_restore' => '恢复已删除的讨论的回复',
@@ -64,7 +74,9 @@ return [
         'love' => '被 Loved',
         'nominate' => '提名',
         'nomination_reset' => '重置提名',
+        'nsfw_toggle' => '少儿不宜标识',
         'qualify' => '审核通过',
         'rank' => '被 Ranked',
+        'remove_from_loved' => 'Loved 移除',
     ],
 ];

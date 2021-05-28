@@ -16,28 +16,26 @@ export default class Captcha {
     if (targetButton) {
       targetButton.disabled = true;
     }
-  }
+  };
 
   enableSubmit = () => {
     const targetButton = this.submitButton();
     if (targetButton) {
       targetButton.disabled = false;
     }
-  }
+  };
 
   init = (sitekey: string, triggered: boolean) => {
     this.sitekey = sitekey;
     this.triggered = triggered;
     this.render();
-  }
+  };
 
-  isEnabled = () => {
-    return this.container() &&
+  isEnabled = () => this.container() &&
       typeof(grecaptcha) === 'object' &&
       typeof(grecaptcha.render) === 'function' &&
       this.sitekey !== '' &&
       this.triggered;
-  }
 
   isLoaded = () => this.container()?.innerHTML !== '';
 
@@ -53,14 +51,14 @@ export default class Captcha {
 
       this.disableSubmit();
     }
-  }
+  };
 
   reset = () => {
     if (this.isEnabled()) {
       grecaptcha.reset();
       this.disableSubmit();
     }
-  }
+  };
 
   submitButton = () => document.querySelector<HTMLButtonElement>('.js-captcha--submit-button');
 
@@ -71,7 +69,7 @@ export default class Captcha {
 
     this.triggered = true;
     this.render();
-  }
+  };
 
   untrigger = () => {
     if (!this.isEnabled()) {
@@ -81,5 +79,5 @@ export default class Captcha {
     this.triggered = false;
     this.container()!.innerHTML = '';
     this.enableSubmit();
-  }
+  };
 }

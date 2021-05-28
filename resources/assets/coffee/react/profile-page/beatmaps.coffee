@@ -2,10 +2,11 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { ExtraHeader } from './extra-header'
-import { BeatmapsetPanel } from 'beatmapset-panel'
+import BeatmapsetPanel from 'beatmapset-panel'
+import { observable } from 'mobx'
 import * as React from 'react'
 import { div, h2, h3, ul, li, a, p, pre, span } from 'react-dom-factories'
-import { ShowMoreLink } from 'show-more-link'
+import ShowMoreLink from 'show-more-link'
 el = React.createElement
 
 sections = [
@@ -41,7 +42,7 @@ export class Beatmaps extends React.PureComponent
             div
               key: beatmapset.id
               className: 'osu-layout__col osu-layout__col--sm-6'
-              el BeatmapsetPanel, beatmap: beatmapset
+              el BeatmapsetPanel, beatmapset: observable(beatmapset)
 
           div
             className: 'osu-layout__col',

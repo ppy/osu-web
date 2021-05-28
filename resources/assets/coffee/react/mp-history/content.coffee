@@ -5,112 +5,102 @@ import { Event } from './event'
 import { Game } from './game'
 import * as React from 'react'
 import { button, div, h3 } from 'react-dom-factories'
-import { Spinner } from 'spinner'
+import ShowMoreLink from 'show-more-link'
+import { classWithModifiers } from 'utils/css'
+
 el = React.createElement
 
 export class Content extends React.PureComponent
-  constructor: (props) ->
-    super props
-
-    @eventsRef = React.createRef()
-
-
   getSnapshotBeforeUpdate: (prevProps, prevState) =>
-    snapshot = {}
+    snapshot =
+      scrollToLastEvent: prevProps.isAutoloading && @props.isAutoloading && osu.bottomPageDistance() < 10
 
-    if prevProps.events?.length > 0 && @props.events?.length > 0
-      # events are prepended, use previous first entry as reference
-      if prevProps.events[0].id > @props.events[0].id
-        snapshot.reference =
-          # firstChild to avoid calculating based on ever-changing padding
-          @eventsRef.current.children[0].firstChild
-      # events are appended, use previous last entry as reference
-      else if _.last(prevProps.events).id < _.last(@props.events).id
-        snapshot.reference =
-          _.last(@eventsRef.current.children).firstChild
+    if !snapshot.scrollToLastEvent
+      if prevProps.events?.length > 0 && @props.events?.length > 0
+        # This is to allow events to be added without moving currently
+        # visible events on viewport.
+        if prevProps.events[0].id > @props.events[0].id
+          snapshot.referenceFunc = -> document.body.scrollHeight
+        else
+          snapshot.referenceFunc = -> 0
 
-    if snapshot.reference?
-      snapshot.referenceTop = snapshot.reference.getBoundingClientRect().top
-
-    if osu.bottomPageDistance() < 10 && prevProps.isAutoloading && @props.isAutoloading
-      snapshot.scrollToLastEvent = true
-
+        snapshot.referencePrev = snapshot.referenceFunc()
     snapshot
 
 
   componentDidUpdate: (prevProps, prevState, snapshot) =>
     if snapshot.scrollToLastEvent
-      $(window).stop().scrollTo @eventsRef.current.scrollHeight, 500
-    else if snapshot.reference?
-      currentScrollReferenceTop = snapshot.reference.getBoundingClientRect().top
-      currentDocumentScrollTop = window.pageYOffset
-      targetDocumentScrollTop = currentDocumentScrollTop + currentScrollReferenceTop - snapshot.referenceTop
-      window.scrollTo window.pageXOffset, targetDocumentScrollTop
+      $(window).stop().scrollTo document.body.scrollHeight, 500
+    else if snapshot.referenceFunc?
+      referenceCurrent = snapshot.referenceFunc()
+      documentScrollTopCurrent = window.pageYOffset
+      documentScrollTopTarget = documentScrollTopCurrent + referenceCurrent - snapshot.referencePrev
+      window.scrollTo window.pageXOffset, documentScrollTopTarget
 
 
   render: =>
-    div className: 'osu-page osu-page--mp-history',
-      h3 null, @props.match.name
+    inEvent = false
+    eventsGroupOpen = div className: classWithModifiers('mp-history-content__item', ['event', 'event-open'])
+    eventsGroupClose = div className: classWithModifiers('mp-history-content__item', ['event', 'event-close'])
+
+    div className: 'mp-history-content',
+      h3 className: 'mp-history-content__item', @props.match.name
+
       if @props.hasPrevious
-        div className: 'mp-history-content',
-          if @props.loadingPrevious
-            el Spinner
-          else
-            button
-              className: 'mp-history-content__show-more'
-              type: 'button'
-              onClick: @props.loadPrevious
-              osu.trans 'common.buttons.show_more'
+        div className: 'mp-history-content__item mp-history-content__item--more',
+          el ShowMoreLink,
+            callback: @props.loadPrevious
+            direction: 'up'
+            hasMore: true
+            loading: @props.loadingPrevious
 
-      div
-        className: 'mp-history-events'
-        ref: @eventsRef
-        for event, i in @props.events
-          if event.detail.type == 'other'
-            continue if !event.game? || (!event.game.end_time? && event.game.id != @props.currentGameId)
+      for event in @props.events
+        if event.detail.type == 'other'
+          continue if !event.game? || (!event.game.end_time? && event.game.id != @props.currentGameId)
 
-            div
-              className: 'mp-history-events__game'
-              key: event.id
+          el React.Fragment, key: event.id,
+            if inEvent
+              inEvent = false
+              eventsGroupClose
+
+            div className: 'mp-history-content__item',
               el Game,
                 event: event
-                teamScores: @teamScores i
+                teamScores: @teamScores event.game
                 users: @props.users
-          else
-            div
-              className: 'mp-history-events__event'
-              key: event.id
+        else
+          el React.Fragment, key: event.id,
+            if !inEvent
+              inEvent = true
+              eventsGroupOpen
+
+            div className: 'mp-history-content__item mp-history-content__item--event',
               el Event,
                 event: event
                 users: @props.users
                 key: event.id
 
+      eventsGroupClose if inEvent
+
       if @props.hasNext
-        div className: 'mp-history-content',
+        div className: 'mp-history-content__item mp-history-content__item--more',
           if @props.isAutoloading
-            div className: 'mp-history-content__spinner',
-              div
-                className: 'mp-history-content__spinner-label'
-                osu.trans 'matches.match.in_progress_spinner_label'
-              el Spinner
-          else if @props.loadingNext
-            el Spinner
-          else
-            button
-              className: 'mp-history-content__show-more'
-              type: 'button'
-              onClick: @props.loadNext
-              osu.trans 'common.buttons.show_more'
+            div
+              className: 'mp-history-content__autoload-label'
+              osu.trans 'matches.match.in_progress_spinner_label'
+          el ShowMoreLink,
+            callback: @props.loadNext
+            hasMore: true
+            loading: @props.isAutoloading || @props.loadingNext
 
 
-  teamScores: (eventIndex) =>
-    game = @props.events[eventIndex].game
-
+  teamScores: (game) =>
     return if !game?
 
+    # this only caches ended games which scores shouldn't change ever.
     @scoresCache ?= {}
 
-    if !@scoresCache[eventIndex]?
+    if !@scoresCache[game.id]?
       scores =
         blue: 0
         red: 0
@@ -121,6 +111,6 @@ export class Content extends React.PureComponent
         continue if !score.match.pass
         scores[score.match.team] += score.score
 
-      @scoresCache[eventIndex] = scores
+      @scoresCache[game.id] = scores
 
-    @scoresCache[eventIndex]
+    @scoresCache[game.id]

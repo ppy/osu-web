@@ -55,8 +55,8 @@ return [
         'close' => 'Tutup (Esc)',
         'fullscreen' => 'Beralih ke layar penuh',
         'zoom' => 'Perbesar/perkecil tampilan',
-        'previous' => 'Sebelumnya (arrow left)',
-        'next' => 'Selanjutnya (arrow right)',
+        'previous' => 'Sebelumnya (tombol panah kiri)',
+        'next' => 'Selanjutnya (tombol panah kanan)',
     ],
 
     'menu' => [
@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'bantuan',
+            'getAbuse' => 'laporkan penyalahgunaan',
             'getFaq' => 'faq',
             'getRules' => 'peraturan',
             'getSupport' => 'beneran, saya butuh bantuan!',
@@ -117,14 +118,14 @@ return [
         ],
         'help' => [
             '_' => 'Bantuan & Komunitas',
-            'faq' => 'Pertanyaan yang Sering Ditanyakan',
+            'faq' => 'Pertanyaan yang Umum Diajukan (FAQ)',
             'forum' => 'Forum Komunitas',
             'livestreams' => 'Siaran Langsung',
             'report' => 'Laporkan Masalah',
             'wiki' => 'Wiki',
         ],
         'legal' => [
-            '_' => 'Status Resmi',
+            '_' => 'Hukum & Status',
             'copyright' => 'Hak Cipta (DMCA)',
             'privacy' => 'Privasi',
             'server_status' => 'Status Server',
@@ -158,6 +159,10 @@ return [
             'error' => 'Parameter yang diminta tidak valid',
             'description' => '',
         ],
+        '429' => [
+            'error' => 'Batas permintaan terlampaui',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Oh, tidak! Sepertinya ada sesuatu yang rusak! ;_;',
             'description' => "Sistem osu! akan secara otomatis memberitahukan kami setiap kali terdapat kesalahan seperti ini.",
@@ -170,8 +175,8 @@ return [
             'error' => 'Sedang dalam pemeliharaan!',
             'description' => "Proses pemeliharaan utamanya dapat berlangsung dalam durasi yang cukup beragam, mulai dari 5 detik hingga lebih dari 10 menit. Jika proses pemeliharaan ternyata berlangsung lebih lama dari yang sewajarnya, harap kunjungi :link untuk informasi lebih lanjut.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -203,6 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Pengaturan',
+            'follows' => 'Daftar Pantauan',
             'friends' => 'Teman',
             'logout' => 'Keluar',
             'profile' => 'Profil Saya',

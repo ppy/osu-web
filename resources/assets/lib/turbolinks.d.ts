@@ -7,8 +7,8 @@ declare module 'turbolinks' {
   }
 
   interface TurbolinksLocation {
-      getPath(): string;
-      isHTML(): boolean;
+    getPath(): string;
+    isHTML(): boolean;
   }
 
   export default interface TurbolinksStatic {

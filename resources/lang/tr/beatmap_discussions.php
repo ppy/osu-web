@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Ara',
             'deleted' => 'Silinmiş tartışmaları içer',
+            'mode' => 'Beatmap modu',
             'only_unresolved' => 'Sadece çözülmemiş tartışmaları göster',
             'types' => 'Mesaj türü',
             'username' => 'Kullanıcı adı',
@@ -57,6 +58,13 @@ return [
         'unsaved' => 'bu incelemede :count',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Yanıtlamak için Giriş yapın',
@@ -66,16 +74,16 @@ return [
 
     'review' => [
         'block_count' => ':used / :max blok kullanıldı',
-        'go_to_parent' => 'İnceleme paylaşımını görüntüle',
-        'go_to_child' => 'Tartışmayı görüntüle',
+        'go_to_parent' => 'İnceleme Gönderisini Görüntüle',
+        'go_to_child' => 'Tartışmayı Görüntüle',
         'validation' => [
             'block_too_large' => 'her blok en fazla :limit karakter içerebilir',
-            'external_references' => 'inceleme, bu incelemeye ait olmayan sorunlara referanslar içeriyor',
+            'external_references' => 'incelemede, bu incelemeye ait olmayan sorunlara göndermeler mevcut',
             'invalid_block_type' => 'geçersiz blok türü',
-            'invalid_document' => 'geçersiz gözden geçirme',
-            'minimum_issues' => 'gözden geçirme asgari :count sayıda sorun içermelidir|gözden geçirme asgari :count sayıda sorun içermelidir',
+            'invalid_document' => 'geçersiz inceleme',
+            'minimum_issues' => 'inceleme en az :count sorun içermelidir|inceleme en az :count sorun içermelidir',
             'missing_text' => 'blokta yazı eksik',
-            'too_many_blocks' => 'gözden geçirmeler sadece :count paragraf/sorun içerebilir|gözden geçirmeler sadece azami :count paragraf/sorun içerebilir',
+            'too_many_blocks' => 'incelemeler yalnızca :count paragraf/sorun içerebilir|incelemeler sadece en fazla :count paragraf/sorun içerebilir',
         ],
     ],
 

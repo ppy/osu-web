@@ -5,33 +5,33 @@
 
 return [
     'signature' => [
-        'not_match' => 'Sygnatury nie są jednakowe',
+        'not_match' => '',
     ],
-    'notification_type' => 'notification_type nie jest poprawnym :type',
+    'notification_type' => '',
     'order' => [
-        'invalid' => 'Zamówienie nie jest prawidłowe',
+        'invalid' => '',
         'items' => [
-            'virtual_only' => 'Płatność przez `:provider` nie jest możliwa dla materialnych przedmiotów.',
+            'virtual_only' => '',
         ],
         'status' => [
-            'not_checkout' => 'Próbujesz zaakceptować płatność dla zamówienia w niewłaściwym stanie `:state`.',
-            'not_paid' => 'Próbujesz cofnąć płatność dla zamówienia w niewłaściwym stanie `:state`.',
+            'not_checkout' => '',
+            'not_paid' => '',
         ],
     ],
     'param' => [
-        'invalid' => 'Parametr `:param` nie zgadza się',
+        'invalid' => '',
     ],
     'paypal' => [
-        'not_echeck' => 'Oczekująca płatność nie jest e-czekiem. (:actual)',
+        'not_echeck' => '',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => 'Wartość płatności nie zgadza się: :actual != :expected',
-            'currency' => 'Płatność nie jest w dolarach. (:type)',
+            'amount' => '',
+            'currency' => '',
         ],
     ],
     'order_number' => [
-        'malformed' => 'Otrzymany identyfikator zamówienia jest niepoprawny',
-        'user_id_mismatch' => 'external_id zawiera błędny identyfikator użytkownika',
+        'malformed' => '',
+        'user_id_mismatch' => '',
     ],
 ];

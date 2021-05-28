@@ -58,8 +58,8 @@ return [
         'upload_image' => 'carica immagine',
 
         'watch' => [
-            'to_0' => 'Non guardare',
-            'to_1' => 'Guarda',
+            'to_0' => 'Non seguire',
+            'to_1' => 'Segui',
         ],
     ],
 
@@ -123,7 +123,7 @@ return [
         'count_100' => '100',
         'count_300' => '300',
         'count_50' => '50',
-        'count_geki' => 'MAX',
+        'count_geki' => '',
         'count_katu' => '200',
         'count_miss' => 'Miss',
     ],
@@ -137,7 +137,7 @@ return [
         'm' => '%d min',
         'MM' => '%d me',
         'mm' => '%d min',
-        'past' => '%s',
+        'past' => '',
         's' => '%d s',
         'y' => '%d y',
         'yy' => '%d y',

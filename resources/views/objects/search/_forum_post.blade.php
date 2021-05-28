@@ -18,12 +18,14 @@
         <div class="search-forum-post__content">
             @if (isset($title))
                 <div class="search-forum-post__text search-forum-post__text--title">
-                    {{ $title }}
+                    <span class="search-highlight">
+                        {{ $title }}
+                    </span>
                 </div>
             @endif
             <div class="search-forum-post__text search-forum-post__text--excerpt">
                 <span class="search-highlight">
-                    {!! $highlights !!}
+                    {{ $excerpt }}
                 </span>
             </div>
             <div class="search-forum-post__text search-forum-post__text--footer">
@@ -31,8 +33,14 @@
                    @if ($userLink !== null) href="{{ $userLink }}" @endif
                    data-user-id="{{ $user->user_id }}"
                 >
-                    posted by
-                    <span class="search-forum-post__username">{{ $user->username }}</span>
+                    {!! trans(
+                        'forum.post.posted_by',
+                        ['username' => tag(
+                            'span',
+                            ['class' => 'search-forum-post__username'],
+                            $user->username
+                        )]
+                    ) !!}
                 </a>
                 <div class="search-forum-post__url">
                     {{ $link }}

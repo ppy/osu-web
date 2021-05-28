@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Felhasználók játékmód szerint',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "A fiókod hosszú ideje nem volt használva.",
@@ -84,7 +88,7 @@ return [
         'failed' => 'Hibás adatok',
         'forgot' => 'Elfelejtetted a jelszavad?',
         'info' => 'Jelentkezz be a folytatáshoz',
-        'invalid_captcha' => '',
+        'invalid_captcha' => 'Túl sok sikertelen belépési kísérlet, kérlek töltsd ki a captcha-t és próbáld újra. (Ha a captcha nem látszik, frissítsd az oldalt)',
         'locked_ip' => 'Az IP címed zárolva van. Kérjük várj egy pár percet.',
         'password' => 'Jelszó',
         'register' => "Nincs osu! felhasználód? Regisztrálj egyet!",
@@ -150,6 +154,10 @@ return [
         'plays_with' => 'Ezekkel játszik: :devices',
         'title' => ":username profilja",
 
+        'comments_count' => [
+            '_' => ':link posztolva',
+            'count' => ':count_delimited komment|:count_delimited komment',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Profil Borító Változtatása',
@@ -347,10 +355,8 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Érdekeltségek',
-            'lastfm' => 'Last.fm',
             'location' => 'Tartózkodási hely',
             'occupation' => 'Foglalkozás',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Honlap',
         ],
@@ -401,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Függőben lévő beatmapek',
             'graveyard_beatmapset_count' => 'Eltemetett beatmapek',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Jelenleg el vagy némítva.',
+        'message' => 'Egyes műveletek lehet, hogy nem érhetők el.',
     ],
 
     'status' => [

@@ -33,7 +33,7 @@ return [
 
     'blocks' => [
         'banner_text' => 'Du hast diesen Benutzer geblockt.',
-        'blocked_count' => '(:count) geblockte Benutzer ',
+        'blocked_count' => 'geblockte benutzer (:count)',
         'hide_profile' => 'Profil verbergen',
         'not_blocked' => 'Dieser Benutzer ist nicht geblockt.',
         'show_profile' => 'Profil anzeigen',
@@ -68,6 +68,10 @@ return [
                 'tos' => 'Nutzungsbedinungen',
             ],
         ],
+    ],
+
+    'filtering' => [
+        'by_game_mode' => 'Mitglieder nach Spielmodus',
     ],
 
     'force_reactivation' => [
@@ -150,6 +154,10 @@ return [
         'plays_with' => 'Spielt mit :devices',
         'title' => "Profil von :username",
 
+        'comments_count' => [
+            '_' => ':link abgegeben',
+            'count' => ':count_delimited Kommentar|:count_delimited Kommentare',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Profilbanner ändern',
@@ -345,13 +353,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Interessen',
-            'lastfm' => 'Last.fm',
             'location' => 'Aktueller Standort',
             'occupation' => 'Beschäftigung',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => 'Webseite',
         ],
         'not_found' => [
@@ -401,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Ausstehende Beatmaps',
             'graveyard_beatmapset_count' => 'Begrabende Beatmaps',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Du bist derzeit stumm.',
+        'message' => 'Einige Aktionen sind möglicherweise nicht verfügbar.',
     ],
 
     'status' => [

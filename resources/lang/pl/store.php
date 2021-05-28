@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Zamówienie złożone :date',
-
+        'cancel' => 'Anuluj zamówienie',
+        'cancel_confirm' => 'Twoje zamówienie zostanie anulowane a płatność za nie nieprzyjęta. Twój dostawca usług płatniczych może nie zwrócić zarezerwowanych środków natychmiastowo. Czy na pewno chcesz to zrobić?',
+        'cancel_not_allowed' => 'Nie możesz anulować tego zamówienia w tym momencie.',
         'invoice' => 'Pokaż fakturę',
         'no_orders' => 'Brak zamówień do wyświetlenia.',
+        'paid_on' => 'Zamówienie złożone :date',
         'resume' => 'Wznów zamówienie',
+        'shopify_expired' => 'Łącze do płatności za to zamówienie wygasło.',
 
         'item' => [
             'display_name' => [

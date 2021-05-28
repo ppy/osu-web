@@ -11,23 +11,22 @@ import { ReactEditor } from 'slate-react';
 
 export const blockCount = (input: SlateElement[]) => input.length;
 
-export const slateDocumentIsEmpty = (doc: SlateElement[]): boolean => {
-  return doc.length === 0 || (
-      doc.length === 1 &&
+export const slateDocumentIsEmpty = (doc: SlateElement[]): boolean => doc.length === 0 || (
+  doc.length === 1 &&
       doc[0].type === 'paragraph' &&
       doc[0].children.length === 1 &&
       doc[0].children[0].text === ''
-    );
-};
+);
 
-export const insideEmbed = (editor: ReactEditor) => {
-  if (editor.selection) {
-    const parent = SlateNode.parent(editor, SlateRange.start(editor.selection).path);
+export const insideEmbed = (editor: ReactEditor) => getCurrentNode(editor)?.type === 'embed';
 
-    return parent.type === 'embed';
+export const insideEmptyNode = (editor: ReactEditor) => {
+  const parent = getCurrentNode(editor);
+  if (!parent) {
+    return false;
   }
 
-  return false;
+  return Editor.isEmpty(editor, parent);
 };
 
 export const isFormatActive = (editor: ReactEditor, format: string) => {
@@ -38,13 +37,71 @@ export const isFormatActive = (editor: ReactEditor, format: string) => {
   return !!match;
 };
 
+export const getCurrentNode = (editor: ReactEditor) => {
+  if (editor.selection) {
+    return SlateNode.parent(editor, SlateRange.start(editor.selection).path);
+  }
+};
+
 export const toggleFormat = (editor: ReactEditor, format: string) => {
   Transforms.setNodes(
     editor,
     { [format]: isFormatActive(editor, format) ? null : true },
-    { match: Text.isText, split: true },
+    { match: (node) => Text.isText(node), split: true },
   );
 };
+
+// TODO: check typing
+function serializeEmbed(node: SlateElement): DocumentIssueEmbed {
+  if (node.discussionId) {
+    return {
+      discussion_id: node.discussionId as number,
+      type: 'embed',
+    };
+  } else {
+    return {
+      beatmap_id: node.beatmapId as number,
+      discussion_type: node.discussionType as BeatmapReviewDiscussionType,
+      text: node.children[0].text as string,
+      timestamp: node.timestamp ? BeatmapDiscussionHelper.parseTimestamp(node.timestamp as string) : null,
+      type: 'embed',
+    };
+  }
+}
+
+function serializeParagraph(node: SlateElement) {
+  const childOutput: string[] = [];
+  const currentMarks = {
+    bold: false,
+    italic: false,
+  };
+
+  node.children.forEach((child) => {
+    if (child.text !== '') {
+      if (currentMarks.bold !== (child.bold ?? false)) {
+        currentMarks.bold = (child.bold as boolean) ?? false;
+        childOutput.push('**');
+      }
+
+      if (currentMarks.italic !== (child.italic ?? false)) {
+        currentMarks.italic = (child.italic as boolean) ?? false;
+        childOutput.push('*');
+      }
+    }
+
+    childOutput.push((child.text as string).replace('*', '\\*'));
+  });
+
+  // ensure closing of open tags
+  if (currentMarks.bold) {
+    childOutput.push('**');
+  }
+  if (currentMarks.italic) {
+    childOutput.push('*');
+  }
+
+  return childOutput.join('');
+}
 
 export const slateDocumentContainsNewProblem = (input: SlateElement[]) =>
   input.some((node) => node.type === 'embed' && node.discussionType === 'problem' && !node.discussionId);
@@ -55,63 +112,14 @@ export const serializeSlateDocument = (input: SlateElement[]) => {
   input.forEach((node) => {
     switch (node.type) {
       case 'paragraph':
-        const childOutput: string[] = [];
-        const currentMarks = {
-          bold: false,
-          italic: false,
-        };
-
-        node.children.forEach((child) => {
-          if (child.text !== '') {
-            if (currentMarks.bold !== (child.bold ?? false)) {
-              currentMarks.bold = (child.bold as boolean) ?? false;
-              childOutput.push('**');
-            }
-
-            if (currentMarks.italic !== (child.italic ?? false)) {
-              currentMarks.italic = (child.italic as boolean) ?? false;
-              childOutput.push('*');
-            }
-          }
-
-          childOutput.push((child.text as string).replace('*', '\\*'));
-        });
-
-        // ensure closing of open tags
-        if (currentMarks.bold) {
-          childOutput.push('**');
-        }
-        if (currentMarks.italic) {
-          childOutput.push('*');
-        }
-
         review.push({
-          text: childOutput.join(''),
+          text: serializeParagraph(node),
           type: 'paragraph',
         });
-
-        currentMarks.bold = currentMarks.italic = false;
         break;
 
       case 'embed':
-        let doc: DocumentIssueEmbed;
-
-        if (node.discussionId) {
-          doc = {
-            discussion_id: node.discussionId as number,
-            type: 'embed',
-          };
-        } else {
-          doc = {
-            beatmap_id: node.beatmapId as number,
-            discussion_type: node.discussionType as BeatmapReviewDiscussionType,
-            text: node.children[0].text as string,
-            timestamp: node.timestamp ? BeatmapDiscussionHelper.parseTimestamp(node.timestamp as string) : null,
-            type: 'embed',
-          };
-        }
-
-        review.push(doc);
+        review.push(serializeEmbed(node));
         break;
     }
   });

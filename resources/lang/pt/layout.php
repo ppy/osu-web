@@ -72,11 +72,12 @@ return [
             'contests' => 'concursos',
             'dev' => 'desenvolvimento',
             'forum-forums-index' => 'fóruns',
-            'getLive' => 'ao vivo',
+            'getLive' => 'em direto',
             'tournaments' => 'torneios',
         ],
         'help' => [
             '_' => 'ajuda',
+            'getAbuse' => 'denunciar abuso',
             'getFaq' => 'perguntas frequentes',
             'getRules' => 'regras',
             'getSupport' => 'a sério, preciso mesmo de ajuda!',
@@ -116,10 +117,10 @@ return [
             'download' => 'Descarrega o osu!',
         ],
         'help' => [
-            '_' => 'Ajuda e comunidade',
-            'faq' => 'Perguntas frequentes (em brasileiro)',
+            '_' => 'Ajuda e Comunidade',
+            'faq' => 'Perguntas frequentes',
             'forum' => 'Fóruns da comunidade',
-            'livestreams' => 'Transmissões ao vivo',
+            'livestreams' => 'Transmissões em direto',
             'report' => 'Comunicar um problema',
             'wiki' => 'Wiki',
         ],
@@ -156,6 +157,10 @@ return [
         ],
         '422' => [
             'error' => 'Parâmetro de pedido inválido',
+            'description' => '',
+        ],
+        '429' => [
+            'error' => 'Taxa limite excedida',
             'description' => '',
         ],
         '500' => [
@@ -203,6 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Definições',
+            'follows' => 'Listas de observação',
             'friends' => 'Amigos',
             'logout' => 'Terminar sessão',
             'profile' => 'O meu perfil',

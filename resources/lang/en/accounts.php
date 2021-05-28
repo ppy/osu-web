@@ -35,7 +35,6 @@ return [
                 'user_discord' => 'discord',
                 'user_from' => 'current location',
                 'user_interests' => 'interests',
-                'user_msnm' => 'skype',
                 'user_occ' => 'occupation',
                 'user_twitter' => 'twitter',
                 'user_website' => 'website',
@@ -57,11 +56,13 @@ return [
 
         'options' => [
             '_' => 'delivery options',
+            'beatmap_owner_change' => 'guest difficulty',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'private chat messages',
             'comment_new' => 'new comments',
             'forum_topic_reply' => 'topic reply',
             'mail' => 'mail',
+            'mapping' => 'beatmap mapper',
             'push' => 'push',
             'user_achievement_unlock' => 'user medal unlocked',
         ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'hide warnings for explicit content in beatmaps',
+        'beatmapset_title_show_original' => 'show beatmap metadata in original language',
         'title' => 'Options',
 
         'beatmapset_download' => [
             '_' => 'default beatmap download type',
             'all' => 'with video if available',
-            'no_video' => 'without video',
             'direct' => 'open in osu!direct',
+            'no_video' => 'without video',
         ],
-
-        'beatmapset_title_show_original' => 'show beatmap metadata in original language',
     ],
 
     'playstyles' => [

@@ -5,9 +5,13 @@
 
 return [
     'all_read' => 'Всі сповіщення прочитані!',
+    'delete' => 'Видалити :type',
+    'loading' => 'Завантажити непрочитані сповіщення...',
     'mark_read' => 'Очистити :type',
     'none' => 'Немає повідомлень',
     'see_all' => 'див. всі сповіщення ',
+    'see_channel' => 'перейти до чату',
+    'verifying' => 'Будь ласка, перевірте сеанс, щоб переглянути сповіщення',
 
     'filters' => [
         '_' => 'усе',
@@ -22,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'Карта',
+
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'Обговорення карти',
@@ -57,6 +67,8 @@ return [
                 'beatmapset_qualify_compact' => 'Карта увійшла до черги рейтингу',
                 'beatmapset_rank' => '":title" оцінено',
                 'beatmapset_rank_compact' => 'Карта була ранкнута',
+                'beatmapset_remove_from_loved' => '":title" вилучений з Улюблені',
+                'beatmapset_remove_from_loved_compact' => 'Бітмапа була вилучена з Улюблені',
                 'beatmapset_reset_nominations' => 'Проблема опублікована :username викликала скидання процесу номінації карти ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Номінацію було скинуто',
             ],
@@ -66,8 +78,8 @@ return [
 
                 'comment_new' => ':username прокоментував ":content" у ":title"',
                 'comment_new_compact' => ':username прокоментував ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username відповів ":content" на ":title"',
+                'comment_reply_compact' => ':username відповів ":content"',
             ],
         ],
 
@@ -92,8 +104,8 @@ return [
 
                 'comment_new' => ':username прокоментував ":content" на ":title"',
                 'comment_new_compact' => ':username прокоментував ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username відповів ":content" на ":title"',
+                'comment_reply_compact' => ':username відповів: ":content"',
             ],
         ],
 
@@ -105,8 +117,8 @@ return [
 
                 'comment_new' => ':username прокоментував ":content" на ":title"',
                 'comment_new_compact' => ':username прокоментував ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username відповів ":content" на ":title"',
+                'comment_reply_compact' => ':username відповів: ":content"',
             ],
         ],
 
@@ -129,6 +141,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => 'Нова бітмапа',
+
+                'user_beatmapset_new' => 'Нова бітмапа ":title" від :username',
+                'user_beatmapset_new_compact' => 'Нова бітмапа ":title"',
+                'user_beatmapset_new_group' => 'Нова бітмапа від :username',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Досягнення',
 
@@ -136,33 +158,39 @@ return [
                 '_' => 'Нова медаль',
                 'user_achievement_unlock' => 'Розблоковано ":title"!',
                 'user_achievement_unlock_compact' => 'Розблоковано ":title"!',
+                'user_achievement_unlock_group' => 'Медалі розблоковано!',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_lock' => 'Обговорення в ":title" закрито',
+                'beatmapset_discussion_post_new' => 'Обговорення на ":title" має нові оновлення',
+                'beatmapset_discussion_unlock' => 'Тема ":title" була розблокована',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => 'Повідомлено про нову проблему на ":title"',
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_disqualify' => '":title" було дискваліфіковано',
+                'beatmapset_love' => '":title" підвищено до коханого',
+                'beatmapset_nominate' => '":title" було номіновано',
+                'beatmapset_qualify' => '":title" отримав достатню кількість номінацій і увійшов до черги рейтингу',
+                'beatmapset_rank' => '":title" було оцінено',
+                'beatmapset_remove_from_loved' => '":title" видалений з Улюблені',
+                'beatmapset_reset_nominations' => 'Номінація ":title" була скинута',
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'У карті ":title" були знайдені нові коментарі',
             ],
         ],
 
@@ -174,26 +202,30 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'У changelog\'а ":title" були знайдені нові коментарі',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'У новини ":title" були знайдені нові комментарі',
             ],
         ],
 
         'forum_topic' => [
             'forum_topic_reply' => [
-                'forum_topic_reply' => '',
+                'forum_topic_reply' => 'Є нові відповіді в ":title"',
             ],
         ],
 
         'user' => [
             'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock' => ':username розблокував нову медаль, ":title"!',
+                'user_achievement_unlock_self' => 'Ви розблокували нову медаль, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':username створив нову бітмапу',
             ],
         ],
     ],

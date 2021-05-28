@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Sök',
             'deleted' => 'Inkludera raderade diskussioner',
+            'mode' => 'Beatmapläge',
             'only_unresolved' => 'Visa bara olösta diskussioner',
             'types' => 'Typ av meddelande',
             'username' => 'Användarnamn',
@@ -55,6 +56,13 @@ return [
         'confirm' => 'Inget av inläggen tar upp min oro',
         'notice' => 'Det finns inlägg runt :timestamp (:existing_timestamps). Var vänlig kontrollera detta innan du lägger upp ett inlägg.',
         'unsaved' => ':count i denna recension',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [

@@ -81,7 +81,7 @@ export class Uploader extends React.Component
       done: (_e, data) ->
         $.publish 'contest:entries:update', data: data.result
 
-      fail: osu.fileuploadFailCallback(@$uploadButton)
+      fail: _exported.fileuploadFailCallback
 
   componentWillUnmount: =>
     $.unsubscribe '.contest-upload'

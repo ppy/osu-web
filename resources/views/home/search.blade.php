@@ -4,6 +4,9 @@
 --}}
 @extends('master')
 
+@php
+    $searchMode = $allSearch->getMode();
+@endphp
 @section('content')
     @include('layout._page_header_v4', ['params' => [
         'theme' => 'search',
@@ -43,7 +46,7 @@
         <div class="search">
             @include('home._search_page_tabs', compact('allSearch'))
 
-            @if ($allSearch->getMode() === 'forum_post')
+            @if ($searchMode === 'forum_post')
                 @include('objects.search._forum_options')
             @endif
 
@@ -51,7 +54,16 @@
                 @php
                     $showMore = $allSearch->showMore();
                 @endphp
+
                 @foreach ($allSearch->visibleSearches() as $mode => $search)
+                    @if ($searchMode === 'forum_post')
+                        @include('objects.search._forum_sort', compact('search'))
+                    @endif
+
+                    @if ($searchMode === 'user')
+                        @include('objects.search._user_sort', compact('search'))
+                    @endif
+
                     @include('home._search_results', compact('mode', 'search', 'showMore'))
                 @endforeach
             @else

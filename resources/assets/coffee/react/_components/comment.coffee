@@ -10,10 +10,12 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, span, textarea } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
-import { ShowMoreLink } from 'show-more-link'
+import ShowMoreLink from 'show-more-link'
 import { Spinner } from 'spinner'
-import { UserAvatar } from 'user-avatar'
+import UserAvatar from 'user-avatar'
+import { classWithModifiers } from 'utils/css'
 import { estimateMinLines } from 'utils/estimate-min-lines'
+import { createClickCallback, formatNumberSuffixed } from 'utils/html'
 
 el = React.createElement
 
@@ -44,7 +46,7 @@ export class Comment extends React.PureComponent
     @xhr = {}
     @loadMoreRef = React.createRef()
 
-    if osu.isMobile()
+    if osuCore.windowSize.isMobile
       # There's no indentation on mobile so don't expand by default otherwise it will be confusing.
       expandReplies = false
     else if @props.comment.isDeleted
@@ -105,6 +107,7 @@ export class Comment extends React.PureComponent
 
         @renderRepliesToggle()
         @renderCommentableMeta(meta)
+        @renderToolbar()
 
         div
           className: osu.classWithModifiers('comment__main', mainModifiers)
@@ -158,7 +161,7 @@ export class Comment extends React.PureComponent
               if @props.comment.canHaveVote
                 div
                   className: 'comment__row-item visible-xs'
-                  @renderVoteText()
+                  @renderVoteButton(true)
 
               div
                 className: 'comment__row-item comment__row-item--info'
@@ -181,7 +184,7 @@ export class Comment extends React.PureComponent
             className: repliesClass
             @children.map @renderComment
 
-            el DeletedCommentsCount, { comments: @children, showDeleted: uiState.comments.isShowDeleted }
+            el DeletedCommentsCount, { comments: @children }
 
             el CommentShowMore,
               parent: @props.comment
@@ -194,7 +197,7 @@ export class Comment extends React.PureComponent
 
   renderComment: (comment) =>
     comment = store.comments.get(comment.id)
-    return null if comment.isDeleted && !uiState.comments.isShowDeleted
+    return null if comment.isDeleted && !core.userPreferences.get('comments_show_deleted')
 
     el Comment,
       key: comment.id
@@ -373,17 +376,18 @@ export class Comment extends React.PureComponent
         user.username
 
 
-  # mobile vote button
-  renderVoteButton: =>
-    className = osu.classWithModifiers('comment-vote', @props.modifiers)
-    className += ' comment-vote--posting' if @state.postingVote
+  renderVoteButton: (inline = false) =>
+    hasVoted = @hasVoted()
 
-    if @hasVoted()
-      className += ' comment-vote--on'
-      hover = null
-    else
-      className += ' comment-vote--off'
-      hover = div className: 'comment-vote__hover', '+1'
+    className = classWithModifiers 'comment-vote', @props.modifiers
+    className += classWithModifiers 'comment-vote',
+      disabled: !@props.comment.canVote
+      inline: inline
+      on: hasVoted
+      posting: @state.postingVote
+      true
+
+    hover = div className: 'comment-vote__hover', '+1' if !inline && !hasVoted
 
     button
       className: className
@@ -391,22 +395,10 @@ export class Comment extends React.PureComponent
       onClick: @voteToggle
       disabled: @state.postingVote || !@props.comment.canVote
       span className: 'comment-vote__text',
-        "+#{osu.formatNumberSuffixed(@props.comment.votesCount, null, maximumFractionDigits: 1)}"
+        "+#{formatNumberSuffixed(@props.comment.votesCount, null, maximumFractionDigits: 1)}"
       if @state.postingVote
         span className: 'comment-vote__spinner', el Spinner
       hover
-
-
-  renderVoteText: =>
-    className = 'comment__action'
-    className += ' comment__action--active' if @hasVoted()
-
-    button
-      className: className
-      type: 'button'
-      onClick: @voteToggle
-      disabled: @state.postingVote
-      "+#{osu.formatNumberSuffixed(@props.comment.votesCount, null, maximumFractionDigits: 1)}"
 
 
   renderCommentableMeta: (meta) =>
@@ -429,6 +421,21 @@ export class Comment extends React.PureComponent
           osu.trans("comments.commentable_name.#{@props.comment.commentableType}")
       component params,
         meta.title
+
+
+  renderToolbar: =>
+    return unless @props.showToolbar
+
+    div className: 'comment__toolbar',
+      div className: 'sort',
+        div className: 'sort__items',
+          button
+            type: 'button'
+            className: 'sort__item sort__item--button'
+            onClick: @onShowDeletedToggleClick
+            span className: 'sort__item-icon',
+              span className: if core.userPreferences.get('comments_show_deleted') then 'fas fa-check-square' else 'far fa-square'
+            osu.trans('common.buttons.show_deleted')
 
 
   hasVoted: =>
@@ -480,6 +487,10 @@ export class Comment extends React.PureComponent
     @toggleReplies()
 
 
+  onShowDeletedToggleClick: ->
+    core.userPreferences.set('comments_show_deleted', !core.userPreferences.get('comments_show_deleted'))
+
+
   parentLink: (parent) =>
     props = title: makePreview(parent)
 
@@ -497,7 +508,7 @@ export class Comment extends React.PureComponent
 
 
   userFor: (comment) =>
-    user = userStore.get(comment.userId)?.toJSON()
+    user = userStore.get(comment.userId)?.toJson()
 
     if user?
       user
@@ -526,10 +537,7 @@ export class Comment extends React.PureComponent
   voteToggle: (e) =>
     target = e.target
 
-    if !currentUser.id?
-      userLogin.show target
-
-      return
+    return if core.userLogin.showIfGuest(createClickCallback(target))
 
     @setState postingVote: true
 

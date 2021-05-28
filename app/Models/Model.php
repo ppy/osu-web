@@ -19,6 +19,8 @@ abstract class Model extends BaseModel
 
     protected $connection = 'mysql';
     protected $guarded = [];
+    protected $macros;
+    protected $primaryKeys;
 
     public function getForeignKey()
     {
@@ -71,51 +73,11 @@ abstract class Model extends BaseModel
 
     public function refresh()
     {
-        if (isset($this->memoized)) {
-            $this->memoized = [];
+        if (method_exists($this, 'resetMemoized')) {
+            $this->resetMemoized();
         }
 
         return parent::refresh();
-    }
-
-    public function scopeCursorSort($query, array $sort, ?array $cursor)
-    {
-        if (empty($cursor)) {
-            foreach ($sort as $sortItem) {
-                $query->orderBy($sortItem['column'], $sortItem['order']);
-            }
-        } else {
-            $query->cursorWhere($cursor);
-        }
-    }
-
-    public function scopeCursorWhere($query, array $cursors, bool $isFirst = true)
-    {
-        if (empty($cursors)) {
-            return;
-        }
-
-        if ($isFirst) {
-            foreach ($cursors as $cursor) {
-                $query->orderBy($cursor['column'], $cursor['order']);
-            }
-        }
-
-        $cursor = array_shift($cursors);
-
-        $dir = strtoupper($cursor['order']) === 'DESC' ? '<' : '>';
-
-        if (count($cursors) === 0) {
-            $query->where($cursor['column'], $dir, $cursor['value']);
-        } else {
-            $query->where($cursor['column'], "{$dir}=", $cursor['value'])
-                ->where(function ($q) use ($cursor, $dir, $cursors) {
-                    $q->where($cursor['column'], $dir, $cursor['value'])
-                        ->orWhere(function ($qq) use ($cursors) {
-                            $qq->cursorWhere($cursors, false);
-                        });
-                });
-        }
     }
 
     public function scopeReorderBy($query, $field, $order)

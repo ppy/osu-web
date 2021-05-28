@@ -27,7 +27,7 @@ return [
 
         'benefit' => [
             'gift' => '',
-            'self' => '',
+            'self' => '您可以在接下來的 :duration 內享受 osu!direct 和其他 osu! 支持者享有的特權。',
         ],
 
         'support' => [
@@ -63,7 +63,7 @@ return [
     'supporter_gift' => [
         'anonymous_gift' => '贈送您贊助者標籤的人想要保持匿名，所以在這則通知中並沒有提到他(們)。',
         'anonymous_gift_maybe_not' => '',
-        'duration' => '',
+        'duration' => '因為他們，您可以在接下來的 :duration 內享受 osu!direct 和其他 osu! 支持者享有的特權。',
         'features' => '',
         'gifted' => '有人剛剛送給你了一份osu!贊助者標籤!',
         'subject' => '您已獲贈 osu!supporter 標籤！',
@@ -71,7 +71,7 @@ return [
 
     'user_email_updated' => [
         'changed_to' => '提醒您，您的osu!電子信箱已被更改為:email',
-        'check' => '',
+        'check' => '為了防止將來無法取存取您的osu!帳戶，請確保您已在新的電子信箱收到本電子郵件。',
         'sent' => '為了確保帳號安全，我們已將此郵件發送至您的原信箱和修改後的信箱',
         'subject' => 'osu! 帳號電子郵件變更',
     ],
@@ -84,9 +84,9 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
-        'settings' => '',
-        'subject' => '',
+        'new' => '只是想提醒您，您追蹤的項目有新的更新',
+        'settings' => '更改電子郵件通知設定：',
+        'subject' => '新的 osu! 通知',
     ],
 
     'user_password_updated' => [

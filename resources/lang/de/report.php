@@ -14,6 +14,11 @@ return [
         'title' => 'Den Kommentar von :username melden?',
     ],
 
+    'forum_post' => [
+        'button' => 'Melden',
+        'title' => ':usernames Beitrag melden?',
+    ],
+
     'scores' => [
         'button' => 'Score melden',
         'title' => ':username\'s Score melden?',

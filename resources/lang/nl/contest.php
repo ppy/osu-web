@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Je kan niet meer stemmen in deze wedstrijd',
         'login_required' => 'Log in om te kunnen stemmen.',
+        'over' => 'Je kan niet meer stemmen in deze wedstrijd',
+        'show_voted_only' => 'Toon gestemde stemmen',
 
         'best_of' => [
             'none_played' => "Het lijkt erop dat je geen van de beatmaps in deze wedstrijd hebt gespeeld!",
@@ -32,8 +33,6 @@ return [
         'login_required' => 'Log in om aan de wedstrijd mee te doen.',
         'silenced_or_restricted' => 'Je kan niet meedoen aan wedstrijden als je restricted of silenced bent.',
         'preparation' => 'We zijn nog bezig met de voorbereidingen van deze wedstrijd. Heb nog even geduld alsjeblieft!',
-        'over' => 'Bedankt voor de inzendingen! Inzendingen zijn gesloten voor deze wedstrijd en de stembus gaan binnenkort open.',
-        'limit_reached' => 'Je hebt de limiet voor inschrijvingen bereikt',
         'drop_here' => 'Sleep je inzending hier',
         'download' => 'Download .osz',
         'wrong_type' => [

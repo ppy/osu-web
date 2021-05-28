@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Godkänd.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Moderator raderade diskussion :discussion.',
         'discussion_lock' => 'Diskussioner för denna beatmap har inaktiverats. (:text)',
         'discussion_post_delete' => 'Moderator raderade inlägg från diskussionen :discussion.',
@@ -25,9 +26,16 @@ return [
         'language_edit' => 'Språk ändrat från :old till :new.',
         'love' => 'Älskad av :user',
         'nominate' => 'Nominerad av :user.',
+        'nominate_modes' => 'Nominerad av :user (:modes).',
         'nomination_reset' => 'Nytt problem :discussion triggade en nomination återställning.',
         'qualify' => 'Denna beatmap har uppnått den nödvändiga antalet av nomineringar och har blivit kvalificerad.',
         'rank' => 'Rankad.',
+        'remove_from_loved' => 'Borttagen från Älskad av :user. (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => 'Tog bort explicit markering',
+            'to_1' => 'Markerad som explicit',
+        ],
     ],
 
     'index' => [
@@ -47,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Godkännande',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Borttagning av diskussioner',
         'discussion_post_delete' => 'Borttagning av diskussionssvar',
         'discussion_post_restore' => 'Återställning av diskussionssvar',
@@ -64,7 +73,9 @@ return [
         'love' => 'Älska',
         'nominate' => 'Nominering',
         'nomination_reset' => 'Återställning av nominering',
+        'nsfw_toggle' => 'Explicit markering',
         'qualify' => 'Kvalifikation',
         'rank' => 'Rankning',
+        'remove_from_loved' => '',
     ],
 ];

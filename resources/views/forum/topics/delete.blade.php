@@ -15,7 +15,7 @@
             height: $el.css("height")
         }).slideUp(null, function () {
             $el.remove();
-            osu.pageChange();
+            _exported.pageChange();
         });
     }
 @endsection

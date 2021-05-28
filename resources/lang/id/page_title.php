@@ -22,6 +22,7 @@ return [
             '401-verification' => 'verifikasi akun',
             '405' => 'hilang',
             '422' => 'permintaan tidak valid',
+            '429' => 'terlalu banyak permintaan',
             '500' => 'ada yang rusak',
             '503' => 'pemeliharaan',
         ],
@@ -74,6 +75,9 @@ return [
         ],
         'contests_controller' => [
             '_' => 'kontes',
+        ],
+        'follows_controller' => [
+            'index' => 'dasbor',
         ],
         'friends_controller' => [
             'index' => 'dasbor',

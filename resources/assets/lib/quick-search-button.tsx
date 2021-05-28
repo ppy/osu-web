@@ -58,8 +58,8 @@ interface State {
     }
 
     return (
-      <Modal visible={true} onClose={this.toggle}>
-        <QuickSearch worker={this.props.worker} onClose={this.toggle} ref={this.formRef} />
+      <Modal onClose={this.toggle} visible>
+        <QuickSearch ref={this.formRef} onClose={this.toggle} worker={this.props.worker} />
       </Modal>
     );
   }
@@ -80,5 +80,5 @@ interface State {
     }
 
     this.setState({ open: !this.state.open });
-  }
+  };
 }

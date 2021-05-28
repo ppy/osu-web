@@ -76,7 +76,7 @@ return [
         'action' => 'Pobierz osu!',
 
         'help' => [
-            '_' => 'jeżeli masz problem z uruchomieniem gry bądź utworzeniem konta, :help_forum_link lub :support_button.',
+            '_' => 'jeżeli masz problem z uruchomieniem gry lub utworzeniem konta, :help_forum_link albo :support_button.',
             'help_forum_link' => 'sprawdź forum',
             'support_button' => 'skontaktuj się z pomocą techniczną',
         ],
@@ -94,7 +94,7 @@ return [
                 'description' => 'postępuj zgodnie z instrukcjami w grze, aby się zarejestrować bądź zalogować',
             ],
             'download' => [
-                'title' => 'pobierz grę',
+                'title' => 'zainstaluj grę',
                 'description' => 'kliknij przycisk powyżej, aby pobrać instalator, a następnie uruchom go!',
             ],
             'beatmaps' => [

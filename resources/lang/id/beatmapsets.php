@@ -8,6 +8,11 @@ return [
         'disabled' => 'Beatmap saat ini tidak tersedia untuk diunduh.',
         'parts-removed' => 'Beberapa bagian dari beatmap ini telah dihapus atas permintaan pembuat lagu atau pihak ketiga pemegang hak cipta.',
         'more-info' => 'Lihat di sini untuk informasi lebih lanjut.',
+        'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus setelah tim kami memutuskan bahwa aset-aset yang bersangkutan tidak layak untuk dipergunakan secara luas di dalam lingkungan osu!.',
+    ],
+
+    'download' => [
+        'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Harap mainkan beatmap-beatmap yang sudah Anda miliki terlebih dahulu.',
     ],
 
     'index' => [
@@ -16,6 +21,8 @@ return [
     ],
 
     'panel' => [
+        'empty' => 'tidak ada beatmap',
+
         'download' => [
             'all' => 'unduh',
             'video' => 'unduh dengan video',
@@ -24,19 +31,39 @@ return [
         ],
     ],
 
+    'nominate' => [
+        'hybrid_requires_modes' => 'Pada beatmapset hybrid, Anda harus memilih satu mode permainan yang akan Anda nominasikan.',
+        'incorrect_mode' => 'Anda tidak memiliki hak untuk memberikan nominasi pada mode permainan: :mode',
+        'full_bn_required' => 'Anda harus berstatus sebagai nominator penuh (full nominator) untuk dapat menominasikan beatmap ini.',
+        'too_many' => 'Persyaratan nominasi telah terpenuhi.',
+
+        'dialog' => [
+            'confirmation' => 'Apakah Anda yakin untuk menominasikan Beatmap ini?',
+            'header' => 'Nominasikan Beatmap',
+            'hybrid_warning' => 'catatan: Anda hanya dapat memberikan satu nominasi, sehingga pastikan Anda memberikan nominasi pada mode permainan yang memang Anda kehendaki',
+            'which_modes' => 'Mode permainan apa yang akan Anda nominasikan?',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Eksplisit',
+    ],
+
     'show' => [
         'discussion' => 'Diskusi',
 
         'details' => [
-            'favourite' => 'Masukkan beatmapset ini ke dalam daftar Favorit Anda',
+            'by_artist' => 'oleh :artist',
+            'favourite' => 'Tambahkan beatmapset ini ke dalam daftar Beatmap Favorit',
+            'favourite_login' => 'Silakan masuk untuk menambahkan beatmap ini ke Beatmap Favorit',
             'logged-out' => 'Anda harus masuk sebelum mengunduh beatmap!',
             'mapped_by' => 'dibuat oleh :mapper',
-            'unfavourite' => 'Hapus beatmapset ini dari daftar Favorit Anda',
+            'unfavourite' => 'Hapus beatmapset ini dari daftar Beatmap Favorit',
             'updated_timeago' => 'terakhir diperbarui :timeago',
 
             'download' => [
                 '_' => 'Unduh',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'tanpa Video',
                 'video' => 'dengan Video',
             ],
@@ -89,14 +116,28 @@ return [
             'genre' => 'Aliran',
             'language' => 'Bahasa',
             'no_scores' => 'Data sedang diproses...',
+            'nsfw' => 'Konten eksplisit',
             'points-of-failure' => 'Titik-Titik Kegagalan',
             'source' => 'Sumber',
+            'storyboard' => 'Beatmap ini menyertakan storyboard',
             'success-rate' => 'Tingkat Keberhasilan',
             'tags' => 'Tag',
+            'video' => 'Beatmap ini menyertakan video',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'Beatmap ini ditenggarai mengandung konten yang bersifat eksplisit dan/atau konten yang dapat dianggap menyinggung bagi kalangan tertentu. Apakah Anda tetap ingin melihat beatmap ini?',
+            'title' => 'Konten Eksplisit',
+
+            'buttons' => [
+                'disable' => 'Nonaktifkan peringatan',
+                'listing' => 'Daftar beatmap',
+                'show' => 'Tampilkan',
+            ],
         ],
 
         'scoreboard' => [
-            'achieved' => 'dicapai pada :when',
+            'achieved' => 'diraih pada :when',
             'country' => 'Peringkat Negara',
             'friend' => 'Peringkat Teman',
             'global' => 'Peringkat Global',
@@ -110,7 +151,7 @@ return [
                 'miss' => 'Miss',
                 'mods' => 'Mod',
                 'player' => 'Pemain',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => 'Peringkat',
                 'score_total' => 'Jumlah Skor',
                 'score' => 'Skor',

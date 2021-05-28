@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Beställning slutförd :date',
-
+        'cancel' => 'Avbryt beställning',
+        'cancel_confirm' => 'Denna beställning kommer att avbrytas och betalning kommer inte godtas. Betaltjänsten kanske inte frigör reserverade pengar direkt. Är du säker?',
+        'cancel_not_allowed' => 'Denna beställning kan för tillfället inte avbrytas.',
         'invoice' => 'Visa faktura',
         'no_orders' => 'Inga beställningar att visa.',
+        'paid_on' => 'Beställning slutförd :date',
         'resume' => 'Återuppta transaktionen',
+        'shopify_expired' => 'Kassalänken för denna beställning har utgått.',
 
         'item' => [
             'display_name' => [

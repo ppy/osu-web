@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Пошук',
             'deleted' => 'Включаючи видалені обговорення',
+            'mode' => 'Режим карт',
             'only_unresolved' => 'Показувати тільки невирішені обговорення',
             'types' => 'Типи повідомлень',
             'username' => 'Ім\'я користувача',
@@ -54,7 +55,14 @@ return [
     'nearby_posts' => [
         'confirm' => 'Жоден з постів не вирішує про мою проблему',
         'notice' => 'Є повідомлення між :timestamp (:existing_timestamps). Перевірте їх перед публікацією.',
-        'unsaved' => '',
+        'unsaved' => ':count в цьому відгуку',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [

@@ -30,6 +30,10 @@ return [
             'cleared' => '玩過',
             'not_cleared' => '未玩',
         ],
+        'no_diff_reduction' => [
+            '_' => '',
+            'link' => '降低難度的 mod',
+        ],
     ],
 
     'mode' => [

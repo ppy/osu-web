@@ -32,12 +32,11 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'lokasi saat ini',
                 'user_interests' => 'minat',
-                'user_msnm' => 'skype',
                 'user_occ' => 'pekerjaan',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'situs web',
             ],
         ],
@@ -50,18 +49,20 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'terima notifikasi pada saat terdapat masalah baru pada beatmap yang berstatus Qualified pada mode',
-        'beatmapset_disqualify' => 'terima notifikasi pada saat terdapat beatmap yang didiskualifikasi pada mode',
+        'beatmapset_disqualify' => 'terima notifikasi pada saat terdapat beatmap yang terdiskualifikasi pada mode',
         'comment_reply' => 'terima notifikasi pada saat terdapat balasan baru pada komentar yang Anda kirim',
         'title' => 'Notifikasi',
         'topic_auto_subscribe' => 'hidupkan notifikasi secara otomatis di topik forum baru yang Anda buat',
 
         'options' => [
             '_' => 'kirimkan notifikasi melalui',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'modding beatmap',
             'channel_message' => 'pesan pribadi',
             'comment_new' => 'komentar baru',
             'forum_topic_reply' => 'balasan pada topik',
             'mail' => 'email',
+            'mapping' => 'pembuat beatmap',
             'push' => 'web',
             'user_achievement_unlock' => 'terbukanya medali baru',
         ],
@@ -69,21 +70,21 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'klien yang memiliki akses',
-        'own_clients' => 'klien yang dimiliki',
+        'own_clients' => 'klien yang Anda miliki',
         'title' => 'OAuth',
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'nonaktifkan peringatan untuk beatmap-beatmap yang mengandung konten eksplisit',
+        'beatmapset_title_show_original' => 'tampilkan metadata beatmap dalam bahasa aslinya',
         'title' => 'Pengaturan',
 
         'beatmapset_download' => [
-            '_' => 'unduh beatmap',
+            '_' => 'tipe pengunduhan beatmap default',
             'all' => 'dengan video (apabila tersedia)',
-            'no_video' => 'tanpa video',
             'direct' => 'buka melalui osu!direct',
+            'no_video' => 'tanpa video',
         ],
-
-        'beatmapset_title_show_original' => 'tampilkan metadata beatmap dalam bahasa aslinya',
     ],
 
     'playstyles' => [
@@ -118,7 +119,7 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => 'Kamu dapat menutup laman ini sekarang',
+        'text' => 'Anda dapat menutup laman ini sekarang',
         'title' => 'Verifikasi selesai',
     ],
 

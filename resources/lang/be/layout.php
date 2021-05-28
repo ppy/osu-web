@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'дапамога',
+            'getAbuse' => '',
             'getFaq' => 'faq',
             'getRules' => 'правілы',
             'getSupport' => 'ды не ж, мне праўда патрэбна дапамога!',
@@ -158,6 +159,10 @@ return [
             'error' => '',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Як жа так! Нешта зламалася! ;_;',
             'description' => "Мы аўтаматычна апавяшчаемся аб усіх памылках.",
@@ -203,6 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Налады',
+            'follows' => '',
             'friends' => 'Сябры',
             'logout' => 'Выйсці',
             'profile' => 'Мой профіль',

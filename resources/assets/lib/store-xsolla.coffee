@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute'
+import core from 'osu-core-singleton'
 
 export class StoreXsolla
   @promiseInit: (orderNumber) ->
@@ -15,9 +16,7 @@ export class StoreXsolla
 
 
   @fetchScript: ->
-    new Promise (resolve, reject) ->
-      loading = window.turbolinksReload.load 'https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js', resolve
-      resolve() unless loading
+    core.turbolinksReload.load('https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js') ? Promise.resolve()
 
 
   @fetchToken: (orderNumber) ->

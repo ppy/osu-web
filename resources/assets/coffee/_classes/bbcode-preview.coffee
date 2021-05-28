@@ -8,7 +8,8 @@ class @BbcodePreview
 
 
   fetchPreview: (e) =>
-    $form = $(e.target).parents('.js-bbcode-preview--form')
+    target = e.target
+    $form = $(target).parents('.js-bbcode-preview--form')
     $preview = $form.find('.js-bbcode-preview--preview')
     $body = $form.find('.js-bbcode-preview--body')
 
@@ -34,18 +35,20 @@ class @BbcodePreview
       $body.attr('data-last-text', text)
 
       $preview.html(data)
-      osu.pageChange()
+      _exported.pageChange()
       @showPreview(e)
+
+    .fail osu.emitAjaxError(target)
 
 
   showPreview: (e) =>
     $(e.target).parents('.js-bbcode-preview--form').attr('data-state', 'preview')
-    osu.pageChange() # sync height of reply box
+    _exported.pageChange() # sync height of reply box
 
 
   hidePreview: (e) =>
     $form = $(e.target).parents('.js-bbcode-preview--form')
     $form.attr('data-state', 'write')
-    osu.pageChange() # sync height of reply box
+    _exported.pageChange() # sync height of reply box
 
     $form.find('.js-bbcode-preview--body').focus()

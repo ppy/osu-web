@@ -80,10 +80,6 @@ class BeatmapsetEventTransformerTest extends TestCase
             [[], BeatmapsetEvent::NOMINATE, true, true],
             [[], BeatmapsetEvent::KUDOSU_ALLOW, false, false],
             [[], BeatmapsetEvent::DISCUSSION_DELETE, false, false],
-
-            [null, BeatmapsetEvent::NOMINATE, true, true],
-            [null, BeatmapsetEvent::KUDOSU_ALLOW, false, false],
-            [null, BeatmapsetEvent::DISCUSSION_DELETE, false, false],
         ];
     }
 

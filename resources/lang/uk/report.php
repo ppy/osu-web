@@ -14,6 +14,11 @@ return [
         'title' => 'Поскаржитись на коментар :username?',
     ],
 
+    'forum_post' => [
+        'button' => 'Скарга',
+        'title' => 'Поскаржитись на пост :username?',
+    ],
+
     'scores' => [
         'button' => 'Поскаржитись на гру',
         'title' => 'Поскаржитись на гру :username?',

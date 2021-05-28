@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'ajutor',
+            'getAbuse' => '',
             'getFaq' => 'întrebări frecvente',
             'getRules' => 'reguli',
             'getSupport' => 'nu, de fapt, am nevoie de ajutor!',
@@ -158,6 +159,10 @@ return [
             'error' => 'Cerere în parametrii invalizi',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Oh nu! Ceva s-a rupt! ;_;',
             'description' => "Suntem informați automat de fiecare eroare.",
@@ -203,6 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Setări',
+            'follows' => '',
             'friends' => 'Prieteni',
             'logout' => 'Deconectare',
             'profile' => 'Profilul meu',

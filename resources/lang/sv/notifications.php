@@ -5,9 +5,13 @@
 
 return [
     'all_read' => 'Alla aviseringar är lästa!',
+    'delete' => 'Radera :type',
+    'loading' => 'Laddar olästa aviseringar...',
     'mark_read' => 'Rensa :type',
     'none' => 'Inga aviseringar',
     'see_all' => 'visa alla aviseringar',
+    'see_channel' => 'gå till chatt',
+    'verifying' => 'Vänligen verifiera sessionen för att visa aviseringar',
 
     'filters' => [
         '_' => 'alla',
@@ -22,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'Beatmap',
+
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'Beatmapdiskussion',
@@ -57,6 +67,8 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmap har angett rankingkö',
                 'beatmapset_rank' => '":title" har rankats',
                 'beatmapset_rank_compact' => 'Beatmap rankades',
+                'beatmapset_remove_from_loved' => '":title" har tagits bort från Älskad',
+                'beatmapset_remove_from_loved_compact' => 'Beatmappen togs bort från Älskad',
                 'beatmapset_reset_nominations' => 'Nominering av ":title" har återställts',
                 'beatmapset_reset_nominations_compact' => 'Nominering återställdes',
             ],
@@ -129,6 +141,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => 'Ny beatmap',
+
+                'user_beatmapset_new' => 'Ny beatmap ":title" av :username',
+                'user_beatmapset_new_compact' => 'Ny beatmap ":title"',
+                'user_beatmapset_new_group' => 'Nya beatmaps av :username',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medaljer',
 
@@ -136,12 +158,17 @@ return [
                 '_' => 'Ny medalj',
                 'user_achievement_unlock' => 'Upplåst ":title"!',
                 'user_achievement_unlock_compact' => 'Upplåst ":title"!',
+                'user_achievement_unlock_group' => 'Medaljer upplåsta!',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'Diskussionen om ":title" har låsts',
                 'beatmapset_discussion_post_new' => 'Diskussionen om ":title" har nya uppdateringar',
@@ -158,6 +185,7 @@ return [
                 'beatmapset_nominate' => '":title" har blivit nominerad',
                 'beatmapset_qualify' => '',
                 'beatmapset_rank' => '":title" har blivit rankad',
+                'beatmapset_remove_from_loved' => '":title" togs bort från Älskad',
                 'beatmapset_reset_nominations' => 'Nominering av ":title" har blivit återställd',
             ],
 
@@ -194,6 +222,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username har låst upp en ny medalj, ":title"!',
                 'user_achievement_unlock_self' => 'Du har låst upp en ny medalj, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':username har skapat nya beatmaps',
             ],
         ],
     ],

@@ -73,6 +73,17 @@ class ChangeUsernameTest extends TestCase
         $this->assertArraySubset($expected, $errors['username'], true);
     }
 
+    public function testUsernameWithDifferentCasingIsSame()
+    {
+        $user = $this->createUser();
+
+        $errors = $user->validateChangeUsername('iAmUser')->all();
+        $expected = [trans('model_validation.user.change_username.username_is_same')];
+
+        $this->assertArrayHasKey('username', $errors);
+        $this->assertArraySubset($expected, $errors['username'], true);
+    }
+
     public function testUserHasSupportedButExpired()
     {
         $user = $this->createUser(['osu_subscriptionexpiry' => Carbon::now()->subMonth()]);

@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Zatwierdzona.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Moderator usunął dyskusję :discussion.',
         'discussion_lock' => 'Tworzenie dyskusji dla tej beatmapy zostało wyłączone (:text).',
         'discussion_post_delete' => 'Moderator usunął post z dyskusji :discussion.',
@@ -25,9 +26,16 @@ return [
         'language_edit' => 'Zmieniono język z :old na :new.',
         'love' => ':user nadał(a) tej beatmapie status ulubionej społeczności',
         'nominate' => 'Nominowana przez :user.',
+        'nominate_modes' => 'Nominowana przez :user (:modes).',
         'nomination_reset' => 'Nowy problem :discussion spowodował zresetowanie nominacji.',
         'qualify' => 'Ta beatmapa osiągnęła wystarczającą liczbę nominacji i została zakwalifikowana.',
         'rank' => 'Rankingowa.',
+        'remove_from_loved' => 'Usunięta z ulubionych beatmap społeczności przez użytkownika :user (:text).',
+
+        'nsfw_toggle' => [
+            'to_0' => 'Usunięto oznaczenie jako treść dla pełnoletnich',
+            'to_1' => 'Oznaczono jako treść dla pełnoletnich',
+        ],
     ],
 
     'index' => [
@@ -47,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Zatwierdzenie',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Usunięcie dyskusji',
         'discussion_post_delete' => 'Usunięcie odpowiedzi w dyskusji',
         'discussion_post_restore' => 'Przywrócenie odpowiedzi w dyskusji',
@@ -64,7 +73,9 @@ return [
         'love' => 'Nadanie statusu ulubionej społeczności',
         'nominate' => 'Nominacja',
         'nomination_reset' => 'Zresetowanie nominacji',
+        'nsfw_toggle' => 'Oznaczenie jako treść dla pełnoletnich',
         'qualify' => 'Kwalifikacja',
         'rank' => 'Nadanie statusu rankingowego',
+        'remove_from_loved' => 'Usunięcie z ulubionych beatmap społeczności',
     ],
 ];

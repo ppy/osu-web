@@ -5,7 +5,7 @@ import { AchievementBadge } from './achievement-badge'
 import { ExtraHeader } from './extra-header'
 import * as React from 'react'
 import { div, li, p, ul } from 'react-dom-factories'
-import { ShowMoreLink } from 'show-more-link'
+import ShowMoreLink from 'show-more-link'
 import TimeWithTooltip from 'time-with-tooltip'
 el = React.createElement
 

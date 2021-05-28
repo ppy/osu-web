@@ -1,0 +1,66 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.nsfw-warning {
+  font-size: @font-size--title-small;
+  text-align: center;
+  display: grid;
+  grid-gap: 10px;
+
+  &__button {
+    .reset-input();
+    .link-white();
+    .link-plain();
+    .default-text-shadow();
+    --bg: hsl(var(--hsl-blue-2));
+    --bg-hover: hsl(var(--hsl-blue-3));
+
+    flex: none;
+    padding: 10px;
+    margin: 5px;
+    background-color: var(--bg);
+    border-radius: 150px;
+    font-weight: 600;
+    width: 200px;
+    max-width: 100%;
+
+    .link-hover({
+      background-color: var(--bg-hover);
+    });
+
+    @media @narrow-up {
+      width: 150px;
+      max-width: none;
+    }
+
+    &--show {
+      --bg: hsl(var(--hsl-red-2));
+      --bg-hover: hsl(var(--hsl-red-3));
+    }
+  }
+
+  &__row {
+    display: flex;
+    justify-content: center;
+
+    &--buttons {
+      margin: 0 -5px -5px;
+      flex-direction: column;
+      align-items: center;
+
+      @media @narrow-up {
+        flex-direction: row;
+        align-items: stretch;
+      }
+    }
+
+    &--icon {
+      font-size: @font-size--large-2;
+    }
+
+    &--title {
+      font-weight: 300;
+      font-size: @font-size--title;
+    }
+  }
+}

@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => 'URL inválido ou método de pedido incorreto.',
+    'no_restricted_access' => 'Tu não és capaz de desempenhar esta ação enquanto a tua conta estiver num estado restrito.',
+    'supporter_only' => 'Tens de ser um apoiante para utilizar esta funcionalidade.',
+    'unknown' => 'Ocorreu um erro desconhecido.',
+
     'codes' => [
         'http-401' => 'Por favor inicia sessão para proceder.',
         'http-403' => 'Acesso negado.',
@@ -26,9 +31,4 @@ return [
         'default' => 'Não foi possível obter nenhuns resultados, tenta outra vez mais tarde.',
         'operation_timeout_exception' => 'De momento, a pesquisa está mais ocupada que o habitual, tenta outra vez mais tarde.',
     ],
-
-    'logged_out' => 'Foste desconectado. Por favor inicia sessão e tenta outra vez.',
-    'supporter_only' => 'Tens de ser um apoiante para utilizar esta funcionalidade.',
-    'no_restricted_access' => 'Tu não és capaz de desempenhar esta ação enquanto a tua conta estiver num estado restrito.',
-    'unknown' => 'Ocorreu um erro desconhecido.',
 ];

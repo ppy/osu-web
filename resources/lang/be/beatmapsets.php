@@ -8,6 +8,11 @@ return [
         'disabled' => 'Гэтая бітмапа зараз недаступна для спампоўвання.',
         'parts-removed' => 'Некаторыя часткі гэтай бітмапы былі выдалены па запыту стваральніка або праваўладальніка.',
         'more-info' => 'Для падрабязнасцей націсніце тут.',
+        'rule_violation' => '',
+    ],
+
+    'download' => [
+        'limit_exceeded' => '',
     ],
 
     'index' => [
@@ -16,6 +21,8 @@ return [
     ],
 
     'panel' => [
+        'empty' => '',
+
         'download' => [
             'all' => 'спампаваць',
             'video' => '',
@@ -24,11 +31,31 @@ return [
         ],
     ],
 
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '',
+        'full_bn_required' => '',
+        'too_many' => '',
+
+        'dialog' => [
+            'confirmation' => '',
+            'header' => '',
+            'hybrid_warning' => '',
+            'which_modes' => '',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '',
+    ],
+
     'show' => [
         'discussion' => 'Абмеркаванне',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'Дадаць да абраных',
+            'favourite_login' => '',
             'logged-out' => 'Каб спампаваць нейкую бітмапу, вам трэба ўвайсці!',
             'mapped_by' => 'створана :mapper',
             'unfavourite' => 'Выдаліць з абраных',
@@ -89,10 +116,24 @@ return [
             'genre' => 'Жанр',
             'language' => 'Мова',
             'no_scores' => 'Усё яшчэ ідзе падлік даных...',
+            'nsfw' => '',
             'points-of-failure' => 'Колькасць правалаў',
             'source' => 'Крыніца',
+            'storyboard' => '',
             'success-rate' => 'Шанц поспеху',
             'tags' => 'Тэгі',
+            'video' => '',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '',
+            'title' => '',
+
+            'buttons' => [
+                'disable' => '',
+                'listing' => '',
+                'show' => '',
+            ],
         ],
 
         'scoreboard' => [

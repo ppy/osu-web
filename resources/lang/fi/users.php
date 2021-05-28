@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => '',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Käyttäjätiliäsi ei ole käytetty pitkään aikaan.",
@@ -150,6 +154,10 @@ return [
         'plays_with' => 'Pelityylinä :devices',
         'title' => ":username:n profiili",
 
+        'comments_count' => [
+            '_' => '',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Muuta profiilin kansikuvaa',
@@ -281,7 +289,7 @@ return [
 
                 'total_info' => [
                     '_' => '',
-                    'link' => '',
+                    'link' => 'tämä sivu',
                 ],
             ],
             'me' => [
@@ -347,10 +355,8 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Kiinnostuksen kohteet',
-            'lastfm' => 'Last.fm',
             'location' => 'Tämänhetkinen sijainti',
             'occupation' => 'Ammatti',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Verkkosivu',
         ],
@@ -401,6 +407,11 @@ return [
             'unranked_beatmapset_count' => '',
             'graveyard_beatmapset_count' => '',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

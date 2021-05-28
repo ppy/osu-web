@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Bu yarışma için oylama sona erdi',
         'login_required' => 'Oylamak için lütfen giriş yapınız.',
+        'over' => 'Bu yarışma için oylama sona erdi',
+        'show_voted_only' => 'Oy verilenleri göster',
 
         'best_of' => [
             'none_played' => "Bu yarışma için geçerli olan hiçbir beatmapi oynamamışsınız!",
@@ -32,8 +33,6 @@ return [
         'login_required' => 'Yarışmaya katılmak için giriş yapınız.',
         'silenced_or_restricted' => 'Kısıtlanmış veya susturulmuşken yarışmalara katılamazsınız.',
         'preparation' => 'Şu an bu yarışmayı hazırlıyoruz. Lütfen sabırla bekleyiniz!',
-        'over' => 'Girdileriniz için teşekkürler! Bu yarışma için gönderiler kapandı ve yakında oylamalara açılacak.',
-        'limit_reached' => 'Bu yarışma için girdi sınırına ulaştınız',
         'drop_here' => 'Girdinizi buraya bırakın',
         'download' => '.osz indir',
         'wrong_type' => [
@@ -48,8 +47,8 @@ return [
     ],
     'vote' => [
         'list' => 'oylar',
-        'count' => ':count oy|:count oy',
-        'points' => ':count puan|:count puan',
+        'count' => ':count_delimited oy|:count_delimited oy',
+        'points' => ':count_delimited puan|:count_delimited puan',
     ],
     'dates' => [
         'ended' => ':date tarihinde sona erdi',

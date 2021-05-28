@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Search',
             'deleted' => 'Include deleted discussions',
+            'mode' => 'Beatmap mode',
             'only_unresolved' => 'Show only unresolved discussions',
             'types' => 'Message types',
             'username' => 'Username',
@@ -55,6 +56,13 @@ return [
         'confirm' => 'None of the posts address my concern',
         'notice' => 'There are posts around :timestamp (:existing_timestamps). Please check them before posting.',
         'unsaved' => ':count in this review',
+    ],
+
+    'owner_editor' => [
+        'button' => 'Difficulty Owner',
+        'reset_confirm' => 'Reset owner for this difficulty?',
+        'user' => 'Owner',
+        'version' => 'Difficulty',
     ],
 
     'reply' => [

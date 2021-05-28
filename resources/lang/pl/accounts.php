@@ -32,12 +32,11 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'obecna lokalizacja',
                 'user_interests' => 'zainteresowania',
-                'user_msnm' => 'skype',
                 'user_occ' => 'zajęcia',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'strona internetowa',
             ],
         ],
@@ -57,11 +56,13 @@ return [
 
         'options' => [
             '_' => 'opcje wysyłania',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'dyskusje beatmap',
             'channel_message' => 'wiadomości prywatne na czacie',
             'comment_new' => 'nowe komentarze',
             'forum_topic_reply' => 'odpowiedzi do wątków',
             'mail' => 'e-mail',
+            'mapping' => 'twórca',
             'push' => 'push',
             'user_achievement_unlock' => 'odblokowanie medalu',
         ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'ukryj ostrzeżenia o treściach dla pełnoletnich w beatmapach',
+        'beatmapset_title_show_original' => 'pokaż metadane beatmapy w oryginalnym języku',
         'title' => 'Ustawienia strony',
 
         'beatmapset_download' => [
             '_' => 'domyślny sposób pobierania beatmap',
             'all' => 'z wideo, jeżeli jest ono dostępne',
-            'no_video' => 'bez wideo',
             'direct' => 'otwórz w osu!direct',
+            'no_video' => 'bez wideo',
         ],
-
-        'beatmapset_title_show_original' => 'pokaż metadane beatmapy w oryginalnym języku',
     ],
 
     'playstyles' => [

@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Chơi bản nhạc tiếp theo tự động',
     ],
 
     'defaults' => [
@@ -53,10 +53,10 @@ return [
 
     'gallery' => [
         'close' => 'Đóng (Esc)',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'fullscreen' => 'Bật/tắt toàn màn hình',
+        'zoom' => 'Thu phóng',
+        'previous' => 'Trước (mũi tên trái)',
+        'next' => 'Tiếp theo (mũi tên phải)',
     ],
 
     'menu' => [
@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'trợ giúp',
+            'getAbuse' => 'báo cáo lạm dụng',
             'getFaq' => 'faq',
             'getRules' => 'quy tắc',
             'getSupport' => 'không, thật đó, tôi cần giúp đỡ!',
@@ -158,6 +159,10 @@ return [
             'error' => '',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Ồ không! Có gì đó đã bị hỏng! ;_;',
             'description' => "Chúng tôi sẽ được tự động thông báo về mọi lỗi.",
@@ -170,8 +175,8 @@ return [
             'error' => 'Đang bảo trì!',
             'description' => "Thông thường bảo trì sẽ tốn khoảng 5 giây đến 10 phút. Nếu chúng tôi vẫn chưa trở lại sau khoảng thời gian trên, truy cập :link để biết thêm thông tin.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -203,7 +208,8 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Cài Đặt',
-            'friends' => 'Bạn Bè',
+            'follows' => '',
+            'friends' => 'Bạn bè',
             'logout' => 'Đăng Xuất',
             'profile' => 'Trang Cá Nhân',
         ],

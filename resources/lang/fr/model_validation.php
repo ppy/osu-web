@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Supprimer les métadonnées d\'une beatmap n\'est pas autorisé.',
             'beatmapset_post_no_edit' => 'Modifier les métadonnées d\'une beatmap n\'est pas autorisé.',
+            'first_post_no_delete' => 'Impossible de supprimer le message de départ',
+            'missing_topic' => 'Le message ne contient pas de sujet',
             'only_quote' => 'Votre réponse ne contient qu\'une citation.',
 
             'attributes' => [
@@ -88,11 +90,11 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Les options dupliquées ne sont pas autorisées.',
-            'grace_period_expired' => 'Impossible d’éditer un sondage après plus de :limit heures',
+            'grace_period_expired' => 'Impossible d’éditer un sondage après plus de :limit heures.',
             'hiding_results_forever' => 'Impossible de masquer les résultats d\'un sondage qui ne se termine jamais.',
             'invalid_max_options' => 'Le nombre de réponses par utilisateur ne devrait pas dépasser le nombre de réponses.',
             'minimum_one_selection' => 'Un minimum d\'une réponse par utilisateur est nécessaire.',
-            'minimum_two_options' => 'Au moins 2 réponses nécéssaires.',
+            'minimum_two_options' => 'Au moins 2 réponses nécessaires.',
             'too_many_options' => 'Nombre maximal de réponses dépassés.',
 
             'attributes' => [
@@ -101,7 +103,7 @@ return [
         ],
 
         'topic_vote' => [
-            'required' => 'Séléctionnez une option pour voter.',
+            'required' => 'Sélectionnez une option pour voter.',
             'too_many' => 'Vous avez choisi trop de réponses.',
         ],
     ],
@@ -134,7 +136,7 @@ return [
         'username_in_use' => 'Le nom d\'utilisateur est déjà utilisé !',
         'username_locked' => 'Nom d\'utilisateur déjà utilisé !', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Merci d\'utiliser soit des underscores ou des espaces, pas les deux ensemble !',
-        'username_no_spaces' => "Le nom d'utilisateur ne peut pas commencer ou terminer avec des espaces",
+        'username_no_spaces' => "Le nom d'utilisateur ne peut pas commencer ou terminer avec des espaces !",
         'username_not_allowed' => 'Ce nom d\'utilisateur n\'est pas autorisé.',
         'username_too_short' => 'Le nom d\'utilisateur est trop court.',
         'username_too_long' => 'Le nom d\'utilisateur est trop long.',
@@ -156,7 +158,7 @@ return [
                 '_' => 'Vous devez avoir :link pour changer votre nom !',
                 'link_text' => 'supporté osu!',
             ],
-            'username_is_same' => 'C\'est déjà votre nom d\'utilisateur en fait...',
+            'username_is_same' => 'C\'est déjà ton nom d\'utilisateur !',
         ],
     ],
 

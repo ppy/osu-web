@@ -33,30 +33,15 @@ export class Info extends React.Component
     $(window).off '.beatmapsetPageInfo'
 
 
-  # see Modal#hideModal
-  dismissEditor: (e) =>
-    @setState isEditingDescription: false if e.button == 0 &&
-                                  e.target == @overlayRef.current &&
-                                  @clickEndTarget == @clickStartTarget
-
-
-  editStart: =>
-    @setState isEditingDescription: true
-
-
-  handleClickEnd: (e) =>
-    @clickEndTarget = e.target
-
-
-  handleClickStart: (e) =>
-    @clickStartTarget = e.target
+  toggleEditingDescription: =>
+    @setState isEditingDescription: !@state.isEditingDescription
 
 
   onEditorChange: (action) =>
     switch action.type
       when 'save'
         if action.hasChanged
-          @saveDescription(action.value)
+          @saveDescription(action)
         else
           @setState isEditingDescription: false
 
@@ -64,11 +49,9 @@ export class Info extends React.Component
         @setState isEditingDescription: false
 
 
-  onSelectionUpdate: (selection) =>
-    @setState selection: selection
+  saveDescription: ({ event, value }) =>
+    target = event.target
 
-
-  saveDescription: (value) =>
     @setState isBusy: true
     $.ajax laroute.route('beatmapsets.update', beatmapset: @props.beatmapset.id),
       method: 'PATCH',
@@ -80,7 +63,7 @@ export class Info extends React.Component
         isEditingDescription: false
         description: data.description
 
-    .fail osu.ajaxError
+    .fail osu.emitAjaxError(target)
 
     .always =>
       @setState isBusy: false
@@ -90,7 +73,7 @@ export class Info extends React.Component
     @setState isEditingMetadata: !@state.isEditingMetadata
 
 
-  withEdit: =>
+  withEditDescription: =>
      @props.beatmapset.description.bbcode?
 
 
@@ -125,12 +108,12 @@ export class Info extends React.Component
           i className: 'fas fa-pencil-alt'
 
 
-  renderEditButton: =>
+  renderEditDescriptionButton: =>
     div className: 'beatmapset-info__edit-button',
       button
         type: 'button'
         className: 'btn-circle'
-        onClick: @editStart
+        onClick: @toggleEditingDescription
         span className: 'btn-circle__content',
           i className: 'fas fa-pencil-alt'
 
@@ -142,35 +125,25 @@ export class Info extends React.Component
       .slice(0, 21)
       .value()
 
-    if tags.length == 21
-      tags.pop()
-      tagsOverload = true
+    tagsOverload = tags.length == 21
+    tags.pop() if tagsOverload
 
     div className: 'beatmapset-info',
       if @state.isEditingDescription
-        div className: 'beatmapset-description-editor',
-          div
-            className: 'beatmapset-description-editor__overlay'
-            onClick: @dismissEditor
-            onMouseDown: @handleClickStart
-            onMouseUp: @handleClickEnd
-            ref: @overlayRef
-
-            div className: 'osu-page',
-              el BbcodeEditor,
-                modifiers: ['beatmapset-description-editor']
-                disabled: @state.isBusy
-                onChange: @onEditorChange
-                onSelectionUpdate: @onSelectionUpdate
-                rawValue: @state.description?.bbcode ? @props.beatmapset.description.bbcode
-                selection: @state.selection
+        el Modal, visible: true, onClose: @toggleEditingDescription,
+          div className: 'osu-page',
+            el BbcodeEditor,
+              modifiers: ['beatmapset-description-editor']
+              disabled: @state.isBusy
+              onChange: @onEditorChange
+              rawValue: @state.description?.bbcode ? @props.beatmapset.description.bbcode
 
       if @state.isEditingMetadata
         el Modal, visible: true, onClose: @toggleEditingMetadata,
           el MetadataEditor, onClose: @toggleEditingMetadata, beatmapset: @props.beatmapset
 
       div className: 'beatmapset-info__box beatmapset-info__box--description',
-        @renderEditButton() if @withEdit()
+        @renderEditDescriptionButton() if @withEditDescription()
 
         h3
           className: 'beatmapset-info__header'

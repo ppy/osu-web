@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { OwnClientJSON } from 'interfaces/own-client-json';
+import { OwnClientJson } from 'interfaces/own-client-json';
 import { route } from 'laroute';
 import { action, observable } from 'mobx';
 import { Client } from 'models/oauth/client';
@@ -12,7 +12,7 @@ export class OwnClient extends Client {
   redirect: string;
   secret: string;
 
-  constructor(client: OwnClientJSON) {
+  constructor(client: OwnClientJson) {
     super(client);
 
     this.redirect = client.redirect;
@@ -40,7 +40,7 @@ export class OwnClient extends Client {
     return $.ajax({
       method: 'POST',
       url: route('oauth.clients.reset-secret', { client: this.id }),
-    }).then((data: OwnClientJSON) => {
+    }).then((data: OwnClientJson) => {
       this.updateFromJson(data);
     }).always(() => {
       this.isResetting = false;
@@ -48,7 +48,7 @@ export class OwnClient extends Client {
   }
 
   @action
-  updateFromJson(json: OwnClientJSON) {
+  updateFromJson(json: OwnClientJson) {
     this.id = json.id;
     this.name = json.name;
     this.scopes = new Set(json.scopes);
@@ -67,7 +67,7 @@ export class OwnClient extends Client {
       data: { redirect },
       method: 'PUT',
       url: route('oauth.clients.update', { client: this.id }),
-    }).then((data: OwnClientJSON) => {
+    }).then((data: OwnClientJson) => {
       this.updateFromJson(data);
     }).always(() => {
       this.isUpdating = false;

@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => 'kudosu megtagadása',
         'edit' => 'szerkesztés',
         'edited' => 'Utoljára frissítve :editor által, :update_time-kor.',
+        'guest' => '',
         'kudosu_denied' => 'Kudosu szerzéstől megtagadva.',
         'message_placeholder_deleted_beatmap' => 'Ez a nehézség törölve lett, ezért a beszélgetés nem lehetséges.',
         'message_placeholder_locked' => 'A beatmap megbeszélése meg lett tiltva.',
@@ -187,12 +188,18 @@ return [
         'nominate_confirm' => 'Nominálod ezt a beatmapot?',
         'nominated_by' => 'nominálva :users által',
         'not_enough_hype' => "Nincs elég hype.",
-        'qualified' => 'Előreláthatólag :date-kor lesz rangsorolva, ha nem találnak benne problémát.',
-        'qualified_soon' => 'Hamarosan rangsorolva lesz, ha nem találnak benne problémát.',
+        'remove_from_loved' => 'Eltávolítás a szeretettek közül',
+        'remove_from_loved_prompt' => 'Indoka a szeretettek közül való eltávolításnak:',
         'required_text' => 'Nominálások: :current/:required',
         'reset_message_deleted' => 'törölve',
         'title' => 'Nominálási Állapot',
         'unresolved_issues' => 'Még mindig vannak megoldatlan problémák amelyeket először kezelni kell.',
+
+        'rank_estimate' => [
+            '_' => 'Ez a pálya ranglistázott lesz :date napján, ha további problémák nem merülnek fel. Jelenleg a :position. helyen áll a :queue.',
+            'queue' => 'ranglistázási sorban',
+            'soon' => 'a közeljövő egy',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'A nominálási folyamat újraindításra került :time_ago-kor :user által: :discussion (:message).',
@@ -214,14 +221,15 @@ return [
             'not-found' => 'nincs találat',
             'not-found-quote' => '... nope, semmit sem találtam.',
             'filters' => [
+                'extra' => 'extra',
                 'general' => 'Általános',
-                'mode' => 'Mód',
-                'status' => 'Kategóriák',
                 'genre' => 'Műfaj',
                 'language' => 'Nyelv',
-                'extra' => 'extra',
-                'rank' => 'Elért Rang',
+                'mode' => 'Mód',
+                'nsfw' => 'Felnőtt tartalom',
                 'played' => 'Lejátszott',
+                'rank' => 'Elért Rang',
+                'status' => 'Kategóriák',
             ],
             'sorting' => [
                 'title' => 'Cím',
@@ -242,10 +250,12 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Ajánlott nehézség',
         'converts' => 'Konvertált beatmap-ek tartalmazása',
+        'follows' => 'Követett készítők',
+        'recommended' => 'Ajánlott nehézség',
     ],
     'mode' => [
+        'all' => 'Összes',
         'any' => 'Bármelyik',
         'osu' => '',
         'taiko' => '',
@@ -295,19 +305,19 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
-        'MR' => 'Mirror',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
         'V2' => 'Score V2',
     ],
     'language' => [
-        'any' => '',
+        'any' => 'Összes',
         'english' => 'Angol',
         'chinese' => 'Kínai',
         'french' => 'Francia',
@@ -323,6 +333,12 @@ return [
         'other' => 'Egyéb',
         'unspecified' => 'Meghatározatlan',
     ],
+
+    'nsfw' => [
+        'exclude' => 'Elrejtés',
+        'include' => 'Mutasson',
+    ],
+
     'played' => [
         'any' => 'Bármelyik',
         'played' => 'LeJátszott',

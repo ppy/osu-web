@@ -5,9 +5,13 @@
 
 return [
     'all_read' => 'Alle meldingen gelezen!',
+    'delete' => ':type verwijderen',
+    'loading' => 'Ongelezen meldingen laden...',
     'mark_read' => 'Wissen :type',
     'none' => 'Geen meldingen',
     'see_all' => 'alle meldingen bekijken',
+    'see_channel' => 'ga naar chat',
+    'verifying' => 'Verifieer de sessie om meldingen te bekijken',
 
     'filters' => [
         '_' => 'alle',
@@ -22,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'Beatmap',
+
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'Beatmap discussies',
@@ -57,6 +67,8 @@ return [
                 'beatmapset_qualify_compact' => 'Beatmap staat in de ranked wachtlijst',
                 'beatmapset_rank' => '":title" is geranked',
                 'beatmapset_rank_compact' => 'Beatmap was geranked',
+                'beatmapset_remove_from_loved' => '":title" is verwijderd van Loved',
+                'beatmapset_remove_from_loved_compact' => 'Beatmap is verwijderd uit Loved',
                 'beatmapset_reset_nominations' => 'Probleem geplaatst door :username reset nominatie van beatmap ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Nominatie is gereset',
             ],
@@ -129,6 +141,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => 'Nieuwe beatmap',
+
+                'user_beatmapset_new' => 'Nieuwe beatmap ":title" door :username',
+                'user_beatmapset_new_compact' => 'Nieuwe beatmap ":title"',
+                'user_beatmapset_new_group' => 'Nieuwe beatmaps door :username',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Medailles',
 
@@ -136,12 +158,17 @@ return [
                 '_' => 'Nieuwe medaille',
                 'user_achievement_unlock' => '":title" ontgrendeld!',
                 'user_achievement_unlock_compact' => '":title" ontgrendeld!',
+                'user_achievement_unlock_group' => 'Medailles ontgrendeld!',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'De discussie op ":title" is vergrendeld',
                 'beatmapset_discussion_post_new' => 'De discussie over ":title" heeft nieuwe updates',
@@ -158,6 +185,7 @@ return [
                 'beatmapset_nominate' => '":title" is genomineerd',
                 'beatmapset_qualify' => '":title" heeft genoeg nominaties gekregen en de rij van rangen ingevoerd',
                 'beatmapset_rank' => '":title" is gerangschikt',
+                'beatmapset_remove_from_loved' => '":title" is verwijderd uit Loved',
                 'beatmapset_reset_nominations' => 'Nominatie van ":title" is gereset',
             ],
 
@@ -194,6 +222,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username heeft een nieuwe medaille ontgrendeld, ":title"!',
                 'user_achievement_unlock_self' => 'Je hebt een nieuwe medaille, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':username heeft nieuwe beatmaps aangemaakt',
             ],
         ],
     ],

@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Søk',
             'deleted' => 'Inkluder slettede diskusjoner',
+            'mode' => '',
             'only_unresolved' => 'Vis bare uløste tråder',
             'types' => 'Meldingstyper',
             'username' => 'Brukernavn',
@@ -55,6 +56,13 @@ return [
         'confirm' => 'Ingen av innleggene gjelder mine bekymringer',
         'notice' => 'Det er innlegg rundt :timestamp (:existing_timestamps). Vennligst gjennomgå dem før publisering.',
         'unsaved' => '',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [

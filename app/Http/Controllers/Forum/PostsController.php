@@ -11,6 +11,9 @@ use Auth;
 use DB;
 use Request;
 
+/**
+ * @group Forum
+ */
 class PostsController extends Controller
 {
     public function __construct()
@@ -19,6 +22,8 @@ class PostsController extends Controller
             'destroy',
             'raw',
         ]]);
+
+        $this->middleware('require-scopes:forum.write', ['only' => ['update']]);
 
         return parent::__construct();
     }
@@ -29,29 +34,17 @@ class PostsController extends Controller
 
         priv_check('ForumPostDelete', $post)->ensureCan();
 
-        $topic = $post->topic()->withTrashed()->first();
+        DB::transaction(function () use ($post) {
+            if ((auth()->user()->user_id ?? null) !== $post->poster_id) {
+                $this->logModerate(
+                    'LOG_DELETE_POST',
+                    [$post->topic->topic_title],
+                    $post
+                );
+            }
 
-        try {
-            DB::transaction(function () use ($post, $topic) {
-                if ((Auth::user()->user_id ?? null) !== $post->poster_id) {
-                    $this->logModerate(
-                        'LOG_DELETE_POST',
-                        [$topic->topic_title],
-                        $post
-                    );
-                }
-
-                $topic->removePostOrExplode($post);
-            });
-        } catch (ModelNotSavedException $e) {
-            return error_popup($e->getMessage());
-        }
-
-        if ($topic->trashed()) {
-            $redirect = route('forum.forums.show', $topic->forum);
-
-            return ujs_redirect($redirect);
-        }
+            $post->deleteOrExplode();
+        });
 
         return ext_view('forum.topics.delete', compact('post'), 'js');
     }
@@ -62,15 +55,17 @@ class PostsController extends Controller
 
         priv_check('ForumModerate', $post->forum)->ensureCan();
 
-        $topic = $post->topic()->withTrashed()->first();
+        DB::transaction(function () use ($post) {
+            $this->logModerate(
+                'LOG_RESTORE_POST',
+                [$post->topic->topic_title],
+                $post
+            );
 
-        $this->logModerate(
-            'LOG_RESTORE_POST',
-            [$topic->topic_title],
-            $post
-        );
-
-        $topic->restorePost($post);
+            if (!$post->restore()) {
+                throw new ModelNotSavedException($post->validationErrors()->toSentence());
+            }
+        });
 
         return ext_view('forum.topics.restore', compact('post'), 'js');
     }
@@ -81,9 +76,24 @@ class PostsController extends Controller
 
         priv_check('ForumPostEdit', $post)->ensureCan();
 
-        return ext_view('forum.topics._post_edit', compact('post'));
+        return ext_view('forum.posts.edit', compact('post'));
     }
 
+    /**
+     * Edit Post
+     *
+     * Edit specified forum post.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * [ForumPost](#forum-post) with `body` included.
+     *
+     * @urlParam post required Id of the post. Example: 1
+     *
+     * @bodyParam body string required New post content in BBCode format. Example: hello
+     */
     public function update($id)
     {
         $post = Post::withTrashed()->findOrFail($id);
@@ -107,7 +117,7 @@ class PostsController extends Controller
 
                 $post
                     ->fill([
-                        'post_text' => request('body'),
+                        'post_text' => get_string(request('body')),
                         'post_edit_user' => $userId,
                     ])
                     ->saveOrExplode();
@@ -116,11 +126,17 @@ class PostsController extends Controller
             return error_popup($e->getMessage());
         }
 
-        $posts = collect([$post->fresh()]);
-        $topic = $post->topic;
-        $firstPostPosition = $topic->postPosition($post->post_id);
+        $post->refresh();
 
-        return ext_view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
+        if (is_api_request()) {
+            return json_item($post, 'Forum\Post', ['body']);
+        }
+
+        return ext_view('forum.topics._posts', [
+            'posts' => collect([$post]),
+            'firstPostPosition' => $post->topic->postPosition($post->post_id),
+            'topic' => $post->topic,
+        ]);
     }
 
     public function raw($id)

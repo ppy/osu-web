@@ -7,7 +7,6 @@ namespace Tests\Transformers;
 
 use App\Models\Beatmapset;
 use App\Transformers\BeatmapsetCompactTransformer;
-use Laravel\Passport\Passport;
 use Tests\TestCase;
 
 class BeatmapsetCompactTransformerTest extends TestCase
@@ -15,9 +14,12 @@ class BeatmapsetCompactTransformerTest extends TestCase
     protected $beatmapset;
     protected $viewer;
 
-    public function testHasFavouritedWithOAuthNormalScopes()
+    /**
+     * @dataProvider regularOAuthScopesDataProvider
+     */
+    public function testHasFavouritedWithOAuthNormalScopes($scope)
     {
-        $this->actAsScopedUser($this->viewer, Passport::scopes()->pluck('id')->all());
+        $this->actAsScopedUser($this->viewer, [$scope]);
 
         $json = json_item($this->beatmapset, 'BeatmapsetCompact', ['has_favourited']);
         $this->assertArrayNotHasKey('has_favourited', $json);

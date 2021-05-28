@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Hľadať',
             'deleted' => 'Zahrnúť odstránené diskusie',
+            'mode' => '',
             'only_unresolved' => 'Ukázať iba nevyriešené diskusie',
             'types' => 'Typy správ',
             'username' => 'Meno Uživateľa',
@@ -55,6 +56,13 @@ return [
         'confirm' => 'Žiadny z príspevkov nerieši môj problém',
         'notice' => 'Príspevky okolo času :timestamp (:existing_timestamps) už existujú. Prosím, skontrolujte ich pred prispievaním.',
         'unsaved' => '',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [

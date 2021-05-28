@@ -23,8 +23,6 @@ use App\Models\User;
  */
 class UserBestScoresCheck
 {
-    const BATCH_SIZE = 1000;
-
     /** @var int */
     public $dbIdsFound;
     /** @var int */
@@ -112,7 +110,7 @@ class UserBestScoresCheck
 
         return $search
             ->sort(new Sort('score_id', 'asc'))
-            ->size(static::BATCH_SIZE)
+            ->size(Es::CHUNK_SIZE)
             ->query((new BoolQuery())->filter(['term' => ['user_id' => $this->user->getKey()]]));
     }
 }

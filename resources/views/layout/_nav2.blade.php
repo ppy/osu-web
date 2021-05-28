@@ -92,11 +92,12 @@
                 class="nav-button nav-button--stadium js-click-menu"
                 data-click-menu-target="nav2-locale-popup"
             >
-                <img
-                    class="nav-button__locale-current-flag"
-                    alt="{{ App::getLocale() }}"
-                    src="{{ flag_path(locale_flag(App::getLocale())) }}"
-                >
+                <span class="nav-button__locale-current-flag">
+                    @include('objects._flag_country', [
+                        'countryCode' => locale_flag(App::getLocale()),
+                        'modifiers' => ['flat'],
+                    ])
+                </span>
             </button>
 
             <div class="nav-click-popup">
@@ -120,11 +121,12 @@
                                 @endif
                             >
                                 <span class="nav2-locale-item">
-                                    <img
-                                        src="{{ flag_path(locale_flag($locale)) }}"
-                                        alt="{{ $locale }}"
-                                        class="nav2-locale-item__flag"
-                                    >
+                                    <span class="nav2-locale-item__flag">
+                                        @include('objects._flag_country', [
+                                            'countryCode' => locale_flag($locale),
+                                            'modifiers' => ['flat'],
+                                        ])
+                                    </span>
 
                                     {{ locale_name($locale) }}
                                 </span>
@@ -137,21 +139,34 @@
 
         @if (Auth::user() !== null)
             <div class="nav2__col">
-                <a
-                    class="nav-button nav-button--stadium js-react--chat-icon"
-                    href="{{ route('chat.index') }}"
+                <button
+                    class="nav-button nav-button--stadium js-click-menu js-react--chat-icon"
+                    data-click-menu-target="nav2-chat-notification-widget"
+                    data-turbolinks-permanent
+                    id="notification-widget-chat-icon"
                 >
                     <span class="notification-icon">
                         <i class="fas fa-comment-alt"></i>
                         <span class="notification-icon__count">...</span>
                     </span>
-                </a>
+                </button>
+                <div
+                    class="nav-click-popup js-click-menu js-react--notification-widget"
+                    data-click-menu-id="nav2-chat-notification-widget"
+                    data-visibility="hidden"
+                    data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup', 'only' => 'channel']) }}"
+                    data-turbolinks-permanent
+                    id="notification-widget-chat"
+                ></div>
+
             </div>
 
             <div class="nav2__col">
                 <button
-                    class="nav-button nav-button--stadium js-click-menu js-react--notification-icon"
+                    class="nav-button nav-button--stadium js-click-menu js-react--main-notification-icon"
                     data-click-menu-target="nav2-notification-widget"
+                    data-turbolinks-permanent
+                    id="notification-widget-icon"
                 >
                     <span class="notification-icon">
                         <i class="fas fa-inbox"></i>
@@ -162,7 +177,9 @@
                     class="nav-click-popup js-click-menu js-react--notification-widget"
                     data-click-menu-id="nav2-notification-widget"
                     data-visibility="hidden"
-                    data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup']) }}"
+                    data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup', 'excludes' => ['channel']]) }}"
+                    data-turbolinks-permanent
+                    id="notification-widget"
                 ></div>
             </div>
         @endif

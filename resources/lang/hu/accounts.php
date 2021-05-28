@@ -32,12 +32,11 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'tartózkodási hely',
                 'user_interests' => 'érdeklődés',
-                'user_msnm' => 'skype',
                 'user_occ' => 'foglalkozás',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'weboldal',
             ],
         ],
@@ -50,18 +49,20 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'Értesítések kérése minősített beatmapok problémáival kapcsolatban a következő módokból',
-        'beatmapset_disqualify' => 'Értesíts akkor, ha a beatmap következő modjai diszkvalifikálva lettek',
+        'beatmapset_disqualify' => 'értesíts, ha a következő játékmódok egy beatmapje diszkvalifikálva lett',
         'comment_reply' => 'értesítések küldése a kommentjeidre érkezett válaszokról',
         'title' => 'Értesítések',
         'topic_auto_subscribe' => 'az általad létrehozott új fórum témák értesítéseinek automatikus bekapcsolása',
 
         'options' => [
             '_' => 'Szállítási lehetőségek',
-            'beatmapset:modding' => 'Beatmap szerkesztése',
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => 'beatmap modolás',
             'channel_message' => 'Privát üzenetek',
             'comment_new' => 'Új megjegyzések',
             'forum_topic_reply' => 'Válaszolj erre a témára',
             'mail' => 'e-mail',
+            'mapping' => 'beatmap készítő',
             'push' => 'Elöjövő',
             'user_achievement_unlock' => 'Medál feloldva',
         ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'beatmapekben lévő felnőtt tartalmakra vonatkozó figyelmeztetések elrejtése',
+        'beatmapset_title_show_original' => 'A beatmap metaadatai megjelenítése eredeti nyelven',
         'title' => 'Beállítások',
 
         'beatmapset_download' => [
             '_' => 'Alapértelmezett beatmap letöltés típusa',
             'all' => 'Videóval, ha elérhető',
-            'no_video' => 'Videó nélkül',
             'direct' => 'Megnyitás osu!direct-ben',
+            'no_video' => 'Videó nélkül',
         ],
-
-        'beatmapset_title_show_original' => 'A beatmap metaadatai megjelenítése eredeti nyelven',
     ],
 
     'playstyles' => [

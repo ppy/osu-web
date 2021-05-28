@@ -2,85 +2,48 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
+import Message from 'models/chat/message';
 import * as ApiResponses from './chat-api-responses';
 
 export default class ChatAPI {
-  getMessages(channelId: number, params?: { since?: number; until?: number }): Promise<ApiResponses.GetMessagesJSON> {
-    return new Promise((resolve, reject) => {
-      $.get(route('chat.channels.messages.index', { channel: channelId, ...params }))
-        .done((response) => {
-          resolve(response as ApiResponses.GetMessagesJSON);
-        }).fail((error) => {
-          reject(error);
-        });
-    });
+  getMessages(channelId: number, params?: { since?: number; until?: number }) {
+    return $.get(route('chat.channels.messages.index', { channel: channelId, ...params })) as JQuery.jqXHR<ApiResponses.GetMessagesJson>;
   }
 
-  getUpdates(since: number, lastHistoryId?: number | null): Promise<ApiResponses.GetUpdatesJSON> {
-    return new Promise((resolve, reject) => {
-      $.get(route('chat.updates'), { since, history_since: lastHistoryId })
-      .done((response) => {
-        resolve(response as ApiResponses.GetUpdatesJSON);
-      }).fail((error) => {
-        reject(error);
-      });
-    });
+  getUpdates(since: number, lastHistoryId?: number | null) {
+    return $.get(route('chat.updates'), { history_since: lastHistoryId, since }) as JQuery.jqXHR<ApiResponses.GetUpdatesJson>;
   }
 
-  markAsRead(channelId: number, messageId: number): Promise<ApiResponses.MarkAsReadJSON> {
-    return new Promise((resolve, reject) => {
-      $.ajax({
-        type: 'PUT',
-        url: route('chat.channels.mark-as-read', {channel: channelId, message: messageId}),
-      }).done((response) => {
-        resolve(response as ApiResponses.MarkAsReadJSON);
-      }).fail((error) => {
-        reject(error);
-      });
-    });
+  markAsRead(channelId: number, messageId: number) {
+    return $.ajax({
+      type: 'PUT',
+      url: route('chat.channels.mark-as-read', {channel: channelId, message: messageId}),
+    }) as JQuery.jqXHR<ApiResponses.MarkAsReadJson>;
   }
 
-  newConversation(userId: number, message: string, action?: boolean): Promise<ApiResponses.NewConversationJSON> {
-    return new Promise((resolve, reject) => {
-      $.post(route('chat.new'), {
-        is_action: action,
-        message,
-        target_id: userId,
-      }).done((response) => {
-        resolve(response as ApiResponses.NewConversationJSON);
-      }).fail((error) => {
-        reject(error);
-      });
-    });
+  newConversation(userId: number, message: Message) {
+    return $.post(route('chat.new'), {
+      is_action: message.isAction,
+      message: message.content,
+      target_id: userId,
+    }) as JQuery.jqXHR<ApiResponses.NewConversationJson>;
   }
 
   partChannel(channelId: number, userId: number) {
-    return new Promise((resolve, reject) => {
-      $.ajax(route('chat.channels.part', {
-        channel: channelId,
-        user: userId,
-      }), {
-        method: 'DELETE',
-      }).done((response) => {
-        resolve(response);
-      }).fail((error) => {
-        reject(error);
-      });
-    });
+    return $.ajax(route('chat.channels.part', {
+      channel: channelId,
+      user: userId,
+    }), {
+      method: 'DELETE',
+    }) as JQuery.jqXHR<void>;
   }
 
-  sendMessage(channelId: number, message: string, action?: boolean): Promise<ApiResponses.SendMessageJSON> {
-    return new Promise((resolve, reject) => {
-      $.post(route('chat.channels.messages.store', {channel: channelId}), {
-        is_action: action,
-        message,
-        target_id: channelId,
-        target_type: 'channel',
-      }).done((response) => {
-        resolve(response as ApiResponses.SendMessageJSON);
-      }).fail((error) => {
-        reject(error);
-      });
-    });
+  sendMessage(message: Message) {
+    return $.post(route('chat.channels.messages.store', { channel: message.channelId }), {
+      is_action: message.isAction,
+      message: message.content,
+      target_id: message.channelId,
+      target_type: 'channel',
+    }) as JQuery.jqXHR<ApiResponses.SendMessageJson>;
   }
 }

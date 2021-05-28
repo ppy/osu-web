@@ -3,24 +3,27 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-// input field name mappings for view recycling.
-// pass in $fields to set; set a field to null to remove it.
-// TODO: hopefully this can be temporary ಠ_ಠ.
-$fieldDefaults = [
-    'forumId' => 'forum_id',
-    'topicId' => 'topic_id',
-    'user' => 'username',
-    'includeSubforums' => 'forum_children',
-];
+    // input field name mappings for view recycling.
+    // pass in $fields to set; set a field to null to remove it.
+    // TODO: hopefully this can be temporary ಠ_ಠ.
+    $fieldDefaults = [
+        'forumId' => 'forum_id',
+        'includeSubforums' => 'forum_children',
+        'sort' => 'sort',
+        'topicId' => 'topic_id',
+        'user' => 'username',
+    ];
 
-if (isset($fields)) {
-    $fields = array_merge($fieldDefaults, $fields);
-} else {
-    $fields = $fieldDefaults;
-}
+    $params = request()->all();
+
+    if (isset($fields)) {
+        $fields = array_merge($fieldDefaults, $fields);
+    } else {
+        $fields = $fieldDefaults;
+    }
 @endphp
 
-<div id="search-forum-options" data-turbolinks-permanent class="search-forum-options">
+<div id="search-forum-options" class="search-forum-options">
     @if ($fields['user'] !== null)
         <label class="search-forum-options__input-group">
             <div class="search-forum-options__label">
@@ -29,14 +32,18 @@ if (isset($fields)) {
 
             <input
                 name="{{ $fields['user'] }}"
-                value="{{ request($fields['user']) }}"
+                value="{{ $params[$fields['user']] ?? null }}"
                 class="form-text"
             >
         </label>
     @endif
 
+    @if ($fields['sort'] !== null && present($params[$fields['sort']] ?? null))
+        <input type="hidden" name="{{ $fields['sort'] }}" value="{{ $params[$fields['sort']] }}" />
+    @endif
+
     {{-- FIXME: remove querystring check? --}}
-    @if ($fields['topicId'] !== null && present(request($fields['topicId'])))
+    @if ($fields['topicId'] !== null && present($params[$fields['topicId']] ?? null))
         <label class="search-forum-options__input-group">
             <div class="search-forum-options__label">
                 {{ trans('home.search.forum_post.label.topic_id') }}
@@ -44,7 +51,7 @@ if (isset($fields)) {
 
             <input
                 name="{{ $fields['topicId'] }}"
-                value="{{ request($fields['topicId']) }}"
+                value="{{ $params[$fields['topicId']] }}"
                 class="form-text"
             >
         </label>
@@ -67,7 +74,7 @@ if (isset($fields)) {
                         @if (priv_check('ForumView', $forum)->can())
                             <option
                                 value="{{ $forum->getKey() }}"
-                                {{ $forum->getKey() === get_int(request($fields['forumId'])) ? 'selected' : '' }}
+                                {{ $forum->getKey() === get_int($params[$fields['forumId']] ?? null) ? 'selected' : '' }}
                             >
                                 {{ str_repeat('–', $forum->currentDepth()) }}
                                 {{ $forum->forum_name }}
@@ -80,7 +87,7 @@ if (isset($fields)) {
 
         <label class="search-forum-options__input-group">
             @include('objects._switch', [
-                'checked' => request($fields['includeSubforums']),
+                'checked' => $params[$fields['includeSubforums']] ?? null,
                 'name' => $fields['includeSubforums'],
             ])
 

@@ -7,6 +7,7 @@ import { Header } from './header'
 import { ModeSwitcher } from './mode-switcher'
 import { NewDiscussion } from './new-discussion'
 import { BackToTop } from 'back-to-top'
+import { deletedUser } from 'models/user'
 import * as React from 'react'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
@@ -118,7 +119,6 @@ export class Main extends React.PureComponent
         currentBeatmap: @currentBeatmap()
         currentDiscussions: @currentDiscussions()
         currentFilter: @state.currentFilter
-        reviewsEnabled: @state.reviewsConfig.enabled
 
       if @state.currentMode == 'events'
         div
@@ -337,6 +337,7 @@ export class Main extends React.PureComponent
 
   discussionStarters: =>
     _ @discussions()
+      .filter (discussion) -> discussion.message_type != 'hype'
       .map 'user_id'
       .uniq()
       .map (user_id) => @users()[user_id]
@@ -461,7 +462,7 @@ export class Main extends React.PureComponent
       newState.beatmapset.current_user_attributes.is_watching = watching
 
     if playmode?
-      beatmap = BeatmapHelper.findDefault items: @groupedBeatmaps()[playmode]
+      beatmap = BeatmapHelper.findDefault items: @groupedBeatmaps().get(playmode)
       beatmapId = beatmap?.id
 
     if beatmapId? && beatmapId != @currentBeatmap().id
@@ -507,8 +508,7 @@ export class Main extends React.PureComponent
   users: =>
     if !@cache.users?
       @cache.users = _.keyBy @state.beatmapset.related_users, 'id'
-      @cache.users[null] = @cache.users[undefined] =
-        username: osu.trans 'users.deleted'
+      @cache.users[null] = @cache.users[undefined] = deletedUser.toJson()
 
     @cache.users
 

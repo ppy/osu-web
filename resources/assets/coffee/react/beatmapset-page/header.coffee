@@ -1,18 +1,28 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapPicker } from './beatmap-picker'
 import { Stats } from './stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
+import BeatmapPicker from 'beatmapsets-show/beatmap-picker'
 import { BigButton } from 'big-button'
+import { route } from 'laroute'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
-import { UserAvatar } from 'user-avatar'
+import UserAvatar from 'user-avatar'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
+import { createClickCallback } from 'utils/html'
 el = React.createElement
 
 export class Header extends React.Component
   favouritesToShow: 50
+
+
+  constructor: (props) ->
+    super props
+
+    @filteredFavourites = []
+
 
   hasAvailabilityInfo: =>
     @props.beatmapset.availability.download_disabled || @props.beatmapset.availability.more_information?
@@ -21,8 +31,14 @@ export class Header extends React.Component
   showFavourites: (event) =>
     target = event.currentTarget
 
-    if @props.favcount < 1 || target._tooltip
+    if @filteredFavourites.length < 1
+      if target._tooltip
+        target._tooltip = false
+        $(target).qtip 'destroy', true
+
       return
+
+    return if target._tooltip
 
     target._tooltip = true
 
@@ -47,6 +63,10 @@ export class Header extends React.Component
         effect: -> $(this).fadeTo(250, 0)
 
   render: ->
+    @filteredFavourites = @props.beatmapset.recent_favourites.filter (f) -> f.id != currentUser.id
+    @filteredFavourites.unshift(currentUser) if @props.hasFavourited
+    @filteredFavourites = @filteredFavourites[...@favouritesToShow]
+
     favouriteButton =
       if @props.hasFavourited
         action: 'unfavourite'
@@ -66,7 +86,7 @@ export class Header extends React.Component
         div className: 'beatmapset-header__box beatmapset-header__box--main',
           div className: 'beatmapset-header__beatmap-picker-box',
             el BeatmapPicker,
-              beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
+              beatmaps: @props.beatmaps.get(@props.currentBeatmap.mode)
               currentBeatmap: @props.currentBeatmap
 
             span className: 'beatmapset-header__diff-name',
@@ -86,7 +106,8 @@ export class Header extends React.Component
               if @props.beatmapset.status == 'pending'
                 span className: 'beatmapset-header__value', title: osu.trans('beatmapsets.show.stats.nominations'),
                   span className: 'beatmapset-header__value-icon', i className: 'fas fa-thumbs-up'
-                  span className: 'beatmapset-header__value-name', @props.beatmapset.nominations.current
+                  span className: 'beatmapset-header__value-name',
+                    @props.beatmapset.nominations_summary.current
 
               span
                 className: "beatmapset-header__value#{if @props.favcount > 0 then ' beatmapset-header__value--has-favourites' else ''}"
@@ -102,43 +123,34 @@ export class Header extends React.Component
               className: 'user-list-popup user-list-popup__template'
               style:
                 display: 'none'
-              @props.beatmapset.recent_favourites.map (user) ->
+              @filteredFavourites.map (user) ->
                 a
                   href: laroute.route('users.show', user: user.id)
                   className: 'js-usercard user-list-popup__user'
                   key: user.id
                   'data-user-id': user.id
                   el UserAvatar, user: user, modifiers: ['full']
-              if @props.favcount > @favouritesToShow
+              if @props.favcount > @filteredFavourites.length
                 div className: 'user-list-popup__remainder-count',
-                  osu.transChoice 'common.count.plus_others', @props.favcount - @favouritesToShow
+                  osu.transChoice 'common.count.plus_others', @props.favcount - @filteredFavourites.length
 
-          a
-            className: 'beatmapset-header__details-text beatmapset-header__details-text--title'
-            href: laroute.route 'beatmapsets.index', q: getTitle(@props.beatmapset)
-            getTitle(@props.beatmapset)
+          span className: 'beatmapset-header__details-text beatmapset-header__details-text--title',
+            a
+              className: 'beatmapset-header__details-text-link'
+              href: laroute.route 'beatmapsets.index', q: getTitle(@props.beatmapset)
+              getTitle(@props.beatmapset)
+            if @props.beatmapset.nsfw
+              span className: 'nsfw-badge', osu.trans('beatmapsets.nsfw_badge.label')
 
-          a
-            className: 'beatmapset-header__details-text beatmapset-header__details-text--artist'
-            href: laroute.route 'beatmapsets.index', q: getArtist(@props.beatmapset)
-            getArtist(@props.beatmapset)
+          span className: 'beatmapset-header__details-text beatmapset-header__details-text--artist',
+            a
+              className: 'beatmapset-header__details-text-link'
+              href: laroute.route 'beatmapsets.index', q: getArtist(@props.beatmapset)
+              getArtist(@props.beatmapset)
 
           el BeatmapsetMapping, beatmapset: @props.beatmapset
 
-          if currentUser.id? && @hasAvailabilityInfo()
-            div
-              className: 'beatmapset-header__availability-info',
-              if @props.beatmapset.availability.download_disabled
-                osu.trans 'beatmapsets.availability.disabled'
-              else
-                osu.trans 'beatmapsets.availability.parts-removed'
-
-              if @props.beatmapset.availability.more_information?
-                div className: 'beatmapset-header__availability-link',
-                  a
-                    href: @props.beatmapset.availability.more_information
-                    target: '_blank'
-                    osu.trans 'beatmapsets.availability.more-info'
+          @renderAvailabilityInfo()
 
           div
             className: 'beatmapset-header__buttons'
@@ -173,11 +185,36 @@ export class Header extends React.Component
             @renderLoginButton()
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
-          div className: 'beatmapset-status beatmapset-status--show', osu.trans("beatmapsets.show.status.#{@props.currentBeatmap.status}")
+          @renderStatusBar()
           el Stats,
             beatmapset: @props.beatmapset
             beatmap: @props.currentBeatmap
             timeElapsed: @props.timeElapsed
+
+
+  renderAvailabilityInfo: =>
+    return unless currentUser.id? && @hasAvailabilityInfo()
+
+    href = if @props.beatmapset.availability.more_information == 'rule_violation'
+              "#{route('wiki.show', locale: currentLocale, path: 'Rules')}#beatmap-submission-rules"
+            else
+              @props.beatmapset.availability.more_information
+
+    div
+      className: 'beatmapset-header__availability-info',
+      if @props.beatmapset.availability.download_disabled
+        osu.trans 'beatmapsets.availability.disabled'
+      else if @props.beatmapset.availability.more_information == 'rule_violation'
+        osu.trans 'beatmapsets.availability.rule_violation'
+      else
+        osu.trans 'beatmapsets.availability.parts-removed'
+
+      if href?
+        div className: 'beatmapset-header__availability-link',
+          a
+            href: href
+            target: '_blank'
+            osu.trans 'beatmapsets.availability.more-info'
 
 
   renderDownloadButtons: =>
@@ -223,6 +260,16 @@ export class Header extends React.Component
         icon: 'fas fa-lock'
 
 
+  renderStatusBar: =>
+    div className: 'beatmapset-header__status',
+      if @props.beatmapset.storyboard
+        div
+          className: 'beatmapset-status beatmapset-status--show-icon'
+          title: osu.trans('beatmapsets.show.info.storyboard')
+          i className: 'fas fa-image'
+      div className: 'beatmapset-status beatmapset-status--show', osu.trans("beatmapsets.show.status.#{@props.currentBeatmap.status}")
+
+
   downloadButton: ({key, href, icon = 'fas fa-download', topTextKey = '_', bottomTextKey, osuDirect = false}) =>
     el BigButton,
       key: key
@@ -238,7 +285,6 @@ export class Header extends React.Component
 
 
   toggleFavourite: (e) ->
-    if !currentUser.id?
-      userLogin.show e.target
-    else
-      $.publish 'beatmapset:favourite:toggle'
+    return if core.userLogin.showIfGuest(createClickCallback(e.target))
+
+    $.publish 'beatmapset:favourite:toggle'

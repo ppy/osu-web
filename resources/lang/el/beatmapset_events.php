@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Approved.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Ένας συντονιστής διέγραψε τη συζήτηση :discussion.',
         'discussion_lock' => 'Η συζήτηση για αυτό το beatmap έχει απενεργοποιηθεί. (:text)',
         'discussion_post_delete' => 'Ένας συντονιστής διέγραψε μια δημοσίευση από τη συζήτηση :discussion.',
@@ -25,9 +26,16 @@ return [
         'language_edit' => '',
         'love' => 'Loved από :user',
         'nominate' => 'Nominated από :user.',
+        'nominate_modes' => '',
         'nomination_reset' => 'Ένα νέο πρόβλημα :discussion (:text) ξεκίνησε μια επαναφορά της διαδικασίας υποψηφιότητας.',
         'qualify' => 'Αυτό το beatmap έχει φτάσει των απαραίτητο αριθμό nominations και είναι πλέον qualified.',
         'rank' => 'Ranked.',
+        'remove_from_loved' => '',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -47,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Έγκριση',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Διαγραφή συζήτησης',
         'discussion_post_delete' => 'Διαγραφή απάντησης συζήτησης',
         'discussion_post_restore' => 'Αποκατάσταση απάντησης συζήτησης',
@@ -64,7 +73,9 @@ return [
         'love' => 'Αγαπημένο',
         'nominate' => 'Διορισμός',
         'nomination_reset' => 'Επαναφορά διορισμού',
+        'nsfw_toggle' => '',
         'qualify' => 'Προσόντα',
         'rank' => 'Κατάταξη',
+        'remove_from_loved' => '',
     ],
 ];

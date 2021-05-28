@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'مقبولة.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'المشرف حذف المناقشة :discussion.',
         'discussion_lock' => 'تم ايقاف المناقشة لهذه الخريطة. (:text)',
         'discussion_post_delete' => 'المشرف حذف منشور من المناقشة :discussion.',
@@ -25,9 +26,16 @@ return [
         'language_edit' => 'تم تغيير اللغة من :old الى :new.',
         'love' => 'حُبِبت بواسطة :user',
         'nominate' => 'رُشحت بواسطة :user.',
+        'nominate_modes' => 'تم ترشيحها بواسطة :user (:modes).',
         'nomination_reset' => 'اثارت المشكلة :discussion (:text) اِعادة تعيين الترشيح.',
         'qualify' => 'هذه الخريطة وصلت إلى العدد المطلوب من الترشيحات وتأهلت.',
         'rank' => 'مصفوفة.',
+        'remove_from_loved' => 'تمت إزالتها من "المحبوبة" من قِبَل :user. (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => 'تصيف "محتوى حساس" مَلغي',
+            'to_1' => 'مٌصنف كـ "محتوى حساس"',
+        ],
     ],
 
     'index' => [
@@ -47,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'موافقة',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'حذف المناقشة',
         'discussion_post_delete' => 'حذف رد المناقشة',
         'discussion_post_restore' => 'إعادة رد المناقشة',
@@ -64,7 +73,9 @@ return [
         'love' => 'حُب',
         'nominate' => 'ترشيح',
         'nomination_reset' => 'إعادة تعيين الترشيح',
+        'nsfw_toggle' => 'تصنيف حساس',
         'qualify' => 'المؤهل',
         'rank' => 'الترتيب',
+        'remove_from_loved' => 'اِزبالة من "المحبوبة"',
     ],
 ];

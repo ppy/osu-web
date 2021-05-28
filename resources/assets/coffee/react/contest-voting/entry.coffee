@@ -9,11 +9,25 @@ el = React.createElement
 
 export class Entry extends React.Component
   render: ->
+    selected = _.includes @props.selected, @props.entry.id
+
+    return null if @props.hideIfNotVoted && !selected
+
+    if @props.contest.type == 'external'
+      link_icon = 'fa-external-link-alt'
+      entry_title =
+        a
+          rel: 'nofollow noreferrer'
+          target: '_blank'
+          href: @props.entry.preview,
+          @props.entry.title
+    else
+      link_icon = 'fa-download'
+      entry_title = @props.entry.title
+
     if @props.contest.show_votes
       votePercentage = _.round((@props.entry.results.votes / @props.totalVotes)*100, 2)
       relativeVotePercentage = _.round((@props.entry.results.votes / @props.winnerVotes)*100, 2)
-
-    selected = _.includes @props.selected, @props.entry.id
 
     div className: "contest-voting-list__row#{if selected && !@props.contest.show_votes then ' contest-voting-list__row--selected' else ''}",
       if @props.contest.show_votes
@@ -33,19 +47,19 @@ export class Entry extends React.Component
               i className: "fal fa-fw fa-lg fa-#{@props.contest.link_icon}"
         else
           div className: 'contest-voting-list__icon contest-voting-list__icon--bg',
-            a className: 'tracklist__link', href: @props.entry.preview,
-              i className: 'fas fa-fw fa-lg fa-download'
+            a className: 'tracklist__link', href: @props.entry.preview, rel: 'nofollow noreferrer', target: '_blank',
+              i className: "fas fa-fw fa-lg #{link_icon}"
       if @props.contest.show_votes
         div className: 'contest-voting-list__title contest-voting-list__title--show-votes',
           div className: 'contest-voting-list__votes-bar', style: { width: "#{relativeVotePercentage}%" }
-          div className: 'u-relative u-ellipsis-overflow', @props.entry.title
+          div className: 'u-relative u-ellipsis-overflow', entry_title
           a
             className: 'contest-voting-list__entrant js-usercard',
             'data-user-id': @props.entry.results.user_id,
             href: laroute.route('users.show', user: @props.entry.results.user_id),
               @props.entry.results.username
       else
-        div className: 'contest-voting-list__title u-ellipsis-overflow', @props.entry.title
+        div className: 'contest-voting-list__title u-ellipsis-overflow', entry_title
 
       div className: "contest__voting-star#{if @props.contest.show_votes then ' contest__voting-star--dark-bg' else ''}",
         el Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, selected: @props.selected, contest: @props.contest

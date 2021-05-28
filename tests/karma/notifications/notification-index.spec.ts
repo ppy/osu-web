@@ -54,7 +54,7 @@ describe('Notification Index', () => {
   describe('when starting on All', () => {
     let controller!: NotificationController;
     beforeEach(() => {
-      controller = new NotificationController(store, { isWidget: false }, null);
+      controller = new NotificationController(store, { excludes: [], isWidget: false }, null);
     });
 
     it('should filter by All', () => {
@@ -129,7 +129,7 @@ describe('Notification Index', () => {
   describe('when starting on Beatmapsets', () => {
     let controller!: NotificationController;
     beforeEach(() => {
-      controller = new NotificationController(store, { isWidget: false }, 'beatmapset');
+      controller = new NotificationController(store, { excludes: [], isWidget: false }, 'beatmapset');
     });
 
     it('should filter by Beatmapsets', () => {

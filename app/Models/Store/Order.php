@@ -5,6 +5,7 @@
 
 namespace App\Models\Store;
 
+use App\Exceptions\InvariantException;
 use App\Exceptions\OrderNotModifiableException;
 use App\Models\Country;
 use App\Models\SupporterTag;
@@ -16,15 +17,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Represents a Store Order.
  *
- * A user should only have 1 'active cart'.
- * The difference between the 'incart', 'processing' and 'checkout' statuses are:
- * - incart -> order is in cart and can be modified; adding a new item will add to the existing order.
- * - processing -> order is in cart and should not be modified.
- * - checkout -> cart is cleared; adding a new item should create a new cart.
- *
- * The contents of the cart should not be cleared until the payment request is
- *  successfully sent to the payment provider.
- * i.e. it should not be cleared immediately on checking out.
+ * Order states:
+ * - cancelled -> Order is cancelled.
+ * - incart -> Order is a cart and items can be modified. This is the only state which should allow items to be modified.
+ * - processing -> The checkout process for this Order has started.
+ * - checkout -> User-side of the payment approval process is complete; awaiting confirmation from payment processor.
+ * - paid -> Payment confirmed by payment processor.
+ * - shipped -> Physical order dispatched; not available in all cases.
+ * - delivered -> If we receive confirmation that the order was delivered; not available in all cases.
  *
  * @property Address $address
  * @property int|null $address_id
@@ -33,8 +33,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Database\Eloquent\Collection $items OrderItem
  * @property string|null $last_tracking_state
  * @property int $order_id
+ * @property string|null $provider
  * @property \Carbon\Carbon|null $paid_at
  * @property \Illuminate\Database\Eloquent\Collection $payments Payment
+ * @property string|null $reference
  * @property \Carbon\Carbon|null $shipped_at
  * @property float|null $shipping
  * @property mixed $status
@@ -67,7 +69,12 @@ class Order extends Model
     ];
 
     protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
-    public $macros = ['itemsQuantities'];
+    protected $macros = ['itemsQuantities'];
+
+    protected static function splitTransactionId($value)
+    {
+        return explode('-', $value, 2);
+    }
 
     public function items()
     {
@@ -176,9 +183,14 @@ class Order extends Model
             return;
         }
 
-        return explode('-', $this->transaction_id)[0];
+        return static::splitTransactionId($this->transaction_id)[0];
     }
 
+    /**
+     * Payment status that appears on the invoice.
+     *
+     * @return string
+     */
     public function getPaymentStatusText()
     {
         switch ($this->status) {
@@ -209,7 +221,7 @@ class Order extends Model
             return null;
         }
 
-        return explode('-', $this->transaction_id)[1] ?? null;
+        return static::splitTransactionId($this->transaction_id)[1] ?? null;
     }
 
     public function getSubtotal($forShipping = false)
@@ -224,6 +236,21 @@ class Order extends Model
         }
 
         return (float) $total;
+    }
+
+    public function setTransactionIdAttribute($value)
+    {
+        // TODO: migrate to always using provider and reference instead of transaction_id.
+        $this->attributes['transaction_id'] = $value;
+
+        $split = static::splitTransactionId($value);
+        $this->provider = $split[0] ?? null;
+
+        $reference = $split[1] ?? null;
+        // For Paypal we're going to use the PAYID number for reference instead of the IPN txn_id
+        if ($this->provider !== static::PROVIDER_PAYPAL && $reference !== 'failed') {
+            $this->reference = $reference;
+        }
     }
 
     public function requiresShipping()
@@ -295,6 +322,11 @@ class Order extends Model
     public function canCheckout()
     {
         return in_array($this->status, ['incart', 'processing'], true);
+    }
+
+    public function canUserCancel()
+    {
+        return $this->status === 'processing';
     }
 
     public function hasInvoice()
@@ -372,8 +404,18 @@ class Order extends Model
         $this->saveOrExplode();
     }
 
-    public function cancel()
+    public function cancel(?User $user = null)
     {
+        if ($this->status === 'cancelled') {
+            return;
+        }
+
+        // TODO: Payment processors should set a context variable flagging the user check to be skipped.
+        // This is currently only fine because the Orders controller requires auth.
+        if ($user !== null && $this->user_id === $user->getKey() && !$this->canUserCancel()) {
+            throw new InvariantException(trans('store.order.cancel_not_allowed'));
+        }
+
         $this->status = 'cancelled';
         $this->saveOrExplode();
     }

@@ -11,12 +11,11 @@ use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
+use App\Models\Follow;
 use App\Models\Score;
 
 class BeatmapsetSearch extends RecordSearch
 {
-    public $recommendedDifficulty;
-
     /**
      * @param BeatmapsetSearchParams $params
      */
@@ -34,7 +33,18 @@ class BeatmapsetSearch extends RecordSearch
      */
     public function getQuery()
     {
-        static $partialMatchFields = ['artist', 'artist.*', 'artist_unicode', 'creator', 'title', 'title.raw', 'title.*', 'title_unicode', 'tags^0.5'];
+        static $partialMatchFields = [
+            'artist',
+            'artist.*',
+            'artist_unicode',
+            'artist_unicode.*',
+            'creator',
+            'title',
+            'title.*',
+            'title_unicode',
+            'title_unicode.*',
+            'tags^0.5',
+        ];
 
         $query = new BoolQuery();
 
@@ -56,16 +66,24 @@ class BeatmapsetSearch extends RecordSearch
         $this->addBlacklistFilter($query);
         $this->addBlockedUsersFilter($query);
         $this->addBundledFilter($query);
+        $this->addFollowsFilter($query);
         $this->addGenreFilter($query);
         $this->addLanguageFilter($query);
         $this->addExtraFilter($query);
+        $this->addNsfwFilter($query);
+        $this->addRankedFilter($query);
         $this->addStatusFilter($query);
 
         $nested = new BoolQuery();
+        $this->addManiaKeysFilter($nested);
         $this->addModeFilter($nested);
         $this->addPlayedFilter($query, $nested);
         $this->addRankFilter($nested);
         $this->addRecommendedFilter($nested);
+
+        $this->addSimpleFilters($query, $nested);
+        $this->addTextFilter($query, 'artist', ['artist', 'artist_unicode']);
+        $this->addTextFilter($query, 'creator', ['creator']);
 
         $query->filter([
             'nested' => [
@@ -148,6 +166,15 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
+    private function addFollowsFilter($query)
+    {
+        if ($this->params->showFollows && $this->params->user !== null) {
+            $followIds = Follow::where(['subtype' => 'mapping', 'user_id' => $this->params->user->getKey()])->pluck('notifiable_id')->all();
+
+            $query->filter(['terms' => ['user_id' => $followIds]]);
+        }
+    }
+
     private function addGenreFilter($query)
     {
         if ($this->params->genre !== null) {
@@ -162,6 +189,17 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
+    private function addManiaKeysFilter(BoolQuery $nestedQuery): void
+    {
+        if ($this->params->keys === null) {
+            return;
+        }
+
+        $nestedQuery
+            ->filter(['range' => ['beatmaps.diff_size' => $this->params->keys]])
+            ->filter(['term' => ['beatmaps.playmode' => Beatmap::MODES['mania']]]);
+    }
+
     private function addModeFilter($query)
     {
         if (!$this->params->includeConverts) {
@@ -170,6 +208,13 @@ class BeatmapsetSearch extends RecordSearch
 
         if ($this->params->mode !== null) {
             $query->filter(['term' => ['beatmaps.playmode' => $this->params->mode]]);
+        }
+    }
+
+    private function addNsfwFilter($query)
+    {
+        if (!$this->params->includeNsfw) {
+            $query->filter(['term' => ['nsfw' => false]]);
         }
     }
 
@@ -214,6 +259,45 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
+    private function addRankedFilter(BoolQuery $query): void
+    {
+        if ($this->params->ranked !== null) {
+            $query
+                ->filter(['terms' => ['approved' => [
+                    Beatmapset::STATES['ranked'],
+                    Beatmapset::STATES['approved'],
+                    Beatmapset::STATES['loved'],
+                ]]])->filter(['range' => ['approved_date' => $this->params->ranked]]);
+        }
+    }
+
+    private function addSimpleFilters(BoolQuery $query, BoolQuery $nested): void
+    {
+        static $filters = [
+            'ar' => ['field' => 'beatmaps.diff_approach', 'type' => 'range'],
+            'bpm' => ['field' => 'bpm', 'type' => 'range'],
+            'created' => ['field' => 'submit_date', 'type' => 'range'],
+            'cs' => ['field' => 'beatmaps.diff_size', 'type' => 'range'],
+            'difficultyRating' => ['field' => 'beatmaps.difficultyrating', 'type' => 'range'],
+            'drain' => ['field' => 'beatmaps.diff_drain', 'type' => 'range'],
+            'hitLength' => ['field' => 'beatmaps.hit_length', 'type' => 'range'],
+            'statusRange' => ['field' => 'beatmaps.approved', 'type' => 'range'],
+            // (unsupported) 'divisor' => ['field' => ???, 'type' => 'range'],
+        ];
+
+        static $nestedPrefix = 'beatmaps.';
+        $nestedPrefixLength = strlen($nestedPrefix);
+
+        foreach ($filters as $prop => $options) {
+            if ($this->params->$prop === null) {
+                continue;
+            }
+
+            $q = substr($options['field'], 0, $nestedPrefixLength) === $nestedPrefix ? $nested : $query;
+            $q->filter([$options['type'] => [$options['field'] => $this->params->$prop]]);
+        }
+    }
+
     // statuses are non scoring for the query context.
     private function addStatusFilter($mainQuery)
     {
@@ -223,28 +307,24 @@ class BeatmapsetSearch extends RecordSearch
             case 'any':
                 break;
             case 'ranked':
-                $query->should([
-                    ['match' => ['approved' => Beatmapset::STATES['ranked']]],
-                    ['match' => ['approved' => Beatmapset::STATES['approved']]],
-                ]);
+                $query
+                    ->should(['match' => ['approved' => Beatmapset::STATES['ranked']]])
+                    ->should(['match' => ['approved' => Beatmapset::STATES['approved']]]);
                 break;
             case 'loved':
                 $query->must(['match' => ['approved' => Beatmapset::STATES['loved']]]);
                 break;
             case 'favourites':
                 $favs = model_pluck($this->params->user->favouriteBeatmapsets(), 'beatmapset_id', Beatmapset::class);
-                $query->must(['ids' => ['type' => 'beatmaps', 'values' => $favs]]);
+                $query->must(['ids' => ['values' => $favs]]);
                 break;
             case 'qualified':
-                $query->should([
-                    ['match' => ['approved' => Beatmapset::STATES['qualified']]],
-                ]);
+                $query->should(['match' => ['approved' => Beatmapset::STATES['qualified']]]);
                 break;
             case 'pending':
-                $query->should([
-                    ['match' => ['approved' => Beatmapset::STATES['wip']]],
-                    ['match' => ['approved' => Beatmapset::STATES['pending']]],
-                ]);
+                $query
+                    ->should(['match' => ['approved' => Beatmapset::STATES['wip']]])
+                    ->should(['match' => ['approved' => Beatmapset::STATES['pending']]]);
                 break;
             case 'graveyard':
                 $query->must(['match' => ['approved' => Beatmapset::STATES['graveyard']]]);
@@ -253,18 +333,40 @@ class BeatmapsetSearch extends RecordSearch
                 if ($this->params->user !== null) {
                     $maps = model_pluck($this->params->user->beatmapsets(), 'beatmapset_id');
                 }
-                $query->must(['ids' => ['type' => 'beatmaps', 'values' => $maps ?? []]]);
+                $query->must(['ids' => ['values' => $maps ?? []]]);
                 break;
             default: // null, etc
-                $query->should([
-                    ['match' => ['approved' => Beatmapset::STATES['ranked']]],
-                    ['match' => ['approved' => Beatmapset::STATES['approved']]],
-                    ['match' => ['approved' => Beatmapset::STATES['loved']]],
-                ]);
+                $query
+                    ->should(['match' => ['approved' => Beatmapset::STATES['ranked']]])
+                    ->should(['match' => ['approved' => Beatmapset::STATES['approved']]])
+                    ->should(['match' => ['approved' => Beatmapset::STATES['loved']]]);
                 break;
         }
 
         $mainQuery->filter($query);
+    }
+
+    private function addTextFilter(BoolQuery $query, string $paramField, array $fields): void
+    {
+        $value = $this->params->$paramField;
+
+        if (!present($value)) {
+            return;
+        }
+
+        $subQuery = (new BoolQuery())->shouldMatch(1);
+
+        $searchFields = [];
+        foreach ($fields as $field) {
+            $searchFields[] = $field;
+            $searchFields[] = "{$field}.*";
+
+            $subQuery->should(['term' => ["{$field}.raw" => ['value' => $value, 'boost' => 100]]]);
+        }
+
+        $subQuery->should(QueryHelper::queryString($value, $searchFields, 'and'));
+
+        $query->must($subQuery);
     }
 
     private function getPlayedBeatmapIds(?array $rank = null)

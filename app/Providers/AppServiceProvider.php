@@ -6,7 +6,6 @@
 namespace App\Providers;
 
 use App\Hashing\OsuHashManager;
-use App\Http\Middleware\StartSession;
 use App\Libraries\Groups;
 use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
@@ -97,10 +96,6 @@ class AppServiceProvider extends ServiceProvider
                 $config['same_site'] ?? null
             );
         });
-
-        // The middleware breaks without this. Not sure why.
-        // Originally defined in Laravel's SessionServiceProvider.
-        $this->app->singleton(StartSession::class);
 
         // This is needed for testing with Dusk.
         if ($this->app->environment('testing')) {

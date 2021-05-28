@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Eliminar la publicación de los metadatos del mapa no está permitido.',
             'beatmapset_post_no_edit' => 'Editar la publicación de los metadatos del mapa no está permitido.',
+            'first_post_no_delete' => 'No se puede eliminar la publicación inicial',
+            'missing_topic' => 'Falta el tema de la publicación',
             'only_quote' => 'Tu respuesta sólo contiene una cita.',
 
             'attributes' => [
@@ -161,8 +163,8 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => ':reason no es válido para este tipo de reporte.',
-        'self' => "¡No puede reportarse a sí mismo!",
+        'reason_not_valid' => ':reason no válido para este tipo de denuncia.',
+        'self' => "¡No puede denunciarse a sí mismo!",
     ],
 
     'store' => [

@@ -32,12 +32,11 @@ return [
             'title' => 'Profil',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => 'localisation actuelle',
                 'user_interests' => 'centres d\'intérêt',
-                'user_msnm' => 'skype',
                 'user_occ' => 'occupation',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => 'site web',
             ],
         ],
@@ -57,11 +56,13 @@ return [
 
         'options' => [
             '_' => 'types d\'alertes',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'modding de beatmap',
             'channel_message' => 'messages privés',
             'comment_new' => 'nouveaux commentaires',
             'forum_topic_reply' => 'réponse à un sujet',
             'mail' => 'email',
+            'mapping' => 'mapper de la beatmap',
             'push' => 'push',
             'user_achievement_unlock' => 'médaille utilisateur déverrouillée',
         ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'masquer les avertissements pour contenu explicite dans les beatmaps',
+        'beatmapset_title_show_original' => 'afficher les métadonnées de la beatmap dans la langue d\'origine',
         'title' => 'Options',
 
         'beatmapset_download' => [
             '_' => 'type de téléchargement des beatmaps par défaut',
             'all' => 'avec vidéo si possible',
-            'no_video' => 'sans vidéo',
             'direct' => 'ouvrir dans osu!direct',
+            'no_video' => 'sans vidéo',
         ],
-
-        'beatmapset_title_show_original' => 'afficher les métadonnées de la beatmap dans la langue d\'origine',
     ],
 
     'playstyles' => [
@@ -104,7 +105,7 @@ return [
         'current_session' => 'actuel',
         'end_session' => 'Mettre fin à la session',
         'end_session_confirmation' => 'Ceci va immédiatement mettre fin à votre session sur cet appareil. Êtes-vous sûr ?',
-        'last_active' => 'Dernière activité:',
+        'last_active' => 'Dernière activité :',
         'title' => 'Sécurité',
         'web_sessions' => 'sessions web',
     ],

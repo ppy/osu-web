@@ -1,6 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+type GroupJson = import('interfaces/group-json').default;
+
 // interfaces for using process.env
 interface Process {
   env: ProcessEnv;
@@ -10,23 +12,20 @@ interface ProcessEnv {
   [key: string]: string | undefined;
 }
 
-declare var process: Process;
+declare const process: Process;
 
 // TODO: Turbolinks 5.3 is Typescript, so this should be updated then.
-declare var Turbolinks: import('turbolinks').default;
+declare const Turbolinks: import('turbolinks').default;
 
 // our helpers
-declare var tooltipDefault: TooltipDefault;
-declare var osu: OsuCommon;
-declare var currentUser: import('interfaces/current-user').default;
-declare var reactTurbolinks: any;
-declare var userVerification: any;
+declare const tooltipDefault: TooltipDefault;
+declare const osu: OsuCommon;
+declare const currentUser: import('interfaces/current-user').default;
 
 // external (to typescript) classes
-declare var BeatmapsetFilter: any;
-declare var BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
-declare var LoadingOverlay: any;
-declare var Timeout: any;
+declare const BeatmapsetFilter: import('interfaces/beatmapset-filter-class').default;
+declare const BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
+declare const LoadingOverlay: any;
 declare const Lang: LangClass;
 declare const fallbackLocale: string;
 declare const currentLocale: string;
@@ -46,9 +45,17 @@ interface BeatmapDiscussionHelperClass {
   format(text: string, options?: any): string;
   formatTimestamp(value: number | null): string | undefined;
   nearbyDiscussions(discussions: BeatmapsetDiscussionJson[], timestamp: number): BeatmapsetDiscussionJson[];
-  parseTimestamp(value: string): number | null;
+  parseTimestamp(value?: string): number | null;
   previewMessage(value: string): string;
   url(options: any, useCurrent?: boolean): string;
+  urlParse(urlString: string, discussions?: BeatmapsetDiscussionJson[] | null, options?: any): {
+    beatmapId?: number;
+    beatmapsetId?: number;
+    discussionId?: number;
+    filter: string;
+    mode: string;
+    user?: number;
+  };
 }
 
 interface JQueryStatic {
@@ -57,22 +64,24 @@ interface JQueryStatic {
   unsubscribe: (eventName: string) => void;
 }
 
+type AjaxError = (xhr: JQuery.jqXHR) => void;
+
 interface OsuCommon {
-  ajaxError: (xhr: JQueryXHR) => void;
+  ajaxError: AjaxError;
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
   diffColour: (difficultyRating?: string | null) => React.CSSProperties;
-  groupColour: (group?: GroupJSON) => React.CSSProperties;
+  groupColour: (group?: GroupJson) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
-  link: (url: string, text: string, options?: { classNames?: string[]; isRemote?: boolean }) => string;
+  link: (url: string, text: string, options?: OsuLinkOptions) => string;
   linkify: (text: string, newWindow?: boolean) => string;
-  navigate: (url: string, keepScroll?: boolean, action?: object) => void;
-  parseJson: (id: string, remove?: boolean) => any;
+  navigate: (url: string, keepScroll?: boolean, action?: Partial<Record<string, unknown>>) => void;
   popup: (message: string, type: string) => void;
   popupShowing: () => boolean;
   presence: (str?: string | null) => string | null;
   present: (str?: string | null) => boolean;
-  promisify: (xhr: JQueryXHR) => Promise<any>;
+  promisify: (xhr: JQuery.jqXHR) => Promise<any>;
+  reloadPage: () => void;
   timeago: (time?: string) => string;
   trans: (...args: any[]) => string;
   transArray: (array: any[], key?: string) => string;
@@ -81,16 +90,23 @@ interface OsuCommon {
   urlPresence: (url?: string | null) => string;
   urlRegex: RegExp;
   uuid: () => string;
+  xhrErrorMessage: (xhr: JQuery.jqXHR) => string;
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
-  isDesktop(): boolean;
-  isMobile(): boolean;
+  parseJson<T = any>(id: string, remove?: boolean): T;
   updateQueryString(url: string | null, params: { [key: string]: string | null | undefined }): string;
+}
+
+interface OsuLinkOptions {
+  classNames?: string[];
+  isRemote?: boolean;
+  props?: Partial<Record<string, any>>;
+  unescape?: boolean;
 }
 
 interface ChangelogBuild {
   update_stream: {
-    name: string,
+    name: string;
   };
   version: string;
 }
@@ -103,9 +119,9 @@ interface Country {
 }
 
 interface Cover {
-  custom_url?: string;
-  id?: string;
-  url?: string;
+  custom_url: string | null;
+  id: string | null;
+  url: string | null;
 }
 
 interface BeatmapFailTimesArray {
@@ -125,6 +141,7 @@ interface BeatmapsetDiscussionJson {
   resolved: boolean;
   starting_post: BeatmapsetDiscussionPostJson;
   timestamp: number | null;
+  user_id: number;
 }
 
 // TODO: incomplete

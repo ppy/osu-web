@@ -8,17 +8,22 @@ return [
         'title' => '',
 
         'beatmap' => [
-            'by' => '',
+            'by' => '作曲者 :artist',
         ],
 
         'player' => [
-            'by' => '',
-            'submitted_on' => '',
+            'by' => '玩家',
+            'submitted_on' => '達成時間',
 
             'rank' => [
-                'country' => '',
-                'global' => '',
+                'country' => '全國排名',
+                'global' => '世界排名',
             ],
         ],
+    ],
+
+    'status' => [
+        'non_best' => '只有個人最佳成績的回饋 pp',
+        'processing' => '成績仍在結算中，不久後就會顯示',
     ],
 ];

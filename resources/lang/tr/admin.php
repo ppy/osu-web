@@ -6,20 +6,20 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Yeniden oluştur',
-            'regenerating' => 'Yeniden oluşturuluyor...',
-            'remove' => 'Kaldır',
-            'removing' => 'Kaldırılıyor...',
-            'title' => 'Uyarlanmış beatmapsetler',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
+            'title' => '',
         ],
         'show' => [
-            'covers' => 'Beatmap Seti Kapaklarını Yönet',
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modlama v2',
-                'activate' => 'aktifleştir',
-                'activate_confirm' => 'bu beatmap için modlama v2 aktifleştirilsin mi?',
-                'active' => 'aktif',
-                'inactive' => 'inaktif',
+                '_' => '',
+                'activate' => '',
+                'activate_confirm' => '',
+                'active' => '',
+                'inactive' => '',
             ],
         ],
     ],
@@ -27,22 +27,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Sil',
+                'delete' => '',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => '',
 
-                'no-cover' => 'Kapak seçilmedi',
+                'no-cover' => '',
 
                 'submit' => [
-                    'save' => 'Kaydet',
-                    'update' => 'Güncelle',
+                    'save' => '',
+                    'update' => '',
                 ],
 
-                'title' => 'Forum Kapakları Listesi',
+                'title' => '',
 
                 'type-title' => [
-                    'default-topic' => 'Varsayılan Konu Kapağı',
-                    'main' => 'Forum Kapağı',
+                    'default-topic' => '',
+                    'main' => '',
                 ],
             ],
         ],
@@ -50,17 +50,17 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Günlük Görüntüleyici',
+            'title' => '',
         ],
     ],
 
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => 'Beatmapsets',
-                'forum' => 'Forum',
-                'general' => 'Genel',
-                'store' => 'Mağaza',
+                'beatmapsets' => '',
+                'forum' => '',
+                'general' => '',
+                'store' => '',
             ],
         ],
     ],
@@ -68,15 +68,15 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Sipariş Listesi',
+                'title' => '',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'Bu kullanıcı şu anda kısıtlanmış.',
-            'message' => '(sadece yöneticiler bunu görebilir)',
+            'title' => '',
+            'message' => '',
         ],
     ],
 

@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Du har uppnått din nomineringsgräns för idag, var god försök igen imorgon.',
-            'full_bn_required' => 'Du måste vara en fullständig väljare för att utföra denna kvalificerande nominering.',
-            'full_bn_required_hybrid' => 'Du måste vara en fullständig väljare för att nominera beatmap-set med mer än ett spelläge.',
             'incorrect_state' => 'Ett fel uppstod, försök att uppdatera sidan.',
             'owner' => "Kan ej nominera sin egna beatmap.",
             'set_metadata' => 'Du måste ange genren och språket innan du nominerar.',
@@ -70,6 +68,7 @@ return [
         'moderated' => 'Den kanalen är för närvarande modererad.',
         'no_access' => 'Du har ingen behörighet till denna kanalen.',
         'restricted' => 'Du kan inte skicka meddelanden medan du är tystad, begränsad eller bannad.',
+        'silenced' => 'Du kan inte skicka meddelanden medan du är tystad, begränsad eller bannad.',
     ],
 
     'comment' => [
@@ -80,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Du kan inte ändra din röst efter att röstperioden för den här tävlingen har avslutas.',
+
+        'entry' => [
+            'limit_reached' => 'Du har uppnått max antal bidrag i denna tävling',
+            'over' => 'Tack för era bidrag! Möjligheten att lägga till bidrag har stängt och röstning kommer öppnas snart.',
+        ],
     ],
 
     'forum' => [

@@ -1,15 +1,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { FlagCountry } from 'flag-country';
+import FlagCountry from 'flag-country';
 import { FriendButton } from 'friend-button';
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { SupporterIcon } from 'supporter-icon';
 import UserGroupBadges from 'user-group-badges';
 
-export default function User({ user, modifiers = [] }: { modifiers?: string[], user: UserJSON }) {
+export default function User({ user, modifiers = [] }: { modifiers?: string[]; user: UserJson }) {
   const url = route('users.show', { user: user.id });
 
   return (
@@ -20,7 +20,7 @@ export default function User({ user, modifiers = [] }: { modifiers?: string[], u
 
       <div className='user-search-card__details'>
         <div className='user-search-card__col  user-search-card__col--flag'>
-          <FlagCountry country={user.country} modifiers={['inline']} />
+          <FlagCountry country={user.country} />
         </div>
 
         <a className='user-search-card__col user-search-card__col--username clickable-row-link' href={url}>
@@ -34,10 +34,10 @@ export default function User({ user, modifiers = [] }: { modifiers?: string[], u
             </div>
           ) : null}
 
-        <UserGroupBadges groups={user.groups} short={true} wrapper='user-search-card__col user-search-card__col--icon' />
+        <UserGroupBadges groups={user.groups} short wrapper='user-search-card__col user-search-card__col--icon' />
 
         <div className='user-search-card__col user-search-card__col--icon'>
-          <FriendButton userId={user.id} modifiers={['quick-search']} />
+          <FriendButton modifiers={['quick-search']} userId={user.id} />
         </div>
       </div>
     </div>

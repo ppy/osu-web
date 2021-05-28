@@ -175,8 +175,18 @@ function class_with_modifiers(string $className, ?array $modifiers = null)
 {
     $class = $className;
 
-    foreach ($modifiers ?? [] as $modifier) {
-        $class .= " {$className}--{$modifier}";
+    if ($modifiers !== null) {
+        if (isset($modifiers[0])) {
+            foreach ($modifiers as $modifier) {
+                $class .= " {$className}--{$modifier}";
+            }
+        } else {
+            foreach ($modifiers as $modifier => $enabled) {
+                if ($enabled === true) {
+                    $class .= " {$className}--{$modifier}";
+                }
+            }
+        }
     }
 
     return $class;
@@ -239,13 +249,12 @@ function datadog_timing(callable $callable, $stat, array $tag = null)
     $withClockwork = app('clockwork.support')->isEnabled();
 
     if ($withClockwork) {
-        $uid = uniqid($stat);
         // spaces used so clockwork doesn't run across the whole screen.
         $description = $stat
                        .' '.($tag['type'] ?? null)
                        .' '.($tag['index'] ?? null);
 
-        clock()->startEvent($uid, $description);
+        clock()->event($description)->start();
     }
 
     $start = microtime(true);
@@ -253,7 +262,7 @@ function datadog_timing(callable $callable, $stat, array $tag = null)
     $result = $callable();
 
     if ($withClockwork) {
-        clock()->endEvent($uid);
+        clock()->event($description)->end();
     }
 
     $duration = microtime(true) - $start;
@@ -277,85 +286,6 @@ function db_unsigned_increment($column, $count)
 function default_mode()
 {
     return optional(auth()->user())->playmode ?? 'osu';
-}
-
-function es_query_and_words($words)
-{
-    $parts = preg_split("/\s+/", $words, null, PREG_SPLIT_NO_EMPTY);
-
-    if (empty($parts)) {
-        return;
-    }
-
-    $partsEscaped = [];
-
-    foreach ($parts as $part) {
-        $partsEscaped[] = str_replace('-', '%2D', urlencode(strtolower($part)));
-    }
-
-    return implode(' AND ', $partsEscaped);
-}
-
-/*
- * Remove some (but not all) elasticsearch reserved characters.
- * Those characters seem to be ignored anyway even escaped so might as well
- * just remove them. Note that double quotes are not escaped so they can be
- * used for "exact" match. As a result, this doesn't always produce
- * valid query. The execution must be wrapped within a try/catch.
- *
- * This also doesn't add keyword (OR/AND). Elasticsearch default is OR.
- *
- * Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html
- */
-function es_query_escape_with_caveats($query)
-{
-    return str_replace(
-        ['+', '-', '=', '&&', '||', '>', '<', '!', '(', ')', '{', '}', '[', ']', '^', '~', '*', '?', ':', '\\', '/'],
-        [' ', ' ', ' ', '  ', '  ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '  ', ' '],
-        $query
-    );
-}
-
-/**
- * Takes an Elasticsearch resultset and retrieves the matching models from the database,
- *  returning them in the same order as the Elasticsearch results.
- *
- *
- * @param $results Elasticsesarch results.
- * @param $class Class name of the model.
- * @return array Records matching the Elasticsearch results.
- */
-function es_records($results, $class)
-{
-    $keyName = (new $class())->getKeyName();
-
-    $hits = $results['hits']['hits'];
-    $ids = [];
-    foreach ($hits as $hit) {
-        $ids[] = $hit['_id'];
-    }
-
-    $query = $class::whereIn($keyName, $ids);
-    $keyed = [];
-    foreach ($query->get() as $result) {
-        // save for lookup.
-        $keyed[$result->user_id] = $result;
-    }
-
-    // match records with elasticsearch results.
-    $records = [];
-    foreach ($ids as $id) {
-        if (isset($keyed[$id])) {
-            $records[] = $keyed[$id];
-        }
-    }
-
-    return $records;
-}
-
-function flag_path($country)
-{
-    return '/images/flags/'.$country.'.png';
 }
 
 function get_valid_locale($requestedLocale)
@@ -798,7 +728,12 @@ function ujs_redirect($url, $status = 200)
             Request::session()->put('_turbolinks_location', $url);
         }
 
-        return redirect($url);
+        // because non-3xx redirects make no sense.
+        if ($status < 300 || $status > 399) {
+            $status = 302;
+        }
+
+        return redirect($url, $status);
     }
 }
 
@@ -808,9 +743,9 @@ function unzalgo(?string $text, int $level = 2)
     return preg_replace("/(\pM{{$level}})\pM+/u", '\1', $text);
 }
 
-function route_redirect($path, $target)
+function route_redirect($path, $target, string $method = 'get')
 {
-    return Route::get($path, '\App\Http\Controllers\RedirectController')->name("redirect:{$target}");
+    return Route::$method($path, '\App\Http\Controllers\RedirectController')->name("redirect:{$target}");
 }
 
 function timeago($date)
@@ -827,6 +762,7 @@ function link_to_user($id, $username = null, $color = null, $classNames = null)
         $color ?? ($color = $id->user_colour);
         $id = $id->getKey();
     }
+    $id = e($id);
     $username = e($username);
     $style = user_color_style($color, 'color');
 
@@ -887,21 +823,31 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     return $url;
 }
 
-function wiki_url($page = 'Main_Page', $locale = null, $api = null)
+function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
 {
     // FIXME: remove `rawurlencode` workaround when fixed upstream.
     // Reference: https://github.com/laravel/framework/issues/26715
-    $params = ['page' => str_replace('%2F', '/', rawurlencode($page))];
-
-    if (present($locale) && $locale !== App::getLocale()) {
-        $params['locale'] = $locale;
-    }
+    $params = [
+        'path' => $path === null ? 'Main_Page' : str_replace('%2F', '/', rawurlencode($path)),
+        'locale' => $locale ?? App::getLocale(),
+    ];
 
     if ($api ?? is_api_request()) {
-        return route('api.wiki.show', $params);
+        return route('api.wiki.show', $params, $fullUrl);
     }
 
-    return route('wiki.show', $params);
+    if ($params['path'] === 'Sitemap') {
+        return route('wiki.sitemap', $params['locale'], $fullUrl);
+    }
+
+    if (starts_with("{$params['path']}/", 'Legal/')) {
+        $params['path'] = ltrim(substr($params['path'], strlen('Legal')), '/');
+        $route = 'legal';
+    } else {
+        $route = 'wiki.show';
+    }
+
+    return route($route, $params, $fullUrl);
 }
 
 function bbcode($text, $uid, $options = [])
@@ -914,8 +860,29 @@ function bbcode_for_editor($text, $uid = null)
     return (new App\Libraries\BBCodeFromDB($text, $uid))->toEditor();
 }
 
+function concat_path($paths)
+{
+    return implode('/', array_filter($paths, 'present'));
+}
+
 function proxy_media($url)
 {
+    if (!present($url)) {
+        return '';
+    }
+
+    $url = html_entity_decode_better($url);
+
+    if (config('osu.camo.key') === null) {
+        return $url;
+    }
+
+    $isProxied = starts_with($url, config('osu.camo.prefix'));
+
+    if ($isProxied) {
+        return $url;
+    }
+
     // turn relative urls into absolute urls
     if (!preg_match('/^https?\:\/\//', $url)) {
         // ensure url is relative to the site root
@@ -925,21 +892,11 @@ function proxy_media($url)
         $url = config('app.url').$url;
     }
 
-    $decoded = urldecode(html_entity_decode_better($url));
 
-    if (config('osu.camo.key') === null) {
-        return $decoded;
-    }
+    $hexUrl = bin2hex($url);
+    $secret = hash_hmac('sha1', $url, config('osu.camo.key'));
 
-    $isProxied = starts_with($decoded, config('osu.camo.prefix'));
-    if ($isProxied) {
-        return $decoded;
-    }
-
-    $url = bin2hex($decoded);
-    $secret = hash_hmac('sha1', $decoded, config('osu.camo.key'));
-
-    return config('osu.camo.prefix')."{$secret}/{$url}";
+    return config('osu.camo.prefix')."{$secret}/{$hexUrl}";
 }
 
 function lazy_load_image($url, $class = '', $alt = '')
@@ -992,6 +949,7 @@ function nav_links()
         'getWiki' => wiki_url('Main_Page'),
         'getFaq' => wiki_url('FAQ'),
         'getRules' => wiki_url('Rules'),
+        'getAbuse' => wiki_url('Reporting_Bad_Behaviour/Abuse'),
         'getSupport' => wiki_url('Help_Centre'),
     ];
 
@@ -1019,10 +977,12 @@ function footer_landing_links()
 
 function footer_legal_links()
 {
+    $locale = app()->getLocale();
+
     return [
-        'terms' => route('legal', 'terms'),
-        'privacy' => route('legal', 'privacy'),
-        'copyright' => route('legal', 'copyright'),
+        'terms' => route('legal', ['locale' => $locale, 'path' => 'Terms']),
+        'privacy' => route('legal', ['locale' => $locale, 'path' => 'Privacy']),
+        'copyright' => route('legal', ['locale' => $locale, 'path' => 'Copyright']),
         'server_status' => osu_url('server_status'),
         'source_code' => osu_url('source_code'),
     ];
@@ -1167,7 +1127,7 @@ function json_collection($model, $transformer, $includes = null)
 
 function json_item($model, $transformer, $includes = null)
 {
-    return json_collection([$model], $transformer, $includes)[0];
+    return json_collection([$model], $transformer, $includes)[0] ?? null;
 }
 
 function fast_imagesize($url)
@@ -1199,22 +1159,24 @@ function fast_imagesize($url)
     }
 }
 
-function get_arr($input, $callback)
+function get_arr($input, $callback = null)
 {
-    if (!is_array($input)) {
-        return;
-    }
-
-    $result = [];
-    foreach ($input as $value) {
-        $casted = call_user_func($callback, $value);
-
-        if ($casted !== null) {
-            $result[] = $casted;
+    if (is_array($input)) {
+        if ($callback === null) {
+            return $input;
         }
-    }
 
-    return $result;
+        $result = [];
+        foreach ($input as $value) {
+            $casted = call_user_func($callback, $value);
+
+            if ($casted !== null) {
+                $result[] = $casted;
+            }
+        }
+
+        return $result;
+    }
 }
 
 function get_bool($string)
@@ -1331,6 +1293,8 @@ function get_param_value($input, $type)
     switch ($type) {
         case 'any':
             return $input;
+        case 'array':
+            return get_arr($input);
         case 'bool':
             return get_bool($input);
         case 'int':
@@ -1354,7 +1318,7 @@ function get_param_value($input, $type)
     }
 }
 
-function get_params($input, $namespace, $keys)
+function get_params($input, $namespace, $keys, $options = [])
 {
     if ($namespace !== null) {
         $input = array_get($input, $namespace);
@@ -1363,6 +1327,8 @@ function get_params($input, $namespace, $keys)
     $params = [];
 
     if (is_array($input) || ($input instanceof ArrayAccess)) {
+        $options['null_missing'] = $options['null_missing'] ?? false;
+
         foreach ($keys as $keyAndType) {
             $keyAndType = explode(':', $keyAndType);
 
@@ -1371,8 +1337,11 @@ function get_params($input, $namespace, $keys)
 
             if (array_has($input, $key)) {
                 $value = get_param_value(array_get($input, $key), $type);
-
                 array_set($params, $key, $value);
+            } else {
+                if ($options['null_missing']) {
+                    array_set($params, $key, null);
+                }
             }
         }
     }
@@ -1613,9 +1582,7 @@ function check_url(string $url): bool
 
 function mini_asset(string $url): string
 {
-    return present(config('osu.assets.mini_url'))
-        ? str_replace(config('osu.assets.base_url'), config('osu.assets.mini_url'), $url)
-        : $url;
+    return str_replace(config('filesystems.disks.s3.base_url'), config('filesystems.disks.s3.mini_url'), $url);
 }
 
 function section_to_hue_map($section): int

@@ -1,13 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+/* eslint-disable max-classes-per-file */
 /* tslint:disable:max-classes-per-file */
 
 // importable coffeescript modules
 declare module 'back-to-top' {
   interface Props {
-    anchor: React.RefObject<{}>;
-    ref: React.RefObject<{}>;
+    anchor: React.RefObject<HTMLElement>;
+    ref: React.RefObject<BackToTop>;
   }
 
   class BackToTop extends React.PureComponent<Props> {
@@ -39,27 +40,12 @@ declare module 'big-button' {
   class BigButton extends React.PureComponent<Props> {}
 }
 
-declare module 'flag-country' {
-  class FlagCountry extends React.PureComponent<any> {}
-}
-
 declare module 'friend-button' {
   class FriendButton extends React.PureComponent<any> {}
 }
 
 declare module 'img2x' {
   class Img2x extends React.PureComponent<any> {}
-}
-
-declare module 'spinner' {
-  interface Props {
-    modifiers?: string[];
-  }
-
-  class Spinner extends React.PureComponent<Props> {}
-}
-declare module 'user-avatar' {
-  class UserAvatar extends React.PureComponent<any> {}
 }
 
 declare module 'comments' {
@@ -85,6 +71,16 @@ declare module 'modal' {
   class Modal extends React.PureComponent<Props> {}
 }
 
+declare module 'notification-banner' {
+  interface Props {
+    message: React.ReactFragment;
+    title: string;
+    type: string;
+  }
+
+  class NotificationBanner extends React.PureComponent<Props> {}
+}
+
 declare module 'popup-menu' {
   type Children = (dismiss: () => void) => React.ReactFragment;
 
@@ -103,7 +99,7 @@ declare module 'react/beatmaps/search-content' {
 
   interface Props {
     availableFilters: AvailableFilters;
-    backToTopAnchor: React.RefObject<{}>;
+    backToTopAnchor: React.RefObject<HTMLElement>;
   }
 
   class SearchContent extends React.PureComponent<Props> {}

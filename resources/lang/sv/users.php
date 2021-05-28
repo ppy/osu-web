@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Medlemmar efter spelläge',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Ditt konto har inte använts på länge.",
@@ -150,6 +154,10 @@ return [
         'plays_with' => 'Spelar med :devices',
         'title' => ":username's profil",
 
+        'comments_count' => [
+            '_' => 'Upplagd :link',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Ändra Profilomslag',
@@ -345,13 +353,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Intressen',
-            'lastfm' => 'Last.fm',
             'location' => 'Nuvarande plats',
             'occupation' => 'Sysselsättning',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => 'Hemsida',
         ],
         'not_found' => [
@@ -401,6 +407,11 @@ return [
             'unranked_beatmapset_count' => 'Väntande Beatmaps',
             'graveyard_beatmapset_count' => 'Begravda Beatmaps',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Du är för närvarande tystad.',
+        'message' => 'Vissa åtgärder kan vara otillgängliga.',
     ],
 
     'status' => [

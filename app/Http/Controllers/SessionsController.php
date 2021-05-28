@@ -26,12 +26,6 @@ class SessionsController extends Controller
     {
         $request = request();
 
-        if ($request->attributes->get('csrf') === false) {
-            DatadogLoginAttempt::log('invalid_csrf');
-
-            abort(403, 'Reload page and try again');
-        }
-
         $params = get_params($request->all(), null, ['username:string', 'password:string', 'remember:bool', 'g-recaptcha-response:string']);
         $username = presence(trim($params['username'] ?? null));
         $password = presence($params['password'] ?? null);

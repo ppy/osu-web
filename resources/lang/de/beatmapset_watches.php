@@ -8,8 +8,14 @@ return [
         'description' => 'Dies sind deine beobachteten Diskussionen. Du wirst über neue Beiträge und Updates informiert.',
         'title_compact' => 'beobachtete moddingthreads',
 
+        'counts' => [
+            'total' => 'Beobachtete Beatmaps',
+            'unread' => 'Beatmaps mit neuer Aktivität',
+        ],
+
         'table' => [
             'empty' => 'Du beobachtest keine Diskussionen.',
+            'last_update' => 'Letzte Aktualisierung',
             'open_issues' => 'Offene Vorschläge/Probleme',
             'state' => 'Status',
             'title' => 'Titel',

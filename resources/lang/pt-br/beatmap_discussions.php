@@ -8,7 +8,7 @@ return [
         'update' => [
             'null_user' => 'Precisa estar conectado para editar.',
             'system_generated' => 'Postagens geradas pelo sistema não podem ser editadas.',
-            'wrong_user' => 'Precisa ser dono da postagem para editá-la.',
+            'wrong_user' => 'É necessário ser o dono da publicação para editá-la.',
         ],
     ],
 
@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Pesquisar',
             'deleted' => 'Incluir discussões excluídas',
+            'mode' => 'Modo de jogo',
             'only_unresolved' => 'Mostrar apenas discussões não resolvidas',
             'types' => 'Tipos de mensagem',
             'username' => 'Nome de Usuário',
@@ -55,6 +56,13 @@ return [
         'confirm' => 'Nenhuma das postagens corresponde ao que procuro',
         'notice' => 'Existem postagens próximas de :timestamp (:existing_timestamps). Por favor, visualize-as antes de postar.',
         'unsaved' => ':count nesta revisão',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [

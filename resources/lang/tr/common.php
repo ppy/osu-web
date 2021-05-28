@@ -64,22 +64,22 @@ return [
     ],
 
     'count' => [
-        'badges' => ':count rozet|:count rozet',
-        'days' => ':count gün|:count gün',
+        'badges' => ':count_delimited rozet|:count_delimited rozet',
+        'days' => ':count_delimited gün|:count_delimited gün',
         'hour_short_unit' => 'sa',
-        'hours' => ':count saat|:count saat',
-        'item' => ':count birim|:count birim',
+        'hours' => ':count_delimited saat|:count_delimited saat',
+        'item' => ':count_delimited birim|:count_delimited birim',
         'minute_short_unit' => 'dk|dk',
-        'minutes' => ':count dakika |:count dakika',
-        'months' => ':count ay|:count ay',
+        'minutes' => ':count_delimited dakika|:count_delimited dakika',
+        'months' => ':count_delimited ay|:count_delimited ay',
         'notifications' => ':count_delimited bildirim|:count_delimited bildirim',
         'plus_others' => '+ :count_delimited tane daha!|+ :count_delimited tane daha!',
         'post' => ':count_delimited gönderi|:count_delimited gönderi',
         'second_short_unit' => 'sn|sn',
         'star_priority' => ':count_delimited yıldız önceliği|:count_delimited yıldız önceliği',
-        'update' => ':count_delimited güncelleme|:count_delimited güncellemeler',
+        'update' => ':count_delimited güncelleme|:count_delimited güncelleme',
         'view' => ':count_delimited görüntülenme|:count_delimited görüntülenme',
-        'years' => ':count yıl|:count yıl',
+        'years' => ':count_delimited yıl|:count_delimited yıl',
     ],
 
     'countdown' => [
@@ -115,15 +115,15 @@ return [
     ],
 
     'pagination' => [
-        'previous' => 'geri',
-        'next' => 'ileri',
+        'previous' => 'ÖNCEKİ',
+        'next' => 'SONRAKİ',
     ],
 
     'score_count' => [
         'count_100' => '100',
         'count_300' => '300',
         'count_50' => '50',
-        'count_geki' => 'MAX',
+        'count_geki' => '',
         'count_katu' => '200',
         'count_miss' => 'Miss',
     ],
@@ -144,14 +144,14 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count gün önce|:count gün önce',
-        'hours_ago' => ':count saat önce|:count saat önce',
+        'days_ago' => ':count_delimited gün önce|:count_delimited gün önce',
+        'hours_ago' => ':count_delimited saat önce|:count_delimited saat önce',
         'now' => 'şimdi',
         'remaining' => 'Kalan Süre',
     ],
 
     'title' => [
-        'notice' => 'Bildirim',
+        'notice' => 'BİLDİRİM',
     ],
 
     'wrong_user' => [

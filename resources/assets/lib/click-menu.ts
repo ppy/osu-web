@@ -5,32 +5,25 @@ import Fade from 'fade';
 
 export default class ClickMenu {
   private current: string | null | undefined = null;
+  private documentMouseEventTarget: unknown;
 
   constructor() {
     $(document).on('click', '.js-click-menu--close', this.close);
     $(document).on('click', '.js-click-menu[data-click-menu-target]', this.toggle);
-    $(document).on('click', this.hide);
+    $(document).on('mousedown', this.onDocumentMousedown);
+    $(document).on('mouseup', this.onDocumentMouseup);
     document.addEventListener('turbolinks:load', this.restoreSaved);
     document.addEventListener('turbolinks:before-cache', this.saveCurrent);
   }
 
   close = () => {
     this.show();
-  }
+  };
 
   closestMenuId(child: Element | null | undefined) {
     if (child != null) {
       return $(child).parents('[data-click-menu-id]').attr('data-click-menu-id');
     }
-  }
-
-  hide = (e: JQuery.ClickEvent) => {
-    if (e.button !== 0) return;
-    if (osu.popupShowing()) return;
-    if (this.current == null) return;
-    if ($(e.target).closest('.js-click-menu').length > 0) return;
-
-    this.show();
   }
 
   menu(id: string | null | undefined) {
@@ -43,7 +36,7 @@ export default class ClickMenu {
 
   restoreSaved = () => {
     this.show(document.body.dataset.clickMenuCurrent);
-  }
+  };
 
   saveCurrent = () => {
     if (this.current == null) {
@@ -51,7 +44,7 @@ export default class ClickMenu {
     } else {
       document.body.dataset.clickMenuCurrent = this.current;
     }
-  }
+  };
 
   show = (target?: string | null | undefined) => {
     const previousTree = this.tree();
@@ -97,7 +90,7 @@ export default class ClickMenu {
     if (toFocus instanceof HTMLElement) {
       toFocus.focus();
     }
-  }
+  };
 
   toggle = (e: JQuery.ClickEvent) => {
     const menu = e.currentTarget;
@@ -119,7 +112,7 @@ export default class ClickMenu {
     }
 
     this.show(next);
-  }
+  };
 
   tree = (): string[] => {
     if (this.current == null) return [];
@@ -138,5 +131,19 @@ export default class ClickMenu {
     }
 
     return tree;
-  }
+  };
+
+  private onDocumentMousedown = (e: JQuery.MouseDownEvent) => {
+    this.documentMouseEventTarget = e.button === 0 ? e.target : null;
+  };
+
+  private onDocumentMouseup = (e: JQuery.MouseUpEvent) => {
+    if (this.documentMouseEventTarget !== e.target) return;
+    if (e.button !== 0) return;
+    if (osu.popupShowing()) return;
+    if (this.current == null) return;
+    if ($(e.target).closest('.js-click-menu').length > 0) return;
+
+    this.show();
+  };
 }

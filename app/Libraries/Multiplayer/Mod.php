@@ -37,6 +37,8 @@ class Mod
     const OSU_DEFLATE = 'DF';
     const OSU_SPININ = 'SI';
     const OSU_TRACEABLE = 'TC';
+    const OSU_CLASSIC = 'CL';
+    const OSU_BARRELROLL = 'BR';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -54,9 +56,14 @@ class Mod
     const MANIA_MIRROR = 'MR';
     const MANIA_RANDOM = 'RD';
     const MANIA_INVERT = 'IN';
+    const MANIA_CONSTANTSPEED = 'CS';
+
+    // catch-specific
+    const CATCH_FLOATINGFRUIT = 'FF';
 
     // taiko-specific
     const TAIKO_RANDOM = 'RD';
+    const TAIKO_SWAP = 'SW';
 
     // non-scorable
     const AUTOPLAY = 'AT';
@@ -89,6 +96,9 @@ class Mod
             self::SUDDENDEATH,
             self::NOFAIL,
             self::PERFECT,
+            self::OSU_AUTOPILOT,
+        ],
+        [
             self::OSU_AUTOPILOT,
             self::OSU_SPUNOUT,
         ],
@@ -142,6 +152,8 @@ class Mod
             'overall_difficulty' => 'float',
             'circle_size' => 'float',
             'approach_rate' => 'float',
+            'extended_limits' => 'bool',
+            'scroll_speed' => 'float',
         ],
         self::DOUBLETIME => [
             'speed_change' => 'float',
@@ -168,13 +180,52 @@ class Mod
             'final_rate' => 'float',
             'adjust_pitch' => 'bool',
         ],
+        self::FLASHLIGHT => [
+            'follow_delay' => 'float',
+        ],
         self::OSU_GROW => [
             'start_scale' => 'float',
         ],
         self::OSU_DEFLATE => [
             'start_scale' => 'float',
         ],
+        self::OSU_CLASSIC => [
+            'classic_note_lock' => 'bool',
+            'fixed_follow_circle_hit_area' => 'bool',
+            'no_slider_head_accuracy' => 'bool',
+            'no_slider_head_movement' => 'bool',
+            'always_play_tail_sample' => 'bool',
+        ],
+        self::OSU_BARRELROLL => [
+            'spin_speed' => 'float',
+            'direction' => 'int',
+        ],
     ];
+
+    public static function assertValidExclusivity($requiredIds, $allowedIds, $ruleset)
+    {
+        $exclusiveRequiredIds = [];
+
+        foreach (static::exclusivityByRuleset()[$ruleset] as $group) {
+            $intersection = array_intersect($requiredIds, $group);
+
+            if (count($intersection) > 1) {
+                throw new InvariantException('incompatible mods: '.implode(', ', $intersection));
+            }
+
+            if (count($intersection) === 1) {
+                $exclusiveRequiredIds = array_merge($exclusiveRequiredIds, $group);
+            }
+        }
+
+        $invalidAllowedIds = array_intersect($exclusiveRequiredIds, $allowedIds);
+
+        if (count($invalidAllowedIds) > 0) {
+            throw new InvariantException('allowed mods conflict with required mods: '.implode(', ', $invalidAllowedIds));
+        }
+
+        return true;
+    }
 
     public static function filterSettings($mod, $settings)
     {
@@ -217,6 +268,8 @@ class Mod
                         self::OSU_DEFLATE,
                         self::OSU_SPININ,
                         self::OSU_TRACEABLE,
+                        self::OSU_CLASSIC,
+                        self::OSU_BARRELROLL,
                     ]
                 ),
 
@@ -224,13 +277,14 @@ class Mod
                     self::SCORABLE_COMMON,
                     [
                         self::TAIKO_RANDOM,
+                        self::TAIKO_SWAP,
                     ]
                 ),
 
                 Ruleset::CATCH => array_merge(
                     self::SCORABLE_COMMON,
                     [
-                        // catch-specific mods go here
+                        self::CATCH_FLOATINGFRUIT,
                     ]
                 ),
 
@@ -252,6 +306,7 @@ class Mod
                         self::MANIA_MIRROR,
                         self::MANIA_RANDOM,
                         self::MANIA_INVERT,
+                        self::MANIA_CONSTANTSPEED,
                     ]
                 ),
             ];
@@ -267,7 +322,15 @@ class Mod
         if (!$value) {
             $value = [
                 Ruleset::OSU => self::EXCLUSIVITY_COMMON,
-                Ruleset::TAIKO => self::EXCLUSIVITY_COMMON,
+                Ruleset::TAIKO => array_merge(
+                    self::EXCLUSIVITY_COMMON,
+                    [
+                        [
+                            self::TAIKO_RANDOM,
+                            self::TAIKO_SWAP,
+                        ],
+                    ]
+                ),
                 Ruleset::CATCH => self::EXCLUSIVITY_COMMON,
                 Ruleset::MANIA => array_merge(
                     self::EXCLUSIVITY_COMMON,
@@ -300,7 +363,7 @@ class Mod
         return in_array($acronym, static::validModsForRuleset($ruleset), true);
     }
 
-    public static function validateSelection($mods, $ruleset, $skipExclusivityCheck = false)
+    public static function validateSelection($mods, $ruleset)
     {
         if (!in_array($ruleset, Ruleset::ALL, true)) {
             throw new InvariantException('invalid ruleset');
@@ -317,15 +380,6 @@ class Mod
             }
 
             $checkedMods[$mod] = true;
-        }
-
-        if (!$skipExclusivityCheck) {
-            foreach (static::exclusivityByRuleset()[$ruleset] as $group) {
-                $intersection = array_intersect($mods, $group);
-                if (count($intersection) > 1) {
-                    throw new InvariantException('incompatible mods: '.implode(', ', $intersection));
-                }
-            }
         }
 
         return true;
@@ -351,7 +405,7 @@ class Mod
 
         $cleanMods = array_values($filteredMods);
 
-        static::validateSelection(array_column($cleanMods, 'acronym'), $ruleset, true);
+        static::validateSelection(array_column($cleanMods, 'acronym'), $ruleset);
 
         return $cleanMods;
     }

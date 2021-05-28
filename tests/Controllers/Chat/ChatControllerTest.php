@@ -6,8 +6,8 @@
 namespace Tests\Controllers\Chat;
 
 use App\Models\Chat;
+use App\Models\OAuth\Client;
 use App\Models\User;
-use App\Models\UserAccountHistory;
 use App\Models\UserRelation;
 use Faker;
 use Tests\TestCase;
@@ -25,9 +25,13 @@ class ChatControllerTest extends TestCase
     }
 
     //region POST /chat/new - Create New PM
-    public function testCreatePM() // success
+
+    /**
+     * @dataProvider createPmWithAuthorizedGrantDataProvider
+     */
+    public function testCreatePmWithAuthorizedGrant($scopes, $expectedStatus)
     {
-        $this->actAsScopedUser($this->user, ['*']);
+        $this->actAsScopedUser($this->user, $scopes);
         $this->json(
             'POST',
             route('api.chat.new'),
@@ -35,7 +39,42 @@ class ChatControllerTest extends TestCase
                 'target_id' => $this->anotherUser->user_id,
                 'message' => self::$faker->sentence(),
             ]
-        )->assertStatus(200);
+        )->assertStatus($expectedStatus);
+    }
+
+    /**
+     * @dataProvider createPmWithClientCredentialsDataProvider
+     */
+    public function testCreatePmWithClientCredentials($scopes, $expectedStatus)
+    {
+        $client = factory(Client::class)->create(['user_id' => $this->user->getKey()]);
+        $this->actAsScopedUser(null, $scopes, $client);
+        $this->json(
+            'POST',
+            route('api.chat.new'),
+            [
+                'target_id' => $this->anotherUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
+        )->assertStatus($expectedStatus);
+    }
+
+    /**
+     * @dataProvider createPmWithClientCredentialsBotGroupDataProvider
+     */
+    public function testCreatePmWithClientCredentialsBotGroup($scopes, $expectedStatus)
+    {
+        $client = factory(Client::class)->create(['user_id' => $this->user->getKey()]);
+        $this->user->update(['group_id' => app('groups')->byIdentifier('bot')->getKey()]);
+        $this->actAsScopedUser(null, $scopes, $client);
+        $this->json(
+            'POST',
+            route('api.chat.new'),
+            [
+                'target_id' => $this->anotherUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
+        )->assertStatus($expectedStatus);
     }
 
     public function testCreatePMWhenAlreadyExists() // success
@@ -144,11 +183,7 @@ class ChatControllerTest extends TestCase
 
     public function testCreatePMWhenSilenced() // fail
     {
-        // TODO: convert $this->silencedUser to use afterCreatingState after upgrading to Laraval 5.6
-        $silencedUser = factory(User::class)->create();
-        $silencedUser->accountHistories()->save(
-            factory(UserAccountHistory::class)->states('silence')->make()
-        );
+        $silencedUser = factory(User::class)->states('silenced')->create();
 
         $this->actAsScopedUser($silencedUser, ['*']);
         $this->json(
@@ -242,7 +277,7 @@ class ChatControllerTest extends TestCase
             'channel' => $publicChannel->channel_id,
             'user' => $this->user->user_id,
         ]))
-            ->assertStatus(204);
+            ->assertSuccessful();
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('GET', route('api.chat.presence'))
@@ -403,7 +438,7 @@ class ChatControllerTest extends TestCase
             'channel' => $publicChannel->channel_id,
             'user' => $this->user->user_id,
         ]))
-            ->assertStatus(204);
+            ->assertSuccessful();
 
         app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.updates'), ['since' => $publicMessage->message_id])
@@ -421,7 +456,7 @@ class ChatControllerTest extends TestCase
             'channel' => $publicChannel->channel_id,
             'user' => $this->user->user_id,
         ]))
-            ->assertStatus(204);
+            ->assertSuccessful();
 
         app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.updates'), ['since' => 0])
@@ -467,6 +502,31 @@ class ChatControllerTest extends TestCase
     }
 
     //endregion
+
+    public function createPmWithAuthorizedGrantDataProvider()
+    {
+        return [
+            [['*'], 200],
+            // there's no test for bot because the test setup itself is expected to fail when setting the token.
+            [['public'], 403],
+        ];
+    }
+
+    public function createPmWithClientCredentialsDataProvider()
+    {
+        return [
+            // TODO: need to add test that validates auth guard calls Token::validate
+            [['public'], 403],
+        ];
+    }
+
+    public function createPmWithClientCredentialsBotGroupDataProvider()
+    {
+        return [
+            [['bot', 'chat.write'], 200],
+            [['public'], 403],
+        ];
+    }
 
     protected function setUp(): void
     {

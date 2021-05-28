@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Libraries\ModsHelper;
 use Exception;
 
 /**
@@ -31,7 +32,10 @@ class BeatmapPack extends Model
     protected $table = 'osu_beatmappacks';
     protected $primaryKey = 'pack_id';
 
-    protected $casts = ['hidden' => 'boolean'];
+    protected $casts = [
+        'hidden' => 'boolean',
+        'no_diff_reduction' => 'boolean',
+    ];
 
     protected $dates = ['date'];
     public $timestamps = false;
@@ -102,6 +106,10 @@ class BeatmapPack extends Model
                                 ->where('playmode', '=', $scoreRelation['playmode'])
                                 ->whereHas($scoreRelation['relation'], function ($scoreQuery) use ($userId) {
                                     $scoreQuery->where('user_id', '=', $userId);
+
+                                    if ($this->no_diff_reduction) {
+                                        $scoreQuery->withoutMods(ModsHelper::DIFFICULTY_REDUCTION_MODS);
+                                    }
                                 });
                         });
                     }
@@ -117,6 +125,10 @@ class BeatmapPack extends Model
 
                 $query->whereHas($scoreRelation, function ($query) use ($userId) {
                     $query->where('user_id', '=', $userId);
+
+                    if ($this->no_diff_reduction) {
+                        $query->withoutMods(ModsHelper::DIFFICULTY_REDUCTION_MODS);
+                    }
                 });
             }
 
@@ -128,24 +140,5 @@ class BeatmapPack extends Model
             'completed' => $completed ?? false,
             'beatmapset_ids' => $completedBeatmapsetIds ?? [],
         ];
-    }
-
-    public function downloadUrl()
-    {
-        return $this->downloadUrls()[0];
-    }
-
-    private function downloadUrls()
-    {
-        $array = [];
-        foreach (explode(',', $this->url) as $url) {
-            preg_match('@^https?://(?<host>[^/]+)@i', $url, $matches);
-            $array[] = [
-                'url' => $url,
-                'host' => $matches['host'],
-            ];
-        }
-
-        return $array;
     }
 }

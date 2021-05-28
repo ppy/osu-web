@@ -11,6 +11,9 @@
             maxlength="{{ $maxLength }}"
         @endif
         value="{{ Auth::user()->$field }}"
+        @if (Auth::user()->isSilenced())
+            disabled
+        @endif
     >
 
     <div class="account-edit-entry__label">

@@ -5,9 +5,9 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => 'Dopo la tua ultima visita, c\'è stato un nuovo aggiornamento nella beatmap ":title".',
+        'new' => 'Vogliamo solo farti sapere che c\'è stato un nuovo aggiornamento nella beatmap ":title" dopo la tua ultima visita.',
         'subject' => 'Nuovo aggiornamento per la beatmap ":title"',
-        'unwatch' => 'Se non desideri più seguire su questa beatmap, puoi cliccare il link "Smetti di guardare" in fondo alla pagina, o tramite la pagina per gli aggiornamenti sul modding:',
+        'unwatch' => 'Se non desideri più seguire questa beatmap, puoi cliccare il link "Smetti di seguire" sopra alla pagina, o tramite la pagina per gli aggiornamenti sul modding:',
         'visit' => 'Visita la pagina della discussione qui:',
     ],
 
@@ -19,8 +19,8 @@ return [
 
     'donation_thanks' => [
         'benefit_more' => 'Ulteriori vantaggi per i supporter appariranno nel corso del tempo!',
-        'feedback' => "Se hai delle domande o vuoi lasciare un feedback, non esitare a rispondere a questa mail; ti risponderò appena possibile!",
-        'keep_free' => 'È grazie a persone come che osu! è in grado di mantenere funzionante il gioco e la community senza alcun annuncio pubblicitario o pagamenti forzati.',
+        'feedback' => "Se hai domande o vuoi lasciare un feedback, non esitare a rispondere a questa mail; ti risponderò il prima possibile!",
+        'keep_free' => 'È grazie a persone come te che osu! è in grado di gestire il gioco e la comunità senza problemi, senza pubblicità o pagamenti forzati.',
         'keep_running' => 'Il tuo supporto mantiene funzionante osu! per circa :minutes! Potrebbe non sembrare molto, ma ha il suo valore :).',
         'subject' => 'Grazie, osu! ti ama <3',
         'translation' => 'Ecco una traduzione fornita dalla comunità per scopi informativi:',
@@ -38,24 +38,24 @@ return [
     ],
 
     'forum_new_reply' => [
-        'new' => 'Dopo la tua ultima visita, c\'è stato un nuovo aggiornamento in ":title".',
+        'new' => 'Vogliamo solo farti sapere che c\'è stata una nuova risposta in ":title" dopo la tua ultima visita.',
         'subject' => '[osu!] Nuova risposta dal topic ":title"',
-        'unwatch' => 'Se non desideri più seguire questo topic, puoi cliccare il link "Annulla iscrizione al topic" presente al fondo del topic, o tramite la pagina di gestione dei topic a cui sei iscritto:',
+        'unwatch' => 'Se non desideri più seguire questo topic, puoi cliccare il link "Annulla iscrizione al topic" presente in fondo al topic, o tramite la pagina di gestione dei topic a cui sei iscritto:',
         'visit' => 'Passa direttamente all\'ultima risposta utilizzando il seguente link:',
     ],
 
     'password_reset' => [
         'code' => 'Il tuo codice di verifica è:',
-        'requested' => 'Tu o qualcuno che pretende di essere te ha richiesto un reset della password del tuo account osu!.',
-        'subject' => 'Ripristino account osu!',
+        'requested' => 'Tu o qualcuno che pretende di essere te ha richiesto un reset della password del tuo account di osu!.',
+        'subject' => 'Ripristino dell\'account di osu!',
     ],
 
     'store_payment_completed' => [
-        'prepare_shipping' => 'Abbiamo ricevuto il tuo pagamento e stiamo preparando l\'ordine per la spedizione. Ci vorranno alcuni giorni per inviartelo, a seconda della quantità di ordini. Puoi seguire i progressi del tuo ordine qui, inclusi i dettagli di tracciamento, ove disponibili:',
+        'prepare_shipping' => 'Abbiamo ricevuto il tuo pagamento e stiamo preparando l\'ordine per la spedizione. Ci vorranno alcuni giorni per inviartelo, a seconda della quantità degli ordini. Puoi seguire i progressi del tuo ordine qui, inclusi i dettagli di tracciamento, ove disponibili:',
         'processing' => 'Abbiamo ricevuto il tuo pagamento e stiamo elaborando l\'ordine. Puoi seguire i progressi del tuo ordine qui:',
         'questions' => "Se hai dubbi, non esitare a contattarci rispondendo a questa email.",
         'shipping' => 'Spedizione',
-        'subject' => 'Abbiamo ricevuto il tuo ordine su osu!store!',
+        'subject' => 'Abbiamo ricevuto il tuo ordine sull\'osu!store!',
         'thank_you' => 'Grazie per il tuo ordine sull\'osu!store!',
         'total' => 'Totale',
     ],
@@ -63,7 +63,7 @@ return [
     'supporter_gift' => [
         'anonymous_gift' => 'La persona che ti ha regalato questo tag potrebbe aver scelto di rimanere anonima, pertanto non è stata menzionata in questa notifica.',
         'anonymous_gift_maybe_not' => 'Ma probabilmente già sai chi è ;).',
-        'duration' => 'Grazie a loro, ora hai accesso ad osu!direct e ad altri benefici di osu!supporter per :duration.',
+        'duration' => 'Grazie a loro, ora hai accesso ad osu!direct e ad altri benefici da osu!supporter per :duration.',
         'features' => 'Puoi trovare ulteriori dettagli su queste funzionalità qui:',
         'gifted' => 'Qualcuno ti ha appena regalato un tag osu!supporter!',
         'subject' => 'Ti hanno regalato un tag osu!supporter!',
@@ -77,21 +77,21 @@ return [
     ],
 
     'user_force_reactivation' => [
-        'main' => 'Il tuo account potrebbe essere stato compromesso, la sua attività recente è sospetta oppure ha una password MOLTO debole. Come risultato, ti richiediamo di inserire una nuova password. Per favore, assicurati che sia molto SICURA.',
+        'main' => 'Si sospetta che il tuo account sia stato compromesso, che abbia un\'attività recente sospetta oppure una password MOLTO debole. Come risultato, ti chiediamo di inserire una nuova password. Per favore, assicurati di scegliere una password SICURA.',
         'perform_reset' => 'Puoi eseguire il reset da :url',
         'reason' => 'Motivazione:',
         'subject' => 'Riattivazione dell\'account di osu! richiesta',
     ],
 
     'user_notification_digest' => [
-        'new' => '',
-        'settings' => '',
+        'new' => 'Vogliamo solo farti sapere che ci sono stati nuovi aggiornamenti agli elementi che hai scelto di guardare.',
+        'settings' => 'Per cambiare le preferenze di notifica sull\'email:',
         'subject' => 'Nuove notifiche di osu!',
     ],
 
     'user_password_updated' => [
         'confirmation' => 'Questa è solo una conferma che la tua password di osu! è stata cambiata.',
-        'subject' => 'conferma il cambio della password di osu!',
+        'subject' => 'conferma del cambio di password per osu!',
     ],
 
     'user_verification' => [

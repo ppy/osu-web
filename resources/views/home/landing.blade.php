@@ -27,11 +27,12 @@
 
                 <div class="landing-nav__locale-menu-link">
                     <span class="landing-nav__link js-menu" data-menu-target="landing--locale">
-                        <img
-                            class="landing-nav__locale-flag"
-                            src="{{ flag_path(locale_flag(App::getLocale())) }}"
-                            alt="{{ App::getLocale() }}"
-                        >
+                        <span class="landing-nav__locale-flag">
+                            @include('objects._flag_country', [
+                                'countryCode' => locale_flag(App::getLocale()),
+                            ])
+                        </span>
+
                         {{ locale_name(App::getLocale()) }}
                     </span>
 
@@ -55,11 +56,11 @@
                                         <span class="fas fa-chevron-right"></span>
                                     </span>
 
-                                    <img
-                                        class="landing-nav__locale-flag"
-                                        src="{{ flag_path(locale_flag($locale)) }}"
-                                        alt="{{ $locale }}"
-                                    >
+                                    <span class="landing-nav__locale-flag">
+                                        @include('objects._flag_country', [
+                                            'countryCode' => locale_flag($locale),
+                                        ])
+                                    </span>
 
                                     {{ locale_name($locale) }}
                                 </span>

@@ -14,6 +14,11 @@ return [
         'title' => 'Report :username\'s comment?',
     ],
 
+    'forum_post' => [
+        'button' => 'Report',
+        'title' => 'Report :username\'s post?',
+    ],
+
     'scores' => [
         'button' => 'Report Score',
         'title' => 'Report :username\'s score?',

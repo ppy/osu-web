@@ -10,8 +10,6 @@ use Tests\TestCase;
 
 class BBCodeFromDBTest extends TestCase
 {
-    private $uid = '1';
-
     /**
      * @dataProvider examples
      */
@@ -20,7 +18,7 @@ class BBCodeFromDBTest extends TestCase
         $dbFilePath = "{$path}/{$name}.db.txt";
         $htmlFilePath = "{$path}/{$name}.html";
 
-        $text = new BBCodeFromDB('', $this->uid);
+        $text = new BBCodeFromDB('');
         $text->text = trim(file_get_contents($dbFilePath));
 
         $output = $this->normalizeHTML($text->toHTML());
@@ -50,5 +48,12 @@ class BBCodeFromDBTest extends TestCase
     public function removeQuoteExamples()
     {
         return $this->fileList(__DIR__.'/bbcode_examples/remove_quotes', '.db.txt');
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        config()->set('osu.bbcode.uid', '1');
     }
 }

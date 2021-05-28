@@ -1,37 +1,55 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-actions';
+import { ChatMessageSendAction } from 'actions/chat-message-send-action';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
-import { dispatch, dispatchListener } from 'app-dispatcher';
+import { dispatch, dispatcher, dispatchListener } from 'app-dispatcher';
 import { BigButton } from 'big-button';
 import DispatchListener from 'dispatch-listener';
 import * as _ from 'lodash';
-import { computed } from 'mobx';
-import { inject, observer } from 'mobx-react';
+import { computed, observe } from 'mobx';
+import { disposeOnUnmount, inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import RootDataStore from 'stores/root-data-store';
 
+interface Props {
+  dataStore?: RootDataStore;
+}
+
 @inject('dataStore')
 @observer
 @dispatchListener
-export default class InputBox extends React.Component<any, any> implements DispatchListener {
+export default class InputBox extends React.Component<Props> implements DispatchListener {
+  readonly dataStore: RootDataStore = this.props.dataStore!;
+
+  private inputBoxRef = React.createRef<HTMLTextAreaElement>();
 
   @computed
   get currentChannel() {
-    const dataStore: RootDataStore = this.props.dataStore;
-    return dataStore.channelStore.get(dataStore.uiState.chat.selected);
+    return this.dataStore.chatState.selectedChannel;
   }
 
-  private inputBoxRef = React.createRef<HTMLTextAreaElement>();
+  constructor(props: Props) {
+    super(props);
+
+    disposeOnUnmount(
+      this,
+      observe(this.dataStore.chatState.selectedBoxed, (change) => {
+        if (change.newValue !== change.oldValue && core.windowSize.isDesktop) {
+          this.focusInput();
+        }
+      }),
+    );
+  }
 
   buttonClicked = () => {
     this.sendMessage(this.currentChannel?.inputText);
     this.currentChannel?.setInputText('');
-  }
+  };
 
   checkIfEnterPressed = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.keyCode === 13) {
@@ -39,10 +57,14 @@ export default class InputBox extends React.Component<any, any> implements Dispa
       this.sendMessage(this.currentChannel?.inputText);
       this.currentChannel?.setInputText('');
     }
-  }
+  };
 
   componentDidMount() {
     this.focusInput();
+  }
+
+  componentWillUnmount() {
+    dispatcher.unregister(this);
   }
 
   focusInput() {
@@ -54,15 +76,11 @@ export default class InputBox extends React.Component<any, any> implements Dispa
   handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const message = e.target.value;
     this.currentChannel?.setInputText(message);
-  }
+  };
 
   handleDispatchAction(action: DispatcherAction) {
     if (action instanceof WindowFocusAction) {
       this.focusInput();
-    } else if (action instanceof ChatChannelSwitchAction) {
-      if (osu.isDesktop()) {
-        this.focusInput();
-      }
     }
   }
 
@@ -73,26 +91,26 @@ export default class InputBox extends React.Component<any, any> implements Dispa
     return (
       <div className='chat-input'>
         <TextareaAutosize
-          className={`chat-input__box${disableInput ? ' chat-input__box--disabled' : ''}`}
-          name='textbox'
-          placeholder={disableInput ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
-          onKeyDown={this.checkIfEnterPressed}
-          disabled={disableInput}
-          autoComplete='off'
           ref={this.inputBoxRef}
-          onChange={this.handleChange}
-          value={channel?.inputText}
+          autoComplete='off'
+          className={`chat-input__box${disableInput ? ' chat-input__box--disabled' : ''}`}
+          disabled={disableInput}
           maxRows={3}
+          name='textbox'
+          onChange={this.handleChange}
+          onKeyDown={this.checkIfEnterPressed}
+          placeholder={disableInput ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
+          value={channel?.inputText}
         />
 
         <BigButton
-          text={osu.trans('chat.input.send')}
           icon='fas fa-reply'
           modifiers={['chat-send']}
           props={{
             disabled: disableInput,
             onClick: this.buttonClicked,
           }}
+          text={osu.trans('chat.input.send')}
         />
       </div>
     );
@@ -122,8 +140,8 @@ export default class InputBox extends React.Component<any, any> implements Dispa
     }
 
     const message = new Message();
-    message.sender = this.props.dataStore.userStore.getOrCreate(currentUser.id);
-    message.channelId = this.props.dataStore.uiState.chat.selected;
+    message.senderId = currentUser.id;
+    message.channelId = this.dataStore.chatState.selected;
     message.content = messageText;
 
     // Technically we don't need to check command here, but doing so in case we add more commands

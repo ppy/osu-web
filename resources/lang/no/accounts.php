@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'nåværende plassering',
                 'user_interests' => 'interesser',
-                'user_msnm' => '',
                 'user_occ' => 'yrke',
                 'user_twitter' => '',
                 'user_website' => 'nettside',
@@ -51,17 +50,19 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'motta varsler for nye problemer på kvalifiserte beatmaps av følgende moduser',
         'beatmapset_disqualify' => 'få varsler når beatmaperav de følgende moduser er diskvalifisert',
-        'comment_reply' => '',
+        'comment_reply' => 'motta varsler for svar på dine kommentarer',
         'title' => 'Varsler',
         'topic_auto_subscribe' => 'aktiver automatiske varslinger på nye forum emner som du lager',
 
         'options' => [
             '_' => 'leveringsalternativer',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'private meldinger',
             'comment_new' => 'nye kommentar',
             'forum_topic_reply' => 'emne svar',
             'mail' => 'e-post',
+            'mapping' => '',
             'push' => 'trykk',
             'user_achievement_unlock' => 'brukerens medalje ulåst',
         ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'vis beatmap metadata på originalspråket',
         'title' => 'Innstillinger',
 
         'beatmapset_download' => [
             '_' => 'standard nedlastingstype for beatmap',
             'all' => 'med video hvis tilgjengelig',
-            'no_video' => 'uten video',
             'direct' => 'åpne i osu!direct',
+            'no_video' => 'uten video',
         ],
-
-        'beatmapset_title_show_original' => 'vis beatmap metadata på originalspråket',
     ],
 
     'playstyles' => [

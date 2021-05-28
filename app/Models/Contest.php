@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Traits\Memoizes;
 use App\Transformers\ContestEntryTransformer;
 use App\Transformers\ContestTransformer;
 use App\Transformers\UserContestEntryTransformer;
@@ -16,7 +17,7 @@ use Cache;
  * @property string|null $description_voting
  * @property \Illuminate\Database\Eloquent\Collection $entries ContestEntry
  * @property \Carbon\Carbon|null $entry_ends_at
- * @property mixed $entry_shape
+ * @property mixed $thumbnail_shape
  * @property \Carbon\Carbon|null $entry_starts_at
  * @property json|null $extra_options
  * @property string $header_url
@@ -28,6 +29,7 @@ use Cache;
  * @property int $show_votes
  * @property mixed $type
  * @property mixed $unmasked
+ * @property bool $show_names
  * @property \Carbon\Carbon|null $updated_at
  * @property bool $visible
  * @property \Illuminate\Database\Eloquent\Collection $votes ContestVote
@@ -36,9 +38,11 @@ use Cache;
  */
 class Contest extends Model
 {
+    use Memoizes;
+
     protected $dates = ['entry_starts_at', 'entry_ends_at', 'voting_starts_at', 'voting_ends_at'];
     protected $casts = [
-        'extra_options' => 'json',
+        'extra_options' => 'array',
         'visible' => 'boolean',
     ];
 
@@ -59,7 +63,7 @@ class Contest extends Model
 
     public function isBestOf()
     {
-        return isset($this->extra_options['best_of']);
+        return isset($this->getExtraOptions()['best_of']);
     }
 
     public function isSubmissionOpen()
@@ -101,42 +105,34 @@ class Contest extends Model
         return 'over';
     }
 
-    public function getEntryShapeAttribute()
+    public function hasThumbnails(): bool
     {
-        if ($this->type !== 'art') {
-            return;
-        }
-
-        return $this->extra_options['shape'] ?? 'square';
+        return $this->type === 'art' ||
+            ($this->type === 'external' && isset($this->getExtraOptions()['thumbnail_shape']));
     }
 
-    public function setEntryShapeAttribute($shape)
+    public function getThumbnailShapeAttribute(): ?string
     {
-        if ($this->type !== 'art') {
-            return;
+        if (!$this->hasThumbnails()) {
+            return null;
         }
 
-        $this->extra_options['shape'] = $shape;
+        return $this->getExtraOptions()['thumbnail_shape'] ?? 'square';
     }
 
     public function getUnmaskedAttribute()
     {
-        return $this->extra_options['unmasked'] ?? false;
+        return $this->getExtraOptions()['unmasked'] ?? false;
     }
 
-    public function setUnmaskedAttribute(bool $bool)
+    public function getShowNamesAttribute()
     {
-        $this->extra_options['unmasked'] = $bool;
+        return $this->getExtraOptions()['show_names'] ?? false;
     }
 
     public function getLinkIconAttribute()
     {
-        return $this->extra_options['link_icon'] ?? 'download';
-    }
-
-    public function setLinkIconAttribute($icon)
-    {
-        $this->extra_options['link_icon'] = $icon;
+        return $this->getExtraOptions()['link_icon'] ?? 'download';
     }
 
     public function currentPhaseEndDate()
@@ -223,7 +219,7 @@ class Contest extends Model
                     ->whereIn('entry_url', function ($query) use ($user) {
                         $query->select('beatmapset_id')
                             ->from('osu_beatmaps')
-                            ->where('osu_beatmaps.playmode', Beatmap::MODES[$this->extra_options['best_of']['mode'] ?? 'osu'])
+                            ->where('osu_beatmaps.playmode', Beatmap::MODES[$this->getExtraOptions()['best_of']['mode'] ?? 'osu'])
                             ->whereIn('beatmap_id', function ($query) use ($user) {
                                 $query->select('beatmap_id')
                                     ->from('osu_user_beatmap_playcount')
@@ -304,5 +300,18 @@ class Contest extends Model
     public function url()
     {
         return route('contests.show', $this->id);
+    }
+
+    public function setExtraOption($key, $value): void
+    {
+        $this->extra_options = array_merge($this->extra_options ?? [], [$key => $value]);
+        $this->resetMemoized();
+    }
+
+    public function getExtraOptions()
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            return $this->extra_options;
+        });
     }
 }

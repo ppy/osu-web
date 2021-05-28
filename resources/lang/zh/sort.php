@@ -15,8 +15,18 @@ return [
     'top' => '热门',
     'username' => '用户名',
 
+    'forum_posts' => [
+        'created' => '发表时间',
+        'relevance' => '相关性',
+    ],
+
     'forum_topics' => [
-        'new' => '最后回复',
         'feature_votes' => '星级优先级',
+        'new' => '最后回复',
+    ],
+
+    'users' => [
+        'relevance' => '相关性',
+        'username' => '名称',
     ],
 ];

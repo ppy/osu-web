@@ -21,9 +21,9 @@ export default class NotificationReadButton extends React.Component<Props> {
   render() {
     if (this.props.isMarkingAsRead) {
       return (
-        <div className={osu.classWithModifiers('notification-read-button', this.props.modifiers)}>
-          <span className='notification-read-button__text'>{this.props.text}</span>
-          <div className='notification-read-button__icon'>
+        <div className={osu.classWithModifiers('notification-action-button', this.props.modifiers)}>
+          <span className='notification-action-button__text'>{this.props.text}</span>
+          <div className='notification-action-button__icon'>
             <Spinner />
           </div>
         </div>
@@ -31,13 +31,13 @@ export default class NotificationReadButton extends React.Component<Props> {
     } else {
       return (
         <button
-          type='button'
-          className={osu.classWithModifiers('notification-read-button', this.props.modifiers)}
+          className={osu.classWithModifiers('notification-action-button', this.props.modifiers)}
           onClick={this.props.onMarkAsRead}
+          type='button'
         >
-          <span className='notification-read-button__text'>{this.props.text}</span>
-          <div className='notification-read-button__icon'>
-            <span className='fas fa-times' />
+          <span className='notification-action-button__text'>{this.props.text}</span>
+          <div className='notification-action-button__icon'>
+            <span className='fas fa-check' />
           </div>
         </button>
       );

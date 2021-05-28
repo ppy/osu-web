@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Η διαγραφή του post για τα μεταδεδομένα το beatmap δεν είναι επιτρεπτή.',
             'beatmapset_post_no_edit' => 'Η επεξεργασία του post για τα μεταδεδομένα το beatmap δεν είναι επιτρεπτή.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => 'Η απάντησή σας περιέχει μόνο μία αναφορά.',
 
             'attributes' => [

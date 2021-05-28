@@ -38,29 +38,12 @@ trait EsIndexableModel
         $count = 0;
 
         $baseQuery->chunkById($batchSize, function ($models) use ($options, &$count, $progress) {
-            $actions = [];
-
-            foreach ($models as $model) {
-                $next = $model;
-                // bulk API am speshul.
-                $metadata = [
-                    '_id' => $model->getEsId(),
-                    'routing' => $model->esRouting(),
-                ];
-
-                if (!$model->esShouldIndex()) {
-                    $actions[] = ['delete' => $metadata];
-                } else {
-                    // index requires action and metadata followed by data on the next line.
-                    $actions[] = ['index' => $metadata];
-                    $actions[] = $model->toEsJson();
-                }
-            }
+            $actions = Es::generateBulkActions($models);
 
             if ($actions !== []) {
                 $result = Es::getClient()->bulk([
                     'index' => $options['index'] ?? static::esIndexName(),
-                    'type' => static::esType(),
+                    'type' => '_doc',
                     'body' => $actions,
                     'client' => ['timeout' => 0],
                 ]);
@@ -93,7 +76,7 @@ trait EsIndexableModel
     {
         $document = array_merge([
             'index' => static::esIndexName(),
-            'type' => static::esType(),
+            'type' => '_doc',
             'routing' => $this->esRouting(),
             'id' => $this->getEsId(),
             'client' => ['ignore' => 404],
@@ -110,7 +93,7 @@ trait EsIndexableModel
 
         $document = array_merge([
             'index' => static::esIndexName(),
-            'type' => static::esType(),
+            'type' => '_doc',
             'routing' => $this->esRouting(),
             'id' => $this->getEsId(),
             'body' => $this->toEsJson(),

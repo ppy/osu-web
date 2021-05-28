@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'description' => 'Collection de beatmaps basées sur un thème',
+        'description' => 'Des collections pré-packagées de beatmaps autour d\'un thème commun.',
         'nav_title' => 'liste',
         'title' => 'Collections de Beatmaps',
 
@@ -31,11 +31,15 @@ return [
             'cleared' => 'terminé',
             'not_cleared' => 'non terminé',
         ],
+        'no_diff_reduction' => [
+            '_' => ':link ne peut pas être utilisé pour effacer ce pack.',
+            'link' => 'Mods de réduction de la difficulté',
+        ],
     ],
 
     'mode' => [
         'artist' => 'Artiste/Album',
-        'chart' => 'Classement',
+        'chart' => 'En avant',
         'standard' => 'Standard',
         'theme' => 'Thème',
     ],

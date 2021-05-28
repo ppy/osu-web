@@ -3,10 +3,10 @@
 
 import { forEach } from 'lodash';
 
-type Modifiers = (string | null | undefined)[] | Record<string, boolean | null | undefined>;
+export type Modifiers = (string | null | undefined)[] | Partial<Record<string, boolean | null | undefined>>;
 
-export function classWithModifiers(className: string, modifiers?: Modifiers) {
-  let ret = className;
+export function classWithModifiers(className: string, modifiers?: Modifiers, modifiersOnly = false) {
+  let ret = modifiersOnly ? '' : className;
 
   if (modifiers != null) {
     if (Array.isArray(modifiers)) {

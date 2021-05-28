@@ -5,33 +5,33 @@
 
 return [
     'signature' => [
-        'not_match' => '簽名不一致',
+        'not_match' => '',
     ],
-    'notification_type' => 'notification_type 無效 :type',
+    'notification_type' => '',
     'order' => [
-        'invalid' => '訂單無效',
+        'invalid' => '',
         'items' => [
-            'virtual_only' => '`:provider` 付款方式無法實體商品訂單中使用。',
+            'virtual_only' => '',
         ],
         'status' => [
-            'not_checkout' => '嘗試在異常訂單中付款 `:state`.',
-            'not_paid' => '嘗試在異常訂單中退款 `:state`.',
+            'not_checkout' => '',
+            'not_paid' => '',
         ],
     ],
     'param' => [
-        'invalid' => '`:param` 參數不正確',
+        'invalid' => '',
     ],
     'paypal' => [
-        'not_echeck' => '訂單未付款。（:actual）',
+        'not_echeck' => '',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => '付款金額不正確： :actual != :expected',
-            'currency' => '並非以美元結算（:type）',
+            'amount' => '',
+            'currency' => '',
         ],
     ],
     'order_number' => [
-        'malformed' => '訂單 ID 格式錯誤',
-        'user_id_mismatch' => 'external_id 包含了錯誤的使用者 ID',
+        'malformed' => '',
+        'user_id_mismatch' => '',
     ],
 ];

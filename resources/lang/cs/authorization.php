@@ -4,9 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Co si místo toho zahrát osu!?',
     'require_login' => 'Pro pokračování se prosím přihlašte.',
-    'require_verification' => '',
+    'require_verification' => 'Prosím ověřte se pro pokračování.',
     'restricted' => "Toto nelze provést, když jste omezeni.",
     'silenced' => "Toto nelze provést, když jste umlčeni.",
     'unauthorized' => 'Přístup odepřen.',
@@ -18,11 +18,9 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Dosáhl jsi dnešního limitu nominací, zkus to prosím zítra.',
-            'full_bn_required' => 'Musíte být plný nominátor, abyste mohl provést kvalifikační nominaci.',
-            'full_bn_required_hybrid' => 'Musíte být nominátor k nominaci setů map s více než jedním herním módem.',
             'incorrect_state' => 'Nastala chyba při provádění akce, zkuste stránku obnovit.',
             'owner' => "Nelze nominovat vlastní beatmapu.",
-            'set_metadata' => '',
+            'set_metadata' => 'Před jmenováním musíte nastavit žánr a jazyk.',
         ],
         'resolve' => [
             'not_owner' => 'Pouze zakladatel vlákna a vlastník beatmapy může označit diskusi za vyřešenou.',
@@ -33,7 +31,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "",
+            'bot' => "Nelze hlasovat pro diskuzi vytvořenou botem",
             'limit_exceeded' => 'Chvíli počkej, než budeš zasílat další hlasy',
             'owner' => "Ve vlastní diskusi nemůžeš hlasovat.",
             'wrong_beatmapset_state' => 'Hlasovat lze pouze v diskusích čekajících beatmap.',
@@ -49,7 +47,7 @@ return [
 
         'edit' => [
             'not_owner' => 'Pouze autor může příspěvek upravovat.',
-            'resolved' => '',
+            'resolved' => 'Nemůžete upravit příspěvek ve vyřešené diskusi.',
             'system_generated' => 'Nelze upravovat automaticky generovaný příspěvek.',
         ],
 
@@ -60,7 +58,7 @@ return [
 
     'beatmapset' => [
         'metadata' => [
-            'nominated' => '',
+            'nominated' => 'Nemůžete změnit informace nominované mapy. Pokud si myslíte že je nastavena nesprávně, kontaktujte BN nebo NAT člena.',
         ],
     ],
 
@@ -70,6 +68,7 @@ return [
         'moderated' => 'Tento kanál je právě moderován.',
         'no_access' => 'Nemáte přístup k tomu kanálu.',
         'restricted' => 'Nemůžete posílat zprávy, když jste umlčen, omezen nebo zabanován.',
+        'silenced' => '',
     ],
 
     'comment' => [
@@ -80,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Po skončení hlasovací doby pro tuto soutěž již nemůžeš změnit svůj hlas.',
+
+        'entry' => [
+            'limit_reached' => 'Dosáhl jsi limitu vstupů pro tuto soutěž',
+            'over' => 'Díky za vaše vstupy! Podání byla uzavřena a hlasování se brzy otevře.',
+        ],
     ],
 
     'forum' => [
@@ -153,7 +157,7 @@ return [
                 'not_owner' => 'Pouze vlastník může upravit záhlaví.',
             ],
             'store' => [
-                'forum_not_allowed' => '',
+                'forum_not_allowed' => 'Toto fórum nepřijímá náhledy témat.',
             ],
         ],
 

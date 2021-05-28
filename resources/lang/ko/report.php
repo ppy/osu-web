@@ -14,6 +14,11 @@ return [
         'title' => ':username 님의 댓글을 신고하실 건가요?',
     ],
 
+    'forum_post' => [
+        'button' => '신고',
+        'title' => ':username 님의 글을 신고하실 건가요?',
+    ],
+
     'scores' => [
         'button' => '기록 신고',
         'title' => ':username 님의 기록을 신고하실 건가요?',

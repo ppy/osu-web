@@ -18,10 +18,11 @@ return [
         'deny_kudosu' => 'odepřít kudosu',
         'edit' => 'upravit',
         'edited' => 'Naposledy upravil :editor v :update_time.',
+        'guest' => '',
         'kudosu_denied' => 'Odepřen od získávání kudosu.',
         'message_placeholder_deleted_beatmap' => 'Tato obtížnost byla smazána, takže už nemůže být probírána.',
         'message_placeholder_locked' => 'Diskuze o této mapě byly vypnuty.',
-        'message_placeholder_silenced' => "",
+        'message_placeholder_silenced' => "Nelze odeslat diskuzi když jste ztišeni.",
         'message_type_select' => 'Vybrat typ komentáře',
         'reply_notice' => 'Stiskni enter pro odpověď.',
         'reply_placeholder' => 'Napiš svou odpověď sem',
@@ -61,7 +62,7 @@ return [
         'message_placeholder' => [
             'general' => 'Piště zde pro odeslání příspěvku do Obecné (:version)',
             'generalAll' => 'Piště zde pro odeslání příspěvku do Obecné (Všechny obtížnosti)',
-            'review' => '',
+            'review' => 'Piště zde pro odeslání recenze',
             'timeline' => 'Piště zde pro zařazení příspěvku do Časové osy (:version)',
         ],
 
@@ -96,22 +97,22 @@ return [
         ],
 
         'review' => [
-            'new' => '',
+            'new' => 'Nová recenze',
             'embed' => [
                 'delete' => 'Smazat',
                 'missing' => '[DISKUZE SMAZÁNA]',
                 'unlink' => 'Odpojit',
                 'unsaved' => 'Neuloženo',
                 'timestamp' => [
-                    'all-diff' => '',
+                    'all-diff' => 'Příspěvky na "Všechny obtížnosti" nemohou být časovány.',
                     'diff' => '',
                 ],
             ],
             'insert-block' => [
-                'paragraph' => '',
-                'praise' => '',
-                'problem' => '',
-                'suggestion' => '',
+                'paragraph' => 'vložit odstavec',
+                'praise' => 'vložit pochvalu',
+                'problem' => 'vložit problém',
+                'suggestion' => 'vložit návrh',
             ],
         ],
 
@@ -186,13 +187,19 @@ return [
         'nominate' => 'Nominovat',
         'nominate_confirm' => 'Nominovat tuto beatmapu?',
         'nominated_by' => 'nominováno od :users',
-        'not_enough_hype' => "",
-        'qualified' => 'Předpokládané datum zhodnocení této mapy je :date, pokud se nenaleznou žádné chyby.',
-        'qualified_soon' => 'Již brzy bude tato mapa hodnocená, pokud se nenaleznou žádné chyby.',
+        'not_enough_hype' => "Není dostatečný hype.",
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Nominace: :current/:required',
         'reset_message_deleted' => 'odstraněno',
         'title' => 'Stav nominace',
         'unresolved_issues' => 'Existují stále nevyřešené problémy, které musí být řešeny jako první.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => 'brzy',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Proces nominace byl resetován před :time_ago nominátorem :user, kvůli nalezení nového problému :discussion (:message).',
@@ -214,14 +221,15 @@ return [
             'not-found' => 'bez výsledků',
             'not-found-quote' => '... ups, nic nebylo nalezeno.',
             'filters' => [
+                'extra' => 'extra',
                 'general' => 'Obecné',
-                'mode' => 'Mód',
-                'status' => 'Kategorie',
                 'genre' => 'Žánr',
                 'language' => 'Jazyk',
-                'extra' => 'extra',
-                'rank' => 'Dle získaného písmene',
+                'mode' => 'Mód',
+                'nsfw' => 'Explicitní mapy',
                 'played' => 'Již hrané',
+                'rank' => 'Dle získaného písmene',
+                'status' => 'Kategorie',
             ],
             'sorting' => [
                 'title' => 'Název',
@@ -242,10 +250,12 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Doporučená obtížnost',
         'converts' => 'Zahrň konvertované beatmapy',
+        'follows' => '',
+        'recommended' => 'Doporučená obtížnost',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'Jakékoliv',
         'osu' => '',
         'taiko' => '',
@@ -275,10 +285,10 @@ return [
         'novelty' => 'Novinka',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Elektronická',
-        'metal' => '',
-        'classical' => '',
-        'folk' => '',
-        'jazz' => '',
+        'metal' => 'Metál',
+        'classical' => 'Klasická Hudba',
+        'folk' => 'Folk',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '',
@@ -300,11 +310,11 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => '',
+        'V2' => 'Score V2',
     ],
     'language' => [
         'any' => '',
@@ -317,12 +327,18 @@ return [
         'korean' => 'Korejské',
         'spanish' => 'Španělské',
         'swedish' => 'Švédské',
-        'russian' => '',
-        'polish' => '',
+        'russian' => 'Ruština',
+        'polish' => 'Polština',
         'instrumental' => 'Instrumentální',
         'other' => 'Jiné',
-        'unspecified' => '',
+        'unspecified' => 'Nespecifikováno',
     ],
+
+    'nsfw' => [
+        'exclude' => 'Skrýt',
+        'include' => 'Zobrazit',
+    ],
+
     'played' => [
         'any' => 'Jakékoliv',
         'played' => 'Hrané',
@@ -349,9 +365,9 @@ return [
     ],
     'variant' => [
         'mania' => [
-            '4k' => '',
-            '7k' => '',
-            'all' => '',
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Vše',
         ],
     ],
 ];

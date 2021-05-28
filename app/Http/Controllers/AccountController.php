@@ -29,7 +29,7 @@ class AccountController extends Controller
 
         $this->middleware(function ($request, $next) {
             if (Auth::check() && Auth::user()->isSilenced()) {
-                return abort(403);
+                return abort(403, trans('authorization.silenced'));
             }
 
             return $next($request);
@@ -125,7 +125,6 @@ class AccountController extends Controller
         $params = get_params(request()->all(), 'user', [
             'user_from:string',
             'user_interests:string',
-            'user_msnm:string',
             'user_occ:string',
             'user_sig:string',
             'user_twitter:string',
@@ -207,8 +206,11 @@ class AccountController extends Controller
             'audio_autoplay:bool',
             'audio_muted:bool',
             'audio_volume:float',
+            'beatmapset_card_size:string',
             'beatmapset_download:string',
+            'beatmapset_show_nsfw:bool',
             'beatmapset_title_show_original:bool',
+            'comments_show_deleted:bool',
             'comments_sort:string',
             'extras_order:string[]',
             'forum_posts_show_deleted:bool',

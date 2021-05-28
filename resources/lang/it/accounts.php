@@ -9,14 +9,14 @@ return [
         'username' => 'nome utente',
 
         'avatar' => [
-            'title' => 'Immagine di profilo',
-            'rules' => 'Assicurati che la tua immagine di profilo aderisca alle :link.<br/>Questo significa che deve essere <strong>adatto a tutte le età</strong>. (vedi: niente nudità, profanità o contenuti provocanti)',
+            'title' => 'Avatar',
+            'rules' => 'Assicurati che la tua immagine di profilo aderisca alle :link.<br/>Questo significa che deve essere <strong>adatto a tutte le età</strong> (ad esempio: niente nudità, profanità o contenuti provocanti).',
             'rules_link' => 'regole della comunità',
         ],
 
         'email' => [
             'current' => 'email attuale',
-            'new' => 'nuova e-mail',
+            'new' => 'nuova email',
             'new_confirmation' => 'conferma email',
             'title' => 'Email',
         ],
@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'posizione attuale',
                 'user_interests' => 'interessi',
-                'user_msnm' => '',
                 'user_occ' => 'occupazione',
                 'user_twitter' => '',
                 'user_website' => 'sito web',
@@ -53,15 +52,17 @@ return [
         'beatmapset_disqualify' => 'ricevi notifiche quando le beatmap delle seguenti modalità vengono squalificate',
         'comment_reply' => 'ricevi notifiche per le risposte ai tuoi commenti',
         'title' => 'Notifiche',
-        'topic_auto_subscribe' => 'attiva automaticamente le notifiche sui nuovi topic del forum che crei',
+        'topic_auto_subscribe' => 'attiva automaticamente le notifiche sui nuovi topic che crei nel forum',
 
         'options' => [
             '_' => 'opzioni di notifica',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'modding delle beatmap',
             'channel_message' => 'messaggi privati',
             'comment_new' => 'nuovi commenti',
             'forum_topic_reply' => 'risposta al topic',
             'mail' => 'mail',
+            'mapping' => 'mapper di beatmap',
             'push' => 'push',
             'user_achievement_unlock' => 'medaglie sbloccate',
         ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'nascondi avvisi per i contenuti espliciti nelle beatmap',
+        'beatmapset_title_show_original' => 'mostra i metadati della beatmap in lingua originale',
         'title' => 'Opzioni',
 
         'beatmapset_download' => [
             '_' => 'tipo di download predefinito per le beatmap',
             'all' => 'con video, se disponibile',
-            'no_video' => 'senza video',
             'direct' => 'apri in osu!direct',
+            'no_video' => 'senza video',
         ],
-
-        'beatmapset_title_show_original' => 'mostra i metadati della beatmap in lingua originale',
     ],
 
     'playstyles' => [

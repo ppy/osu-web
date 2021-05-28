@@ -124,7 +124,7 @@ return [
         'beatmaps' => [
             'new' => '新 Ranked 谱面',
             'popular' => '高人气谱面',
-            'by_user' => '由 :user',
+            'by_user' => '作者：:user',
         ],
         'buttons' => [
             'download' => '下载 osu!',

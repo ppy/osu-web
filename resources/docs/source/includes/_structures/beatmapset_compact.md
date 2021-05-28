@@ -10,6 +10,7 @@ covers          | [Covers](#beatmapsetcompact-covers) | |
 creator         | string                              | |
 favourite_count | number                              | |
 id              | number                              | |
+nsfw            | boolean                             | |
 play_count      | number                              | |
 preview_url     | string                              | |
 source          | string                              | |

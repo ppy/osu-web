@@ -9,22 +9,28 @@ if [ -z "${OSU_SKIP_CACHE_PERMISSION_OVERRIDE:-}" ]; then
     chmod -R 777 storage bootstrap/cache || true
 fi
 
-if [ -f composer.phar ]; then
-  php composer.phar self-update
+if [ -z "${OSU_USE_SYSTEM_COMPOSER:-}" ]; then
+  COMPOSER="php composer.phar"
+
+  if [ -f composer.phar ]; then
+    php composer.phar self-update --1
+  else
+    curl -sL https://getcomposer.org/composer-1.phar > composer.phar
+  fi
 else
-  curl -sL https://getcomposer.org/installer > composer-installer
-  php composer-installer
+  COMPOSER="composer"
 fi
 
-# dummy user, no privilege github token to avoid github api limit
-php composer.phar config -g github-oauth.github.com 98cbc568911ef1e060a3a31623f2c80c1786d5ff
+if [ -n "${GITHUB_TOKEN:-}" ]; then
+  ${COMPOSER} config -g github-oauth.github.com "${GITHUB_TOKEN}"
+fi
 
 rm -f bootstrap/cache/*.php bootstrap/cache/*.json
 
 if [ -z "${OSU_INSTALL_DEV:-}" ]; then
-  php composer.phar install --no-dev
+  ${COMPOSER} install --no-dev
 else
-  php composer.phar install
+  ${COMPOSER} install
 fi
 
 php artisan view:clear

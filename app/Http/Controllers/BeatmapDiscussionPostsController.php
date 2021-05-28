@@ -9,6 +9,7 @@ use App\Exceptions\ModelNotSavedException;
 use App\Jobs\Notifications\BeatmapsetDiscussionPostNew;
 use App\Jobs\Notifications\BeatmapsetDiscussionQualifiedProblem;
 use App\Jobs\Notifications\BeatmapsetResetNominations;
+use App\Libraries\BeatmapsetDiscussionPostsBundle;
 use App\Libraries\BeatmapsetDiscussionReview;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -17,13 +18,16 @@ use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
 use Auth;
 use DB;
-use Illuminate\Pagination\Paginator;
 
+/**
+ @group Beatmapset Discussions
+ */
 class BeatmapDiscussionPostsController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth', ['except' => 'index']);
+        $this->middleware('require-scopes:public', ['only' => ['index']]);
 
         return parent::__construct();
     }
@@ -42,36 +46,42 @@ class BeatmapDiscussionPostsController extends Controller
         return $post->beatmapset->defaultDiscussionJson();
     }
 
+    /**
+     * Get Beatmapset Discussion Posts
+     *
+     * Returns the posts of beatmapset discussions.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * <aside class="warning">
+     *   The response of this endpoint is likely to change soon!
+     * </aside>
+     *
+     * Field       | Type                                                    | Description
+     * ----------- | ------------------------------------------------------- | -----------
+     * beatmapsets | [BeatmapsetCompact](#beatmapsetcompact)                 | |
+     * cursor      | [Cursor](#cursor)                                       | |
+     * posts       | [BeatmapsetDiscussionPost](#beatmapsetdiscussionpost)[] | |
+     * users       | [UserCompact](#usercompact)                             | |
+     *
+     * @queryParam beatmapset_discussion_id `id` of the [BeatmapsetDiscussion](#beatmapsetdiscussion).
+     * @queryParam limit Maximum number of results.
+     * @queryParam page Search result page.
+     * @queryParam sort `id_desc` for newest first; `id_asc` for oldest first. Defaults to `id_desc`.
+     * @queryParam user The `id` of the [User](#user).
+     * @queryParam with_deleted This param has no effect as api calls do not currently receive group permissions.
+     */
     public function index()
     {
-        $isModerator = priv_check('BeatmapDiscussionModerate')->can();
-        $params = request()->all();
-        $params['is_moderator'] = $isModerator;
+        $bundle = new BeatmapsetDiscussionPostsBundle(request()->all());
 
-        if (!$isModerator) {
-            $params['with_deleted'] = false;
+        if (is_api_request()) {
+            return $bundle->toArray();
         }
 
-        $search = BeatmapDiscussionPost::search($params);
-
-        $query = $search['query']->with([
-            'user',
-            'beatmapset',
-            'beatmapDiscussion',
-            'beatmapDiscussion.beatmapset',
-            'beatmapDiscussion.user',
-            'beatmapDiscussion.startingPost',
-        ])->limit($search['params']['limit'] + 1);
-
-        $posts = new Paginator(
-            $query->get(),
-            $search['params']['limit'],
-            $search['params']['page'],
-            [
-                'path' => Paginator::resolveCurrentPath(),
-                'query' => $search['params'],
-            ]
-        );
+        $posts = $bundle->getPaginator();
 
         return ext_view('beatmap_discussion_posts.index', compact('posts'));
     }

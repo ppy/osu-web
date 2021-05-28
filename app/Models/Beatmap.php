@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Exceptions\InvariantException;
 use App\Exceptions\ScoreRetrievalException;
 use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -122,6 +123,11 @@ class Beatmap extends Model
         return $this->hasMany(BeatmapDifficultyAttrib::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function getDifficultyratingAttribute($value)
     {
         if ($this->convert) {
@@ -192,6 +198,11 @@ class Beatmap extends Model
         return $query
             ->orderBy('playmode', 'ASC')
             ->orderBy('difficultyrating', 'ASC');
+    }
+
+    public function scopeScoreable($query)
+    {
+        return $query->where('approved', '>', 0);
     }
 
     public function scopeWithMaxCombo($query)
@@ -270,6 +281,23 @@ class Beatmap extends Model
         }
 
         return optional($maxCombo)->value;
+    }
+
+    public function setOwner($newUserId)
+    {
+        if ($newUserId === null) {
+            throw new InvariantException('user_id must be specified');
+        }
+
+        if (User::find($newUserId) === null) {
+            throw new InvariantException('invalid user_id');
+        }
+
+        if ($newUserId === $this->user_id) {
+            throw new InvariantException('the specified user_id is already the owner');
+        }
+
+        $this->fill(['user_id' => $newUserId])->saveOrExplode();
     }
 
     public function status()

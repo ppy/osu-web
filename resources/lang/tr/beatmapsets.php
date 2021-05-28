@@ -8,14 +8,21 @@ return [
         'disabled' => 'Bu beatmap henüz indirilmeye açık değil.',
         'parts-removed' => 'Bu beatmapin bazı bölümleri içerik oluşturucunun ya da üçüncü parti hak sahibinin isteği üzerine kaldırılmıştır.',
         'more-info' => 'Daha fazla bilgi için buraya göz atın.',
+        'rule_violation' => 'Bu beatmap üzerinde yer alan bazı varlıklar osu!\'da kullanıma uygun olmadığına karar verildikten sonra kaldırıldı.',
+    ],
+
+    'download' => [
+        'limit_exceeded' => 'Yavaş ol, daha çok oyna.',
     ],
 
     'index' => [
-        'title' => 'Beatmap Listesi',
+        'title' => 'Beatmap Kataloğu',
         'guest_title' => 'Beatmapler',
     ],
 
     'panel' => [
+        'empty' => 'beatmap yok',
+
         'download' => [
             'all' => 'indir',
             'video' => 'video ile indir',
@@ -24,15 +31,35 @@ return [
         ],
     ],
 
+    'nominate' => [
+        'hybrid_requires_modes' => 'Karma bir beatmap seti, adaylık için en az bir oyun modu seçmenizi gerektirir.',
+        'incorrect_mode' => ':mode modunu aday göstermek için izniniz yok.',
+        'full_bn_required' => 'Bu niteliklendirme aday gösterimini gerçekleştirebilmeniz için tam aday gösterici olmanız gerekmektedir.',
+        'too_many' => 'Adaylık şartı zaten yerine getirildi.',
+
+        'dialog' => [
+            'confirmation' => 'Bu beatmapi aday göstermek istediğinize emin misiniz?',
+            'header' => 'Beatmap aday gösterin',
+            'hybrid_warning' => 'not: sadece bir kez aday gösterebilirsiniz, bu yüzden lütfen istediğiniz tüm oyun modlarını aday gösterdiğinizden emin olun',
+            'which_modes' => 'Hangi modlar için aday gösterilsin?',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Müstehcen',
+    ],
+
     'show' => [
         'discussion' => 'Tartışma',
 
         'details' => [
-            'favourite' => 'Haritayı favorilere ekle',
+            'by_artist' => ':artist tarafından',
+            'favourite' => 'Beatmap setini favorilere ekle',
+            'favourite_login' => 'Beatmapi favorilere eklemek için giriş yap',
             'logged-out' => 'Herhangi bir beatmapi indirmeden önce giriş yapmalısınız!',
             'mapped_by' => ':mapper tarafından yapıldı',
-            'unfavourite' => 'Haritayı favorilerden çıkar',
-            'updated_timeago' => 'son güncelleme :timeago',
+            'unfavourite' => 'Beatmap setini favorilerden çıkar',
+            'updated_timeago' => 'son güncelleme: :timeago',
 
             'download' => [
                 '_' => 'İndir',
@@ -43,17 +70,17 @@ return [
 
             'login_required' => [
                 'bottom' => 'daha fazla özelliğe erişmek için',
-                'top' => 'Oturum Aç',
+                'top' => 'Giriş Yap',
             ],
         ],
 
         'details_date' => [
-            'approved' => 'onaylandı :timeago',
-            'loved' => 'sevildi :timeago',
-            'qualified' => ':timeago önce nitelikli oldu',
-            'ranked' => ':timeago önce dereceli oldu',
-            'submitted' => ':timeago önce gönderildi',
-            'updated' => 'en son :timeago önce güncellendi',
+            'approved' => 'onaylandı: :timeago',
+            'loved' => 'sevilenlere eklendi: :timeago',
+            'qualified' => 'nitelikli oldu: :timeago',
+            'ranked' => 'dereceli oldu: :timeago',
+            'submitted' => 'gönderildi: :timeago',
+            'updated' => 'son güncelleme: :timeago',
         ],
 
         'favourites' => [
@@ -61,10 +88,10 @@ return [
         ],
 
         'hype' => [
-            'action' => '<strong>Dereceli</strong> statüsüne erişmesi için eğer beğendiyseniz bu haritayı gazlayın.',
+            'action' => 'Eğer beğendiyseniz <strong>Dereceli</strong> statüsüne erişmesine yardımcı olmak için bu mapi gazlayın.',
 
             'current' => [
-                '_' => 'Bu harita şu an :status.',
+                '_' => 'Bu map şu anda :status.',
 
                 'status' => [
                     'pending' => 'beklemede',
@@ -74,13 +101,13 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Eğer bu beatmap\'de bir sorun bulduysanız, lütfen diskalifiye ediniz :link.',
+                '_' => 'Eğer bu beatmapte bir sorun bulduysanız, lütfen :link diskalifiye edin.',
             ],
 
             'report' => [
-                '_' => 'Eğer bu beatmap ile ilgili bir sorun bulursanız, takımı uyarmak için lütfen :link üzerinden raporlayın.',
-                'button' => 'Sorun bildir',
-                'link' => 'burası',
+                '_' => 'Eğer bu beatmapte bir sorun bulduysanız, takımı uyarmak için lütfen :link bildirin.',
+                'button' => 'Sorun Bildir',
+                'link' => 'buradan',
             ],
         ],
 
@@ -89,15 +116,29 @@ return [
             'genre' => 'Tür',
             'language' => 'Dil',
             'no_scores' => 'Veriler hala hesaplanıyor...',
+            'nsfw' => 'Müstehcen içerik',
             'points-of-failure' => 'Başarısız Olunan Kısımlar',
             'source' => 'Kaynak',
+            'storyboard' => 'Bu beatmap storyboard içeriyor',
             'success-rate' => 'Başarı Oranı',
             'tags' => 'Etiketler',
+            'video' => 'Bu beatmap video içeriyor',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'Bu beatmap müstehcen, ofansif, veya rahatsız edici içerik içermektedir. Yine de görüntülemek istiyor musunuz?',
+            'title' => 'Müstehcen İçerik',
+
+            'buttons' => [
+                'disable' => 'Uyarıyı devre dışı bırak',
+                'listing' => 'Beatmap kataloğu',
+                'show' => 'Göster',
+            ],
         ],
 
         'scoreboard' => [
             'achieved' => ':when oynandı',
-            'country' => 'Ülke sıralaması',
+            'country' => 'Ülke Sıralaması',
             'friend' => 'Arkadaş Sıralaması',
             'global' => 'Dünya Sıralaması',
             'supporter-link' => 'Aldığınız tüm süslü özellikleri görmek için buraya <a href=":link">tıklayın</a>!',
@@ -105,8 +146,8 @@ return [
             'title' => 'Skor tahtası',
 
             'headers' => [
-                'accuracy' => 'İsabetlilik',
-                'combo' => 'Maksimum Kombo',
+                'accuracy' => 'İSABETLİLİK',
+                'combo' => 'Maks Kombo',
                 'miss' => 'Iska',
                 'mods' => 'Modlar',
                 'player' => 'Oyuncu',
@@ -118,8 +159,8 @@ return [
             ],
 
             'no_scores' => [
-                'country' => 'Ülkenizde hiç kimse henüz bu haritada bir skora sahip değil!',
-                'friend' => 'Hiçbir arkadaşın henüz bu haritada bir skora sahip değil!',
+                'country' => 'Ülkenizde hiç kimse henüz bu mapte bir skora sahip değil!',
+                'friend' => 'Hiçbir arkadaşın henüz bu mapte bir skora sahip değil!',
                 'global' => 'Henüz skor yok. Biraz skor yapmaya ne dersin?',
                 'loading' => 'Skorlar yükleniyor...',
                 'unranked' => 'Derecelendirilmemiş beatmap.',
@@ -141,8 +182,8 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Daire Sayısı',
             'count_sliders' => 'Slider Sayısı',
-            'user-rating' => 'Kullanıcı Derecelendirmesi',
-            'rating-spread' => 'Değerlendirme Puanı',
+            'user-rating' => 'Kullanıcı Reytingi',
+            'rating-spread' => 'Reyting Dağılımı',
             'nominations' => 'Adaylıklar',
             'playcount' => 'Oynama sayısı',
         ],

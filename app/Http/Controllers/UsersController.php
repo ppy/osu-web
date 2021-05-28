@@ -7,8 +7,8 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
-use App\Libraries\Search\PostSearch;
-use App\Libraries\Search\PostSearchRequestParams;
+use App\Libraries\Search\ForumSearch;
+use App\Libraries\Search\ForumSearchRequestParams;
 use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
@@ -19,6 +19,8 @@ use App\Models\Log;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
+use App\Transformers\UserCompactTransformer;
+use App\Transformers\UserTransformer;
 use Auth;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
 use Illuminate\Cache\RateLimiter;
@@ -41,6 +43,7 @@ class UsersController extends Controller
             'checkUsernameExists',
             'report',
             'me',
+            'posts',
             'updatePage',
         ]]);
 
@@ -68,11 +71,9 @@ class UsersController extends Controller
 
     public function card($id)
     {
-        // FIXME: if there's a username with the id of a restricted user,
-        // it'll show the card of the non-restricted user.
-        $user = User::lookup($id) ?? UserNotFound::instance();
+        $user = $this->lookupUser($id) ?? UserNotFound::instance();
 
-        return json_item($user, 'UserCompact', ['cover', 'country']);
+        return json_item($user, 'UserCompact', UserCompactTransformer::CARD_INCLUDES);
     }
 
     public function disabled()
@@ -102,7 +103,7 @@ class UsersController extends Controller
     public function checkUsernameExists()
     {
         $username = Request::input('username');
-        $user = User::lookup($username, 'string') ?? UserNotFound::instance();
+        $user = User::lookup($username, 'username') ?? UserNotFound::instance();
 
         return json_item($user, 'UserCompact', ['cover', 'country']);
     }
@@ -186,7 +187,8 @@ class UsersController extends Controller
      *
      * ### Response format
      *
-     * Array of [Beatmapset](#beatmapset).
+     * Array of [BeatmapPlaycount](#beatmapplaycount) when `type` is `most_played`;
+     * array of [Beatmapset](#beatmapset), otherwise.
      *
      * @urlParam user required Id of the user. Example: 1
      * @urlParam type required Beatmap type. Example: favourite
@@ -224,6 +226,60 @@ class UsersController extends Controller
         return $this->getExtra($this->user, $page, [], $perPage, $this->offset);
     }
 
+    /**
+     * Get Users
+     *
+     * Returns list of users.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * Field | Type                          | Description
+     * ----- | ----------------------------- | -----------
+     * users | [UserCompact](#usercompact)[] | Includes: country, cover, groups, statistics_fruits, statistics_mania, statistics_osu, statistics_taiko.
+     *
+     * @queryParam ids[] User id to be returned. Specify once for each user id requested. Up to 50 users can be requested at once. Example: 1
+     *
+     * @response {
+     *   "users": [
+     *     {
+     *       "id": 1,
+     *       "other": "attributes..."
+     *     },
+     *     {
+     *       "id": 2,
+     *       "other": "attributes..."
+     *     }
+     *   ]
+     * }
+     */
+    public function index()
+    {
+        $params = get_params(request()->all(), null, ['ids:int[]']);
+
+        $includes = UserCompactTransformer::CARD_INCLUDES;
+
+        if (isset($params['ids'])) {
+            $preload = UserCompactTransformer::CARD_INCLUDES_PRELOAD;
+
+            foreach (Beatmap::MODES as $modeStr => $modeInt) {
+                $includes[] = "statistics_rulesets.{$modeStr}";
+                $preload[] = camel_case("statistics_{$modeStr}");
+            }
+
+            $users = User
+                ::whereIn('user_id', array_slice($params['ids'], 0, 50))
+                ->default()
+                ->with($preload)
+                ->get();
+        }
+
+        return [
+            'users' => json_collection($users ?? [], 'UserCompact', $includes),
+        ];
+    }
+
     public function posts($id)
     {
         $user = User::lookup($id, 'id', true);
@@ -231,8 +287,9 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $search = (new PostSearch(new PostSearchRequestParams(request()->all(), $user)))
-            ->size(50);
+        $params = request()->all();
+        $params['username'] = $id;
+        $search = (new ForumSearch(new ForumSearchRequestParams($params)))->size(50);
 
         return ext_view('users.posts', compact('search', 'user'));
     }
@@ -377,8 +434,6 @@ class UsersController extends Controller
      *
      * See [Get User](#get-user).
      *
-     * @authenticated
-     *
      * @urlParam mode [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
      *
      * @response "See User object section"
@@ -393,6 +448,10 @@ class UsersController extends Controller
      *
      * This endpoint returns the detail of specified user.
      *
+     * <aside class="notice">
+     * It's highly recommended to pass <code>key</code> parameter to avoid getting unexpected result (mainly when looking up user with numeric username or nonexistent user id).
+     * </aside>
+     *
      * ---
      *
      * ### Response format
@@ -405,6 +464,7 @@ class UsersController extends Controller
      * account_history                      | |
      * active_tournament_banner             | |
      * badges                               | |
+     * beatmap_playcounts_count             | |
      * favourite_beatmapset_count           | |
      * follower_count                       | |
      * graveyard_beatmapset_count           | |
@@ -416,26 +476,26 @@ class UsersController extends Controller
      * rank_history                         | For specified mode.
      * ranked_and_approved_beatmapset_count | |
      * replays_watched_counts               | |
+     * scores_best_count                    | For specified mode.
      * scores_first_count                   | For specified mode.
+     * scores_recent_count                  | For specified mode.
      * statistics                           | For specified mode. Inluces `rank` and `variants` attributes.
      * support_level                        | |
      * unranked_beatmapset_count            | |
      * user_achievements                    | |
      *
-     * @urlParam user required Id of the user. Example: 1
+     * @urlParam user required Id or username of the user. Id lookup is prioritised unless `key` parameter is specified. Previous usernames are also checked in some cases. Example: 1
      * @urlParam mode [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
+     *
+     * @queryParam key Type of `user` passed in url parameter. Can be either `id` or `username` to limit lookup by their respective type. Passing empty or invalid value will result in id lookup followed by username lookup if not found.
      *
      * @response "See User object section"
      */
     public function show($id, $mode = null)
     {
-        // Find matching id or username
-        // If no user is found, search for a previous username
-        // only if parameter is not a number (assume number is an id lookup).
+        $user = $this->lookupUser($id, get_string(request('key')));
 
-        $user = User::lookupWithHistory($id, null, true);
-
-        if ($user === null || !priv_check('UserShow', $user)->can()) {
+        if ($user === null) {
             if (is_json_request()) {
                 abort(404);
             }
@@ -443,10 +503,8 @@ class UsersController extends Controller
             return ext_view('users.show_not_found', null, null, 404);
         }
 
-        if ((string) $user->user_id !== (string) $id) {
-            $route = is_api_request() ? 'api.users.show' : 'users.show';
-
-            return ujs_redirect(route($route, compact('user', 'mode')));
+        if (!is_api_request() && (string) $user->user_id !== (string) $id) {
+            return ujs_redirect(route('users.show', compact('user', 'mode')));
         }
 
         $currentMode = $mode ?? $user->playmode;
@@ -456,23 +514,28 @@ class UsersController extends Controller
         }
 
         $userIncludes = [
-            "scores_first_count:mode({$currentMode})",
-            "statistics:mode({$currentMode})",
             'account_history',
             'active_tournament_banner',
             'badges',
+            'beatmap_playcounts_count',
             'favourite_beatmapset_count',
             'follower_count',
             'graveyard_beatmapset_count',
             'groups',
             'loved_beatmapset_count',
+            'mapping_follower_count',
             'monthly_playcounts',
             'page',
             'previous_usernames',
+            'rankHistory',
+            'rank_history',
             'ranked_and_approved_beatmapset_count',
-            "rankHistory:mode({$currentMode})",
-            "rank_history:mode({$currentMode})",
             'replays_watched_counts',
+            'scores_best_count',
+            'scores_first_count',
+            'scores_recent_count',
+            'statistics',
+            'statistics.country_rank',
             'statistics.rank',
             'statistics.variants',
             'support_level',
@@ -485,9 +548,11 @@ class UsersController extends Controller
             $userIncludes[] = 'account_history.supporting_url';
         }
 
+        $transformer = new UserTransformer();
+        $transformer->mode = $currentMode;
         $userArray = json_item(
             $user,
-            'User',
+            $transformer,
             $userIncludes
         );
 
@@ -565,6 +630,20 @@ class UsersController extends Controller
         } catch (ModelNotSavedException $e) {
             return error_popup($e->getMessage());
         }
+    }
+
+    // Find matching id or username
+    // If no user is found, search for a previous username
+    // only if parameter is not a number (assume number is an id lookup).
+    private function lookupUser($id, ?string $type = null)
+    {
+        $user = User::lookupWithHistory($id, $type, true);
+
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
+            return null;
+        }
+
+        return $user;
     }
 
     private function parsePaginationParams()

@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Одобрен.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Модератор изтри дискусията :discussion.',
         'discussion_lock' => 'Дискусията за този бийтмап бе деактивирана. (:text)',
         'discussion_post_delete' => 'Модератор изтри съобщение от дискусията :discussion.',
@@ -25,9 +26,16 @@ return [
         'language_edit' => 'Езикът бе сменен от :old на :new.',
         'love' => 'Заобичан от :user',
         'nominate' => 'Номиниран от :user.',
+        'nominate_modes' => '',
         'nomination_reset' => 'Нов проблем :discussion (:text) задейства нулиране на номинацията.',
         'qualify' => 'Този бийтмап достигна максимум брой номинации и бе квалифициран за класиране.',
         'rank' => 'Класиран.',
+        'remove_from_loved' => '',
+
+        'nsfw_toggle' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'index' => [
@@ -47,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Одобрение',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Изтриване на дискусия',
         'discussion_post_delete' => 'Изтриване на отговор от дискусия',
         'discussion_post_restore' => 'Възстановяване на отговор от дискусия',
@@ -64,7 +73,9 @@ return [
         'love' => 'Обичан',
         'nominate' => 'Номинация',
         'nomination_reset' => 'Анулиране на номинацията',
+        'nsfw_toggle' => '',
         'qualify' => 'Квалификация',
         'rank' => 'Класиране',
+        'remove_from_loved' => '',
     ],
 ];

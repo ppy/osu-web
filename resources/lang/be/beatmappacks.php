@@ -31,6 +31,10 @@ return [
             'cleared' => 'пройдзена',
             'not_cleared' => 'не пройдзена',
         ],
+        'no_diff_reduction' => [
+            '_' => '',
+            'link' => '',
+        ],
     ],
 
     'mode' => [

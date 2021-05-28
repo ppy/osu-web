@@ -22,6 +22,7 @@ class BeatmapsetEvent extends Model
 {
     const NOMINATE = 'nominate';
     const LOVE = 'love';
+    const REMOVE_FROM_LOVED = 'remove_from_loved';
     const QUALIFY = 'qualify';
     const DISQUALIFY = 'disqualify';
     const APPROVE = 'approve';
@@ -49,6 +50,9 @@ class BeatmapsetEvent extends Model
 
     const GENRE_EDIT = 'genre_edit';
     const LANGUAGE_EDIT = 'language_edit';
+    const NSFW_TOGGLE = 'nsfw_toggle';
+
+    const BEATMAP_OWNER_CHANGE = 'beatmap_owner_change';
 
     public static function log($type, $user, $object, $extraData = [])
     {
@@ -85,10 +89,12 @@ class BeatmapsetEvent extends Model
 
         $query = static::limit($params['limit'])->offset($pagination['offset']);
         $searchByUser = present($rawParams['user'] ?? null);
+        $isModerator = $rawParams['is_moderator'] ?? false;
 
         if ($searchByUser) {
             $params['user'] = $rawParams['user'];
-            $user = User::lookup($params['user']);
+            $findAll = $isModerator || (($rawParams['current_user_id'] ?? null) === $rawParams['user']);
+            $user = User::lookup($params['user'], null, $findAll);
 
             if ($user === null) {
                 $query->none();
@@ -130,7 +136,7 @@ class BeatmapsetEvent extends Model
 
         if ($searchByUser) {
             $allowedTypes = static::types('public');
-            if ($rawParams['is_moderator'] ?? false) {
+            if ($isModerator) {
                 $allowedTypes = array_merge($allowedTypes, static::types('moderation'));
             }
             if ($rawParams['is_kudosu_moderator'] ?? false) {
@@ -193,12 +199,19 @@ class BeatmapsetEvent extends Model
                     static::LOVE,
                     static::NOMINATION_RESET,
                     static::DISQUALIFY,
+                    static::REMOVE_FROM_LOVED,
 
                     static::KUDOSU_GAIN,
                     static::KUDOSU_LOST,
 
                     static::GENRE_EDIT,
                     static::LANGUAGE_EDIT,
+                    static::NSFW_TOGGLE,
+
+                    static::ISSUE_RESOLVE,
+                    static::ISSUE_REOPEN,
+
+                    static::BEATMAP_OWNER_CHANGE,
                 ],
                 'kudosuModeration' => [
                     static::KUDOSU_ALLOW,
@@ -208,9 +221,6 @@ class BeatmapsetEvent extends Model
                     static::APPROVE, // not actually used
 
                     static::KUDOSU_RECALCULATE,
-
-                    static::ISSUE_RESOLVE,
-                    static::ISSUE_REOPEN,
 
                     static::DISCUSSION_DELETE,
                     static::DISCUSSION_RESTORE,
@@ -243,6 +253,15 @@ class BeatmapsetEvent extends Model
     public function getBeatmapDiscussionIdAttribute()
     {
         return $this->comment['beatmap_discussion_id'] ?? null;
+    }
+
+    public function getNominationModesAttribute()
+    {
+        if ($this->type !== self::NOMINATE) {
+            return null;
+        }
+
+        return $this->comment['modes'] ?? [];
     }
 
     public function beatmapDiscussion()

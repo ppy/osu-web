@@ -35,7 +35,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => 'opmerkingen',
         'nav_title' => 'lijst',
+        'no_comments' => 'geen reacties gevonden...',
     ],
 
     'placeholder' => [

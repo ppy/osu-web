@@ -137,7 +137,7 @@ return [
         'm' => '%d minut',
         'MM' => '%d luni',
         'mm' => '%d minut',
-        'past' => '%s',
+        'past' => '',
         's' => '%d sec',
         'y' => '%d an',
         'yy' => '%d an',

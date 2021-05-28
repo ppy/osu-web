@@ -20,9 +20,9 @@ return [
     'username_change' => '<strong>:previousUsername</strong> đã đổi tên tài khoản của họ thành <strong><em>:user</strong></em>!',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
-        'ranked' => '',
+        'approved' => 'được duyệt',
+        'loved' => 'được yêu thích',
+        'qualified' => 'đủ điều kiện',
+        'ranked' => 'được xếp hạng',
     ],
 ];

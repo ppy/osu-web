@@ -22,6 +22,7 @@ use App\Models\Forum\TopicCover;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\Match\Match;
+use App\Models\Multiplayer\Room;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Models\UserContestEntry;
@@ -88,6 +89,29 @@ class OsuAuthorize
         }
 
         if ($this->doCheckUser($user, 'BeatmapsetShow', $beatmap->beatmapset)->can()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
+    /**
+     * @param User|null $user
+     * @param Beatmapset $beatmap
+     * @return string
+     * @throws AuthorizationException
+     */
+    public function checkBeatmapUpdateOwner(?User $user, ?Beatmapset $beatmapset): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if (
+            $beatmapset !== null
+            && in_array($beatmapset->status(), ['wip', 'graveyard', 'pending'], true)
+            && !$beatmapset->hasNominations()
+            && $beatmapset->user_id === $user->getKey()
+        ) {
             return 'ok';
         }
 
@@ -200,11 +224,16 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->user_id === $discussion->user_id) {
+        $userId = $user->getKey();
+
+        if ($userId === $discussion->user_id) {
             return 'ok';
         }
 
-        if ($user->user_id === $discussion->beatmapset->user_id && $discussion->beatmapset->approved !== Beatmapset::STATES['qualified']) {
+        if (
+            $discussion->beatmapset->approved !== Beatmapset::STATES['qualified']
+            && $discussion->responsibleUserId() === $userId
+        ) {
             return 'ok';
         }
 
@@ -288,9 +317,17 @@ class OsuAuthorize
         $this->ensureHasPlayed($user);
 
         if ($discussion->message_type === 'mapper_note') {
-            if ($user->getKey() !== $discussion->beatmapset->user_id && !$user->isModerator() && !$user->isBNG()) {
-                return 'beatmap_discussion.store.mapper_note_wrong_user';
+            $userId = $user->getKey();
+
+            if ($discussion->responsibleUserId() === $userId) {
+                return 'ok';
             }
+
+            if ($user->isModerator() || $user->isBNG()) {
+                return 'ok';
+            }
+
+            return 'beatmap_discussion.store.mapper_note_wrong_user';
         }
 
         return 'ok';
@@ -575,8 +612,15 @@ class OsuAuthorize
             return $prefix.'incorrect_state';
         }
 
-        if ($user->getKey() === $beatmapset->user_id) {
+        $userId = $user->getKey();
+        if ($userId === $beatmapset->user_id) {
             return $prefix.'owner';
+        }
+
+        foreach ($beatmapset->beatmaps as $beatmap) {
+            if ($userId === $beatmap->user_id) {
+                return $prefix.'owner';
+            }
         }
 
         if ($beatmapset->genre_id === Genre::UNSPECIFIED || $beatmapset->language_id === Language::UNSPECIFIED) {
@@ -585,16 +629,6 @@ class OsuAuthorize
 
         if ($user->beatmapsetNominationsToday() >= config('osu.beatmapset.user_daily_nominations')) {
             return $prefix.'exhausted';
-        }
-
-        if ($user->isLimitedBN()) {
-            if ($beatmapset->playmodeCount() > 1) {
-                return $prefix.'full_bn_required_hybrid';
-            }
-
-            if ($beatmapset->requiresFullBNNomination()) {
-                return $prefix.'full_bn_required';
-            }
         }
 
         return 'ok';
@@ -794,7 +828,10 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
-        $this->ensureHasPlayed($user);
+
+        if (!config('osu.user.min_plays_allow_verified_bypass')) {
+            $this->ensureHasPlayed($user);
+        }
 
         if ($user->isModerator()) {
             return 'ok';
@@ -821,8 +858,9 @@ class OsuAuthorize
     {
         $prefix = 'chat.';
 
-        $this->ensureLoggedIn($user);
+        $this->ensureSessionVerified($user);
         $this->ensureCleanRecord($user, $prefix);
+        // This check becomes useless when min_plays_allow_verified_bypass is enabled.
         $this->ensureHasPlayed($user);
 
         if (!$this->doCheckUser($user, 'ChatChannelRead', $channel)->can()) {
@@ -875,16 +913,24 @@ class OsuAuthorize
      */
     public function checkChatChannelJoin(?User $user, Channel $channel): string
     {
-        // TODO: be able to rejoin multiplayer channels you were a part of?
         $prefix = 'chat.';
 
         $this->ensureLoggedIn($user);
 
-        if ($channel->type === Channel::TYPES['public']) {
+        if ($channel->isPublic()) {
             return 'ok';
         }
 
         $this->ensureCleanRecord($user, $prefix);
+
+        // This check is only for when joining the channel directly; joining via the Room
+        // will always add the user to the channel.
+        if ($channel->isMultiplayer()) {
+            $room = Room::hasParticipated($user)->find($channel->room_id);
+            if ($room !== null) {
+                return 'ok';
+            }
+        }
 
         // allow joining of 'tournament' matches (for lazer/tournament client)
         if (optional($channel->multiplayerMatch)->isTournamentMatch()) {
@@ -1126,7 +1172,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($forum->moderator_groups !== null && !empty(array_intersect($user->groupIds(), $forum->moderator_groups))) {
+        if ($forum->moderator_groups !== null && !empty(array_intersect($user->groupIds()['active'], $forum->moderator_groups))) {
             return 'ok';
         }
 
@@ -1180,10 +1226,7 @@ class OsuAuthorize
             return $prefix.'locked';
         }
 
-        $position = $post->postPosition;
-        $topicPostsCount = $post->topic->postsCount();
-
-        if ($position !== $topicPostsCount) {
+        if ($post->getKey() !== $post->topic->topic_last_post_id) {
             return $prefix.'only_last_post';
         }
 
@@ -1264,6 +1307,17 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    /**
+     * @param User|null $user
+     * @param Topic $topic
+     * @return string
+     * @throws AuthorizationException
+     */
+    public function checkForumTopicDelete(?User $user, Topic $topic): string
+    {
+        return $this->checkForumPostDelete($user, $topic->firstPost);
     }
 
     /**
@@ -1662,7 +1716,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($owner->hasProfile()) {
+        if ($owner->hasProfileVisible()) {
             return 'ok';
         } else {
             return $prefix.'no_access';
@@ -1773,5 +1827,20 @@ class OsuAuthorize
         }
 
         throw new AuthorizationException('play_more');
+    }
+
+    /**
+     * Ensure User is logged in and verified.
+     *
+     * @param User|null $user
+     * @throws AuthorizationException
+     */
+    public function ensureSessionVerified(?User $user)
+    {
+        $this->ensureLoggedIn($user);
+
+        if (!$user->isSessionVerified()) {
+            throw new AuthorizationException('require_verification');
+        }
     }
 }

@@ -22,6 +22,7 @@ return [
             '401-verification' => '',
             '405' => 'chýbajúce',
             '422' => 'neplatná požiadavka',
+            '429' => '',
             '500' => '',
             '503' => '',
         ],
@@ -74,6 +75,9 @@ return [
         ],
         'contests_controller' => [
             '_' => '',
+        ],
+        'follows_controller' => [
+            'index' => '',
         ],
         'friends_controller' => [
             'index' => 'nástenka',

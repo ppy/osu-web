@@ -8,6 +8,11 @@ return [
         'disabled' => '이 비트맵은 현재 다운로드할 수 없습니다.',
         'parts-removed' => '이 비트맵의 일부가 콘텐츠 제작자 또는 제삼자 권리자의 저작권 주장으로 인해 삭제되었습니다.',
         'more-info' => '더 많은 정보를 보려면 여기를 확인하세요.',
+        'rule_violation' => '이 맵에 포함된 일부 요소는 osu!에서 사용하기에 적합하지 않다고 판단되어 제거되었습니다.',
+    ],
+
+    'download' => [
+        'limit_exceeded' => '잠시 멈추시고, 좀 더 플레이해보세요.',
     ],
 
     'index' => [
@@ -16,6 +21,8 @@ return [
     ],
 
     'panel' => [
+        'empty' => '비트맵 없음',
+
         'download' => [
             'all' => '다운로드',
             'video' => '영상 포함된 것으로 받기',
@@ -24,11 +31,31 @@ return [
         ],
     ],
 
+    'nominate' => [
+        'hybrid_requires_modes' => '하이브리드 비트맵 셋을 사용하려면 추천할 플레이 모드를 하나 이상 선택해야 합니다.',
+        'incorrect_mode' => '이 모드 (:mode)를 추천할 권한을 가지고 있지 않습니다.',
+        'full_bn_required' => '완전한 Nominator가 되어야만 이 qualify 추천을 할 수 있습니다.',
+        'too_many' => '비트맵 추천 요구 사항을 이미 만족했습니다.',
+
+        'dialog' => [
+            'confirmation' => '정말로 이 비트맵을 추천하시겠어요?',
+            'header' => '비트맵 추천',
+            'hybrid_warning' => '주의: 오직 한 번만 추천할 수 있기에 원하는 게임 모드 전체를 선택했는지 확인해주세요.',
+            'which_modes' => '어떤 모드로 추천하시겠어요?',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '19금',
+    ],
+
     'show' => [
         'discussion' => '토론',
 
         'details' => [
+            'by_artist' => ':artist 님이 만듦',
             'favourite' => '즐겨찾기',
+            'favourite_login' => '로그인하여 이 비트맵을 즐겨찾기 하세요.',
             'logged-out' => '로그인 후 비트맵을 다운로드하세요!',
             'mapped_by' => ':mapper님의 맵',
             'unfavourite' => '즐겨찾기 해제',
@@ -36,7 +63,7 @@ return [
 
             'download' => [
                 '_' => '다운로드',
-                'direct' => 'osu!다이렉트',
+                'direct' => '',
                 'no-video' => '영상 미포함',
                 'video' => '영상 포함',
             ],
@@ -89,10 +116,24 @@ return [
             'genre' => '장르',
             'language' => '언어',
             'no_scores' => '데이터를 수집중입니다...',
+            'nsfw' => '부적절한 내용',
             'points-of-failure' => '실패 지점',
             'source' => '원작',
+            'storyboard' => '이 비트맵은 스토리보드를 포함합니다.',
             'success-rate' => '클리어 비율',
             'tags' => '태그',
+            'video' => '이 비트맵은 영상을 포함합니다.',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '이 비트맵은 노골적, 폭력적 혹은 혐오감을 들게 하는 내용이 포함되어 있습니다. 그래도 보시겠습니까?',
+            'title' => '부적절한 내용',
+
+            'buttons' => [
+                'disable' => '경고 비활성화',
+                'listing' => '비트맵 목록',
+                'show' => '표시',
+            ],
         ],
 
         'scoreboard' => [

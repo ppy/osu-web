@@ -6,20 +6,20 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => '重新產生',
-            'regenerating' => '重新產生中...',
-            'remove' => '移除',
-            'removing' => '移除中...',
-            'title' => '圖譜封面',
+            'regenerate' => '',
+            'regenerating' => '',
+            'remove' => '',
+            'removing' => '',
+            'title' => '',
         ],
         'show' => [
-            'covers' => '管理圖譜封面',
+            'covers' => '',
             'discussion' => [
-                '_' => 'Modding v2',
-                'activate' => '啟用',
-                'activate_confirm' => '確認要為這個圖譜開啟 Modding v2 嗎?',
-                'active' => '已啟用',
-                'inactive' => '停用',
+                '_' => '',
+                'activate' => '',
+                'activate_confirm' => '',
+                'active' => '',
+                'inactive' => '',
             ],
         ],
     ],
@@ -27,22 +27,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => '取消',
+                'delete' => '',
 
-                'forum-name' => '論壇 #:id: :name',
+                'forum-name' => '',
 
-                'no-cover' => '沒有封面',
+                'no-cover' => '',
 
                 'submit' => [
-                    'save' => '儲存',
-                    'update' => '更新',
+                    'save' => '',
+                    'update' => '',
                 ],
 
-                'title' => '論壇封面列表',
+                'title' => '',
 
                 'type-title' => [
-                    'default-topic' => '預設主題',
-                    'main' => '論壇封面',
+                    'default-topic' => '',
+                    'main' => '',
                 ],
             ],
         ],
@@ -50,17 +50,17 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => '日誌檢視器',
+            'title' => '',
         ],
     ],
 
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => '圖譜',
-                'forum' => '論壇',
-                'general' => '一般',
-                'store' => '商店',
+                'beatmapsets' => '',
+                'forum' => '',
+                'general' => '',
+                'store' => '',
             ],
         ],
     ],
@@ -68,15 +68,15 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => '訂單列表',
+                'title' => '',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => '該使用者目前受到限制。',
-            'message' => '（只有管理員能看到此訊息）',
+            'title' => '',
+            'message' => '',
         ],
     ],
 

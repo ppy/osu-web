@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'βοήθεια',
+            'getAbuse' => '',
             'getFaq' => 'συχνές ερωτήσεις',
             'getRules' => 'κανόνες',
             'getSupport' => 'όχι, πραγματικά, χρειάζομαι βοήθεια!',
@@ -158,6 +159,10 @@ return [
             'error' => '',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Ωχ όχι! Κάτι χάλασε! ;_;',
             'description' => "Eιδοποιούμαστε αυτόματα για κάθε σφάλμα.",
@@ -203,6 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Ρυθμίσεις',
+            'follows' => '',
             'friends' => 'Φίλοι',
             'logout' => 'Αποσύνδεση',
             'profile' => 'Το Προφίλ μου',

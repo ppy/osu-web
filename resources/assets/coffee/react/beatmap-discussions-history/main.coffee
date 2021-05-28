@@ -5,6 +5,7 @@ import { Discussion } from '../beatmap-discussions/discussion'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
+import { deletedUser } from 'models/user'
 import * as React from 'react'
 import { a, div, img } from 'react-dom-factories'
 el = React.createElement
@@ -102,7 +103,7 @@ export class Main extends React.PureComponent
             if @props.discussions.length == 0
               div className: 'modding-profile-list__empty', osu.trans('beatmap_discussions.index.none_found')
             else
-              for discussion in @props.discussions
+              for discussion in @props.discussions when discussion?
                 div
                   className: 'modding-profile-list__row'
                   key: discussion.id,
@@ -116,6 +117,7 @@ export class Main extends React.PureComponent
                   el Discussion,
                     discussion: discussion
                     users: @users()
+                    currentBeatmap: @beatmaps()[discussion.beatmap_id]
                     currentUser: currentUser
                     beatmapset: discussion.beatmapset
                     isTimelineVisible: false
@@ -127,8 +129,7 @@ export class Main extends React.PureComponent
   users: =>
     if !@cache.users?
       @cache.users = _.keyBy @state.users, 'id'
-      @cache.users[null] = @cache.users[undefined] =
-        username: osu.trans 'users.deleted'
+      @cache.users[null] = @cache.users[undefined] = deletedUser.toJson()
 
     @cache.users
 

@@ -137,7 +137,7 @@ return [
         'm' => '%d min',
         'MM' => '%d m',
         'mm' => '%d min',
-        'past' => '%s',
+        'past' => '',
         's' => '%d s',
         'y' => '%d a',
         'yy' => '%d a',

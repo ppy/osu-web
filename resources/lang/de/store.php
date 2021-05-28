@@ -69,11 +69,14 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Bestellung aufgegeben am :date',
-
+        'cancel' => 'Bestellung stornieren',
+        'cancel_confirm' => 'Diese Bestellung wird storniert und die Zahlung dafür nicht akzeptiert. Der Zahlungsanbieter gibt eventuell reservierte Gelder nicht sofort frei. Bist du sicher?',
+        'cancel_not_allowed' => 'Diese Bestellung kann zu diesem Zeitpunkt nicht storniert werden.',
         'invoice' => 'Rechnung anzeigen',
         'no_orders' => 'Keine Bestellungen zum anzeigen.',
+        'paid_on' => 'Bestellung aufgegeben am :date',
         'resume' => 'Bezahlung fortsetzen',
+        'shopify_expired' => 'Der Zahlungslink für diese Bestellung ist abgelaufen.',
 
         'item' => [
             'display_name' => [

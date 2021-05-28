@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Bunun yerine biraz osu! oynamaya ne dersiniz?',
     'require_login' => 'Devam etmek için lütfen giriş yapın.',
     'require_verification' => 'Devam etmek için lütfen doğrulama işlemini tamamlayın.',
     'restricted' => "Kısıtlanmışken bunu yapamazsınız.",
@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Bugünkü aday gösterme sınırınıza ulaştınız, lütfen yarın tekrar deneyin.',
-            'full_bn_required' => 'Bu niteliklendirme aday gösterimini gerçekleştirebilmeniz için asil aday gösterici olmanız gerekmektedir.',
-            'full_bn_required_hybrid' => 'Birden fazla oyun modu içeren beatmap setlerini aday gösterebilmeniz için asil aday gösterici olmanız gerekmektedir.',
             'incorrect_state' => 'Bu işlemi gerçekleştirirken hata oluştu, sayfayı yenilemeyi deneyin.',
             'owner' => "Kendi beatmapinizi aday gösteremezsiniz.",
             'set_metadata' => 'Aday göstermeden önce türü ve dili ayarlamalısınız.',
@@ -70,6 +68,7 @@ return [
         'moderated' => 'Bu kanal şu anda modere ediliyor.',
         'no_access' => 'Bu kanala erişiminiz yok.',
         'restricted' => 'Susturulmuş, kısıtlanmış ya da banlanmış iken mesaj gönderemezsiniz.',
+        'silenced' => 'Susturulmuşken, kısıtlıyken veya banlıyken mesaj gönderemezsiniz.',
     ],
 
     'comment' => [
@@ -80,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Yarışma için oylama süresi bittikten sonra oyunuzu değiştiremezsiniz.',
+
+        'entry' => [
+            'limit_reached' => 'Bu yarışma için girdi sınırına ulaştınız',
+            'over' => 'Girdileriniz için teşekkürler! Bu yarışma için gönderiler kapandı ve yakında oylamalara açılacak.',
+        ],
     ],
 
     'forum' => [

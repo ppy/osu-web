@@ -6,6 +6,7 @@
 namespace App\Libraries;
 
 use App\Models\Smiley;
+use App\Models\User;
 
 class BBCodeForDB
 {
@@ -223,15 +224,47 @@ class BBCodeForDB
 
     public function parseProfile($text)
     {
-        return preg_replace_callback(
-            "#\[profile\](.+?)\[/profile\]#",
-            function ($m) {
-                $name = $this->extraEscapes($m[1]);
+        preg_match_all('#\[profile(?:=(?<id>[0-9]+))?\](?<name>.+?)\[/profile\]#', $text, $tags);
 
-                return "[profile:{$this->uid}]{$name}[/profile:{$this->uid}]";
-            },
-            $text
-        );
+        $count = count($tags[0]);
+
+        if ($count > 0) {
+            $users = User
+                ::whereIn('user_id', $tags['id'])
+                ->orWhereIn('username', $tags['name'])
+                ->orWhereIn('username_clean', $tags['name'])
+                ->get();
+
+            $usersBy = [];
+
+            foreach ($users as $user) {
+                foreach (['user_id', 'username', 'username_clean'] as $key) {
+                    $usersBy[$key][mb_strtolower($user->$key)] = $user;
+                }
+            }
+
+            for ($i = 0; $i < $count; $i++) {
+                $tag = presence($tags[0][$i]);
+                $name = $tags['name'][$i];
+                $nameNormalized = mb_strtolower($name);
+                $id = presence($tags['id'][$i]);
+
+                $user = $usersBy['user_id'][$id] ?? $usersBy['username'][$nameNormalized] ?? $usersBy['username_clean'][$nameNormalized] ?? null;
+
+                if ($user === null || !$user->hasProfileVisible()) {
+                    $idText = '';
+                } else {
+                    $idText = "={$user->getKey()}";
+                    $name = $user->username;
+                }
+
+                $name = $this->extraEscapes($name);
+
+                $text = str_replace($tag, "[profile{$idText}:{$this->uid}]{$name}[/profile:{$this->uid}]", $text);
+            }
+        }
+
+        return $text;
     }
 
     // this is quite different and much more dumb than the one in phpbb
@@ -329,6 +362,7 @@ class BBCodeForDB
         $text = $this->parseList($text);
 
         $text = $this->parseBlockSimple($text);
+        $text = $this->parseProfile($text);
         $text = $this->parseImage($text);
         $text = $this->parseInlineSimple($text);
         $text = $this->parseHeading($text);
@@ -338,7 +372,6 @@ class BBCodeForDB
         $text = $this->parseSize($text);
         $text = $this->parseColour($text);
         $text = $this->parseYoutube($text);
-        $text = $this->parseProfile($text);
 
         $text = $this->parseSmiley($text);
         $text = $this->parseLinks($text);

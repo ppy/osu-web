@@ -70,6 +70,10 @@ return [
         ],
     ],
 
+    'filtering' => [
+        'by_game_mode' => 'Membri per modalità di gioco',
+    ],
+
     'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Il tuo account non è stato utilizzato per molto tempo.",
@@ -84,7 +88,7 @@ return [
         'failed' => 'Login non corretto',
         'forgot' => 'Hai dimenticato la tua password?',
         'info' => 'Accedi per continuare',
-        'invalid_captcha' => '',
+        'invalid_captcha' => 'Troppi tentativi di accesso falliti, completa il captcha e riprova. (Ricarica la pagina se il captcha non è visibile)',
         'locked_ip' => 'il tuo indirizzo IP è bloccato. Aspetta qualche minuto per favore.',
         'password' => 'Password',
         'register' => "Non hai un account di osu!? Fanne uno nuovo",
@@ -133,8 +137,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Il tuo account è stato limitato!',
-        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Solitamente questo è il risultato di un processo automatico e verrà risolto preferibilmente entro 24 ore. Se desideri fare appello alla tua restrizione, <a
-href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
+        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Solitamente questo è il risultato di un processo automatico e verrà risolto preferibilmente entro 24 ore. Se desideri fare appello alla tua restrizione, <a href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
     ],
     'show' => [
         'age' => ':age anni',
@@ -151,6 +154,10 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
         'plays_with' => 'Gioca con :devices',
         'title' => "Profilo di :username",
 
+        'comments_count' => [
+            '_' => 'Ha postato :link',
+            'count' => ':count_delimited commento|:count_delimited commenti',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Cambia copertina del profilo',
@@ -348,10 +355,8 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
         'info' => [
             'discord' => '',
             'interests' => 'Interessi',
-            'lastfm' => 'Last.fm',
             'location' => 'Posizione Attuale',
             'occupation' => 'Occupazione',
-            'skype' => '',
             'twitter' => '',
             'website' => 'Sito',
         ],
@@ -402,6 +407,11 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
             'unranked_beatmapset_count' => 'Beatmap in Attesa',
             'graveyard_beatmapset_count' => 'Beatmap Abbandonate',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => 'Sei attualmente silenziato.',
+        'message' => 'Alcune funzioni non saranno disponibili.',
     ],
 
     'status' => [

@@ -8,6 +8,11 @@ return [
         'disabled' => 'Questa beatmap non è al momento disponibile per il download.',
         'parts-removed' => 'Porzioni di questa beatmap sono state rimosse su richiesta del creatore o di un titolare di copyright di terze parti.',
         'more-info' => 'Controlla qui per maggiori informazioni.',
+        'rule_violation' => 'Alcuni elementi contenuti in questa mappa sono stati rimossi dopo che sono stati giudicati non idonei per l\'uso in osu!.',
+    ],
+
+    'download' => [
+        'limit_exceeded' => 'Rallenta, gioca di più.',
     ],
 
     'index' => [
@@ -16,6 +21,8 @@ return [
     ],
 
     'panel' => [
+        'empty' => 'nessuna beatmap',
+
         'download' => [
             'all' => 'scarica',
             'video' => 'scarica con il video',
@@ -24,11 +31,31 @@ return [
         ],
     ],
 
+    'nominate' => [
+        'hybrid_requires_modes' => 'Un beatmapset ibrido richiede che venga selezionata almeno una modalità di gioco per poterla nominare.',
+        'incorrect_mode' => 'Non hai il permesso di nominare per la modalità: :mode',
+        'full_bn_required' => 'Devi essere un nominatore completo per eseguire questa nomina qualificante.',
+        'too_many' => 'Requisito di nomina già soddisfatto.',
+
+        'dialog' => [
+            'confirmation' => 'Sei sicuro di voler nominare questa beatmap?',
+            'header' => 'Nomina Beatmap',
+            'hybrid_warning' => 'nota: puoi nominare una sola volta, quindi assicurati di nominare per tutte le modalità di gioco che vuoi',
+            'which_modes' => 'Nominare per quali modalità?',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => 'Explicit',
+    ],
+
     'show' => [
         'discussion' => 'Discussione',
 
         'details' => [
+            'by_artist' => 'di :artist',
             'favourite' => 'Mi piace questo beatmapset',
+            'favourite_login' => 'Accedi per aggiungere questa beatmap ai preferiti',
             'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!',
             'mapped_by' => 'mappata da :mapper',
             'unfavourite' => 'Non mi piace questo beatmapset',
@@ -36,7 +63,7 @@ return [
 
             'download' => [
                 '_' => 'Scarica',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => 'senza Video',
                 'video' => 'con Video',
             ],
@@ -61,7 +88,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Lascia Hype a questa beatmap se ti sei divertito a giocarla per aiutare a renderla <strong>Classificata</strong>.',
+            'action' => 'Metti hype a questa beatmap se ti sei divertito a giocarla per aiutare a renderla <strong>Classificata</strong>.',
 
             'current' => [
                 '_' => 'Questa mappa è attualmente :status.',
@@ -89,10 +116,24 @@ return [
             'genre' => 'Genere',
             'language' => 'Lingua',
             'no_scores' => 'Dati ancora in elaborazione...',
+            'nsfw' => 'Contenuto esplicito',
             'points-of-failure' => 'Punti di Fallimento',
             'source' => 'Sorgente',
+            'storyboard' => 'Questa beatmap contiene storyboard',
             'success-rate' => 'Rateo di Successo',
             'tags' => 'Tag',
+            'video' => 'Questa beatmap contiene video',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'Questa beatmap ha contenuti espliciti, offensivi o disturbanti. Vuoi vederla comunque?',
+            'title' => 'Contenuto Esplicito',
+
+            'buttons' => [
+                'disable' => 'Disabilita avviso',
+                'listing' => 'Torna alla lista',
+                'show' => 'Mostra',
+            ],
         ],
 
         'scoreboard' => [

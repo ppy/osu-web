@@ -4,10 +4,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => 'تم قراءة جميع الإشعارات!',
+    'all_read' => 'جميع الإشعارات مقروءة!',
+    'delete' => 'حذف :type',
+    'loading' => 'تحميل الإشعارات الغير مقروءة...',
     'mark_read' => 'مَحو :type',
     'none' => 'لا إشعارات',
     'see_all' => 'أِظهار جميع الإشعارات',
+    'see_channel' => 'انتقل للمُحادثة',
+    'verifying' => 'الرجاء التحقق من الجلسة لعرض الإشعارات',
 
     'filters' => [
         '_' => 'الكل',
@@ -23,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'المقطوعة',
 
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'منشاقشة المقطوعة',
                 'beatmapset_discussion_lock' => 'تم اقفال مناقشة على ":title"',
@@ -33,7 +43,7 @@ return [
                 'beatmapset_discussion_post_new_compact_empty' => 'منشور جديد بواسطة :username',
                 'beatmapset_discussion_review_new' => 'مراجعة جديدة على ":title" من قبل :username تحتوي على مشاكل: :problems, اقتراحات: :suggestions, تشجيع: :praises',
                 'beatmapset_discussion_review_new_compact' => 'مراجعة جديدة من قبل :username تحتوي على مشاكل: :problems, اقتراحات: :suggestions, تشجيع: :praises',
-                'beatmapset_discussion_unlock' => 'تم فتح قفل مناقشة على ":title"',
+                'beatmapset_discussion_unlock' => 'تم فتح قفل المناقشة على ":title"',
                 'beatmapset_discussion_unlock_compact' => 'تم الغاء قفل المناقشة',
             ],
 
@@ -41,22 +51,24 @@ return [
                 '_' => 'مشكلة في خريطة مؤهلة',
                 'beatmapset_discussion_qualified_problem' => 'ابلغ عنه بواسطة :username على ":title": ":content"',
                 'beatmapset_discussion_qualified_problem_empty' => 'ابلغ عنه بواسطة :username على ":title"',
-                'beatmapset_discussion_qualified_problem_compact' => 'ابلغ عنه بواسطة :username: ":content"',
+                'beatmapset_discussion_qualified_problem_compact' => 'ابلغ عنه بواسطة :username على ":content"',
                 'beatmapset_discussion_qualified_problem_compact_empty' => 'ابلغ عنه بواسطة :username',
             ],
 
             'beatmapset_state' => [
                 '_' => 'تم تغيير حالة الخريطة',
-                'beatmapset_disqualify' => 'حرم ":title" من التأهل',
+                'beatmapset_disqualify' => 'حرُِمت ":title" من التأهل',
                 'beatmapset_disqualify_compact' => 'تم استبعاد الخريطة',
-                'beatmapset_love' => 'اصبح ":title" محبوب',
-                'beatmapset_love_compact' => 'اصبحت المقطوعة محبوبة',
-                'beatmapset_nominate' => 'اصبح ":title" مرشح',
+                'beatmapset_love' => 'أرتقت ":title" لـ خريطة محبوبة',
+                'beatmapset_love_compact' => 'أرتقت  الخريطة لـ محبوبة',
+                'beatmapset_nominate' => 'تم ترشيح ":title"',
                 'beatmapset_nominate_compact' => 'تم ترشيح الخريطة',
-                'beatmapset_qualify' => '":title" حصل على ترشيحات كافية ودخل حالة التصنيف',
+                'beatmapset_qualify' => '":title" حصلت على ترشيحات كافية ودخلت حالة التصنيف',
                 'beatmapset_qualify_compact' => 'دخلت الخريطة قائمة التصنيف',
-                'beatmapset_rank' => 'اصبحت ":title" مصنفة',
+                'beatmapset_rank' => 'اصبحت ":title" مُصنفة',
                 'beatmapset_rank_compact' => 'تم تصنيف الخريطة',
+                'beatmapset_remove_from_loved' => '":title" تمت ازالتها من "الخرائط المحبوبة"',
+                'beatmapset_remove_from_loved_compact' => 'أُزيلت الخريطة من "الخرائِط المحبوبة"',
                 'beatmapset_reset_nominations' => 'تم اعادة تعيين ترشيحات ":title"',
                 'beatmapset_reset_nominations_compact' => 'تم اعادة ضبط الترشيح',
             ],
@@ -64,8 +76,8 @@ return [
             'comment' => [
                 '_' => 'تعليق جديد',
 
-                'comment_new' => 'علق :username ":content" على ":title"',
-                'comment_new_compact' => 'علق :username ":content"',
+                'comment_new' => ':username علق ":content" على ":title"',
+                'comment_new_compact' => ':username علق ":content"',
                 'comment_reply' => ':username رد ":content" على ":title"',
                 'comment_reply_compact' => ':username رد ":content"',
             ],
@@ -90,8 +102,8 @@ return [
             'comment' => [
                 '_' => 'تعليق جديد',
 
-                'comment_new' => 'علق :username ":content" في ":title"',
-                'comment_new_compact' => 'علق:username ":content"',
+                'comment_new' => ':username علق ":content" على ":title"',
+                'comment_new_compact' => ':username علق ":content"',
                 'comment_reply' => ':username رد ":content" على ":title"',
                 'comment_reply_compact' => ':username رد ":content"',
             ],
@@ -103,8 +115,8 @@ return [
             'comment' => [
                 '_' => 'تعليق جديد',
 
-                'comment_new' => 'علق :username ":content" في ":title"',
-                'comment_new_compact' => 'علق :username ":content"',
+                'comment_new' => ':username علق":content" على ":title"',
+                'comment_new_compact' => ':username علق ":content"',
                 'comment_reply' => ':username رد ":content" على ":title"',
                 'comment_reply_compact' => ':username رد ":content"',
             ],
@@ -115,8 +127,8 @@ return [
 
             'forum_topic_reply' => [
                 '_' => ' رد منتدى جديد',
-                'forum_topic_reply' => 'رد :username إلى ":title"',
-                'forum_topic_reply_compact' => 'رد :username',
+                'forum_topic_reply' => ':username رد على ":title"',
+                'forum_topic_reply_compact' => ':username قام بالرد',
             ],
         ],
 
@@ -125,25 +137,40 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => ':count رسالة غير مقروءة|:count رسالتان غير مقروءتان|:count رسائل غير مقروءة|:count رسالة غير مقروءة',
+                'legacy_pm' => ':count_delimited رسالة غير مقروءة|:count_delimited رسائل غير مقروءة',
+            ],
+        ],
+
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => 'خريطة جديدة',
+
+                'user_beatmapset_new' => 'خريطة جديدة ":title" بواسطة :username',
+                'user_beatmapset_new_compact' => 'خريطة جديدة ":title"',
+                'user_beatmapset_new_group' => 'خرائِط جديدة بواسطة :username',
             ],
         ],
 
         'user_achievement' => [
-            '_' => 'ميدالية',
+            '_' => 'الأوسِمة',
 
             'user_achievement_unlock' => [
                 '_' => 'ميدالية جديدة',
-                'user_achievement_unlock' => 'تم فتح !:title',
-                'user_achievement_unlock_compact' => 'تم فتح ":title"!',
+                'user_achievement_unlock' => 'قمت بفتح ":title"!',
+                'user_achievement_unlock_compact' => 'قمت بفتح ":title"!',
+                'user_achievement_unlock_group' => 'قمت بفتح الأوسِمة!',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => 'تم اقفال المناقشة على ":title"',
+                'beatmapset_discussion_lock' => 'تم قفل المناقشة على ":title"',
                 'beatmapset_discussion_post_new' => 'المناقشة حول ":title" تحتوي على تحديثات جديدة',
                 'beatmapset_discussion_unlock' => 'تم فتح قفل المناقشة على ":title"',
             ],
@@ -158,6 +185,7 @@ return [
                 'beatmapset_nominate' => 'اصبحت ":title" مرشحة',
                 'beatmapset_qualify' => '":title" حصلت على ترشيحات كافية ودخلت حالة التصنيف',
                 'beatmapset_rank' => 'اصبحت ":title" مصنفة',
+                'beatmapset_remove_from_loved' => '":title" أُزيلَت مِن "الخرائط المحبوبة"',
                 'beatmapset_reset_nominations' => 'تم اعادة تعيين ترشيحات ":title"',
             ],
 
@@ -174,7 +202,7 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => 'سجل ":title" يحتوي على تعليقات جديدة',
+                'comment_new' => 'سجل التحديثات ":title" يحتوي على تعليقات جديدة',
             ],
         ],
 
@@ -194,6 +222,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username فتح ميدالية جديدة، ":title"!',
                 'user_achievement_unlock_self' => 'لقد فتحت ميدالية جديدة، ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => 'قام :username بإنشاء خرائط جديدة',
             ],
         ],
     ],

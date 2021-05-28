@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => 'забараніць кудосу',
         'edit' => 'рэдагаваць',
         'edited' => 'Апошняе рэдагаванне :editor а :update_time.',
+        'guest' => '',
         'kudosu_denied' => 'Адмоўлена ў атрыманні кудосу.',
         'message_placeholder_deleted_beatmap' => 'Гэтая цяжкасць была выдалена і абмяркоўваць у ёй больш нельга.',
         'message_placeholder_locked' => 'Абмеркаванні для гэтай бітмапы былі адключаныя.',
@@ -187,12 +188,18 @@ return [
         'nominate_confirm' => 'Намінаваць гэту бітмапу?',
         'nominated_by' => 'намінавана :users',
         'not_enough_hype' => "",
-        'qualified' => 'Калі больш няма праблем, то бітмапа атрымае статус ракнутой прыблізна :date.',
-        'qualified_soon' => 'Калі больш няма праблем, то бітмапа атрымае статус ракнутой вельмі хутка.',
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Намінацыі: :current/:required',
         'reset_message_deleted' => 'выдалена',
         'title' => 'Стан намінацыі',
         'unresolved_issues' => 'Усё яшчэ ёсць нявырашаныя праблемы, якія трэбы вырашыць у першую чаргу.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => ':user скінуў прагрэс намінацый :time_ago з-за новай праблемы :discussion (:message).',
@@ -214,14 +221,15 @@ return [
             'not-found' => 'няма вынікаў',
             'not-found-quote' => '... няма, нічога не знойдзена.',
             'filters' => [
+                'extra' => 'дадаткова',
                 'general' => 'Агульнае',
-                'mode' => 'Рэжым',
-                'status' => 'Катэгорыі',
                 'genre' => 'Жанр',
                 'language' => 'Мова',
-                'extra' => 'дадаткова',
-                'rank' => 'Рэйтынг',
+                'mode' => 'Рэжым',
+                'nsfw' => '',
                 'played' => 'Згуляна',
+                'rank' => 'Рэйтынг',
+                'status' => 'Катэгорыі',
             ],
             'sorting' => [
                 'title' => 'Назва',
@@ -242,10 +250,12 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Рэкамендавана цяжкасць',
         'converts' => 'Уключыць канвертаваныя бітмапы',
+        'follows' => '',
+        'recommended' => 'Рэкамендавана цяжкасць',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'Усе',
         'osu' => '',
         'taiko' => '',
@@ -300,7 +310,7 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
@@ -323,6 +333,12 @@ return [
         'other' => 'Іншае',
         'unspecified' => '',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Усе',
         'played' => 'Згуляна',

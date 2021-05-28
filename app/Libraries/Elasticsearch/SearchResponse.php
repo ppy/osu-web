@@ -126,7 +126,10 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
 
     public function total()
     {
-        return $this->raw()['hits']['total'];
+        $total = $this->raw()['hits']['total'];
+
+        // total an object in elasticsearch 7+
+        return is_array($total) ? $total['value'] : $total;
     }
 
     //================

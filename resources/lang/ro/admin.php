@@ -10,7 +10,7 @@ return [
             'regenerating' => '',
             'remove' => '',
             'removing' => '',
-            'title' => 'Pături Beatmapset',
+            'title' => '',
         ],
         'show' => [
             'covers' => '',
@@ -57,7 +57,7 @@ return [
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => 'Beatmapset-uri',
+                'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
                 'store' => '',

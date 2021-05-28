@@ -8,6 +8,11 @@ return [
         'disabled' => '該圖譜現在無法下載。',
         'parts-removed' => '因作者或第三方版權擁有者的要求，故該圖譜已經下架。',
         'more-info' => '點擊這裡查看更多資訊。',
+        'rule_violation' => '',
+    ],
+
+    'download' => [
+        'limit_exceeded' => '欲速則不達。',
     ],
 
     'index' => [
@@ -16,6 +21,8 @@ return [
     ],
 
     'panel' => [
+        'empty' => '沒有圖譜',
+
         'download' => [
             'all' => '下載',
             'video' => '下載並包含影片',
@@ -24,11 +31,31 @@ return [
         ],
     ],
 
+    'nominate' => [
+        'hybrid_requires_modes' => '',
+        'incorrect_mode' => '您沒有權限為 :mode 模式提名',
+        'full_bn_required' => '',
+        'too_many' => '提名需求已達成。',
+
+        'dialog' => [
+            'confirmation' => '您確定要提名這張圖譜嗎？',
+            'header' => '提名圖譜',
+            'hybrid_warning' => '注意: 您只能提名一次，所以請確保您的提名包含所有您想提名的模式。',
+            'which_modes' => '您想為哪個模式提名？',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '成人內容',
+    ],
+
     'show' => [
         'discussion' => '討論',
 
         'details' => [
+            'by_artist' => '作者：:artist',
             'favourite' => '收藏這張圖譜',
+            'favourite_login' => '登入後才能把這張圖譜加到最愛',
             'logged-out' => '下載圖譜前請先登入！',
             'mapped_by' => '由 :mapper 製作',
             'unfavourite' => '取消收藏',
@@ -36,7 +63,7 @@ return [
 
             'download' => [
                 '_' => '下載',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => '不含影像',
                 'video' => '含影像',
             ],
@@ -48,7 +75,7 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
+            'approved' => '於:timeago批准',
             'loved' => '',
             'qualified' => '',
             'ranked' => '於:timeago進榜',
@@ -61,7 +88,7 @@ return [
         ],
 
         'hype' => [
-            'action' => '推薦這個圖譜如果你喜歡玩它來幫助它進度至 <strong>進榜</strong> 狀態。',
+            'action' => '如果你喜歡這張圖譜，請推薦它來幫助它進展至<strong>進榜</strong>狀態。',
 
             'current' => [
                 '_' => '此地圖目前是 :status 的。',
@@ -89,15 +116,29 @@ return [
             'genre' => '曲風',
             'language' => '語言',
             'no_scores' => '資料還在計算中。。。',
+            'nsfw' => '成人內容',
             'points-of-failure' => '失敗位置',
             'source' => '來源',
+            'storyboard' => '這張圖譜包含 Storyboard',
             'success-rate' => '成功率',
             'tags' => '標籤',
+            'video' => '此圖譜包含背景影片',
+        ],
+
+        'nsfw_warning' => [
+            'details' => '這張圖譜含有兒童不宜、具冒犯性、或令人不安的內容。您確定要查看嗎？',
+            'title' => '成人內容',
+
+            'buttons' => [
+                'disable' => '關閉警告',
+                'listing' => '圖譜列表',
+                'show' => '顯示',
+            ],
         ],
 
         'scoreboard' => [
             'achieved' => '在 :when 達成',
-            'country' => '國內/區內排行榜',
+            'country' => '國內排行榜',
             'friend' => '好友排行榜',
             'global' => '世界排行榜',
             'supporter-link' => '點擊 <a href=":link">這裡</a> 來查看你可以得到的精彩功能！',
@@ -110,7 +151,7 @@ return [
                 'miss' => 'Miss',
                 'mods' => 'Mods',
                 'player' => '玩家',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => '排行榜',
                 'score_total' => '總分',
                 'score' => '得分',
@@ -149,7 +190,7 @@ return [
 
         'status' => [
             'ranked' => '已進榜',
-            'approved' => '已核準',
+            'approved' => '已批准',
             'loved' => 'Loved',
             'qualified' => '已提名',
             'wip' => '製作中',

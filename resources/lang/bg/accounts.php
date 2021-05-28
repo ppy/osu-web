@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'настоящо местонахождение',
                 'user_interests' => 'интереси',
-                'user_msnm' => '',
                 'user_occ' => 'работа/занимание',
                 'user_twitter' => '',
                 'user_website' => 'уеб сайт',
@@ -44,24 +43,26 @@ return [
 
         'signature' => [
             'title' => 'Подпис',
-            'update' => 'актуализирайте',
+            'update' => 'обновяване',
         ],
     ],
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'получаване на известия за нови проблеми на квалифицирани бийтмапове от следните ремижи на игра',
         'beatmapset_disqualify' => 'получаване на известия, когато бийтмапове от следните режими на игра са дисквалифицирани',
-        'comment_reply' => '',
+        'comment_reply' => 'получавайте известия за отговори на вашите коментари',
         'title' => 'Известия',
         'topic_auto_subscribe' => 'автоматично включване на известията при създаването на нови форумни теми',
 
         'options' => [
             '_' => 'опции за доставка',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'бийтмап modding',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => 'лични съобщения',
+            'comment_new' => 'нови коментари ',
             'forum_topic_reply' => 'отговор на темата',
             'mail' => 'поща',
+            'mapping' => '',
             'push' => 'push',
             'user_achievement_unlock' => '',
         ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => 'покажете метаданни на beatmap на оригиналния език',
         'title' => 'Hастройки',
 
         'beatmapset_download' => [
             '_' => 'тип на теглене на бийтмапове по подразбиране',
             'all' => 'с видео при наличност',
-            'no_video' => 'без видео',
             'direct' => 'отвори в osu!direct',
+            'no_video' => 'без видео',
         ],
-
-        'beatmapset_title_show_original' => 'покажете метаданни на beatmap на оригиналния език',
     ],
 
     'playstyles' => [

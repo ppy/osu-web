@@ -32,12 +32,11 @@ return [
             'title' => '个人资料',
 
             'user' => [
-                'user_discord' => 'discord',
+                'user_discord' => '',
                 'user_from' => '当前位置',
                 'user_interests' => '兴趣爱好',
-                'user_msnm' => 'skype',
                 'user_occ' => '职业',
-                'user_twitter' => '推特',
+                'user_twitter' => '',
                 'user_website' => '个人主页',
             ],
         ],
@@ -57,11 +56,13 @@ return [
 
         'options' => [
             '_' => '推送设置',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => '谱面摸图',
             'channel_message' => '私信',
             'comment_new' => '新评论',
             'forum_topic_reply' => '主题回复',
             'mail' => '邮件',
+            'mapping' => '谱师',
             'push' => '推送',
             'user_achievement_unlock' => '成就解锁',
         ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '隐藏谱面少儿不宜提示',
+        'beatmapset_title_show_original' => '以原语言显示谱面信息',
         'title' => '选项',
 
         'beatmapset_download' => [
             '_' => '默认谱面下载类型',
             'all' => '包含视频',
-            'no_video' => '不包含视频',
             'direct' => '在 osu!direct 中查看',
+            'no_video' => '不包含视频',
         ],
-
-        'beatmapset_title_show_original' => '以原语言显示谱面信息',
     ],
 
     'playstyles' => [

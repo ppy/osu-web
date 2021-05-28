@@ -47,11 +47,13 @@ return [
         'confirm_restore' => 'Відновити відповідь?',
         'edited' => 'Останній раз відредагований :user :when, відредагований :count раз.',
         'posted_at' => 'написано :when',
+        'posted_by' => 'опубліковано :username',
 
         'actions' => [
             'destroy' => 'Видалити відповідь',
-            'restore' => 'Відновити відповідь',
             'edit' => 'Редагувати відповідь',
+            'report' => 'Звытувати пост',
+            'restore' => 'Відновити відповідь',
         ],
 
         'create' => [
@@ -73,10 +75,12 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'Дійсно видалити тему?',
+        'confirm_restore' => 'Дійсно відновити тему',
         'deleted' => 'видалена тема',
         'go_to_latest' => 'показати останню відповідь',
         'has_replied' => 'Ви відповідали на цю тему',
-        'in_forum' => '',
+        'in_forum' => 'в :forum',
         'latest_post' => ':when від :user',
         'latest_reply_by' => 'остання відповідь від :user',
         'new_topic' => 'Нова тема',
@@ -86,6 +90,11 @@ return [
         'reply_title_prefix' => 'Відповідь',
         'started_by' => 'від :user',
         'started_by_verbose' => 'почато :user',
+
+        'actions' => [
+            'destroy' => 'Видалити тему',
+            'restore' => 'Відновити тему',
+        ],
 
         'create' => [
             'close' => 'Закрити',

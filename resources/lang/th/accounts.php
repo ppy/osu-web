@@ -35,9 +35,8 @@ return [
                 'user_discord' => '',
                 'user_from' => 'ที่อยู่ปัจจุบัน',
                 'user_interests' => 'สิ่งที่สนใจ',
-                'user_msnm' => 'skype',
                 'user_occ' => 'อาชีพ',
-                'user_twitter' => 'ทวิตเตอร์',
+                'user_twitter' => '',
                 'user_website' => 'เว็บไซต์',
             ],
         ],
@@ -51,17 +50,19 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'ได้รับการแจ้งเตือนเกียวกับปัญหาของ Qualified beatmaps กับโหมดต่อไปนี้',
         'beatmapset_disqualify' => 'ได้รับการแจ้งเตือนเมื่อบีทแมพในโหมดที่ท่านเลือกถูกตัดสิทธิ์',
-        'comment_reply' => '',
+        'comment_reply' => 'รับการแจ้งเตือนสำหรับการตอบกลับความคิดเห็นของคุณ',
         'title' => 'การแจ้งเตือน',
         'topic_auto_subscribe' => 'เปิดการแจ้งเตือนอัตโนมัติในกระทู้ที่คุณสร้างขึ้น',
 
         'options' => [
             '_' => 'วิธีการรับการแจ้งเตือน',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'การวิจารณ์บีทแมพ',
             'channel_message' => 'ข้อความส่วนตัว',
-            'comment_new' => 'คอมเมนต์ใหม่',
+            'comment_new' => 'ความคิดเห็นใหม่',
             'forum_topic_reply' => 'ข้อความตอบกลับในกระทู้',
             'mail' => 'อีเมล',
+            'mapping' => 'ผู้ทำบีทแมพ',
             'push' => 'ส่งการแจ้งเตือน',
             'user_achievement_unlock' => 'ผู้เล่นได้ปลดล็อกเหรียญตรา',
         ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'ซ่อนคำเตือนเกี่ยวกับเนื้อหาที่ล่อแหลมในบีทแมพ',
+        'beatmapset_title_show_original' => 'แสดงข้อมูลของ บีทแมพ ในภาษาดั้งเดิม',
         'title' => 'ตัวเลือก',
 
         'beatmapset_download' => [
             '_' => 'ประเภทการดาวน์โหลดบีทแมพเริ่มต้น',
             'all' => 'พร้อมวิดีโอ ถ้าใช้ได้',
-            'no_video' => 'โดยที่ไม่มีวิดีโอ',
             'direct' => 'เปิดใน osu!direct',
+            'no_video' => 'โดยที่ไม่มีวิดีโอ',
         ],
-
-        'beatmapset_title_show_original' => 'แสดงข้อมูลของ บีทแมพ ในภาษาดั้งเดิม',
     ],
 
     'playstyles' => [

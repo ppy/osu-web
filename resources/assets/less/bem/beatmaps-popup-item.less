@@ -1,0 +1,50 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmaps-popup-item {
+  font-size: @font-size--normal;
+  font-weight: 600;
+  display: grid;
+  grid-gap: 4px;
+  grid-template-columns: auto minmax(50px, max-content) 1fr;
+  align-items: center;
+  color: hsl(var(--hsl-c1));
+  width: max-content;
+  max-width: 100%;
+  --name-text-decoration: none;
+
+  .link-hover({
+    --name-text-decoration: underline;
+    text-decoration: none;
+    color: hsl(var(--hsl-c1));
+  });
+
+  &__col {
+    &--difficulty {
+      --diff-expert-plus: @diff-expert-plus-light;
+      border-radius: 10000px;
+      background-color: var(--bg);
+      color: hsl(var(--hsl-b6));
+      padding: 0 6px;
+      display: flex;
+      align-items: center;
+      font-weight: 800;
+    }
+
+    &--mode {
+      font-weight: normal;
+      font-size: 14px; // icon size
+      display: flex;
+      align-items: center;
+    }
+
+    &--name {
+      text-decoration: var(--name-text-decoration);
+    }
+  }
+
+  &__difficulty-icon {
+    font-size: 8px; // icon size
+    margin-right: 4px;
+  }
+}

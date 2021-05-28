@@ -15,16 +15,23 @@ export class ArtEntryList extends BaseEntryList
     if @state.contest.show_votes
       totalVotes = _.sumBy @state.contest.entries, (i) -> i.results.votes
 
-    entries = @state.contest.entries.map (entry, index) =>
+    entries = @state.contest.entries
+    selected = new Set(@state.selected)
+
+    if @state.showVotedOnly
+      entries = entries.filter (entry) -> selected.has(entry.id)
+
+    entries = entries.map (entry, index) =>
       el ArtEntry,
         key: index,
+        contest: @state.contest,
         displayIndex: index,
         entry: entry,
-        waitingForResponse: @state.waitingForResponse,
+        isSelected: selected.has(entry.id)
         options: @state.options,
-        contest: @state.contest,
         selected: @state.selected,
         totalVotes: if @state.contest.show_votes then totalVotes
+        waitingForResponse: @state.waitingForResponse,
 
     if @state.contest.show_votes
       partitions = _.partition entries, (i) ->
@@ -32,6 +39,7 @@ export class ArtEntryList extends BaseEntryList
 
     div className: 'contest__art-list',
       div className: 'contest__vote-summary--art',
+        @renderToggleShowVotedOnly()
         span className: 'contest__vote-summary-text contest__vote-summary-text--art', 'votes'
         el VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
 

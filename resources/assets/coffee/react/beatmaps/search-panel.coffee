@@ -221,6 +221,10 @@ export class SearchPanel extends React.Component
           name: 'bundled'
           options: filters.bundled
 
+        @renderFilter
+          name: 'nsfw'
+          options: filters.nsfw
+
 
   setHeaderPinned: (_event, pinned) =>
     if pinned && document.activeElement == @inputRef.current

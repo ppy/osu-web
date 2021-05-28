@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Aprobado.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Un moderador eliminó la discusión :discussion.',
         'discussion_lock' => 'La discusión para este mapa ha sido desactivada. (:text)',
         'discussion_post_delete' => 'Un moderador eliminó una publicación en la discusión :discussion.',
@@ -15,7 +16,7 @@ return [
         'disqualify' => 'Descalificado por :user. Motivo: :discussion (:text).',
         'disqualify_legacy' => 'Descalificado por :user. Motivo: :text.',
         'genre_edit' => 'El género cambió de :old a :new.',
-        'issue_reopen' => 'El problema resuelto :discussion ha sido reabierto.',
+        'issue_reopen' => 'El problema resuelto :discussion por :discussion_user ha sido reabierto por :user.',
         'issue_resolve' => 'El problema :discussion ha sido marcado como resuelto.',
         'kudosu_allow' => 'La negación de kudosu para la discusión :discussion ha sido eliminada.',
         'kudosu_deny' => 'La discusión :discussion ha sido negada para kudosu.',
@@ -25,9 +26,16 @@ return [
         'language_edit' => 'El lenguaje cambió de :old a :new.',
         'love' => 'Amado por :user.',
         'nominate' => 'Nominado por :user.',
+        'nominate_modes' => 'Nominado por :user (:modes).',
         'nomination_reset' => 'Un nuevo problema :discussion (:text) ha restablecido las nominaciones.',
         'qualify' => 'Este mapa ha alcanzado el número requerido de nominaciones y ha sido calificado.',
         'rank' => 'Clasificado.',
+        'remove_from_loved' => 'Removido de Amados por :user. (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => 'Marca explícita removida',
+            'to_1' => 'Marcado como explícito',
+        ],
     ],
 
     'index' => [
@@ -47,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Aprobación',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Eliminación de discusión',
         'discussion_post_delete' => 'Eliminación de respuesta a discusión',
         'discussion_post_restore' => 'Restauración de respuesta a discusión',
@@ -64,7 +73,9 @@ return [
         'love' => 'Amor',
         'nominate' => 'Nominación',
         'nomination_reset' => 'Restablecimiento de nominación',
+        'nsfw_toggle' => 'Marca explícita',
         'qualify' => 'Calificación',
         'rank' => 'Clasificación',
+        'remove_from_loved' => 'Remoción de Amados',
     ],
 ];

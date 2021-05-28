@@ -7,14 +7,13 @@ import * as React from 'react';
 interface Props {
   comments: Comment[];
   modifiers: string[] | undefined;
-  showDeleted: boolean;
 }
 
 export default class DeletedCommentsCount extends React.Component<Props> {
   render() {
     const deletedCount = this.props.comments.filter((c) => c.deletedAt != null).length;
 
-    if (this.props.showDeleted || deletedCount === 0) {
+    if (deletedCount === 0) {
       return null;
     }
 
@@ -23,7 +22,7 @@ export default class DeletedCommentsCount extends React.Component<Props> {
         <span className='deleted-comments-count__icon'>
           <span className='far fa-trash-alt' />
         </span>
-          {osu.transChoice('comments.deleted_count', deletedCount)}
+        {osu.transChoice('comments.deleted_count', deletedCount)}
       </div>
     );
   }

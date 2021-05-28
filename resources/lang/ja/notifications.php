@@ -4,10 +4,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => '通知は全て既読です！',
+    'all_read' => '通知を全て既読にする！',
+    'delete' => ':type を削除',
+    'loading' => '通知を読み込み中...',
     'mark_read' => '消去 :type',
     'none' => '通知なし',
     'see_all' => 'すべての通知を見る',
+    'see_channel' => 'チャットに行く',
+    'verifying' => '通知を表示するには、セッションを確認してください。',
 
     'filters' => [
         '_' => '全て',
@@ -22,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'ビートマップ',
+
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'ビートマップディスカッション',
@@ -57,6 +67,8 @@ return [
                 'beatmapset_qualify_compact' => 'ビートマップがランキングのキューに入りました',
                 'beatmapset_rank' => '「:title」はrankedされました。',
                 'beatmapset_rank_compact' => 'ビートマップがrankedされました。',
+                'beatmapset_remove_from_loved' => '「:title」はlovedから削除されました',
+                'beatmapset_remove_from_loved_compact' => 'ビートマップはlovedから削除されました',
                 'beatmapset_reset_nominations' => ':usernameの問題点投稿によりビートマップ「:title」のノミネーションがリセットされました。 ',
                 'beatmapset_reset_nominations_compact' => 'ノミネーションがリセットされました。',
             ],
@@ -129,6 +141,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '新しいビートマップ',
+
+                'user_beatmapset_new' => ':username による新しいビートマップ「:title」',
+                'user_beatmapset_new_compact' => '新しいビートマップ「:title」',
+                'user_beatmapset_new_group' => ':username の新しいビートマップ',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'メダル',
 
@@ -136,12 +158,17 @@ return [
                 '_' => '新しいメダル',
                 'user_achievement_unlock' => ':title をアンロック！',
                 'user_achievement_unlock_compact' => ':title をアンロック！',
+                'user_achievement_unlock_group' => 'メダルのロックが解除されました！',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'ディスカッション「:title」はロックされています',
                 'beatmapset_discussion_post_new' => 'ディスカッション「:title」に新しい更新があります',
@@ -158,6 +185,7 @@ return [
                 'beatmapset_nominate' => '「:title」はノミネートされました',
                 'beatmapset_qualify' => '「:title」は十分なノミネートを獲得し、ランキングキューに入りました',
                 'beatmapset_rank' => '「:title」はrankedされました',
+                'beatmapset_remove_from_loved' => '「:title」はlovedから削除されました',
                 'beatmapset_reset_nominations' => '「:title」のノミネーションがリセットされました',
             ],
 
@@ -194,6 +222,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':usernameが新しいメダル「:title」をアンロックしました！',
                 'user_achievement_unlock_self' => '新しいメダル「:title」をアンロックしました！',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':usernameがビートマップを作成しました',
             ],
         ],
     ],

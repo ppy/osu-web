@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => 'забрани kudosu',
         'edit' => 'редактирай',
         'edited' => 'Последно редактирано от :editor :update_time.',
+        'guest' => '',
         'kudosu_denied' => 'Забранено получаване на kudosu.',
         'message_placeholder_deleted_beatmap' => 'Тази трудност е била изтрита, така че тя вече не може да се обсъжда.',
         'message_placeholder_locked' => 'Дискусията за този бийтмап бе деактивирана.',
@@ -187,12 +188,18 @@ return [
         'nominate_confirm' => 'Номинирай този бийтмап?',
         'nominated_by' => 'номиниран от :users',
         'not_enough_hype' => "Няма достатъчно надъхвания.",
-        'qualified' => 'Очаква се да бъде класиран :date, ако няма открити проблеми.',
-        'qualified_soon' => 'Очаква се да бъде класиран скоро, ако няма открити проблеми.',
+        'remove_from_loved' => '',
+        'remove_from_loved_prompt' => '',
         'required_text' => 'Номинации: :current/:required',
         'reset_message_deleted' => 'изтрито',
         'title' => 'Статус на Номиниране',
         'unresolved_issues' => 'Все още има нерешени проблеми, те трябва да бъдат проверени първо.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => '',
+        ],
 
         'reset_at' => [
             'nomination_reset' => 'Номинационният процес е бил нулиран :time_ago от :user заради нов проблем :discussion (:message).',
@@ -214,14 +221,15 @@ return [
             'not-found' => 'няма намерени резултати',
             'not-found-quote' => '... не, нищо не е намерено.',
             'filters' => [
+                'extra' => 'екстра',
                 'general' => 'Общо',
-                'mode' => 'Игра',
-                'status' => 'Категории',
                 'genre' => 'Жанр',
                 'language' => 'Език',
-                'extra' => 'екстра',
-                'rank' => 'Постигнат Ранг',
+                'mode' => 'Игра',
+                'nsfw' => '',
                 'played' => 'Изигран',
+                'rank' => 'Постигнат Ранг',
+                'status' => 'Категории',
             ],
             'sorting' => [
                 'title' => 'Заглавие',
@@ -242,10 +250,12 @@ return [
         ],
     ],
     'general' => [
-        'recommended' => 'Препоръчана трудност',
         'converts' => 'Включи конвертирани бийтмапове',
+        'follows' => '',
+        'recommended' => 'Препоръчана трудност',
     ],
     'mode' => [
+        'all' => '',
         'any' => 'Всички',
         'osu' => '',
         'taiko' => '',
@@ -300,7 +310,7 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
@@ -323,6 +333,12 @@ return [
         'other' => 'Други',
         'unspecified' => 'Неопределен',
     ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
     'played' => [
         'any' => 'Всички',
         'played' => 'Изиграни',

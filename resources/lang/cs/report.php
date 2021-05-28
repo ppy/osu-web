@@ -14,6 +14,11 @@ return [
         'title' => 'Chcete nahlásit komentář od :username?',
     ],
 
+    'forum_post' => [
+        'button' => '',
+        'title' => '',
+    ],
+
     'scores' => [
         'button' => 'Nahlásit skóre',
         'title' => 'Nahlásit skóre uživatele :username?',

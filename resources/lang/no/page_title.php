@@ -22,6 +22,7 @@ return [
             '401-verification' => 'kontobekreftelse',
             '405' => 'mangler',
             '422' => 'ugyldig forespørsel',
+            '429' => '',
             '500' => 'noe gikk i stykker',
             '503' => 'vedlikehold',
         ],
@@ -74,6 +75,9 @@ return [
         ],
         'contests_controller' => [
             '_' => 'konkurranser',
+        ],
+        'follows_controller' => [
+            'index' => '',
         ],
         'friends_controller' => [
             'index' => 'dashbord',

@@ -28,8 +28,11 @@ class UserNotificationOption extends Model
     const COMMENT_REPLY = 'comment_reply';
     const DELIVERY_MODES = ['mail', 'push'];
     const FORUM_TOPIC_REPLY = Notification::FORUM_TOPIC_REPLY;
+    const MAPPING = 'mapping';
 
     const HAS_DELIVERY_MODES = [
+        Notification::BEATMAP_OWNER_CHANGE,
+        self::MAPPING,
         self::BEATMAPSET_MODDING,
         Notification::CHANNEL_MESSAGE,
         Notification::COMMENT_NEW,

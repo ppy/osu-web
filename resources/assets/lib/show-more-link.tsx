@@ -3,74 +3,80 @@
 
 import * as React from 'react';
 import { Spinner } from 'spinner';
+import { classWithModifiers, Modifiers } from 'utils/css';
 
 const bn = 'show-more-link';
 
 interface Props {
   callback?: () => void;
-  data?: any;
+  data?: unknown;
   direction?: string;
-  event?: any;
-  hasMore?: boolean;
+  event?: string;
+  hasMore: boolean;
   label?: string;
-  loading?: boolean;
-  modifiers?: string[];
+  loading: boolean;
+  modifiers?: Modifiers;
   remaining?: number;
   url?: string;
 }
 
-// re RefObject<any>: this thing returns three different type of things and I couldn't figure out how to type it.
-const ShowMoreLink = React.forwardRef((props: Props, ref: React.RefObject<any>) => {
-  if (!props.hasMore && !props.loading) {
-    return null;
-  }
-
-  const icon = <span className={`fas fa-angle-${props.direction ?? 'down'}`} />;
-
-  const children = (
-    <>
-      <span className={`${bn}__spinner`}>
-        <Spinner />
-      </span>
-      <span className={`${bn}__label`}>
-        <span className={`${bn}__label-icon ${bn}__label-icon--left`}>
-          {icon}
-        </span>
-
-        <span className={`${bn}__label-text`}>
-          {props.label ?? osu.trans('common.buttons.show_more')}
-          {props.remaining != null && ` (${props.remaining})`}
-        </span>
-
-        <span className={`${bn}__label-icon ${bn}__label-icon--right`}>
-          {icon}
-        </span>
-      </span>
-    </>
-  );
-
-  const sharedProps = {
-    children,
-    className: osu.classWithModifiers(bn, props.modifiers),
-    ref,
+export default class ShowMoreLink extends React.PureComponent<Props> {
+  static defaultProps = {
+    hasMore: false,
+    loading: false,
   };
 
-  if (props.loading) {
-    return <span data-disabled='1' {...sharedProps} />;
+  render() {
+    if (!this.props.hasMore && !this.props.loading) {
+      return null;
+    }
+
+    const sharedProps = {
+      children: this.children(),
+      className: classWithModifiers(bn, this.props.modifiers),
+    };
+
+    if (this.props.loading) {
+      return <span data-disabled='1' {...sharedProps} />;
+    }
+
+    let onClick = this.props.callback;
+
+    if (onClick == null && this.props.url == null && this.props.event != null) {
+      const event = this.props.event;
+      onClick = () => $.publish(event, this.props.data);
+    }
+
+    if (this.props.url == null) {
+      return <button onClick={onClick} type='button' {...sharedProps} />;
+    }
+
+    return <a href={this.props.url} onClick={onClick} {...sharedProps} />;
   }
 
-  const url = props.url;
-  let onClick = props.callback;
+  private children() {
+    const icon = <span className={`fas fa-angle-${this.props.direction ?? 'down'}`} />;
 
-  if (onClick == null && url == null) {
-   onClick = () => $.publish(props.event, props.data);
+    return (
+      <>
+        <span className={`${bn}__spinner`}>
+          <Spinner />
+        </span>
+        <span className={`${bn}__label`}>
+          <span className={`${bn}__label-icon ${bn}__label-icon--left`}>
+            {icon}
+          </span>
+
+          <span className={`${bn}__label-text`}>
+            {this.props.label ?? osu.trans('common.buttons.show_more')}
+            {this.props.remaining != null && ` (${this.props.remaining})`}
+          </span>
+
+          <span className={`${bn}__label-icon ${bn}__label-icon--right`}>
+            {icon}
+          </span>
+        </span>
+      </>
+    );
   }
-
-  if (url == null) {
-    return <button type='button' onClick={onClick} {...sharedProps} />;
-  } else {
-    return <a href={url} onClick={onClick} {...sharedProps} />;
-  }
-});
-
-export { ShowMoreLink };
+}

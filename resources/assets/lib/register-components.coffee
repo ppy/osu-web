@@ -1,50 +1,55 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { ReactTurbolinks } from 'react-turbolinks'
+import ReactTurbolinks from 'react-turbolinks'
 import Events from 'beatmap-discussions/events'
-import { BeatmapsetPanel } from 'beatmapset-panel'
+import BeatmapsetPanel from 'beatmapset-panel'
 import { BlockButton } from 'block-button'
 import ChatIcon from 'chat-icon'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
 import { CountdownTimer } from 'countdown-timer'
+import ForumPostReport from 'forum-post-report'
 import { FriendButton } from 'friend-button'
 import { LandingNews } from 'landing-news'
 import { keyBy } from 'lodash'
+import { observable } from 'mobx'
+import { deletedUser } from 'models/user'
+import MainNotificationIcon from 'main-notification-icon'
 import MultiplayerSelectOptions from 'multiplayer-select-options'
-import NotificationIcon from 'notification-icon'
 import NotificationWidget from 'notification-widget/main'
 import NotificationWorker from 'notifications/worker'
 import QuickSearch from 'quick-search/main'
 import QuickSearchButton from 'quick-search-button'
 import QuickSearchWorker from 'quick-search/worker'
 import RankingFilter from 'ranking-filter'
+import SocketWorker from 'socket-worker'
 import { SpotlightSelectOptions } from 'spotlight-select-options'
 import { UserCard } from 'user-card'
 import { UserCardStore } from 'user-card-store'
 import { startListening, UserCardTooltip } from 'user-card-tooltip'
 import { UserCards } from 'user-cards'
 import { WikiSearch } from 'wiki-search'
-
-window.reactTurbolinks ?= new ReactTurbolinks()
+import core from 'osu-core-singleton'
+import { createElement } from 'react'
 
 # Globally init countdown timers
-reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
-  deadline: e.dataset.deadline
+core.reactTurbolinks.register 'countdownTimer', false, (e) ->
+  createElement CountdownTimer, deadline: e.dataset.deadline
 
 # Globally init friend buttons
-reactTurbolinks.register 'friendButton', FriendButton, (target) ->
-  container: target
-  userId: parseInt(target.dataset.target)
+core.reactTurbolinks.register 'friendButton', false, (target) ->
+  createElement FriendButton,
+    container: target
+    userId: parseInt(target.dataset.target)
 
 # Globally init block buttons
-reactTurbolinks.register 'blockButton', BlockButton, (target) ->
-  container: target
-  userId: parseInt(target.dataset.target)
+core.reactTurbolinks.register 'blockButton', false, (target) ->
+  createElement BlockButton,
+    container: target
+    userId: parseInt(target.dataset.target)
 
-
-reactTurbolinks.register 'beatmap-discussion-events', Events, (container) ->
+core.reactTurbolinks.register 'beatmap-discussion-events', false, (container) ->
   props = {
     container
     discussions: osu.parseJson('json-discussions')
@@ -55,78 +60,71 @@ reactTurbolinks.register 'beatmap-discussion-events', Events, (container) ->
   # TODO: move to store?
   users = osu.parseJson('json-users')
   props.users = _.keyBy(users, 'id')
-  props.users[null] = props.users[undefined] =
-    username: osu.trans 'users.deleted'
+  props.users[null] = props.users[undefined] = deletedUser.toJson()
 
-  props
+  createElement Events, props
 
 
-reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
-  JSON.parse(el.dataset.beatmapsetPanel)
+core.reactTurbolinks.register 'beatmapset-panel', false, (el) ->
+  createElement BeatmapsetPanel, observable(JSON.parse(el.dataset.beatmapsetPanel))
 
-reactTurbolinks.register 'spotlight-select-options', SpotlightSelectOptions, ->
-  osu.parseJson 'json-spotlight-select-options'
+core.reactTurbolinks.register 'forum-post-report', true, -> createElement(ForumPostReport)
 
-reactTurbolinks.registerPersistent 'multiplayer-select-options', MultiplayerSelectOptions, true, ->
-  osu.parseJson 'json-multiplayer-select-options'
+core.reactTurbolinks.register 'spotlight-select-options', false, ->
+  createElement SpotlightSelectOptions, osu.parseJson('json-spotlight-select-options')
 
-reactTurbolinks.register 'comments', CommentsManager, (el) ->
+core.reactTurbolinks.register 'multiplayer-select-options', true, ->
+  createElement MultiplayerSelectOptions, osu.parseJson('json-multiplayer-select-options')
+
+core.reactTurbolinks.register 'comments', false, (el) ->
   props = JSON.parse(el.dataset.props)
   props.component = Comments
 
-  props
+  createElement CommentsManager, props
 
-notificationWorker = new NotificationWorker()
-resetNotificationWorker = -> notificationWorker.setUserId(currentUser.id)
-$(document).ready resetNotificationWorker
-$.subscribe 'user:update', resetNotificationWorker
+core.reactTurbolinks.register 'chat-icon', true, (el) ->
+  createElement ChatIcon, type: el.dataset.type
 
-reactTurbolinks.registerPersistent 'chat-icon', ChatIcon, true, (el) ->
-  props = (try JSON.parse(el.dataset.chatIcon)) ? {}
-  props.worker = notificationWorker
+core.reactTurbolinks.register 'main-notification-icon', true, (el) ->
+  createElement MainNotificationIcon, type: el.dataset.type
 
-  props
-
-reactTurbolinks.registerPersistent 'notification-icon', NotificationIcon, true, (el) ->
-  props = (try JSON.parse(el.dataset.notificationIcon)) ? {}
-  props.worker = notificationWorker
-
-  props
-
-reactTurbolinks.registerPersistent 'notification-widget', NotificationWidget, true, (el) ->
-  try JSON.parse(el.dataset.notificationWidget)
+core.reactTurbolinks.register 'notification-widget', true, (el) ->
+  createElement NotificationWidget, (try JSON.parse(el.dataset.notificationWidget))
 
 quickSearchWorker = new QuickSearchWorker()
-reactTurbolinks.registerPersistent 'quick-search', QuickSearch, true, (el) ->
-  worker: quickSearchWorker
+core.reactTurbolinks.register 'quick-search', true, ->
+  createElement QuickSearch, worker: quickSearchWorker
 
-reactTurbolinks.registerPersistent 'quick-search-button', QuickSearchButton, true, ->
-  worker: quickSearchWorker
+core.reactTurbolinks.register 'quick-search-button', true, ->
+  createElement QuickSearchButton, worker: quickSearchWorker
 
-reactTurbolinks.registerPersistent 'ranking-filter', RankingFilter, true, (el) ->
-  countries: osu.parseJson 'json-countries'
-  gameMode: el.dataset.gameMode
-  type: el.dataset.type
-  variants: try JSON.parse(el.dataset.variants)
+core.reactTurbolinks.register 'ranking-filter', true, (el) ->
+  createElement RankingFilter,
+    countries: osu.parseJson 'json-countries'
+    gameMode: el.dataset.gameMode
+    type: el.dataset.type
+    variants: try JSON.parse(el.dataset.variants)
 
-reactTurbolinks.register 'user-card', UserCard, (el) ->
-  modifiers: try JSON.parse(el.dataset.modifiers)
-  user: try JSON.parse(el.dataset.user)
+core.reactTurbolinks.register 'user-card', false, (el) ->
+  createElement UserCard,
+    modifiers: try JSON.parse(el.dataset.modifiers)
+    user: if el.dataset.isCurrentUser then currentUser else try JSON.parse(el.dataset.user)
 
-reactTurbolinks.register 'user-card-store', UserCardStore, (el) ->
-  container: el
-  user: JSON.parse(el.dataset.user)
+core.reactTurbolinks.register 'user-card-store', false, (el) ->
+  createElement UserCardStore, user: JSON.parse(el.dataset.user)
 
-reactTurbolinks.register 'user-card-tooltip', UserCardTooltip, (el) ->
-  container: el
-  lookup: el.dataset.lookup
+core.reactTurbolinks.register 'user-card-tooltip', false, (el) ->
+  createElement UserCardTooltip,
+    container: el
+    lookup: el.dataset.lookup
+
 $(document).ready startListening
+core.reactTurbolinks.register 'user-cards', false, (el) ->
+  createElement UserCards,
+    modifiers: try JSON.parse(el.dataset.modifiers)
+    users: try JSON.parse(el.dataset.users)
 
-reactTurbolinks.register 'user-cards', UserCards, (el) ->
-  modifiers: try JSON.parse(el.dataset.modifiers)
-  users: try JSON.parse(el.dataset.users)
+core.reactTurbolinks.register 'wiki-search', false, -> createElement(WikiSearch)
 
-reactTurbolinks.register 'wiki-search', WikiSearch
-
-reactTurbolinks.register 'landing-news', LandingNews, (el) ->
-  posts: osu.parseJson 'json-posts'
+core.reactTurbolinks.register 'landing-news', false, ->
+  createElement LandingNews, posts: osu.parseJson 'json-posts'

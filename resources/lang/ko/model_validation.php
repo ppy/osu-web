@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => '비트맵 메타데이터 글을 삭제할 수 없습니다.',
             'beatmapset_post_no_edit' => '비트맵 메타데이터 글을 수정할 수 없습니다.',
+            'first_post_no_delete' => '시작 게시글은 삭제할 수 없습니다.',
+            'missing_topic' => '게시글에 주제가 없습니다.',
             'only_quote' => '답글에 인용만 포함하고 있습니다.',
 
             'attributes' => [
@@ -121,7 +123,7 @@ return [
     'user' => [
         'contains_username' => '비밀번호는 유저 이름을 포함할 수 없습니다.',
         'email_already_used' => '이미 사용중인 이메일 주소입니다.',
-        'email_not_allowed' => '',
+        'email_not_allowed' => '이메일 주소가 허용되지 않습니다.',
         'invalid_country' => '해당하는 국가가 데이터베이스에 존재하지 않습니다.',
         'invalid_discord' => 'Discord 유저 이름이 올바르지 않습니다.',
         'invalid_email' => "이메일 주소가 잘못되었습니다.",

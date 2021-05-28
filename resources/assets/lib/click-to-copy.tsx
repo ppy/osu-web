@@ -13,7 +13,7 @@ interface Props {
 
 const bn = 'click-to-copy';
 
-export default class ClickToCopy extends React.Component<Props, {}> {
+export default class ClickToCopy extends React.Component<Props> {
   static defaultProps = {
     showIcon: false,
     valueAsUrl: false,
@@ -21,7 +21,7 @@ export default class ClickToCopy extends React.Component<Props, {}> {
 
   // TODO: figure out if possible to use the qtip typescript types
   api: any;
-  timer: number|null = null;
+  timer?: number;
   title: string|null = null;
 
   click = (e: React.MouseEvent) => {
@@ -40,13 +40,13 @@ export default class ClickToCopy extends React.Component<Props, {}> {
     this.api.set('content.text', osu.trans('common.buttons.click_to_copy_copied'));
 
     // set timer to reset tooltip text
-    Timeout.clear(this.timer);
-    this.timer = Timeout.set(1000, this.restoreTooltipText);
+    window.clearTimeout(this.timer);
+    this.timer = window.setTimeout(this.restoreTooltipText, 1000);
 
     if (this.title == null) {
       this.title = el.getAttribute('title') || el.dataset.origTitle || null;
     }
-   }
+  };
 
   componentWillMount() {
     this.restoreTooltipText();
@@ -60,9 +60,9 @@ export default class ClickToCopy extends React.Component<Props, {}> {
     return (
       <a
         className={bn}
-        data-tooltip-pin-position={true}
-        data-tooltip-position='bottom center'
         data-tooltip-hide-events='mouseleave'
+        data-tooltip-pin-position
+        data-tooltip-position='bottom center'
         href={this.props.valueAsUrl ? this.props.value : '#'}
         onClick={this.click}
         title={osu.trans('common.buttons.click_to_copy')}
@@ -77,9 +77,9 @@ export default class ClickToCopy extends React.Component<Props, {}> {
     if (this.title != null) {
       this.api.hide();
 
-      Timeout.set(100, () => {
+      window.setTimeout(() => {
         this.api.set('content.text', this.title);
-      });
+      }, 100);
     }
-  }
+  };
 }

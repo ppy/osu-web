@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Thay vào đó, hay là chơi osu! một chút nhỉ?',
     'require_login' => 'Vui lòng đăng nhập để tiếp tục.',
     'require_verification' => 'Vui lòng xác minh để tiếp tục.',
     'restricted' => "Không thể làm việc đó trong khi bị hạn chế.",
@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Bạn đã đạt giới hạn số lần đề cử của hôm nay, hãy thử lại vào ngày mai.',
-            'full_bn_required' => 'Bạn phải là người đề cử beatmap để thực hiện hành động này.',
-            'full_bn_required_hybrid' => 'Bạn phải là người đề cử beatmap để đề cử các set beatmap có nhiều hơn một chế độ chơi.',
             'incorrect_state' => 'Có lỗi khi thực hiện, hãy thử tải lại trang.',
             'owner' => "Bạn không thể đề cử beatmap của bạn.",
             'set_metadata' => 'Bạn phải chọn thể loại nhạc và ngôn ngữ trước khi nominating.',
@@ -33,7 +31,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "",
+            'bot' => "Không thể bầu trên thảo luận tạo bởi bot",
             'limit_exceeded' => 'Vui lòng đợi một lúc trước khi bình chọn thêm',
             'owner' => "Không thể bình chọn cuộc thảo luận của bạn.",
             'wrong_beatmapset_state' => 'Chỉ có thể bình chọn cuộc thảo luận của beatmap ở trạng thái pending.',
@@ -43,13 +41,13 @@ return [
     'beatmap_discussion_post' => [
         'destroy' => [
             'not_owner' => 'Bạn chỉ có thể xóa bài đăng của chính mình.',
-            'resolved' => '',
+            'resolved' => 'Bạn không thể xoá một bài đăng về một thảo luận đã được giải quyết.',
             'system_generated' => 'Không thể xóa bài đăng được tạo tự động.',
         ],
 
         'edit' => [
             'not_owner' => 'Bài đăng chỉ có thể được chỉnh sửa bởi người đăng.',
-            'resolved' => '',
+            'resolved' => 'Bạn không thể sửa một bài đăng về một thảo luận đã được giải quyết.',
             'system_generated' => 'Không thể chỉnh sửa bài đăng được tạo tự động.',
         ],
 
@@ -70,6 +68,7 @@ return [
         'moderated' => 'Kênh hiện đang được kiểm duyệt.',
         'no_access' => 'Bạn không có quyền truy cập vào kênh này.',
         'restricted' => 'Bạn không thể gửi tin nhắn trong khi bị silenced, bị hạn chế hoặc bị cấm (ban).',
+        'silenced' => '',
     ],
 
     'comment' => [
@@ -80,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'Bạn không thể đổi phiếu bầu sau khi giai đoạn bầu chọn của cuộc thi này kết thúc.',
+
+        'entry' => [
+            'limit_reached' => 'Bạn đã đạt giới hạn bài dự thi cho cuộc thi này',
+            'over' => 'Cảm ơn về bài dự thi của bạn! Cuộc thi đã không còn nhận thêm mục nào nữa và sẽ sớm mở bình chọn.',
+        ],
     ],
 
     'forum' => [

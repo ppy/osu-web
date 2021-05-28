@@ -5,16 +5,16 @@
 
 return [
     'box' => [
-        'sent' => 'Doğrulama kodunu içeren bir e-posta :mail hesabınıza gönderilmiştir. Kodu giriniz.',
+        'sent' => 'Doğrulama kodunu içeren bir e-posta :mail adresine gönderilmiştir. Kodu giriniz.',
         'title' => 'Hesap Doğrulama',
         'verifying' => 'Doğrulanıyor...',
         'issuing' => 'Yeni kod veriliyor...',
 
         'info' => [
             'check_spam' => "E-postayı bulamıyorsanız hesabınızın \"spam\" klasörüne baktığınızdan emin olun.",
-            'recover' => "E-mailinize ulaşamıyorsanız veya hangisini kullandığınızı unuttuysanız, lütfen şurayı takip ediniz :link.",
-            'recover_link' => 'email kurtarma işlemi buradan',
-            'reissue' => 'Şunları da yapabilirsiniz: :reissue_link veya :logout_link.',
+            'recover' => "E-postanıza ulaşamıyorsanız veya hangisini kullandığınızı unuttuysanız, lütfen :link takip ediniz.",
+            'recover_link' => 'e-posta kurtarma işlemini',
+            'reissue' => 'Aynı zamanda :reissue_link veya :logout_link.',
             'reissue_link' => 'yeni kod isteyebilir',
             'logout_link' => 'çıkış yapabilirsiniz',
         ],

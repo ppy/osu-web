@@ -28,6 +28,8 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
     );
   }
 
+  const beatmap = discussion.beatmap_id == null ? undefined : beatmaps[discussion.beatmap_id];
+
   const additionalClasses = ['lighter'];
   if (discussion.message_type === 'praise') {
     additionalClasses.push('praise');
@@ -51,17 +53,15 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
     );
   };
 
-  const timestamp = () => {
-    return (
-      <div className={`${bn}__timestamp-text`}>
-        {
-          discussion.timestamp !== null
-            ? BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)
-            : osu.trans(`beatmap_discussions.timestamp_display.general`)
-        }
-      </div>
-    );
-  };
+  const timestamp = () => (
+    <div className={`${bn}__timestamp-text`}>
+      {
+        discussion.timestamp !== null
+          ? BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)
+          : osu.trans('beatmap_discussions.timestamp_display.general')
+      }
+    </div>
+  );
 
   const parentLink = () => {
     if (!discussion.parent_id) {
@@ -71,11 +71,11 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
     return (
       <div className={`${bn}__link`}>
         <a
-            href={BeatmapDiscussionHelper.url({discussion})}
-            className={`${bn}__link-text js-beatmap-discussion--jump`}
-            title={osu.trans('beatmap_discussions.review.go_to_child')}
+          className={`${bn}__link-text js-beatmap-discussion--jump`}
+          href={BeatmapDiscussionHelper.url({discussion})}
+          title={osu.trans('beatmap_discussions.review.go_to_child')}
         >
-            <i className='fas fa-external-link-alt'/>
+          <i className='fas fa-external-link-alt'/>
         </a>
       </div>
     );
@@ -86,11 +86,7 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
       <div className={`${bn}__content`}>
         <div className={`${bn}__selectors`}>
           <div className='icon-dropdown-menu icon-dropdown-menu--disabled'>
-            {discussion.beatmap_id &&
-              <BeatmapIcon
-                beatmap={beatmaps[discussion.beatmap_id]}
-              />
-            }
+            {beatmap != null && <BeatmapIcon beatmap={beatmap} />}
             {!discussion.beatmap_id &&
               <i className='fas fa-fw fa-star-of-life' title={osu.trans('beatmaps.discussions.mode.scopes.generalAll')} />
             }

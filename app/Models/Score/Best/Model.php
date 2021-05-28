@@ -5,29 +5,43 @@
 
 namespace App\Models\Score\Best;
 
-use App\Libraries\ModsHelper;
 use App\Libraries\ReplayFile;
 use App\Models\Beatmap;
+use App\Models\BeatmapModeStats;
 use App\Models\ReplayViewCount;
 use App\Models\Reportable;
 use App\Models\Score\Model as BaseModel;
 use App\Models\User;
+use App\Traits\WithDbCursorHelper;
+use Datadog;
 use DB;
+use Exception;
+use GuzzleHttp\Client;
 
 /**
  * @property User $user
  */
 abstract class Model extends BaseModel
 {
-    use Reportable;
+    use Reportable, WithDbCursorHelper;
 
     public $position = null;
     public $weight = null;
-    public $macros = [
+
+    protected $macros = [
         'accurateRankCounts',
         'forListing',
         'userBest',
     ];
+
+    const SORTS = [
+        'score_asc' => [
+            ['column' => 'score', 'order' => 'ASC'],
+            ['column' => 'score_id', 'columnInput' => 'id', 'order' => 'DESC'],
+        ],
+    ];
+
+    const DEFAULT_SORT = 'score_asc';
 
     const RANK_TO_STATS_COLUMN_MAPPING = [
         'A' => 'a_rank_count',
@@ -68,25 +82,37 @@ abstract class Model extends BaseModel
             $limit = config('osu.beatmaps.max-scores');
             $newQuery = (clone $query)->with('user')->limit($limit * 3);
 
-            $baseResult = $newQuery->get();
-
             $result = [];
-            $users = [];
+            $offset = 0;
+            $baseResultCount = 0;
+            $finalize = function (array $result) {
+                return array_values($result);
+            };
 
-            foreach ($baseResult as $entry) {
-                if (isset($users[$entry->user_id])) {
-                    continue;
-                }
+            while (true) {
+                $baseResult = $newQuery->offset($offset)->get();
+                $baseResultCount = count($baseResult);
 
-                if (count($result) >= $limit) {
+                if ($baseResultCount === 0) {
                     break;
                 }
 
-                $users[$entry->user_id] = true;
-                $result[] = $entry;
+                $offset += $baseResultCount;
+
+                foreach ($baseResult as $entry) {
+                    if (isset($result[$entry->user_id])) {
+                        continue;
+                    }
+
+                    $result[$entry->user_id] = $entry;
+
+                    if (count($result) >= $limit) {
+                        return $finalize($result);
+                    }
+                }
             }
 
-            return $result;
+            return $finalize($result);
         };
     }
 
@@ -97,11 +123,19 @@ abstract class Model extends BaseModel
             return;
         }
 
+        if ($options['cached'] ?? true) {
+            $rank = $this->userRankCached($options);
+
+            if ($rank !== null && $rank > 50) {
+                return $rank;
+            }
+        }
+
         $query = static
             ::where('beatmap_id', '=', $this->beatmap_id)
-            ->cursorWhere([
-                ['column' => 'score', 'order' => 'ASC', 'value' => $this->score],
-                ['column' => 'score_id', 'order' => 'DESC', 'value' => $this->getKey()],
+            ->cursorSort('score_asc', [
+                'score' => $this->score,
+                'id' => $this->getKey(),
             ]);
 
         if (isset($options['type'])) {
@@ -115,6 +149,62 @@ abstract class Model extends BaseModel
         $countQuery = DB::raw('DISTINCT user_id');
 
         return 1 + $query->visibleUsers()->default()->count($countQuery);
+    }
+
+    public function userRankCached($options)
+    {
+        $ddPrefix = config('datadog-helper.prefix_web').'.user_rank_cached_lookup';
+
+        $server = config('osu.scores.rank_cache.server_url');
+
+        if ($server === null || !empty($options['mods']) || ($options['type'] ?? 'global') !== 'global') {
+            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'unsupported_mode']);
+
+            return;
+        }
+
+        $modeInt = Beatmap::modeInt($this->getMode());
+        $stats = BeatmapModeStats::where([
+            'beatmap_id' => $this->beatmap_id,
+            'mode' => $modeInt,
+        ])->first();
+
+        if ($stats === null) {
+            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'missing_stats']);
+
+            return;
+        }
+
+        if ($stats->unique_users < config('osu.scores.rank_cache.min_users')) {
+            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'not_enough_unique_users']);
+
+            return;
+        }
+
+        try {
+            $response = (new Client(['base_uri' => $server]))
+                ->request('GET', 'rankLookup', [
+                    'connect_timeout' => 1,
+                    'timeout' => config('osu.scores.rank_cache.timeout'),
+
+                    'query' => [
+                        'beatmapId' => $this->beatmap_id,
+                        'rulesetId' => $modeInt,
+                        'score' => $this->score,
+                    ],
+                ])
+                ->getBody()
+                ->getContents();
+        } catch (Exception $e) {
+            log_error($e);
+            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'fetch_failure']);
+
+            return;
+        }
+
+        Datadog::increment("{$ddPrefix}.hit", 1);
+
+        return 1 + $response;
     }
 
     public function macroUserBest()
@@ -209,27 +299,11 @@ abstract class Model extends BaseModel
         return $query->where(['hidden' => false]);
     }
 
-    public function scopeWithMods($query, $modsArray)
-    {
-        return $query->where(function ($q) use ($modsArray) {
-            $bitset = ModsHelper::toBitset($modsArray);
-            $preferenceMask = ~ModsHelper::PREFERENCE_MODS_BITSET;
-
-            if (in_array('NM', $modsArray, true)) {
-                $q->orWhereRaw('enabled_mods & ? = 0', [$preferenceMask]);
-            }
-
-            if ($bitset > 0) {
-                $q->orWhereRaw('enabled_mods & ? = ?', [$preferenceMask | $bitset, $bitset]);
-            }
-        });
-    }
-
     public function scopeWithType($query, $type, $options)
     {
         switch ($type) {
             case 'country':
-                $countryAcronym = $options['countryAcronym'] ?? $options['user']->country_acronym;
+                $countryAcronym = $options['countryAcronym'] ?? $options['user']->country_acronym ?? 'XX';
 
                 return $query->fromCountry($countryAcronym);
             case 'friend':

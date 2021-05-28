@@ -1,8 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ClientJSON } from 'interfaces/client-json';
-import UserJSON from 'interfaces/user-json';
+import { ClientJson } from 'interfaces/client-json';
+import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { action, observable } from 'mobx';
 
@@ -12,10 +12,10 @@ export class Client {
   name: string | null;
   @observable revoked = false;
   @observable scopes: Set<string>;
-  user: UserJSON; // TODO: figure out whether this should be converted to User and go into store.
+  user: UserJson; // TODO: figure out whether this should be converted to User and go into store.
   userId: number;
 
-  constructor(client: ClientJSON) {
+  constructor(client: ClientJson) {
     this.id = client.id;
     this.name = client.name;
     this.scopes = new Set(client.scopes);

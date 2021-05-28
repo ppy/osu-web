@@ -37,7 +37,7 @@ return [
 
         'store' => [
             'cart' => 'winkelwagen',
-            'orders' => 'bestel geschiedenis',
+            'orders' => 'bestelgeschiedenis',
             'products' => 'producten',
         ],
 
@@ -46,7 +46,7 @@ return [
         ],
 
         'users' => [
-            'modding' => 'modderen',
+            'modding' => 'modding',
             'show' => 'info',
         ],
     ],
@@ -62,7 +62,7 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'featured artists',
+            'artists' => 'aanbevolen artiesten',
             'index' => 'index',
             'packs' => 'pakketten',
         ],
@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'hulp',
+            'getAbuse' => 'rapporteer misbruik',
             'getFaq' => 'faq',
             'getRules' => 'regels',
             'getSupport' => 'ondersteuning',
@@ -94,7 +95,7 @@ return [
             '_' => 'rankings',
             'charts' => 'in de schijnwerpers',
             'country' => 'land',
-            'index' => 'prestaties',
+            'index' => 'prestatie',
             'kudosu' => 'kudosu',
             'multiplayer' => 'multiplayer',
             'score' => 'score',
@@ -103,7 +104,7 @@ return [
             '_' => 'winkel',
             'cart-show' => 'winkelwagen',
             'getListing' => 'index',
-            'orders-index' => 'order geschiedenis',
+            'orders-index' => 'bestelgeschiedenis',
         ],
     ],
 
@@ -158,6 +159,10 @@ return [
             'error' => 'Ongeldige aanvraagparameter',
             'description' => '',
         ],
+        '429' => [
+            'error' => 'Snelheids limiet overschreden',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Oh nee! Iets brak! ;_;',
             'description' => "We worden automatisch op de hoogte gesteld van alle fouten.",
@@ -170,8 +175,8 @@ return [
             'error' => 'Offline voor onderhoud!',
             'description' => "Onderhoud duurt meestal ongeveer 5 seconden tot 10 minuten. Als we langer offline zijn, check :link voor meer informatie.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -203,6 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Instellingen',
+            'follows' => 'Volglijsten',
             'friends' => 'Vrienden',
             'logout' => 'Log Uit',
             'profile' => 'Mijn Profiel',

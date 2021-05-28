@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => '編輯頭像',
-            'rules' => '請確保您的頭像堅持 :link.<br/>這意味著必須 <strong>適合所有年齡</strong>. i.e. 沒有裸露，褻瀆或暗示性的內容。',
+            'rules' => '請確保您的頭像符合 :link.<br/>這意味著必須 <strong>適合所有年齡</strong>. i.e. 沒有裸露，褻瀆或暗示性的內容。',
             'rules_link' => '社群規則',
         ],
 
@@ -32,12 +32,11 @@ return [
             'title' => '編輯個人簡介',
 
             'user' => [
-                'user_discord' => 'Discord',
+                'user_discord' => '',
                 'user_from' => '目前所在地',
                 'user_interests' => '喜好',
-                'user_msnm' => 'skype',
                 'user_occ' => '職業',
-                'user_twitter' => 'twitter',
+                'user_twitter' => '',
                 'user_website' => '個人網站',
             ],
         ],
@@ -50,20 +49,22 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => '在以下模式的 qualified 圖譜上接收新問題通知',
-        'beatmapset_disqualify' => '',
-        'comment_reply' => '',
+        'beatmapset_disqualify' => '在以下模式的圖譜被標記為取消提名時收到通知',
+        'comment_reply' => '在您的留言被回覆時收到通知',
         'title' => '通知',
         'topic_auto_subscribe' => '自動啟用自己創建的主題的通知',
 
         'options' => [
             '_' => '傳送選項',
-            'beatmapset:modding' => '',
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '圖譜製作',
             'channel_message' => '私人訊息',
             'comment_new' => '新評論',
             'forum_topic_reply' => '主題回覆',
             'mail' => '郵箱',
+            'mapping' => '圖譜製作者',
             'push' => '推送',
-            'user_achievement_unlock' => '',
+            'user_achievement_unlock' => '成就解鎖',
         ],
     ],
 
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => '隱藏兒童不宜圖譜的警告',
+        'beatmapset_title_show_original' => '以原語言顯示圖譜資料',
         'title' => '選項',
 
         'beatmapset_download' => [
             '_' => '預設圖譜下載類型',
             'all' => '包含影片',
-            'no_video' => '不包含影片',
             'direct' => '在osu!direct中查看',
+            'no_video' => '不包含影片',
         ],
-
-        'beatmapset_title_show_original' => '以原語言顯示譜面資料',
     ],
 
     'playstyles' => [

@@ -14,6 +14,11 @@ return [
         'title' => 'Пожаловать на комментарий :username?',
     ],
 
+    'forum_post' => [
+        'button' => 'Пожаловаться',
+        'title' => 'Пожаловаться на пост :username?',
+    ],
+
     'scores' => [
         'button' => 'Пожаловаться',
         'title' => 'Пожаловаться на игру :username?',

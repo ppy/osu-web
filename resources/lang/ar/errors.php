@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => '',
+    'no_restricted_access' => 'أنت لست قادراً على تنفيذ هذا الإجراء عندما يكون حسابك في حالة مقيدة.',
+    'supporter_only' => 'يجب أن تكون osu!supporter لاستخدام هذه الميزة.',
+    'unknown' => 'حدث خطأ غير معروف.',
+
     'codes' => [
         'http-401' => 'الرجاء تسجيل الدخول للمضي قدما.',
         'http-403' => 'الوصول مرفوض.',
@@ -26,9 +31,4 @@ return [
         'default' => 'لم نمتكن من جلب اي نتائج, حاول مجددا لاحقا.',
         'operation_timeout_exception' => 'حاليا البحث مشغول اكثر من العادة, حاول مجددا لاحقا.',
     ],
-
-    'logged_out' => 'تم تسجيل خروجك. الرجاء تسجيل الدخول وإعادة المحاولة.',
-    'supporter_only' => 'يجب أن تكون osu!supporter لاستخدام هذه الميزة.',
-    'no_restricted_access' => 'أنت لست قادراً على تنفيذ هذا الإجراء عندما يكون حسابك في حالة مقيدة.',
-    'unknown' => 'حدث خطأ غير معروف.',
 ];

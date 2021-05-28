@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'ayuda',
+            'getAbuse' => 'notificar abuso',
             'getFaq' => 'preguntas frecuentes',
             'getRules' => 'reglas',
             'getSupport' => 'no, en serio, ¡necesito ayuda!',
@@ -120,7 +121,7 @@ return [
             'faq' => 'Preguntas frecuentes',
             'forum' => 'Foros de la comunidad',
             'livestreams' => 'Transmisiones en vivo',
-            'report' => 'Reportar un error',
+            'report' => 'Informar de un problema',
             'wiki' => 'Wiki',
         ],
         'legal' => [
@@ -158,6 +159,10 @@ return [
             'error' => 'Parámetro de solicitud no válido',
             'description' => '',
         ],
+        '429' => [
+            'error' => 'Se ha superado el límite de frecuencia',
+            'description' => '',
+        ],
         '500' => [
             'error' => '¡Oh no! ¡Algo se ha roto! ;_;',
             'description' => "Somos notificados automáticamente de cada error.",
@@ -170,8 +175,8 @@ return [
             'error' => '¡Fuera de servicio por mantenimiento!',
             'description' => "El mantenimiento normalmente tarda entre 5 segundos y 10 minutos. Si continúa pasado ese tiempo, ve :link para más información.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -203,6 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Configuración',
+            'follows' => 'Listas de seguimiento',
             'friends' => 'Amigos',
             'logout' => 'Cerrar sesión',
             'profile' => 'Mi perfil',

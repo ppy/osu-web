@@ -9,17 +9,17 @@ import * as _ from 'lodash';
 import NewsHeader from 'news-header';
 import NewsSidebar from 'news-sidebar/main';
 import * as React from 'react';
-import { ShowMoreLink } from 'show-more-link';
+import ShowMoreLink from 'show-more-link';
 import PostItem from './post-item';
 
 interface Props {
   container: HTMLElement;
   data: PostsJson;
-  sidebarMeta: NewsSidebarMetaJson;
 }
 
 interface PostsJson {
   news_posts: PostJson[];
+  news_sidebar: NewsSidebarMetaJson;
   search: Search;
 }
 
@@ -55,11 +55,11 @@ export default class Main extends React.Component<Props, State> {
 
   componentDidMount = () => {
     $(document).on(`turbolinks:before-cache.${this.eventId}`, this.saveState);
-  }
+  };
 
   componentWillUnmount = () => {
     $(document).off(`.${this.eventId}`);
-  }
+  };
 
   render() {
     return (
@@ -71,7 +71,7 @@ export default class Main extends React.Component<Props, State> {
         <div className='osu-page osu-page--wiki'>
           <div className='wiki-page'>
             <div className='wiki-page__toc'>
-              <NewsSidebar data={this.props.sidebarMeta} />
+              <NewsSidebar data={this.props.data.news_sidebar} />
             </div>
 
             <div className='wiki-page__content'>
@@ -132,8 +132,8 @@ export default class Main extends React.Component<Props, State> {
       posts.pop();
     }
 
-    return {posts, hasMore, loading};
-  }
+    return { hasMore, loading, posts };
+  };
 
   private restoreState = () => {
     const savedState = this.props.container.dataset.lastState;
@@ -141,11 +141,11 @@ export default class Main extends React.Component<Props, State> {
       this.state = JSON.parse(savedState) as State;
       delete this.props.container.dataset.lastState;
     }
-  }
+  };
 
   private saveState = () => {
     this.props.container.dataset.lastState = JSON.stringify(this.state);
-  }
+  };
 
   private showMore = () => {
     if (!this.state.hasMore) {
@@ -159,7 +159,7 @@ export default class Main extends React.Component<Props, State> {
     const search: Search = {
       cursor: {},
       limit: 21,
-      year: this.props.sidebarMeta.current_year,
+      year: this.props.data.news_sidebar.current_year,
     };
 
     const lastPost = _.last(this.state.posts);
@@ -171,10 +171,10 @@ export default class Main extends React.Component<Props, State> {
     this.setState({loading: true});
 
     $.get(route('news.index'), search)
-    .done((data) => {
-      this.setState(this.newStateFromData(data as PostsJson));
-    }).always(() => {
-      this.setState({loading: false});
-    });
-  }
+      .done((data) => {
+        this.setState(this.newStateFromData(data as PostsJson));
+      }).always(() => {
+        this.setState({loading: false});
+      });
+  };
 }

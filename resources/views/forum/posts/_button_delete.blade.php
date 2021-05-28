@@ -3,7 +3,17 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    if ($post->trashed()) {
+    if ($post->topic !== null && $post->topic->topic_first_post_id === $post->getKey()) {
+        $object = $post->topic;
+        $objectString = 'topic';
+        $objectRouteString = 'topics';
+    } else {
+        $object = $post;
+        $objectString= 'post';
+        $objectRouteString= 'posts';
+    }
+
+    if ($object->trashed()) {
         $deleteString = 'restore';
         $iconClass = 'fas fa-undo';
         $method = 'post';
@@ -22,9 +32,9 @@
 
     $class .= " js-post-delete-toggle--{$type}";
 
-    $label = trans("forum.post.actions.{$deleteString}");
-    $confirmation = trans("forum.post.confirm_{$deleteString}");
-    $url = route("forum.posts.{$deleteString}", $post);
+    $label = trans("forum.{$objectString}.actions.{$deleteString}");
+    $confirmation = trans("forum.{$objectString}.confirm_{$deleteString}");
+    $url = route("forum.{$objectRouteString}.{$deleteString}", $object);
 @endphp
 <button
     type="button"

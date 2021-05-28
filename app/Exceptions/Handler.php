@@ -12,6 +12,7 @@ use Illuminate\Auth\Access\AuthorizationException as LaravelAuthorizationExcepti
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Session\TokenMismatchException;
 use Laravel\Passport\Exceptions\MissingScopeException;
 use Laravel\Passport\Exceptions\OAuthServerException as PassportOAuthServerException;
@@ -115,7 +116,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if (method_exists($e, 'getResponse')) {
+        if ($e instanceof HttpResponseException) {
             return $e->getResponse();
         }
 
@@ -137,6 +138,8 @@ class Handler extends ExceptionHandler
             $message = static::exceptionMessage($e);
 
             if (is_json_request() || $request->ajax()) {
+                // TODO: need to set the correct error message for oauth errors
+                // message should in in error_description
                 $response = response(['error' => $message]);
             } else {
                 $response = ext_view('layout.error', [

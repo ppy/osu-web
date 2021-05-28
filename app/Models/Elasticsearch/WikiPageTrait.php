@@ -20,9 +20,4 @@ trait WikiPageTrait
     {
         return config_path('schemas/wiki_page.json');
     }
-
-    public static function esType()
-    {
-        return 'wiki_page';
-    }
 }

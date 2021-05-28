@@ -78,10 +78,10 @@ export class RankChart extends React.Component
       lastData = _.last(data)
 
       if lastData.x == 0
-        lastData.y = -@props.stats.rank.global
+        lastData.y = -@props.stats.global_rank
       else
         data.push
           x: 0
-          y: -@props.stats.rank.global
+          y: -@props.stats.global_rank
 
     @rankChart.loadData data

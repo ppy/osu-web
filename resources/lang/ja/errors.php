@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => '不正なURLまたは不正なリクエストメソッドです。',
+    'no_restricted_access' => 'アカウントが制限されている状態では実行できません。',
+    'supporter_only' => 'osu!サポーター限定の機能です。',
+    'unknown' => '不明のエラーが発生しました。',
+
     'codes' => [
         'http-401' => '続行するにはログインが必要です。',
         'http-403' => 'アクセスが拒否されました。',
@@ -26,9 +31,4 @@ return [
         'default' => '結果の取得に失敗しました。もう一度お試しください。',
         'operation_timeout_exception' => '検索機能が平時より混み合っています。もう一度お試しください。',
     ],
-
-    'logged_out' => 'ログアウトされています。ログインしてから再度お試しください。',
-    'supporter_only' => 'osu!サポーター限定の機能です。',
-    'no_restricted_access' => 'アカウントが制限されている状態では実行できません。',
-    'unknown' => '不明のエラーが発生しました。',
 ];

@@ -2,11 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import GameMode from 'interfaces/game-mode';
-import UserJSON from 'interfaces/user-json';
+import UserJson from 'interfaces/user-json';
 
-export default interface UserJSONExtended extends UserJSON {
+export default interface UserJsonExtended extends UserJson {
+  comments_count: number;
   country: Country;
   cover: Cover;
+  discord: string | null;
+  has_supported: boolean;
+  interests: string | null;
   is_admin: boolean;
   is_bng: boolean;
   is_full_bn: boolean;
@@ -16,5 +20,19 @@ export default interface UserJSONExtended extends UserJSON {
   is_nat: boolean;
   is_restricted: boolean;
   is_silenced: boolean;
-  playmode?: GameMode;
+  join_date: string;
+  kudosu: {
+    available: number;
+    total: number;
+  };
+  location: string | null;
+  occupation: string | null;
+  playmode: GameMode | null;
+  playstyle: string[];
+  post_count: number;
+  profile_order: string[];
+  title: string | null;
+  title_url: string | null;
+  twitter: string | null;
+  website: string | null;
 }

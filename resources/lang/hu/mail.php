@@ -84,7 +84,7 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => '',
+        'new' => 'Csak értesítlek, hogy új frissítések vannak dolgokon amiket követtél.',
         'settings' => 'Értesítési preferenciák megváltoztatása:',
         'subject' => 'Új osu! értesítések',
     ],

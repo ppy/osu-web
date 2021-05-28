@@ -50,12 +50,12 @@ return [
     ],
 
     'disabled' => [
-        'title' => '',
+        'title' => 'Hỏng rồi! Có vẻ tài khoản của bạn đã bị vô hiệu hóa.',
         'warning' => "",
 
         'if_mistake' => [
             '_' => '',
-            'email' => '',
+            'email' => 'email',
         ],
 
         'reasons' => [
@@ -64,10 +64,14 @@ return [
 
             'tos' => [
                 '_' => '',
-                'community_rules' => '',
-                'tos' => '',
+                'community_rules' => 'tiêu chuẩn cộng đồng',
+                'tos' => 'điều khoản dịch vụ',
             ],
         ],
+    ],
+
+    'filtering' => [
+        'by_game_mode' => '',
     ],
 
     'force_reactivation' => [
@@ -80,11 +84,11 @@ return [
         '_' => 'Đăng nhập',
         'button' => 'Đăng nhập',
         'button_posting' => 'Đang đăng nhập...',
-        'email_login_disabled' => '',
+        'email_login_disabled' => 'Đăng nhập bằng email hiện đã bị vô hiệu. Vui lòng sử dụng tên người dùng để đăng nhập.',
         'failed' => 'Đăng nhập không chính xác',
         'forgot' => 'Quên mật khẩu?',
-        'info' => '',
-        'invalid_captcha' => '',
+        'info' => 'Vui lòng đăng nhập để tiếp tục',
+        'invalid_captcha' => 'Quá nhiều lần thử đăng nhập thất bại, vui lòng hoàn tất captcha và thử lại. (Làm mới trang nếu không thấy captcha)',
         'locked_ip' => 'Địa chỉ IP của bạn đã bị khóa. Vui lòng đợi một vài phút.',
         'password' => 'Mật khẩu',
         'register' => "Không có tài khoản osu!? Tạo một tài khoản mới",
@@ -150,6 +154,10 @@ return [
         'plays_with' => 'Chơi bằng :devices',
         'title' => "Trang cá nhân của :username",
 
+        'comments_count' => [
+            '_' => 'Đã đăng :link',
+            'count' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Đổi Ảnh Bìa Trang Cá Nhân',
@@ -165,7 +173,7 @@ return [
 
                     'restriction_info' => [
                         '_' => 'Tải lên chỉ có sẵn cho :link',
-                        'link' => '',
+                        'link' => 'osu!supporter',
                     ],
                 ],
             ],
@@ -202,7 +210,7 @@ return [
                     'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmap Đang Chờ',
+                    'title' => 'Beatmap Đang Chờ (:count)',
                 ],
             ],
             'discussions' => [
@@ -304,7 +312,7 @@ return [
                 'download_replay' => 'Tải Xuống Replay',
                 'not_ranked' => 'Chỉ có beatmap được xếp hạng mới có pp.',
                 'pp_weight' => 'trọng số :percentage',
-                'view_details' => '',
+                'view_details' => 'Xem chi tiết',
                 'title' => 'Xếp Hạng',
 
                 'best' => [
@@ -345,13 +353,11 @@ return [
         ],
 
         'info' => [
-            'discord' => 'Discord',
+            'discord' => '',
             'interests' => 'Sở Thích',
-            'lastfm' => 'Last.fm',
             'location' => 'Vị Trí Hiện Tại',
             'occupation' => 'Nghề Nghiệp',
-            'skype' => 'Skype',
-            'twitter' => 'Twitter',
+            'twitter' => '',
             'website' => 'Website',
         ],
         'not_found' => [
@@ -401,6 +407,11 @@ return [
             'unranked_beatmapset_count' => '',
             'graveyard_beatmapset_count' => '',
         ],
+    ],
+
+    'silenced_banner' => [
+        'title' => '',
+        'message' => '',
     ],
 
     'status' => [

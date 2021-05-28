@@ -2,7 +2,7 @@
 
 Available ranking types:
 
-Name        | Descriprion
+Name        | Description
 ----------- | ---------------------------------
 charts      | Spotlight
 country     | Country

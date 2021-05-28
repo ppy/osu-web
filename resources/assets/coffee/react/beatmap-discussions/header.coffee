@@ -9,10 +9,14 @@ import { UserFilter } from './user-filter'
 import { BeatmapBasicStats } from 'beatmap-basic-stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
 import HeaderV4 from 'header-v4'
-import { PlaymodeTabs } from 'playmode-tabs'
+import { deletedUser } from 'models/user'
+import PlaymodeTabs from 'playmode-tabs'
 import * as React from 'react'
-import { a, div, h1, h2, p } from 'react-dom-factories'
+import { a, div, h1, h2, p, span } from 'react-dom-factories'
+import { StringWithComponent } from 'string-with-component'
+import { UserLink } from 'user-link'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
+import { showVisual } from 'utils/beatmapset-helper'
 import Chart from 'beatmap-discussions/chart'
 el = React.createElement
 
@@ -22,9 +26,9 @@ export class Header extends React.PureComponent
       el HeaderV4,
         theme: 'beatmapsets'
         titleAppend: el PlaymodeTabs,
-          currentMode: @props.currentBeatmap.mode
           beatmaps: @props.beatmaps
           counts: @props.currentDiscussions.countsByPlaymode
+          currentMode: @props.currentBeatmap.mode
 
       div
         className: 'osu-page'
@@ -75,7 +79,7 @@ export class Header extends React.PureComponent
       div
         className: "#{bn}__content"
         style:
-          backgroundImage: osu.urlPresence(@props.beatmapset.covers.cover)
+          backgroundImage: osu.urlPresence(@props.beatmapset.covers.cover) if showVisual(@props.beatmapset)
 
         a
           className: "#{bn}__title-container"
@@ -83,6 +87,8 @@ export class Header extends React.PureComponent
           h1
             className: "#{bn}__title"
             getTitle(@props.beatmapset)
+            if @props.beatmapset.nsfw
+              span className: 'nsfw-badge', osu.trans('beatmapsets.nsfw_badge.label')
           h2
             className: "#{bn}__title #{bn}__title--artist"
             getArtist(@props.beatmapset)
@@ -96,7 +102,7 @@ export class Header extends React.PureComponent
               beatmapset: @props.beatmapset
               currentBeatmap: @props.currentBeatmap
               currentDiscussions: @props.currentDiscussions
-              beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
+              beatmaps: @props.beatmaps.get(@props.currentBeatmap.mode)
 
           div
             className: "#{bn}__filter-group #{bn}__filter-group--stats"
@@ -115,6 +121,13 @@ export class Header extends React.PureComponent
             duration: @props.currentBeatmap.total_length * 1000
 
           div className: "#{bn}__beatmap-stats",
+            div className: "#{bn}__guest",
+              if @props.currentBeatmap.user_id != @props.beatmapset.user_id
+                span null,
+                  el StringWithComponent,
+                    mappings:
+                      ':user': el(UserLink, key: 'user', user: @props.users[@props.currentBeatmap.user_id] ? deletedUser)
+                    pattern: osu.trans('beatmaps.discussions.guest')
             el BeatmapBasicStats, beatmap: @props.currentBeatmap
 
 

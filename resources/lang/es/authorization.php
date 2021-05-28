@@ -6,7 +6,7 @@
 return [
     'play_more' => '¿Qué tal si en vez de eso jugamos un poco de osu!?',
     'require_login' => 'Por favor, inicia sesión para continuar.',
-    'require_verification' => 'Por favor verifica para proceder.',
+    'require_verification' => 'Verifique para continuar.',
     'restricted' => "No puede hacer eso mientras esté restringido.",
     'silenced' => "No puede hacer eso mientras esté silenciado.",
     'unauthorized' => 'Acceso denegado.',
@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Has alcanzado tu límite de nominaciones diarias, por favor inténtalo de nuevo mañana.',
-            'full_bn_required' => 'Debe ser un nominador completo para realizar esta nominación calificada.',
-            'full_bn_required_hybrid' => 'Debe ser un nominador completo para nominar sets de mapas con más de un modo de juego.',
             'incorrect_state' => 'Error al realizar esa acción, intente actualizar la página.',
             'owner' => "No puedes nominar tu propio mapa.",
             'set_metadata' => 'Debe establecer el género y el idioma antes de nominar.',
@@ -70,6 +68,7 @@ return [
         'moderated' => 'Ese canal está actualmente siendo moderado.',
         'no_access' => 'No tienes acceso a ese canal.',
         'restricted' => 'No puede enviar mensajes mientras esté silenciado, restringido o baneado.',
+        'silenced' => 'No puede enviar mensajes mientras esté silenciado, restringido o baneado.',
     ],
 
     'comment' => [
@@ -80,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => 'No puedes cambiar tu voto después de haber concluido el periodo de votación.',
+
+        'entry' => [
+            'limit_reached' => 'Has alcanzado el límite de entradas para este concurso',
+            'over' => '¡Gracias por su participación! Los envíos se han cerrado para este concurso y la votación se abrirá pronto.',
+        ],
     ],
 
     'forum' => [
@@ -136,7 +140,7 @@ return [
                 'voted' => 'Cambiar el voto no está permitido.',
 
                 'user' => [
-                    'require_login' => 'Por favor, Inicia sesión para votar.',
+                    'require_login' => 'Inicie sesión para votar.',
                     'restricted' => "No puede votar mientras esté restringido.",
                     'silenced' => "No puede votar mientras esté silenciado.",
                 ],

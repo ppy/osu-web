@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'ヘルプ',
+            'getAbuse' => '不正利用の報告',
             'getFaq' => 'FAQ',
             'getRules' => 'ルール',
             'getSupport' => 'サポートが必要です！',
@@ -158,6 +159,10 @@ return [
             'error' => '無効な要求パラメーターです。',
             'description' => '',
         ],
+        '429' => [
+            'error' => '試行可能回数の上限に達しました。',
+            'description' => '',
+        ],
         '500' => [
             'error' => '予期せぬエラーが発生しました ;_;',
             'description' => "自動的にエラーは報告されます。",
@@ -170,8 +175,8 @@ return [
             'error' => 'メンテナンス中です！',
             'description' => "メンテナンスには通常5秒から10分かかります。もし長時間ダウンしている場合は:linkを参照してください。",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -179,7 +184,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => 'サインイン / 登録',
+        'button' => 'ログイン / 登録',
 
         'login' => [
             'forgot' => "ログイン情報を忘れた",
@@ -203,6 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '設定',
+            'follows' => 'ウォッチリスト',
             'friends' => 'フレンド',
             'logout' => 'ログアウト',
             'profile' => 'プロフィール',

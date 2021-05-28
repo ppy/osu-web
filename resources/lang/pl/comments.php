@@ -35,7 +35,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => 'komentarze',
         'nav_title' => 'lista',
+        'no_comments' => 'Brak komentarzy.',
     ],
 
     'placeholder' => [

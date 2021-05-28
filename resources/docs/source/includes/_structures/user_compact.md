@@ -8,6 +8,7 @@
   "country_code": "AU",
   "is_active": true,
   "is_bot": false,
+  "is_deleted": false,
   "is_online": true,
   "is_supporter": true
 }
@@ -23,6 +24,7 @@ default_group   | string                    | Identifier of the default [Group](
 id              | number                    | unique identifier for user
 is_active       | boolean                   | has this account been active in the last x months?
 is_bot          | boolean                   | is this a bot account?
+is_deleted      | boolean                   ||
 is_online       | boolean                   | is the user currently online? (either on lazer or the new website)
 is_supporter    | boolean                   | does this user have supporter?
 last_visit      | [Timestamp](#timestamp)?  | last access time. `null` if the user hides online presence
@@ -37,17 +39,17 @@ Following are attributes which may be additionally included in the response. Rel
 Field                                | Type
 -------------------------------------|------------------------------------------------------------------
 account_history                      | [UserAccountHistory](#usercompact-useraccounthistory)[]
-active_tournament_banner             | [UserCompact.ProfileBanner](#usercompact-profilebanner)
+active_tournament_banner             | [UserCompact.ProfileBanner](#usercompact-profilebanner)?
 badges                               | [UserBadge](#usercompact-userbadge)[]
+beatmap_playcounts_count             | number
 blocks                               | |
 country                              | |
 cover                                | |
-current_mode_rank                    | |
 favourite_beatmapset_count           | number
 follower_count                       | number
 friends                              | |
 graveyard_beatmapset_count           | number
-groups                               | [Group](#group)[]
+groups                               | [UserGroup](#usergroup)[]
 is_admin                             | boolean
 is_bng                               | boolean
 is_full_bn                           | boolean
@@ -63,8 +65,11 @@ page                                 | |
 previous_usernames                   | |
 ranked_and_approved_beatmapset_count | |
 replays_watched_counts               | |
-scores_first_count                   | |
+scores_best_count                    | number
+scores_first_count                   | number
+scores_recent_count                  | number
 statistics                           | |
+statistics_rulesets                  | UserStatisticsRulesets
 support_level                        | |
 unranked_beatmapset_count            | |
 unread_pm_count                      | |
@@ -88,7 +93,7 @@ image         | string      | |
 
 Field       | Type      | Description
 ------------|-----------|------------
-id          | number    | |
+description | string?   | |
 type        | string    | `note`, `restriction`, or `silence`.
 timestamp   | Timestamp | |
 length      | number    | In seconds.
@@ -103,4 +108,3 @@ awarded_at  | Timestamp | |
 description | string    | |
 image_url   | string    | |
 url         | string    | |
-

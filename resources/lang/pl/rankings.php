@@ -42,8 +42,8 @@ return [
         'ranked_score' => 'Punkty rankingowe',
         'average_score' => 'Średni wynik',
         'average_performance' => 'Średnia liczba pp',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];

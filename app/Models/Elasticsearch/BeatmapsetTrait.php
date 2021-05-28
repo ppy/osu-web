@@ -33,11 +33,6 @@ trait BeatmapsetTrait
         return config_path('schemas/beatmaps.json');
     }
 
-    public static function esType()
-    {
-        return 'beatmaps';
-    }
-
     public function esShouldIndex()
     {
         return !$this->trashed() && !present($this->download_disabled_url);

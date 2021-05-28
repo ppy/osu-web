@@ -14,8 +14,9 @@ return [
     ],
 
     'voting' => [
-        'over' => 'Głosowanie dla tego konkursu zostało zakończone',
         'login_required' => 'Zaloguj się, aby zagłosować!',
+        'over' => 'Głosowanie dla tego konkursu zostało zakończone',
+        'show_voted_only' => 'Pokaż prace z moimi głosami',
 
         'best_of' => [
             'none_played' => "Wygląda na to, że żadna z beatmap kwalifikujących się do tego konkursu nie została przez ciebie zagrana.",
@@ -32,8 +33,6 @@ return [
         'login_required' => 'Zaloguj się, aby uczestniczyć w tym konkursie.',
         'silenced_or_restricted' => 'Nie możesz uczestniczyć w konkursach podczas uciszenia bądź blokady konta.',
         'preparation' => 'Ten konkurs jest obecnie przygotowywany. Czekaj cierpliwie!',
-        'over' => 'Dziękujemy za zgłoszenia! Przesyłanie prac zakończyło się i wkrótce rozpocznie się głosowanie.',
-        'limit_reached' => 'Osiągnięto limit zgłoszeń dla tego konkursu',
         'drop_here' => 'Tutaj umieść swoje zgłoszenie',
         'download' => 'Pobierz plik .osz',
         'wrong_type' => [

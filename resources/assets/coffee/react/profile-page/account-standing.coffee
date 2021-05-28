@@ -2,8 +2,9 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { ExtraHeader } from './extra-header'
+import TimeWithTooltip from 'time-with-tooltip'
 import * as React from 'react'
-import { a, div, span, h3, table, thead, tbody, tr, th, td, time } from 'react-dom-factories'
+import { a, div, span, h3, table, thead, tbody, tr, th, td } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'profile-extra-recent-infringements'
@@ -62,10 +63,7 @@ export class AccountStanding extends React.PureComponent
 
         td
           className: "#{bn}__table-cell #{bn}__table-cell--date"
-          time
-            className: "timeago"
-            dateTime: event.timestamp
-            moment(event.timestamp).fromNow()
+          el TimeWithTooltip, dateTime: event.timestamp, relative: true
 
         td
           className: "#{bn}__table-cell #{bn}__table-cell--action"

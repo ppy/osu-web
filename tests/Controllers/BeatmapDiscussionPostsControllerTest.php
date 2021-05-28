@@ -43,7 +43,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->be($this->user)
-            ->post(route('beatmap-discussion-posts.store'), $params)
+            ->post(route('beatmapsets.discussions.posts.store'), $params)
             ->assertStatus(401)
             ->assertViewIs('users.verify');
 
@@ -59,7 +59,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAsVerified($this->user)
-            ->post(route('beatmap-discussion-posts.store'), $params)
+            ->post(route('beatmapsets.discussions.posts.store'), $params)
             ->assertStatus(200);
 
         $this->assertSame($currentDiscussions + 1, BeatmapDiscussion::count());
@@ -82,7 +82,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAsVerified($this->user)
-            ->post(route('beatmap-discussion-posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'praise'))
+            ->post(route('beatmapsets.discussions.posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'praise'))
             ->assertStatus(404);
     }
 
@@ -93,8 +93,42 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAsVerified($this->mapper)
-            ->post(route('beatmap-discussion-posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'mapper_note'))
+            ->post(route('beatmapsets.discussions.posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'mapper_note'))
             ->assertStatus(200);
+
+        $this->assertSame($currentDiscussions + 1, BeatmapDiscussion::count());
+        $this->assertSame($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
+    }
+
+    public function testPostStoreNewDiscussionNoteByMapperOnGuestBeatmap()
+    {
+        $currentDiscussions = BeatmapDiscussion::count();
+        $currentDiscussionPosts = BeatmapDiscussionPost::count();
+        $this->beatmap->update(['user_id' => $this->user->getKey()]);
+
+        $params = $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'mapper_note');
+        $params['beatmap_discussion']['beatmap_id'] = $this->beatmap->getKey();
+        $this
+            ->actingAsVerified($this->mapper)
+            ->post(route('beatmapsets.discussions.posts.store'), $params)
+            ->assertStatus(403);
+
+        $this->assertSame($currentDiscussions, BeatmapDiscussion::count());
+        $this->assertSame($currentDiscussionPosts, BeatmapDiscussionPost::count());
+    }
+
+    public function testPostStoreNewDiscussionNoteByGuestOnGuestBeatmap()
+    {
+        $currentDiscussions = BeatmapDiscussion::count();
+        $currentDiscussionPosts = BeatmapDiscussionPost::count();
+        $this->beatmap->update(['user_id' => $this->user->getKey()]);
+
+        $params = $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'mapper_note');
+        $params['beatmap_discussion']['beatmap_id'] = $this->beatmap->getKey();
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('beatmapsets.discussions.posts.store'), $params)
+            ->assertSuccessful();
 
         $this->assertSame($currentDiscussions + 1, BeatmapDiscussion::count());
         $this->assertSame($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
@@ -105,11 +139,11 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $currentDiscussions = BeatmapDiscussion::count();
         $currentDiscussionPosts = BeatmapDiscussionPost::count();
 
-        $this->user->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng')->getKey()]);
+        $this->user->addToGroup(app('groups')->byIdentifier('bng'));
 
         $this
             ->actingAsVerified($this->user)
-            ->post(route('beatmap-discussion-posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'mapper_note'))
+            ->post(route('beatmapsets.discussions.posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'mapper_note'))
             ->assertStatus(200);
 
         $this->assertSame($currentDiscussions + 1, BeatmapDiscussion::count());
@@ -123,7 +157,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAsVerified($this->user)
-            ->post(route('beatmap-discussion-posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'mapper_note'))
+            ->post(route('beatmapsets.discussions.posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'mapper_note'))
             ->assertStatus(403);
 
         $this->assertSame($currentDiscussions, BeatmapDiscussion::count());
@@ -137,7 +171,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAsVerified($this->user)
-            ->post(route('beatmap-discussion-posts.store'), [
+            ->post(route('beatmapsets.discussions.posts.store'), [
                 'beatmap_discussion_id' => $this->beatmapDiscussion->id,
                 'beatmap_discussion_post' => [
                     'message' => 'Hello',
@@ -166,7 +200,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     public function testPostStoreNewReplyReopenByNominator()
     {
         $user = factory(User::class)->create();
-        $user->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng')->getKey()]);
+        $user->addToGroup(app('groups')->byIdentifier('bng'));
         $user->statisticsOsu()->create(['playcount' => $this->minPlays]);
         $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => true]);
         $lastDiscussionPosts = BeatmapDiscussionPost::count();
@@ -240,6 +274,44 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         }
     }
 
+    public function testPostStoreNewReplyResolveByMapperOnGuestBeatmap()
+    {
+        $guest = factory(User::class)->create();
+        $this->beatmap->update(['user_id' => $guest->getKey()]);
+        $this->beatmapDiscussion->update([
+            'beatmap_id' => $this->beatmap->getKey(),
+            'message_type' => 'problem',
+            'resolved' => false,
+        ]);
+        $discussionPostCount = BeatmapDiscussionPost::count();
+
+        $this
+            ->postResolveDiscussion(true, $this->mapper)
+            ->assertStatus(403);
+
+        $this->assertSame($discussionPostCount, BeatmapDiscussionPost::count());
+        $this->assertFalse($this->beatmapDiscussion->fresh()->resolved);
+    }
+
+    public function testPostStoreNewReplyResolveByGuest()
+    {
+        $guest = factory(User::class)->create();
+        $this->beatmap->update(['user_id' => $guest->getKey()]);
+        $this->beatmapDiscussion->update([
+            'beatmap_id' => $this->beatmap->getKey(),
+            'message_type' => 'problem',
+            'resolved' => false,
+        ]);
+        $discussionPostCount = BeatmapDiscussionPost::count();
+
+        $this
+            ->postResolveDiscussion(true, $guest)
+            ->assertSuccessful();
+
+        $this->assertSame($discussionPostCount + 2, BeatmapDiscussionPost::count());
+        $this->assertTrue($this->beatmapDiscussion->fresh()->resolved);
+    }
+
     public function testPostStoreNewReplyResolveByOtherUser()
     {
         $user = factory(User::class)->create();
@@ -261,7 +333,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAsVerified($this->user)
-            ->post(route('beatmap-discussion-posts.store'), [
+            ->post(route('beatmapsets.discussions.posts.store'), [
                 'beatmapset_id' => $this->otherBeatmapset->beatmapset_id,
                 'beatmap_discussion_post' => [
                     'message' => 'Hello',
@@ -414,7 +486,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         // changing timestamp is allowed
         $this
             ->actingAs($this->user)
-            ->put(route('beatmap-discussion-posts.update', $post->id), [
+            ->put(route('beatmapsets.discussions.posts.update', $post->id), [
                 'beatmap_discussion_post' => [
                     'message' => "{$newTimestampString} Edited timestamp.",
                 ],
@@ -578,7 +650,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAs($this->user)
-            ->post(route('beatmap-discussion-posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'problem'));
+            ->post(route('beatmapsets.discussions.posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'problem'));
 
         Event::assertNotDispatched(NewPrivateNotificationEvent::class);
     }
@@ -601,7 +673,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAsVerified($this->user)
-            ->post(route('beatmap-discussion-posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'problem'));
+            ->post(route('beatmapsets.discussions.posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'problem'));
 
         Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use ($user) {
             return in_array($user->getKey(), $event->getReceiverIds(), true);
@@ -624,7 +696,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAsVerified($this->user)
-            ->post(route('beatmap-discussion-posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'problem'));
+            ->post(route('beatmapsets.discussions.posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'problem'));
 
         $assertMethod(NewPrivateNotificationEvent::class);
     }
@@ -642,7 +714,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAs($this->user)
-            ->post(route('beatmap-discussion-posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'problem'));
+            ->post(route('beatmapsets.discussions.posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'problem'));
 
         Event::assertNotDispatched(NewPrivateNotificationEvent::class);
     }
@@ -672,7 +744,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAsVerified($user)
-            ->post(route('beatmap-discussion-posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'problem'));
+            ->post(route('beatmapsets.discussions.posts.store'), $this->makeBeatmapsetDiscussionPostParams($this->beatmapset, 'problem'));
 
         foreach ($queued as $class) {
             Queue::assertPushed($class);
@@ -724,7 +796,9 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->beatmapset = factory(Beatmapset::class)->create([
             'user_id' => $this->mapper->getKey(),
         ]);
-        $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make([
+            'user_id' => $this->mapper->getKey(),
+        ]));
         $this->beatmapDiscussion = factory(BeatmapDiscussion::class, 'timeline')->create([
             'beatmapset_id' => $this->beatmapset->getKey(),
             'beatmap_id' => $this->beatmap->getKey(),
@@ -742,14 +816,14 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     private function deletePost(BeatmapDiscussionPost $post, ?User $user = null)
     {
         return ($user === null ? $this : $this->actingAsVerified($user))
-            ->delete(route('beatmap-discussion-posts.destroy', $post->id));
+            ->delete(route('beatmapsets.discussions.posts.destroy', $post->id));
     }
 
     private function postResolveDiscussion(bool $resolved, User $user)
     {
         return $this
             ->actingAsVerified($user)
-            ->post(route('beatmap-discussion-posts.store'), [
+            ->post(route('beatmapsets.discussions.posts.store'), [
                 'beatmap_discussion_id' => $this->beatmapDiscussion->id,
                 'beatmap_discussion' => [
                     'resolved' => $resolved,
@@ -764,7 +838,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     {
         return $this
             ->actingAsVerified($user)
-            ->post(route('beatmap-discussion-posts.store'), [
+            ->post(route('beatmapsets.discussions.posts.store'), [
                 'beatmap_discussion_id' => $this->beatmapDiscussion->id,
                 'beatmap_discussion' => [],
                 'beatmap_discussion_post' => [
@@ -776,7 +850,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     private function putPost(string $message, BeatmapDiscussionPost $post, ?User $user = null)
     {
         return ($user === null ? $this : $this->actingAsVerified($user))
-            ->put(route('beatmap-discussion-posts.update', $post->id), [
+            ->put(route('beatmapsets.discussions.posts.update', $post->id), [
                 'beatmap_discussion_post' => [
                     'message' => $message,
                 ],

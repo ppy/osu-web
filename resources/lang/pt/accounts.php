@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'localização atual',
                 'user_interests' => 'interesses',
-                'user_msnm' => '',
                 'user_occ' => 'ocupação',
                 'user_twitter' => '',
                 'user_website' => 'website',
@@ -57,11 +56,13 @@ return [
 
         'options' => [
             '_' => 'opções de envio',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'modificações de beatmaps',
             'channel_message' => 'Mensagens do chat privado',
             'comment_new' => 'Novos comentários ',
             'forum_topic_reply' => 'resposta a um tópico',
             'mail' => 'correio',
+            'mapping' => 'mapeador de beatmaps',
             'push' => 'push',
             'user_achievement_unlock' => 'medalha de usuário foi desbloqueada',
         ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_nsfw' => 'ocultar avisos para conteúdo explícito em beatmaps',
+        'beatmapset_title_show_original' => 'mostrar os metadados do beatmap no idioma original',
         'title' => 'Opções',
 
         'beatmapset_download' => [
             '_' => 'tipo de download padrão de beatmap',
             'all' => 'com vídeo, se disponível',
-            'no_video' => 'sem vídeo',
             'direct' => 'abrir em osu!direct',
+            'no_video' => 'sem vídeo',
         ],
-
-        'beatmapset_title_show_original' => 'mostrar os metadados do beatmap no idioma original',
     ],
 
     'playstyles' => [

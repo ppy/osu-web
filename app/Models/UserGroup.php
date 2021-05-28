@@ -12,12 +12,17 @@ namespace App\Models;
  * @property User $user
  * @property int $user_id
  * @property int $user_pending
+ * @property array|null $playmodes
  */
 class UserGroup extends Model
 {
     protected $table = 'phpbb_user_group';
     public $timestamps = false;
     protected $primaryKeys = ['user_id', 'group_id'];
+    protected $casts = [
+        'playmodes' => 'array',
+        'user_pending' => 'boolean',
+    ];
 
     public function group()
     {

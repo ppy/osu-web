@@ -13,5 +13,5 @@ declare module 'ziggy' {
 }
 
 declare module 'ziggy-route' {
-  export default function route(name: string, params: any, absolute?: boolean, ziggy?: {}): any;
+  export default function route(name: string, params: any, absolute?: boolean, ziggy?: import('ziggy').ZiggyClass): string;
 }

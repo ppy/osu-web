@@ -6,16 +6,19 @@
 return [
     'talking_in' => 'parle dans :channel',
     'talking_with' => 'parle avec :name',
-    'title_compact' => 'chat',
+    'title_compact' => 'tchat',
 
     'cannot_send' => [
-        'channel' => 'Vous ne pouvez pas envoyer de messages dans ce canal pour le moment. Cela peut être dû à une des raisons suivantes:',
-        'user' => 'Vous ne pouvez pas envoyer de messages à cet utilisateur pour le moment. Cela peut être dû à une des raisons suivantes:',
+        'channel' => 'Vous ne pouvez pas envoyer de messages dans ce canal pour le moment. Cela peut être dû à une des raisons suivantes :',
+        'user' => 'Vous ne pouvez pas envoyer de messages à cet utilisateur pour le moment. Cela peut être dû à une des raisons suivantes :',
         'reasons' => [
             'blocked' => 'Vous avez été bloqué par le destinataire',
             'channel_moderated' => 'Ce canal a été modéré',
             'friends_only' => 'Le destinaire accepte uniquement les messages provenant de personnes sur sa liste d’amis',
+            'not_enough_plays' => 'Vous n\'avez pas assez joué au jeu',
+            'not_verified' => 'Votre session n\'a pas été vérifiée',
             'restricted' => 'Vous êtes actuellement restreint',
+            'silenced' => 'Vous êtes actuellement réduit au silence',
             'target_restricted' => 'Le destinataire est actuellement restreint',
         ],
     ],
@@ -27,6 +30,6 @@ return [
     'no-conversations' => [
         'howto' => "Démarrer des conversations depuis un profil utilisateur ou un popup carte utilisateur.",
         'lazer' => 'Les canaux publics que vous rejoignez via <a href=":link">osu!lazer</a> seront aussi visibles ici.',
-        'title' => 'pas encore de conversations',
+        'title' => 'aucune conversation',
     ],
 ];

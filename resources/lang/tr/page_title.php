@@ -22,6 +22,7 @@ return [
             '401-verification' => 'hesap doğrulama',
             '405' => 'mevcut değil',
             '422' => 'geçersiz istek',
+            '429' => 'çok fazla istek',
             '500' => 'bir şeyler yanlış',
             '503' => 'bakım',
         ],
@@ -60,7 +61,7 @@ return [
         ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap tartışma',
-            'index' => 'beatmap listesi',
+            'index' => 'beatmap kataloğu',
             'show' => 'beatmap bilgisi',
         ],
         'changelog_controller' => [
@@ -74,6 +75,9 @@ return [
         ],
         'contests_controller' => [
             '_' => 'yarışmalar',
+        ],
+        'follows_controller' => [
+            'index' => 'kontrol paneli',
         ],
         'friends_controller' => [
             'index' => 'kontrol paneli',

@@ -47,11 +47,13 @@ return [
         'confirm_restore' => 'Sigur dorești să restaurezi postarea?',
         'edited' => 'Editat ultima dată de către :user :when, editat de :count ori în total.',
         'posted_at' => 'postat :when',
+        'posted_by' => '',
 
         'actions' => [
             'destroy' => 'Șterge postarea',
-            'restore' => 'Restaurează postarea',
             'edit' => 'Editează postarea',
+            'report' => '',
+            'restore' => 'Restaurează postarea',
         ],
 
         'create' => [
@@ -73,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => '',
+        'confirm_restore' => '',
         'deleted' => 'subiect șters',
         'go_to_latest' => 'vezi cea mai recentă postare',
         'has_replied' => 'Ai răspuns în acest topic',
@@ -86,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'de :user',
         'started_by_verbose' => 'început de :user',
+
+        'actions' => [
+            'destroy' => '',
+            'restore' => '',
+        ],
 
         'create' => [
             'close' => 'Închide',

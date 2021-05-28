@@ -83,5 +83,25 @@
                 </label>
             </div>
         </div>
+
+        <div class="account-edit__input-group">
+            <div class="account-edit-entry account-edit-entry--no-label js-account-edit js-user-preferences-update" data-url="{{ route('account.options') }}" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
+                <label class="account-edit-entry__checkbox">
+                    @include('objects._switch', [
+                        'additionalClass'=> 'js-account-edit__input',
+                        'checked' => $customization->beatmapset_show_nsfw,
+                        'name' => 'user_profile_customization[beatmapset_show_nsfw]',
+                    ])
+
+                    <span class="account-edit-entry__checkbox-label">
+                        {{ trans('accounts.options.beatmapset_show_nsfw') }}
+                    </span>
+
+                    <div class="account-edit-entry__checkbox-status">
+                        @include('accounts._edit_entry_status')
+                    </div>
+                </label>
+            </div>
+        </div>
     </div>
 </div>

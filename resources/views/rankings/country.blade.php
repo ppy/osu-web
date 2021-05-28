@@ -44,8 +44,9 @@
                                     'type' => 'performance',
                                     'country' => $score->country->acronym,
                             ])}}">
-                                @include('objects._country_flag', [
-                                    'country_code' => $score->country->acronym,
+                                @include('objects._flag_country', [
+                                    'countryCode' => $score->country->acronym,
+                                    'modifiers' => ['medium'],
                                 ])
                                 <span class="ranking-page-table__country-link-text">
                                     {{ $score->country->name }}

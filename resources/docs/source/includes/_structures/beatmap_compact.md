@@ -7,6 +7,8 @@ Field             | Type                  | Description
 difficulty_rating | float                 | |
 id                | integer               | |
 mode              | [GameMode](#gamemode) | |
+status            | string                | See [Rank status](#beatmapsetcompact-rank-status) for list of possible values.
+total_length      | integer               | |
 version           | string                | |
 
 Optional attributes:

@@ -3,11 +3,13 @@
 
 import { CommentsManager } from 'comments-manager'
 import core from 'osu-core-singleton'
+import { createElement } from 'react'
 import { Main } from './comments-show/main'
 
-reactTurbolinks.registerPersistent 'comments-show', CommentsManager, true, ->
+core.reactTurbolinks.register 'comments-show', true, ->
   commentBundle = osu.parseJson('json-show')
-  core.dataStore.updateWithCommentBundleJSON(commentBundle)
-  core.dataStore.uiState.initializeWithCommentBundleJSON(commentBundle)
+  core.dataStore.updateWithCommentBundleJson(commentBundle)
+  core.dataStore.uiState.initializeWithCommentBundleJson(commentBundle)
 
-  component: Main
+  createElement CommentsManager,
+    component: Main

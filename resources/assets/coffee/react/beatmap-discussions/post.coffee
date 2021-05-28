@@ -3,16 +3,17 @@
 
 import { MessageLengthCounter } from './message-length-counter'
 import { UserCard } from './user-card'
-import mapperGroup from 'beatmap-discussions/mapper-group'
 import { ReviewPost } from 'beatmap-discussions/review-post'
 import { BigButton } from 'big-button'
 import ClickToCopy from 'click-to-copy'
 import * as React from 'react'
+import TextareaAutosize from 'react-autosize-textarea'
 import { a, button, div, span } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
 import Editor from 'beatmap-discussions/editor'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
+import { badgeGroup } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers } from 'utils/css'
 
 el = React.createElement
@@ -63,7 +64,11 @@ export class Post extends React.PureComponent
         if (!@props.hideUserCard)
           el UserCard,
             user: @props.user
-            group: @userGroup()
+            group: badgeGroup
+              beatmapset: @props.beatmapset
+              currentBeatmap: @props.beatmap
+              discussion: @props.discussion
+              user: @props.user
         if @state.editing
           @messageEditor()
         else
@@ -151,9 +156,9 @@ export class Post extends React.PureComponent
   messageViewer: =>
     [controller, key, deleteModel] =
       if @props.type == 'reply'
-        ['beatmap-discussion-posts', 'beatmap_discussion_post', @props.post]
+        ['beatmapsets.discussions.posts', 'post', @props.post]
       else
-        ['beatmap-discussions', 'beatmap_discussion', @props.discussion]
+        ['beatmapsets.discussions', 'discussion', @props.discussion]
 
     div className: "#{bn}__message-container",
       if @props.discussion.message_type == 'review' && @props.type == 'discussion'
@@ -183,9 +188,9 @@ export class Post extends React.PureComponent
                 editor: osu.link laroute.route('users.show', user: deleteModel.deleted_by_id),
                   @props.users[deleteModel.deleted_by_id]?.username
                   classNames: ["#{bn}__info-user"]
-                delete_time: osu.timeago @props.post.deleted_at
+                delete_time: osu.timeago deleteModel.deleted_at
 
-        if @props.post.updated_at != @props.post.created_at && @props.lastEditor?.id
+        if @props.post.updated_at != @props.post.created_at && @props.lastEditor?
           span
             className: "#{bn}__info #{bn}__info--edited"
             dangerouslySetInnerHTML:
@@ -240,7 +245,7 @@ export class Post extends React.PureComponent
             if @props.discussion.can_grant_kudosu
               a
                 className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
-                href: laroute.route('beatmap-discussions.deny-kudosu', beatmap_discussion: @props.discussion.id)
+                href: laroute.route('beatmapsets.discussions.deny-kudosu', discussion: @props.discussion.id)
                 'data-remote': true
                 'data-method': 'POST'
                 'data-confirm': osu.trans('common.confirmation')
@@ -248,7 +253,7 @@ export class Post extends React.PureComponent
             else if @props.discussion.kudosu_denied
               a
                 className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
-                href: laroute.route('beatmap-discussions.allow-kudosu', beatmap_discussion: @props.discussion.id)
+                href: laroute.route('beatmapsets.discussions.allow-kudosu', discussion: @props.discussion.id)
                 'data-remote': true
                 'data-method': 'POST'
                 'data-confirm': osu.trans('common.confirmation')
@@ -299,7 +304,7 @@ export class Post extends React.PureComponent
     @setState posting: true
 
     @xhr.updatePost?.abort()
-    @xhr.updatePost = $.ajax laroute.route('beatmap-discussion-posts.update', beatmap_discussion_post: @props.post.id),
+    @xhr.updatePost = $.ajax laroute.route('beatmapsets.discussions.posts.update', post: @props.post.id),
       method: 'PUT'
       data:
         beatmap_discussion_post:
@@ -312,10 +317,6 @@ export class Post extends React.PureComponent
     .fail osu.ajaxError
 
     .always => @setState posting: false
-
-
-  userGroup: ->
-    if @isOwner() then mapperGroup else @props.user.groups[0]
 
 
   validPost: =>

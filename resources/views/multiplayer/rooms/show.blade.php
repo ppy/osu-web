@@ -44,14 +44,16 @@
                     {{ $room->starts_at->formatLocalized('%Y-%m-%d') }}
                 </div>
             </div>
-            <div class="counter-box counter-box--info">
-                <div class="counter-box__title">
-                    {{ trans('rankings.spotlight.end_date') }}
+            @if ($room->ends_at !== null)
+                <div class="counter-box counter-box--info">
+                    <div class="counter-box__title">
+                        {{ trans('rankings.spotlight.end_date') }}
+                    </div>
+                    <div class="counter-box__count">
+                        {{ $room->ends_at->formatLocalized('%Y-%m-%d') }}
+                    </div>
                 </div>
-                <div class="counter-box__count">
-                    {{ $room->ends_at->formatLocalized('%Y-%m-%d') }}
-                </div>
-            </div>
+            @endif
             <div class="counter-box counter-box--info">
                 <div class="counter-box__title">
                     {{ trans('rankings.spotlight.map_count') }}

@@ -43,7 +43,7 @@ return [
         'register' => 'Daftarkan aplikasi',
         'terms_of_use' => [
             '_' => 'Dengan menggunakan API kami Anda menyetujui :link berikut.',
-            'link' => 'Syarat Penggunaan',
+            'link' => 'Ketentuan Penggunaan',
         ],
     ],
 

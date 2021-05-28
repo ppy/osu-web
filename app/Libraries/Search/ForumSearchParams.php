@@ -11,6 +11,9 @@ class ForumSearchParams extends SearchParams
 {
     use HasFilteredForums;
 
+    const DEFAULT_SORT_ORDER = 'desc';
+    const VALID_SORT_FIELDS = ['relevance', 'created'];
+
     // all public because lazy.
 
     /** @var int|null */
@@ -31,6 +34,12 @@ class ForumSearchParams extends SearchParams
     /** @var int|null */
     public $username = null;
 
+    /** @var string */
+    public $sortField = 'relevance';
+
+    /** @var string */
+    public $sortOrder = self::DEFAULT_SORT_ORDER;
+
     /**
      * {@inheritdoc}
      */
@@ -48,10 +57,5 @@ class ForumSearchParams extends SearchParams
     public function isCacheable(): bool
     {
         return false;
-    }
-
-    public function shouldReturnEmptyResponse(): bool
-    {
-        return parent::shouldReturnEmptyResponse() || $this->isQueryStringTooShort();
     }
 }

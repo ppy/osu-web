@@ -39,8 +39,6 @@ export default class BbcodeEditor extends React.Component
           div className: 'bbcode-editor__buttons bbcode-editor__buttons--actions',
             div className: 'bbcode-editor__button bbcode-editor__button--cancel',
               @actionButton @_cancel, osu.trans('common.buttons.cancel')
-            div className: 'bbcode-editor__button bbcode-editor__button--hide-on-preview',
-              @actionButton @_reset, osu.trans('common.buttons.reset')
             div className: 'bbcode-editor__button bbcode-editor__button--hide-on-write',
               @renderPreviewHideButton()
             div className: 'bbcode-editor__button bbcode-editor__button--hide-on-preview',
@@ -85,12 +83,6 @@ export default class BbcodeEditor extends React.Component
 
     @body.value = @props.rawValue
     @sendOnChange(event: event, type: 'cancel')
-
-
-  _reset: (event) =>
-    @body.value = @props.rawValue
-    @sendOnChange(event: event, type: 'reset')
-    @body.focus()
 
 
   _save: (event) =>

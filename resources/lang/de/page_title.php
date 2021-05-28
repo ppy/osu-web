@@ -22,6 +22,7 @@ return [
             '401-verification' => 'accountverifizierung',
             '405' => 'nicht gefunden',
             '422' => 'ungültige Anfrage',
+            '429' => 'zu viele anfragen',
             '500' => 'unerwarteter fehler',
             '503' => 'wartung',
         ],
@@ -74,6 +75,9 @@ return [
         ],
         'contests_controller' => [
             '_' => 'wettbewerbe',
+        ],
+        'follows_controller' => [
+            'index' => 'dashboard',
         ],
         'friends_controller' => [
             'index' => 'dashboard',

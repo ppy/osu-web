@@ -31,6 +31,10 @@ return [
             'cleared' => 'rensad',
             'not_cleared' => 'ej rensad',
         ],
+        'no_diff_reduction' => [
+            '_' => '',
+            'link' => 'Mods för minskad svårighetsgrad',
+        ],
     ],
 
     'mode' => [

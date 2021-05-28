@@ -24,6 +24,4 @@ mode_int       | integer                  | |
 passcount      | integer                  | |
 playcount      | integer                  | |
 ranked         | integer                  | See [Rank status](#beatmapsetcompact-rank-status) for list of possible values.
-status         | string                   | See [Rank status](#beatmapsetcompact-rank-status) for list of possible values.
-total_length   | integer                  | |
 url            | string                   | |

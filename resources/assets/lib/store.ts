@@ -2,8 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
+import core from 'osu-core-singleton';
 import Shopify from 'shopify-buy';
 import { toShopifyVariantGid } from 'shopify-gid';
+import { createClickCallback } from 'utils/html';
 
 declare global {
   interface Window {
@@ -37,7 +39,7 @@ export class Store {
   }
 
   async beginCheckout(event: Event) {
-    if (event.target == null) { return; }
+    if (event.target == null) return;
 
     const dataset = (event.target as HTMLElement).dataset;
     const orderId = dataset.orderId;
@@ -51,7 +53,7 @@ export class Store {
         await this.beginShopifyCheckout(orderId);
       } catch (error) {
         LoadingOverlay.hide();
-        userVerification.showOnError({ target: event.target }, error);
+        core.userVerification.showOnError(error, createClickCallback(event.target));
       }
 
       return;
@@ -88,13 +90,13 @@ export class Store {
     window.location.href = checkout.webUrl;
   }
 
-  async resumeCheckout(event: Event) {
-    if (event.target == null) { return; }
+  resumeCheckout(event: Event) {
+    if (event.target == null) return;
 
     const target = event.target as HTMLElement;
-    const { provider, providerReference } = target.dataset;
+    const { provider, providerReference, status } = target.dataset;
 
-    if (provider === 'shopify') {
+    if (provider === 'shopify' && status !== 'cancelled') {
       if (providerReference != null) {
         this.resumeShopifyCheckout(providerReference);
       } else {
@@ -110,16 +112,18 @@ export class Store {
     LoadingOverlay.show.flush();
 
     const checkout = await client.checkout.fetch(checkoutId);
-
-    window.location.href = checkout.webUrl;
+    if (checkout != null) {
+      window.location.href = checkout.webUrl;
+    } else {
+      osu.popup(osu.trans('store.order.shopify_expired'), 'info');
+      LoadingOverlay.hide();
+    }
   }
 
   private collectShopifyItems() {
-    return $('.js-store-order-item').map((_, element) => {
-      return {
-        quantity: Number(element.dataset.quantity),
-        variantId: toShopifyVariantGid(element.dataset.shopifyId),
-      };
-    }).get();
+    return $('.js-store-order-item').map((_, element) => ({
+      quantity: Number(element.dataset.quantity),
+      variantId: toShopifyVariantGid(element.dataset.shopifyId),
+    })).get();
   }
 }

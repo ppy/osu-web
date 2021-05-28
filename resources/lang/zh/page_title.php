@@ -22,6 +22,7 @@ return [
             '401-verification' => '账户认证',
             '405' => '访问方法错误',
             '422' => '请求无效',
+            '429' => '请求过多',
             '500' => '服务器出现了一些问题...',
             '503' => '服务器维护中',
         ],
@@ -74,6 +75,9 @@ return [
         ],
         'contests_controller' => [
             '_' => '评选',
+        ],
+        'follows_controller' => [
+            'index' => '看板',
         ],
         'friends_controller' => [
             'index' => '主页',

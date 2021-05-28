@@ -25,7 +25,7 @@ export Rank = ({type, stats, modifiers}) ->
       div
         title: ''
         "data-html-title": variantTooltip.join('')
-        if stats.rank[type]?
-          "##{osu.formatNumber(stats.rank[type])}"
+        if stats["#{type}_rank"]?
+          "##{osu.formatNumber(stats["#{type}_rank"])}"
         else
           '-'

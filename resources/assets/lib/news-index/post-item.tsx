@@ -7,7 +7,7 @@ import * as moment from 'moment';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 
-export default function PostItem({modifiers, post}: {modifiers?: string[], post: PostJson}) {
+export default function PostItem({modifiers, post}: {modifiers?: string[]; post: PostJson}) {
   let cover;
 
   if (post.first_image != null) {
@@ -38,13 +38,13 @@ export default function PostItem({modifiers, post}: {modifiers?: string[], post:
       <div className='news-card__main'>
         <div className='news-card__row news-card__row--title'>{post.title}</div>
         <div
-          className='news-card__row news-card__row--preview'
           dangerouslySetInnerHTML={{ __html: preview }}
+          className='news-card__row news-card__row--preview'
         />
         <div className='news-card__row news-card__row--author'>
           <StringWithComponent
-            pattern={osu.trans('news.show.by')}
             mappings={{ ':user': <strong key='author'>{post.author}</strong> }}
+            pattern={osu.trans('news.show.by')}
           />
         </div>
       </div>

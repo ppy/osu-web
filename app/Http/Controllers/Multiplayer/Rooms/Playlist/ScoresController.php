@@ -7,9 +7,8 @@ namespace App\Http\Controllers\Multiplayer\Rooms\Playlist;
 
 use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
-use App\Libraries\DbCursorHelper;
+use App\Libraries\ClientCheck;
 use App\Libraries\Multiplayer\Mod;
-use App\Models\Build;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Room;
@@ -37,8 +36,6 @@ class ScoresController extends BaseController
      *
      * Returns [MultiplayerScores](#multiplayerscores) object.
      *
-     * @authenticated
-     *
      * @urlParam room required Id of the room.
      * @urlParam playlist required Id of the playlist item.
      *
@@ -50,19 +47,12 @@ class ScoresController extends BaseController
     {
         $playlist = PlaylistItem::where('room_id', $roomId)->where('id', $playlistId)->firstOrFail();
         $params = request()->all();
-        $cursorHelper = new DbCursorHelper(
-            PlaylistItemUserHighScore::SORTS,
-            PlaylistItemUserHighScore::DEFAULT_SORT,
-            get_string($params['sort'] ?? null)
-        );
-
-        $sort = $cursorHelper->getSort();
-        $cursor = $cursorHelper->prepare($params['cursor'] ?? null);
         $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
+        $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper($params['sort'] ?? null);
 
         $highScores = $playlist
             ->highScores()
-            ->cursorSort($sort, $cursor)
+            ->cursorSort($cursorHelper, $params['cursor'] ?? null)
             ->with(ScoreTransformer::BASE_PRELOAD)
             ->limit($limit + 1) // an extra to check for pagination
             ->get();
@@ -110,8 +100,6 @@ class ScoresController extends BaseController
      *
      * Returns [MultiplayerScore](#multiplayerscore) object.
      *
-     * @authenticated
-     *
      * @urlParam room required Id of the room.
      * @urlParam playlist required Id of the playlist item.
      * @urlParam score required Id of the score.
@@ -142,8 +130,6 @@ class ScoresController extends BaseController
      *
      * Returns [MultiplayerScore](#multiplayerscore) object.
      *
-     * @authenticated
-     *
      * @urlParam room required Id of the room.
      * @urlParam playlist required Id of the playlist item.
      * @urlParam user required User id.
@@ -165,21 +151,12 @@ class ScoresController extends BaseController
     {
         $room = Room::findOrFail($roomId);
         $playlistItem = $room->playlist()->where('id', $playlistId)->firstOrFail();
+        $user = auth()->user();
+        $params = request()->all();
 
-        $clientHash = presence(request('version_hash'));
-        abort_if($clientHash === null, 422, 'missing client version');
+        ClientCheck::assert($user, $params);
 
-        // temporary measure to allow android builds to submit without access to the underlying dll to hash
-        if (strlen($clientHash) !== 32) {
-            $clientHash = md5($clientHash);
-        }
-
-        Build::where([
-            'hash' => hex2bin($clientHash),
-            'allow_ranking' => true,
-        ])->firstOrFail();
-
-        $score = $room->startPlay(auth()->user(), $playlistItem);
+        $score = $room->startPlay($user, $playlistItem);
 
         return json_item(
             $score,
@@ -190,7 +167,6 @@ class ScoresController extends BaseController
     public function update($roomId, $playlistId, $scoreId)
     {
         $room = Room::findOrFail($roomId);
-        // todo: check against room's end time, check within window of start_time + beatmap_length + x
 
         $playlistItem = $room->playlist()
             ->where('id', $playlistId)

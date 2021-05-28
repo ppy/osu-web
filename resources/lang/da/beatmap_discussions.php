@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Søg',
             'deleted' => 'Inkluder slettede diskussioner',
+            'mode' => '',
             'only_unresolved' => 'Vis kun uløste diskussioner',
             'types' => 'Meddelelsestyper',
             'username' => 'Brugernavn',
@@ -54,7 +55,14 @@ return [
     'nearby_posts' => [
         'confirm' => 'Ingen af opslagene angår mine bekymringer',
         'notice' => 'Der er opslag omkring :timestamp (:existing_timestamps). Vær venlig at tjekke dem inden du slår noget op.',
-        'unsaved' => '',
+        'unsaved' => ':count i denne anmeldelse',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [

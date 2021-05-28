@@ -12,41 +12,59 @@ use App\Transformers\UserCompactTransformer;
 
 class MatchesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('require-scopes:public', ['only' => ['index', 'show']]);
+    }
+
+    public function index()
+    {
+        $params = request()->all();
+        $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
+        $cursorHelper = Match::makeDbCursorHelper($params['sort'] ?? null);
+
+        $matches = Match
+            ::where('private', false)
+            ->cursorSort($cursorHelper, $params['cursor'] ?? null)
+            ->limit($limit + 1) // an extra to check for pagination
+            ->get();
+
+        $hasMore = count($matches) === $limit + 1;
+        if ($hasMore) {
+            $matches->pop();
+        }
+
+        return [
+            'cursor' => $hasMore ? $cursorHelper->next($matches) : null,
+            'matches' => json_collection($matches, 'Match\Match'),
+            'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
+        ];
+    }
+
     public function show($id)
     {
         $match = Match::findOrFail($id);
 
-        priv_check('MatchView', $match)->ensureCan();
-
-        $eventsJson = $this->eventsJson([
-            'match' => $match,
-            'after' => request('after'),
-            'before' => request('before'),
-        ]);
-
-        return ext_view('matches.index', compact('match', 'eventsJson'));
-    }
-
-    public function history($matchId)
-    {
-        $match = Match::findOrFail($matchId);
+        $params = get_params(request()->all(), null, ['after:int', 'before:int', 'limit:int']);
+        $params['match'] = $match;
 
         priv_check('MatchView', $match)->ensureCan();
 
-        return $this->eventsJson([
-            'match' => $match,
-            'after' => request('after'),
-            'before' => request('before'),
-            'limit' => request('limit'),
-        ]);
+        $eventsJson = $this->eventsJson($params);
+
+        if (is_json_request()) {
+            return $eventsJson;
+        } else {
+            return ext_view('matches.index', compact('match', 'eventsJson'));
+        }
     }
 
     private function eventsJson($params)
     {
         $match = $params['match'];
-        $after = get_int($params['after'] ?? null);
-        $before = get_int($params['before'] ?? null);
-        $limit = clamp(get_int($params['limit'] ?? null) ?? 100, 1, 101);
+        $after = $params['after'] ?? null;
+        $before = $params['before'] ?? null;
+        $limit = clamp($params['limit'] ?? 100, 1, 101);
 
         $events = $match->events()
             ->with([
@@ -89,11 +107,17 @@ class MatchesController extends Controller
             ['game.beatmap.beatmapset', 'game.scores.match']
         );
 
+        $eventEndIds = $match
+            ->events()
+            ->selectRaw('MIN(event_id) first_event_id, MAX(event_id) latest_event_id')
+            ->first();
+
         return [
             'match' => json_item($match, 'Match\Match'),
             'events' => $events,
             'users' => $users,
-            'latest_event_id' => $match->events()->select('event_id')->last()->getKey(),
+            'first_event_id' => $eventEndIds->first_event_id ?? 0,
+            'latest_event_id' => $eventEndIds->latest_event_id ?? 0,
             'current_game_id' => optional($match->currentGame())->getKey(),
         ];
     }

@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Goedgekeurd.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Moderator verwijderde discussie :discussion.',
         'discussion_lock' => 'Discussie voor deze beatmap is uitgeschakeld. (:text)',
         'discussion_post_delete' => 'Moderator verwijderde post van discussie :discussion.',
@@ -25,9 +26,16 @@ return [
         'language_edit' => 'Taal veranderd van :old naar :new.',
         'love' => 'Geloved door :user',
         'nominate' => 'Genomineerd door :user.',
+        'nominate_modes' => 'Genomineerd door :user (:modes).',
         'nomination_reset' => 'Nieuw probleem: discussie (: tekst) veroorzaakte een nominatie reset.',
         'qualify' => 'Deze beatmap heeft het benodigde aantal nominaties bereikt en is nu gekwalificeerd.',
         'rank' => 'Ranked.',
+        'remove_from_loved' => 'Verwijderd uit Loved door :user. (:text)',
+
+        'nsfw_toggle' => [
+            'to_0' => 'Expliciete beoordeling verwijderd',
+            'to_1' => 'Gemarkeerd als expliciet',
+        ],
     ],
 
     'index' => [
@@ -47,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Goedkeuring',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Discussie verwijdering',
         'discussion_post_delete' => 'Discussie antwoord verwijdering',
         'discussion_post_restore' => 'Discussie antwoord herstelling',
@@ -64,7 +73,9 @@ return [
         'love' => 'Liefde',
         'nominate' => 'Nominatie',
         'nomination_reset' => 'Nominatie opnieuw instellen',
+        'nsfw_toggle' => 'Expliciete markering',
         'qualify' => 'Kwalificatie',
         'rank' => 'Postitionering',
+        'remove_from_loved' => 'Loved verwijdering',
     ],
 ];

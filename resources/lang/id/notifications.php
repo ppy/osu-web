@@ -5,9 +5,13 @@
 
 return [
     'all_read' => 'Semua notifikasi telah dibaca!',
+    'delete' => 'Hapus :type',
+    'loading' => 'Memuat notifikasi-notifikasi yang belum dibaca...',
     'mark_read' => 'Hapus :type',
     'none' => 'Tidak ada notifikasi',
     'see_all' => 'lihat semua notifikasi',
+    'see_channel' => 'tuju obrolan',
+    'verifying' => 'Harap verifikasi sesi Anda untuk dapat melihat notifikasi',
 
     'filters' => [
         '_' => 'semua notifikasi',
@@ -23,12 +27,18 @@ return [
         'beatmapset' => [
             '_' => 'Beatmap',
 
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Laman diskusi beatmap',
                 'beatmapset_discussion_lock' => 'Diskusi untuk beatmap ":title" telah ditutup.',
                 'beatmapset_discussion_lock_compact' => 'Diskusi beatmap telah dikunci',
-                'beatmapset_discussion_post_new' => ':username menulis pesan baru pada laman diskusi beatmap ":title".',
-                'beatmapset_discussion_post_new_empty' => 'Postingan baru di ":title" oleh :username',
+                'beatmapset_discussion_post_new' => 'Postingan baru pada ":title" oleh :username: ":content"',
+                'beatmapset_discussion_post_new_empty' => 'Postingan baru pada ":title" oleh :username',
                 'beatmapset_discussion_post_new_compact' => 'Postingan baru dari :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Postingan baru oleh :username',
                 'beatmapset_discussion_review_new' => 'Terdapat ulasan baru pada ":title" oleh :username yang menyinggung seputar masalah: :problems, saran: :suggestions, dan pujian berupa: :praises',
@@ -47,16 +57,18 @@ return [
 
             'beatmapset_state' => [
                 '_' => 'Perubahan status beatmap',
-                'beatmapset_disqualify' => 'Beatmap ":title" telah didiskualifikasi oleh :username.',
+                'beatmapset_disqualify' => 'Beatmap ":title" telah didiskualifikasi',
                 'beatmapset_disqualify_compact' => 'Beatmap telah didiskualifikasi',
                 'beatmapset_love' => 'Beatmap ":title" telah diberikan status loved oleh :username.',
                 'beatmapset_love_compact' => 'Status beatmap dipromosikan menjadi loved',
                 'beatmapset_nominate' => '":title" telah mendapatkan nominasi',
                 'beatmapset_nominate_compact' => 'Beatmap telah mendapatkan nominasi',
                 'beatmapset_qualify' => 'Beatmap ":title" telah memperoleh jumlah nominasi yang diperlukan untuk proses ranking.',
-                'beatmapset_qualify_compact' => 'Beatmap telah memasuki antrean status ranking',
+                'beatmapset_qualify_compact' => 'Beatmap telah memasuki antrian ranking',
                 'beatmapset_rank' => '":title" telah berstatus Ranked',
                 'beatmapset_rank_compact' => 'Beatmap telah berstatus Ranked',
+                'beatmapset_remove_from_loved' => '":title" telah dilepas dari Loved',
+                'beatmapset_remove_from_loved_compact' => 'Beatmap telah dilepas dari Loved',
                 'beatmapset_reset_nominations' => 'Masalah yang dikemukakan oleh :username menganulir nominasi sebelumnya pada beatmap ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Nominasi beatmap dianulir',
             ],
@@ -125,7 +137,17 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => ':count_delimited pesan yang belum dibaca.',
+                'legacy_pm' => ':count_delimited pesan yang belum dibaca.|:count_delimited pesan yang belum dibaca.',
+            ],
+        ],
+
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => 'Beatmap baru',
+
+                'user_beatmapset_new' => 'Beatmap baru ":title" oleh :username',
+                'user_beatmapset_new_compact' => 'Beatmap baru ":title"',
+                'user_beatmapset_new_group' => 'Beatmap-beatmap baru oleh :username',
             ],
         ],
 
@@ -136,15 +158,20 @@ return [
                 '_' => 'Medali baru',
                 'user_achievement_unlock' => '":title" Terbuka!',
                 'user_achievement_unlock_compact' => 'Anda berhasil mendapatkan medali ":title"!',
+                'user_achievement_unlock_group' => 'Medali terbuka!',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'Topik diskusi ":title" telah dikunci',
-                'beatmapset_discussion_post_new' => 'Terdapat pembaharuan baru pada topik diskusi ":title"',
+                'beatmapset_discussion_post_new' => 'Terdapat pembaruan baru pada topik diskusi ":title"',
                 'beatmapset_discussion_unlock' => 'Topik diskusi ":title" telah kembali dibuka',
             ],
 
@@ -156,8 +183,9 @@ return [
                 'beatmapset_disqualify' => '":title" telah didiskualifikasi',
                 'beatmapset_love' => '":title" telah dipromosikan ke dalam kategori Loved',
                 'beatmapset_nominate' => '":title" telah mendapatkan nominasi',
-                'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk memasuki antrean status ranking',
+                'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk memasuki antrian ranking',
                 'beatmapset_rank' => '":title" telah berstatus Ranked',
+                'beatmapset_remove_from_loved' => ':title telah dilepas dari Loved',
                 'beatmapset_reset_nominations' => 'Status nominasi pada ":title" telah dianulir',
             ],
 
@@ -194,6 +222,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username telah mendapatkan medali baru, ":title"!',
                 'user_achievement_unlock_self' => 'Anda telah mendapatkan medali baru, ":title"!',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => ':username telah mengunggah beatmap baru',
             ],
         ],
     ],

@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Keresés',
             'deleted' => 'Törölt beszélgetések mellékelése',
+            'mode' => '',
             'only_unresolved' => 'Csak a megoldatlan beszélgetéseket mutasd',
             'types' => 'Üzenettípusok',
             'username' => 'Felhasználónév',
@@ -54,7 +55,14 @@ return [
     'nearby_posts' => [
         'confirm' => 'Egy poszt sem foglalkozik a problémámmal',
         'notice' => 'Már vannak posztok :timestamp (:existing_timestamps) körül. Kérlek nézd meg posztolás előtt.',
-        'unsaved' => '',
+        'unsaved' => ':count ellenőrzés alatt áll',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [
@@ -65,7 +73,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max blokk használva',
         'go_to_parent' => 'Legújabb posztok mutatása',
         'go_to_child' => 'Megbeszélés megtekintése',
         'validation' => [

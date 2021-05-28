@@ -115,12 +115,16 @@ class CommentBundle
             'cursor' => $this->params->cursorHelper->next($comments),
         ];
 
+        if ($this->params->userId !== null) {
+            $result['user'] = json_item(User::find($this->params->userId), 'UserCompact');
+        }
+
         if ($this->params->parentId === 0 || $this->params->parentId === null) {
             $result['top_level_count'] = $this->commentsQuery()->whereNull('parent_id')->count();
             $result['total'] = $this->commentsQuery()->count();
         }
 
-        $commentables = $comments->pluck('commentable')->concat([null]);
+        $commentables = $comments->pluck('commentable')->uniqueStrict('commentable_identifier')->concat([null]);
         $result['commentable_meta'] = json_collection($commentables, 'CommentableMeta');
 
         return $result;
@@ -129,10 +133,16 @@ class CommentBundle
     public function commentsQuery()
     {
         if (isset($this->commentable)) {
-            return $this->commentable->comments();
+            $query = $this->commentable->comments();
         } else {
-            return Comment::select();
+            $query = Comment::select();
         }
+
+        if ($this->params->userId !== null) {
+            $query->where('user_id', $this->params->userId);
+        }
+
+        return $query;
     }
 
     // This is named explictly for the paginator because there's another count
@@ -140,6 +150,7 @@ class CommentBundle
     public function countForPaginator()
     {
         $query = $this->commentsQuery();
+
         if (!$this->includeDeleted) {
             $query->withoutTrashed();
         }
@@ -149,7 +160,7 @@ class CommentBundle
 
     private function getComments($query, $isChildren = true, $pinnedOnly = false)
     {
-        $sort = $pinnedOnly ? Comment::SORTS['new'] : $this->params->cursorHelper->getSort();
+        $sortOrCursorHelper = $pinnedOnly ? 'new' : $this->params->cursorHelper;
         $queryLimit = $this->params->limit;
 
         if (!$isChildren) {
@@ -165,7 +176,7 @@ class CommentBundle
             }
         }
 
-        $query->with('commentable')->cursorSort($sort, $cursor ?? null);
+        $query->with('commentable')->cursorSort($sortOrCursorHelper, $cursor ?? null);
 
         if (!$this->includeDeleted) {
             $query->whereNull('deleted_at');

@@ -14,6 +14,11 @@ return [
         'title' => 'Laporkan komentar :username?',
     ],
 
+    'forum_post' => [
+        'button' => 'Laporkan',
+        'title' => 'Laporkan postingan :username?',
+    ],
+
     'scores' => [
         'button' => 'Laporkan Skor',
         'title' => 'Laporkan skor dari :username?',

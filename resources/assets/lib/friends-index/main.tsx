@@ -2,15 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderV4 from 'header-v4';
-import UserJSON from 'interfaces/user-json';
-import { route } from 'laroute';
+import homeLinks from 'home-links';
+import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import UserCardTypeContext from 'user-card-type-context';
 import { UserList } from 'user-list';
 
 interface Props {
-  friends: UserJSON[];
-  user: UserJSON;
+  friends: UserJson[];
+  user: UserJson;
 }
 
 export class Main extends React.PureComponent<Props> {
@@ -18,20 +18,12 @@ export class Main extends React.PureComponent<Props> {
     user: currentUser,
   };
 
-  static readonly links = [
-    { title: osu.trans('home.user.title'), url: route('home') },
-    { title: osu.trans('friends.title_compact'), url: route('friends.index'), active: true },
-    { title: osu.trans('forum.topic_watches.index.title_compact'), url: route('forum.topic-watches.index') },
-    { title: osu.trans('beatmapset_watches.index.title_compact'), url: route('beatmapsets.watches.index') },
-    { title: osu.trans('accounts.edit.title_compact'), url: route('account.edit') },
-  ];
-
   render() {
     return (
       <div className='osu-layout osu-layout--full'>
         <HeaderV4
           backgroundImage={this.props.user.cover?.url}
-          links={Main.links}
+          links={homeLinks('friends.index')}
           theme='friends'
         />
 

@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'ค้นหา',
             'deleted' => 'รวมการสนทนาที่ถูกลบ',
+            'mode' => 'โหมดของบีทแมพ',
             'only_unresolved' => 'มองเห็นเฉพาะการสนทนา/ปัญหาที่ยังไม่ได้แก้',
             'types' => 'ชนิดของข้อความ',
             'username' => 'ชื่อผู้ใช้',
@@ -54,7 +55,14 @@ return [
     'nearby_posts' => [
         'confirm' => 'ไม่มีโพสต์ใดกล่าวถึงปัญหาของฉัน',
         'notice' => 'มีโพสต์เมื่อเวลาประมาณ :timestamp (:existing_timestamps). โปรตตรวจสอบก่อนโพสต์',
-        'unsaved' => '',
+        'unsaved' => ':count ในบทวิจารณ์นี้',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [

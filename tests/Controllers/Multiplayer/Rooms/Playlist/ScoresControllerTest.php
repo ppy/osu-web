@@ -60,7 +60,7 @@ class ScoresControllerTest extends TestCase
             'playlist' => $playlistItem->getKey(),
         ]), [
             'version_hash' => md5('testversion'),
-        ])->assertStatus(404);
+        ])->assertStatus(422);
 
         $this->assertSame($initialScoresCount, Score::count());
     }
@@ -96,7 +96,7 @@ class ScoresControllerTest extends TestCase
             'playlist' => $playlistItem->getKey(),
         ]), [
             'version_hash' => $hash,
-        ])->assertStatus(404);
+        ])->assertStatus(422);
 
         $this->assertSame($initialScoresCount, Score::count());
     }

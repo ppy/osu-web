@@ -15,7 +15,7 @@ import { BeatmapsetStore } from 'stores/beatmapset-store';
 
 export interface SearchResponse {
   beatmapsets: BeatmapsetJson[];
-  cursor: JSON;
+  cursor: unknown;
   error?: string;
   recommended_difficulty: number;
   total: number;
@@ -49,16 +49,18 @@ export class BeatmapsetSearch implements DispatchListener {
       return Promise.resolve(resultSet);
     }
 
-    return this.fetch(filters, from).then((data: SearchResponse) => {
-      runInAction(() => {
-        if (from === 0) {
-          resultSet.reset();
-        }
+    return this.fetch(filters, from).then((data) => {
+      if (data != null) {
+        runInAction(() => {
+          if (from === 0) {
+            resultSet.reset();
+          }
 
-        this.updateBeatmapsetStore(data);
-        resultSet.append(data);
-        this.recommendedDifficulties.set(filters.mode, data.recommended_difficulty);
-      });
+          this.updateBeatmapsetStore(data);
+          resultSet.append(data);
+          this.recommendedDifficulties.set(filters.mode, data.recommended_difficulty);
+        });
+      }
 
       return resultSet;
     });
@@ -98,7 +100,7 @@ export class BeatmapsetSearch implements DispatchListener {
     this.recommendedDifficulties.clear();
   }
 
-  private fetch(filters: BeatmapsetSearchFilters, from: number): PromiseLike<{}> {
+  private fetch(filters: BeatmapsetSearchFilters, from: number): PromiseLike<SearchResponse | null> {
     this.cancel();
 
     const params = filters.queryParams;
@@ -110,7 +112,7 @@ export class BeatmapsetSearch implements DispatchListener {
       if (cursor != null) {
         params.cursor = cursor;
       } else if (cursor === null) {
-        return Promise.resolve({});
+        return Promise.resolve(null);
       }
     }
 

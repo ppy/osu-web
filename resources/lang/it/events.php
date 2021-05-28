@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'achievement' => '<strong><em>:user</em></strong> ha sbloccato l\'obiettivo "<strong>:achievement</strong>"!',
+    'achievement' => '<strong><em>:user</em></strong> ha sbloccato la medaglia "<strong>:achievement</strong>"!',
     'beatmap_playcount' => ':beatmap è stata giocata :count volte!',
     'beatmapset_approve' => ':beatmapset di <strong>:user</strong> è stata approvata!',
     'beatmapset_delete' => ':beatmapset è stata eliminata.',

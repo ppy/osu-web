@@ -3,13 +3,12 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
-import { CommentJSON } from 'interfaces/comment-json';
+import { CommentJson } from 'interfaces/comment-json';
 import { Dictionary } from 'lodash';
 import { action, observable } from 'mobx';
 import { Comment } from 'models/comment';
-import Store from 'stores/store';
 
-export default class CommentStore extends Store {
+export default class CommentStore {
   @observable comments = observable.map<number, Comment>();
   @observable userVotes = new Set<number>();
   private groupedByParentId: Dictionary<Comment[]> = {};
@@ -21,7 +20,7 @@ export default class CommentStore extends Store {
 
   @action
   addVoted(commentIds: number[] | undefined | null) {
-    if (commentIds == null) { return; }
+    if (commentIds == null) return;
     commentIds.forEach((value) => this.userVotes.add(value));
   }
 
@@ -44,10 +43,10 @@ export default class CommentStore extends Store {
   }
 
   @action
-  initialize(comments: CommentJSON[] | undefined | null, votes: number[] | undefined | null) {
+  initialize(comments: CommentJson[] | undefined | null, votes: number[] | undefined | null) {
     this.flushStore();
     this.addVoted(votes);
-    this.updateWithJSON(comments);
+    this.updateWithJson(comments);
   }
 
   @action
@@ -56,8 +55,8 @@ export default class CommentStore extends Store {
   }
 
   @action
-  updateWithJSON(data: CommentJSON[] | undefined | null) {
-    if (data == null) { return; }
+  updateWithJson(data: CommentJson[] | undefined | null) {
+    if (data == null) return;
 
     for (const json of data) {
       const comment = new Comment(json);

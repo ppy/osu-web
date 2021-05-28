@@ -6,12 +6,17 @@
 return [
     'beatmapset_discussion_post' => [
         'button' => 'Báo cáo',
-        'title' => 'Báo cáo bài viết của :username?',
+        'title' => 'Báo cáo bài đăng của :username?',
     ],
 
     'comment' => [
         'button' => 'Báo cáo',
         'title' => 'Báo cáo bình luận của :username?',
+    ],
+
+    'forum_post' => [
+        'button' => 'Báo cáo',
+        'title' => 'Báo cáo bài đăng của :username?',
     ],
 
     'scores' => [

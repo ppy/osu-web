@@ -5,9 +5,13 @@
 
 return [
     'all_read' => 'Усе апавяшчэнні прачытаныя!',
+    'delete' => '',
+    'loading' => '',
     'mark_read' => 'Ачысціць :type',
     'none' => 'Няма апавяшчэнняў',
     'see_all' => 'гл. усе апавяшчэнні',
+    'see_channel' => '',
+    'verifying' => '',
 
     'filters' => [
         '_' => 'усе',
@@ -22,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'Бітмапа',
+
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'Абмеркаванне бітмапы',
@@ -57,6 +67,8 @@ return [
                 'beatmapset_qualify_compact' => 'Бітмапа далучылася да чаргі рэйтынгу',
                 'beatmapset_rank' => '":title" была ранкавана',
                 'beatmapset_rank_compact' => 'Бітмапа была ранкавана',
+                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved_compact' => '',
                 'beatmapset_reset_nominations' => 'Праблема, якую размясціў :username выклікала скід намінацыі бітмапы ":title" ',
                 'beatmapset_reset_nominations_compact' => 'Намінацыя была скінута',
             ],
@@ -129,6 +141,16 @@ return [
             ],
         ],
 
+        'user' => [
+            'user_beatmapset_new' => [
+                '_' => '',
+
+                'user_beatmapset_new' => '',
+                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_group' => '',
+            ],
+        ],
+
         'user_achievement' => [
             '_' => 'Медалі',
 
@@ -136,12 +158,17 @@ return [
                 '_' => 'Новая медаль',
                 'user_achievement_unlock' => 'Адкрыта ":title"!',
                 'user_achievement_unlock_compact' => 'Адкрыта ":title"!',
+                'user_achievement_unlock_group' => '',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => '',
                 'beatmapset_discussion_post_new' => '',
@@ -158,6 +185,7 @@ return [
                 'beatmapset_nominate' => '',
                 'beatmapset_qualify' => '',
                 'beatmapset_rank' => '',
+                'beatmapset_remove_from_loved' => '',
                 'beatmapset_reset_nominations' => '',
             ],
 
@@ -194,6 +222,10 @@ return [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => '',
                 'user_achievement_unlock_self' => '',
+            ],
+
+            'user_beatmapset_new' => [
+                'user_beatmapset_new' => '',
             ],
         ],
     ],

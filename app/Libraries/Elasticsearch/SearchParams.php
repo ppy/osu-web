@@ -19,6 +19,9 @@ abstract class SearchParams
     /** @var array|null */
     public $searchAfter = null;
 
+    /** @var int|null */
+    protected $page = null;
+
     public function __construct()
     {
     }
@@ -56,7 +59,18 @@ abstract class SearchParams
 
     public function shouldReturnEmptyResponse(): bool
     {
-        return $this->isLoginRequired() && !auth()->check();
+        return $this->isLoginRequired() && !auth()->check() && oauth_token() === null;
+    }
+
+    public function size(int $size): self
+    {
+        $this->size = $size;
+
+        if ($this->page !== null) {
+            $this->from = $this->pageAsFrom($this->page);
+        }
+
+        return $this;
     }
 
     /**

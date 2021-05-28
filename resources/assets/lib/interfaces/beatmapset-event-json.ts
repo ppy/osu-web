@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import GameMode from './game-mode';
 
 export default interface BeatmapsetEventJson {
   beatmapset?: BeatmapsetJson;
@@ -9,6 +10,7 @@ export default interface BeatmapsetEventJson {
   created_at: string;
   discussion?: BeatmapsetDiscussionJson;
   id: number;
+  nomination_modes?: GameMode[];
   starting_post?: string; // used when looking at user modding profile.
   type: string;
   user_id?: number;

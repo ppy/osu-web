@@ -1,0 +1,54 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmaps-popup {
+  .fancy-scrollbar();
+  pointer-events: auto;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  background-color: @beatmapset-panel-bg;
+  padding: 5px 0 @border-radius--large;
+  border-radius: 0 0 @border-radius--large @border-radius--large;
+  transition: all 150ms ease-in-out;
+  z-index: @z-index--beatmaps-panel;
+  --panel-height: @beatmapset-panel-height;
+
+  @media @desktop {
+    padding-top: @border-radius--large;
+    --panel-height: @beatmapset-panel-normal-height-desktop;
+  }
+
+  &::before {
+    content: '';
+    .thick-box-shadow();
+    border: 2px solid hsl(var(--hsl-h1));
+    height: calc(100% + var(--panel-height));
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    border-radius: @border-radius--large;
+  }
+
+  &--size-extra {
+    @media @desktop {
+      --panel-height: @beatmapset-panel-extra-height-desktop;
+    }
+  }
+
+  &__content {
+    max-height: 50vh;
+    overflow: auto;
+    padding: 2px 5px;
+    display: grid;
+    grid-gap: 10px;
+  }
+
+  &__group {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-gap: 2px;
+  }
+}

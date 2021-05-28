@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Benzer bir tema etrafında toplanmış, önceden paketlenmiş beatmap paketleri.',
-        'nav_title' => 'liste',
+        'nav_title' => 'katalog',
         'title' => 'Beatmap Paketleri',
 
         'blurb' => [
@@ -27,6 +27,10 @@ return [
         'item' => [
             'cleared' => 'geçildi',
             'not_cleared' => 'geçilmedi',
+        ],
+        'no_diff_reduction' => [
+            '_' => ':link bu paketi tamamlamak için kullanılamaz.',
+            'link' => 'Zorluk düşürme modları',
         ],
     ],
 

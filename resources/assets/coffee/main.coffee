@@ -39,10 +39,8 @@ $(document).on 'turbolinks:load', ->
 @accountEditBlocklist ?= new AccountEditBlocklist
 @bbcodePreview ?= new BbcodePreview
 @beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
-@captcha ?= new _exported.Captcha
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
-@clickMenu ?= new _exported.ClickMenu
 @fancyGraph ?= new FancyGraph
 @formClear ?= new FormClear
 @formError ?= new FormError
@@ -51,37 +49,25 @@ $(document).on 'turbolinks:load', ->
 @forum ?= new Forum
 @forumAutoClick ?= new ForumAutoClick
 @forumCover ?= new ForumCover
-@forumPoll ?= new _exported.ForumPoll(@)
 @forumTopicTitle ?= new ForumTopicTitle
 @forumTopicWatchAjax ?= new ForumTopicWatchAjax
-@gallery ?= new Gallery
 @globalDrag ?= new GlobalDrag
 @landingGraph ?= new LandingGraph
-@localtime ?= new _exported.Localtime
 @menu ?= new Menu
-@mobileToggle ?= new _exported.MobileToggle
 @navButton ?= new NavButton
-@osuAudio ?= new _exported.OsuAudio
-@osuLayzr ?= new _exported.OsuLayzr
 @postPreview ?= new PostPreview
 @scale ?= new Scale
 @search ?= new Search
 @stickyFooter ?= new StickyFooter
-@timeago ?= new Timeago
 @tooltipBeatmap ?= new TooltipBeatmap
 @tooltipDefault ?= new TooltipDefault
-@turbolinksReload ?= new _exported.TurbolinksReload
-@userLogin ?= new UserLogin
-@userVerification ?= new UserVerification
 
 @formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply({ @bbcodePreview, @forum, @stickyFooter })
-@nav2 ?= new Nav2(@clickMenu)
-@osuEnchant ?= new _exported.Enchant(@, @turbolinksReload)
-@twitchPlayer ?= new TwitchPlayer(@turbolinksReload)
-_exported.WindowVHPatcher.init(window)
+@nav2 ?= new Nav2(osuCore.clickMenu)
+@twitchPlayer ?= new TwitchPlayer(osuCore.turbolinksReload)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->
@@ -90,15 +76,3 @@ $(document).on 'change', '.js-url-selector', (e) ->
 
 $(document).on 'keydown', (e) ->
   $.publish 'key:esc' if e.keyCode == 27
-
-
-rootUrl = "#{document.location.protocol}//#{document.location.host}"
-rootUrl += ":#{document.location.port}" if document.location.port
-rootUrl += '/'
-
-# Internal Helper
-$.expr[':'].internal = (obj, index, meta, stack) ->
-  # Prepare
-  $this = $(obj)
-  url = $this.attr('href') or ''
-  url.substring(0, rootUrl.length) == rootUrl or url.indexOf(':') == -1

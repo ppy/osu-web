@@ -7,24 +7,24 @@ return [
     'landing' => [
         'download' => 'Télécharger maintenant',
         'online' => '<strong>:players</strong> connectés en ce moment dans <strong>:games</strong> parties',
-        'peak' => 'Pic, :count joueurs connectés',
+        'peak' => 'Pic de joueurs connectés : :count ',
         'players' => '<strong>:count</strong> joueurs inscrits',
         'title' => 'bienvenue',
-        'see_more_news' => 'voir plus de nouvelles',
+        'see_more_news' => 'voir plus de news',
 
         'slogan' => [
             'main' => 'le meilleur jeu de rythme free-to-win',
-            'sub' => 'Le rythme est juste à un seul clic',
+            'sub' => 'le rythme est à portée de clic',
         ],
     ],
 
     'search' => [
         'advanced_link' => 'Recherche avancée',
         'button' => 'Rechercher',
-        'empty_result' => 'Aucun résultat !',
+        'empty_result' => 'Rien n\'a été trouvé !',
         'keyword_required' => 'Un mot clé de recherche est requis',
         'placeholder' => 'tapez pour rechercher',
-        'title' => 'Rechercher',
+        'title' => 'rechercher',
 
         'beatmapset' => [
             'login_required' => 'Connectez-vous pour rechercher des beatmaps',
@@ -78,7 +78,7 @@ return [
         'help' => [
             '_' => 'si vous avez des problèmes pour démarrer le jeu ou pour créer un compte, :help_forum_link ou :support_button.',
             'help_forum_link' => 'consultez le forum d\'aide',
-            'support_button' => 'contacter l\'assistance',
+            'support_button' => 'contacter le support',
         ],
 
         'os' => [
@@ -86,7 +86,7 @@ return [
             'macos' => 'pour macOS',
             'linux' => 'pour Linux',
         ],
-        'mirror' => 'miroir',
+        'mirror' => 'mirroir',
         'macos-fallback' => 'utilisateurs macOS',
         'steps' => [
             'register' => [
@@ -101,18 +101,18 @@ return [
                 'title' => 'obtenir des beatmaps',
                 'description' => [
                     '_' => ':browse dans la vaste librairie des beatmaps créées par la communauté et commencez à jouer !',
-                    'browse' => 'Naviguez',
+                    'browse' => 'parcourir',
                 ],
             ],
         ],
-        'video-guide' => 'Guide vidéo',
+        'video-guide' => 'guide vidéo',
     ],
 
     'user' => [
         'title' => 'tableau de bord',
         'news' => [
-            'title' => 'Nouvelles',
-            'error' => 'Erreur lors du chargement des nouvelles, essayez de recharger la page ?...',
+            'title' => 'News',
+            'error' => 'Erreur lors du chargement des news, essayez de recharger la page ?...',
         ],
         'header' => [
             'stats' => [
@@ -122,7 +122,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nouvelles beatmaps approuvées',
+            'new' => 'Nouvelles beatmaps classées',
             'popular' => 'Beatmaps populaires',
             'by_user' => 'par :user',
         ],

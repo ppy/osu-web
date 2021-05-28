@@ -2,18 +2,34 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
-import UserJSON from 'interfaces/user-json';
+import GameMode from 'interfaces/game-mode';
+import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { kebabCase } from 'lodash';
+import { escape, kebabCase } from 'lodash';
+import { deletedUser } from 'models/user';
 import * as React from 'react';
 import TimeWithTooltip from 'time-with-tooltip';
+import { classWithModifiers } from 'utils/css';
+
+const isBeatmapOwnerChangeEventJson = (event: BeatmapsetEventJson): event is BeatmapOwnerChangeEventJson =>
+  event.type === 'beatmap_owner_change';
+
+interface BeatmapOwnerChangeEventJson extends BeatmapsetEventJson {
+  comment: {
+    beatmap_id: number;
+    beatmap_version: string;
+    new_user_id: number;
+    new_user_username: string;
+  };
+  type: 'beatmap_owner_change';
+}
 
 interface Props {
-  discussions?: Record<string, BeatmapsetDiscussionJson>;
+  discussions?: Partial<Record<string, BeatmapsetDiscussionJson>>;
   event: BeatmapsetEventJson;
   mode: 'discussions' | 'profile';
   time?: string;
-  users: Record<string, UserJSON>;
+  users: Partial<Record<string, UserJson>>;
 }
 
 export default class Event extends React.PureComponent<Props> {
@@ -49,7 +65,7 @@ export default class Event extends React.PureComponent<Props> {
 
     return (
       <div className='beatmapset-event'>
-        <div className={osu.classWithModifiers('beatmapset-event__icon', [kebabCase(this.props.event.type)])} />
+        <div className='beatmapset-event__icon' style={this.iconStyle()} />
         <div className='beatmapset-event__time'>
           <TimeWithTooltip dateTime={eventTime} format='LT' />
         </div>
@@ -85,7 +101,10 @@ export default class Event extends React.PureComponent<Props> {
           // instead of a translation that overflows.
           <span className='beatmapset-cover'>beatmap deleted</span>
         )}
-        <div className={osu.classWithModifiers('beatmapset-event__icon', [kebabCase(this.props.event.type), 'beatmapset-activities'])} />
+        <div
+          className={classWithModifiers('beatmapset-event__icon', ['beatmapset-activities'])}
+          style={this.iconStyle()}
+        />
 
         <div>
           <div
@@ -95,7 +114,7 @@ export default class Event extends React.PureComponent<Props> {
             }}
           />
           <div className='beatmap-discussion-post__info'>
-            <TimeWithTooltip dateTime={this.props.event.created_at} relative={true} />
+            <TimeWithTooltip dateTime={this.props.event.created_at} relative />
           </div>
         </div>
       </div>
@@ -104,18 +123,25 @@ export default class Event extends React.PureComponent<Props> {
 
   private contentText() {
     let discussionLink = '';
+    let discussionUserLink = '[unknown user]';
     let text = '';
     let url = '';
     let user: string | undefined;
 
     if (this.discussionId != null) {
-      if (this.discussion != null) {
+      if (this.discussion == null) {
+        url = route('beatmapsets.discussions.show', { discussion: this.discussionId });
+        text = osu.trans('beatmapset_events.item.discussion_deleted');
+      } else {
         const firstPostMessage = this.firstPost?.message;
         url = BeatmapDiscussionHelper.url({ discussion: this.discussion });
         text = firstPostMessage != null ? BeatmapDiscussionHelper.previewMessage(firstPostMessage) : '[no preview]';
-      } else {
-        url = route('beatmap-discussions.show', { beatmap_discussion: this.discussionId });
-        text = osu.trans('beatmapset_events.item.discussion_deleted');
+
+        const discussionUser = this.props.users[this.discussion.user_id];
+
+        if (discussionUser != null) {
+          discussionUserLink = osu.link(route('users.show', { user: discussionUser.id }), discussionUser.username);
+        }
       }
 
       discussionLink = osu.link(url, `#${this.discussionId}`, { classNames: ['js-beatmap-discussion--jump'] });
@@ -123,24 +149,48 @@ export default class Event extends React.PureComponent<Props> {
       text = BeatmapDiscussionHelper.format(this.props.event.comment, { newlines: false });
     }
 
-    if (this.props.event.type === 'discussion_lock') {
+    if (this.props.event.type === 'discussion_lock' || this.props.event.type === 'remove_from_loved') {
       text = BeatmapDiscussionHelper.format(this.props.event.comment.reason, { newlines: false });
     }
 
     if (this.props.event.user_id != null) {
-      user = osu.link(route('users.show', { user: this.props.event.user_id }), this.props.users[this.props.event.user_id]?.username);
+      const userData = this.props.users[this.props.event.user_id];
+
+      if (userData == null) {
+        user = escape(deletedUser.username);
+      } else {
+        user = osu.link(route('users.show', { user: userData.id }), userData.username);
+      }
     }
 
     const params = {
       discussion: discussionLink,
+      discussion_user: discussionUserLink,
       text,
       user,
       ...this.props.event.comment,
     };
 
-    const eventType = this.props.event.type === 'disqualify' && this.discussion == null ? 'disqualify_legacy' : this.props.event.type;
-    const key = `beatmapset_events.event.${eventType}`;
+    let eventType = this.props.event.type === 'disqualify' && this.discussion == null ? 'disqualify_legacy' : this.props.event.type;
 
+    if (eventType === 'nominate' && this.props.event.comment?.modes.length > 0) {
+      eventType = 'nominate_modes';
+      const nominationModes = this.props.event.comment.modes.map((mode: GameMode) => osu.trans(`beatmaps.mode.${mode}`));
+      params.modes = osu.transArray(nominationModes);
+    }
+
+    if (eventType === 'nsfw_toggle') {
+      const newState = this.props.event.comment?.new ? 'to_1' : 'to_0';
+      eventType += `.${newState}`;
+    }
+
+    if (isBeatmapOwnerChangeEventJson(this.props.event)) {
+      const data = this.props.event.comment;
+      params.new_user = osu.link(route('users.show', { user: data.new_user_id }), data.new_user_username);
+      params.beatmap = osu.link(route('beatmaps.show', { beatmap: data.beatmap_id }), data.beatmap_version);
+    }
+
+    const key = `beatmapset_events.event.${eventType}`;
     let message = osu.trans(key, params);
 
     // append owner of the event if not already included in main message
@@ -150,5 +200,11 @@ export default class Event extends React.PureComponent<Props> {
     }
 
     return message;
+  }
+
+  private iconStyle() {
+    return {
+      '--bg': `var(--bg-${kebabCase(this.props.event.type)})`,
+    } as React.CSSProperties;
   }
 }

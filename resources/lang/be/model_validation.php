@@ -73,6 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Выдаленне метададзеных допіса бітмапы недазволена.',
             'beatmapset_post_no_edit' => 'Рэдагаванне метададзеных допіса бітмапы недазволена.',
+            'first_post_no_delete' => '',
+            'missing_topic' => '',
             'only_quote' => 'Ваш адказ змяшчае толькі цытату.',
 
             'attributes' => [

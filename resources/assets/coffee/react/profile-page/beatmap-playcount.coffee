@@ -6,6 +6,7 @@ import { a, div, h2, h3, img, p, small, span, strong } from 'react-dom-factories
 import { StringWithComponent } from 'string-with-component'
 import { UserLink } from 'user-link'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
+import { showVisual } from 'utils/beatmapset-helper'
 el = React.createElement
 
 bn = 'beatmap-playcount'
@@ -22,7 +23,7 @@ export class BeatmapPlaycount extends React.PureComponent
         href: beatmapUrl
         className: "#{bn}__cover"
         style:
-          backgroundImage: osu.urlPresence(beatmapset.covers.list)
+          backgroundImage: if showVisual(beatmapset) then osu.urlPresence(beatmapset.covers.list)
         div className: "#{bn}__cover-count",
           @renderPlaycountText()
       div
@@ -48,7 +49,7 @@ export class BeatmapPlaycount extends React.PureComponent
                   ':artist':
                     strong
                       key: 'artist'
-                      _.escape(getArtist(beatmapset))
+                      getArtist(beatmapset)
             ' ' # separator for overflow tooltip
             span
               className: "#{bn}__mapper"

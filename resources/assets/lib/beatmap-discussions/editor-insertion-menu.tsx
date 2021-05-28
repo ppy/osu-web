@@ -16,6 +16,7 @@ interface Props {
 export class EditorInsertionMenu extends React.Component<Props> {
   static contextType = SlateContext;
   bn = 'beatmap-discussion-editor-insertion-menu';
+  declare context: React.ContextType<typeof SlateContext>;
   hideInsertMenuTimer?: number;
   hoveredBlock: HTMLElement | undefined;
   insertPosition: 'above' | 'below' | undefined;
@@ -23,7 +24,9 @@ export class EditorInsertionMenu extends React.Component<Props> {
   mouseOver = false;
   scrollContainer: HTMLElement | undefined;
   // setTimeout delay is to prevent flashing when hovering the menu (the portal is not inside the container, so it fires a mouseleave)
-  throttledContainerMouseExit = _.throttle(() => { setTimeout(this.hideMenu.bind(this), 100); }, 10);
+  throttledContainerMouseExit = _.throttle(() => {
+    setTimeout(this.hideMenu.bind(this), 100);
+  }, 10);
   throttledContainerMouseMove = _.throttle(this.containerMouseMove.bind(this), 10);
   throttledMenuMouseEnter = _.throttle(this.menuMouseEnter.bind(this), 10);
   throttledMenuMouseExit = _.throttle(this.menuMouseLeave.bind(this), 10);
@@ -152,7 +155,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
           insertAt = SlateEditor.end(ed, ReactEditor.findPath(ed, node));
         } else {
           // if there's no previous block, that means we're at the start of the review/document, so insert there.
-          insertAt = {path: [], offset: 0};
+          insertAt = { offset: 0, path: [] };
         }
       } else {
         const nextSlateElement = this.hoveredBlock?.previousSibling?.lastChild;
@@ -172,7 +175,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
     }
 
     Transforms.insertNodes(ed, insertNode, { at: insertAt });
-  }
+  };
 
   insertButton = (type: string) => {
     let icon = 'fas fa-question';
@@ -190,16 +193,16 @@ export class EditorInsertionMenu extends React.Component<Props> {
 
     return (
       <button
-        type='button'
         className={`${this.bn}__menu-button ${this.bn}__menu-button--${type}`}
         data-discussion-type={type}
         onClick={this.insertBlock}
         title={osu.trans(`beatmaps.discussions.review.insert-block.${type}`)}
+        type='button'
       >
         <i className={icon}/>
       </button>
     );
-  }
+  };
 
   menuMouseEnter() {
     this.mouseOver = true;
@@ -212,22 +215,22 @@ export class EditorInsertionMenu extends React.Component<Props> {
 
   render() {
     return (
-        <Portal>
-          <div
-            className={`${this.bn}`}
-            ref={this.insertRef}
-          >
-            <div className={`${this.bn}__body`}>
-              <i className='fas fa-plus' />
-              <div className={`${this.bn}__buttons`}>
-                {this.insertButton('suggestion')}
-                {this.insertButton('problem')}
-                {this.insertButton('praise')}
-                {this.insertButton('paragraph')}
-              </div>
+      <Portal>
+        <div
+          ref={this.insertRef}
+          className={`${this.bn}`}
+        >
+          <div className={`${this.bn}__body`}>
+            <i className='fas fa-plus' />
+            <div className={`${this.bn}__buttons`}>
+              {this.insertButton('suggestion')}
+              {this.insertButton('problem')}
+              {this.insertButton('praise')}
+              {this.insertButton('paragraph')}
             </div>
           </div>
-        </Portal>
+        </div>
+      </Portal>
     );
   }
 
@@ -249,10 +252,10 @@ export class EditorInsertionMenu extends React.Component<Props> {
 
   startHideTimer() {
     if (this.hideInsertMenuTimer) {
-      Timeout.clear(this.hideInsertMenuTimer);
+      window.clearTimeout(this.hideInsertMenuTimer);
     }
 
-    this.hideInsertMenuTimer = Timeout.set(2000, this.hideMenu.bind(this));
+    this.hideInsertMenuTimer = window.setTimeout(this.hideMenu.bind(this), 2000);
   }
 
   updatePosition() {

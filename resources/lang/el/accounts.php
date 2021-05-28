@@ -35,7 +35,6 @@ return [
                 'user_discord' => '',
                 'user_from' => 'τρέχουσα τοποθεσία',
                 'user_interests' => 'ενδιαφέροντα',
-                'user_msnm' => '',
                 'user_occ' => 'ενασχόληση',
                 'user_twitter' => '',
                 'user_website' => 'ιστοσελίδα',
@@ -56,13 +55,15 @@ return [
         'topic_auto_subscribe' => 'αυτόματη ενεργοποίηση ειδοποιήσεων για τα νέα θέματα που δημιουργείτε στο φόρουμ',
 
         'options' => [
-            '_' => '',
+            '_' => 'επιλογές παράδοσης',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => '',
-            'channel_message' => '',
-            'comment_new' => '',
+            'channel_message' => 'ιδιωτικά μηνύματα',
+            'comment_new' => 'νέα σχόλια',
             'forum_topic_reply' => '',
-            'mail' => '',
-            'push' => '',
+            'mail' => 'mail',
+            'mapping' => '',
+            'push' => 'push',
             'user_achievement_unlock' => '',
         ],
     ],
@@ -74,16 +75,16 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'beatmapset_show_nsfw' => '',
+        'beatmapset_title_show_original' => '',
+        'title' => 'Ρυθμίσεις',
 
         'beatmapset_download' => [
             '_' => '',
             'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            'direct' => 'άνοιγμα με osu!direct',
+            'no_video' => 'χωρίς βίντεο',
         ],
-
-        'beatmapset_title_show_original' => '',
     ],
 
     'playstyles' => [

@@ -9,7 +9,9 @@
   position: relative;
 
   .default-box-shadow();
-  padding: 10px 50px;
+  .default-gutter-v2();
+  padding-top: 10px;
+  padding-bottom: $padding-top;
   font-size: @font-size--normal-2;
 
   &--sticky {
@@ -105,8 +107,13 @@
   &__input-container {
     color: @osu-colour-l1;
     font-size: @font-size--large;
-    margin: 20px -10px;
+    margin: 20px 0;
     position: relative;
+
+    @media @desktop {
+      margin-left: -10px;
+      margin-right: $margin-left;
+    }
 
     .@{_top}--sticky & {
       font-size: @font-size--normal-2;

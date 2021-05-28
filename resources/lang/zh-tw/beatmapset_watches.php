@@ -8,8 +8,14 @@ return [
         'description' => '這裡是你關注的圖譜，您將會在它們更新或有新討論的時候收到通知。',
         'title_compact' => '摸圖',
 
+        'counts' => [
+            'total' => '',
+            'unread' => '',
+        ],
+
         'table' => [
             'empty' => '沒有正在關注的圖譜',
+            'last_update' => '最後更新',
             'open_issues' => '進行中的議題',
             'state' => '狀態',
             'title' => '標題',

@@ -4,7 +4,9 @@
 import BeatmapJson from 'interfaces/beatmap-json';
 import ScoreJson from 'interfaces/score-json';
 import * as React from 'react';
+import PpValue from 'scores/pp-value';
 import { UserCard } from 'user-card';
+import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { modeAttributesMap } from 'utils/score';
 
@@ -44,22 +46,20 @@ export default function Stats(props: Props) {
             </div>
           </div>
 
-          {props.score.pp != null && (
+          {shouldShowPp(props.beatmap) && (
             <div className='score-stats__stat'>
               <div className='score-stats__stat-row score-stats__stat-row--label'>
                 {osu.trans('beatmapsets.show.scoreboard.headers.pp')}
               </div>
               <div className='score-stats__stat-row'>
-                <span title={osu.formatNumber(props.score.pp)}>
-                  {osu.formatNumber(props.score.pp, 0)}
-                </span>
+                <PpValue score={props.score} />
               </div>
             </div>
           )}
         </div>
         <div className='score-stats__group-row'>
           {modeAttributesMap[props.score.mode].map((attr) => (
-            <div className='score-stats__stat' key={attr.attribute}>
+            <div key={attr.attribute} className='score-stats__stat'>
               <div className='score-stats__stat-row score-stats__stat-row--label'>
                 {attr.label}
               </div>

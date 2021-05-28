@@ -3,10 +3,19 @@
 
 .profile-page-toggle {
   .reset-input();
-  .circle(40px);
+  .circle(30px);
+  .center-content();
+  .link-plain();
+  .link-white();
+  flex: none;
+  font-size: 12px; // icon size
   background-color: @osu-colour-b2;
 
   .link-hover({
     background-color: @osu-colour-b1;
   });
+
+  &--detail {
+    .circle(40px);
+  }
 }

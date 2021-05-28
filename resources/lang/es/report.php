@@ -5,22 +5,27 @@
 
 return [
     'beatmapset_discussion_post' => [
-        'button' => 'Reportar',
-        'title' => '¿Reportar la publicación de :username?',
+        'button' => 'Denunciar',
+        'title' => '¿Denunciar la publicación de :username?',
     ],
 
     'comment' => [
-        'button' => 'Reportar',
-        'title' => '¿Reportar el comentario de :username?',
+        'button' => 'Denunciar',
+        'title' => '¿Denunciar el comentario de :username?',
+    ],
+
+    'forum_post' => [
+        'button' => 'Denunciar',
+        'title' => '¿Denunciar la publicación de :username?',
     ],
 
     'scores' => [
-        'button' => 'Reportar puntuación',
-        'title' => '¿Reportar la puntuación de :username?',
+        'button' => 'Denunciar puntuación',
+        'title' => '¿Denunciar la puntuación de :username?',
     ],
 
     'user' => [
-        'button' => 'Reportar',
-        'title' => '¿Reportar :username?',
+        'button' => 'Denunciar',
+        'title' => '¿Denunciar :username?',
     ],
 ];

@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => '도움말',
+            'getAbuse' => '악용 사례 신고',
             'getFaq' => 'FAQ',
             'getRules' => '규칙',
             'getSupport' => '지원 센터',
@@ -158,6 +159,10 @@ return [
             'error' => '요청 매개변수가 올바르지 않습니다.',
             'description' => '',
         ],
+        '429' => [
+            'error' => '요청 제한 초과됨',
+            'description' => '',
+        ],
         '500' => [
             'error' => '이런! 뭔가 잘못 되었네요! ;_;',
             'description' => "저희는 모든 오류를 자동으로 보고받고 있습니다.",
@@ -170,8 +175,8 @@ return [
             'error' => '서비스 점검중입니다!',
             'description' => "점검은 보통 5분 내지 10분 동안 이루어집니다. 만약 더 오래 걸린다면 :link에서 더 많은 정보를 확인하실 수 있습니다.",
             'link' => [
-                'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
+                'text' => '',
+                'href' => '',
             ],
         ],
         // used by sentry if it returns an error
@@ -203,6 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '설정',
+            'follows' => '관심 목록',
             'friends' => '친구',
             'logout' => '로그아웃',
             'profile' => '내 프로필',

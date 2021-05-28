@@ -5,7 +5,7 @@ import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import GameMode from './game-mode';
 import Rank from './rank';
-import UserJSON from './user-json';
+import UserJson from './user-json';
 
 export default interface ScoreJson {
   accuracy: number;
@@ -32,6 +32,6 @@ export default interface ScoreJson {
     count_katu: number;
     count_miss: number;
   };
-  user: UserJSON;
+  user: UserJson;
   user_id: number;
 }

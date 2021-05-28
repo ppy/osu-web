@@ -69,7 +69,9 @@
                     @elseif ($tournament->isRegistrationOpen())
                         {!! markdown($tournament->description) !!}
 
-                        {{ trans('tournament.show.registration_ends', ['date' => i18n_date($tournament->signup_close)]) }}.
+                        <div class="tournament__description-md-extra">
+                            {{ trans('tournament.show.registration_ends', ['date' => i18n_date($tournament->signup_close)]) }}.
+                        </div>
                     @elseif ($tournament->start_date->isFuture())
                         {{ trans('tournament.show.state.registration_closed') }}
                     @elseif ($tournament->isTournamentRunning())

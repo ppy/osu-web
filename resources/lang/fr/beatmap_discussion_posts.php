@@ -10,6 +10,6 @@ return [
 
     'item' => [
         'content' => 'Contenu',
-        'modding_history_link' => 'Voir l\'historique',
+        'modding_history_link' => 'Voir l\'historique de modding',
     ],
 ];

@@ -20,9 +20,9 @@ return [
     'username_change' => '<strong>:previousUsername</strong> ได้เปลี่ยนชื่อของเขาเป็น <strong><em>:user</em></strong>!',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
-        'ranked' => '',
+        'approved' => 'อนุมัติแล้ว',
+        'loved' => 'loved',
+        'qualified' => 'qualified',
+        'ranked' => 'ranked',
     ],
 ];

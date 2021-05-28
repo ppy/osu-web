@@ -21,7 +21,7 @@ export class WikiSearch extends React.Component {
     // scroll highlighted option into view if triggered by keys
     if (this.keepSelectionInView) {
       // FIXME: probably doesn't work on Edge?
-      $('.wiki-search__suggestion--active')[0]?.scrollIntoView({ inline: 'nearest', block: 'nearest' });
+      $('.wiki-search__suggestion--active')[0]?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
       this.keepSelectionInView = false;
     }
   }
@@ -34,13 +34,13 @@ export class WikiSearch extends React.Component {
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.controller.updateQuery(event.target.value);
-  }
+  };
 
   handleEsc = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       this.controller.unselect(true);
     }
-  }
+  };
 
   handleKeyDown = (e: React.KeyboardEvent) => {
     const key = e.key;
@@ -49,13 +49,13 @@ export class WikiSearch extends React.Component {
       if (this.controller.selectedItem == null) {
         this.handleSearch();
       } else {
-        osu.navigate(route('wiki.show', { page: this.controller.selectedItem.path }));
+        osu.navigate(route('wiki.show', { locale: currentLocale, path: this.controller.selectedItem.path }));
       }
     } else if (key === 'ArrowUp' || key === 'ArrowDown') {
       this.keepSelectionInView = true;
       this.controller.shiftSelectedIndex(key === 'ArrowDown' ? 1 : -1);
     }
-  }
+  };
 
   handleMouseDown = (e: MouseEvent) => {
     if (this.ref.current == null) return;
@@ -63,27 +63,27 @@ export class WikiSearch extends React.Component {
     if (!e.composedPath().includes(this.ref.current)) {
       this.controller.unselect(true);
     }
-  }
+  };
 
   handleMouseLeave = () => {
     this.controller.unselect(false);
-  }
+  };
 
   handleSearch = () => {
     this.controller.search();
-  }
+  };
 
   render() {
     return (
       <div className='wiki-search'>
         <div className='wiki-search__bar'>
           <input
-            autoFocus={true}
+            autoFocus
             className='wiki-search__input'
-            value={this.controller.displayText}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
             placeholder={osu.trans('common.input.search')}
+            value={this.controller.displayText}
           />
           <button className='wiki-search__button' onClick={this.handleSearch}>
             <i className='fa fa-search'/>
@@ -106,13 +106,13 @@ export class WikiSearch extends React.Component {
               this.controller.selectIndex(index);
             };
 
-            const href = route('wiki.show', { page: item.path });
+            const href = route('wiki.show', { locale: currentLocale, path: item.path });
 
             return (
               <a
+                key={index}
                 className={osu.classWithModifiers('wiki-search__suggestion', this.controller.selectedIndex === index ? ['active'] : [])}
                 href={href}
-                key={index}
                 onMouseEnter={setIndex}
               >
                 <span dangerouslySetInnerHTML={{ __html: item.highlight }} />

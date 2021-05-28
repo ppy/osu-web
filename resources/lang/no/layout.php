@@ -77,6 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'hjelp',
+            'getAbuse' => '',
             'getFaq' => 'faq',
             'getRules' => 'regler',
             'getSupport' => 'nei, virkelig, jeg trenger hjelp!',
@@ -158,6 +159,10 @@ return [
             'error' => 'Ugyldig parameter i forespørsel',
             'description' => '',
         ],
+        '429' => [
+            'error' => '',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Åh nei! Noe gikk i stykker! ;_;',
             'description' => "Vi blir automatisk informert om hver feilstilling.",
@@ -203,6 +208,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Innstillinger',
+            'follows' => '',
             'friends' => 'Venner',
             'logout' => 'Logg Ut',
             'profile' => 'Min Profil',

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => '为何不玩几把 osu! 呢？',
     'require_login' => '登录以继续。',
     'require_verification' => '请验证以继续。',
     'restricted' => "账户处于限制模式，无法进行该操作。",
@@ -18,8 +18,6 @@ return [
         ],
         'nominate' => [
             'exhausted' => '你今天的提名次数已达上限，请明天再试。',
-            'full_bn_required' => '你必须是一位完整提名者才能执行有效提名。',
-            'full_bn_required_hybrid' => '你必须是一位完整提名者，以提名包含多个游戏模式的谱面。',
             'incorrect_state' => '操作出错了，请尝试刷新页面。',
             'owner' => "不能提名自己的谱面。",
             'set_metadata' => '您必须在提名之前设置类型和语言。',
@@ -69,7 +67,8 @@ return [
         'friends_only' => '用户阻止了来自非好友的消息。',
         'moderated' => '该频道现在正在被管制中。',
         'no_access' => '你没有权限访问该频道。',
-        'restricted' => '在账户禁言、受限或被 ban 期间不能发消息。',
+        'restricted' => '账户被禁言、受限或封禁期间不能发消息。',
+        'silenced' => '账户被禁言、受限或封禁期间不能发消息。',
     ],
 
     'comment' => [
@@ -80,6 +79,11 @@ return [
 
     'contest' => [
         'voting_over' => '投票已结束，无法修改投票。',
+
+        'entry' => [
+            'limit_reached' => '您提交的参赛文件大小超出限制',
+            'over' => '感谢参与！提交已经关闭，投票即将开始。',
+        ],
     ],
 
     'forum' => [

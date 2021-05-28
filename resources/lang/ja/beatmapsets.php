@@ -8,6 +8,11 @@ return [
         'disabled' => 'このビートマップは現在ダウンロード不可能です。',
         'parts-removed' => '権利者の申し立てによりこのビートマップは部分的に削除されています。',
         'more-info' => '詳細はこちらです。',
+        'rule_violation' => 'このマップに含まれる一部のアセットは、osu!での使用に適さないと判断され、削除されています。',
+    ],
+
+    'download' => [
+        'limit_exceeded' => 'スピードを落として、もっと遊ぼう。',
     ],
 
     'index' => [
@@ -16,19 +21,41 @@ return [
     ],
 
     'panel' => [
+        'empty' => 'ビートマップがありません',
+
         'download' => [
             'all' => 'ダウンロード',
-            'video' => '動画付きでダウンロード',
-            'no_video' => '動画無しでダウンロード',
+            'video' => '動画ありでダウンロード',
+            'no_video' => '動画なしでダウンロード',
             'direct' => 'osu!directで開く',
         ],
+    ],
+
+    'nominate' => [
+        'hybrid_requires_modes' => 'ハイブリッドビートマップセットでは、少なくとも1つのモードを選択してノミネートする必要があります。',
+        'incorrect_mode' => 'モード:modeでノミネートする権限がありません。',
+        'full_bn_required' => 'Qualifyノミネーションを行うにはフルノミネーターでなければなりません。',
+        'too_many' => 'ノミネーションの要件を満たしています',
+
+        'dialog' => [
+            'confirmation' => 'このビートマップを本当にノミネートしますか？',
+            'header' => 'ビートマップをノミネート',
+            'hybrid_warning' => '注意: 一度しかノミネートできないので、ノミネートするゲームモードの全てにノミネートするようにしてください。',
+            'which_modes' => 'どのモードをノミネートしますか？',
+        ],
+    ],
+
+    'nsfw_badge' => [
+        'label' => '過激表現を含む',
     ],
 
     'show' => [
         'discussion' => 'ディスカッション',
 
         'details' => [
+            'by_artist' => 'by :artist',
             'favourite' => 'ビートマップセットをお気に入りに追加する',
+            'favourite_login' => 'ログインしてこのビートマップをお気に入りに登録する',
             'logged-out' => 'ビートマップをダウンロードするにはログインが必要です！',
             'mapped_by' => '作者 :mapper',
             'unfavourite' => 'ビートマップをお気に入りから外す',
@@ -36,7 +63,7 @@ return [
 
             'download' => [
                 '_' => 'ダウンロード',
-                'direct' => 'osu!direct',
+                'direct' => '',
                 'no-video' => '動画なし',
                 'video' => '動画あり',
             ],
@@ -89,10 +116,24 @@ return [
             'genre' => 'ジャンル',
             'language' => '言語',
             'no_scores' => 'データはまだ計算中です・・・',
+            'nsfw' => '過激な表現を含むコンテンツ',
             'points-of-failure' => '失敗地点',
             'source' => 'ソース',
+            'storyboard' => 'このビートマップにはストーリーボードが含まれています',
             'success-rate' => 'クリア率',
             'tags' => 'タグ',
+            'video' => 'このビートマップには動画が含まれています',
+        ],
+
+        'nsfw_warning' => [
+            'details' => 'このビートマップには過激な表現、攻撃的、または不穏なコンテンツが含まれています。それでも表示しますか？',
+            'title' => '過激な表現を含むコンテンツ',
+
+            'buttons' => [
+                'disable' => '警告を無効にする',
+                'listing' => 'ビートマップリスト',
+                'show' => '表示',
+            ],
         ],
 
         'scoreboard' => [
@@ -110,7 +151,7 @@ return [
                 'miss' => 'ミス',
                 'mods' => 'Mods',
                 'player' => 'プレイヤー',
-                'pp' => 'pp',
+                'pp' => '',
                 'rank' => '順位',
                 'score_total' => '合計スコア',
                 'score' => 'スコア',
@@ -125,7 +166,7 @@ return [
                 'unranked' => 'Unrankedのビートマップです。',
             ],
             'score' => [
-                'first' => 'In the Lead',
+                'first' => 'リード',
                 'own' => 'あなたのベスト',
             ],
         ],
@@ -137,7 +178,7 @@ return [
             'accuracy' => '精度',
             'ar' => 'アプローチ速度',
             'stars' => '難易度（★）',
-            'total_length' => '長さ',
+            'total_length' => '長さ (Drainの長さ: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'サークルの数',
             'count_sliders' => 'スライダーの数',

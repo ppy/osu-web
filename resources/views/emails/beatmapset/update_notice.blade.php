@@ -10,6 +10,6 @@
 {!! route('beatmapsets.discussion', $beatmapset) !!}
 
 {!! trans('mail.beatmapset_update_notice.unwatch') !!}
-{!! route('beatmapsets.watches.index') !!}
+{!! route('follows.index', ['subtype' => 'modding']) !!}
 
 @include('emails._signature')

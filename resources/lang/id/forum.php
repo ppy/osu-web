@@ -43,15 +43,17 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Yakin menghapus post?',
-        'confirm_restore' => 'Yakin mengembalikan post?',
+        'confirm_destroy' => 'Apakah Anda yakin untuk menghapus post ini?',
+        'confirm_restore' => 'Apakah Anda yakin untuk mengembalikan post ini?',
         'edited' => 'Terakhir disunting oleh :user :when, dengan total penyuntingan sebanyak :count_delimited kali.|Terakhir disunting oleh :user :when, dengan total penyuntingan sebanyak :count_delimited kali.',
         'posted_at' => 'diposting :when',
+        'posted_by' => 'di-post oleh :username',
 
         'actions' => [
             'destroy' => 'Hapus Kiriman',
-            'restore' => 'Kembalikan post',
             'edit' => 'Sunting post',
+            'report' => 'Laporkan post',
+            'restore' => 'Kembalikan post',
         ],
 
         'create' => [
@@ -73,6 +75,8 @@ return [
     ],
 
     'topic' => [
+        'confirm_destroy' => 'Apakah Anda yakin untuk menghapus topik ini?',
+        'confirm_restore' => 'Apakah Anda yakin untuk mengembalikan topik ini?',
         'deleted' => 'topik yang dihapus',
         'go_to_latest' => 'lihat posting terbaru',
         'has_replied' => 'Anda telah mengirimkan balasan pada topik ini',
@@ -86,6 +90,11 @@ return [
         'reply_title_prefix' => 'Re',
         'started_by' => 'oleh :user',
         'started_by_verbose' => 'topik dimulai oleh :user',
+
+        'actions' => [
+            'destroy' => 'Hapus topik',
+            'restore' => 'Kembalikan topik',
+        ],
 
         'create' => [
             'close' => 'Tutup',
@@ -126,11 +135,11 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'langganan forum',
+            'title_compact' => 'daftar pantauan topik forum',
 
             'box' => [
                 'total' => 'Topik yang dilanggan',
-                'unread' => 'Topik dengan balasan terbaru',
+                'unread' => 'Topik dengan balasan baru',
             ],
 
             'info' => [
@@ -174,7 +183,7 @@ return [
                 'length_days_suffix' => 'hari',
                 'length_info' => 'Biarkan kosong apabila Anda tidak ingin menerapkan tenggat waktu pada jajak pendapat ini',
                 'max_options' => 'Pilihan per pengguna',
-                'max_options_info' => 'Jumlah opsi yang dapat dipilih setiap pengguna saat memilih',
+                'max_options_info' => 'Jumlah opsi yang dapat dipilih setiap pengguna saat memilih.',
                 'options' => 'Pilihan',
                 'options_info' => 'Tempatkan setiap opsi pada baris baru. Anda dapat memasukkan hingga 10 opsi.',
                 'title' => 'Pertanyaan',
@@ -281,7 +290,7 @@ return [
                 ],
 
                 'user' => [
-                    'count' => '{0} tidak ada suara|{1} :count suara|[2,*] :count suara',
+                    'count' => '{0} tidak ada suara|{1} :count_delimited suara|[2,*] :count_delimited suara',
                     'current' => 'Anda memiliki :votes tersisa.',
                     'not_enough' => "Anda tidak memiliki cukup hak suara untuk dapat mempromosikan gagasan ini lebih jauh.",
                 ],
@@ -293,7 +302,7 @@ return [
                 'vote' => 'Pilih',
 
                 'button' => [
-                    'change_vote' => 'Ganti suara',
+                    'change_vote' => 'Ubah suara',
                     'edit' => 'Sunting jajak pendapat',
                     'view_results' => 'Lewati ke hasil jajak pendapat',
                     'vote' => 'Pilih',

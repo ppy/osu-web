@@ -104,6 +104,7 @@ class RoomsController extends BaseController
                     ->load('playlist.beatmap.baseMaxCombo'),
                 'Multiplayer\Room',
                 [
+                    'current_user_score.playlist_item_attempts',
                     'host.country',
                     'playlist.beatmap.beatmapset',
                     'playlist.beatmap.checksum',

@@ -1,12 +1,14 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { FlagCountry } from 'flag-country'
+import FlagCountry from 'flag-country'
 import { route } from 'laroute'
 import Mod from 'mod'
+import PpValue from 'scores/pp-value'
 import * as React from 'react'
-import { div, a } from 'react-dom-factories'
+import { a, div, span } from 'react-dom-factories'
 import ScoreboardTime from 'scoreboard-time'
+import { shouldShowPp } from 'utils/beatmap-helper'
 import { classWithModifiers } from 'utils/css'
 
 el = React.createElement
@@ -18,44 +20,57 @@ export ScoreTop = (props) ->
     .join ' '
 
   position = if props.position? then "##{props.position}" else '-'
+  showPp = shouldShowPp(props.beatmap)
 
-  div className: "clickable-row #{bn} #{topClasses}",
+  div className: "#{bn} #{topClasses}",
+    a
+      className: "#{bn}__link-container"
+      href: route('scores.show', mode: props.score.mode, score: props.score.best_id)
+
     div className: "#{bn}__section",
       div className: "#{bn}__wrapping-container #{bn}__wrapping-container--left",
         div className: "#{bn}__position",
-          a
-            className: "clickable-row-link #{bn}__position-number"
-            href: route('scores.show', mode: props.score.mode, score: props.score.best_id)
+          div
+            className: "#{bn}__position-number"
             position
           div className: "score-rank score-rank--tiny score-rank--#{props.score.rank}"
 
         div className: "#{bn}__avatar",
-          a
-            href: route 'users.show', user: props.score.user.id
-            className: "avatar"
-            style:
-              backgroundImage: osu.urlPresence(props.score.user.avatar_url)
+          if props.score.user.is_deleted
+            span className: 'avatar avatar--guest'
+          else
+            a
+              href: route 'users.show', user: props.score.user.id
+              className: "avatar u-hover"
+              style:
+                backgroundImage: osu.urlPresence(props.score.user.avatar_url)
 
         div className: "#{bn}__user-box",
-          a
-            className: "#{bn}__username js-usercard"
-            'data-user-id': props.score.user.id
-            href: route 'users.show', user: props.score.user.id, mode: props.score.mode
-            props.score.user.username
+          if props.score.user.is_deleted
+            span
+              className: "#{bn}__username"
+              osu.trans('users.deleted')
+          else
+            a
+              className: "#{bn}__username js-usercard u-hover"
+              'data-user-id': props.score.user.id
+              href: route 'users.show', user: props.score.user.id, mode: props.score.mode
+              props.score.user.username
 
           div
-            className: "#{bn}__achieved"
+            className: "#{bn}__achieved u-hover"
             dangerouslySetInnerHTML:
               __html: osu.trans('beatmapsets.show.scoreboard.achieved', when: osu.timeago(props.score.created_at))
 
           a
+            className: 'u-hover'
             href: route 'rankings',
               mode: props.score.mode
               country: props.score.user.country_code
               type: 'performance'
             el FlagCountry,
               country: props.score.user.country
-              modifiers: ['scoreboard', 'small-box', 'wrapped']
+              modifiers: ['flat']
 
       div className: "#{bn}__wrapping-container #{bn}__wrapping-container--right",
         div className: "#{bn}__stats",
@@ -94,21 +109,22 @@ export ScoreTop = (props) ->
             div className: "#{bn}__stat-value #{bn}__stat-value--smaller",
               osu.formatNumber(props.score.statistics.count_miss)
 
-          div className: "#{bn}__stat",
-            div className: "#{bn}__stat-header",
-              osu.trans 'beatmapsets.show.scoreboard.headers.pp'
-            div className: "#{bn}__stat-value #{bn}__stat-value--smaller",
-              _.round props.score.pp
+          if showPp
+            div className: "#{bn}__stat",
+              div className: "#{bn}__stat-header",
+                osu.trans 'beatmapsets.show.scoreboard.headers.pp'
+              div className: "#{bn}__stat-value #{bn}__stat-value--smaller",
+                el PpValue, score: props.score
 
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header",
               osu.trans 'beatmapsets.show.scoreboard.headers.time'
-            div className: "#{bn}__stat-value #{bn}__stat-value--smaller",
+            div className: "#{bn}__stat-value #{bn}__stat-value--smaller u-hover",
               el ScoreboardTime,
                 dateTime: props.score.created_at
 
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header #{bn}__stat-header--mods",
               osu.trans 'beatmapsets.show.scoreboard.headers.mods'
-            div className: "#{bn}__stat-value #{bn}__stat-value--mods",
+            div className: "#{bn}__stat-value #{bn}__stat-value--mods u-hover",
               el(Mod, key: mod, mod: mod) for mod in props.score.mods

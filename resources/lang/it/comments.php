@@ -22,10 +22,10 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Premi invio per :action. Usa shift+enter per andare a capo.',
-            'edit' => 'salva',
-            'new' => 'post',
-            'reply' => 'rispondi',
+            '_' => 'Premi invio per :action. Usa shift+invio per andare a capo.',
+            'edit' => 'salvare',
+            'new' => 'postare',
+            'reply' => 'rispondere',
         ],
     ],
 
@@ -35,7 +35,9 @@ return [
     ],
 
     'index' => [
+        'nav_comments' => 'commenti',
         'nav_title' => 'lista',
+        'no_comments' => 'nessun commento trovato...',
     ],
 
     'placeholder' => [

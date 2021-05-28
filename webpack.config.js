@@ -16,7 +16,7 @@ let resolved = false;
 const watches = [
   {
     callback: () => {
-      spawnSync('php', ['artisan', 'ziggy:generate'], spawnOptions);
+      spawnSync('php', ['artisan', 'ziggy:generate', 'resources/assets/js/ziggy.js'], spawnOptions);
     },
     path: routesFile,
     type: 'file',
@@ -52,13 +52,13 @@ function configPromise(env, argv) {
 
     const wp = new Watchpack(options);
     wp.watch(
-      watches.filter(x => x.type === 'file').map(x => x.path),
-      watches.filter(x => x.type === 'dir').map(x => x.path),
+      watches.filter((x) => x.type === 'file').map((x) => x.path),
+      watches.filter((x) => x.type === 'dir').map((x) => x.path),
     ); // files and directories are different arguments.
 
     // directory watchers cause change events on start, file watchers don't;
     // run the callback for each file watcher once.
-    watches.filter(x => x.type === 'file').forEach((watched) => {
+    watches.filter((x) => x.type === 'file').forEach((watched) => {
       watched.callback();
       watched.ranOnce = true;
     });
