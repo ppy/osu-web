@@ -155,26 +155,6 @@ abstract class Model extends BaseModel
         return ($includeDbPrefix ? $this->dbName().'.' : '').$this->getTable();
     }
 
-    /**
-     * Get the value of a relation on this model, loading from `$fallback`
-     * instead of the database connection when unset.
-     *
-     * This can be used to shadow relation attributes and prevent unnecessary
-     * database lookups when the related models are cached elsewhere already.
-     */
-    protected function relationWithFallback(string $relation, callable $fallback)
-    {
-        if ($this->relationLoaded($relation)) {
-            return $this->getRelation($relation);
-        }
-
-        $fallbackValue = $fallback();
-
-        $this->setRelation($relation, $fallbackValue);
-
-        return $fallbackValue;
-    }
-
     // Allows save/update/delete to work with composite primary keys.
     // Note this doesn't fix 'find' method and a bunch of other laravel things
     // which rely on getKeyName and getKey (and they themselves are broken as well).

@@ -36,9 +36,7 @@ class UserGroup extends Model
 
     public function getGroupAttribute(): Group
     {
-        return $this->relationWithFallback('group', function () {
-            return app('groups')->byId($this->group_id);
-        });
+        return app('groups')->byId($this->group_id);
     }
 
     /**
