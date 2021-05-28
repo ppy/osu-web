@@ -292,7 +292,7 @@ class @Forum
       targetDocumentScrollTop = currentDocumentScrollTop + currentScrollReferenceTop - scrollReferenceTop
       window.scrollTo x, targetDocumentScrollTop
 
-      osu.pageChange()
+      _exported.pageChange()
       link.dataset.failed = '0'
 
     .always ->
