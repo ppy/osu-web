@@ -49,27 +49,30 @@
     @endif
 
     @php
-        $group = $user->firstGroupBadge();
+        $userGroup = $user->userGroupsForBadges()->first();
     @endphp
-    @if (isset($group))
+    @if ($userGroup !== null)
         <div class="forum-post-info__row forum-post-info__row--group-badge">
+            @php
+                $group = $userGroup->group;
+            @endphp
             <div
                 class="user-group-badge user-group-badge--t-forum"
                 data-label="{{ $group->short_name }}"
                 title="{{ $group->group_name }}"
                 style="{!! css_group_colour($group) !!}"
             >
-                @if ($group->playmodes && count($group->playmodes) > 0)
+                @if (count($userGroup->playmodes) > 0)
                     <div class="user-group-badge__modes">
-                        @foreach($group->playmodes as $mode)
+                        @foreach($userGroup->playmodes as $mode)
                             <i class="fal fa-extra-mode-{{$mode}}"></i>
                         @endforeach
                     </div>
                 @endif
             </div>
-            @if ($group->playmodes && count($group->playmodes) > 0)
+            @if (count($userGroup->playmodes) > 0)
                 <div class="forum-post-info__row forum-post-info__row--group-badge-playmodes">
-                    @foreach($group->playmodes as $mode)
+                    @foreach($userGroup->playmodes as $mode)
                         <i class="fal fa-extra-mode-{{$mode}}"></i>
                     @endforeach
                 </div>

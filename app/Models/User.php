@@ -1449,28 +1449,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->blocks->pluck('user_id');
     }
 
-    /**
-     * Get `Group` and `UserGroup` information for display as the first badge.
-     *
-     * TODO: This is only used for some Blade views and can be removed when
-     * they're ported to React.
-     */
-    public function firstGroupBadge()
-    {
-        return $this->memoize(__FUNCTION__, function () {
-            $userGroup = $this->userGroupsForBadges()->first();
-
-            if ($userGroup === null) {
-                return;
-            }
-
-            $group = clone $userGroup->group;
-            $group->playmodes = $userGroup->playmodes;
-
-            return $group;
-        });
-    }
-
     public function userGroupsForBadges()
     {
         return $this->memoize(__FUNCTION__, function () {
