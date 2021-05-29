@@ -25,7 +25,7 @@ export default class HeaderInfo extends React.PureComponent<Props> {
     const avatar = <UserAvatar modifiers={['full']} user={this.props.user} />;
     return (
       <div className='profile-info'>
-        <div className='profile-info_bg' style={{ backgroundImage: osu.urlPresence(this.props.coverUrl) }} />
+        <div className='profile-info__bg' style={{ backgroundImage: osu.urlPresence(this.props.coverUrl) }} />
         {this.props.user.id === currentUser.id ? (
           <a className='profile-info__avatar' href={`${route('account.edit')}#avatar`} title={osu.trans('users.show.change_avatar')}>{avatar}</a>
         ) : (
