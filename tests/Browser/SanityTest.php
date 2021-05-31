@@ -22,6 +22,182 @@ class SanityTest extends DuskTestCase
     protected $failed = 0;
     protected $skipped = 0;
 
+    public static function setUpBeforeClass(): void
+    {
+        parent::setUpBeforeClass();
+
+        static::createScaffolding();
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        static::cleanup();
+
+        parent::tearDownAfterClass();
+    }
+
+    private static function cleanup()
+    {
+        if (!isset(self::$scaffolding)) {
+            return;
+        }
+
+        (new static())->createApplication();
+        // Clean up extra things that get created (i.e. as side-effects, etc)
+        if (isset(self::$scaffolding['user'])) {
+            self::$scaffolding['user']->userProfileCustomization()->forceDelete();
+        }
+
+        // Tear down in reverse-order so that dependants get destroyed before their dependencies.
+        $nukingOrder = array_reverse(self::$scaffolding);
+
+        foreach ($nukingOrder as $name => $scaffold) {
+            static::output("TEARDOWN: $name (".get_class($scaffold).")\n");
+
+            if ($name === 'order' || $name === 'invoice') {
+                // we need to perform custom deletion for orders to bypass their immutability protections
+                DB::connection('mysql-store')->delete('delete from orders where order_id = ?', [$scaffold->getKey()]);
+            } else {
+                $scaffold->forceDelete();
+            }
+        }
+    }
+
+    private static function createScaffolding()
+    {
+        if (isset(self::$scaffolding)) {
+            return;
+        }
+
+        (new static())->createApplication();
+        self::$scaffolding['country'] = Country::first() ?? factory(\App\Models\Country::class)->create();
+        // user to login as and to use for requests
+        self::$scaffolding['user'] = factory(\App\Models\User::class)->create([
+            'country_acronym' => self::$scaffolding['country']->acronym,
+        ]);
+
+        // factories for /beatmapsets/*
+        self::$scaffolding['beatmap_mirror'] = factory(\App\Models\BeatmapMirror::class)->create();
+        self::$scaffolding['genre'] = factory(\App\Models\Genre::class)->create();
+        self::$scaffolding['language'] = factory(\App\Models\Language::class)->create();
+        self::$scaffolding['beatmapset'] = factory(\App\Models\Beatmapset::class)->create([
+            'discussion_enabled' => true,
+            'genre_id' => self::$scaffolding['genre']->genre_id,
+            'language_id' => self::$scaffolding['language']->language_id,
+            'user_id' => self::$scaffolding['user']->getKey(),
+        ]);
+        self::$scaffolding['beatmap'] = factory(\App\Models\Beatmap::class)->create([
+            'beatmapset_id' => self::$scaffolding['beatmapset']->getKey(),
+        ]);
+        self::$scaffolding['beatmap_discussion'] = factory(\App\Models\BeatmapDiscussion::class)->create([
+            'beatmapset_id' => self::$scaffolding['beatmapset']->getKey(),
+            'beatmap_id' => self::$scaffolding['beatmap']->getKey(),
+        ]);
+        self::$scaffolding['pack'] = factory(\App\Models\BeatmapPack::class)->create();
+
+        // factories for /community/contests/*
+        self::$scaffolding['contest'] = factory(\App\Models\Contest::class)->states('entry')->create();
+
+        // factories for /community/tournaments/*
+        self::$scaffolding['tournament'] = factory(\App\Models\Tournament::class)->create();
+
+        // factories for /beatmaps/artists/*
+        self::$scaffolding['artist'] = factory(\App\Models\Artist::class)->create();
+
+        // factories for /store/*
+        self::$scaffolding['product'] = factory(\App\Models\Store\Product::class, 'master_tshirt')->create();
+        self::$scaffolding['order'] = factory(\App\Models\Store\Order::class)->states('checkout')->create([
+            'user_id' => self::$scaffolding['user']->getKey(),
+        ]);
+        self::$scaffolding['checkout'] = new ScaffoldDummy(self::$scaffolding['order']->getKey());
+        self::$scaffolding['invoice'] = factory(\App\Models\Store\Order::class, 'paid')->create([
+            'user_id' => self::$scaffolding['user']->getKey(),
+        ]);
+
+        // factories for /community/forums/*
+        self::$scaffolding['forum_parent'] = factory(\App\Models\Forum\Forum::class, 'parent')->create();
+        self::$scaffolding['forum'] = factory(\App\Models\Forum\Forum::class, 'child')->create([
+            'parent_id' => self::$scaffolding['forum_parent']->getKey(),
+        ]);
+        // satisfy group permissions required for posting in forum
+        self::$scaffolding['_group'] = app('groups')->byIdentifier('default');
+        self::$scaffolding['_forum_acl_post'] = factory(\App\Models\Forum\Authorize::class, 'post')->create([
+            'forum_id' => self::$scaffolding['forum']->getKey(),
+            'group_id' => self::$scaffolding['_group']->getKey(),
+        ]);
+        self::$scaffolding['_forum_acl_reply'] = factory(\App\Models\Forum\Authorize::class, 'reply')->create([
+            'forum_id' => self::$scaffolding['forum']->getKey(),
+            'group_id' => self::$scaffolding['_group']->getKey(),
+        ]);
+        self::$scaffolding['_user_group'] = factory(\App\Models\UserGroup::class)->create([
+            'user_id' => self::$scaffolding['user']->getKey(),
+            'group_id' => self::$scaffolding['_group']->getKey(),
+            'user_pending' => false,
+        ]);
+        // satisfy minimum playcount for forum posting
+        self::$scaffolding['user']->statisticsOsu()->save(factory(\App\Models\UserStatistics\Osu::class)->make(['playcount' => config('osu.forum.minimum_plays')]));
+
+        self::$scaffolding['topic'] = factory(\App\Models\Forum\Topic::class)->create([
+            'topic_poster' => self::$scaffolding['user']->getKey(),
+            'topic_first_poster_name' => self::$scaffolding['user']->username,
+            'topic_last_poster_id' => self::$scaffolding['user']->getKey(),
+            'topic_last_poster_name' => self::$scaffolding['user']->username,
+            'forum_id' => self::$scaffolding['forum']->getKey(),
+        ]);
+
+        self::$scaffolding['post'] = factory(\App\Models\Forum\Post::class)->create([
+            'poster_id' => self::$scaffolding['user']->getKey(),
+            'post_username' => self::$scaffolding['user']->username,
+            'forum_id' => self::$scaffolding['forum']->getKey(),
+            'topic_id' => self::$scaffolding['topic']->getKey(),
+        ]);
+
+        // factories for /community/chat/*
+        self::$scaffolding['channel'] = factory(\App\Models\Chat\Channel::class)->states('public')->create();
+        self::$scaffolding['user_channel'] = factory(\App\Models\Chat\UserChannel::class)->create([
+            'channel_id' => self::$scaffolding['channel']->getKey(),
+            'user_id' => self::$scaffolding['user']->getKey(),
+        ]);
+
+        // dummy for game mode param
+        self::$scaffolding['mode'] = new ScaffoldDummy('osu');
+
+        // factory for /home/changelog/*
+        self::$scaffolding['stream'] = factory(\App\Models\UpdateStream::class)->create();
+        self::$scaffolding['changelog'] = factory(\App\Models\Changelog::class)->create([
+            'stream_id' => self::$scaffolding['stream']->stream_id,
+        ]);
+        self::$scaffolding['build'] = factory(\App\Models\Build::class)->create([
+            'stream_id' => self::$scaffolding['stream']->stream_id,
+        ]);
+
+        // factory for /g/*
+        self::$scaffolding['group'] = factory(\App\Models\Group::class)->create();
+
+        // factory for comments
+        self::$scaffolding['comment'] = factory(\App\Models\Comment::class)->create([
+            'user_id' => self::$scaffolding['user']->user_id,
+            'commentable_id' => self::$scaffolding['build'],
+        ]);
+
+        // factory for matches
+        self::$scaffolding['match'] = factory(\App\Models\LegacyMatch\LegacyMatch::class)->create();
+        self::$scaffolding['event'] = factory(\App\Models\LegacyMatch\Event::class)->states('join')->create([
+            'match_id' => self::$scaffolding['match']->getKey(),
+        ]);
+
+        // dummy for wiki page
+        self::$scaffolding['page'] = new ScaffoldDummy('Welcome');
+
+        // dummy for news
+        self::$scaffolding['news'] = new ScaffoldDummy('2014-06-21-meet-yuzu');
+
+        // score factory
+        self::$scaffolding['score'] = factory(\App\Models\Score\Best\Osu::class)->states('with_replay')->create();
+
+        self::$scaffolding['room'] = factory(Room::class)->create(['category' => 'spotlight']);
+    }
+
     private static function filterLog(array $log)
     {
         $return = [];
@@ -134,19 +310,6 @@ class SanityTest extends DuskTestCase
             // triggered delayed test failure
             $this->fail($this->testFailed);
         }
-    }
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->createScaffolding();
-
-        $this->beforeApplicationDestroyed(function () {
-            // We do this here while we can still access laravel,
-            // tearDown/tearDownAfterClass runs after laravel is torn down
-            $this->cleanup();
-        });
     }
 
     private function assertGeneralValidation(string $type, Browser $browser, LaravelRoute $route)
@@ -290,166 +453,6 @@ class SanityTest extends DuskTestCase
         } else {
             $browser->assertDontSee('Account Verification');
         }
-    }
-
-    private function cleanup()
-    {
-        if (!isset(self::$scaffolding)) {
-            return;
-        }
-
-        // Clean up extra things that get created (i.e. as side-effects, etc)
-        if (isset(self::$scaffolding['user'])) {
-            self::$scaffolding['user']->userProfileCustomization()->forceDelete();
-        }
-
-        // Tear down in reverse-order so that dependants get destroyed before their dependencies.
-        $nukingOrder = array_reverse(self::$scaffolding);
-
-        foreach ($nukingOrder as $name => $scaffold) {
-            static::output("TEARDOWN: $name (".get_class($scaffold).")\n");
-
-            if ($name === 'order' || $name === 'invoice') {
-                // we need to perform custom deletion for orders to bypass their immutability protections
-                DB::connection('mysql-store')->delete('delete from orders where order_id = ?', [$scaffold->getKey()]);
-            } else {
-                $scaffold->forceDelete();
-            }
-        }
-    }
-
-    private function createScaffolding()
-    {
-        if (isset(self::$scaffolding)) {
-            return;
-        }
-
-        self::$scaffolding['country'] = Country::first() ?? factory(\App\Models\Country::class)->create();
-        // user to login as and to use for requests
-        self::$scaffolding['user'] = factory(\App\Models\User::class)->create([
-            'country_acronym' => self::$scaffolding['country']->acronym,
-        ]);
-
-        // factories for /beatmapsets/*
-        self::$scaffolding['beatmap_mirror'] = factory(\App\Models\BeatmapMirror::class)->create();
-        self::$scaffolding['genre'] = factory(\App\Models\Genre::class)->create();
-        self::$scaffolding['language'] = factory(\App\Models\Language::class)->create();
-        self::$scaffolding['beatmapset'] = factory(\App\Models\Beatmapset::class)->create([
-            'discussion_enabled' => true,
-            'genre_id' => self::$scaffolding['genre']->genre_id,
-            'language_id' => self::$scaffolding['language']->language_id,
-            'user_id' => self::$scaffolding['user']->getKey(),
-        ]);
-        self::$scaffolding['beatmap'] = factory(\App\Models\Beatmap::class)->create([
-            'beatmapset_id' => self::$scaffolding['beatmapset']->getKey(),
-        ]);
-        self::$scaffolding['beatmap_discussion'] = factory(\App\Models\BeatmapDiscussion::class)->create([
-            'beatmapset_id' => self::$scaffolding['beatmapset']->getKey(),
-            'beatmap_id' => self::$scaffolding['beatmap']->getKey(),
-        ]);
-        self::$scaffolding['pack'] = factory(\App\Models\BeatmapPack::class)->create();
-
-        // factories for /community/contests/*
-        self::$scaffolding['contest'] = factory(\App\Models\Contest::class)->states('entry')->create();
-
-        // factories for /community/tournaments/*
-        self::$scaffolding['tournament'] = factory(\App\Models\Tournament::class)->create();
-
-        // factories for /beatmaps/artists/*
-        self::$scaffolding['artist'] = factory(\App\Models\Artist::class)->create();
-
-        // factories for /store/*
-        self::$scaffolding['product'] = factory(\App\Models\Store\Product::class, 'master_tshirt')->create();
-        self::$scaffolding['order'] = factory(\App\Models\Store\Order::class)->states('checkout')->create([
-            'user_id' => self::$scaffolding['user']->getKey(),
-        ]);
-        self::$scaffolding['checkout'] = new ScaffoldDummy(self::$scaffolding['order']->getKey());
-        self::$scaffolding['invoice'] = factory(\App\Models\Store\Order::class, 'paid')->create([
-            'user_id' => self::$scaffolding['user']->getKey(),
-        ]);
-
-        // factories for /community/forums/*
-        self::$scaffolding['forum_parent'] = factory(\App\Models\Forum\Forum::class, 'parent')->create();
-        self::$scaffolding['forum'] = factory(\App\Models\Forum\Forum::class, 'child')->create([
-            'parent_id' => self::$scaffolding['forum_parent']->getKey(),
-        ]);
-        // satisfy group permissions required for posting in forum
-        self::$scaffolding['_group'] = app('groups')->byIdentifier('default');
-        self::$scaffolding['_forum_acl_post'] = factory(\App\Models\Forum\Authorize::class, 'post')->create([
-            'forum_id' => self::$scaffolding['forum']->getKey(),
-            'group_id' => self::$scaffolding['_group']->getKey(),
-        ]);
-        self::$scaffolding['_forum_acl_reply'] = factory(\App\Models\Forum\Authorize::class, 'reply')->create([
-            'forum_id' => self::$scaffolding['forum']->getKey(),
-            'group_id' => self::$scaffolding['_group']->getKey(),
-        ]);
-        self::$scaffolding['_user_group'] = factory(\App\Models\UserGroup::class)->create([
-            'user_id' => self::$scaffolding['user']->getKey(),
-            'group_id' => self::$scaffolding['_group']->getKey(),
-            'user_pending' => false,
-        ]);
-        // satisfy minimum playcount for forum posting
-        self::$scaffolding['user']->statisticsOsu()->save(factory(\App\Models\UserStatistics\Osu::class)->make(['playcount' => config('osu.forum.minimum_plays')]));
-
-        self::$scaffolding['topic'] = factory(\App\Models\Forum\Topic::class)->create([
-            'topic_poster' => self::$scaffolding['user']->getKey(),
-            'topic_first_poster_name' => self::$scaffolding['user']->username,
-            'topic_last_poster_id' => self::$scaffolding['user']->getKey(),
-            'topic_last_poster_name' => self::$scaffolding['user']->username,
-            'forum_id' => self::$scaffolding['forum']->getKey(),
-        ]);
-
-        self::$scaffolding['post'] = factory(\App\Models\Forum\Post::class)->create([
-            'poster_id' => self::$scaffolding['user']->getKey(),
-            'post_username' => self::$scaffolding['user']->username,
-            'forum_id' => self::$scaffolding['forum']->getKey(),
-            'topic_id' => self::$scaffolding['topic']->getKey(),
-        ]);
-
-        // factories for /community/chat/*
-        self::$scaffolding['channel'] = factory(\App\Models\Chat\Channel::class)->states('public')->create();
-        self::$scaffolding['user_channel'] = factory(\App\Models\Chat\UserChannel::class)->create([
-            'channel_id' => self::$scaffolding['channel']->getKey(),
-            'user_id' => self::$scaffolding['user']->getKey(),
-        ]);
-
-        // dummy for game mode param
-        self::$scaffolding['mode'] = new ScaffoldDummy('osu');
-
-        // factory for /home/changelog/*
-        self::$scaffolding['stream'] = factory(\App\Models\UpdateStream::class)->create();
-        self::$scaffolding['changelog'] = factory(\App\Models\Changelog::class)->create([
-            'stream_id' => self::$scaffolding['stream']->stream_id,
-        ]);
-        self::$scaffolding['build'] = factory(\App\Models\Build::class)->create([
-            'stream_id' => self::$scaffolding['stream']->stream_id,
-        ]);
-
-        // factory for /g/*
-        self::$scaffolding['group'] = factory(\App\Models\Group::class)->create();
-
-        // factory for comments
-        self::$scaffolding['comment'] = factory(\App\Models\Comment::class)->create([
-            'user_id' => self::$scaffolding['user']->user_id,
-            'commentable_id' => self::$scaffolding['build'],
-        ]);
-
-        // factory for matches
-        self::$scaffolding['match'] = factory(\App\Models\LegacyMatch\LegacyMatch::class)->create();
-        self::$scaffolding['event'] = factory(\App\Models\LegacyMatch\Event::class)->states('join')->create([
-            'match_id' => self::$scaffolding['match']->getKey(),
-        ]);
-
-        // dummy for wiki page
-        self::$scaffolding['page'] = new ScaffoldDummy('Welcome');
-
-        // dummy for news
-        self::$scaffolding['news'] = new ScaffoldDummy('2014-06-21-meet-yuzu');
-
-        // score factory
-        self::$scaffolding['score'] = factory(\App\Models\Score\Best\Osu::class)->states('with_replay')->create();
-
-        self::$scaffolding['room'] = factory(Room::class)->create(['category' => 'spotlight']);
     }
 
     private function handleTestException(string $type, Exception $err, Browser $browser, LaravelRoute $route): void
