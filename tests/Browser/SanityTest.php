@@ -11,16 +11,11 @@ use DB;
 use Exception;
 use Illuminate\Routing\Route as LaravelRoute;
 use Laravel\Dusk\Browser;
-use Route;
 use Tests\DuskTestCase;
 
 class SanityTest extends DuskTestCase
 {
     protected static $scaffolding; // static so we only set up the scaffolding once
-
-    protected $passed = 0;
-    protected $failed = 0;
-    protected $skipped = 0;
 
     public static function setUpBeforeClass(): void
     {
@@ -251,65 +246,74 @@ class SanityTest extends DuskTestCase
         }
     }
 
-    public function testPageLoadCheck()
+    public function routesDataProvider()
     {
-        $bypass = [
+        static $bypass = [
+            '__clockwork',
             '_dusk/',
             '_lio',
             'api/',
+            'clockwork',
             'oauth/',
             'payments/',
         ];
+        static $types = ['user', 'guest'];
 
-        $this->testFailed = null;
+        $this->refreshApplication();
+        $data = [];
 
-        foreach (Route::getRoutes()->get('GET') as $route) {
-            static::output("\n  /{$route->uri} (".(presence($route->getName()) ?? '???').')');
-
-            if (!present($route->getName()) || starts_with($route->uri, $bypass)) {
-                static::output(" \e[30;1m[SKIPPED]\e[0m");
-                $this->skipped++;
+        foreach (app()->routes->get('GET') as $uri => $route) {
+            if (starts_with($uri, $bypass)) {
                 continue;
             }
 
-            $url = $this->bindParams($route);
+            $routeName = $route->getName() ?? $uri;
+            foreach ($types as $type) {
+                $data[] = ["{$routeName}:{$type}", $type, $uri];
+            }
+        }
 
-            // TODO: add additional logic for certain routes to re-run tests per game mode, per user score type, etc
-            $this->browse(function (Browser $browser) use ($route, $url) {
-                $type = 'user';
+        return $data;
+    }
 
-                try {
-                    static::resetSession($browser);
-                    $browser->loginAs(self::$scaffolding['user'])->visit($url);
+    /**
+     * @dataProvider routesDataProvider
+     */
+    public function testPageLoadCheck($testName, $type, $uri)
+    {
+        $route = app()->routes->get('GET')[$uri];
 
-                    // $browser->driver->takeScreenshot('ss/'.$route->getName().'.png');
+        static::output("\n  [{$type}] /{$route->uri} (".(presence($route->getName()) ?? '???').')');
 
+        if ($route->getName() === null) {
+            $this->markTestSkipped("Route name missing ({$route->uri})");
+        }
+
+        $url = $this->bindParams($route);
+
+        // TODO: add additional logic for certain routes to re-run tests per game mode, per user score type, etc
+        $this->browse(function (Browser $browser) use ($route, $type, $url) {
+            static::resetSession($browser);
+
+            try {
+                if ($type === 'user') {
+                    $browser->loginAs(self::$scaffolding['user']);
+                }
+                $browser->visit($url);
+
+                // $browser->driver->takeScreenshot('ss/'.$route->getName().'.png');
+
+                if ($type === 'user') {
                     $this->checkAdminPermission($browser, $route);
                     $this->checkVerification($browser, $route);
-                    $this->assertGeneralValidation($type, $browser, $route);
-                } catch (Exception $err) {
-                    $this->handleTestException($type, $err, $browser, $route);
                 }
+                $this->assertGeneralValidation($type, $browser, $route);
+            } catch (Exception $err) {
+                $this->captureFailedTest($type, $err, $browser, $route);
 
-                $type = 'guest';
-
-                try {
-                    static::resetSession($browser);
-                    $browser->visit($url);
-
-                    $this->assertGeneralValidation($type, $browser, $route);
-                } catch (Exception $err) {
-                    $this->handleTestException($type, $err, $browser, $route);
-                }
-            });
-        }
-
-        static::output("\n\n{$this->passed}/".($this->passed + $this->failed).' passed ('.round($this->passed / ($this->passed + $this->failed) * 100, 2)."%) [{$this->skipped} skipped]\n\n");
-
-        if ($this->testFailed !== null) {
-            // triggered delayed test failure
-            $this->fail($this->testFailed);
-        }
+                throw $err;
+            }
+        });
     }
 
     private function assertGeneralValidation(string $type, Browser $browser, LaravelRoute $route)
@@ -320,8 +324,7 @@ class SanityTest extends DuskTestCase
 
         $this->checkJavascriptErrors($browser, $route);
 
-        $this->passed++;
-        static::output("\e[0;32m    ✓ ({$type})\e[0m\n");
+        static::output("\e[0;32m    ✓\e[0m\n");
     }
 
     private function bindParams(LaravelRoute $route)
@@ -405,6 +408,16 @@ class SanityTest extends DuskTestCase
         return $url;
     }
 
+    private function captureFailedTest(string $type, Exception $err, Browser $browser, LaravelRoute $route): void
+    {
+        $filename = "tests/Browser/screenshots/fail-{$route->getName()}-{$type}.png";
+        $browser->driver->takeScreenshot($filename);
+
+        static::output('  '.$err->getMessage()."\n");
+        static::output("  screenshot saved to: {$filename}\n");
+        static::output("\e[1;37;41m\e[2K    x ({$type})\e[0m\n");
+    }
+
     private function checkAdminPermission(Browser $browser, LaravelRoute $route)
     {
         $adminRestricted = [];
@@ -453,19 +466,5 @@ class SanityTest extends DuskTestCase
         } else {
             $browser->assertDontSee('Account Verification');
         }
-    }
-
-    private function handleTestException(string $type, Exception $err, Browser $browser, LaravelRoute $route): void
-    {
-        $filename = "tests/Browser/screenshots/fail-{$route->getName()}-{$type}.png";
-        $browser->driver->takeScreenshot($filename);
-
-        $this->failed++;
-        static::output('  '.$err->getMessage()."\n");
-        static::output("  screenshot saved to: {$filename}\n");
-        static::output("\e[1;37;41m\e[2K    x ({$type})\e[0m\n");
-
-        // save exception for later and let tests continue running
-        $this->testFailed = $err;
     }
 }
