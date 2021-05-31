@@ -4,7 +4,7 @@
 import BeatmapsPopup from 'beatmapset-panel/beatmaps-popup';
 import { BeatmapsetJson, BeatmapsetStatus } from 'beatmapsets/beatmapset-json';
 import { CircularProgress } from 'circular-progress';
-import { Img2x } from 'img2x';
+import Img2x from 'img2x';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import GameMode from 'interfaces/game-mode';
