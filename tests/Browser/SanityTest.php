@@ -22,7 +22,295 @@ class SanityTest extends DuskTestCase
     protected $failed = 0;
     protected $skipped = 0;
 
-    public function createScaffolding()
+    private static function filterLog(array $log)
+    {
+        $return = [];
+
+        foreach ($log as $line) {
+            if ($line['source'] === 'network') {
+                $matches = [];
+                $count = preg_match_all("/^([^ ]+) - Failed to load resource: the server responded with a status of ([0-9]{3}) \(([^\)]*)\)$/i", $line['message'], $matches);
+                $returnCode = get_int(optional($matches[2])[0]);
+                $url = optional($matches[1])[0];
+
+                // ignore missing non-critical assets
+                if (
+                    ($returnCode === 404 && starts_with($url, 'https://assets.ppy.sh')) ||
+                    ($returnCode === 403 && starts_with($url, 'https://i.ppy.sh'))
+                ) {
+                    continue;
+                }
+
+                $return[] = [
+                    'url' => $url,
+                    'status' => $returnCode,
+                    'message' => optional($matches[3])[0],
+                    'source' => 'network',
+                    'raw' => $line['message'],
+                ];
+            } else {
+                $return[] = $line;
+            }
+        }
+
+        return $return;
+    }
+
+    private static function getVerificationCode()
+    {
+        $log = file_get_contents('storage/logs/laravel.log');
+        $matches = [];
+        $count = preg_match_all('/Your verification code is: ([0-9a-f]{8})/im', $log, $matches);
+
+        if ($count > 0) {
+            return $matches[1][count($matches[1]) - 1];
+        }
+    }
+
+    public function testPageLoadCheck()
+    {
+        $bypass = [
+            '_dusk/',
+            '_lio',
+            'api/',
+            'oauth/',
+            'payments/',
+        ];
+
+        $this->testFailed = null;
+
+        foreach (Route::getRoutes()->get('GET') as $route) {
+            $this->output("\n  /{$route->uri} (".(presence($route->getName()) ?? '???').')');
+
+            if (!present($route->getName()) || starts_with($route->uri, $bypass)) {
+                $this->output(" \e[30;1m[SKIPPED]\e[0m");
+                $this->skipped++;
+                continue;
+            }
+
+            $url = $this->bindParams($route);
+
+            // TODO: add additional logic for certain routes to re-run tests per game mode, per user score type, etc
+            $this->browse(function (Browser $browser) use ($route, $url) {
+                $type = 'user';
+
+                try {
+                    static::resetSession($browser);
+                    $browser->loginAs(self::$scaffolding['user'])->visit($url);
+
+                    // $browser->driver->takeScreenshot('ss/'.$route->getName().'.png');
+
+                    $this->checkAdminPermission($browser, $route);
+                    $this->checkVerification($browser, $route);
+                    $this->assertGeneralValidation($type, $browser, $route);
+                } catch (Exception $err) {
+                    $this->handleTestException($type, $err, $browser, $route);
+                }
+
+                $type = 'guest';
+
+                try {
+                    static::resetSession($browser);
+                    $browser->visit($url);
+
+                    $this->assertGeneralValidation($type, $browser, $route);
+                } catch (Exception $err) {
+                    $this->handleTestException($type, $err, $browser, $route);
+                }
+            });
+        }
+
+        $this->output("\n\n{$this->passed}/".($this->passed + $this->failed).' passed ('.round($this->passed / ($this->passed + $this->failed) * 100, 2)."%) [{$this->skipped} skipped]\n\n");
+
+        if ($this->testFailed !== null) {
+            // triggered delayed test failure
+            $this->fail($this->testFailed);
+        }
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->createScaffolding();
+
+        $this->beforeApplicationDestroyed(function () {
+            // We do this here while we can still access laravel,
+            // tearDown/tearDownAfterClass runs after laravel is torn down
+            $this->cleanup();
+        });
+    }
+
+    private function assertGeneralValidation(string $type, Browser $browser, LaravelRoute $route)
+    {
+        $browser
+            ->assertDontSee('Oh no! Something broke! ;_;')
+            ->assertDontSee('Sorry, the page you are looking for could not be found');
+
+        $this->checkJavascriptErrors($browser, $route);
+
+        $this->passed++;
+        $this->output("\e[0;32m    ✓ ({$type})\e[0m\n");
+    }
+
+    private function bindParams(LaravelRoute $route)
+    {
+        $paramOverrides = [
+            'beatmapsets.discussions.show' => [
+                'discussion' => static::$scaffolding['beatmap_discussion']->getKey(),
+            ],
+            'forum.topics.create' => [
+                'forum_id' => self::$scaffolding['forum']->getKey(),
+            ],
+            'users.beatmapsets' => [
+                'type' => 'favourite',
+                // 'type' => [
+                //     'favourite',
+                //     'graveyard',
+                //     'loved',
+                //     'most_played',
+                //     'ranked_and_approved',
+                //     'unranked',
+                // ],
+            ],
+            'users.scores' => [
+                'type' => 'best',
+                // 'type' => [
+                //     'best',
+                //     'firsts',
+                //     'recent',
+                // ],
+            ],
+            'changelog.build' => [
+                'stream' => self::$scaffolding['stream']->name,
+                'build' => self::$scaffolding['build']->version,
+            ],
+            'changelog.show' => [
+                'changelog' => self::$scaffolding['build']->version,
+            ],
+            'legal' => [
+                'locale' => 'en',
+                'path' => 'Terms',
+            ],
+            'wiki.image' => [
+                'path' => 'shared/mode/osu.png',
+            ],
+            'wiki.sitemap' => [
+                'locale' => 'en',
+            ],
+        ];
+
+        $params = [];
+        $paramNames = $route->parameterNames();
+        $this->output("\n");
+
+        // Go through each parameter referenced in the route and either use the value from $paramOverrides (if present) or use the scaffolding prepared in setUp()
+        foreach ($paramNames as $paramName) {
+            $this->output("    {$paramName} => ");
+            if (isset($paramOverrides[$route->getName()]) && isset($paramOverrides[$route->getName()][$paramName])) {
+                $params[$paramName] = $paramOverrides[$route->getName()][$paramName];
+                $this->output($params[$paramName]." \e[30;1m(override)\e[0m\n");
+            } else {
+                if (isset(self::$scaffolding[$paramName])) {
+                    $params[$paramName] = self::$scaffolding[$paramName]->getKey();
+                    $this->output($params[$paramName]."\n");
+                } else {
+                    $this->output("\e[30;1m¯\_(ツ)_/¯\e[0m\n");
+                }
+            }
+        }
+
+        if (isset($paramOverrides[$route->getName()])) {
+            foreach ($paramOverrides[$route->getName()] as $paramName => $paramValue) {
+                if (!in_array($paramName, $paramNames, true)) {
+                    $params[$paramName] = $paramValue;
+                    $this->output("    {$paramName} => {$paramValue} \e[30;1m(extra param from override)\e[0m\n");
+                }
+            }
+        }
+
+        $url = str_replace(config('app.url'), '', route($route->getName(), $params));
+
+        return $url;
+    }
+
+    private function checkAdminPermission(Browser $browser, LaravelRoute $route)
+    {
+        $adminRestricted = [];
+
+        if (starts_with($route->uri, 'admin') || in_array($route->getName(), $adminRestricted, true)) {
+            // TODO: retry and check page as admin? (will affect subsequent tests though, so figure out how to deal with that..)
+            $browser->assertSee("You shouldn't be here.");
+        } else {
+            $browser->assertDontSee("You shouldn't be here.");
+        }
+    }
+
+    private function checkJavascriptErrors(Browser $browser, LaravelRoute $route)
+    {
+        // Note: if you call getLog more than once a request, the subsequent calls return an empty array.
+        $rawLog = $browser->driver->manage()->getLog('browser');
+        $logLines = collect(self::filterLog($rawLog));
+
+        if ($logLines->contains('source', 'javascript')) {
+            $error = implode(' | ', $logLines->where('source', 'javascript')->pluck('message')->toArray());
+
+            throw new Exception("JavaScript ERROR: {$error}");
+        }
+    }
+
+    private function checkVerification(Browser $browser, LaravelRoute $route)
+    {
+        $verificationExpected = [
+            'account.edit',
+            'client-verifications.create',
+            'store.checkout.show',
+            'store.invoice.show',
+            'store.orders.index',
+        ];
+
+        if (in_array($route->getName(), $verificationExpected, true)) {
+            $browser->assertSee('Account Verification');
+
+            $verificationCode = self::getVerificationCode();
+
+            $browser
+                ->type('.user-verification__key', $verificationCode)
+                ->waitUntilMissing('.user-verification')
+                ->pause(2000) // allows time for dialog hiding transition
+                ->assertDontSee('Account Verification');
+        } else {
+            $browser->assertDontSee('Account Verification');
+        }
+    }
+
+    private function cleanup()
+    {
+        if (!isset(self::$scaffolding)) {
+            return;
+        }
+
+        // Clean up extra things that get created (i.e. as side-effects, etc)
+        if (isset(self::$scaffolding['user'])) {
+            self::$scaffolding['user']->userProfileCustomization()->forceDelete();
+        }
+
+        // Tear down in reverse-order so that dependants get destroyed before their dependencies.
+        $nukingOrder = array_reverse(self::$scaffolding);
+
+        foreach ($nukingOrder as $name => $scaffold) {
+            $this->output("TEARDOWN: $name (".get_class($scaffold).")\n");
+
+            if ($name === 'order' || $name === 'invoice') {
+                // we need to perform custom deletion for orders to bypass their immutability protections
+                DB::connection('mysql-store')->delete('delete from orders where order_id = ?', [$scaffold->getKey()]);
+            } else {
+                $scaffold->forceDelete();
+            }
+        }
+    }
+
+    private function createScaffolding()
     {
         if (isset(self::$scaffolding)) {
             return;
@@ -156,302 +444,6 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['room'] = factory(Room::class)->create(['category' => 'spotlight']);
     }
 
-    public function cleanup()
-    {
-        if (!isset(self::$scaffolding)) {
-            return;
-        }
-
-        // Clean up extra things that get created (i.e. as side-effects, etc)
-        if (isset(self::$scaffolding['user'])) {
-            self::$scaffolding['user']->userProfileCustomization()->forceDelete();
-        }
-
-        // Tear down in reverse-order so that dependants get destroyed before their dependencies.
-        $nukingOrder = array_reverse(self::$scaffolding);
-
-        foreach ($nukingOrder as $name => $scaffold) {
-            $this->output("TEARDOWN: $name (".get_class($scaffold).")\n");
-
-            if ($name === 'order' || $name === 'invoice') {
-                // we need to perform custom deletion for orders to bypass their immutability protections
-                DB::connection('mysql-store')->delete('delete from orders where order_id = ?', [$scaffold->getKey()]);
-            } else {
-                $scaffold->forceDelete();
-            }
-        }
-    }
-
-    public function output($text)
-    {
-        // apparently there's no phpunit api to do this...
-        if (in_array('--verbose', $_SERVER['argv'], true)) {
-            echo $text;
-        }
-    }
-
-    public function testPageLoadCheck()
-    {
-        $bypass = [
-            '_dusk/',
-            '_lio',
-            'api/',
-            'oauth/',
-            'payments/',
-        ];
-
-        $this->testFailed = null;
-
-        foreach (Route::getRoutes()->get('GET') as $route) {
-            $this->output("\n  /{$route->uri} (".(presence($route->getName()) ?? '???').')');
-
-            if (!present($route->getName()) || starts_with($route->uri, $bypass)) {
-                $this->output(" \e[30;1m[SKIPPED]\e[0m");
-                $this->skipped++;
-                continue;
-            }
-
-            $url = $this->bindParams($route);
-
-            // TODO: add additional logic for certain routes to re-run tests per game mode, per user score type, etc
-            $this->browse(function (Browser $browser) use ($route, $url) {
-                $type = 'user';
-
-                try {
-                    static::resetSession($browser);
-                    $browser->loginAs(self::$scaffolding['user'])->visit($url);
-
-                    // $browser->driver->takeScreenshot('ss/'.$route->getName().'.png');
-
-                    $this->checkAdminPermission($browser, $route);
-                    $this->checkVerification($browser, $route);
-                    $this->assertGeneralValidation($type, $browser, $route);
-                } catch (Exception $err) {
-                    $this->handleTestException($type, $err, $browser, $route);
-                }
-
-                $type = 'guest';
-
-                try {
-                    static::resetSession($browser);
-                    $browser->visit($url);
-
-                    $this->assertGeneralValidation($type, $browser, $route);
-                } catch (Exception $err) {
-                    $this->handleTestException($type, $err, $browser, $route);
-                }
-            });
-        }
-
-        $this->output("\n\n{$this->passed}/".($this->passed + $this->failed).' passed ('.round($this->passed / ($this->passed + $this->failed) * 100, 2)."%) [{$this->skipped} skipped]\n\n");
-
-        if ($this->testFailed !== null) {
-            // triggered delayed test failure
-            $this->fail($this->testFailed);
-        }
-    }
-
-    public function bindParams(LaravelRoute $route)
-    {
-        $paramOverrides = [
-            'beatmapsets.discussions.show' => [
-                'discussion' => static::$scaffolding['beatmap_discussion']->getKey(),
-            ],
-            'forum.topics.create' => [
-                'forum_id' => self::$scaffolding['forum']->getKey(),
-            ],
-            'users.beatmapsets' => [
-                'type' => 'favourite',
-                // 'type' => [
-                //     'favourite',
-                //     'graveyard',
-                //     'loved',
-                //     'most_played',
-                //     'ranked_and_approved',
-                //     'unranked',
-                // ],
-            ],
-            'users.scores' => [
-                'type' => 'best',
-                // 'type' => [
-                //     'best',
-                //     'firsts',
-                //     'recent',
-                // ],
-            ],
-            'changelog.build' => [
-                'stream' => self::$scaffolding['stream']->name,
-                'build' => self::$scaffolding['build']->version,
-            ],
-            'changelog.show' => [
-                'changelog' => self::$scaffolding['build']->version,
-            ],
-            'legal' => [
-                'locale' => 'en',
-                'path' => 'Terms',
-            ],
-            'wiki.image' => [
-                'path' => 'shared/mode/osu.png',
-            ],
-            'wiki.sitemap' => [
-                'locale' => 'en',
-            ],
-        ];
-
-        $params = [];
-        $paramNames = $route->parameterNames();
-        $this->output("\n");
-
-        // Go through each parameter referenced in the route and either use the value from $paramOverrides (if present) or use the scaffolding prepared in setUp()
-        foreach ($paramNames as $paramName) {
-            $this->output("    {$paramName} => ");
-            if (isset($paramOverrides[$route->getName()]) && isset($paramOverrides[$route->getName()][$paramName])) {
-                $params[$paramName] = $paramOverrides[$route->getName()][$paramName];
-                $this->output($params[$paramName]." \e[30;1m(override)\e[0m\n");
-            } else {
-                if (isset(self::$scaffolding[$paramName])) {
-                    $params[$paramName] = self::$scaffolding[$paramName]->getKey();
-                    $this->output($params[$paramName]."\n");
-                } else {
-                    $this->output("\e[30;1m¯\_(ツ)_/¯\e[0m\n");
-                }
-            }
-        }
-
-        if (isset($paramOverrides[$route->getName()])) {
-            foreach ($paramOverrides[$route->getName()] as $paramName => $paramValue) {
-                if (!in_array($paramName, $paramNames, true)) {
-                    $params[$paramName] = $paramValue;
-                    $this->output("    {$paramName} => {$paramValue} \e[30;1m(extra param from override)\e[0m\n");
-                }
-            }
-        }
-
-        $url = str_replace(config('app.url'), '', route($route->getName(), $params));
-
-        return $url;
-    }
-
-    public function checkAdminPermission(Browser $browser, LaravelRoute $route)
-    {
-        $adminRestricted = [];
-
-        if (starts_with($route->uri, 'admin') || in_array($route->getName(), $adminRestricted, true)) {
-            // TODO: retry and check page as admin? (will affect subsequent tests though, so figure out how to deal with that..)
-            $browser->assertSee("You shouldn't be here.");
-        } else {
-            $browser->assertDontSee("You shouldn't be here.");
-        }
-    }
-
-    public function checkJavascriptErrors(Browser $browser, LaravelRoute $route)
-    {
-        // Note: if you call getLog more than once a request, the subsequent calls return an empty array.
-        $rawLog = $browser->driver->manage()->getLog('browser');
-        $logLines = collect(self::filterLog($rawLog));
-
-        if ($logLines->contains('source', 'javascript')) {
-            $error = implode(' | ', $logLines->where('source', 'javascript')->pluck('message')->toArray());
-
-            throw new Exception("JavaScript ERROR: {$error}");
-        }
-    }
-
-    public function checkVerification(Browser $browser, LaravelRoute $route)
-    {
-        $verificationExpected = [
-            'account.edit',
-            'client-verifications.create',
-            'store.checkout.show',
-            'store.invoice.show',
-            'store.orders.index',
-        ];
-
-        if (in_array($route->getName(), $verificationExpected, true)) {
-            $browser->assertSee('Account Verification');
-
-            $verificationCode = self::getVerificationCode();
-
-            $browser
-                ->type('.user-verification__key', $verificationCode)
-                ->waitUntilMissing('.user-verification')
-                ->pause(2000) // allows time for dialog hiding transition
-                ->assertDontSee('Account Verification');
-        } else {
-            $browser->assertDontSee('Account Verification');
-        }
-    }
-
-    public static function filterLog(array $log)
-    {
-        $return = [];
-
-        foreach ($log as $line) {
-            if ($line['source'] === 'network') {
-                $matches = [];
-                $count = preg_match_all("/^([^ ]+) - Failed to load resource: the server responded with a status of ([0-9]{3}) \(([^\)]*)\)$/i", $line['message'], $matches);
-                $returnCode = get_int(optional($matches[2])[0]);
-                $url = optional($matches[1])[0];
-
-                // ignore missing non-critical assets
-                if (
-                    ($returnCode === 404 && starts_with($url, 'https://assets.ppy.sh')) ||
-                    ($returnCode === 403 && starts_with($url, 'https://i.ppy.sh'))
-                ) {
-                    continue;
-                }
-
-                $return[] = [
-                    'url' => $url,
-                    'status' => $returnCode,
-                    'message' => optional($matches[3])[0],
-                    'source' => 'network',
-                    'raw' => $line['message'],
-                ];
-            } else {
-                $return[] = $line;
-            }
-        }
-
-        return $return;
-    }
-
-    public static function getVerificationCode()
-    {
-        $log = file_get_contents('storage/logs/laravel.log');
-        $matches = [];
-        $count = preg_match_all('/Your verification code is: ([0-9a-f]{8})/im', $log, $matches);
-
-        if ($count > 0) {
-            return $matches[1][count($matches[1]) - 1];
-        }
-    }
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->createScaffolding();
-
-        $this->beforeApplicationDestroyed(function () {
-            // We do this here while we can still access laravel,
-            // tearDown/tearDownAfterClass runs after laravel is torn down
-            $this->cleanup();
-        });
-    }
-
-    private function assertGeneralValidation(string $type, Browser $browser, LaravelRoute $route)
-    {
-        $browser
-            ->assertDontSee('Oh no! Something broke! ;_;')
-            ->assertDontSee('Sorry, the page you are looking for could not be found');
-
-        $this->checkJavascriptErrors($browser, $route);
-
-        $this->passed++;
-        $this->output("\e[0;32m    ✓ ({$type})\e[0m\n");
-    }
-
     private function handleTestException(string $type, Exception $err, Browser $browser, LaravelRoute $route): void
     {
         $filename = "tests/Browser/screenshots/fail-{$route->getName()}-{$type}.png";
@@ -464,5 +456,13 @@ class SanityTest extends DuskTestCase
 
         // save exception for later and let tests continue running
         $this->testFailed = $err;
+    }
+
+    private function output($text)
+    {
+        // apparently there's no phpunit api to do this...
+        if (in_array('--verbose', $_SERVER['argv'], true)) {
+            echo $text;
+        }
     }
 }
