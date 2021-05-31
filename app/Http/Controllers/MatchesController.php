@@ -5,9 +5,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Match\Match;
+use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\User;
-use App\Transformers\Match\EventTransformer;
+use App\Transformers\LegacyMatch\EventTransformer;
 use App\Transformers\UserCompactTransformer;
 
 class MatchesController extends Controller
@@ -21,9 +21,9 @@ class MatchesController extends Controller
     {
         $params = request()->all();
         $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
-        $cursorHelper = Match::makeDbCursorHelper($params['sort'] ?? null);
+        $cursorHelper = LegacyMatch::makeDbCursorHelper($params['sort'] ?? null);
 
-        $matches = Match
+        $matches = LegacyMatch
             ::where('private', false)
             ->cursorSort($cursorHelper, $params['cursor'] ?? null)
             ->limit($limit + 1) // an extra to check for pagination
@@ -36,14 +36,14 @@ class MatchesController extends Controller
 
         return [
             'cursor' => $hasMore ? $cursorHelper->next($matches) : null,
-            'matches' => json_collection($matches, 'Match\Match'),
+            'matches' => json_collection($matches, 'LegacyMatch\LegacyMatch'),
             'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
         ];
     }
 
     public function show($id)
     {
-        $match = Match::findOrFail($id);
+        $match = LegacyMatch::findOrFail($id);
 
         $params = get_params(request()->all(), null, ['after:int', 'before:int', 'limit:int']);
         $params['match'] = $match;
@@ -113,7 +113,7 @@ class MatchesController extends Controller
             ->first();
 
         return [
-            'match' => json_item($match, 'Match\Match'),
+            'match' => json_item($match, 'LegacyMatch\LegacyMatch'),
             'events' => $events,
             'users' => $users,
             'first_event_id' => $eventEndIds->first_event_id ?? 0,
