@@ -67,6 +67,14 @@ class SanityTest extends DuskTestCase
         }
     }
 
+    private static function output($text)
+    {
+        // apparently there's no phpunit api to do this...
+        if (in_array('--verbose', $_SERVER['argv'], true)) {
+            echo $text;
+        }
+    }
+
     public function testPageLoadCheck()
     {
         $bypass = [
@@ -80,10 +88,10 @@ class SanityTest extends DuskTestCase
         $this->testFailed = null;
 
         foreach (Route::getRoutes()->get('GET') as $route) {
-            $this->output("\n  /{$route->uri} (".(presence($route->getName()) ?? '???').')');
+            static::output("\n  /{$route->uri} (".(presence($route->getName()) ?? '???').')');
 
             if (!present($route->getName()) || starts_with($route->uri, $bypass)) {
-                $this->output(" \e[30;1m[SKIPPED]\e[0m");
+                static::output(" \e[30;1m[SKIPPED]\e[0m");
                 $this->skipped++;
                 continue;
             }
@@ -120,7 +128,7 @@ class SanityTest extends DuskTestCase
             });
         }
 
-        $this->output("\n\n{$this->passed}/".($this->passed + $this->failed).' passed ('.round($this->passed / ($this->passed + $this->failed) * 100, 2)."%) [{$this->skipped} skipped]\n\n");
+        static::output("\n\n{$this->passed}/".($this->passed + $this->failed).' passed ('.round($this->passed / ($this->passed + $this->failed) * 100, 2)."%) [{$this->skipped} skipped]\n\n");
 
         if ($this->testFailed !== null) {
             // triggered delayed test failure
@@ -150,7 +158,7 @@ class SanityTest extends DuskTestCase
         $this->checkJavascriptErrors($browser, $route);
 
         $this->passed++;
-        $this->output("\e[0;32m    ✓ ({$type})\e[0m\n");
+        static::output("\e[0;32m    ✓ ({$type})\e[0m\n");
     }
 
     private function bindParams(LaravelRoute $route)
@@ -202,20 +210,20 @@ class SanityTest extends DuskTestCase
 
         $params = [];
         $paramNames = $route->parameterNames();
-        $this->output("\n");
+        static::output("\n");
 
         // Go through each parameter referenced in the route and either use the value from $paramOverrides (if present) or use the scaffolding prepared in setUp()
         foreach ($paramNames as $paramName) {
-            $this->output("    {$paramName} => ");
+            static::output("    {$paramName} => ");
             if (isset($paramOverrides[$route->getName()]) && isset($paramOverrides[$route->getName()][$paramName])) {
                 $params[$paramName] = $paramOverrides[$route->getName()][$paramName];
-                $this->output($params[$paramName]." \e[30;1m(override)\e[0m\n");
+                static::output($params[$paramName]." \e[30;1m(override)\e[0m\n");
             } else {
                 if (isset(self::$scaffolding[$paramName])) {
                     $params[$paramName] = self::$scaffolding[$paramName]->getKey();
-                    $this->output($params[$paramName]."\n");
+                    static::output($params[$paramName]."\n");
                 } else {
-                    $this->output("\e[30;1m¯\_(ツ)_/¯\e[0m\n");
+                    static::output("\e[30;1m¯\_(ツ)_/¯\e[0m\n");
                 }
             }
         }
@@ -224,7 +232,7 @@ class SanityTest extends DuskTestCase
             foreach ($paramOverrides[$route->getName()] as $paramName => $paramValue) {
                 if (!in_array($paramName, $paramNames, true)) {
                     $params[$paramName] = $paramValue;
-                    $this->output("    {$paramName} => {$paramValue} \e[30;1m(extra param from override)\e[0m\n");
+                    static::output("    {$paramName} => {$paramValue} \e[30;1m(extra param from override)\e[0m\n");
                 }
             }
         }
@@ -299,7 +307,7 @@ class SanityTest extends DuskTestCase
         $nukingOrder = array_reverse(self::$scaffolding);
 
         foreach ($nukingOrder as $name => $scaffold) {
-            $this->output("TEARDOWN: $name (".get_class($scaffold).")\n");
+            static::output("TEARDOWN: $name (".get_class($scaffold).")\n");
 
             if ($name === 'order' || $name === 'invoice') {
                 // we need to perform custom deletion for orders to bypass their immutability protections
@@ -450,19 +458,11 @@ class SanityTest extends DuskTestCase
         $browser->driver->takeScreenshot($filename);
 
         $this->failed++;
-        $this->output('  '.$err->getMessage()."\n");
-        $this->output("  screenshot saved to: {$filename}\n");
-        $this->output("\e[1;37;41m\e[2K    x ({$type})\e[0m\n");
+        static::output('  '.$err->getMessage()."\n");
+        static::output("  screenshot saved to: {$filename}\n");
+        static::output("\e[1;37;41m\e[2K    x ({$type})\e[0m\n");
 
         // save exception for later and let tests continue running
         $this->testFailed = $err;
-    }
-
-    private function output($text)
-    {
-        // apparently there's no phpunit api to do this...
-        if (in_array('--verbose', $_SERVER['argv'], true)) {
-            echo $text;
-        }
     }
 }
