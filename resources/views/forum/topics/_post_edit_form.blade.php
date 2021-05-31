@@ -37,6 +37,7 @@
                 bbcode-editor__body
                 js-ujs-submit-disable
                 js-bbcode-preview--body
+                js-forum-post-input
                 {{ $type === 'create' ? 'js-post-preview--auto' : '' }}
                 {{ $type === 'reply' ? 'js-forum-topic-reply--input' : '' }}
                 {{ in_array($type, ['edit', 'reply'], true) ? 'js-quick-submit' : '' }}
@@ -48,6 +49,9 @@
             {{ $type === 'create' ? 'autofocus' : '' }}
             @if (!$enabled)
                 disabled
+            @endif
+            @if (isset($inputId))
+                data-forum-post-input-id="{{ $inputId }}"
             @endif
         >{{ $content ?? '' }}</textarea>
 
