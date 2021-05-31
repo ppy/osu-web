@@ -22,7 +22,7 @@ import { UserLink } from 'user-link';
 import { getArtist, getDiffRating, getTitle, group as groupBeatmaps } from 'utils/beatmap-helper';
 import { showVisual, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
-import { formatNumberSuffixed, make2x } from 'utils/html';
+import { formatNumberSuffixed } from 'utils/html';
 
 export const beatmapsetCardSizes = ['normal', 'extra'] as const;
 export type BeatmapsetCardSize = typeof beatmapsetCardSizes[number];
@@ -376,10 +376,10 @@ export default class BeatmapsetPanel extends React.Component<Props> {
         <div className='beatmapset-panel__cover-col beatmapset-panel__cover-col--play'>
           <div className='beatmapset-panel__cover beatmapset-panel__cover--default' />
           {this.showVisual && (
-            <img
+            <Img2x
               className='beatmapset-panel__cover'
               onError={hideImage}
-              src={make2x(this.props.beatmapset.covers.list)}
+              src={this.props.beatmapset.covers.list}
             />
           )}
         </div>
