@@ -10,8 +10,8 @@ use App\Models\Multiplayer\Room;
 use DB;
 use Exception;
 use Illuminate\Routing\Route as LaravelRoute;
-use Route;
 use Laravel\Dusk\Browser;
+use Route;
 use Tests\DuskTestCase;
 
 class SanityTest extends DuskTestCase
