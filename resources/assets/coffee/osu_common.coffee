@@ -108,11 +108,6 @@
     el.style.fontSize = prevSize
 
 
-  src2x: (mainUrl) ->
-    src: mainUrl
-    srcSet: "#{mainUrl} 1x, #{_exported.make2x(mainUrl)} 2x"
-
-
   link: (url, text, options = {}) ->
     if options.unescape
       url = _.unescape(url)
