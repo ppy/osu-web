@@ -200,7 +200,7 @@ class SanityTest extends DuskTestCase
         foreach ($log as $line) {
             if ($line['source'] === 'network') {
                 $matches = [];
-                $count = preg_match_all("/^([^ ]+) - Failed to load resource: the server responded with a status of ([0-9]{3}) \(([^\)]*)\)$/i", $line['message'], $matches);
+                preg_match_all("/^([^ ]+) - Failed to load resource: the server responded with a status of ([0-9]{3}) \(([^\)]*)\)$/i", $line['message'], $matches);
                 $returnCode = get_int(optional($matches[2])[0]);
                 $url = optional($matches[1])[0];
 
