@@ -10,8 +10,8 @@ use App\Models\Multiplayer\Room;
 use DB;
 use Exception;
 use Illuminate\Routing\Route as LaravelRoute;
+use Laravel\Dusk\Browser;
 use Route;
-use Tests\Browser;
 use Tests\DuskTestCase;
 
 class SanityTest extends DuskTestCase
@@ -216,6 +216,7 @@ class SanityTest extends DuskTestCase
                 $type = 'user';
 
                 try {
+                    static::resetSession($browser);
                     $browser->loginAs(self::$scaffolding['user'])->visit($url);
 
                     // $browser->driver->takeScreenshot('ss/'.$route->getName().'.png');
@@ -230,7 +231,8 @@ class SanityTest extends DuskTestCase
                 $type = 'guest';
 
                 try {
-                    $browser->loginAs(null)->visit($url);
+                    static::resetSession($browser);
+                    $browser->visit($url);
 
                     $this->assertGeneralValidation($type, $browser, $route);
                 } catch (Exception $err) {

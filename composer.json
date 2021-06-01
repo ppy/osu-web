@@ -44,7 +44,7 @@
     "dms/phpunit-arraysubset-asserts": "^0.2.1",
     "filp/whoops": "*",
     "fzaninotto/faker": "*",
-    "knuckleswtf/scribe": "^2.0",
+    "knuckleswtf/scribe": "^2.7",
     "laravel/dusk": "*",
     "mockery/mockery": "*",
     "phpunit/phpunit": ">=9.5",
