@@ -30,7 +30,6 @@
     "league/flysystem-aws-s3-v3": "*",
     "league/fractal": "*",
     "mariuzzo/laravel-js-localization": "*",
-    "mpociot/laravel-apidoc-generator": "*",
     "paypal/rest-api-sdk-php": "*",
     "php-ds/php-ds": "^1.3",
     "sentry/sentry-laravel": "*",
@@ -44,6 +43,7 @@
     "dms/phpunit-arraysubset-asserts": "^0.2.1",
     "filp/whoops": "*",
     "fzaninotto/faker": "*",
+    "knuckleswtf/scribe": "^2.7",
     "laravel/dusk": "*",
     "mockery/mockery": "*",
     "phpunit/phpunit": ">=9.5",
@@ -85,7 +85,7 @@
     "sort-packages": true,
     "optimize-autoloader": true,
     "platform": {
-      "php": "7.3.0"
+      "php": "7.4.0"
     }
   },
   "extra": {

@@ -90,7 +90,7 @@ class PostsController extends Controller
      *
      * [ForumPost](#forum-post) with `body` included.
      *
-     * @urlParam post required Id of the post. Example: 1
+     * @urlParam post integer required Id of the post. Example: 1
      *
      * @bodyParam body string required New post content in BBCode format. Example: hello
      */
