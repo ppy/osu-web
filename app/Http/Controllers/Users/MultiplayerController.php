@@ -8,6 +8,7 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
+use App\Transformers\Multiplayer\RoomTransformer;
 use App\Transformers\UserTransformer;
 
 class MultiplayerController extends Controller
@@ -67,12 +68,10 @@ class MultiplayerController extends Controller
         $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
 
         // TODO: cleaout the includes
-        $rooms = Room::search(
-            ['user' => $this->user, 'limit' => $limit, 'mode' => 'participated', 'sort' => 'ended'],
-            ['host', 'playlist.beatmap.beatmapset'],
-            ['host', 'playlist.beatmap.beatmapset']
-        );
+        $search = Room::search(['user' => $this->user, 'limit' => $limit, 'mode' => 'participated', 'sort' => 'ended']);
 
+        $rooms = $search['query']->with(['host', 'playlist.beatmap.beatmapset'])->get();
+        $rooms = json_collection($rooms, new RoomTransformer(), ['host', 'playlist.beatmap.beatmapset']);
         $beatmaps = collect($rooms)->pluck('playlist')->flatten(1)->pluck('beatmap')->unique()->values();
         $beatmapsets = $beatmaps->pluck('beatmapset')->unique()->values();
 

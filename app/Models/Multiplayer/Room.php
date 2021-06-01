@@ -52,7 +52,7 @@ class Room extends Model
         'participant_count' => 0,
     ];
 
-    public static function search($params, $preloads = null, $includes = null)
+    public static function search($params)
     {
         $query = static::query();
 
@@ -86,14 +86,18 @@ class Room extends Model
         $cursor = get_arr($params['cursor'] ?? null);
         $query->cursorSort($cursorHelper, $cursor);
 
-        foreach ($preloads ?? [] as $preload) {
-            $query->with($preload);
-        }
+        // foreach ($preloads ?? [] as $preload) {
+        //     $query->with($preload);
+        // }
 
         $limit = clamp(get_int($params['limit'] ?? 250), 1, 250);
         $query->limit($limit);
 
-        return json_collection($query->get(), 'Multiplayer\Room', $includes ?? []);
+        return [
+            'cursorHelper' => $cursorHelper,
+            'query' => $query,
+            'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
+        ];
     }
 
     public function channel()
