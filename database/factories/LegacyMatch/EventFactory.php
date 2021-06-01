@@ -3,14 +3,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-use App\Models\Match\Event;
-use App\Models\Match\Game;
-use App\Models\Match\Match;
+use App\Models\LegacyMatch\Event;
+use App\Models\LegacyMatch\Game;
+use App\Models\LegacyMatch\LegacyMatch;
 
 $factory->define(Event::class, function (Faker\Generator $faker) {
     return [
         'match_id' => function () {
-            return factory(Match::class)->create()->user_id;
+            return factory(LegacyMatch::class)->create()->user_id;
         },
         'user_id' => function () {
             return factory(App\Models\User::class)->create()->user_id;
