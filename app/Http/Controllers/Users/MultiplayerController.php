@@ -63,9 +63,12 @@ class MultiplayerController extends Controller
             ]
         );
 
+        $params = request()->all();
+        $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
+
         // TODO: cleaout the includes
         $rooms = Room::search(
-            ['user' => $this->user, 'mode' => 'participated', 'sort' => 'ended'],
+            ['user' => $this->user, 'limit' => $limit, 'mode' => 'participated', 'sort' => 'ended'],
             ['host', 'playlist.beatmap.beatmapset'],
             ['host', 'playlist.beatmap.beatmapset']
         );
