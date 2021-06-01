@@ -58,7 +58,7 @@ class Room extends Model
 
         $mode = presence(get_string($params['mode'] ?? null));
         $user = $params['user'];
-        $sort = 'created';
+        $sort = $params['sort'] ?? null;
 
         $category = presence(get_string($params['category'] ?? null)) ?? 'any';
         if ($category === 'any') {
@@ -70,7 +70,7 @@ class Room extends Model
         switch ($mode) {
             case 'ended':
                 $query->ended();
-                $sort = 'ended';
+                $sort ??= 'ended';
                 break;
             case 'participated':
                 $query->hasParticipated($user);
@@ -81,6 +81,8 @@ class Room extends Model
             default:
                 $query->active();
         }
+
+        $sort ??= 'created';
 
         $query->cursorSort($sort, $params['cursor'] ?? null);
 

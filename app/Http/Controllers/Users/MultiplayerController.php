@@ -65,7 +65,7 @@ class MultiplayerController extends Controller
 
         // TODO: cleaout the includes
         $rooms = Room::search(
-            ['user' => $this->user, 'mode' => 'participated'],
+            ['user' => $this->user, 'mode' => 'participated', 'sort' => 'ended'],
             ['host', 'playlist.beatmap.beatmapset'],
             ['host', 'playlist.beatmap.beatmapset']
         );
