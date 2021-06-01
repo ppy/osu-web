@@ -9,6 +9,8 @@ import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { UserLink } from 'user-link';
+import { getDiffRating } from 'utils/beatmap-helper';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   room: RoomJson & Required<Pick<RoomJson, 'playlist'>>;
@@ -32,12 +34,12 @@ export default class Room extends React.Component<Props> {
 
   get maxDifficulty() {
     const max = maxBy(this.props.room.playlist, (playlist) => this.context.beatmaps[playlist.beatmap_id]?.difficulty_rating);
-    return this.context.beatmaps[max?.beatmap_id ?? 0]?.difficulty_rating;
+    return this.context.beatmaps[max?.beatmap_id ?? 0]?.difficulty_rating ?? 0;
   }
 
   get minDifficulty() {
     const min = minBy(this.props.room.playlist, (playlist) => this.context.beatmaps[playlist.beatmap_id]?.difficulty_rating);
-    return this.context.beatmaps[min?.beatmap_id ?? 0]?.difficulty_rating;
+    return this.context.beatmaps[min?.beatmap_id ?? 0]?.difficulty_rating ?? 0;
   }
 
   get background() {
@@ -57,16 +59,26 @@ export default class Room extends React.Component<Props> {
         <div className='multiplayer-room__content'>
           <div className='multiplayer-room__details'>
             <div className='multiplayer-room__ends'>
-              <div className='multiplayer-room__badge'>
-                {osu.trans(`multiplayer.room.status.${this.status}`)}
+              <div className='multiplayer-room__badge-container'>
+                <div className={classWithModifiers('multiplayer-room__badge', [this.status])}>{osu.trans(`multiplayer.room.status.${this.status}`)}</div>
+                <TimeWithTooltip dateTime={this.props.room.ends_at} relative />
               </div>
-              <TimeWithTooltip dateTime={this.props.room.ends_at} relative />
             </div>
             <div className='multiplayer-room__name'>{this.props.room.name}</div>
-            <div className='multiplayer-room__badge'>
-              <div className='multiplayer-room__map-count'>{this.props.room.playlist.length} maps</div>
-              <div className='multiplayer-room__map-count'>{this.minDifficulty}</div>
-              <div className='multiplayer-room__map-count'>{this.maxDifficulty}</div>
+            <div className='multiplayer-room__badge-container'>
+              <div className={classWithModifiers('multiplayer-room__badge', ['map-count'])}>{this.props.room.playlist.length} maps</div>
+              <div
+                className='multiplayer-room__badge'
+                style={{
+                  '--bg': `var(--diff-${getDiffRating(this.minDifficulty)})`,
+                } as React.CSSProperties}>{this.minDifficulty}
+              </div>
+              <div
+                className='multiplayer-room__badge'
+                style={{
+                  '--bg': `var(--diff-${getDiffRating(this.maxDifficulty)})`,
+                } as React.CSSProperties}>{this.maxDifficulty}
+              </div>
             </div>
           </div>
           {this.renderHost()}

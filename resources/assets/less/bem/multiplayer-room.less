@@ -2,7 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .multiplayer-room {
+  --bg: hsla(var(--hsl-b6), 0.75);
   --border-radius: @border-radius--large;
+  --diff-expert-plus: #999;
 
   display: flex;
   font-size: @font-size--normal;
@@ -11,6 +13,8 @@
   margin-bottom: 10px;
 
   position: relative;
+
+  color: hsl(var(--hsl-c1));
 
   &__chat-button {
     .reset-input();
@@ -49,17 +53,35 @@
     margin-bottom: 3px;
   }
 
-  &__badge {
+  &__badge-container {
     display: flex;
-    flex: 0;
+    align-items: center;
   }
 
-  &__map-count {
+  &__badge {
     border-radius: 20px;
-    background-color: hsla(var(--hsl-b6), 0.75);
     padding: 2px 10px;
+    margin-right: 5px;
     font-weight: 600;
-    color: var(--group-colour, @osu-colour-c1);
+
+    background-color: var(--bg);
+    color: hsl(var(--hsl-b6));
+
+    &--active {
+      --bg: @osu-colour-lime-2;
+    }
+
+    &--ended {
+      color: hsl(var(--hsl-c1));
+    }
+
+    &--soon {
+      --bg: @osu-colour-orange-2;
+    }
+
+    &--map-count {
+      color: hsl(var(--hsl-c1));
+    }
   }
 
   &__name {
