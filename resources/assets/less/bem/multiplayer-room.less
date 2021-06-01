@@ -23,6 +23,7 @@
   &__content {
     position: relative;
     display: flex;
+    flex-direction: column;
     background: linear-gradient(0.25turn, hsl(var(--hsl-b2)), hsla(var(--hsl-b2), 0.8));
     border-radius: var(--border-radius);
 
@@ -43,9 +44,9 @@
 
   &__details {
     display: flex;
-    flex-direction: column;
-
     flex: 1;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   &__ends {
@@ -82,6 +83,12 @@
     &--map-count {
       color: hsl(var(--hsl-c1));
     }
+  }
+
+  &__members {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: flex-end;
   }
 
   &__name {
