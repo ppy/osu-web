@@ -66,7 +66,7 @@ export default class Room extends React.Component<Props> {
             </div>
             <div className='multiplayer-room__name'>{this.props.room.name}</div>
             <div className='multiplayer-room__badge-container'>
-              <div className={classWithModifiers('multiplayer-room__badge', ['map-count'])}>{this.props.room.playlist.length} maps</div>
+              <div className={classWithModifiers('multiplayer-room__badge', ['map-count'])}>{osu.transChoice('multiplayer.room.map_count', this.props.room.playlist.length)}</div>
               <div
                 className='multiplayer-room__badge'
                 style={{
