@@ -8,11 +8,16 @@ import * as React from 'react';
 interface ContextProps {
   beatmaps: Partial<Record<number, BeatmapJson>>;
   beatmapsets: Partial<Record<number, BeatmapsetJson>>;
+  cursor: {
+    ends_at: string;
+    id: number;
+  } | null;
 }
 
 const defaultValue: ContextProps = {
   beatmaps: {},
   beatmapsets: {},
+  cursor: null,
 };
 
 // TODO: store?

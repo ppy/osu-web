@@ -14,6 +14,10 @@ import Main from 'user-multiplayer-index/main';
 interface Props {
   beatmaps: BeatmapJson[];
   beatmapsets: BeatmapsetJson[];
+  cursor: {
+    ends_at: string;
+    id: number;
+  } | null;
   rooms: (RoomJson & Required<Pick<RoomJson, 'playlist'>>)[];
   user: UserJsonExtended;
 }
@@ -24,7 +28,7 @@ core.reactTurbolinks.register('user-multiplayer-index', true, () => {
   const beatmapsets = keyBy(json.beatmapsets, 'id');
 
   return (
-    <RoomsContext.Provider value={{ beatmaps, beatmapsets }}>
+    <RoomsContext.Provider value={{ beatmaps, beatmapsets, cursor: json.cursor }}>
       <Main rooms={json.rooms} user={json.user} />
     </RoomsContext.Provider>
   );
