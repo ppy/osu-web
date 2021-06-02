@@ -5,7 +5,7 @@ This object is not returned by any endpoints yet. It is here only as a reference
 Field           | Type    | Description
 ----------------|---------|------------------------------------------------------------
 colour          | string? | |
-description     | string  | |
+description     | string? | |
 has_listing     | boolean | Whether this group displays a listing at `/groups/{id}`.
 has_playmodes   | boolean | Whether this group associates [GameModes](#gamemode) with users' memberships.
 id              | number  | |

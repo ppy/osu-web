@@ -3,7 +3,7 @@
 
 export default interface GroupJson {
   colour: string | null;
-  description: string;
+  description: string | null;
   has_listing: boolean;
   has_playmodes: boolean;
   id: number;

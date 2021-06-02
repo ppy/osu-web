@@ -15,7 +15,7 @@ use App\Libraries\Transactions\AfterCommit;
  * @property int $group_avatar_type
  * @property int $group_avatar_width
  * @property string $group_colour
- * @property string $group_desc
+ * @property string|null $group_desc
  * @property string $group_desc_bitfield
  * @property int $group_desc_options
  * @property string $group_desc_uid
@@ -53,6 +53,11 @@ class Group extends Model implements AfterCommit
         }
 
         return $value;
+    }
+
+    public function getGroupDescAttribute($value): ?string
+    {
+        return presence($value);
     }
 
     public function hasBadge(): bool
