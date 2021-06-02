@@ -15,12 +15,13 @@
 
 Represents a wiki article
 
-Field    | Type     | Description
--------- | -------- | ----------------------------------------------------------
-layout   | string   | The layout type for the page.
-locale   | string   | All lowercase BCP 47 language tag.
-markdown | string   | Markdown content.
-path     | string   | Path of the article.
-subtitle | string?  | The article's subtitle.
-tags     | string[] | Associated tags for the article.
-title    | string   | The article's title.
+Field         | Type     | Description
+------------- | -------- | -----------------------------------------------------
+layout        | string   | The layout type for the page.
+locale        | string   | All lowercase BCP 47 language tag.
+markdown      | string   | Markdown content.
+path          | string   | Path of the article.
+subtitle      | string?  | The article's subtitle.
+tags          | string[] | Associated tags for the article.
+title         | string   | The article's title.
+other_locales | string[] | Other available locales for the article.
