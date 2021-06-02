@@ -16,8 +16,6 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\DisqusImport::class,
-
         Commands\EsCreateSearchBlacklist::class,
         Commands\EsIndexDocuments::class,
         Commands\EsIndexWiki::class,

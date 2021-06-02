@@ -29,7 +29,6 @@
     "league/commonmark": "^1.6",
     "league/flysystem-aws-s3-v3": "*",
     "league/fractal": "*",
-    "league/html-to-markdown": "*",
     "mariuzzo/laravel-js-localization": "*",
     "paypal/rest-api-sdk-php": "*",
     "php-ds/php-ds": "^1.3",
