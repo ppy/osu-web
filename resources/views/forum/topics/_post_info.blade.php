@@ -55,6 +55,8 @@
         <div class="forum-post-info__row forum-post-info__row--group-badge">
             @php
                 $group = $userGroup->group;
+                $playmodes = $userGroup->playmodes;
+                $hasPlaymodes = $playmodes !== null && count($playmodes) > 0;
             @endphp
             <div
                 class="user-group-badge user-group-badge--t-forum"
@@ -62,17 +64,17 @@
                 title="{{ $group->group_name }}"
                 style="{!! css_group_colour($group) !!}"
             >
-                @if (count($userGroup->playmodes) > 0)
+                @if ($hasPlaymodes)
                     <div class="user-group-badge__modes">
-                        @foreach($userGroup->playmodes as $mode)
+                        @foreach($playmodes as $mode)
                             <i class="fal fa-extra-mode-{{$mode}}"></i>
                         @endforeach
                     </div>
                 @endif
             </div>
-            @if (count($userGroup->playmodes) > 0)
+            @if ($hasPlaymodes)
                 <div class="forum-post-info__row forum-post-info__row--group-badge-playmodes">
-                    @foreach($userGroup->playmodes as $mode)
+                    @foreach($playmodes as $mode)
                         <i class="fal fa-extra-mode-{{$mode}}"></i>
                     @endforeach
                 </div>
