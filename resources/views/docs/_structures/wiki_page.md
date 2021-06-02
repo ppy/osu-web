@@ -8,7 +8,8 @@
     "path": "Game_Modes/osu!",
     "subtitle": "Game Modes",
     "tags": ["tap", "circles"],
-    "title": "osu! (game mode)"
+    "title": "osu! (game mode)",
+    "other_locales": ["ja", "id", "pt-br"]
 }
 ```
 
