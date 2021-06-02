@@ -2,33 +2,22 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { RoomsContext } from 'beatmap-discussions/rooms-context';
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
-import BeatmapJson from 'interfaces/beatmap-json';
-import RoomJson from 'interfaces/room-json';
-import UserJsonExtended from 'interfaces/user-json-extended';
+import UserMultiplayerHistoryJson from 'interfaces/user-multiplayer-history-json';
 import { keyBy } from 'lodash';
+import { observable } from 'mobx';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import Main from 'user-multiplayer-index/main';
 
-interface Props {
-  beatmaps: BeatmapJson[];
-  beatmapsets: BeatmapsetJson[];
-  cursor: {
-    ends_at: string;
-    id: number;
-  } | null;
-  rooms: (RoomJson & Required<Pick<RoomJson, 'playlist'>>)[];
-  user: UserJsonExtended;
-}
-
 core.reactTurbolinks.register('user-multiplayer-index', true, () => {
-  const json = osu.parseJson<Props>('json-user-multiplayer-index');
+  const json = osu.parseJson<UserMultiplayerHistoryJson>('json-user-multiplayer-index');
   const beatmaps = keyBy(json.beatmaps, 'id');
   const beatmapsets = keyBy(json.beatmapsets, 'id');
 
+  const store = observable({ beatmaps, beatmapsets, cursor: json.cursor, rooms: json.rooms });
+
   return (
-    <RoomsContext.Provider value={{ beatmaps, beatmapsets, cursor: json.cursor }}>
+    <RoomsContext.Provider value={store}>
       <Main rooms={json.rooms} user={json.user} />
     </RoomsContext.Provider>
   );

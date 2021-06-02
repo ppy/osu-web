@@ -4,24 +4,15 @@
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import RoomJson from 'interfaces/room-json';
-import * as React from 'react';
+import UserJsonExtended from 'interfaces/user-json-extended';
 
-interface ContextProps {
-  beatmaps: Partial<Record<number, BeatmapJson>>;
-  beatmapsets: Partial<Record<number, BeatmapsetJson>>;
+export default interface UserMultiplayerHistoryJson {
+  beatmaps: BeatmapJson[];
+  beatmapsets: BeatmapsetJson[];
   cursor: {
     ends_at: string;
     id: number;
   } | null;
   rooms: (RoomJson & Required<Pick<RoomJson, 'playlist'>>)[];
+  user: UserJsonExtended;
 }
-
-const defaultValue: ContextProps = {
-  beatmaps: {},
-  beatmapsets: {},
-  cursor: null,
-  rooms: [],
-};
-
-// TODO: store?
-export const RoomsContext = React.createContext(defaultValue);
