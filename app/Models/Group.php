@@ -8,7 +8,7 @@ namespace App\Models;
 use App\Libraries\Transactions\AfterCommit;
 
 /**
- * @property string $colour
+ * @property string|null $colour
  * @property int $display_order
  * @property string $group_avatar
  * @property int $group_avatar_height
@@ -42,10 +42,10 @@ class Group extends Model implements AfterCommit
         'has_playmodes' => 'boolean',
     ];
 
-    public function getColourAttribute($value)
+    public function getColourAttribute($value): ?string
     {
         if (!present($value)) {
-            return;
+            return null;
         }
 
         if (strlen($value) === 6 || strlen($value) === 3 && ctype_xdigit($value)) {

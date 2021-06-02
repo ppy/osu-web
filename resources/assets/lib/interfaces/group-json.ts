@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 export default interface GroupJson {
-  colour: string;
+  colour: string | null;
   description: string;
   has_listing: boolean;
   has_playmodes: boolean;
