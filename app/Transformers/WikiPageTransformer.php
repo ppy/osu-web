@@ -15,11 +15,11 @@ class WikiPageTransformer extends TransformerAbstract
             'layout' => $page->layout(),
             'locale' => $page->locale,
             'markdown' => $page->getMarkdown(),
+            'other_locales' => $page->otherLocales(),
             'path' => $page->path,
             'subtitle' => $page->subtitle(),
             'tags' => $page->tags(),
             'title' => $page->title(),
-            'other_locales' => $page->otherLocales(),
         ];
     }
 }
