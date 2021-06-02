@@ -278,7 +278,7 @@ class DocumentProcessor
             }
 
             if (OsuWiki::isImage($path)) {
-                return route('wiki.image', compact('path'), false);
+                return route('wiki.image', compact('path'), false).$matches['query'].$matches['hash'];
             }
 
             if (!isset($locale)) {
