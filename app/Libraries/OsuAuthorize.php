@@ -21,7 +21,7 @@ use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Genre;
 use App\Models\Language;
-use App\Models\Match\Match;
+use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
 use App\Models\OAuth\Client;
 use App\Models\User;
@@ -1725,11 +1725,11 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
-     * @param Match $match
+     * @param LegacyMatch $match
      * @return string
      * @throws AuthorizationException
      */
-    public function checkMatchView(?User $user, Match $match): string
+    public function checkMatchView(?User $user, LegacyMatch $match): string
     {
         if (!$match->private) {
             return 'ok';

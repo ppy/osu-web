@@ -26,8 +26,6 @@ class ScoresController extends BaseController
     /**
      * Get Scores
      *
-     * @group Multiplayer
-     *
      * Returns a list of scores for specified playlist item.
      *
      * ---
@@ -36,12 +34,14 @@ class ScoresController extends BaseController
      *
      * Returns [MultiplayerScores](#multiplayerscores) object.
      *
-     * @urlParam room required Id of the room.
-     * @urlParam playlist required Id of the playlist item.
+     * @urlParam room integer required Id of the room.
+     * @urlParam playlist integer required Id of the playlist item.
      *
      * @queryParam limit Number of scores to be returned.
      * @queryParam sort [MultiplayerScoresSort](#multiplayerscoressort) parameter.
      * @queryParam cursor [MultiplayerScoresCursor](#multiplayerscorescursor) parameter.
+     *
+     * @group Multiplayer
      */
     public function index($roomId, $playlistId)
     {
@@ -90,8 +90,6 @@ class ScoresController extends BaseController
     /**
      * Get a Score
      *
-     * @group Multiplayer
-     *
      * Returns detail of specified score and the surrounding scores.
      *
      * ---
@@ -100,9 +98,11 @@ class ScoresController extends BaseController
      *
      * Returns [MultiplayerScore](#multiplayerscore) object.
      *
-     * @urlParam room required Id of the room.
-     * @urlParam playlist required Id of the playlist item.
-     * @urlParam score required Id of the score.
+     * @urlParam room integer required Id of the room.
+     * @urlParam playlist integer required Id of the playlist item.
+     * @urlParam score integer required Id of the score.
+     *
+     * @group Multiplayer
      */
     public function show($roomId, $playlistId, $id)
     {
@@ -120,8 +120,6 @@ class ScoresController extends BaseController
     /**
      * Get User High Score
      *
-     * @group Multiplayer
-     *
      * Returns detail of highest score of specified user and the surrounding scores.
      *
      * ---
@@ -130,9 +128,11 @@ class ScoresController extends BaseController
      *
      * Returns [MultiplayerScore](#multiplayerscore) object.
      *
-     * @urlParam room required Id of the room.
-     * @urlParam playlist required Id of the playlist item.
-     * @urlParam user required User id.
+     * @urlParam room integer required Id of the room.
+     * @urlParam playlist integer required Id of the playlist item.
+     * @urlParam user integer required User id.
+     *
+     * @group Multiplayer
      */
     public function showUser($roomId, $playlistId, $userId)
     {
