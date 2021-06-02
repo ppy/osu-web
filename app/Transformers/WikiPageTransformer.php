@@ -19,6 +19,7 @@ class WikiPageTransformer extends TransformerAbstract
             'subtitle' => $page->subtitle(),
             'tags' => $page->tags(),
             'title' => $page->title(),
+            'other_locales' => $page->otherLocales(),
         ];
     }
 }
