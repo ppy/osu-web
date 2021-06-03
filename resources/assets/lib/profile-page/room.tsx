@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { RoomsContext } from 'beatmap-discussions/rooms-context';
+import UserMultiplayerHistoryContext from 'beatmap-discussions/rooms-context';
 import Img2x from 'img2x';
 import RoomJson from 'interfaces/room-json';
 import { maxBy, minBy } from 'lodash';
@@ -22,8 +22,8 @@ const hideImage = (e: React.SyntheticEvent<HTMLElement>) => {
 };
 
 export default class Room extends React.Component<Props> {
-  static contextType = RoomsContext;
-  declare context: React.ContextType<typeof RoomsContext>;
+  static contextType = UserMultiplayerHistoryContext;
+  declare context: React.ContextType<typeof UserMultiplayerHistoryContext>;
 
   get status() {
     if (!this.props.room.active) {
@@ -36,18 +36,18 @@ export default class Room extends React.Component<Props> {
   }
 
   get maxDifficulty() {
-    const max = maxBy(this.props.room.playlist, (playlist) => this.context.beatmaps[playlist.beatmap_id]?.difficulty_rating);
-    return this.context.beatmaps[max?.beatmap_id ?? 0]?.difficulty_rating ?? 0;
+    const max = maxBy(this.props.room.playlist, (playlist) => this.context.beatmaps.get(playlist.beatmap_id)?.difficulty_rating);
+    return this.context.beatmaps.get(max?.beatmap_id ?? 0)?.difficulty_rating ?? 0;
   }
 
   get minDifficulty() {
-    const min = minBy(this.props.room.playlist, (playlist) => this.context.beatmaps[playlist.beatmap_id]?.difficulty_rating);
-    return this.context.beatmaps[min?.beatmap_id ?? 0]?.difficulty_rating ?? 0;
+    const min = minBy(this.props.room.playlist, (playlist) => this.context.beatmaps.get(playlist.beatmap_id)?.difficulty_rating);
+    return this.context.beatmaps.get(min?.beatmap_id ?? 0)?.difficulty_rating ?? 0;
   }
 
   get background() {
-    const beatmap = this.context.beatmaps[this.props.room.playlist[0].beatmap_id];
-    const beatmapset = this.context.beatmapsets[beatmap?.beatmapset_id ?? 0];
+    const beatmap = this.context.beatmaps.get(this.props.room.playlist[0].beatmap_id);
+    const beatmapset = this.context.beatmapsets.get(beatmap?.beatmapset_id ?? 0);
 
     if (beatmapset == null) return undefined;
 
