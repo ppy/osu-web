@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => '谱面',
 
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => '谱面讨论',
                 'beatmapset_discussion_lock' => '谱面 :title 已被锁定以供讨论。',
@@ -159,6 +165,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => '谱面“:title”的讨论已被锁定',
                 'beatmapset_discussion_post_new' => '谱面“:title”的讨论有新动态',

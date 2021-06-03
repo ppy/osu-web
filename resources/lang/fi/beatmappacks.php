@@ -32,8 +32,8 @@ return [
             'not_cleared' => 'läpäisemätön',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link ei voi käyttää tämän paketin suorittamiseen.',
+            'link' => 'Vaikeusastetta vähentäviä modeja',
         ],
     ],
 

@@ -32,14 +32,14 @@ return [
                 'description' => '',
             ],
             'tournaments' => [
-                'title' => '',
+                'title' => 'Viralliset Turnaukset',
                 'description' => '',
                 'link_text' => '',
             ],
             'bounty-program' => [
                 'title' => '',
                 'description' => '',
-                'link_text' => '',
+                'link_text' => 'Lue lisää &raquo;',
             ],
         ],
         'perks' => [
@@ -50,7 +50,7 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => '',
+                'title' => 'Kavereiden sijoituksia',
                 'description' => "",
             ],
 

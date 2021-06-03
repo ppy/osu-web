@@ -83,7 +83,7 @@ class @BeatmapsetFilter
 
     switch key
       when 'nsfw'
-        currentUser?.user_preferences?.beatmapset_show_nsfw ? false
+        osuCore.userPreferences.get('beatmapset_show_nsfw')
       when 'sort'
         if filters.query?.trim().length > 0
           'relevance_desc'

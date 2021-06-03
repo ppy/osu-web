@@ -17,6 +17,8 @@ import * as React from 'react'
 import { a, button, div, i, li, span, ul } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
 import * as BeatmapHelper from 'utils/beatmap-helper'
+import { pageChange } from 'utils/page-change'
+
 el = React.createElement
 
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
@@ -40,7 +42,6 @@ export class Main extends React.PureComponent
       @initialPage = page if page?
 
       @state =
-        currentMode: props.currentMode
         user: props.user
         userPage:
           html: props.userPage.html
@@ -102,7 +103,7 @@ export class Main extends React.PureComponent
       stop: =>
         @draggingTabTimeout = Timeout.set 500, => @draggingTab = false
 
-    osu.pageChange()
+    pageChange()
 
     @modeScrollUrl = currentLocation()
 
@@ -137,7 +138,7 @@ export class Main extends React.PureComponent
       el Header,
         user: @state.user
         stats: @state.user.statistics
-        currentMode: @state.currentMode
+        currentMode: @props.currentMode
         withEdit: @props.withEdit
         userAchievements: @props.userAchievements
 
@@ -158,7 +159,7 @@ export class Main extends React.PureComponent
                   el ExtraTab,
                     page: m
                     currentPage: @state.currentPage
-                    currentMode: @state.currentMode
+                    currentMode: @props.currentMode
 
       div
         className: 'user-profile-pages'
@@ -210,7 +211,7 @@ export class Main extends React.PureComponent
           user: @state.user
           scoresBest: @state.scoresBest
           scoresFirsts: @state.scoresFirsts
-          currentMode: @state.currentMode
+          currentMode: @props.currentMode
           pagination: @state.showMorePagination
         component: TopRanks
 
@@ -235,7 +236,7 @@ export class Main extends React.PureComponent
         props:
           achievements: @props.achievements
           userAchievements: @props.userAchievements
-          currentMode: @state.currentMode
+          currentMode: @props.currentMode
           user: @state.user
         component: Medals
 
@@ -244,7 +245,7 @@ export class Main extends React.PureComponent
           beatmapPlaycounts: @state.beatmapPlaycounts
           scoresRecent: @state.scoresRecent
           user: @state.user
-          currentMode: @state.currentMode
+          currentMode: @props.currentMode
           pagination: @state.showMorePagination
         component: Historical
 

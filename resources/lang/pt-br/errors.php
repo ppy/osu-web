@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => 'URL inválida ou método de solicitação incorreto.',
+    'no_restricted_access' => 'Você não pode executar esta ação enquanto sua conta estiver restrita.',
+    'supporter_only' => 'Você precisa ser um osu!supporter para usar esta função.',
+    'unknown' => 'Ocorreu um erro desconhecido.',
+
     'codes' => [
         'http-401' => 'Por favor, inicie a sessão para continuar.',
         'http-403' => 'Acesso negado.',
@@ -26,8 +31,4 @@ return [
         'default' => 'Não foi possível obter nenhum resultado, tente novamente mais tarde.',
         'operation_timeout_exception' => 'A busca está mais ocupada que o normal, tente novamente mais tarde.',
     ],
-
-    'supporter_only' => 'Você precisa ser um osu!supporter para usar esta função.',
-    'no_restricted_access' => 'Você não pode executar esta ação enquanto sua conta estiver restrita.',
-    'unknown' => 'Ocorreu um erro desconhecido.',
 ];

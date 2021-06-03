@@ -8,8 +8,10 @@ namespace Tests\Browser;
 use App\Models\Country;
 use App\Models\Multiplayer\Room;
 use DB;
+use Exception;
+use Illuminate\Routing\Route as LaravelRoute;
+use Laravel\Dusk\Browser;
 use Route;
-use Tests\Browser;
 use Tests\DuskTestCase;
 
 class SanityTest extends DuskTestCase
@@ -134,8 +136,8 @@ class SanityTest extends DuskTestCase
             ]);
 
             // factory for matches
-            self::$scaffolding['match'] = factory(\App\Models\Match\Match::class)->create();
-            self::$scaffolding['event'] = factory(\App\Models\Match\Event::class)->states('join')->create([
+            self::$scaffolding['match'] = factory(\App\Models\LegacyMatch\LegacyMatch::class)->create();
+            self::$scaffolding['event'] = factory(\App\Models\LegacyMatch\Event::class)->states('join')->create([
                 'match_id' => self::$scaffolding['match']->getKey(),
             ]);
 
@@ -207,39 +209,34 @@ class SanityTest extends DuskTestCase
                 continue;
             }
 
-            // TODO: add additional logic for certain routes to re-run tests per game mode, per user score type, etc
-            $this->browse(function (Browser $browser) use ($route) {
-                try {
-                    $url = $this->bindParams($browser, $route);
+            $url = $this->bindParams($route);
 
-                    $browser
-                        ->loginAs(self::$scaffolding['user'])
-                        ->visit($url);
+            // TODO: add additional logic for certain routes to re-run tests per game mode, per user score type, etc
+            $this->browse(function (Browser $browser) use ($route, $url) {
+                $type = 'user';
+
+                try {
+                    static::resetSession($browser);
+                    $browser->loginAs(self::$scaffolding['user'])->visit($url);
 
                     // $browser->driver->takeScreenshot('ss/'.$route->getName().'.png');
 
                     $this->checkAdminPermission($browser, $route);
                     $this->checkVerification($browser, $route);
+                    $this->assertGeneralValidation($type, $browser, $route);
+                } catch (Exception $err) {
+                    $this->handleTestException($type, $err, $browser, $route);
+                }
 
-                    $browser
-                        ->assertDontSee('Oh no! Something broke! ;_;')
-                        ->assertDontSee('Sorry, the page you are looking for could not be found');
+                $type = 'guest';
 
-                    $this->checkJavascriptErrors($browser, $route);
+                try {
+                    static::resetSession($browser);
+                    $browser->visit($url);
 
-                    $this->passed++;
-                    $this->output("\e[0;32m    ✓\e[0m\n");
-                } catch (\Exception $err) {
-                    $filename = 'tests/Browser/screenshots/fail-'.$route->getName().'.png';
-                    $browser->driver->takeScreenshot($filename);
-
-                    $this->failed++;
-                    $this->output('  '.$err->getMessage()."\n");
-                    $this->output("  screenshot saved to: {$filename}\n");
-                    $this->output("\e[1;37;41m\e[2K    x\e[0m\n");
-
-                    // save exception for later and let tests continue running
-                    $this->testFailed = $err;
+                    $this->assertGeneralValidation($type, $browser, $route);
+                } catch (Exception $err) {
+                    $this->handleTestException($type, $err, $browser, $route);
                 }
             });
         }
@@ -252,7 +249,7 @@ class SanityTest extends DuskTestCase
         }
     }
 
-    public function bindParams(Browser $browser, \Illuminate\Routing\Route $route)
+    public function bindParams(LaravelRoute $route)
     {
         $paramOverrides = [
             'beatmapsets.discussions.show' => [
@@ -333,7 +330,7 @@ class SanityTest extends DuskTestCase
         return $url;
     }
 
-    public function checkAdminPermission(Browser $browser, \Illuminate\Routing\Route $route)
+    public function checkAdminPermission(Browser $browser, LaravelRoute $route)
     {
         $adminRestricted = [];
 
@@ -345,7 +342,7 @@ class SanityTest extends DuskTestCase
         }
     }
 
-    public function checkJavascriptErrors(Browser $browser, \Illuminate\Routing\Route $route)
+    public function checkJavascriptErrors(Browser $browser, LaravelRoute $route)
     {
         // Note: if you call getLog more than once a request, the subsequent calls return an empty array.
         $rawLog = $browser->driver->manage()->getLog('browser');
@@ -354,11 +351,11 @@ class SanityTest extends DuskTestCase
         if ($logLines->contains('source', 'javascript')) {
             $error = implode(' | ', $logLines->where('source', 'javascript')->pluck('message')->toArray());
 
-            throw new \Exception("JavaScript ERROR: {$error}");
+            throw new Exception("JavaScript ERROR: {$error}");
         }
     }
 
-    public function checkVerification(Browser $browser, \Illuminate\Routing\Route $route)
+    public function checkVerification(Browser $browser, LaravelRoute $route)
     {
         $verificationExpected = [
             'account.edit',
@@ -439,5 +436,31 @@ class SanityTest extends DuskTestCase
             // tearDown/tearDownAfterClass runs after laravel is torn down
             $this->cleanup();
         });
+    }
+
+    private function assertGeneralValidation(string $type, Browser $browser, LaravelRoute $route)
+    {
+        $browser
+            ->assertDontSee('Oh no! Something broke! ;_;')
+            ->assertDontSee('Sorry, the page you are looking for could not be found');
+
+        $this->checkJavascriptErrors($browser, $route);
+
+        $this->passed++;
+        $this->output("\e[0;32m    ✓ ({$type})\e[0m\n");
+    }
+
+    private function handleTestException(string $type, Exception $err, Browser $browser, LaravelRoute $route): void
+    {
+        $filename = "tests/Browser/screenshots/fail-{$route->getName()}-{$type}.png";
+        $browser->driver->takeScreenshot($filename);
+
+        $this->failed++;
+        $this->output('  '.$err->getMessage()."\n");
+        $this->output("  screenshot saved to: {$filename}\n");
+        $this->output("\e[1;37;41m\e[2K    x ({$type})\e[0m\n");
+
+        // save exception for later and let tests continue running
+        $this->testFailed = $err;
     }
 }

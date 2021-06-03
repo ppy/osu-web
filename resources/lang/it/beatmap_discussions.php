@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Cerca',
             'deleted' => 'Includi discussioni eliminate',
-            'mode' => '',
+            'mode' => 'Modalità Beatmap',
             'only_unresolved' => 'Mostra solo le discussioni in sospeso',
             'types' => 'Tipi di messaggio',
             'username' => 'Nome Utente',
@@ -56,6 +56,13 @@ return [
         'confirm' => 'Nessuno dei post riguarda il mio problema',
         'notice' => 'Ci sono già dei post verso :timestamp (:existing_timestamps). Controlla prima di postare.',
         'unsaved' => ':count in questa revisione',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [

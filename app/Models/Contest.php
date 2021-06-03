@@ -29,6 +29,7 @@ use Cache;
  * @property int $show_votes
  * @property mixed $type
  * @property mixed $unmasked
+ * @property bool $show_names
  * @property \Carbon\Carbon|null $updated_at
  * @property bool $visible
  * @property \Illuminate\Database\Eloquent\Collection $votes ContestVote
@@ -122,6 +123,11 @@ class Contest extends Model
     public function getUnmaskedAttribute()
     {
         return $this->getExtraOptions()['unmasked'] ?? false;
+    }
+
+    public function getShowNamesAttribute()
+    {
+        return $this->getExtraOptions()['show_names'] ?? false;
     }
 
     public function getLinkIconAttribute()

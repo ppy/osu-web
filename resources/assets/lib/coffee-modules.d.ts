@@ -44,10 +44,6 @@ declare module 'friend-button' {
   class FriendButton extends React.PureComponent<any> {}
 }
 
-declare module 'img2x' {
-  class Img2x extends React.PureComponent<any> {}
-}
-
 declare module 'comments' {
   class Comments extends React.PureComponent<any> {}
 }

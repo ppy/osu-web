@@ -7,7 +7,7 @@ return [
     'deleted' => '[utilisateur supprimé]',
 
     'beatmapset_activities' => [
-        'title' => "Historique des modifications de :user",
+        'title' => "Historique du modding de :user",
         'title_compact' => 'Modding',
 
         'discussions' => [
@@ -34,13 +34,13 @@ return [
     'blocks' => [
         'banner_text' => 'Vous avez bloqué cet utilisateur.',
         'blocked_count' => 'utilisateurs bloqués (:count)',
-        'hide_profile' => 'masquer le profil',
+        'hide_profile' => 'Masquer le profil',
         'not_blocked' => 'Cet utilisateur n’est pas bloqué.',
-        'show_profile' => 'afficher le profil',
+        'show_profile' => 'Afficher le profil',
         'too_many' => 'Limite de blocages atteinte.',
         'button' => [
-            'block' => 'bloquer',
-            'unblock' => 'débloquer',
+            'block' => 'Bloquer',
+            'unblock' => 'Débloquer',
         ],
     ],
 
@@ -63,7 +63,7 @@ return [
             'opening' => 'Il y a plusieurs raisons qui peuvent conduire à la désactivation de votre compte :',
 
             'tos' => [
-                '_' => 'Vous avez enfreint une ou plusieurs de nos :community_rules ou :tos.',
+                '_' => 'Vous avez enfreint une ou plusieurs de nos :community_rules ou des :tos.',
                 'community_rules' => 'règles de la communauté',
                 'tos' => 'conditions de service',
             ],
@@ -88,17 +88,17 @@ return [
         'failed' => 'Identifiants incorrects',
         'forgot' => 'Mot de passe oublié ?',
         'info' => 'Veuillez vous connecter pour continuer',
-        'invalid_captcha' => 'Captcha invalide, rafraîchissez la page et retentez.',
+        'invalid_captcha' => 'Trop de tentatives de connexion ont échoué, veuillez compléter le captcha et réessayer. (Rafraîchissez la page si le captcha n\'est pas visible)',
         'locked_ip' => 'votre adresse IP est bloquée. Merci d\'attendre quelques minutes.',
         'password' => 'Mot de passe',
-        'register' => "Vous n'avez pas de compte osu! ? Inscrivez-vous maintenant ici",
-        'remember' => 'Se souvenir de moi sur cet ordinateur',
+        'register' => "Vous n'avez pas de compte osu! ? Inscrivez-vous maintenant",
+        'remember' => 'Se souvenir de cet ordinateur',
         'title' => 'Merci de vous connecter pour continuer',
         'username' => 'Nom d\'utilisateur',
 
         'beta' => [
-            'main' => 'Accès bêta restreint aux utilisateurs privilégiés.',
-            'small' => '(les supporteurs osu! l\'obtiendront bientôt)',
+            'main' => 'L\'accès à la version bêta est actuellement réservé aux utilisateurs privilégiés.',
+            'small' => '(les osu!supporter l\'obtiendront bientôt)',
         ],
     ],
 
@@ -107,14 +107,14 @@ return [
     ],
 
     'anonymous' => [
-        'login_link' => 'Cliquez pour vous connecter',
-        'login_text' => 'Se connecter',
+        'login_link' => 'cliquez pour vous connecter',
+        'login_text' => 'se connecter',
         'username' => 'Invité',
         'error' => 'Vous devez être connecté pour faire ça.',
     ],
     'logout_confirm' => 'Êtes-vous sûr de vouloir vous déconnecter ? :(',
     'report' => [
-        'button_text' => 'signaler',
+        'button_text' => 'Signaler',
         'comments' => 'Commentaires supplémentaires',
         'placeholder' => 'Veuillez fournir toute information que vous pensez pouvoir être utile.',
         'reason' => 'Raison',
@@ -161,12 +161,12 @@ return [
         'edit' => [
             'cover' => [
                 'button' => 'Changer la bannière du profil',
-                'defaults_info' => 'Plus d\'options seront disponibles bientôt',
+                'defaults_info' => 'D\'autres options de bannières seront disponibles à l\'avenir',
                 'upload' => [
                     'broken_file' => 'Impossible de traiter l\'image. Vérifiez l\'image mise en ligne et réessayez.',
                     'button' => 'Mettre en ligne l\'image',
                     'dropzone' => 'Déplacez ici pour uploader',
-                    'dropzone_info' => 'Vous pouvez aussi glisser-déposer l\'image ici pour la mettre en ligne',
+                    'dropzone_info' => 'Vous pouvez aussi déplacer l\'image ici pour la mettre en ligne',
                     'size_info' => 'La taille de la bannière devrait être de 2400x620',
                     'too_large' => 'Le fichier est trop volumineux.',
                     'unsupported_format' => 'Format non supporté.',
@@ -235,12 +235,12 @@ return [
                     'title' => 'Beatmaps les plus jouées',
                 ],
                 'recent_plays' => [
-                    'accuracy' => 'Précision: :percentage',
+                    'accuracy' => 'précision : :percentage',
                     'title' => 'Parties récentes (dernières 24h)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Historique des replays regardées',
-                    'count_label' => 'Replays Regardés',
+                    'count_label' => 'Replays regardés',
                 ],
             ],
             'kudosu' => [
@@ -310,7 +310,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Télécharger le replay',
-                'not_ranked' => 'Seules les beatmaps classées accordent des pp.',
+                'not_ranked' => 'Seules les beatmaps classées accordent des pp',
                 'pp_weight' => 'pondéré :percentage',
                 'view_details' => 'Voir les détails',
                 'title' => 'Classements',
@@ -344,9 +344,9 @@ return [
                     'actor' => 'par :username',
 
                     'actions' => [
-                        'restriction' => 'Restriction',
+                        'restriction' => 'Bannir',
                         'silence' => 'Silence',
-                        'note' => 'Avertissement',
+                        'note' => 'Note',
                     ],
                 ],
             ],
@@ -355,7 +355,7 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Centres d\'intérêt',
-            'location' => 'Position actuelle',
+            'location' => 'Emplacement actuel',
             'occupation' => 'Occupation',
             'twitter' => '',
             'website' => 'Site Internet',
@@ -364,8 +364,8 @@ return [
             'reason_1' => 'Il a peut-être changé de nom d\'utilisateur.',
             'reason_2' => 'Ce compte est peut-être temporairement indisponible pour des raisons de sécurité ou d\'abus.',
             'reason_3' => 'Vous avez peut-être fait une faute de frappe !',
-            'reason_header' => 'Il y a plusieurs raisons possibles pour cela:',
-            'title' => 'Utilisateur non trouvé! ;_;',
+            'reason_header' => 'Il y a plusieurs raisons possibles pour cela :',
+            'title' => 'Utilisateur non trouvé ! ;_;',
         ],
         'page' => [
             'button' => 'Modifier le profil',
@@ -380,7 +380,7 @@ return [
         ],
         'post_count' => [
             '_' => 'A contribué à :link',
-            'count' => ':count post du forum|:count posts du forum',
+            'count' => ':count_delimited post du forum|:count_delimited posts du forum',
         ],
         'rank' => [
             'country' => 'Classement national en :mode',
@@ -428,7 +428,7 @@ return [
 
     'view_mode' => [
         'brick' => 'Vue brique',
-        'card' => 'Vue en carte',
-        'list' => 'Vue en liste',
+        'card' => 'Voir la carte',
+        'list' => 'Voir la liste',
     ],
 ];

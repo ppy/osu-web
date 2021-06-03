@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => '검색',
             'deleted' => '삭제된 토론 포함',
-            'mode' => '',
+            'mode' => '비트맵 모드',
             'only_unresolved' => '미해결 토론만 보기',
             'types' => '메시지 종류',
             'username' => '사용자 이름',
@@ -56,6 +56,13 @@ return [
         'confirm' => '지금 작성하는 토론과 연관된 토론이 없습니다',
         'notice' => ':timestamp (:existing_timestamps)주위에 달린 답글이 있습니다. 포스팅하기 전에 한 번 확인해보세요.',
         'unsaved' => '이 리뷰에서 :count개',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [

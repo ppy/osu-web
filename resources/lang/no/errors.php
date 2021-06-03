@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => '',
+    'no_restricted_access' => 'Du kan ikke utføre denne handlingen mens kontoen din er i begrenset tilstand.',
+    'supporter_only' => 'Du må være en osu!supporter for å bruke denne funksjonen.',
+    'unknown' => 'En ukjent feil har oppstått.',
+
     'codes' => [
         'http-401' => 'Vennligst logg inn for å fortsette.',
         'http-403' => 'Ingen tillatelse.',
@@ -26,8 +31,4 @@ return [
         'default' => 'Kunne ikke hente noen treff. Prøv igjen senere.',
         'operation_timeout_exception' => 'Søkefunksjonen ser ikke ut til å fungere akkurat nå. Prøv igjen senere.',
     ],
-
-    'supporter_only' => 'Du må være en osu!supporter for å bruke denne funksjonen.',
-    'no_restricted_access' => 'Du kan ikke utføre denne handlingen mens kontoen din er i begrenset tilstand.',
-    'unknown' => 'En ukjent feil har oppstått.',
 ];

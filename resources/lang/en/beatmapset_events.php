@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Approved.',
+        'beatmap_owner_change' => 'Owner of difficulty :beatmap changed to :new_user.',
         'discussion_delete' => 'Moderator deleted discussion :discussion.',
         'discussion_lock' => 'Discussion for this beatmap has been disabled. (:text)',
         'discussion_post_delete' => 'Moderator deleted post from discussion :discussion.',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Approval',
+        'beatmap_owner_change' => 'Difficulty owner change',
         'discussion_delete' => 'Discussion deletion',
         'discussion_post_delete' => 'Discussion reply deletion',
         'discussion_post_restore' => 'Discussion reply restoration',

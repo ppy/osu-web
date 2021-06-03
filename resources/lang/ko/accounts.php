@@ -56,6 +56,7 @@ return [
 
         'options' => [
             '_' => '수신 옵션',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => '비트맵 모딩',
             'channel_message' => '개인 채팅 메시지',
             'comment_new' => '새 댓글',
