@@ -50,6 +50,7 @@ return [
     |
     */
 
+    // Please check other uses of APP_URL when updating this.
     'url' => env('APP_URL', 'http://localhost'),
 
     /*
