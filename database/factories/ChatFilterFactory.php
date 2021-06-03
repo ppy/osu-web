@@ -5,7 +5,7 @@
 
 $factory->define(App\Models\ChatFilter::class, function (Faker\Generator $faker) {
     return [
-        'match' => $faker->word,
+        'match' => $faker->unique()->word,
         'replacement' => $faker->word,
     ];
 });
