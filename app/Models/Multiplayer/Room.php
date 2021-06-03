@@ -86,10 +86,6 @@ class Room extends Model
         $cursor = get_arr($params['cursor'] ?? null);
         $query->cursorSort($cursorHelper, $cursor);
 
-        // foreach ($preloads ?? [] as $preload) {
-        //     $query->with($preload);
-        // }
-
         $limit = clamp(get_int($params['limit'] ?? 250), 1, 250);
         $query->limit($limit);
 
