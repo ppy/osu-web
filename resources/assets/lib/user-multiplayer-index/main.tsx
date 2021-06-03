@@ -1,9 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import MultiplayerHistory, { Props as MultiplayerHistoryProps } from 'profile-page/multiplayer-history';
 import * as React from 'react';
 import UserProfileContainer from 'user-profile-container';
-import MultiplayerHistory, { Props as MultiplayerHistoryProps } from 'profile-page/multiplayer-history';
 import Header from './header';
 
 export default class Main extends React.Component<MultiplayerHistoryProps> {

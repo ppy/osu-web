@@ -13,4 +13,3 @@ export default interface PlaylistItemJson {
   room_id: number;
   ruleset_id: number;
 }
-

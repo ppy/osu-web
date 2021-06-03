@@ -9,8 +9,8 @@ export default interface RoomJson {
   category: string;
   channel_id: number | null;
   ends_at: string;
-  id: number;
   host: UserJson;
+  id: number;
   max_attempts: number | null;
   name: string;
   participant_count: number;
@@ -18,4 +18,3 @@ export default interface RoomJson {
   starts_at: string;
   user_id: number;
 }
-

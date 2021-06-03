@@ -5,10 +5,10 @@ import HeaderV4 from 'header-v4';
 import UserJsonExtended from 'interfaces/user-json-extended';
 import headerLinks from 'profile-page/header-links';
 import ProfileTournamentBanner from 'profile-tournament-banner';
-import * as React from 'react';
 import Badges from 'profile-page/badges';
 import HeaderInfo from 'profile-page/header-info';
 import Links from 'profile-page/links';
+import * as React from 'react';
 
 interface Props {
   user: UserJsonExtended;
