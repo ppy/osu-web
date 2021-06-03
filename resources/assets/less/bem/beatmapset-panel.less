@@ -11,6 +11,7 @@
     --stats-opacity: 1;
   }
 
+  @_top: beatmapset-panel;
   @_hover-transition-duration: 150ms;
   @_menu-width: 10px;
   @_menu-width-visible: 30px;
@@ -32,19 +33,21 @@
   --info-bg: transparent;
   // Height of the card main content. A bit shorter on mobile than
   // the actual card because of the extra row.
-  --main-height: 90px;
+  --main-height: 100px;
   // Similar to --info-bg variable.
   --menu-bg: transparent;
   --menu-container-width: 0;
   --menu-opacity: 0;
   --mobile-extra-bar-height: calc(var(--panel-height) - var(--main-height));
-  --panel-height: 115px;
+  --panel-height: @beatmapset-panel-height;
   // Audio player progress (to be overridden)
   --progress: 0;
   --play-bg: transparent;
   --play-icon-opacity: 0;
   --play-icon: @fa-var-play;
-  --play-width: 60px;
+  --play-width: 80px;
+  --source-display: flex;
+  --stats-grid-template: "hype nominations favourite-count play-count date" / auto auto auto auto auto;
   --stats-opacity: 1;
   --transition: all 150ms ease-in-out;
 
@@ -53,17 +56,16 @@
   border-radius: @border-radius--large;
   font-size: @font-size--normal;
   height: var(--panel-height);
-  transition: var(--transition);
   .own-layer();
 
   @media @desktop {
     --global-beatmap-link-pointer-events: auto;
     --info-bg: linear-gradient(0.25turn, hsl(var(--hsl-b2)), hsla(var(--hsl-b2), 0.8));
-    --main-height: 100%;
     --menu-bg: hsl(var(--hsl-b3));
     --menu-container-width: @_menu-width;
-    --panel-height: 100px;
-    --play-width: 120px;
+    --main-height: 100%;
+    --panel-height: @beatmapset-panel-normal-height-desktop;
+    --play-width: 90px;
     --stats-opacity: 0;
 
     &:hover {
@@ -81,7 +83,7 @@
     left: 0;
     position: absolute;
     opacity: var(--border-cover-opacity);
-    transition: inherit;
+    transition: var(--transition);
     transition-duration: var(--beatmaps-popup-transition-duration);
   }
 
@@ -110,6 +112,20 @@
     }
   }
 
+  &--size-extra {
+    @media @desktop {
+      --panel-height: @beatmapset-panel-extra-height-desktop;
+      --stats-grid-template: "favourite-count hype date" "play-count nominations ." / auto auto auto;
+      --stats-opacity: 1;
+      --play-width: 140px;
+    }
+  }
+
+  &--size-normal {
+    @media @desktop {
+      --source-display: none;
+    }
+  }
 
   &__beatmap-count {
     font-weight: 600;
@@ -246,15 +262,28 @@
 
     &--mapper {
       color: hsl(var(--hsl-c2));
-      margin-top: 1px; // manual adjustment
       font-weight: 600;
-      margin-bottom: auto;
+      margin-top: auto;
+    }
+
+    &--source {
+      color: hsl(var(--hsl-c2));
+      display: var(--source-display);
+      font-weight: bold;
+
+      &::after {
+        content: '\a0';
+      }
     }
 
     &--stats {
-      margin: 0 -5px;
       opacity: var(--stats-opacity);
       overflow: hidden;
+      display: grid;
+      grid-template: var(--stats-grid-template);
+      width: max-content;
+      max-width: 100%;
+      white-space: nowrap;
 
       @media @desktop {
         margin-bottom: 2px;
@@ -436,11 +465,30 @@
   }
 
   &__stats-item {
-    margin: 0 5px;
     display: flex;
     align-items: center;
-    flex: none;
     pointer-events: auto;
+    margin-right: 10px;
+
+    &--date {
+      grid-area: date;
+    }
+
+    &--favourite-count {
+      grid-area: favourite-count;
+    }
+
+    &--hype {
+      grid-area: hype;
+    }
+
+    &--nominations {
+      grid-area: nominations;
+    }
+
+    &--play-count {
+      grid-area: play-count;
+    }
   }
 
   &__stats-item-icon {

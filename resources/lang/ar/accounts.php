@@ -37,7 +37,7 @@ return [
                 'user_interests' => 'الاهتمامات',
                 'user_occ' => 'المهنة',
                 'user_twitter' => '',
-                'user_website' => 'موقع الشخصي',
+                'user_website' => 'موقع شخصي',
             ],
         ],
 
@@ -50,12 +50,13 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'تلقي إشعارات عن مشاكل جديدة في الخرائط المؤهلة على الأنماط التالية',
         'beatmapset_disqualify' => 'تلقي إشعارات عندما تكون الخرائط للأنماط التالية غير مؤهلة',
-        'comment_reply' => 'تلقي إشعارات للردود على تعليقاتك',
+        'comment_reply' => 'تلقي إشعارات الردود على تعليقاتك',
         'title' => 'الإشعارات',
         'topic_auto_subscribe' => 'تمكين الإشعارات تلقائياً حول مواضيع المنتدى الجديدة التي تنشئها',
 
         'options' => [
             '_' => 'خيارات التوصيل',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'اقتراحات الخريطة',
             'channel_message' => 'الرسائل الخاصة',
             'comment_new' => 'تعليقات جديدة',
@@ -63,7 +64,7 @@ return [
             'mail' => 'البريد',
             'mapping' => 'مُنشئ خرائط',
             'push' => 'دفع',
-            'user_achievement_unlock' => 'فتح ميدالية للمستخدم',
+            'user_achievement_unlock' => 'تم فتح ميدالية المستخدم',
         ],
     ],
 

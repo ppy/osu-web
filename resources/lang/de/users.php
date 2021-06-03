@@ -33,7 +33,7 @@ return [
 
     'blocks' => [
         'banner_text' => 'Du hast diesen Benutzer geblockt.',
-        'blocked_count' => '(:count) geblockte Benutzer ',
+        'blocked_count' => 'geblockte benutzer (:count)',
         'hide_profile' => 'Profil verbergen',
         'not_blocked' => 'Dieser Benutzer ist nicht geblockt.',
         'show_profile' => 'Profil anzeigen',
@@ -410,8 +410,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Du bist derzeit stumm.',
+        'message' => 'Einige Aktionen sind möglicherweise nicht verfügbar.',
     ],
 
     'status' => [

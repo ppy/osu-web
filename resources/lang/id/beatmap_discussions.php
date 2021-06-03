@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Cari',
             'deleted' => 'Sertakan diskusi yang telah dihapus',
-            'mode' => '',
+            'mode' => 'Mode beatmap',
             'only_unresolved' => 'Hanya tampilkan diskusi yang belum selesai',
             'types' => 'Tipe pesan',
             'username' => 'Nama Pengguna',
@@ -56,6 +56,13 @@ return [
         'confirm' => 'Tidak ada postingan yang membahas masalah saya',
         'notice' => 'Terdapat postingan pada :timestamp (:existing_timestamps). Silakan periksa sebelum memposting.',
         'unsaved' => ':count pada kajian ini',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [

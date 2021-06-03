@@ -9,6 +9,7 @@ import NsfwWarning from 'beatmapsets-show/nsfw-warning'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
 import HeaderV4 from 'header-v4'
+import core from 'osu-core-singleton'
 import PlaymodeTabs from 'playmode-tabs'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
@@ -51,7 +52,7 @@ export class Main extends React.Component
         favcount: props.beatmapset.favourite_count
         hasFavourited: props.beatmapset.has_favourited
         loading: false
-        showingNsfwWarning: props.beatmapset.nsfw && !currentUser.user_preferences?.beatmapset_show_nsfw
+        showingNsfwWarning: props.beatmapset.nsfw && !core.userPreferences.get('beatmapset_show_nsfw')
         currentScoreboardType: 'global'
         enabledMods: []
         scores: []

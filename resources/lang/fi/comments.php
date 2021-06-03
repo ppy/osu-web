@@ -7,10 +7,10 @@ return [
     'deleted' => 'poistettu',
     'deleted_count' => ':count_delimited poistettu kommentti|:count_delimited poistettuja kommentteja',
     'edited' => ':user muokkasi :timeago sitten',
-    'pinned' => '',
+    'pinned' => 'kiinnitetty',
     'empty' => 'Ei vielä kommentteja.',
-    'load_replies' => '',
-    'replies_count' => '',
+    'load_replies' => 'lataa vastauksia',
+    'replies_count' => ':count_delimited vastaus|:count_delimited vastauksia',
     'title' => 'Kommentit',
 
     'commentable_name' => [
@@ -35,9 +35,9 @@ return [
     ],
 
     'index' => [
-        'nav_comments' => '',
-        'nav_title' => '',
-        'no_comments' => '',
+        'nav_comments' => 'kommentteja',
+        'nav_title' => 'listaus',
+        'no_comments' => 'mitään kommentteja ei löytynyt...',
     ],
 
     'placeholder' => [
@@ -47,6 +47,6 @@ return [
     ],
 
     'show' => [
-        'nav_title' => '',
+        'nav_title' => 'kommentteja',
     ],
 ];

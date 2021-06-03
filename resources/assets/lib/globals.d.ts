@@ -21,7 +21,6 @@ declare const Turbolinks: import('turbolinks').default;
 declare const tooltipDefault: TooltipDefault;
 declare const osu: OsuCommon;
 declare const currentUser: import('interfaces/current-user').default;
-declare const reactTurbolinks: any;
 
 // external (to typescript) classes
 declare const BeatmapsetFilter: import('interfaces/beatmapset-filter-class').default;
@@ -94,8 +93,6 @@ interface OsuCommon {
   xhrErrorMessage: (xhr: JQuery.jqXHR) => string;
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
-  isDesktop(): boolean;
-  isMobile(): boolean;
   parseJson<T = any>(id: string, remove?: boolean): T;
   updateQueryString(url: string | null, params: { [key: string]: string | null | undefined }): string;
 }
@@ -122,9 +119,9 @@ interface Country {
 }
 
 interface Cover {
-  custom_url?: string;
-  id?: string;
-  url?: string;
+  custom_url: string | null;
+  id: string | null;
+  url: string | null;
 }
 
 interface BeatmapFailTimesArray {

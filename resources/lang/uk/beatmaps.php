@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => 'заборонити кудосу',
         'edit' => 'змінити',
         'edited' => 'Останній раз змінено :editor :update_time.',
+        'guest' => '',
         'kudosu_denied' => 'Відмовлено в отриманні кудосу.',
         'message_placeholder_deleted_beatmap' => 'Ця складність була видалена і відгукуватися про неї не можна.',
         'message_placeholder_locked' => 'Обговорення цієї карти відключено.',
@@ -225,7 +226,7 @@ return [
                 'genre' => 'Жанр',
                 'language' => 'Мова',
                 'mode' => 'Режим',
-                'nsfw' => '',
+                'nsfw' => 'Відвертий вміст',
                 'played' => 'Зіграно',
                 'rank' => 'Досягнутий ранг',
                 'status' => 'Категорії',
@@ -250,11 +251,11 @@ return [
     ],
     'general' => [
         'converts' => 'показувати конвертовані карти',
-        'follows' => '',
+        'follows' => 'Маппери на яких ви підписані',
         'recommended' => 'рекомендована складність',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Всі',
         'any' => 'Всі',
         'osu' => '',
         'taiko' => '',
@@ -309,14 +310,14 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
         'V2' => 'Score V2',
     ],
     'language' => [
-        'any' => '',
+        'any' => 'Будь-які',
         'english' => 'Англійська',
         'chinese' => 'Китайська',
         'french' => 'Французька',
@@ -334,8 +335,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Приховати',
+        'include' => 'Показати',
     ],
 
     'played' => [

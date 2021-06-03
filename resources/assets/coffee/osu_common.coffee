@@ -56,14 +56,6 @@
       $(element).trigger 'ajax:error', [xhr, status, error]
 
 
-  pageChange: ->
-    Timeout.set 0, osu.pageChangeImmediate
-
-
-  pageChangeImmediate: ->
-    $.publish 'osu:page:change'
-
-
   parseJson: (id, remove = false) ->
     element = document.getElementById(id)
     return unless element?
@@ -105,14 +97,6 @@
       false
 
 
-  isDesktop: ->
-    # sync with boostrap-variables @screen-sm-min
-    window.matchMedia('(min-width: 900px)').matches
-
-
-  isMobile: -> !osu.isDesktop()
-
-
   # mobile safari zooms in on focus of input boxes with font-size < 16px, this works around that
   focus: (el) =>
     el = $(el)[0] # so we can handle both jquery'd and normal dom nodes
@@ -122,11 +106,6 @@
     el.style.fontSize = '16px'
     el.focus()
     el.style.fontSize = prevSize
-
-
-  src2x: (mainUrl) ->
-    src: mainUrl
-    srcSet: "#{mainUrl} 1x, #{_exported.make2x(mainUrl)} 2x"
 
 
   link: (url, text, options = {}) ->

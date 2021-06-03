@@ -36,7 +36,7 @@ export class Main extends React.PureComponent
 
             div className: 'page-nav',
               div className: 'page-nav__item page-nav__item--left',
-                if @props.build.versions.previous?
+                if @props.build.versions?.previous?
                   a
                     href: _exported.OsuUrlHelper.changelogBuild @props.build.versions.previous
                     i className: 'fas fa-chevron-left'
@@ -44,7 +44,7 @@ export class Main extends React.PureComponent
                       @props.build.versions.previous.display_version
 
               div className: 'page-nav__item page-nav__item--right',
-                if @props.build.versions.next?
+                if @props.build.versions?.next?
                   a
                     href: _exported.OsuUrlHelper.changelogBuild @props.build.versions.next
                     @props.build.versions.next.display_version

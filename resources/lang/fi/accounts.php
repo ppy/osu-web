@@ -56,6 +56,7 @@ return [
 
         'options' => [
             '_' => 'toimitusvaihtoehdot',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'beatmapin modaus',
             'channel_message' => 'yksityisviestit',
             'comment_new' => 'uudet kommentit',

@@ -47,7 +47,7 @@ return [
         'confirm_restore' => 'Beitrag wirklich wiederherstellen?',
         'edited' => 'Zuletzt von :user :when bearbeitet, insgesamt :count_delimited Mal bearbeitet.',
         'posted_at' => 'erstellt :when',
-        'posted_by' => '',
+        'posted_by' => 'gepostet von :username',
 
         'actions' => [
             'destroy' => 'Beitrag löschen',

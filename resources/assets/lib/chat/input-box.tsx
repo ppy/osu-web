@@ -11,6 +11,7 @@ import * as _ from 'lodash';
 import { computed, observe } from 'mobx';
 import { disposeOnUnmount, inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import RootDataStore from 'stores/root-data-store';
@@ -38,8 +39,7 @@ export default class InputBox extends React.Component<Props> implements Dispatch
     disposeOnUnmount(
       this,
       observe(this.dataStore.chatState.selectedBoxed, (change) => {
-        console.log('change');
-        if (change.newValue !== change.oldValue && osu.isDesktop()) {
+        if (change.newValue !== change.oldValue && core.windowSize.isDesktop) {
           this.focusInput();
         }
       }),
