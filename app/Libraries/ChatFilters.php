@@ -30,10 +30,12 @@ class ChatFilters
             cache()->forever('chat_filters_local_cache_version', $localCacheVersion);
         }
 
-        $cachedFilters = $localCache->get('chat_filters');
+        $cachedFilters = $localCache->get('chat_filters') ?? [];
 
-        if ($cachedFilters['version'] === $localCacheVersion) {
-            $this->chatFilters = $cachedFilters['data'];
+        if (array_key_exists('version', $cachedFilters) && $cachedFilters['version'] === $localCacheVersion) {
+            if (array_key_exists('data', $cachedFilters)) {
+                $this->chatFilters = $cachedFilters['data'];
+            }
         }
 
         if ($this->chatFilters === null) {
