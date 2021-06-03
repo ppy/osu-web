@@ -23,19 +23,22 @@ class ChatFilters
     public function fetch()
     {
         $localCacheVersion = cache()->get('chat_filters_local_cache_version');
-        $localStorage = config('cache.local');
+        $localCache = cache()->store(config('cache.local'));
 
         if ($localCacheVersion === null) {
             $localCacheVersion = hrtime(true);
             cache()->forever('chat_filters_local_cache_version', $localCacheVersion);
         }
 
-        $localCacheKey = "chat_filters:v{$localCacheVersion}";
-        $this->chatFilters = cache()->store($localStorage)->get($localCacheKey);
+        $cachedFilters = $localCache->get('chat_filters');
+
+        if ($cachedFilters['version'] === $localCacheVersion) {
+            $this->chatFilters = $cachedFilters['data'];
+        }
 
         if ($this->chatFilters === null) {
             $this->chatFilters = ChatFilter::all();
-            cache()->store($localStorage)->forever($localCacheKey, $this->chatFilters);
+            $localCache->forever('chat_filters', ['version' => $localCacheVersion, 'data' => $this->chatFilters]);
         }
     }
 
