@@ -36,11 +36,11 @@ class Room extends Model
 
     const SORTS = [
         'ended' => [
-            ['column' => 'ends_at', 'order' => 'desc', 'type' => 'time'],
-            ['column' => 'id', 'order' => 'desc', 'type' => 'int'],
+            ['column' => 'ends_at', 'order' => 'DESC', 'type' => 'time'],
+            ['column' => 'id', 'order' => 'DESC', 'type' => 'int'],
         ],
         'created' => [
-            ['column' => 'id', 'order' => 'desc', 'type' => 'int'],
+            ['column' => 'id', 'order' => 'DESC', 'type' => 'int'],
         ],
     ];
 
