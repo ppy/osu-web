@@ -6,10 +6,9 @@ import UserJsonExtended from 'interfaces/user-json-extended';
 import headerLinks from 'profile-page/header-links';
 import ProfileTournamentBanner from 'profile-tournament-banner';
 import * as React from 'react';
-import HeaderInfo from 'profile-page/header-info';
 import Badges from 'profile-page/badges';
+import HeaderInfo from 'profile-page/header-info';
 import Links from 'profile-page/links';
-
 
 interface Props {
   user: UserJsonExtended;

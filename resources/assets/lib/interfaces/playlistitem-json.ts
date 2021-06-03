@@ -5,8 +5,8 @@ import BeatmapJson from 'interfaces/beatmap-json';
 
 export default interface PlaylistItemJson {
   allowed_mods: unknown;
-  beatmap_id: number;
   beatmap?: BeatmapJson;
+  beatmap_id: number;
   expired: boolean;
   id: number;
   required_mods: unknown;

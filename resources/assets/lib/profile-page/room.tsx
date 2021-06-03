@@ -54,7 +54,6 @@ export default class Room extends React.Component<Props> {
     return beatmapset.covers.cover;
   }
 
-
   render() {
     return (
       <div className='multiplayer-room'>
@@ -76,13 +75,15 @@ export default class Room extends React.Component<Props> {
               className='multiplayer-room__badge'
               style={{
                 '--bg': `var(--diff-${getDiffRating(this.minDifficulty)})`,
-              } as React.CSSProperties}>{this.minDifficulty}
+              } as React.CSSProperties}>
+              {this.minDifficulty}
             </div>
             <div
               className='multiplayer-room__badge'
               style={{
                 '--bg': `var(--diff-${getDiffRating(this.maxDifficulty)})`,
-              } as React.CSSProperties}>{this.maxDifficulty}
+              } as React.CSSProperties}>
+              {this.maxDifficulty}
             </div>
           </div>
         </div>
