@@ -274,18 +274,14 @@ class DocumentProcessor
                 $locale = $matches['locale'];
                 $path = $matches['path'];
             } else {
+                $locale = $this->wikiLocale ?? config('app.fallback_locale');
                 $path = concat_path([$matches['locale'], $matches['path']]);
             }
 
             if (OsuWiki::isImage($path)) {
                 $url = route('wiki.image', compact('path'), false);
             } else {
-                $url = wiki_url(
-                    $path,
-                    $locale ?? $this->wikiLocale ?? config('app.fallback_locale'),
-                    false,
-                    false,
-                );
+                $url = wiki_url($path, $locale, false, false);
 
                 if (starts_with($url, $this->wikiAbsoluteRootPath)) {
                     $url = $this->wikiPathToRoot.substr($url, strlen($this->wikiAbsoluteRootPath));
