@@ -8,6 +8,8 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
+use App\Transformers\BeatmapCompactTransformer;
+use App\Transformers\BeatmapsetCompactTransformer;
 use App\Transformers\Multiplayer\RoomTransformer;
 use App\Transformers\UserTransformer;
 
@@ -42,32 +44,9 @@ class MultiplayerController extends Controller
 
     public function index()
     {
-        $transformer = new UserTransformer(); // TODO: should user profile have standard includes?
-        $transformer->mode = $this->user->playmode;
-        $user = json_item(
-            $this->user,
-            $transformer,
-            [
-                'active_tournament_banner',
-                'badges',
-                'follower_count',
-                'graveyard_beatmapset_count',
-                'groups',
-                'loved_beatmapset_count',
-                'previous_usernames',
-                'ranked_and_approved_beatmapset_count',
-                'statistics',
-                'statistics.country_rank',
-                'statistics.rank',
-                'support_level',
-                'unranked_beatmapset_count',
-            ]
-        );
-
         $params = request()->all();
         $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
 
-        // TODO: cleaout the includes
         $search = Room::search([
             'cursor' => $params['cursor'] ?? null,
             'user' => $this->user,
@@ -77,16 +56,29 @@ class MultiplayerController extends Controller
         ]);
 
         $rooms = $search['query']->with(['host', 'playlist.beatmap.beatmapset'])->get();
-        $cursor = $search['cursorHelper']->next($rooms);
-        $rooms = json_collection($rooms, new RoomTransformer(), ['host', 'playlist.beatmap.beatmapset']);
-        $beatmaps = collect($rooms)->pluck('playlist')->flatten(1)->pluck('beatmap')->unique()->values();
+        $beatmaps = $rooms->pluck('playlist')->flatten(1)->pluck('beatmap')->unique()->values();
         $beatmapsets = $beatmaps->pluck('beatmapset')->unique()->values();
 
+        $userTransformer = new UserTransformer(); // TODO: should user profile have standard includes?
+        $userTransformer->mode = $this->user->playmode;
+        $user = json_item(
+            $this->user,
+            $userTransformer,
+            [
+                'active_tournament_banner',
+                'badges',
+                'follower_count',
+                'groups',
+                'previous_usernames',
+                'support_level',
+            ]
+        );
+
         $json = [
-            'beatmaps' => $beatmaps,
-            'beatmapsets' => $beatmapsets,
-            'cursor' => $cursor,
-            'rooms' => $rooms,
+            'beatmaps' => json_collection($beatmaps, new BeatmapCompactTransformer()),
+            'beatmapsets' => json_collection($beatmapsets, new BeatmapsetCompactTransformer()),
+            'cursor' => $search['cursorHelper']->next($rooms),
+            'rooms' => json_collection($rooms, new RoomTransformer(), ['host', 'playlist']),
             'search' => $search['params'],
             'user' => $user,
         ];
