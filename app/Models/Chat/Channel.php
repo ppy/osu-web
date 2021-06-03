@@ -274,7 +274,7 @@ class Channel extends Model
             throw new API\ChatMessageEmptyException(trans('api.error.chat.empty'));
         }
 
-        if ($this->isPublic()) {
+        if (!$this->isPM()) {
             $chatFilters = app('chat-filters')->all();
 
             foreach ($chatFilters as $filter) {
