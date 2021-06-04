@@ -28,6 +28,10 @@ export default class MultiplayerHistory extends React.Component<Props> {
   }
 
   render() {
+    if (this.context.rooms.length === 0) {
+      return <div className='user-multiplayer-history'>{osu.trans('multiplayer.empty')}</div>;
+    }
+
     return (
       <div className='user-multiplayer-history'>
         {this.context.rooms.map((room) => <Room key={room.id} room={room} />)}
