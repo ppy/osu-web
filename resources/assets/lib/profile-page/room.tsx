@@ -10,6 +10,7 @@ import { StringWithComponent } from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { UserLink } from 'user-link';
 import UserMultiplayerHistoryContext from 'user-multiplayer-history-context';
+import { getDiffRating } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
@@ -71,8 +72,15 @@ export default class Room extends React.Component<Props> {
           </div>
           <div className='multiplayer-room__badge-container'>
             <div className={classWithModifiers('multiplayer-room__badge', ['map-count'])}>{osu.transChoice('multiplayer.room.map_count', this.props.room.playlist.length)}</div>
-            <DifficultyBadge rating={this.minDifficulty} />
-            <DifficultyBadge rating={this.maxDifficulty} />
+            <div
+              className='multiplayer-room__difficulty'
+              style={{
+                background: `linear-gradient(0deg, var(--diff-${getDiffRating(this.maxDifficulty)}) 50%, var(--diff-${getDiffRating(this.minDifficulty)}) 50%)`,
+              }}
+            >
+              <DifficultyBadge rating={this.minDifficulty} />
+              <DifficultyBadge rating={this.maxDifficulty} />
+            </div>
           </div>
         </div>
       </div>
