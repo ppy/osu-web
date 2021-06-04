@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import DifficultyBadge from 'difficulty-badge';
 import Img2x from 'img2x';
 import RoomJson from 'interfaces/room-json';
 import { maxBy, minBy } from 'lodash';
@@ -9,7 +10,6 @@ import { StringWithComponent } from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { UserLink } from 'user-link';
 import UserMultiplayerHistoryContext from 'user-multiplayer-history-context';
-import { getDiffRating } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
@@ -71,22 +71,8 @@ export default class Room extends React.Component<Props> {
           </div>
           <div className='multiplayer-room__badge-container'>
             <div className={classWithModifiers('multiplayer-room__badge', ['map-count'])}>{osu.transChoice('multiplayer.room.map_count', this.props.room.playlist.length)}</div>
-            <div
-              className='multiplayer-room__badge'
-              style={{
-                '--bg': `var(--diff-${getDiffRating(this.minDifficulty)})`,
-              } as React.CSSProperties}
-            >
-              {this.minDifficulty}
-            </div>
-            <div
-              className='multiplayer-room__badge'
-              style={{
-                '--bg': `var(--diff-${getDiffRating(this.maxDifficulty)})`,
-              } as React.CSSProperties}
-            >
-              {this.maxDifficulty}
-            </div>
+            <DifficultyBadge rating={this.minDifficulty} />
+            <DifficultyBadge rating={this.maxDifficulty} />
           </div>
         </div>
       </div>

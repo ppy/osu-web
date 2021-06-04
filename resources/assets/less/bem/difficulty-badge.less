@@ -1,0 +1,21 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+// Set --bg on the component
+.difficulty-badge {
+  --diff-expert-plus: @diff-expert-plus-light;
+  border-radius: 10000px;
+  background-color: var(--bg);
+  color: hsl(var(--hsl-b6));
+  padding: 0 6px;
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+
+  &__icon {
+    font-size: 8px; // icon size
+    margin-right: 4px;
+  }
+}
+
+
