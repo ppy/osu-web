@@ -12,9 +12,9 @@ export default class Main extends React.Component<MultiplayerHistoryProps> {
       <UserProfileContainer user={this.props.user}>
         <Header user={this.props.user} />
         <div className='user-profile-pages'>
-          <div className='user-profile-pages__item js-switchable-mode-page--scrollspy js-switchable-mode-page--page'>
+          <div className='user-profile-pages__item'>
             <div className='page-extra'>
-              <h2 className='title title--page-extra'>Multiplayer Games</h2>
+              <h2 className='title title--page-extra'>{osu.trans('users.show.extra.multiplayer.title')}</h2>
               <MultiplayerHistory {...this.props} />
             </div>
           </div>
