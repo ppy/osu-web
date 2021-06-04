@@ -25,6 +25,9 @@ env:
 
 jobs:
   tests:
+    strategy:
+      matrix:
+        php: ['7.4', '8.0']
     name: Tests
     runs-on: ubuntu-latest
     services:
@@ -56,7 +59,7 @@ jobs:
         with:
           extensions: redis
           tools: composer:v2
-          php-version: '8.0'
+          php-version: ${{ matrix.php }}
 
       - name: Checkout
         uses: actions/checkout@v2
