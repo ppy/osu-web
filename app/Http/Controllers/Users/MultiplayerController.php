@@ -61,7 +61,7 @@ class MultiplayerController extends Controller
 
         $userTransformer = new UserTransformer(); // TODO: should user profile have standard includes?
         $userTransformer->mode = $this->user->playmode;
-        $user = json_item(
+        $jsonUser = json_item(
             $this->user,
             $userTransformer,
             [
@@ -80,13 +80,12 @@ class MultiplayerController extends Controller
             'cursor' => $search['cursorHelper']->next($rooms),
             'rooms' => json_collection($rooms, new RoomTransformer(), ['host', 'playlist']),
             'search' => $search['params'],
-            'user' => $user,
         ];
 
         if (is_json_request()) {
             return $json;
         }
 
-        return ext_view('users.multiplayer.index', ['json' => $json, 'user' => $this->user]);
+        return ext_view('users.multiplayer.index', ['json' => $json, 'jsonUser' => $jsonUser, 'user' => $this->user]);
     }
 }

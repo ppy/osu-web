@@ -26,5 +26,9 @@
         {!! json_encode($json) !!}
     </script>
 
+    <script id="json-user" type="application/json">
+        {!! json_encode($jsonUser) !!}
+    </script>
+
     @include('layout._extra_js', ['src' => 'js/react/user-multiplayer-index.js'])
 @endsection

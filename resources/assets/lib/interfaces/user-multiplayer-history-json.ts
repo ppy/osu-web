@@ -4,7 +4,6 @@
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import RoomJson from 'interfaces/room-json';
-import UserJsonExtended from 'interfaces/user-json-extended';
 
 export default interface UserMultiplayerHistoryJson {
   beatmaps: BeatmapJson[];
@@ -14,5 +13,4 @@ export default interface UserMultiplayerHistoryJson {
     id: number;
   } | null;
   rooms: (RoomJson & Required<Pick<RoomJson, 'playlist'>>)[];
-  user: UserJsonExtended;
 }
