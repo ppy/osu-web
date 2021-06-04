@@ -15,7 +15,7 @@ if [ -z "${OSU_USE_SYSTEM_COMPOSER:-}" ]; then
   if [ -f composer.phar ]; then
     php composer.phar self-update --2
   else
-    curl -sL https://getcomposer.org/download/latest-stable/composer.phar > composer.phar
+    curl -sL "https://getcomposer.org/download/latest-2.x/composer.phar" > composer.phar
   fi
 else
   COMPOSER="composer"
