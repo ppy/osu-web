@@ -1,27 +1,32 @@
 FROM ubuntu:20.04
 
+RUN add-apt-repository ppa:ondrej/php
+
 RUN apt-get update
+
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    composer \
+    curl \
     jhead \
     nginx \
-    php-common \
-    php-curl \
-    php-fpm \
-    php-gd \
-    php-intl \
-    php-json \
-    php-mbstring \
-    php-mysql \
-    php-redis \
-    php-sqlite3 \
-    php-tokenizer \
-    php-xml \
-    php-zip \
+    php8.0-common \
+    php8.0-curl \
+    php8.0-fpm \
+    php8.0-gd \
+    php8.0-intl \
+    php8.0-mbstring \
+    php8.0-mysql \
+    php8.0-redis \
+    php8.0-sqlite3 \
+    php8.0-tokenizer \
+    php8.0-xml \
+    php8.0-zip \
+    php8.0 \
     yarnpkg \
     zip
 
 WORKDIR /app
+
+RUN curl https://getcomposer.org/download/latest-stable/composer.phar > /usr/local/bin/composer && chmod 755 /usr/local/bin/composer
 
 COPY composer.json composer.lock ./
 RUN composer install --no-autoloader --no-dev
