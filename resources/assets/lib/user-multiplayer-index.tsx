@@ -2,11 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserMultiplayerHistoryContext, { makeStore, updateStore } from 'beatmap-discussions/rooms-context';
+import UserJsonExtended from 'interfaces/user-json-extended';
 import UserMultiplayerHistoryJson from 'interfaces/user-multiplayer-history-json';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import Main from 'user-multiplayer-index/main';
-import UserJsonExtended from 'interfaces/user-json-extended';
 
 core.reactTurbolinks.register('user-multiplayer-index', true, () => {
   const jsonUser = osu.parseJson<UserJsonExtended>('json-user');

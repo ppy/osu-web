@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserMultiplayerHistoryContext, { updateStore } from 'beatmap-discussions/rooms-context';
-import UserJsonExtended from 'interfaces/user-json-extended';
+import UserJson from 'interfaces/user-json';
 import UserMultiplayerHistoryJson from 'interfaces/user-multiplayer-history-json';
 import { route } from 'laroute';
 import { action, computed, observable } from 'mobx';
@@ -11,8 +11,8 @@ import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import Room from './room';
 
-export interface Props {
-  user: UserJsonExtended;
+interface Props {
+  user: UserJson;
 }
 
 @observer
