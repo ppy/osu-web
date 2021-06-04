@@ -30,20 +30,15 @@ class ChatFilters
             cache()->forever('chat_filters_local_cache_version', $localCacheVersion);
         }
 
-        $cachedFilters = $localCache->get('chat_filters') ?? [];
+        $cachedFilters = $localCache->get('chat_filters');
 
-        if (
-            array_key_exists('data', $cachedFilters)
-            && array_key_exists('version', $cachedFilters)
-            && $cachedFilters['version'] === $localCacheVersion
-        ) {
-                $this->chatFilters = $cachedFilters['data'];
+        if ($cachedFilters === null || $cachedFilters['version'] !== $localCacheVersion)
+        {
+            $cachedFilters = ['version' => $localCacheVersion, 'data' => ChatFilter::all()];
+            $localCache->forever('chat_filters', $cachedFilters);
         }
 
-        if ($this->chatFilters === null) {
-            $this->chatFilters = ChatFilter::all();
-            $localCache->forever('chat_filters', ['version' => $localCacheVersion, 'data' => $this->chatFilters]);
-        }
+        $this->chatFilters = $cachedFilters['data'];
     }
 
     public function resetCache()
