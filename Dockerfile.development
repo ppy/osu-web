@@ -9,6 +9,7 @@ RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     composer \
     curl \
+    git \
     gosu \
     jhead \
     libglib2.0-0 \
