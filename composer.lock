@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d50a6d92c1e5251c5438eb7cb1eb3960",
+    "content-hash": "df33b9663951195d18c5ac175aaf13d3",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -1431,6 +1431,63 @@
             "time": "2020-06-29T00:56:53+00:00"
         },
         {
+            "name": "fakerphp/faker",
+            "version": "v1.9.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FakerPHP/Faker.git",
+                "reference": "84220cf137a9344acffb10374e781fed785ff307"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/84220cf137a9344acffb10374e781fed785ff307",
+                "reference": "84220cf137a9344acffb10374e781fed785ff307",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3 || ^7.0"
+            },
+            "conflict": {
+                "ergebnis/faker": "!=1.9.2",
+                "fzaninotto/faker": "!=1.9.2"
+            },
+            "replace": {
+                "ergebnis/faker": "1.9.2",
+                "fzaninotto/faker": "1.9.2"
+            },
+            "require-dev": {
+                "ext-intl": "*",
+                "phpunit/phpunit": "^4.8.35 || ^5.7",
+                "squizlabs/php_codesniffer": "^2.9.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Faker\\": "src/Faker/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "support": {
+                "issues": "https://github.com/FakerPHP/Faker/issues",
+                "source": "https://github.com/FakerPHP/Faker/tree/v1.9.2"
+            },
+            "time": "2020-12-11T14:32:13+00:00"
+        },
+        {
             "name": "filp/whoops",
             "version": "2.9.2",
             "source": {
@@ -1554,61 +1611,6 @@
                 "source": "https://github.com/firebase/php-jwt/tree/master"
             },
             "time": "2020-03-25T18:49:23+00:00"
-        },
-        {
-            "name": "fzaninotto/faker",
-            "version": "v1.9.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "848d8125239d7dbf8ab25cb7f054f1a630e68c2e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/848d8125239d7dbf8ab25cb7f054f1a630e68c2e",
-                "reference": "848d8125239d7dbf8ab25cb7f054f1a630e68c2e",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3.3 || ^7.0"
-            },
-            "require-dev": {
-                "ext-intl": "*",
-                "phpunit/phpunit": "^4.8.35 || ^5.7",
-                "squizlabs/php_codesniffer": "^2.9.2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.9-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Faker\\": "src/Faker/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "François Zaninotto"
-                }
-            ],
-            "description": "Faker is a PHP library that generates fake data for you.",
-            "keywords": [
-                "data",
-                "faker",
-                "fixtures"
-            ],
-            "support": {
-                "issues": "https://github.com/fzaninotto/Faker/issues",
-                "source": "https://github.com/fzaninotto/Faker/tree/v1.9.2"
-            },
-            "abandoned": true,
-            "time": "2020-12-11T09:56:16+00:00"
         },
         {
             "name": "graham-campbell/bounded-cache",
@@ -2532,6 +2534,161 @@
             "time": "2020-12-21T18:38:02+00:00"
         },
         {
+            "name": "knuckleswtf/pastel",
+            "version": "1.3.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/knuckleswtf/pastel.git",
+                "reference": "f26642b7f7506c3c4f17aee3e0010546ce0069d0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/knuckleswtf/pastel/zipball/f26642b7f7506c3c4f17aee3e0010546ce0069d0",
+                "reference": "f26642b7f7506c3c4f17aee3e0010546ce0069d0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/support": "^5.8|^6.0|^7.0|^8.0",
+                "illuminate/view": "^5.8|^6.0|^7.0|^8.0",
+                "mnapoli/front-yaml": "^1.7.0",
+                "mnapoli/silly": "~1.0",
+                "php": ">=7.2.5",
+                "shalvah/clara": "^2.0.0",
+                "windwalker/renderer": "3.*"
+            },
+            "replace": {
+                "mpociot/documentarian": "*"
+            },
+            "require-dev": {
+                "ext-dom": "*",
+                "ext-libxml": "*",
+                "league/flysystem": "^2.0@dev",
+                "phpstan/phpstan": "^0.12.23",
+                "phpunit/phpunit": "^9.1"
+            },
+            "bin": [
+                "pastel"
+            ],
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "helpers.php"
+                ],
+                "psr-4": {
+                    "Knuckles\\Pastel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Write your API docs in Markdown and get them converted into pretty HTML🎨",
+            "keywords": [
+                "documentation",
+                "generation",
+                "markdown"
+            ],
+            "support": {
+                "issues": "https://github.com/knuckleswtf/pastel/issues",
+                "source": "https://github.com/knuckleswtf/pastel/tree/1.3.7"
+            },
+            "time": "2021-03-27T17:22:04+00:00"
+        },
+        {
+            "name": "knuckleswtf/scribe",
+            "version": "2.7.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/knuckleswtf/scribe.git",
+                "reference": "2fa414b656594f3b9d0b6c6b9704d55cde892c28"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/knuckleswtf/scribe/zipball/2fa414b656594f3b9d0b6c6b9704d55cde892c28",
+                "reference": "2fa414b656594f3b9d0b6c6b9704d55cde892c28",
+                "shasum": ""
+            },
+            "require": {
+                "erusev/parsedown": "^1.7.4",
+                "ext-fileinfo": "*",
+                "ext-json": "*",
+                "ext-pdo": "*",
+                "fakerphp/faker": "^1.9.1",
+                "illuminate/console": "^6.0|^7.0|^8.0",
+                "illuminate/routing": "^6.0|^7.0|^8.0",
+                "illuminate/support": "^6.0|^7.0|^8.0",
+                "knuckleswtf/pastel": "^1.3.6",
+                "league/flysystem": "^1.0",
+                "mpociot/reflection-docblock": "^1.0.1",
+                "nunomaduro/collision": "^3.0|^4.0|^5.0",
+                "php": ">=7.2.5",
+                "ramsey/uuid": "^3.8|^4.0",
+                "shalvah/clara": "^2.6",
+                "symfony/var-exporter": "^4.0|^5.0",
+                "symfony/yaml": "^4.0|^5.0"
+            },
+            "replace": {
+                "mpociot/laravel-apidoc-generator": "*"
+            },
+            "require-dev": {
+                "brianium/paratest": "^5.0|^6.0",
+                "dms/phpunit-arraysubset-asserts": "^0.2.0",
+                "laravel/legacy-factories": "^1.0.4",
+                "laravel/lumen-framework": "^6.0|^7.0|^8.0",
+                "league/fractal": "^0.19.0",
+                "nikic/fast-route": "^1.3",
+                "orchestra/testbench": "^4.0|^5.0|^6.0",
+                "phpstan/phpstan": "^0.12.19",
+                "phpunit/phpunit": "^9.0"
+            },
+            "suggest": {
+                "league/fractal": "Required for transformers support"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Knuckles\\Scribe\\ScribeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Knuckles\\Scribe\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shalvah",
+                    "email": "hello@shalvah.me"
+                }
+            ],
+            "description": "Generate API documentation for humans from your Laravel codebase.✍",
+            "homepage": "http://github.com/knuckleswtf/scribe",
+            "keywords": [
+                "api",
+                "dingo",
+                "documentation",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/knuckleswtf/scribe/issues",
+                "source": "https://github.com/knuckleswtf/scribe/tree/2.7.6"
+            },
+            "funding": [
+                {
+                    "url": "https://patreon.com/shalvah",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2021-05-27T18:30:12+00:00"
+        },
+        {
             "name": "laminas/laminas-diactoros",
             "version": "2.5.0",
             "source": {
@@ -2693,16 +2850,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.20.15",
+            "version": "v6.20.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "b42c2d845cdd827ac5a53cacf16af4a0b5dd8be1"
+                "reference": "92c0417e60efc39bc556ba5dfc9b20a56f7848fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/b42c2d845cdd827ac5a53cacf16af4a0b5dd8be1",
-                "reference": "b42c2d845cdd827ac5a53cacf16af4a0b5dd8be1",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/92c0417e60efc39bc556ba5dfc9b20a56f7848fb",
+                "reference": "92c0417e60efc39bc556ba5dfc9b20a56f7848fb",
                 "shasum": ""
             },
             "require": {
@@ -2842,7 +2999,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-01-26T14:39:47+00:00"
+            "time": "2021-05-11T14:00:28+00:00"
         },
         {
             "name": "laravel/helpers",
@@ -3179,69 +3336,53 @@
             "time": "2020-12-15T20:20:05+00:00"
         },
         {
-            "name": "lcobucci/jwt",
-            "version": "3.4.3",
+            "name": "lcobucci/clock",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/lcobucci/jwt.git",
-                "reference": "cd83b5421df3dbbbc66bd07a5b970c9efb6371b9"
+                "url": "https://github.com/lcobucci/clock.git",
+                "reference": "353d83fe2e6ae95745b16b3d911813df6a05bfb3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lcobucci/jwt/zipball/cd83b5421df3dbbbc66bd07a5b970c9efb6371b9",
-                "reference": "cd83b5421df3dbbbc66bd07a5b970c9efb6371b9",
+                "url": "https://api.github.com/repos/lcobucci/clock/zipball/353d83fe2e6ae95745b16b3d911813df6a05bfb3",
+                "reference": "353d83fe2e6ae95745b16b3d911813df6a05bfb3",
                 "shasum": ""
             },
             "require": {
-                "ext-mbstring": "*",
-                "ext-openssl": "*",
-                "php": "^5.6 || ^7.0"
+                "php": "^7.4 || ^8.0"
             },
             "require-dev": {
-                "mikey179/vfsstream": "~1.5",
-                "phpmd/phpmd": "~2.2",
-                "phpunit/php-invoker": "~1.1",
-                "phpunit/phpunit": "^5.7 || ^7.3",
-                "squizlabs/php_codesniffer": "~2.3"
-            },
-            "suggest": {
-                "lcobucci/clock": "*"
+                "infection/infection": "^0.17",
+                "lcobucci/coding-standard": "^6.0",
+                "phpstan/extension-installer": "^1.0",
+                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan-deprecation-rules": "^0.12",
+                "phpstan/phpstan-phpunit": "^0.12",
+                "phpstan/phpstan-strict-rules": "^0.12",
+                "phpunit/php-code-coverage": "9.1.4",
+                "phpunit/phpunit": "9.3.7"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.1-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
-                    "Lcobucci\\JWT\\": "src"
-                },
-                "files": [
-                    "compat/class-aliases.php",
-                    "compat/json-exception-polyfill.php",
-                    "compat/lcobucci-clock-polyfill.php"
-                ]
+                    "Lcobucci\\Clock\\": "src"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD-3-Clause"
+                "MIT"
             ],
             "authors": [
                 {
-                    "name": "Luís Otávio Cobucci Oblonczyk",
-                    "email": "lcobucci@gmail.com",
-                    "role": "Developer"
+                    "name": "Luís Cobucci",
+                    "email": "lcobucci@gmail.com"
                 }
             ],
-            "description": "A simple library to work with JSON Web Token and JSON Web Signature",
-            "keywords": [
-                "JWS",
-                "jwt"
-            ],
+            "description": "Yet another clock abstraction",
             "support": {
-                "issues": "https://github.com/lcobucci/jwt/issues",
-                "source": "https://github.com/lcobucci/jwt/tree/3.4.3"
+                "issues": "https://github.com/lcobucci/clock/issues",
+                "source": "https://github.com/lcobucci/clock/tree/2.0.x"
             },
             "funding": [
                 {
@@ -3253,20 +3394,96 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-01-27T23:38:30+00:00"
+            "time": "2020-08-27T18:56:02+00:00"
         },
         {
-            "name": "league/commonmark",
-            "version": "1.5.7",
+            "name": "lcobucci/jwt",
+            "version": "4.0.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "11df9b36fd4f1d2b727a73bf14931d81373b9a54"
+                "url": "https://github.com/lcobucci/jwt.git",
+                "reference": "ae4165a76848e070fdac691e773243d10cd06ce1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/11df9b36fd4f1d2b727a73bf14931d81373b9a54",
-                "reference": "11df9b36fd4f1d2b727a73bf14931d81373b9a54",
+                "url": "https://api.github.com/repos/lcobucci/jwt/zipball/ae4165a76848e070fdac691e773243d10cd06ce1",
+                "reference": "ae4165a76848e070fdac691e773243d10cd06ce1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "ext-openssl": "*",
+                "lcobucci/clock": "^2.0",
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "infection/infection": "^0.20",
+                "lcobucci/coding-standard": "^6.0",
+                "mikey179/vfsstream": "^1.6",
+                "phpbench/phpbench": "^0.17",
+                "phpstan/extension-installer": "^1.0",
+                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan-deprecation-rules": "^0.12",
+                "phpstan/phpstan-phpunit": "^0.12",
+                "phpstan/phpstan-strict-rules": "^0.12",
+                "phpunit/php-invoker": "^3.1",
+                "phpunit/phpunit": "^9.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Lcobucci\\JWT\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Luís Cobucci",
+                    "email": "lcobucci@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple library to work with JSON Web Token and JSON Web Signature",
+            "keywords": [
+                "JWS",
+                "jwt"
+            ],
+            "support": {
+                "issues": "https://github.com/lcobucci/jwt/issues",
+                "source": "https://github.com/lcobucci/jwt/tree/4.0.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/lcobucci",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/lcobucci",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2021-03-23T23:47:22+00:00"
+        },
+        {
+            "name": "league/commonmark",
+            "version": "1.6.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/commonmark.git",
+                "reference": "7d70d2f19c84bcc16275ea47edabee24747352eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/7d70d2f19c84bcc16275ea47edabee24747352eb",
+                "reference": "7d70d2f19c84bcc16275ea47edabee24747352eb",
                 "shasum": ""
             },
             "require": {
@@ -3354,7 +3571,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-10-31T13:49:32+00:00"
+            "time": "2021-05-12T11:39:41+00:00"
         },
         {
             "name": "league/event",
@@ -3623,92 +3840,6 @@
                 "source": "https://github.com/thephpleague/fractal/tree/0.19.2"
             },
             "time": "2020-01-24T23:17:29+00:00"
-        },
-        {
-            "name": "league/html-to-markdown",
-            "version": "4.10.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/html-to-markdown.git",
-                "reference": "0868ae7a552e809e5cd8f93ba022071640408e88"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/html-to-markdown/zipball/0868ae7a552e809e5cd8f93ba022071640408e88",
-                "reference": "0868ae7a552e809e5cd8f93ba022071640408e88",
-                "shasum": ""
-            },
-            "require": {
-                "ext-dom": "*",
-                "ext-xml": "*",
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "mikehaertl/php-shellcommand": "~1.1.0",
-                "phpunit/phpunit": "^4.8|^5.7",
-                "scrutinizer/ocular": "~1.1"
-            },
-            "bin": [
-                "bin/html-to-markdown"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.10-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "League\\HTMLToMarkdown\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Colin O'Dell",
-                    "email": "colinodell@gmail.com",
-                    "homepage": "https://www.colinodell.com",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Nick Cernis",
-                    "email": "nick@cern.is",
-                    "homepage": "http://modernnerd.net",
-                    "role": "Original Author"
-                }
-            ],
-            "description": "An HTML-to-markdown conversion helper for PHP",
-            "homepage": "https://github.com/thephpleague/html-to-markdown",
-            "keywords": [
-                "html",
-                "markdown"
-            ],
-            "support": {
-                "issues": "https://github.com/thephpleague/html-to-markdown/issues",
-                "source": "https://github.com/thephpleague/html-to-markdown/tree/4.10.0"
-            },
-            "funding": [
-                {
-                    "url": "https://www.colinodell.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://www.paypal.me/colinpodell/10.00",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/colinodell",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/colinodell",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2020-07-01T00:34:03+00:00"
         },
         {
             "name": "league/mime-type-detection",
@@ -4186,136 +4317,6 @@
                 }
             ],
             "time": "2020-12-14T13:15:25+00:00"
-        },
-        {
-            "name": "mpociot/documentarian",
-            "version": "0.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mpociot/documentarian.git",
-                "reference": "c7dc266b6646a49f82b304a3451e41161cc4b1c3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mpociot/documentarian/zipball/c7dc266b6646a49f82b304a3451e41161cc4b1c3",
-                "reference": "c7dc266b6646a49f82b304a3451e41161cc4b1c3",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/view": "5.*|^6.0|^7.0",
-                "mnapoli/front-yaml": "^1.5",
-                "mnapoli/silly": "~1.0",
-                "php": ">=5.5.9",
-                "windwalker/renderer": "3.*"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8"
-            },
-            "bin": [
-                "documentarian"
-            ],
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "includes/helpers.php"
-                ],
-                "psr-4": {
-                    "Mpociot\\Documentarian\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache 2"
-            ],
-            "authors": [
-                {
-                    "name": "Marcel Pociot",
-                    "email": "m.pociot@gmail.com"
-                }
-            ],
-            "support": {
-                "issues": "https://github.com/mpociot/documentarian/issues",
-                "source": "https://github.com/mpociot/documentarian/tree/0.4.0"
-            },
-            "time": "2020-03-06T07:31:21+00:00"
-        },
-        {
-            "name": "mpociot/laravel-apidoc-generator",
-            "version": "4.8.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mpociot/laravel-apidoc-generator.git",
-                "reference": "9015d39020dc1d7e80b0cd012bc1e999fd2542ca"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mpociot/laravel-apidoc-generator/zipball/9015d39020dc1d7e80b0cd012bc1e999fd2542ca",
-                "reference": "9015d39020dc1d7e80b0cd012bc1e999fd2542ca",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "fzaninotto/faker": "^1.8",
-                "illuminate/console": "^5.7|^6.0|^7.0",
-                "illuminate/routing": "^5.7|^6.0|^7.0",
-                "illuminate/support": "^5.7|^6.0|^7.0",
-                "league/flysystem": "^1.0",
-                "mpociot/documentarian": "^0.4.0",
-                "mpociot/reflection-docblock": "^1.0.1",
-                "nunomaduro/collision": "^3.0|^4.0",
-                "php": ">=7.2.0",
-                "ramsey/uuid": "^3.8|^4.0",
-                "symfony/var-exporter": "^4.0|^5.0"
-            },
-            "require-dev": {
-                "dms/phpunit-arraysubset-asserts": "^0.1.0",
-                "laravel/lumen-framework": "^5.7|^6.0|^7.0",
-                "league/fractal": "^0.19.0",
-                "orchestra/testbench": "^3.7|^4.0|^5.0",
-                "phpstan/phpstan": "^0.11.15",
-                "phpunit/phpunit": "^8.0"
-            },
-            "suggest": {
-                "league/fractal": "Required for transformers support"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Mpociot\\ApiDoc\\ApiDocGeneratorServiceProvider"
-                    ]
-                },
-                "branch-alias": {
-                    "dev-v4": "4.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Mpociot\\ApiDoc\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marcel Pociot",
-                    "email": "m.pociot@gmail.com"
-                }
-            ],
-            "description": "Generate beautiful API documentation from your Laravel application",
-            "homepage": "http://github.com/mpociot/laravel-apidoc-generator",
-            "keywords": [
-                "api",
-                "documentation",
-                "laravel"
-            ],
-            "support": {
-                "issues": "https://github.com/mpociot/laravel-apidoc-generator/issues",
-                "source": "https://github.com/mpociot/laravel-apidoc-generator/tree/master"
-            },
-            "time": "2020-05-28T14:10:08+00:00"
         },
         {
             "name": "mpociot/reflection-docblock",
@@ -6578,6 +6579,53 @@
                 }
             ],
             "time": "2020-12-07T09:19:29+00:00"
+        },
+        {
+            "name": "shalvah/clara",
+            "version": "2.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shalvah/clara.git",
+                "reference": "f1d8a36da149b605769ef86286110e435a68d9ac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shalvah/clara/zipball/f1d8a36da149b605769ef86286110e435a68d9ac",
+                "reference": "f1d8a36da149b605769ef86286110e435a68d9ac",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/console": "^4.0|^5.0"
+            },
+            "require-dev": {
+                "eloquent/phony-phpunit": "^7.0",
+                "phpunit/phpunit": "^9.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Shalvah\\Clara\\": "src/"
+                },
+                "files": [
+                    "helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "🔊 Simple, pretty, testable console output for CLI apps.",
+            "keywords": [
+                "cli",
+                "log",
+                "logging"
+            ],
+            "support": {
+                "issues": "https://github.com/shalvah/clara/issues",
+                "source": "https://github.com/shalvah/clara/tree/2.6.0"
+            },
+            "time": "2020-04-12T11:08:11+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -12409,7 +12457,7 @@
     "platform": [],
     "platform-dev": [],
     "platform-overrides": {
-        "php": "7.3.0"
+        "php": "7.4.0"
     },
     "plugin-api-version": "2.0.0"
 }
