@@ -28,7 +28,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
 
 WORKDIR /app
 
-RUN curl https://getcomposer.org/download/latest-stable/composer.phar > /usr/local/bin/composer && chmod 755 /usr/local/bin/composer
+RUN curl -L "https://getcomposer.org/download/latest-2.x/composer.phar" > /usr/local/bin/composer && chmod 755 /usr/local/bin/composer
 
 COPY composer.json composer.lock ./
 RUN composer install --no-autoloader --no-dev

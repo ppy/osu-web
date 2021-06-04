@@ -31,7 +31,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     yarnpkg \
     zip
 
-RUN curl https://getcomposer.org/download/latest-stable/composer.phar > /usr/local/bin/composer && chmod 755 /usr/local/bin/composer
+RUN curl -L "https://getcomposer.org/download/latest-2.x/composer.phar" > /usr/local/bin/composer && chmod 755 /usr/local/bin/composer
 
 RUN curl -LO https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y ./google-chrome-stable_current_amd64.deb && \
