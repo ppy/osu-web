@@ -32,8 +32,7 @@ class ChatFilters
 
         $cachedFilters = $localCache->get('chat_filters');
 
-        if ($cachedFilters === null || $cachedFilters['version'] !== $localCacheVersion)
-        {
+        if ($cachedFilters === null || $cachedFilters['version'] !== $localCacheVersion) {
             $cachedFilters = ['version' => $localCacheVersion, 'data' => ChatFilter::all()];
             $localCache->forever('chat_filters', $cachedFilters);
         }

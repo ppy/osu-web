@@ -304,12 +304,10 @@ class Channel extends Model
             throw new API\ChatMessageEmptyException(trans('api.error.chat.empty'));
         }
 
-        if (!$this->isPM()) {
-            $chatFilters = app('chat-filters')->all();
+        $chatFilters = app('chat-filters')->all();
 
-            foreach ($chatFilters as $filter) {
-                $content = str_replace($filter->match, $filter->replacement, $content);
-            }
+        foreach ($chatFilters as $filter) {
+            $content = str_replace($filter->match, $filter->replacement, $content);
         }
 
         $message = new Message();
