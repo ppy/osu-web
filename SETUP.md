@@ -58,7 +58,7 @@ At this point you should be able to access the site via whatever webserver you c
 
 - First, install [Docker](https://www.docker.com/community-edition) and [Docker Compose](https://docs.docker.com/compose/install/) (on Windows, it's already part of Docker install).
 - Install [git](https://git-scm.com).
-- Obtain [GitHub token](https://github.com/settings/tokens/new?scopes=public_repo&description=osu-web) as it's required for several parts of the website.
+- Obtain a [GitHub token](https://github.com/settings/tokens/new?scopes=public_repo&description=osu-web) as it's required for several parts of the website.
 - If using Windows, make sure it's running at least build 2004 and install Ubuntu (or another Linux distro of choice) from Windows Store. Additionally:
   - Make sure it's running WSL2 (convert it if it's still using WSL1).
   - Open Docker settings, go to Resources → WSL Integration → Enable integration with additional distros (enable for the installed distro).
