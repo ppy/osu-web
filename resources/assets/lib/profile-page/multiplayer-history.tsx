@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserMultiplayerHistoryContext, { updateStore } from 'beatmap-discussions/rooms-context';
 import UserJson from 'interfaces/user-json';
 import UserMultiplayerHistoryJson from 'interfaces/user-multiplayer-history-json';
 import { route } from 'laroute';
@@ -9,6 +8,7 @@ import { action, computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
+import UserMultiplayerHistoryContext, { updateStore } from 'user-multiplayer-history-context';
 import Room from './room';
 
 interface Props {

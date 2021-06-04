@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserMultiplayerHistoryContext from 'beatmap-discussions/rooms-context';
 import Img2x from 'img2x';
 import RoomJson from 'interfaces/room-json';
 import { maxBy, minBy } from 'lodash';
@@ -9,6 +8,7 @@ import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import TimeWithTooltip from 'time-with-tooltip';
 import { UserLink } from 'user-link';
+import UserMultiplayerHistoryContext from 'user-multiplayer-history-context';
 import { getDiffRating } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 
