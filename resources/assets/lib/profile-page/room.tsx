@@ -5,9 +5,9 @@ import DifficultyBadge from 'difficulty-badge';
 import Img2x from 'img2x';
 import RoomJson from 'interfaces/room-json';
 import { maxBy, minBy } from 'lodash';
+import * as moment from 'moment';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
-import TimeWithTooltip from 'time-with-tooltip';
 import { UserLink } from 'user-link';
 import UserMultiplayerHistoryContext from 'user-multiplayer-history-context';
 import { getDiffRating } from 'utils/beatmap-helper';
@@ -56,14 +56,21 @@ export default class Room extends React.Component<Props> {
   }
 
   render() {
+    const status = this.status;
+    const endsAt = moment(this.props.room.ends_at);
+
     return (
       <div className='multiplayer-room'>
         {this.renderCover()}
         <div className='multiplayer-room__content'>
           <div className='multiplayer-room__ends'>
             <div className='multiplayer-room__badge-container'>
-              <div className={classWithModifiers('multiplayer-room__badge', [this.status])}>{osu.trans(`multiplayer.room.status.${this.status}`)}</div>
-              <TimeWithTooltip dateTime={this.props.room.ends_at} relative />
+              <div className={classWithModifiers('multiplayer-room__badge', [this.status])}>{osu.trans(`multiplayer.room.status.${status}`)}</div>
+              <time className='js-tooltip-time' title={this.props.room.ends_at}>
+                {status === 'ended'
+                  ? endsAt.fromNow()
+                  : osu.trans('multiplayer.room.time_left', { time: endsAt.fromNow(true) })}
+              </time>
             </div>
           </div>
           <div className='multiplayer-room__details'>

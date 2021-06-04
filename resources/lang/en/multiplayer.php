@@ -7,6 +7,7 @@ return [
     'room' => [
         'hosted_by' => 'hosted by :user',
         'map_count' => ':count maps',
+        'time_left' => ':time left',
 
         'status' => [
             'active' => 'active',
