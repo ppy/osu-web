@@ -6,20 +6,18 @@ import * as React from 'react';
 import UserProfileContainer from 'user-profile-container';
 import Header from './header';
 
-export default class Main extends React.Component<MultiplayerHistoryProps> {
-  render() {
-    return (
-      <UserProfileContainer user={this.props.user}>
-        <Header user={this.props.user} />
-        <div className='user-profile-pages'>
-          <div className='user-profile-pages__item'>
-            <div className='page-extra'>
-              <h2 className='title title--page-extra'>{osu.trans('users.show.extra.multiplayer.title')}</h2>
-              <MultiplayerHistory {...this.props} />
-            </div>
+export default function Main(props: MultiplayerHistoryProps) {
+  return (
+    <UserProfileContainer user={props.user}>
+      <Header user={props.user} />
+      <div className='user-profile-pages'>
+        <div className='user-profile-pages__item'>
+          <div className='page-extra'>
+            <h2 className='title title--page-extra'>{osu.trans('users.show.extra.multiplayer.title')}</h2>
+            <MultiplayerHistory {...props} />
           </div>
         </div>
-      </UserProfileContainer>
-    );
-  }
+      </div>
+    </UserProfileContainer>
+  );
 }
