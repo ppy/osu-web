@@ -60,7 +60,7 @@ return [
 
     'owner_editor' => [
         'button' => '',
-        'reset_confirm' => '',
+        'reset_confirm' => 'Resettare il proprietario per questa difficoltà?',
         'user' => '',
         'version' => '',
     ],

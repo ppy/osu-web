@@ -28,9 +28,9 @@ return [
             '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'Difficultés invités',
+                'beatmap_owner_change' => 'Vous êtes maintenant propriétaire de la difficulté ":beatmap" pour la beatmap ":title"',
+                'beatmap_owner_change_compact' => 'Vous êtes maintenant propriétaire de la difficulté ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
@@ -166,7 +166,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Vous êtes maintenant invité de la beatmap ":title"',
             ],
 
             'beatmapset_discussion' => [

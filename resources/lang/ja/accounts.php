@@ -56,7 +56,7 @@ return [
 
         'options' => [
             '_' => '配送設定',
-            'beatmap_owner_change' => '',
+            'beatmap_owner_change' => 'ゲスト難易度',
             'beatmapset:modding' => 'ビートマップmodding',
             'channel_message' => 'プライベートチャットメッセージ',
             'comment_new' => '新しいコメント',

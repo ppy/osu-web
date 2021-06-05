@@ -56,7 +56,7 @@ return [
 
         'options' => [
             '_' => 'bildirim seçenekleri',
-            'beatmap_owner_change' => '',
+            'beatmap_owner_change' => 'konuk zorluk',
             'beatmapset:modding' => 'beatmap modlama',
             'channel_message' => 'özel sohbet mesajları',
             'comment_new' => 'yeni yorumlar',
