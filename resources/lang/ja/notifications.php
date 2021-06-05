@@ -6,7 +6,7 @@
 return [
     'all_read' => '通知を全て既読にする！',
     'delete' => ':type を削除',
-    'loading' => '通知を読み込み中...',
+    'loading' => '未読通知を読み込み中...',
     'mark_read' => '消去 :type',
     'none' => '通知なし',
     'see_all' => 'すべての通知を見る',
@@ -28,9 +28,9 @@ return [
             '_' => 'ビートマップ',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'ゲスト難易度',
+                'beatmap_owner_change' => 'ビートマップ":title"の難易度":beatmap"の所有者になりました',
+                'beatmap_owner_change_compact' => '難易度":beatmap”の所有者になりました',
             ],
 
             'beatmapset_discussion' => [
@@ -166,7 +166,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'ビートマップ":title"のゲストになりました',
             ],
 
             'beatmapset_discussion' => [

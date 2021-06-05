@@ -56,7 +56,7 @@ return [
 
         'options' => [
             '_' => 'วิธีการรับการแจ้งเตือน',
-            'beatmap_owner_change' => '',
+            'beatmap_owner_change' => 'ระดับความยากของแขก',
             'beatmapset:modding' => 'การวิจารณ์บีทแมพ',
             'channel_message' => 'ข้อความส่วนตัว',
             'comment_new' => 'ความคิดเห็นใหม่',

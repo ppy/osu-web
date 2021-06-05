@@ -13,7 +13,7 @@ return [
         'title' => 'Näytä',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Variantti',
         ],
     ],
 

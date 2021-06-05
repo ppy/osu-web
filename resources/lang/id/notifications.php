@@ -28,9 +28,9 @@ return [
             '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'Guest difficulty',
+                'beatmap_owner_change' => 'Anda telah terdaftar sebagai pembuat tingkat kesulitan ":beatmap" pada beatmap ":title"',
+                'beatmap_owner_change_compact' => 'Anda telah terdaftar sebagai pemilik dari tingkat kesulitan ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
@@ -166,7 +166,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Anda telah terdaftar sebagai pembuat guest difficulty pada beatmap ":title"',
             ],
 
             'beatmapset_discussion' => [
