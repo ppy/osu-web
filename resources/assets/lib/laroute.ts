@@ -20,7 +20,7 @@ export function route(name: string, params?: Attributes | null, absolute?: boole
     params = {};
   }
 
-  return ziggyRoute(name, params, absolute, Ziggy).toString();
+  return decodeURIComponent(ziggyRoute(name, params, absolute, Ziggy).toString());
 }
 
 export function link_to_route(name: string, text: string, params?: Attributes | null, attrs?: Attributes | null) {
