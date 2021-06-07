@@ -7,7 +7,7 @@ return [
     'index' => [
         'description' => 'Colecciones preempaquetadas de mapas basadas en un tema común.',
         'nav_title' => 'listado',
-        'title' => 'Paquetes de Beatmap',
+        'title' => 'Paquetes de Mapas',
 
         'blurb' => [
             'important' => 'LEE ESTO ANTES DE DESCARGAR',

@@ -59,10 +59,10 @@ return [
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => '难度作者',
+        'reset_confirm' => '重置此难度的作者？',
+        'user' => '作者/拥有者',
+        'version' => '难度',
     ],
 
     'reply' => [

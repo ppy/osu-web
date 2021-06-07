@@ -59,10 +59,10 @@ return [
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => 'Владелец сложности',
+        'reset_confirm' => 'Сбросить владельца сложности?',
+        'user' => 'Владелец',
+        'version' => 'Сложность',
     ],
 
     'reply' => [
