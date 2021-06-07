@@ -56,6 +56,8 @@ class SanityTest extends DuskTestCase
                 $scaffold->forceDelete();
             }
         }
+
+        app('groups')->resetCache();
     }
 
     private static function createScaffolding()
