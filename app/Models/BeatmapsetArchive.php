@@ -5,13 +5,18 @@
 
 namespace App\Models;
 
+use App\Exceptions\BeatmapProcessorException;
+
 class BeatmapsetArchive
 {
     public function __construct(string $osz)
     {
         $this->osz = $osz;
         $this->zip = new \ZipArchive();
-        $this->zip->open($this->osz);
+        $code = $this->zip->open($this->osz);
+        if ($code !== true) {
+            throw new BeatmapProcessorException('Failed to open archive', $code);
+        }
     }
 
     public function __destruct()
