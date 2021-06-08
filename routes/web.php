@@ -143,7 +143,7 @@ Route::group(['middleware' => ['web']], function () {
                 Route::post('posts/{post}/restore', 'PostsController@restore')->name('posts.restore');
                 Route::resource('posts', 'PostsController', ['only' => ['destroy', 'edit', 'show', 'update']]);
 
-                Route::post('topics/{topic}/edit-poll', 'TopicsController@editPollPost')->name('topics.edit-poll');
+                Route::post('topics/{topic}/edit-poll', 'TopicsController@editPollPost')->name('topics.edit-poll.store');
                 Route::get('topics/{topic}/edit-poll', 'TopicsController@editPollGet')->name('topics.edit-poll');
 
                 Route::post('topics/preview', 'TopicsController@preview')->name('topics.preview');
