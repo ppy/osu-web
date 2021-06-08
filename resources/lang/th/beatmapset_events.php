@@ -6,7 +6,7 @@
 return [
     'event' => [
         'approve' => 'อนุมัติ',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'เจ้าของระดับความยาก:beatmapเปลี่ยนเป็น:new_user',
         'discussion_delete' => 'ผู้ดูแลลบการสนทนา :discussion',
         'discussion_lock' => 'การสนทนาสำหรับบีทแมพนี้ถูกปิดใช้งาน (:text)',
         'discussion_post_delete' => 'ผู้ดูแลลบโพสต์จากการสนทนา:discussion',
@@ -55,7 +55,7 @@ return [
 
     'type' => [
         'approve' => 'การอนุมัติ',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'เปลี่ยนเจ้าของระดับความยาก',
         'discussion_delete' => 'การลบบทสนทนา',
         'discussion_post_delete' => 'การลบการตอบกลับในบทสนทนา',
         'discussion_post_restore' => 'การกู้คืนการตอบกลับในบทสนทนา',

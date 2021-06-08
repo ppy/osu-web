@@ -29,8 +29,8 @@ return [
 
             'beatmap_owner_change' => [
                 '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                'beatmap_owner_change' => 'Sei diventato il proprietario della difficoltà ":beatmap" nella beatmap ":title"',
+                'beatmap_owner_change_compact' => 'Sei diventato il proprietario della difficoltà ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
@@ -166,7 +166,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Sei diventato ospite della beatmap ":title"',
             ],
 
             'beatmapset_discussion' => [

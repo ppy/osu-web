@@ -54,11 +54,11 @@ return [
 
         'details' => [
             'by_artist' => 'by :artist',
-            'favourite' => 'ビートマップセットをお気に入りに追加する',
+            'favourite' => 'このビートマップをお気に入りに登録する',
             'favourite_login' => 'ログインしてこのビートマップをお気に入りに登録する',
             'logged-out' => 'ビートマップをダウンロードするにはログインが必要です！',
             'mapped_by' => '作者 :mapper',
-            'unfavourite' => 'ビートマップをお気に入りから外す',
+            'unfavourite' => 'このビートマップをお気に入りから削除する',
             'updated_timeago' => '最終更新 :timeago',
 
             'download' => [

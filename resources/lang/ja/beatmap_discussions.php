@@ -59,10 +59,10 @@ return [
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => '難易度の所有者',
+        'reset_confirm' => 'この難易度の所有者をリセットしますか？',
+        'user' => '所有者',
+        'version' => '難易度',
     ],
 
     'reply' => [

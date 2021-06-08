@@ -6,7 +6,7 @@
 return [
     'event' => [
         'approve' => 'Onaylı.',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => ':beatmap zorluğunun sahibi :new_user kullanıcısı ile değiştirildi.',
         'discussion_delete' => 'Moderatör :discussion tartışmasını sildi.',
         'discussion_lock' => 'Bu beatmap için tartışma sağlandı',
         'discussion_post_delete' => ':discussion tartışmasındaki gönderi Moderatör tarafından silindi.',
@@ -55,7 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Onay',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'Zorluk sahibi değiştirme',
         'discussion_delete' => 'Tartışma silindi',
         'discussion_post_delete' => 'Tartışma yanıtı silme',
         'discussion_post_restore' => 'Tartışma yanıtı geri getirme',

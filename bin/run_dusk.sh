@@ -24,7 +24,7 @@ php artisan serve > /dev/null 2>&1 &
 start_notification_server
 
 # run the tests
-php artisan dusk --verbose
+php artisan dusk --verbose "$@"
 EXIT_CODE=$?
 
 # 'cleanup'

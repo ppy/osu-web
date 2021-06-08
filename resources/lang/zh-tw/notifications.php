@@ -28,9 +28,9 @@ return [
             '_' => '圖譜',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => '客串難度',
+                'beatmap_owner_change' => '您現在是圖譜 ":title" 中難度 ":beatmap" 的作者',
+                'beatmap_owner_change_compact' => '您現在是難度 ":beatmap" 的作者',
             ],
 
             'beatmapset_discussion' => [
@@ -166,7 +166,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => '您現在是圖譜 ":title" 的客串作者',
             ],
 
             'beatmapset_discussion' => [
