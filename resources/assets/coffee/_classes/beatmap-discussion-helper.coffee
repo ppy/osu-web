@@ -154,6 +154,7 @@ class @BeatmapDiscussionHelper
       discussionId
       discussions # for validating discussionId and getting relevant params
       discussion
+      post
       user
     } = if useCurrent then _.assign(@urlParse(), options) else options
 
@@ -188,8 +189,17 @@ class @BeatmapDiscussionHelper
         params.beatmap = discussionState.beatmapId
         params.mode = discussionState.mode
 
+      if post?
+        postId = post.id
+
+    if discussionId?
+      hash = "/#{discussionId}"
+      hash = "#{hash}/#{postId}" if postId?
+    else
+      hash = ''
+
     url = new URL(laroute.route('beatmapsets.discussion', params))
-    url.hash = if discussionId? then url.hash = "/#{discussionId}" else ''
+    url.hash = hash
 
     if user?
       url.searchParams.set('user', user)
@@ -220,7 +230,9 @@ class @BeatmapDiscussionHelper
       user: parseInt(url.searchParams.get('user'), 10) if url.searchParams.get('user')?
 
     if url.hash[1] == '/'
-      discussionId = parseInt(url.hash[2..], 10)
+      [discussionId, postId] = url.hash[2..].split('/')
+      discussionId = parseInt(discussionId, 10)
+      postId = parseInt(postId, 10)
 
       if isFinite(discussionId)
         if discussions?
@@ -229,6 +241,8 @@ class @BeatmapDiscussionHelper
           _.assign ret, @stateFromDiscussion(discussion)
         else if options.forceDiscussionId
           ret.discussionId = discussionId
+
+    ret.postId = postId if ret.discussionId? && isFinite(postId)
 
     ret
 
