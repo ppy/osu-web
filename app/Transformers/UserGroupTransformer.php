@@ -5,21 +5,17 @@
 
 namespace App\Transformers;
 
-use App\Models\Group;
+use App\Models\UserGroup;
 
 class UserGroupTransformer extends TransformerAbstract
 {
-    public function transform(Group $group)
+    public function transform(UserGroup $userGroup)
     {
-        return [
-            'id' => $group->getKey(),
-            'identifier' => $group->identifier,
-            'name' => $group->group_name,
-            'short_name' => $group->short_name,
-            'description' => $group->group_desc,
-            'colour' => $group->colour,
-            'playmodes' => $group->playmodes,
-            'is_probationary' => $group->isProbationary(),
-        ];
+        // TODO: "group" should be an include. implemented like this for now
+        // to keep API backward-compatible
+        return array_merge(
+            json_item($userGroup->group, 'Group'),
+            ['playmodes' => $userGroup->playmodes],
+        );
     }
 }
