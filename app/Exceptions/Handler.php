@@ -54,7 +54,7 @@ class Handler extends ExceptionHandler
             return;
         }
 
-        return $e->getMessage();
+        return presence($e->getMessage());
     }
 
     public static function statusCode($e)

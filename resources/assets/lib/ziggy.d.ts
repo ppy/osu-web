@@ -3,10 +3,8 @@
 
 declare module 'ziggy' {
   interface ZiggyClass {
-    baseDomain: string;
-    basePort: number | false;
-    baseProtocol: string;
-    baseUrl: string;
+    port: number | null;
+    url: string;
   }
 
   export const Ziggy: ZiggyClass;
