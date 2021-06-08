@@ -1,12 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import GroupJson from 'interfaces/group-json';
+import UserGroupJson from 'interfaces/user-group-json';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
-  group?: GroupJson;
+  group?: UserGroupJson;
   modifiers?: Modifiers;
 }
 

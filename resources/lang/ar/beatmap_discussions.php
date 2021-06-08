@@ -59,10 +59,10 @@ return [
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => 'مالك الصعوبة',
+        'reset_confirm' => 'إعادة تعيين المالك لهذه الصعوبة؟',
+        'user' => 'المالك',
+        'version' => 'الصعوبة',
     ],
 
     'reply' => [
