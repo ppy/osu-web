@@ -209,13 +209,12 @@ export class Post extends React.PureComponent
         className: "#{bn}__actions"
         div
           className: "#{bn}__actions-group"
-          if @props.type == 'discussion'
-            span
-              className: "#{bn}__action #{bn}__action--button"
-              el ClickToCopy,
-                value: BeatmapDiscussionHelper.url discussion: @props.discussion
-                label: osu.trans 'common.buttons.permalink'
-                valueAsUrl: true
+          span
+            className: "#{bn}__action #{bn}__action--button"
+            el ClickToCopy,
+              value: BeatmapDiscussionHelper.url discussion: @props.discussion
+              label: osu.trans 'common.buttons.permalink'
+              valueAsUrl: true
 
           if @props.canBeEdited
             button
