@@ -114,7 +114,7 @@ return [
     ],
     'logout_confirm' => 'Na pewno chcesz się wylogować? :(',
     'report' => [
-        'button_text' => 'zgłoś',
+        'button_text' => 'Zgłoś',
         'comments' => 'Dodatkowe informacje',
         'placeholder' => 'Podaj wszystkie informacje, które mogą okazać się przydatne.',
         'reason' => 'Powód',
@@ -410,7 +410,7 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => 'Twoje konto jest obecnie wyciszone.',
+        'title' => 'Twoje konto jest obecnie uciszone.',
         'message' => 'Niektóre działania mogą być niedostępne.',
     ],
 
