@@ -354,7 +354,7 @@ Route::group(['middleware' => ['web']], function () {
 
     // redirects go here
     route_redirect('forum/p/{post}', 'forum.posts.show');
-    route_redirect('po/{post}', 'forum.posts.show');
+    route_redirect('po/{post}', 'forum.posts.show:');
     route_redirect('forum/t/{topic}', 'forum.topics.show');
     route_redirect('forum/{forum}', 'forum.forums.show');
     // redirects to beatmapset anyways so there's no point
