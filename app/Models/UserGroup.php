@@ -34,7 +34,7 @@ class UserGroup extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function getGroupAttribute(): Group
+    public function getGroupAttribute(): ?Group
     {
         return app('groups')->byId($this->group_id);
     }
