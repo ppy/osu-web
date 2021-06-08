@@ -54,6 +54,7 @@ interface BeatmapDiscussionHelperClass {
     discussionId?: number;
     filter: string;
     mode: string;
+    postId?: number;
     user?: number;
   };
 }

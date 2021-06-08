@@ -391,12 +391,12 @@ export class Main extends React.PureComponent
 
   jumpToClick: (e) =>
     url = e.currentTarget.getAttribute('href')
-    id = BeatmapDiscussionHelper.urlParse(url, @state.beatmapset.discussions).discussionId
+    { discussionId, postId } = BeatmapDiscussionHelper.urlParse(url, @state.beatmapset.discussions)
 
-    return if !id?
+    return if !discussionId?
 
     e.preventDefault()
-    @jumpTo null, {id}
+    @jumpTo null, { id: discussionId, postId }
 
 
   lastUpdate: =>
