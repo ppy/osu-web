@@ -55,6 +55,7 @@ export class Post extends React.PureComponent
 
     div
       className: topClasses
+      'data-id': @props.post.id
       key: "#{@props.type}-#{@props.post.id}"
       onClick: =>
         $.publish 'beatmapDiscussionPost:markRead', id: @props.post.id

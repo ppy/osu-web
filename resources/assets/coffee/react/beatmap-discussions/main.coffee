@@ -352,10 +352,10 @@ export class Main extends React.PureComponent
   jumpToDiscussionByHash: =>
     target = BeatmapDiscussionHelper.urlParse(null, @state.beatmapset.discussions)
 
-    @jumpTo(null, id: target.discussionId) if target.discussionId?
+    @jumpTo(null, id: target.discussionId, postId: target.postId) if target.discussionId?
 
 
-  jumpTo: (_e, {id}) =>
+  jumpTo: (_e, {id, postId}) =>
     discussion = @discussions()[id]
 
     return if !discussion?
@@ -374,7 +374,10 @@ export class Main extends React.PureComponent
     newState.callback = =>
       $.publish 'beatmapset-discussions:highlight', discussionId: discussion.id
 
-      target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
+      if postId?
+        target = $(".beatmap-discussion-post[data-id='#{postId}']")
+      else
+        target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
 
       return if target.length == 0
 
