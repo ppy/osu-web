@@ -37,7 +37,7 @@ class ScoresControllerTest extends TestCase
     public function testStorePending()
     {
         $user = factory(User::class)->create();
-        $beatmap = factory(Beatmap::class)->states('pending')->create();
+        $beatmap = factory(Beatmap::class)->states('wip')->create();
         $hash = md5('testversion');
         factory(Build::class)->create(['hash' => hex2bin($hash), 'allow_ranking' => true]);
         $initialScoresCount = Score::count();
