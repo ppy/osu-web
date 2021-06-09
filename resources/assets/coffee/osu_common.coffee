@@ -56,14 +56,6 @@
       $(element).trigger 'ajax:error', [xhr, status, error]
 
 
-  pageChange: ->
-    Timeout.set 0, osu.pageChangeImmediate
-
-
-  pageChangeImmediate: ->
-    $.publish 'osu:page:change'
-
-
   parseJson: (id, remove = false) ->
     element = document.getElementById(id)
     return unless element?
@@ -114,11 +106,6 @@
     el.style.fontSize = '16px'
     el.focus()
     el.style.fontSize = prevSize
-
-
-  src2x: (mainUrl) ->
-    src: mainUrl
-    srcSet: "#{mainUrl} 1x, #{_exported.make2x(mainUrl)} 2x"
 
 
   link: (url, text, options = {}) ->

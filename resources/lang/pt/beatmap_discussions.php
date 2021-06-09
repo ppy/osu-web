@@ -61,8 +61,8 @@ return [
     'owner_editor' => [
         'button' => '',
         'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'user' => 'Dono',
+        'version' => 'Dificuldade',
     ],
 
     'reply' => [

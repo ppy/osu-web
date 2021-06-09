@@ -59,10 +59,10 @@ return [
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => '난이도 주인',
+        'reset_confirm' => '이 난이도의 주인을 재설정할까요?',
+        'user' => '주인',
+        'version' => '난이도',
     ],
 
     'reply' => [

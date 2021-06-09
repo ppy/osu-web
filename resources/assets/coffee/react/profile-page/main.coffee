@@ -17,6 +17,8 @@ import * as React from 'react'
 import { a, button, div, i, li, span, ul } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
 import * as BeatmapHelper from 'utils/beatmap-helper'
+import { pageChange } from 'utils/page-change'
+
 el = React.createElement
 
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
@@ -101,7 +103,7 @@ export class Main extends React.PureComponent
       stop: =>
         @draggingTabTimeout = Timeout.set 500, => @draggingTab = false
 
-    osu.pageChange()
+    pageChange()
 
     @modeScrollUrl = currentLocation()
 

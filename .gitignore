@@ -25,6 +25,7 @@ desktop.ini
 /public/uploads
 /public/uploads-avatar
 /public/uploads-replay
+/resources/docs
 
 # server logs
 /logs/osu/*

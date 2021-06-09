@@ -28,9 +28,9 @@ return [
             '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'Konuk zorluk',
+                'beatmap_owner_change' => 'Artık ":title" beatmapindeki ":beatmap" zorluğunun sahibisiniz',
+                'beatmap_owner_change_compact' => 'Artık ":beatmap" zorluğunun sahibisiniz',
             ],
 
             'beatmapset_discussion' => [
@@ -166,7 +166,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Artık ":title" beatmapinin bir konuğusunuz',
             ],
 
             'beatmapset_discussion' => [

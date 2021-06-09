@@ -21,10 +21,10 @@ return [
             '401' => '',
             '401-verification' => '',
             '405' => '',
-            '422' => '',
-            '429' => '',
-            '500' => '',
-            '503' => '',
+            '422' => 'virheellinen pyyntö',
+            '429' => 'liian monta pyyntöä',
+            '500' => 'jotain hajosi',
+            '503' => 'huoltokatko',
         ],
     ],
     'forum' => [
@@ -65,13 +65,13 @@ return [
             'show' => '',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'muutosloki',
         ],
         'chat_controller' => [
             '_' => '',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'kommentit',
         ],
         'contests_controller' => [
             '_' => 'kilpailut',
@@ -83,7 +83,7 @@ return [
             'index' => '',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'ryhmät',
         ],
         'home_controller' => [
             'get_download' => 'lataa',
@@ -96,28 +96,28 @@ return [
             '_' => '',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'suoralähetykset',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'ottelut',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'uutiset',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'ilmoitushistoria',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'salasanan uusiminen',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'sijoitus',
         ],
         'scores_controller' => [
             '_' => 'suorituskyky',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'osu!kauppa',
         ],
         'tournaments_controller' => [
             '_' => '',
@@ -136,7 +136,7 @@ return [
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'osu!kauppa',
     ],
     'users' => [
         'modding_history_controller' => [

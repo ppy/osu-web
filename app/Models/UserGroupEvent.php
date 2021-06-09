@@ -94,7 +94,7 @@ class UserGroupEvent extends Model
             [
                 'actor_id' => optional($actor)->getKey(),
                 'group_id' => $group->getKey(),
-                'hidden' => !$group->isVisible(),
+                'hidden' => !$group->hasListing(),
                 'type' => $type,
                 'user_id' => optional($user)->getKey(),
             ],

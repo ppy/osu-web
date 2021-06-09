@@ -56,7 +56,7 @@ return [
 
         'options' => [
             '_' => '推送设置',
-            'beatmap_owner_change' => '',
+            'beatmap_owner_change' => '客串难度',
             'beatmapset:modding' => '谱面摸图',
             'channel_message' => '私信',
             'comment_new' => '新评论',
