@@ -1953,10 +1953,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         });
     }
 
-    public function profileBeatmapsetsRankedAndApproved()
+    public function profileBeatmapsetsRanked()
     {
         return $this->beatmapsets()
-            ->rankedOrApproved()
+            ->withStates(['ranked', 'approved', 'qualified'])
             ->active()
             ->with('beatmaps');
     }
@@ -1968,12 +1968,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             ->with('beatmaps');
     }
 
-    public function profileBeatmapsetsUnranked()
+    public function profileBeatmapsetsPending()
     {
-        return $this->beatmapsets()
-            ->unranked()
-            ->active()
-            ->with('beatmaps');
+        return $this->beatmapsets()->withStates(['pending', 'wip'])->active()->with('beatmaps');
     }
 
     public function profileBeatmapsetsGraveyard()

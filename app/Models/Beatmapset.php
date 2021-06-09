@@ -252,16 +252,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         }
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Scope Checker Functions
-    |--------------------------------------------------------------------------
-    |
-    | Checks the approval column, but allows a global filter for
-    | use with the query builder. Beatmapset::all()->unranked()
-    |
-    */
-
     public function scopeGraveyard($query)
     {
         return $query->where('approved', '=', self::STATES['graveyard']);
@@ -275,11 +265,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function scopeWip($query)
     {
         return $query->where('approved', '=', self::STATES['wip']);
-    }
-
-    public function scopeUnranked($query)
-    {
-        return $query->whereIn('approved', [static::STATES['pending'], static::STATES['wip']]);
     }
 
     public function scopeRanked($query)
@@ -307,15 +292,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function scopeNeverQualified($query)
     {
-        return $query->unranked()->where('previous_queue_duration', 0);
+        return $query->withStates(['pending', 'wip'])->where('previous_queue_duration', 0);
     }
 
-    public function scopeRankedOrApproved($query)
+    public function scopeWithStates($query, $states)
     {
-        return $query->whereIn(
-            'approved',
-            [self::STATES['ranked'], self::STATES['approved'], self::STATES['qualified']]
-        );
+        return $query->whereIn('approved', array_map(fn ($s) => static::STATES[$s], $states));
     }
 
     public function scopeActive($query)
