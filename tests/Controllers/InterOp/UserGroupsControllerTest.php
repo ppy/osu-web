@@ -53,6 +53,8 @@ class UserGroupsControllerTest extends TestCase
             ->put($url)
             ->assertStatus(204);
 
+        $user->refresh();
+
         $this->assertTrue($user->isGroup($group));
         $this->assertSame(
             $this->eventCount(UserGroupEvent::USER_ADD, $user, $group),
@@ -103,6 +105,8 @@ class UserGroupsControllerTest extends TestCase
             ->withInterOpHeader($url)
             ->put($url)
             ->assertStatus(204);
+
+        $user->refresh();
 
         $actualPlaymodes = $user->findUserGroup($group, true)->playmodes;
 
@@ -163,6 +167,8 @@ class UserGroupsControllerTest extends TestCase
             ->withInterOpHeader($url)
             ->delete($url)
             ->assertStatus(204);
+
+        $user->refresh();
 
         $this->assertFalse($user->isGroup($group));
         $this->assertSame(
