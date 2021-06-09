@@ -7,6 +7,7 @@ namespace Tests;
 
 use App\Http\Middleware\AuthApi;
 use App\Models\Beatmapset;
+use App\Models\Group;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
@@ -234,16 +235,7 @@ class TestCase extends BaseTestCase
     protected function createUserWithGroupPlaymodes(string $groupIdentifier, array $playmodes = [], array $attributes = []): User
     {
         $user = $this->createUserWithGroup($groupIdentifier, $attributes);
-        $group = app('groups')->byIdentifier($groupIdentifier);
-
-        if (!$group->has_playmodes) {
-            $group->update(['has_playmodes' => true]);
-
-            // TODO: This shouldn't have to be called here, since it's already
-            // called by `Group::afterCommit`, but `Group::afterCommit` isn't
-            // running in tests when creating/saving `Group`s.
-            app('groups')->resetCache();
-        }
+        $group = $this->getGroupWithPlaymodes($groupIdentifier);
 
         $user->findUserGroup($group, true)->update(['playmodes' => $playmodes]);
 
@@ -255,6 +247,22 @@ class TestCase extends BaseTestCase
         return array_map(function ($file) use ($path, $suffix) {
             return [basename($file, $suffix), $path];
         }, glob("{$path}/*{$suffix}"));
+    }
+
+    protected function getGroupWithPlaymodes(string $identifier): Group
+    {
+        $group = app('groups')->byIdentifier($identifier);
+
+        if (!$group->has_playmodes) {
+            $group->update(['has_playmodes' => true]);
+
+            // TODO: This shouldn't have to be called here, since it's already
+            // called by `Group::afterCommit`, but `Group::afterCommit` isn't
+            // running in tests when creating/saving `Group`s.
+            app('groups')->resetCache();
+        }
+
+        return $group;
     }
 
     protected function makeBeatmapsetDiscussionPostParams(Beatmapset $beatmapset, string $messageType)
