@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Beatmap',
 
+            'beatmap_owner_change' => [
+                '_' => 'Difficultés invités',
+                'beatmap_owner_change' => 'Vous êtes maintenant propriétaire de la difficulté ":beatmap" pour la beatmap ":title"',
+                'beatmap_owner_change_compact' => 'Vous êtes maintenant propriétaire de la difficulté ":beatmap"',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Discussion de la beatmap',
                 'beatmapset_discussion_lock' => 'Beatmap ":title" a été verrouillée pour la discussion',
@@ -159,6 +165,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'Vous êtes maintenant invité de la beatmap ":title"',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'La discussion sur ":title" a été verrouillée',
                 'beatmapset_discussion_post_new' => 'La discussion sur ":title" a de nouvelles mises à jour',

@@ -49,13 +49,14 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'belirtilen modlardaki nitelikli maplerin yeni sorunlarında bildirim al ',
-        'beatmapset_disqualify' => 'belirtilen modlardaki beatmapler diskalifiye olduğunda bildirim al',
+        'beatmapset_disqualify' => 'belirtilen modlardaki beatmapler diskalifiye edildiğinde bildirim al',
         'comment_reply' => 'yorumlara yapılan yanıtlar için bildirim al',
         'title' => 'Bildirimler',
         'topic_auto_subscribe' => 'oluşturduğunuz yeni forum başlıklarında bildirimleri otomatik olarak etkinleştir',
 
         'options' => [
             '_' => 'bildirim seçenekleri',
+            'beatmap_owner_change' => 'konuk zorluk',
             'beatmapset:modding' => 'beatmap modlama',
             'channel_message' => 'özel sohbet mesajları',
             'comment_new' => 'yeni yorumlar',

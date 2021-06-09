@@ -24,7 +24,7 @@ class NewsController extends Controller
         $isFeed = $format === 'atom' || $format === 'rss';
         $limit = $isFeed ? 20 : 12;
 
-        $search = NewsPost::search(array_merge(['limit' => $limit, 'year' => date('Y')], $params));
+        $search = NewsPost::search(array_merge(compact('limit'), $params));
 
         $posts = $search['query']->get();
 

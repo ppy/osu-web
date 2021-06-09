@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count dans cette review',
     ],
 
+    'owner_editor' => [
+        'button' => 'Propriétaire de la difficulté',
+        'reset_confirm' => 'Réinitialiser le propriétaire pour cette difficulté ?',
+        'user' => 'Propriétaire',
+        'version' => 'Difficulté',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Connectez-vous pour répondre',

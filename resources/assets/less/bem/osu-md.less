@@ -190,6 +190,38 @@
     }
   }
 
+  &__infobox {
+    padding: 10px;
+    margin: @md-paragraph-space 0;
+    border: 1px solid hsl(var(--hsl-b4));
+    .default-border-radius();
+    text-align: center;
+
+    @media (min-width: 300px * 2 + @gutter-v2 * 2) {
+      float: right;
+      width: 50%;
+      max-width: 300px;
+      margin: 0;
+      margin-left: 10px;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+
+    thead {
+      display: none;
+    }
+
+    tbody > tr:first-child > td {
+      border-top: none;
+    }
+
+    td {
+      vertical-align: top;
+    }
+  }
+
   &__list {
     padding-left: 20px;
 

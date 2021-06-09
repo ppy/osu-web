@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Schváleno.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Moderátor smazal tuto diskusi :discussion.',
         'discussion_lock' => 'Diskuze o této mapě byly vypnuty. (:text)',
         'discussion_post_delete' => 'Moderátor smazal příspěvek z této diskuse :discussion.',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Schválení',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Odstranění diskuze',
         'discussion_post_delete' => 'Odstranění odpovědí diskuze',
         'discussion_post_restore' => 'Obnovení odpovědí diskuze',

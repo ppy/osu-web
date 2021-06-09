@@ -25,6 +25,7 @@ class Mod
     const SUDDENDEATH = 'SD';
     const WIND_UP = 'WU';
     const WIND_DOWN = 'WD';
+    const RANDOM = 'RD';
 
     // osu-specific
     const OSU_AUTOPILOT = 'AP';
@@ -54,7 +55,6 @@ class Mod
     const MANIA_DUALSTAGES = 'DS';
     const MANIA_FADEIN = 'FI';
     const MANIA_MIRROR = 'MR';
-    const MANIA_RANDOM = 'RD';
     const MANIA_INVERT = 'IN';
     const MANIA_CONSTANTSPEED = 'CS';
 
@@ -62,7 +62,7 @@ class Mod
     const CATCH_FLOATINGFRUIT = 'FF';
 
     // taiko-specific
-    const TAIKO_RANDOM = 'RD';
+    const TAIKO_SWAP = 'SW';
 
     // non-scorable
     const AUTOPLAY = 'AT';
@@ -199,6 +199,9 @@ class Mod
             'spin_speed' => 'float',
             'direction' => 'int',
         ],
+        self::RANDOM => [
+            'seed' => 'int',
+        ],
     ];
 
     public static function assertValidExclusivity($requiredIds, $allowedIds, $ruleset)
@@ -269,13 +272,15 @@ class Mod
                         self::OSU_TRACEABLE,
                         self::OSU_CLASSIC,
                         self::OSU_BARRELROLL,
+                        self::RANDOM,
                     ]
                 ),
 
                 Ruleset::TAIKO => array_merge(
                     self::SCORABLE_COMMON,
                     [
-                        self::TAIKO_RANDOM,
+                        self::TAIKO_SWAP,
+                        self::RANDOM,
                     ]
                 ),
 
@@ -302,9 +307,9 @@ class Mod
                         self::MANIA_DUALSTAGES,
                         self::MANIA_FADEIN,
                         self::MANIA_MIRROR,
-                        self::MANIA_RANDOM,
                         self::MANIA_INVERT,
                         self::MANIA_CONSTANTSPEED,
+                        self::RANDOM,
                     ]
                 ),
             ];
@@ -320,7 +325,15 @@ class Mod
         if (!$value) {
             $value = [
                 Ruleset::OSU => self::EXCLUSIVITY_COMMON,
-                Ruleset::TAIKO => self::EXCLUSIVITY_COMMON,
+                Ruleset::TAIKO => array_merge(
+                    self::EXCLUSIVITY_COMMON,
+                    [
+                        [
+                            self::RANDOM,
+                            self::TAIKO_SWAP,
+                        ],
+                    ]
+                ),
                 Ruleset::CATCH => self::EXCLUSIVITY_COMMON,
                 Ruleset::MANIA => array_merge(
                     self::EXCLUSIVITY_COMMON,

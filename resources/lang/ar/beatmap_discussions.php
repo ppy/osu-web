@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count في هذه المراجعة',
     ],
 
+    'owner_editor' => [
+        'button' => 'مالك الصعوبة',
+        'reset_confirm' => 'إعادة تعيين المالك لهذه الصعوبة؟',
+        'user' => 'المالك',
+        'version' => 'الصعوبة',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'سجل الدخول للرد',

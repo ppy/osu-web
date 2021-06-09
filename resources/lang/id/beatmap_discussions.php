@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count pada kajian ini',
     ],
 
+    'owner_editor' => [
+        'button' => 'Kepemilikan Tingkat Kesulitan',
+        'reset_confirm' => 'Atur ulang pemilik tingkat kesulitan ini?',
+        'user' => 'Pemilik',
+        'version' => 'Tingkat Kesulitan',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Masuk untuk Menanggapi',

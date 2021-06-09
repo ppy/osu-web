@@ -10,7 +10,7 @@
     {!! Form::open([
         'url' => route('forum.topics.store', ['forum_id' => $forum]),
         'data-remote' => true,
-        'class' => 'osu-page osu-page--forum-topic',
+        'class' => 'osu-page osu-page--forum-topic js-forum-post-input--form',
     ]) !!}
         <input type="hidden" name="cover_id" class="js-forum-cover--input">
 
@@ -71,6 +71,10 @@
             <div class="forum-post-content js-post-preview--preview"></div>
         </div>
 
-        @include('forum.topics._post_edit_form', ['type' => 'create', 'content' => $post->post_text])
+        @include('forum.topics._post_edit_form', [
+            'content' => $post->post_text,
+            'inputId' => "forum:{$forum->getKey()}",
+            'type' => 'create',
+        ])
     {!! Form::close() !!}
 @endsection

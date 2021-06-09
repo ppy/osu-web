@@ -58,6 +58,13 @@ return [
         'unsaved' => '이 리뷰에서 :count개',
     ],
 
+    'owner_editor' => [
+        'button' => '난이도 주인',
+        'reset_confirm' => '이 난이도의 주인을 재설정할까요?',
+        'user' => '주인',
+        'version' => '난이도',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => '답글을 달려면 로그인하세요',

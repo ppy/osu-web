@@ -9,7 +9,7 @@ import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import ChatAPI from 'chat/chat-api';
-import { ChannelJson, GetUpdatesJson, MessageJson, PresenceJson } from 'chat/chat-api-responses';
+import { ChannelJson, ChannelType, GetUpdatesJson, MessageJson, PresenceJson } from 'chat/chat-api-responses';
 import { groupBy, maxBy } from 'lodash';
 import { action, computed, observable, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
@@ -17,11 +17,12 @@ import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 import UserStore from './user-store';
 
+const skippedChannelTypes = new Set<ChannelType>(['MULTIPLAYER', 'TEMPORARY']);
+
 @dispatchListener
 export default class ChannelStore {
   @observable channels = observable.map<number, Channel>();
   lastPolledMessageId = 0;
-  @observable loaded = false;
 
   private api = new ChatAPI();
   private markingAsRead: Partial<Record<number, number>> = {};
@@ -107,7 +108,6 @@ export default class ChannelStore {
   @action
   flushStore() {
     this.channels.clear();
-    this.loaded = false;
   }
 
   get(channelId: number): Channel | undefined {
@@ -248,7 +248,9 @@ export default class ChannelStore {
   @action
   updateWithPresence(presence: PresenceJson) {
     presence.forEach((json) => {
-      this.getOrCreate(json.channel_id).updatePresence(json);
+      if (!skippedChannelTypes.has(json.type)) {
+        this.getOrCreate(json.channel_id).updatePresence(json);
+      }
     });
 
     // remove parted channels
@@ -261,8 +263,6 @@ export default class ChannelStore {
         this.channels.delete(channel.channelId);
       }
     });
-
-    this.loaded = true;
   }
 
   @action

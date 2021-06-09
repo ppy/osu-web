@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count in questa revisione',
     ],
 
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => 'Resettare il proprietario per questa difficoltà?',
+        'user' => '',
+        'version' => '',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Registrati per Rispondere',

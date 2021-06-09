@@ -1,7 +1,35 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import guestGroup from 'beatmap-discussions/guest-group';
+import mapperGroup from 'beatmap-discussions/mapper-group';
+import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import BeatmapJson from 'interfaces/beatmap-json';
+import UserJson from 'interfaces/user-json';
 import { AnchorHTMLAttributes } from 'react';
+
+interface BadgeGroupParams {
+  beatmapset: BeatmapsetJson;
+  currentBeatmap: BeatmapJson;
+  discussion: BeatmapsetDiscussionJson;
+  user?: UserJson;
+}
+
+export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: BadgeGroupParams) {
+  if (user == null) {
+    return null;
+  }
+
+  if (user.id === beatmapset.user_id) {
+    return mapperGroup;
+  }
+
+  if (currentBeatmap != null && discussion.beatmap_id === currentBeatmap.id && user.id === currentBeatmap.user_id) {
+    return guestGroup;
+  }
+
+  return user.groups?.[0];
+}
 
 export function discussionLinkify(text: string) {
   // text should be pre-escaped.

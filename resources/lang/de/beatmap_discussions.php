@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count in dieser Bewertung',
     ],
 
+    'owner_editor' => [
+        'button' => 'Schwierigkeit Besitzer',
+        'reset_confirm' => 'Besitzer für diese Schwierigkeit zurücksetzen?',
+        'user' => 'Besitzer',
+        'version' => 'Schwierigkeit',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Zum Antworten einloggen',

@@ -331,7 +331,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Hesap Durumu',
-                'bad_standing' => "<strong>:username'in</strong> hesabı iyi durumda değil :(",
+                'bad_standing' => "<strong>:username</strong> kullanıcısının hesabı iyi durumda değil :(",
                 'remaining_silence' => '<strong>:username</strong> :duration sonra konuşabilecek.',
 
                 'recent_infringements' => [

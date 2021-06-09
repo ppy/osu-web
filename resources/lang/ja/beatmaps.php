@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => 'kudosuを拒否',
         'edit' => '編集',
         'edited' => ':editorが:update_timeに編集',
+        'guest' => 'ゲスト難易度 by :user',
         'kudosu_denied' => 'kudosuの入手を拒否されました。',
         'message_placeholder_deleted_beatmap' => 'この難易度は削除された為これ以上ディスカッションに投稿できません。',
         'message_placeholder_locked' => 'このビートマップに関するディスカッションは無効になっています。',
@@ -54,7 +55,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'これは一般のディスカッションに投稿されます。 このビートマップをmodするにはタイムスタンプ（例：00:12:345）を付けたメッセージを入力してください。',
+            'in_general' => 'この投稿はビートマップディスカッションの一般に投稿されます。この難易度の問題を修正するには、タイムスタンプ（例：00:12:345）でメッセージを開始してください。',
             'in_timeline' => '複数のタイムスタンプをmodするには、投稿を複数回に分けてください。',
         ],
 
@@ -129,7 +130,7 @@ return [
             'deleted' => '削除済み',
             'mapper_notes' => '注意',
             'mine' => '自分',
-            'pending' => '保留中',
+            'pending' => 'Pending',
             'praises' => '称賛',
             'resolved' => '解決済み',
             'total' => '全て',
@@ -250,7 +251,7 @@ return [
     ],
     'general' => [
         'converts' => 'コンバートビートマップを含める',
-        'follows' => '購読中のマッパー',
+        'follows' => 'サブスクライブ中のマッパー',
         'recommended' => '推奨難易度',
     ],
     'mode' => [
@@ -309,11 +310,11 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => 'Relax',
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'スコア V2',
+        'V2' => 'Score V2',
     ],
     'language' => [
         'any' => '全て',
