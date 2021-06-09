@@ -11,7 +11,7 @@ return [
     'wrong_confirmation' => '認証が一致しません。',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'タイムスタンプは存在しますがビートマップが見つかりませんでした',
+        'beatmap_missing' => 'タイムスタンプは指定されていますが、ビートマップの難易度が不足しています。',
         'beatmapset_no_hype' => "このビートマップはHypeできません。",
         'hype_requires_null_beatmap' => 'Hypeは一般（全ての難易度）セクションで行ってください。',
         'invalid_beatmap_id' => '無効な難易度が指定されました。',

@@ -18,7 +18,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Featured Artists osu!\'ya yeni ve orijinal müzik getirmek için beraber çalıştığımız sanatçılardır. Bu sanatçılar ve onların seçilmiş şarkıları osu! ekibi tarafından kendi elleriyle aşırı iyi ve maplenmeye uygun oldukları için seçildi. Bu featured artists\'lerin bazıları osu!\'ya özel başka hiçbir yerde olmayan şarkılar da hazırladı. <br><br>Bu bölümdeki tüm şarkılar önceden zamanlanmış .osz dosyaları ile beraber gelir ve osu! ile alakalı içeriklerde kullanılması amacıyla lisanslıdır.',
+        'description' => 'Featured Artist\'ler osu!\'ya yeni ve orijinal müzik getirmek için beraber çalıştığımız sanatçılardır. Bu sanatçılar ve onların seçilmiş şarkıları osu! team tarafından kendi elleriyle aşırı iyi ve maplenmeye uygun oldukları için seçildi. Bu featured artist\'lerin bazıları osu!\'ya özel başka hiçbir yerde olmayan şarkılar da hazırladı. <br><br>Bu bölümdeki tüm şarkılar önceden zamanlanmış .osz dosyaları ile beraber gelir ve osu! ile alakalı içeriklerde kullanılması amacıyla lisanslıdır.',
     ],
 
     'links' => [

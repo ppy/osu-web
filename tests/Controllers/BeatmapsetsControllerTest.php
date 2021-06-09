@@ -36,9 +36,7 @@ class BeatmapsetsControllerTest extends TestCase
             'approved' => Beatmapset::STATES['pending'],
         ]);
         $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
-
-        $nominator = $this->createUserWithGroup('bng');
-        $nominator->findUserGroup(app('groups')->byIdentifier('bng'), true)->update(['playmodes' => [$beatmap->mode]]);
+        $nominator = $this->createUserWithGroupPlaymodes('bng', [$beatmap->mode]);
 
         $this->actingAsVerified($nominator)
             ->put(route('beatmapsets.nominate', ['beatmapset' => $beatmapset->getKey(), 'playmodes' => [$beatmap->mode]]))
@@ -49,15 +47,13 @@ class BeatmapsetsControllerTest extends TestCase
 
     public function testBeatmapsetNominateOwnBeatmapset()
     {
-        $nominator = $this->createUserWithGroup('bng');
-
         $beatmapset = factory(Beatmapset::class)->create([
             'approved' => Beatmapset::STATES['pending'],
-            'user_id' => $nominator->getKey(),
         ]);
         $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+        $nominator = $this->createUserWithGroupPlaymodes('bng', [$beatmap->mode]);
 
-        $nominator->findUserGroup(app('groups')->byIdentifier('bng'), true)->update(['playmodes' => [$beatmap->mode]]);
+        $beatmapset->update(['user_id' => $nominator->getKey()]);
 
         $this->actingAsVerified($nominator)
             ->put(route('beatmapsets.nominate', ['beatmapset' => $beatmapset->getKey(), 'playmodes' => [$beatmap->mode]]))
@@ -71,14 +67,10 @@ class BeatmapsetsControllerTest extends TestCase
         $beatmapset = factory(Beatmapset::class)->create([
             'approved' => Beatmapset::STATES['pending'],
         ]);
+        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+        $nominator = $this->createUserWithGroupPlaymodes('bng', [$beatmap->mode]);
 
-        $nominator = $this->createUserWithGroup('bng');
-        $beatmap = factory(Beatmap::class)->create([
-            'beatmapset_id' => $beatmapset->getKey(),
-            'user_id' => $nominator->getKey(),
-        ]);
-
-        $nominator->findUserGroup(app('groups')->byIdentifier('bng'), true)->update(['playmodes' => [$beatmap->mode]]);
+        $beatmap->update(['user_id' => $nominator->getKey()]);
 
         $this->actingAsVerified($nominator)
             ->put(route('beatmapsets.nominate', ['beatmapset' => $beatmapset->getKey(), 'playmodes' => [$beatmap->mode]]))

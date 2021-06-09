@@ -465,10 +465,15 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             return false;
         }
 
-        $bytesWritten = fwrite($oszFile, file_get_contents($url));
+        $contents = file_get_contents($url);
+        if ($contents === false) {
+            throw new BeatmapProcessorException('Error retrieving beatmap');
+        }
+
+        $bytesWritten = fwrite($oszFile, $contents);
 
         if ($bytesWritten === false) {
-            throw new BeatmapProcessorException('Error retrieving beatmap');
+            throw new BeatmapProcessorException('Failed writing stream');
         }
 
         return new BeatmapsetArchive(get_stream_filename($oszFile));

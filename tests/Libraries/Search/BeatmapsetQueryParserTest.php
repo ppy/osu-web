@@ -24,6 +24,7 @@ class BeatmapsetQueryParserTest extends TestCase
         return [
             // basic options
             ['stars=1', ['keywords' => null, 'options' => ['stars' => ['gte' => 0.995, 'lte' => 1.005]]]],
+            ['star=1', ['keywords' => null, 'options' => ['stars' => ['gte' => 0.995, 'lte' => 1.005]]]],
             ['ar=2', ['keywords' => null, 'options' => ['ar' => ['gte' => 1.95, 'lte' => 2.05]]]],
             ['dr=3', ['keywords' => null, 'options' => ['dr' => ['gte' => 2.95, 'lte' => 3.05]]]],
             ['hp<4', ['keywords' => null, 'options' => ['dr' => ['lte' => 3.95]]]],
