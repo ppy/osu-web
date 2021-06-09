@@ -46,10 +46,12 @@ class UserGroupEvent extends Model
         ]);
     }
 
-    public static function logUserAdd(?User $actor, User $user, Group $group, array $playmodes): self
+    public static function logUserAdd(?User $actor, User $user, Group $group, ?array $playmodes = null): self
     {
         return static::log($actor, static::USER_ADD, $user, $group, [
-            'details' => compact('playmodes'),
+            'details' => [
+                'playmodes' => $group->has_playmodes ? ($playmodes ?? []) : null,
+            ],
         ]);
     }
 

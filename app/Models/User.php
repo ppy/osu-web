@@ -540,7 +540,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
                 $this->userGroups()->firstOrNew(['group_id' => $group->getKey()])
             )
                 ->fill([
-                    'playmodes' => $playmodes === [] ? null : $playmodes,
+                    'playmodes' => $playmodes,
                     'user_pending' => false,
                 ])
                 ->save();

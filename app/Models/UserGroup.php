@@ -20,7 +20,6 @@ class UserGroup extends Model
     public $timestamps = false;
     protected $primaryKeys = ['user_id', 'group_id'];
     protected $casts = [
-        'playmodes' => 'array',
         'user_pending' => 'boolean',
     ];
 
@@ -41,10 +40,11 @@ class UserGroup extends Model
 
     public function getPlaymodesAttribute(?string $value): ?array
     {
-        if ($this->group->has_playmodes) {
-            return json_decode($value) ?? [];
-        }
+        return $this->group->has_playmodes ? (json_decode($value) ?? []) : null;
+    }
 
-        return null;
+    public function setPlaymodesAttribute(?array $value): void
+    {
+        $this->attributes['playmodes'] = $this->group->has_playmodes ? json_encode($value ?? []) : null;
     }
 }
