@@ -280,12 +280,8 @@ class DocumentProcessor
             if (OsuWiki::isImage($path)) {
                 $url = route('wiki.image', compact('path'), false);
             } else {
-                $url = wiki_url(
-                    $path,
-                    $locale ?? $this->wikiLocale ?? config('app.fallback_locale'),
-                    false,
-                    false,
-                );
+                $locale ??= $this->wikiLocale ?? config('app.fallback_locale');
+                $url = wiki_url($path, $locale, false, false);
 
                 if (starts_with($url, $this->wikiAbsoluteRootPath)) {
                     $url = $this->wikiPathToRoot.substr($url, strlen($this->wikiAbsoluteRootPath));
