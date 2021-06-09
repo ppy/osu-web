@@ -493,7 +493,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::get('users/{user}/kudosu', 'UsersController@kudosu');
         //  GET /api/v2/users/:user_id/scores/:type [best, firsts, recent]
         Route::get('users/{user}/scores/{type}', 'UsersController@scores');
-        //  GET /api/v2/users/:user_id/beatmapsets/:type [most_played, favourite, ranked_and_approved, unranked, graveyard]
+        //  GET /api/v2/users/:user_id/beatmapsets/:type [most_played, favourite, ranked, pending, graveyard]
         Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets');
         // GET /api/v2/users/:user_id/recent_activity
         Route::get('users/{user}/recent_activity', 'UsersController@recentActivity');
