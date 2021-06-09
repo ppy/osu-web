@@ -530,9 +530,9 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
         });
 
         Route::group(['as' => 'user-group.'], function () {
-            Route::put('user-group', 'UserGroupsController@update')->name('update');
-            Route::delete('user-group', 'UserGroupsController@destroy')->name('destroy');
-            Route::put('user-default-group', 'UserGroupsController@setDefault')->name('set-default');
+            Route::put('users/{user}/groups/{group}', 'UserGroupsController@update')->name('update');
+            Route::delete('users/{user}/groups/{group}', 'UserGroupsController@destroy')->name('destroy');
+            Route::put('users/{user}/default-group', 'UserGroupsController@setDefault')->name('set-default');
         });
     });
 });

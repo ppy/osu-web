@@ -40,16 +40,16 @@ class UserGroupsController extends Controller
 
     private function getUserAndGroupModels()
     {
-        $params = get_params(request()->all(), null, [
-            'group_id:int',
-            'user_id:int',
-        ]);
+        $params = array_merge(
+            ['group' => get_int(request()->input('group_id'))],
+            request()->route()->parameters(),
+        );
 
-        $group = app('groups')->byId($params['group_id'] ?? null);
+        $group = app('groups')->byId($params['group'] ?? null);
         abort_if($group === null, 404, 'Group not found');
 
         return [
-            User::findOrFail($params['user_id'] ?? null),
+            User::findOrFail($params['user'] ?? null),
             $group,
         ];
     }

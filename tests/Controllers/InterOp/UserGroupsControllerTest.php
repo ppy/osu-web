@@ -18,9 +18,9 @@ class UserGroupsControllerTest extends TestCase
         $group = app('groups')->byIdentifier('gmt');
         $userAddEventCount = $this->eventCount(UserGroupEvent::USER_ADD, $user, $group);
         $url = route('interop.user-group.update', [
-            'group_id' => $group->getKey(),
+            'group' => $group->getKey(),
             'timestamp' => time(),
-            'user_id' => $user->getKey(),
+            'user' => $user->getKey(),
         ]);
 
         $this
@@ -43,9 +43,9 @@ class UserGroupsControllerTest extends TestCase
         $group = app('groups')->byIdentifier('gmt');
         $userAddEventCount = $this->eventCount(UserGroupEvent::USER_ADD, $user, $group);
         $url = route('interop.user-group.update', [
-            'group_id' => $group->getKey(),
+            'group' => $group->getKey(),
             'timestamp' => time(),
-            'user_id' => $user->getKey(),
+            'user' => $user->getKey(),
         ]);
 
         $this
@@ -69,10 +69,10 @@ class UserGroupsControllerTest extends TestCase
         $group = app('groups')->byIdentifier('nat');
         $userAddPlaymodesEventCount = $this->eventCount(UserGroupEvent::USER_ADD_PLAYMODES, $user, $group);
         $url = route('interop.user-group.update', [
-            'group_id' => $group->getKey(),
+            'group' => $group->getKey(),
             'playmodes' => $playmodes,
             'timestamp' => time(),
-            'user_id' => $user->getKey(),
+            'user' => $user->getKey(),
         ]);
 
         $this
@@ -95,10 +95,10 @@ class UserGroupsControllerTest extends TestCase
         $userAddPlaymodesEventCount = $this->eventCount(UserGroupEvent::USER_ADD_PLAYMODES, $user, $group);
         $userRemovePlaymodesEventCount = $this->eventCount(UserGroupEvent::USER_REMOVE_PLAYMODES, $user, $group);
         $url = route('interop.user-group.update', [
-            'group_id' => $group->getKey(),
+            'group' => $group->getKey(),
             'playmodes' => $playmodes,
             'timestamp' => time(),
-            'user_id' => $user->getKey(),
+            'user' => $user->getKey(),
         ]);
 
         $this
@@ -132,9 +132,9 @@ class UserGroupsControllerTest extends TestCase
         $group = app('groups')->byIdentifier('gmt');
         $userRemoveEventCount = $this->eventCount(UserGroupEvent::USER_REMOVE, $user, $group);
         $url = route('interop.user-group.destroy', [
-            'group_id' => $group->getKey(),
+            'group' => $group->getKey(),
             'timestamp' => time(),
-            'user_id' => $user->getKey(),
+            'user' => $user->getKey(),
         ]);
 
         $this
@@ -158,9 +158,9 @@ class UserGroupsControllerTest extends TestCase
         $group = app('groups')->byIdentifier('gmt');
         $userRemoveEventCount = $this->eventCount(UserGroupEvent::USER_REMOVE, $user, $group);
         $url = route('interop.user-group.destroy', [
-            'group_id' => $group->getKey(),
+            'group' => $group->getKey(),
             'timestamp' => time(),
-            'user_id' => $user->getKey(),
+            'user' => $user->getKey(),
         ]);
 
         $this
@@ -186,7 +186,7 @@ class UserGroupsControllerTest extends TestCase
         $url = route('interop.user-group.set-default', [
             'group_id' => $group->getKey(),
             'timestamp' => time(),
-            'user_id' => $user->getKey(),
+            'user' => $user->getKey(),
         ]);
 
         $this
@@ -216,7 +216,7 @@ class UserGroupsControllerTest extends TestCase
         $url = route('interop.user-group.set-default', [
             'group_id' => $group->getKey(),
             'timestamp' => time(),
-            'user_id' => $user->getKey(),
+            'user' => $user->getKey(),
         ]);
 
         $this
@@ -241,7 +241,7 @@ class UserGroupsControllerTest extends TestCase
         $url = route('interop.user-group.set-default', [
             'group_id' => $group->getKey(),
             'timestamp' => time(),
-            'user_id' => $user->getKey(),
+            'user' => $user->getKey(),
         ]);
 
         $this
@@ -268,10 +268,10 @@ class UserGroupsControllerTest extends TestCase
         $user = factory(User::class)->create();
         $group = $this->getGroupWithPlaymodes('nat');
         $url = route('interop.user-group.update', [
-            'group_id' => $group->getKey(),
+            'group' => $group->getKey(),
             'playmodes' => ['osu', 'invalid_playmode'],
             'timestamp' => time(),
-            'user_id' => $user->getKey(),
+            'user' => $user->getKey(),
         ]);
 
         $this
@@ -280,27 +280,15 @@ class UserGroupsControllerTest extends TestCase
             ->assertStatus(422);
     }
 
-    public function testMissingUserOrGroup()
-    {
-        $url = route('interop.user-group.update', [
-            'timestamp' => time(),
-        ]);
-
-        $this
-            ->withInterOpHeader($url)
-            ->put($url)
-            ->assertStatus(404);
-    }
-
     public function testPlaymodesWithoutGroupPlaymodesSet()
     {
         $user = factory(User::class)->create();
         $group = app('groups')->byIdentifier('gmt');
         $url = route('interop.user-group.update', [
-            'group_id' => $group->getKey(),
+            'group' => $group->getKey(),
             'playmodes' => ['osu'],
             'timestamp' => time(),
-            'user_id' => $user->getKey(),
+            'user' => $user->getKey(),
         ]);
 
         $this
