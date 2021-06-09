@@ -197,7 +197,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             ->toArray();
     }
 
-    public static function latestRankedOrApproved($count = 5)
+    public static function latestRanked($count = 5)
     {
         // TODO: add filtering by game mode after mode-toggle UI/UX happens
 
