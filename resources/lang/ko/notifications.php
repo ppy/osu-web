@@ -28,9 +28,9 @@ return [
             '_' => '비트맵',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => '게스트 난이도',
+                'beatmap_owner_change' => '당신은 이제 비트맵 ":title"에 대한 ":beatmap" 난이도의 주인이 되었습니다.',
+                'beatmap_owner_change_compact' => '당신은 이제 ":beatmap" 난이도의 주인이 되었습니다.',
             ],
 
             'beatmapset_discussion' => [
@@ -166,7 +166,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => '당신은 이제 비트맵 ":title"의 게스트가 되었습니다.',
             ],
 
             'beatmapset_discussion' => [

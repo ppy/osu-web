@@ -10,7 +10,7 @@ return [
 
     'cart' => [
         'checkout' => 'Kassa',
-        'info' => '',
+        'info' => ':count_delimited tuote ostoskorissa ($:subtotal)|:count_delimited tuotteet ostoskorissa ($:subtotal)',
         'more_goodies' => 'Tarkastelisin vielä muita tuotteita ennen tilauksen tekemistä',
         'shipping_fees' => 'toimituskulut',
         'title' => 'Ostoskori',
@@ -70,13 +70,13 @@ return [
 
     'order' => [
         'cancel' => 'Peruuta tilaus',
-        'cancel_confirm' => '',
-        'cancel_not_allowed' => '',
+        'cancel_confirm' => 'Tämä tilaus peruutetaan ja maksua ei hyväksytä siitä. Maksupalveluntarjoaja ei ehkä vapauta varattuja varoja välittömästi. Oletko varma?',
+        'cancel_not_allowed' => 'Tätä tilausta ei voi peruuttaa tällä hetkellä.',
         'invoice' => 'Näytä lasku',
         'no_orders' => 'Ei tilauksia katsottavissa.',
         'paid_on' => 'Tilaus laitettu :date',
         'resume' => 'Jatka Kassalle',
-        'shopify_expired' => '',
+        'shopify_expired' => 'Tämän tilauksen kassalinkki on vanhentunut.',
 
         'item' => [
             'display_name' => [

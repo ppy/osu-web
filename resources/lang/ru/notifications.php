@@ -28,9 +28,9 @@ return [
             '_' => 'Карта',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'Гостевая сложность',
+                'beatmap_owner_change' => 'Вы назначены владельцем сложности ":beatmap" в карте ":title"',
+                'beatmap_owner_change_compact' => 'Вы назначены владельцем сложности ":beatmap" ',
             ],
 
             'beatmapset_discussion' => [
@@ -166,7 +166,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Вы приглашены в ":title" ',
             ],
 
             'beatmapset_discussion' => [

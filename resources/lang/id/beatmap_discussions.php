@@ -59,10 +59,10 @@ return [
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => 'Kepemilikan Tingkat Kesulitan',
+        'reset_confirm' => 'Atur ulang pemilik tingkat kesulitan ini?',
+        'user' => 'Pemilik',
+        'version' => 'Tingkat Kesulitan',
     ],
 
     'reply' => [

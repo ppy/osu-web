@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Keresés',
             'deleted' => 'Törölt beszélgetések mellékelése',
-            'mode' => '',
+            'mode' => 'Beatmap  mód',
             'only_unresolved' => 'Csak a megoldatlan beszélgetéseket mutasd',
             'types' => 'Üzenettípusok',
             'username' => 'Felhasználónév',
@@ -59,10 +59,10 @@ return [
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => 'Nehézség',
+        'reset_confirm' => 'Visszaállítod ennek a nehézségi szintnek a tulajdonosát?',
+        'user' => 'Tulajdonos',
+        'version' => 'Nehézség',
     ],
 
     'reply' => [

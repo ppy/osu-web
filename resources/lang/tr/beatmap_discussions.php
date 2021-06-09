@@ -59,10 +59,10 @@ return [
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => 'Zorluk Sahibi',
+        'reset_confirm' => 'Bu zorluğun sahibi sıfırlansın mı?',
+        'user' => 'Sahip',
+        'version' => 'Zorluk',
     ],
 
     'reply' => [
