@@ -59,10 +59,10 @@ return [
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => 'Schwierigkeit Besitzer',
+        'reset_confirm' => 'Besitzer für diese Schwierigkeit zurücksetzen?',
+        'user' => 'Besitzer',
+        'version' => 'Schwierigkeit',
     ],
 
     'reply' => [

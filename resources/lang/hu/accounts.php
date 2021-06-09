@@ -56,7 +56,7 @@ return [
 
         'options' => [
             '_' => 'Szállítási lehetőségek',
-            'beatmap_owner_change' => '',
+            'beatmap_owner_change' => 'vendég nehézség',
             'beatmapset:modding' => 'beatmap modolás',
             'channel_message' => 'Privát üzenetek',
             'comment_new' => 'Új megjegyzések',

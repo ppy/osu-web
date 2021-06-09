@@ -28,9 +28,11 @@ return [
             '_' => '谱面',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => '客串难度',
+                'beatmap_owner_change' => '您现在是:title内:beatmap难度的作者
+',
+                'beatmap_owner_change_compact' => '您现在是:beatmap难度的作者
+',
             ],
 
             'beatmapset_discussion' => [
@@ -166,7 +168,8 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => '您现在是:title的客串作者
+',
             ],
 
             'beatmapset_discussion' => [

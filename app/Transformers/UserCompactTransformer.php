@@ -204,7 +204,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeGroups(User $user)
     {
-        return $this->collection($user->visibleGroups(), new UserGroupTransformer());
+        return $this->collection($user->userGroupsForBadges(), new UserGroupTransformer());
     }
 
     public function includeIsAdmin(User $user)

@@ -28,9 +28,9 @@ return [
             '_' => 'Beatmapa',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'Gościnny poziom trudności',
+                'beatmap_owner_change' => 'Od teraz jesteś twórcą poziomu trudności „:beatmap” dla beatmapy „:title”',
+                'beatmap_owner_change_compact' => 'Od teraz jesteś twórcą poziomu trudności „:beatmap”',
             ],
 
             'beatmapset_discussion' => [
@@ -78,7 +78,7 @@ return [
 
                 'comment_new' => 'Użytkownik :username napisał komentarz pod „:title”: „:content”',
                 'comment_new_compact' => 'Użytkownik :username napisał komentarz: „:content”',
-                'comment_reply' => ':username odpowiedział: ":content" na ":title"',
+                'comment_reply' => 'Użytkownik :username odpowiedział: „:content” na „:title”',
                 'comment_reply_compact' => 'Użytkownik :username odpowiedział: „:content”',
             ],
         ],
@@ -104,8 +104,8 @@ return [
 
                 'comment_new' => 'Użytkownik :username napisał komentarz pod „:title”: „:content”',
                 'comment_new_compact' => 'Użytkownik :username napisał komentarz: „:content”',
-                'comment_reply' => ':username odpowiedział: ":content" na ":title"',
-                'comment_reply_compact' => 'Użytkownik :username odpowiedział ":content"',
+                'comment_reply' => 'Użytkownik :username odpowiedział: „:content” na „:title”',
+                'comment_reply_compact' => 'Użytkownik :username odpowiedział: „:content”',
             ],
         ],
 
@@ -166,7 +166,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Od teraz jesteś gościem dla beatmapy „:title”',
             ],
 
             'beatmapset_discussion' => [
@@ -186,7 +186,7 @@ return [
                 'beatmapset_qualify' => 'Beatmapa „:title” uzyskała wystarczającą liczbę nominacji i została zakwalifikowana',
                 'beatmapset_rank' => 'Beatmapa „:title” uzyskała status rankingowy',
                 'beatmapset_remove_from_loved' => 'Beatmapa „:title” została usunięta z kategorii ulubionych społeczności',
-                'beatmapset_reset_nominations' => 'Nominacja beatmapy ":title" została zresetowana',
+                'beatmapset_reset_nominations' => 'Nominacja beatmapy „:title” została zresetowana',
             ],
 
             'comment' => [
