@@ -185,11 +185,11 @@ title_url        | string?                            | |
 twitter          | string?                            | |
 website          | string?                            | |
 
-In addition, the following [optional attributes on UserCompact](#usercompact-optionalattributes) are always included:
+In addition, the following [optional attributes on UserCompact](#usercompact-optionalattributes) are included:
 
 - country
 - cover
-- is_restricted
+- is_restricted (present only if this is the currently authenticated user)
 
 <div id="user-profilepage" data-unique="user-profilepage"></div>
 

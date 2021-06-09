@@ -51,7 +51,7 @@ favourite_beatmapset_count           | number
 follower_count                       | number
 graveyard_beatmapset_count           | number
 groups                               | [UserGroup](#usergroup)[]
-is_restricted                        | boolean
+is_restricted                        | boolean?
 loved_beatmapset_count               | number
 monthly_playcounts                   | [UserMonthlyPlaycount](#usermonthlyplaycount)[]
 page                                 | |
