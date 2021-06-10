@@ -47,6 +47,7 @@ class BeatmapsetEvent extends Model
     const DISCUSSION_POST_RESTORE = 'discussion_post_restore';
 
     const NOMINATION_RESET = 'nomination_reset';
+    const NOMINATION_RESET_RECEIVED = 'nomination_reset_received';
 
     const GENRE_EDIT = 'genre_edit';
     const LANGUAGE_EDIT = 'language_edit';
