@@ -111,6 +111,7 @@ class BeatmapDiscussionPostsController extends Controller
 
     public function store()
     {
+        $user = auth()->user();
         $discussion = $this->prepareDiscussion(request());
 
         $newDiscussion = !$discussion->exists;
@@ -120,7 +121,7 @@ class BeatmapDiscussionPostsController extends Controller
         }
 
         $postParams = get_params(request()->all(), 'beatmap_discussion_post', ['message']);
-        $postParams['user_id'] = Auth::user()->user_id;
+        $postParams['user_id'] = $user->user_id;
         $post = new BeatmapDiscussionPost($postParams);
         $post->beatmapDiscussion()->associate($discussion);
 
@@ -156,7 +157,7 @@ class BeatmapDiscussionPostsController extends Controller
                 $reopen = true;
             }
 
-            $posts[] = BeatmapDiscussionPost::generateLogResolveChange(Auth::user(), $discussion->resolved);
+            $posts[] = BeatmapDiscussionPost::generateLogResolveChange($user, $discussion->resolved);
         }
 
         $notifyQualifiedProblem = false;
@@ -167,7 +168,7 @@ class BeatmapDiscussionPostsController extends Controller
             $notifyQualifiedProblem = $openProblems === 0 && ($newDiscussion || $reopen);
         }
 
-        DB::transaction(function () use ($posts, $discussion, $events, $resetNominations, $disqualify) {
+        DB::transaction(function () use ($posts, $discussion, $events, $resetNominations, $disqualify, $user) {
             $discussion->saveOrExplode();
 
             foreach ($posts as $post) {
@@ -177,15 +178,21 @@ class BeatmapDiscussionPostsController extends Controller
             }
 
             foreach ($events as $event) {
-                BeatmapsetEvent::log($event, Auth::user(), $posts[0])->saveOrExplode();
+                BeatmapsetEvent::log($event, $user, $posts[0])->saveOrExplode();
             }
 
             if ($disqualify) {
-                $discussion->beatmapset->disqualify(Auth::user(), $posts[0]);
+                $discussion->beatmapset->disqualify($user, $posts[0]);
             }
 
             if ($resetNominations) {
-                (new BeatmapsetResetNominations($discussion->beatmapset, Auth::user()))->dispatch();
+                $nominators = $discussion->beatmapset->nominationsSinceReset()->with('user')->get()->pluck('user');
+
+                foreach ($nominators as $nominator) {
+                    BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET_RECEIVED, $nominator, $post, ['source_user_id' => $user->getKey()])->saveOrExplode();
+                }
+
+                (new BeatmapsetResetNominations($discussion->beatmapset, $user))->dispatch();
             }
 
             // feels like a controller shouldn't be calling refreshCache on a model?
@@ -196,14 +203,14 @@ class BeatmapDiscussionPostsController extends Controller
 
         $beatmapset = $discussion->beatmapset;
 
-        BeatmapsetWatch::markRead($beatmapset, Auth::user());
+        BeatmapsetWatch::markRead($beatmapset, $user);
 
         if ($notifyQualifiedProblem) {
             // TODO: should work out how have the new post notification be able to handle this instead.
-            (new BeatmapsetDiscussionQualifiedProblem($post, auth()->user()))->dispatch();
+            (new BeatmapsetDiscussionQualifiedProblem($post, $user))->dispatch();
         }
 
-        (new BeatmapsetDiscussionPostNew($post, Auth::user()))->dispatch();
+        (new BeatmapsetDiscussionPostNew($post, $user))->dispatch();
 
         return [
             'beatmapset' => $beatmapset->defaultDiscussionJson(),
