@@ -374,10 +374,9 @@ export class Main extends React.PureComponent
     newState.callback = =>
       $.publish 'beatmapset-discussions:highlight', discussionId: discussion.id
 
-      if postId?
-        target = $(".beatmap-discussion-post[data-id='#{postId}']")
-      else
-        target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
+
+      attribute = if postId? then "data-post-id='#{postId}'" else "data-id='#{id}'"
+      target = $(".js-beatmap-discussion-jump[#{attribute}]")
 
       return if target.length == 0
 

@@ -53,9 +53,11 @@ export class Post extends React.PureComponent
       editing: @state.editing
       unread: !@props.read && @props.type != 'discussion'
 
+    topClasses += ' js-beatmap-discussion-jump'
+
     div
       className: topClasses
-      'data-id': @props.post.id
+      'data-post-id': @props.post.id
       key: "#{@props.type}-#{@props.post.id}"
       onClick: =>
         $.publish 'beatmapDiscussionPost:markRead', id: @props.post.id
