@@ -64,7 +64,7 @@ export class Post extends React.PureComponent
 
       div
         className: "#{bn}__content"
-        if (!@props.hideUserCard)
+        if (@props.type == 'reply')
           el UserCard,
             user: @props.user
             group: badgeGroup
