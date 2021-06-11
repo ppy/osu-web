@@ -68,7 +68,7 @@ export function propsFromHref(href: string) {
   if (targetUrl != null && targetUrl.host === window.location.host) {
     const target = BeatmapDiscussionHelper.urlParse(targetUrl.href, null, { forceDiscussionId: true });
     if (target?.discussionId != null && target.beatmapsetId != null) {
-      const hash = [target.discussionId, target.postId].filter(Boolean).join('/');
+      const hash = [target.discussionId, target.postId].filter(Number.isFinite).join('/');
       if (current?.beatmapsetId === target.beatmapsetId) {
         // same beatmapset, format: #123
         props.children = `#${hash}`;

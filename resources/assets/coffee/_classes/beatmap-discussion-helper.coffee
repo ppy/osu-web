@@ -224,9 +224,7 @@ class @BeatmapDiscussionHelper
       user: parseInt(url.searchParams.get('user'), 10) if url.searchParams.get('user')?
 
     if url.hash[1] == '/'
-      [discussionId, postId] = url.hash[2..].split('/')
-      discussionId = parseInt(discussionId, 10)
-      postId = parseInt(postId, 10)
+      [discussionId, postId] = url.hash[2..].split('/').map((id) -> parseInt(id, 10))
 
       if isFinite(discussionId)
         if discussions?
