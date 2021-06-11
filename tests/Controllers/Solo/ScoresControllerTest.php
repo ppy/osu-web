@@ -34,7 +34,7 @@ class ScoresControllerTest extends TestCase
         $this->assertSame($initialScoresCount + 1, Score::count());
     }
 
-    public function testStoreUnranked()
+    public function testStorePending()
     {
         $user = factory(User::class)->create();
         $beatmap = factory(Beatmap::class)->states('wip')->create();
