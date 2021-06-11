@@ -16,11 +16,13 @@ class FindForProfilePage
         $request = request();
 
         if ($user === null || $user->isBot() || !priv_check('UserShow', $user)->can()) {
-            if (is_api_request()) {
-                abort(404);
-            }
+            throw new UserProfilePageLookupException(function () {
+                if (is_json_request()) {
+                    abort(404);
+                }
 
-            throw new UserProfilePageLookupException(fn () => ext_view('users.show_not_found', null, null, 404));
+                return ext_view('users.show_not_found', null, null, 404);
+            });
         }
 
         if (!is_json_request() && (string) $user->getKey() !== (string) $id) {
