@@ -11,7 +11,7 @@ class GroupsController extends Controller
 {
     public function show($id)
     {
-        $group = app('groups')->byId($id);
+        $group = app('groups')->byId(get_int($id));
         abort_if($group === null || !$group->hasListing(), 404);
 
         $currentMode = default_mode();

@@ -48,7 +48,7 @@ _schedule() {
 }
 
 _serve() {
-    exec php-fpm7.4 -R -y docker/development/php-fpm.conf
+    exec php-fpm8.0 -R -y docker/development/php-fpm.conf
 }
 
 _test() {

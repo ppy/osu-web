@@ -347,8 +347,8 @@ class SanityTest extends DuskTestCase
                 //     'graveyard',
                 //     'loved',
                 //     'most_played',
-                //     'ranked_and_approved',
-                //     'unranked',
+                //     'ranked',
+                //     'pending',
                 // ],
             ],
             'users.scores' => [

@@ -243,7 +243,8 @@ export class Discussion extends React.PureComponent
     .always LoadingOverlay.hide
 
 
-  emitSetHighlight: =>
+  emitSetHighlight: (e) =>
+    return if e.defaultPrevented
     $.publish 'beatmapset-discussions:highlight', discussionId: @props.discussion.id
 
 
