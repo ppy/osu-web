@@ -215,7 +215,7 @@ export class Post extends React.PureComponent
           span
             className: "#{bn}__action #{bn}__action--button"
             el ClickToCopy,
-              value: BeatmapDiscussionHelper.url discussion: @props.discussion, post: @props.post
+              value: BeatmapDiscussionHelper.url discussion: @props.discussion, post: (@props.post if @props.type == 'reply')
               label: osu.trans 'common.buttons.permalink'
               valueAsUrl: true
 
