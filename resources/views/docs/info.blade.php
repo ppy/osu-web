@@ -300,6 +300,10 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2021-06-09
+- `ranked_and_approved_beatmapset_count` and `unranked_beatmapset_count` attributes in [UserCompact](#usercompact) object have been deprecated and replaced with `ranked_beatmapset_count` and `pending_beatmapset_count` respectively.
+- `ranked_and_approved` and `unranked` types in [Get User Beatmaps](#get-user-beatmaps) have been deprecated and replaced with `ranked` and `pending` respectively.
+
 ### 2021-04-20
 - `cover_url` in [User](#user) is deprecated, use `cover.url` instead.
 

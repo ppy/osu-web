@@ -11,9 +11,9 @@ el = React.createElement
 
 sections = [
   'favouriteBeatmapsets'
-  'rankedAndApprovedBeatmapsets'
+  'rankedBeatmapsets'
   'lovedBeatmapsets'
-  'unrankedBeatmapsets'
+  'pendingBeatmapsets'
   'graveyardBeatmapsets'
 ]
 

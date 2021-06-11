@@ -51,9 +51,9 @@ export class Main extends React.PureComponent
         posts: props.posts
         votes: props.votes
         profileOrder: ['events', 'discussions', 'posts', 'votes', 'kudosu']
-        rankedAndApprovedBeatmapsets: @props.extras.rankedAndApprovedBeatmapsets
+        rankedBeatmapsets: @props.extras.rankedBeatmapsets
         lovedBeatmapsets: @props.extras.lovedBeatmapsets
-        unrankedBeatmapsets: @props.extras.unrankedBeatmapsets
+        pendingBeatmapsets: @props.extras.pendingBeatmapsets
         graveyardBeatmapsets: @props.extras.graveyardBeatmapsets
         recentlyReceivedKudosu: @props.extras.recentlyReceivedKudosu
         showMorePagination: {}

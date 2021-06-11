@@ -56,9 +56,9 @@ export class Main extends React.PureComponent
         scoresRecent: @props.extras.scoresRecent
         beatmapPlaycounts: @props.extras.beatmapPlaycounts
         favouriteBeatmapsets: @props.extras.favouriteBeatmapsets
-        rankedAndApprovedBeatmapsets: @props.extras.rankedAndApprovedBeatmapsets
+        rankedBeatmapsets: @props.extras.rankedBeatmapsets
         lovedBeatmapsets: @props.extras.lovedBeatmapsets
-        unrankedBeatmapsets: @props.extras.unrankedBeatmapsets
+        pendingBeatmapsets: @props.extras.pendingBeatmapsets
         graveyardBeatmapsets: @props.extras.graveyardBeatmapsets
         recentlyReceivedKudosu: @props.extras.recentlyReceivedKudosu
         showMorePagination: {}
@@ -219,15 +219,15 @@ export class Main extends React.PureComponent
         props:
           user: @state.user
           favouriteBeatmapsets: @state.favouriteBeatmapsets
-          rankedAndApprovedBeatmapsets: @state.rankedAndApprovedBeatmapsets
+          rankedBeatmapsets: @state.rankedBeatmapsets
           lovedBeatmapsets: @state.lovedBeatmapsets
-          unrankedBeatmapsets: @state.unrankedBeatmapsets
+          pendingBeatmapsets: @state.pendingBeatmapsets
           graveyardBeatmapsets: @state.graveyardBeatmapsets
           counts:
             favouriteBeatmapsets: @state.user.favourite_beatmapset_count
-            rankedAndApprovedBeatmapsets: @state.user.ranked_and_approved_beatmapset_count
+            rankedBeatmapsets: @state.user.ranked_beatmapset_count
             lovedBeatmapsets: @state.user.loved_beatmapset_count
-            unrankedBeatmapsets: @state.user.unranked_beatmapset_count
+            pendingBeatmapsets: @state.user.pending_beatmapset_count
             graveyardBeatmapsets: @state.user.graveyard_beatmapset_count
           pagination: @state.showMorePagination
         component: Beatmaps

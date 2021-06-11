@@ -151,13 +151,13 @@ class ModdingHistoryEventsBundle
                             'graveyard_beatmapset_count',
                             'groups',
                             'loved_beatmapset_count',
+                            'pending_beatmapset_count',
                             'previous_usernames',
-                            'ranked_and_approved_beatmapset_count',
+                            'ranked_beatmapset_count',
                             'statistics',
                             'statistics.country_rank',
                             'statistics.rank',
                             'support_level',
-                            'unranked_beatmapset_count',
                         ]
                     );
                 }

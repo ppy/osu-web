@@ -53,8 +53,9 @@ class UserCompactTransformer extends TransformerAbstract
         'mapping_follower_count',
         'monthly_playcounts',
         'page',
+        'pending_beatmapset_count',
         'previous_usernames',
-        'ranked_and_approved_beatmapset_count',
+        'ranked_beatmapset_count',
         'replays_watched_counts',
         'scores_best_count',
         'scores_first_count',
@@ -62,7 +63,6 @@ class UserCompactTransformer extends TransformerAbstract
         'statistics',
         'statistics_rulesets',
         'support_level',
-        'unranked_beatmapset_count',
         'unread_pm_count',
         'user_achievements',
         'user_preferences',
@@ -70,6 +70,10 @@ class UserCompactTransformer extends TransformerAbstract
         // TODO: should be alphabetically ordered but lazer relies on being after statistics. can revert to alphabetical after 2020-05-01
         'rankHistory',
         'rank_history',
+
+        // TODO: deprecated
+        'ranked_and_approved_beatmapset_count',
+        'unranked_beatmapset_count',
     ];
 
     protected $permissions = [
@@ -205,7 +209,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeGroups(User $user)
     {
-        return $this->collection($user->visibleGroups(), new UserGroupTransformer());
+        return $this->collection($user->userGroupsForBadges(), new UserGroupTransformer());
     }
 
     public function includeIsAdmin(User $user)
@@ -285,6 +289,11 @@ class UserCompactTransformer extends TransformerAbstract
         });
     }
 
+    public function includePendingBeatmapsetCount(User $user)
+    {
+        return $this->primitive($user->profileBeatmapsetsPending()->count());
+    }
+
     public function includePreviousUsernames(User $user)
     {
         return $this->primitive($user->previousUsernames()->unique()->values()->toArray());
@@ -292,7 +301,12 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeRankedAndApprovedBeatmapsetCount(User $user)
     {
-        return $this->primitive($user->profileBeatmapsetsRankedAndApproved()->count());
+        return $this->includeRankedBeatmapsetCount($user);
+    }
+
+    public function includeRankedBeatmapsetCount(User $user)
+    {
+        return $this->primitive($user->profileBeatmapsetsRanked()->count());
     }
 
     public function includeRankHistory(User $user)
@@ -348,7 +362,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeUnrankedBeatmapsetCount(User $user)
     {
-        return $this->primitive($user->profileBeatmapsetsUnranked()->count());
+        return $this->includePendingBeatmapsetCount($user);
     }
 
     public function includeUnreadPmCount(User $user)

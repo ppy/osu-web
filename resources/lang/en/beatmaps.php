@@ -270,7 +270,7 @@ return [
         'leaderboard' => 'Has Leaderboard',
         'loved' => 'Loved',
         'mine' => 'My Maps',
-        'pending' => 'Pending & WIP',
+        'pending' => 'Pending',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',
     ],

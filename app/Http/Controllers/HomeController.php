@@ -65,7 +65,7 @@ class HomeController extends Controller
         $news = NewsPost::default()->limit($newsLimit)->get();
 
         if (Auth::check()) {
-            $newBeatmapsets = Beatmapset::latestRankedOrApproved();
+            $newBeatmapsets = Beatmapset::latestRanked();
             $popularBeatmapsets = Beatmapset::popular()->get();
 
             return ext_view('home.user', compact(
