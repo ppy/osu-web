@@ -189,17 +189,11 @@ class @BeatmapDiscussionHelper
         params.beatmap = discussionState.beatmapId
         params.mode = discussionState.mode
 
-      if post?
-        postId = post.id
-
-    if discussionId?
-      hash = "/#{discussionId}"
-      hash = "#{hash}/#{postId}" if postId?
-    else
-      hash = ''
-
     url = new URL(laroute.route('beatmapsets.discussion', params))
-    url.hash = hash
+    if discussionId?
+      url.hash = "/#{discussionId}"
+      url.hash += "/#{post.id}" if post?
+
 
     if user?
       url.searchParams.set('user', user)
