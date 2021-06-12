@@ -25,12 +25,22 @@ export default function UserGroupBadge({group, modifiers}: Props) {
 
   const playModes: JSX.Element[] = (group.playmodes ?? []).map((mode) => <i key={mode} className={`fal fa-extra-mode-${mode}`} />);
 
+  let title = group.name;
+
+  if (group.playmodes != null) {
+    const playmodeNames = group.playmodes
+      .map((playmode) => osu.trans(`beatmaps.mode.${playmode}`))
+      .join(', ');
+
+    title += ` (${playmodeNames})`;
+  }
+
   return (
     <div
       className={blockClass}
       data-label={group.short_name}
       style={style}
-      title={group.name}
+      title={title}
     >
       {playModes.length > 0 &&
         <div className={'user-group-badge__modes'}>

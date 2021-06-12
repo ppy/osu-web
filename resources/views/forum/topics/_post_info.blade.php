@@ -57,11 +57,17 @@
                 $group = $userGroup->group;
                 $playmodes = $userGroup->playmodes;
                 $hasPlaymodes = $playmodes !== null && count($playmodes) > 0;
+                $title = $group->group_name;
+
+                if ($hasPlaymodes) {
+                    $playmodeNames = implode(', ', array_map(fn ($mode) => trans("beatmaps.mode.{$mode}"), $playmodes));
+                    $title .= " ({$playmodeNames})";
+                }
             @endphp
             <div
                 class="user-group-badge user-group-badge--t-forum"
                 data-label="{{ $group->short_name }}"
-                title="{{ $group->group_name }}"
+                title="{{ $title }}"
                 style="{!! css_group_colour($group) !!}"
             >
                 @if ($hasPlaymodes)
