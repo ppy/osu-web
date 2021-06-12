@@ -69,7 +69,7 @@ export class Scoreboard extends React.PureComponent
             type: type
             active: @props.type == type
 
-      if currentUser.is_supporter && @props.isScoreable
+      if @props.isScoreable
         div
           className: classWithModifiers('beatmapset-scoreboard__mods', initial: @props.enabledMods.length == 0)
           for mod in mods
