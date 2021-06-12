@@ -68,7 +68,7 @@ class UserReport extends Model
 
     public function routeNotificationForSlack(?Notification $_notification): ?string
     {
-        if ($this->reason === 'Cheating') {
+        if ($this->reason === 'Cheating' || $this->reason === 'MultiAccounting') {
             return config('osu.user_report_notification.endpoint_cheating');
         } else {
             return config('osu.user_report_notification.endpoint_moderation');
