@@ -35,7 +35,7 @@ class UserReport extends Model
     use RoutesNotifications, Validatable;
 
     const POST_TYPE_REASONS = ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'];
-    const SCORE_TYPE_REASONS = ['Cheating', 'Other'];
+    const SCORE_TYPE_REASONS = ['Cheating', 'MultiAccounting', 'Other'];
 
     const ALLOWED_REASONS = [
         MorphMap::MAP[BeatmapDiscussionPost::class] => self::POST_TYPE_REASONS,
