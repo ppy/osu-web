@@ -90,6 +90,13 @@ export class Main extends React.Component
     else
       @state.enabledMods
 
+    @setState
+      enabledMods: enabledMods
+
+    if enabledMods.length > 0 && !currentUser.is_supporter
+      @setState scores: []
+      return
+
     @scoresCache ?= {}
     cacheKey = "#{@state.currentBeatmap.id}-#{@state.currentBeatmap.mode}-#{_.sortBy enabledMods}-#{scoreboardType}"
 
@@ -98,7 +105,6 @@ export class Main extends React.Component
         scores: @scoresCache[cacheKey].scores
         userScore: @scoresCache[cacheKey].userScore if @scoresCache[cacheKey].userScore?
         userScorePosition: @scoresCache[cacheKey].userScorePosition
-        enabledMods: enabledMods
 
     if !forceReload && @scoresCache[cacheKey]?
       loadScore()

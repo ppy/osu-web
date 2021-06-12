@@ -100,7 +100,7 @@ export class Scoreboard extends React.PureComponent
             className: 'beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'
             osu.trans 'beatmapsets.show.scoreboard.no_scores.unranked'
 
-        else if currentUser.is_supporter || @props.type == 'global'
+        else if currentUser.is_supporter || (@props.type == 'global' && @props.enabledMods == 0)
           translationKey = if @state.loading then 'loading' else @props.type
 
           p
