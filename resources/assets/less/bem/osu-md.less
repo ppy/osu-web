@@ -8,6 +8,7 @@
   color: inherit;
   font-size: @font-size--wiki;
   word-wrap: break-word;
+  --paragraph-space: @md-paragraph-space;
 
   code {
     .default-border-radius();
@@ -50,6 +51,14 @@
     }
   }
 
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
+  &--group {
+    --paragraph-space: 10px;
+  }
+
   &--news {
     padding: 0;
     color: @osu-colour-c1;
@@ -69,16 +78,11 @@
   }
 
   &__figure-container {
-    margin: @md-paragraph-space 0;
+    margin: var(--paragraph-space) 0;
     text-align: center;
 
     .@{_top}--comment & {
       text-align: inherit;
-    }
-
-    .@{_top}--group & {
-      margin-bottom: 10px;
-      margin-top: 10px;
     }
   }
 
@@ -193,7 +197,7 @@
 
   &__infobox {
     padding: 10px;
-    margin: @md-paragraph-space 0;
+    margin: var(--paragraph-space) 0;
     border: 1px solid hsl(var(--hsl-b4));
     .default-border-radius();
     text-align: center;
@@ -260,10 +264,9 @@
   }
 
   &__paragraph {
-    margin-bottom: @md-paragraph-space;
+    margin-bottom: var(--paragraph-space);
     line-height: 1.5;
 
-    .@{_top}--group &,
     .@{_top}--store & {
       margin-bottom: 10px;
     }
@@ -308,9 +311,5 @@
     &--right {
       text-align: right;
     }
-  }
-
-  > *:last-child {
-    margin-bottom: 0;
   }
 }
