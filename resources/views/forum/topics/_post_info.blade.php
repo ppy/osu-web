@@ -64,9 +64,10 @@
                     $title .= " ({$playmodeNames})";
                 }
             @endphp
-            <div
+            <a
                 class="user-group-badge user-group-badge--t-forum"
                 data-label="{{ $group->short_name }}"
+                href="{{ route('groups.show', $group->getKey()) }}"
                 title="{{ $title }}"
                 style="{!! css_group_colour($group) !!}"
             >
@@ -77,7 +78,7 @@
                         @endforeach
                     </div>
                 @endif
-            </div>
+            </a>
             @if ($hasPlaymodes)
                 <div class="forum-post-info__row forum-post-info__row--group-badge-playmodes">
                     @foreach($playmodes as $mode)

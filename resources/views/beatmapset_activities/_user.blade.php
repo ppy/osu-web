@@ -40,12 +40,13 @@
         </div>
         <div class="{{$bn}}__user-badge">
             @if ($group !== null)
-                <div
+                <a
                     class="user-group-badge"
+                    href="{{ route('groups.show', $group->getKey()) }}"
                     title="{{ $group->group_name }}"
                     data-label="{{ $group->short_name }}"
                     style="{!! css_group_colour($group) !!}"
-                ></div>
+                ></a>
             @endif
         </div>
     </div>

@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserGroupJson from 'interfaces/user-group-json';
+import { route } from 'laroute';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 
@@ -23,8 +24,6 @@ export default function UserGroupBadge({group, modifiers}: Props) {
   });
   blockClass += classWithModifiers('user-group-badge', modifiers, true);
 
-  const playModes: JSX.Element[] = (group.playmodes ?? []).map((mode) => <i key={mode} className={`fal fa-extra-mode-${mode}`} />);
-
   let title = group.name;
 
   if (group.playmodes != null) {
@@ -35,18 +34,20 @@ export default function UserGroupBadge({group, modifiers}: Props) {
     title += ` (${playmodeNames})`;
   }
 
-  return (
-    <div
-      className={blockClass}
-      data-label={group.short_name}
-      style={style}
-      title={title}
-    >
-      {playModes.length > 0 &&
-        <div className={'user-group-badge__modes'}>
-          {playModes}
-        </div>
-      }
+  const playmodeIcons: JSX.Element[] = (group.playmodes ?? []).map((mode) => <i key={mode} className={`fal fa-extra-mode-${mode}`} />);
+  const props = {
+    'className': blockClass,
+    'data-label': group.short_name,
+    style,
+    title,
+  };
+  const children = playmodeIcons.length > 0 && (
+    <div className={'user-group-badge__modes'}>
+      {playmodeIcons}
     </div>
   );
+
+  return group.id < 0
+    ? <div {...props}>{children}</div>
+    : <a {...props} href={route('groups.show', { group: group.id })}>{children}</a>;
 }
