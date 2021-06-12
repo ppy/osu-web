@@ -27,7 +27,7 @@ class GroupTransformer extends TransformerAbstract
 
     public function includeDescription(Group $group)
     {
-        return $this->primitive([
+        return $this->primitive($group->group_desc === null ? null : [
             'html' => $group->descriptionHtml(),
             'markdown' => $group->group_desc,
         ]);

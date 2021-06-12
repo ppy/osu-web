@@ -3,14 +3,9 @@
 
 import GroupJson from './group-json';
 
-type Description = {
-  html: string;
-  markdown: string;
-} | {
-  html: null;
-  markdown: null;
-};
-
 export default interface GroupJsonExtended extends GroupJson {
-  description: Description;
+  description?: {
+    html: string;
+    markdown: string;
+  };
 }

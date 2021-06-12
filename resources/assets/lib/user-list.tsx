@@ -20,7 +20,7 @@ const playModes: PlayModeFilter[] = ['all', 'osu', 'taiko', 'fruits', 'mania'];
 const sortModes: SortMode[] = ['last_visit', 'rank', 'username'];
 
 interface Props {
-  descriptionHtml?: string | null;
+  descriptionHtml?: string;
   playmodeFilter?: boolean;
   playmodeFilterGroupId?: number;
   title?: string;
