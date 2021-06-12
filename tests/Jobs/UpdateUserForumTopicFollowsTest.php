@@ -45,7 +45,6 @@ class UpdateUserForumTopicFollowsTest extends TestCase
         $this->assertSame($watchesCount, TopicWatch::count());
         $this->assertSame($userNotificationsCount, UserNotification::count());
 
-        app()->make('OsuAuthorize')->cacheReset();
         $topic->moveTo($adminForum);
 
         $this->assertSame($watchesCount - 1, TopicWatch::count());

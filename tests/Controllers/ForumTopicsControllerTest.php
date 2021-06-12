@@ -47,8 +47,6 @@ class ForumTopicsControllerTest extends TestCase
 
         // add some plays so it passes
         $this->addPlaycount($user);
-        // reset auth
-        app()->make('OsuAuthorize')->cacheReset();
 
         $this
             ->actingAsVerified($user)
@@ -96,8 +94,6 @@ class ForumTopicsControllerTest extends TestCase
 
         // add some plays so it passes
         $this->addPlaycount($user);
-        // reset auth
-        app()->make('OsuAuthorize')->cacheReset();
 
         $this
             ->actingAsVerified($user)
@@ -256,8 +252,6 @@ class ForumTopicsControllerTest extends TestCase
 
         // add some plays so it passes
         $this->addPlaycount($user);
-        // reset auth
-        app()->make('OsuAuthorize')->cacheReset();
 
         $this
             ->actingAsVerified($user)

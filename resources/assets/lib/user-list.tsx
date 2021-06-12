@@ -22,6 +22,7 @@ const sortModes: SortMode[] = ['last_visit', 'rank', 'username'];
 interface Props {
   descriptionHtml?: string | null;
   playmodeFilter?: boolean;
+  playmodeFilterGroupId?: number;
   title?: string;
   users: UserJson[];
 }
@@ -279,10 +280,16 @@ export class UserList extends React.PureComponent<Props> {
   private getFilteredUsers(filter: Filter) {
     // TODO: should be cached or something
     let users = this.props.users.slice();
-    if (this.props.playmodeFilter && this.state.playMode !== 'all') {
+    const playmode = this.state.playMode;
+    if (this.props.playmodeFilter && playmode !== 'all') {
       users = users.filter((user) => {
         if (user.groups && user.groups.length > 0) {
-          return user.groups.some((group) => group.playmodes && (group.playmodes as PlayModeFilter[]).includes(this.state.playMode));
+          if (this.props.playmodeFilterGroupId != null) {
+            const filterGroup = user.groups.find((group) => group.id === this.props.playmodeFilterGroupId);
+            return filterGroup?.playmodes?.includes(playmode);
+          }
+
+          return user.groups.some((group) => group.playmodes?.includes(playmode));
         } else {
           return false;
         }

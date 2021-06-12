@@ -22,6 +22,7 @@ export class Main extends React.PureComponent<Props> {
           <UserList
             descriptionHtml={this.props.group.description.html}
             playmodeFilter={this.props.group.has_playmodes}
+            playmodeFilterGroupId={this.props.group.id}
             title={this.props.group.name}
             users={this.props.users}
           />
