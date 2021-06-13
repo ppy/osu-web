@@ -8,7 +8,6 @@ import * as React from 'react';
 import { ReportReportable } from 'report-reportable';
 import { canBeReported } from 'score-helper';
 
-
 interface Props {
   score: ScoreJson;
 }
