@@ -142,7 +142,7 @@ return [
             'friend' => 'Friend Ranking',
             'global' => 'Global Ranking',
             'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
-            'supporter-only' => 'You need to be an osu!supporter to access the friend and country rankings or mod spesific rankings!',
+            'supporter-only' => 'You need to be an osu!supporter to access the friend, country, or mod-specific rankings!',
             'title' => 'Scoreboard',
 
             'headers' => [
