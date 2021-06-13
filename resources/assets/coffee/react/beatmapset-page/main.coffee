@@ -74,9 +74,6 @@ export class Main extends React.Component
   }) =>
     @scoreboardXhr?.abort()
 
-    @setState
-      currentScoreboardType: scoreboardType
-
     enabledMods = if resetMods
       []
     else if enabledMod != null && _.includes @state.enabledMods, enabledMod
@@ -86,11 +83,11 @@ export class Main extends React.Component
     else
       @state.enabledMods
 
-    @setState
-      enabledMods: enabledMods
-
     if !currentUser.is_supporter && (scoreboardType != 'global' || enabledMods.length > 0)
-      @setState scores: []
+      @setState
+        scores: []
+        currentScoreboardType: scoreboardType
+        enabledMods: enabledMods
       return
 
     @scoresCache ?= {}
@@ -101,6 +98,8 @@ export class Main extends React.Component
         scores: @scoresCache[cacheKey].scores
         userScore: @scoresCache[cacheKey].userScore if @scoresCache[cacheKey].userScore?
         userScorePosition: @scoresCache[cacheKey].userScorePosition
+        currentScoreboardType: scoreboardType
+        enabledMods: enabledMods
 
     if !forceReload && @scoresCache[cacheKey]?
       loadScore()
