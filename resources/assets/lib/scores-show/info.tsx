@@ -2,11 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ScoreJson from 'interfaces/score-json';
-import { route } from 'laroute';
-import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
-import { ReportReportable } from 'report-reportable';
-import { canBeReported } from 'score-helper';
+import Buttons from './buttons';
 import Dial from './dial';
 import Player from './player';
 import Tower from './tower';
@@ -49,31 +46,8 @@ export default function Info(props: Props) {
       </div>
 
       <div className='score-info__item score-info__item--buttons'>
-        {score.replay && (
-          <a
-            className='btn-osu-big btn-osu-big--rounded'
-            href={route('scores.download', { mode: score.mode, score: score.best_id })}
-          >
-            {osu.trans('users.show.extra.top_ranks.download_replay')}
-          </a>
-        )}
+        <Buttons score={score} />
       </div>
-
-      {canBeReported(score) && (
-        <div className='score-info__item score-info__item--more'>
-          <PopupMenuPersistent>
-            {() => (
-              <ReportReportable
-                baseKey='scores'
-                className='simple-menu__item'
-                reportableId={score.best_id?.toString() ?? ''}
-                reportableType={`score_best_${score.mode}`}
-                user={score.user}
-              />
-            )}
-          </PopupMenuPersistent>
-        </div>
-      )}
     </div>
   );
 }
