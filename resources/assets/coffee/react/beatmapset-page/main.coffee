@@ -77,10 +77,6 @@ export class Main extends React.Component
     @setState
       currentScoreboardType: scoreboardType
 
-    if scoreboardType != 'global' && !currentUser.is_supporter
-      @setState scores: []
-      return
-
     enabledMods = if resetMods
       []
     else if enabledMod != null && _.includes @state.enabledMods, enabledMod
@@ -93,7 +89,7 @@ export class Main extends React.Component
     @setState
       enabledMods: enabledMods
 
-    if enabledMods.length > 0 && !currentUser.is_supporter
+    if !currentUser.is_supporter && (scoreboardType != 'global' || enabledMods.length > 0)
       @setState scores: []
       return
 
