@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Älskade Beatmaps',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Rankade & Godkända Beatmaps',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Väntade Beatmaps',
+                ],
+                'ranked' => [
+                    'title' => 'Rankade & Godkända Beatmaps',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'Totala Träffar',
             'total_score' => 'Total Poäng',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Rankade & Godkända Beatmaps',
-            'loved_beatmapset_count' => 'Älskade Beatmaps',
-            'unranked_beatmapset_count' => 'Väntande Beatmaps',
             'graveyard_beatmapset_count' => 'Begravda Beatmaps',
+            'loved_beatmapset_count' => 'Älskade Beatmaps',
+            'pending_beatmapset_count' => 'Väntande Beatmaps',
+            'ranked_beatmapset_count' => 'Rankade & Godkända Beatmaps',
         ],
     ],
 

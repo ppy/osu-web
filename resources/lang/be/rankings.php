@@ -6,7 +6,7 @@
 return [
     'countries' => [
         'all' => 'Усе',
-        'title' => '',
+        'title' => 'Краіна',
     ],
 
     'filter' => [
@@ -20,7 +20,7 @@ return [
     'type' => [
         'charts' => 'Чартам',
         'country' => 'Краіна',
-        'multiplayer' => '',
+        'multiplayer' => 'мультыплэер',
         'performance' => 'Прадукцыйнасць',
         'score' => 'Ачкі',
     ],
