@@ -174,14 +174,14 @@ class UsersController extends Controller
      *
      * Returns the beatmaps of specified user.
      *
-     * | Type                |
-     * |---------------------|
-     * | favourite           |
-     * | graveyard           |
-     * | loved               |
-     * | most_played         |
-     * | ranked_and_approved |
-     * | unranked            |
+     * | Type        | Notes
+     * |------------ | -----
+     * | favourite   | |
+     * | graveyard   | |
+     * | loved       | |
+     * | most_played | |
+     * | pending     | Previously `unranked`
+     * | ranked      | Previously `ranked_and_approved`
      *
      * ---
      *
@@ -214,8 +214,12 @@ class UsersController extends Controller
             'graveyard' => 'graveyardBeatmapsets',
             'loved' => 'lovedBeatmapsets',
             'most_played' => 'beatmapPlaycounts',
-            'ranked_and_approved' => 'rankedAndApprovedBeatmapsets',
-            'unranked' => 'unrankedBeatmapsets',
+            'ranked' => 'rankedBeatmapsets',
+            'pending' => 'pendingBeatmapsets',
+
+            // TODO: deprecated
+            'ranked_and_approved' => 'rankedBeatmapsets',
+            'unranked' => 'pendingBeatmapsets',
         ];
 
         $page = $mapping[$type] ?? abort(404);
@@ -471,9 +475,10 @@ class UsersController extends Controller
      * - mapping_follower_count
      * - monthly_playcounts
      * - page
+     * - pending_beatmapset_count
      * - previous_usernames
      * - rank_history
-     * - ranked_and_approved_beatmapset_count
+     * - ranked_beatmapset_count
      * - replays_watched_counts
      * - scores_best_count
      * - scores_first_count
@@ -483,7 +488,6 @@ class UsersController extends Controller
      * - statistics.rank
      * - statistics.variants
      * - support_level
-     * - unranked_beatmapset_count
      * - user_achievements
      *
      * @urlParam user integer required Id or username of the user. Id lookup is prioritised unless `key` parameter is specified. Previous usernames are also checked in some cases. Example: 1
@@ -528,10 +532,11 @@ class UsersController extends Controller
             'mapping_follower_count',
             'monthly_playcounts',
             'page',
+            'pending_beatmapset_count',
             'previous_usernames',
             'rankHistory',
             'rank_history',
-            'ranked_and_approved_beatmapset_count',
+            'ranked_beatmapset_count',
             'replays_watched_counts',
             'scores_best_count',
             'scores_first_count',
@@ -541,8 +546,11 @@ class UsersController extends Controller
             'statistics.rank',
             'statistics.variants',
             'support_level',
-            'unranked_beatmapset_count',
             'user_achievements',
+
+            // TODO: deprecated
+            'ranked_and_approved_beatmapset_count',
+            'unranked_beatmapset_count',
         ];
 
         if (priv_check('UserSilenceShowExtendedInfo')->can() && !is_api_request()) {
@@ -577,10 +585,10 @@ class UsersController extends Controller
 
                 'beatmapPlaycounts' => 5,
                 'favouriteBeatmapsets' => 6,
-                'rankedAndApprovedBeatmapsets' => 6,
-                'lovedBeatmapsets' => 6,
-                'unrankedBeatmapsets' => 6,
                 'graveyardBeatmapsets' => 2,
+                'lovedBeatmapsets' => 6,
+                'pendingBeatmapsets' => 6,
+                'rankedBeatmapsets' => 6,
 
                 'recentActivity' => 5,
                 'recentlyReceivedKudosu' => 5,
@@ -708,16 +716,16 @@ class UsersController extends Controller
                     $query = $user->profileBeatmapsetsLoved()
                         ->orderBy('approved_date', 'desc');
                     break;
-                case 'rankedAndApprovedBeatmapsets':
+                case 'rankedBeatmapsets':
                     $transformer = 'Beatmapset';
                     $includes = ['beatmaps'];
-                    $query = $user->profileBeatmapsetsRankedAndApproved()
+                    $query = $user->profileBeatmapsetsRanked()
                         ->orderBy('approved_date', 'desc');
                     break;
-                case 'unrankedBeatmapsets':
+                case 'pendingBeatmapsets':
                     $transformer = 'Beatmapset';
                     $includes = ['beatmaps'];
-                    $query = $user->profileBeatmapsetsUnranked()
+                    $query = $user->profileBeatmapsetsPending()
                         ->orderBy('last_update', 'desc');
                     break;
 

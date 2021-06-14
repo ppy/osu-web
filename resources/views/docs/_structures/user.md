@@ -97,8 +97,9 @@
     "html": "<div class='bbcode bbcode--profile-page'><center>Hello</center></div>",
     "raw": "[centre]Hello[/centre]"
   },
+  "pending_beatmapset_count": 0,
   "previous_usernames": [],
-  "ranked_and_approved_beatmapset_count": 10,
+  "ranked_beatmapset_count": 10,
   "replays_watched_counts": [
     {
       "start_date": "2019-11-01",
@@ -143,7 +144,6 @@
     }
   },
   "support_level": 3,
-  "unranked_beatmapset_count": 0,
   "user_achievements": [
     {
       "achieved_at": "2020-01-01T00:00:00+00:00",

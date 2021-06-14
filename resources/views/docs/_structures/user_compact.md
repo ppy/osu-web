@@ -38,37 +38,38 @@ username        | string                    | user's display name
 
 Following are attributes which may be additionally included in the response. Relevant endpoints should list them if applicable.
 
-Field                                | Type
--------------------------------------|------------------------------------------------------------------
-account_history                      | [UserAccountHistory](#usercompact-useraccounthistory)[]
-active_tournament_banner             | [UserCompact.ProfileBanner](#usercompact-profilebanner)?
-badges                               | [UserBadge](#usercompact-userbadge)[]
-beatmap_playcounts_count             | number
-blocks                               | |
-country                              | |
-cover                                | |
-favourite_beatmapset_count           | number
-follower_count                       | number
-graveyard_beatmapset_count           | number
-groups                               | [UserGroup](#usergroup)[]
-is_restricted                        | boolean?
-loved_beatmapset_count               | number
-monthly_playcounts                   | [UserMonthlyPlaycount](#usermonthlyplaycount)[]
-page                                 | |
-previous_usernames                   | |
-ranked_and_approved_beatmapset_count | |
-replays_watched_counts               | |
-scores_best_count                    | number
-scores_first_count                   | number
-scores_recent_count                  | number
-statistics                           | |
-statistics_rulesets                  | UserStatisticsRulesets
-support_level                        | |
-unranked_beatmapset_count            | |
-unread_pm_count                      | |
-user_achievements                    | |
-user_preferences                     | |
-rank_history                         | |
+Field                      | Type
+---------------------------|-----
+account_history            | [UserAccountHistory](#usercompact-useraccounthistory)[]
+active_tournament_banner   | [UserCompact.ProfileBanner](#usercompact-profilebanner)?
+badges                     | [UserBadge](#usercompact-userbadge)[]
+beatmap_playcounts_count   | number
+blocks                     | |
+country                    | |
+cover                      | |
+favourite_beatmapset_count | number
+follower_count             | number
+friends                    | |
+graveyard_beatmapset_count | number
+groups                     | [UserGroup](#usergroup)[]
+is_restricted              | boolean?
+loved_beatmapset_count     | number
+monthly_playcounts         | [UserMonthlyPlaycount](#usermonthlyplaycount)[]
+page                       | |
+pending_beatmapset_count   | |
+previous_usernames         | |
+rank_history               | |
+ranked_beatmapset_count    | |
+replays_watched_counts     | |
+scores_best_count          | number
+scores_first_count         | number
+scores_recent_count        | number
+statistics                 | |
+statistics_rulesets        | UserStatisticsRulesets
+support_level              | |
+unread_pm_count            | |
+user_achievements          | |
+user_preferences           | |
 
 <div id="usercompact-profilebanner" data-unique="usercompact-profilebanner"></div>
 
