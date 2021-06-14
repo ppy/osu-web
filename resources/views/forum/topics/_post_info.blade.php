@@ -53,7 +53,7 @@
     @endphp
     @if ($userGroup !== null)
         <div class="forum-post-info__row forum-post-info__row--group-badge">
-            @include('objects._user_badge', [
+            @include('objects._user_group_badge', [
                 'forum' => true,
                 'userGroup' => $userGroup,
             ])

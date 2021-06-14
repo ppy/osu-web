@@ -40,7 +40,7 @@
         </div>
         <div class="{{$bn}}__user-badge">
             @if ($userGroup !== null)
-                @include('objects._user_badge', compact('userGroup'))
+                @include('objects._user_group_badge', compact('userGroup'))
             @endif
         </div>
     </div>
