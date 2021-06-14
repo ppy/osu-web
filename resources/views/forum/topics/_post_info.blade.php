@@ -53,39 +53,10 @@
     @endphp
     @if ($userGroup !== null)
         <div class="forum-post-info__row forum-post-info__row--group-badge">
-            @php
-                $group = $userGroup->group;
-                $playmodes = $userGroup->playmodes;
-                $hasPlaymodes = $playmodes !== null && count($playmodes) > 0;
-                $title = $group->group_name;
-
-                if ($hasPlaymodes) {
-                    $playmodeNames = implode(', ', array_map(fn ($mode) => trans("beatmaps.mode.{$mode}"), $playmodes));
-                    $title .= " ({$playmodeNames})";
-                }
-            @endphp
-            <a
-                class="user-group-badge user-group-badge--t-forum"
-                data-label="{{ $group->short_name }}"
-                href="{{ route('groups.show', $group->getKey()) }}"
-                title="{{ $title }}"
-                style="{!! css_group_colour($group) !!}"
-            >
-                @if ($hasPlaymodes)
-                    <div class="user-group-badge__modes">
-                        @foreach($playmodes as $mode)
-                            <i class="fal fa-extra-mode-{{$mode}}"></i>
-                        @endforeach
-                    </div>
-                @endif
-            </a>
-            @if ($hasPlaymodes)
-                <div class="forum-post-info__row forum-post-info__row--group-badge-playmodes">
-                    @foreach($playmodes as $mode)
-                        <i class="fal fa-extra-mode-{{$mode}}"></i>
-                    @endforeach
-                </div>
-            @endif
+            @include('objects._user_badge', [
+                'forum' => true,
+                'userGroup' => $userGroup,
+            ])
         </div>
     @endif
 

@@ -5,11 +5,11 @@
 @php
     // this is pretty much a php conversion of beatmap-discussions/user-card.coffee
     $topClasses = $bn = 'beatmap-discussion-user-card';
-    $group = optional($user->userGroupsForBadges()->first())->group;
+    $userGroup = $user->userGroupsForBadges()->first();
     $hideStripe = $hideStripe ?? false;
 @endphp
 
-<div class="{{$topClasses}}" style="{!! css_group_colour($group) !!}">
+<div class="{{$topClasses}}" style="{!! css_group_colour(optional($userGroup)->group) !!}">
     <div class="{{$bn}}__avatar">
         @if (isset($user))
             <a class="{{$bn}}__user-link" href="{{route('users.show', $user)}}">
@@ -39,14 +39,8 @@
             @endif
         </div>
         <div class="{{$bn}}__user-badge">
-            @if ($group !== null)
-                <a
-                    class="user-group-badge"
-                    href="{{ route('groups.show', $group->getKey()) }}"
-                    title="{{ $group->group_name }}"
-                    data-label="{{ $group->short_name }}"
-                    style="{!! css_group_colour($group) !!}"
-                ></a>
+            @if ($userGroup !== null)
+                @include('objects._user_badge', compact('userGroup'))
             @endif
         </div>
     </div>
