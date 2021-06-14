@@ -16,9 +16,18 @@ export default function UserGroupBadge({group, modifiers}: Props) {
     return null;
   }
 
+  let children;
   let title = group.name;
 
   if (group.playmodes != null && group.playmodes.length > 0) {
+    children = (
+      <div className='user-group-badge__modes'>
+        {group.playmodes.map((playmode) => (
+          <i key={playmode} className={`fal fa-extra-mode-${playmode}`} />
+        ))}
+      </div>
+    );
+
     const playmodeNames = group.playmodes
       .map((playmode) => osu.trans(`beatmaps.mode.${playmode}`))
       .join(', ');
@@ -27,13 +36,7 @@ export default function UserGroupBadge({group, modifiers}: Props) {
   }
 
   const props = {
-    'children': group.playmodes != null && group.playmodes.length > 0 && (
-      <div className={'user-group-badge__modes'}>
-        {group.playmodes.map((playmode) => (
-          <i key={playmode} className={`fal fa-extra-mode-${playmode}`} />
-        ))}
-      </div>
-    ),
+    children,
     'className': classWithModifiers('user-group-badge', {
       probationary: group.is_probationary,
       [group.identifier]: true,
