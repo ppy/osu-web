@@ -16,17 +16,9 @@ export default function UserGroupBadge({group, modifiers}: Props) {
     return null;
   }
 
-  const style = osu.groupColour(group);
-
-  let blockClass = classWithModifiers('user-group-badge', {
-    probationary: group.is_probationary,
-    [group.identifier]: true,
-  });
-  blockClass += classWithModifiers('user-group-badge', modifiers, true);
-
   let title = group.name;
 
-  if (group.playmodes != null) {
+  if (group.playmodes != null && group.playmodes.length > 0) {
     const playmodeNames = group.playmodes
       .map((playmode) => osu.trans(`beatmaps.mode.${playmode}`))
       .join(', ');
@@ -34,20 +26,25 @@ export default function UserGroupBadge({group, modifiers}: Props) {
     title += ` (${playmodeNames})`;
   }
 
-  const playmodeIcons: JSX.Element[] = (group.playmodes ?? []).map((mode) => <i key={mode} className={`fal fa-extra-mode-${mode}`} />);
   const props = {
-    'className': blockClass,
+    'children': group.playmodes != null && group.playmodes.length > 0 && (
+      <div className={'user-group-badge__modes'}>
+        {group.playmodes.map((playmode) => (
+          <i key={playmode} className={`fal fa-extra-mode-${playmode}`} />
+        ))}
+      </div>
+    ),
+    'className': classWithModifiers('user-group-badge', {
+      probationary: group.is_probationary,
+      [group.identifier]: true,
+      ...modifiers,
+    }),
     'data-label': group.short_name,
-    style,
+    'style': osu.groupColour(group),
     title,
   };
-  const children = playmodeIcons.length > 0 && (
-    <div className={'user-group-badge__modes'}>
-      {playmodeIcons}
-    </div>
-  );
 
   return group.id < 0
-    ? <div {...props}>{children}</div>
-    : <a {...props} href={route('groups.show', { group: group.id })}>{children}</a>;
+    ? <div {...props} />
+    : <a {...props} href={route('groups.show', { group: group.id })} />;
 }
