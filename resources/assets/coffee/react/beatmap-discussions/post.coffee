@@ -53,15 +53,18 @@ export class Post extends React.PureComponent
       editing: @state.editing
       unread: !@props.read && @props.type != 'discussion'
 
+    topClasses += ' js-beatmap-discussion-jump'
+
     div
       className: topClasses
+      'data-post-id': @props.post.id
       key: "#{@props.type}-#{@props.post.id}"
       onClick: =>
         $.publish 'beatmapDiscussionPost:markRead', id: @props.post.id
 
       div
         className: "#{bn}__content"
-        if (!@props.hideUserCard)
+        if (@props.type == 'reply')
           el UserCard,
             user: @props.user
             group: badgeGroup
@@ -209,13 +212,12 @@ export class Post extends React.PureComponent
         className: "#{bn}__actions"
         div
           className: "#{bn}__actions-group"
-          if @props.type == 'discussion'
-            span
-              className: "#{bn}__action #{bn}__action--button"
-              el ClickToCopy,
-                value: BeatmapDiscussionHelper.url discussion: @props.discussion
-                label: osu.trans 'common.buttons.permalink'
-                valueAsUrl: true
+          span
+            className: "#{bn}__action #{bn}__action--button"
+            el ClickToCopy,
+              value: BeatmapDiscussionHelper.url discussion: @props.discussion, post: (@props.post if @props.type == 'reply')
+              label: osu.trans 'common.buttons.permalink'
+              valueAsUrl: true
 
           if @props.canBeEdited
             button

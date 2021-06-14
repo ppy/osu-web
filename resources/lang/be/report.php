@@ -15,8 +15,8 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Справаздача',
+        'title' => 'Паскардзіцца на пост :username?',
     ],
 
     'scores' => [
