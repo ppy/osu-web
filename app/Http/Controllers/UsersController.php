@@ -74,7 +74,7 @@ class UsersController extends Controller
     public function card($id)
     {
         try {
-            $user = FindForProfilePage::find($id);
+            $user = FindForProfilePage::find($id, null, false);
         } catch (UserProfilePageLookupException $e) {
             $user = UserNotFound::instance();
         }

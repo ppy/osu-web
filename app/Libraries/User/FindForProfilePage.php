@@ -10,7 +10,7 @@ use App\Models\User;
 
 class FindForProfilePage
 {
-    public static function find($id, ?string $type = null)
+    public static function find($id, ?string $type = null, ?bool $assertCanonicalId = null)
     {
         $user = User::lookupWithHistory($id, $type, true);
         $request = request();
@@ -25,7 +25,7 @@ class FindForProfilePage
             });
         }
 
-        if (!is_json_request() && (string) $user->getKey() !== (string) $id) {
+        if (($assertCanonicalId ?? !is_json_request()) && (string) $user->getKey() !== (string) $id) {
             $redirectTarget = route(
                 $request->route()->getName(),
                 array_merge($request->query(), $request->route()->parameters(), compact('user'))
