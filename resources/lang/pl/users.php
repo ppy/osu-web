@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Ulubione beatmapy społeczności',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Rankingowe i zatwierdzone beatmapy',
+                'pending' => [
+                    'title' => '',
                 ],
-                'unranked' => [
-                    'title' => 'Oczekujące beatmapy',
+                'ranked' => [
+                    'title' => '',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'Łączna liczba uderzeń',
             'total_score' => 'Łączny wynik',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Rankingowe i zatwierdzone beatmapy',
-            'loved_beatmapset_count' => 'Ulubione beatmapy społeczności',
-            'unranked_beatmapset_count' => 'Oczekujące beatmapy',
             'graveyard_beatmapset_count' => 'Porzucone beatmapy',
+            'loved_beatmapset_count' => 'Ulubione beatmapy społeczności',
+            'pending_beatmapset_count' => '',
+            'ranked_beatmapset_count' => '',
         ],
     ],
 

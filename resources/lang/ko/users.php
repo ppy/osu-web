@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Loved 비트맵',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked 및 Approved 상태의 비트맵',
+                'pending' => [
+                    'title' => '',
                 ],
-                'unranked' => [
-                    'title' => 'Pending 비트맵',
+                'ranked' => [
+                    'title' => '',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => '총 타격 횟수',
             'total_score' => '총 점수',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked 및 Approved 상태의 비트맵',
-            'loved_beatmapset_count' => 'Loved 비트맵',
-            'unranked_beatmapset_count' => '대기 중인 비트맵',
             'graveyard_beatmapset_count' => '묻힌 비트맵',
+            'loved_beatmapset_count' => 'Loved 비트맵',
+            'pending_beatmapset_count' => '',
+            'ranked_beatmapset_count' => '',
         ],
     ],
 

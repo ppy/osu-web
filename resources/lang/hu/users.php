@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Szeretett Beatmap-ek',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmap-ek',
+                'pending' => [
+                    'title' => '',
                 ],
-                'unranked' => [
-                    'title' => 'Pending Beatmap-ek',
+                'ranked' => [
+                    'title' => '',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'Találatok Száma',
             'total_score' => 'Összpontszám',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Rankedelt & jóváhagyott beatmapek',
-            'loved_beatmapset_count' => 'Kedvelt beatmapek',
-            'unranked_beatmapset_count' => 'Függőben lévő beatmapek',
             'graveyard_beatmapset_count' => 'Eltemetett beatmapek',
+            'loved_beatmapset_count' => 'Kedvelt beatmapek',
+            'pending_beatmapset_count' => '',
+            'ranked_beatmapset_count' => '',
         ],
     ],
 

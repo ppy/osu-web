@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Loved Beatmaps',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps',
+                'pending' => [
+                    'title' => '',
                 ],
-                'unranked' => [
-                    'title' => 'Εκκρεμή Beatmaps',
+                'ranked' => [
+                    'title' => '',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'Συνολικά Hits',
             'total_score' => 'Συνολική Βαθμολογία',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
             'graveyard_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'pending_beatmapset_count' => '',
+            'ranked_beatmapset_count' => '',
         ],
     ],
 

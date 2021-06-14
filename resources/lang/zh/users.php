@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Loved 的谱面',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved 的谱面',
+                'pending' => [
+                    'title' => '',
                 ],
-                'unranked' => [
-                    'title' => 'Pending 的谱面',
+                'ranked' => [
+                    'title' => '',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => '总命中次数',
             'total_score' => '总分',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked & Approved 的谱面',
-            'loved_beatmapset_count' => 'Loved 的谱面',
-            'unranked_beatmapset_count' => 'Pending 的谱面',
             'graveyard_beatmapset_count' => '坟场里的谱面',
+            'loved_beatmapset_count' => 'Loved 的谱面',
+            'pending_beatmapset_count' => '',
+            'ranked_beatmapset_count' => '',
         ],
     ],
 

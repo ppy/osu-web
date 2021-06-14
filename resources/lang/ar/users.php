@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'الخرائط المُحَبَبة',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'الخرائط المصفوفة والمقبولة',
+                'pending' => [
+                    'title' => '',
                 ],
-                'unranked' => [
-                    'title' => 'الخرائط المعلقة',
+                'ranked' => [
+                    'title' => '',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'مجموع التصويبات',
             'total_score' => 'مجموع النقاط',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'الخرائط المصفوفة والمقبولة',
-            'loved_beatmapset_count' => 'الخرائط المُحَبَبة',
-            'unranked_beatmapset_count' => 'الخرائط المعلقة',
             'graveyard_beatmapset_count' => 'الخرائط المقبورة',
+            'loved_beatmapset_count' => 'الخرائط المُحَبَبة',
+            'pending_beatmapset_count' => '',
+            'ranked_beatmapset_count' => '',
         ],
     ],
 

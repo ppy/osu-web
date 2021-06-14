@@ -55,7 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Approvazione',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'Cambio di proprietario della difficoltà',
         'discussion_delete' => 'Eliminazione discussione',
         'discussion_post_delete' => 'Eliminazione risposta a discussione',
         'discussion_post_restore' => 'Recupero risposta a discussione',

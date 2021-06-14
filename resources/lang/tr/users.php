@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Sevilen Beatmapler',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Dereceli & Onaylı Beatmapler',
+                'pending' => [
+                    'title' => '',
                 ],
-                'unranked' => [
-                    'title' => 'Beklemedeki Beatmapler',
+                'ranked' => [
+                    'title' => '',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'Toplam Vuruş',
             'total_score' => 'Toplam Skor',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Dereceli ve Onaylanmış Beatmapler',
-            'loved_beatmapset_count' => 'Sevilen Beatmapler',
-            'unranked_beatmapset_count' => 'Onay Bekleyen Beatmapler',
             'graveyard_beatmapset_count' => 'Mezarlıktaki Beatmapler',
+            'loved_beatmapset_count' => 'Sevilen Beatmapler',
+            'pending_beatmapset_count' => '',
+            'ranked_beatmapset_count' => '',
         ],
     ],
 

@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Elskede Beatmaps',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Rangerte & Godkjente Beatmaps',
+                'pending' => [
+                    'title' => '',
                 ],
-                'unranked' => [
-                    'title' => 'Ventende Beatmaps',
+                'ranked' => [
+                    'title' => '',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'Totale Treff',
             'total_score' => 'Samlet Poengsum',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Rangerte & Godkjente Beatmaps',
-            'loved_beatmapset_count' => 'Elskede Beatmaps',
-            'unranked_beatmapset_count' => 'Ventende Beatmaps',
             'graveyard_beatmapset_count' => 'Gravlagte Beatmaps',
+            'loved_beatmapset_count' => 'Elskede Beatmaps',
+            'pending_beatmapset_count' => '',
+            'ranked_beatmapset_count' => '',
         ],
     ],
 

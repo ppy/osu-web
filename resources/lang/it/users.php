@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Beatmap Amate',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmap Classificate & Approvate',
+                'pending' => [
+                    'title' => '',
                 ],
-                'unranked' => [
-                    'title' => 'Beatmap in Attesa',
+                'ranked' => [
+                    'title' => '',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'Colpi Totali',
             'total_score' => 'Punteggio Totale',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Beatmap Classificate & Approvate',
-            'loved_beatmapset_count' => 'Beatmap Amate',
-            'unranked_beatmapset_count' => 'Beatmap in Attesa',
             'graveyard_beatmapset_count' => 'Beatmap Abbandonate',
+            'loved_beatmapset_count' => 'Beatmap Amate',
+            'pending_beatmapset_count' => '',
+            'ranked_beatmapset_count' => '',
         ],
     ],
 

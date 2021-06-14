@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Loved Beatmaps',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Gerankte & Goedgekeurde Beatmaps',
+                'pending' => [
+                    'title' => '',
                 ],
-                'unranked' => [
-                    'title' => 'Afwachtende Beatmaps',
+                'ranked' => [
+                    'title' => '',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'Totaal Aantal Hits',
             'total_score' => 'Totale Score',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Gerankte & Goedgekeurde Beatmaps',
-            'loved_beatmapset_count' => 'Loved Beatmaps',
-            'unranked_beatmapset_count' => 'Afwachtende Beatmaps',
             'graveyard_beatmapset_count' => 'Graveyarded Beatmaps',
+            'loved_beatmapset_count' => 'Loved Beatmaps',
+            'pending_beatmapset_count' => '',
+            'ranked_beatmapset_count' => '',
         ],
     ],
 

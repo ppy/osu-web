@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Loved Beatmaps',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận',
+                'pending' => [
+                    'title' => '',
                 ],
-                'unranked' => [
-                    'title' => 'Beatmap Đang Chờ (:count)',
+                'ranked' => [
+                    'title' => '',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'Tổng Lần Bấm',
             'total_score' => 'Tổng Điểm',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
             'graveyard_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'pending_beatmapset_count' => '',
+            'ranked_beatmapset_count' => '',
         ],
     ],
 
