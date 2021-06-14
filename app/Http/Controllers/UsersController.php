@@ -467,32 +467,34 @@ class UsersController extends Controller
      * ### Response format
      *
      * Returns [User](#user) object.
-     * Following attributes are included in the response object when applicable.
+     * The following [optional attributes on UserCompact](#usercompact-optionalattributes) are included:
      *
-     * Attribute                  | Notes
-     * -------------------------- | -----
-     * account_history            | |
-     * active_tournament_banner   | |
-     * badges                     | |
-     * beatmap_playcounts_count   | |
-     * favourite_beatmapset_count | |
-     * follower_count             | |
-     * graveyard_beatmapset_count | |
-     * groups                     | |
-     * loved_beatmapset_count     | |
-     * monthly_playcounts         | |
-     * page                       | |
-     * pending_beatmapset_count   | |
-     * previous_usernames         | |
-     * rank_history               | For specified mode.
-     * ranked_beatmapset_count    | |
-     * replays_watched_counts     | |
-     * scores_best_count          | For specified mode.
-     * scores_first_count         | For specified mode.
-     * scores_recent_count        | For specified mode.
-     * statistics                 | For specified mode. Inluces `rank` and `variants` attributes.
-     * support_level              | |
-     * user_achievements          | |
+     * - account_history
+     * - active_tournament_banner
+     * - badges
+     * - beatmap_playcounts_count
+     * - favourite_beatmapset_count
+     * - follower_count
+     * - graveyard_beatmapset_count
+     * - groups
+     * - loved_beatmapset_count
+     * - mapping_follower_count
+     * - monthly_playcounts
+     * - page
+     * - pending_beatmapset_count
+     * - previous_usernames
+     * - rank_history
+     * - ranked_beatmapset_count
+     * - replays_watched_counts
+     * - scores_best_count
+     * - scores_first_count
+     * - scores_recent_count
+     * - statistics
+     * - statistics.country_rank
+     * - statistics.rank
+     * - statistics.variants
+     * - support_level
+     * - user_achievements
      *
      * @urlParam user integer required Id or username of the user. Id lookup is prioritised unless `key` parameter is specified. Previous usernames are also checked in some cases. Example: 1
      * @urlParam mode string [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
