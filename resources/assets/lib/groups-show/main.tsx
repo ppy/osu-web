@@ -2,13 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderV4 from 'header-v4';
-import GroupJsonExtended from 'interfaces/group-json-extended';
+import GroupJson from 'interfaces/group-json';
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import { UserList } from 'user-list';
 
 interface Props {
-  group: GroupJsonExtended;
+  group: GroupJson;
   users: UserJson[];
 }
 
