@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Beatmaps iubite',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmaps clasate & aprobate',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Beatmaps în așteptare',
+                ],
+                'ranked' => [
+                    'title' => 'Beatmaps clasate & aprobate',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'Număr de clicuri',
             'total_score' => 'Scor total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Beatmap-uri Clasate & Aprobate',
-            'loved_beatmapset_count' => 'Beatmap-uri iubite',
-            'unranked_beatmapset_count' => 'Beatmap-uri în așteptare',
             'graveyard_beatmapset_count' => 'Beatmap-uri Îngropate',
+            'loved_beatmapset_count' => 'Beatmap-uri iubite',
+            'pending_beatmapset_count' => 'Beatmap-uri în așteptare',
+            'ranked_beatmapset_count' => 'Beatmap-uri Clasate & Aprobate',
         ],
     ],
 
