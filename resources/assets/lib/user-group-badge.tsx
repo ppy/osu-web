@@ -47,7 +47,7 @@ export default function UserGroupBadge({group, modifiers}: Props) {
     title,
   };
 
-  return group.id < 0
-    ? <div {...props} />
-    : <a {...props} href={route('groups.show', { group: group.id })} />;
+  return group.has_listing
+    ? <a {...props} href={route('groups.show', { group: group.id })} />
+    : <div {...props} />;
 }
