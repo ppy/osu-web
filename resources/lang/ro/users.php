@@ -207,10 +207,10 @@ return [
                     'title' => 'Beatmaps iubite',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'Beatmaps în așteptare',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Beatmaps clasate & aprobate',
                 ],
             ],
             'discussions' => [
@@ -404,8 +404,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmap-uri Îngropate',
             'loved_beatmapset_count' => 'Beatmap-uri iubite',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Beatmap-uri în așteptare',
+            'ranked_beatmapset_count' => 'Beatmap-uri Clasate & Aprobate',
         ],
     ],
 

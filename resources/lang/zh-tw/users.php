@@ -207,10 +207,10 @@ return [
                     'title' => '喜歡的圖譜',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => '待處理的圖譜',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => '已進榜 & 批准的圖譜',
                 ],
             ],
             'discussions' => [
@@ -404,8 +404,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => '已拋棄的圖譜',
             'loved_beatmapset_count' => 'Loved 圖譜',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => '待處理的圖譜',
+            'ranked_beatmapset_count' => '已進榜 & 批准的圖譜',
         ],
     ],
 

@@ -207,10 +207,10 @@ return [
                     'title' => 'Beatmap Amate',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'Beatmap in Attesa',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Beatmap Classificate & Approvate',
                 ],
             ],
             'discussions' => [
@@ -404,8 +404,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmap Abbandonate',
             'loved_beatmapset_count' => 'Beatmap Amate',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Beatmap in Attesa',
+            'ranked_beatmapset_count' => 'Beatmap Classificate & Approvate',
         ],
     ],
 

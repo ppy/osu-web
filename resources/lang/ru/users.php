@@ -207,10 +207,10 @@ return [
                     'title' => 'Любимые карты',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'Ожидающие',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Рейтинговые и одобренные карты',
                 ],
             ],
             'discussions' => [
@@ -404,8 +404,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'Заброшенные карты',
             'loved_beatmapset_count' => 'Любимые сообществом карты',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Карты на рассмотрении',
+            'ranked_beatmapset_count' => 'Рейтинговые и утвержденные карты',
         ],
     ],
 

@@ -207,10 +207,10 @@ return [
                     'title' => 'Lovedされたビートマップ',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'Pendingビートマップ',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Ranked & Approvedのビートマップ',
                 ],
             ],
             'discussions' => [
@@ -404,8 +404,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'Graveyardのビートマップ',
             'loved_beatmapset_count' => 'Lovedされたビートマップ',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Pendingビートマップ',
+            'ranked_beatmapset_count' => 'Ranked & Approvedのビートマップ',
         ],
     ],
 

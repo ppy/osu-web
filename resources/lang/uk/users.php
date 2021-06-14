@@ -207,10 +207,10 @@ return [
                     'title' => 'Улюблені карти',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'На розгляді',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Рейтингові і схвалені карти',
                 ],
             ],
             'discussions' => [
@@ -404,8 +404,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'Закинуті карти',
             'loved_beatmapset_count' => 'Улюблені карти',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Карти на розгляді',
+            'ranked_beatmapset_count' => 'Рейтингові і схвалені карти',
         ],
     ],
 

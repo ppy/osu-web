@@ -207,10 +207,10 @@ return [
                     'title' => 'Rakastetut beatmapit',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'Vireillä olevat Beatmapit',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Hyväksytyt & Vahvistetut Beatmapit',
                 ],
             ],
             'discussions' => [
@@ -404,8 +404,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'Kuopatut Beatmapit',
             'loved_beatmapset_count' => 'Rakastetut Beatmapit',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Tulossa olevat Beatmapit',
+            'ranked_beatmapset_count' => 'Hyväksytyt & Vahvistetut Beatmapit',
         ],
     ],
 

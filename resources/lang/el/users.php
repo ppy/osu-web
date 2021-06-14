@@ -207,10 +207,10 @@ return [
                     'title' => 'Loved Beatmaps',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'Εκκρεμή Beatmaps',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Ranked & Approved Beatmaps',
                 ],
             ],
             'discussions' => [

@@ -207,10 +207,10 @@ return [
                     'title' => 'Обичани бийтмапове',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'Предстоящи класиране бийтмапове',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Класирани и одобрени бийтмапове',
                 ],
             ],
             'discussions' => [
@@ -404,8 +404,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'Изоставени бийтмапове',
             'loved_beatmapset_count' => 'Обичани бийтмапове',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Предстоящи бийтмапове за класиране',
+            'ranked_beatmapset_count' => 'Класирани и одобрени бийтмапове',
         ],
     ],
 

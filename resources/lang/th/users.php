@@ -208,10 +208,10 @@ return [
                     'title' => 'บีทแมพที่ Loved',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'บีทแมพที่กำลังทำ',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
                 ],
             ],
             'discussions' => [
@@ -405,8 +405,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'สุสานบีทแมพ',
             'loved_beatmapset_count' => 'บีทแมพที่ Loved',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
+            'ranked_beatmapset_count' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
         ],
     ],
 

@@ -207,10 +207,10 @@ return [
                     'title' => 'Sevilen Beatmapler',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'Beklemedeki Beatmapler',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Dereceli & Onaylı Beatmapler',
                 ],
             ],
             'discussions' => [
@@ -404,8 +404,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'Mezarlıktaki Beatmapler',
             'loved_beatmapset_count' => 'Sevilen Beatmapler',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Onay Bekleyen Beatmapler',
+            'ranked_beatmapset_count' => 'Dereceli ve Onaylanmış Beatmapler',
         ],
     ],
 

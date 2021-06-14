@@ -207,10 +207,10 @@ return [
                     'title' => 'Loved 비트맵',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => '대기 중인 비트맵',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => '새로 랭크된 비트맵',
                 ],
             ],
             'discussions' => [
@@ -404,8 +404,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => '묻힌 비트맵',
             'loved_beatmapset_count' => 'Loved 비트맵',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => '대기 중인 비트맵',
+            'ranked_beatmapset_count' => '랭크된 비트맵',
         ],
     ],
 

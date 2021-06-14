@@ -207,10 +207,10 @@ return [
                     'title' => 'Elskede Beatmaps',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'Ventende Beatmaps',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Rangerte & Godkjente Beatmaps',
                 ],
             ],
             'discussions' => [
@@ -404,8 +404,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'Gravlagte Beatmaps',
             'loved_beatmapset_count' => 'Elskede Beatmaps',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Ventende Beatmaps',
+            'ranked_beatmapset_count' => 'Rangerte & Godkjente Beatmaps',
         ],
     ],
 

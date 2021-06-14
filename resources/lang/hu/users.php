@@ -207,10 +207,10 @@ return [
                     'title' => 'Szeretett Beatmap-ek',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'Pending Beatmap-ek',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Ranked & Approved Beatmap-ek',
                 ],
             ],
             'discussions' => [
@@ -404,8 +404,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'Eltemetett beatmapek',
             'loved_beatmapset_count' => 'Kedvelt beatmapek',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Függőben lévő beatmapek',
+            'ranked_beatmapset_count' => 'Rankedelt & jóváhagyott beatmapek',
         ],
     ],
 

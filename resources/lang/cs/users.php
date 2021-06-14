@@ -207,10 +207,10 @@ return [
                     'title' => 'Oblíbené Beatmapy',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'Čekající Beatmapy',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Hodnocené & Schválené Beatmapy',
                 ],
             ],
             'discussions' => [
@@ -404,7 +404,7 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Oblíbené Beatmapy',
-            'pending_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Čekající Beatmapy',
             'ranked_beatmapset_count' => '',
         ],
     ],

@@ -207,10 +207,10 @@ return [
                     'title' => 'Loved Beatmaps',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'Beatmap Đang Chờ (:count)',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận',
                 ],
             ],
             'discussions' => [

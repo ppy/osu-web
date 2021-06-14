@@ -207,10 +207,10 @@ return [
                     'title' => 'Mapas Amados',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'Mapas Pendientes',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Mapas Clasificados y Aprobados',
                 ],
             ],
             'discussions' => [
@@ -404,8 +404,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'Mapas Abandonados',
             'loved_beatmapset_count' => 'Mapas Amados',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Mapas Pendientes',
+            'ranked_beatmapset_count' => 'Mapas Clasificados y Aprobados',
         ],
     ],
 

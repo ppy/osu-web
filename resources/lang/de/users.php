@@ -207,10 +207,10 @@ return [
                     'title' => 'Loved Beatmaps',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'Ausstehende Beatmaps',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Ranked & Approved Beatmaps',
                 ],
             ],
             'discussions' => [
@@ -404,8 +404,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'Begrabende Beatmaps',
             'loved_beatmapset_count' => 'Loved Beatmaps',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Ausstehende Beatmaps',
+            'ranked_beatmapset_count' => 'Ranked & Approved Beatmaps',
         ],
     ],
 

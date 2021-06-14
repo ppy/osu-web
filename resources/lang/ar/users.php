@@ -207,10 +207,10 @@ return [
                     'title' => 'الخرائط المُحَبَبة',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'الخرائط المعلقة',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'الخرائط المصفوفة والمقبولة',
                 ],
             ],
             'discussions' => [
@@ -404,8 +404,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'الخرائط المقبورة',
             'loved_beatmapset_count' => 'الخرائط المُحَبَبة',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'الخرائط المعلقة',
+            'ranked_beatmapset_count' => 'الخرائط المصفوفة والمقبولة',
         ],
     ],
 

@@ -207,10 +207,10 @@ return [
                     'title' => 'Ulubione beatmapy społeczności',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'Oczekujące beatmapy',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Rankingowe i zatwierdzone beatmapy',
                 ],
             ],
             'discussions' => [
@@ -404,8 +404,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'Porzucone beatmapy',
             'loved_beatmapset_count' => 'Ulubione beatmapy społeczności',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Oczekujące beatmapy',
+            'ranked_beatmapset_count' => 'Rankingowe i zatwierdzone beatmapy',
         ],
     ],
 

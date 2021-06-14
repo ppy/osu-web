@@ -207,10 +207,10 @@ return [
                     'title' => 'Obľúbené Beatmapy',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'Čakajúce Beatmapy',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Hodnotené & Schválené Beatmapy',
                 ],
             ],
             'discussions' => [
@@ -404,8 +404,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'Irelevantné beatmapy',
             'loved_beatmapset_count' => 'Obľúbené beatmapy',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Čakajúce Beatmapy',
+            'ranked_beatmapset_count' => 'Hodnotené a Schválené Beatmapy',
         ],
     ],
 
