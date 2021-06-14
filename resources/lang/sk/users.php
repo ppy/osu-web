@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Obľúbené Beatmapy',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Hodnotené & Schválené Beatmapy',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Čakajúce Beatmapy',
+                ],
+                'ranked' => [
+                    'title' => 'Hodnotené & Schválené Beatmapy',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'Celkových Zásahov',
             'total_score' => 'Celkové Skóre',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Hodnotené a Schválené Beatmapy',
-            'loved_beatmapset_count' => 'Obľúbené beatmapy',
-            'unranked_beatmapset_count' => 'Čakajúce Beatmapy',
             'graveyard_beatmapset_count' => 'Irelevantné beatmapy',
+            'loved_beatmapset_count' => 'Obľúbené beatmapy',
+            'pending_beatmapset_count' => 'Čakajúce Beatmapy',
+            'ranked_beatmapset_count' => 'Hodnotené a Schválené Beatmapy',
         ],
     ],
 

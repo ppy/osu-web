@@ -6,7 +6,7 @@
 return [
     'event' => [
         'approve' => 'Aprovado.',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'Dono da dificuldade :beatmap mudado para :new_user.',
         'discussion_delete' => 'O moderador eliminou a discussão :discussion.',
         'discussion_lock' => 'A discussão para este beatmap foi desativada. (:text)',
         'discussion_post_delete' => 'O moderador eliminou uma publicação da discussão :discussion.',
@@ -55,7 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Aprovação',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'Mudar dono da dificuldade',
         'discussion_delete' => 'Eliminação da discussão',
         'discussion_post_delete' => 'Eliminação da resposta da discussão',
         'discussion_post_restore' => 'Restauração da resposta da discussão',
