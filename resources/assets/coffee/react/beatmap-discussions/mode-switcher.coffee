@@ -15,13 +15,11 @@ export class ModeSwitcher extends React.PureComponent
 
     @scrollerRef = React.createRef()
 
-
   componentDidMount: =>
-    return if !@scrollerRef.current?
+    @scrollModeSwitcher()
 
-    # on mobile, ModeSwitcher becomes horizontally scrollable - scrollTo ensures that the selected tab is made visible
-    $(@scrollerRef.current).scrollTo(".#{@selectedClassName}", 0, {over: {left: -1}})
-
+  componentDidUpdate: =>
+    @scrollModeSwitcher()
 
   render: =>
     modes = ['reviews', 'generalAll', 'general', 'timeline', 'events']
