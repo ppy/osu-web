@@ -6,9 +6,11 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Exceptions\UserProfilePageLookupException;
 use App\Exceptions\ValidationException;
 use App\Libraries\Search\ForumSearch;
 use App\Libraries\Search\ForumSearchRequestParams;
+use App\Libraries\User\FindForProfilePage;
 use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
@@ -71,7 +73,11 @@ class UsersController extends Controller
 
     public function card($id)
     {
-        $user = $this->lookupUser($id) ?? UserNotFound::instance();
+        try {
+            $user = FindForProfilePage::find($id, null, false);
+        } catch (UserProfilePageLookupException $e) {
+            $user = UserNotFound::instance();
+        }
 
         return json_item($user, 'UserCompact', UserCompactTransformer::CARD_INCLUDES);
     }
@@ -499,19 +505,7 @@ class UsersController extends Controller
      */
     public function show($id, $mode = null)
     {
-        $user = $this->lookupUser($id, get_string(request('key')));
-
-        if ($user === null) {
-            if (is_json_request()) {
-                abort(404);
-            }
-
-            return ext_view('users.show_not_found', null, null, 404);
-        }
-
-        if (!is_api_request() && (string) $user->user_id !== (string) $id) {
-            return ujs_redirect(route('users.show', compact('user', 'mode')));
-        }
+        $user = FindForProfilePage::find($id, get_string(request('key')));
 
         $currentMode = $mode ?? $user->playmode;
 
@@ -642,28 +636,11 @@ class UsersController extends Controller
         }
     }
 
-    // Find matching id or username
-    // If no user is found, search for a previous username
-    // only if parameter is not a number (assume number is an id lookup).
-    private function lookupUser($id, ?string $type = null)
-    {
-        $user = User::lookupWithHistory($id, $type, true);
-
-        if ($user === null || !priv_check('UserShow', $user)->can()) {
-            return null;
-        }
-
-        return $user;
-    }
-
     private function parsePaginationParams()
     {
-        $this->user = User::lookup(Request::route('user'), 'id', true);
-        if ($this->user === null || !priv_check('UserShow', $this->user)->can()) {
-            abort(404);
-        }
+        $this->user = FindForProfilePage::find(request()->route('user'), 'id');
 
-        $this->mode = Request::route('mode') ?? Request::input('mode') ?? $this->user->playmode;
+        $this->mode = request()->route('mode') ?? request()->input('mode') ?? $this->user->playmode;
         if (!Beatmap::isModeValid($this->mode)) {
             abort(404);
         }
