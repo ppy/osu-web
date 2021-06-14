@@ -1734,7 +1734,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user !== null && $user->user_id === $owner->user_id) {
+        if ($user !== null && $user->getKey() === $owner->getKey()) {
             return 'ok';
         }
 
