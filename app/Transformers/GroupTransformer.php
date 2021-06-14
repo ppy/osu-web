@@ -9,11 +9,12 @@ use App\Models\Group;
 
 class GroupTransformer extends TransformerAbstract
 {
+    protected $availableIncludes = ['description'];
+
     public function transform(Group $group)
     {
         return [
             'colour' => $group->colour,
-            'description' => $group->group_desc,
             'has_listing' => $group->hasListing(),
             'has_playmodes' => $group->has_playmodes,
             'id' => $group->getKey(),
@@ -22,5 +23,13 @@ class GroupTransformer extends TransformerAbstract
             'name' => $group->group_name,
             'short_name' => $group->short_name,
         ];
+    }
+
+    public function includeDescription(Group $group)
+    {
+        return $this->primitive($group->group_desc === null ? null : [
+            'html' => $group->descriptionHtml(),
+            'markdown' => $group->group_desc,
+        ]);
     }
 }
