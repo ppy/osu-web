@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e412ab802ea31de5d727f48da04e2c5a",
+    "content-hash": "66ff405d86bfb85a4b41a2368da5787d",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -2092,16 +2092,16 @@
         },
         {
             "name": "itsgoingd/clockwork",
-            "version": "dev-php8-laravel8",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nanaya/clockwork.git",
-                "reference": "021de63a97c1931735c952ac368bdffeca2133b4"
+                "url": "https://github.com/itsgoingd/clockwork.git",
+                "reference": "fd0e8930f7d963ec16bd933a5a76f91100c5106d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nanaya/clockwork/zipball/021de63a97c1931735c952ac368bdffeca2133b4",
-                "reference": "021de63a97c1931735c952ac368bdffeca2133b4",
+                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/fd0e8930f7d963ec16bd933a5a76f91100c5106d",
+                "reference": "fd0e8930f7d963ec16bd933a5a76f91100c5106d",
                 "shasum": ""
             },
             "require": {
@@ -2109,6 +2109,7 @@
                 "php": ">=5.6",
                 "psr/log": "1.*"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -2125,6 +2126,7 @@
                     "Clockwork\\": "Clockwork/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2138,8 +2140,8 @@
             "description": "php dev tools in your browser",
             "homepage": "https://underground.works/clockwork",
             "keywords": [
+                "Devtools",
                 "debugging",
-                "devtools",
                 "laravel",
                 "logging",
                 "lumen",
@@ -2147,15 +2149,16 @@
                 "slim"
             ],
             "support": {
-                "source": "https://github.com/nanaya/clockwork/tree/php8-laravel8"
+                "issues": "https://github.com/itsgoingd/clockwork/issues",
+                "source": "https://github.com/itsgoingd/clockwork/tree/master"
             },
             "funding": [
                 {
-                    "type": "github",
-                    "url": "https://github.com/itsgoingd"
+                    "url": "https://github.com/itsgoingd",
+                    "type": "github"
                 }
             ],
-            "time": "2021-06-11T06:13:47+00:00"
+            "time": "2021-06-13T20:22:35+00:00"
         },
         {
             "name": "jaybizzle/crawler-detect",

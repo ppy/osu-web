@@ -4,12 +4,6 @@
   "type": "project",
   "homepage": "https://new.ppy.sh",
   "license": "AGPL-3.0",
-  "repositories":[
-    {
-      "type":"vcs",
-      "url":"https://github.com/nanaya/clockwork"
-    }
-  ],
   "support": {
     "email": "support@ppy.sh",
     "issues": "https://github.com/ppy/osu-web/issues"
@@ -24,7 +18,7 @@
     "firebase/php-jwt": "^5.2",
     "graham-campbell/github": "*",
     "guzzlehttp/guzzle": "*",
-    "itsgoingd/clockwork": "dev-php8-laravel8",
+    "itsgoingd/clockwork": "dev-master",
     "jenssegers/agent": "*",
     "knuckleswtf/scribe": "^2.7",
     "laravel/framework": "^6.20.14",
