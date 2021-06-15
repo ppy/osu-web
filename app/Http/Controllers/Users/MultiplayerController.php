@@ -6,6 +6,7 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\User\FindForProfilePage;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
 use App\Transformers\BeatmapCompactTransformer;
@@ -20,21 +21,7 @@ class MultiplayerController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            $userId = request()->route('user');
-            $this->user = User::lookupWithHistory($userId, null, false, true);
-
-            if ($this->user === null || $this->user->isBot() || !priv_check('UserShow', $this->user)->can()) {
-                return ext_view('users.show_not_found', null, null, 404);
-            }
-
-            $this->searchParams = array_merge(request()->query(), ['user' => $this->user->user_id]);
-
-            if ((string) $this->user->user_id !== (string) $userId) {
-                return ujs_redirect(route(
-                    $request->route()->getName(),
-                    $this->searchParams
-                ));
-            }
+            $this->user = FindForProfilePage::find($request->route('user'));
 
             return $next($request);
         });
