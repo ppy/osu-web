@@ -8,7 +8,6 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use App\Libraries\User\FindForProfilePage;
 use App\Models\Multiplayer\Room;
-use App\Models\User;
 use App\Transformers\BeatmapCompactTransformer;
 use App\Transformers\BeatmapsetCompactTransformer;
 use App\Transformers\Multiplayer\RoomTransformer;
@@ -16,27 +15,16 @@ use App\Transformers\UserTransformer;
 
 class MultiplayerController extends Controller
 {
-    protected $user;
-
-    public function __construct()
-    {
-        $this->middleware(function ($request, $next) {
-            $this->user = FindForProfilePage::find($request->route('user'));
-
-            return $next($request);
-        });
-
-        parent::__construct();
-    }
-
     public function index()
     {
-        $params = request()->all();
+        $request = request();
+        $user = FindForProfilePage::find($request->route('user'));
+        $params = $request->all();
         $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
 
         $search = Room::search([
             'cursor' => $params['cursor'] ?? null,
-            'user' => $this->user,
+            'user' => $user,
             'limit' => $limit,
             'mode' => 'participated',
             'sort' => 'ended',
@@ -47,9 +35,9 @@ class MultiplayerController extends Controller
         $beatmapsets = $beatmaps->pluck('beatmapset')->unique()->values();
 
         $userTransformer = new UserTransformer(); // TODO: should user profile have standard includes?
-        $userTransformer->mode = $this->user->playmode;
+        $userTransformer->mode = $user->playmode;
         $jsonUser = json_item(
-            $this->user,
+            $user,
             $userTransformer,
             [
                 'active_tournament_banner',
@@ -73,6 +61,6 @@ class MultiplayerController extends Controller
             return $json;
         }
 
-        return ext_view('users.multiplayer.index', ['json' => $json, 'jsonUser' => $jsonUser, 'user' => $this->user]);
+        return ext_view('users.multiplayer.index', compact('json', 'jsonUser', 'user'));
     }
 }
