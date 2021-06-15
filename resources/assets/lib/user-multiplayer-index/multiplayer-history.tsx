@@ -9,7 +9,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import ShowMoreLink from 'show-more-link';
 import UserMultiplayerHistoryContext, { updateStore } from 'user-multiplayer-history-context';
-import Room from './room';
+import Room from 'user-multiplayer-index/room';
 
 interface Props {
   user: UserJson;

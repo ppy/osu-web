@@ -2,10 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserJsonExtended from 'interfaces/user-json-extended';
-import MultiplayerHistory from 'profile-page/multiplayer-history';
 import * as React from 'react';
+import Header from 'user-multiplayer-index/header';
+import MultiplayerHistory from 'user-multiplayer-index/multiplayer-history';
 import UserProfileContainer from 'user-profile-container';
-import Header from './header';
 
 interface Props {
   user: UserJsonExtended;
