@@ -58,6 +58,13 @@ $factory->state(Beatmapset::class, 'no_discussion', function () {
     return ['discussion_enabled' => false];
 });
 
+$factory->state(Beatmapset::class, 'pending', function () {
+    return [
+        'approved' => Beatmapset::STATES['pending'],
+        'approved_date' => null,
+    ];
+});
+
 $factory->state(Beatmapset::class, 'qualified', function () {
     $approvedAt = now();
 
