@@ -59,6 +59,27 @@ class ForumTopicsControllerTest extends TestCase
         $this->assertSame($initialTopicCount, Forum\Topic::count());
     }
 
+    public function testPin()
+    {
+        $forum = factory(Forum\Forum::class, 'child')->create();
+        $topic = factory(Forum\Topic::class)->create([
+            'forum_id' => $forum->getKey(),
+            'topic_status' => Forum\Topic::TYPES['normal'],
+        ]);
+        $user = $this->createUserWithGroup('gmt');
+        $type = 'sticky';
+        $typeInt = Forum\Topic::TYPES[$type];
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('forum.topics.pin', $topic->getKey()), [
+                'pin' => $typeInt,
+            ])
+            ->assertSuccessful();
+
+        $this->assertSame($type, Forum\Topic::typeStr($topic->fresh()->topic_type));
+    }
+
     public function testReply()
     {
         $forum = factory(Forum\Forum::class, 'child')->create();
