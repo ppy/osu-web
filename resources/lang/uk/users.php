@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Улюблені карти',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Рейтингові і схвалені карти',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'На розгляді',
+                ],
+                'ranked' => [
+                    'title' => 'Рейтингові і схвалені карти',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'Всього попадань',
             'total_score' => 'Всього очків',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Рейтингові і схвалені карти',
-            'loved_beatmapset_count' => 'Улюблені карти',
-            'unranked_beatmapset_count' => 'Карти на розгляді',
             'graveyard_beatmapset_count' => 'Закинуті карти',
+            'loved_beatmapset_count' => 'Улюблені карти',
+            'pending_beatmapset_count' => 'Карти на розгляді',
+            'ranked_beatmapset_count' => 'Рейтингові і схвалені карти',
         ],
     ],
 

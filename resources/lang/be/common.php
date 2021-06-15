@@ -15,30 +15,30 @@ return [
     ],
 
     'badges' => [
-        'new' => '',
+        'new' => 'НОВАЕ',
     ],
 
     'buttons' => [
         'admin' => 'Кіраўнік',
-        'authorise' => '',
-        'authorising' => '',
+        'authorise' => 'Аўтарызацыя',
+        'authorising' => 'Аўтарызіруемся...',
         'back_to_previous' => 'Вярнуцца ў папярэднюю пазіцыю',
         'back_to_top' => 'Вярнуцца ў пачатак',
         'cancel' => 'Скасаваць',
         'change' => 'змяніць',
-        'clear' => '',
+        'clear' => 'Ачысціць',
         'click_to_copy' => 'націсніце, каб скапіяваць',
         'click_to_copy_copied' => 'скапіявана!',
-        'close' => '',
+        'close' => 'Зачыніць',
         'collapse' => 'згарнуць',
         'delete' => 'Выдаліць',
         'edit' => 'Рэдагаваць',
         'expand' => 'разгарнуць',
         'hide' => 'схаваць',
         'permalink' => 'нязменная спасылка',
-        'pin' => '',
+        'pin' => 'замацаваць',
         'post' => 'Размясціць',
-        'read_more' => '',
+        'read_more' => 'чытаць далей',
         'reply' => 'Адказаць',
         'reply_reopen' => 'Адказаць і пераадкрыць',
         'reply_resolve' => 'Адказаць і вырашыць',
@@ -50,11 +50,11 @@ return [
         'see_more' => 'глядзець больш',
         'show' => 'паказаць',
         'show_deleted' => 'Паказ выдаленыя',
-        'show_less' => '',
+        'show_less' => 'паказваць менш',
         'show_more' => 'паказаць больш',
         'show_more_options' => 'паказаць больш параметраў',
-        'unpin' => '',
-        'update' => '',
+        'unpin' => 'адмацаваць',
+        'update' => 'Абнавіць',
         'upload_image' => 'запампаваць выяву',
 
         'watch' => [
@@ -72,13 +72,13 @@ return [
         'minute_short_unit' => 'хв',
         'minutes' => ':count хвіліна|:count хвіліны |:count хвілін',
         'months' => ':count месяц|:count месяцаў',
-        'notifications' => '',
-        'plus_others' => '',
-        'post' => '',
+        'notifications' => ':count_delimited апавяшчэнне|:count_delimited апавяшчэнняў',
+        'plus_others' => '+ :count_delimited іншый|+ :count_delimited іншыя!',
+        'post' => ':count_delimited пост|:count_delimited пастоў',
         'second_short_unit' => 'сек',
-        'star_priority' => '',
+        'star_priority' => ':count_delimited прыярытэт зоркі|:count_delimited прыярытэт зорак',
         'update' => ':count_delimited абнаўленне|:count_delimited абнаўленняў',
-        'view' => '',
+        'view' => ':count_delimited выгляд|:count_delimited поглядаў',
         'years' => ':count год|:count гады|:count гадоў',
     ],
 
@@ -111,7 +111,7 @@ return [
     ],
 
     'input' => [
-        'search' => '',
+        'search' => 'пошук...',
     ],
 
     'pagination' => [
@@ -129,18 +129,18 @@ return [
     ],
 
     'scoreboard_time' => [
-        'd' => '',
-        'dd' => '',
-        'h' => '',
-        'hh' => '',
-        'M' => '',
-        'm' => '',
-        'MM' => '',
-        'mm' => '',
+        'd' => '%d дзён',
+        'dd' => '%d дзён',
+        'h' => '%d гадзін',
+        'hh' => '%d гадзін',
+        'M' => '%d месяцаў',
+        'm' => 'зараз',
+        'MM' => '%d месяцаў',
+        'mm' => 'зараз',
         'past' => '',
-        's' => '',
-        'y' => '',
-        'yy' => '',
+        's' => 'зараз',
+        'y' => '%d гадоў',
+        'yy' => '%d гадоў',
     ],
 
     'time' => [
@@ -155,7 +155,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => '',
-        'logout_link' => '',
+        '_' => 'Вы ўвайшлі як :user. :logout_link.',
+        'logout_link' => 'Націсніце тут, каб увайсці як іншы карыстальнік',
     ],
 ];

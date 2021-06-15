@@ -61,8 +61,8 @@ return [
     'owner_editor' => [
         'button' => '',
         'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'user' => 'Ejer',
+        'version' => 'Sværhedsgrad',
     ],
 
     'reply' => [

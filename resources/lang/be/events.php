@@ -20,9 +20,9 @@ return [
     'username_change' => 'Карыстальнік <strong>:previousUsername</strong> змяніў сваё імя карыстальніка на <strong><em>:user</strong></em>!',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
-        'ranked' => '',
+        'approved' => 'зацверджана',
+        'loved' => 'любімая',
+        'qualified' => 'кваліфікавана',
+        'ranked' => 'ранкавана',
     ],
 ];

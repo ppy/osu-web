@@ -28,7 +28,7 @@ return [
             '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => '',
+                '_' => 'Guest difficulty',
                 'beatmap_owner_change' => 'Sei diventato il proprietario della difficoltà ":beatmap" nella beatmap ":title"',
                 'beatmap_owner_change_compact' => 'Sei diventato il proprietario della difficoltà ":beatmap"',
             ],
