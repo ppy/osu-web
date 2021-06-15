@@ -9,6 +9,7 @@ use App\Events\NewPrivateNotificationEvent;
 use App\Jobs\Notifications\BeatmapsetDisqualify;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
+use App\Models\BeatmapsetEvent;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotificationOption;
@@ -26,6 +27,7 @@ class BeatmapsetDisqualifyTest extends TestCase
     /** @var User */
     protected $user;
 
+    #region notification tests
     public function testDuplicateNotificationNotSent()
     {
         $this->beatmapset->watches()->create(['user_id' => $this->user->getKey()]);
@@ -125,6 +127,32 @@ class BeatmapsetDisqualifyTest extends TestCase
 
         Event::assertNotDispatched(NewPrivateNotificationEvent::class);
     }
+    #endregion
+
+    #region event logging tests
+    public function testDisqualifiedEventLogged()
+    {
+        $modes = $this->beatmapset->beatmaps->map->mode->all();
+        $nominatorCount = config('osu.beatmapset.required_nominations');
+        $nominators = [];
+        for ($i = 0; $i < $nominatorCount; $i++) {
+            $nominators[] = $nominator = $this->createUserWithGroupPlaymodes('bng', $modes);
+            $this->beatmapset->events()->create([
+                'type' => BeatmapsetEvent::NOMINATE,
+                'user_id' => $nominator->getKey(),
+            ]);
+        }
+
+        $disqualifyCount = BeatmapsetEvent::disqualifications()->count();
+        $nominationResetReceivedCount = BeatmapsetEvent::nominationResetReceiveds()->count();
+
+        $this->disqualify()->assertStatus(200);
+
+        $this->assertSame($disqualifyCount + 1, BeatmapsetEvent::disqualifications()->count());
+        $this->assertSame($nominationResetReceivedCount + $nominatorCount, BeatmapsetEvent::nominationResetReceiveds()->count());
+        $this->assertEqualsCanonicalizing(array_pluck($nominators, 'user_id'), BeatmapsetEvent::nominationResetReceiveds()->pluck('user_id')->all());
+    }
+    #endregion
 
     public function booleanDataProvider()
     {
@@ -141,7 +169,11 @@ class BeatmapsetDisqualifyTest extends TestCase
         Queue::fake();
         Event::fake();
 
-        $this->beatmapset = factory(Beatmapset::class)->states('qualified', 'with_discussion')->create();
+        $owner = factory(User::class)->create();
+        $this->beatmapset = factory(Beatmapset::class)->states('qualified', 'with_discussion')->create([
+            'creator' => $owner->username,
+            'user_id' => $owner->getKey(),
+        ]);
         $this->sender = $this->createUserWithGroup('bng');
         $this->user = factory(User::class)->create();
     }

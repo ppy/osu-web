@@ -280,6 +280,11 @@ class BeatmapsetEvent extends Model
         return $query->where('type', self::NOMINATE);
     }
 
+    public function scopeNominationResetReceiveds($query)
+    {
+        return $query->where('type', self::NOMINATION_RESET_RECEIVED);
+    }
+
     public function scopeNominationResets($query)
     {
         return $query->where('type', self::NOMINATION_RESET);
