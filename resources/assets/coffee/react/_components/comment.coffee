@@ -175,6 +175,7 @@ export class Comment extends React.PureComponent
               @renderPin()
               @renderReport()
               @renderEditedBy()
+              @renderDeletedBy()
               @renderRepliesText()
 
             @renderReplyBox()
@@ -252,6 +253,19 @@ export class Comment extends React.PureComponent
               else
                 _.escape editor.username
 
+  renderDeletedBy: =>
+    if @props.comment.isDeleted && @props.comment.canModerate
+      deleter = userStore.get(@props.comment.deletedById)
+      div
+        className: 'comment__row-item comment__row-item--info'
+        dangerouslySetInnerHTML:
+          __html: osu.trans 'comments.deleted_by',
+            timeago: osu.timeago(@props.comment.deletedAt)
+            user:
+              if deleter.id?
+                osu.link(laroute.route('users.show', user: deleter.id), deleter.username)
+              else
+                _.escape deleter.username
 
   renderOwnerBadge: (meta) =>
     return null unless @props.comment.userId == meta.owner_id
