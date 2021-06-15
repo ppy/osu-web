@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66ff405d86bfb85a4b41a2368da5787d",
+    "content-hash": "b98d88fc1310d5048696c72e231472e6",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -2096,12 +2096,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itsgoingd/clockwork.git",
-                "reference": "fd0e8930f7d963ec16bd933a5a76f91100c5106d"
+                "reference": "fd0e893"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/fd0e8930f7d963ec16bd933a5a76f91100c5106d",
-                "reference": "fd0e8930f7d963ec16bd933a5a76f91100c5106d",
+                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/fd0e893",
+                "reference": "fd0e893",
                 "shasum": ""
             },
             "require": {

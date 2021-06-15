@@ -18,7 +18,7 @@
     "firebase/php-jwt": "^5.2",
     "graham-campbell/github": "*",
     "guzzlehttp/guzzle": "*",
-    "itsgoingd/clockwork": "dev-master",
+    "itsgoingd/clockwork": "dev-master#fd0e893",
     "jenssegers/agent": "*",
     "knuckleswtf/scribe": "^2.7",
     "laravel/framework": "^6.20.14",
