@@ -7,7 +7,6 @@ namespace App\Exceptions;
 
 use App\Libraries\UserVerification;
 use Auth;
-use Exception;
 use Illuminate\Auth\Access\AuthorizationException as LaravelAuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -18,6 +17,7 @@ use Laravel\Passport\Exceptions\MissingScopeException;
 use Laravel\Passport\Exceptions\OAuthServerException as PassportOAuthServerException;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -88,11 +88,11 @@ class Handler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param \Exception $e
+     * @param \Throwable $e
      *
      * @return void
      */
-    public function report(Exception $e)
+    public function report(Throwable $e)
     {
         // immediately done if the error should not be reported
         if ($this->shouldntReport($e)) {
@@ -110,11 +110,11 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Exception               $e
+     * @param \Throwable               $e
      *
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $e)
+    public function render($request, Throwable $e)
     {
         if ($e instanceof HttpResponseException || $e instanceof UserProfilePageLookupException) {
             return $e->getResponse();
@@ -152,7 +152,7 @@ class Handler extends ExceptionHandler
         return $response->setStatusCode(static::statusCode($e));
     }
 
-    protected function shouldntReport(Exception $e)
+    protected function shouldntReport(Throwable $e)
     {
         return parent::shouldntReport($e) || $this->isOAuthServerException($e);
     }
