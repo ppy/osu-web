@@ -1,8 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-type GroupJson = import('interfaces/group-json').default;
-
 // interfaces for using process.env
 interface Process {
   env: ProcessEnv;
@@ -54,6 +52,7 @@ interface BeatmapDiscussionHelperClass {
     discussionId?: number;
     filter: string;
     mode: string;
+    postId?: number;
     user?: number;
   };
 }
@@ -70,7 +69,7 @@ interface OsuCommon {
   ajaxError: AjaxError;
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
   diffColour: (difficultyRating?: string | null) => React.CSSProperties;
-  groupColour: (group?: GroupJson) => React.CSSProperties;
+  groupColour: (group?: import('interfaces/group-json').default) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
   link: (url: string, text: string, options?: OsuLinkOptions) => string;

@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => 'kudosuyu reddet',
         'edit' => 'düzenle',
         'edited' => 'En son :editor tarafından :update_time tarihinde düzenlendi.',
-        'guest' => '',
+        'guest' => ':user kullanıcısının konuk zorluğu',
         'kudosu_denied' => 'Kudosu almaktan mahrum bırakıldı.',
         'message_placeholder_deleted_beatmap' => 'Bu zorluk seviyesi silindi o yüzden hakkında daha fazla tartışılamaz.',
         'message_placeholder_locked' => 'Bu beatmap için tartışma devre dışı bırakıldı.',
@@ -314,7 +314,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Skor V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => 'Herhangi biri',

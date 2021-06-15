@@ -59,10 +59,10 @@ return [
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => 'Mapper della difficoltà',
+        'reset_confirm' => 'Resettare il proprietario per questa difficoltà?',
+        'user' => 'Proprietario',
+        'version' => 'Difficoltà',
     ],
 
     'reply' => [

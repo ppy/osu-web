@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => 'запретить кудосу',
         'edit' => 'изменить',
         'edited' => 'Последний раз изменён :editor в :update_time',
-        'guest' => '',
+        'guest' => 'Гостевая сложность от :user',
         'kudosu_denied' => 'Отказано в получении кудосу.',
         'message_placeholder_deleted_beatmap' => 'Эта сложность была удалена, и поэтому обсуждать её больше нельзя.',
         'message_placeholder_locked' => 'Обсуждение этой карты было отключено.',
@@ -314,7 +314,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Score V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => 'Все',

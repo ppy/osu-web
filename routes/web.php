@@ -143,7 +143,7 @@ Route::group(['middleware' => ['web']], function () {
                 Route::post('posts/{post}/restore', 'PostsController@restore')->name('posts.restore');
                 Route::resource('posts', 'PostsController', ['only' => ['destroy', 'edit', 'show', 'update']]);
 
-                Route::post('topics/{topic}/edit-poll', 'TopicsController@editPollPost')->name('topics.edit-poll');
+                Route::post('topics/{topic}/edit-poll', 'TopicsController@editPollPost')->name('topics.edit-poll.store');
                 Route::get('topics/{topic}/edit-poll', 'TopicsController@editPollGet')->name('topics.edit-poll');
 
                 Route::post('topics/preview', 'TopicsController@preview')->name('topics.preview');
@@ -358,7 +358,7 @@ Route::group(['middleware' => ['web']], function () {
 
     // redirects go here
     route_redirect('forum/p/{post}', 'forum.posts.show');
-    route_redirect('po/{post}', 'forum.posts.show');
+    route_redirect('po/{post}', 'forum.posts.show:');
     route_redirect('forum/t/{topic}', 'forum.topics.show');
     route_redirect('forum/{forum}', 'forum.forums.show');
     // redirects to beatmapset anyways so there's no point
@@ -497,7 +497,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::get('users/{user}/kudosu', 'UsersController@kudosu');
         //  GET /api/v2/users/:user_id/scores/:type [best, firsts, recent]
         Route::get('users/{user}/scores/{type}', 'UsersController@scores');
-        //  GET /api/v2/users/:user_id/beatmapsets/:type [most_played, favourite, ranked_and_approved, unranked, graveyard]
+        //  GET /api/v2/users/:user_id/beatmapsets/:type [most_played, favourite, ranked, pending, graveyard]
         Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets');
         // GET /api/v2/users/:user_id/recent_activity
         Route::get('users/{user}/recent_activity', 'UsersController@recentActivity');

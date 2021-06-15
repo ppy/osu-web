@@ -2,19 +2,19 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetCardSize } from 'beatmapset-panel';
-import GroupJson from 'interfaces/group-json';
 import UserJsonExtended from 'interfaces/user-json-extended';
 import UserRelationJson from 'interfaces/user-relation-json';
 import { ViewMode } from 'user-card';
 import { Filter, SortMode } from 'user-list';
 import GameMode from './game-mode';
+import UserGroupJson from './user-group-json';
 
 export default interface CurrentUser extends UserJsonExtended {
   blocks: UserRelationJson[];
   follow_user_mapping: number[];
   follower_count?: number;
   friends: UserRelationJson[];
-  groups: GroupJson[];
+  groups: UserGroupJson[];
   playmode: GameMode;
   unread_pm_count: number;
   user_preferences: UserPreferencesJson;

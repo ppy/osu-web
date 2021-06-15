@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => '收回 kudosu',
         'edit' => '编辑',
         'edited' => '最后由 :editor 编辑于 :update_time 。',
-        'guest' => '',
+        'guest' => ':user制作的客串难度',
         'kudosu_denied' => 'kudosu 被收回',
         'message_placeholder_deleted_beatmap' => '该难度已被删除，无法继续讨论',
         'message_placeholder_locked' => '该谱面下的讨论已关闭。',
@@ -314,7 +314,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Score V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => '所有',

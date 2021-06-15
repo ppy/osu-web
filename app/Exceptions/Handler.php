@@ -54,7 +54,7 @@ class Handler extends ExceptionHandler
             return;
         }
 
-        return $e->getMessage();
+        return presence($e->getMessage());
     }
 
     public static function statusCode($e)
@@ -116,7 +116,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if ($e instanceof HttpResponseException) {
+        if ($e instanceof HttpResponseException || $e instanceof UserProfilePageLookupException) {
             return $e->getResponse();
         }
 

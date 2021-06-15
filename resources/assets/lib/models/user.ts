@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import UserGroupJson from 'interfaces/user-group-json';
 import UserJson from 'interfaces/user-json';
 import { action, observable } from 'mobx';
 
@@ -8,7 +9,7 @@ export default class User {
   @observable avatarUrl = '/images/layout/avatar-guest.png'; // TODO: move to a global config store?
   @observable countryCode = 'XX';
   @observable defaultGroup = '';
-  @observable groups?: GroupJson[];
+  @observable groups?: UserGroupJson[];
   @observable id: number;
   @observable isActive = false;
   @observable isBot = false;

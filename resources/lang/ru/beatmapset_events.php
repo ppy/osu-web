@@ -6,7 +6,7 @@
 return [
     'event' => [
         'approve' => 'Одобрена.',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'Владелец сложности :beatmap изменен на :new_user.',
         'discussion_delete' => 'Модератор удалил отзыв :discussion.',
         'discussion_lock' => 'Обсуждение для этой карты было отключено. (:text)',
         'discussion_post_delete' => 'Модератор удалил публикацию из отзыва :discussion.',
@@ -55,7 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Одобрено',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'Сменить владельца сложности',
         'discussion_delete' => 'Удаление обсуждения',
         'discussion_post_delete' => 'Удаление ответов в обсуждении',
         'discussion_post_restore' => 'Восстановление ответов в обсуждении',

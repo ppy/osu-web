@@ -54,6 +54,7 @@
     "url": "https://assets.ppy.sh/user-profile-covers/1/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef.jpeg",
     "id": null
   },
+  "is_restricted": false,
   "account_history": [],
   "active_tournament_banner": null,
   "badges": [
@@ -96,8 +97,9 @@
     "html": "<div class='bbcode bbcode--profile-page'><center>Hello</center></div>",
     "raw": "[centre]Hello[/centre]"
   },
+  "pending_beatmapset_count": 0,
   "previous_usernames": [],
-  "ranked_and_approved_beatmapset_count": 10,
+  "ranked_beatmapset_count": 10,
   "replays_watched_counts": [
     {
       "start_date": "2019-11-01",
@@ -142,7 +144,6 @@
     }
   },
   "support_level": 3,
-  "unranked_beatmapset_count": 0,
   "user_achievements": [
     {
       "achieved_at": "2020-01-01T00:00:00+00:00",
@@ -184,21 +185,11 @@ title_url        | string?                            | |
 twitter          | string?                            | |
 website          | string?                            | |
 
-In addition, following attributes are always included:
+In addition, the following [optional attributes on UserCompact](#usercompact-optionalattributes) are included:
 
-| Attribute     |
-| ------------- |
-| country       |
-| cover         |
-| is_admin      |
-| is_bng        |
-| is_full_bn    |
-| is_gmt        |
-| is_limited_bn |
-| is_moderator  |
-| is_nat        |
-| is_restricted |
-| is_silenced   |
+- country
+- cover
+- is_restricted (present only if this is the currently authenticated user)
 
 <div id="user-profilepage" data-unique="user-profilepage"></div>
 
@@ -213,4 +204,3 @@ In addition, following attributes are always included:
 | kudosu          |
 | top_ranks       |
 | medals          |
-

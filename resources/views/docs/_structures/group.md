@@ -1,14 +1,14 @@
 ## Group
 
-This object isn't returned by any endpoints yet, it is here purely as a reference for [UserGroup](#usergroup)
+This object is not returned by any endpoints yet. It is here only as a reference for [UserGroup](#usergroup).
 
 Field           | Type    | Description
 ----------------|---------|------------------------------------------------------------
+colour          | string? | |
+has_listing     | boolean | Whether this group displays a listing at `/groups/{id}`.
+has_playmodes   | boolean | Whether this group associates [GameModes](#gamemode) with users' memberships.
 id              | number  | |
 identifier      | string  | Unique string to identify the group.
-is_probationary | string  | Whether members of this group are considered probationary.
-has_playmodes   | boolean | If this group associates [GameModes](#gamemode) with a user's membership, e.g. BN/NAT members
+is_probationary | boolean | Whether members of this group are considered probationary.
 name            | string  | |
 short_name      | string  | Short name of the group for display.
-description     | string  | |
-colour          | string  | |

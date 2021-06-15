@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => 'negar kudosu',
         'edit' => 'editar',
         'edited' => 'Última vez editado por :editor :update_time.',
-        'guest' => '',
+        'guest' => 'Dificuldade de convidado feita por :user',
         'kudosu_denied' => 'Impossibilitado de receber kudosu.',
         'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi deletada e uma dicussão não poderá ser aberta.',
         'message_placeholder_locked' => 'A discussão para este beatmap foi desabilitada.',
@@ -314,7 +314,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Pontuação V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => 'Todos',

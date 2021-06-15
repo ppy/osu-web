@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Любимые карты',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Рейтинговые и одобренные карты',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Ожидающие',
+                ],
+                'ranked' => [
+                    'title' => 'Рейтинговые и одобренные карты',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'Всего попаданий',
             'total_score' => 'Всего очков',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Рейтинговые и утвержденные карты',
-            'loved_beatmapset_count' => 'Любимые сообществом карты',
-            'unranked_beatmapset_count' => 'Карты на рассмотрении',
             'graveyard_beatmapset_count' => 'Заброшенные карты',
+            'loved_beatmapset_count' => 'Любимые сообществом карты',
+            'pending_beatmapset_count' => 'Карты на рассмотрении',
+            'ranked_beatmapset_count' => 'Рейтинговые и утвержденные карты',
         ],
     ],
 

@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => 'رفض كودوسو',
         'edit' => 'تعديل',
         'edited' => 'التعديل الأخير تم بواسطة :editor:update_time.',
-        'guest' => '',
+        'guest' => 'صعوبة ضيف من :user',
         'kudosu_denied' => 'ممنوع من جمع كودوسو.',
         'message_placeholder_deleted_beatmap' => 'تم حذف هذه الصعوبة لذا لا يمكن مناقشتها بعد الان.',
         'message_placeholder_locked' => 'المناقشة لحزمة المراحل تم ايقافها.',
@@ -234,7 +234,7 @@ return [
             'sorting' => [
                 'title' => 'العنوان',
                 'artist' => 'الفنان',
-                'difficulty' => 'الصعوبه',
+                'difficulty' => 'الصعوبة',
                 'favourites' => 'المفضلة',
                 'updated' => 'حُدثت',
                 'ranked' => 'مصفوفة',
@@ -314,7 +314,7 @@ return [
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'نَمَط V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => 'الكل',
