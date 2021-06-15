@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => '喜歡的圖譜',
                 ],
-                'ranked_and_approved' => [
-                    'title' => '已進榜和批准的譜面',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => '待處理的圖譜',
+                ],
+                'ranked' => [
+                    'title' => '已進榜 & 批准的圖譜',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => '總命中次數',
             'total_score' => '總分',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '已進榜 & 批准的圖譜',
-            'loved_beatmapset_count' => 'Loved 圖譜',
-            'unranked_beatmapset_count' => '待處理的圖譜',
             'graveyard_beatmapset_count' => '已拋棄的圖譜',
+            'loved_beatmapset_count' => 'Loved 圖譜',
+            'pending_beatmapset_count' => '待處理的圖譜',
+            'ranked_beatmapset_count' => '已進榜 & 批准的圖譜',
         ],
     ],
 

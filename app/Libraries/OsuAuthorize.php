@@ -1742,6 +1742,24 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @param User $owner
+     * @return string
+     */
+    public function checkUserShowRestrictedStatus(?User $user, User $owner): string
+    {
+        if ($this->doCheckUser($user, 'IsNotOAuth')->can()) {
+            return 'ok';
+        }
+
+        if ($user !== null && $user->getKey() === $owner->getKey()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
+    /**
+     * @param User|null $user
      * @param LegacyMatch $match
      * @return string
      * @throws AuthorizationException

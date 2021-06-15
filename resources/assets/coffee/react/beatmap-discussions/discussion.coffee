@@ -102,7 +102,7 @@ export class Discussion extends React.PureComponent
               group: group
               hideStripe: true
           div className: "#{bn}__top-message",
-            @post firstPost, 'discussion', true
+            @post firstPost, 'discussion'
           div className: "#{bn}__top-actions",
             @postButtons() if !@props.preview
         @postFooter() if !@props.preview
@@ -269,7 +269,7 @@ export class Discussion extends React.PureComponent
     (!@props.discussion.beatmap_id? || !@props.currentBeatmap.deleted_at?)
 
 
-  post: (post, type, hideUserCard) =>
+  post: (post, type) =>
     return if !post.id?
 
     elementName = if post.system then SystemPost else Post
@@ -297,7 +297,6 @@ export class Discussion extends React.PureComponent
       canBeDeleted: canBeDeleted
       canBeRestored: canModeratePosts
       currentUser: @props.currentUser
-      hideUserCard: hideUserCard
 
 
   resolvedSystemPostId: =>

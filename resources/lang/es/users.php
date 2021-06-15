@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Mapas Amados',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Mapas Clasificados y Aprobados',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Mapas Pendientes',
+                ],
+                'ranked' => [
+                    'title' => 'Mapas Clasificados y Aprobados',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'Golpes totales',
             'total_score' => 'Puntuación total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Mapas Clasificados y Aprobados',
-            'loved_beatmapset_count' => 'Mapas Amados',
-            'unranked_beatmapset_count' => 'Mapas Pendientes',
             'graveyard_beatmapset_count' => 'Mapas Abandonados',
+            'loved_beatmapset_count' => 'Mapas Amados',
+            'pending_beatmapset_count' => 'Mapas Pendientes',
+            'ranked_beatmapset_count' => 'Mapas Clasificados y Aprobados',
         ],
     ],
 
