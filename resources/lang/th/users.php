@@ -207,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'บีทแมพที่ Loved',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'บีทแมพที่กำลังทำ',
+                ],
+                'ranked' => [
+                    'title' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
                 ],
             ],
             'discussions' => [
@@ -403,10 +403,10 @@ return [
             'total_hits' => 'Total Hits',
             'total_score' => 'คะแนนรวมทั้งหมด',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
-            'loved_beatmapset_count' => 'บีทแมพที่ Loved',
-            'unranked_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
             'graveyard_beatmapset_count' => 'สุสานบีทแมพ',
+            'loved_beatmapset_count' => 'บีทแมพที่ Loved',
+            'pending_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
+            'ranked_beatmapset_count' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
         ],
     ],
 

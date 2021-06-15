@@ -5,7 +5,6 @@ import UserGroupJson from 'interfaces/user-group-json';
 
 const mapperGroup: Readonly<UserGroupJson> = Object.freeze({
   colour: 'hsl(var(--hsl-l1))',
-  description: '',
   has_listing: false,
   has_playmodes: false,
   id: -1,
