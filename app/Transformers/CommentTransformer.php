@@ -14,11 +14,13 @@ class CommentTransformer extends TransformerAbstract
     ];
 
     protected $defaultIncludes = [
+        'deleted_by_id',
         'message',
         'message_html',
     ];
 
     protected $permissions = [
+        'deleted_by_id' => 'CommentModerate',
         'message' => 'CommentShow',
         'message_html' => 'CommentShow',
     ];
@@ -42,11 +44,15 @@ class CommentTransformer extends TransformerAbstract
             'updated_at' => json_time($comment->updated_at),
 
             'deleted_at' => json_time($comment->deleted_at),
-            'deleted_by_id' => $comment->deleted_by_id,
 
             'edited_at' => json_time($comment->edited_at),
             'edited_by_id' => $comment->edited_by_id,
         ];
+    }
+
+    public function includeDeletedById(Comment $comment)
+    {
+        return $this->primitive($comment->deleted_by_id);
     }
 
     public function includeMessage(Comment $comment)
