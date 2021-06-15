@@ -3,6 +3,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+namespace Database\Seeders\ModelSeeders;
+
+use DB;
+use Exception;
 use Illuminate\Database\Seeder;
 
 class CountrySeeder extends Seeder
@@ -31,10 +35,8 @@ class CountrySeeder extends Seeder
             }, $this->getCountryData());
 
             DB::table('osu_countries')->insert($countriesWithFakeData);
-        } catch (\Illuminate\Database\QueryException $e) {
-            echo $e->getMessage()."\r\n";
         } catch (Exception $ex) {
-            echo $ex->getMessage()."\r\n";
+            echo $ex->getMessage().PHP_EOL;
         }
     }
 
