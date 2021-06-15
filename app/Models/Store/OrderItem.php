@@ -133,12 +133,14 @@ class OrderItem extends Model
                 $duration = (int) $this->extra_data['duration'];
                 $text = SupporterTag::getDurationText($duration);
 
-                return trans('store.order.item.display_name.supporter_tag', [
+                $displayName = trans('store.order.item.display_name.supporter_tag', [
                     'name' => $this->product->name,
                     // test data didn't include username, so ?? ''
                     'username' => link_to_user($this->extra_data['target_id'], $this->extra_data['username'] ?? ''),
                     'duration' => $text,
                 ]);
+
+                return blade_safe($displayName);
             default:
                 return $this->product->name.($this->extra_info !== null ? " ({$this->extra_info})" : '');
         }
