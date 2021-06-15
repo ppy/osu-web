@@ -15,6 +15,7 @@ export interface CommentJson {
   commentable_type: string;
   created_at: string;
   deleted_at: string | null;
+  deleted_by_id: string | null;
   edited_at: string | null;
   edited_by_id: number | null;
   id: number;

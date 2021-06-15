@@ -42,6 +42,7 @@ class CommentTransformer extends TransformerAbstract
             'updated_at' => json_time($comment->updated_at),
 
             'deleted_at' => json_time($comment->deleted_at),
+            'deleted_by_id' => $comment->deleted_by_id,
 
             'edited_at' => json_time($comment->edited_at),
             'edited_by_id' => $comment->edited_by_id,

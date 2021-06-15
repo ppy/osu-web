@@ -11,6 +11,7 @@ export class Comment {
   commentableType: string; // TODO: type?
   createdAt: string;
   deletedAt: string | null;
+  deletedById: string | null;
   editedAt: string | null;
   editedById: number | null;
   id: number;
@@ -29,6 +30,7 @@ export class Comment {
     this.commentableType = json.commentable_type;
     this.createdAt = json.created_at;
     this.deletedAt = json.deleted_at;
+    this.deletedById = json.deleted_by_id;
     this.editedAt = json.edited_at;
     this.editedById = json.edited_by_id;
     this.id = json.id;
