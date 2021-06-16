@@ -81,7 +81,7 @@ class ForumSeeder extends Seeder
             ]));
 
             // Create 3 forums
-            factory(App\Models\Forum\Forum::class, 'parent', 3)->create()->each(function ($f) {
+            factory(App\Models\Forum\Forum::class, 3)->states('parent')->create()->each(function ($f) {
                 for ($i = 0; $i < 4; $i++) {
                     // Subforums for each forum.
                     $f2 = $f->subforums()->save(factory(App\Models\Forum\Forum::class)->states('child')->make());
