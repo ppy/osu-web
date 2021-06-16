@@ -5,9 +5,12 @@
 
 namespace Tests;
 
+use App\Jobs\Notifications\BeatmapsetDisqualify;
+use App\Jobs\Notifications\BeatmapsetResetNominations;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
+use Queue;
 
 class BeatmapsetEventNominationResetTest extends TestCase
 {
@@ -30,6 +33,9 @@ class BeatmapsetEventNominationResetTest extends TestCase
 
         $this->postProblem()->assertStatus(200);
 
+        Queue::assertPushed(BeatmapsetDisqualify::class);
+        Queue::assertNotPushed(BeatmapsetResetNominations::class);
+
         $this->assertSame($disqualifyCount + 1, BeatmapsetEvent::disqualifications()->count());
         $this->assertSame($nominationResetReceivedCount + count($this->nominators), BeatmapsetEvent::nominationResetReceiveds()->count());
         $this->assertEqualsCanonicalizing(array_pluck($this->nominators, 'user_id'), BeatmapsetEvent::nominationResetReceiveds()->pluck('user_id')->all());
@@ -44,6 +50,9 @@ class BeatmapsetEventNominationResetTest extends TestCase
 
         $this->postProblem()->assertStatus(200);
 
+        Queue::assertNotPushed(BeatmapsetDisqualify::class);
+        Queue::assertPushed(BeatmapsetResetNominations::class);
+
         $this->assertSame($disqualifyCount, BeatmapsetEvent::disqualifications()->count());
         $this->assertSame($nominationResetReceivedCount + count($this->nominators), BeatmapsetEvent::nominationResetReceiveds()->count());
         $this->assertEqualsCanonicalizing(array_pluck($this->nominators, 'user_id'), BeatmapsetEvent::nominationResetReceiveds()->pluck('user_id')->all());
@@ -55,6 +64,8 @@ class BeatmapsetEventNominationResetTest extends TestCase
         parent::setUp();
 
         config()->set('osu.beatmapset.required_nominations', 2);
+
+        Queue::fake();
 
         $this->sender = $this->createUserWithGroup('bng');
     }
