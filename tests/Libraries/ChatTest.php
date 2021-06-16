@@ -21,7 +21,7 @@ class ChatTest extends TestCase
     public function testSendMessage(bool $verified, $expectedException)
     {
         $sender = factory(User::class)->create();
-        $channel = factory(Channel::class)->state('public')->create();
+        $channel = factory(Channel::class)->states('public')->create();
         $channel->addUser($sender);
 
         if ($verified) {

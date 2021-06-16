@@ -26,7 +26,7 @@ $factory->define(App\Models\Store\Product::class, function (Faker\Generator $fak
     ];
 });
 
-$factory->defineAs(App\Models\Store\Product::class, 'master_tshirt', function (Faker\Generator $faker) {
+$factory->state(App\Models\Store\Product::class, 'master_tshirt', function (Faker\Generator $faker) {
     return [
         'name' => 'osu! t-shirt (triangles) / '.$faker->colorName,
         'cost' => 16.00,
@@ -62,7 +62,7 @@ NOTE: These are Japanese sizes. Overseas customers are advised to check the size
     ];
 });
 
-$factory->defineAs(App\Models\Store\Product::class, 'child_tshirt', function (Faker\Generator $faker) {
+$factory->state(App\Models\Store\Product::class, 'child_tshirt', function (Faker\Generator $faker) {
     return [
         'name' => 'osu! t-shirt (triangles) / '.$faker->colorName,
         'cost' => 16.00,
@@ -74,7 +74,7 @@ $factory->defineAs(App\Models\Store\Product::class, 'child_tshirt', function (Fa
     ];
 });
 
-$factory->defineAs(App\Models\Store\Product::class, 'child_banners', function (Faker\Generator $faker) {
+$factory->state(App\Models\Store\Product::class, 'child_banners', function (Faker\Generator $faker) {
     $params = [
         // 'name' => 'supply your own name',
         'cost' => 5.00,

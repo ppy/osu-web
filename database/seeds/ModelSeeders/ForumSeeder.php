@@ -32,12 +32,12 @@ class ForumSeeder extends Seeder
             $beatmapCount = App\Models\Beatmapset::count();
             if ($beatmapCount > 0) {
                 // Create beatmap threads
-                $f = factory(App\Models\Forum\Forum::class, 'parent')->create([
+                $f = factory(App\Models\Forum\Forum::class)->states('parent')->create([
                     'forum_name' => 'Beatmap Threads',
                     'forum_desc' => 'Beatmap thread info for beatmaps',
                 ]);
 
-                $f2 = $f->subforums()->save(factory(App\Models\Forum\Forum::class, 'child')->make([
+                $f2 = $f->subforums()->save(factory(App\Models\Forum\Forum::class)->states('child')->make([
                     'parent_id' => 1,
                     'forum_name' => 'Beatmap Threads',
                     'forum_desc' => 'Beatmap thread info for beatmaps',
@@ -69,12 +69,12 @@ class ForumSeeder extends Seeder
             }
 
             // Create userpage threads
-            $f = factory(App\Models\Forum\Forum::class, 'parent')->create([
+            $f = factory(App\Models\Forum\Forum::class)->states('parent')->create([
                 'forum_name' => 'User Pages',
                 'forum_desc' => 'Your user profile pages go here!',
             ]);
 
-            $f->subforums()->save(factory(App\Models\Forum\Forum::class, 'child')->make([
+            $f->subforums()->save(factory(App\Models\Forum\Forum::class)->states('child')->make([
                 'forum_id' => config('osu.user.user_page_forum_id'),
                 'parent_id' => $f->forum_id,
                 'forum_name' => 'User Pages',
@@ -84,7 +84,7 @@ class ForumSeeder extends Seeder
             factory(App\Models\Forum\Forum::class, 'parent', 3)->create()->each(function ($f) {
                 for ($i = 0; $i < 4; $i++) {
                     // Subforums for each forum.
-                    $f2 = $f->subforums()->save(factory(App\Models\Forum\Forum::class, 'child')->make());
+                    $f2 = $f->subforums()->save(factory(App\Models\Forum\Forum::class)->states('child')->make());
                     // Topics for each subforum
                     for ($j = 0; $j < 3; $j++) {
                         $topicUser = User::orderByRaw('RAND()')->first();
