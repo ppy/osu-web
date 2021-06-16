@@ -205,7 +205,7 @@ class Mod
         ],
         self::OSU_APPROACH_DIFFERENT => [
             'scale' => 'float',
-            'style' => 'int'
+            'style' => 'int',
         ],
     ];
 
