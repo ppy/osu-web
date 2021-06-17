@@ -37,8 +37,6 @@ class UpdateUserForumTopicFollows implements ShouldQueue
      */
     public function handle()
     {
-        app('OsuAuthorize')->cacheReset();
-
         foreach ($this->topic->watches()->with(['user', 'topic.forum'])->get() as $watch) {
             $user = $watch->user;
             $topic = $watch->topic;
