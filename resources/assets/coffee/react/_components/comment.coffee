@@ -72,12 +72,12 @@ export class Comment extends React.PureComponent
 
 
   componentDidMount: =>
-    @setState lines: estimateMinLines(@props.comment.messageHtml)
+    @setState lines: estimateMinLines(@props.comment.messageHtml ? '')
 
 
   componentDidUpdate: (prevProps) =>
     if prevProps.comment.messageHtml != @props.comment.messageHtml
-      @setState lines: estimateMinLines(@props.comment.messageHtml)
+      @setState lines: estimateMinLines(@props.comment.messageHtml ? '')
 
 
   render: =>
