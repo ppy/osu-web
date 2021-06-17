@@ -15,7 +15,7 @@ class FindForProfilePage
         $user = User::lookupWithHistory($id, $type, true);
         $request = request();
 
-        if ($user === null || $user->isBot() || !priv_check('UserShow', $user)->can()) {
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
             throw new UserProfilePageLookupException(function () {
                 if (is_json_request()) {
                     abort(404);
