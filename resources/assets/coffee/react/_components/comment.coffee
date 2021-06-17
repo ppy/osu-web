@@ -254,7 +254,7 @@ export class Comment extends React.PureComponent
 
 
   renderOwnerBadge: (meta) =>
-    return null unless @props.comment.userId == meta.owner_id
+    return null unless meta.owner_id? && @props.comment.userId == meta.owner_id
 
     div className: 'comment__row-item',
       div className: 'comment__owner-badge', meta.owner_title
