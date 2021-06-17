@@ -955,9 +955,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         $userGroup = $byGroupId->get($group->getKey());
 
-        if ($userGroup !== null && (!$activeOnly || !$userGroup->user_pending)) {
-            return $userGroup;
+        if ($userGroup === null || ($activeOnly && $userGroup->user_pending)) {
+            return null;
         }
+
+        return $userGroup;
     }
 
     /**
