@@ -281,12 +281,12 @@ class BeatmapsetDiscussionReview
             priv_check_user($user, 'BeatmapsetResetNominations', $beatmapset)->can();
 
         if ($resetNominations) {
-            $beatmapset->resetNominations($user, $problemDiscussion);
+            $beatmapset->disqualifyOrResetNominations($user, $problemDiscussion);
         }
 
         if ($beatmapset->isQualified()) {
             if (priv_check_user($user, 'BeatmapsetDisqualify', $beatmapset)->can()) {
-                $beatmapset->disqualify($user, $problemDiscussion);
+                $beatmapset->disqualifyOrResetNominations($user, $problemDiscussion);
             } else {
                 if ($priorOpenProblemCount === 0) {
                     (new BeatmapsetDiscussionQualifiedProblem(

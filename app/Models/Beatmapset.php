@@ -589,28 +589,33 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         });
     }
 
-    public function disqualify(User $user, BeatmapDiscussion $post)
+    public function disqualifyOrResetNominations(User $user, BeatmapDiscussion $post)
     {
-        if (!$this->isQualified()) {
-            return false;
+        $event = BeatmapsetEvent::DISQUALIFY;
+        $notificationClass = BeatmapsetDisqualify::class;
+        if ($this->isPending()) {
+            $event = BeatmapsetEvent::NOMINATION_RESET;
+            $notificationClass = BeatmapsetResetNominations::class;
+        } else if (!$this->isQualified()) {
+            throw new InvariantException('invalid state');
         }
 
-        $this->getConnection()->transaction(function () use ($user, $post) {
+        $this->getConnection()->transaction(function () use ($event, $notificationClass, $post, $user) {
             // call resetNominations?
             $nominators = $this->nominationsSinceReset()->with('user')->get()->pluck('user');
-            BeatmapsetEvent::log(BeatmapsetEvent::DISQUALIFY, $user, $post, ['nominator_ids' => $nominators->pluck('user_id')])->saveOrExplode();
+            BeatmapsetEvent::log($event, $user, $post, ['nominator_ids' => $nominators->pluck('user_id')])->saveOrExplode();
             foreach ($nominators as $nominator) {
                 BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET_RECEIVED, $nominator, $post, ['source_user_id' => $user->getKey()])->saveOrExplode();
             }
 
-            $this->setApproved('pending', $user);
+            if ($event === BeatmapsetEvent::DISQUALIFY) {
+                $this->setApproved('pending', $user);
+            }
+
             $this->refreshCache();
 
-            (new BeatmapsetDisqualify($this, $user))->dispatch();
+            (new $notificationClass($this, $user))->dispatch();
         });
-
-
-        return true;
     }
 
     public function resetNominations(User $user, BeatmapDiscussion $post)

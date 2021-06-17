@@ -167,11 +167,10 @@ class BeatmapDiscussionPostsController extends Controller
 
             switch ($action) {
                 case BeatmapsetEvent::DISQUALIFY:
-                    $beatmapset->disqualify($user, $discussion);
-                    break;
                 case BeatmapsetEvent::NOMINATION_RESET:
-                    $beatmapset->resetNominations($user, $discussion);
+                    $beatmapset->disqualifyOrResetNominations($user, $discussion);
                     break;
+
                 case 'notify':
                     (new BeatmapsetDiscussionQualifiedProblem($post, $user))->dispatch();
                     break;
