@@ -17,6 +17,7 @@ use App\Jobs\Notifications\BeatmapsetNominate;
 use App\Jobs\Notifications\BeatmapsetQualify;
 use App\Jobs\Notifications\BeatmapsetRank;
 use App\Jobs\Notifications\BeatmapsetRemoveFromLoved;
+use App\Jobs\Notifications\BeatmapsetResetNominations;
 use App\Jobs\RemoveBeatmapsetBestScores;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\Commentable;
@@ -588,13 +589,14 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         });
     }
 
-    public function disqualify($user, $post)
+    public function disqualify(User $user, BeatmapDiscussion $post)
     {
         if (!$this->isQualified()) {
             return false;
         }
 
-        DB::transaction(function () use ($user, $post) {
+        $this->getConnection()->transaction(function () use ($user, $post) {
+            // call resetNominations?
             $nominators = $this->nominationsSinceReset()->with('user')->get()->pluck('user');
             BeatmapsetEvent::log(BeatmapsetEvent::DISQUALIFY, $user, $post, ['nominator_ids' => $nominators->pluck('user_id')])->saveOrExplode();
             foreach ($nominators as $nominator) {
@@ -602,11 +604,28 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             }
 
             $this->setApproved('pending', $user);
+            $this->refreshCache();
 
             (new BeatmapsetDisqualify($this, $user))->dispatch();
         });
 
+
         return true;
+    }
+
+    public function resetNominations(User $user, BeatmapDiscussion $post)
+    {
+        $this->getConnection()->transaction(function () use ($user, $post) {
+            $nominators = $this->nominationsSinceReset()->with('user')->get()->pluck('user');
+            BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET, $user, $post, ['nominator_ids' => $nominators->pluck('user_id')])->saveOrExplode();
+            foreach ($nominators as $nominator) {
+                BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET_RECEIVED, $nominator, $post, ['source_user_id' => $user->getKey()])->saveOrExplode();
+            }
+
+            $this->refreshCache();
+
+            (new BeatmapsetResetNominations($this, $user))->dispatch();
+        });
     }
 
     public function qualify($user)

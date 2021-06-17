@@ -8,11 +8,9 @@ namespace App\Libraries;
 use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\BeatmapsetDiscussionQualifiedProblem;
 use App\Jobs\Notifications\BeatmapsetDiscussionReviewNew;
-use App\Jobs\Notifications\BeatmapsetResetNominations;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
-use App\Models\BeatmapsetEvent;
 use App\Models\User;
 use DB;
 
@@ -276,16 +274,14 @@ class BeatmapsetDiscussionReview
         return $beatmapset->beatmapDiscussions()->openProblems()->count();
     }
 
-    private static function resetOrDisqualify($beatmapset, $user, $problemDiscussion, $priorOpenProblemCount)
+    private static function resetOrDisqualify(Beatmapset $beatmapset, User $user, BeatmapDiscussion $problemDiscussion, $priorOpenProblemCount)
     {
         $resetNominations = $beatmapset->isPending() &&
             $beatmapset->hasNominations() &&
             priv_check_user($user, 'BeatmapsetResetNominations', $beatmapset)->can();
 
         if ($resetNominations) {
-            BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET, $user, $problemDiscussion)->saveOrExplode();
-            (new BeatmapsetResetNominations($beatmapset, $user))->dispatch();
-            $beatmapset->refreshCache();
+            $beatmapset->resetNominations($user, $problemDiscussion);
         }
 
         if ($beatmapset->isQualified()) {

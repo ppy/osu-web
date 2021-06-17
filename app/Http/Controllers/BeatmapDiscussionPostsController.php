@@ -8,7 +8,6 @@ namespace App\Http\Controllers;
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\Notifications\BeatmapsetDiscussionPostNew;
 use App\Jobs\Notifications\BeatmapsetDiscussionQualifiedProblem;
-use App\Jobs\Notifications\BeatmapsetResetNominations;
 use App\Libraries\BeatmapsetDiscussionPostsBundle;
 use App\Libraries\BeatmapsetDiscussionReview;
 use App\Models\BeatmapDiscussion;
@@ -16,6 +15,7 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
+use App\Models\User;
 use Auth;
 use DB;
 
@@ -111,6 +111,7 @@ class BeatmapDiscussionPostsController extends Controller
 
     public function store()
     {
+        /** @var User $user */
         $user = auth()->user();
         $discussion = $this->prepareDiscussion(request());
 
@@ -121,7 +122,7 @@ class BeatmapDiscussionPostsController extends Controller
         }
 
         $postParams = get_params(request()->all(), 'beatmap_discussion_post', ['message']);
-        $postParams['user_id'] = $user->user_id;
+        $postParams['user_id'] = $user->getKey();
         $post = new BeatmapDiscussionPost($postParams);
         $post->beatmapDiscussion()->associate($discussion);
 
@@ -129,23 +130,8 @@ class BeatmapDiscussionPostsController extends Controller
 
         $posts = [$post];
         $events = [];
-
-        $resetNominations = false;
-        $disqualify = false;
-
-        if ($newDiscussion && $discussion->message_type === 'problem') {
-            $resetNominations = $discussion->beatmapset->isPending() &&
-                $discussion->beatmapset->hasNominations() &&
-                priv_check('BeatmapsetResetNominations', $discussion->beatmapset)->can();
-
-            if ($resetNominations) {
-                $events[] = BeatmapsetEvent::NOMINATION_RESET;
-            } else {
-                $disqualify = priv_check('BeatmapsetDisqualify', $discussion->beatmapset)->can();
-            }
-        }
-
         $reopen = false;
+        $action = null;
 
         if (!$newDiscussion && $discussion->isDirty('resolved')) {
             if ($discussion->resolved) {
@@ -160,15 +146,13 @@ class BeatmapDiscussionPostsController extends Controller
             $posts[] = BeatmapDiscussionPost::generateLogResolveChange($user, $discussion->resolved);
         }
 
-        $notifyQualifiedProblem = false;
-
-        if (!$disqualify && $discussion->beatmapset->isQualified() && $discussion->message_type === 'problem') {
-            $openProblems = $discussion->beatmapset->beatmapDiscussions()->openProblems()->count();
-
-            $notifyQualifiedProblem = $openProblems === 0 && ($newDiscussion || $reopen);
+        /** @var Beatmapset $beatmapset */
+        $beatmapset = $discussion->beatmapset;
+        if ($newDiscussion && $discussion->message_type === 'problem') {
+            $action = $this->shouldResetOrDisqualify($beatmapset, $newDiscussion, $reopen);
         }
 
-        DB::transaction(function () use ($posts, $discussion, $events, $resetNominations, $disqualify, $user) {
+        DB::transaction(function () use ($action, $beatmapset, $discussion, $events, $posts, $user) {
             $discussion->saveOrExplode();
 
             foreach ($posts as $post) {
@@ -181,35 +165,21 @@ class BeatmapDiscussionPostsController extends Controller
                 BeatmapsetEvent::log($event, $user, $posts[0])->saveOrExplode();
             }
 
-            if ($disqualify) {
-                $discussion->beatmapset->disqualify($user, $posts[0]);
-            }
-
-            if ($resetNominations) {
-                $nominators = $discussion->beatmapset->nominationsSinceReset()->with('user')->get()->pluck('user');
-
-                foreach ($nominators as $nominator) {
-                    BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET_RECEIVED, $nominator, $post, ['source_user_id' => $user->getKey()])->saveOrExplode();
-                }
-
-                (new BeatmapsetResetNominations($discussion->beatmapset, $user))->dispatch();
-            }
-
-            // feels like a controller shouldn't be calling refreshCache on a model?
-            if ($resetNominations || $disqualify) {
-                $discussion->beatmapset->refreshCache();
+            switch ($action) {
+                case BeatmapsetEvent::DISQUALIFY:
+                    $beatmapset->disqualify($user, $discussion);
+                    break;
+                case BeatmapsetEvent::NOMINATION_RESET:
+                    $beatmapset->resetNominations($user, $discussion);
+                    break;
+                case 'notify':
+                    (new BeatmapsetDiscussionQualifiedProblem($post, $user))->dispatch();
+                    break;
             }
         });
 
-        $beatmapset = $discussion->beatmapset;
 
         BeatmapsetWatch::markRead($beatmapset, $user);
-
-        if ($notifyQualifiedProblem) {
-            // TODO: should work out how have the new post notification be able to handle this instead.
-            (new BeatmapsetDiscussionQualifiedProblem($post, $user))->dispatch();
-        }
-
         (new BeatmapsetDiscussionPostNew($post, $user))->dispatch();
 
         return [
@@ -272,5 +242,29 @@ class BeatmapDiscussionPostsController extends Controller
         $discussion->fill($discussionParams);
 
         return $discussion;
+    }
+
+    private function shouldResetOrDisqualify(Beatmapset $beatmapset, bool $newDiscussion, bool $reopen): ?string
+    {
+        if ($beatmapset->isQualified()) {
+            if (priv_check('BeatmapsetDisqualify', $beatmapset)->can()) {
+                return BeatmapsetEvent::DISQUALIFY;
+            }
+
+            if (
+                ($newDiscussion || $reopen)
+                && $beatmapset->beatmapDiscussions()->openProblems()->count() === 0
+            ) {
+                return 'notify';
+            }
+        }
+
+        if ($beatmapset->isPending()) {
+            if ($beatmapset->hasNominations() && priv_check('BeatmapsetResetNominations', $beatmapset)->can()) {
+                return BeatmapsetEvent::NOMINATION_RESET;
+            }
+        }
+
+        return null;
     }
 }
