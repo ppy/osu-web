@@ -27,21 +27,28 @@ use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Models\UserContestEntry;
 use Carbon\Carbon;
+use Ds;
 
 class OsuAuthorize
 {
-    const ALWAYS_CHECK = [
-        'IsOwnClient',
-        'IsNotOAuth',
-        'IsSpecialScope',
-    ];
+    const REQUEST_ATTRIBUTE_KEY = 'auth_map';
 
-    /** @var AuthorizationResult[] */
-    private $cache = [];
+    public static function alwaysCheck($ability)
+    {
+        static $set;
+
+        $set ??= new Ds\Set([
+            'IsOwnClient',
+            'IsNotOAuth',
+            'IsSpecialScope',
+        ]);
+
+        return $set->contains($ability);
+    }
 
     public function cacheReset(): void
     {
-        $this->cache = [];
+        request()->attributes->remove(static::REQUEST_ATTRIBUTE_KEY);
     }
 
     /**
@@ -58,8 +65,17 @@ class OsuAuthorize
             $object === null ? null : [$object->getTable(), $object->getKey()],
         ]);
 
-        if (!isset($this->cache[$cacheKey])) {
-            if ($user !== null && $user->isAdmin() && !in_array($ability, static::ALWAYS_CHECK, true)) {
+        $authMap = request()->attributes->get(static::REQUEST_ATTRIBUTE_KEY);
+
+        if ($authMap === null) {
+            $authMap = new Ds\Map();
+            request()->attributes->set(static::REQUEST_ATTRIBUTE_KEY, $authMap);
+        }
+
+        $auth = $authMap->get($cacheKey, null);
+
+        if ($auth === null) {
+            if ($user !== null && $user->isAdmin() && !static::alwaysCheck($ability)) {
                 $message = 'ok';
             } else {
                 $function = "check{$ability}";
@@ -71,10 +87,11 @@ class OsuAuthorize
                 }
             }
 
-            $this->cache[$cacheKey] = new AuthorizationResult($message);
+            $auth = new AuthorizationResult($message);
+            $authMap->put($cacheKey, $auth);
         }
 
-        return $this->cache[$cacheKey];
+        return $auth;
     }
 
     /**
@@ -1721,6 +1738,24 @@ class OsuAuthorize
         } else {
             return $prefix.'no_access';
         }
+    }
+
+    /**
+     * @param User|null $user
+     * @param User $owner
+     * @return string
+     */
+    public function checkUserShowRestrictedStatus(?User $user, User $owner): string
+    {
+        if ($this->doCheckUser($user, 'IsNotOAuth')->can()) {
+            return 'ok';
+        }
+
+        if ($user !== null && $user->getKey() === $owner->getKey()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
     }
 
     /**

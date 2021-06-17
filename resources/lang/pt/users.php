@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Beatmaps adorados',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmaps classificados e aprovados',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Beatmaps pendentes',
+                ],
+                'ranked' => [
+                    'title' => 'Beatmaps classificados e aprovados',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'Acertos totais',
             'total_score' => 'Pontuação total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Beatmaps classificados e aprovados',
-            'loved_beatmapset_count' => 'Beatmaps adorados',
-            'unranked_beatmapset_count' => 'Beatmaps pendentes',
             'graveyard_beatmapset_count' => 'Beatmaps no cemitério',
+            'loved_beatmapset_count' => 'Beatmaps adorados',
+            'pending_beatmapset_count' => 'Beatmaps pendentes',
+            'ranked_beatmapset_count' => 'Beatmaps classificados e aprovados',
         ],
     ],
 

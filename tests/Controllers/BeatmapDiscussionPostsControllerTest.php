@@ -55,7 +55,6 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         Event::assertNotDispatched(NewPrivateNotificationEvent::class);
 
         $this->user->statisticsOsu->update(['playcount' => $this->minPlays]);
-        app()->make('OsuAuthorize')->cacheReset();
 
         $this
             ->actingAsVerified($this->user)

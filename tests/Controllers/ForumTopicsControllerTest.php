@@ -47,8 +47,6 @@ class ForumTopicsControllerTest extends TestCase
 
         // add some plays so it passes
         $this->addPlaycount($user);
-        // reset auth
-        app()->make('OsuAuthorize')->cacheReset();
 
         $this
             ->actingAsVerified($user)
@@ -59,6 +57,27 @@ class ForumTopicsControllerTest extends TestCase
 
         $this->assertSame($initialPostCount + 1, Forum\Post::count());
         $this->assertSame($initialTopicCount, Forum\Topic::count());
+    }
+
+    public function testPin()
+    {
+        $forum = factory(Forum\Forum::class, 'child')->create();
+        $topic = factory(Forum\Topic::class)->create([
+            'forum_id' => $forum->getKey(),
+            'topic_status' => Forum\Topic::TYPES['normal'],
+        ]);
+        $user = $this->createUserWithGroup('gmt');
+        $type = 'sticky';
+        $typeInt = Forum\Topic::TYPES[$type];
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('forum.topics.pin', $topic->getKey()), [
+                'pin' => $typeInt,
+            ])
+            ->assertSuccessful();
+
+        $this->assertSame($type, Forum\Topic::typeStr($topic->fresh()->topic_type));
     }
 
     public function testReply()
@@ -96,8 +115,6 @@ class ForumTopicsControllerTest extends TestCase
 
         // add some plays so it passes
         $this->addPlaycount($user);
-        // reset auth
-        app()->make('OsuAuthorize')->cacheReset();
 
         $this
             ->actingAsVerified($user)
@@ -256,8 +273,6 @@ class ForumTopicsControllerTest extends TestCase
 
         // add some plays so it passes
         $this->addPlaycount($user);
-        // reset auth
-        app()->make('OsuAuthorize')->cacheReset();
 
         $this
             ->actingAsVerified($user)

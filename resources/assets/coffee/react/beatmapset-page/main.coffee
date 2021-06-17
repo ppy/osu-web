@@ -77,7 +77,7 @@ export class Main extends React.Component
     @setState
       currentScoreboardType: scoreboardType
 
-    if scoreboardType != 'global' && !currentUser.is_supporter
+    if !@state.currentBeatmap.is_scoreable || (scoreboardType != 'global' && !currentUser.is_supporter)
       @setState scores: []
       return
 
