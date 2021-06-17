@@ -37,8 +37,8 @@ class AppServiceProvider extends ServiceProvider
 
         Queue::after(function (JobProcessed $event) {
             app('OsuAuthorize')->resetCache();
-            app('groups')->validateVersion();
-            app('chat-filters')->validateVersion();
+            app('groups')->forceVersionCheck();
+            app('chat-filters')->forceVersionCheck();
 
             Datadog::increment(
                 config('datadog-helper.prefix_web').'.queue.run',

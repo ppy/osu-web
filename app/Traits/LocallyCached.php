@@ -5,6 +5,8 @@
 
 namespace App\Traits;
 
+use Exception;
+
 /**
  * Nested caching to reduce large request defined in "fetch" function
  * of whatever using this trait.
@@ -13,13 +15,16 @@ namespace App\Traits;
  *
  * Use cachedFetch instead of fetch to fetch the data.
  * Use resetCache to force reset on all instances.
- * Use validateVersion to ensure current instance data is recent (only if already loaded).
+ * Use forceVersionCheck to ensure version check on next memoize usage.
  */
 trait LocallyCached
 {
-    use Memoizes;
+    use Memoizes {
+        Memoizes::memoize as unversionedMemoize;
+    }
 
     private $version;
+    private $versionCheck = false;
 
     private static function getVersionCacheKey(): string
     {
@@ -43,39 +48,57 @@ trait LocallyCached
     {
         cache()->put(static::getVersionCacheKey(), hrtime(true));
 
-        $this->resetMemoized();
+        $this->forceVersionCheck();
     }
 
-    public function validateVersion(): void
+    public function forceVersionCheck(): void
     {
-        if ($this->version === null) {
-            return;
-        }
-
-        $currentVersion = static::getCurrentVersion();
-
-        if ($this->version !== $currentVersion) {
-            $this->resetMemoized();
-        }
+        $this->versionCheck = true;
     }
 
     protected function cachedFetch()
     {
-        $version = static::getCurrentVersion();
+        if ($this->version === null) {
+            throw new Exception('validateVersion must be called before calling cachedFetch');
+        }
+
         $cache = cache()->store(config('cache.local'));
         $key = 'local_cache:'.static::class;
         $value = $cache->get($key);
 
-        if ($value === null || $value['version'] !== $version) {
+        if ($value === null || $value['version'] !== $this->version) {
             $value = [
                 'data' => $this->fetch(),
-                'version' => $version,
+                'version' => $this->version,
             ];
             $cache->forever($key, $value);
         }
 
-        $this->version = $version;
-
         return $value['data'];
+    }
+
+    abstract protected function fetch();
+
+    protected function memoize(string $key, callable $function)
+    {
+        $this->validateVersion();
+
+        return $this->unversionedMemoize($key, $function);
+    }
+
+    private function validateVersion(): void
+    {
+        if ($this->version !== null && !$this->versionCheck) {
+            return;
+        }
+
+        $this->versionCheck = false;
+        $currentVersion = static::getCurrentVersion();
+
+        if ($this->version !== null && $this->version !== $currentVersion) {
+            $this->resetMemoized();
+        }
+
+        $this->version = $currentVersion;
     }
 }
