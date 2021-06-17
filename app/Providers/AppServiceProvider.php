@@ -36,7 +36,9 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Queue::after(function (JobProcessed $event) {
-            $this->resetCache();
+            app('OsuAuthorize')->resetCache();
+            app('groups')->validateVersion();
+            app('chat-filters')->validateVersion();
 
             Datadog::increment(
                 config('datadog-helper.prefix_web').'.queue.run',
@@ -108,12 +110,5 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment('testing')) {
             $this->app->register('\App\Providers\AdditionalDuskServiceProvider');
         }
-    }
-
-    private function resetCache(): void
-    {
-        app('OsuAuthorize')->resetCache();
-        app('groups')->validateVersion();
-        app('chat-filters')->validateVersion();
     }
 }
