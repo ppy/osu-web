@@ -96,6 +96,19 @@ class BeatmapDiscussionPostsController extends Controller
         return $post->beatmapset->defaultDiscussionJson();
     }
 
+    public function show($id)
+    {
+        $post = BeatmapDiscussionPost::findOrFail($id);
+        $discussion = $post->beatmapDiscussion;
+        $beatmapset = $discussion->beatmapset;
+
+        if ($beatmapset === null) {
+            abort(404);
+        }
+
+        return ujs_redirect(route('beatmapsets.discussion', $beatmapset).'#/'.$discussion->getKey().'/'.$post->getKey());
+    }
+
     public function store()
     {
         $discussion = $this->prepareDiscussion(request());
