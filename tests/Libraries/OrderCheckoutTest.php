@@ -141,7 +141,7 @@ class OrderCheckoutTest extends TestCase
     {
         $country = Country::inRandomOrder()->first() ?? factory(Country::class)->create();
 
-        $product = factory(Product::class, 'child_banners')->create([
+        $product = factory(Product::class)->states('child_banners')->create([
             'available_until' => $availableUntil,
             'name' => "{$tournament->name} Support Banner ({$country->name})",
         ]);
