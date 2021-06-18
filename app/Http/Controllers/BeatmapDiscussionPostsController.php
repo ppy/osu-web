@@ -235,14 +235,7 @@ class BeatmapDiscussionPostsController extends Controller
 
     private function shouldResetOrDisqualify(BeatmapDiscussion $discussion): ?string
     {
-        if ($discussion->message_type !== 'problem') {
-            return null;
-        }
-
-        /** @var Beatmapset $beatmapset */
-        $beatmapset = $discussion->beatmapset;
-
-        if ($discussion->exists && $discussion->isDirty('resolved')) {
+        if ($discussion->exists && $discussion->canBeResolved() && $discussion->isDirty('resolved')) {
             if ($discussion->resolved) {
                 priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
 
@@ -253,6 +246,13 @@ class BeatmapDiscussionPostsController extends Controller
                 return BeatmapsetEvent::ISSUE_REOPEN;
             }
         }
+
+        if ($discussion->message_type !== 'problem') {
+            return null;
+        }
+
+        /** @var Beatmapset $beatmapset */
+        $beatmapset = $discussion->beatmapset;
 
         if ($beatmapset->isQualified()) {
             if (priv_check('BeatmapsetDisqualify', $beatmapset)->can()) {
