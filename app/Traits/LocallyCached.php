@@ -5,8 +5,6 @@
 
 namespace App\Traits;
 
-use Exception;
-
 /**
  * Nested caching to reduce large request defined in "fetch" function
  * of whatever using this trait.
@@ -59,7 +57,7 @@ trait LocallyCached
     protected function cachedFetch()
     {
         if ($this->version === null) {
-            throw new Exception('validateVersion must be called before calling cachedFetch');
+            $this->validateVersion();
         }
 
         $cache = cache()->store(config('cache.local'));
