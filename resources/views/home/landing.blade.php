@@ -8,6 +8,10 @@
     'bodyAdditionalClasses' => 'osu-layout--body-landing'
 ])
 
+@php
+    $currentLocaleMeta = current_locale_meta();
+@endphp
+
 @section('content')
     <nav class="osu-layout__row">
         <!-- Mobile Navigation -->
@@ -29,11 +33,11 @@
                     <span class="landing-nav__link js-menu" data-menu-target="landing--locale">
                         <span class="landing-nav__locale-flag">
                             @include('objects._flag_country', [
-                                'countryCode' => locale_flag(App::getLocale()),
+                                'countryCode' => $currentLocaleMeta->flag(),
                             ])
                         </span>
 
-                        {{ locale_name(App::getLocale()) }}
+                        {{ $currentLocaleMeta->name() }}
                     </span>
 
                     <div
@@ -42,10 +46,13 @@
                         data-visibility="hidden"
                     >
                         @foreach (config('app.available_locales') as $locale)
+                            @php
+                                $localeMeta = locale_meta($locale);
+                            @endphp
                             <button
                                 type="button"
                                 class="landing-nav__locale-button"
-                                @if ($locale !== App::getLocale())
+                                @if ($localeMeta !== $currentLocaleMeta)
                                     data-url="{{ route('set-locale', ['locale' => $locale]) }}"
                                     data-remote="1"
                                     data-method="POST"
@@ -58,11 +65,11 @@
 
                                     <span class="landing-nav__locale-flag">
                                         @include('objects._flag_country', [
-                                            'countryCode' => locale_flag($locale),
+                                            'countryCode' => $localeMeta->flag(),
                                         ])
                                     </span>
 
-                                    {{ locale_name($locale) }}
+                                    {{ $localeMeta->name() }}
                                 </span>
                             </button>
                         @endforeach
