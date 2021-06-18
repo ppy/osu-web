@@ -66,18 +66,13 @@ class ScoreTransformer extends TransformerAbstract
 
         foreach ($typeOptions as $type => $sortName) {
             $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper($sortName);
-            $highScores = PlaylistItemUserHighScore
+            [$highScores, $hasMore] = PlaylistItemUserHighScore
                 ::cursorSort($cursorHelper, $highScorePlaceholder)
                 ->with(static::BASE_PRELOAD)
                 ->where('playlist_item_id', $score->playlist_item_id)
                 ->where('user_id', '<>', $score->user_id)
-                ->limit($limit + 1)
-                ->get();
-
-            $hasMore = count($highScores) === $limit + 1;
-            if ($hasMore) {
-                $highScores->pop();
-            }
+                ->limit($limit)
+                ->getWithHasMore();
 
             $ret[$type] = [
                 'scores' => json_collection($highScores->pluck('score'), new static(), static::BASE_INCLUDES),
