@@ -26,7 +26,7 @@ class BeatmapDiscussionPostsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => 'index']);
+        $this->middleware('auth', ['except' => 'index', 'show']);
         $this->middleware('require-scopes:public', ['only' => ['index']]);
 
         return parent::__construct();
