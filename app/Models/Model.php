@@ -18,6 +18,12 @@ abstract class Model extends BaseModel
 {
     use MacroableModel;
 
+    const BASE_MACROS = [
+        'getWithHasMore',
+        'last',
+        'realCount',
+    ];
+
     protected $connection = 'mysql';
     protected $guarded = [];
     protected $macros;
@@ -34,12 +40,7 @@ abstract class Model extends BaseModel
 
     public function getMacros()
     {
-        $macros = $this->macros ?? [];
-        $macros[] = 'getWithHasMore';
-        $macros[] = 'last';
-        $macros[] = 'realCount';
-
-        return $macros;
+        return array_merge($this->macros ?? [], static::BASE_MACROS);
     }
 
     /**
