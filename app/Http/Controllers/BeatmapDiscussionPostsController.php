@@ -115,9 +115,7 @@ class BeatmapDiscussionPostsController extends Controller
         $user = auth()->user();
         $discussion = $this->prepareDiscussion(request());
 
-        $newDiscussion = !$discussion->exists;
-
-        if ($newDiscussion) {
+        if (!$discussion->exists) {
             priv_check('BeatmapDiscussionStore', $discussion)->ensureCan();
         }
 
@@ -129,62 +127,54 @@ class BeatmapDiscussionPostsController extends Controller
         priv_check('BeatmapDiscussionPostStore', $post)->ensureCan();
 
         $posts = [$post];
-        $events = [];
-        $reopen = false;
-        $action = null;
-
-        if (!$newDiscussion && $discussion->isDirty('resolved')) {
-            if ($discussion->resolved) {
-                priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
-                $events[] = BeatmapsetEvent::ISSUE_RESOLVE;
-            } else {
-                priv_check('BeatmapDiscussionReopen', $discussion)->ensureCan();
-                $events[] = BeatmapsetEvent::ISSUE_REOPEN;
-                $reopen = true;
-            }
-
-            $posts[] = BeatmapDiscussionPost::generateLogResolveChange($user, $discussion->resolved);
-        }
-
-        /** @var Beatmapset $beatmapset */
+        $notify = false;
         $beatmapset = $discussion->beatmapset;
-        if ($newDiscussion && $discussion->message_type === 'problem') {
-            $action = $this->shouldResetOrDisqualify($beatmapset, $newDiscussion, $reopen);
+
+        $event = $this->shouldResetOrDisqualify($discussion);
+
+        // when reopening a problem if there are no existing problems, flag for a notification
+        // to be sent after all the records are updated.
+        if ($event === BeatmapsetEvent::ISSUE_REOPEN && $beatmapset->beatmapDiscussions()->openProblems()->count() === 0) {
+            $notify = true;
         }
 
-        DB::transaction(function () use ($action, $beatmapset, $discussion, $events, $posts, $user) {
+        DB::transaction(function () use ($beatmapset, $discussion, $event, $posts, $user) {
             $discussion->saveOrExplode();
 
             foreach ($posts as $post) {
                 // done here since discussion may or may not previously exist
-                $post->beatmap_discussion_id = $discussion->id;
+                $post->beatmap_discussion_id = $discussion->getKey();
                 $post->saveOrExplode();
             }
 
-            foreach ($events as $event) {
-                BeatmapsetEvent::log($event, $user, $posts[0])->saveOrExplode();
-            }
+            switch ($event) {
+                case BeatmapsetEvent::ISSUE_REOPEN:
+                case BeatmapsetEvent::ISSUE_RESOLVE:
+                    $systemPost = BeatmapDiscussionPost::generateLogResolveChange($user, $discussion->resolved);
+                    $systemPost->beatmap_discussion_id = $discussion->getKey();
+                    $systemPost->saveOrExplode();
+                    BeatmapsetEvent::log($event, $user, $posts[0])->saveOrExplode();
+                    break;
 
-            switch ($action) {
                 case BeatmapsetEvent::DISQUALIFY:
                 case BeatmapsetEvent::NOMINATION_RESET:
                     $beatmapset->disqualifyOrResetNominations($user, $discussion);
                     break;
-
-                case 'notify':
-                    (new BeatmapsetDiscussionQualifiedProblem($post, $user))->dispatch();
-                    break;
             }
         });
 
+        if ($notify) {
+            (new BeatmapsetDiscussionQualifiedProblem($post, $user))->dispatch();
+        }
+
+        (new BeatmapsetDiscussionPostNew($post, $user))->dispatch();
 
         BeatmapsetWatch::markRead($beatmapset, $user);
-        (new BeatmapsetDiscussionPostNew($post, $user))->dispatch();
 
         return [
             'beatmapset' => $beatmapset->defaultDiscussionJson(),
             'beatmap_discussion_post_ids' => array_pluck($posts, 'id'),
-            'beatmap_discussion_id' => $discussion->id,
+            'beatmap_discussion_id' => $discussion->getKey(),
         ];
     }
 
@@ -243,18 +233,30 @@ class BeatmapDiscussionPostsController extends Controller
         return $discussion;
     }
 
-    private function shouldResetOrDisqualify(Beatmapset $beatmapset, bool $newDiscussion, bool $reopen): ?string
+    private function shouldResetOrDisqualify(BeatmapDiscussion $discussion): ?string
     {
+        if ($discussion->message_type !== 'problem') {
+            return null;
+        }
+
+        /** @var Beatmapset $beatmapset */
+        $beatmapset = $discussion->beatmapset;
+
+        if ($discussion->exists && $discussion->isDirty('resolved')) {
+            if ($discussion->resolved) {
+                priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
+
+                return BeatmapsetEvent::ISSUE_RESOLVE;
+            } else {
+                priv_check('BeatmapDiscussionReopen', $discussion)->ensureCan();
+
+                return BeatmapsetEvent::ISSUE_REOPEN;
+            }
+        }
+
         if ($beatmapset->isQualified()) {
             if (priv_check('BeatmapsetDisqualify', $beatmapset)->can()) {
                 return BeatmapsetEvent::DISQUALIFY;
-            }
-
-            if (
-                ($newDiscussion || $reopen)
-                && $beatmapset->beatmapDiscussions()->openProblems()->count() === 0
-            ) {
-                return 'notify';
             }
         }
 
