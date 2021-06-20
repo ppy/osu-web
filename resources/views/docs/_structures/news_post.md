@@ -2,14 +2,14 @@
 
 Field        | Type                    | Description
 -------------|-------------------------|------------
-id           | number                  | |
 author       | string                  | |
 edit_url     | string                  | Link to the file view on GitHub.
 first_image  | string?                 | Link to the first image in the document.
+id           | number                  | |
 published_at | [Timestamp](#timestamp) | |
-updated_at   | [Timestamp](#timestamp) | |
-slug         | string                  | Unique identifier made by joining the publish date and title.
+slug         | string                  | Filename without the extension, used in URLs.
 title        | string                  | |
+updated_at   | [Timestamp](#timestamp) | |
 
 ### Optional Attributes
 

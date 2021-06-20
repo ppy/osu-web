@@ -24,13 +24,13 @@ class NewsController extends Controller
      *
      * Field                     | Type                    | Notes
      * --------------------------|-------------------------|------
+     * cursor                    | [Cursor](#cursor)       | |
      * news_posts                | [NewsPost](#newspost)[] | Includes `preview`.
      * news_sidebar.current_year | number                  | Year of the first post's publish time, or current year if no posts returned.
      * news_sidebar.news_posts   | [NewsPost](#newspost)[] | All posts published during `current_year`.
      * news_sidebar.years        | number[]                | All years during which posts have been published.
      * search.limit              | number                  | Clamped limit input.
      * search.sort               | string                  | Always `published_desc`.
-     * cursor                    | [Cursor](#cursor)       | |
      *
      * <aside class="notice">
      *   <a href="#newspost">NewsPost</a> collections queried by year will also include posts published in November and December of the previous year if the current date is the same year and before April.
