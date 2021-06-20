@@ -4,12 +4,12 @@
 --}}
 @php
     // this is pretty much a php conversion of beatmap-discussions/user-card.coffee
-    $topClasses = $bn = 'beatmap-discussion-user-card';
+    $bn = 'beatmap-discussion-user-card';
     $userGroup = $user->userGroupsForBadges()->first();
     $hideStripe = $hideStripe ?? false;
 @endphp
 
-<div class="{{$topClasses}}" style="{!! css_group_colour(optional($userGroup)->group) !!}">
+<div class="{{$bn}}" style="{!! css_group_colour(optional($userGroup)->group) !!}">
     <div class="{{$bn}}__avatar">
         @if (isset($user))
             <a class="{{$bn}}__user-link" href="{{route('users.show', $user)}}">
