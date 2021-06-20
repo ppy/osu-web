@@ -125,9 +125,9 @@ class NewsController extends Controller
      *
      * ### Response Format
      *
-     * Returns a [NewsPost](#newspost) with `content` and `navigation` included. Querying by ID will return a redirect to query by slug.
+     * Returns a [NewsPost](#newspost) with `content` and `navigation` included.
      *
-     * @urlParam news string News post slug or ID. Example: 2021-04-28-new-featured-artist-emilles-moonlight-serenade
+     * @urlParam news string required News post slug or ID. Example: 2021-04-27-results-a-labour-of-love
      * @queryParam key string Unset to query by slug, or `id` to query by ID. No-example
      * @response {
      *   "id": 943,
@@ -168,12 +168,14 @@ class NewsController extends Controller
         if (request('key') === 'id') {
             $post = NewsPost::findOrFail($slug);
 
-            $routeName = (is_api_request() ? 'api.' : '').'news.show';
-
-            return ujs_redirect(route($routeName, $post->slug));
+            if (!is_api_request()) {
+                return ujs_redirect(route('news.show', $post->slug));
+            }
+        } else {
+            $post = NewsPost::lookup($slug);
         }
 
-        $post = NewsPost::lookup($slug)->sync();
+        $post->sync();
 
         if (!$post->isVisible()) {
             abort(404);
