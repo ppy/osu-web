@@ -310,11 +310,11 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'RX' => 'Relax',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Skor V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => 'Herhangi biri',

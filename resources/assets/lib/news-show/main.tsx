@@ -115,7 +115,7 @@ export default class Main extends React.Component<Props> {
                 'data-reload-on-success': 1,
                 'data-remote': true,
                 'data-url': route('news.update', {news: this.props.post.id}),
-                'type': 'button',
+                type: 'button',
               },
               text: osu.trans('news.update.button'),
             },
