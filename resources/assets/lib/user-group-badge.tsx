@@ -37,13 +37,13 @@ export default function UserGroupBadge({group, modifiers}: Props) {
 
   const props = {
     children,
-    'className': classWithModifiers('user-group-badge', {
+    className: classWithModifiers('user-group-badge', {
       probationary: group.is_probationary,
       [group.identifier]: true,
       ...modifiers,
     }),
     'data-label': group.short_name,
-    'style': osu.groupColour(group),
+    style: osu.groupColour(group),
     title,
   };
 
