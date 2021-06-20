@@ -54,9 +54,20 @@
     @if ($userGroup !== null)
         <div class="forum-post-info__row forum-post-info__row--group-badge">
             @include('objects._user_group_badge', [
-                'forum' => true,
+                'modifiers' => ['t-forum'],
                 'userGroup' => $userGroup,
             ])
+
+            @php
+                $playmodes = $userGroup->playmodes;
+            @endphp
+            @if ($playmodes !== null && count($playmodes) > 0)
+                <div class="forum-post-info__row forum-post-info__row--group-badge-playmodes">
+                    @foreach ($playmodes as $playmode)
+                        <i class="fal fa-extra-mode-{{$playmode}}"></i>
+                    @endforeach
+                </div>
+            @endif
         </div>
     @endif
 

@@ -3,7 +3,6 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $forum ??= false;
     $group = $userGroup->group;
     $playmodes = $userGroup->playmodes;
     $hasPlaymodes = $playmodes !== null && count($playmodes) > 0;
@@ -17,7 +16,7 @@
 @endphp
 
 <{{ $tag }}
-    class="{{ class_with_modifiers('user-group-badge', $forum ? ['t-forum'] : []) }}"
+    class="{{ class_with_modifiers('user-group-badge', $modifiers ?? null) }}"
     data-label="{{ $group->short_name }}"
     title="{{ $title }}"
     style="{!! css_group_colour($group) !!}"
@@ -34,11 +33,3 @@
         </div>
     @endif
 </{{ $tag }}>
-
-@if ($forum && $hasPlaymodes)
-    <div class="forum-post-info__row forum-post-info__row--group-badge-playmodes">
-        @foreach ($playmodes as $playmode)
-            <i class="fal fa-extra-mode-{{$playmode}}"></i>
-        @endforeach
-    </div>
-@endif
