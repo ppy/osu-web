@@ -17,6 +17,7 @@ use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Octane\Facades\Octane;
 use Queue;
 use Validator;
 
@@ -49,6 +50,11 @@ class AppServiceProvider extends ServiceProvider
                 ]
             );
         });
+
+        Octane::tick('locally-cached', function () {
+            app('groups')->forceVersionCheck();
+            app('chat-filters')->forceVersionCheck();
+        })->seconds(60);
 
         $this->app->make('translator')->setSelector(new OsuMessageSelector());
 
