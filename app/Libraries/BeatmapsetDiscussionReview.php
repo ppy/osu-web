@@ -38,52 +38,11 @@ class BeatmapsetDiscussionReview
             DB::beginTransaction();
 
             // create the issues for the embeds first
-            $childIds = [];
             foreach ($document as $block) {
-                if (!isset($block['type'])) {
-                    throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
-                }
-
-                $message = get_string($block['text'] ?? null);
-                if ($message === null) {
-                    throw new InvariantException(trans('beatmap_discussions.review.validation.missing_text'));
-                }
-
-                switch ($block['type']) {
-                    case 'embed':
-                        $embedDiscussion = self::createPost(
-                            $beatmapset->getKey(),
-                            $block['discussion_type'],
-                            $message,
-                            $user->getKey(),
-                            $block['beatmap_id'] ?? null,
-                            $block['timestamp'] ?? null
-                        );
-                        $output[] = [
-                            'type' => 'embed',
-                            'discussion_id' => $embedDiscussion->getKey(),
-                        ];
-                        $childIds[] = $embedDiscussion->getKey();
-                        if ($block['discussion_type'] === 'problem' && !$problemDiscussion) {
-                            $problemDiscussion = $embedDiscussion;
-                        }
-                        break;
-
-                    case 'paragraph':
-                        if (mb_strlen($block['text']) > static::BLOCK_TEXT_LENGTH_LIMIT) {
-                            throw new InvariantException(trans('beatmap_discussions.review.validation.block_too_large', ['limit' => static::BLOCK_TEXT_LENGTH_LIMIT]));
-                        }
-                        $output[] = [
-                            'type' => 'paragraph',
-                            'text' => $block['text'],
-                        ];
-                        break;
-
-                    default:
-                        // invalid block type
-                        throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
-                }
+                $output[] = static::processBlock($block, $beatmapset, $user, false);
             }
+
+            $childIds = array_values(array_filter(array_pluck($output, 'discussion_id')));
 
             $minIssues = config('osu.beatmapset.discussion_review_min_issues');
             if (empty($childIds) || count($childIds) < $minIssues) {
@@ -123,6 +82,59 @@ class BeatmapsetDiscussionReview
         }
     }
 
+    private static function processBlock($block, Beatmapset $beatmapset, User $user, bool $updating = false)
+    {
+        if (!isset($block['type'])) {
+            throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
+        }
+
+        $message = get_string($block['text'] ?? null);
+        if ($message === null) {
+            throw new InvariantException(trans('beatmap_discussions.review.validation.missing_text'));
+        }
+
+        switch ($block['type']) {
+            case 'embed':
+                if ($updating && isset($block['discussion_id'])) {
+                    $childId = $block['discussion_id'];
+                } else {
+                    $embedDiscussion = static::createPost(
+                        $beatmapset->getKey(),
+                        $block['discussion_type'],
+                        $message,
+                        $user->getKey(),
+                        $block['beatmap_id'] ?? null,
+                        $block['timestamp'] ?? null
+                    );
+
+                    $childId = $embedDiscussion->getKey();
+
+                    // FIXME: this
+                    // if ($block['discussion_type'] === 'problem' && !$problemDiscussion) {
+                    //     $problemDiscussion = $embedDiscussion;
+                    // }
+                }
+
+                return [
+                    'type' => 'embed',
+                    'discussion_id' => $childId,
+                ];
+
+            case 'paragraph':
+                if (mb_strlen($block['text']) > static::BLOCK_TEXT_LENGTH_LIMIT) {
+                    throw new InvariantException(trans('beatmap_discussions.review.validation.block_too_large', ['limit' => static::BLOCK_TEXT_LENGTH_LIMIT]));
+                }
+                return [
+                    'type' => 'paragraph',
+                    'text' => $block['text'],
+                ];
+
+            default:
+                // invalid block type
+                throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
+        }
+    }
+
     // TODO: combine with create()?
     public static function update(BeatmapDiscussion $discussion, array $document, User $user)
     {
@@ -142,60 +154,7 @@ class BeatmapsetDiscussionReview
             // iterate over the children to determine which embeds are new and which have been unlinked
             $childIds = [];
             foreach ($document as $block) {
-                if (!isset($block['type'])) {
-                    throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
-                }
-
-                $message = get_string($block['text'] ?? null);
-                if ($message === null) {
-                    // skip empty message check if this is an existing embed
-                    if ($block['type'] !== 'embed' || !isset($block['discussion_id'])) {
-                        throw new InvariantException(trans('beatmap_discussions.review.validation.missing_text'));
-                    }
-                }
-
-                switch ($block['type']) {
-                    case 'embed':
-                        // if there's a discussion_id, this is an existing embed
-                        if (isset($block['discussion_id'])) {
-                            $childId = $block['discussion_id'];
-                        } else {
-                            // otherwise, create new discussion
-                            $embedDiscussion = self::createPost(
-                                $beatmapset->getKey(),
-                                $block['discussion_type'],
-                                $message,
-                                $user->getKey(),
-                                $block['beatmap_id'] ?? null,
-                                $block['timestamp'] ?? null
-                            );
-                            $childId = $embedDiscussion->getKey();
-                            if ($block['discussion_type'] === 'problem' && !$problemDiscussion) {
-                                $problemDiscussion = $embedDiscussion;
-                            }
-                        }
-
-                        $output[] = [
-                            'type' => 'embed',
-                            'discussion_id' => $childId,
-                        ];
-                        $childIds[] = $childId;
-                        break;
-
-                    case 'paragraph':
-                        if (mb_strlen($block['text']) > static::BLOCK_TEXT_LENGTH_LIMIT) {
-                            throw new InvariantException(trans('beatmap_discussions.review.validation.block_too_large', ['limit' => static::BLOCK_TEXT_LENGTH_LIMIT]));
-                        }
-                        $output[] = [
-                            'type' => 'paragraph',
-                            'text' => $block['text'],
-                        ];
-                        break;
-
-                    default:
-                        // invalid block type
-                        throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
-                }
+                $output[] = static::processBlock($block, $beatmapset, $user, true);
             }
 
             $minIssues = config('osu.beatmapset.discussion_review_min_issues');
