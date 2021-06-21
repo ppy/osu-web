@@ -42,11 +42,11 @@ export default class Captcha {
   render = () => {
     if (this.isEnabled() && !this.isLoaded()) {
       grecaptcha.render(this.container()!, {
-        'callback': this.enableSubmit,
+        callback: this.enableSubmit,
         'error-callback': this.disableSubmit,
         'expired-callback': this.disableSubmit,
-        'sitekey': this.sitekey,
-        'theme': 'dark',
+        sitekey: this.sitekey,
+        theme: 'dark',
       });
 
       this.disableSubmit();

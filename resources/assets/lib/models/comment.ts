@@ -15,13 +15,13 @@ export class Comment {
   editedById: number | null;
   id: number;
   legacyName: string | null;
-  message: string;
-  messageHtml: string;
+  message?: string;
+  messageHtml?: string;
   parentId: number | null;
   pinned: boolean;
   repliesCount: number;
   updatedAt: string;
-  userId: number;
+  userId: number | null;
   votesCount: number;
 
   constructor(json: CommentJson) {

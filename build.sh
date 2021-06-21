@@ -3,6 +3,8 @@
 set -u
 set -e
 
+export COMPOSER_ALLOW_SUPERUSER=1
+
 # The user when provisioning is different than the user running actual php workers (in production).
 if [ -z "${OSU_SKIP_CACHE_PERMISSION_OVERRIDE:-}" ]; then
     # Don't fail if permissions don't get set on all files.

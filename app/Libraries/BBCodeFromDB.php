@@ -39,7 +39,7 @@ class BBCodeFromDB
 
     public function clearSpacesBetweenTags($text)
     {
-        return preg_replace("/([^-][^-]>)\s*</", '\1<', $text);
+        return preg_replace('/([^-][^-]>)\s*</', '\1<', $text);
     }
 
     public function parseAudio($text)
