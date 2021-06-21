@@ -39,6 +39,10 @@ class VerifyUser
 
     private function alwaysSkipVerification()
     {
+        if (config('osu.user.bypass_verification')) {
+            return true;
+        }
+
         $currentRouteData = app('route-section')->getCurrent();
         $currentRoute = "{$currentRouteData['controller']}@{$currentRouteData['action']}";
 
