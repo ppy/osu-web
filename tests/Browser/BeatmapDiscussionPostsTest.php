@@ -112,12 +112,12 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
         $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make([
             'user_id' => $this->mapper->getKey(),
         ]));
-        $this->beatmapDiscussion = factory(BeatmapDiscussion::class, 'timeline')->create([
+        $this->beatmapDiscussion = factory(BeatmapDiscussion::class)->states('timeline')->create([
             'beatmapset_id' => $this->beatmapset->getKey(),
             'beatmap_id' => $this->beatmap->getKey(),
             'user_id' => $this->user->getKey(),
         ]);
-        $post = factory(BeatmapDiscussionPost::class, 'timeline')->make([
+        $post = factory(BeatmapDiscussionPost::class)->states('timeline')->make([
             'user_id' => $this->user->getKey(),
         ]);
         $this->beatmapDiscussionPost = $this->beatmapDiscussion->beatmapDiscussionPosts()->save($post);
