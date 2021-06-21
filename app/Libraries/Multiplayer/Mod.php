@@ -330,7 +330,19 @@ class Mod
 
         if (!$value) {
             $value = [
-                Ruleset::OSU => self::EXCLUSIVITY_COMMON,
+                Ruleset::OSU => array_merge(
+                    self::EXCLUSIVITY_COMMON,
+                    [
+                        [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::OSU_TRACEABLE,
+                            self::OSU_SPININ,
+                            self::OSU_GROW,
+                            self::OSU_DEFLATE,
+                            self::HIDDEN,
+                        ],
+                    ]
+                ),
                 Ruleset::TAIKO => array_merge(
                     self::EXCLUSIVITY_COMMON,
                     [

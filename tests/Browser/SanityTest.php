@@ -102,27 +102,27 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['artist'] = factory(\App\Models\Artist::class)->create();
 
         // factories for /store/*
-        self::$scaffolding['product'] = factory(\App\Models\Store\Product::class, 'master_tshirt')->create();
+        self::$scaffolding['product'] = factory(\App\Models\Store\Product::class)->states('master_tshirt')->create();
         self::$scaffolding['order'] = factory(\App\Models\Store\Order::class)->states('checkout')->create([
             'user_id' => self::$scaffolding['user']->getKey(),
         ]);
         self::$scaffolding['checkout'] = new ScaffoldDummy(self::$scaffolding['order']->getKey());
-        self::$scaffolding['invoice'] = factory(\App\Models\Store\Order::class, 'paid')->create([
+        self::$scaffolding['invoice'] = factory(\App\Models\Store\Order::class)->states('paid')->create([
             'user_id' => self::$scaffolding['user']->getKey(),
         ]);
 
         // factories for /community/forums/*
-        self::$scaffolding['forum_parent'] = factory(\App\Models\Forum\Forum::class, 'parent')->create();
-        self::$scaffolding['forum'] = factory(\App\Models\Forum\Forum::class, 'child')->create([
+        self::$scaffolding['forum_parent'] = factory(\App\Models\Forum\Forum::class)->states('parent')->create();
+        self::$scaffolding['forum'] = factory(\App\Models\Forum\Forum::class)->states('child')->create([
             'parent_id' => self::$scaffolding['forum_parent']->getKey(),
         ]);
         // satisfy group permissions required for posting in forum
         self::$scaffolding['_group'] = app('groups')->byIdentifier('default');
-        self::$scaffolding['_forum_acl_post'] = factory(\App\Models\Forum\Authorize::class, 'post')->create([
+        self::$scaffolding['_forum_acl_post'] = factory(\App\Models\Forum\Authorize::class)->states('post')->create([
             'forum_id' => self::$scaffolding['forum']->getKey(),
             'group_id' => self::$scaffolding['_group']->getKey(),
         ]);
-        self::$scaffolding['_forum_acl_reply'] = factory(\App\Models\Forum\Authorize::class, 'reply')->create([
+        self::$scaffolding['_forum_acl_reply'] = factory(\App\Models\Forum\Authorize::class)->states('reply')->create([
             'forum_id' => self::$scaffolding['forum']->getKey(),
             'group_id' => self::$scaffolding['_group']->getKey(),
         ]);
