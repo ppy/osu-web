@@ -127,20 +127,10 @@ class BeatmapDiscussionPostsController extends Controller
         priv_check('BeatmapDiscussionPostStore', $post)->ensureCan();
 
         $posts = [$post];
-        $notify = false;
         $beatmapset = $discussion->beatmapset;
 
-        $event = $this->shouldResetOrDisqualify($discussion);
-
-        // when reopening a problem if there are no existing problems, flag for a notification
-        // to be sent after all the records are updated.
-        if (
-            ($event === BeatmapsetEvent::ISSUE_REOPEN
-            || $event === null && !$discussion->exists && $discussion->isProblem() && $beatmapset->isQualified())
-            && $beatmapset->beatmapDiscussions()->openProblems()->count() === 0
-        ) {
-            $notify = true;
-        }
+        $event = $discussion->getBeatmapsetEventType($user);
+        $notify = $discussion->shouldNotifiyQualifiedProblem($event);
 
         DB::transaction(function () use ($beatmapset, $discussion, $event, $posts, $user) {
             $discussion->saveOrExplode();
@@ -206,7 +196,7 @@ class BeatmapDiscussionPostsController extends Controller
         return $post->beatmapset->defaultDiscussionJson();
     }
 
-    private function prepareDiscussion($request)
+    private function prepareDiscussion($request): BeatmapDiscussion
     {
         $discussionId = get_int($request['beatmap_discussion_id']);
 
@@ -235,41 +225,5 @@ class BeatmapDiscussionPostsController extends Controller
         $discussion->fill($discussionParams);
 
         return $discussion;
-    }
-
-    private function shouldResetOrDisqualify(BeatmapDiscussion $discussion): ?string
-    {
-        if ($discussion->exists && $discussion->canBeResolved() && $discussion->isDirty('resolved')) {
-            if ($discussion->resolved) {
-                priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
-
-                return BeatmapsetEvent::ISSUE_RESOLVE;
-            } else {
-                priv_check('BeatmapDiscussionReopen', $discussion)->ensureCan();
-
-                return BeatmapsetEvent::ISSUE_REOPEN;
-            }
-        }
-
-        if ($discussion->message_type !== 'problem') {
-            return null;
-        }
-
-        /** @var Beatmapset $beatmapset */
-        $beatmapset = $discussion->beatmapset;
-
-        if ($beatmapset->isQualified()) {
-            if (priv_check('BeatmapsetDisqualify', $beatmapset)->can()) {
-                return BeatmapsetEvent::DISQUALIFY;
-            }
-        }
-
-        if ($beatmapset->isPending()) {
-            if ($beatmapset->hasNominations() && priv_check('BeatmapsetResetNominations', $beatmapset)->can()) {
-                return BeatmapsetEvent::NOMINATION_RESET;
-            }
-        }
-
-        return null;
     }
 }

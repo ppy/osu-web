@@ -17,6 +17,7 @@ use Exception;
  * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussionVotes BeatmapDiscussionVote
  * @property int|null $beatmap_id
  * @property int $beatmapset_id
+ * @property Beatmapset $beatmapset
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $deleted_at
  * @property int|null $deleted_by_id
@@ -213,6 +214,39 @@ class BeatmapDiscussion extends Model
         return $this->morphMany(KudosuHistory::class, 'kudosuable');
     }
 
+    public function getBeatmapsetEventType(User $user): ?string
+    {
+        if ($this->exists && $this->canBeResolved() && $this->isDirty('resolved')) {
+            if ($this->resolved) {
+                priv_check_user($user, 'BeatmapDiscussionResolve', $this)->ensureCan();
+
+                return BeatmapsetEvent::ISSUE_RESOLVE;
+            } else {
+                priv_check_user($user, 'BeatmapDiscussionReopen', $this)->ensureCan();
+
+                return BeatmapsetEvent::ISSUE_REOPEN;
+            }
+        }
+
+        if ($this->message_type !== 'problem') {
+            return null;
+        }
+
+        if ($this->beatmapset->isQualified()) {
+            if (priv_check_user($user, 'BeatmapsetDisqualify', $this->beatmapset)->can()) {
+                return BeatmapsetEvent::DISQUALIFY;
+            }
+        }
+
+        if ($this->beatmapset->isPending()) {
+            if ($this->beatmapset->hasNominations() && priv_check('BeatmapsetResetNominations', $this->beatmapset)->can()) {
+                return BeatmapsetEvent::NOMINATION_RESET;
+            }
+        }
+
+        return null;
+    }
+
     public function getMessageTypeAttribute($value)
     {
         return array_search_null(get_int($value), static::MESSAGE_TYPES);
@@ -389,6 +423,17 @@ class BeatmapDiscussion extends Model
         }
 
         return $this->beatmap->user_id;
+    }
+
+    /**
+     * To get the correct result, this should be called before discussions are updated, as it checks the open problems count.
+     */
+    public function shouldNotifiyQualifiedProblem(?string $event): bool
+    {
+        return (
+            $event === BeatmapsetEvent::ISSUE_REOPEN
+            || $event === null && !$this->exists && $this->isProblem() && $this->beatmapset->isQualified()
+        ) && $this->beatmapset->beatmapDiscussions()->openProblems()->count() === 0;
     }
 
     public function fixBeatmapsetId()
