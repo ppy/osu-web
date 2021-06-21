@@ -32,6 +32,25 @@ class FriendsController extends Controller
 
     public function index()
     {
+        if (is_api_request()) {
+            return json_collection(
+                auth()->user()
+                    ->relations()
+                    ->friends()
+                    ->withMutual()
+                    ->with(['target' => fn ($query) => $query->eagerloadForListing()])
+                    ->get(),
+                'UserRelation',
+                [
+                    'target',
+                    'target.cover',
+                    'target.country',
+                    'target.groups',
+                    'target.support_level',
+                ],
+            );
+        }
+
         $currentUser = auth()->user();
         $currentMode = default_mode();
 
@@ -51,10 +70,6 @@ class FriendsController extends Controller
             'groups',
             'support_level',
         ]);
-
-        if (is_api_request()) {
-            return $usersJson;
-        }
 
         return ext_view('friends.index', compact('usersJson'));
     }
