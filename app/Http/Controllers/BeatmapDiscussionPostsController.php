@@ -126,20 +126,17 @@ class BeatmapDiscussionPostsController extends Controller
 
         priv_check('BeatmapDiscussionPostStore', $post)->ensureCan();
 
-        $posts = [$post];
         $beatmapset = $discussion->beatmapset;
-
         $event = $discussion->getBeatmapsetEventType($user);
-        $notify = $discussion->shouldNotifiyQualifiedProblem($event);
+        $notifyQualifiedProblem = $discussion->shouldNotifiyQualifiedProblem($event);
 
-        DB::transaction(function () use ($beatmapset, $discussion, $event, $posts, $user) {
+        $posts = $discussion->getConnection()->transaction(function () use ($beatmapset, $discussion, $event, $post, $user) {
             $discussion->saveOrExplode();
 
-            foreach ($posts as $post) {
-                // done here since discussion may or may not previously exist
-                $post->beatmap_discussion_id = $discussion->getKey();
-                $post->saveOrExplode();
-            }
+            // done here since discussion may or may not previously exist
+            $post->beatmap_discussion_id = $discussion->getKey();
+            $post->saveOrExplode();
+            $newPosts = [$post];
 
             switch ($event) {
                 case BeatmapsetEvent::ISSUE_REOPEN:
@@ -147,7 +144,8 @@ class BeatmapDiscussionPostsController extends Controller
                     $systemPost = BeatmapDiscussionPost::generateLogResolveChange($user, $discussion->resolved);
                     $systemPost->beatmap_discussion_id = $discussion->getKey();
                     $systemPost->saveOrExplode();
-                    BeatmapsetEvent::log($event, $user, $posts[0])->saveOrExplode();
+                    BeatmapsetEvent::log($event, $user, $post)->saveOrExplode();
+                    $newPosts[] = $systemPost;
                     break;
 
                 case BeatmapsetEvent::DISQUALIFY:
@@ -155,9 +153,11 @@ class BeatmapDiscussionPostsController extends Controller
                     $beatmapset->disqualifyOrResetNominations($user, $discussion);
                     break;
             }
+
+            return $newPosts;
         });
 
-        if ($notify) {
+        if ($notifyQualifiedProblem) {
             (new BeatmapsetDiscussionQualifiedProblem($post, $user))->dispatch();
         }
 
