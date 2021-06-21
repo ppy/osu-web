@@ -39,7 +39,6 @@ class BeatmapsetDiscussionReview
 
             // create the issues for the embeds first
             $childIds = [];
-            $blockCount = 0;
             foreach ($document as $block) {
                 if (!isset($block['type'])) {
                     throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
@@ -84,7 +83,6 @@ class BeatmapsetDiscussionReview
                         // invalid block type
                         throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
                 }
-                $blockCount++;
             }
 
             $minIssues = config('osu.beatmapset.discussion_review_min_issues');
@@ -93,6 +91,7 @@ class BeatmapsetDiscussionReview
             }
 
             $maxBlocks = config('osu.beatmapset.discussion_review_max_blocks');
+            $blockCount = count($document);
             if ($blockCount > $maxBlocks) {
                 throw new InvariantException(trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks));
             }
@@ -142,8 +141,6 @@ class BeatmapsetDiscussionReview
 
             // iterate over the children to determine which embeds are new and which have been unlinked
             $childIds = [];
-            $blockCount = 0;
-
             foreach ($document as $block) {
                 if (!isset($block['type'])) {
                     throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
@@ -199,7 +196,6 @@ class BeatmapsetDiscussionReview
                         // invalid block type
                         throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
                 }
-                $blockCount++;
             }
 
             $minIssues = config('osu.beatmapset.discussion_review_min_issues');
@@ -208,6 +204,7 @@ class BeatmapsetDiscussionReview
             }
 
             $maxBlocks = config('osu.beatmapset.discussion_review_max_blocks');
+            $blockCount = count($document);
             if ($blockCount > $maxBlocks) {
                 throw new InvariantException(trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks));
             }
