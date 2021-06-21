@@ -304,6 +304,9 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2021-06-21
+- [`/friends`](#get-friends) returns a collection of [UserRelation](#userrelation) instead of [UserCompact](#usercompact).
+
 ### 2021-06-09
 - `ranked_and_approved_beatmapset_count` and `unranked_beatmapset_count` attributes in [UserCompact](#usercompact) object have been deprecated and replaced with `ranked_beatmapset_count` and `pending_beatmapset_count` respectively.
 - `ranked_and_approved` and `unranked` types in [Get User Beatmaps](#get-user-beatmaps) have been deprecated and replaced with `ranked` and `pending` respectively.

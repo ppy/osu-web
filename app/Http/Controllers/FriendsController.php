@@ -12,6 +12,9 @@ use App\Transformers\UserCompactTransformer;
 use Auth;
 use Request;
 
+/**
+ * @group Friends
+ */
 class FriendsController extends Controller
 {
     public function __construct()
@@ -30,6 +33,75 @@ class FriendsController extends Controller
         return parent::__construct();
     }
 
+    /**
+     * Get Friends
+     *
+     * Returns the authenticated user's friends list.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * A collection of [UserRelation](#userrelation) objects with `target` included. `target`s include `cover`, `country`, `groups`, and `support_level`.
+     *
+     * @response [
+     *   {
+     *     "target_id": 2,
+     *     "relation_type": "friend",
+     *     "mutual": false,
+     *     "target": {
+     *       "avatar_url": "https://a.ppy.sh/2?1537409912.jpeg",
+     *       "country_code": "AU",
+     *       "default_group": "default",
+     *       "id": 2,
+     *       "is_active": true,
+     *       "is_bot": false,
+     *       "is_deleted": false,
+     *       "is_online": false,
+     *       "is_supporter": true,
+     *       "last_visit": "2021-06-21T06:55:47+00:00",
+     *       "pm_friends_only": false,
+     *       "profile_colour": "#3366FF",
+     *       "username": "peppy",
+     *       "country": {
+     *         "code": "AU",
+     *         "name": "Australia"
+     *       },
+     *       "cover": {
+     *         "custom_url": "https://assets.ppy.sh/user-profile-covers/2/baba245ef60834b769694178f8f6d4f6166c5188c740de084656ad2b80f1eea7.jpeg",
+     *         "url": "https://assets.ppy.sh/user-profile-covers/2/baba245ef60834b769694178f8f6d4f6166c5188c740de084656ad2b80f1eea7.jpeg",
+     *         "id": null
+     *       },
+     *       "groups": [
+     *         {
+     *           "colour": "#0066FF",
+     *           "has_listing": false,
+     *           "has_playmodes": false,
+     *           "id": 33,
+     *           "identifier": "ppy",
+     *           "is_probationary": false,
+     *           "name": "ppy",
+     *           "short_name": "PPY",
+     *           "playmodes": null
+     *         },
+     *         {
+     *           "colour": "#EB47D0",
+     *           "has_listing": true,
+     *           "has_playmodes": false,
+     *           "id": 11,
+     *           "identifier": "dev",
+     *           "is_probationary": false,
+     *           "name": "Developers",
+     *           "short_name": "DEV",
+     *           "playmodes": null
+     *         }
+     *       ],
+     *       "support_level": 3
+     *     }
+     *   },
+     *   // ...
+     * ]
+     */
     public function index()
     {
         if (is_api_request()) {
