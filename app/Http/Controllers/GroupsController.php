@@ -11,7 +11,7 @@ class GroupsController extends Controller
 {
     public function show($id)
     {
-        $group = app('groups')->byId($id);
+        $group = app('groups')->byId(get_int($id));
         abort_if($group === null || !$group->hasListing(), 404);
 
         $currentMode = default_mode();
@@ -22,7 +22,7 @@ class GroupsController extends Controller
             ->orderBy('username', 'asc')
             ->get();
 
-        $groupJson = json_item($group, 'Group');
+        $groupJson = json_item($group, 'Group', ['description']);
         $transformer = new UserCompactTransformer();
         $transformer->mode = $currentMode;
         $usersJson = json_collection($users, $transformer, [

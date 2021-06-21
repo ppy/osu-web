@@ -28,7 +28,7 @@ class UserNotificationDigestTest extends TestCase
             'details' => ['mail' => true],
         ]);
 
-        $forum = factory(Forum::class, 'parent')->create();
+        $forum = factory(Forum::class)->states('parent')->create();
         $topic = factory(Topic::class)->make();
         $forum->topics()->save($topic);
         $topic->refresh();
