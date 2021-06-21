@@ -44,7 +44,6 @@
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
     "dms/phpunit-arraysubset-asserts": "^0.3.0",
     "facade/ignition": "^2.10",
-    "fzaninotto/faker": "*",
     "laravel/dusk": "*",
     "mockery/mockery": "*",
     "nunomaduro/collision": "^5.4",
@@ -88,7 +87,7 @@
     "sort-packages": true,
     "optimize-autoloader": true,
     "platform": {
-      "php": "7.4.0"
+      "php": "8.0.0"
     }
   },
   "extra": {
