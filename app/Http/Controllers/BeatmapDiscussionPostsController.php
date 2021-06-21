@@ -134,7 +134,11 @@ class BeatmapDiscussionPostsController extends Controller
 
         // when reopening a problem if there are no existing problems, flag for a notification
         // to be sent after all the records are updated.
-        if ($event === BeatmapsetEvent::ISSUE_REOPEN && $beatmapset->beatmapDiscussions()->openProblems()->count() === 0) {
+        if (
+            ($event === BeatmapsetEvent::ISSUE_REOPEN
+            || $event === null && !$discussion->exists && $discussion->isProblem() && $beatmapset->isQualified())
+            && $beatmapset->beatmapDiscussions()->openProblems()->count() === 0
+        ) {
             $notify = true;
         }
 

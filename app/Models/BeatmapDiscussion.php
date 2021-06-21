@@ -250,6 +250,11 @@ class BeatmapDiscussion extends Model
             !$this->kudosu_denied;
     }
 
+    public function isProblem()
+    {
+        return $this->message_type === 'problem';
+    }
+
     public function refreshKudosu($event, $eventExtraData = [])
     {
         // remove own votes
