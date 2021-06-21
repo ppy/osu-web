@@ -239,7 +239,7 @@ class BeatmapDiscussion extends Model
         }
 
         if ($this->beatmapset->isPending()) {
-            if ($this->beatmapset->hasNominations() && priv_check('BeatmapsetResetNominations', $this->beatmapset)->can()) {
+            if ($this->beatmapset->hasNominations() && priv_check_user($user, 'BeatmapsetResetNominations', $this->beatmapset)->can()) {
                 return BeatmapsetEvent::NOMINATION_RESET;
             }
         }
