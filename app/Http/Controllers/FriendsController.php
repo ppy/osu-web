@@ -42,7 +42,7 @@ class FriendsController extends Controller
      *
      * ### Response Format
      *
-     * A collection of [UserRelation](#userrelation) objects with `target` included. `target`s include `cover`, `country`, `groups`, and `support_level`.
+     * A collection of [UserRelation](#userrelation) objects with `target` included. `target`s include `country`, `cover`, `groups`, and `support_level`.
      *
      * @response [
      *   {
@@ -115,8 +115,8 @@ class FriendsController extends Controller
                 'UserRelation',
                 [
                     'target',
-                    'target.cover',
                     'target.country',
+                    'target.cover',
                     'target.groups',
                     'target.support_level',
                 ],
