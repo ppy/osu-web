@@ -326,7 +326,7 @@ function img2x(array $attributes)
     return tag('img', $attributes);
 }
 
-function locale_meta(string $locale): ?LocaleMeta
+function locale_meta(string $locale): LocaleMeta
 {
     return LocaleMeta::find($locale);
 }
