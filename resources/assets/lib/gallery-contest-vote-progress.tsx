@@ -4,11 +4,33 @@
 import { CircularProgress } from 'circular-progress';
 import * as React from 'react';
 
-export default class GalleryContestVoteProgress extends React.PureComponent {
+type Props = Record<string, never>;
+
+interface State {
+  voteCount: number;
+}
+
+export default class GalleryContestVoteProgress extends React.PureComponent<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      voteCount: this.getVoteCount(),
+    };
+  }
+
+  componentDidMount() {
+    $.subscribe('contest:vote:end.count', this.syncState);
+  }
+
+  componentWillUnmount() {
+    $.unsubscribe('.count');
+  }
+
   render() {
     return (
       <div className='pswp__button pswp__button--vote-progress'>
-        <CircularProgress current={this.getVoteCount()} max={this.getMaxVotes()} />
+        <CircularProgress current={this.state.voteCount} max={this.getMaxVotes()} />
       </div>
     );
   }
@@ -23,6 +45,9 @@ export default class GalleryContestVoteProgress extends React.PureComponent {
     return parseInt(voteSummary.dataset.contestVoteCount ?? '0', 10);
   };
 
-  private voteSummary = () => document.querySelector('.js-contest-vote-summary') as HTMLElement;
+  private syncState = () => {
+    this.setState({ voteCount: this.getVoteCount() });
+  };
 
+  private voteSummary = () => document.querySelector('.js-contest-vote-summary') as HTMLElement;
 }
