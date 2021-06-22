@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9d89ffd8fb4b1e2c913bfd2ed298b815",
+    "content-hash": "b98d88fc1310d5048696c72e231472e6",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -2092,16 +2092,16 @@
         },
         {
             "name": "itsgoingd/clockwork",
-            "version": "v5.0.6",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itsgoingd/clockwork.git",
-                "reference": "1de3f9f9fc22217aa024f79ecbdf0fde418fc0a1"
+                "reference": "fd0e893"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/1de3f9f9fc22217aa024f79ecbdf0fde418fc0a1",
-                "reference": "1de3f9f9fc22217aa024f79ecbdf0fde418fc0a1",
+                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/fd0e893",
+                "reference": "fd0e893",
                 "shasum": ""
             },
             "require": {
@@ -2109,6 +2109,7 @@
                 "php": ">=5.6",
                 "psr/log": "1.*"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -2149,7 +2150,7 @@
             ],
             "support": {
                 "issues": "https://github.com/itsgoingd/clockwork/issues",
-                "source": "https://github.com/itsgoingd/clockwork/tree/v5.0.6"
+                "source": "https://github.com/itsgoingd/clockwork/tree/master"
             },
             "funding": [
                 {
@@ -2157,7 +2158,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-12-27T00:18:25+00:00"
+            "time": "2021-06-13T20:22:35+00:00"
         },
         {
             "name": "jaybizzle/crawler-detect",
@@ -12725,7 +12726,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "itsgoingd/clockwork": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

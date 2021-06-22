@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Elskede beatmaps',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Godkendte Beatmaps',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Afventende Beatmaps',
+                ],
+                'ranked' => [
+                    'title' => 'Ranked & Godkendte Beatmaps',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'Totale Hits',
             'total_score' => 'Total Score',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked & Godkendte Beatmaps',
-            'loved_beatmapset_count' => 'Elskede Beatmaps',
-            'unranked_beatmapset_count' => 'Afventende Beatmaps',
             'graveyard_beatmapset_count' => 'Beatmaps på Kirkegården',
+            'loved_beatmapset_count' => 'Elskede Beatmaps',
+            'pending_beatmapset_count' => 'Afventende Beatmaps',
+            'ranked_beatmapset_count' => 'Ranked & Godkendte Beatmaps',
         ],
     ],
 

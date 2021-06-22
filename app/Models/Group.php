@@ -60,6 +60,11 @@ class Group extends Model implements AfterCommit
         return presence($value);
     }
 
+    public function descriptionHtml(): ?string
+    {
+        return $this->group_desc === null ? null : markdown($this->group_desc, 'group');
+    }
+
     public function hasBadge(): bool
     {
         return $this->display_order !== null;

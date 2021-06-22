@@ -27,7 +27,7 @@ jobs:
   tests:
     strategy:
       matrix:
-        php: ['7.4', '8.0']
+        php: ['8.0']
     name: Tests
     runs-on: ubuntu-latest
     services:

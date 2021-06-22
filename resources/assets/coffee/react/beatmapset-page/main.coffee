@@ -83,7 +83,7 @@ export class Main extends React.Component
     else
       @state.enabledMods
 
-    if !currentUser.is_supporter && (scoreboardType != 'global' || enabledMods.length > 0)
+    if !@state.currentBeatmap.is_scoreable || (!currentUser.is_supporter && (scoreboardType != 'global' || enabledMods.length > 0))
       @setState
         scores: []
         currentScoreboardType: scoreboardType

@@ -16,6 +16,7 @@
     "interface-name": false,
     "jsx-boolean-value": [true, "never"],
     "jsx-no-multiline-js": false,
+    "object-literal-key-quotes": [true, "as-needed"],
     "object-literal-sort-keys": {
       "options": "ignore-case"
     },
