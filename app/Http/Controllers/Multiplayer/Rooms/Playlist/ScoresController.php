@@ -50,17 +50,13 @@ class ScoresController extends BaseController
         $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
         $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper($params['sort'] ?? null);
 
-        $highScores = $playlist
+        [$highScores, $hasMore] = $playlist
             ->highScores()
             ->cursorSort($cursorHelper, $params['cursor'] ?? null)
             ->with(ScoreTransformer::BASE_PRELOAD)
-            ->limit($limit + 1) // an extra to check for pagination
-            ->get();
+            ->limit($limit)
+            ->getWithHasMore();
 
-        $hasMore = count($highScores) === $limit + 1;
-        if ($hasMore) {
-            $highScores->pop();
-        }
         $scoresJson = json_collection(
             $highScores->pluck('score'),
             'Multiplayer\Score',
