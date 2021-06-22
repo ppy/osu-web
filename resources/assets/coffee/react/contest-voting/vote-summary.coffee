@@ -8,7 +8,10 @@ baseClass = osu.classWithModifiers('contest__voting-star', ['smaller'])
 selectedClass = 'contest__voting-star--selected'
 
 export VoteSummary = ({voteCount, maxVotes}) ->
-  div null,
+  div
+    className: 'js-contest-vote-summary'
+    'data-contest-max-votes': maxVotes
+    'data-contest-vote-count': voteCount
     for i in [0...maxVotes]
       className = baseClass
       className += " #{selectedClass}" if i < voteCount
