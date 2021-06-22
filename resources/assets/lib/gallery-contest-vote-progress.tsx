@@ -30,7 +30,7 @@ export default class GalleryContestVoteProgress extends React.PureComponent<Prop
   render() {
     return (
       <div className='pswp__button pswp__button--vote-progress'>
-        <CircularProgress current={this.state.voteCount} max={this.getMaxVotes()} />
+        <CircularProgress countUp current={this.state.voteCount} max={this.getMaxVotes()} />
       </div>
     );
   }

@@ -5,6 +5,7 @@ import * as React from 'react';
 import { classWithModifiers } from './utils/css';
 
 interface Props {
+  countUp: boolean;
   current: number;
   ignoreProgress: boolean;
   max: number;
@@ -15,6 +16,7 @@ interface Props {
 
 export class CircularProgress extends React.PureComponent<Props, any> {
   static defaultProps = {
+    countUp: false,
     ignoreProgress: false,
     onlyShowAsWarning: false,
     theme: '',
@@ -31,6 +33,10 @@ export class CircularProgress extends React.PureComponent<Props, any> {
       return null;
     }
 
+    const displayNumber = this.props.countUp
+      ? this.props.current
+      : this.props.max - this.props.current;
+
     const transform = this.props.ignoreProgress
       ? undefined
       : { transform: `rotate(${percentage}turn)` };
@@ -45,7 +51,7 @@ export class CircularProgress extends React.PureComponent<Props, any> {
         })}
         title={this.props.tooltip || `${this.props.current} / ${this.props.max}`}
       >
-        <div className={`${bn}__label`}>{this.props.max - this.props.current}</div>
+        <div className={`${bn}__label`}>{displayNumber}</div>
         <div className={`${bn}__slice`}>
           <div className={`${bn}__circle`} style={transform} />
           <div className={`${bn}__circle ${bn}__circle--fill`} />
