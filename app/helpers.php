@@ -3,6 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
 use Illuminate\Support\HtmlString;
 
@@ -244,6 +245,11 @@ function css_var_2x(string $key, string $url)
     return blade_safe("{$key}: url('{$url}'); {$key}-2x: url('{$url2x}')");
 }
 
+function current_locale_meta(): LocaleMeta
+{
+    return locale_meta(app()->getLocale());
+}
+
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
     $withClockwork = app('clockwork.support')->isEnabled();
@@ -320,6 +326,11 @@ function img2x(array $attributes)
     return tag('img', $attributes);
 }
 
+function locale_meta(string $locale): LocaleMeta
+{
+    return LocaleMeta::find($locale);
+}
+
 function trim_unicode(?string $value)
 {
     return preg_replace('/(^\s+|\s+$)/u', '', $value);
@@ -342,33 +353,6 @@ function json_date(?DateTime $date): ?string
 function json_time(?DateTime $time): ?string
 {
     return $time === null ? null : $time->format(DateTime::ATOM);
-}
-
-function locale_flag($locale)
-{
-    return App\Libraries\LocaleMeta::flagFor($locale);
-}
-
-function locale_name($locale)
-{
-    return App\Libraries\LocaleMeta::nameFor($locale);
-}
-
-function locale_for_moment($locale)
-{
-    if ($locale === 'en') {
-        return 'en-gb';
-    }
-
-    if ($locale === 'zh') {
-        return 'zh-cn';
-    }
-
-    if ($locale === 'no') {
-        return 'nb';
-    }
-
-    return $locale;
 }
 
 function log_error($exception)

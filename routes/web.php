@@ -85,7 +85,7 @@ Route::group(['middleware' => ['web']], function () {
                 Route::post('{post}/restore', 'BeatmapDiscussionPostsController@restore')->name('restore');
             });
 
-            Route::resource('posts', 'BeatmapDiscussionPostsController', ['only' => ['destroy', 'index', 'store', 'update']]);
+            Route::resource('posts', 'BeatmapDiscussionPostsController', ['only' => ['destroy', 'index', 'show', 'store', 'update']]);
             Route::resource('votes', 'BeatmapsetDiscussionVotesController', ['only' => ['index']]);
         });
 
