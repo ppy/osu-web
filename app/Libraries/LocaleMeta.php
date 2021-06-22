@@ -153,8 +153,8 @@ class LocaleMeta
         ],
     ];
 
-    private $data;
-    private $locale;
+    private array $data;
+    private string $locale;
 
     /**
      * Return cached instance of specified locale.
