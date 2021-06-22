@@ -36,7 +36,7 @@ export default class CommentableMetaStore {
   updateWithJson(data: CommentableMetaJson[] | undefined | null) {
     if (data == null) return;
     for (const json of data) {
-      const key = json.type != null && json.id != null ? `${json.type}-${json.id}` : null;
+      const key = 'id' in json ? `${json.type}-${json.id}` : null;
       this.meta.set(key, json);
     }
   }
