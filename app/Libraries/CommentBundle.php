@@ -217,8 +217,12 @@ class CommentBundle
     private function getUsers($comments)
     {
         $userIds = $comments->pluck('user_id')
-            ->concat($comments->pluck('edited_by_id'))
-            ->concat($comments->pluck('deleted_by_id'));
+            ->concat($comments->pluck('edited_by_id'));
+
+        $user = auth()->user();
+        if ($user->isModerator() || $user->isAdmin()) {
+            $userIds->concat($comments->pluck('deleted_by_id'));
+        }
 
         return User::whereIn('user_id', $userIds)->get();
     }
