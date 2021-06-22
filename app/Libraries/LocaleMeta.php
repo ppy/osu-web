@@ -156,6 +156,12 @@ class LocaleMeta
     private $data;
     private $locale;
 
+    /**
+     * Return cached instance of specified locale.
+     *
+     * Only valid locale listed as key in MAPPINGS constant is accepted.
+     * Passing in invalid locale will result in error.
+     */
     public static function find(string $locale): self
     {
         static $instances = [];
