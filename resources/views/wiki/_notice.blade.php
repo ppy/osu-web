@@ -4,7 +4,7 @@
 --}}
 @if ($page->isVisible() && $page->locale !== $page->requestedLocale)
     <div class="wiki-notice">
-        {{ trans('wiki.show.fallback_translation', ['language' => locale_name($page->requestedLocale)]) }}
+        {{ trans('wiki.show.fallback_translation', ['language' => locale_meta($page->requestedLocale)->name()]) }}
     </div>
 @endif
 
