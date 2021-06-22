@@ -22,8 +22,8 @@
                         srcSet="{{$discussion->beatmapset->coverURL('list')}} 1x, {{$discussion->beatmapset->coverURL('list@2x')}} 2x">
                 </a>
                 <div class="beatmap-discussion-timestamp__icon beatmapset-activities__timeline-icon-margin">
-                    <span class="beatmap-discussion-message-type beatmap-discussion-message-type--{{$discussion->message_type}}">
-                        <span class="{{$postTypeToIcon[$discussion->message_type]}}"></span>
+                    <span class="beatmap-discussion-message-type beatmap-discussion-message-type--{{str_replace('_', '-', $discussion->message_type)}}">
+                        <span class="{{$postTypeToIcon[$discussion->message_type]}}" title="{{trans("beatmaps.discussions.message_type.{$discussion->message_type}")}}"></span>
                     </span>
                 </div>
             </div>

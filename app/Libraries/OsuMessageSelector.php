@@ -11,10 +11,6 @@ class OsuMessageSelector extends MessageSelector
 {
     public function getPluralIndex($locale, $number)
     {
-        if ($locale === 'pt-br') {
-            $locale = 'pt_BR';
-        }
-
-        return parent::getPluralIndex($locale, $number);
+        return parent::getPluralIndex(locale_meta($locale)->laravelPlural(), $number);
     }
 }

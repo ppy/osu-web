@@ -5,8 +5,6 @@
 
 namespace Tests;
 
-use App;
-
 class LocaleTest extends TestCase
 {
     public function testAll()
@@ -27,7 +25,7 @@ class LocaleTest extends TestCase
             'key_1.empty_missing' => '',
         ], $fallbackLocale);
 
-        App::setLocale($fallbackLocale);
+        app()->setLocale($fallbackLocale);
         $this->assertSame('key_1.missing', trans('key_1.missing'));
         $this->assertSame('test', trans('key_1.simple'));
         $this->assertSame('test: stuff', trans('key_1.keyed', ['value' => 'stuff']));
@@ -47,7 +45,7 @@ class LocaleTest extends TestCase
         ], $incompleteLocale);
 
         app('translator')->setFallback($fallbackLocale);
-        App::setLocale($incompleteLocale);
+        app()->setLocale($incompleteLocale);
         $this->assertSame('key_1.missing', trans('key_1.missing'));
         $this->assertSame('テスト', trans('key_1.simple'));
         $this->assertSame('test 2', trans('key_1.simple_empty'));
@@ -73,7 +71,7 @@ class LocaleTest extends TestCase
      */
     public function testCorrespondingLocaleFile($locale)
     {
-        $this->assertTrue(unmix("js/locales/{$locale}.js") !== null);
+        $this->assertNotNull(unmix("js/locales/{$locale}.js"));
     }
 
     /**
@@ -81,9 +79,7 @@ class LocaleTest extends TestCase
      */
     public function testCorrespondingMomentLocaleFile($locale)
     {
-        $momentLocale = locale_for_moment($locale);
-
-        $this->assertTrue(unmix("js/moment-locales/{$momentLocale}.js") !== null);
+        $this->assertNotNull(unmix('js/moment-locales/'.locale_meta($locale)->moment().'.js'));
     }
 
     public function availableLocalesProvider()

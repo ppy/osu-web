@@ -26,7 +26,7 @@ class BeatmapDiscussionPostsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => 'index']);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
         $this->middleware('require-scopes:public', ['only' => ['index']]);
 
         return parent::__construct();
@@ -94,6 +94,19 @@ class BeatmapDiscussionPostsController extends Controller
         $post->restore(Auth::user());
 
         return $post->beatmapset->defaultDiscussionJson();
+    }
+
+    public function show($id)
+    {
+        $post = BeatmapDiscussionPost::findOrFail($id);
+        $discussion = $post->beatmapDiscussion;
+        $beatmapset = $discussion->beatmapset;
+
+        if ($beatmapset === null) {
+            abort(404);
+        }
+
+        return ujs_redirect(route('beatmapsets.discussion', $beatmapset).'#/'.$discussion->getKey().'/'.$post->getKey());
     }
 
     public function store()
