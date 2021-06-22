@@ -8,8 +8,21 @@ export default class GalleryContestVoteProgress extends React.PureComponent {
   render() {
     return (
       <div className='pswp__button pswp__button--vote-progress'>
-        <CircularProgress current={0} max={10} />
+        <CircularProgress current={this.getVoteCount()} max={this.getMaxVotes()} />
       </div>
     );
   }
+
+  private getMaxVotes = () => {
+    const voteSummary = this.voteSummary();
+    return parseInt(voteSummary.dataset.contestMaxVotes ?? '0', 10);
+  };
+
+  private getVoteCount = () => {
+    const voteSummary = this.voteSummary();
+    return parseInt(voteSummary.dataset.contestVoteCount ?? '0', 10);
+  };
+
+  private voteSummary = () => document.querySelector('.js-contest-vote-summary') as HTMLElement;
+
 }
