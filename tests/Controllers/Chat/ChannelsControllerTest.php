@@ -98,7 +98,7 @@ class ChannelsControllerTest extends TestCase
      */
     public function testChannelJoin($type, $success)
     {
-        $channel = factory(Channel::class)->state($type)->create();
+        $channel = factory(Channel::class)->states($type)->create();
         $status = $success ? 200 : 403;
 
         $this->actAsScopedUser($this->user, ['*']);
@@ -290,7 +290,7 @@ class ChannelsControllerTest extends TestCase
      */
     public function testChannelLeave($type, $success)
     {
-        $channel = factory(Channel::class)->state($type)->create();
+        $channel = factory(Channel::class)->states($type)->create();
         $channel->addUser($this->user);
         $status = $success ? 204 : 403;
 
@@ -326,7 +326,7 @@ class ChannelsControllerTest extends TestCase
      */
     public function testChannelLeaveWhenNotJoined($type, $success)
     {
-        $channel = factory(Channel::class)->state($type)->create();
+        $channel = factory(Channel::class)->states($type)->create();
         $status = $success ? 204 : 403;
 
         $this->actAsScopedUser($this->user, ['*']);
