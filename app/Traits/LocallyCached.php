@@ -11,7 +11,7 @@ namespace App\Traits;
  *
  * Memoizes trait is included and reset accordingly.
  *
- * Use cachedFetch instead of fetch to fetch the data.
+ * Use cachedMemoize to locally cache the callback's return (in addition to memoizing it).
  * Use resetCache to force reset on all instances.
  * Use forceVersionCheck to ensure version check on next memoize usage.
  */
