@@ -54,28 +54,24 @@ trait LocallyCached
         $this->versionCheck = true;
     }
 
-    protected function cachedFetch()
+    protected function cachedMemoize(string $memoizeKey, callable $function)
     {
-        if ($this->version === null) {
-            $this->validateVersion();
-        }
+        return $this->memoize($memoizeKey, function () use ($function, $memoizeKey) {
+            $cache = cache()->store(config('cache.local'));
+            $key = 'local_cache:'.static::class.':'.$memoizeKey;
+            $value = $cache->get($key);
 
-        $cache = cache()->store(config('cache.local'));
-        $key = 'local_cache:'.static::class;
-        $value = $cache->get($key);
+            if ($value === null || $value['version'] !== $this->version) {
+                $value = [
+                    'data' => $function(),
+                    'version' => $this->version,
+                ];
+                $cache->forever($key, $value);
+            }
 
-        if ($value === null || $value['version'] !== $this->version) {
-            $value = [
-                'data' => $this->fetch(),
-                'version' => $this->version,
-            ];
-            $cache->forever($key, $value);
-        }
-
-        return $value['data'];
+            return $value['data'];
+        });
     }
-
-    abstract protected function fetch();
 
     protected function memoize(string $key, callable $function)
     {
