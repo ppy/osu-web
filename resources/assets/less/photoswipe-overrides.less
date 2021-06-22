@@ -12,7 +12,7 @@
     opacity: 0.75;
     color: #fff;
 
-    &--contest-vote, &--vote-progress {
+    &--contest-vote {
       /*
        * Overrides original sytle.
        * The second selector is needed to override retina version that is slightly
@@ -26,6 +26,16 @@
     &--contest-vote-active {
       opacity: 0.9;
       color: @contest-selected-colour;
+    }
+
+    &--vote-progress {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      && {
+        background-image: none;
+      }
     }
 
     // last so it overrides everything else
