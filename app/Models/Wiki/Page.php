@@ -180,7 +180,7 @@ class Page implements WikiObject
         $locales = [];
         foreach ($response->hits() as $hit) {
             $locale = $hit['_source']['locale'] ?? null;
-            if ($locale !== null && $locale !== $this->locale && LocaleMeta::sanitizeCode($locale) !== null) {
+            if ($locale !== null && $locale !== $this->locale && LocaleMeta::isValid($locale)) {
                 $locales[] = $locale;
             }
         }
