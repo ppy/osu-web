@@ -19,7 +19,7 @@ class BeatmapsetDeleteTest extends TestCase
     public function testBeatmapsetDeletedByOwner()
     {
         $owner = factory(User::class)->create();
-        $forum = factory(Forum::class, 'parent')->create();
+        $forum = factory(Forum::class)->states('parent')->create();
         $topic = factory(Topic::class)->create([
             'forum_id' => $forum->getKey(),
         ]);
@@ -46,7 +46,7 @@ class BeatmapsetDeleteTest extends TestCase
     {
         $moderator = factory(User::class)->create();
         $owner = factory(User::class)->create();
-        $forum = factory(Forum::class, 'parent')->create();
+        $forum = factory(Forum::class)->states('parent')->create();
         $topic = factory(Topic::class)->create([
             'forum_id' => $forum->getKey(),
         ]);
