@@ -287,6 +287,14 @@ class ChangelogController extends Controller
             $build = Build::default()->where('version', '=', $normalizedVersion)->firstOrFail();
         }
 
+        if (is_json_request()) {
+            return json_item($build, 'Build', [
+                'changelog_entries',
+                'changelog_entries.github_user',
+                'versions',
+            ]);
+        }
+
         return ujs_redirect(build_url($build));
     }
 
