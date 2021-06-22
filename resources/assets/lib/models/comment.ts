@@ -11,7 +11,7 @@ export class Comment {
   commentableType: string; // TODO: type?
   createdAt: string;
   deletedAt: string | null;
-  deletedById?: string | null;
+  deletedById?: number | null;
   editedAt: string | null;
   editedById: number | null;
   id: number;
