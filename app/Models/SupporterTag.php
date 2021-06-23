@@ -92,13 +92,13 @@ class SupporterTag
 
         return $html
             ? blade_safe(trans($transKey, [
+                'duration' => e($durationText),
                 'name' => e($item->product->name),
                 'username' => link_to_user($item->extra_data['target_id'], $username),
-                'duration' => e($durationText),
             ])) : trans($transKey, [
+                'duration' => $durationText,
                 'name' => $item->product->name,
                 'username' => $username,
-                'duration' => $durationText,
             ]);
     }
 
