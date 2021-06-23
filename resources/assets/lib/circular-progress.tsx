@@ -9,6 +9,7 @@ interface Props {
   ignoreProgress: boolean;
   max: number;
   onlyShowAsWarning: boolean;
+  reverse: boolean;
   theme: string;
   tooltip?: string;
 }
@@ -17,6 +18,7 @@ export class CircularProgress extends React.PureComponent<Props, any> {
   static defaultProps = {
     ignoreProgress: false,
     onlyShowAsWarning: false,
+    reverse: false,
     theme: '',
   };
 
@@ -30,6 +32,10 @@ export class CircularProgress extends React.PureComponent<Props, any> {
     if (this.props.onlyShowAsWarning && percentage < warnThreshold) {
       return null;
     }
+
+    const displayNumber = this.props.reverse
+      ? this.props.current
+      : this.props.max - this.props.current;
 
     const transform = this.props.ignoreProgress
       ? undefined
@@ -45,7 +51,7 @@ export class CircularProgress extends React.PureComponent<Props, any> {
         })}
         title={this.props.tooltip || `${this.props.current} / ${this.props.max}`}
       >
-        <div className={`${bn}__label`}>{this.props.max - this.props.current}</div>
+        <div className={`${bn}__label`}>{displayNumber}</div>
         <div className={`${bn}__slice`}>
           <div className={`${bn}__circle`} style={transform} />
           <div className={`${bn}__circle ${bn}__circle--fill`} />
