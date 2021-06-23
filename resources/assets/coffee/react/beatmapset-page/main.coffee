@@ -74,12 +74,9 @@ export class Main extends React.Component
   }) =>
     @scoreboardXhr?.abort()
 
-    prevScoreboardType = @state.currentScoreboardType
-
-    @setState
-      currentScoreboardType: scoreboardType
-
-    prevEnabledMods = @state.enabledMods
+    prevState =
+      currentScoreboardType: @state.currentScoreboardType
+      enabledMods: @state.enabledMods
 
     enabledMods = if resetMods
       []
@@ -91,11 +88,11 @@ export class Main extends React.Component
       @state.enabledMods
 
     @setState
+      currentScoreboardType: scoreboardType
       enabledMods: enabledMods
 
     if !@state.currentBeatmap.is_scoreable || (!currentUser.is_supporter && (scoreboardType != 'global' || enabledMods.length > 0))
-      @setState
-        scores: []
+      @setState scores: []
       return
 
     @scoresCache ?= {}
@@ -127,9 +124,7 @@ export class Main extends React.Component
       loadScore()
 
     .fail (xhr, status) =>
-      @setState
-        currentScoreboardType: prevScoreboardType
-        enabledMods: prevEnabledMods
+      @setState(prevState)
 
       if status == 'abort'
         return
