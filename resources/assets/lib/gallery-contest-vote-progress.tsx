@@ -7,7 +7,7 @@ import * as React from 'react';
 type Props = Record<string, never>;
 
 interface State {
-  voteCount: number;
+  voteLeft: number;
 }
 
 export default class GalleryContestVoteProgress extends React.PureComponent<Props, State> {
@@ -15,7 +15,7 @@ export default class GalleryContestVoteProgress extends React.PureComponent<Prop
     super(props);
 
     this.state = {
-      voteCount: this.getVoteCount(),
+      voteLeft: this.getVoteLeft(),
     };
   }
 
@@ -31,8 +31,9 @@ export default class GalleryContestVoteProgress extends React.PureComponent<Prop
     return (
       <div className='pswp__button pswp__button--vote-progress'>
         <CircularProgress
-          current={this.state.voteCount}
+          current={this.state.voteLeft}
           max={this.getMaxVotes()}
+          reverse
           theme='gallery-contest'
         />
       </div>
@@ -44,13 +45,17 @@ export default class GalleryContestVoteProgress extends React.PureComponent<Prop
     return parseInt(voteSummary.dataset.contestMaxVotes ?? '0', 10);
   };
 
-  private getVoteCount = () => {
+  private getVoteLeft = () => {
+    const maxVotes = this.getMaxVotes();
+
     const voteSummary = this.voteSummary();
-    return parseInt(voteSummary.dataset.contestVoteCount ?? '0', 10);
+    const voteCount = parseInt(voteSummary.dataset.contestVoteCount ?? '0', 10);
+
+    return maxVotes - voteCount;
   };
 
   private syncState = () => {
-    this.setState({ voteCount: this.getVoteCount() });
+    this.setState({ voteLeft: this.getVoteLeft() });
   };
 
   private voteSummary = () => document.querySelector('.js-contest-vote-summary') as HTMLElement;
