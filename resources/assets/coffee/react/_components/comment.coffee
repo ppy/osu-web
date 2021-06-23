@@ -235,8 +235,7 @@ export class Comment extends React.PureComponent
                 relative: true
             ':user':
               if @props.comment.deletedById?
-                deleter = userStore.get(@props.comment.deletedById)
-                if deleter.id? then el(UserLink, key: 'user', user: deleter) else _.escape deleter.username
+                el UserLink, key: 'user', user: (userStore.get(@props.comment.deletedById) ? deletedUser)
               else
                 osu.trans('comments.deleted_by_system')
 
