@@ -219,8 +219,7 @@ class CommentBundle
         $userIds = $comments->pluck('user_id')
             ->concat($comments->pluck('edited_by_id'));
 
-        $user = auth()->user();
-        if ($user->isModerator() || $user->isAdmin()) {
+        if (priv_check('CommentModerate')->can()) {
             $userIds->concat($comments->pluck('deleted_by_id'));
         }
 
