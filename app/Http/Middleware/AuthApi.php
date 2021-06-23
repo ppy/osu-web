@@ -47,11 +47,13 @@ class AuthApi
 
     private function validateRequest($request)
     {
+        $psr17Factory = new Psr17Factory();
+
         $psr = (new PsrHttpFactory(
-            new Psr17Factory(),
-            new Psr17Factory(),
-            new Psr17Factory(),
-            new Psr17Factory(),
+            $psr17Factory,
+            $psr17Factory,
+            $psr17Factory,
+            $psr17Factory,
         ))->createRequest($request);
 
         try {
