@@ -12,7 +12,10 @@ import { a, button, div, span, textarea } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
 import ShowMoreLink from 'show-more-link'
 import { Spinner } from 'spinner'
+import { StringWithComponent } from 'string-with-component'
+import TimeWithTooltip from 'time-with-tooltip'
 import UserAvatar from 'user-avatar'
+import { UserLink } from 'user-link'
 import { classWithModifiers } from 'utils/css'
 import { estimateMinLines } from 'utils/estimate-min-lines'
 import { createClickCallback, formatNumberSuffixed } from 'utils/html'
@@ -222,14 +225,18 @@ export class Comment extends React.PureComponent
   renderDeletedBy: =>
     if @props.comment.isDeleted && @props.comment.canModerate
       deleter = userStore.get(@props.comment.deletedById)
-      div
-        className: 'comment__row-item comment__row-item--info'
-        dangerouslySetInnerHTML:
-          __html: osu.trans 'comments.deleted_by',
-            timeago: osu.timeago(@props.comment.deletedAt)
-            user:
+      div className: 'comment__row-item comment__row-item--info',
+        el StringWithComponent,
+          pattern: osu.trans('comments.deleted_by')
+          mappings:
+            ':timeago':
+              el TimeWithTooltip,
+                key: 'timeago'
+                dateTime: @props.comment.deletedAt
+                relative: true
+            ':user':
               if deleter.id?
-                osu.link(laroute.route('users.show', user: deleter.id), deleter.username)
+                el(UserLink, key: 'user', user: deleter)
               else
                 _.escape deleter.username
 
