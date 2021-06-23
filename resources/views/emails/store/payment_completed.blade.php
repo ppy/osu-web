@@ -8,7 +8,7 @@
 {!! trans('mail.store_payment_completed.thank_you') !!}
 
 @foreach ($order->items as $item)
-{!! i18n_number_format($item->quantity) !!} x {!! $item->getDisplayName() !!} ({!! currency($item->subtotal()) !!})
+{!! i18n_number_format($item->quantity) !!} x {!! $item->getDisplayName(false) !!} ({!! currency($item->subtotal()) !!})
 @endforeach
 
 @if ($order->shipping > 0)
