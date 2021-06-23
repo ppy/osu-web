@@ -40,7 +40,7 @@ class CommentBundle
     {
         $this->commentable = $commentable;
 
-        $this->user = $options['user'] ?? auth()->user();
+        $this->user = auth()->user();
 
         $this->params = new CommentBundleParams($options['params'] ?? [], $this->user);
 
