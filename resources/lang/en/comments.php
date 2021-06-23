@@ -6,6 +6,7 @@
 return [
     'deleted' => 'deleted',
     'deleted_by' => 'deleted :timeago by :user',
+    'deleted_by_system' => 'system',
     'deleted_count' => ':count_delimited deleted comment|:count_delimited deleted comments',
     'edited' => 'edited :timeago by :user',
     'pinned' => 'pinned',

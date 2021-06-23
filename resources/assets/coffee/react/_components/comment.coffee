@@ -224,7 +224,6 @@ export class Comment extends React.PureComponent
 
   renderDeletedBy: =>
     if @props.comment.isDeleted && @props.comment.canModerate
-      deleter = userStore.get(@props.comment.deletedById)
       div className: 'comment__row-item comment__row-item--info',
         el StringWithComponent,
           pattern: osu.trans('comments.deleted_by')
@@ -235,10 +234,11 @@ export class Comment extends React.PureComponent
                 dateTime: @props.comment.deletedAt
                 relative: true
             ':user':
-              if deleter.id?
-                el(UserLink, key: 'user', user: deleter)
+              if @props.comment.deletedById?
+                deleter = userStore.get(@props.comment.deletedById)
+                if deleter.id? then el(UserLink, key: 'user', user: deleter) else _.escape deleter.username
               else
-                _.escape deleter.username
+                osu.trans('comments.deleted_by_system')
 
 
   renderPin: =>
