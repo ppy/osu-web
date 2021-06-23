@@ -13,6 +13,11 @@
   align-items: center;
   color: var(--group-colour, @osu-colour-c1);
 
+  a& {
+    .link-hover({ color: var(--group-colour, @osu-colour-c1); });
+    .link-plain();
+  }
+
   &::before {
     content: attr(data-label);
   }

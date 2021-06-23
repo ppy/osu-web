@@ -949,15 +949,17 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     }
 
 
-    public function findUserGroup($group, $activeOnly)
+    public function findUserGroup($group, bool $activeOnly): ?UserGroup
     {
-        $groupId = $group->getKey();
+        $byGroupId = $this->memoize(__FUNCTION__.':byGroupId', fn () => $this->userGroups->keyBy('group_id'));
 
-        foreach ($this->userGroups as $userGroup) {
-            if ($userGroup->group_id === $groupId) {
-                return $activeOnly && $userGroup->user_pending ? null : $userGroup;
-            }
+        $userGroup = $byGroupId->get($group->getKey());
+
+        if ($userGroup === null || ($activeOnly && $userGroup->user_pending)) {
+            return null;
         }
+
+        return $userGroup;
     }
 
     /**

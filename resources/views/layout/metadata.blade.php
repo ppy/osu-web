@@ -111,9 +111,10 @@
 <script src="{{ unmix('js/commons.js') }}" data-turbolinks-track="reload"></script>
 <script src="{{ unmix('js/app.js') }}" data-turbolinks-track="reload"></script>
 
-@if (($momentLocale = locale_for_moment(Lang::getLocale())) !== null)
-    <script src="{{ unmix("js/moment-locales/{$momentLocale}.js") }}" data-turbolinks-track="reload"></script>
-@endif
+<script
+    src="{{ unmix('js/moment-locales/'.current_locale_meta()->moment().'.js') }}"
+    data-turbolinks-track="reload"
+></script>
 
 @if (isset($atom))
     <link rel="alternate" type="application/atom+xml" title="{{ $atom['title'] }}" href="{{ $atom['url'] }}">

@@ -103,7 +103,7 @@ export default class Main extends React.Component<Props, State> {
                 'data-reload-on-success': '1',
                 'data-remote': true,
                 'data-url': route('news.store'),
-                'type': 'button',
+                type: 'button',
               },
               text: osu.trans('news.store.button'),
             },

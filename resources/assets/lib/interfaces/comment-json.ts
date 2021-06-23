@@ -3,12 +3,16 @@
 
 import UserJson from 'interfaces/user-json';
 
-export interface CommentableMetaJson {
+export type CommentableMetaJson = {
   id: number;
+  owner_id: number | null;
+  owner_title: string | null;
   title: string;
   type: string;
   url: string;
-}
+} | {
+  title: string;
+};
 
 export interface CommentJson {
   commentable_id: number;
@@ -20,14 +24,14 @@ export interface CommentJson {
   edited_by_id: number | null;
   id: number;
   legacy_name: string | null;
-  message: string;
-  message_html: string;
+  message?: string;
+  message_html?: string;
   parent_id: number | null;
   pinned: boolean;
   replies_count: number;
   updated_at: string;
-  user?: UserJson;
-  user_id: number;
+  user?: UserJson | null;
+  user_id: number | null;
   votes_count: number;
 }
 
