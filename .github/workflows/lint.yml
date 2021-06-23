@@ -60,7 +60,7 @@ jobs:
       - run: yarn lint
       - run: ./bin/update_licence.sh -nf
 
-      - name: PHP_CodeSniffer check
-        uses: chekalsky/phpcs-action@v1
-        with:
-          phpcs_bin_path: './vendor/bin/phpcs'
+      - name: Run PHPCS
+        run: |
+          echo "::add-matcher::${PWD}/.github/workflows/lint/problem-matcher.json"
+          ./vendor/bin/phpcs --report=checkstyle --basepath="$PWD"
