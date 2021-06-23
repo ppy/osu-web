@@ -6,21 +6,19 @@
 namespace App\Libraries;
 
 use App\Models\Group;
-use App\Traits\Memoizes;
+use App\Traits\LocallyCached;
 use Illuminate\Database\Eloquent\Collection;
 
 class Groups
 {
-    use Memoizes;
+    use LocallyCached;
 
     /**
      * Get all groups.
      */
     public function all(): Collection
     {
-        return $this->memoize(__FUNCTION__, function () {
-            return $this->fetch();
-        });
+        return $this->memoize(__FUNCTION__, fn () => $this->fetch());
     }
 
     /**
@@ -28,9 +26,7 @@ class Groups
      */
     public function allById(): Collection
     {
-        return $this->memoize(__FUNCTION__, function () {
-            return $this->all()->keyBy('group_id');
-        });
+        return $this->memoize(__FUNCTION__, fn () => $this->all()->keyBy('group_id'));
     }
 
     /**
@@ -38,9 +34,7 @@ class Groups
      */
     public function allByIdentifier(): Collection
     {
-        return $this->memoize(__FUNCTION__, function () {
-            return $this->all()->keyBy('identifier');
-        });
+        return $this->memoize(__FUNCTION__, fn () => $this->all()->keyBy('identifier'));
     }
 
     /**
@@ -77,49 +71,8 @@ class Groups
         return $group;
     }
 
-    /**
-     * Reset groups cache.
-     */
-    public function resetCache(): void
+    protected function fetch(): Collection
     {
-        cache()->put('groups_local_cache_version', hrtime(true));
-
-        $this->resetMemoized();
-    }
-
-    /**
-     * Fetch groups data.
-     *
-     * This data is being used on every request so fetching them directly
-     * from external database will cause unnecessary load on network.
-     *
-     * Store the data locally on each servers and use normal shared cache
-     * to indicate the servers whether or not to reset the local cache.
-     *
-     * Expiration doesn't really exist on file storage cache so in some rare
-     * cases (like testing) using file storage for local cache will generate
-     * lots of files. Array storage should be used in those cases.
-     * In normal use where groups don't change there shouldn't be too many
-     * files generated.
-     */
-    private function fetch(): Collection
-    {
-        $localCacheVersion = cache()->get('groups_local_cache_version');
-        $localStorage = config('cache.local');
-
-        if ($localCacheVersion === null) {
-            $localCacheVersion = hrtime(true);
-            cache()->forever('groups_local_cache_version', $localCacheVersion);
-        }
-
-        $localCacheKey = "groups:v{$localCacheVersion}";
-        $groups = cache()->store($localStorage)->get($localCacheKey);
-
-        if ($groups === null) {
-            $groups = Group::orderBy('display_order')->get();
-            cache()->store($localStorage)->forever($localCacheKey, $groups);
-        }
-
-        return $groups;
+        return Group::orderBy('display_order')->get();
     }
 }

@@ -14,6 +14,7 @@
     <exclude-pattern>_ide_helper.php</exclude-pattern>
     <exclude-pattern>_ide_helper_models.php</exclude-pattern>
     <exclude-pattern>resources/docs/source/_tmp/*</exclude-pattern>
+    <exclude-pattern>resources/lang/(?!en)[^/]*/.*</exclude-pattern>
 
     <config name="installed_paths" value="vendor/slevomat/coding-standard"/>
 
@@ -45,7 +46,7 @@
     <rule ref="SlevomatCodingStandard.Commenting.DisallowOneLinePropertyDocComment"/>
     <rule ref="SlevomatCodingStandard.Commenting.EmptyComment"/>
     <rule ref="SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration">
-        <exclude-pattern>*/database/*</exclude-pattern>
+        <exclude-pattern>database/migrations/*</exclude-pattern>
     </rule>
     <rule ref="SlevomatCodingStandard.ControlStructures.DisallowContinueWithoutIntegerOperandInSwitch"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.DisallowYodaComparison"/>
@@ -55,7 +56,7 @@
     <rule ref="SlevomatCodingStandard.Functions.StrictCall"/>
     <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses"/>
     <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation">
-        <exclude-pattern>*/tests/*</exclude-pattern>
+        <exclude-pattern>tests/*</exclude-pattern>
     </rule>
     <rule ref="SlevomatCodingStandard.Namespaces.NamespaceDeclaration"/>
     <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
@@ -76,7 +77,8 @@
     <rule ref="SlevomatCodingStandard.Variables.DuplicateAssignmentToVariable"/>
     <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
     <rule ref="Squiz.Classes.ClassFileName">
-        <exclude-pattern>*/database/*</exclude-pattern>
+        <exclude-pattern>database/factories/*</exclude-pattern>
+        <exclude-pattern>database/migrations/*</exclude-pattern>
     </rule>
     <rule ref="Squiz.Classes.LowercaseClassKeywords"/>
     <rule ref="Squiz.Commenting.DocCommentAlignment"/>
@@ -98,7 +100,6 @@
     </rule>
     <rule ref="Squiz.Strings.DoubleQuoteUsage">
         <exclude name="Squiz.Strings.DoubleQuoteUsage.ContainsVar"/>
-        <exclude-pattern>resources\/lang\/(?!en)[^\/]*\/.*</exclude-pattern>
     </rule>
     <rule ref="Squiz.WhiteSpace.CastSpacing"/>
     <rule ref="Squiz.WhiteSpace.LanguageConstructSpacing"/>
@@ -116,7 +117,8 @@
 
     <!-- Contradictions with Laravel and/or PSR-12 -->
     <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
-        <exclude-pattern>*/database/*</exclude-pattern>
+        <exclude-pattern>database/factories/*</exclude-pattern>
+        <exclude-pattern>database/migrations/*</exclude-pattern>
     </rule>
     <rule ref="PSR1.Files.SideEffects">
         <exclude-pattern>public/index.php</exclude-pattern>

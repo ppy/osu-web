@@ -3,11 +3,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+namespace Database\Seeders\ModelSeeders;
+
 use App\Models\Beatmap;
 use App\Models\Score\Best\Model as ScoresBestModel;
 use App\Models\Spotlight;
 use App\Models\UserStatistics\Spotlight\Model as UserStatisticsModel;
 use Carbon\Carbon;
+use DB;
 use Illuminate\Database\Seeder;
 
 class SpotlightSeeder extends Seeder
@@ -39,7 +42,7 @@ class SpotlightSeeder extends Seeder
     {
         // note: this does result in spotlights with beatmaps from the future.
         DB::transaction(function () use ($date) {
-            $spotlight = factory(Spotlight::class, 'monthly')->make([
+            $spotlight = factory(Spotlight::class)->states('monthly')->make([
                 'chart_month' => $date,
             ]);
 
@@ -52,7 +55,7 @@ class SpotlightSeeder extends Seeder
     public function seedBestOf($date)
     {
         DB::transaction(function () use ($date) {
-            $spotlight = factory(Spotlight::class, 'bestof')->make([
+            $spotlight = factory(Spotlight::class)->states('bestof')->make([
                 'chart_month' => $date->copy()->endOfYear(),
             ]);
 
