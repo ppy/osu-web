@@ -11,14 +11,13 @@ use App\Models\User;
 
 class CommentBundle
 {
-    public $depth;
-    public $includeDeleted;
-    public $includePinned;
-    public $params;
+    public int $depth;
+    public bool $includeDeleted;
+    public bool $includePinned;
+    public CommentBundleParams $params;
 
-    private $commentable;
-    private $comment;
-    private $user;
+    private ?Comment $comment;
+    private ?User $user;
 
     public static function forComment(Comment $comment, bool $includeNested = false)
     {
@@ -36,7 +35,7 @@ class CommentBundle
         return new static($commentable, ['params' => ['parent_id' => 0]]);
     }
 
-    public function __construct($commentable, array $options = [])
+    public function __construct(private $commentable, array $options = [])
     {
         $this->commentable = $commentable;
 
