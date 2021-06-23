@@ -35,6 +35,7 @@ export default class GalleryContestVoteProgress extends React.PureComponent<Prop
           max={this.getMaxVotes()}
           reverse
           theme='gallery-contest'
+          tooltip={osu.transChoice('contest.voting.progress._', this.state.voteLeft)}
         />
       </div>
     );

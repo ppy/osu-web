@@ -27,6 +27,10 @@ return [
             'remove' => 'Remove vote',
             'used_up' => 'You have used up all your votes',
         ],
+
+        'progress' => [
+            '_' => ':count_delimited vote left|:count_delimited votes left',
+        ]
     ],
     'entry' => [
         '_' => 'entry',
