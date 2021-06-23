@@ -3,6 +3,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+namespace Database\Seeders;
+
+use Exception;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,43 +19,39 @@ class DatabaseSeeder extends Seeder
     {
         try {
             // Miscellaneous Data (e.g. counts)
-            $this->call(MiscSeeder::class);
+            $this->call(ModelSeeders\MiscSeeder::class);
 
             // Countries
-            $this->call(CountrySeeder::class);
+            $this->call(ModelSeeders\CountrySeeder::class);
 
             // Users, Stats, Ranks
-            $this->call(UserSeeder::class);
+            $this->call(ModelSeeders\UserSeeder::class);
 
             // Beatmaps and sets
-            $this->call(BeatmapSeeder::class);
+            $this->call(ModelSeeders\BeatmapSeeder::class);
 
             // Events
-            $this->call(EventSeeder::class);
+            $this->call(ModelSeeders\EventSeeder::class);
 
             // Scores
-            $this->call(ScoreSeeder::class);
+            $this->call(ModelSeeders\ScoreSeeder::class);
 
             // BanchoStats
-            $this->call(BanchoStatsSeeder::class);
+            $this->call(ModelSeeders\BanchoStatsSeeder::class);
 
             // Forums, topics, posts etc
-            $this->call(ForumSeeder::class);
+            $this->call(ModelSeeders\ForumSeeder::class);
 
             // Users Profile Data (Favourite maps, First place ranks, Playcounts)
-            $this->call(UserProfileSeeder::class);
+            $this->call(ModelSeeders\UserProfileSeeder::class);
 
             // Store Products
-            $this->call(ProductSeeder::class);
+            $this->call(ModelSeeders\ProductSeeder::class);
 
             // Changelog data (base update streams, builds, changes, build histories)
-            $this->call(ChangelogSeeder::class);
-        } catch (ErrorException $er) {
-            $this->command->error($er->getMessage());
+            $this->call(ModelSeeders\ChangelogSeeder::class);
         } catch (Exception $ex) {
             $this->command->error($ex->getMessage());
-        } catch (\Illuminate\Database\QueryException $qe) {
-            $this->command->error($qe->getMessage());
         }
     }
 }

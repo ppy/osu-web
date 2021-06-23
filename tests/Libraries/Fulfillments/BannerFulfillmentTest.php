@@ -15,6 +15,7 @@ use App\Models\Store\Product;
 use App\Models\Tournament;
 use App\Models\User;
 use Carbon\Carbon;
+use Database\Seeders\ModelSeeders\ProductSeeder;
 use Tests\TestCase;
 
 class BannerFulfillmentTest extends TestCase
@@ -29,7 +30,7 @@ class BannerFulfillmentTest extends TestCase
             $country = Country::where('name', $matches['country'])->first();
         } else {
             $country = factory(Country::class)->create();
-            (new \ProductSeeder())->seedBanners();
+            (new ProductSeeder())->seedBanners();
             $product = Product::customClass('mwc7-supporter')->orderBy('product_id', 'desc')->first();
         }
 
