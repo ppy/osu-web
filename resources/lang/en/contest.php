@@ -29,8 +29,8 @@ return [
         ],
 
         'progress' => [
-            '_' => ':count_delimited vote left|:count_delimited votes left',
-        ]
+            '_' => ':used / :max votes used',
+        ],
     ],
     'entry' => [
         '_' => 'entry',

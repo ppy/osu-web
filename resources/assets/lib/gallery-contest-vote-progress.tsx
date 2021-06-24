@@ -32,9 +32,11 @@ export default class GalleryContestVoteProgress extends React.PureComponent<Prop
         <CircularProgress
           current={this.state.voteCount}
           max={this.state.maxVotes}
-          reverse
           theme='gallery-contest'
-          tooltip={osu.transChoice('contest.voting.progress._', this.state.voteCount)}
+          tooltip={osu.trans('contest.voting.progress._', {
+            max: this.state.maxVotes,
+            used: this.state.voteCount,
+          })}
         />
       </div>
     );
