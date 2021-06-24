@@ -4,6 +4,7 @@
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 import { WikiSearchController } from 'wiki-search-controller';
 
 @observer
@@ -111,7 +112,7 @@ export class WikiSearch extends React.Component {
             return (
               <a
                 key={index}
-                className={osu.classWithModifiers('wiki-search__suggestion', this.controller.selectedIndex === index ? ['active'] : [])}
+                className={classWithModifiers('wiki-search__suggestion', { active: this.controller.selectedIndex === index })}
                 href={href}
                 onMouseEnter={setIndex}
               >
