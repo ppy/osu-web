@@ -81,6 +81,27 @@ class SupporterTag
         throw new \Exception('not a valid duration.');
     }
 
+    public static function getDisplayName(Store\OrderItem $item, bool $html = false)
+    {
+        static $transKey = 'store.order.item.display_name.supporter_tag';
+
+        $durationText = static::getDurationText((int) $item->extra_data['duration']);
+
+        // test data didn't include username, so ?? ''
+        $username = $item->extra_data['username'] ?? '';
+
+        return $html
+            ? blade_safe(trans($transKey, [
+                'duration' => e($durationText),
+                'name' => e($item->product->name),
+                'username' => link_to_user($item->extra_data['target_id'], $username),
+            ])) : trans($transKey, [
+                'duration' => $durationText,
+                'name' => $item->product->name,
+                'username' => $username,
+            ]);
+    }
+
     public static function getDurationText($length, ?string $locale = null)
     {
         // don't forget to update StoreSupporterTagPrice.durationText in coffee

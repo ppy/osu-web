@@ -44,7 +44,7 @@ export default class Enchant {
     document.querySelectorAll('style').forEach((el) => {
       const text = el.textContent;
 
-      if (text != null && text.match(/#enchant-/)) {
+      if (text != null && (/#enchant-/.exec(text))) {
         $(el).remove();
       }
     });

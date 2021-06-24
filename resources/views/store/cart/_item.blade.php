@@ -13,7 +13,7 @@
     <input type="hidden" name="item[id]" value="{{ $item->id }}">
 
     <span class="store-order-item__name">
-        {{ $item->getDisplayName() }}
+        {{ $item->getDisplayName(true) }}
     </span>
 
     <div class="store-order-item__quantity">

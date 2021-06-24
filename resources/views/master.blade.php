@@ -38,7 +38,7 @@
 
 @endphp
 <!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns#">
+<html prefix="og: http://ogp.me/ns#" lang="{{ current_locale_meta()->html() }}">
     <head>
         @include("layout.metadata")
         <title>{!! $title !!}</title>

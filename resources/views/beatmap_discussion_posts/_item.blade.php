@@ -17,9 +17,7 @@
                         srcSet="{{$beatmapset->coverURL('list')}} 1x, {{$beatmapset->coverURL('list@2x')}} 2x">
                 </a>
                 <div class="beatmap-discussion-timestamp__icon beatmapset-activities__timeline-icon-margin">
-                    <span class="beatmap-discussion-message-type">
-                        <span class="fas fa-reply"></span>
-                    </span>
+                    <span class="fas fa-reply" title="{{ trans('common.buttons.reply') }}"></span>
                 </div>
             </div>
         </div>

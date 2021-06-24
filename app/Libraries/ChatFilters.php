@@ -6,44 +6,20 @@
 namespace App\Libraries;
 
 use App\Models\ChatFilter;
+use App\Traits\LocallyCached;
+use Illuminate\Database\Eloquent\Collection;
 
 class ChatFilters
 {
-    private $chatFilters;
+    use LocallyCached;
 
     public function all()
     {
-        if (!isset($this->chatFilters)) {
-            $this->fetch();
-        }
-
-        return $this->chatFilters;
+        return $this->cachedMemoize(__FUNCTION__, fn () => $this->fetch());
     }
 
-    public function fetch()
+    protected function fetch(): Collection
     {
-        $localCacheVersion = cache()->get('chat_filters_local_cache_version');
-        $localCache = cache()->store(config('cache.local'));
-
-        if ($localCacheVersion === null) {
-            $localCacheVersion = hrtime(true);
-            cache()->forever('chat_filters_local_cache_version', $localCacheVersion);
-        }
-
-        $cachedFilters = $localCache->get('chat_filters');
-
-        if ($cachedFilters === null || $cachedFilters['version'] !== $localCacheVersion) {
-            $cachedFilters = ['version' => $localCacheVersion, 'data' => ChatFilter::all()];
-            $localCache->forever('chat_filters', $cachedFilters);
-        }
-
-        $this->chatFilters = $cachedFilters['data'];
-    }
-
-    public function resetCache()
-    {
-        cache()->put('chat_filters_local_cache_version', hrtime(true));
-
-        $this->chatFilters = null;
+        return ChatFilter::all();
     }
 }
