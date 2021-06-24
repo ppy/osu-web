@@ -7,16 +7,15 @@ import * as React from 'react';
 type Props = Record<string, never>;
 
 interface State {
-  voteLeft: number;
+  maxVotes: number;
+  votesLeft: number;
 }
 
 export default class GalleryContestVoteProgress extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    this.state = {
-      voteLeft: this.getVoteLeft(),
-    };
+    this.state = this.getVoteState();
   }
 
   componentDidMount() {
@@ -31,32 +30,28 @@ export default class GalleryContestVoteProgress extends React.PureComponent<Prop
     return (
       <div className='pswp__button pswp__button--vote-progress'>
         <CircularProgress
-          current={this.state.voteLeft}
-          max={this.getMaxVotes()}
+          current={this.state.votesLeft}
+          max={this.state.maxVotes}
           reverse
           theme='gallery-contest'
-          tooltip={osu.transChoice('contest.voting.progress._', this.state.voteLeft)}
+          tooltip={osu.transChoice('contest.voting.progress._', this.state.votesLeft)}
         />
       </div>
     );
   }
 
-  private getMaxVotes = () => {
+  private getVoteState = () => {
     const voteSummary = this.voteSummary();
-    return parseInt(voteSummary.dataset.contestMaxVotes ?? '0', 10);
-  };
+    const data: State | null = JSON.parse(voteSummary.dataset.contestVoteSummary ?? 'null');
 
-  private getVoteLeft = () => {
-    const maxVotes = this.getMaxVotes();
-
-    const voteSummary = this.voteSummary();
-    const voteCount = parseInt(voteSummary.dataset.contestVoteCount ?? '0', 10);
-
-    return maxVotes - voteCount;
+    return {
+      maxVotes: data?.maxVotes ?? 0,
+      votesLeft: data?.votesLeft ?? 0,
+    };
   };
 
   private syncState = () => {
-    this.setState({ voteLeft: this.getVoteLeft() });
+    this.setState(this.getVoteState());
   };
 
   private voteSummary = () => {
