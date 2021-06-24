@@ -23,6 +23,13 @@ class BeatmapsetDiscussionReview
     private int $priorOpenProblemCount;
     private ?BeatmapDiscussion $problemDiscussion;
 
+    public function __construct(private Beatmapset $beatmapset, private array $document, private User $user, private ?BeatmapDiscussion $discussion = null)
+    {
+        if (empty($document)) {
+            throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
+        }
+    }
+
     public static function config()
     {
         return [
@@ -48,29 +55,6 @@ class BeatmapsetDiscussionReview
 
         $review = new static($beatmapset, $document, $user, $discussion);
         $review->updateWith($document);
-    }
-
-    private static function createPost($beatmapsetId, $discussionType, $message, $userId, $beatmapId = null, $timestamp = null)
-    {
-        $newDiscussion = new BeatmapDiscussion([
-            'beatmapset_id' => $beatmapsetId,
-            'user_id' => $userId,
-            'resolved' => false,
-            'message_type' => $discussionType,
-            'timestamp' => $timestamp,
-            'beatmap_id' => $beatmapId,
-        ]);
-        $newDiscussion->saveOrExplode();
-
-        $postParams = [
-            'user_id' => $userId,
-            'message' => $message,
-        ];
-        $newPost = new BeatmapDiscussionPost($postParams);
-        $newPost->beatmapDiscussion()->associate($newDiscussion);
-        $newPost->saveOrExplode();
-
-        return $newDiscussion;
     }
 
     public static function getStats(array $document)
@@ -108,11 +92,27 @@ class BeatmapsetDiscussionReview
         return $stats;
     }
 
-    public function __construct(private Beatmapset $beatmapset, private array $document, private User $user, private ?BeatmapDiscussion $discussion = null)
+    private static function createPost($beatmapsetId, $discussionType, $message, $userId, $beatmapId = null, $timestamp = null)
     {
-        if (empty($document)) {
-            throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
-        }
+        $newDiscussion = new BeatmapDiscussion([
+            'beatmapset_id' => $beatmapsetId,
+            'user_id' => $userId,
+            'resolved' => false,
+            'message_type' => $discussionType,
+            'timestamp' => $timestamp,
+            'beatmap_id' => $beatmapId,
+        ]);
+        $newDiscussion->saveOrExplode();
+
+        $postParams = [
+            'user_id' => $userId,
+            'message' => $message,
+        ];
+        $newPost = new BeatmapDiscussionPost($postParams);
+        $newPost->beatmapDiscussion()->associate($newDiscussion);
+        $newPost->saveOrExplode();
+
+        return $newDiscussion;
     }
 
     public function process()
