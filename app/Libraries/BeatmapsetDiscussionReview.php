@@ -14,12 +14,14 @@ use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
 use DB;
+use Exception;
 
 class BeatmapsetDiscussionReview
 {
     const BLOCK_TEXT_LENGTH_LIMIT = 750;
 
-    private $problemDiscussion;
+    private int $priorOpenProblemCount;
+    private ?BeatmapDiscussion $problemDiscussion;
 
     public static function config()
     {
@@ -71,26 +73,6 @@ class BeatmapsetDiscussionReview
         return $newDiscussion;
     }
 
-    private static function getOpenProblemCount($beatmapset)
-    {
-        return $beatmapset->beatmapDiscussions()->openProblems()->count();
-    }
-
-    private static function resetOrDisqualify(Beatmapset $beatmapset, User $user, BeatmapDiscussion $problemDiscussion, $priorOpenProblemCount)
-    {
-        $event = $problemDiscussion->getBeatmapsetEventType($user);
-        if (in_array($event, [BeatmapsetEvent::DISQUALIFY, BeatmapsetEvent::NOMINATION_RESET], true)) {
-            return $beatmapset->disqualifyOrResetNominations($user, $problemDiscussion);
-        }
-
-        if ($event === null && $priorOpenProblemCount === 0) {
-            (new BeatmapsetDiscussionQualifiedProblem(
-                $problemDiscussion->startingPost,
-                $user
-            ))->dispatch();
-        }
-    }
-
     public static function getStats(array $document)
     {
         $stats = [
@@ -136,11 +118,12 @@ class BeatmapsetDiscussionReview
     public function process()
     {
         // TODO: die if $this->discussion is not null.
-        $priorOpenProblemCount = self::getOpenProblemCount($this->beatmapset);
+        $this->priorOpenProblemCount = $this->getOpenProblemCount();
+
         try {
             DB::beginTransaction();
 
-            [$output, $childIds] = $this->same(false);
+            [$output, $childIds] = $this->parseDocument(false);
 
             $this->discussion = self::createPost(
                 $this->beatmapset->getKey(),
@@ -153,23 +136,66 @@ class BeatmapsetDiscussionReview
             BeatmapDiscussion::whereIn('id', $childIds)
                 ->update(['parent_id' => $this->discussion->getKey()]);
 
-            // handle disqualifications and the resetting of nominations
-            if ($this->problemDiscussion) {
-                self::resetOrDisqualify($this->beatmapset, $this->user, $this->problemDiscussion, $priorOpenProblemCount);
-            }
+            $this->handleProblemDiscussion();
 
             DB::commit();
 
             (new BeatmapsetDiscussionReviewNew($this->discussion, $this->user))->dispatch();
 
             return $this->discussion;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
             throw $e;
         }
     }
 
-    private function same(bool $updating)
+    public function updateWith(array $document)
+    {
+        $this->document = $document;
+        $post = $this->discussion->startingPost;
+
+        $this->priorOpenProblemCount = $this->getOpenProblemCount();
+
+        try {
+            DB::beginTransaction();
+
+            [$output, $childIds] = $this->parseDocument(true);
+
+            // ensure all referenced embeds belong to this discussion
+            $externalEmbeds = BeatmapDiscussion::whereIn('id', $childIds)->where('parent_id', '<>', $this->discussion->getKey())->count();
+            if ($externalEmbeds > 0) {
+                throw new InvariantException(trans('beatmap_discussions.review.validation.external_references'));
+            }
+
+            // update the review post
+            $post['message'] = json_encode($output);
+            $post['last_editor_id'] = $this->user->getKey();
+            $post->saveOrExplode();
+
+            // unlink any embeds that were removed from the review
+            BeatmapDiscussion::where('parent_id', $this->discussion->getKey())
+                ->whereNotIn('id', $childIds)
+                ->update(['parent_id' => null]);
+
+            // associate children with parent
+            BeatmapDiscussion::whereIn('id', $childIds)
+                ->update(['parent_id' => $this->discussion->getKey()]);
+
+            $this->handleProblemDiscussion();
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
+    private function getOpenProblemCount()
+    {
+        return $this->beatmapset->beatmapDiscussions()->openProblems()->count();
+    }
+
+    private function parseDocument(bool $updating)
     {
         $output = [];
         // create the issues for the embeds first
@@ -193,46 +219,21 @@ class BeatmapsetDiscussionReview
         return [$output, $childIds];
     }
 
-    public function updateWith(array $document)
+    private function handleProblemDiscussion()
     {
-        $this->document = $document;
-        $post = $this->discussion->startingPost;
-
-        $priorOpenProblemCount = self::getOpenProblemCount($this->beatmapset);
-        try {
-            DB::beginTransaction();
-
-            [$output, $childIds] = $this->same(true);
-
-            // ensure all referenced embeds belong to this discussion
-            $externalEmbeds = BeatmapDiscussion::whereIn('id', $childIds)->where('parent_id', '<>', $this->discussion->getKey())->count();
-            if ($externalEmbeds > 0) {
-                throw new InvariantException(trans('beatmap_discussions.review.validation.external_references'));
+        // handle disqualifications and the resetting of nominations
+        if ($this->problemDiscussion !== null) {
+            $event = $this->problemDiscussion->getBeatmapsetEventType($this->user);
+            if (in_array($event, [BeatmapsetEvent::DISQUALIFY, BeatmapsetEvent::NOMINATION_RESET], true)) {
+                return $this->beatmapset->disqualifyOrResetNominations($this->user, $this->problemDiscussion);
             }
 
-            // update the review post
-            $post['message'] = json_encode($output);
-            $post['last_editor_id'] = $this->user->getKey();
-            $post->saveOrExplode();
-
-            // unlink any embeds that were removed from the review
-            BeatmapDiscussion::where('parent_id', $this->discussion->getKey())
-                ->whereNotIn('id', $childIds)
-                ->update(['parent_id' => null]);
-
-            // associate children with parent
-            BeatmapDiscussion::whereIn('id', $childIds)
-                ->update(['parent_id' => $this->discussion->getKey()]);
-
-            // handle disqualifications and the resetting of nominations
-            if ($this->problemDiscussion) {
-                self::resetOrDisqualify($this->beatmapset, $this->user, $this->problemDiscussion, $priorOpenProblemCount);
+            if ($event === null && $this->priorOpenProblemCount === 0) {
+                (new BeatmapsetDiscussionQualifiedProblem(
+                    $this->problemDiscussion->startingPost,
+                    $this->user
+                ))->dispatch();
             }
-
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-            throw $e;
         }
     }
 
