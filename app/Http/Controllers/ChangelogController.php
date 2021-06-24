@@ -131,7 +131,15 @@ class ChangelogController extends Controller
     {
 
         $stream = UpdateStream::where('name', '=', $streamName)->firstOrFail();
-        $build = $stream->builds()->default()->where('version', $version)->firstOrFail();
+        $build = $stream
+            ->builds()
+            ->default()
+            ->where('version', $version)
+            ->with([
+                'defaultChangelogs.user',
+                'defaultChangelogEntries.githubUser.user',
+                'defaultChangelogEntries.repository',
+            ])->firstOrFail();
         $buildJson = json_item($build, 'Build', [
             'changelog_entries', 'changelog_entries.github_user', 'versions',
         ]);
