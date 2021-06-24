@@ -59,5 +59,13 @@ export default class GalleryContestVoteProgress extends React.PureComponent<Prop
     this.setState({ voteLeft: this.getVoteLeft() });
   };
 
-  private voteSummary = () => document.querySelector('.js-contest-vote-summary') as HTMLElement;
+  private voteSummary = () => {
+    const contestVoteSummary = document.querySelector('.js-contest-vote-summary');
+
+    if (contestVoteSummary instanceof HTMLElement) {
+      return contestVoteSummary;
+    }
+
+    throw new Error('.js-contest-vote-summary is not HTMLElement');
+  };
 }
