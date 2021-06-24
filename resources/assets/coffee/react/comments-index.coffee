@@ -6,7 +6,7 @@ import core from 'osu-core-singleton'
 import { createElement } from 'react'
 import { Main } from './comments-index/main'
 
-core.reactTurbolinks.register 'comments-index', true, ->
+core.reactTurbolinks.register 'comments-index', ->
   commentBundle = osu.parseJson('json-index')
   core.dataStore.updateWithCommentBundleJson(commentBundle)
   core.dataStore.uiState.initializeWithCommentBundleJson(commentBundle)

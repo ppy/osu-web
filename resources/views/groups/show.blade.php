@@ -19,5 +19,5 @@
         {!! json_encode($usersJson) !!}
     </script>
 
-    @include('layout._extra_js', ['src' => 'js/react/groups-show.js'])
+    @include('layout._react_js', ['src' => 'js/react/groups-show.js'])
 @endsection

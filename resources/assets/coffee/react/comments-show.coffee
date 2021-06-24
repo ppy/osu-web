@@ -6,7 +6,7 @@ import core from 'osu-core-singleton'
 import { createElement } from 'react'
 import { Main } from './comments-show/main'
 
-core.reactTurbolinks.register 'comments-show', true, ->
+core.reactTurbolinks.register 'comments-show', ->
   commentBundle = osu.parseJson('json-show')
   core.dataStore.updateWithCommentBundleJson(commentBundle)
   core.dataStore.uiState.initializeWithCommentBundleJson(commentBundle)

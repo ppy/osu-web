@@ -39,5 +39,5 @@
     {!! json_encode($beatmaps) !!}
   </script>
 
-  @include('layout._extra_js', ['src' => 'js/react/beatmaps.js'])
+  @include('layout._react_js', ['src' => 'js/react/beatmaps.js'])
 @stop

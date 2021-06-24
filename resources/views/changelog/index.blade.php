@@ -38,5 +38,5 @@
         {!! json_encode($chartConfig) !!}
     </script>
 
-    @include('layout._extra_js', ['src' => 'js/react/changelog-index.js'])
+    @include('layout._react_js', ['src' => 'js/react/changelog-index.js'])
 @endsection

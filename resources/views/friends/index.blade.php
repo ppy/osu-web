@@ -15,5 +15,5 @@
         {!! json_encode($usersJson) !!}
     </script>
 
-    @include('layout._extra_js', ['src' => 'js/react/friends-index.js'])
+    @include('layout._react_js', ['src' => 'js/react/friends-index.js'])
 @endsection

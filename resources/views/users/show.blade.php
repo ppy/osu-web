@@ -32,5 +32,5 @@
         </script>
     @endforeach
 
-    @include('layout._extra_js', ['src' => 'js/react/profile-page.js'])
+    @include('layout._react_js', ['src' => 'js/react/profile-page.js'])
 @endsection

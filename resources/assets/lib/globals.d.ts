@@ -1,6 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+interface Window {
+  newBody?: HTMLElement;
+}
+
 // interfaces for using process.env
 interface Process {
   env: ProcessEnv;
@@ -92,7 +96,7 @@ interface OsuCommon {
   xhrErrorMessage: (xhr: JQuery.jqXHR) => string;
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
-  parseJson<T = any>(id: string, remove?: boolean): T;
+  parseJson<T = any>(id: string, remove?: boolean, body?: HTMLElement): T;
   updateQueryString(url: string | null, params: { [key: string]: string | null | undefined }): string;
 }
 

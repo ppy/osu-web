@@ -32,5 +32,5 @@
 @section('script')
   @parent
 
-  @include('layout._extra_js', ['src' => 'js/react/contest-voting.js'])
+  @include('layout._react_js', ['src' => 'js/react/contest-voting.js'])
 @stop
