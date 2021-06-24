@@ -20,14 +20,12 @@ class BeatmapsetDiscussionReview
 {
     const BLOCK_TEXT_LENGTH_LIMIT = 750;
 
+    private array $document;
     private int $priorOpenProblemCount;
     private ?BeatmapDiscussion $problemDiscussion = null;
 
-    public function __construct(private Beatmapset $beatmapset, private array $document, private User $user, private ?BeatmapDiscussion $discussion = null)
+    public function __construct(private Beatmapset $beatmapset, private User $user, private ?BeatmapDiscussion $discussion = null)
     {
-        if (empty($document)) {
-            throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
-        }
     }
 
     public static function config()
@@ -39,9 +37,9 @@ class BeatmapsetDiscussionReview
 
     public static function create(Beatmapset $beatmapset, array $document, User $user)
     {
-        $review = new static($beatmapset, $document, $user);
+        $review = new static($beatmapset, $user);
 
-        return $review->process();
+        return $review->process($document, false);
     }
 
     // TODO: combine with create()?
@@ -53,8 +51,8 @@ class BeatmapsetDiscussionReview
 
         $beatmapset = Beatmapset::findOrFail($discussion->beatmapset_id); // handle deleted beatmapsets
 
-        $review = new static($beatmapset, $document, $user, $discussion);
-        $review->updateWith($document);
+        $review = new static($beatmapset, $user, $discussion);
+        $review->process($document, true);
     }
 
     public static function getStats(array $document)
@@ -92,66 +90,48 @@ class BeatmapsetDiscussionReview
         return $stats;
     }
 
-    public function process()
+    public function process(array $document, bool $update = false)
     {
-        // TODO: die if $this->discussion is not null.
-        $this->priorOpenProblemCount = $this->getOpenProblemCount();
-
-        try {
-            DB::beginTransaction();
-
-            [$output, $childIds] = $this->parseDocument(false);
-
-            $this->discussion = $this->createBeatmapDiscussion(
-                'review',
-                json_encode($output)
-            );
-
-            // associate children with parent
-            BeatmapDiscussion::whereIn('id', $childIds)
-                ->update(['parent_id' => $this->discussion->getKey()]);
-
-            $this->handleProblemDiscussion();
-
-            DB::commit();
-
-            (new BeatmapsetDiscussionReviewNew($this->discussion, $this->user))->dispatch();
-
-            return $this->discussion;
-        } catch (Exception $e) {
-            DB::rollBack();
-            throw $e;
+        if (empty($document)) {
+            throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
         }
-    }
 
-    public function updateWith(array $document)
-    {
+        if ($update && $this->discussion === null) {
+            throw new InvariantException(trans('beatmap_discussions.review.validation.missing_discussion'));
+        }
+
         $this->document = $document;
-        $post = $this->discussion->startingPost;
-
         $this->priorOpenProblemCount = $this->getOpenProblemCount();
 
         try {
             DB::beginTransaction();
 
-            [$output, $childIds] = $this->parseDocument(true);
+            [$output, $childIds] = $this->parseDocument($update);
 
-            // ensure all referenced embeds belong to this discussion
-            $externalEmbeds = BeatmapDiscussion::whereIn('id', $childIds)->where('parent_id', '<>', $this->discussion->getKey())->count();
-            if ($externalEmbeds > 0) {
-                throw new InvariantException(trans('beatmap_discussions.review.validation.external_references'));
+            if (!$update) {
+                $this->discussion = $this->createBeatmapDiscussion(
+                    'review',
+                    json_encode($output)
+                );
+            } else {
+                // ensure all referenced embeds belong to this discussion
+                $externalEmbeds = BeatmapDiscussion::whereIn('id', $childIds)->where('parent_id', '<>', $this->discussion->getKey())->count();
+                if ($externalEmbeds > 0) {
+                    throw new InvariantException(trans('beatmap_discussions.review.validation.external_references'));
+                }
+
+                // update the review post
+                $post = $this->discussion->startingPost;
+                $post['message'] = json_encode($output);
+                $post['last_editor_id'] = $this->user->getKey();
+                $post->saveOrExplode();
+
+                // unlink any embeds that were removed from the review
+                BeatmapDiscussion::where('parent_id', $this->discussion->getKey())
+                    ->whereNotIn('id', $childIds)
+                    ->update(['parent_id' => null]);
             }
 
-            // update the review post
-            $post['message'] = json_encode($output);
-            $post['last_editor_id'] = $this->user->getKey();
-            $post->saveOrExplode();
-
-            // unlink any embeds that were removed from the review
-            BeatmapDiscussion::where('parent_id', $this->discussion->getKey())
-                ->whereNotIn('id', $childIds)
-                ->update(['parent_id' => null]);
-
             // associate children with parent
             BeatmapDiscussion::whereIn('id', $childIds)
                 ->update(['parent_id' => $this->discussion->getKey()]);
@@ -159,6 +139,12 @@ class BeatmapsetDiscussionReview
             $this->handleProblemDiscussion();
 
             DB::commit();
+
+            if (!$update) {
+                (new BeatmapsetDiscussionReviewNew($this->discussion, $this->user))->dispatch();
+            }
+
+            return $this->discussion;
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
