@@ -42,12 +42,14 @@ export default class GalleryContestVoteProgress extends React.PureComponent<Prop
 
   private getVoteState = () => {
     const voteSummary = this.voteSummary();
-    const data: State | null = JSON.parse(voteSummary.dataset.contestVoteSummary ?? 'null');
+    const data = voteSummary.dataset.contestVoteSummary;
 
-    return {
-      maxVotes: data?.maxVotes ?? 0,
-      voteCount: data?.voteCount ?? 0,
-    };
+    if (data === undefined) {
+      return { maxVotes: 0, voteCount: 0 };
+    }
+
+    const voteState: State = JSON.parse(data);
+    return voteState;
   };
 
   private syncState = () => {
