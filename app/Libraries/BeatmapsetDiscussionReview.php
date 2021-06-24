@@ -24,7 +24,7 @@ class BeatmapsetDiscussionReview
     private int $priorOpenProblemCount;
     private ?BeatmapDiscussion $problemDiscussion = null;
 
-    public function __construct(private Beatmapset $beatmapset, private User $user, private ?BeatmapDiscussion $discussion = null)
+    public function __construct(private Beatmapset $beatmapset, private User $user)
     {
     }
 
@@ -37,9 +37,7 @@ class BeatmapsetDiscussionReview
 
     public static function create(Beatmapset $beatmapset, array $document, User $user)
     {
-        $review = new static($beatmapset, $user);
-
-        return $review->process($document, false);
+        return (new static($beatmapset, $user))->process($document);
     }
 
     // TODO: combine with create()?
@@ -51,8 +49,7 @@ class BeatmapsetDiscussionReview
 
         $beatmapset = Beatmapset::findOrFail($discussion->beatmapset_id); // handle deleted beatmapsets
 
-        $review = new static($beatmapset, $user, $discussion);
-        $review->process($document, true);
+        return (new static($beatmapset, $user))->process($document, $discussion);
     }
 
     public static function getStats(array $document)
@@ -90,15 +87,14 @@ class BeatmapsetDiscussionReview
         return $stats;
     }
 
-    public function process(array $document, bool $update = false)
+    public function process(array $document, ?BeatmapDiscussion $existingDiscussion = null)
     {
         if (empty($document)) {
             throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
         }
 
-        if ($update && $this->discussion === null) {
-            throw new InvariantException(trans('beatmap_discussions.review.validation.missing_discussion'));
-        }
+        $isUpdate = $existingDiscussion !== null;
+        $this->discussion = $existingDiscussion;
 
         $this->document = $document;
         $this->priorOpenProblemCount = $this->getOpenProblemCount();
@@ -106,9 +102,9 @@ class BeatmapsetDiscussionReview
         try {
             DB::beginTransaction();
 
-            [$output, $childIds] = $this->parseDocument($update);
+            [$output, $childIds] = $this->parseDocument($isUpdate);
 
-            if (!$update) {
+            if (!$isUpdate) {
                 $this->discussion = $this->createBeatmapDiscussion(
                     'review',
                     json_encode($output)
@@ -140,7 +136,7 @@ class BeatmapsetDiscussionReview
 
             DB::commit();
 
-            if (!$update) {
+            if (!$isUpdate) {
                 (new BeatmapsetDiscussionReviewNew($this->discussion, $this->user))->dispatch();
             }
 
@@ -181,49 +177,7 @@ class BeatmapsetDiscussionReview
         return $this->beatmapset->beatmapDiscussions()->openProblems()->count();
     }
 
-    private function parseDocument(bool $updating)
-    {
-        $output = [];
-        // create the issues for the embeds first
-        foreach ($this->document as $block) {
-            $output[] = $this->processBlock($block, $this->beatmapset, $this->user, $updating);
-        }
-
-        $childIds = array_values(array_filter(array_pluck($output, 'discussion_id')));
-
-        $minIssues = config('osu.beatmapset.discussion_review_min_issues');
-        if (empty($childIds) || count($childIds) < $minIssues) {
-            throw new InvariantException(trans_choice('beatmap_discussions.review.validation.minimum_issues', $minIssues));
-        }
-
-        $maxBlocks = config('osu.beatmapset.discussion_review_max_blocks');
-        $blockCount = count($this->document);
-        if ($blockCount > $maxBlocks) {
-            throw new InvariantException(trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks));
-        }
-
-        return [$output, $childIds];
-    }
-
-    private function handleProblemDiscussion()
-    {
-        // handle disqualifications and the resetting of nominations
-        if ($this->problemDiscussion !== null) {
-            $event = $this->problemDiscussion->getBeatmapsetEventType($this->user);
-            if (in_array($event, [BeatmapsetEvent::DISQUALIFY, BeatmapsetEvent::NOMINATION_RESET], true)) {
-                return $this->beatmapset->disqualifyOrResetNominations($this->user, $this->problemDiscussion);
-            }
-
-            if ($event === null && $this->priorOpenProblemCount === 0) {
-                (new BeatmapsetDiscussionQualifiedProblem(
-                    $this->problemDiscussion->startingPost,
-                    $this->user
-                ))->dispatch();
-            }
-        }
-    }
-
-    private function processBlock($block, Beatmapset $beatmapset, User $user, bool $updating = false)
+    private function parseBlock($block, bool $isUpdating = false)
     {
         if (!isset($block['type'])) {
             throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
@@ -231,13 +185,13 @@ class BeatmapsetDiscussionReview
 
         $message = get_string($block['text'] ?? null);
         // message check can be skipped for updates if block is embed and has discussion_id set.
-        if ($message === null && !($updating && $block['type'] === 'embed' && isset($block['discussion_id']))) {
+        if ($message === null && !($isUpdating && $block['type'] === 'embed' && isset($block['discussion_id']))) {
             throw new InvariantException(trans('beatmap_discussions.review.validation.missing_text'));
         }
 
         switch ($block['type']) {
             case 'embed':
-                if ($updating && isset($block['discussion_id'])) {
+                if ($isUpdating && isset($block['discussion_id'])) {
                     $childId = $block['discussion_id'];
                 } else {
                     if (!isset($block['discussion_type'])) {
@@ -276,6 +230,48 @@ class BeatmapsetDiscussionReview
             default:
                 // invalid block type
                 throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
+        }
+    }
+
+    private function parseDocument(bool $isUpdate)
+    {
+        $output = [];
+        // create the issues for the embeds first
+        foreach ($this->document as $block) {
+            $output[] = $this->parseBlock($block, $isUpdate);
+        }
+
+        $childIds = array_values(array_filter(array_pluck($output, 'discussion_id')));
+
+        $minIssues = config('osu.beatmapset.discussion_review_min_issues');
+        if (empty($childIds) || count($childIds) < $minIssues) {
+            throw new InvariantException(trans_choice('beatmap_discussions.review.validation.minimum_issues', $minIssues));
+        }
+
+        $maxBlocks = config('osu.beatmapset.discussion_review_max_blocks');
+        $blockCount = count($this->document);
+        if ($blockCount > $maxBlocks) {
+            throw new InvariantException(trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks));
+        }
+
+        return [$output, $childIds];
+    }
+
+    private function handleProblemDiscussion()
+    {
+        // handle disqualifications and the resetting of nominations
+        if ($this->problemDiscussion !== null) {
+            $event = $this->problemDiscussion->getBeatmapsetEventType($this->user);
+            if (in_array($event, [BeatmapsetEvent::DISQUALIFY, BeatmapsetEvent::NOMINATION_RESET], true)) {
+                return $this->beatmapset->disqualifyOrResetNominations($this->user, $this->problemDiscussion);
+            }
+
+            if ($event === null && $this->priorOpenProblemCount === 0) {
+                (new BeatmapsetDiscussionQualifiedProblem(
+                    $this->problemDiscussion->startingPost,
+                    $this->user
+                ))->dispatch();
+            }
         }
     }
 }
