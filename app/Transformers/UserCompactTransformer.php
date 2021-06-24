@@ -280,7 +280,7 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->item($user, function ($user) {
             if ($user->userPage !== null) {
                 return [
-                    'html' => $user->userPage->bodyHTML(['withoutImageDimensions' => true, 'modifiers' => ['profile-page']]),
+                    'html' => $user->userPage->bodyHTML(['modifiers' => ['profile-page']]),
                     'raw' => $user->userPage->bodyRaw,
                 ];
             } else {

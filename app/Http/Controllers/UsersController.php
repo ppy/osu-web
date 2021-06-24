@@ -630,7 +630,7 @@ class UsersController extends Controller
                 ]);
             }
 
-            return ['html' => $user->userPage->bodyHTML(['withoutImageDimensions' => true, 'modifiers' => ['profile-page']])];
+            return ['html' => $user->userPage->bodyHTML(['modifiers' => ['profile-page']])];
         } catch (ModelNotSavedException $e) {
             return error_popup($e->getMessage());
         }

@@ -61,7 +61,7 @@ class ContestEntriesController extends Controller
             abort(422);
         }
 
-        if (Request::file('entry')->getClientSize() > $maxFilesize) {
+        if (Request::file('entry')->getSize() > $maxFilesize) {
             abort(413);
         }
 

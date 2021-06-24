@@ -18,7 +18,7 @@ class Groups
      */
     public function all(): Collection
     {
-        return $this->memoize(__FUNCTION__, fn () => $this->cachedFetch());
+        return $this->memoize(__FUNCTION__, fn () => $this->fetch());
     }
 
     /**

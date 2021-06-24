@@ -15,7 +15,7 @@ class ChatFilters
 
     public function all()
     {
-        return $this->memoize(__FUNCTION__, fn () => $this->cachedFetch());
+        return $this->cachedMemoize(__FUNCTION__, fn () => $this->fetch());
     }
 
     protected function fetch(): Collection
