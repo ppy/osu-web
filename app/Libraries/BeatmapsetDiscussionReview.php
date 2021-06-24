@@ -40,13 +40,8 @@ class BeatmapsetDiscussionReview
         return (new static($beatmapset, $user))->process($document);
     }
 
-    // TODO: combine with create()?
     public static function update(BeatmapDiscussion $discussion, array $document, User $user)
     {
-        if (empty($document)) {
-            throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
-        }
-
         $beatmapset = Beatmapset::findOrFail($discussion->beatmapset_id); // handle deleted beatmapsets
 
         return (new static($beatmapset, $user))->process($document, $discussion);
@@ -87,6 +82,7 @@ class BeatmapsetDiscussionReview
         return $stats;
     }
 
+    // This should be private but phpcs thinks it's not used?
     public function process(array $document, ?BeatmapDiscussion $existingDiscussion = null)
     {
         if (empty($document)) {
@@ -177,6 +173,24 @@ class BeatmapsetDiscussionReview
         return $this->beatmapset->beatmapDiscussions()->openProblems()->count();
     }
 
+    private function handleProblemDiscussion()
+    {
+        // handle disqualifications and the resetting of nominations
+        if ($this->problemDiscussion !== null) {
+            $event = $this->problemDiscussion->getBeatmapsetEventType($this->user);
+            if (in_array($event, [BeatmapsetEvent::DISQUALIFY, BeatmapsetEvent::NOMINATION_RESET], true)) {
+                return $this->beatmapset->disqualifyOrResetNominations($this->user, $this->problemDiscussion);
+            }
+
+            if ($event === null && $this->priorOpenProblemCount === 0) {
+                (new BeatmapsetDiscussionQualifiedProblem(
+                    $this->problemDiscussion->startingPost,
+                    $this->user
+                ))->dispatch();
+            }
+        }
+    }
+
     private function parseBlock($block, bool $isUpdating = false)
     {
         if (!isset($block['type'])) {
@@ -255,23 +269,5 @@ class BeatmapsetDiscussionReview
         }
 
         return [$output, $childIds];
-    }
-
-    private function handleProblemDiscussion()
-    {
-        // handle disqualifications and the resetting of nominations
-        if ($this->problemDiscussion !== null) {
-            $event = $this->problemDiscussion->getBeatmapsetEventType($this->user);
-            if (in_array($event, [BeatmapsetEvent::DISQUALIFY, BeatmapsetEvent::NOMINATION_RESET], true)) {
-                return $this->beatmapset->disqualifyOrResetNominations($this->user, $this->problemDiscussion);
-            }
-
-            if ($event === null && $this->priorOpenProblemCount === 0) {
-                (new BeatmapsetDiscussionQualifiedProblem(
-                    $this->problemDiscussion->startingPost,
-                    $this->user
-                ))->dispatch();
-            }
-        }
     }
 }
