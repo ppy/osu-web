@@ -17,7 +17,6 @@ const isBeatmapOwnerChangeEventJson = (event: BeatmapsetEventJson): event is Bea
 const isNominationResetReceivedEventJson = (event: BeatmapsetEventJson): event is NominationResetReceivedEventJson =>
   event.type === 'nomination_reset_received';
 
-
 interface BeatmapOwnerChangeEventJson extends BeatmapsetEventJson {
   comment: {
     beatmap_id: number;
