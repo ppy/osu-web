@@ -21,7 +21,7 @@ class BeatmapsetDiscussionReview
     const BLOCK_TEXT_LENGTH_LIMIT = 750;
 
     private int $priorOpenProblemCount;
-    private ?BeatmapDiscussion $problemDiscussion;
+    private ?BeatmapDiscussion $problemDiscussion = null;
 
     public function __construct(private Beatmapset $beatmapset, private array $document, private User $user, private ?BeatmapDiscussion $discussion = null)
     {
@@ -92,29 +92,6 @@ class BeatmapsetDiscussionReview
         return $stats;
     }
 
-    private static function createPost($beatmapsetId, $discussionType, $message, $userId, $beatmapId = null, $timestamp = null)
-    {
-        $newDiscussion = new BeatmapDiscussion([
-            'beatmapset_id' => $beatmapsetId,
-            'user_id' => $userId,
-            'resolved' => false,
-            'message_type' => $discussionType,
-            'timestamp' => $timestamp,
-            'beatmap_id' => $beatmapId,
-        ]);
-        $newDiscussion->saveOrExplode();
-
-        $postParams = [
-            'user_id' => $userId,
-            'message' => $message,
-        ];
-        $newPost = new BeatmapDiscussionPost($postParams);
-        $newPost->beatmapDiscussion()->associate($newDiscussion);
-        $newPost->saveOrExplode();
-
-        return $newDiscussion;
-    }
-
     public function process()
     {
         // TODO: die if $this->discussion is not null.
@@ -125,11 +102,9 @@ class BeatmapsetDiscussionReview
 
             [$output, $childIds] = $this->parseDocument(false);
 
-            $this->discussion = self::createPost(
-                $this->beatmapset->getKey(),
+            $this->discussion = $this->createBeatmapDiscussion(
                 'review',
-                json_encode($output),
-                $this->user->getKey()
+                json_encode($output)
             );
 
             // associate children with parent
@@ -188,6 +163,31 @@ class BeatmapsetDiscussionReview
             DB::rollBack();
             throw $e;
         }
+    }
+
+    private function createBeatmapDiscussion(string $discussionType, string $message, int $beatmapId = null, string $timestamp = null)
+    {
+        $userId = $this->user->getKey();
+
+        $newDiscussion = new BeatmapDiscussion([
+            'beatmapset_id' => $this->beatmapset->getKey(),
+            'user_id' => $userId,
+            'resolved' => false,
+            'message_type' => $discussionType,
+            'timestamp' => $timestamp,
+            'beatmap_id' => $beatmapId,
+        ]);
+        $newDiscussion->saveOrExplode();
+
+        $postParams = [
+            'user_id' => $userId,
+            'message' => $message,
+        ];
+        $newPost = new BeatmapDiscussionPost($postParams);
+        $newPost->beatmapDiscussion()->associate($newDiscussion);
+        $newPost->saveOrExplode();
+
+        return $newDiscussion;
     }
 
     private function getOpenProblemCount()
@@ -258,20 +258,18 @@ class BeatmapsetDiscussionReview
                         throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_discussion_type'));
                     }
 
-                    $embedDiscussion = static::createPost(
-                        $beatmapset->getKey(),
+                    $embeddedDiscussion = $this->createBeatmapDiscussion(
                         $block['discussion_type'],
                         $message,
-                        $user->getKey(),
                         $block['beatmap_id'] ?? null,
                         $block['timestamp'] ?? null
                     );
 
-                    $childId = $embedDiscussion->getKey();
+                    $childId = $embeddedDiscussion->getKey();
 
                     // FIXME: separate from this loop
                     if ($block['discussion_type'] === 'problem' && $this->problemDiscussion === null) {
-                        $this->problemDiscussion = $embedDiscussion;
+                        $this->problemDiscussion = $embeddedDiscussion;
                     }
                 }
 
