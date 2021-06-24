@@ -101,27 +101,24 @@ export class WikiSearch extends React.Component {
     return (
       <div ref={this.ref} className='wiki-search__suggestions u-fancy-scrollbar' onMouseLeave={this.handleMouseLeave}>
         {
-          this.controller.suggestions.map((item, index) => {
-            const setIndex = () => {
-              this.keepSelectionInView = false;
-              this.controller.selectIndex(index);
-            };
-
-            const href = route('wiki.show', { locale: currentLocale, path: item.path });
-
-            return (
-              <a
-                key={index}
-                className={classWithModifiers('wiki-search__suggestion', { active: this.controller.selectedIndex === index })}
-                href={href}
-                onMouseEnter={setIndex}
-              >
-                <span dangerouslySetInnerHTML={{ __html: item.highlight }} />
-              </a>
-            );
-          })
+          this.controller.suggestions.map((item, index) => (
+            <a
+              key={index}
+              className={classWithModifiers('wiki-search__suggestion', { active: this.controller.selectedIndex === index })}
+              data-index={index}
+              href={route('wiki.show', { locale: currentLocale, path: item.path })}
+              onMouseEnter={this.handleSuggestionMouseEnter}
+            >
+              <span dangerouslySetInnerHTML={{ __html: item.highlight }} />
+            </a>
+          ))
         }
       </div>
     );
   }
+
+  private handleSuggestionMouseEnter = (e: React.SyntheticEvent<HTMLElement>) => {
+    this.keepSelectionInView = false;
+    this.controller.selectIndex(parseInt(e.currentTarget.dataset.index ?? '', 10));
+  };
 }
