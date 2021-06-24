@@ -10,6 +10,7 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Ds\Set;
 use Exception;
 
 /**
@@ -377,13 +378,15 @@ class BeatmapDiscussion extends Model
         ])->saveOrExplode();
     }
 
-    public function responsibleUserId(): ?int
+    public function responsibleUserIds(): Set
     {
-        if ($this->beatmap === null) {
-            return $this->beatmapset->user_id;
+        $ids = new Set([$this->beatmapset->user_id]);
+
+        if ($this->beatmap !== null) {
+            $ids->add($this->beatmap->user_id);
         }
 
-        return $this->beatmap->user_id;
+        return $ids;
     }
 
     public function fixBeatmapsetId()

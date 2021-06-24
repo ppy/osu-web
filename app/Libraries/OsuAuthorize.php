@@ -249,7 +249,7 @@ class OsuAuthorize
 
         if (
             $discussion->beatmapset->approved !== Beatmapset::STATES['qualified']
-            && $discussion->responsibleUserId() === $userId
+            && $discussion->responsibleUserIds()->contains($userId)
         ) {
             return 'ok';
         }
@@ -336,7 +336,7 @@ class OsuAuthorize
         if ($discussion->message_type === 'mapper_note') {
             $userId = $user->getKey();
 
-            if ($discussion->responsibleUserId() === $userId) {
+            if ($discussion->responsibleUserIds()->contains($userId)) {
                 return 'ok';
             }
 
