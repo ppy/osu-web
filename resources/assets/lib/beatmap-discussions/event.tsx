@@ -14,6 +14,10 @@ import { classWithModifiers } from 'utils/css';
 const isBeatmapOwnerChangeEventJson = (event: BeatmapsetEventJson): event is BeatmapOwnerChangeEventJson =>
   event.type === 'beatmap_owner_change';
 
+const isNominationResetReceivedEventJson = (event: BeatmapsetEventJson): event is NominationResetReceivedEventJson =>
+  event.type === 'nomination_reset_received';
+
+
 interface BeatmapOwnerChangeEventJson extends BeatmapsetEventJson {
   comment: {
     beatmap_id: number;
@@ -22,6 +26,15 @@ interface BeatmapOwnerChangeEventJson extends BeatmapsetEventJson {
     new_user_username: string;
   };
   type: 'beatmap_owner_change';
+}
+
+interface NominationResetReceivedEventJson extends BeatmapsetEventJson {
+  comment: {
+    beatmap_discussion_id: number;
+    source_user_id: number;
+    source_user_username: string;
+  };
+  type: 'nomination_reset_received';
 }
 
 interface Props {
@@ -188,6 +201,11 @@ export default class Event extends React.PureComponent<Props> {
       const data = this.props.event.comment;
       params.new_user = osu.link(route('users.show', { user: data.new_user_id }), data.new_user_username);
       params.beatmap = osu.link(route('beatmaps.show', { beatmap: data.beatmap_id }), data.beatmap_version);
+    }
+
+    if (isNominationResetReceivedEventJson(this.props.event)) {
+      const data = this.props.event.comment;
+      params.user = osu.link(route('users.show', { user: data.source_user_id }), data.source_user_username);
     }
 
     const key = `beatmapset_events.event.${eventType}`;

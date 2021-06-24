@@ -199,6 +199,7 @@ class BeatmapsetEvent extends Model
                     static::RANK,
                     static::LOVE,
                     static::NOMINATION_RESET,
+                    static::NOMINATION_RESET_RECEIVED,
                     static::DISQUALIFY,
                     static::REMOVE_FROM_LOVED,
 

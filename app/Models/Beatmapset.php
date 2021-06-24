@@ -605,7 +605,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             $nominators = $this->nominationsSinceReset()->with('user')->get()->pluck('user');
             BeatmapsetEvent::log($event, $user, $post, ['nominator_ids' => $nominators->pluck('user_id')])->saveOrExplode();
             foreach ($nominators as $nominator) {
-                BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET_RECEIVED, $nominator, $post, ['source_user_id' => $user->getKey()])->saveOrExplode();
+                $params = ['source_user_id' => $user->getKey(), 'source_user_username' => $user->username];
+                BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET_RECEIVED, $nominator, $post, $params)->saveOrExplode();
             }
 
             if ($event === BeatmapsetEvent::DISQUALIFY) {
