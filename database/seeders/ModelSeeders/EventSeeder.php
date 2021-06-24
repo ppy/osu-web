@@ -3,6 +3,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+namespace Database\Seeders\ModelSeeders;
+
+use App\Models\Beatmap;
+use App\Models\Beatmapset;
+use App\Models\Event;
+use App\Models\User;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
@@ -11,9 +17,8 @@ class EventSeeder extends Seeder
     public function run()
     {
         // DB::table('osu_events')->delete();
-        App\Models\Event::unguard();
 
-        $beatmapCount = App\Models\Beatmap::count();
+        $beatmapCount = Beatmap::count();
         if ($beatmapCount === 0) {
             $this->command->info('Can\'t seed events due to having no beatmap data.');
 
@@ -21,7 +26,7 @@ class EventSeeder extends Seeder
         }
 
         $faker = Faker::create();
-        $users = App\Models\User::all();
+        $users = User::all();
 
         $generateEventText = function ($bm, $bms, $u, $rank) {
             switch ($bm->playmode) {
@@ -50,11 +55,11 @@ class EventSeeder extends Seeder
 
         foreach ($users as $u) {
             if ($beatmapCount > 0) {
-                $all_beatmaps = App\Models\Beatmap::orderByRaw('RAND()')->get();
+                $all_beatmaps = Beatmap::orderByRaw('RAND()')->get();
                 for ($c = 0; $c < 4; $c++) {
                     if ($all_beatmaps[$c]) {
                         $bm = $all_beatmaps[$c];
-                        $bms = App\Models\Beatmapset::find($bm->beatmapset_id);
+                        $bms = Beatmapset::find($bm->beatmapset_id);
                         if (isset($bms)) {
                             $is_rank_1 = $faker->boolean(20);
                             if ($is_rank_1 === true) {
@@ -65,7 +70,7 @@ class EventSeeder extends Seeder
                                 $epicfactor = 1;
                             }
                             $txt = $generateEventText($bm, $bms, $u, $rank);
-                            $ev = $u->events()->save(App\Models\Event::create([
+                            $ev = $u->events()->save(Event::create([
                                 'user_id' => $u->user_id,
                                 'text' => $txt,
                                 'text_clean' => $txt,
@@ -95,7 +100,7 @@ class EventSeeder extends Seeder
                     $string = "<b><a href='/u/".$u->user_id."'>".$faker->userName.'</a></b> has changed their username to '.$u->username.'!';
                     break;
             }
-            $ev2 = $u->events()->save(App\Models\Event::create([
+            $ev2 = $u->events()->save(Event::create([
                 'user_id' => $u->user_id,
                 'text' => $string,
                 'text_clean' => $string,
@@ -105,6 +110,5 @@ class EventSeeder extends Seeder
         }
 
         // END EVENTS
-        App\Models\Event::reguard();
     }
 }

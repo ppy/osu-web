@@ -3,6 +3,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+namespace Database\Seeders\ModelSeeders;
+
+use App\Models\Country;
+use App\Models\Store\Product;
+use App\Models\Tournament;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
@@ -23,8 +28,8 @@ class ProductSeeder extends Seeder
         $this->product_ids = [];
         $this->count = 0;
 
-        $master_tshirt = factory(App\Models\Store\Product::class)->states('master_tshirt')->create();
-        $child_shirts = factory(App\Models\Store\Product::class, 7)->states('child_tshirt')->create([
+        $master_tshirt = factory(Product::class)->states('master_tshirt')->create();
+        $child_shirts = factory(Product::class, 7)->states('child_tshirt')->create([
             'master_product_id' => $master_tshirt->product_id,
         ])->each(function ($s) {
             $this->product_ids[] = $s->product_id;
@@ -59,12 +64,12 @@ class ProductSeeder extends Seeder
 
     public function seedBanners()
     {
-        $tournament = factory(App\Models\Tournament::class)->create();
+        $tournament = factory(Tournament::class)->create();
         // Get some countries to use.
-        $countries = App\Models\Country::limit(6)->get()->toArray();
+        $countries = Country::limit(6)->get()->toArray();
         $master_country = array_shift($countries);
 
-        $master = factory(App\Models\Store\Product::class)->states('child_banners')->create([
+        $master = factory(Product::class)->states('child_banners')->create([
             'name' => "{$tournament->name} Support Banner ({$master_country['name']})",
             'description' => ':)',
             'header_description' => "# {$tournament->name} Support Banners\nYayifications",
@@ -80,7 +85,7 @@ class ProductSeeder extends Seeder
         ];
 
         foreach ($countries as $country) {
-            $product = factory(App\Models\Store\Product::class)->states('child_banners')->create([
+            $product = factory(Product::class)->states('child_banners')->create([
                 'name' => "{$tournament->name} Support Banner ({$country['name']})",
                 'master_product_id' => $master->product_id,
             ]);

@@ -46,7 +46,7 @@ class OsuAuthorize
         return $set->contains($ability);
     }
 
-    public function cacheReset(): void
+    public function resetCache(): void
     {
         request()->attributes->remove(static::REQUEST_ATTRIBUTE_KEY);
     }

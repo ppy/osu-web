@@ -3,6 +3,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+namespace Database\Seeders\ModelSeeders;
+
+use App\Models\RankHistory;
+use App\Models\User;
+use App\Models\UserAccountHistory;
+use App\Models\UserGroup;
+use App\Models\UserStatistics;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
@@ -33,7 +40,7 @@ class UserSeeder extends Seeder
         $this->common_countries = ['US', 'JP', 'CN', 'DE', 'TW', 'RU', 'KR', 'PL', 'CA', 'FR', 'BR', 'GB', 'AU'];
 
         // Create 10 users and their stats
-        factory(App\Models\User::class, 10)->create([
+        factory(User::class, 10)->create([
             'osu_subscriber' => 1,
         ])->each(function ($u) {
 
@@ -44,10 +51,10 @@ class UserSeeder extends Seeder
             $rank1 = rand(1, 500000);
             $rank2 = rand(1, 500000);
             $rank3 = rand(1, 500000);
-            $st = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Osu::class)->make(['country_acronym' => $country_code, 'rank' => $rank0, 'rank_score_index' => $rank0]));
-            $st1 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Taiko::class)->make(['country_acronym' => $country_code, 'rank' => $rank1, 'rank_score_index' => $rank1]));
-            $st2 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Fruits::class)->make(['country_acronym' => $country_code, 'rank' => $rank2, 'rank_score_index' => $rank2]));
-            $st3 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Mania::class)->make(['country_acronym' => $country_code, 'rank' => $rank3, 'rank_score_index' => $rank3]));
+            $st = $u->statisticsOsu()->save(factory(UserStatistics\Osu::class)->make(['country_acronym' => $country_code, 'rank' => $rank0, 'rank_score_index' => $rank0]));
+            $st1 = $u->statisticsOsu()->save(factory(UserStatistics\Taiko::class)->make(['country_acronym' => $country_code, 'rank' => $rank1, 'rank_score_index' => $rank1]));
+            $st2 = $u->statisticsOsu()->save(factory(UserStatistics\Fruits::class)->make(['country_acronym' => $country_code, 'rank' => $rank2, 'rank_score_index' => $rank2]));
+            $st3 = $u->statisticsOsu()->save(factory(UserStatistics\Mania::class)->make(['country_acronym' => $country_code, 'rank' => $rank3, 'rank_score_index' => $rank3]));
             // END USER STATS
 
             // RANK HISTORY
@@ -71,7 +78,7 @@ class UserSeeder extends Seeder
                         $rank = $st->rank;
                 }
 
-                $hist = new App\Models\RankHistory();
+                $hist = new RankHistory();
 
                 $hist->mode = $c; // 0 = standard, 1 = taiko etc...
 
@@ -113,13 +120,13 @@ class UserSeeder extends Seeder
             // INFRINGEMENTS
 
             // silence
-            $u->accountHistories()->save(factory(App\Models\UserAccountHistory::class)->states('silence')->make());
+            $u->accountHistories()->save(factory(UserAccountHistory::class)->states('silence')->make());
 
             // note
-            $u->accountHistories()->save(factory(App\Models\UserAccountHistory::class)->states('note')->make());
+            $u->accountHistories()->save(factory(UserAccountHistory::class)->states('note')->make());
 
             // USER GROUP
-            $u->userGroups()->save(new App\Models\UserGroup(['group_id' => app('groups')->byIdentifier('default')->group_id]));
+            $u->userGroups()->save(new UserGroup(['group_id' => app('groups')->byIdentifier('default')->group_id]));
         }); // end each user
     }
 }
