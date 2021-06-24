@@ -14,10 +14,12 @@ export default class GalleryContest {
     this.root = container.querySelector('.js-pswp-buttons') as HTMLElement;
 
     render(
-      <>
-        <GalleryContestVoteButton pswp={pswp} />
-        <GalleryContestVoteProgress />
-      </>,
+      (
+        <>
+          <GalleryContestVoteButton pswp={pswp} />
+          <GalleryContestVoteProgress />
+        </>
+      ),
       this.root,
     );
 
