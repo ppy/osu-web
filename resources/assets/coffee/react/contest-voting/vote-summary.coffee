@@ -10,7 +10,7 @@ selectedClass = 'contest__voting-star--selected'
 export VoteSummary = ({voteCount, maxVotes}) ->
   div
     className: 'js-contest-vote-summary'
-    'data-contest-vote-summary': JSON.stringify({maxVotes, votesLeft: maxVotes - voteCount})
+    'data-contest-vote-summary': JSON.stringify({maxVotes, voteCount})
     for i in [0...maxVotes]
       className = baseClass
       className += " #{selectedClass}" if i < voteCount

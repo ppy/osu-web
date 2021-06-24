@@ -8,7 +8,7 @@ type Props = Record<string, never>;
 
 interface State {
   maxVotes: number;
-  votesLeft: number;
+  voteCount: number;
 }
 
 export default class GalleryContestVoteProgress extends React.PureComponent<Props, State> {
@@ -30,11 +30,11 @@ export default class GalleryContestVoteProgress extends React.PureComponent<Prop
     return (
       <div className='pswp__button pswp__button--vote-progress'>
         <CircularProgress
-          current={this.state.votesLeft}
+          current={this.state.voteCount}
           max={this.state.maxVotes}
           reverse
           theme='gallery-contest'
-          tooltip={osu.transChoice('contest.voting.progress._', this.state.votesLeft)}
+          tooltip={osu.transChoice('contest.voting.progress._', this.state.voteCount)}
         />
       </div>
     );
@@ -46,7 +46,7 @@ export default class GalleryContestVoteProgress extends React.PureComponent<Prop
 
     return {
       maxVotes: data?.maxVotes ?? 0,
-      votesLeft: data?.votesLeft ?? 0,
+      voteCount: data?.voteCount ?? 0,
     };
   };
 
