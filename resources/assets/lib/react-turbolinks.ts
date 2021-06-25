@@ -23,7 +23,7 @@ export default class ReactTurbolinks {
   }
 
   boot = () => {
-    if (window.newBody == null) return;
+    if (!this.pageReady || window.newBody == null) return;
 
     for (const [name, elementFn] of this.components.entries()) {
       const containers = window.newBody.querySelectorAll(`.js-react--${name}`);
