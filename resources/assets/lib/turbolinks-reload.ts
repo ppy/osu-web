@@ -46,7 +46,7 @@ export default class TurbolinksReload {
       this.forget(src);
     }
 
-    $.ajax(src, { async: false, cache: true, dataType: 'script' });
+    void $.ajax(src, { async: false, cache: true, dataType: 'script' });
 
     this.loaded.add(src);
   }
