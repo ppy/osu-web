@@ -1,10 +1,10 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Header } from './header'
 import { Hype } from './hype'
 import { Info } from './info'
 import { Scoreboard } from './scoreboard'
+import BeatmapsetHeader from 'beatmapsets-show/beatmapset-header'
 import NsfwWarning from 'beatmapsets-show/nsfw-warning'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
@@ -211,17 +211,8 @@ export class Main extends React.Component
   renderPage: ->
     el React.Fragment, null,
       div className: 'osu-layout__row osu-layout__row--page-compact',
-        el Header,
+        el BeatmapsetHeader,
           beatmapset: @state.beatmapset
-          beatmaps: @state.beatmaps
-          currentBeatmap: @state.currentBeatmap
-          hoveredBeatmap: @state.hoveredBeatmap
-          favcount: @state.favcount
-          hasFavourited: @state.hasFavourited
-
-        el Info,
-          beatmapset: @state.beatmapset
-          beatmap: @state.currentBeatmap
 
       div className: 'osu-layout__section osu-layout__section--extra',
         if @state.beatmapset.can_be_hyped
