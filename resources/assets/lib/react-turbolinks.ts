@@ -10,6 +10,7 @@ type ElementFn = (container: HTMLElement) => React.ReactElement;
 export default class ReactTurbolinks {
   private components = new Map<string, ElementFn>();
   private newVisit = true;
+  private pageReady = false;
   private renderedContainers = new Set<HTMLElement>();
   private scrolled = false;
   private timeoutScroll?: number;
@@ -56,11 +57,13 @@ export default class ReactTurbolinks {
   };
 
   private handleBeforeCache = () => {
+    this.pageReady = false;
     window.clearTimeout(this.timeoutScroll);
   };
 
   private handleBeforeRender = (e: JQuery.TriggeredEvent) => {
     window.newBody = (e.originalEvent as Event & { data: { newBody: HTMLElement }}).data.newBody;
+    this.pageReady = true;
     this.loadScripts(false);
     this.boot();
   };
@@ -71,6 +74,7 @@ export default class ReactTurbolinks {
 
   private handleLoad = () => {
     window.newBody ??= document.body;
+    this.pageReady = true;
     this.scrolled = false;
     $(window).off('scroll', this.handleWindowScroll);
     $(window).on('scroll', this.handleWindowScroll);
