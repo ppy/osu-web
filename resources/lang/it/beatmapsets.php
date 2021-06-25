@@ -8,7 +8,7 @@ return [
         'disabled' => 'Questa beatmap non è al momento disponibile per il download.',
         'parts-removed' => 'Porzioni di questa beatmap sono state rimosse su richiesta del creatore o di un titolare di copyright di terze parti.',
         'more-info' => 'Controlla qui per maggiori informazioni.',
-        'rule_violation' => '',
+        'rule_violation' => 'Alcuni elementi contenuti in questa mappa sono stati rimossi dopo che sono stati giudicati non idonei per l\'uso in osu!.',
     ],
 
     'download' => [
@@ -21,7 +21,7 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'nessuna beatmap',
 
         'download' => [
             'all' => 'scarica',
@@ -32,15 +32,15 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'hybrid_requires_modes' => 'Un beatmapset ibrido richiede che venga selezionata almeno una modalità di gioco per poterla nominare.',
+        'incorrect_mode' => 'Non hai il permesso di nominare per la modalità: :mode',
+        'full_bn_required' => 'Devi essere un nominatore completo per eseguire questa nomina qualificante.',
+        'too_many' => 'Requisito di nomina già soddisfatto.',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
+            'confirmation' => 'Sei sicuro di voler nominare questa beatmap?',
+            'header' => 'Nomina Beatmap',
+            'hybrid_warning' => 'nota: puoi nominare una sola volta, quindi assicurati di nominare per tutte le modalità di gioco che vuoi',
             'which_modes' => 'Nominare per quali modalità?',
         ],
     ],
@@ -53,7 +53,9 @@ return [
         'discussion' => 'Discussione',
 
         'details' => [
+            'by_artist' => 'di :artist',
             'favourite' => 'Mi piace questo beatmapset',
+            'favourite_login' => 'Accedi per aggiungere questa beatmap ai preferiti',
             'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!',
             'mapped_by' => 'mappata da :mapper',
             'unfavourite' => 'Non mi piace questo beatmapset',
@@ -120,6 +122,7 @@ return [
             'storyboard' => 'Questa beatmap contiene storyboard',
             'success-rate' => 'Rateo di Successo',
             'tags' => 'Tag',
+            'video' => 'Questa beatmap contiene video',
         ],
 
         'nsfw_warning' => [

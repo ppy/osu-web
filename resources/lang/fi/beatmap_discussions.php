@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Hae',
             'deleted' => 'Sisällytä poistetut keskustelut',
+            'mode' => '',
             'only_unresolved' => '',
             'types' => 'Viestityypit',
             'username' => 'Käyttäjänimi',
@@ -55,6 +56,13 @@ return [
         'confirm' => 'Mikään viesteistä ei käsittele aihettani',
         'notice' => 'Aikajanalta :timestamp (:existing_timestamps) löytyy viestejä. Tarkista ne ennen viestin lähettämistä.',
         'unsaved' => '',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [

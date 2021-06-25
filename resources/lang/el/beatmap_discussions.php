@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Αναζήτηση',
             'deleted' => 'Συμπεριλάμβανε διαγραμμένες συζητήσεις',
+            'mode' => '',
             'only_unresolved' => '',
             'types' => 'Τύποι μηνυμάτων',
             'username' => 'Όνομα χρήστη',
@@ -55,6 +56,13 @@ return [
         'confirm' => 'Καμία δημοσίευση δεν απαντάει στο ερώτημά μου',
         'notice' => 'Υπάρχουν αναρτήσεις περίπου :timestamp (:existing_timestamps). Παρακαλώ να τις ελέγξετε πριν αναρτήσετε.',
         'unsaved' => '',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [

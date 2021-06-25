@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'مقبولة.',
+        'beatmap_owner_change' => 'مالك الصعوبة :beatmap تغير إلى :new_user.',
         'discussion_delete' => 'المشرف حذف المناقشة :discussion.',
         'discussion_lock' => 'تم ايقاف المناقشة لهذه الخريطة. (:text)',
         'discussion_post_delete' => 'المشرف حذف منشور من المناقشة :discussion.',
@@ -32,8 +33,8 @@ return [
         'remove_from_loved' => 'تمت إزالتها من "المحبوبة" من قِبَل :user. (:text)',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'تصيف "محتوى حساس" مَلغي',
+            'to_1' => 'مٌصنف كـ "محتوى حساس"',
         ],
     ],
 
@@ -54,15 +55,16 @@ return [
 
     'type' => [
         'approve' => 'موافقة',
-        'discussion_delete' => 'حذف المناقشة',
-        'discussion_post_delete' => 'حذف رد المناقشة',
-        'discussion_post_restore' => 'إعادة رد المناقشة',
-        'discussion_restore' => 'إعادة المناقشة',
-        'disqualify' => 'فقدان الأهلية',
-        'genre_edit' => 'تعديل النوع',
-        'issue_reopen' => 'إعادة فتح باب المناقشة',
-        'issue_resolve' => 'حل المناقشة',
-        'kudosu_allow' => 'تبديل كودوسو',
+        'beatmap_owner_change' => 'تغير مالك صعوبة',
+        'discussion_delete' => 'حذف مناقشة',
+        'discussion_post_delete' => 'حذف رد مناقشة',
+        'discussion_post_restore' => 'إعادة رد مناقشة',
+        'discussion_restore' => 'إعادة مناقشة',
+        'disqualify' => 'فقدان أهلية',
+        'genre_edit' => 'تعديل نوع',
+        'issue_reopen' => 'إعادة فتح باب مناقشة',
+        'issue_resolve' => 'حل مناقشة',
+        'kudosu_allow' => 'سماح كودوسو',
         'kudosu_deny' => 'رفض كودوسو',
         'kudosu_gain' => 'كسب كودوسو',
         'kudosu_lost' => 'خسارة كودوسو',
@@ -71,7 +73,7 @@ return [
         'love' => 'حُب',
         'nominate' => 'ترشيح',
         'nomination_reset' => 'إعادة تعيين الترشيح',
-        'nsfw_toggle' => '',
+        'nsfw_toggle' => 'تصنيف حساس',
         'qualify' => 'المؤهل',
         'rank' => 'الترتيب',
         'remove_from_loved' => 'اِزبالة من "المحبوبة"',

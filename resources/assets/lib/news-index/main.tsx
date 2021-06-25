@@ -9,7 +9,7 @@ import * as _ from 'lodash';
 import NewsHeader from 'news-header';
 import NewsSidebar from 'news-sidebar/main';
 import * as React from 'react';
-import { ShowMoreLink } from 'show-more-link';
+import ShowMoreLink from 'show-more-link';
 import PostItem from './post-item';
 
 interface Props {
@@ -103,7 +103,7 @@ export default class Main extends React.Component<Props, State> {
                 'data-reload-on-success': '1',
                 'data-remote': true,
                 'data-url': route('news.store'),
-                'type': 'button',
+                type: 'button',
               },
               text: osu.trans('news.store.button'),
             },
@@ -132,7 +132,7 @@ export default class Main extends React.Component<Props, State> {
       posts.pop();
     }
 
-    return {posts, hasMore, loading};
+    return { hasMore, loading, posts };
   };
 
   private restoreState = () => {

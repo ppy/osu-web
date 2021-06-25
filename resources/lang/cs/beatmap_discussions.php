@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Hledat',
             'deleted' => 'Zahrnout smazané diskuze',
+            'mode' => '',
             'only_unresolved' => 'Ukaž pouze nerozluštěné diskuze',
             'types' => 'Typy zpráv',
             'username' => 'Uživatelské jméno',
@@ -55,6 +56,13 @@ return [
         'confirm' => 'Žádný z příspěvků neřeší mé obavy',
         'notice' => 'Poblíž :timestamp (:existing_timestamps) se už nějaké příspěvky nacházejí. Prosím zkontroluj je před zveřejněním tvého přispěvku.',
         'unsaved' => ':count v této recenzi',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [

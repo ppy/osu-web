@@ -5,7 +5,7 @@
 
 return [
     'countries' => [
-        'all' => 'Hepsi',
+        'all' => 'Tümü',
         'title' => 'Ülke',
     ],
 

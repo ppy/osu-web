@@ -53,7 +53,9 @@ return [
         'discussion' => 'Discussie',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'Markeer deze beatmapset als favoriet',
+            'favourite_login' => '',
             'logged-out' => 'Je moet ingelogd zijn voordat je beatmaps kan downloaden!',
             'mapped_by' => 'gemapped door :mapper',
             'unfavourite' => 'Verwijder markering als favoriet',
@@ -120,6 +122,7 @@ return [
             'storyboard' => 'Deze beatmap bevat verhaalborden',
             'success-rate' => 'Slagingspercentage',
             'tags' => 'Labels',
+            'video' => '',
         ],
 
         'nsfw_warning' => [

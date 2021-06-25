@@ -6,6 +6,7 @@
 namespace App\Providers;
 
 use App\Hashing\OsuHashManager;
+use App\Libraries\ChatFilters;
 use App\Libraries\Groups;
 use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
@@ -35,6 +36,10 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Queue::after(function (JobProcessed $event) {
+            app('OsuAuthorize')->resetCache();
+            app('groups')->forceVersionCheck();
+            app('chat-filters')->forceVersionCheck();
+
             Datadog::increment(
                 config('datadog-helper.prefix_web').'.queue.run',
                 1,
@@ -65,6 +70,10 @@ class AppServiceProvider extends ServiceProvider
             'Illuminate\Contracts\Auth\Registrar',
             'App\Services\Registrar'
         );
+
+        $this->app->singleton('chat-filters', function () {
+            return new ChatFilters();
+        });
 
         $this->app->singleton('groups', function () {
             return new Groups();

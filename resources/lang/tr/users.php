@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Sevilen Beatmapler',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Dereceli & Onaylı Beatmapler',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Beklemedeki Beatmapler',
+                ],
+                'ranked' => [
+                    'title' => 'Dereceli & Onaylı Beatmapler',
                 ],
             ],
             'discussions' => [
@@ -331,7 +331,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Hesap Durumu',
-                'bad_standing' => "<strong>:username'in</strong> hesabı iyi durumda değil :(",
+                'bad_standing' => "<strong>:username</strong> kullanıcısının hesabı iyi durumda değil :(",
                 'remaining_silence' => '<strong>:username</strong> :duration sonra konuşabilecek.',
 
                 'recent_infringements' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'Toplam Vuruş',
             'total_score' => 'Toplam Skor',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Dereceli ve Onaylanmış Beatmapler',
-            'loved_beatmapset_count' => 'Sevilen Beatmapler',
-            'unranked_beatmapset_count' => 'Onay Bekleyen Beatmapler',
             'graveyard_beatmapset_count' => 'Mezarlıktaki Beatmapler',
+            'loved_beatmapset_count' => 'Sevilen Beatmapler',
+            'pending_beatmapset_count' => 'Onay Bekleyen Beatmapler',
+            'ranked_beatmapset_count' => 'Dereceli ve Onaylanmış Beatmapler',
         ],
     ],
 

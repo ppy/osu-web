@@ -30,7 +30,7 @@ class @CurrentUserObserver
   setCovers: (elements) =>
     elements ?= @covers
 
-    bgImage = osu.urlPresence(currentUser.cover_url) if currentUser.id?
+    bgImage = osu.urlPresence(currentUser.cover.url) if currentUser.id?
     for el in elements
       el.style.backgroundImage = bgImage
 

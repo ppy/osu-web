@@ -17,7 +17,7 @@ interface State {
  * This component's job shims UserCard for store-supporter-tag to update UserCard's props.
  */
 export class UserCardStore extends React.PureComponent<Props, State> {
-  readonly state: State = { user: this.props.user };
+  state: Readonly<State> = { user: this.props.user };
 
   componentDidMount() {
     $.subscribe('store-supporter-tag:update-user.user-card-store', this.setUser);

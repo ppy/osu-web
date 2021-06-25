@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => '',
+    'no_restricted_access' => 'Nie ste schopní vykonať túto akciu, zatiaľ čo váš účet je v obmedzenom stave.',
+    'supporter_only' => 'Musíte byť osu! supporter pre použitie tejto funkcie.',
+    'unknown' => 'Nastala neznáma chyba.',
+
     'codes' => [
         'http-401' => 'Pre pokračovanie sa prosím prihláste.',
         'http-403' => 'Prístup zamietnutý.',
@@ -26,8 +31,4 @@ return [
         'default' => '',
         'operation_timeout_exception' => '',
     ],
-
-    'supporter_only' => 'Musíte byť osu! supporter pre použitie tejto funkcie.',
-    'no_restricted_access' => 'Nie ste schopní vykonať túto akciu, zatiaľ čo váš účet je v obmedzenom stave.',
-    'unknown' => 'Nastala neznáma chyba.',
 ];

@@ -19,7 +19,9 @@ class BeatmapsetQueryParser
             $key = strtolower($m['key']);
             $op = str_replace(':', '=', $m['op']);
             switch ($key) {
+                case 'star':
                 case 'stars':
+                    $key = 'stars';
                     $option = static::makeFloatRangeOption($op, $m['value'], 0.01 / 2);
                     break;
                 case 'ar':
@@ -40,7 +42,9 @@ class BeatmapsetQueryParser
                     $parsed = static::parseLength($m['value']);
                     $option = static::makeFloatRangeOption($op, $parsed['value'], $parsed['scale'] / 2.0);
                     break;
+                case 'key':
                 case 'keys':
+                    $key = 'keys';
                     $option = static::makeIntRangeOption($op, $m['value']);
                     break;
                 case 'divisor':

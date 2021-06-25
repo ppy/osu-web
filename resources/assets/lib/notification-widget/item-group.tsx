@@ -11,7 +11,7 @@ import { NotificationContext } from 'notifications-context';
 import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
-import { ShowMoreLink } from 'show-more-link';
+import ShowMoreLink from 'show-more-link';
 import Item from './item';
 import ItemCompact from './item-compact';
 
@@ -81,9 +81,9 @@ export default class ItemGroup extends React.Component<Props, State> {
 
     return (
       <button
-        type='button'
         className='show-more-link show-more-link--notification-group'
         onClick={this.toggleExpand}
+        type='button'
       >
         <span className='show-more-link__label'>
           <span className='show-more-link__label-text'>
@@ -98,7 +98,7 @@ export default class ItemGroup extends React.Component<Props, State> {
   }
 
   private renderItem = (item: Notification) => (
-    <div className='notification-popup-item-group__item' key={item.id}>
+    <div key={item.id} className='notification-popup-item-group__item'>
       <ItemCompact item={item} stack={this.props.stack} />
     </div>
   );
@@ -117,7 +117,12 @@ export default class ItemGroup extends React.Component<Props, State> {
           </div>
           <div className='notification-popup-item-group__collapse'>
             {this.renderShowLess()}
-            <NotificationReadButton isMarkingAsRead={this.props.stack.isMarkingAsRead} onMarkAsRead={this.handleMarkAsRead} />
+            {this.props.stack.canMarkAsRead && (
+              <NotificationReadButton
+                isMarkingAsRead={this.props.stack.isMarkingAsRead}
+                onMarkAsRead={this.handleMarkAsRead}
+              />
+            )}
             {!this.context.isWidget && (
               <NotificationDeleteButton
                 isDeleting={this.props.stack.isDeleting}

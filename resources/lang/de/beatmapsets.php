@@ -53,7 +53,9 @@ return [
         'discussion' => 'Diskussion',
 
         'details' => [
+            'by_artist' => 'von :artist',
             'favourite' => 'Dieses Beatmapset zu deinen Favoriten hinzufügen',
+            'favourite_login' => 'Melde dich an, um diese Beatmap zu favorisieren',
             'logged-out' => 'Zum Herunterladen von Beatmaps muss man eingeloggt sein!',
             'mapped_by' => 'erstellt von :mapper',
             'unfavourite' => 'Dieses Beatmapset von deinen Favoriten entfernen',
@@ -117,9 +119,10 @@ return [
             'nsfw' => 'Expliziter Inhalt',
             'points-of-failure' => 'Stellen, an denen Spieler gescheitert sind',
             'source' => 'Quelle',
-            'storyboard' => '',
+            'storyboard' => 'Diese Beatmap enthält ein Storyboard',
             'success-rate' => 'Erfolgsrate',
             'tags' => 'Tags',
+            'video' => 'Diese Beatmap enthält ein Video',
         ],
 
         'nsfw_warning' => [

@@ -11,6 +11,7 @@ import * as _ from 'lodash';
 import { computed, observe } from 'mobx';
 import { disposeOnUnmount, inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import RootDataStore from 'stores/root-data-store';
@@ -38,8 +39,7 @@ export default class InputBox extends React.Component<Props> implements Dispatch
     disposeOnUnmount(
       this,
       observe(this.dataStore.chatState.selectedBoxed, (change) => {
-        console.log('change');
-        if (change.newValue !== change.oldValue && osu.isDesktop()) {
+        if (change.newValue !== change.oldValue && core.windowSize.isDesktop) {
           this.focusInput();
         }
       }),
@@ -91,26 +91,26 @@ export default class InputBox extends React.Component<Props> implements Dispatch
     return (
       <div className='chat-input'>
         <TextareaAutosize
-          className={`chat-input__box${disableInput ? ' chat-input__box--disabled' : ''}`}
-          name='textbox'
-          placeholder={disableInput ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
-          onKeyDown={this.checkIfEnterPressed}
-          disabled={disableInput}
-          autoComplete='off'
           ref={this.inputBoxRef}
-          onChange={this.handleChange}
-          value={channel?.inputText}
+          autoComplete='off'
+          className={`chat-input__box${disableInput ? ' chat-input__box--disabled' : ''}`}
+          disabled={disableInput}
           maxRows={3}
+          name='textbox'
+          onChange={this.handleChange}
+          onKeyDown={this.checkIfEnterPressed}
+          placeholder={disableInput ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
+          value={channel?.inputText}
         />
 
         <BigButton
-          text={osu.trans('chat.input.send')}
           icon='fas fa-reply'
           modifiers={['chat-send']}
           props={{
             disabled: disableInput,
             onClick: this.buttonClicked,
           }}
+          text={osu.trans('chat.input.send')}
         />
       </div>
     );

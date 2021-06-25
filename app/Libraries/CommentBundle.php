@@ -124,7 +124,7 @@ class CommentBundle
             $result['total'] = $this->commentsQuery()->count();
         }
 
-        $commentables = $comments->pluck('commentable')->concat([null]);
+        $commentables = $comments->pluck('commentable')->uniqueStrict('commentable_identifier')->concat([null]);
         $result['commentable_meta'] = json_collection($commentables, 'CommentableMeta');
 
         return $result;
@@ -218,6 +218,10 @@ class CommentBundle
     {
         $userIds = $comments->pluck('user_id')
             ->concat($comments->pluck('edited_by_id'));
+
+        if (priv_check('CommentModerate')->can()) {
+            $userIds->concat($comments->pluck('deleted_by_id'));
+        }
 
         return User::whereIn('user_id', $userIds)->get();
     }

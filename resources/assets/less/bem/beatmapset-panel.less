@@ -2,14 +2,17 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-panel {
-  .show-beatmaps-popup() {
-    border-radius: @border-radius--large @border-radius--large 0 0;
-    --beatmaps-popup-opacity: 1;
-    --beatmaps-popup-pointer-events: auto;
+  .desktop-hover() {
+    --info-bg: linear-gradient(0.25turn, hsl(var(--hsl-b4)), hsla(var(--hsl-b4), 0.8));
+    --menu-opacity: 1;
+    --menu-container-width: @_menu-width-visible;
+    --play-bg: hsla(var(--hsl-b6), 0.8);
+    --play-icon-opacity: 1;
+    --stats-opacity: 1;
   }
 
+  @_top: beatmapset-panel;
   @_hover-transition-duration: 150ms;
-  @_main-bg: hsl(var(--hsl-b2));
   @_menu-width: 10px;
   @_menu-width-visible: 30px;
 
@@ -20,9 +23,7 @@
   @_top-right-inverted-corner-path: path('M11 -1 L11 10 L10 10 A10 10 0 0 0 0 0 L0 -1 Z');
   @_bottom-right-inverted-corner-path: path('M11 11 L11 0 L10 0 A10 10 0 0 1 0 10 L 0 11 Z');
 
-  // Those two toggles visibility of beatmaps popup (detailed beatmap list)
-  --beatmaps-popup-opacity: 0;
-  --beatmaps-popup-pointer-events: none;
+  --border-cover-opacity: 0;
   // For elements which provide overall beatmap link.
   // The link is disabled on mobile so it's easier to target
   // other elements like expand button and mapper name.
@@ -32,47 +33,58 @@
   --info-bg: transparent;
   // Height of the card main content. A bit shorter on mobile than
   // the actual card because of the extra row.
-  --main-height: 90px;
+  --main-height: 100px;
   // Similar to --info-bg variable.
   --menu-bg: transparent;
   --menu-container-width: 0;
   --menu-opacity: 0;
   --mobile-extra-bar-height: calc(var(--panel-height) - var(--main-height));
-  --panel-height: 115px;
+  --panel-height: @beatmapset-panel-height;
   // Audio player progress (to be overridden)
   --progress: 0;
   --play-bg: transparent;
   --play-icon-opacity: 0;
   --play-icon: @fa-var-play;
-  --play-width: 60px;
+  --play-width: 80px;
+  --source-display: flex;
+  --stats-grid-template: "hype nominations favourite-count play-count date" / auto auto auto auto auto;
   --stats-opacity: 1;
   --transition: all 150ms ease-in-out;
 
   position: relative;
-  background-color: @_main-bg;
+  background-color: @beatmapset-panel-bg;
   border-radius: @border-radius--large;
   font-size: @font-size--normal;
   height: var(--panel-height);
-  transition: var(--transition);
+  .own-layer();
 
   @media @desktop {
     --global-beatmap-link-pointer-events: auto;
     --info-bg: linear-gradient(0.25turn, hsl(var(--hsl-b2)), hsla(var(--hsl-b2), 0.8));
-    --main-height: 100%;
     --menu-bg: hsl(var(--hsl-b3));
     --menu-container-width: @_menu-width;
-    --panel-height: 100px;
+    --main-height: 100%;
+    --panel-height: @beatmapset-panel-normal-height-desktop;
     --play-width: 90px;
     --stats-opacity: 0;
 
     &:hover {
-      --info-bg: linear-gradient(0.25turn, hsl(var(--hsl-b4)), hsla(var(--hsl-b4), 0.8));
-      --menu-opacity: 1;
-      --menu-container-width: @_menu-width-visible;
-      --play-bg: hsla(var(--hsl-b6), 0.8);
-      --play-icon-opacity: 1;
-      --stats-opacity: 1;
+      .desktop-hover();
     }
+  }
+
+  // hide bottom radius when cover is shown
+  &::before {
+    content: '';
+    background-color: inherit;
+    height: @border-radius--large;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    opacity: var(--border-cover-opacity);
+    transition: var(--transition);
+    transition-duration: var(--beatmaps-popup-transition-duration);
   }
 
   &[data-audio-state="loading"],
@@ -82,10 +94,16 @@
     --play-icon: @fa-var-pause;
   }
 
+  &--beatmaps-popup-visible {
+    --border-cover-opacity: 1;
+
+    @media @desktop {
+      .desktop-hover();
+    }
+  }
+
   &--mobile-expanded {
     @media @mobile {
-      .show-beatmaps-popup();
-
       --menu-opacity: 1;
       --menu-container-width: @_menu-width-visible;
       --play-bg: hsla(var(--hsl-b6), 0.8);
@@ -94,10 +112,23 @@
     }
   }
 
-  &--with-beatmaps-popup-hover {
+  &--size-extra {
     @media @desktop {
-      .show-beatmaps-popup();
+      --panel-height: @beatmapset-panel-extra-height-desktop;
+      --stats-grid-template: "favourite-count hype date" "play-count nominations ." / auto auto auto;
+      --stats-opacity: 1;
+      --play-width: 140px;
     }
+  }
+
+  &--size-normal {
+    @media @desktop {
+      --source-display: none;
+    }
+  }
+
+  &__beatmap-count {
+    font-weight: 600;
   }
 
   &__beatmap-dot {
@@ -108,75 +139,10 @@
     background-color: var(--bg);
   }
 
-  &__beatmap-dots {
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    line-height: 12px;
-    height: $padding * 2 + $line-height;
-  }
-
   &__beatmap-icon {
     margin-right: 2px;
     font-size: 14px; // icon size
-  }
-
-  &__beatmap-more {
-    font-weight: 600;
-    // Manual adjustment so it looks centered. The result is kind of different between Chromium and Firefox.
-    bottom: 2px;
-    position: relative;
-  }
-
-  &__beatmaps-all {
-    margin: -5px;
     display: flex;
-  }
-
-  &__beatmaps-popup {
-    max-height: 50vh;
-    overflow: auto;
-    padding: 2px 5px;
-    display: grid;
-    grid-gap: 10px;
-  }
-
-  &__beatmaps-popup-group {
-    display: grid;
-    grid-gap: 2px;
-  }
-
-  &__beatmaps-popup-container {
-    .fancy-scrollbar();
-    opacity: var(--beatmaps-popup-opacity);
-    pointer-events: var(--beatmaps-popup-pointer-events);
-    position: absolute;
-    top: 100%;
-    width: 100%;
-    background-color: @_main-bg;
-    padding: 5px 0 @border-radius--large;
-    border-radius: 0 0 @border-radius--large @border-radius--large;
-    transition: var(--transition);
-    z-index: @z-index--beatmaps-panel;
-
-    @media @desktop {
-      padding-top: @border-radius--large;
-    }
-
-    // hide top shadow
-    &::before {
-      content: '';
-      .thick-box-shadow();
-      border: 2px solid hsl(var(--hsl-h1));
-      height: calc(100% + var(--panel-height));
-      width: 100%;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      pointer-events: none;
-      opacity: inherit;
-      border-radius: @border-radius--large;
-    }
   }
 
   &__content {
@@ -241,21 +207,13 @@
     }
   }
 
-  &__extra-icon {
-    .circle(20px);
-    .center-content();
-    font-size: 10px;
-    background: hsla(var(--hsl-b6), 0.5);
-    margin: 1px;
-    padding-top: 1px; // adjust alignment
-    pointer-events: auto;
-  }
-
-  &__extra-icons {
-    position: absolute;
-    top: 4px;
-    left: 4px;
+  &__extra-item {
+    margin: 0 var(--gutter);
     display: flex;
+
+    &--dots {
+      align-items: center;
+    }
   }
 
   &__info {
@@ -287,33 +245,48 @@
     &--extra {
       .link-plain();
       .link-white();
+      --gutter: 3px;
       pointer-events: var(--global-beatmap-link-pointer-events);
+      margin: 0 calc(var(--gutter) * -1);
+      align-items: center;
 
       @media @mobile {
         position: absolute;
         left: calc(var(--play-width) * -1);
         top: 100%;
         height: var(--mobile-extra-bar-height);
-        width: calc(100% + var(--play-width));
-        align-items: center;
+        width: calc(100% + var(--play-width) + var(--gutter) * 2);
         padding: 0 30px 0 5px; // right padding to account for the expand button
       }
     }
 
     &--mapper {
       color: hsl(var(--hsl-c2));
-      margin-top: 1px; // manual adjustment
       font-weight: 600;
-      margin-bottom: auto;
+      margin-top: auto;
+    }
+
+    &--source {
+      color: hsl(var(--hsl-c2));
+      display: var(--source-display);
+      font-weight: bold;
+
+      &::after {
+        content: '\a0';
+      }
     }
 
     &--stats {
-      margin: 0 -5px;
       opacity: var(--stats-opacity);
       overflow: hidden;
+      display: grid;
+      grid-template: var(--stats-grid-template);
+      width: max-content;
+      max-width: 100%;
+      white-space: nowrap;
 
       @media @desktop {
-        margin-bottom: 3px;
+        margin-bottom: 2px;
       }
     }
 
@@ -467,6 +440,23 @@
     }
   }
 
+  &__play-icon {
+    .circle(20px);
+    .center-content();
+    font-size: 10px;
+    background: hsla(var(--hsl-b6), 0.5);
+    margin: 1px;
+    padding-top: 1px; // adjust alignment
+    pointer-events: auto;
+  }
+
+  &__play-icons {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    display: flex;
+  }
+
   &__play-progress {
     .full-size();
     .center-content();
@@ -475,11 +465,30 @@
   }
 
   &__stats-item {
-    margin: 0 5px;
     display: flex;
     align-items: center;
-    flex: none;
     pointer-events: auto;
+    margin-right: 10px;
+
+    &--date {
+      grid-area: date;
+    }
+
+    &--favourite-count {
+      grid-area: favourite-count;
+    }
+
+    &--hype {
+      grid-area: hype;
+    }
+
+    &--nominations {
+      grid-area: nominations;
+    }
+
+    &--play-count {
+      grid-area: play-count;
+    }
   }
 
   &__stats-item-icon {

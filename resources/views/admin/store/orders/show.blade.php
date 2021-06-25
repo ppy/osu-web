@@ -137,7 +137,7 @@
                                     @endforeach
                                 </select>
                             @else
-                                {{ $i->getDisplayName() }}
+                                {{ $i->getDisplayName(true) }}
                             @endif
                             </span>
                             {!! Form::close() !!}

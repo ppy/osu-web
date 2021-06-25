@@ -135,7 +135,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'フォーラムトピックウォッチリスト',
+            'title_compact' => 'フォーラムトピック ウォッチリスト',
 
             'box' => [
                 'total' => 'サブスクライブ中のトピック',

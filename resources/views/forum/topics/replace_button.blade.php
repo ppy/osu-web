@@ -6,7 +6,7 @@
     $userCanModerate = priv_check('ForumModerate', $topic->forum)->can();
 
     if (!isset($stateText)) {
-        if (method_exists($state, 'stateText')) {
+        if (is_object($state) && method_exists($state, 'stateText')) {
             $stateText = $state->stateText();
         } elseif (is_bool($state)) {
             $stateText = $state ? '1' : '0';

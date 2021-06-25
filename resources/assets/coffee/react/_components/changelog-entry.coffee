@@ -11,6 +11,8 @@ icon =
   misc: 'far fa-circle'
 
 export ChangelogEntry = ({entry}) =>
+  titleHtml = _.escape(entry.title).replace(/(`+)([^`]+)\1/g, '<code>$2</code>')
+
   div
     className: 'changelog-entry'
     key: entry.id
@@ -24,9 +26,12 @@ export ChangelogEntry = ({entry}) =>
           a
             href: entry.url
             className: 'changelog-entry__link'
-            entry.title
+            dangerouslySetInnerHTML:
+              __html: titleHtml
         else
-          entry.title
+          span
+            dangerouslySetInnerHTML:
+              __html: titleHtml
         if entry.github_url?
           span null,
             ' ('

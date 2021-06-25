@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => 'avvis kudosu',
         'edit' => 'rediger',
         'edited' => 'Sist endret av :editor :update_time.',
+        'guest' => '',
         'kudosu_denied' => 'Avvist fra å få kudosu.',
         'message_placeholder_deleted_beatmap' => 'Denne vanskelighetsgraden har blitt slettet så den kan ikke bli diskutert lenger.',
         'message_placeholder_locked' => 'Diskusjon for dette beatmappet har blitt deaktivert.',
@@ -197,7 +198,7 @@ return [
         'rank_estimate' => [
             '_' => '',
             'queue' => '',
-            'soon' => '',
+            'soon' => 'snart',
         ],
 
         'reset_at' => [
@@ -225,7 +226,7 @@ return [
                 'genre' => 'Sjanger',
                 'language' => 'Språk',
                 'mode' => 'Modus',
-                'nsfw' => '',
+                'nsfw' => 'Eksplisitt innhold',
                 'played' => 'Spilt',
                 'rank' => 'Rangering Oppnådd',
                 'status' => 'Kategorier',
@@ -254,7 +255,7 @@ return [
         'recommended' => 'Anbefalt vanskelighetsgrad',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Alle',
         'any' => 'Alle',
         'osu' => '',
         'taiko' => '',
@@ -309,11 +310,11 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Score V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => '',
@@ -334,8 +335,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Skjul',
+        'include' => 'Vis',
     ],
 
     'played' => [

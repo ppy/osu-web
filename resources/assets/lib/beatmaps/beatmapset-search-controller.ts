@@ -32,6 +32,7 @@ export class BeatmapsetSearchController {
     state: 'completed',
   };
 
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   private readonly debouncedFilterChangedSearch = debounce(this.filterChangedSearch, 500);
   private filtersObserver!: Lambda;
   private initialErrorMessage?: string;
@@ -115,7 +116,7 @@ export class BeatmapsetSearchController {
   @action
   async search(from = 0, restore = false) {
     if (this.isSupporterMissing || from < 0) {
-      this.searchStatus = { state: 'completed', error: null, from, restore };
+      this.searchStatus = { error: null, from, restore, state: 'completed' };
       return;
     }
 
@@ -133,7 +134,7 @@ export class BeatmapsetSearchController {
     }
 
     runInAction(() => {
-      this.searchStatus = { state: 'completed', error, from, restore };
+      this.searchStatus = { error, from, restore, state: 'completed' };
       this.currentResultSet = this.beatmapsetSearch.getResultSet(this.filters);
     });
   }

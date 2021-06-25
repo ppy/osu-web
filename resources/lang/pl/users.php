@@ -114,7 +114,7 @@ return [
     ],
     'logout_confirm' => 'Na pewno chcesz się wylogować? :(',
     'report' => [
-        'button_text' => 'zgłoś',
+        'button_text' => 'Zgłoś',
         'comments' => 'Dodatkowe informacje',
         'placeholder' => 'Podaj wszystkie informacje, które mogą okazać się przydatne.',
         'reason' => 'Powód',
@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Ulubione beatmapy społeczności',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Rankingowe i zatwierdzone beatmapy',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Oczekujące beatmapy',
+                ],
+                'ranked' => [
+                    'title' => 'Rankingowe i zatwierdzone beatmapy',
                 ],
             ],
             'discussions' => [
@@ -402,15 +402,15 @@ return [
             'total_hits' => 'Łączna liczba uderzeń',
             'total_score' => 'Łączny wynik',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Rankingowe i zatwierdzone beatmapy',
-            'loved_beatmapset_count' => 'Ulubione beatmapy społeczności',
-            'unranked_beatmapset_count' => 'Oczekujące beatmapy',
             'graveyard_beatmapset_count' => 'Porzucone beatmapy',
+            'loved_beatmapset_count' => 'Ulubione beatmapy społeczności',
+            'pending_beatmapset_count' => 'Oczekujące beatmapy',
+            'ranked_beatmapset_count' => 'Rankingowe i zatwierdzone beatmapy',
         ],
     ],
 
     'silenced_banner' => [
-        'title' => 'Twoje konto jest obecnie wyciszone.',
+        'title' => 'Twoje konto jest obecnie uciszone.',
         'message' => 'Niektóre działania mogą być niedostępne.',
     ],
 

@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'missing_route' => '',
+    'no_restricted_access' => 'Δεν μπορείτε να εκτελέσετε αυτήν την ενέργεια ενώ ο λογαριασμός σας είναι σε περιορισμένη κατάσταση (restricted).',
+    'supporter_only' => 'Πρέπει να είστε supporter για να χρησιμοποιήσετε αυτήν τη λειτουργία.',
+    'unknown' => 'Προέκυψε άγνωστο σφάλμα.',
+
     'codes' => [
         'http-401' => 'Παρακαλώ συνδεθείτε για να συνεχίσετε.',
         'http-403' => 'Δεν επιτρέπεται η πρόσβαση.',
@@ -26,8 +31,4 @@ return [
         'default' => '',
         'operation_timeout_exception' => '',
     ],
-
-    'supporter_only' => 'Πρέπει να είστε supporter για να χρησιμοποιήσετε αυτήν τη λειτουργία.',
-    'no_restricted_access' => 'Δεν μπορείτε να εκτελέσετε αυτήν την ενέργεια ενώ ο λογαριασμός σας είναι σε περιορισμένη κατάσταση (restricted).',
-    'unknown' => 'Προέκυψε άγνωστο σφάλμα.',
 ];

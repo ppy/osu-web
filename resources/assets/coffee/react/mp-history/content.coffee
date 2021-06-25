@@ -5,7 +5,7 @@ import { Event } from './event'
 import { Game } from './game'
 import * as React from 'react'
 import { button, div, h3 } from 'react-dom-factories'
-import { ShowMoreLink } from 'show-more-link'
+import ShowMoreLink from 'show-more-link'
 import { classWithModifiers } from 'utils/css'
 
 el = React.createElement

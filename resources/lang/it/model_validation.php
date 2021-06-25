@@ -40,7 +40,7 @@ return [
 
     'beatmapset_discussion_post' => [
         'discussion_locked' => 'La discussione è chiusa.',
-        'first_post' => 'Non puoi cancellare il post iniziale.',
+        'first_post' => 'Non si può eliminare il post iniziale.',
 
         'attributes' => [
             'message' => 'Il messaggio',
@@ -71,10 +71,10 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Cancellare i metadata di una beatmap non è consentito.',
-            'beatmapset_post_no_edit' => 'Modificare i metadata di una beatmap non è consentito.',
-            'first_post_no_delete' => '',
-            'missing_topic' => '',
+            'beatmapset_post_no_delete' => 'Cancellare i metadata della beatmap di un post non è consentito.',
+            'beatmapset_post_no_edit' => 'Modificare i metadata della beatmap di un post non è consentito.',
+            'first_post_no_delete' => 'Non si può eliminare il post iniziale',
+            'missing_topic' => 'Il post non ha un topic',
             'only_quote' => 'La tua risposta contiene solo una citazione.',
 
             'attributes' => [

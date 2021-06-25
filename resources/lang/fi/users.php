@@ -51,15 +51,15 @@ return [
 
     'disabled' => [
         'title' => 'Jaahas. Käyttäjätilisi taitaa olla lukittu.',
-        'warning' => "",
+        'warning' => "Jos olet rikkonut sääntöä huomaa, että yleensä on yksi kuukausi, jolloin emme ota huomioon armahduspyyntöjä. Tämän ajanjakson jälkeen voit ottaa meihin yhteyttä, jos pidät sitä tarpeellisena. Huomaa, että uusien tilien luominen sen jälkeen, kun yksi on poistettu käytöstä, johtaa <strong>  tämän kuukauden jäähdytyksen jatkamiseen </strong>. Huomaa myös, että <strong> jokaisella luomallasi tilillä rikot edelleen sääntöjä </strong>. Suosittelemme, ettet mene tätä polkua!",
 
         'if_mistake' => [
-            '_' => '',
+            '_' => 'Jos koet, että tämä on virhe, olet tervetullut ottamaan meihin yhteyttä (sähköpostilla :email tai klikkaamalla "?" tämän sivun oikeassa alareunan kulmassa). Huomioithan, että olemme aina täysin varmoja toiminnastamme, koska ne perustuvat erittäin tukeviin tietoihin. Pidätämme oikeuden jättää pyyntönne huomiotta, jos tunnemme, että olette tahallisesti epärehellisiä.',
             'email' => 'sähköposti',
         ],
 
         'reasons' => [
-            'compromised' => '',
+            'compromised' => 'Tilisi on katsottu vaarannetuksi. Se voidaan poistaa käytöstä väliaikaisesti, siihen asti kunnes käyttäjän henkilöllisyys on vahvistettu.',
             'opening' => 'Tässä pari mahdollista syytä tilisi lukitsemiseen',
 
             'tos' => [
@@ -71,7 +71,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Jäsenet pelitilan mukaan',
     ],
 
     'force_reactivation' => [
@@ -84,11 +84,11 @@ return [
         '_' => 'Kirjaudu',
         'button' => 'Kirjaudu',
         'button_posting' => 'Kirjaudutaan...',
-        'email_login_disabled' => '',
+        'email_login_disabled' => 'Sähköpostilla kirjautuminen ei ole tällä hetkellä käytössä. Käytä sen sijaan käyttäjänimeä.',
         'failed' => 'Väärät kirjautumistiedot',
         'forgot' => 'Unohditko salasanasi?',
         'info' => 'Kirjaudu sisään jatkaaksesi',
-        'invalid_captcha' => '',
+        'invalid_captcha' => 'Liian monta epäonnistunutta kirjautumisyritystä, täytä captcha ja yritä uudelleen. (Päivitä sivu jos captcha ei ole näkyvissä)',
         'locked_ip' => 'IP-osoitteesi on lukittu. Ole hyvä ja odota muutama minuutti.',
         'password' => 'Salasana',
         'register' => "Eikö sinulla ole osu!-tiliä? Tee yksi",
@@ -155,8 +155,8 @@ return [
         'title' => ":username:n profiili",
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'Julkaistu :link',
+            'count' => ':count_delimited kommentti|:count_delimited kommentteja',
         ],
         'edit' => [
             'cover' => [
@@ -172,8 +172,8 @@ return [
                     'unsupported_format' => 'Tiedostomuotoa ei tueta.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'Kuvien lähetys käytettävissä vain :link',
+                        'link' => 'osu!kannattajat',
                     ],
                 ],
             ],
@@ -185,7 +185,7 @@ return [
         ],
 
         'extra' => [
-            'none' => '',
+            'none' => 'ei mitään',
             'unranked' => 'Ei viimeaikaisia pelejä',
 
             'achievements' => [
@@ -206,22 +206,22 @@ return [
                 'loved' => [
                     'title' => 'Rakastetut beatmapit',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Hyväksytyt & Vahvistetut Beatmapit',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Vireillä olevat Beatmapit',
+                ],
+                'ranked' => [
+                    'title' => 'Hyväksytyt & Vahvistetut Beatmapit',
                 ],
             ],
             'discussions' => [
                 'title' => 'Keskustelut',
-                'title_longer' => '',
-                'show_more' => '',
+                'title_longer' => 'Viimeaikaiset Keskustelut',
+                'show_more' => 'nää lisää keskusteluja',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Tapahtumat',
+                'title_longer' => 'Viimeisimmät tapahtumat',
+                'show_more' => 'nää lisää tapahtumia',
             ],
             'historical' => [
                 'title' => 'Historialliset',
@@ -288,8 +288,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Näe käyttäjän tekemä vaikutus beatmapin moderoinnissa. Lisätietoja :link',
+                    'link' => 'tämä sivu',
                 ],
             ],
             'me' => [
@@ -301,9 +301,9 @@ return [
                 'title' => 'Mitalit',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Julkaisut',
+                'title_longer' => 'Viimeisimmät julkaisut',
+                'show_more' => 'Katso lisää julkaisuja',
             ],
             'recent_activity' => [
                 'title' => 'Viimeisimmät',
@@ -312,7 +312,7 @@ return [
                 'download_replay' => 'Lataa Replay',
                 'not_ranked' => 'Vain hyväksytyt beatmapit antavat pp:tä.',
                 'pp_weight' => 'painotettu :percentage',
-                'view_details' => '',
+                'view_details' => 'Tarkemmat tiedot',
                 'title' => 'Suoritukset',
 
                 'best' => [
@@ -323,11 +323,11 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'given' => 'Annetut äänet (viimeiset 3 kuukautta)',
+                'received' => 'Saadut äänet (viimeiset 3 kuukautta)',
+                'title' => 'Äänet',
+                'title_longer' => 'Viimeisimmät Äänet',
+                'vote_count' => ':count_delimited ääni|:count_delimited ääntä',
             ],
             'account_standing' => [
                 'title' => 'Tilin tila',
@@ -374,8 +374,8 @@ return [
             'placeholder' => 'Kirjoita sivun sisältö tähän',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Sinun täytyy olla :link avataksesi tämän ominaisuuden.',
+                'link' => 'osu!tukija',
             ],
         ],
         'post_count' => [
@@ -402,16 +402,16 @@ return [
             'total_hits' => 'Osumat',
             'total_score' => 'Kokonaispisteet',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
-            'graveyard_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => 'Kuopatut Beatmapit',
+            'loved_beatmapset_count' => 'Rakastetut Beatmapit',
+            'pending_beatmapset_count' => 'Tulossa olevat Beatmapit',
+            'ranked_beatmapset_count' => 'Hyväksytyt & Vahvistetut Beatmapit',
         ],
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Olet hiljennetty.',
+        'message' => 'Jotkin toiminnot eivät ehkä ole käytettävissä.',
     ],
 
     'status' => [
@@ -427,8 +427,8 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '',
-        'card' => '',
-        'list' => '',
+        'brick' => 'Tiilinäkymä',
+        'card' => 'Kortin näkymä',
+        'list' => 'Luettelonäkymä',
     ],
 ];

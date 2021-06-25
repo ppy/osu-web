@@ -2,6 +2,9 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    $currentLocaleMeta = current_locale_meta();
+@endphp
 <div class="nav2 js-nav-button">
     <div class="nav2__colgroup nav2__colgroup--menu js-nav-button--container">
         <div class="nav2__col nav2__col--logo">
@@ -94,7 +97,7 @@
             >
                 <span class="nav-button__locale-current-flag">
                     @include('objects._flag_country', [
-                        'countryCode' => locale_flag(App::getLocale()),
+                        'countryCode' => $currentLocaleMeta->flag(),
                         'modifiers' => ['flat'],
                     ])
                 </span>
@@ -108,13 +111,16 @@
                 >
                     <div class="simple-menu__content">
                         @foreach (config('app.available_locales') as $locale)
+                            @php
+                                $localeMeta = locale_meta($locale);
+                            @endphp
                             <button
                                 type="button"
                                 class="
                                     simple-menu__item
-                                    {{ $locale === App::getLocale() ? 'simple-menu__item--active' : '' }}
+                                    {{ $localeMeta === $currentLocaleMeta ? 'simple-menu__item--active' : '' }}
                                 "
-                                @if ($locale !== App::getLocale())
+                                @if ($localeMeta !== $currentLocaleMeta)
                                     data-url="{{ route('set-locale', ['locale' => $locale]) }}"
                                     data-remote="1"
                                     data-method="POST"
@@ -123,12 +129,12 @@
                                 <span class="nav2-locale-item">
                                     <span class="nav2-locale-item__flag">
                                         @include('objects._flag_country', [
-                                            'countryCode' => locale_flag($locale),
+                                            'countryCode' => $localeMeta->flag(),
                                             'modifiers' => ['flat'],
                                         ])
                                     </span>
 
-                                    {{ locale_name($locale) }}
+                                    {{ $localeMeta->name() }}
                                 </span>
                             </button>
                         @endforeach
@@ -163,7 +169,7 @@
 
             <div class="nav2__col">
                 <button
-                    class="nav-button nav-button--stadium js-click-menu js-react--notification-icon"
+                    class="nav-button nav-button--stadium js-click-menu js-react--main-notification-icon"
                     data-click-menu-target="nav2-notification-widget"
                     data-turbolinks-permanent
                     id="notification-widget-icon"

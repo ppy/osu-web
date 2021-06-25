@@ -21,8 +21,8 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
       <>
         {hasShow(score) && (
           <a
-            href={route('scores.show', { mode: score.mode, score: score.best_id })}
             className='simple-menu__item'
+            href={route('scores.show', { mode: score.mode, score: score.best_id })}
           >
             {osu.trans('users.show.extra.top_ranks.view_details')}
           </a>
@@ -41,8 +41,8 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
 
         {canBeReported(score) && (
           <ReportReportable
-            className='simple-menu__item'
             baseKey='scores'
+            className='simple-menu__item'
             reportableId={score.best_id?.toString() ?? ''}
             reportableType={`score_best_${score.mode}`}
             user={score.user}

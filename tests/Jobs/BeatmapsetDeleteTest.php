@@ -8,6 +8,8 @@ namespace Tests\Jobs;
 use App\Jobs\BeatmapsetDelete;
 use App\Models\Beatmapset;
 use App\Models\Event;
+use App\Models\Forum\Forum;
+use App\Models\Forum\Topic;
 use App\Models\Log;
 use App\Models\User;
 use Tests\TestCase;
@@ -17,7 +19,12 @@ class BeatmapsetDeleteTest extends TestCase
     public function testBeatmapsetDeletedByOwner()
     {
         $owner = factory(User::class)->create();
+        $forum = factory(Forum::class)->states('parent')->create();
+        $topic = factory(Topic::class)->create([
+            'forum_id' => $forum->getKey(),
+        ]);
         $beatmapset = factory(Beatmapset::class)->create([
+            'thread_id' => $topic->getKey(),
             'user_id' => $owner->user_id,
             'approved' => Beatmapset::STATES['pending'],
         ]);
@@ -27,8 +34,10 @@ class BeatmapsetDeleteTest extends TestCase
         (new BeatmapsetDelete($beatmapset, $owner))->handle();
 
         $beatmapset->refresh();
+        $topic->refresh();
 
         $this->assertTrue($beatmapset->trashed());
+        $this->assertTrue($topic->trashed());
         $this->assertSame($eventBeforeCount + 1, Event::count());
         $this->assertSame($logBeforeCount, Log::where('log_operation', 'LOG_BEATMAPSET_DELETE')->count());
     }
@@ -37,7 +46,12 @@ class BeatmapsetDeleteTest extends TestCase
     {
         $moderator = factory(User::class)->create();
         $owner = factory(User::class)->create();
+        $forum = factory(Forum::class)->states('parent')->create();
+        $topic = factory(Topic::class)->create([
+            'forum_id' => $forum->getKey(),
+        ]);
         $beatmapset = factory(Beatmapset::class)->create([
+            'thread_id' => $topic->getKey(),
             'user_id' => $owner->user_id,
             'approved' => Beatmapset::STATES['pending'],
         ]);
@@ -47,8 +61,10 @@ class BeatmapsetDeleteTest extends TestCase
         (new BeatmapsetDelete($beatmapset, $moderator))->handle();
 
         $beatmapset->refresh();
+        $topic->refresh();
 
         $this->assertTrue($beatmapset->trashed());
+        $this->assertTrue($topic->trashed());
         $this->assertSame($eventBeforeCount, Event::count());
         $this->assertSame($logBeforeCount + 1, Log::where('log_operation', 'LOG_BEATMAPSET_DELETE')->count());
     }

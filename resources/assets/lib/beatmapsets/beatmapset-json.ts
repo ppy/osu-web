@@ -97,6 +97,7 @@ export interface BeatmapsetJson {
   offset: number;
   play_count: number;
   preview_url: string;
+  source: string;
   status: BeatmapsetStatus;
   title: string;
   title_unicode: string;

@@ -16,7 +16,7 @@ return [
 
             'team' => [
                 'title' => 'Tue Tiimiä',
-                'description' => '',
+                'description' => 'Pieni tiimi huolehtii osu!\'n kehittämistä ja ylläpitoa. Tukesi auttaa heitä pysymään, siis... elossa.',
             ],
             'infra' => [
                 'title' => 'Palvelininfrastruktuuri',
@@ -25,21 +25,21 @@ return [
             'featured-artists' => [
                 'title' => 'Esittelyssä olevat Artistit',
                 'description' => 'Sinun tuella voimme lähestyä mahtavia artisteja vielä enemmän ja lisensoida lisää hienoa musiikkia käytettäväksi osu!:ssa',
-                'link_text' => '',
+                'link_text' => 'Näytä nykyinen lista &raquo;',
             ],
             'ads' => [
                 'title' => 'Pidä osu! itsekestävänä',
-                'description' => '',
+                'description' => 'Lahjoituksesi auttavat pitämään pelin itsenäisenä ja täysin vapaana mainoksista ja ulkopuolisista sponsoreista.',
             ],
             'tournaments' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Viralliset Turnaukset',
+                'description' => 'Auta osu! World Cup -turnausten ylläpidon (sekä palkintojen) rahoittamista.',
                 'link_text' => '',
             ],
             'bounty-program' => [
                 'title' => '',
                 'description' => '',
-                'link_text' => '',
+                'link_text' => 'Lue lisää &raquo;',
             ],
         ],
         'perks' => [
@@ -50,18 +50,18 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => '',
+                'title' => 'Kavereiden sijoituksia',
                 'description' => "",
             ],
 
             'country_ranking' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Maakohtaiset sijoitukset',
+                'description' => 'Valloita maasi ennen kuin valloitat maailman.',
             ],
 
             'mod_filtering' => [
                 'title' => '',
-                'description' => '',
+                'description' => 'Viihdytkö vain HDHR-pelaajien kanssa? Ei hätää!',
             ],
 
             'auto_downloads' => [
@@ -80,7 +80,7 @@ return [
             ],
 
             'customisation' => [
-                'title' => 'Kustomointi',
+                'title' => 'Mukauttaminen',
                 'description' => "Tee profiilistasi omalaatuinen lisäämällä täysin muokattava käyttäjä-sivu.",
             ],
 
@@ -120,12 +120,12 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Lisää suosikkeja',
+                'description' => 'Voit lisätä suosikkilistaan :normally beatmappeja, verrattuna :supporter beatmappeihin normaalitapauksessa',
             ],
             'more_friends' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Lisää kavereita',
+                'description' => 'Voit lisätä kaverilistaan :normally kavereita, verrattuna :supporter kavereihin normaalitapauksessa',
             ],
             'more_beatmaps' => [
                 'title' => '',
@@ -133,7 +133,7 @@ return [
             ],
             'friend_filtering' => [
                 'title' => '',
-                'description' => '',
+                'description' => 'Kilpaile kavereitasi kanssa ja katso, miten sijoittaudut heitä vastaan!',
             ],
 
         ],

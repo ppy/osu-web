@@ -15,13 +15,11 @@ export class ModeSwitcher extends React.PureComponent
 
     @scrollerRef = React.createRef()
 
+  componentDidMount: =>
+    @scrollModeSwitcher()
 
   componentDidUpdate: =>
-    return if !@scrollerRef.current?
-
-    # on mobile, ModeSwitcher becomes horizontally scrollable - scrollTo ensures that the selected tab is made visible
-    $(@scrollerRef.current).scrollTo(".#{@selectedClassName}", 0, {over: {left: -1}})
-
+    @scrollModeSwitcher()
 
   render: =>
     modes = ['reviews', 'generalAll', 'general', 'timeline', 'events']
@@ -83,6 +81,11 @@ export class ModeSwitcher extends React.PureComponent
                   span className: 'page-mode-link__stripe'
     ]
 
+  scrollModeSwitcher: =>
+    return if !@scrollerRef.current?
+
+    # on mobile, ModeSwitcher becomes horizontally scrollable - scrollTo ensures that the selected tab is made visible
+    $(@scrollerRef.current).scrollTo(".#{@selectedClassName}", 0, {over: {left: -1}})
 
   switch: (e) =>
     e.preventDefault()

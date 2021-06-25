@@ -8,6 +8,7 @@
   color: inherit;
   font-size: @font-size--wiki;
   word-wrap: break-word;
+  --paragraph-space: @md-paragraph-space;
 
   code {
     .default-border-radius();
@@ -54,6 +55,10 @@
     margin-bottom: 0;
   }
 
+  &--group {
+    --paragraph-space: 10px;
+  }
+
   &--news {
     padding: 0;
     color: @osu-colour-c1;
@@ -73,7 +78,7 @@
   }
 
   &__figure-container {
-    margin: @md-paragraph-space 0;
+    margin: var(--paragraph-space) 0;
     text-align: center;
 
     .@{_top}--comment & {
@@ -190,6 +195,38 @@
     }
   }
 
+  &__infobox {
+    padding: 10px;
+    margin: var(--paragraph-space) 0;
+    border: 1px solid hsl(var(--hsl-b4));
+    .default-border-radius();
+    text-align: center;
+
+    @media (min-width: 300px * 2 + @gutter-v2 * 2) {
+      float: right;
+      width: 50%;
+      max-width: 300px;
+      margin: 0;
+      margin-left: 10px;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+
+    thead {
+      display: none;
+    }
+
+    tbody > tr:first-child > td {
+      border-top: none;
+    }
+
+    td {
+      vertical-align: top;
+    }
+  }
+
   &__list {
     padding-left: 20px;
 
@@ -227,7 +264,7 @@
   }
 
   &__paragraph {
-    margin-bottom: @md-paragraph-space;
+    margin-bottom: var(--paragraph-space);
     line-height: 1.5;
 
     .@{_top}--store & {

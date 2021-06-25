@@ -44,6 +44,7 @@ interface SearchResultUser extends SearchResultSummary {
 const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
 export default class Worker {
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   debouncedSearch = debounce(this.search, 500);
   @observable query = '';
   @observable searching = false;
@@ -56,11 +57,11 @@ export default class Worker {
     let newSelected: SelectedItem | null;
     if (!this.selected) {
       if (direction > 0) {
-        newSelected = {section: 0, index: 0};
+        newSelected = { index: 0, section: 0 };
       } else {
         const sectionIdx = SECTIONS.length - 1;
         const section: Section = SECTIONS[sectionIdx];
-        newSelected = {section: sectionIdx, index: this.sectionLength(section) - 1};
+        newSelected = { index: this.sectionLength(section) - 1, section: sectionIdx };
       }
     } else {
       newSelected = {...this.selected};
@@ -144,7 +145,7 @@ export default class Worker {
   }
 
   @action setSelected(section: Section, index: number) {
-    this.selected = {section: SECTIONS.indexOf(section), index};
+    this.selected = { index, section: SECTIONS.indexOf(section) };
   }
 
   @action updateQuery(newQuery: string) {

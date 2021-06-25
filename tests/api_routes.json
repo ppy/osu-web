@@ -915,12 +915,9 @@
         "controller": "App\\Http\\Controllers\\NewsController@index",
         "middlewares": [
             "throttle:1200,1,api:",
-            "require-scopes",
-            "require-scopes:public"
+            "require-scopes"
         ],
-        "scopes": [
-            "public"
-        ]
+        "scopes": []
     },
     {
         "uri": "api/v2/news/{news}",
@@ -931,12 +928,9 @@
         "controller": "App\\Http\\Controllers\\NewsController@show",
         "middlewares": [
             "throttle:1200,1,api:",
-            "require-scopes",
-            "require-scopes:public"
+            "require-scopes"
         ],
-        "scopes": [
-            "public"
-        ]
+        "scopes": []
     },
     {
         "uri": "api/v2/notifications",

@@ -7,4 +7,4 @@ $(document).on 'click', '.js-spoilerbox__link', (e) ->
   $link = $(e.target).closest('.js-spoilerbox')
 
   $link.toggleClass 'js-spoilerbox--open'
-  osu.pageChange()
+  _exported.pageChange()

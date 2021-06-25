@@ -2,11 +2,14 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { BigButton } from 'big-button'
+import { Modal } from 'modal'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
 import { StringWithComponent } from 'string-with-component'
+import BeatmapsOwnerEditor from 'beatmap-discussions/beatmaps-owner-editor'
 import { Nominator } from 'beatmap-discussions/nominator'
 import { nominationsCount } from 'utils/beatmapset-helper'
+import { pageChange } from 'utils/page-change'
 
 el = React.createElement
 
@@ -18,10 +21,11 @@ export class Nominations extends React.PureComponent
     super props
 
     @xhr = {}
+    @state = changeOwnerModal: false
 
 
   componentDidMount: =>
-    osu.pageChange()
+    pageChange()
 
 
   componentWillUnmount: =>
@@ -30,11 +34,12 @@ export class Nominations extends React.PureComponent
 
 
   componentDidUpdate: =>
-    osu.pageChange()
+    pageChange()
 
 
   render: =>
     div className: bn,
+      @renderChangeOwnerModal()
       div className: "#{bn}__items #{bn}__items--messages",
         div className: "#{bn}__item", @statusMessage()
         div className: "#{bn}__item", @hypeBar()
@@ -60,6 +65,7 @@ export class Nominations extends React.PureComponent
           div className: "#{bn}__item", @loveButton()
           div className: "#{bn}__item", @removeFromLovedButton()
           div className: "#{bn}__item", @deleteButton()
+          div className: "#{bn}__item", @changeOwnerButton()
 
 
   renderLights: (lightsOn, lightsTotal) ->
@@ -503,3 +509,27 @@ export class Nominations extends React.PureComponent
       modifiers: ['danger']
       props:
         onClick: @delete
+
+
+  changeOwnerButton: =>
+    return null unless @props.beatmapset.current_user_attributes?.can_beatmap_update_owner
+
+    el BigButton,
+      text: osu.trans 'beatmap_discussions.owner_editor.button'
+      icon: 'fas fa-pen'
+      props:
+        onClick: @handleChangeOwnerClick
+
+
+  handleChangeOwnerClick: =>
+    @setState changeOwnerModal: !@state.changeOwnerModal
+
+
+  renderChangeOwnerModal: =>
+    return if !@state.changeOwnerModal
+
+    el Modal, visible: true,
+      el BeatmapsOwnerEditor,
+        beatmapset: @props.beatmapset,
+        users: @props.users
+        onClose: @handleChangeOwnerClick

@@ -3,7 +3,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-$factory->define(App\Models\Multiplayer\Room::class, function (Faker\Generator $faker) {
+use App\Models\Chat\Channel;
+use App\Models\Multiplayer\Room;
+
+$factory->define(Room::class, function (Faker\Generator $faker) {
     return [
         'user_id' => function (array $self) {
             return factory(App\Models\User::class)->create()->getKey();
@@ -16,8 +19,13 @@ $factory->define(App\Models\Multiplayer\Room::class, function (Faker\Generator $
     ];
 });
 
-$factory->state(App\Models\Multiplayer\Room::class, 'ended', function (Faker\Generator $faker) {
+$factory->state(Room::class, 'ended', function (Faker\Generator $faker) {
     return [
         'ends_at' => Carbon\Carbon::now()->subMinute(1),
     ];
+});
+
+$factory->afterCreating(Room::class, function (Room $room, $faker) {
+    $channel = Channel::createMultiplayer($room);
+    $room->update(['channel_id' => $channel->getKey()]);
 });

@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Търсене',
             'deleted' => 'Включете изтрити дискусии',
+            'mode' => '',
             'only_unresolved' => 'Покажи само нерешените дискусии',
             'types' => 'Тип съобщения',
             'username' => 'Потребителско име',
@@ -55,6 +56,13 @@ return [
         'confirm' => 'Нито един от постовете ме интересуват',
         'notice' => 'Има постове около :timestamp (:existing_timestamps). Моля проверете ги преди да публикувате.',
         'unsaved' => '',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [

@@ -20,7 +20,7 @@ use App\Models\Beatmapset;
 $factory->define(Beatmapset::class, function (Faker\Generator $faker) {
     $artist = $faker->name;
     $title = $faker->sentence(rand(0, 5));
-    $isApproved = (rand(0, 2) > 0);
+    $isApproved = (int) (rand(0, 2) > 0);
 
     return [
         'creator' => $faker->userName,
@@ -80,7 +80,7 @@ $factory->afterCreatingState(Beatmapset::class, 'with_discussion', function (App
 
     if (
         !$beatmapset->beatmapDiscussions()->save(
-            factory(BeatmapDiscussion::class, 'general')->make(['user_id' => $beatmapset->user_id])
+            factory(BeatmapDiscussion::class)->states('general')->make(['user_id' => $beatmapset->user_id])
         )
     ) {
         throw new Exception();

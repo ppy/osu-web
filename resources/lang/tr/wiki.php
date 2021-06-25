@@ -10,8 +10,8 @@ return [
         'missing' => 'İstenilen ":keyword" sayfası bulunamadı.',
         'missing_title' => 'Bulunamadı',
         'missing_translation' => 'İstenilen sayfa seçilen dilde bulunamadı.',
-        'needs_cleanup_or_rewrite' => 'Bu sayfa osu! wiki standartlarına uymamaktadır, bu nedenle tashih yapılmalı veya yeniden yazılmalıdır. Eğer yardımcı olabilirseniz, lütfen makaleyi güncellemeyi bir düşünün!',
-        'search' => ':link için var olan sayfaları ara.',
+        'needs_cleanup_or_rewrite' => 'Bu sayfa osu! wiki standartlarına uymamaktadır, bu nedenle düzenlenmeli veya yeniden yazılmalıdır. Eğer yardımcı olabilirseniz, lütfen makaleyi güncellemeyi bir düşünün!',
+        'search' => ':link için mevcut sayfaları ara.',
         'toc' => 'İçerik',
 
         'edit' => [

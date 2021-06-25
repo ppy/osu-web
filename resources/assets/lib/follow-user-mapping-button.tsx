@@ -71,10 +71,10 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
     return (
       <div title={title}>
         <button
+          ref={this.buttonRef}
           className={blockClass}
           disabled={disabled}
           onClick={this.onClick}
-          ref={this.buttonRef}
         >
           {this.renderIcon()}
           {this.renderCounter()}

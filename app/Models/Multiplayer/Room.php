@@ -36,11 +36,11 @@ class Room extends Model
 
     const SORTS = [
         'ended' => [
-            ['column' => 'ends_at', 'order' => 'desc', 'type' => 'time'],
-            ['column' => 'id', 'order' => 'desc', 'type' => 'int'],
+            ['column' => 'ends_at', 'order' => 'DESC', 'type' => 'time'],
+            ['column' => 'id', 'order' => 'DESC', 'type' => 'int'],
         ],
         'created' => [
-            ['column' => 'id', 'order' => 'desc', 'type' => 'int'],
+            ['column' => 'id', 'order' => 'DESC', 'type' => 'int'],
         ],
     ];
 
@@ -252,13 +252,7 @@ class Room extends Model
         $this->getConnection()->transaction(function () use ($owner, $playlistItems) {
             $this->save(); // need to persist to get primary key for channel name.
 
-            // create the chat channel for the room
-            $channel = new Channel();
-            $channel->name = "#lazermp_{$this->getKey()}";
-            $channel->type = Channel::TYPES['multiplayer'];
-            $channel->description = $this->name;
-            $channel->save();
-
+            $channel = Channel::createMultiplayer($this);
             $channel->addUser($owner);
 
             $this->update(['channel_id' => $channel->channel_id]);

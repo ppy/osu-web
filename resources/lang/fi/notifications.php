@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Beatmappi',
 
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => '',
                 'beatmapset_discussion_lock' => '',
@@ -152,13 +158,17 @@ return [
                 '_' => 'Uusi mitali',
                 'user_achievement_unlock' => '',
                 'user_achievement_unlock_compact' => '',
-                'user_achievement_unlock_group' => '',
+                'user_achievement_unlock_group' => 'Mitaleja saavutettu!',
             ],
         ],
     ],
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => '',
                 'beatmapset_discussion_post_new' => '',
@@ -186,19 +196,19 @@ return [
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => 'Olet saanut uuden viestin käyttäjältä :username',
             ],
         ],
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Muutosloki ":title" on saanut uusia kommentteja',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Uutinen ":title" on saanut uusia kommentteja',
             ],
         ],
 
