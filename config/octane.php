@@ -169,15 +169,16 @@ return [
     */
 
     'watch' => [
+        '.env',
         'app',
         'bootstrap',
+        'composer.lock',
         'config',
         'database',
         'public/**/*.php',
+        'public/assets/manifest.json',
         'resources/**/*.php',
         'routes',
-        'composer.lock',
-        '.env',
     ],
 
     /*

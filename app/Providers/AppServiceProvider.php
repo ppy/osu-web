@@ -6,6 +6,7 @@
 namespace App\Providers;
 
 use App\Hashing\OsuHashManager;
+use App\Libraries\AssetsManifest;
 use App\Libraries\ChatFilters;
 use App\Libraries\Groups;
 use App\Libraries\MorphMap;
@@ -76,6 +77,8 @@ class AppServiceProvider extends ServiceProvider
             'Illuminate\Contracts\Auth\Registrar',
             'App\Services\Registrar'
         );
+
+        $this->app->singleton('assets-manifest', fn () => new AssetsManifest());
 
         $this->app->singleton('chat-filters', function () {
             return new ChatFilters();

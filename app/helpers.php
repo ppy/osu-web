@@ -1635,21 +1635,5 @@ function search_error_message(?Exception $e): ?string
  */
 function unmix(string $resource)
 {
-    static $manifest;
-
-    if (!isset($manifest)) {
-        $manifestPath = public_path('assets/manifest.json');
-
-        if (!file_exists($manifestPath)) {
-            throw new Exception('The manifest does not exist.');
-        }
-
-        $manifest = json_decode(file_get_contents($manifestPath), true);
-    }
-
-    if (!isset($manifest[$resource])) {
-        throw new Exception("resource not defined: {$resource}.");
-    }
-
-    return new HtmlString($manifest[$resource]);
+    return app('assets-manifest')->src($resource);
 }
