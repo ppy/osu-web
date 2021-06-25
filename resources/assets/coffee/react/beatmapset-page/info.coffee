@@ -12,6 +12,7 @@ export class Info extends React.Component
   constructor: (props) ->
     super props
 
+    @eventId = "beatmapsets-show-info-#{osu.uuid()}"
     @overlayRef = React.createRef()
     @chartAreaRef = React.createRef()
 
@@ -30,7 +31,7 @@ export class Info extends React.Component
 
 
   componentWillUnmount: =>
-    $(window).off '.beatmapsetPageInfo'
+    $(window).off ".#{@eventId}"
 
 
   toggleEditingDescription: =>
@@ -92,7 +93,7 @@ export class Info extends React.Component
         modifiers: ['beatmap-success-rate']
 
       @_failurePointsChart = new StackedBarChart @chartAreaRef.current, options
-      $(window).on 'resize.beatmapsetPageInfo', @_failurePointsChart.resize
+      $(window).on "resize.#{@eventId}", @_failurePointsChart.resize
 
     @_failurePointsChart.loadData @props.beatmap.failtimes
     @_failurePointsChart.reattach @chartAreaRef.current

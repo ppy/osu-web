@@ -25,6 +25,7 @@ export class Header extends React.Component
   constructor: (props) ->
     super props
 
+    @eventId = "users-show-header-#{osu.uuid()}"
     @state =
       editing: false
       coverUrl: props.user.cover.url
@@ -36,12 +37,12 @@ export class Header extends React.Component
 
 
   componentDidMount: =>
-    $.subscribe 'user:cover:reset.profilePageHeaderMain', @coverReset
-    $.subscribe 'user:cover:set.profilePageHeaderMain', @debouncedCoverSet
-    $.subscribe 'user:cover:upload:state.profilePageHeaderMain', @coverUploadState
+    $.subscribe "user:cover:reset.#{@eventId}", @coverReset
+    $.subscribe "user:cover:set.#{@eventId}", @debouncedCoverSet
+    $.subscribe "user:cover:upload:state.#{@eventId}", @coverUploadState
 
-    $.subscribe 'key:esc.profilePageHeaderMain', @closeEdit
-    $(document).on 'click.profilePageHeaderMain', @closeEdit
+    $.subscribe "key:esc.#{@eventId}", @closeEdit
+    $(document).on "click.#{@eventId}", @closeEdit
 
 
   componentWillReceiveProps: (newProps) =>
@@ -49,8 +50,8 @@ export class Header extends React.Component
 
 
   componentWillUnmount: =>
-    $.unsubscribe '.profilePageHeaderMain'
-    $(document).off '.profilePageHeaderMain'
+    $.unsubscribe ".#{@eventId}"
+    $(document).off ".#{@eventId}"
 
     @closeEdit()
     @debouncedCoverSet.cancel()

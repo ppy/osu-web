@@ -7,6 +7,7 @@ export class BaseEntryList extends React.Component
   constructor: (props) ->
     super props
 
+    @eventId = "contests-show-voting-#{osu.uuid()}"
     @state =
       waitingForResponse: false
       contest: @props.contest
@@ -42,11 +43,11 @@ export class BaseEntryList extends React.Component
       callback
 
   componentDidMount: ->
-    $.subscribe 'contest:vote:click.contest', @handleVoteClick
-    $.subscribe 'contest:vote:done.contest', @handleUpdate
+    $.subscribe "contest:vote:click.#{@eventId}", @handleVoteClick
+    $.subscribe "contest:vote:done.#{@eventId}", @handleUpdate
 
   componentWillUnmount: ->
-    $.unsubscribe '.contest'
+    $.unsubscribe ".#{@eventId}"
 
 
   renderToggleShowVotedOnly: =>

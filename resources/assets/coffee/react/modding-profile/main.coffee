@@ -32,6 +32,7 @@ export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @eventId = "users-modding-history-index-#{osu.uuid()}"
     @cache = {}
     @tabs = React.createRef()
     @pages = React.createRef()
@@ -67,12 +68,12 @@ export class Main extends React.PureComponent
 
 
   componentDidMount: =>
-    $.subscribe 'user:update.profilePage', @userUpdate
-    $.subscribe 'profile:showMore.moddingProfilePage', @showMore
-    $.subscribe 'profile:page:jump.moddingProfilePage', @pageJump
-    $.subscribe 'beatmapsetDiscussions:update.moddingProfilePage', @discussionUpdate
-    $(document).on 'ajax:success.moddingProfilePage', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
-    $(window).on 'scroll.moddingProfilePage', @pageScan
+    $.subscribe "user:update.#{@eventId}", @userUpdate
+    $.subscribe "profile:showMore.#{@eventId}", @showMore
+    $.subscribe "profile:page:jump.#{@eventId}", @pageJump
+    $.subscribe "beatmapsetDiscussions:update.#{@eventId}", @discussionUpdate
+    $(document).on "ajax:success.#{@eventId}", '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
+    $(window).on "scroll.#{@eventId}", @pageScan
 
     pageChange()
 
@@ -83,8 +84,8 @@ export class Main extends React.PureComponent
 
 
   componentWillUnmount: =>
-    $.unsubscribe '.moddingProfilePage'
-    $(window).off '.moddingProfilePage'
+    $.unsubscribe ".#{@eventId}"
+    $(window).off ".#{@eventId}"
 
     $(window).stop()
     Timeout.clear @modeScrollTimeout
