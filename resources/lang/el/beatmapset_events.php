@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Approved.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Ένας συντονιστής διέγραψε τη συζήτηση :discussion.',
         'discussion_lock' => 'Η συζήτηση για αυτό το beatmap έχει απενεργοποιηθεί. (:text)',
         'discussion_post_delete' => 'Ένας συντονιστής διέγραψε μια δημοσίευση από τη συζήτηση :discussion.',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Έγκριση',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Διαγραφή συζήτησης',
         'discussion_post_delete' => 'Διαγραφή απάντησης συζήτησης',
         'discussion_post_restore' => 'Αποκατάσταση απάντησης συζήτησης',

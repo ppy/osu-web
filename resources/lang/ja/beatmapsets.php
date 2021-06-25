@@ -25,16 +25,16 @@ return [
 
         'download' => [
             'all' => 'ダウンロード',
-            'video' => '動画付きでダウンロード',
-            'no_video' => '動画無しでダウンロード',
+            'video' => '動画ありでダウンロード',
+            'no_video' => '動画なしでダウンロード',
             'direct' => 'osu!directで開く',
         ],
     ],
 
     'nominate' => [
         'hybrid_requires_modes' => 'ハイブリッドビートマップセットでは、少なくとも1つのモードを選択してノミネートする必要があります。',
-        'incorrect_mode' => 'ノミネートする権限がありません モード: :mode',
-        'full_bn_required' => 'qualifyノミネーションを行うには完全なノミネーターでなければなりません。',
+        'incorrect_mode' => 'モード:modeでノミネートする権限がありません。',
+        'full_bn_required' => 'Qualifyノミネーションを行うにはフルノミネーターでなければなりません。',
         'too_many' => 'ノミネーションの要件を満たしています',
 
         'dialog' => [
@@ -46,17 +46,19 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '露骨',
+        'label' => '過激表現を含む',
     ],
 
     'show' => [
         'discussion' => 'ディスカッション',
 
         'details' => [
-            'favourite' => 'ビートマップセットをお気に入りに追加する',
+            'by_artist' => 'by :artist',
+            'favourite' => 'このビートマップをお気に入りに登録する',
+            'favourite_login' => 'ログインしてこのビートマップをお気に入りに登録する',
             'logged-out' => 'ビートマップをダウンロードするにはログインが必要です！',
             'mapped_by' => '作者 :mapper',
-            'unfavourite' => 'ビートマップをお気に入りから外す',
+            'unfavourite' => 'このビートマップをお気に入りから削除する',
             'updated_timeago' => '最終更新 :timeago',
 
             'download' => [
@@ -114,17 +116,18 @@ return [
             'genre' => 'ジャンル',
             'language' => '言語',
             'no_scores' => 'データはまだ計算中です・・・',
-            'nsfw' => '露骨なコンテンツ',
+            'nsfw' => '過激な表現を含むコンテンツ',
             'points-of-failure' => '失敗地点',
             'source' => 'ソース',
             'storyboard' => 'このビートマップにはストーリーボードが含まれています',
             'success-rate' => 'クリア率',
             'tags' => 'タグ',
+            'video' => 'このビートマップには動画が含まれています',
         ],
 
         'nsfw_warning' => [
-            'details' => 'このビートマップには明示的、攻撃的、または不穏なコンテンツが含まれています。それでも表示しますか？',
-            'title' => '露骨なコンテンツ',
+            'details' => 'このビートマップには過激な表現、攻撃的、または不穏なコンテンツが含まれています。それでも表示しますか？',
+            'title' => '過激な表現を含むコンテンツ',
 
             'buttons' => [
                 'disable' => '警告を無効にする',
@@ -163,7 +166,7 @@ return [
                 'unranked' => 'Unrankedのビートマップです。',
             ],
             'score' => [
-                'first' => 'In the Lead',
+                'first' => 'リード',
                 'own' => 'あなたのベスト',
             ],
         ],
@@ -175,7 +178,7 @@ return [
             'accuracy' => '精度',
             'ar' => 'アプローチ速度',
             'stars' => '難易度（★）',
-            'total_length' => '長さ',
+            'total_length' => '長さ (Drainの長さ: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'サークルの数',
             'count_sliders' => 'スライダーの数',

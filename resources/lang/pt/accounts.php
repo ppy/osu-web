@@ -56,6 +56,7 @@ return [
 
         'options' => [
             '_' => 'opções de envio',
+            'beatmap_owner_change' => 'dificuldade de convidado',
             'beatmapset:modding' => 'modificações de beatmaps',
             'channel_message' => 'Mensagens do chat privado',
             'comment_new' => 'Novos comentários ',

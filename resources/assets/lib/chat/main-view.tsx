@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderV4 from 'header-v4';
-import { Img2x } from 'img2x';
+import Img2x from 'img2x';
 import { observer, Provider } from 'mobx-react';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
@@ -47,7 +47,7 @@ export default class MainView extends React.Component<Props> {
           ) : (
             <div className='chat osu-page osu-page--chat'>
               <div className='chat__not-active'>
-                <Img2x src='/images/layout/chat/none-yet.png' alt='Art by Badou_Rammsteiner' title='Art by Badou_Rammsteiner' />
+                <Img2x alt='Art by Badou_Rammsteiner' src='/images/layout/chat/none-yet.png' title='Art by Badou_Rammsteiner' />
                 <div className='chat__title'>{osu.trans('chat.no-conversations.title')}</div>
                 <div className='chat__instructions'>{osu.trans('chat.no-conversations.howto')}</div>
                 <div dangerouslySetInnerHTML={{__html: osu.trans('chat.no-conversations.lazer', {link: lazerLink})}} />

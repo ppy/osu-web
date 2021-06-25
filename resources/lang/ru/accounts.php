@@ -56,12 +56,13 @@ return [
 
         'options' => [
             '_' => 'способы доставки',
+            'beatmap_owner_change' => 'гостевая сложность',
             'beatmapset:modding' => 'новые моды',
             'channel_message' => 'личные сообщения',
             'comment_new' => 'новые комментарии',
             'forum_topic_reply' => 'ответы на форуме',
             'mail' => 'почта',
-            'mapping' => 'маппер карты',
+            'mapping' => 'замапанные карты',
             'push' => 'пуши',
             'user_achievement_unlock' => 'новые медали',
         ],

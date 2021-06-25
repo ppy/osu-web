@@ -42,7 +42,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   static userLoading: UserJson = {
     avatar_url: '',
     country_code: '',
-    cover: {},
+    cover: { custom_url: null, id: null, url: null },
     default_group: '',
     id: 0,
     is_active: false,
@@ -56,7 +56,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     username: osu.trans('users.card.loading'),
   };
 
-  readonly state: State = {
+  state: Readonly<State> = {
     avatarLoaded: false,
     backgroundLoaded: false,
   };
@@ -188,7 +188,10 @@ export class UserCard extends React.PureComponent<Props, State> {
 
     if (this.isUserVisible) {
       backgroundLink = (
-        <a href={this.url} className='user-card__background-container'>
+        <a
+          className='user-card__background-container'
+          href={this.url}
+        >
           {background}
         </a>
       );
@@ -208,7 +211,7 @@ export class UserCard extends React.PureComponent<Props, State> {
       <div className='user-card__icons'>
         <a
           className='user-card__icon user-card__icon--flag'
-          href={route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}
+          href={route('rankings', { country: this.user.country_code, mode: 'osu', type: 'performance' })}
         >
           <FlagCountry country={this.user.country} />
         </a>
@@ -221,10 +224,10 @@ export class UserCard extends React.PureComponent<Props, State> {
               </a>
             )}
             <div className='user-card__icon'>
-              <FriendButton userId={this.user.id} modifiers={['user-card']} />
+              <FriendButton modifiers={['user-card']} userId={this.user.id} />
             </div>
             <div className='user-card__icon'>
-              <FollowUserMappingButton userId={this.user.id} modifiers={['user-card']} />
+              <FollowUserMappingButton modifiers={['user-card']} userId={this.user.id} />
             </div>
           </>
         )}
@@ -246,11 +249,11 @@ export class UserCard extends React.PureComponent<Props, State> {
         )}
 
         <div className='user-card__icon'>
-          <FriendButton userId={this.user.id} modifiers={['user-list']} />
+          <FriendButton modifiers={['user-list']} userId={this.user.id} />
         </div>
 
         <div className='user-card__icon'>
-          <FollowUserMappingButton userId={this.user.id} modifiers={['user-list']} />
+          <FollowUserMappingButton modifiers={['user-list']} userId={this.user.id} />
         </div>
       </div>
     );
@@ -276,7 +279,7 @@ export class UserCard extends React.PureComponent<Props, State> {
           ) : null
         }
 
-        <BlockButton onClick={dismiss} modifiers={['inline']} userId={this.user.id} wrapperClass='simple-menu__item' />
+        <BlockButton modifiers={['inline']} onClick={dismiss} userId={this.user.id} wrapperClass='simple-menu__item' />
         <ReportReportable
           className='simple-menu__item'
           icon
@@ -342,7 +345,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     return this.url == null ? (
       <div className='user-card__username u-ellipsis-pre-overflow'>{displayName}</div>
     ) : (
-      <a href={this.url} className='user-card__username u-ellipsis-pre-overflow'>
+      <a className='user-card__username u-ellipsis-pre-overflow' href={this.url}>
         {displayName}
       </a>
     );

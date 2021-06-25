@@ -90,7 +90,7 @@ class UsernameValidation
             }
 
             // ranked beatmaps
-            if ($user->beatmapsets()->rankedOrApproved()->exists()) {
+            if ($user->profileBeatmapsetsRanked()->exists()) {
                 return $errors->add('username', '.username_locked');
             }
         }

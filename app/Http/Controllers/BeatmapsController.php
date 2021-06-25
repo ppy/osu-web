@@ -6,7 +6,9 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ScoreRetrievalException;
+use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Models\Beatmap;
+use App\Models\BeatmapsetEvent;
 use App\Models\Score\Best\Model as BestModel;
 
 /**
@@ -52,7 +54,7 @@ class BeatmapsController extends Controller
      *
      * Returns [BeatmapScores](#beatmapscores)
      *
-     * @urlParam beatmap required Id of the [Beatmap](#beatmap).
+     * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      *
      * @queryParam mode The [GameMode](#gamemode) to get scores for.
      * @queryParam mods An array of matching Mods, or none // TODO.
@@ -108,6 +110,33 @@ class BeatmapsController extends Controller
         }
     }
 
+    public function updateOwner($id)
+    {
+        $beatmap = Beatmap::findOrFail($id);
+        $currentUser = auth()->user();
+
+        priv_check('BeatmapUpdateOwner', $beatmap->beatmapset)->ensureCan();
+
+        $newUserId = get_int(request('beatmap.user_id'));
+
+        $beatmap->getConnection()->transaction(function () use ($beatmap, $currentUser, $newUserId) {
+            $beatmap->setOwner($newUserId);
+
+            BeatmapsetEvent::log(BeatmapsetEvent::BEATMAP_OWNER_CHANGE, $currentUser, $beatmap->beatmapset, [
+                'beatmap_id' => $beatmap->getKey(),
+                'beatmap_version' => $beatmap->version,
+                'new_user_id' => $beatmap->user_id,
+                'new_user_username' => $beatmap->user->username,
+            ])->saveOrExplode();
+        });
+
+        if ($beatmap->user_id !== $currentUser->getKey()) {
+            (new BeatmapOwnerChange($beatmap, $currentUser))->dispatch();
+        }
+
+        return $beatmap->beatmapset->defaultDiscussionJson();
+    }
+
     /**
      * Get a User Beatmap score
      *
@@ -121,8 +150,8 @@ class BeatmapsController extends Controller
      *
      * The position returned depends on the requested mode and mods.
      *
-     * @urlParam beatmap required Id of the [Beatmap](#beatmap).
-     * @urlParam user required Id of the [User](#user).
+     * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
+     * @urlParam user integer required Id of the [User](#user).
      *
      * @queryParam mode The [GameMode](#gamemode) to get scores for.
      * @queryParam mods An array of matching Mods, or none // TODO.

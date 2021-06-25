@@ -14,7 +14,7 @@ class ForumTopicsControllerTest extends TestCase
 {
     public function testDestroy()
     {
-        $forum = factory(Forum\Forum::class, 'child')->create();
+        $forum = factory(Forum\Forum::class)->states('child')->create();
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
@@ -47,8 +47,6 @@ class ForumTopicsControllerTest extends TestCase
 
         // add some plays so it passes
         $this->addPlaycount($user);
-        // reset auth
-        app()->make('OsuAuthorize')->cacheReset();
 
         $this
             ->actingAsVerified($user)
@@ -61,9 +59,30 @@ class ForumTopicsControllerTest extends TestCase
         $this->assertSame($initialTopicCount, Forum\Topic::count());
     }
 
+    public function testPin()
+    {
+        $forum = factory(Forum\Forum::class)->states('child')->create();
+        $topic = factory(Forum\Topic::class)->create([
+            'forum_id' => $forum->getKey(),
+            'topic_status' => Forum\Topic::TYPES['normal'],
+        ]);
+        $user = $this->createUserWithGroup('gmt');
+        $type = 'sticky';
+        $typeInt = Forum\Topic::TYPES[$type];
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('forum.topics.pin', $topic->getKey()), [
+                'pin' => $typeInt,
+            ])
+            ->assertSuccessful();
+
+        $this->assertSame($type, Forum\Topic::typeStr($topic->fresh()->topic_type));
+    }
+
     public function testReply()
     {
-        $forum = factory(Forum\Forum::class, 'child')->create();
+        $forum = factory(Forum\Forum::class)->states('child')->create();
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
@@ -96,8 +115,6 @@ class ForumTopicsControllerTest extends TestCase
 
         // add some plays so it passes
         $this->addPlaycount($user);
-        // reset auth
-        app()->make('OsuAuthorize')->cacheReset();
 
         $this
             ->actingAsVerified($user)
@@ -112,7 +129,7 @@ class ForumTopicsControllerTest extends TestCase
 
     public function testRestore()
     {
-        $forum = factory(Forum\Forum::class, 'child')->create();
+        $forum = factory(Forum\Forum::class)->states('child')->create();
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
@@ -140,7 +157,7 @@ class ForumTopicsControllerTest extends TestCase
 
     public function testShow()
     {
-        $forum = factory(Forum\Forum::class, 'child')->create();
+        $forum = factory(Forum\Forum::class)->states('child')->create();
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
@@ -154,9 +171,58 @@ class ForumTopicsControllerTest extends TestCase
             ->assertStatus(200);
     }
 
+    public function testShowNoMorePosts()
+    {
+        $forum = factory(Forum\Forum::class)->states('child')->create();
+        $topic = factory(Forum\Topic::class)->create([
+            'forum_id' => $forum->forum_id,
+        ]);
+        $post = factory(Forum\Post::class)->create([
+            'forum_id' => $forum->forum_id,
+            'topic_id' => $topic->topic_id,
+        ]);
+
+        $this
+            ->get(route('forum.topics.show', [
+                'start' => $post->getKey() + 1,
+                'topic' => $topic->getKey(),
+            ]))->assertStatus(302);
+    }
+
+    public function testShowNoMorePostsWithSkipLayout()
+    {
+        $forum = factory(Forum\Forum::class)->states('child')->create();
+        $topic = factory(Forum\Topic::class)->create([
+            'forum_id' => $forum->forum_id,
+        ]);
+        $post = factory(Forum\Post::class)->create([
+            'forum_id' => $forum->forum_id,
+            'topic_id' => $topic->topic_id,
+        ]);
+
+        $this
+            ->get(route('forum.topics.show', [
+                'skip_layout' => 1,
+                'start' => $post->getKey() + 1,
+                'topic' => $topic->getKey(),
+            ]))->assertStatus(204);
+    }
+
+    public function testShowMissingPosts()
+    {
+        $forum = factory(Forum\Forum::class)->states('child')->create();
+        $topic = factory(Forum\Topic::class)->create([
+            'forum_id' => $forum->forum_id,
+        ]);
+
+        $this
+            ->get(route('forum.topics.show', $topic->topic_id))
+            ->assertStatus(404);
+    }
+
     public function testShowNewUser()
     {
-        $forum = factory(Forum\Forum::class, 'child')->create();
+        $forum = factory(Forum\Forum::class)->states('child')->create();
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
@@ -174,7 +240,7 @@ class ForumTopicsControllerTest extends TestCase
 
     public function testStore()
     {
-        $forum = factory(Forum\Forum::class, 'child')->create();
+        $forum = factory(Forum\Forum::class)->states('child')->create();
         $user = factory(User::class)->create()->fresh();
         $group = app('groups')->byIdentifier('default');
         $user->setDefaultGroup($group);
@@ -207,8 +273,6 @@ class ForumTopicsControllerTest extends TestCase
 
         // add some plays so it passes
         $this->addPlaycount($user);
-        // reset auth
-        app()->make('OsuAuthorize')->cacheReset();
 
         $this
             ->actingAsVerified($user)
@@ -228,7 +292,7 @@ class ForumTopicsControllerTest extends TestCase
 
     public function testUpdateTitle()
     {
-        $forum = factory(Forum\Forum::class, 'child')->create();
+        $forum = factory(Forum\Forum::class)->states('child')->create();
         $user = factory(User::class)->create();
         $group = app('groups')->byIdentifier('default');
         $user->setDefaultGroup($group);
@@ -255,7 +319,7 @@ class ForumTopicsControllerTest extends TestCase
 
     public function testUpdateTitleBlank()
     {
-        $forum = factory(Forum\Forum::class, 'child')->create();
+        $forum = factory(Forum\Forum::class)->states('child')->create();
         $user = factory(User::class)->create();
         $group = app('groups')->byIdentifier('default');
         $user->setDefaultGroup($group);

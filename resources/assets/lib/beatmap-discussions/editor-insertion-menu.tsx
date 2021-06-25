@@ -155,7 +155,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
           insertAt = SlateEditor.end(ed, ReactEditor.findPath(ed, node));
         } else {
           // if there's no previous block, that means we're at the start of the review/document, so insert there.
-          insertAt = {path: [], offset: 0};
+          insertAt = { offset: 0, path: [] };
         }
       } else {
         const nextSlateElement = this.hoveredBlock?.previousSibling?.lastChild;
@@ -193,11 +193,11 @@ export class EditorInsertionMenu extends React.Component<Props> {
 
     return (
       <button
-        type='button'
         className={`${this.bn}__menu-button ${this.bn}__menu-button--${type}`}
         data-discussion-type={type}
         onClick={this.insertBlock}
         title={osu.trans(`beatmaps.discussions.review.insert-block.${type}`)}
+        type='button'
       >
         <i className={icon}/>
       </button>
@@ -217,8 +217,8 @@ export class EditorInsertionMenu extends React.Component<Props> {
     return (
       <Portal>
         <div
-          className={`${this.bn}`}
           ref={this.insertRef}
+          className={`${this.bn}`}
         >
           <div className={`${this.bn}__body`}>
             <i className='fas fa-plus' />

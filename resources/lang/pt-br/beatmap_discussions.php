@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Pesquisar',
             'deleted' => 'Incluir discussões excluídas',
+            'mode' => 'Modo de jogo',
             'only_unresolved' => 'Mostrar apenas discussões não resolvidas',
             'types' => 'Tipos de mensagem',
             'username' => 'Nome de Usuário',
@@ -55,6 +56,13 @@ return [
         'confirm' => 'Nenhuma das postagens corresponde ao que procuro',
         'notice' => 'Existem postagens próximas de :timestamp (:existing_timestamps). Por favor, visualize-as antes de postar.',
         'unsaved' => ':count nesta revisão',
+    ],
+
+    'owner_editor' => [
+        'button' => 'Dono da Dificuldade',
+        'reset_confirm' => 'Redefinir o proprietário para esta dificuldade?',
+        'user' => 'Dono',
+        'version' => 'Dificuldade',
     ],
 
     'reply' => [

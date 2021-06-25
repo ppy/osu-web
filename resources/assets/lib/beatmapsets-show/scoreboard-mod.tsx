@@ -14,9 +14,9 @@ export default class ScoreboardMod extends React.PureComponent<Props> {
   render() {
     return (
       <button
-        type='button'
         className={classWithModifiers('beatmap-scoreboard-mod', { enabled: this.props.enabled })}
         onClick={this.onClick}
+        type='button'
       >
         <Mod mod={this.props.mod} />
       </button>

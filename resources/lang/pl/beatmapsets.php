@@ -32,7 +32,7 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
+        'hybrid_requires_modes' => 'Beatmapa hybrydowa wymaga wybrania przynajmniej jednego trybu gry, dla którego chcesz ją nominować.',
         'incorrect_mode' => 'Nie posiadasz uprawnień do nominowania beatmap dla tych trybów (:mode)',
         'full_bn_required' => 'Musisz posiadać pełne uprawnienia nominatora, by zakwalifikować tę beatmapę.',
         'too_many' => 'Osiągnięto już wystarczającą liczbę nominacji.',
@@ -40,7 +40,7 @@ return [
         'dialog' => [
             'confirmation' => 'Czy na pewno chcesz nominować tę beatmapę?',
             'header' => 'Nominuj beatmapę',
-            'hybrid_warning' => '',
+            'hybrid_warning' => 'Uwaga: możesz nominować tylko raz, więc upewnij się, że nominujesz ją dla wszystkich pożądanych trybów gry.',
             'which_modes' => 'Dla jakich trybów chcesz nominować tę beatmapę?',
         ],
     ],
@@ -53,7 +53,9 @@ return [
         'discussion' => 'Dyskusja',
 
         'details' => [
+            'by_artist' => ':artist',
             'favourite' => 'Dodaj do ulubionych',
+            'favourite_login' => 'Zaloguj się, by dodać tę beatmapę do ulubionych',
             'logged-out' => 'Zaloguj się, aby zacząć pobierać beatmapy!',
             'mapped_by' => 'autorstwa :mapper',
             'unfavourite' => 'Usuń z ulubionych',
@@ -120,10 +122,11 @@ return [
             'storyboard' => 'Ta beatmapa zawiera scenorys',
             'success-rate' => 'Wskaźnik ukończonych zagrań',
             'tags' => 'Tagi',
+            'video' => 'Ta beatmapa zawiera wideo w tle',
         ],
 
         'nsfw_warning' => [
-            'details' => '',
+            'details' => 'Ta beatmapa zawiera niedwuznaczne, obraźliwe lub niepokojące treści. Czy chcesz ją zobaczyć mimo to?',
             'title' => 'Treść dla pełnoletnich',
 
             'buttons' => [

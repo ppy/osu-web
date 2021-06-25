@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Zoeken',
             'deleted' => 'Verwijderde discussies toevoegen',
+            'mode' => '',
             'only_unresolved' => 'Alleen niet-afgehandelde discussies weergeven',
             'types' => 'Berichttypen',
             'username' => 'Gebruikersnaam',
@@ -55,6 +56,13 @@ return [
         'confirm' => 'Geen van deze posts pakken mijn punten van zorg aan',
         'notice' => 'Dit zijn de posts rond :timestamp (:existing_timestamp). Controleer ze voor te posten.',
         'unsaved' => ':count in deze review',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [

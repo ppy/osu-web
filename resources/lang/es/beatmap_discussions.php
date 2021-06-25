@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Buscar',
             'deleted' => 'Incluir discusiones eliminadas',
+            'mode' => 'Modo del mapa',
             'only_unresolved' => 'Mostrar sólo discusiones no resueltas',
             'types' => 'Tipos de mensaje',
             'username' => 'Nombre de usuario',
@@ -55,6 +56,13 @@ return [
         'confirm' => 'Ninguna de las publicaciones aborda mi asunto',
         'notice' => 'Ya hay publicaciones cerca de :timestamp (:existing_timestamps). Por favor revíselas antes de publicar.',
         'unsaved' => ':count en esta revisión',
+    ],
+
+    'owner_editor' => [
+        'button' => 'Dueño de la dificultad',
+        'reset_confirm' => '¿Restablecer dueño para esta dificultad?',
+        'user' => 'Dueño',
+        'version' => 'Dificultad',
     ],
 
     'reply' => [

@@ -2,13 +2,8 @@
 /.env*
 !/.env*.example
 
-# ignore the compiled class file from artisan optimize
-/bootstrap/compiled.php
-
 # ignore _ide_helper.php
 _ide_helper.php
-
-/.phpunit.result.cache
 
 # composer files/dirs
 /vendor
@@ -30,6 +25,7 @@ desktop.ini
 /public/uploads
 /public/uploads-avatar
 /public/uploads-replay
+/resources/docs
 
 # server logs
 /logs/osu/*
@@ -70,12 +66,7 @@ com_crashlytics_export_strings.xml
 
 *.sublime-workspace
 
-public/js/.module-cache/
-
 sftp-settings.json
-
-/storage/htmlpurifier/
-/bootstrap/cache/
 
 /resources/assets/js/ziggy.js
 /resources/assets/build/
@@ -85,4 +76,9 @@ composer-installer
 /storage/oauth-public.key
 /storage/oauth-private.key
 
+# cache files
+/.eslintcache
+/.phpunit.result.cache
+/bootstrap/cache/
+/storage/htmlpurifier/
 /storage/paypal_auth.cache

@@ -46,14 +46,16 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => '成人內容',
     ],
 
     'show' => [
         'discussion' => '討論',
 
         'details' => [
+            'by_artist' => '作者：:artist',
             'favourite' => '收藏這張圖譜',
+            'favourite_login' => '登入後才能把這張圖譜加到最愛',
             'logged-out' => '下載圖譜前請先登入！',
             'mapped_by' => '由 :mapper 製作',
             'unfavourite' => '取消收藏',
@@ -114,17 +116,18 @@ return [
             'genre' => '曲風',
             'language' => '語言',
             'no_scores' => '資料還在計算中。。。',
-            'nsfw' => '',
+            'nsfw' => '成人內容',
             'points-of-failure' => '失敗位置',
             'source' => '來源',
             'storyboard' => '這張圖譜包含 Storyboard',
             'success-rate' => '成功率',
             'tags' => '標籤',
+            'video' => '此圖譜包含背景影片',
         ],
 
         'nsfw_warning' => [
             'details' => '這張圖譜含有兒童不宜、具冒犯性、或令人不安的內容。您確定要查看嗎？',
-            'title' => '',
+            'title' => '成人內容',
 
             'buttons' => [
                 'disable' => '關閉警告',

@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Одобрена.',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Модератор видалив відгук в :discussion.',
         'discussion_lock' => 'Обговорення цієї карти було відключено. (:text)',
         'discussion_post_delete' => 'Модератор вилучив публікацію з відгуку :discussion.',
@@ -25,15 +26,15 @@ return [
         'language_edit' => 'Мова змінена з :old на :new.',
         'love' => 'Додано :user в улюблене',
         'nominate' => 'Номіновано :user.',
-        'nominate_modes' => '',
+        'nominate_modes' => 'Номінована від :user (:modes)',
         'nomination_reset' => 'Через нову проблему в :discussion (:text) статус номінації був скинутий.',
         'qualify' => 'Ця карта була номінована достатню кількість разів для кваліфікації.',
         'rank' => 'Рейтинговий.',
         'remove_from_loved' => 'Вилучено з категорії Loved користувачем :user. (:text)',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Видалена явна позначка',
+            'to_1' => 'Позначено як явне',
         ],
     ],
 
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Одобрено',
+        'beatmap_owner_change' => '',
         'discussion_delete' => 'Видалення дискусії',
         'discussion_post_delete' => 'Видалення відповідей в дискусії',
         'discussion_post_restore' => 'Відновлення відповідей в дискусії',
@@ -71,9 +73,9 @@ return [
         'love' => 'Любов',
         'nominate' => 'Номінація',
         'nomination_reset' => 'Скинути номінацію',
-        'nsfw_toggle' => '',
+        'nsfw_toggle' => 'Явна позначка',
         'qualify' => 'Кваліфікація',
         'rank' => 'Рейтинг',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Улюблене видалення',
     ],
 ];

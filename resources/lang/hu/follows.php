@@ -5,8 +5,8 @@
 
 return [
     'comment' => [
-        'empty' => '',
-        'page_title' => '',
+        'empty' => 'Nincs figyelt hozzászólás.',
+        'page_title' => 'figyelt hozzászólások listája',
         'title' => 'hozzászólás',
 
         'table' => [

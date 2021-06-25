@@ -53,7 +53,9 @@ return [
         'discussion' => 'Дискусия',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'Харесай този бийтмап сет',
+            'favourite_login' => '',
             'logged-out' => 'Трябва да сте влезли в акаунта си преди да е възможно да теглите бийтмапове!',
             'mapped_by' => 'съпоставено от :mapper',
             'unfavourite' => 'Премахни от харесани бийтмап сетове',
@@ -120,6 +122,7 @@ return [
             'storyboard' => '',
             'success-rate' => 'Степен на успех (%)',
             'tags' => 'Тагове',
+            'video' => '',
         ],
 
         'nsfw_warning' => [

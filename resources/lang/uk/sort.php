@@ -16,8 +16,8 @@ return [
     'username' => 'Ім\'я користувача',
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Час розміщення',
+        'relevance' => 'Актуальність',
     ],
 
     'forum_topics' => [
@@ -26,7 +26,7 @@ return [
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'Актуальність',
+        'username' => 'Назва',
     ],
 ];

@@ -53,7 +53,9 @@ return [
         'discussion' => 'Diskusia',
 
         'details' => [
+            'by_artist' => '',
             'favourite' => 'Pridať do mojich obľúbených',
+            'favourite_login' => '',
             'logged-out' => 'Pre sťahovanie beatmap sa najskôr musíš prihlásiť!',
             'mapped_by' => 'beatmapu vytvoril :mapper',
             'unfavourite' => 'Odobrať z mojich obľúbených',
@@ -120,6 +122,7 @@ return [
             'storyboard' => '',
             'success-rate' => 'Úspešnosť',
             'tags' => 'Tagy',
+            'video' => '',
         ],
 
         'nsfw_warning' => [

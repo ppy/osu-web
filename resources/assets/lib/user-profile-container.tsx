@@ -45,7 +45,7 @@ export default class UserProfileContainer extends React.PureComponent<Props, Sta
           <BlockButton userId={this.props.user.id} />
         </div>
         <div>
-          <button type='button' className='textual-button' onClick={this.handleClick}>
+          <button className='textual-button' onClick={this.handleClick} type='button'>
             <span>
               <i className='textual-button__icon fas fa-low-vision' />
               {' '}
@@ -58,7 +58,7 @@ export default class UserProfileContainer extends React.PureComponent<Props, Sta
 
     return (
       <div className='osu-page'>
-        <NotificationBanner type='warning' title={osu.trans('users.blocks.banner_text')} message={message} />
+        <NotificationBanner message={message} title={osu.trans('users.blocks.banner_text')} type='warning' />
       </div>
     );
   }

@@ -5,6 +5,7 @@
 
 namespace Tests\Controllers;
 
+use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\Genre;
@@ -28,6 +29,55 @@ class BeatmapsetsControllerTest extends TestCase
 
         $this->get(route('beatmapsets.show', ['beatmapset' => $beatmapset->getKey()]))
             ->assertStatus(404);
+    }
+
+    public function testBeatmapsetNominate()
+    {
+        $beatmapset = factory(Beatmapset::class)->create([
+            'approved' => Beatmapset::STATES['pending'],
+        ]);
+        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+        $nominator = $this->createUserWithGroupPlaymodes('bng', [$beatmap->mode]);
+
+        $this->actingAsVerified($nominator)
+            ->put(route('beatmapsets.nominate', ['beatmapset' => $beatmapset->getKey(), 'playmodes' => [$beatmap->mode]]))
+            ->assertSuccessful();
+
+        $this->assertSame(1, $beatmapset->nominationsSinceReset()->count());
+    }
+
+    public function testBeatmapsetNominateOwnBeatmapset()
+    {
+        $beatmapset = factory(Beatmapset::class)->create([
+            'approved' => Beatmapset::STATES['pending'],
+        ]);
+        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+        $nominator = $this->createUserWithGroupPlaymodes('bng', [$beatmap->mode]);
+
+        $beatmapset->update(['user_id' => $nominator->getKey()]);
+
+        $this->actingAsVerified($nominator)
+            ->put(route('beatmapsets.nominate', ['beatmapset' => $beatmapset->getKey(), 'playmodes' => [$beatmap->mode]]))
+            ->assertStatus(403);
+
+        $this->assertSame(0, $beatmapset->nominationsSinceReset()->count());
+    }
+
+    public function testBeatmapsetNominateOwnBeatmap()
+    {
+        $beatmapset = factory(Beatmapset::class)->create([
+            'approved' => Beatmapset::STATES['pending'],
+        ]);
+        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+        $nominator = $this->createUserWithGroupPlaymodes('bng', [$beatmap->mode]);
+
+        $beatmap->update(['user_id' => $nominator->getKey()]);
+
+        $this->actingAsVerified($nominator)
+            ->put(route('beatmapsets.nominate', ['beatmapset' => $beatmapset->getKey(), 'playmodes' => [$beatmap->mode]]))
+            ->assertStatus(403);
+
+        $this->assertSame(0, $beatmapset->nominationsSinceReset()->count());
     }
 
     /**

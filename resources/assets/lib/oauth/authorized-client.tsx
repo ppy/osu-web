@@ -27,7 +27,7 @@ export class AuthorizedClient extends React.Component<Props> {
             {client.name}
           </div>
           <span className='oauth-client__owner'>
-            <StringWithComponent pattern={osu.trans('oauth.authorized_clients.owned_by')} mappings={mappings} />
+            <StringWithComponent mappings={mappings} pattern={osu.trans('oauth.authorized_clients.owned_by')} />
           </span>
           <div className='oauth-client__scopes'>
             {this.renderPermissions()}
@@ -35,7 +35,6 @@ export class AuthorizedClient extends React.Component<Props> {
         </div>
         <div>
           <BigButton
-            text={osu.trans(`oauth.authorized_clients.revoked.${client.revoked}`)}
             icon={client.revoked ? 'fas fa-ban' : 'fas fa-trash'}
             isBusy={client.isRevoking}
             modifiers={['account-edit', 'danger', 'settings-oauth']}
@@ -43,6 +42,7 @@ export class AuthorizedClient extends React.Component<Props> {
               disabled: client.isRevoking || client.revoked,
               onClick: this.revokeClicked,
             }}
+            text={osu.trans(`oauth.authorized_clients.revoked.${client.revoked}`)}
           />
         </div>
       </div>

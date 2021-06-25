@@ -24,6 +24,7 @@ return [
         'form' => [
             '_' => 'Caută',
             'deleted' => 'Include discuțiile șterse',
+            'mode' => '',
             'only_unresolved' => 'Arată doar discuții nerezolvate',
             'types' => 'Tipuri de mesaje',
             'username' => 'Nume de utilizator',
@@ -55,6 +56,13 @@ return [
         'confirm' => 'Niciuna dintre aceste postări nu mă preocupă',
         'notice' => 'Există postări în jurul :timestamp (:existing_timestamps). Te rugăm să verifici înainte de a posta.',
         'unsaved' => ':count în această recenzie',
+    ],
+
+    'owner_editor' => [
+        'button' => '',
+        'reset_confirm' => '',
+        'user' => '',
+        'version' => '',
     ],
 
     'reply' => [

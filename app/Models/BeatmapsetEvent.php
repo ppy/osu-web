@@ -53,6 +53,8 @@ class BeatmapsetEvent extends Model
     const NSFW_TOGGLE = 'nsfw_toggle';
     const OFFSET_EDIT = 'offset_edit';
 
+    const BEATMAP_OWNER_CHANGE = 'beatmap_owner_change';
+
     public static function log($type, $user, $object, $extraData = [])
     {
         if ($object instanceof BeatmapDiscussionPost) {
@@ -88,10 +90,12 @@ class BeatmapsetEvent extends Model
 
         $query = static::limit($params['limit'])->offset($pagination['offset']);
         $searchByUser = present($rawParams['user'] ?? null);
+        $isModerator = $rawParams['is_moderator'] ?? false;
 
         if ($searchByUser) {
             $params['user'] = $rawParams['user'];
-            $user = User::lookup($params['user']);
+            $findAll = $isModerator || (($rawParams['current_user_id'] ?? null) === $rawParams['user']);
+            $user = User::lookup($params['user'], null, $findAll);
 
             if ($user === null) {
                 $query->none();
@@ -133,7 +137,7 @@ class BeatmapsetEvent extends Model
 
         if ($searchByUser) {
             $allowedTypes = static::types('public');
-            if ($rawParams['is_moderator'] ?? false) {
+            if ($isModerator) {
                 $allowedTypes = array_merge($allowedTypes, static::types('moderation'));
             }
             if ($rawParams['is_kudosu_moderator'] ?? false) {
@@ -208,6 +212,8 @@ class BeatmapsetEvent extends Model
 
                     static::ISSUE_RESOLVE,
                     static::ISSUE_REOPEN,
+
+                    static::BEATMAP_OWNER_CHANGE,
                 ],
                 'kudosuModeration' => [
                     static::KUDOSU_ALLOW,

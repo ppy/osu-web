@@ -3,6 +3,8 @@
 set -u
 set -e
 
+export COMPOSER_ALLOW_SUPERUSER=1
+
 # The user when provisioning is different than the user running actual php workers (in production).
 if [ -z "${OSU_SKIP_CACHE_PERMISSION_OVERRIDE:-}" ]; then
     # Don't fail if permissions don't get set on all files.
@@ -13,9 +15,9 @@ if [ -z "${OSU_USE_SYSTEM_COMPOSER:-}" ]; then
   COMPOSER="php composer.phar"
 
   if [ -f composer.phar ]; then
-    php composer.phar self-update --1
+    php composer.phar self-update --2
   else
-    curl -sL https://getcomposer.org/composer-1.phar > composer.phar
+    curl -sL "https://getcomposer.org/download/latest-2.x/composer.phar" > composer.phar
   fi
 else
   COMPOSER="composer"

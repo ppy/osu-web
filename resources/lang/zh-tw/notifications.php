@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => '圖譜',
 
+            'beatmap_owner_change' => [
+                '_' => '客串難度',
+                'beatmap_owner_change' => '您現在是圖譜 ":title" 中難度 ":beatmap" 的作者',
+                'beatmap_owner_change_compact' => '您現在是難度 ":beatmap" 的作者',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => '圖譜討論',
                 'beatmapset_discussion_lock' => '已鎖定「:title」的討論',
@@ -159,6 +165,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '您現在是圖譜 ":title" 的客串作者',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => '',
                 'beatmapset_discussion_post_new' => '',
@@ -215,7 +225,7 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username 建立了新圖譜',
             ],
         ],
     ],

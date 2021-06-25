@@ -111,7 +111,7 @@ export default class Worker implements DispatchListener {
 
     this.xhrLoadingState.loadMore = true;
 
-    this.xhr.loadMore = $.ajax({ url: route('notifications.index', { unread: 1 }), dataType: 'json' })
+    this.xhr.loadMore = $.ajax({ dataType: 'json', url: route('notifications.index', { unread: 1 }) })
       .always(() => {
         this.xhrLoadingState.loadMore = false;
       }).done((data: NotificationBootJson) => {

@@ -9,10 +9,12 @@ import NsfwWarning from 'beatmapsets-show/nsfw-warning'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
 import HeaderV4 from 'header-v4'
-import { PlaymodeTabs } from 'playmode-tabs'
+import core from 'osu-core-singleton'
+import PlaymodeTabs from 'playmode-tabs'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 import * as BeatmapHelper from 'utils/beatmap-helper'
+import * as BeatmapsetPageHash from 'utils/beatmapset-page-hash'
 
 el = React.createElement
 
@@ -26,7 +28,9 @@ export class Main extends React.Component
     @state = JSON.parse(@props.container.dataset.state ? 'null')
     @restoredState = @state?
 
-    if !@restoredState
+    if @restoredState
+      @state.beatmaps = new Map(@state.beatmapsArray)
+    else
       optionsHash = BeatmapsetPageHash.parse location.hash
 
       beatmaps = _.concat props.beatmapset.beatmaps, props.beatmapset.converts
@@ -38,7 +42,7 @@ export class Main extends React.Component
         mode: optionsHash.playmode
 
       # fall back to the first mode that has beatmaps in this mapset
-      currentBeatmap ?= BeatmapHelper.findDefault items: beatmaps[optionsHash.playmode]
+      currentBeatmap ?= BeatmapHelper.findDefault items: beatmaps.get(optionsHash.playmode)
       currentBeatmap ?= BeatmapHelper.findDefault group: beatmaps
 
       @state =
@@ -48,7 +52,7 @@ export class Main extends React.Component
         favcount: props.beatmapset.favourite_count
         hasFavourited: props.beatmapset.has_favourited
         loading: false
-        showingNsfwWarning: props.beatmapset.nsfw && !currentUser.user_preferences?.beatmapset_show_nsfw
+        showingNsfwWarning: props.beatmapset.nsfw && !core.userPreferences.get('beatmapset_show_nsfw')
         currentScoreboardType: 'global'
         enabledMods: []
         scores: []
@@ -70,12 +74,9 @@ export class Main extends React.Component
   }) =>
     @scoreboardXhr?.abort()
 
-    @setState
-      currentScoreboardType: scoreboardType
-
-    if scoreboardType != 'global' && !currentUser.is_supporter
-      @setState scores: []
-      return
+    prevState =
+      currentScoreboardType: @state.currentScoreboardType
+      enabledMods: @state.enabledMods
 
     enabledMods = if resetMods
       []
@@ -86,6 +87,14 @@ export class Main extends React.Component
     else
       @state.enabledMods
 
+    @setState
+      currentScoreboardType: scoreboardType
+      enabledMods: enabledMods
+
+    if !@state.currentBeatmap.is_scoreable || (!currentUser.is_supporter && (scoreboardType != 'global' || enabledMods.length > 0))
+      @setState scores: []
+      return
+
     @scoresCache ?= {}
     cacheKey = "#{@state.currentBeatmap.id}-#{@state.currentBeatmap.mode}-#{_.sortBy enabledMods}-#{scoreboardType}"
 
@@ -94,7 +103,6 @@ export class Main extends React.Component
         scores: @scoresCache[cacheKey].scores
         userScore: @scoresCache[cacheKey].userScore if @scoresCache[cacheKey].userScore?
         userScorePosition: @scoresCache[cacheKey].userScorePosition
-        enabledMods: enabledMods
 
     if !forceReload && @scoresCache[cacheKey]?
       loadScore()
@@ -116,6 +124,8 @@ export class Main extends React.Component
       loadScore()
 
     .fail (xhr, status) =>
+      @setState(prevState)
+
       if status == 'abort'
         return
 
@@ -141,7 +151,7 @@ export class Main extends React.Component
     return if @state.currentBeatmap.mode == mode
 
     beatmap = BeatmapHelper.find id: @state.currentBeatmap.id, mode: mode, group: @state.beatmaps
-    beatmap ?= BeatmapHelper.findDefault items: @state.beatmaps[mode]
+    beatmap ?= BeatmapHelper.findDefault items: @state.beatmaps.get(mode)
     @setCurrentBeatmap null, { beatmap }
 
 
@@ -245,13 +255,13 @@ export class Main extends React.Component
         beatmaps: @state.beatmaps
         currentMode: @state.currentBeatmap.mode
         hrefFunc: @tabHrefFunc
-        showCounts: true
 
     el HeaderV4,
       theme: 'beatmapsets'
       titleAppend: titleAppend
 
   saveStateToContainer: =>
+    @state.beatmapsArray = Array.from(@state.beatmaps)
     @props.container.dataset.state = JSON.stringify(@state)
 
 

@@ -61,20 +61,21 @@ export default class Main extends React.PureComponent<Props> {
         </td>
 
         <td className='follows-table__data'>
-          <a href={follow.commentable_meta.url}>
-            {follow.commentable_meta.title}
-          </a>
+          {'url' in follow.commentable_meta
+            ? <a href={follow.commentable_meta.url}>{follow.commentable_meta.title}</a>
+            : <span>{follow.commentable_meta.title}</span>
+          }
         </td>
 
         <td className='follows-table__data'>
           {follow.latest_comment != null ? (
             <a href={route('comments.show', { comment: follow.latest_comment.id })}>
               <StringWithComponent
-                pattern={osu.trans('follows.comment.table.latest_comment_value')}
                 mappings={{
                   ':time': <TimeWithTooltip key='time' dateTime={follow.latest_comment.created_at} relative />,
                   ':username': follow.latest_comment.user?.username ?? '???',
                 }}
+                pattern={osu.trans('follows.comment.table.latest_comment_value')}
               />
             </a>
           ) : osu.trans('follows.comment.table.latest_comment_empty')}

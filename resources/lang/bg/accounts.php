@@ -56,6 +56,7 @@ return [
 
         'options' => [
             '_' => 'опции за доставка',
+            'beatmap_owner_change' => '',
             'beatmapset:modding' => 'бийтмап modding',
             'channel_message' => 'лични съобщения',
             'comment_new' => 'нови коментари ',

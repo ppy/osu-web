@@ -18,6 +18,6 @@ class RedirectController extends Controller
 
         $status = request()->isMethodCacheable() ? 302 : 307;
 
-        return ujs_redirect(route(explode('redirect:', \Route::currentRouteName(), 2)[1], $args), $status);
+        return ujs_redirect(route(explode('redirect:', rtrim(\Route::currentRouteName(), ':'), 2)[1], $args), $status);
     }
 }

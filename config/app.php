@@ -50,6 +50,7 @@ return [
     |
     */
 
+    // Please check other uses of APP_URL when updating this.
     'url' => env('APP_URL', 'http://localhost'),
 
     /*
@@ -79,9 +80,9 @@ return [
     'locale' => 'en',
 
     /*
-     * Make sure to check locale name in timeago, momentjs, and carbon.
+     * Make sure to check locale name mapping for other components.
      * Carbon is in Http\Middleware\SetLocale (no helper... yet?).
-     * momentjs and timeago are in helper (locale_for_*).
+     * html, momentjs, and laravel are in LocaleMeta.
      * Check respective packages for supported list of languages.
      */
     'available_locales' => [

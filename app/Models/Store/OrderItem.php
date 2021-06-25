@@ -125,20 +125,11 @@ class OrderItem extends Model
         }
     }
 
-    public function getDisplayName()
+    public function getDisplayName(bool $html = false)
     {
         switch ($this->product->custom_class) {
             case 'supporter-tag':
-                // FIXME: probably should move out...somewhere
-                $duration = (int) $this->extra_data['duration'];
-                $text = SupporterTag::getDurationText($duration);
-
-                return trans('store.order.item.display_name.supporter_tag', [
-                    'name' => $this->product->name,
-                    // test data didn't include username, so ?? ''
-                    'username' => $this->extra_data['username'] ?? '',
-                    'duration' => $text,
-                ]);
+                return SupporterTag::getDisplayName($this, $html);
             default:
                 return $this->product->name.($this->extra_info !== null ? " ({$this->extra_info})" : '');
         }

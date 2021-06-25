@@ -71,5 +71,6 @@ export type SendMessageJson =
 
 export interface SendToJson {
   can_message: boolean;
+  channel_id: number | null;
   target: UserJson;
 }

@@ -3,7 +3,6 @@
 
 import { MessageLengthCounter } from './message-length-counter'
 import { UserCard } from './user-card'
-import mapperGroup from 'beatmap-discussions/mapper-group'
 import { ReviewPost } from 'beatmap-discussions/review-post'
 import { BigButton } from 'big-button'
 import ClickToCopy from 'click-to-copy'
@@ -14,6 +13,7 @@ import { ReportReportable } from 'report-reportable'
 import Editor from 'beatmap-discussions/editor'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
+import { badgeGroup } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers } from 'utils/css'
 
 el = React.createElement
@@ -53,18 +53,25 @@ export class Post extends React.PureComponent
       editing: @state.editing
       unread: !@props.read && @props.type != 'discussion'
 
+    topClasses += ' js-beatmap-discussion-jump'
+
     div
       className: topClasses
+      'data-post-id': @props.post.id
       key: "#{@props.type}-#{@props.post.id}"
       onClick: =>
         $.publish 'beatmapDiscussionPost:markRead', id: @props.post.id
 
       div
         className: "#{bn}__content"
-        if (!@props.hideUserCard)
+        if (@props.type == 'reply')
           el UserCard,
             user: @props.user
-            group: @userGroup()
+            group: badgeGroup
+              beatmapset: @props.beatmapset
+              currentBeatmap: @props.beatmap
+              discussion: @props.discussion
+              user: @props.user
         if @state.editing
           @messageEditor()
         else
@@ -205,13 +212,12 @@ export class Post extends React.PureComponent
         className: "#{bn}__actions"
         div
           className: "#{bn}__actions-group"
-          if @props.type == 'discussion'
-            span
-              className: "#{bn}__action #{bn}__action--button"
-              el ClickToCopy,
-                value: BeatmapDiscussionHelper.url discussion: @props.discussion
-                label: osu.trans 'common.buttons.permalink'
-                valueAsUrl: true
+          span
+            className: "#{bn}__action #{bn}__action--button"
+            el ClickToCopy,
+              value: BeatmapDiscussionHelper.url discussion: @props.discussion, post: (@props.post if @props.type == 'reply')
+              label: osu.trans 'common.buttons.permalink'
+              valueAsUrl: true
 
           if @props.canBeEdited
             button
@@ -313,10 +319,6 @@ export class Post extends React.PureComponent
     .fail osu.ajaxError
 
     .always => @setState posting: false
-
-
-  userGroup: ->
-    if @isOwner() then mapperGroup else @props.user.groups?[0]
 
 
   validPost: =>

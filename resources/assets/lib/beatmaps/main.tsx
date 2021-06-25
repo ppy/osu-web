@@ -49,7 +49,7 @@ export class Main extends React.Component<Props> {
           availableFilters={this.props.availableFilters}
           backToTopAnchor={this.backToTopAnchor}
         />
-        <BackToTop anchor={this.backToTopAnchor} ref={this.backToTop} />
+        <BackToTop ref={this.backToTop} anchor={this.backToTopAnchor} />
       </>
     );
   }

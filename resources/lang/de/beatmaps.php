@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => 'kudosu verweigern',
         'edit' => 'bearbeiten',
         'edited' => 'Zuletzt bearbeitet von :editor (:update_time).',
+        'guest' => 'Gästeschwierigkeit von :user',
         'kudosu_denied' => 'Dir wurde kudosu verweigert.',
         'message_placeholder_deleted_beatmap' => 'Diese Schwierigkeitsstufe wurde gelöscht und kann nicht mehr diskutiert werden.',
         'message_placeholder_locked' => 'Die Diskussion für diese Beatmap wurde deaktiviert.',
@@ -250,7 +251,7 @@ return [
     ],
     'general' => [
         'converts' => 'Konvertierte Beatmaps miteinbeziehen',
-        'follows' => '',
+        'follows' => 'Abonnierte Mapper',
         'recommended' => 'Empfohlene Schwierigkeit',
     ],
     'mode' => [
@@ -309,11 +310,11 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'Relax' => '',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Score V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => 'Alle',

@@ -35,9 +35,9 @@ return [
     ],
 
     'index' => [
-        'nav_comments' => '',
+        'nav_comments' => 'ความคิดเห็น',
         'nav_title' => 'รายการ',
-        'no_comments' => '',
+        'no_comments' => 'ไม่พบความคิดเห็น...',
     ],
 
     'placeholder' => [

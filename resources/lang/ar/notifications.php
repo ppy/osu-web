@@ -11,7 +11,7 @@ return [
     'none' => 'لا إشعارات',
     'see_all' => 'أِظهار جميع الإشعارات',
     'see_channel' => 'انتقل للمُحادثة',
-    'verifying' => '',
+    'verifying' => 'الرجاء التحقق من الجلسة لعرض الإشعارات',
 
     'filters' => [
         '_' => 'الكل',
@@ -26,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'المقطوعة',
+
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'منشاقشة المقطوعة',
@@ -159,6 +165,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'تم قفل المناقشة على ":title"',
                 'beatmapset_discussion_post_new' => 'المناقشة حول ":title" تحتوي على تحديثات جديدة',

@@ -2,6 +2,9 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    use App\Models\UserNotificationOption;
+@endphp
 <div class="account-edit">
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
@@ -41,7 +44,7 @@
                 <label class="account-edit-entry__checkbox">
                     @php
                         $name = App\Models\Notification::COMMENT_NEW;
-                        $option = App\Models\UserNotificationOption::COMMENT_REPLY;
+                        $option = UserNotificationOption::COMMENT_REPLY;
                     @endphp
                     @include('objects._switch', [
                         'additionalClass'=> 'js-account-edit__input',
@@ -61,7 +64,7 @@
         </div>
 
         <div class="account-edit__input-group">
-            @foreach (App\Models\UserNotificationOption::BEATMAPSET_DISQUALIFIABLE_NOTIFICATIONS as $notificationType)
+            @foreach (UserNotificationOption::BEATMAPSET_DISQUALIFIABLE_NOTIFICATIONS as $notificationType)
                 <div class="account-edit-entry account-edit-entry--no-label">
                     <div class="account-edit-entry__checkboxes-label">
                         {{ trans("accounts.notifications.$notificationType") }}
@@ -109,20 +112,20 @@
                     data-account-edit-type="multi"
                     data-url="{{ route('account.notification-options') }}"
                 >
-                    @foreach (App\Models\UserNotificationOption::DELIVERY_MODES as $mode)
+                    @foreach (UserNotificationOption::DELIVERY_MODES as $mode)
                         <div>{{ trans("accounts.notifications.options.{$mode}") }}</div>
                     @endforeach
 
                     <div>@include('accounts._edit_entry_status')</div>
 
-                    @foreach (App\Models\UserNotificationOption::HAS_DELIVERY_MODES as $name)
-                        @foreach (App\Models\UserNotificationOption::DELIVERY_MODES as $mode)
+                    @foreach (UserNotificationOption::HAS_DELIVERY_MODES as $name)
+                        @foreach (UserNotificationOption::DELIVERY_MODES as $mode)
                             <label
                                 class="account-edit-entry__checkbox account-edit-entry__checkbox--grid"
                             >
                                 @include('objects._switch', [
                                     'additionalClass'=> 'js-account-edit__input',
-                                    'checked' => $notificationOptions[$name]->details[$mode] ?? true,
+                                    'checked' => $notificationOptions[$name]->details[$mode] ?? UserNotificationOption::DELIVERY_MODE_DEFAULTS[$mode],
                                     'defaultValue' => '0',
                                     'modifiers' => ['grid'],
                                     'name' => "user_notification_option[{$name}][details][{$mode}]",

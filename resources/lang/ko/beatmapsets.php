@@ -53,7 +53,9 @@ return [
         'discussion' => '토론',
 
         'details' => [
+            'by_artist' => ':artist 님이 만듦',
             'favourite' => '즐겨찾기',
+            'favourite_login' => '로그인하여 이 비트맵을 즐겨찾기 하세요.',
             'logged-out' => '로그인 후 비트맵을 다운로드하세요!',
             'mapped_by' => ':mapper님의 맵',
             'unfavourite' => '즐겨찾기 해제',
@@ -117,9 +119,10 @@ return [
             'nsfw' => '부적절한 내용',
             'points-of-failure' => '실패 지점',
             'source' => '원작',
-            'storyboard' => '이 비트맵은 스토리보드를 포함합니다',
+            'storyboard' => '이 비트맵은 스토리보드를 포함합니다.',
             'success-rate' => '클리어 비율',
             'tags' => '태그',
+            'video' => '이 비트맵은 영상을 포함합니다.',
         ],
 
         'nsfw_warning' => [

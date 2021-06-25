@@ -2,18 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderV4 from 'header-v4';
+import GroupJson from 'interfaces/group-json';
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import { UserList } from 'user-list';
 
-interface Group {
-  group_desc?: string;
-  group_name: string;
-  has_playmodes: boolean;
-}
-
 interface Props {
-  group: Group;
+  group: GroupJson;
   users: UserJson[];
 }
 
@@ -24,7 +19,13 @@ export class Main extends React.PureComponent<Props> {
         <HeaderV4 theme='friends' />
 
         <div className='osu-page osu-page--users'>
-          <UserList playmodeFilter={this.props.group.has_playmodes} users={this.props.users} title={this.props.group.group_name} />
+          <UserList
+            descriptionHtml={this.props.group.description?.html}
+            playmodeFilter={this.props.group.has_playmodes}
+            playmodeFilterGroupId={this.props.group.id}
+            title={this.props.group.name}
+            users={this.props.users}
+          />
         </div>
       </div>
     );
