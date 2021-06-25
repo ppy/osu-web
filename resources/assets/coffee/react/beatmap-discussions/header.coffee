@@ -128,7 +128,7 @@ export class Header extends React.PureComponent
                     mappings:
                       ':user': el(UserLink, key: 'user', user: @props.users[@props.currentBeatmap.user_id] ? deletedUser)
                     pattern: osu.trans('beatmaps.discussions.guest')
-            el BeatmapBasicStats, beatmap: @props.currentBeatmap
+            el BeatmapBasicStats, beatmap: @props.currentBeatmap, beatmapset: @props.beatmapset
 
 
   setFilter: (e) =>
