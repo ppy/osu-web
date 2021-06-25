@@ -32,6 +32,7 @@ export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @eventId = "profile-page-#{osu.uuid()}"
     @tabs = React.createRef()
     @pages = React.createRef()
     @state = JSON.parse(props.container.dataset.profilePageState ? null)
@@ -72,12 +73,12 @@ export class Main extends React.PureComponent
 
 
   componentDidMount: =>
-    $.subscribe 'user:update.profilePage', @userUpdate
-    $.subscribe 'user:page:update.profilePage', @userPageUpdate
-    $.subscribe 'profile:showMore.profilePage', @showMore
-    $.subscribe 'profile:page:jump.profilePage', @pageJump
-    $(window).on 'scroll.profilePage', @pageScan
-    $(document).on 'turbolinks:before-cache.profilePage', @saveStateToContainer
+    $.subscribe "user:update.#{@eventId}", @userUpdate
+    $.subscribe "user:page:update.#{@eventId}", @userPageUpdate
+    $.subscribe "profile:showMore.#{@eventId}", @showMore
+    $.subscribe "profile:page:jump.#{@eventId}", @pageJump
+    $(window).on "scroll.#{@eventId}", @pageScan
+    $(document).on "turbolinks:before-cache.#{@eventId}", @saveStateToContainer
 
     $(@pages.current).sortable
       cursor: 'move'
@@ -112,8 +113,8 @@ export class Main extends React.PureComponent
 
 
   componentWillUnmount: =>
-    $.unsubscribe '.profilePage'
-    $(window).off '.profilePage'
+    $.unsubscribe ".#{@eventId}"
+    $(window).off ".#{@eventId}"
 
     for sortable in [@pages, @tabs]
       $(sortable.current).sortable 'destroy'
