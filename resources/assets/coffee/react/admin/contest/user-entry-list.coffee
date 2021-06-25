@@ -11,6 +11,7 @@ export class UserEntryList extends React.Component
   constructor: (props) ->
     super props
 
+    @eventId = "admin-contests-show-user-entries-#{osu.uuid()}"
     @state =
       contest: props.contest
       entries: props.entries
@@ -29,11 +30,11 @@ export class UserEntryList extends React.Component
     @updateEntry(data.entry, false)
 
   componentDidMount: =>
-    $.subscribe 'admin:contest:entries:destroy.contestUserEntryList', @delete
-    $.subscribe 'admin:contest:entries:restore.contestUserEntryList', @restore
+    $.subscribe "admin:contest:entries:destroy.#{@eventId}", @delete
+    $.subscribe "admin:contest:entries:restore.#{@eventId}", @restore
 
   componentWillUnmount: =>
-    $.unsubscribe '.contestUserEntryList'
+    $.unsubscribe ".#{@eventId}"
 
   toggleShowDeleted: (e) =>
     e.preventDefault()

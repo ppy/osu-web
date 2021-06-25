@@ -10,14 +10,15 @@ export class Stats extends React.Component
   constructor: (props) ->
     super props
 
+    @eventId = "beatmapsets-show-stats-#{osu.uuid()}"
+
 
   componentDidMount: =>
     @_renderChart()
 
 
   componentWillUnmount: =>
-    $(window).off '.beatmapsetPageStats'
-    $.unsubscribe '.beatmapsetPageStats'
+    $(window).off ".#{@eventId}"
 
 
   componentDidUpdate: =>
@@ -109,6 +110,6 @@ export class Stats extends React.Component
         modifiers: ['beatmapset-rating']
 
       @_ratingChart = new StackedBarChart @refs.chartArea, options
-      $(window).on 'resize.beatmapsetPageStats', @_ratingChart.resize
+      $(window).on "resize.#{@eventId}", @_ratingChart.resize
 
     @_ratingChart.loadData rating: @props.beatmapset.ratings[1..]

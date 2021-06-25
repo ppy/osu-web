@@ -32,7 +32,7 @@ export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @eventId = "profile-page-#{osu.uuid()}"
+    @eventId = "users-show-#{osu.uuid()}"
     @tabs = React.createRef()
     @pages = React.createRef()
     @state = JSON.parse(props.container.dataset.profilePageState ? null)

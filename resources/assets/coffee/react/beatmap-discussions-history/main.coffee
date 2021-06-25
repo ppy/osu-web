@@ -14,6 +14,7 @@ export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @eventId = "beatmapset-discussions-history-#{osu.uuid()}"
     @cache = {}
     @state = JSON.parse(props.container.dataset.discussionsState ? null)
     @restoredState = @state?
@@ -27,13 +28,13 @@ export class Main extends React.PureComponent
 
 
   componentDidMount: =>
-    $.subscribe 'beatmapsetDiscussions:update.discussionHistory', @discussionUpdate
-    $(document).on 'ajax:success.discussionHistory', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
+    $.subscribe "beatmapsetDiscussions:update.#{@eventId}", @discussionUpdate
+    $(document).on "ajax:success.#{@eventId}", '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
 
 
   componentWillUnmount: =>
-    $.unsubscribe '.discussionHistory'
-    $(window).off '.discussionHistory'
+    $.unsubscribe ".#{@eventId}"
+    $(window).off ".#{@eventId}"
 
     $(window).stop()
 

@@ -32,6 +32,7 @@ export class Scoreboard extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @eventId = "beatmapsets-show-scoreboard-#{osu.uuid()}"
     @state =
       loading: false
 
@@ -39,10 +40,10 @@ export class Scoreboard extends React.PureComponent
     @setState loading: isLoading
 
   componentDidMount: ->
-    $.subscribe 'beatmapset:scoreboard:loading.beatmapsetPageScoreboard', @setLoading
+    $.subscribe "beatmapset:scoreboard:loading.#{@eventId}", @setLoading
 
   componentWillUnmount: ->
-    $.unsubscribe '.beatmapsetPageScoreboard'
+    $.unsubscribe ".#{@eventId}"
 
   render: ->
     userScoreFound = false

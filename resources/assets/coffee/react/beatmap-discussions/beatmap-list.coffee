@@ -12,18 +12,19 @@ export class BeatmapList extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @eventId = "beatmapset-discussions-show-beatmap-list-#{osu.uuid()}"
     @state =
       showingSelector: false
 
 
   componentDidMount: =>
-    $(document).on 'click.beatmapList', @onDocumentClick
-    $(document).on 'turbolinks:before-cache.beatmapList', @hideSelector
+    $(document).on "click.#{@eventId}", @onDocumentClick
+    $(document).on "turbolinks:before-cache.#{@eventId}", @hideSelector
     @syncBlackout()
 
 
   componentWillUnmount: =>
-    $(document).off '.beatmapList'
+    $(document).off ".#{@eventId}"
 
 
   render: =>
