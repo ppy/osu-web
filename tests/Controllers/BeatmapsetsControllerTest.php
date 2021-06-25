@@ -6,6 +6,7 @@
 namespace Tests\Controllers;
 
 use App\Models\Beatmapset;
+use App\Models\BeatmapsetEvent;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\User;
@@ -123,6 +124,55 @@ class BeatmapsetsControllerTest extends TestCase
 
         $this->assertSame($resultGenreId, $beatmapset->genre_id);
         $this->assertSame($resultLanguageId, $beatmapset->language_id);
+    }
+
+    public function testBeatmapsetUpdateOffsetDifferent()
+    {
+        $owner = factory(User::class)->create();
+
+        $beatmapset = factory(Beatmapset::class)->create([
+            'approved' => Beatmapset::STATES['pending'],
+            'user_id' => $owner->getKey(),
+        ]);
+
+        $lastEventBeforeTry = BeatmapsetEvent::orderBy('created_at', 'desc')->first();
+        $newOffset = 25;
+
+        $this->actingAsVerified($owner)
+            ->put(route('beatmapsets.update', ['beatmapset' => $beatmapset->getKey()]), [
+                'beatmapset' => [
+                    'offset' => $newOffset,
+                ],
+            ])->assertStatus(200);
+
+        $beatmapset->refresh();
+
+        $this->assertSame($newOffset, $beatmapset->offset);
+        $this->assertNotSame(BeatmapsetEvent::orderBy('created_at', 'desc')->first(), $lastEventBeforeTry);
+    }
+
+    public function testBeatmapsetUpdateOffsetSame()
+    {
+        $owner = factory(User::class)->create();
+        $beatmapset = factory(Beatmapset::class)->create([
+            'approved' => Beatmapset::STATES['pending'],
+            'user_id' => $owner->getKey(),
+        ]);
+
+        $lastEventBeforeTry = BeatmapsetEvent::orderBy('created_at', 'desc')->first();
+        $oldOffset = $beatmapset->offset;
+
+        $this->actingAsVerified($owner)
+            ->put(route('beatmapsets.update', ['beatmapset' => $beatmapset->getKey()]), [
+                'beatmapset' => [
+                    'offset' => $beatmapset->offset,
+                ]
+            ])->assertStatus(200);
+
+        $beatmapset->refresh();
+
+        $this->assertSame($oldOffset, $beatmapset->offset);
+        $this->assertSame(BeatmapsetEvent::orderBy('created_at', 'desc')->first(), $lastEventBeforeTry);
     }
 
     public function beatmapsetStatesDataProvider()

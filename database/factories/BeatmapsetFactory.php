@@ -43,6 +43,7 @@ $factory->define(Beatmapset::class, function (Faker\Generator $faker) {
         },
         'submit_date' => $faker->dateTime(),
         'thread_id' => 0,
+        'offset' => 0,
     ];
 });
 
