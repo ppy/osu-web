@@ -60,12 +60,8 @@ export default class ReactTurbolinks {
   };
 
   private handleBeforeRender = (e: JQuery.TriggeredEvent) => {
-    const newBody = (e.originalEvent as Event & { data: { newBody: HTMLElement }}).data.newBody;
-
-    window.newBody = newBody;
-
+    window.newBody = (e.originalEvent as Event & { data: { newBody: HTMLElement }}).data.newBody;
     this.loadScripts(false);
-
     this.boot();
   };
 
