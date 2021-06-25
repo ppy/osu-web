@@ -166,7 +166,7 @@ class BeatmapsetsControllerTest extends TestCase
             ->put(route('beatmapsets.update', ['beatmapset' => $beatmapset->getKey()]), [
                 'beatmapset' => [
                     'offset' => $beatmapset->offset,
-                ]
+                ],
             ])->assertStatus(200);
 
         $beatmapset->refresh();
