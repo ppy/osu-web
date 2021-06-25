@@ -96,7 +96,7 @@ interface OsuCommon {
   xhrErrorMessage: (xhr: JQuery.jqXHR) => string;
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
-  parseJson<T = any>(id: string, remove?: boolean, body?: HTMLElement): T;
+  parseJson<T = any>(id: string, remove?: boolean): T;
   updateQueryString(url: string | null, params: { [key: string]: string | null | undefined }): string;
 }
 
