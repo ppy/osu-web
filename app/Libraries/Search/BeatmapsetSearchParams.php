@@ -58,6 +58,9 @@ class BeatmapsetSearchParams extends SearchParams
     /** @var int|null */
     public $mode = null;
 
+    /** @var array|null */
+    public $od;
+
     /**
      * null means any state.
      *
