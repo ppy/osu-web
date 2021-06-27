@@ -132,7 +132,7 @@ return [
             'spam' => 'Spamming',
             'unwanted_content' => 'Linking inappropriate content',
             'nonsense' => 'Nonsense',
-            'multi_accounting' => 'Multi-Accounting',
+            'multiple_accounts' => 'Using multiple accounts',
             'other' => 'Other (type below)',
         ],
     ],
