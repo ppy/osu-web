@@ -127,7 +127,7 @@ return [
         ],
 
         'options' => [
-            'cheating' => 'Foul play / Cheating',
+            'cheating' => 'Cheating',
             'insults' => 'Insulting me / others',
             'spam' => 'Spamming',
             'unwanted_content' => 'Linking inappropriate content',
