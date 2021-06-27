@@ -16,11 +16,11 @@ export class ReportForm extends PureComponent
 
     @options = [
       { id: 'Cheating', text: osu.trans 'users.report.options.cheating' },
+      { id: 'MultipleAccounts', text: osu.trans 'users.report.options.multiple_accounts' },
       { id: 'Insults', text: osu.trans 'users.report.options.insults' },
       { id: 'Spam', text: osu.trans 'users.report.options.spam' },
       { id: 'UnwantedContent', text: osu.trans 'users.report.options.unwanted_content' },
       { id: 'Nonsense', text: osu.trans 'users.report.options.nonsense' },
-      { id: 'MultipleAccounts', text: osu.trans 'users.report.options.multiple_accounts' },
       { id: 'Other', text: osu.trans 'users.report.options.other' },
     ]
 

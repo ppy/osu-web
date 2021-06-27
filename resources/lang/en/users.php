@@ -128,11 +128,11 @@ return [
 
         'options' => [
             'cheating' => 'Cheating',
+            'multiple_accounts' => 'Using multiple accounts',
             'insults' => 'Insulting me / others',
             'spam' => 'Spamming',
             'unwanted_content' => 'Linking inappropriate content',
             'nonsense' => 'Nonsense',
-            'multiple_accounts' => 'Using multiple accounts',
             'other' => 'Other (type below)',
         ],
     ],
