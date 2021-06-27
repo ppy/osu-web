@@ -20,8 +20,8 @@ class AddMultiAccountingReport extends Migration
             'Cheating',
             'UnwantedContent',
             'Nonsense',
-            'MultiAccounting',
-            'Other'
+            'Other',
+            'MultipleAccounts'
         )");
     }
 
