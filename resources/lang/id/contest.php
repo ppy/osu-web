@@ -27,6 +27,10 @@ return [
             'remove' => 'Hapus pilihan',
             'used_up' => 'Anda telah mempergunakan seluruh hak suara yang Anda miliki',
         ],
+
+        'progress' => [
+            '_' => '',
+        ],
     ],
     'entry' => [
         '_' => 'entri',
