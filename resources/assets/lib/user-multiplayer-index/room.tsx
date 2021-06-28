@@ -5,6 +5,8 @@ import DifficultyBadge from 'difficulty-badge';
 import Img2x from 'img2x';
 import RoomJson from 'interfaces/room-json';
 import { maxBy, minBy } from 'lodash';
+import { computed } from 'mobx';
+import { observer } from 'mobx-react';
 import * as moment from 'moment';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
@@ -19,10 +21,12 @@ interface Props {
 
 const endingSoonDiffMs = 60 * 60 * 1000; // 60 minutes.
 
+@observer
 export default class Room extends React.Component<Props> {
   static contextType = UserMultiplayerHistoryContext;
   declare context: React.ContextType<typeof UserMultiplayerHistoryContext>;
 
+  @computed
   get status() {
     if (!this.props.room.active) {
       return 'ended';
@@ -33,11 +37,13 @@ export default class Room extends React.Component<Props> {
     return diff < endingSoonDiffMs ? 'soon' : 'active';
   }
 
+  @computed
   get maxDifficulty() {
     const max = maxBy(this.props.room.playlist, (playlist) => this.context.beatmaps.get(playlist.beatmap_id)?.difficulty_rating);
     return this.context.beatmaps.get(max?.beatmap_id ?? 0)?.difficulty_rating ?? 0;
   }
 
+  @computed
   get minDifficulty() {
     const min = minBy(this.props.room.playlist, (playlist) => this.context.beatmaps.get(playlist.beatmap_id)?.difficulty_rating);
     return this.context.beatmaps.get(min?.beatmap_id ?? 0)?.difficulty_rating ?? 0;
@@ -53,7 +59,6 @@ export default class Room extends React.Component<Props> {
   }
 
   render() {
-    const status = this.status;
     const endsAt = moment(this.props.room.ends_at);
 
     return (
@@ -62,9 +67,9 @@ export default class Room extends React.Component<Props> {
         <div className='multiplayer-room__content'>
           <div className='multiplayer-room__ends'>
             <div className='multiplayer-room__badge-container'>
-              <div className={classWithModifiers('multiplayer-room__badge', [this.status])}>{osu.trans(`multiplayer.room.status.${status}`)}</div>
+              <div className={classWithModifiers('multiplayer-room__badge', [this.status])}>{osu.trans(`multiplayer.room.status.${this.status}`)}</div>
               <time className='js-tooltip-time' title={this.props.room.ends_at}>
-                {status === 'ended'
+                {this.status === 'ended'
                   ? endsAt.fromNow()
                   : osu.trans('multiplayer.room.time_left', { time: endsAt.fromNow(true) })}
               </time>
