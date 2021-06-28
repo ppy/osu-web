@@ -91,7 +91,7 @@ class Room extends Model
         return [
             'cursorHelper' => $cursorHelper,
             'query' => $query,
-            'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
+            'search' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
         ];
     }
 

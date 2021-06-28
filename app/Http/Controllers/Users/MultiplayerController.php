@@ -54,7 +54,7 @@ class MultiplayerController extends Controller
             'beatmapsets' => json_collection($beatmapsets, new BeatmapsetCompactTransformer()),
             'cursor' => $hasMore ? $search['cursorHelper']->next($rooms) : null,
             'rooms' => json_collection($rooms, new RoomTransformer(), ['host', 'playlist']),
-            'search' => $search['params'],
+            'search' => $search['search'],
         ];
 
         if (is_json_request()) {
