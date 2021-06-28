@@ -262,10 +262,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
     Route::post('users/check-username-exists', 'UsersController@checkUsernameExists')->name('users.check-username-exists');
     Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');
-    Route::get('users/{user}/card', 'UsersController@card')->name('users.card');
 
-    // extras
     Route::group(['as' => 'users.', 'prefix' => 'users/{user}'], function () {
+        Route::get('card', 'UsersController@card')->name('card');
         Route::put('page', 'UsersController@updatePage')->name('page');
         Route::group(['namespace' => 'Users'], function () {
             Route::resource('multiplayer', 'MultiplayerController', ['only' => 'index']);
@@ -277,12 +276,12 @@ Route::group(['middleware' => ['web']], function () {
                 Route::get('/votes-received', 'ModdingHistoryController@votesReceived')->name('votes-received');
             });
         });
-    });
 
-    Route::get('users/{user}/kudosu', 'UsersController@kudosu')->name('users.kudosu');
-    Route::get('users/{user}/recent_activity', 'UsersController@recentActivity')->name('users.recent-activity');
-    Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.scores');
-    Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
+        Route::get('kudosu', 'UsersController@kudosu')->name('kudosu');
+        Route::get('recent_activity', 'UsersController@recentActivity')->name('recent-activity');
+        Route::get('scores/{type}', 'UsersController@scores')->name('scores');
+        Route::get('beatmapsets/{type}', 'UsersController@beatmapsets')->name('beatmapsets');
+    });
 
     Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
     Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
