@@ -27,6 +27,10 @@ return [
             'remove' => '',
             'used_up' => '',
         ],
+
+        'progress' => [
+            '_' => '',
+        ],
     ],
     'entry' => [
         '_' => 'vstup',

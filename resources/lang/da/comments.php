@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'slettet',
+    'deleted_by' => '',
+    'deleted_by_system' => '',
     'deleted_count' => ':count_delimited slettet kommentar|:count_delimited slettede kommentarer',
     'edited' => 'redigeret :timeago af :user',
     'pinned' => 'fastgjort',

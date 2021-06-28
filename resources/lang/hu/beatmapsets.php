@@ -53,9 +53,9 @@ return [
         'discussion' => 'Beszélgetés',
 
         'details' => [
-            'by_artist' => '',
+            'by_artist' => ':artist által',
             'favourite' => 'A beatmap szett kedvencek közé tétele',
-            'favourite_login' => '',
+            'favourite_login' => 'Jelentkezz be, hogy kedvencnek jelölt ezt beatmap-et',
             'logged-out' => 'Beatmap letöltéshez be kell jelentkezned!',
             'mapped_by' => 'mappolva :mapper által',
             'unfavourite' => 'Beatmap eltávolitása a kedvencek közül',
@@ -119,10 +119,10 @@ return [
             'nsfw' => 'Felnőtt tartalom',
             'points-of-failure' => 'Kibukási Alkalmak',
             'source' => 'Forrás',
-            'storyboard' => 'Ez a meatmap storyboard-ot tartalmaz',
+            'storyboard' => 'Ez a beatmap storyboard-ot tartalmaz',
             'success-rate' => 'Teljesítési arány',
             'tags' => 'Címkék',
-            'video' => '',
+            'video' => 'Ez a beatmap videót tartalmaz',
         ],
 
         'nsfw_warning' => [

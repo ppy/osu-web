@@ -59,7 +59,7 @@ return [
     ],
 
     'owner_editor' => [
-        'button' => 'Schwierigkeit Besitzer',
+        'button' => 'Schwierigkeitsstufenbesitzer',
         'reset_confirm' => 'Besitzer für diese Schwierigkeit zurücksetzen?',
         'user' => 'Besitzer',
         'version' => 'Schwierigkeit',

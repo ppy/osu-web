@@ -270,7 +270,7 @@ return [
         'leaderboard' => 'Z tabelą wyników',
         'loved' => 'Ulubione społeczności',
         'mine' => 'Moje beatmapy',
-        'pending' => 'Oczekujące i rozwijane',
+        'pending' => 'Oczekujące',
         'qualified' => 'Zakwalifikowane',
         'ranked' => 'Rankingowe',
     ],
