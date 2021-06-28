@@ -58,7 +58,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
     if (this.props.element.beatmapId) {
       const content = this.props.element.children[0].text as string;
-      const matches = content.match(BeatmapDiscussionHelper.TIMESTAMP_REGEX);
+      const matches = BeatmapDiscussionHelper.TIMESTAMP_REGEX.exec(content);
       let timestamp: string | undefined;
 
       // only extract timestamp if it occurs at the start of the issue

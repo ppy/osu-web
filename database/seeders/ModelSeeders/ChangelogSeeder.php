@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+namespace Database\Seeders\ModelSeeders;
+
 use App\Models\Build;
 use App\Models\BuildPropagationHistory;
 use App\Models\Changelog;

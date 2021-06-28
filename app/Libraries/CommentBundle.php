@@ -219,6 +219,10 @@ class CommentBundle
         $userIds = $comments->pluck('user_id')
             ->concat($comments->pluck('edited_by_id'));
 
+        if (priv_check('CommentModerate')->can()) {
+            $userIds = $userIds->concat($comments->pluck('deleted_by_id'));
+        }
+
         return User::whereIn('user_id', $userIds)->get();
     }
 }

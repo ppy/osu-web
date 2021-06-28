@@ -27,6 +27,10 @@ return [
             'remove' => 'Ta bort röstning',
             'used_up' => 'Du har använt alla dina röster',
         ],
+
+        'progress' => [
+            '_' => '',
+        ],
     ],
     'entry' => [
         '_' => 'bidrag',

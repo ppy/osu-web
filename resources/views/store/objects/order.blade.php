@@ -17,7 +17,7 @@
         @if (!$forShipping || $i->product->requiresShipping())
             <li class="order-line-items__item order-line-items__item--main">
                 <div class="order-line-items__data order-line-items__data--name">
-                    {{ $i->getDisplayName() }}
+                    {{ $i->getDisplayName(true) }}
 
                     @if (isset($itemErrors[$i->id]))
                         <ul class="order-line-items__errors">

@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'silinmiş',
+    'deleted_by' => '',
+    'deleted_by_system' => '',
     'deleted_count' => ':count_delimited tane silinmiş yorum|:count_delimited tane silinmiş yorum',
     'edited' => ':user tarafından düzenlendi: :timeago',
     'pinned' => 'sabitlenmiş',
