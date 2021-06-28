@@ -18,9 +18,6 @@ interface Props {
 }
 
 const endingSoonDiffMs = 60 * 60 * 1000; // 60 minutes.
-const hideImage = (e: React.SyntheticEvent<HTMLElement>) => {
-  e.currentTarget.style.display = 'none';
-};
 
 export default class Room extends React.Component<Props> {
   static contextType = UserMultiplayerHistoryContext;
@@ -97,7 +94,7 @@ export default class Room extends React.Component<Props> {
   private renderCover() {
     return (
       <div className='multiplayer-room__cover-container'>
-        <Img2x className='multiplayer-room__cover' onError={hideImage} src={this.background} />
+        <Img2x className='multiplayer-room__cover' hideOnError src={this.background} />
       </div>
 
     );
