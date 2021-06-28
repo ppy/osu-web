@@ -8,13 +8,14 @@ import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-con
 import { deletedUser } from 'models/user'
 import * as React from 'react'
 import { a, div, img } from 'react-dom-factories'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @eventId = "beatmapset-discussions-history-#{osu.uuid()}"
+    @eventId = "beatmapset-discussions-history-#{nextVal()}"
     @cache = {}
     @state = JSON.parse(props.container.dataset.discussionsState ? null)
     @restoredState = @state?

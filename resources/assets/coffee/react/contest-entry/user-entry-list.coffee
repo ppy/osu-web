@@ -5,13 +5,14 @@ import { Uploader } from './uploader'
 import { UserEntry } from './user-entry'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 export class UserEntryList extends React.Component
   constructor: (props) ->
     super props
 
-    @eventId = "contests-show-enter-#{osu.uuid()}"
+    @eventId = "contests-show-enter-#{nextVal()}"
     @state =
       contest: @props.contest
       userEntries: @props.userEntries

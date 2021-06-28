@@ -18,6 +18,7 @@ import { a, button, div, i, li, span, ul } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
 import * as BeatmapHelper from 'utils/beatmap-helper'
 import { pageChange } from 'utils/page-change'
+import { nextVal } from 'utils/seq'
 
 el = React.createElement
 
@@ -32,7 +33,7 @@ export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @eventId = "users-show-#{osu.uuid()}"
+    @eventId = "users-show-#{nextVal()}"
     @tabs = React.createRef()
     @pages = React.createRef()
     @state = JSON.parse(props.container.dataset.profilePageState ? null)

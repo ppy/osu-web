@@ -18,6 +18,7 @@ import Links from 'profile-page/links'
 import ProfileTournamentBanner from 'profile-tournament-banner'
 import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-factories'
 import { Spinner } from 'spinner'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 
@@ -25,7 +26,7 @@ export class Header extends React.Component
   constructor: (props) ->
     super props
 
-    @eventId = "users-show-header-#{osu.uuid()}"
+    @eventId = "users-show-header-#{nextVal()}"
     @state =
       editing: false
       coverUrl: props.user.cover.url

@@ -2,12 +2,13 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { button, span } from 'react-dom-factories'
+import { nextVal } from 'utils/seq'
 
 export class BaseEntryList extends React.Component
   constructor: (props) ->
     super props
 
-    @eventId = "contests-show-voting-#{osu.uuid()}"
+    @eventId = "contests-show-voting-#{nextVal()}"
     @state =
       waitingForResponse: false
       contest: @props.contest
