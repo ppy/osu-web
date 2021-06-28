@@ -269,6 +269,13 @@ Route::group(['middleware' => ['web']], function () {
         Route::put('page', 'UsersController@updatePage')->name('page');
         Route::group(['namespace' => 'Users'], function () {
             Route::resource('multiplayer', 'MultiplayerController', ['only' => 'index']);
+
+            Route::group(['as' => 'modding.', 'prefix' => 'modding'], function () {
+                Route::get('/', 'ModdingHistoryController@index')->name('index');
+                Route::get('/posts', 'ModdingHistoryController@posts')->name('posts');
+                Route::get('/votes-given', 'ModdingHistoryController@votesGiven')->name('votes-given');
+                Route::get('/votes-received', 'ModdingHistoryController@votesReceived')->name('votes-received');
+            });
         });
     });
 
@@ -278,14 +285,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
 
     Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
-
-    Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'namespace' => 'Users'], function () {
-        Route::get('/', 'ModdingHistoryController@index')->name('index');
-        Route::get('/posts', 'ModdingHistoryController@posts')->name('posts');
-        Route::get('/votes-given', 'ModdingHistoryController@votesGiven')->name('votes-given');
-        Route::get('/votes-received', 'ModdingHistoryController@votesReceived')->name('votes-received');
-    });
-
     Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
     Route::resource('users', 'UsersController', ['only' => 'store']);
 
