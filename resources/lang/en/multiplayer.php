@@ -8,7 +8,8 @@ return [
 
     'room' => [
         'hosted_by' => 'hosted by :user',
-        'map_count' => ':count maps',
+        'map_count' => ':count_delimited map|:count_delimited maps',
+        'player_count' => ':count_delimited player|:count_delimited players',
         'time_left' => ':time left',
 
         'status' => [

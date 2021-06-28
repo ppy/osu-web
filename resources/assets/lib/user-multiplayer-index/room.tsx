@@ -126,7 +126,7 @@ export default class Room extends React.Component<Props> {
   private renderParticipants() {
     return (
       <div className='multiplayer-room__participants'>
-        {this.props.room.participant_count} players
+        {osu.transChoice('multiplayer.room.player_count', this.props.room.participant_count)}
       </div>
     );
   }
