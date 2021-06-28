@@ -9,7 +9,7 @@
 <div class="simple-form">
     <label class="simple-form__row">
         <div class="simple-form__label">
-            {{ trans('forum.topics.create.poll.title') }}
+            {{ osu_trans('forum.topics.create.poll.title') }}
         </div>
         <input
             class="simple-form__input"
@@ -20,8 +20,8 @@
 
     <label class="simple-form__row">
         <div class="simple-form__label">
-            {{ trans('forum.topics.create.poll.options') }}
-            <p class="simple-form__info">{{ trans('forum.topics.create.poll.options_info') }}</p>
+            {{ osu_trans('forum.topics.create.poll.options') }}
+            <p class="simple-form__info">{{ osu_trans('forum.topics.create.poll.options_info') }}</p>
         </div>
         <textarea
             class="simple-form__input simple-form__input--full-height"
@@ -32,8 +32,8 @@
 
     <label class="simple-form__row simple-form__row--half">
         <div class="simple-form__label">
-            {{ trans('forum.topics.create.poll.max_options') }}
-            <p class="simple-form__info">{{ trans('forum.topics.create.poll.max_options_info') }}</p>
+            {{ osu_trans('forum.topics.create.poll.max_options') }}
+            <p class="simple-form__info">{{ osu_trans('forum.topics.create.poll.max_options_info') }}</p>
         </div>
         <input
             class="simple-form__input simple-form__input--small"
@@ -44,8 +44,8 @@
 
     <label class="simple-form__row simple-form__row--half">
         <div class="simple-form__label">
-            {{ trans('forum.topics.create.poll.length') }}
-            <p class="simple-form__info">{{ trans('forum.topics.create.poll.length_info') }}</p>
+            {{ osu_trans('forum.topics.create.poll.length') }}
+            <p class="simple-form__info">{{ osu_trans('forum.topics.create.poll.length_info') }}</p>
         </div>
         <div class="simple-form__input-group">
             <input
@@ -54,7 +54,7 @@
                 value="{{ optional($topic)->poll_length > 0 ? $topic->poll_length_days : '' }}"
             />
             <span class="simple-form__input-group-label simple-form__input-group-label--suffix">
-                {{ trans('forum.topics.create.poll.length_days_suffix') }}
+                {{ osu_trans('forum.topics.create.poll.length_days_suffix') }}
             </span>
         </div>
     </label>
@@ -66,8 +66,8 @@
                 'name' => 'forum_topic_poll[vote_change]',
             ])
 
-            {{ trans('forum.topics.create.poll.vote_change') }}
-            <span class="simple-form__info">{{ trans('forum.topics.create.poll.vote_change_info') }}</span>
+            {{ osu_trans('forum.topics.create.poll.vote_change') }}
+            <span class="simple-form__info">{{ osu_trans('forum.topics.create.poll.vote_change_info') }}</span>
         </div>
     </label>
 
@@ -78,8 +78,8 @@
                 'name' => 'forum_topic_poll[hide_results]',
             ])
 
-            {{ trans('forum.topics.create.poll.hide_results') }}
-            <span class="simple-form__info">{{ trans('forum.topics.create.poll.hide_results_info') }}</span>
+            {{ osu_trans('forum.topics.create.poll.hide_results') }}
+            <span class="simple-form__info">{{ osu_trans('forum.topics.create.poll.hide_results_info') }}</span>
         </div>
     </label>
 </div>

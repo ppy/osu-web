@@ -112,7 +112,7 @@ class UserNotFound extends User
     {
         static $user;
         if (!isset($user)) {
-            $user = new static(['user_id' => -1, 'username' => trans('supporter_tag.user_search.not_found')]);
+            $user = new static(['user_id' => -1, 'username' => osu_trans('supporter_tag.user_search.not_found')]);
         }
 
         return $user;

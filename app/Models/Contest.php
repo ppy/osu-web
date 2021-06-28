@@ -150,19 +150,19 @@ class Contest extends Model
         switch ($this->state()) {
             case 'preparing':
                 $date = $this->entry_starts_at === null
-                    ? trans('contest.dates.starts.soon')
+                    ? osu_trans('contest.dates.starts.soon')
                     : i18n_date($this->entry_starts_at);
 
-                return trans('contest.dates.starts._', ['date' => $date]);
+                return osu_trans('contest.dates.starts._', ['date' => $date]);
             case 'entry':
                 return i18n_date($this->entry_starts_at).' - '.i18n_date($this->entry_ends_at);
             case 'voting':
                 return i18n_date($this->voting_starts_at).' - '.i18n_date($this->voting_ends_at);
             default:
                 if ($this->voting_ends_at === null) {
-                    return trans('contest.dates.ended_no_date');
+                    return osu_trans('contest.dates.ended_no_date');
                 } else {
-                    return trans('contest.dates.ended', ['date' => i18n_date($this->voting_ends_at)]);
+                    return osu_trans('contest.dates.ended', ['date' => i18n_date($this->voting_ends_at)]);
                 }
         }
     }

@@ -5,7 +5,7 @@
 @if (optional(Auth::user())->isAdmin())
     @php
         $extraFooterLinks = [
-            trans('common.buttons.admin') => route('admin.beatmapsets.show', $beatmapset->getKey()),
+            osu_trans('common.buttons.admin') => route('admin.beatmapsets.show', $beatmapset->getKey()),
         ];
     @endphp
 @endif

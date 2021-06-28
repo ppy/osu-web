@@ -101,7 +101,7 @@ class Changelog extends Model
             'user' => $user,
             'user_id' => $user->user_id,
             'prefix' => '*',
-            'message' => trans('changelog.generic'),
+            'message' => osu_trans('changelog.generic'),
         ]);
 
         return $change;
