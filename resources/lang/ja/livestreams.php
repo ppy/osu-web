@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'promote' => [
+        'pin' => '',
+        'unpin' => "",
+    ],
+
     'top-headers' => [
         'headline' => 'ライブ配信',
         'description' => 'twitch.tvからのデータに基づいて５分毎に表示しています。ライブ配信をするとリストに表示されるようになります。配信方法については:link を参照してください。',

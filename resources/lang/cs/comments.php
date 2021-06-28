@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'odstraněno',
+    'deleted_by' => '',
+    'deleted_by_system' => '',
     'deleted_count' => ':count_delimited smazaný komentář
 :count_delimited smazané komentáře',
     'edited' => 'upraveno před :timeago uživatelem :user',

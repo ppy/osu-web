@@ -27,6 +27,10 @@ return [
             'remove' => 'Retrage votul',
             'used_up' => 'Ți-ai folosit toate voturile',
         ],
+
+        'progress' => [
+            '_' => '',
+        ],
     ],
     'entry' => [
         '_' => 'intrare',
