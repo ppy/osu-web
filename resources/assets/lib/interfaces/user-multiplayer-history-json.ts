@@ -8,9 +8,6 @@ import RoomJson from 'interfaces/room-json';
 export default interface UserMultiplayerHistoryJson {
   beatmaps: BeatmapJson[];
   beatmapsets: BeatmapsetJson[];
-  cursor: {
-    ends_at: string;
-    id: number;
-  } | null;
+  cursor: unknown;
   rooms: (RoomJson & Required<Pick<RoomJson, 'playlist'>>)[];
 }

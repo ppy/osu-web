@@ -11,10 +11,7 @@ import * as React from 'react';
 interface Props {
   beatmaps: Map<number, BeatmapJson>;
   beatmapsets: Map<number, BeatmapsetJson>;
-  cursor: {
-    ends_at: string;
-    id: number;
-  } | null;
+  cursor: unknown;
   rooms: (RoomJson & Required<Pick<RoomJson, 'playlist'>>)[];
 }
 
