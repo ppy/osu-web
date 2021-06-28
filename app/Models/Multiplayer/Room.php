@@ -44,7 +44,7 @@ class Room extends Model
         ],
     ];
 
-    const DEFAULT_SORT = 'ended';
+    const DEFAULT_SORT = 'created';
 
     protected $table = 'multiplayer_rooms';
     protected $dates = ['starts_at', 'ends_at'];
@@ -82,9 +82,8 @@ class Room extends Model
                 $query->active();
         }
 
-        $cursorHelper = static::makeDbCursorHelper($sort ?? 'created');
-        $cursor = get_arr($params['cursor'] ?? null);
-        $query->cursorSort($cursorHelper, $cursor);
+        $cursorHelper = static::makeDbCursorHelper($sort);
+        $query->cursorSort($cursorHelper, get_arr($params['cursor'] ?? null));
 
         $limit = clamp(get_int($params['limit'] ?? 250), 1, 250);
         $query->limit($limit);
