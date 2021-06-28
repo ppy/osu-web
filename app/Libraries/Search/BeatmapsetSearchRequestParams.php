@@ -227,7 +227,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             'dr' => 'drain',
             'keys' => 'keys',
             'length' => 'hitLength',
-            'od' => 'od',
+            'od' => 'accuracy',
             'ranked' => 'ranked',
             'stars' => 'difficultyRating',
             'status' => 'statusRange',
