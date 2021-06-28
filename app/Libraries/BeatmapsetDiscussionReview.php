@@ -24,7 +24,7 @@ class BeatmapsetDiscussionReview
     private int $priorOpenProblemCount;
     private ?BeatmapDiscussion $problemDiscussion = null;
 
-    public function __construct(private Beatmapset $beatmapset, private User $user)
+    private function __construct(private Beatmapset $beatmapset, private User $user)
     {
     }
 
