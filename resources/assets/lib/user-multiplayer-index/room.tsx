@@ -65,21 +65,19 @@ export default class Room extends React.Component<Props> {
       <div className='multiplayer-room'>
         {this.renderCover()}
         <div className='multiplayer-room__content'>
-          <div className='multiplayer-room__ends'>
-            <div className='multiplayer-room__badge-container'>
-              <div className={classWithModifiers('multiplayer-room__badge', [this.status])}>{osu.trans(`multiplayer.room.status.${this.status}`)}</div>
-              <time className='js-tooltip-time' title={this.props.room.ends_at}>
-                {this.status === 'ended'
-                  ? endsAt.fromNow()
-                  : osu.trans('multiplayer.room.time_left', { time: endsAt.fromNow(true) })}
-              </time>
-            </div>
+          <div className='multiplayer-room__badge-container'>
+            <div className={classWithModifiers('multiplayer-room__badge', [this.status])}>{osu.trans(`multiplayer.room.status.${this.status}`)}</div>
+            <time className='js-tooltip-time' title={this.props.room.ends_at}>
+              {this.status === 'ended'
+                ? endsAt.fromNow()
+                : osu.trans('multiplayer.room.time_left', { time: endsAt.fromNow(true) })}
+            </time>
           </div>
           <div className='multiplayer-room__details'>
             <div className='multiplayer-room__name'>{this.props.room.name}</div>
             {this.renderMembers()}
           </div>
-          <div className='multiplayer-room__badge-container'>
+          <div className='multiplayer-room__badge-container multiplayer-room__badge-container--bottom'>
             <div className={classWithModifiers('multiplayer-room__badge', ['map-count'])}>{osu.transChoice('multiplayer.room.map_count', this.props.room.playlist.length)}</div>
             <div
               className='multiplayer-room__difficulty'
