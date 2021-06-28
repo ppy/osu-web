@@ -7,6 +7,7 @@ import { Portal } from 'portal';
 import * as React from 'react';
 import { Editor as SlateEditor, Element as SlateElement, Node as SlateNode, Point, Text as SlateText, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
+import { nextVal } from 'utils/seq';
 import { SlateContext } from './slate-context';
 
 interface Props {
@@ -31,14 +32,14 @@ export class EditorInsertionMenu extends React.Component<Props> {
   throttledMenuMouseEnter = _.throttle(this.menuMouseEnter.bind(this), 10);
   throttledMenuMouseExit = _.throttle(this.menuMouseLeave.bind(this), 10);
   throttledScroll = _.throttle(this.forceHideMenu.bind(this), 10);
-  private readonly uuid: string = osu.uuid();
+  private readonly eventId = `editor-insertion-menu-${nextVal()}`;
 
   componentDidMount() {
     if (this.insertRef.current) {
-      $(this.insertRef.current).on(`mouseenter.${this.uuid}`, this.throttledMenuMouseEnter);
-      $(this.insertRef.current).on(`mouseleave.${this.uuid}`, this.throttledMenuMouseExit);
+      $(this.insertRef.current).on(`mouseenter.${this.eventId}`, this.throttledMenuMouseEnter);
+      $(this.insertRef.current).on(`mouseleave.${this.eventId}`, this.throttledMenuMouseExit);
     }
-    $(window).on(`scroll.${this.uuid}`, this.throttledScroll);
+    $(window).on(`scroll.${this.eventId}`, this.throttledScroll);
   }
 
   // updates cascade from our parent (slate editor), i.e. `componentDidUpdate` gets called on editor changes (typing/selection changes/etc)
@@ -47,12 +48,12 @@ export class EditorInsertionMenu extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    $(window).off(`.${this.uuid}`);
+    $(window).off(`.${this.eventId}`);
     if (this.scrollContainer) {
-      $(this.scrollContainer).off(`.${this.uuid}`);
+      $(this.scrollContainer).off(`.${this.eventId}`);
     }
     if (this.insertRef.current) {
-      $(this.insertRef.current).off(`.${this.uuid}`);
+      $(this.insertRef.current).off(`.${this.eventId}`);
     }
   }
 
@@ -236,12 +237,12 @@ export class EditorInsertionMenu extends React.Component<Props> {
 
   setScrollContainer(container: HTMLElement) {
     if (this.scrollContainer) {
-      $(this.scrollContainer).off(`.${this.uuid}`);
+      $(this.scrollContainer).off(`.${this.eventId}`);
     }
     this.scrollContainer = container;
-    $(this.scrollContainer).on(`mousemove.${this.uuid}`, this.throttledContainerMouseMove);
-    $(this.scrollContainer).on(`mouseleave.${this.uuid}`, this.throttledContainerMouseExit);
-    $(this.scrollContainer).on(`scroll.${this.uuid}`, this.throttledScroll);
+    $(this.scrollContainer).on(`mousemove.${this.eventId}`, this.throttledContainerMouseMove);
+    $(this.scrollContainer).on(`mouseleave.${this.eventId}`, this.throttledContainerMouseExit);
+    $(this.scrollContainer).on(`scroll.${this.eventId}`, this.throttledScroll);
   }
 
   showMenu() {

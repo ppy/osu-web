@@ -8,6 +8,7 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import { ViewMode } from 'user-card';
 import UserCardTypeContext from 'user-card-type-context';
+import { nextVal } from 'utils/seq';
 
 interface Props {
   mode: ViewMode;
@@ -25,7 +26,7 @@ export default class UserCardBrick extends React.PureComponent<Props> {
 
   declare context: React.ContextType<typeof UserCardTypeContext>;
 
-  readonly eventId = `user-card-brick-${osu.uuid()}`;
+  private readonly eventId = `user-card-brick-${nextVal()}`;
 
   componentDidMount() {
     $.subscribe(`friendButton:refresh.${this.eventId}`, this.refresh);

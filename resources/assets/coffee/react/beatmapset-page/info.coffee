@@ -2,17 +2,18 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import BbcodeEditor from 'bbcode-editor'
+import MetadataEditor from 'beatmapsets-show/metadata-editor'
 import { Modal } from 'modal'
 import * as React from 'react'
 import { a, button, div, h3, span, i, textarea } from 'react-dom-factories'
-import MetadataEditor from 'beatmapsets-show/metadata-editor'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 export class Info extends React.Component
   constructor: (props) ->
     super props
 
-    @eventId = "beatmapsets-show-info-#{osu.uuid()}"
+    @eventId = "beatmapsets-show-info-#{nextVal()}"
     @overlayRef = React.createRef()
     @chartAreaRef = React.createRef()
 

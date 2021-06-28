@@ -18,6 +18,7 @@ import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
 import { pageChange } from 'utils/page-change'
+import { nextVal } from 'utils/seq'
 
 el = React.createElement
 
@@ -32,7 +33,7 @@ export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @eventId = "users-modding-history-index-#{osu.uuid()}"
+    @eventId = "users-modding-history-index-#{nextVal()}"
     @cache = {}
     @tabs = React.createRef()
     @pages = React.createRef()

@@ -10,6 +10,7 @@ import { disposeOnUnmount, observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { SearchContent } from 'react/beatmaps/search-content';
+import { nextVal } from 'utils/seq';
 import { SearchStatus } from './beatmapset-search-controller';
 
 const controller = core.beatmapsetSearchController;
@@ -23,7 +24,7 @@ export class Main extends React.Component<Props> {
   readonly backToTop = React.createRef<BackToTop>();
   readonly backToTopAnchor = React.createRef<HTMLElement>();
 
-  private readonly eventId = `beatmapsets-index-${osu.uuid()}`;
+  private readonly eventId = `beatmapsets-index-${nextVal()}`;
 
   constructor(props: Props) {
     super(props);

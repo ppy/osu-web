@@ -6,13 +6,14 @@ import { CoverUploader } from './cover-uploader'
 import * as React from 'react'
 import { div, p } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 export class CoverSelector extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @eventId = "users-show-cover-selector-#{osu.uuid()}"
+    @eventId = "users-show-cover-selector-#{nextVal()}"
     @dropzoneRef = React.createRef()
     @uploaderRef = React.createRef()
 

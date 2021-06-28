@@ -4,13 +4,14 @@
 import { BeatmapBasicStats } from 'beatmap-basic-stats'
 import * as React from 'react'
 import { button, div, span, table, tbody, td, th, tr, i } from 'react-dom-factories'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 export class Stats extends React.Component
   constructor: (props) ->
     super props
 
-    @eventId = "beatmapsets-show-stats-#{osu.uuid()}"
+    @eventId = "beatmapsets-show-stats-#{nextVal()}"
 
 
   componentDidMount: =>

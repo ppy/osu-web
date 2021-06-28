@@ -4,6 +4,7 @@
 import { runInAction } from 'mobx'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
+import { nextVal } from 'utils/seq'
 
 uiState = core.dataStore.uiState
 
@@ -26,7 +27,7 @@ export class CommentsManager extends React.PureComponent
       state = osu.parseJson @jsonStorageId()
       uiState.importCommentsUIState(state) if state?
 
-    @id = "comments-#{osu.uuid()}"
+    @id = "comments-#{nextVal()}"
 
 
   componentDidMount: =>

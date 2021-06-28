@@ -2,13 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
+import { nextVal } from 'utils/seq';
 
 interface Props {
   pswp: any;
 }
 
 export default class GalleryContestVoteButton extends React.PureComponent<Props, any> {
-  private eventId = `gallery-contest-${osu.uuid()}`;
+  private eventId = `gallery-contest-${nextVal()}`;
   private mainRef = React.createRef<HTMLButtonElement>();
 
   constructor(props: Props) {

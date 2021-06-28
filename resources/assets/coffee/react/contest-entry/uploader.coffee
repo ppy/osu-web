@@ -4,13 +4,14 @@
 import * as React from 'react'
 import { div, form, input, label, span } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 export class Uploader extends React.Component
   constructor: (props) ->
     super props
 
-    @eventId = "contests-show-enter-uploader-#{osu.uuid()}"
+    @eventId = "contests-show-enter-uploader-#{nextVal()}"
     @dropzoneRef = React.createRef()
     @uploadContainerRef = React.createRef()
 

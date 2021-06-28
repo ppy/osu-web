@@ -15,6 +15,7 @@ import * as React from 'react'
 import { div } from 'react-dom-factories'
 import * as BeatmapHelper from 'utils/beatmap-helper'
 import * as BeatmapsetPageHash from 'utils/beatmapset-page-hash'
+import { nextVal } from 'utils/seq'
 
 el = React.createElement
 
@@ -22,7 +23,7 @@ export class Main extends React.Component
   constructor: (props) ->
     super props
 
-    @eventId = "beatmapsets-show-#{osu.uuid()}"
+    @eventId = "beatmapsets-show-#{nextVal()}"
     @scoreboardXhr = null
     @favouriteXhr = null
 

@@ -15,6 +15,7 @@ import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-con
 import { div } from 'react-dom-factories'
 import NewReview from 'beatmap-discussions/new-review'
 import * as BeatmapHelper from 'utils/beatmap-helper'
+import { nextVal } from 'utils/seq'
 
 el = React.createElement
 
@@ -22,7 +23,7 @@ export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @eventId = "beatmap-discussions-#{osu.uuid()}"
+    @eventId = "beatmap-discussions-#{nextVal()}"
     @modeSwitcherRef = React.createRef()
     @newDiscussionRef = React.createRef()
 
