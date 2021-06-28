@@ -94,6 +94,7 @@ export default class Room extends React.Component<Props> {
   private renderCover() {
     return (
       <div className='multiplayer-room__cover-container'>
+        <div className='multiplayer-room__cover multiplayer-room__cover--default' />
         <Img2x className='multiplayer-room__cover' hideOnError src={this.background} />
       </div>
 
