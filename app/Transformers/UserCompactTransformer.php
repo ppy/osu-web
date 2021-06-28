@@ -32,6 +32,7 @@ class UserCompactTransformer extends TransformerAbstract
         'badges',
         'beatmap_playcounts_count',
         'blocks',
+        'comments_count',
         'country',
         'cover',
         'favourite_beatmapset_count',
@@ -154,6 +155,11 @@ class UserCompactTransformer extends TransformerAbstract
             $user->relations()->blocks()->get(),
             new UserRelationTransformer()
         );
+    }
+
+    public function includeCommentsCount(User $user)
+    {
+        return $this->primitive($user->comments()->withoutTrashed()->count());
     }
 
     public function includeCountry(User $user)
