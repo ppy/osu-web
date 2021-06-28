@@ -86,7 +86,7 @@ export default class Room extends React.Component<Props> {
               }}
             >
               <DifficultyBadge rating={this.minDifficulty} />
-              <DifficultyBadge rating={this.maxDifficulty} />
+              {this.minDifficulty !== this.maxDifficulty && <DifficultyBadge rating={this.maxDifficulty} />}
             </div>
           </div>
         </div>
