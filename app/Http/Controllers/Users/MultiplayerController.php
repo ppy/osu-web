@@ -30,7 +30,7 @@ class MultiplayerController extends Controller
             'sort' => 'ended',
         ]);
 
-        $rooms = $search['query']->with(['host', 'playlist.beatmap.beatmapset'])->get();
+        [$rooms, $hasMore] = $search['query']->with(['host', 'playlist.beatmap.beatmapset'])->getWithHasMore();
         $beatmaps = $rooms->pluck('playlist')->flatten(1)->pluck('beatmap')->unique()->values();
         $beatmapsets = $beatmaps->pluck('beatmapset')->unique()->values();
 
@@ -52,7 +52,7 @@ class MultiplayerController extends Controller
         $json = [
             'beatmaps' => json_collection($beatmaps, new BeatmapCompactTransformer()),
             'beatmapsets' => json_collection($beatmapsets, new BeatmapsetCompactTransformer()),
-            'cursor' => $search['cursorHelper']->next($rooms),
+            'cursor' => $hasMore ? $search['cursorHelper']->next($rooms) : null,
             'rooms' => json_collection($rooms, new RoomTransformer(), ['host', 'playlist']),
             'search' => $search['params'],
         ];
