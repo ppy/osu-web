@@ -11,6 +11,7 @@ use App\Libraries\ClientCheck;
 use App\Libraries\Multiplayer\Mod;
 use App\Models\Beatmap;
 use App\Models\Solo\Score;
+use App\Models\Solo\ScoreToken;
 use PDOException;
 
 class ScoresController extends BaseController
@@ -25,36 +26,13 @@ class ScoresController extends BaseController
         $this->middleware('auth');
     }
 
-    public function store($beatmapId)
+    public function store($beatmapId, $tokenId)
     {
-        $beatmap = static::getBeatmapOrFail($beatmapId);
         $user = auth()->user();
-        $params = request()->all();
-
-        ClientCheck::assert($user, $params);
-
-        $params = get_params($params, null, ['ruleset_id:int']);
-
-        try {
-            $score = Score::create(array_merge($params, [
-                'user_id' => $user->getKey(),
-                'beatmap_id' => $beatmap->getKey(),
-                'started_at' => now(),
-            ]));
-        } catch (PDOException $e) {
-            // TODO: move this to be a validation inside Score model
-            throw new InvariantException('failed updating score');
-        }
-
-        return json_item($score, 'Solo\Score');
-    }
-
-    public function update($beatmapId, $id)
-    {
-        static::getBeatmapOrFail($beatmapId);
-
-        $user = auth()->user();
-        $score = Score::where('user_id', $user->getKey())->findOrFail($id);
+        $scoreToken = ScoreToken::where([
+            'beatmap_id' => $beatmapId,
+            'user_id' => $user->getKey(),
+        ])->findOrFail($tokenId);
 
         $params = get_params(request()->all(), null, [
             'accuracy:float',
@@ -65,14 +43,46 @@ class ScoresController extends BaseController
             'statistics:array',
             'total_score:int',
         ]);
-        $params['ended_at'] = now();
-        $params['mods'] = Mod::parseInputArray($params['mods'] ?? [], $score->ruleset_id);
 
-        $score->getConnection()->transaction(function () use ($params, $score) {
+        $params = array_merge($params, [
+            'beatmap_id' => $scoreToken->beatmap_id,
+            'ended_at' => now(),
+            'mods' => Mod::parseInputArray($params['mods'] ?? [], $scoreToken->ruleset_id),
+            'ruleset_id' => $scoreToken->ruleset_id,
+            'started_at' => $scoreToken->created_at,
+            'user_id' => $scoreToken->user_id,
+        ]);
+
+        $score = new Score();
+
+        $score->getConnection()->transaction(function () use ($params, $score, $scoreToken) {
             $score->complete($params);
             $score->createLegacyEntry();
+            $scoreToken->fill(['score_id' => $score->getKey()])->saveOrExplode();
         });
 
         return json_item($score, 'Solo\Score');
+    }
+
+    public function storeToken($beatmapId)
+    {
+        $beatmap = static::getBeatmapOrFail($beatmapId);
+        $user = auth()->user();
+        $params = request()->all();
+
+        ClientCheck::assert($user, $params);
+
+        try {
+            $scoreToken = ScoreToken::create([
+                'user_id' => $user->getKey(),
+                'beatmap_id' => $beatmap->getKey(),
+                'ruleset_id' => get_int($params['ruleset_id'] ?? null),
+            ]);
+        } catch (PDOException $e) {
+            // TODO: move this to be a validation inside Score model
+            throw new InvariantException('failed creating score token');
+        }
+
+        return json_item($scoreToken, 'Solo\ScoreToken');
     }
 }
