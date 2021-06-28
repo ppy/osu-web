@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => '不如馬上玩點 osu! 吧？',
     'require_login' => '登入以繼續。',
     'require_verification' => '需要驗證帳戶!',
     'restricted' => "帳戶處於限制模式，無法進行該操作。",
@@ -20,7 +20,7 @@ return [
             'exhausted' => '你今天的提名次數已達上限，請明天再試。',
             'incorrect_state' => '執行操作時發生錯誤，請重新載入頁面。',
             'owner' => "不能提名自己的圖譜。",
-            'set_metadata' => '',
+            'set_metadata' => '您必須在提名之前先設定類型和語言。',
         ],
         'resolve' => [
             'not_owner' => '只有樓主和圖譜所有者才能標記為已解決。',
@@ -108,7 +108,7 @@ return [
             ],
 
             'store' => [
-                'play_more' => '在发帖之前先玩上两局吧！如果你在游戏时遇到问题，请在 Help and Support 版块发帖求助。',
+                'play_more' => '在論壇發文之前，請先玩幾場遊戲！如果您在玩遊戲時遇到問題，請在 Help and Support 板塊中發文。',
                 'too_many_help_posts' => "您需要再玩久一點才可以發布更多貼文，如果您仍然在遊戲中遇到問題，請聯繫support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],

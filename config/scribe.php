@@ -293,7 +293,7 @@ INTRO
      * - 'logo' => 'img/logo.png' // for `laravel` type
      *
      */
-    'logo' => false,
+    'logo' => 'https://osu.ppy.sh/images/layout/osu-logo-white.svg',
 
     /*
      * The router your API is using (Laravel or Dingo).

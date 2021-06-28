@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'promote' => [
+        'pin' => '',
+        'unpin' => "",
+    ],
+
     'top-headers' => [
         'headline' => 'Прямі трансляції',
         'description' => 'Дані синхронізуються з twitch.tv кожні п\'ять хвилин. Не соромтеся почати трансляцію і показатися в цьому списку! Для додаткової інформації про налаштування та початок трансляції, загляньте в вікі сторінку.',

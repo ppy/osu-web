@@ -27,6 +27,10 @@ return [
             'remove' => 'Hủy phiếu',
             'used_up' => 'Bạn đã dùng tất cả phiếu bầu',
         ],
+
+        'progress' => [
+            '_' => '',
+        ],
     ],
     'entry' => [
         '_' => 'entry',

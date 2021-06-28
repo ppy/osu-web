@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => 'kudosu megtagadása',
         'edit' => 'szerkesztés',
         'edited' => 'Utoljára frissítve :editor által, :update_time-kor.',
-        'guest' => '',
+        'guest' => 'Vendég nehézség :user által',
         'kudosu_denied' => 'Kudosu szerzéstől megtagadva.',
         'message_placeholder_deleted_beatmap' => 'Ez a nehézség törölve lett, ezért a beszélgetés nem lehetséges.',
         'message_placeholder_locked' => 'A beatmap megbeszélése meg lett tiltva.',
@@ -221,7 +221,7 @@ return [
             'not-found' => 'nincs találat',
             'not-found-quote' => '... nope, semmit sem találtam.',
             'filters' => [
-                'extra' => 'extra',
+                'extra' => 'Extra',
                 'general' => 'Általános',
                 'genre' => 'Műfaj',
                 'language' => 'Nyelv',
@@ -267,7 +267,7 @@ return [
         'approved' => 'Jóváhagyott',
         'favourites' => 'Kedvencek',
         'graveyard' => 'Temető',
-        'leaderboard' => 'Van Ranglistája',
+        'leaderboard' => 'Ranglistás',
         'loved' => 'Loved',
         'mine' => 'Saját mapjaim',
         'pending' => 'Függőben lévő & WIP',
@@ -336,7 +336,7 @@ return [
 
     'nsfw' => [
         'exclude' => 'Elrejtés',
-        'include' => 'Mutasson',
+        'include' => 'Mutatás',
     ],
 
     'played' => [

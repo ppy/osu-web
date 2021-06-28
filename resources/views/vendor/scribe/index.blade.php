@@ -26,6 +26,10 @@
         padding-top: 5px;
         padding-bottom: 5px;
     }
+    .logo {
+        max-width: 70%;
+        margin: auto;
+    }
 </style>
 
 @if($isInteractive)

@@ -210,7 +210,7 @@ return [
                     'title' => 'Oczekujące beatmapy',
                 ],
                 'ranked' => [
-                    'title' => 'Rankingowe i zatwierdzone beatmapy',
+                    'title' => 'Rankingowe beatmapy',
                 ],
             ],
             'discussions' => [
@@ -405,7 +405,7 @@ return [
             'graveyard_beatmapset_count' => 'Porzucone beatmapy',
             'loved_beatmapset_count' => 'Ulubione beatmapy społeczności',
             'pending_beatmapset_count' => 'Oczekujące beatmapy',
-            'ranked_beatmapset_count' => 'Rankingowe i zatwierdzone beatmapy',
+            'ranked_beatmapset_count' => 'Rankingowe beatmapy',
         ],
     ],
 

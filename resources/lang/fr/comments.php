@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'supprimé',
+    'deleted_by' => '',
+    'deleted_by_system' => '',
     'deleted_count' => ':count_delimited commentaire supprimé|:count_delimited commentaires supprimés',
     'edited' => 'édité par :user il y a :timeago',
     'pinned' => 'épinglé',

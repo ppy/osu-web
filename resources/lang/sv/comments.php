@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'raderad',
+    'deleted_by' => '',
+    'deleted_by_system' => '',
     'deleted_count' => ':count_delimited raderad kommentar|:count_delimited raderade kommentarer',
     'edited' => 'redigerad :timeago av :user',
     'pinned' => 'fäst',
