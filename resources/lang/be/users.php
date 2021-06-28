@@ -210,7 +210,7 @@ return [
                     'title' => 'Чаканыя бітмапы',
                 ],
                 'ranked' => [
-                    'title' => 'Рэйтынгавыя і ўсхваліныя бітмапы',
+                    'title' => 'Ранкаваныя бітмапы',
                 ],
             ],
             'discussions' => [
@@ -404,8 +404,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'Закінутыя бітмапы',
             'loved_beatmapset_count' => 'Любімыя бітмапы',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Бітмапы у чаканні',
+            'ranked_beatmapset_count' => 'Ранкаваныя бітмапы',
         ],
     ],
 

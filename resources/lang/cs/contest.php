@@ -27,6 +27,10 @@ return [
             'remove' => 'Odebrat hlas',
             'used_up' => 'Využil jsi všechny svoje hlasy',
         ],
+
+        'progress' => [
+            '_' => '',
+        ],
     ],
     'entry' => [
         '_' => 'vstup',

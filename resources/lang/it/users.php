@@ -207,10 +207,10 @@ return [
                     'title' => 'Beatmap Amate',
                 ],
                 'pending' => [
-                    'title' => 'Beatmap in Attesa',
+                    'title' => 'Beatmap In Attesa',
                 ],
                 'ranked' => [
-                    'title' => 'Beatmap Classificate & Approvate',
+                    'title' => 'Beatmap Classificate',
                 ],
             ],
             'discussions' => [
@@ -232,7 +232,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'volte giocata',
-                    'title' => 'Beatmap più Giocate',
+                    'title' => 'Beatmap Più Giocate',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisione: :percentage',
@@ -404,8 +404,8 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmap Abbandonate',
             'loved_beatmapset_count' => 'Beatmap Amate',
-            'pending_beatmapset_count' => 'Beatmap in Attesa',
-            'ranked_beatmapset_count' => 'Beatmap Classificate & Approvate',
+            'pending_beatmapset_count' => 'Beatmap In Attesa',
+            'ranked_beatmapset_count' => 'Beatmap Classificate',
         ],
     ],
 
