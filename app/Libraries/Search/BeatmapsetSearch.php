@@ -257,6 +257,7 @@ class BeatmapsetSearch extends RecordSearch
     private function addSimpleFilters(BoolQuery $query, BoolQuery $nested): void
     {
         static $filters = [
+            'accuracy' => ['field' => 'beatmaps.diff_overall', 'type' => 'range'],
             'ar' => ['field' => 'beatmaps.diff_approach', 'type' => 'range'],
             'bpm' => ['field' => 'bpm', 'type' => 'range'],
             'created' => ['field' => 'submit_date', 'type' => 'range'],
