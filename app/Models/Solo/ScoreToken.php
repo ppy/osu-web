@@ -11,7 +11,9 @@ use App\Models\Model;
  * @property int $beatmap_id
  * @property \Carbon\Carbon|null $created_at
  * @property int $id
- * @property \Carbon\Carbon $started_at
+ * @property int $ruleset_id
+ * @property \App\Models\Solo\Score $score
+ * @property int $score_id
  * @property \Carbon\Carbon|null $updated_at
  * @property int $user_id
  */
