@@ -1610,7 +1610,7 @@ class OsuAuthorize
     public function checkIsSpecialScope(?User $user): string
     {
         if ($user === null) {
-            return 'unauthorzied';
+            return 'unauthorized';
         }
 
         $token = $user->token();
