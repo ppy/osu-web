@@ -24,6 +24,14 @@ use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
+    const SINGLETONS = [
+        'OsuAuthorize' => OsuAuthorize::class,
+        'assets-manifest' => AssetsManifest::class,
+        'chat-filters' => ChatFilters::class,
+        'groups' => Groups::class,
+        'route-section' => RouteSection::class,
+    ];
+
     /**
      * Bootstrap any application services.
      *
@@ -78,15 +86,9 @@ class AppServiceProvider extends ServiceProvider
             'App\Services\Registrar'
         );
 
-        $this->app->singleton('assets-manifest', fn () => new AssetsManifest());
-
-        $this->app->singleton('chat-filters', function () {
-            return new ChatFilters();
-        });
-
-        $this->app->singleton('groups', function () {
-            return new Groups();
-        });
+        foreach (static::SINGLETONS as $name => $class) {
+            $this->app->singleton($name, fn () => new $class());
+        }
 
         $this->app->singleton('hash', function ($app) {
             return new OsuHashManager($app);
@@ -94,14 +96,6 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton('hash.driver', function ($app) {
             return $app['hash']->driver();
-        });
-
-        $this->app->singleton('OsuAuthorize', function () {
-            return new OsuAuthorize();
-        });
-
-        $this->app->singleton('route-section', function () {
-            return new RouteSection();
         });
 
         $this->app->singleton('cookie', function ($app) {
