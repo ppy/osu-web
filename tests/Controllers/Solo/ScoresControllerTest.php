@@ -56,11 +56,24 @@ class ScoresControllerTest extends TestCase
     {
         $user = factory(User::class)->create();
         $beatmap = factory(Beatmap::class)->states('ranked')->create();
-        $scoreToken = ScoreToken::create([
+        // TODO: create factory
+        $score = Score::create([
+            'accuracy' => 1,
             'beatmap_id' => $beatmap->getKey(),
+            'max_combo' => 10,
+            'mods' => [],
+            'passed' => true,
+            'rank' => 'A',
             'ruleset_id' => $beatmap->playmode,
+            'statistics' => ['Good' => 1],
+            'total_score' => 10,
             'user_id' => $user->getKey(),
-            'score_id' => 0,
+        ]);
+        $scoreToken = ScoreToken::create([
+            'beatmap_id' => $score->beatmap_id,
+            'ruleset_id' => $score->ruleset_id,
+            'score_id' => $score->getKey(),
+            'user_id' => $score->user_id,
         ]);
 
         $initialScoreCount = Score::count();
@@ -81,8 +94,9 @@ class ScoresControllerTest extends TestCase
                 'statistics' => ['Good' => 1],
                 'total_score' => 10,
             ]
-        )->assertStatus(404);
+        )->assertStatus(200);
 
+        $this->assertSame($score->getKey(), $scoreToken->fresh()->score_id);
         $this->assertSame($initialScoreCount, Score::count());
     }
 
