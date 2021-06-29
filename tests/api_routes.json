@@ -52,7 +52,7 @@
         "methods": [
             "POST"
         ],
-        "controller": "App\\Http\\Controllers\\Solo\\ScoresController@storeToken",
+        "controller": "App\\Http\\Controllers\\Solo\\ScoreTokensController@store",
         "middlewares": [
             "throttle:1200,1,api:",
             "require-scopes",
