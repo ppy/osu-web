@@ -32,7 +32,7 @@ class ScoresController extends BaseController
         $scoreToken = ScoreToken::where([
             'beatmap_id' => $beatmapId,
             'user_id' => $user->getKey(),
-        ])->findOrFail($tokenId);
+        ])->whereNull('score_id')->findOrFail($tokenId);
 
         $params = get_params(request()->all(), null, [
             'accuracy:float',
