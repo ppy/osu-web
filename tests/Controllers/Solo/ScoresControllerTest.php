@@ -52,6 +52,40 @@ class ScoresControllerTest extends TestCase
         $this->assertNotNull($scoreToken->fresh()->score);
     }
 
+    public function testStoreCompleted()
+    {
+        $user = factory(User::class)->create();
+        $beatmap = factory(Beatmap::class)->states('ranked')->create();
+        $scoreToken = ScoreToken::create([
+            'beatmap_id' => $beatmap->getKey(),
+            'ruleset_id' => $beatmap->playmode,
+            'user_id' => $user->getKey(),
+            'score_id' => 0,
+        ]);
+
+        $initialScoreCount = Score::count();
+
+        $this->actAsScopedUser($user, ['*']);
+
+        $this->json(
+            'PUT',
+            route('api.beatmaps.solo.scores.store', [
+                'beatmap' => $beatmap->getKey(),
+                'token' => $scoreToken->getKey(),
+            ]),
+            [
+                'accuracy' => 1,
+                'max_combo' => 10,
+                'passed' => true,
+                'rank' => 'A',
+                'statistics' => ['Good' => 1],
+                'total_score' => 10,
+            ]
+        )->assertStatus(404);
+
+        $this->assertSame($initialScoreCount, Score::count());
+    }
+
     public function testStoreMissingData()
     {
         $user = factory(User::class)->create();
