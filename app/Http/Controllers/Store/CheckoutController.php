@@ -67,7 +67,7 @@ class CheckoutController extends Controller
         if (!empty($validationErrors)) {
             return $this->setAndRedirectCheckoutError(
                 $order,
-                trans('store.checkout.cart_problems'),
+                osu_trans('store.checkout.cart_problems'),
                 $validationErrors
             );
         }

@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'đã xóa',
+    'deleted_by' => '',
+    'deleted_by_system' => '',
     'deleted_count' => ':count_delimited bình luận đã bị xóa',
     'edited' => 'đã chỉnh sửa :timeago bởi :user',
     'pinned' => 'đã ghim',

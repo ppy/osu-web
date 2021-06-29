@@ -1824,7 +1824,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         if (LoginAttempt::isLocked($ip)) {
             DatadogLoginAttempt::log('locked_ip');
 
-            return trans('users.login.locked_ip');
+            return osu_trans('users.login.locked_ip');
         }
 
         $authError = null;
@@ -1848,7 +1848,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         if ($authError !== null) {
             LoginAttempt::logAttempt($ip, $user, 'fail', $password);
 
-            return trans('users.login.failed');
+            return osu_trans('users.login.failed');
         }
 
         LoginAttempt::logLoggedIn($ip, $user);

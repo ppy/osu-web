@@ -65,7 +65,7 @@ class FriendsController extends Controller
         $friends = $currentUser->friends(); // don't fetch (avoids potentially instantiating 500+ friend objects)
 
         if ($friends->count() >= $currentUser->maxFriends()) {
-            return error_popup(trans('friends.too_many'));
+            return error_popup(osu_trans('friends.too_many'));
         }
 
         $targetId = get_int(Request::input('target'));

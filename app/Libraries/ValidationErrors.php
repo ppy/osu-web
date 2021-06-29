@@ -29,9 +29,9 @@ class ValidationErrors
         $rawMessage = $this->keyBase.$rawMessage;
 
         $attributeKey = $this->keyBase.$this->prefix.'.attributes.'.$column;
-        $params['attribute'] = Lang::has($attributeKey) ? trans($attributeKey) : $column;
+        $params['attribute'] = Lang::has($attributeKey) ? osu_trans($attributeKey) : $column;
 
-        $this->errors[$column][] = trans($rawMessage, $params);
+        $this->errors[$column][] = osu_trans($rawMessage, $params);
 
         return $this;
     }

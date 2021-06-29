@@ -11,7 +11,7 @@
 
 <div class="osu-page osu-page--generic text-center">
     <p>
-        {{ trans("layout.errors.{$statusCode}.error") }}
+        {{ osu_trans("layout.errors.{$statusCode}.error") }}
     </p>
 
     @if (isset($exceptionMessage))
@@ -19,13 +19,13 @@
     @endif
 
     <p>
-        {!! trans("layout.errors.{$statusCode}.description", ['link' =>
-            '<a class="blue_normal" href="'.trans("layout.errors.{$statusCode}.link.href").'">'.trans("layout.errors.{$statusCode}.link.text").'</a>',
+        {!! osu_trans("layout.errors.{$statusCode}.description", ['link' =>
+            '<a class="blue_normal" href="'.osu_trans("layout.errors.{$statusCode}.link.href").'">'.osu_trans("layout.errors.{$statusCode}.link.text").'</a>',
         ]) !!}
     </p>
 
     @if (isset($ref))
-        <h4>{{ trans('layout.errors.reference') }}<br><small>{{ $ref }}</small></h4>
+        <h4>{{ osu_trans('layout.errors.reference') }}<br><small>{{ $ref }}</small></h4>
     @endif
 </div>
 

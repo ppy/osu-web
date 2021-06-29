@@ -125,7 +125,7 @@ class BeatmapsetTest extends TestCase
         $nominator = $this->createUserWithGroupPlaymodes('bng', $beatmapset->playmodesStr());
 
         $this->expectException(AuthorizationException::class);
-        $this->expectExceptionMessage(trans('authorization.beatmap_discussion.nominate.set_metadata'));
+        $this->expectExceptionMessage(osu_trans('authorization.beatmap_discussion.nominate.set_metadata'));
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
     }
 
@@ -266,7 +266,7 @@ class BeatmapsetTest extends TestCase
         $result = $beatmapset->nominate($user);
 
         $this->assertFalse($result['result']);
-        $this->assertSame($result['message'], trans('beatmapsets.nominate.hybrid_requires_modes'));
+        $this->assertSame($result['message'], osu_trans('beatmapsets.nominate.hybrid_requires_modes'));
 
         $this->assertSame($notifications, Notification::count());
         $this->assertSame($userNotifications, UserNotification::count());
@@ -287,7 +287,7 @@ class BeatmapsetTest extends TestCase
         $result = $beatmapset->nominate($user, ['taiko']);
 
         $this->assertFalse($result['result']);
-        $this->assertSame($result['message'], trans('beatmapsets.nominate.incorrect_mode', ['mode' => 'taiko']));
+        $this->assertSame($result['message'], osu_trans('beatmapsets.nominate.incorrect_mode', ['mode' => 'taiko']));
 
         $this->assertSame($notifications, Notification::count());
         $this->assertSame($userNotifications, UserNotification::count());
@@ -326,7 +326,7 @@ class BeatmapsetTest extends TestCase
         $result = $beatmapset->fresh()->nominate($user, ['osu']);
 
         $this->assertFalse($result['result']);
-        $this->assertSame($result['message'], trans('beatmaps.nominations.too_many'));
+        $this->assertSame($result['message'], osu_trans('beatmaps.nominations.too_many'));
         $this->assertTrue($beatmapset->fresh()->isPending());
     }
 
@@ -374,7 +374,7 @@ class BeatmapsetTest extends TestCase
         $result = $beatmapset->fresh()->nominate($user, ['osu', 'taiko']);
 
         $this->assertFalse($result['result']);
-        $this->assertSame($result['message'], trans('beatmapsets.nominate.full_bn_required'));
+        $this->assertSame($result['message'], osu_trans('beatmapsets.nominate.full_bn_required'));
         $this->assertTrue($beatmapset->fresh()->isPending());
     }
 

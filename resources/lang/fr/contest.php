@@ -27,6 +27,10 @@ return [
             'remove' => 'Supprimer le vote',
             'used_up' => 'Vous avez utilisé tous vos votes',
         ],
+
+        'progress' => [
+            '_' => '',
+        ],
     ],
     'entry' => [
         '_' => 'inscription',

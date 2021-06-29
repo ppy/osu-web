@@ -27,6 +27,10 @@ return [
             'remove' => 'Oyu Kaldır',
             'used_up' => 'Tüm oylarını kullandın',
         ],
+
+        'progress' => [
+            '_' => '',
+        ],
     ],
     'entry' => [
         '_' => 'girdi',

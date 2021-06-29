@@ -17,7 +17,7 @@ class UserVerificationException extends Exception
         $this->reasonKey = $reasonKey;
         $this->shouldReissue = $shouldReissue;
 
-        $message = trans("user_verification.errors.{$reasonKey}");
+        $message = osu_trans("user_verification.errors.{$reasonKey}");
 
         parent::__construct($message);
     }
