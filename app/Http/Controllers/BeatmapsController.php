@@ -81,7 +81,7 @@ class BeatmapsController extends Controller
         try {
             if ($type !== 'global' || !empty($mods)) {
                 if ($currentUser === null || !$currentUser->isSupporter()) {
-                    throw new ScoreRetrievalException(trans('errors.supporter_only'));
+                    throw new ScoreRetrievalException(osu_trans('errors.supporter_only'));
                 }
             }
 

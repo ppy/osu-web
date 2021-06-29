@@ -36,7 +36,7 @@
                     </div>
                 @endif
                 <div class="order-line-items__data order-line-items__data--quantity">
-                    {{ trans_choice('common.count.item', $i->quantity) }}
+                    {{ osu_trans_choice('common.count.item', $i->quantity) }}
                 </div>
                 <div class="order-line-items__data order-line-items__data--value">
                     {{ currency($i->subtotal()) }}

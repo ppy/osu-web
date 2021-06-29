@@ -23,7 +23,7 @@
             <button
                 type="button"
                 class="btn-circle"
-                data-confirm="{{ trans('livestreams.promote.pin') }}"
+                data-confirm="{{ osu_trans('livestreams.promote.pin') }}"
                 data-remote="1"
                 data-method="POST"
                 data-url="{{ route('livestreams.promote', ['id' => $stream->data['id']]) }}"

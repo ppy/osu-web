@@ -37,7 +37,7 @@ class AuthorizationController extends PassportAuthorizationController
     ) {
         $redirectUri = presence(trim($request['redirect_uri']));
 
-        abort_if($redirectUri === null, 400, trans('model_validation.required', ['attribute' => 'redirect_uri']));
+        abort_if($redirectUri === null, 400, osu_trans('model_validation.required', ['attribute' => 'redirect_uri']));
 
         if (!auth()->check()) {
             // Breaks when url contains hash ("#").

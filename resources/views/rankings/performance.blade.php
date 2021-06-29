@@ -11,22 +11,22 @@
                 <th class="ranking-page-table__heading"></th>
                 <th class="ranking-page-table__heading ranking-page-table__heading--main"></th>
                 <th class="ranking-page-table__heading">
-                    {{ trans('rankings.stat.accuracy') }}
+                    {{ osu_trans('rankings.stat.accuracy') }}
                 </th>
                 <th class="ranking-page-table__heading">
-                    {{ trans('rankings.stat.play_count') }}
+                    {{ osu_trans('rankings.stat.play_count') }}
                 </th>
                 <th class="ranking-page-table__heading ranking-page-table__heading--focused">
-                    {{ trans('rankings.stat.performance') }}
+                    {{ osu_trans('rankings.stat.performance') }}
                 </th>
                 <th class="ranking-page-table__heading ranking-page-table__heading--grade">
-                    {{ trans('rankings.stat.ss') }}
+                    {{ osu_trans('rankings.stat.ss') }}
                 </th>
                 <th class="ranking-page-table__heading ranking-page-table__heading--grade">
-                    {{ trans('rankings.stat.s') }}
+                    {{ osu_trans('rankings.stat.s') }}
                 </th>
                 <th class="ranking-page-table__heading ranking-page-table__heading--grade">
-                    {{ trans('rankings.stat.a') }}
+                    {{ osu_trans('rankings.stat.a') }}
                 </th>
             </tr>
         </thead>

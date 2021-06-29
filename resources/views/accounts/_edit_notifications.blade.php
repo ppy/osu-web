@@ -8,7 +8,7 @@
 <div class="account-edit">
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
-            {{ trans('accounts.notifications.title') }}
+            {{ osu_trans('accounts.notifications.title') }}
         </h2>
     </div>
 
@@ -27,7 +27,7 @@
                     ])
 
                     <span class="account-edit-entry__checkbox-label">
-                        {{ trans('accounts.notifications.topic_auto_subscribe') }}
+                        {{ osu_trans('accounts.notifications.topic_auto_subscribe') }}
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
@@ -53,7 +53,7 @@
                     ])
 
                     <span class="account-edit-entry__checkbox-label">
-                        {{ trans('accounts.notifications.comment_reply') }}
+                        {{ osu_trans('accounts.notifications.comment_reply') }}
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
@@ -67,7 +67,7 @@
             @foreach (UserNotificationOption::BEATMAPSET_DISQUALIFIABLE_NOTIFICATIONS as $notificationType)
                 <div class="account-edit-entry account-edit-entry--no-label">
                     <div class="account-edit-entry__checkboxes-label">
-                        {{ trans("accounts.notifications.$notificationType") }}
+                        {{ osu_trans("accounts.notifications.$notificationType") }}
                     </div>
                     <form
                         class="account-edit-entry__checkboxes js-account-edit"
@@ -87,7 +87,7 @@
                                 ])
 
                                 <span class="account-edit-entry__checkbox-label">
-                                    {{ trans("beatmaps.mode.{$key}") }}
+                                    {{ osu_trans("beatmaps.mode.{$key}") }}
                                 </span>
                             </label>
                         @endforeach
@@ -103,7 +103,7 @@
         <div class="account-edit__input-group">
             <div class="account-edit-entry">
                 <div class="account-edit-entry__label account-edit-entry__label--top-pinned">
-                    {{ trans('accounts.notifications.options._') }}
+                    {{ osu_trans('accounts.notifications.options._') }}
                 </div>
 
                 <form
@@ -113,7 +113,7 @@
                     data-url="{{ route('account.notification-options') }}"
                 >
                     @foreach (UserNotificationOption::DELIVERY_MODES as $mode)
-                        <div>{{ trans("accounts.notifications.options.{$mode}") }}</div>
+                        <div>{{ osu_trans("accounts.notifications.options.{$mode}") }}</div>
                     @endforeach
 
                     <div>@include('accounts._edit_entry_status')</div>
@@ -134,7 +134,7 @@
                         @endforeach
 
                         <span class="account-edit-entry__checkbox-label account-edit-entry__checkbox-label--grid">
-                            {{ trans("accounts.notifications.options.{$name}") }}
+                            {{ osu_trans("accounts.notifications.options.{$name}") }}
                         </span>
                     @endforeach
                 </form>

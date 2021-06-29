@@ -20,7 +20,7 @@
     {{-- anything where stock is null either allows multiple or is max_quantity 1--}}
         @if($item->product->allow_multiple || $item->product->stock <= 0)
             <span class="store-order-item__quantity">
-                {{ trans_choice('common.count.item', $item->quantity) }}
+                {{ osu_trans_choice('common.count.item', $item->quantity) }}
             </span>
         @else
             <div class="form-select">

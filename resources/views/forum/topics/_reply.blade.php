@@ -6,15 +6,15 @@
     if (priv_check('ForumTopicReply', $topic)->can()) {
         if (!$topic->isActive()) {
             if (priv_check('ForumTopicStore', $topic->forum)->can()) {
-                $warning = trans('forum.topic.create.necropost.new_topic._', [
+                $warning = osu_trans('forum.topic.create.necropost.new_topic._', [
                     'create' => link_to_route(
                         'forum.topics.create',
-                        trans('forum.topic.create.necropost.new_topic.create'),
+                        osu_trans('forum.topic.create.necropost.new_topic.create'),
                         ['forum_id' => $topic->forum]
                     ),
                 ]);
             } else {
-                $warning = e(trans('forum.topic.create.necropost.default'));
+                $warning = e(osu_trans('forum.topic.create.necropost.default'));
             }
         }
     } else {
