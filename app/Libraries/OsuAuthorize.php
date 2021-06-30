@@ -1527,25 +1527,22 @@ class OsuAuthorize
     }
 
     /**
-     * @param User|null $user
-     * @param Topic $topic
-     * @return string
+     * @throws AuthorizationException
      */
     public function checkForumTopicPollShowResults(?User $user, Topic $topic): string
     {
-        if (!$topic->poll_hide_results) {
+        if (!$topic->poll_hide_results || ($topic->pollEnd()?->isPast() ?? true)) {
             return 'ok';
         }
+
+        $this->ensureLoggedIn($user);
+        $this->doCheckUser($user, 'IsNotOAuth')->ensureCan();
 
         if ($this->doCheckUser($user, 'ForumModerate', $topic->forum)->can()) {
             return 'ok';
         }
 
-        if ($topic->pollEnd() === null || $topic->pollEnd()->isPast()) {
-            return 'ok';
-        }
-
-        if ($user !== null && $topic->posts()->withTrashed()->first()->poster_id === $user->user_id) {
+        if ($topic->posts()->withTrashed()->first()->poster_id === $user->getKey()) {
             return 'ok';
         }
 
