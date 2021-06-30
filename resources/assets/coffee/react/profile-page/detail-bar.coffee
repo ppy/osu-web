@@ -30,7 +30,7 @@ export class DetailBar extends React.Component
       div className: bn,
         div className: "#{bn}__page-toggle",
           button
-            className: 'profile-page-toggle'
+            className: 'page-toggle'
             onClick: @toggleExtend
             title: osu.trans("common.buttons.#{if expanded then 'collapse' else 'expand'}")
             if expanded
@@ -116,7 +116,7 @@ export class DetailBar extends React.Component
 
     div className: "#{bn}__entry",
       button
-        className: 'profile-page-toggle profile-page-toggle--detail js-click-menu'
+        className: 'page-toggle page-toggle--detail js-click-menu'
         title: osu.trans('common.buttons.show_more_options')
         'data-click-menu-target': "profile-page-bar-#{@eventId}"
         span className: 'fas fa-ellipsis-v'
