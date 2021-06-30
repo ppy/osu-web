@@ -38,6 +38,12 @@ export default class Header extends React.PureComponent<Props> {
             >
               {osu.trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
             </div>
+
+            <button
+              className='beatmapset-header__preview js-audio--play js-audio--player'
+              data-audio-url={this.props.beatmapset.preview_url}
+              type='button'
+            />
           </div>
         </div>
 

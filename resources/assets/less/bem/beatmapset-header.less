@@ -55,4 +55,38 @@
     display: flex;
     align-items: center;
   }
+
+  &__preview {
+    .fas();
+    .link-plain();
+    .link-white();
+    .reset-input();
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    --progress: 0;
+    --icon: @fa-var-play;
+    background-color: hsla(var(--hsl-b4), 0.8);
+    font-size: 12px; // icon size
+    padding: 9px;
+    margin-left: auto;
+    cursor: pointer;
+    border-radius: @border-radius--extra;
+    width: 100px;
+
+    &::before {
+      content: var(--icon);
+    }
+
+    &:hover {
+      background-color: hsla(var(--hsl-b6), 0.75);
+    }
+
+    &[data-audio-state="playing"] {
+      --icon: @fa-var-pause;
+    }
+  }
 }
