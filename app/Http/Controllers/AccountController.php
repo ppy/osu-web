@@ -207,6 +207,7 @@ class AccountController extends Controller
             'audio_muted:bool',
             'audio_volume:float',
             'beatmapset_card_size:string',
+            'beatmapset_cover_expanded:bool',
             'beatmapset_download:string',
             'beatmapset_show_nsfw:bool',
             'beatmapset_title_show_original:bool',

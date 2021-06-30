@@ -138,6 +138,16 @@ class UserProfileCustomization extends Model
         $this->setOption('beatmapset_card_size', $value);
     }
 
+    public function getBeatmapsetCoverExpandedAttribute()
+    {
+        return $this->getOptions()['beatmapset_cover_expanded'] ?? true;
+    }
+
+    public function setBeatmapsetCoverExpandedAttribute($value)
+    {
+        $this->setOption('beatmapset_cover_expanded', $value);
+    }
+
     public function getBeatmapsetDownloadAttribute()
     {
         return $this->getOptions()['beatmapset_download'] ?? static::BEATMAPSET_DOWNLOAD[0];

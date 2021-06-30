@@ -25,6 +25,7 @@ export interface UserPreferencesJson {
   audio_muted: boolean;
   audio_volume: number;
   beatmapset_card_size: BeatmapsetCardSize;
+  beatmapset_cover_expanded: boolean;
   beatmapset_download: 'all' | 'no_video' | 'direct';
   beatmapset_show_nsfw: boolean;
   beatmapset_title_show_original: boolean;
@@ -41,6 +42,7 @@ export const defaultUserPreferencesJson: UserPreferencesJson = {
   audio_muted: false,
   audio_volume: 0.45,
   beatmapset_card_size: 'normal',
+  beatmapset_cover_expanded: true,
   beatmapset_download: 'all',
   beatmapset_show_nsfw: false,
   beatmapset_title_show_original: false,
