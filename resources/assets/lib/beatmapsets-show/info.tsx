@@ -6,6 +6,7 @@ import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';
+import { getDiffRating } from 'utils/beatmap-helper';
 
 interface Props {
   beatmapset: BeatmapsetJson;
@@ -18,6 +19,15 @@ export default class Header extends React.PureComponent<Props> {
       <div className='beatmapset-info'>
         <div className='beatmapset-info__difficulty'>
           <div className='beatmapset-info__diff-details'>
+            <span
+              className='beatmapset-info__star-difficulty'
+              style={{
+                '--bg': `var(--diff-${getDiffRating(this.props.currentBeatmap.difficulty_rating)})`,
+              } as React.CSSProperties}
+            >
+              <i className='fas fa-star' />{' '}
+              {osu.formatNumber(this.props.currentBeatmap.difficulty_rating, 2)}
+            </span>
             <span className='beatmapset-info__diff-name'>
               {this.props.currentBeatmap.version}
             </span>
