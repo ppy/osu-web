@@ -60,11 +60,6 @@ class AppServiceProvider extends ServiceProvider
             );
         });
 
-        Octane::tick('locally-cached', function () {
-            app('groups')->forceVersionCheck();
-            app('chat-filters')->forceVersionCheck();
-        })->seconds(60);
-
         $this->app->make('translator')->setSelector(new OsuMessageSelector());
 
         app('url')->forceScheme(substr(config('app.url'), 0, 5) === 'https' ? 'https' : 'http');

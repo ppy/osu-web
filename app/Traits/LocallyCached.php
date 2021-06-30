@@ -21,8 +21,9 @@ trait LocallyCached
         Memoizes::memoize as unversionedMemoize;
     }
 
-    private $version;
-    private $versionCheck = false;
+    private int $resetTicker = 0;
+    private ?int $version = null;
+    private bool $versionCheck = false;
 
     private static function getVersionCacheKey(): string
     {
@@ -52,6 +53,16 @@ trait LocallyCached
     public function forceVersionCheck(): void
     {
         $this->versionCheck = true;
+    }
+
+    public function incrementResetTicker(): void
+    {
+        $this->resetTicker++;
+
+        if ($this->resetTicker > 100) {
+            $this->forceVersionCheck();
+            $this->resetTicker = 0;
+        }
     }
 
     protected function cachedMemoize(string $memoizeKey, callable $function)

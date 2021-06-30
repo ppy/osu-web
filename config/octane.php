@@ -1,5 +1,6 @@
 <?php
 
+use App\Listeners\OctaneResetLocalCache;
 use App\Providers\AppServiceProvider;
 use Laravel\Octane\Contracts\OperationTerminated;
 use Laravel\Octane\Events\RequestHandled;
@@ -72,6 +73,7 @@ return [
         ],
 
         RequestHandled::class => [
+            OctaneResetLocalCache::class,
         ],
 
         RequestTerminated::class => [
