@@ -37,8 +37,6 @@ class CommentBundle
 
     public function __construct(private $commentable, array $options = [])
     {
-        $this->commentable = $commentable;
-
         $this->user = auth()->user();
 
         $this->params = new CommentBundleParams($options['params'] ?? [], $this->user);
