@@ -30,7 +30,7 @@ class BeatmapsetDiscussionReview
     public static function create(Beatmapset $beatmapset, array $document, User $user)
     {
         if (empty($document)) {
-            throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
+            throw new InvariantException(osu_trans('beatmap_discussions.review.validation.invalid_document'));
         }
 
         $priorOpenProblemCount = self::getOpenProblemCount($beatmapset);
@@ -44,12 +44,12 @@ class BeatmapsetDiscussionReview
             $blockCount = 0;
             foreach ($document as $block) {
                 if (!isset($block['type'])) {
-                    throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
+                    throw new InvariantException(osu_trans('beatmap_discussions.review.validation.invalid_block_type'));
                 }
 
                 $message = get_string($block['text'] ?? null);
                 if ($message === null) {
-                    throw new InvariantException(trans('beatmap_discussions.review.validation.missing_text'));
+                    throw new InvariantException(osu_trans('beatmap_discussions.review.validation.missing_text'));
                 }
 
                 switch ($block['type']) {
@@ -74,7 +74,7 @@ class BeatmapsetDiscussionReview
 
                     case 'paragraph':
                         if (mb_strlen($block['text']) > static::BLOCK_TEXT_LENGTH_LIMIT) {
-                            throw new InvariantException(trans('beatmap_discussions.review.validation.block_too_large', ['limit' => static::BLOCK_TEXT_LENGTH_LIMIT]));
+                            throw new InvariantException(osu_trans('beatmap_discussions.review.validation.block_too_large', ['limit' => static::BLOCK_TEXT_LENGTH_LIMIT]));
                         }
                         $output[] = [
                             'type' => 'paragraph',
@@ -84,19 +84,19 @@ class BeatmapsetDiscussionReview
 
                     default:
                         // invalid block type
-                        throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
+                        throw new InvariantException(osu_trans('beatmap_discussions.review.validation.invalid_block_type'));
                 }
                 $blockCount++;
             }
 
             $minIssues = config('osu.beatmapset.discussion_review_min_issues');
             if (empty($childIds) || count($childIds) < $minIssues) {
-                throw new InvariantException(trans_choice('beatmap_discussions.review.validation.minimum_issues', $minIssues));
+                throw new InvariantException(osu_trans_choice('beatmap_discussions.review.validation.minimum_issues', $minIssues));
             }
 
             $maxBlocks = config('osu.beatmapset.discussion_review_max_blocks');
             if ($blockCount > $maxBlocks) {
-                throw new InvariantException(trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks));
+                throw new InvariantException(osu_trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks));
             }
 
             $review = self::createPost(
@@ -130,7 +130,7 @@ class BeatmapsetDiscussionReview
     public static function update(BeatmapDiscussion $discussion, array $document, User $user)
     {
         if (empty($document)) {
-            throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
+            throw new InvariantException(osu_trans('beatmap_discussions.review.validation.invalid_document'));
         }
 
         $beatmapset = Beatmapset::findOrFail($discussion->beatmapset_id); // handle deleted beatmapsets
@@ -148,14 +148,14 @@ class BeatmapsetDiscussionReview
 
             foreach ($document as $block) {
                 if (!isset($block['type'])) {
-                    throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
+                    throw new InvariantException(osu_trans('beatmap_discussions.review.validation.invalid_block_type'));
                 }
 
                 $message = get_string($block['text'] ?? null);
                 if ($message === null) {
                     // skip empty message check if this is an existing embed
                     if ($block['type'] !== 'embed' || !isset($block['discussion_id'])) {
-                        throw new InvariantException(trans('beatmap_discussions.review.validation.missing_text'));
+                        throw new InvariantException(osu_trans('beatmap_discussions.review.validation.missing_text'));
                     }
                 }
 
@@ -189,7 +189,7 @@ class BeatmapsetDiscussionReview
 
                     case 'paragraph':
                         if (mb_strlen($block['text']) > static::BLOCK_TEXT_LENGTH_LIMIT) {
-                            throw new InvariantException(trans('beatmap_discussions.review.validation.block_too_large', ['limit' => static::BLOCK_TEXT_LENGTH_LIMIT]));
+                            throw new InvariantException(osu_trans('beatmap_discussions.review.validation.block_too_large', ['limit' => static::BLOCK_TEXT_LENGTH_LIMIT]));
                         }
                         $output[] = [
                             'type' => 'paragraph',
@@ -199,25 +199,25 @@ class BeatmapsetDiscussionReview
 
                     default:
                         // invalid block type
-                        throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
+                        throw new InvariantException(osu_trans('beatmap_discussions.review.validation.invalid_block_type'));
                 }
                 $blockCount++;
             }
 
             $minIssues = config('osu.beatmapset.discussion_review_min_issues');
             if (empty($childIds) || count($childIds) < $minIssues) {
-                throw new InvariantException(trans_choice('beatmap_discussions.review.validation.minimum_issues', $minIssues));
+                throw new InvariantException(osu_trans_choice('beatmap_discussions.review.validation.minimum_issues', $minIssues));
             }
 
             $maxBlocks = config('osu.beatmapset.discussion_review_max_blocks');
             if ($blockCount > $maxBlocks) {
-                throw new InvariantException(trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks));
+                throw new InvariantException(osu_trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks));
             }
 
             // ensure all referenced embeds belong to this discussion
             $externalEmbeds = BeatmapDiscussion::whereIn('id', $childIds)->where('parent_id', '<>', $discussion->getKey())->count();
             if ($externalEmbeds > 0) {
-                throw new InvariantException(trans('beatmap_discussions.review.validation.external_references'));
+                throw new InvariantException(osu_trans('beatmap_discussions.review.validation.external_references'));
             }
 
             // update the review post

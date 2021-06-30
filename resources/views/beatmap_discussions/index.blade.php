@@ -14,16 +14,16 @@
     @include('layout._page_header_v4', ['params' => ['theme' => 'beatmapsets']])
     <div class="osu-page osu-page--generic">
         <div class="beatmapset-activities">
-            <h3>{{ trans('beatmap_discussions.index.title') }}</h3>
+            <h3>{{ osu_trans('beatmap_discussions.index.title') }}</h3>
 
             <form class="simple-form simple-form--search-box">
                 <h2 class="simple-form__row simple-form__row--title">
-                    {{ trans('beatmap_discussions.index.form._') }}
+                    {{ osu_trans('beatmap_discussions.index.form._') }}
                 </h2>
 
                 <label class="simple-form__row">
                     <div class="simple-form__label">
-                        {{ trans('beatmap_discussions.index.form.username') }}
+                        {{ osu_trans('beatmap_discussions.index.form.username') }}
                     </div>
 
                     <input
@@ -35,7 +35,7 @@
 
                 <div class="simple-form__row">
                     <div class="simple-form__label">
-                        {{ trans('beatmap_discussions.index.form.beatmapset_status._') }}
+                        {{ osu_trans('beatmap_discussions.index.form.beatmapset_status._') }}
                     </div>
                     <div class="simple-form__select">
                         <div class="form-select form-select--simple-form">
@@ -45,7 +45,7 @@
                                         value="{{$option}}"
                                         {{ $option === $search['beatmapset_status'] ? "selected" : "" }}
                                     >
-                                        {{ trans("beatmap_discussions.index.form.beatmapset_status.{$option}") }}
+                                        {{ osu_trans("beatmap_discussions.index.form.beatmapset_status.{$option}") }}
                                     </option>
                                 @endforeach
                             </select>
@@ -55,20 +55,20 @@
 
                 <div class="simple-form__row">
                     <div class="simple-form__label">
-                        {{ trans('beatmap_discussions.index.form.mode') }}
+                        {{ osu_trans('beatmap_discussions.index.form.mode') }}
                     </div>
                     <div class="simple-form__select">
                         <div class="form-select form-select--simple-form">
                             <select class="form-select__input" name="mode">
                                 <option>
-                                    {{ trans('beatmaps.mode.all') }}
+                                    {{ osu_trans('beatmaps.mode.all') }}
                                 </option>
                                 @foreach (App\Models\Beatmap::MODES as $modeStr => $modeInt)
                                     <option
                                         value="{{ $modeStr }}"
                                         {{ isset($search['mode']) && $modeStr === $search['mode'] ? "selected" : "" }}
                                     >
-                                        {{ trans("beatmaps.mode.{$modeStr}") }}
+                                        {{ osu_trans("beatmaps.mode.{$modeStr}") }}
                                     </option>
                                 @endforeach
                             </select>
@@ -78,7 +78,7 @@
 
                 <div class="simple-form__row">
                     <div class="simple-form__label">
-                        {{ trans('beatmap_discussions.index.form.types') }}
+                        {{ osu_trans('beatmap_discussions.index.form.types') }}
                     </div>
                     <div class="simple-form__checkboxes-inline">
                         @foreach (array_keys(App\Models\BeatmapDiscussion::MESSAGE_TYPES) as $messageType)
@@ -88,7 +88,7 @@
                                     'name' => 'message_types[]',
                                     'value' => $messageType,
                                 ])
-                                {{ trans("beatmaps.discussions.message_type.{$messageType}") }}
+                                {{ osu_trans("beatmaps.discussions.message_type.{$messageType}") }}
                             </label>
                         @endforeach
                     </div>
@@ -100,7 +100,7 @@
                             'checked' => $search['only_unresolved'],
                             'name' => 'only_unresolved',
                         ])
-                        {{ trans('beatmap_discussions.index.form.only_unresolved') }}
+                        {{ osu_trans('beatmap_discussions.index.form.only_unresolved') }}
                     </label>
                 </div>
 
@@ -111,7 +111,7 @@
                                 'checked' => $search['with_deleted'],
                                 'name' => 'with_deleted',
                             ])
-                            {{ trans('beatmap_discussions.index.form.deleted') }}
+                            {{ osu_trans('beatmap_discussions.index.form.deleted') }}
                         </label>
                     </div>
                 @endif
@@ -120,7 +120,7 @@
                     <button class="btn-osu-big btn-osu-big--rounded" type="submit">
                         <span class="btn-osu-big__content">
                             <span class="btn-osu-big__left">
-                                {{ trans('common.buttons.search') }}
+                                {{ osu_trans('common.buttons.search') }}
                             </span>
                             <span class="btn-osu-big__icon btn-osu-big__icon--normal">
                                 <i class="fas fa-search"></i>

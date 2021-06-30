@@ -16,14 +16,14 @@
             {{ $topic->isLocked() ? 'btn-circle--activated' : '' }}
         "
         data-topic-id="{{ $topic->topic_id }}"
-        title="{{ trans("forum.topics.lock.to_{$actionInt}") }}"
+        title="{{ osu_trans("forum.topics.lock.to_{$actionInt}") }}"
         data-remote="1"
         data-url="{{ route('forum.topics.lock', [
             $topic,
             'lock' => $actionInt,
         ]) }}"
         data-method="post"
-        data-confirm="{{ trans("forum.topics.lock.to_{$actionInt}_confirm") }}"
+        data-confirm="{{ osu_trans("forum.topics.lock.to_{$actionInt}_confirm") }}"
     >
         <span class="btn-circle__content">
             <i class="fas fa-lock"></i>
@@ -34,7 +34,7 @@
         <div
             class="btn-circle btn-circle--topic-nav btn-circle--blank"
             data-tooltip-float="fixed"
-            title="{{ trans('forum.topics.lock.is_locked') }}"
+            title="{{ osu_trans('forum.topics.lock.is_locked') }}"
         >
             <span class="btn-circle__content">
                 <i class="fas fa-lock"></i>

@@ -201,7 +201,7 @@ class NewsController extends Controller
 
         NewsPost::syncAll();
 
-        return ['message' => trans('news.store.ok')];
+        return ['message' => osu_trans('news.store.ok')];
     }
 
     public function update($id)
@@ -210,7 +210,7 @@ class NewsController extends Controller
 
         NewsPost::findOrFail($id)->sync(true);
 
-        return ['message' => trans('news.update.ok')];
+        return ['message' => osu_trans('news.update.ok')];
     }
 
     private function sidebarMeta($post)

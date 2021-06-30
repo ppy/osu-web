@@ -21,8 +21,10 @@ trait LocallyCached
         Memoizes::memoize as unversionedMemoize;
     }
 
-    private $version;
-    private $versionCheck = false;
+    private int $resetTicker = 0;
+    private int $resetTickerLimit;
+    private ?int $version = null;
+    private bool $versionCheck = false;
 
     private static function getVersionCacheKey(): string
     {
@@ -52,6 +54,17 @@ trait LocallyCached
     public function forceVersionCheck(): void
     {
         $this->versionCheck = true;
+    }
+
+    public function incrementResetTicker(): void
+    {
+        $this->resetTicker++;
+        $this->resetTickerLimit ??= config('osu.octane.local_cache_reset_requests');
+
+        if ($this->resetTicker > $this->resetTickerLimit) {
+            $this->forceVersionCheck();
+            $this->resetTicker = 0;
+        }
     }
 
     protected function cachedMemoize(string $memoizeKey, callable $function)

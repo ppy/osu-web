@@ -15,7 +15,7 @@
         ];
         if (!auth()->check()) {
             $icon = 'fas fa-sign-in-alt';
-            $text = trans('forum.topic.new_topic_login');
+            $text = osu_trans('forum.topic.new_topic_login');
         }
     } else {
         $element = 'span';
@@ -34,5 +34,5 @@
     @if ($withIcon ?? true)
         <i class="{{ $icon ?? 'fas fa-plus' }}"></i>
     @endif
-    {{ $text ?? trans('forum.topic.new_topic') }}
+    {{ $text ?? osu_trans('forum.topic.new_topic') }}
 </{!! $element !!}>

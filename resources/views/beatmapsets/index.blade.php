@@ -6,7 +6,7 @@
     $canAdvancedSearch = priv_check('BeatmapsetAdvancedSearch')->can();
 @endphp
 @extends('master', [
-  'pageDescription' => trans('beatmapsets.index.title'),
+  'pageDescription' => osu_trans('beatmapsets.index.title'),
 ])
 
 @section('content')

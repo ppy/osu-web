@@ -23,7 +23,7 @@
                 </a>
                 <div class="beatmap-discussion-timestamp__icon beatmapset-activities__timeline-icon-margin">
                     <span class="beatmap-discussion-message-type beatmap-discussion-message-type--{{str_replace('_', '-', $discussion->message_type)}}">
-                        <span class="{{$postTypeToIcon[$discussion->message_type]}}" title="{{trans("beatmaps.discussions.message_type.{$discussion->message_type}")}}"></span>
+                        <span class="{{$postTypeToIcon[$discussion->message_type]}}" title="{{osu_trans("beatmaps.discussions.message_type.{$discussion->message_type}")}}"></span>
                     </span>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                                 <span class="beatmap-discussion-post__info">{!! timeago($discussion->created_at) !!}</span>
                                 @if ($discussion->deleted_at !== null)
                                     <span class="beatmap-discussion-post__info">
-                                        {{ trans('beatmap_discussions.item.deleted_at') }}: {!! timeago($discussion->deleted_at) !!}
+                                        {{ osu_trans('beatmap_discussions.item.deleted_at') }}: {!! timeago($discussion->deleted_at) !!}
                                     </span>
                                 @endif
                             </div>

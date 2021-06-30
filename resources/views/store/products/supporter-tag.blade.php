@@ -24,7 +24,7 @@
                     [
                         'id' => 'username',
                         'class' => 'js-username-input store-supporter-tag__input',
-                        'placeholder' => trans('store.supporter_tag.gift'),
+                        'placeholder' => osu_trans('store.supporter_tag.gift'),
                         'autocomplete' => 'off'
                     ]
                 )
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="grid grid--xs grid--right store-slider__presets">
-            <span class="store-slider__presets-blurb">{{ trans('supporter_tag.months') }}</span>
+            <span class="store-slider__presets-blurb">{{ osu_trans('supporter_tag.months') }}</span>
             @foreach([1, 2, 4, 6, 12, 18, 24] as $months)
                 <div class="js-slider-preset store-slider__preset" data-months="{{$months}}">{{$months}}</div>
             @endforeach

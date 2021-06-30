@@ -21,14 +21,14 @@
 
                 <div class="supporter-perk-list-group__text">
                     <h4 class="supporter-perk-list-group__title">
-                        {!! trans("community.support.{$section}.{$name}.title") !!}
+                        {!! osu_trans("community.support.{$section}.{$name}.title") !!}
                     </h4>
                     <p class="supporter-perk-list-group__content">
-                        {!! trans("community.support.{$section}.{$name}.description", $options['translation_options'] ?? []) !!}
+                        {!! osu_trans("community.support.{$section}.{$name}.description", $options['translation_options'] ?? []) !!}
                         @if (isset($options['link']))
                             {!! link_to(
                                 $options['link'],
-                                trans("community.support.{$section}.{$name}.link_text"),
+                                osu_trans("community.support.{$section}.{$name}.link_text"),
                                 [
                                     'class' => 'supporter-perk-list-group__link',
                                     'rel' => 'nofollow noreferrer',

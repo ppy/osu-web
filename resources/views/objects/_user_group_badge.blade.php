@@ -10,7 +10,7 @@
     $title = $group->group_name;
 
     if ($hasPlaymodes) {
-        $playmodeNames = implode(', ', array_map(fn ($mode) => trans("beatmaps.mode.{$mode}"), $playmodes));
+        $playmodeNames = implode(', ', array_map(fn ($mode) => osu_trans("beatmaps.mode.{$mode}"), $playmodes));
         $title .= " ({$playmodeNames})";
     }
 @endphp

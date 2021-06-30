@@ -40,7 +40,7 @@ class CheckUserRestricted
     public function handle($request, Closure $next)
     {
         if ($this->auth->check() && $this->auth->user()->isRestricted()) {
-            return error_popup(trans('errors.no_restricted_access'));
+            return error_popup(osu_trans('errors.no_restricted_access'));
         }
 
         return $next($request);
