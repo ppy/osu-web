@@ -205,61 +205,11 @@ class ChangelogController extends Controller
      *
      * ### Response Format
      *
-     * A [Build](#build) with `changelog_entries`, `changelog_entries.github_user`, and `versions` included.
+     * See [Get Changelog Build](#get-changelog-build).
      *
      * @urlParam changelog string required Build version, update stream name, or build ID. Example: 20210520.2
      * @queryParam key string Unset to query by build version or stream name, or `id` to query by build ID. No-example
-     * @response {
-     *   "id": 5778,
-     *   "version": "20210520.2",
-     *   "display_version": "20210520.2",
-     *   "users": 22093,
-     *   "created_at": "2021-05-20T14:28:04+00:00",
-     *   "update_stream": {
-     *     "id": 5,
-     *     "name": "stable40",
-     *     "display_name": "Stable",
-     *     "is_featured": true
-     *   },
-     *   "changelog_entries": [
-     *     {
-     *       "id": null,
-     *       "repository": null,
-     *       "github_pull_request_id": null,
-     *       "github_url": null,
-     *       "url": "https://osu.ppy.sh/home/news/2021-05-20-spring-fanart-contest-results",
-     *       "type": "fix",
-     *       "category": "Misc",
-     *       "title": "Spring is here!",
-     *       "message_html": "<div class='changelog-md'><p class=\"changelog-md__paragraph\">New seasonal backgrounds ahoy! Amazing work by the artists.</p>\n</div>",
-     *       "major": true,
-     *       "created_at": "2021-05-20T10:56:49+00:00",
-     *       "github_user": {
-     *         "id": null,
-     *         "display_name": "peppy",
-     *         "github_url": null,
-     *         "osu_username": "peppy",
-     *         "user_id": 2,
-     *         "user_url": "https://osu.ppy.sh/users/2"
-     *       }
-     *     }
-     *   ],
-     *   "versions": {
-     *     "previous": {
-     *       "id": 5774,
-     *       "version": "20210519.3",
-     *       "display_version": "20210519.3",
-     *       "users": 10,
-     *       "created_at": "2021-05-19T11:51:48+00:00",
-     *       "update_stream": {
-     *         "id": 5,
-     *         "name": "stable40",
-     *         "display_name": "Stable",
-     *         "is_featured": true
-     *       }
-     *     }
-     *   }
-     * }
+     * @response See "Get Changelog Build" response.
      */
     public function show($version)
     {
@@ -288,11 +238,7 @@ class ChangelogController extends Controller
         }
 
         if (is_json_request()) {
-            return json_item($build, 'Build', [
-                'changelog_entries',
-                'changelog_entries.github_user',
-                'versions',
-            ]);
+            return $this->buildJson($build);
         }
 
         return ujs_redirect(build_url($build));
@@ -376,9 +322,7 @@ class ChangelogController extends Controller
                 'defaultChangelogEntries.githubUser.user',
                 'defaultChangelogEntries.repository',
             ])->firstOrFail();
-        $buildJson = json_item($build, 'Build', [
-            'changelog_entries', 'changelog_entries.github_user', 'versions',
-        ]);
+        $buildJson = $this->buildJson($build);
 
         if (is_json_request()) {
             return $buildJson;
@@ -397,6 +341,15 @@ class ChangelogController extends Controller
         );
 
         return ext_view('changelog.build', compact('build', 'buildJson', 'chartConfig', 'commentBundle'));
+    }
+
+    private function buildJson(Build $build): array
+    {
+        return json_item($build, 'Build', [
+            'changelog_entries',
+            'changelog_entries.github_user',
+            'versions',
+        ]);
     }
 
     private function getUpdateStreams()
