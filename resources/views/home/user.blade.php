@@ -16,7 +16,7 @@
     <div class="osu-page">
         <div class="user-home">
             <div class="user-home__news">
-                <h2 class="user-home__news-title">{{ trans('home.user.news.title') }}</h2>
+                <h2 class="user-home__news-title">{{ osu_trans('home.user.news.title') }}</h2>
 
                 @foreach ($news as $post)
                     @if ($loop->iteration > 3)
@@ -43,7 +43,7 @@
                         href="{{ route('news.index') }}"
                         class="user-home__news-posts-group user-home__news-posts-group--more"
                     >
-                        {{ trans('common.buttons.see_more') }}
+                        {{ osu_trans('common.buttons.see_more') }}
                     </a>
                 @endif
             </div>
@@ -55,7 +55,7 @@
                     <div class="user-home__button">
                         @include('home._user_giant_button', [
                             'href' => route('download'),
-                            'label' => trans('home.user.buttons.download'),
+                            'label' => osu_trans('home.user.buttons.download'),
                             'icon' => 'download',
                         ])
                     </div>
@@ -63,7 +63,7 @@
                     <div class="user-home__button">
                         @include('home._user_giant_button', [
                             'href' => route('support-the-game'),
-                            'label' => trans('home.user.buttons.support'),
+                            'label' => osu_trans('home.user.buttons.support'),
                             'icon' => 'heart',
                             'colour' => 'green'
                         ])
@@ -72,7 +72,7 @@
                     <div class="user-home__button">
                         @include('home._user_giant_button', [
                             'href' => route('store.products.index'),
-                            'label' => trans('home.user.buttons.store'),
+                            'label' => osu_trans('home.user.buttons.store'),
                             'icon' => 'shopping-cart',
                             'colour' => 'pink-darker'
                         ])
@@ -80,7 +80,7 @@
                 </div>
 
                 <h3 class='user-home__beatmap-list-title'>
-                    {{ trans('home.user.beatmaps.new') }}
+                    {{ osu_trans('home.user.beatmaps.new') }}
                 </h3>
 
                 <div class="user-home__beatmapsets">
@@ -90,7 +90,7 @@
                 </div>
 
                 <h3 class='user-home__beatmap-list-title'>
-                    {{ trans('home.user.beatmaps.popular') }}
+                    {{ osu_trans('home.user.beatmaps.popular') }}
                 </h3>
 
                 <div class="user-home__beatmapsets">

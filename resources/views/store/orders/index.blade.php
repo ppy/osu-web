@@ -2,7 +2,7 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@extends('store/layout', ['titlePrepend' => trans('layout.menu.store.orders-index')])
+@extends('store/layout', ['titlePrepend' => osu_trans('layout.menu.store.orders-index')])
 
 @section('content')
     @include('store.header')
@@ -10,7 +10,7 @@
     <div class="osu-page osu-page--generic">
         <div class="store-orders">
             @if (count($orders) === 0)
-                <span>{{ trans('store.order.no_orders') }}</span>
+                <span>{{ osu_trans('store.order.no_orders') }}</span>
             @endif
 
             @foreach ($orders as $order)
@@ -27,12 +27,12 @@
 
                         <div class="store-order__header-right">
                             <div class="store-order__status">
-                                {{ trans("store.order.status.{$order->status}") }}
+                                {{ osu_trans("store.order.status.{$order->status}") }}
                             </div>
 
                             <div class="store-order__header-subtext">
                                 @if ($order->paid_at !== null)
-                                    {!! trans('store.order.paid_on', ['date' => timeago($order->paid_at)]) !!}
+                                    {!! osu_trans('store.order.paid_on', ['date' => timeago($order->paid_at)]) !!}
                                 @endif
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                     <ul class="store-order__items">
                         @foreach ($order->items as $item)
                             <li>
-                                <span>{{ $item->getDisplayName() }}</span>
+                                <span>{{ $item->getDisplayName(true) }}</span>
                                 <span class="store-order__item-quantity">x{{ $item->quantity }}</span>
                         @endforeach
                     </ul>
@@ -53,7 +53,7 @@
                             data-provider-reference="{{ $order->getProviderReference() }}"
                             data-status="{{ $order->status }}"
                         >
-                            {{ $order->status === 'processing' ? trans('store.order.resume') : trans('store.order.invoice') }}
+                            {{ $order->status === 'processing' ? osu_trans('store.order.resume') : osu_trans('store.order.invoice') }}
                         </button>
                     @elseif ($order->hasInvoice())
                         <button
@@ -62,20 +62,20 @@
                             data-provider="{{ $order->getPaymentProvider() }}"
                             data-status="{{ $order->status }}"
                         >
-                            {{ trans('store.order.invoice') }}
+                            {{ osu_trans('store.order.invoice') }}
                         </button>
                     @endif
 
                     @if ($order->canUserCancel())
                         <button
                             class="btn-osu-big btn-osu-big--rounded-thin btn-osu-big--danger"
-                            data-confirm="{{ trans('store.order.cancel_confirm') }}"
+                            data-confirm="{{ osu_trans('store.order.cancel_confirm') }}"
                             data-method="DELETE"
                             data-url="{{ route('store.orders.destroy', $order) }}"
                             data-reload-on-success="1"
                             data-remote="1"
                         >
-                            {{ trans('store.order.cancel') }}
+                            {{ osu_trans('store.order.cancel') }}
                         </button>
                     @endif
                 </div>

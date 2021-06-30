@@ -90,7 +90,7 @@ return [
             'index' => 'dashboard',
             'search' => 'zoeken',
             'support_the_game' => 'ondersteun het spel',
-            'testflight' => 'testvlucht',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
             '_' => 'informatie',
@@ -99,7 +99,7 @@ return [
             '_' => 'live streams',
         ],
         'matches_controller' => [
-            '_' => 'overeenkomsten',
+            '_' => 'matches',
         ],
         'news_controller' => [
             '_' => 'nieuws',

@@ -8,7 +8,7 @@
     if (optional($forum ?? null)->isFeatureForum()) {
         $menu['feature-votes'] = [
             'url' => route('forum.forums.show', ['forum' => $forum, 'sort' => 'feature-votes']),
-            'title' => trans('sort.forum_topics.feature_votes'),
+            'title' => osu_trans('sort.forum_topics.feature_votes'),
         ];
     }
 @endphp
@@ -16,7 +16,7 @@
     @php
         $defaultMenu = ['new' => [
             'url' => route('forum.forums.show', ['forum' => $forum]),
-            'title' => trans('sort.forum_topics.new'),
+            'title' => osu_trans('sort.forum_topics.new'),
         ]];
 
         if (!isset($sort) || !isset($menu[$sort])) {
@@ -25,7 +25,7 @@
     @endphp
     <div class="sort sort--forum-topics">
         <div class="sort__items">
-            <span class="sort__item sort__item--title">{{ trans('sort._') }}</span>
+            <span class="sort__item sort__item--title">{{ osu_trans('sort._') }}</span>
 
             @foreach ($defaultMenu + $menu as $menuSort => $menuItem)
                 <a

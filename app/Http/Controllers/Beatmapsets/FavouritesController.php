@@ -26,7 +26,7 @@ class FavouritesController extends Controller
         switch (request('action')) {
             case 'favourite':
                 if ($user->favouriteBeatmapsets()->count() >= $user->beatmapsetFavouriteAllowance()) {
-                    return error_popup(trans('beatmapsets.show.favourites.limit_reached'));
+                    return error_popup(osu_trans('beatmapsets.show.favourites.limit_reached'));
                 }
                 $beatmapset->favourite($user);
                 break;

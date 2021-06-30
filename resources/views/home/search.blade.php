@@ -26,7 +26,7 @@
                     class="search-header__input js-search--input"
                     name="query"
                     value="{{ request('query') }}"
-                    placeholder="{{ trans('home.search.placeholder') }}"
+                    placeholder="{{ osu_trans('home.search.placeholder') }}"
                     data-search-current="{{ request('query') }}"
                     data-turbolinks-permanent
                     id="search-input"
@@ -69,7 +69,7 @@
             @else
                 <div class="search-result">
                     <div class="search-result__row search-result__row--notice">
-                        {{ trans('home.search.keyword_required') }}
+                        {{ osu_trans('home.search.keyword_required') }}
                     </div>
                 </div>
             @endif

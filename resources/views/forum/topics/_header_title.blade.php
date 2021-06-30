@@ -13,7 +13,7 @@
                 <button
                     type="button"
                     class="js-forum-topic-title--edit-start btn-circle"
-                    title="{{ trans('forum.topics.edit_title.start') }}"
+                    title="{{ osu_trans('forum.topics.edit_title.start') }}"
                 >
                     <span class="btn-circle__content">
                         <i class="fas fa-pencil-alt"></i>
@@ -40,7 +40,7 @@
                     <button
                         type="button"
                         class="js-forum-topic-title--save btn-circle"
-                        title="{{ trans('common.buttons.save') }}"
+                        title="{{ osu_trans('common.buttons.save') }}"
                     >
                         <span class="btn-circle__content">
                             <i class="fas fa-check"></i>
@@ -52,7 +52,7 @@
                     <button
                         type="button"
                         class="js-forum-topic-title--cancel btn-circle"
-                        title="{{ trans('common.buttons.cancel') }}"
+                        title="{{ osu_trans('common.buttons.cancel') }}"
                     >
                         <span class="btn-circle__content">
                             <i class="fas fa-times"></i>

@@ -27,7 +27,7 @@
     @if ($fields['user'] !== null)
         <label class="search-forum-options__input-group">
             <div class="search-forum-options__label">
-                {{ trans('home.search.forum_post.label.username') }}
+                {{ osu_trans('home.search.forum_post.label.username') }}
             </div>
 
             <input
@@ -46,7 +46,7 @@
     @if ($fields['topicId'] !== null && present($params[$fields['topicId']] ?? null))
         <label class="search-forum-options__input-group">
             <div class="search-forum-options__label">
-                {{ trans('home.search.forum_post.label.topic_id') }}
+                {{ osu_trans('home.search.forum_post.label.topic_id') }}
             </div>
 
             <input
@@ -58,7 +58,7 @@
     @elseif ($fields['forumId'] !== null)
         <label class="search-forum-options__input-group">
             <div class="search-forum-options__label">
-                {{ trans('home.search.forum_post.label.forum') }}
+                {{ osu_trans('home.search.forum_post.label.forum') }}
             </div>
 
             <div class="form-select">
@@ -67,7 +67,7 @@
                     class="form-select__input"
                 >
                     <option value="">
-                        {{ trans('home.search.forum_post.all') }}
+                        {{ osu_trans('home.search.forum_post.all') }}
                     </option>
 
                     @foreach (App\Models\Forum\Forum::displayList()->get() as $forum)
@@ -91,7 +91,7 @@
                 'name' => $fields['includeSubforums'],
             ])
 
-            {{ trans('home.search.forum_post.label.forum_children') }}
+            {{ osu_trans('home.search.forum_post.label.forum_children') }}
         </label>
     @endif
 
@@ -99,7 +99,7 @@
         <button class="btn-osu-big btn-osu-big--search-advanced">
             <div class="btn-osu-big__content">
                 <div class="btn-osu-big__left">
-                    {{ trans('home.search.button') }}
+                    {{ osu_trans('home.search.button') }}
                 </div>
 
                 <div class="btn-osu-big__icon">
@@ -111,7 +111,7 @@
         <button type="button" class="btn-osu-big btn-osu-big--search-advanced js-search--forum-options-reset">
             <div class="btn-osu-big__content">
                 <div class="btn-osu-big__left">
-                    {{ trans('common.buttons.reset') }}
+                    {{ osu_trans('common.buttons.reset') }}
                 </div>
 
                 <div class="btn-osu-big__icon">

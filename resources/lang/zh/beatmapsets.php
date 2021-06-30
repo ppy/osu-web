@@ -53,7 +53,7 @@ return [
         'discussion' => '讨论',
 
         'details' => [
-            'by_artist' => '作者：:artist',
+            'by_artist' => '曲师：:artist',
             'favourite' => '收藏这张谱面',
             'favourite_login' => '登录以收藏这张谱面',
             'logged-out' => '下载谱面前请先登录！',
@@ -175,7 +175,7 @@ return [
             'cs' => '圆圈大小',
             'cs-mania' => '键位数量',
             'drain' => '掉血速度',
-            'accuracy' => '准确率',
+            'accuracy' => '准度要求',
             'ar' => '缩圈速度',
             'stars' => '难度星级',
             'total_length' => '长度',

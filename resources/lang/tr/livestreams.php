@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'promote' => [
+        'pin' => '',
+        'unpin' => "",
+    ],
+
     'top-headers' => [
         'headline' => 'Canlı Yayınlar',
         'description' => 'Veriler twitch.tv\'deki listelemeye göre her beş dakikada bir alınmaktadır. Hemen bir yayın açın ve kendinizi bu listeye ekleyin! Kurulumun nasıl yapıldığı hakkında daha fazla bilgi için, lütfen :link ziyaret edin.',

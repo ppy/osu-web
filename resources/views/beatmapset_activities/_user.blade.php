@@ -28,13 +28,13 @@
                     <span class="{{$bn}}__user-text u-ellipsis-overflow">{{$user->username}}</span>
                 </a>
                 @if (!$user->isBot())
-                    <a class="{{$bn}}__user-modding-history-link" href="{{route('users.modding.index', $user)}}" title="{{trans('beatmap_discussion_posts.item.modding_history_link')}}">
+                    <a class="{{$bn}}__user-modding-history-link" href="{{route('users.modding.index', $user)}}" title="{{osu_trans('beatmap_discussion_posts.item.modding_history_link')}}">
                         <i class='fas fa-align-left'></i>
                     </a>
                 @endif
             @else
                 <span class="{{$bn}}__user-link">
-                    <span class="{{$bn}}__user-text u-ellipsis-overflow">{{ trans('users.deleted') }}</span>
+                    <span class="{{$bn}}__user-text u-ellipsis-overflow">{{ osu_trans('users.deleted') }}</span>
                 </span>
             @endif
         </div>

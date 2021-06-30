@@ -19,7 +19,7 @@
 
     <div class="forum-topic-entry__col forum-topic-entry__col--icon">
         @if (isset($topicReplyStatus[$topic->getKey()]))
-            <span class="forum-topic-entry__replied" title="{{ trans('forum.topic.has_replied') }}"></span>
+            <span class="forum-topic-entry__replied" title="{{ osu_trans('forum.topic.has_replied') }}"></span>
         @endif
 
         <a
@@ -62,7 +62,7 @@
             <div>
                 @if ($includeForumName ?? false)
                     <span class="forum-topic-entry__detail">
-                        {!! trans('forum.topic.in_forum', [
+                        {!! osu_trans('forum.topic.in_forum', [
                             'forum' => link_to(
                                 route('forum.forums.show', $topic->forum),
                                 $topic->forum->forum_name
@@ -72,7 +72,7 @@
                 @endif
 
                 <span class="forum-topic-entry__detail">
-                    {!! trans('forum.topic.started_by', [
+                    {!! osu_trans('forum.topic.started_by', [
                         'user' => tag('span', [
                             'class' => 'forum-topic-entry__user-icon',
                             'style' => user_color_style($topic->topic_first_poster_colour, 'background-color'),
@@ -104,7 +104,7 @@
             hidden-xs
         ">
             <div>
-                {!! trans_choice(
+                {!! osu_trans_choice(
                     'common.count.post',
                     $topic->topic_replies + 1,
                     ['count_delimited' => tag('strong', ['class' => 'forum-topic-entry__count'], e(i18n_number_format($topic->topic_replies + 1)))]
@@ -112,7 +112,7 @@
             </div>
 
             <div>
-                {!! trans_choice(
+                {!! osu_trans_choice(
                     'common.count.view',
                     $topic->topic_views,
                     ['count_delimited' => tag('strong', ['class' => 'forum-topic-entry__count'], e(i18n_number_format($topic->topic_views)))]
@@ -121,7 +121,7 @@
 
             @if ($topic->isFeatureTopic())
                 <div>
-                    {!! trans_choice(
+                    {!! osu_trans_choice(
                         'common.count.star_priority',
                         $topic->osu_starpriority,
                         ['count_delimited' => tag('strong', ['class' => 'forum-topic-entry__count'], e(i18n_number_format($topic->osu_starpriority)))]
@@ -132,7 +132,7 @@
 
         <div class="forum-topic-entry__content forum-topic-entry__content--right">
             <div class="u-ellipsis-overflow">
-                {!! trans(
+                {!! osu_trans(
                     $topic->topic_replies === 0 ? 'forum.topic.started_by_verbose' : 'forum.topic.latest_reply_by',
                     ['user' => link_to_user(
                         $topic->topic_last_poster_id,
@@ -152,7 +152,7 @@
     <a
         class="forum-topic-entry__col forum-topic-entry__col--last-link"
         href="{{ post_url($topic->topic_id, "unread", false) }}"
-        title="{{ trans("forum.topic.go_to_latest") }}"
+        title="{{ osu_trans("forum.topic.go_to_latest") }}"
     >
         <i class="fas fa-chevron-right"></i>
     </a>

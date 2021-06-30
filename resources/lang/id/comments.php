@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'telah dihapus',
+    'deleted_by' => '',
+    'deleted_by_system' => '',
     'deleted_count' => ':count_delimited komentar yang dihapus|:count_delimited komentar yang dihapus',
     'edited' => 'disunting :timeago oleh :user',
     'pinned' => 'disematkan',

@@ -5,25 +5,25 @@
 
 return [
     'show' => [
-        'title' => '',
+        'title' => ':username na :title [:version]',
 
         'beatmap' => [
-            'by' => '',
+            'by' => 'od :artist',
         ],
 
         'player' => [
-            'by' => '',
-            'submitted_on' => '',
+            'by' => 'Hráno',
+            'submitted_on' => 'Nahráno',
 
             'rank' => [
-                'country' => '',
-                'global' => '',
+                'country' => 'Státní žebříčky',
+                'global' => 'Celosvětové žebříčky',
             ],
         ],
     ],
 
     'status' => [
-        'non_best' => '',
-        'processing' => '',
+        'non_best' => 'Pouze osobní nejlepší skóre ocenění',
+        'processing' => 'Toto skóre se stále počítá a bude brzy zobrazeno',
     ],
 ];
