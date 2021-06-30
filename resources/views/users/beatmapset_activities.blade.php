@@ -8,13 +8,7 @@
 ])
 
 @section('content')
-    @if (Auth::user() && Auth::user()->isAdmin() && $user->isRestricted())
-        @include('objects._notification_banner', [
-            'type' => 'warning',
-            'title' => osu_trans('admin.users.restricted_banner.title'),
-            'message' => osu_trans('admin.users.restricted_banner.message'),
-        ])
-    @endif
+    @include('users._restricted_banner', compact('user'))
 
     <div class="js-react--modding-profile osu-layout osu-layout--full"></div>
 @endsection
