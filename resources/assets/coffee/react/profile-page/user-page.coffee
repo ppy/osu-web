@@ -21,7 +21,7 @@ export class UserPage extends React.Component
           button
             type: 'button'
             title: osu.trans('users.show.page.button')
-            className: 'profile-page-toggle'
+            className: 'page-toggle'
             onClick: @editStart
             span className: 'fas fa-pencil-alt'
 
