@@ -44,6 +44,12 @@ export default class Header extends React.PureComponent<Props> {
               data-audio-url={this.props.beatmapset.preview_url}
               type='button'
             />
+
+            <div className='beatmapset-header__page-toggle'>
+              <button className='page-toggle page-toggle--beatmapset-cover'>
+                <span className='fas fa-chevron-up' />
+              </button>
+            </div>
           </div>
         </div>
 
