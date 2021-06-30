@@ -20,7 +20,7 @@ export default class MultiplayerHistory extends React.Component<Props> {
   static contextType = UserMultiplayerHistoryContext;
   declare context: React.ContextType<typeof UserMultiplayerHistoryContext>;
 
-  @observable loading = false;
+  @observable private loading = false;
 
   @computed
   private get hasMore() {

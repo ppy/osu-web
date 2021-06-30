@@ -28,7 +28,7 @@ export default class Room extends React.Component<Props> {
   declare context: React.ContextType<typeof UserMultiplayerHistoryContext>;
 
   @computed
-  get status() {
+  private get status() {
     if (!this.props.room.active) {
       return 'ended';
     }
@@ -39,18 +39,18 @@ export default class Room extends React.Component<Props> {
   }
 
   @computed
-  get maxDifficulty() {
+  private get maxDifficulty() {
     const max = maxBy(this.props.room.playlist, (playlist) => this.context.beatmaps.get(playlist.beatmap_id)?.difficulty_rating);
     return this.context.beatmaps.get(max?.beatmap_id ?? 0)?.difficulty_rating ?? 0;
   }
 
   @computed
-  get minDifficulty() {
+  private get minDifficulty() {
     const min = minBy(this.props.room.playlist, (playlist) => this.context.beatmaps.get(playlist.beatmap_id)?.difficulty_rating);
     return this.context.beatmaps.get(min?.beatmap_id ?? 0)?.difficulty_rating ?? 0;
   }
 
-  get background() {
+  private get background() {
     const beatmap = this.context.beatmaps.get(this.props.room.playlist[0].beatmap_id);
     const beatmapset = this.context.beatmapsets.get(beatmap?.beatmapset_id ?? 0);
 
