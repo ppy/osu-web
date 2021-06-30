@@ -4,8 +4,14 @@
 .beatmapset-info {
   padding: 0 50px;
 
-  &__difficulty {
+  &__diff {
     margin: 10px 0;
+  }
+
+  &__diff-details {
+    display: flex;
+    align-items: center;
+    gap: 0 7px;
   }
 
   &__diff-mapper {
@@ -21,7 +27,7 @@
     font-size: @font-size--normal;
     color: hsl(var(--hsl-b5));
     font-weight: 700;
-    padding: 0 10px;
+    padding: 2px 10px;
     border-radius: @border-radius--large;
   }
 }
