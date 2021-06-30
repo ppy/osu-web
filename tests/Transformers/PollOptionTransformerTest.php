@@ -5,7 +5,6 @@
 
 namespace Tests\Transformers;
 
-use App\Models\Forum\Forum;
 use App\Models\Forum\Topic;
 use Carbon\Carbon;
 use Tests\TestCase;
@@ -24,7 +23,6 @@ class PollOptionTransformerTest extends TestCase
     ): void {
         $actor = $this->createUserWithGroup($groupIdentifier);
         $topicAttributes = [
-            'forum_id' => factory(Forum::class)->state('child')->create()->getKey(),
             'poll_hide_results' => true,
             'poll_length' => 86400, // 1 day
             'topic_time' => Carbon::now(),

@@ -5,6 +5,7 @@
 
 use App\Models\Forum\AuthOption;
 use App\Models\Forum\Authorize;
+use App\Models\Forum\Forum;
 use App\Models\Forum\PollOption;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
@@ -34,6 +35,7 @@ $factory->state(App\Models\Forum\Forum::class, 'child', function (Faker\Generato
 
 $factory->define(App\Models\Forum\Topic::class, function (Faker\Generator $faker) {
     return [
+        'forum_id' => factory(Forum::class)->state('parent'),
         'topic_title' => $faker->catchPhrase,
         'topic_views' => rand(0, 99999),
         'topic_approved' => 1,
