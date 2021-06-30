@@ -4,7 +4,7 @@
 import { Hype } from './hype'
 import { Info } from './info'
 import { Scoreboard } from './scoreboard'
-import BeatmapsetHeader from 'beatmapsets-show/beatmapset-header'
+import Header from 'beatmapsets-show/header'
 import NsfwWarning from 'beatmapsets-show/nsfw-warning'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
@@ -211,7 +211,7 @@ export class Main extends React.Component
   renderPage: ->
     el React.Fragment, null,
       div className: 'osu-layout__row osu-layout__row--page-compact',
-        el BeatmapsetHeader,
+        el Header,
           beatmapset: @state.beatmapset
 
       div className: 'osu-layout__section osu-layout__section--extra',

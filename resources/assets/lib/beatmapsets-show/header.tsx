@@ -9,7 +9,7 @@ interface Props {
   beatmapset: BeatmapsetJson;
 }
 
-export default class BeatmapsetHeader extends React.PureComponent<Props> {
+export default class Header extends React.PureComponent<Props> {
   render() {
     return (
       <div className='beatmapset-header'>
