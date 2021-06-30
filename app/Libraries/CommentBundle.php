@@ -5,8 +5,11 @@
 
 namespace App\Libraries;
 
+use App\Models\Beatmapset;
+use App\Models\Build;
 use App\Models\Comment;
 use App\Models\CommentVote;
+use App\Models\NewsPost;
 use App\Models\User;
 
 class CommentBundle
@@ -35,6 +38,11 @@ class CommentBundle
         return new static($commentable, ['params' => ['parent_id' => 0]]);
     }
 
+
+    /**
+     * @param Beatmapset|Build|NewsPost|null $commentable TODO: phpcs can't handle this typehint properly yet.
+     * @param array $options
+     */
     public function __construct(private $commentable, array $options = [])
     {
         $this->user = auth()->user();
