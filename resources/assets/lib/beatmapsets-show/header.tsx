@@ -3,14 +3,19 @@
 
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import Img2x from 'img2x';
+import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
+import BeatmapPicker from './beatmap-picker';
 
 interface Props {
+  beatmaps: Map<GameMode, BeatmapJsonExtended[]>;
   beatmapset: BeatmapsetJson;
+  currentBeatmap: BeatmapJsonExtended;
 }
 
 export default class Header extends React.PureComponent<Props> {
@@ -75,6 +80,13 @@ export default class Header extends React.PureComponent<Props> {
                   />,
               }}
               pattern={osu.trans('beatmapsets.show.details.created_by')}
+            />
+          </div>
+
+          <div className='beatmapset-header__details-item beatmapset-header__details-item--picker'>
+            <BeatmapPicker
+              beatmaps={this.props.beatmaps.get(this.props.currentBeatmap.mode) ?? ([] as BeatmapJsonExtended[])}
+              currentBeatmap={this.props.currentBeatmap}
             />
           </div>
         </div>

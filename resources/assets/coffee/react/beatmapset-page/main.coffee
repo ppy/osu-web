@@ -213,6 +213,8 @@ export class Main extends React.Component
       div className: 'osu-layout__row osu-layout__row--page-compact',
         el Header,
           beatmapset: @state.beatmapset
+          beatmaps: @state.beatmaps
+          currentBeatmap: @state.currentBeatmap
 
       div className: 'osu-layout__section osu-layout__section--extra',
         if @state.beatmapset.can_be_hyped
