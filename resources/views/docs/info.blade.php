@@ -305,7 +305,7 @@ For a full list of changes, see the
 ## Breaking Changes
 
 ### 2021-06-14
-- Removed `description` from [Group](#group) and [UserGroup](#usergroup). It has been moved to an optional attribute on [Group](#group).
+- Removed `description` from [UserGroup](#usergroup). It has been moved to an optional attribute with a different type on [Group](#group).
 
 ### 2021-06-09
 - `ranked_and_approved_beatmapset_count` and `unranked_beatmapset_count` attributes in [UserCompact](#usercompact) object have been deprecated and replaced with `ranked_beatmapset_count` and `pending_beatmapset_count` respectively.
