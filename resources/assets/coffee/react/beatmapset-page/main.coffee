@@ -2,9 +2,9 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { Hype } from './hype'
-import { Info } from './info'
 import { Scoreboard } from './scoreboard'
 import Header from 'beatmapsets-show/header'
+import Info from 'beatmapsets-show/info'
 import NsfwWarning from 'beatmapsets-show/nsfw-warning'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
@@ -214,6 +214,10 @@ export class Main extends React.Component
         el Header,
           beatmapset: @state.beatmapset
           beatmaps: @state.beatmaps
+          currentBeatmap: @state.currentBeatmap
+
+        el Info,
+          beatmapset: @state.beatmapset
           currentBeatmap: @state.currentBeatmap
 
       div className: 'osu-layout__section osu-layout__section--extra',
