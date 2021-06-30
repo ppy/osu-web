@@ -22,6 +22,7 @@ trait LocallyCached
     }
 
     private int $resetTicker = 0;
+    private int $resetTickerLimit;
     private ?int $version = null;
     private bool $versionCheck = false;
 
@@ -58,8 +59,9 @@ trait LocallyCached
     public function incrementResetTicker(): void
     {
         $this->resetTicker++;
+        $this->resetTickerLimit ??= config('osu.octane.local_cache_reset_requests');
 
-        if ($this->resetTicker > config('osu.octane.local_cache_reset_requests')) {
+        if ($this->resetTicker > $this->resetTickerLimit) {
             $this->forceVersionCheck();
             $this->resetTicker = 0;
         }
