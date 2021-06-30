@@ -13,6 +13,38 @@
     height: 250px;
   }
 
+  &__details {
+    padding: 0 50px;
+    background-color: hsl(var(--hsl-b4));
+  }
+
+  &__details-item {
+    &--artist-title {
+      padding-top: 15px;
+    }
+
+    &--creator {
+      font-size: @font-size--normal;
+    }
+  }
+
+  &__details-text {
+    &--artist {
+      font-size: @font-size--title-small-4;
+      margin-left: 5px;
+    }
+
+    &--title {
+      font-size: @font-size--title;
+    }
+  }
+
+  &__details-text-link {
+    .default-text-shadow();
+    .link-white();
+    .link-plain();
+  }
+
   &__info-cover {
     position: absolute;
     left: 0;
