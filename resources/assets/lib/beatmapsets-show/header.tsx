@@ -18,6 +18,18 @@ export default class Header extends React.PureComponent<Props> {
             className='beatmapset-header__cover'
             src={this.props.beatmapset.covers.cover}
           />
+
+          <div className='beatmapset-header__info-cover'>
+            <div
+              className='beatmapset-status beatmapset-status--header'
+              style={{
+                '--bg': `var(--beatmapset-${this.props.beatmapset.status}-bg)`,
+                '--colour': `var(--beatmapset-${this.props.beatmapset.status}-colour)`,
+              } as React.CSSProperties}
+            >
+              {osu.trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
+            </div>
+          </div>
         </div>
       </div>
     );
