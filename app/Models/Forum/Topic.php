@@ -173,6 +173,14 @@ class Topic extends Model implements AfterCommit
         return $this->hasOne(Post::class, 'post_id', 'topic_first_post_id');
     }
 
+    public function realFirstPost()
+    {
+        return $this
+            ->hasOne(Post::class)
+            ->withTrashed()
+            ->orderBy('post_id', 'ASC');
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class);
