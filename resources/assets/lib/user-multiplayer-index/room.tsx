@@ -68,7 +68,7 @@ export default class Room extends React.Component<Props> {
         <div className='multiplayer-room__content'>
           <div className='multiplayer-room__badge-container'>
             <div className={classWithModifiers('multiplayer-room__badge', [this.status])}>{osu.trans(`multiplayer.room.status.${this.status}`)}</div>
-            <time className='js-tooltip-time' title={this.props.room.ends_at}>
+            <time className='js-tooltip-time u-hover' title={this.props.room.ends_at}>
               {this.status === 'ended'
                 ? endsAt.fromNow()
                 : osu.trans('multiplayer.room.time_left', { time: endsAt.fromNow(true) })}
@@ -109,7 +109,7 @@ export default class Room extends React.Component<Props> {
     return (
       <div className='multiplayer-room__host'>
         <StringWithComponent
-          mappings={{ ':user': <UserLink key='user' className='multiplayer-room__host-link' user={this.props.room.host} /> }}
+          mappings={{ ':user': <UserLink key='user' className='u-hover' user={this.props.room.host} /> }}
           pattern={osu.trans('multiplayer.room.hosted_by')}
         />
       </div>
