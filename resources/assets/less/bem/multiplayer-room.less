@@ -4,12 +4,15 @@
 .multiplayer-room {
   --bg: hsla(var(--hsl-b6), 0.75);
   --border-radius: @border-radius--large;
+  --room-bg: linear-gradient(0.25turn, hsl(var(--hsl-b2)), hsla(var(--hsl-b2), 0.8));
+
+  .link-hover({
+    --room-bg: linear-gradient(0.25turn, hsl(var(--hsl-b4)), hsla(var(--hsl-b4), 0.8));
+  });
 
   display: flex;
   font-size: @font-size--normal;
-
   position: relative;
-
   color: hsl(var(--hsl-c1));
 
   &__chat-button {
@@ -17,10 +20,11 @@
   }
 
   &__content {
+    pointer-events: none;
     position: relative;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(0.25turn, hsl(var(--hsl-b2)), hsla(var(--hsl-b2), 0.8));
+    background: var(--room-bg);
     border-radius: var(--border-radius);
 
     padding: 6px 20px;
@@ -40,6 +44,7 @@
 
   &__cover-container {
     .full-size();
+
     display: flex;
   }
 
@@ -103,6 +108,10 @@
     align-items: center;
     padding: 5px;
     white-space: pre;
+  }
+
+  &__host-link {
+    pointer-events: auto;
   }
 
   &__participants {

@@ -4,6 +4,7 @@
 import DifficultyBadge from 'difficulty-badge';
 import Img2x from 'img2x';
 import RoomJson from 'interfaces/room-json';
+import { route } from 'laroute';
 import { maxBy, minBy } from 'lodash';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
@@ -77,7 +78,7 @@ export default class Room extends React.Component<Props> {
             <div className='multiplayer-room__name'>{this.props.room.name}</div>
             {this.renderMembers()}
           </div>
-          <div className='multiplayer-room__badge-container'>
+          <div className='multiplayer-room__badge-container multiplayer-room__badge-container--bottom'>
             <div className={classWithModifiers('multiplayer-room__badge', ['map-count'])}>{osu.transChoice('multiplayer.room.map_count', this.props.room.playlist.length)}</div>
             <div
               className='multiplayer-room__difficulty'
@@ -97,11 +98,10 @@ export default class Room extends React.Component<Props> {
 
   private renderCover() {
     return (
-      <div className='multiplayer-room__cover-container'>
+      <a className='multiplayer-room__cover-container' href={route('multiplayer.rooms.show', { room: this.props.room.id })}>
         <div className='multiplayer-room__cover multiplayer-room__cover--default' />
         <Img2x className='multiplayer-room__cover' hideOnError src={this.background} />
-      </div>
-
+      </a>
     );
   }
 
@@ -109,7 +109,7 @@ export default class Room extends React.Component<Props> {
     return (
       <div className='multiplayer-room__host'>
         <StringWithComponent
-          mappings={{ ':user': <UserLink key='user' user={this.props.room.host} /> }}
+          mappings={{ ':user': <UserLink key='user' className='multiplayer-room__host-link' user={this.props.room.host} /> }}
           pattern={osu.trans('multiplayer.room.hosted_by')}
         />
       </div>
