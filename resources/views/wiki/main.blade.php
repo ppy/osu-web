@@ -8,7 +8,7 @@
 @section('content')
     @component('layout._page_header_v4', ['params' => [
         'links' => [[
-            'title' => trans('layout.header.help.index'),
+            'title' => osu_trans('layout.header.help.index'),
             'url' => wiki_url('Main_Page', $page->requestedLocale),
         ]],
         'linksBreadcrumb' => true,

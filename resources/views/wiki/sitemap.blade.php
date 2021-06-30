@@ -7,18 +7,18 @@
 @endphp
 
 @extends('master', [
-    'titlePrepend' => trans('layout.header.help.sitemap'),
+    'titlePrepend' => osu_trans('layout.header.help.sitemap'),
 ])
 
 @section('content')
     @component('layout._page_header_v4', ['params' => [
         'links' => [
             [
-                'title' => trans('layout.header.help.index'),
+                'title' => osu_trans('layout.header.help.index'),
                 'url' => wiki_url('Main_Page'),
             ],
             [
-                'title' => trans('layout.header.help.sitemap'),
+                'title' => osu_trans('layout.header.help.sitemap'),
                 'url' => $sitemapUrl,
             ],
         ],
@@ -36,7 +36,7 @@
                             data-remote="true"
                             data-url="{{ $sitemapUrl }}"
                             data-method="PUT"
-                            title="{{ trans('wiki.show.edit.refresh') }}"
+                            title="{{ osu_trans('wiki.show.edit.refresh') }}"
                         >
                             <i class="fas fa-sync"></i>
                         </button>
@@ -56,7 +56,7 @@
     @endcomponent
 
     <div class="osu-page osu-page--generic">
-        <h1>{{ trans('layout.header.help.sitemap') }}</h1>
+        <h1>{{ osu_trans('layout.header.help.sitemap') }}</h1>
         <div class="osu-md">
             @include('wiki._sitemap_section', $sitemap)
         </div>

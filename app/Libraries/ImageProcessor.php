@@ -33,15 +33,15 @@ class ImageProcessor
     public function basicCheck()
     {
         if ($this->inputFileSize > $this->hardMaxFileSize) {
-            throw new ImageProcessorException(trans('users.show.edit.cover.upload.too_large'));
+            throw new ImageProcessorException(osu_trans('users.show.edit.cover.upload.too_large'));
         }
 
         if ($this->inputDim === null || !in_array($this->inputDim[2], $this->allowedTypes, true)) {
-            throw new ImageProcessorException(trans('users.show.edit.cover.upload.unsupported_format'));
+            throw new ImageProcessorException(osu_trans('users.show.edit.cover.upload.unsupported_format'));
         }
 
         if ($this->inputDim[0] > $this->hardMaxDim[0] || $this->inputDim[1] > $this->hardMaxDim[1]) {
-            throw new ImageProcessorException(trans('users.show.edit.cover.upload.too_large'));
+            throw new ImageProcessorException(osu_trans('users.show.edit.cover.upload.too_large'));
         }
     }
 
@@ -75,7 +75,7 @@ class ImageProcessor
         $inputImage = open_image($this->inputPath, $this->inputDim);
 
         if ($inputImage === null) {
-            throw new ImageProcessorException(trans('users.show.edit.cover.upload.broken_file'));
+            throw new ImageProcessorException(osu_trans('users.show.edit.cover.upload.broken_file'));
         }
 
         if (

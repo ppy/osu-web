@@ -7,7 +7,7 @@ return [
     'comment' => [
         'empty' => 'Nessun commento seguito.',
         'page_title' => 'commenti seguiti',
-        'title' => 'commento',
+        'title' => 'commenti',
 
         'table' => [
             'latest_comment_empty' => 'nessun commento',

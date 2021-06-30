@@ -425,7 +425,7 @@ class Page implements WikiObject
     public function title($withSubtitle = false)
     {
         if ($this->page === null) {
-            return trans('wiki.show.missing_title');
+            return osu_trans('wiki.show.missing_title');
         }
 
         $title = presence($this->page['header']['title'] ?? null) ?? $this->defaultTitle;

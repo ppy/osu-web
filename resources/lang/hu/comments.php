@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'törölve',
+    'deleted_by' => '',
+    'deleted_by_system' => '',
     'deleted_count' => ':count_delimited törölt komment|:count_delimited törölt kommentek',
     'edited' => ':user által szerkesztve :timeago',
     'pinned' => 'rögzített',
