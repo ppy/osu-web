@@ -16,6 +16,7 @@ use App\Models\Comment;
 use App\Models\Contest;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Forum\Forum;
+use App\Models\Forum\PollOption;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
@@ -1524,6 +1525,16 @@ class OsuAuthorize
         }
 
         return 'unauthorized';
+    }
+
+    /**
+     * @throws AuthorizationException
+     */
+    public function checkForumTopicPollOptionShowResult(?User $user, PollOption $pollOption): string
+    {
+        $this->doCheckUser($user, 'ForumTopicPollShowResults', $pollOption->topic)->ensureCan();
+
+        return 'ok';
     }
 
     /**
