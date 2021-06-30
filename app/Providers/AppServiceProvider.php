@@ -18,7 +18,6 @@ use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Octane\Facades\Octane;
 use Queue;
 use Validator;
 

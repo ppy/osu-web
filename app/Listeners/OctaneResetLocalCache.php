@@ -5,9 +5,6 @@
 
 namespace App\Listeners;
 
-use App\Events\Fulfillments\ValidationFailedEvent;
-use App\Traits\StoreNotifiable;
-
 class OctaneResetLocalCache
 {
     public function handle($event): void
@@ -16,4 +13,3 @@ class OctaneResetLocalCache
         app('groups')->incrementResetTicker();
     }
 }
-
