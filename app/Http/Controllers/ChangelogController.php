@@ -365,13 +365,27 @@ class ChangelogController extends Controller
      */
     public function build($streamName, $version)
     {
-        $this->getUpdateStreams();
 
         $stream = UpdateStream::where('name', '=', $streamName)->firstOrFail();
-        $build = $stream->builds()->default()->where('version', $version)->firstOrFail();
+        $build = $stream
+            ->builds()
+            ->default()
+            ->where('version', $version)
+            ->with([
+                'defaultChangelogs.user',
+                'defaultChangelogEntries.githubUser.user',
+                'defaultChangelogEntries.repository',
+            ])->firstOrFail();
         $buildJson = json_item($build, 'Build', [
             'changelog_entries', 'changelog_entries.github_user', 'versions',
         ]);
+
+        if (is_json_request()) {
+            return $buildJson;
+        }
+
+        $this->getUpdateStreams();
+
         $commentBundle = CommentBundle::forEmbed($build);
 
         $chartConfig = Cache::remember(
@@ -382,11 +396,7 @@ class ChangelogController extends Controller
             }
         );
 
-        if (is_json_request()) {
-            return $buildJson;
-        } else {
-            return ext_view('changelog.build', compact('build', 'buildJson', 'chartConfig', 'commentBundle'));
-        }
+        return ext_view('changelog.build', compact('build', 'buildJson', 'chartConfig', 'commentBundle'));
     }
 
     private function getUpdateStreams()

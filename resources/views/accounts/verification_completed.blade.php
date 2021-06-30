@@ -4,7 +4,7 @@
 --}}
 @extends('master', [
     'blank' => true,
-    'titlePrepend' => trans('accounts.verification_completed.title'),
+    'titlePrepend' => osu_trans('accounts.verification_completed.title'),
 ])
 
 @section('content')
@@ -14,7 +14,7 @@
 
             <div class="dialog-form__row dialog-form__row--title">
                 <div class="dialog-form__logo"></div>
-                <h1 class="dialog-form__title">{{ trans('users.verify.title') }}</h1>
+                <h1 class="dialog-form__title">{{ osu_trans('users.verify.title') }}</h1>
             </div>
 
             <div class="dialog-form__row dialog-form__row--verification-completed">
@@ -24,11 +24,11 @@
                     </div>
 
                     <div class="account-verification-message__title">
-                        {{ trans('accounts.verification_completed.title') }}
+                        {{ osu_trans('accounts.verification_completed.title') }}
                     </div>
 
                     <div class="account-verification-message__text">
-                        {{ trans('accounts.verification_completed.text') }}
+                        {{ osu_trans('accounts.verification_completed.text') }}
                     </div>
                 </div>
             </div>

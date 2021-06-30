@@ -5,6 +5,8 @@
 
 return [
     'deleted' => '已删除',
+    'deleted_by' => '',
+    'deleted_by_system' => '',
     'deleted_count' => ':count_delimited 条已删除评论',
     'edited' => ':user 编辑于 :timeago',
     'pinned' => '已置顶',

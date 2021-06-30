@@ -10,7 +10,7 @@
 
 <button
     class="{{ $blockClass }}"
-    data-disable-with="{{ trans('forum.mark_as_read.busy') }}"
+    data-disable-with="{{ osu_trans('forum.mark_as_read.busy') }}"
     data-method="POST"
     data-remote="1"
     data-url="{{ route('forum.forums.mark-as-read', ['forum_id' => optional($forum)->getKey(), 'recursive' => $recursive]) }}"
@@ -18,5 +18,5 @@
         disabled
     @endif
 >
-    {{ $forum === null ? trans('forum.mark_as_read.forums') : trans('forum.mark_as_read.forum') }}
+    {{ $forum === null ? osu_trans('forum.mark_as_read.forums') : osu_trans('forum.mark_as_read.forum') }}
 </button>

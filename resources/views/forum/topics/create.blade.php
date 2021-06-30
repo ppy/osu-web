@@ -17,7 +17,7 @@
         <div class="forum-topic-title">
             <div class="forum-topic-title__item">
                 <h1 class="forum-topic-title__title">
-                    {{ trans('forum.topic.new_topic') }}
+                    {{ osu_trans('forum.topic.new_topic') }}
                 </h1>
             </div>
         </div>
@@ -37,11 +37,11 @@
                         />
 
                         <span class="label-toggle__label label-toggle__label--uncheck">
-                            {{ trans('forum.topics.create.create_poll_button.remove') }}
+                            {{ osu_trans('forum.topics.create.create_poll_button.remove') }}
                         </span>
 
                         <span class="label-toggle__label label-toggle__label--check">
-                            {{ trans('forum.topics.create.create_poll_button.add') }}
+                            {{ osu_trans('forum.topics.create.create_poll_button.add') }}
                         </span>
                     </div>
                 </label>
@@ -56,7 +56,7 @@
         <div class="forum-poll js-form-toggle--form" data-form-toggle-id="poll-create" style="display: none">
             <div class="forum-poll__row forum-poll__row--title">
                 <h2 class="forum-poll__title">
-                    {{ trans('forum.topics.create.create_poll') }}
+                    {{ osu_trans('forum.topics.create.create_poll') }}
                 </h2>
             </div>
 
@@ -65,7 +65,7 @@
 
         <div class="js-post-preview--box hidden forum-post-preview">
             <div class="forum-post-preview__title">
-                {{ trans('forum.topics.create.preview') }}
+                {{ osu_trans('forum.topics.create.preview') }}
             </div>
 
             <div class="forum-post-content js-post-preview--preview"></div>

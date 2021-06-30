@@ -2,7 +2,7 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@extends('master', ['titlePrepend' => trans('layout.header.admin.store_orders')])
+@extends('master', ['titlePrepend' => osu_trans('layout.header.admin.store_orders')])
 
 @section('content')
 
@@ -47,13 +47,13 @@
     <div>
         <div class="panel panel-info">
             <div class="panel-heading">
-                <div class="panel-title">{{ trans("store.admin.warehouse") }}</div>
+                <div class="panel-title">{{ osu_trans("store.admin.warehouse") }}</div>
             </div>
 
             <table class="table table-striped">
                 <thead>
-                    <th>{{ trans("store.product.name") }}</th>
-                    <th>{{ trans("store.order.item.quantity") }}</th>
+                    <th>{{ osu_trans("store.product.name") }}</th>
+                    <th>{{ osu_trans("store.order.item.quantity") }}</th>
                 </thead>
                 <tbody>
                     @foreach ($ordersItemsQuantities as $ordersItemsQuantity)
@@ -137,7 +137,7 @@
                                     @endforeach
                                 </select>
                             @else
-                                {{ $i->getDisplayName() }}
+                                {{ $i->getDisplayName(true) }}
                             @endif
                             </span>
                             {!! Form::close() !!}

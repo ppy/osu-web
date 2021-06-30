@@ -11,8 +11,8 @@
     @if (Auth::user() && Auth::user()->isAdmin() && $user->isRestricted())
         @include('objects._notification_banner', [
             'type' => 'warning',
-            'title' => trans('admin.users.restricted_banner.title'),
-            'message' => trans('admin.users.restricted_banner.message'),
+            'title' => osu_trans('admin.users.restricted_banner.title'),
+            'message' => osu_trans('admin.users.restricted_banner.message'),
         ])
     @endif
 

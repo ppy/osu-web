@@ -154,6 +154,7 @@ class Mod
             'approach_rate' => 'float',
             'extended_limits' => 'bool',
             'scroll_speed' => 'float',
+            'hard_rock_offsets' => 'bool',
         ],
         self::DOUBLETIME => [
             'speed_change' => 'float',

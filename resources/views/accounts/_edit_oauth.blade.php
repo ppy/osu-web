@@ -5,14 +5,14 @@
 <div class="account-edit">
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
-            {{ trans('accounts.oauth.title') }}
+            {{ osu_trans('accounts.oauth.title') }}
         </h2>
     </div>
 
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
             <div class="account-edit-entry">
-                <div class="account-edit-entry__label account-edit-entry__label--top-pinned">{{ trans('accounts.oauth.authorized_clients') }}</div>
+                <div class="account-edit-entry__label account-edit-entry__label--top-pinned">{{ osu_trans('accounts.oauth.authorized_clients') }}</div>
                 <div class="account-edit__input-groups">
                     <div class="js-react--authorized-clients"></div>
                 </div>
@@ -21,7 +21,7 @@
 
         <div class="account-edit__input-group">
             <div class="account-edit-entry">
-                <div class="account-edit-entry__label account-edit-entry__label--top-pinned">{{ trans('accounts.oauth.own_clients') }}</div>
+                <div class="account-edit-entry__label account-edit-entry__label--top-pinned">{{ osu_trans('accounts.oauth.own_clients') }}</div>
                 <div class="account-edit__input-groups">
                     <div class="js-react--own-clients"></div>
                 </div>

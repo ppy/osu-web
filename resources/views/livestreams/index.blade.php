@@ -8,10 +8,10 @@
     @include('layout._page_header_v4', ['params' => ['theme' => 'livestreams']])
 
     <div class="osu-page osu-page--description">
-        {!! trans('livestreams.top-headers.description', [
+        {!! osu_trans('livestreams.top-headers.description', [
             'link' => link_to(
                 wiki_url('Guides/Live_Streaming_osu!'),
-                trans('livestreams.top-headers.link')
+                osu_trans('livestreams.top-headers.link')
             ),
         ]) !!}
     </div>
