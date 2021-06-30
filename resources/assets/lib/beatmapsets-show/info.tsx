@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { BeatmapIcon } from 'beatmap-icon';
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as React from 'react';
@@ -19,6 +20,7 @@ export default class Header extends React.PureComponent<Props> {
       <div className='beatmapset-info'>
         <div className='beatmapset-info__diff'>
           <div className='beatmapset-info__diff-details'>
+            <BeatmapIcon beatmap={this.props.currentBeatmap} modifier='beatmapset-info' />
             <div
               className='beatmapset-info__star-difficulty'
               style={{
