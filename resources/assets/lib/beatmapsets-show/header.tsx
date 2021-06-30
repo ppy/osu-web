@@ -6,10 +6,13 @@ import Img2x from 'img2x';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
+import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
+import { classWithModifiers } from 'utils/css';
 import BeatmapPicker from './beatmap-picker';
 
 interface Props {
@@ -18,11 +21,14 @@ interface Props {
   currentBeatmap: BeatmapJsonExtended;
 }
 
-export default class Header extends React.PureComponent<Props> {
+@observer
+export default class Header extends React.Component<Props> {
   render() {
+    const expanded = core.userPreferences.get('beatmapset_cover_expanded');
+
     return (
       <div className='beatmapset-header'>
-        <div className='beatmapset-header__cover-container'>
+        <div className={classWithModifiers('beatmapset-header__cover-container', { expanded })}>
           <Img2x
             className='beatmapset-header__cover'
             src={this.props.beatmapset.covers.cover}
@@ -46,8 +52,12 @@ export default class Header extends React.PureComponent<Props> {
             />
 
             <div className='beatmapset-header__page-toggle'>
-              <button className='page-toggle page-toggle--beatmapset-cover'>
-                <span className='fas fa-chevron-up' />
+              <button
+                className='page-toggle page-toggle--beatmapset-cover'
+                onClick={this.toggleExpand}
+                title={osu.trans(`common.buttons.${expanded ? 'collapse' : 'expand'}`)}
+              >
+                <span className={`fas fa-chevron-${expanded ? 'up' : 'down'}`} />
               </button>
             </div>
           </div>
@@ -105,4 +115,8 @@ export default class Header extends React.PureComponent<Props> {
       </div>
     );
   }
+
+  private toggleExpand = () => {
+    void core.userPreferences.set('beatmapset_cover_expanded', !core.userPreferences.get('beatmapset_cover_expanded'));
+  };
 }

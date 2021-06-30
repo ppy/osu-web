@@ -10,7 +10,12 @@
 
   &__cover-container {
     position: relative;
-    height: 250px;
+    height: 53px;
+    transition: height 120ms ease-in-out;
+
+    &--expanded {
+      height: 250px;
+    }
   }
 
   &__details {
