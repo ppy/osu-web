@@ -53,10 +53,12 @@ return [
         'discussion' => 'Discussion',
 
         'details' => [
+            'bpm' => 'BPM :bpm',
             'by_artist' => 'by :artist',
             'created_by' => 'created by :creator',
             'favourite' => 'Favourite this beatmap',
             'favourite_login' => 'Sign in to favourite this beatmap',
+            'length' => 'Length :length',
             'logged-out' => 'You need to sign in before downloading any beatmaps!',
             'mapped_by' => 'mapped by :mapper',
             'unfavourite' => 'Unfavourite this beatmap',

@@ -6,12 +6,27 @@
 
   &__diff {
     margin: 10px 0;
-  }
-
-  &__diff-details {
     display: flex;
     align-items: center;
-    gap: 0 7px;
+  }
+
+  &__diff-item {
+    display: flex;
+    align-items: center;
+
+    &--details {
+      gap: 0 7px;
+    }
+
+    &--length-bpm {
+      margin-left: auto;
+      font-size: @font-size--title-small;
+      font-weight: 600;
+      background-color: hsl(var(--hsl-b4));
+      padding: 2px 20px;
+      border-radius: @border-radius--large;
+      gap: 15px;
+    }
   }
 
   &__diff-mapper {
@@ -20,6 +35,10 @@
 
   &__diff-name {
     font-size: @font-size--title-small-3;
+  }
+
+  &__length-bpm-value {
+    color: hsl(var(--hsl-c2));
   }
 
   &__star-difficulty {
