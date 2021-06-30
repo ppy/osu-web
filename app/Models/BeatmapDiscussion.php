@@ -10,7 +10,6 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
-use Ds\Set;
 use Exception;
 
 /**
@@ -378,17 +377,6 @@ class BeatmapDiscussion extends Model
         ])->saveOrExplode();
     }
 
-    public function responsibleUserIds(): Set
-    {
-        $ids = new Set([$this->beatmapset->user_id]);
-
-        if ($this->beatmap !== null) {
-            $ids->add($this->beatmap->user_id);
-        }
-
-        return $ids;
-    }
-
     public function fixBeatmapsetId()
     {
         if (!$this->isDirty('beatmap_id') || $this->beatmap === null) {
@@ -631,6 +619,14 @@ class BeatmapDiscussion extends Model
             ])->saveOrExplode();
             $this->refreshKudosu('deny_kudosu');
         });
+    }
+
+    public function managedBy(User $user): bool
+    {
+        $id = $user->getKey();
+
+        return $this->beatmapset->user_id === $id
+            || ($this->beatmap !== null && $this->beatmap->user_id === $id);
     }
 
     public function userRecentVotesCount($user, $increment = false)
