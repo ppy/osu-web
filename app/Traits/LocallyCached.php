@@ -59,7 +59,7 @@ trait LocallyCached
     {
         $this->resetTicker++;
 
-        if ($this->resetTicker > 100) {
+        if ($this->resetTicker > config('osu.octane.local_cache_reset_requests')) {
             $this->forceVersionCheck();
             $this->resetTicker = 0;
         }
