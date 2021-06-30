@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => '所指定的 :attribute 無效。',
     'not_negative' => ':attribute 不能為負數。',
     'required' => '需要 :attribute 。',
     'too_long' => ':attribute 超出最大長度——最多允許 :limit 個字符。',
@@ -24,7 +24,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "該圖譜目前為鎖定討論狀態，無法被推薦",
             'guest' => '登錄後才能推薦',
             'hyped' => '你已經推薦了這張譜面',
             'limit_exceeded' => '你已經用光了推薦次數',
@@ -49,7 +49,7 @@ return [
 
     'comment' => [
         'deleted_parent' => '無法回覆給已刪除評論。',
-        'top_only' => '',
+        'top_only' => '不允許回覆置頂評論。',
 
         'attributes' => [
             'message' => '訊息',

@@ -17,7 +17,7 @@
         <a
             class="btn-osu-big btn-osu-big--rounded-thin"
             href="{{ $page->editUrl() }}"
-            title="{{ trans('wiki.show.edit.link') }}"
+            title="{{ osu_trans('wiki.show.edit.link') }}"
         >
             <i class="fab fa-github"></i>
         </a>
@@ -31,7 +31,7 @@
                 data-remote="true"
                 data-url="{{ wiki_url($page->path, $locale) }}"
                 data-method="PUT"
-                title="{{ trans('wiki.show.edit.refresh') }}"
+                title="{{ osu_trans('wiki.show.edit.refresh') }}"
             >
                 <i class="fas fa-sync"></i>
             </button>

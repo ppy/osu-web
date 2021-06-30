@@ -35,11 +35,8 @@ class BuildTransformer extends TransformerAbstract
     {
         $legacyEntries = $build
             ->defaultChangelogs
-            ->filter(function ($item) use ($build) {
-                return $item->stream_id === $build->stream_id;
-            })->map(function ($item) {
-                return ChangelogEntry::convertLegacy($item);
-            });
+            ->filter(fn ($item) => $item->stream_id === $build->stream_id)
+            ->map(fn ($item) => ChangelogEntry::convertLegacy($item));
 
         $entries = $build
             ->defaultChangelogEntries

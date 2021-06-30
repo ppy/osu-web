@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'promote' => [
+        'pin' => '',
+        'unpin' => "",
+    ],
+
     'top-headers' => [
         'headline' => 'البث المباشر',
         'description' => 'يتم جلب البيانات من twitch.tv كل خمس دقائق استناداً إلى ترتيب المسار. لا تتردد في البدء في البث لفرصة ادراج اسمك هنا! لمزيد من المعلومات حول كيفية البدء بالبث، الرجاء التحقق من :link.',

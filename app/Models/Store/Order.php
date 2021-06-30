@@ -413,7 +413,7 @@ class Order extends Model
         // TODO: Payment processors should set a context variable flagging the user check to be skipped.
         // This is currently only fine because the Orders controller requires auth.
         if ($user !== null && $this->user_id === $user->getKey() && !$this->canUserCancel()) {
-            throw new InvariantException(trans('store.order.cancel_not_allowed'));
+            throw new InvariantException(osu_trans('store.order.cancel_not_allowed'));
         }
 
         $this->status = 'cancelled';
@@ -465,7 +465,7 @@ class Order extends Model
 
             // TODO: better validation handling.
             if ($params['product'] === null) {
-                return trans('model_validation/store/product.not_available');
+                return osu_trans('model_validation/store/product.not_available');
             }
 
             $this->saveOrExplode();

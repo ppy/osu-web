@@ -1,5 +1,8 @@
 <?php
 
+// require helpers here so it's correctly reloaded by octane
+require_once __DIR__.'/../app/helpers.php';
+
 /*
 |--------------------------------------------------------------------------
 | Create The Application

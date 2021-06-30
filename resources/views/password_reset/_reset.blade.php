@@ -10,7 +10,7 @@
     'data-reload-on-success' => '1',
     'data-skip-ajax-error-popup' => '1',
 ]) !!}
-    {!! trans('password_reset.started.title', ['username' => session('password_reset.username')]) !!}
+    {!! osu_trans('password_reset.started.title', ['username' => session('password_reset.username')]) !!}
 
     <div class="password-reset__input-group">
         <a
@@ -19,7 +19,7 @@
             data-method="DELETE"
             data-remote="1"
         >
-            {{ trans('password_reset.button.cancel') }}
+            {{ osu_trans('password_reset.button.cancel') }}
         </a>
     </div>
 
@@ -30,12 +30,12 @@
             data-method="POST"
             data-remote="1"
         >
-            {{ trans('password_reset.button.resend') }}
+            {{ osu_trans('password_reset.button.resend') }}
         </a>
     </div>
 
     <label class="password-reset__input-group">
-        {{ trans('password_reset.started.verification_key') }}
+        {{ osu_trans('password_reset.started.verification_key') }}
 
         <input name="key" class="password-reset__input" autofocus>
 
@@ -43,7 +43,7 @@
     </label>
 
     <label class="password-reset__input-group">
-        {{ trans('password_reset.started.password') }}
+        {{ osu_trans('password_reset.started.password') }}
 
         <input type="password" class="js-form-confirmation password-reset__input" name="user[password]">
 
@@ -51,7 +51,7 @@
     </label>
 
     <label class="password-reset__input-group">
-        {{ trans('password_reset.started.password_confirmation') }}
+        {{ osu_trans('password_reset.started.password_confirmation') }}
 
         <input type="password" class="js-form-confirmation password-reset__input" name="user[password_confirmation]">
 
@@ -60,7 +60,7 @@
 
     <div class="password-reset__input-group">
         <button class="btn-osu-big btn-osu-big--password-reset">
-            {{ trans('password_reset.button.set') }}
+            {{ osu_trans('password_reset.button.set') }}
         </button>
     </div>
 {!! Form::close() !!}

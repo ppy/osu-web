@@ -86,7 +86,7 @@ class BeatmapsetDiscussionReview
     public function process(array $document, ?BeatmapDiscussion $existingDiscussion = null)
     {
         if (empty($document)) {
-            throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
+            throw new InvariantException(osu_trans('beatmap_discussions.review.validation.invalid_document'));
         }
 
         $isUpdate = $existingDiscussion !== null;
@@ -109,7 +109,7 @@ class BeatmapsetDiscussionReview
                 // ensure all referenced embeds belong to this discussion
                 $externalEmbeds = BeatmapDiscussion::whereIn('id', $childIds)->where('parent_id', '<>', $this->discussion->getKey())->count();
                 if ($externalEmbeds > 0) {
-                    throw new InvariantException(trans('beatmap_discussions.review.validation.external_references'));
+                    throw new InvariantException(osu_trans('beatmap_discussions.review.validation.external_references'));
                 }
 
                 // update the review post
@@ -194,13 +194,13 @@ class BeatmapsetDiscussionReview
     private function parseBlock($block, bool $isUpdating = false)
     {
         if (!isset($block['type'])) {
-            throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
+            throw new InvariantException(osu_trans('beatmap_discussions.review.validation.invalid_block_type'));
         }
 
         $message = get_string($block['text'] ?? null);
         // message check can be skipped for updates if block is embed and has discussion_id set.
         if ($message === null && !($isUpdating && $block['type'] === 'embed' && isset($block['discussion_id']))) {
-            throw new InvariantException(trans('beatmap_discussions.review.validation.missing_text'));
+            throw new InvariantException(osu_trans('beatmap_discussions.review.validation.missing_text'));
         }
 
         switch ($block['type']) {
@@ -209,7 +209,7 @@ class BeatmapsetDiscussionReview
                     $childId = $block['discussion_id'];
                 } else {
                     if (!isset($block['discussion_type'])) {
-                        throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_discussion_type'));
+                        throw new InvariantException(osu_trans('beatmap_discussions.review.validation.invalid_discussion_type'));
                     }
 
                     $embeddedDiscussion = $this->createBeatmapDiscussion(
@@ -234,7 +234,7 @@ class BeatmapsetDiscussionReview
 
             case 'paragraph':
                 if (mb_strlen($block['text']) > static::BLOCK_TEXT_LENGTH_LIMIT) {
-                    throw new InvariantException(trans('beatmap_discussions.review.validation.block_too_large', ['limit' => static::BLOCK_TEXT_LENGTH_LIMIT]));
+                    throw new InvariantException(osu_trans('beatmap_discussions.review.validation.block_too_large', ['limit' => static::BLOCK_TEXT_LENGTH_LIMIT]));
                 }
                 return [
                     'type' => 'paragraph',
@@ -243,7 +243,7 @@ class BeatmapsetDiscussionReview
 
             default:
                 // invalid block type
-                throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
+                throw new InvariantException(osu_trans('beatmap_discussions.review.validation.invalid_block_type'));
         }
     }
 
@@ -259,13 +259,13 @@ class BeatmapsetDiscussionReview
 
         $minIssues = config('osu.beatmapset.discussion_review_min_issues');
         if (empty($childIds) || count($childIds) < $minIssues) {
-            throw new InvariantException(trans_choice('beatmap_discussions.review.validation.minimum_issues', $minIssues));
+            throw new InvariantException(osu_trans_choice('beatmap_discussions.review.validation.minimum_issues', $minIssues));
         }
 
         $maxBlocks = config('osu.beatmapset.discussion_review_max_blocks');
         $blockCount = count($this->document);
         if ($blockCount > $maxBlocks) {
-            throw new InvariantException(trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks));
+            throw new InvariantException(osu_trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks));
         }
 
         return [$output, $childIds];

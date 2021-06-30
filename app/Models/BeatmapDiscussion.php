@@ -680,6 +680,14 @@ class BeatmapDiscussion extends Model
         });
     }
 
+    public function managedBy(User $user): bool
+    {
+        $id = $user->getKey();
+
+        return $this->beatmapset->user_id === $id
+            || ($this->beatmap !== null && $this->beatmap->user_id === $id);
+    }
+
     public function userRecentVotesCount($user, $increment = false)
     {
         $key = "beatmapDiscussion:{$this->getKey()}:votes:{$user->getKey()}";

@@ -70,7 +70,7 @@ return [
 
     'order' => [
         'cancel' => '取消訂單',
-        'cancel_confirm' => '',
+        'cancel_confirm' => '此訂單將被取消且款項不會被收取。付款供應商可能不會立即退回任何預收款項。您確定嗎？',
         'cancel_not_allowed' => '目前無法取消訂單。',
         'invoice' => '查看收據',
         'no_orders' => '沒有訂單',

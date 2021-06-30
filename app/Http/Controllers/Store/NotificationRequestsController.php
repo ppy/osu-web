@@ -26,7 +26,7 @@ class NotificationRequestsController extends Controller
         $product = Product::findOrFail($productId);
 
         if ($product->inStock()) {
-            return error_popup(trans('store.product.notification_in_stock'));
+            return error_popup(osu_trans('store.product.notification_in_stock'));
         }
 
         try {

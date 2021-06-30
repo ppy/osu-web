@@ -7,7 +7,7 @@
 @section('content')
     @include('layout._page_header_v4')
     <div class="osu-page osu-page--generic">
-        {{ trans('users.login.info') }}
+        {{ osu_trans('users.login.info') }}
     </div>
 @endsection
 

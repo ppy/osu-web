@@ -5,7 +5,7 @@
 <div class="account-edit">
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
-            {{ trans('accounts.privacy.title') }}
+            {{ osu_trans('accounts.privacy.title') }}
         </h2>
     </div>
 
@@ -24,7 +24,7 @@
                     ])
 
                     <span class="account-edit-entry__checkbox-label">
-                        {{ trans('accounts.privacy.friends_only') }}
+                        {{ osu_trans('accounts.privacy.friends_only') }}
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
@@ -46,7 +46,7 @@
                     ])
 
                     <span class="account-edit-entry__checkbox-label">
-                        {{ trans('accounts.privacy.hide_online') }}
+                        {{ osu_trans('accounts.privacy.hide_online') }}
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
@@ -59,10 +59,10 @@
             <div class="account-edit__input-group">
                 <div class="account-edit-entry">
                     <div class="account-edit-entry__label account-edit-entry__label--top-pinned js-account-edit-blocklist-count">
-                        {{ trans('users.blocks.blocked_count', ['count' => count($blocks)]) }}
+                        {{ osu_trans('users.blocks.blocked_count', ['count' => count($blocks)]) }}
                     </div>
                     <div class="block-list">
-                        <a class='block-list__toggle js-account-edit-blocklist' href='#'>{{trans('common.buttons.show')}}</a>
+                        <a class='block-list__toggle js-account-edit-blocklist' href='#'>{{osu_trans('common.buttons.show')}}</a>
                         <div class="block-list__content hidden">
                             @foreach ($blocks as $block)
                                 <div class="block-list-item">

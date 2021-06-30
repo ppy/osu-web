@@ -664,16 +664,16 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             $this->resetMemoized(); // ensure we're not using cached/stale event data
 
             if (!$this->isPending()) {
-                throw new InvariantException(trans('beatmaps.nominations.incorrect_state'));
+                throw new InvariantException(osu_trans('beatmaps.nominations.incorrect_state'));
             }
 
             if ($this->hype < $this->requiredHype()) {
-                throw new InvariantException(trans('beatmaps.nominations.not_enough_hype'));
+                throw new InvariantException(osu_trans('beatmaps.nominations.not_enough_hype'));
             }
 
             // check if there are any outstanding issues still
             if ($this->beatmapDiscussions()->openIssues()->count() > 0) {
-                throw new InvariantException(trans('beatmaps.nominations.unresolved_issues'));
+                throw new InvariantException(osu_trans('beatmaps.nominations.unresolved_issues'));
             }
 
             if ($this->isLegacyNominationMode()) {
@@ -690,27 +690,27 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                 }
 
                 if (!$canNominate) {
-                    throw new InvariantException(trans('beatmapsets.nominate.incorrect_mode', ['mode' => implode(', ', $this->playmodesStr())]));
+                    throw new InvariantException(osu_trans('beatmapsets.nominate.incorrect_mode', ['mode' => implode(', ', $this->playmodesStr())]));
                 }
 
                 if (!$canFullNominate && $this->requiresFullBNNomination()) {
-                    throw new InvariantException(trans('beatmapsets.nominate.full_bn_required'));
+                    throw new InvariantException(osu_trans('beatmapsets.nominate.full_bn_required'));
                 }
             } else {
                 $playmodes = array_values(array_intersect($this->playmodesStr(), $playmodes));
 
                 if (empty($playmodes)) {
-                    throw new InvariantException(trans('beatmapsets.nominate.hybrid_requires_modes'));
+                    throw new InvariantException(osu_trans('beatmapsets.nominate.hybrid_requires_modes'));
                 }
 
                 foreach ($playmodes as $mode) {
                     if (!$user->isFullBN($mode) && !$user->isNAT($mode)) {
                         if (!$user->isLimitedBN($mode)) {
-                            throw new InvariantException(trans('beatmapsets.nominate.incorrect_mode', ['mode' => $mode]));
+                            throw new InvariantException(osu_trans('beatmapsets.nominate.incorrect_mode', ['mode' => $mode]));
                         }
 
                         if ($this->requiresFullBNNomination($mode)) {
-                            throw new InvariantException(trans('beatmapsets.nominate.full_bn_required'));
+                            throw new InvariantException(osu_trans('beatmapsets.nominate.full_bn_required'));
                         }
                     }
                 }
@@ -736,7 +736,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                     $modesSatisfied = 0;
                     foreach ($requiredNominations as $mode => $count) {
                         if ($currentNominations[$mode] > $count) {
-                            throw new InvariantException(trans('beatmaps.nominations.too_many'));
+                            throw new InvariantException(osu_trans('beatmaps.nominations.too_many'));
                         }
 
                         if ($currentNominations[$mode] === $count) {
@@ -775,7 +775,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         if (!$this->isLoveable()) {
             return [
                 'result' => false,
-                'message' => trans('beatmaps.nominations.incorrect_state'),
+                'message' => osu_trans('beatmaps.nominations.incorrect_state'),
             ];
         }
 
@@ -800,7 +800,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         if (!$this->isLoved()) {
             return [
                 'result' => false,
-                'message' => trans('beatmaps.nominations.incorrect_state'),
+                'message' => osu_trans('beatmaps.nominations.incorrect_state'),
             ];
         }
 
@@ -959,7 +959,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         if (isset($message)) {
             return [
                 'result' => false,
-                'message' => trans("model_validation.beatmapset_discussion.hype.{$message}"),
+                'message' => osu_trans("model_validation.beatmapset_discussion.hype.{$message}"),
             ];
         } else {
             return ['result' => true];
@@ -1273,7 +1273,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function toMetaDescription()
     {
-        $section = trans('layout.menu.beatmaps._');
+        $section = osu_trans('layout.menu.beatmaps._');
 
         return "osu! » {$section} » {$this->artist} - {$this->title}";
     }
