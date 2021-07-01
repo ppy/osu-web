@@ -10,17 +10,19 @@
 @section('content')
     @include('users._restricted_banner', compact('user'))
 
-    <div class="js-react--modding-profile osu-layout osu-layout--full"></div>
+    <div class="js-react--user-multiplayer-index osu-layout osu-layout--full"></div>
 @endsection
 
 @section ("script")
     @parent
 
-    @foreach ($jsonChunks as $name => $data)
-        <script id="json-{{$name}}" type="application/json">
-            {!! json_encode($data) !!}
-        </script>
-    @endforeach
+    <script id="json-user-multiplayer-index" type="application/json">
+        {!! json_encode($json) !!}
+    </script>
 
-    @include('layout._extra_js', ['src' => 'js/react/modding-profile.js'])
+    <script id="json-user" type="application/json">
+        {!! json_encode($jsonUser) !!}
+    </script>
+
+    @include('layout._extra_js', ['src' => 'js/react/user-multiplayer-index.js'])
 @endsection
