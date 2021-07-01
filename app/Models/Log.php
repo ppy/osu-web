@@ -75,7 +75,7 @@ class Log extends Model
 
         $noTranslation = ['LOG_DELETE_TOPIC', 'LOG_LOCK', 'LOG_RESTORE_TOPIC', 'LOG_UNLOCK'];
 
-        if (in_array($this->log_operation, $noTranslation)) {
+        if (in_array($this->log_operation, $noTranslation, true)) {
             return $data; // topic title only
         }
 
