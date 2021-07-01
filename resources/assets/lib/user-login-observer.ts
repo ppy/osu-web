@@ -3,6 +3,7 @@
 
 import { UserLoginAction } from 'actions/user-login-actions';
 import { dispatch } from 'app-dispatcher';
+import { route } from 'laroute';
 
 export default class UserLoginObserver {
   constructor() {
@@ -15,9 +16,14 @@ export default class UserLoginObserver {
     dispatch(new UserLoginAction());
   };
 
-  userLogout = () => {
+  userLogout = (event: JQuery.TriggeredEvent<unknown, unknown, HTMLElement, unknown>) => {
     localStorage.clear();
+    const redirect = !!(event.currentTarget.dataset.redirectHome);
 
-    location.reload();
+    if (redirect) {
+      location.href = route('home');
+    } else {
+      location.reload();
+    }
   };
 }
