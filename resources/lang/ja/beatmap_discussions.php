@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count 個がこのレビューにあります',
     ],
 
+    'owner_editor' => [
+        'button' => '難易度の所有者',
+        'reset_confirm' => 'この難易度の所有者をリセットしますか？',
+        'user' => '所有者',
+        'version' => '難易度',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'ログインして返信する',

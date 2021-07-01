@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Mapa',
 
+            'beatmap_owner_change' => [
+                '_' => 'Dificultades de invitados',
+                'beatmap_owner_change' => 'Ahora eres dueño de la dificultad ":beatmap" para el mapa ":title"',
+                'beatmap_owner_change_compact' => 'Ahora eres dueño de la dificultad ":beatmap"',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Discusión del mapa',
                 'beatmapset_discussion_lock' => 'La discusión en ":title" se ha cerrado',
@@ -159,6 +165,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'Ahora eres un invitado del mapa ":title"',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'La discusión en ":title" se ha cerrado',
                 'beatmapset_discussion_post_new' => 'La discusión en ":title" tiene nuevas actualizaciones',

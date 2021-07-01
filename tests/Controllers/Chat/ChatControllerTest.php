@@ -90,7 +90,6 @@ class ChatControllerTest extends TestCase
         )->assertStatus(200);
 
         // should return existing conversation and not error
-        app('OsuAuthorize')->cacheReset();
         $this->json(
             'POST',
             route('api.chat.new'),
@@ -116,7 +115,6 @@ class ChatControllerTest extends TestCase
         $channelId = $request->json('new_channel_id');
         $request->assertSuccessful();
 
-        app('OsuAuthorize')->cacheReset();
         $this->json(
             'DELETE',
             route('api.chat.channels.part', [
@@ -125,7 +123,6 @@ class ChatControllerTest extends TestCase
             ])
         )->assertSuccessful();
 
-        app('OsuAuthorize')->cacheReset();
         $this->json(
             'POST',
             route('api.chat.new'),
@@ -277,7 +274,7 @@ class ChatControllerTest extends TestCase
             'channel' => $publicChannel->channel_id,
             'user' => $this->user->user_id,
         ]))
-            ->assertStatus(204);
+            ->assertSuccessful();
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('GET', route('api.chat.presence'))
@@ -305,7 +302,6 @@ class ChatControllerTest extends TestCase
         ]);
 
         // ensure conversation with $this->anotherUser isn't visible
-        app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonMissing(['users' => [
@@ -343,7 +339,6 @@ class ChatControllerTest extends TestCase
         $this->anotherUser->update(['user_warnings' => 1]);
 
         // ensure conversation with $this->anotherUser isn't visible
-        app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonMissing(['users' => [
@@ -355,7 +350,6 @@ class ChatControllerTest extends TestCase
         $this->anotherUser->update(['user_warnings' => 0]);
 
         // ensure conversation with $this->anotherUser is visible again
-        app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonFragment(['users' => [
@@ -381,7 +375,6 @@ class ChatControllerTest extends TestCase
         $channelId = $presenceData['new_channel_id'];
 
         // leave PM with $this->anotherUser
-        app('OsuAuthorize')->cacheReset();
         $this->json('DELETE', route('api.chat.channels.part', [
             'channel' => $channelId,
             'user' => $this->user->user_id,
@@ -389,7 +382,6 @@ class ChatControllerTest extends TestCase
             ->assertStatus(204);
 
         // ensure conversation with $this->anotherUser isn't visible
-        app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonMissing(['users' => [
@@ -398,7 +390,6 @@ class ChatControllerTest extends TestCase
             ]]);
 
         // reopen PM with $this->anotherUser
-        app('OsuAuthorize')->cacheReset();
         $this->json(
             'POST',
             route('api.chat.new'),
@@ -409,7 +400,6 @@ class ChatControllerTest extends TestCase
         )->assertStatus(200);
 
         // ensure conversation with $this->anotherUser is visible again
-        app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.presence'))
             ->assertStatus(200)
             ->assertJsonFragment(['users' => [
@@ -438,9 +428,8 @@ class ChatControllerTest extends TestCase
             'channel' => $publicChannel->channel_id,
             'user' => $this->user->user_id,
         ]))
-            ->assertStatus(204);
+            ->assertSuccessful();
 
-        app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.updates'), ['since' => $publicMessage->message_id])
             ->assertStatus(204);
     }
@@ -456,9 +445,8 @@ class ChatControllerTest extends TestCase
             'channel' => $publicChannel->channel_id,
             'user' => $this->user->user_id,
         ]))
-            ->assertStatus(204);
+            ->assertSuccessful();
 
-        app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.updates'), ['since' => 0])
             ->assertStatus(200)
             ->assertJsonFragment(['content' => $publicMessage->content]);
@@ -487,7 +475,6 @@ class ChatControllerTest extends TestCase
         ]);
 
         // ensure reply is visible
-        app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.updates'), ['since' => 0])
             ->assertStatus(200)
             ->assertJsonFragment(['content' => $publicMessage->content]);
@@ -496,7 +483,6 @@ class ChatControllerTest extends TestCase
         $this->anotherUser->update(['user_warnings' => 1]);
 
         // ensure reply is no longer visible
-        app('OsuAuthorize')->cacheReset();
         $this->json('GET', route('api.chat.updates'), ['since' => 0])
             ->assertStatus(204);
     }

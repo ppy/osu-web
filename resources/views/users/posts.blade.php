@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('master', [
-    'titlePrepend' => trans('users.posts.title', ['username' => $user->username]),
+    'titlePrepend' => osu_trans('users.posts.title', ['username' => $user->username]),
 ])
 
 @section('content')
@@ -14,7 +14,7 @@
         <div class="osu-page">
             <div class="search-header">
                 <div class="search-header__title">
-                    {{ trans('users.posts.title', ['username' => $user->username]) }}
+                    {{ osu_trans('users.posts.title', ['username' => $user->username]) }}
                 </div>
 
                 <div class="search-header__box">
@@ -34,7 +34,7 @@
                 <div class="search-result search-result--forum_post">
                     @if ($search->total() === 0)
                         <div class="search-result__row search-result__row--notice">
-                            {{ trans('home.search.empty_result') }}
+                            {{ osu_trans('home.search.empty_result') }}
                         </div>
                     @else
                         <div class="search-result__row search-result__row--entries-container">

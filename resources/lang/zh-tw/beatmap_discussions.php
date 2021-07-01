@@ -58,6 +58,13 @@ return [
         'unsaved' => '',
     ],
 
+    'owner_editor' => [
+        'button' => '難度作者',
+        'reset_confirm' => '要重設此難度的作者嗎？',
+        'user' => '作者',
+        'version' => '難度',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => '登入以回覆',

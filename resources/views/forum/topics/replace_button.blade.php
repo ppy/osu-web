@@ -6,7 +6,7 @@
     $userCanModerate = priv_check('ForumModerate', $topic->forum)->can();
 
     if (!isset($stateText)) {
-        if (method_exists($state, 'stateText')) {
+        if (is_object($state) && method_exists($state, 'stateText')) {
             $stateText = $state->stateText();
         } elseif (is_bool($state)) {
             $stateText = $state ? '1' : '0';
@@ -25,5 +25,5 @@ Timeout.set(0, function() {
             compact('topic', 'state', 'userCanModerate')
         )->render()) !!});
 
-    osu.popup({!! json_encode(trans('forum.topics.'.$type.'.to_'.$stateText.'_done')) !!}, 'success');
+    osu.popup({!! json_encode(osu_trans('forum.topics.'.$type.'.to_'.$stateText.'_done')) !!}, 'success');
 });

@@ -949,15 +949,17 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     }
 
 
-    public function findUserGroup($group, $activeOnly)
+    public function findUserGroup($group, bool $activeOnly): ?UserGroup
     {
-        $groupId = $group->getKey();
+        $byGroupId = $this->memoize(__FUNCTION__.':byGroupId', fn () => $this->userGroups->keyBy('group_id'));
 
-        foreach ($this->userGroups as $userGroup) {
-            if ($userGroup->group_id === $groupId && (!$activeOnly || !$userGroup->user_pending)) {
-                return $userGroup;
-            }
+        $userGroup = $byGroupId->get($group->getKey());
+
+        if ($userGroup === null || ($activeOnly && $userGroup->user_pending)) {
+            return null;
         }
+
+        return $userGroup;
     }
 
     /**
@@ -1449,43 +1451,38 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->blocks->pluck('user_id');
     }
 
-    public function visibleGroups()
+    public function userGroupsForBadges()
     {
         return $this->memoize(__FUNCTION__, function () {
             if ($this->isBot()) {
-                return [app('groups')->byIdentifier('bot')];
+                // Not a query because it's both unnecessary and not guaranteed
+                // that the usergroup for "bot" will exist
+                return collect([
+                    UserGroup::make([
+                        'group_id' => app('groups')->byIdentifier('bot')->getKey(),
+                        'user_id' => $this->getKey(),
+                        'user_pending' => false,
+                    ]),
+                ]);
             }
 
-            $groups = [];
-            foreach ($this->userGroups as $userGroup) {
-                $cachedGroup = app('groups')->byId($userGroup->group_id);
-                if (!$cachedGroup || $cachedGroup->display_order === null) {
-                    continue;
-                }
+            return $this->userGroups
+                ->filter(function ($userGroup) {
+                    return optional($userGroup->group)->hasBadge();
+                })
+                ->sort(function ($a, $b) {
+                    // If the user has a default group, always show it first
+                    if ($a->group_id === $this->group_id) {
+                        return -1;
+                    }
+                    if ($b->group_id === $this->group_id) {
+                        return 1;
+                    }
 
-                if ($cachedGroup->has_playmodes) {
-                    $group = clone $cachedGroup;
-                    $group['playmodes'] = $userGroup->playmodes;
-                    $groups[] = $group;
-                } else {
-                    $groups[] = $cachedGroup;
-                }
-            }
-
-            usort($groups, function ($a, $b) {
-                // if the user has a default group, always show it first
-                if ($a->group_id === $this->group_id) {
-                    return -1;
-                }
-                if ($b->group_id === $this->group_id) {
-                    return 1;
-                }
-
-                // otherwise, sort by display order
-                return $a->display_order - $b->display_order;
-            });
-
-            return $groups;
+                    // Otherwise, sort by display order
+                    return $a->group->display_order - $b->group->display_order;
+                })
+                ->values();
         });
     }
 
@@ -1827,7 +1824,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         if (LoginAttempt::isLocked($ip)) {
             DatadogLoginAttempt::log('locked_ip');
 
-            return trans('users.login.locked_ip');
+            return osu_trans('users.login.locked_ip');
         }
 
         $authError = null;
@@ -1851,7 +1848,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         if ($authError !== null) {
             LoginAttempt::logAttempt($ip, $user, 'fail', $password);
 
-            return trans('users.login.failed');
+            return osu_trans('users.login.failed');
         }
 
         LoginAttempt::logLoggedIn($ip, $user);
@@ -1958,10 +1955,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         });
     }
 
-    public function profileBeatmapsetsRankedAndApproved()
+    public function profileBeatmapsetsRanked()
     {
         return $this->beatmapsets()
-            ->rankedOrApproved()
+            ->withStates(['ranked', 'approved', 'qualified'])
             ->active()
             ->with('beatmaps');
     }
@@ -1973,12 +1970,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             ->with('beatmaps');
     }
 
-    public function profileBeatmapsetsUnranked()
+    public function profileBeatmapsetsPending()
     {
-        return $this->beatmapsets()
-            ->unranked()
-            ->active()
-            ->with('beatmaps');
+        return $this->beatmapsets()->withStates(['pending', 'wip'])->active()->with('beatmaps');
     }
 
     public function profileBeatmapsetsGraveyard()

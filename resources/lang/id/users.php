@@ -88,7 +88,7 @@ return [
         'failed' => 'Gagal masuk',
         'forgot' => 'Lupa kata sandi?',
         'info' => 'Silahkan sign in untuk melanjutkan',
-        'invalid_captcha' => 'Captcha tidak valid. Harap muat ulang halaman.',
+        'invalid_captcha' => 'Anda telah berulang kali gagal memasukkan kredensial pengguna yang valid. Harap selesaikan captcha berikut dan coba lagi. (Muat ulang laman ini apabila captcha tidak terlihat)',
         'locked_ip' => 'Alamat IP Anda dikunci. Mohon tunggu beberapa menit.',
         'password' => 'Kata Sandi',
         'register' => "Belum memiliki akun osu!? Buat sekarang",
@@ -155,7 +155,7 @@ return [
         'title' => "profil :username",
 
         'comments_count' => [
-            '_' => 'Telah menulis :link',
+            '_' => 'Telah mengirimkan :link',
             'count' => ':count_delimited komentar|:count_delimited komentar',
         ],
         'edit' => [
@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Beatmap Loved',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmap Ranked & Approved',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Beatmap Pending',
+                ],
+                'ranked' => [
+                    'title' => 'Beatmap Ranked & Approved',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'Jumlah Hit',
             'total_score' => 'Jumlah Skor',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Beatmap Ranked & Approved',
-            'loved_beatmapset_count' => 'Beatmap Loved',
-            'unranked_beatmapset_count' => 'Beatmap Pending',
             'graveyard_beatmapset_count' => 'Beatmap Graveyard',
+            'loved_beatmapset_count' => 'Beatmap Loved',
+            'pending_beatmapset_count' => 'Beatmap Pending',
+            'ranked_beatmapset_count' => 'Beatmap Ranked & Approved',
         ],
     ],
 

@@ -17,6 +17,8 @@ import { Posts } from "./posts"
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import UserProfileContainer from 'user-profile-container'
+import { pageChange } from 'utils/page-change'
+
 el = React.createElement
 
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
@@ -49,9 +51,9 @@ export class Main extends React.PureComponent
         posts: props.posts
         votes: props.votes
         profileOrder: ['events', 'discussions', 'posts', 'votes', 'kudosu']
-        rankedAndApprovedBeatmapsets: @props.extras.rankedAndApprovedBeatmapsets
+        rankedBeatmapsets: @props.extras.rankedBeatmapsets
         lovedBeatmapsets: @props.extras.lovedBeatmapsets
-        unrankedBeatmapsets: @props.extras.unrankedBeatmapsets
+        pendingBeatmapsets: @props.extras.pendingBeatmapsets
         graveyardBeatmapsets: @props.extras.graveyardBeatmapsets
         recentlyReceivedKudosu: @props.extras.recentlyReceivedKudosu
         showMorePagination: {}
@@ -72,7 +74,7 @@ export class Main extends React.PureComponent
     $(document).on 'ajax:success.moddingProfilePage', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
     $(window).on 'scroll.moddingProfilePage', @pageScan
 
-    osu.pageChange()
+    pageChange()
 
     @modeScrollUrl = currentLocation()
 

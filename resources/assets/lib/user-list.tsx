@@ -3,9 +3,9 @@
 
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
-import { route } from 'laroute';
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Sort } from 'sort';
 import { ViewMode, viewModes } from 'user-card';
@@ -20,7 +20,9 @@ const playModes: PlayModeFilter[] = ['all', 'osu', 'taiko', 'fruits', 'mania'];
 const sortModes: SortMode[] = ['last_visit', 'rank', 'username'];
 
 interface Props {
+  descriptionHtml?: string;
   playmodeFilter?: boolean;
+  playmodeFilterGroupId?: number;
   title?: string;
   users: UserJson[];
 }
@@ -54,7 +56,7 @@ export class UserList extends React.PureComponent<Props> {
     return this.getAllowedQueryStringValue(
       filters,
       url.searchParams.get('filter'),
-      currentUser?.user_preferences?.user_list_filter,
+      core.userPreferences.get('user_list_filter'),
     );
   }
 
@@ -99,7 +101,7 @@ export class UserList extends React.PureComponent<Props> {
     return this.getAllowedQueryStringValue(
       sortModes,
       url.searchParams.get('sort'),
-      currentUser?.user_preferences?.user_list_sort,
+      core.userPreferences.get('user_list_sort'),
     );
   }
 
@@ -109,7 +111,7 @@ export class UserList extends React.PureComponent<Props> {
     return this.getAllowedQueryStringValue(
       viewModes,
       url.searchParams.get('view'),
-      currentUser?.user_preferences?.user_list_view,
+      core.userPreferences.get('user_list_view'),
     );
   }
 
@@ -118,7 +120,9 @@ export class UserList extends React.PureComponent<Props> {
     const url = osu.updateQueryString(null, { sort: value });
 
     Turbolinks.controller.advanceHistory(url);
-    this.setState({ sortMode: value }, this.handleSaveOptions);
+    this.setState({ sortMode: value }, () => {
+      core.userPreferences.set('user_list_sort', this.state.sortMode);
+    });
   };
 
   onViewSelected = (event: React.SyntheticEvent) => {
@@ -126,7 +130,9 @@ export class UserList extends React.PureComponent<Props> {
     const url = osu.updateQueryString(null, { view: value });
 
     Turbolinks.controller.advanceHistory(url);
-    this.setState({ viewMode: value }, this.handleSaveOptions);
+    this.setState({ viewMode: value }, () => {
+      core.userPreferences.set('user_list_view', this.state.viewMode);
+    });
   };
 
   optionSelected = (event: React.SyntheticEvent) => {
@@ -135,7 +141,9 @@ export class UserList extends React.PureComponent<Props> {
     const url = osu.updateQueryString(null, { filter: key });
 
     Turbolinks.controller.advanceHistory(url);
-    this.setState({ filter: key }, this.handleSaveOptions);
+    this.setState({ filter: key }, () => {
+      core.userPreferences.set('user_list_filter', this.state.filter);
+    });
   };
 
   playmodeSelected = (event: React.SyntheticEvent) => {
@@ -154,6 +162,10 @@ export class UserList extends React.PureComponent<Props> {
         <div className='user-list'>
           {this.props.title != null && (
             <h1 className='user-list__title'>{this.props.title}</h1>
+          )}
+
+          {this.props.descriptionHtml != null && (
+            <div dangerouslySetInnerHTML={{ __html: this.props.descriptionHtml }} className='user-list__description' />
           )}
 
           <div className='user-list__toolbar'>
@@ -268,10 +280,16 @@ export class UserList extends React.PureComponent<Props> {
   private getFilteredUsers(filter: Filter) {
     // TODO: should be cached or something
     let users = this.props.users.slice();
-    if (this.props.playmodeFilter && this.state.playMode !== 'all') {
+    const playmode = this.state.playMode;
+    if (this.props.playmodeFilter && playmode !== 'all') {
       users = users.filter((user) => {
         if (user.groups && user.groups.length > 0) {
-          return user.groups.some((group) => group.playmodes && (group.playmodes as PlayModeFilter[]).includes(this.state.playMode));
+          if (this.props.playmodeFilterGroupId != null) {
+            const filterGroup = user.groups.find((group) => group.id === this.props.playmodeFilterGroupId);
+            return filterGroup?.playmodes?.includes(playmode);
+          }
+
+          return user.groups.some((group) => group.playmodes?.includes(playmode));
         } else {
           return false;
         }
@@ -287,22 +305,6 @@ export class UserList extends React.PureComponent<Props> {
         return users;
     }
   }
-
-  private handleSaveOptions = () => {
-    if (currentUser.id == null) {
-      return;
-    }
-
-    $.ajax(route('account.options'), {
-      data: { user_profile_customization: {
-        user_list_filter: this.state.filter,
-        user_list_sort: this.state.sortMode,
-        user_list_view: this.state.viewMode,
-      } },
-      dataType: 'JSON',
-      method: 'PUT',
-    }).done((user: UserJson) => $.publish('user:update', user));
-  };
 
   private renderPlaymodeFilter() {
     const playmodeButtons = playModes.map((mode) => (

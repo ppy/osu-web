@@ -35,25 +35,25 @@
 
             <div class="dialog-form__row dialog-form__row--title">
                 <div class="dialog-form__logo"></div>
-                <h1 class="dialog-form__title">{{ trans('client_verifications.create.title') }}</h1>
+                <h1 class="dialog-form__title">{{ osu_trans('client_verifications.create.title') }}</h1>
             </div>
 
             <div class="dialog-form__row dialog-form__row--label">
                 <p class="dialog-form__client-request">
-                    {{ trans('client_verifications.create.confirm') }}
+                    {{ osu_trans('client_verifications.create.confirm') }}
                 </p>
             </div>
 
             <div class="dialog-form__row dialog-form__row--wrong-user">
-                {!! trans('common.wrong_user._', [
+                {!! osu_trans('common.wrong_user._', [
                     'user' => e($user->username),
                     'logout_link' => link_to_route(
                         'logout',
-                        trans('common.wrong_user.logout_link'),
+                        osu_trans('common.wrong_user.logout_link'),
                         [],
                         [
                             'class' => 'dialog-form__extra-link',
-                            'data-confirm' => trans('users.logout_confirm'),
+                            'data-confirm' => osu_trans('users.logout_confirm'),
                             'data-method' => 'DELETE',
                             'data-reload-on-success' => '1',
                             'data-remote' => '1',
@@ -70,8 +70,8 @@
                 ]) !!}
                     <input type="hidden" name="ch" value="{{ $hash }}" />
 
-                    <button class="dialog-form__button" data-disable-with="{{ trans('common.buttons.authorising') }}">
-                        {{ trans('common.buttons.authorise') }}
+                    <button class="dialog-form__button" data-disable-with="{{ osu_trans('common.buttons.authorising') }}">
+                        {{ osu_trans('common.buttons.authorise') }}
                     </button>
                 {!! Form::close() !!}
 
@@ -79,7 +79,7 @@
                     href="{{ route('home') }}"
                     class="dialog-form__button dialog-form__button--cancel"
                 >
-                    {{ trans('common.buttons.cancel') }}
+                    {{ osu_trans('common.buttons.cancel') }}
                 </a>
             </div>
         </div>

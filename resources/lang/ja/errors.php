@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'missing_route' => '',
+    'missing_route' => '不正なURLまたは不正なリクエストメソッドです。',
     'no_restricted_access' => 'アカウントが制限されている状態では実行できません。',
     'supporter_only' => 'osu!サポーター限定の機能です。',
     'unknown' => '不明のエラーが発生しました。',

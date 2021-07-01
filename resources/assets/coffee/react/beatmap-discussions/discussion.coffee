@@ -5,12 +5,11 @@ import { NewReply } from './new-reply'
 import { Post } from './post'
 import { SystemPost } from './system-post'
 import { UserCard } from './user-card'
-import guestGroup from 'beatmap-discussions/guest-group'
-import mapperGroup from 'beatmap-discussions/mapper-group'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { button, div, i, span, a } from 'react-dom-factories'
 import UserAvatar from 'user-avatar'
+import { badgeGroup } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers } from 'utils/css'
 
 el = React.createElement
@@ -79,13 +78,11 @@ export class Discussion extends React.PureComponent
     topClasses += ' js-beatmap-discussion-jump'
 
     user = @props.users[@props.discussion.user_id] ? @props.users[null]
-    group =
-      if user.id == @props.beatmapset.user_id
-        mapperGroup
-      else if @props.discussion.beatmap_id? && user.id == @props.currentBeatmap.user_id
-        guestGroup
-      else
-        user.groups?[0]
+    group = badgeGroup
+      beatmapset: @props.beatmapset
+      currentBeatmap: @props.currentBeatmap
+      discussion: @props.discussion
+      user: user
 
     div
       className: topClasses
@@ -105,7 +102,7 @@ export class Discussion extends React.PureComponent
               group: group
               hideStripe: true
           div className: "#{bn}__top-message",
-            @post firstPost, 'discussion', true
+            @post firstPost, 'discussion'
           div className: "#{bn}__top-actions",
             @postButtons() if !@props.preview
         @postFooter() if !@props.preview
@@ -246,7 +243,8 @@ export class Discussion extends React.PureComponent
     .always LoadingOverlay.hide
 
 
-  emitSetHighlight: =>
+  emitSetHighlight: (e) =>
+    return if e.defaultPrevented
     $.publish 'beatmapset-discussions:highlight', discussionId: @props.discussion.id
 
 
@@ -271,7 +269,7 @@ export class Discussion extends React.PureComponent
     (!@props.discussion.beatmap_id? || !@props.currentBeatmap.deleted_at?)
 
 
-  post: (post, type, hideUserCard) =>
+  post: (post, type) =>
     return if !post.id?
 
     elementName = if post.system then SystemPost else Post
@@ -299,7 +297,6 @@ export class Discussion extends React.PureComponent
       canBeDeleted: canBeDeleted
       canBeRestored: canModeratePosts
       currentUser: @props.currentUser
-      hideUserCard: hideUserCard
 
 
   resolvedSystemPostId: =>
@@ -320,11 +317,15 @@ export class Discussion extends React.PureComponent
           div className: "#{tbn}__icon",
             span
               className: "beatmap-discussion-message-type beatmap-discussion-message-type--#{_.kebabCase(@props.discussion.message_type)}"
-              i className: BeatmapDiscussionHelper.messageType.icon[_.camelCase(@props.discussion.message_type)]
+              i
+                className: BeatmapDiscussionHelper.messageType.icon[_.camelCase(@props.discussion.message_type)]
+                title: osu.trans "beatmaps.discussions.message_type.#{@props.discussion.message_type}"
 
           if @props.discussion.resolved
             div className: "#{tbn}__icon #{tbn}__icon--resolved",
-              i className: 'far fa-check-circle'
+              i
+                className: 'far fa-check-circle'
+                title: osu.trans 'beatmaps.discussions.resolved'
 
         div className: "#{tbn}__text",
           BeatmapDiscussionHelper.formatTimestamp @props.discussion.timestamp

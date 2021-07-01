@@ -148,6 +148,9 @@ const tsReactComponents = [
   'news-show',
   'notifications-index',
   'scores-show',
+];
+
+const extraTs = [
   'store-bootstrap',
 ];
 
@@ -156,6 +159,10 @@ for (const name of coffeeReactComponents) {
 }
 
 for (const name of tsReactComponents) {
+  entry[`react/${name}`] = [resolvePath(`resources/assets/lib/${name}.tsx`)];
+}
+
+for (const name of extraTs) {
   entry[`react/${name}`] = [resolvePath(`resources/assets/lib/${name}.ts`)];
 }
 
@@ -311,9 +318,9 @@ const resolve = {
   alias: {
     '@fonts': path.resolve(__dirname, 'resources/assets/fonts'),
     '@images': path.resolve(__dirname, 'public/images'),
-    'layzr': resolvePath('node_modules/layzr.js/dist/layzr.module.js'),
-    'ziggy': resolvePath('resources/assets/js/ziggy.js'),
-    'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist'),
+    layzr: resolvePath('node_modules/layzr.js/dist/layzr.module.js'),
+    ziggy: resolvePath('resources/assets/js/ziggy.js'),
+    'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist/index.es.js'),
   },
   extensions: ['*', '.js', '.coffee', '.ts', '.tsx'],
   modules: [

@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => '已批准。',
+        'beatmap_owner_change' => '難度 :beatmap 的作者已變更為 :new_user。',
         'discussion_delete' => '管理員刪除了 :discussion 。',
         'discussion_lock' => '此圖譜的討論已被禁用。（:text）',
         'discussion_post_delete' => '管理員在 :discussion 中刪除了這條回覆。',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Approval',
+        'beatmap_owner_change' => '難度作者變更',
         'discussion_delete' => '刪除討論',
         'discussion_post_delete' => '刪除討論的回覆',
         'discussion_post_restore' => '恢復已刪除的討論的回覆',

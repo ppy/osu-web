@@ -67,8 +67,8 @@ return [
         'friends_only' => 'Ten użytkownik blokuje wiadomości od osób spoza listy znajomych.',
         'moderated' => 'Ten kanał jest obecnie w trybie tylko dla moderatorów.',
         'no_access' => 'Nie masz dostępu do tego kanału.',
-        'restricted' => 'Nie możesz wysyłać wiadomości podczas uciszenia czy blokady konta.',
-        'silenced' => 'Nie możesz wysyłać wiadomości podczas uciszenia czy blokady konta.',
+        'restricted' => 'Nie możesz wysyłać wiadomości po tym, jak twoje konto zostało uciszone, ograniczone lub zablokowane.',
+        'silenced' => 'Nie możesz wysyłać wiadomości po tym, jak twoje konto zostało uciszone, ograniczone lub zablokowane.',
     ],
 
     'comment' => [
@@ -123,7 +123,7 @@ return [
                 'user' => [
                     'require_login' => 'Zaloguj się, aby odpowiedzieć.',
                     'restricted' => "Nie możesz odpowiadać podczas blokady konta.",
-                    'silenced' => "Nie możesz odpowiadać podczas uciszenia.",
+                    'silenced' => "Nie możesz odpowiadać po tym, jak twoje konto zostało uciszone.",
                 ],
             ],
 
@@ -142,7 +142,7 @@ return [
                 'user' => [
                     'require_login' => 'Zaloguj się, aby zagłosować.',
                     'restricted' => "Nie możesz głosować podczas blokady konta.",
-                    'silenced' => "Nie możesz głosować podczas uciszenia.",
+                    'silenced' => "Nie możesz głosować po tym, jak twoje konto zostało uciszone.",
                 ],
             ],
 

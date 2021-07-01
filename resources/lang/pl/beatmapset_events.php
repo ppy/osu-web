@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Zatwierdzona.',
+        'beatmap_owner_change' => 'Zmieniono twórcę poziomu trudności „:beatmap” na użytkownika :new_user.',
         'discussion_delete' => 'Moderator usunął dyskusję :discussion.',
         'discussion_lock' => 'Tworzenie dyskusji dla tej beatmapy zostało wyłączone (:text).',
         'discussion_post_delete' => 'Moderator usunął post z dyskusji :discussion.',
@@ -15,8 +16,8 @@ return [
         'disqualify' => ':user zdyskwalifikował(a) tę beatmapę. Powód: :discussion (:text).',
         'disqualify_legacy' => ':user zdyskwalifikował(a) tę beatmapę. Powód: :text.',
         'genre_edit' => 'Zmieniono gatunek z :old na :new.',
-        'issue_reopen' => 'Rozwiązany problem :discussion został otworzony ponownie.',
-        'issue_resolve' => 'Problem :discussion został oznaczony jako rozwiązany.',
+        'issue_reopen' => 'Rozwiązany problem :discussion zgłoszony przez użytkownika :discussion_user został otworzony ponownie przez użytkownika :user.',
+        'issue_resolve' => 'Problem :discussion zgłoszony przez użytkownika :discussion_user został oznaczony jako rozwiązany przez użytkownika :user.',
         'kudosu_allow' => 'Odrzucenie kudosu dla dyskusji :discussion zostało usunięte.',
         'kudosu_deny' => 'Dyskusja :discussion nie otrzyma kudosu.',
         'kudosu_gain' => 'Dyskusja :discussion otrzymała wystarczająco dużo głosów na kudosu.',
@@ -25,7 +26,7 @@ return [
         'language_edit' => 'Zmieniono język z :old na :new.',
         'love' => ':user nadał(a) tej beatmapie status ulubionej społeczności',
         'nominate' => 'Nominowana przez :user.',
-        'nominate_modes' => 'Nominowana przez :user (:modes).',
+        'nominate_modes' => 'Nominowana przez użytkownika :user (:modes).',
         'nomination_reset' => 'Nowy problem :discussion spowodował zresetowanie nominacji.',
         'qualify' => 'Ta beatmapa osiągnęła wystarczającą liczbę nominacji i została zakwalifikowana.',
         'rank' => 'Rankingowa.',
@@ -54,6 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Zatwierdzenie',
+        'beatmap_owner_change' => 'Zmiana twórcy poziomu trudności',
         'discussion_delete' => 'Usunięcie dyskusji',
         'discussion_post_delete' => 'Usunięcie odpowiedzi w dyskusji',
         'discussion_post_restore' => 'Przywrócenie odpowiedzi w dyskusji',

@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Keresés',
             'deleted' => 'Törölt beszélgetések mellékelése',
-            'mode' => '',
+            'mode' => 'Beatmap  mód',
             'only_unresolved' => 'Csak a megoldatlan beszélgetéseket mutasd',
             'types' => 'Üzenettípusok',
             'username' => 'Felhasználónév',
@@ -56,6 +56,13 @@ return [
         'confirm' => 'Egy poszt sem foglalkozik a problémámmal',
         'notice' => 'Már vannak posztok :timestamp (:existing_timestamps) körül. Kérlek nézd meg posztolás előtt.',
         'unsaved' => ':count ellenőrzés alatt áll',
+    ],
+
+    'owner_editor' => [
+        'button' => 'Nehézség',
+        'reset_confirm' => 'Visszaállítod ennek a nehézségi szintnek a tulajdonosát?',
+        'user' => 'Tulajdonos',
+        'version' => 'Nehézség',
     ],
 
     'reply' => [

@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'gelöscht',
+    'deleted_by' => '',
+    'deleted_by_system' => '',
     'deleted_count' => ':count_delimited gelöschter Kommentar|:count_delimited gelöschte Kommentare',
     'edited' => 'bearbeitet :timeago von :user',
     'pinned' => 'angeheftet',

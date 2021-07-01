@@ -21,26 +21,34 @@ use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Genre;
 use App\Models\Language;
-use App\Models\Match\Match;
+use App\Models\LegacyMatch\LegacyMatch;
+use App\Models\Multiplayer\Room;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Models\UserContestEntry;
 use Carbon\Carbon;
+use Ds;
 
 class OsuAuthorize
 {
-    const ALWAYS_CHECK = [
-        'IsOwnClient',
-        'IsNotOAuth',
-        'IsSpecialScope',
-    ];
+    const REQUEST_ATTRIBUTE_KEY = 'auth_map';
 
-    /** @var AuthorizationResult[] */
-    private $cache = [];
-
-    public function cacheReset(): void
+    public static function alwaysCheck($ability)
     {
-        $this->cache = [];
+        static $set;
+
+        $set ??= new Ds\Set([
+            'IsOwnClient',
+            'IsNotOAuth',
+            'IsSpecialScope',
+        ]);
+
+        return $set->contains($ability);
+    }
+
+    public function resetCache(): void
+    {
+        request()->attributes->remove(static::REQUEST_ATTRIBUTE_KEY);
     }
 
     /**
@@ -57,8 +65,17 @@ class OsuAuthorize
             $object === null ? null : [$object->getTable(), $object->getKey()],
         ]);
 
-        if (!isset($this->cache[$cacheKey])) {
-            if ($user !== null && $user->isAdmin() && !in_array($ability, static::ALWAYS_CHECK, true)) {
+        $authMap = request()->attributes->get(static::REQUEST_ATTRIBUTE_KEY);
+
+        if ($authMap === null) {
+            $authMap = new Ds\Map();
+            request()->attributes->set(static::REQUEST_ATTRIBUTE_KEY, $authMap);
+        }
+
+        $auth = $authMap->get($cacheKey, null);
+
+        if ($auth === null) {
+            if ($user !== null && $user->isAdmin() && !static::alwaysCheck($ability)) {
                 $message = 'ok';
             } else {
                 $function = "check{$ability}";
@@ -70,10 +87,11 @@ class OsuAuthorize
                 }
             }
 
-            $this->cache[$cacheKey] = new AuthorizationResult($message);
+            $auth = new AuthorizationResult($message);
+            $authMap->put($cacheKey, $auth);
         }
 
-        return $this->cache[$cacheKey];
+        return $auth;
     }
 
     /**
@@ -223,15 +241,13 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        $userId = $user->getKey();
-
-        if ($userId === $discussion->user_id) {
+        if ($user->getKey() === $discussion->user_id) {
             return 'ok';
         }
 
         if (
             $discussion->beatmapset->approved !== Beatmapset::STATES['qualified']
-            && $discussion->responsibleUserId() === $userId
+            && $discussion->managedBy($user)
         ) {
             return 'ok';
         }
@@ -316,9 +332,7 @@ class OsuAuthorize
         $this->ensureHasPlayed($user);
 
         if ($discussion->message_type === 'mapper_note') {
-            $userId = $user->getKey();
-
-            if ($discussion->responsibleUserId() === $userId) {
+            if ($discussion->managedBy($user)) {
                 return 'ok';
             }
 
@@ -611,8 +625,15 @@ class OsuAuthorize
             return $prefix.'incorrect_state';
         }
 
-        if ($user->getKey() === $beatmapset->user_id) {
+        $userId = $user->getKey();
+        if ($userId === $beatmapset->user_id) {
             return $prefix.'owner';
+        }
+
+        foreach ($beatmapset->beatmaps as $beatmap) {
+            if ($userId === $beatmap->user_id) {
+                return $prefix.'owner';
+            }
         }
 
         if ($beatmapset->genre_id === Genre::UNSPECIFIED || $beatmapset->language_id === Language::UNSPECIFIED) {
@@ -905,16 +926,24 @@ class OsuAuthorize
      */
     public function checkChatChannelJoin(?User $user, Channel $channel): string
     {
-        // TODO: be able to rejoin multiplayer channels you were a part of?
         $prefix = 'chat.';
 
         $this->ensureLoggedIn($user);
 
-        if ($channel->type === Channel::TYPES['public']) {
+        if ($channel->isPublic()) {
             return 'ok';
         }
 
         $this->ensureCleanRecord($user, $prefix);
+
+        // This check is only for when joining the channel directly; joining via the Room
+        // will always add the user to the channel.
+        if ($channel->isMultiplayer()) {
+            $room = Room::hasParticipated($user)->find($channel->room_id);
+            if ($room !== null) {
+                return 'ok';
+            }
+        }
 
         // allow joining of 'tournament' matches (for lazer/tournament client)
         if (optional($channel->multiplayerMatch)->isTournamentMatch()) {
@@ -1577,7 +1606,7 @@ class OsuAuthorize
     public function checkIsSpecialScope(?User $user): string
     {
         if ($user === null) {
-            return 'unauthorzied';
+            return 'unauthorized';
         }
 
         $token = $user->token();
@@ -1709,11 +1738,29 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
-     * @param Match $match
+     * @param User $owner
+     * @return string
+     */
+    public function checkUserShowRestrictedStatus(?User $user, User $owner): string
+    {
+        if ($this->doCheckUser($user, 'IsNotOAuth')->can()) {
+            return 'ok';
+        }
+
+        if ($user !== null && $user->getKey() === $owner->getKey()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
+    /**
+     * @param User|null $user
+     * @param LegacyMatch $match
      * @return string
      * @throws AuthorizationException
      */
-    public function checkMatchView(?User $user, Match $match): string
+    public function checkMatchView(?User $user, LegacyMatch $match): string
     {
         if (!$match->private) {
             return 'ok';

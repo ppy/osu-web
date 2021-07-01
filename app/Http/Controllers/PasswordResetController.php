@@ -43,7 +43,7 @@ class PasswordResetController extends Controller
         $error = $this->issue(Request::input('username'));
 
         if ($error === null) {
-            return ['message' => trans('password_reset.notice.sent')];
+            return ['message' => osu_trans('password_reset.notice.sent')];
         } else {
             return response(['form_error' => [
                 'username' => [$error],
@@ -67,7 +67,7 @@ class PasswordResetController extends Controller
 
         if (!present($inputKey)) {
             return response(['form_error' => [
-                'key' => [trans('password_reset.error.missing_key')],
+                'key' => [osu_trans('password_reset.error.missing_key')],
             ]], 422);
         }
 
@@ -82,7 +82,7 @@ class PasswordResetController extends Controller
             Session::put('password_reset.tries', $tries);
 
             return response(['form_error' => [
-                'key' => [trans('password_reset.error.wrong_key')],
+                'key' => [osu_trans('password_reset.error.wrong_key')],
             ]], 422);
         }
 
@@ -95,7 +95,7 @@ class PasswordResetController extends Controller
 
             UserAccountHistory::logUserResetPassword($user);
 
-            return ['message' => trans('password_reset.notice.saved')];
+            return ['message' => osu_trans('password_reset.notice.saved')];
         } else {
             return response(['form_error' => [
                 'user' => $user->validationErrors()->all(),
@@ -113,15 +113,15 @@ class PasswordResetController extends Controller
         $user = User::findForLogin($username, true);
 
         if ($user === null) {
-            return trans('password_reset.error.user_not_found');
+            return osu_trans('password_reset.error.user_not_found');
         }
 
         if (!present($user->user_email)) {
-            return trans('password_reset.error.contact_support');
+            return osu_trans('password_reset.error.contact_support');
         }
 
         if ($user->isPrivileged() && $user->user_password !== '') {
-            return trans('password_reset.error.is_privileged');
+            return osu_trans('password_reset.error.is_privileged');
         }
 
         $session = [
@@ -144,6 +144,6 @@ class PasswordResetController extends Controller
     {
         $this->clear();
 
-        return ['message' => trans("password_reset.restart.{$reasonKey}")];
+        return ['message' => osu_trans("password_reset.restart.{$reasonKey}")];
     }
 }

@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Beatmap',
 
+            'beatmap_owner_change' => [
+                '_' => 'Gastschwierigkeitsstufe',
+                'beatmap_owner_change' => 'Du bist jetzt Besitzer der Schwierigkeit ":beatmap" für Beatmap ":title"',
+                'beatmap_owner_change_compact' => 'Du bist jetzt Besitzer der Schwierigkeit ":beatmap"',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Beatmap-Diskussion',
                 'beatmapset_discussion_lock' => 'Die Diskussion der Beatmap ":title" wurde gesperrt.',
@@ -159,6 +165,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'Du bist jetzt Gast der Beatmap ":title"',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'Die Diskussion über ":title" wurde gesperrt',
                 'beatmapset_discussion_post_new' => 'Die Diskussion über ":title" hat neue Updates',

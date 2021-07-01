@@ -58,6 +58,13 @@ return [
         'unsaved' => ':count en esta revisión',
     ],
 
+    'owner_editor' => [
+        'button' => 'Dueño de la dificultad',
+        'reset_confirm' => '¿Restablecer dueño para esta dificultad?',
+        'user' => 'Dueño',
+        'version' => 'Dificultad',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Inicia sesión para responder',

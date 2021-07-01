@@ -54,7 +54,7 @@ class BeatmapsController extends Controller
      *
      * Returns [BeatmapScores](#beatmapscores)
      *
-     * @urlParam beatmap required Id of the [Beatmap](#beatmap).
+     * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
      *
      * @queryParam mode The [GameMode](#gamemode) to get scores for.
      * @queryParam mods An array of matching Mods, or none // TODO.
@@ -81,7 +81,7 @@ class BeatmapsController extends Controller
         try {
             if ($type !== 'global' || !empty($mods)) {
                 if ($currentUser === null || !$currentUser->isSupporter()) {
-                    throw new ScoreRetrievalException(trans('errors.supporter_only'));
+                    throw new ScoreRetrievalException(osu_trans('errors.supporter_only'));
                 }
             }
 
@@ -150,8 +150,8 @@ class BeatmapsController extends Controller
      *
      * The position returned depends on the requested mode and mods.
      *
-     * @urlParam beatmap required Id of the [Beatmap](#beatmap).
-     * @urlParam user required Id of the [User](#user).
+     * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
+     * @urlParam user integer required Id of the [User](#user).
      *
      * @queryParam mode The [GameMode](#gamemode) to get scores for.
      * @queryParam mods An array of matching Mods, or none // TODO.

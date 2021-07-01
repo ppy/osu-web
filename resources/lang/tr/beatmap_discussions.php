@@ -58,6 +58,13 @@ return [
         'unsaved' => 'bu incelemede :count',
     ],
 
+    'owner_editor' => [
+        'button' => 'Zorluk Sahibi',
+        'reset_confirm' => 'Bu zorluğun sahibi sıfırlansın mı?',
+        'user' => 'Sahip',
+        'version' => 'Zorluk',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => 'Yanıtlamak için Giriş yapın',

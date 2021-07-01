@@ -11,7 +11,7 @@
 <meta name="theme-color" content="hsl({{ $currentHue }}, 10%, 40%)"> {{-- @osu-colour-b1 --}}
 
 <meta charset="utf-8">
-<meta name="description" content="{{ $pageDescription ?? trans('layout.defaults.page_description') }}">
+<meta name="description" content="{{ $pageDescription ?? osu_trans('layout.defaults.page_description') }}">
 <meta name="keywords" content="osu, peppy, ouendan, elite, beat, agents, ds, windows, game, taiko, tatsujin, simulator, sim, xna, ddr, beatmania, osu!, osume">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -111,9 +111,10 @@
 <script src="{{ unmix('js/commons.js') }}" data-turbolinks-track="reload"></script>
 <script src="{{ unmix('js/app.js') }}" data-turbolinks-track="reload"></script>
 
-@if (($momentLocale = locale_for_moment(Lang::getLocale())) !== null)
-    <script src="{{ unmix("js/moment-locales/{$momentLocale}.js") }}" data-turbolinks-track="reload"></script>
-@endif
+<script
+    src="{{ unmix('js/moment-locales/'.current_locale_meta()->moment().'.js') }}"
+    data-turbolinks-track="reload"
+></script>
 
 @if (isset($atom))
     <link rel="alternate" type="application/atom+xml" title="{{ $atom['title'] }}" href="{{ $atom['url'] }}">

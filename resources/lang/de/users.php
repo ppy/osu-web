@@ -33,7 +33,7 @@ return [
 
     'blocks' => [
         'banner_text' => 'Du hast diesen Benutzer geblockt.',
-        'blocked_count' => '(:count) geblockte Benutzer ',
+        'blocked_count' => 'geblockte benutzer (:count)',
         'hide_profile' => 'Profil verbergen',
         'not_blocked' => 'Dieser Benutzer ist nicht geblockt.',
         'show_profile' => 'Profil anzeigen',
@@ -206,11 +206,11 @@ return [
                 'loved' => [
                     'title' => 'Loved Beatmaps',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Ausstehende Beatmaps',
+                ],
+                'ranked' => [
+                    'title' => 'Ranked & Approved Beatmaps',
                 ],
             ],
             'discussions' => [
@@ -402,10 +402,10 @@ return [
             'total_hits' => 'Anzahl Treffer',
             'total_score' => 'Gesamtpunktzahl',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked & Approved Beatmaps',
-            'loved_beatmapset_count' => 'Loved Beatmaps',
-            'unranked_beatmapset_count' => 'Ausstehende Beatmaps',
             'graveyard_beatmapset_count' => 'Begrabende Beatmaps',
+            'loved_beatmapset_count' => 'Loved Beatmaps',
+            'pending_beatmapset_count' => 'Ausstehende Beatmaps',
+            'ranked_beatmapset_count' => 'Ranked & Approved Beatmaps',
         ],
     ],
 

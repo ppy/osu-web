@@ -58,11 +58,14 @@ At this point you should be able to access the site via whatever webserver you c
 
 - First, install [Docker](https://www.docker.com/community-edition) and [Docker Compose](https://docs.docker.com/compose/install/) (on Windows, it's already part of Docker install).
 - Install [git](https://git-scm.com).
+- Obtain a [GitHub token](https://github.com/settings/tokens/new?scopes=public_repo&description=osu-web) as it's required for several parts of the website.
 - If using Windows, make sure it's running at least build 2004 and install Ubuntu (or another Linux distro of choice) from Windows Store. Additionally:
   - Make sure it's running WSL2 (convert it if it's still using WSL1).
   - Open Docker settings, go to Resources → WSL Integration → Enable integration with additional distros (enable for the installed distro).
 - Open terminal (or Linux console on Windows).
 - Clone this repository.
+- Set `GITHUB_TOKEN` environment variable (usually by `export GITHUB_TOKEN=ghs_...`).
+  - It'll be recorded to composer and app config so it doesn't need to be set again next time.
 - Run `bin/docker_dev.sh`. Make sure the repository folder is owned by the user executing this command (must be non-root).
 - Due to the nature of Docker (a container is killed when the command running in it finishes), the Yarn container will be run in watch mode.
 - Do note that the supplied Elasticsearch container uses a high (1+ GB) amount of RAM. Ensure that your system (or virtual machine, if running on Windows/macOS) has a necessary amount of memory allocated (at least 2 GB). If you can't (or don't want to), you can comment out the relevant elasticsearch lines in `docker-compose.yml`.
@@ -144,6 +147,35 @@ Alternatively, there's mysql client installed in php service:
 ```
 docker-compose run --rm php mysql
 ```
+
+#### Updating image
+
+Docker images need to be occasionally updated to make sure they're running latest version of the packages.
+
+```
+docker-compose down --rmi all
+docker-compose pull
+docker-compose build --pull
+```
+
+(don't use `build --no-cache` as it'll end up rebuilding `php` image multiple times)
+
+#### Faster php commands
+
+When frequently running commands, doing `docker-compose run` may feel a little bit slow. An alternative is by running the command in existing instance instead. For example to run `artisan tinker`:
+
+```
+docker-compose exec php /app/docker/development/entrypoint.sh artisan tinker
+```
+
+Add an alias for the docker-compose command so it doesn't need to be specified every time:
+
+```
+alias p='docker-compose exec php /app/docker/development/entrypoint.sh'
+p artisan tinker
+```
+
+(add the `alias` line to shell startup file; usually `~/.profile`, `~/.zshrc`, etc)
 
 # Development
 
@@ -283,7 +315,7 @@ docker-compose run --rm php test js
 # Documentation
 
 ```bash
-$ php artisan apidoc:generate
+$ php artisan scribe:generate
 ```
 
 Documentation will be generated in the `docs` folder in both html and markdown formats.

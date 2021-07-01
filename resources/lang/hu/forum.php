@@ -47,7 +47,7 @@ return [
         'confirm_restore' => 'Biztosan visszaállítod a posztot?',
         'edited' => 'Utoljára módosítva :user által :when, módosítva :count alkalommal.',
         'posted_at' => 'posztolva :when',
-        'posted_by' => '',
+        'posted_by' => 'posztolva :username által',
 
         'actions' => [
             'destroy' => 'Poszt törlése',
@@ -75,8 +75,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Biztosan törlöd a témát?',
+        'confirm_restore' => 'Biztosan visszaállítod a témát?',
         'deleted' => 'törölt téma',
         'go_to_latest' => 'utolsó poszt megtekintése',
         'has_replied' => 'Feliratkoztál erre a témára',
@@ -92,8 +92,8 @@ return [
         'started_by_verbose' => ':user által indítva',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Téma törlése',
+            'restore' => 'Téma visszaállítása',
         ],
 
         'create' => [
