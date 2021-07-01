@@ -14,6 +14,10 @@
 
     $toolbarItems = [];
 
+    if (priv_check('ForumTopicLogsView')->can()) {
+        $toolbarItems['browse_logs'] = true;
+    }
+
     if ($canEditTitle) {
         $toolbarItems['edit_title'] = true;
     }
@@ -74,6 +78,14 @@
 
             @if (count($toolbarItems) > 0)
                 <div class="forum-topic-toolbar js-forum-topic-title--toggleable">
+                    @if (isset($toolbarItems['browse_logs']))
+                        <div class="forum-topic-toolbar__item u-relative">
+                            <a href="{{ route('forum.topics.logs', $topic->getKey()) }}" class="btn-osu-big btn-osu-big--forum-secondary">
+                                {{ trans('forum.topic.logs._') }}
+                            </a>
+                        </div>
+                    @endif
+
                     @if (isset($toolbarItems['edit_title']))
                         <div class="forum-topic-toolbar__item forum-topic-toolbar__item--title-edit">
                             <button

@@ -146,6 +146,8 @@ Route::group(['middleware' => ['web']], function () {
                 Route::post('topics/{topic}/edit-poll', 'TopicsController@editPollPost')->name('topics.edit-poll.store');
                 Route::get('topics/{topic}/edit-poll', 'TopicsController@editPollGet')->name('topics.edit-poll');
 
+                Route::get('topics/{topic}/logs', 'TopicLogsController@show')->name('topics.logs');
+
                 Route::post('topics/preview', 'TopicsController@preview')->name('topics.preview');
                 Route::post('topics/{topic}/issue-tag', 'TopicsController@issueTag')->name('topics.issue-tag');
                 Route::post('topics/{topic}/lock', 'TopicsController@lock')->name('topics.lock');

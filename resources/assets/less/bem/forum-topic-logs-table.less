@@ -1,0 +1,37 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.forum-topic-logs-table {
+    width: 100%;
+
+    &__body {
+        font-size: @font-size--title-small;
+    }
+
+    &__col {
+        // bootstrap override
+        && {
+            vertical-align: middle;
+        }
+
+        &--date {
+            color: @osu-colour-f1;
+        }
+    }
+
+    &__header {
+        font-size: @font-size--small;
+        font-weight: 900;
+        text-transform: uppercase;
+    }
+
+    &__log-data {
+        font-size: @font-size--small;
+        color: @osu-colour-f1;
+    }
+
+    &__row {
+        padding-bottom: 2px;
+        border-top: 2px solid @osu-colour-b4;
+    }
+}

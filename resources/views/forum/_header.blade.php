@@ -33,6 +33,17 @@
             'title' => $forum->forum_name,
             'url' => route("forum.forums.show", $forum->forum_id),
         ];
+
+        if (isset($isTopicLogs) && $isTopicLogs === true) {
+            $links[] = [
+                'title' => $topic->topic_title,
+                'url' => route('forum.topics.show', $topic->getKey()),
+            ];
+
+            $links[] = [
+                'title' => trans('forum.topic.logs._'),
+            ];
+        }
     }
 @endphp
 @include('layout._page_header_v4', ['params' => [

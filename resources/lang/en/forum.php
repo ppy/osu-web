@@ -127,6 +127,49 @@ return [
             'previous' => 'go back 10 posts',
         ],
 
+        'logs' => [
+            '_' => 'Topic logs',
+            'title' => 'topic logs',
+
+            'columns' => [
+                'action' => 'Action',
+                'date' => 'Date',
+                'ip' => 'IP Adress',
+                'user' => 'User',
+            ],
+
+            'data' => [
+                'add_tag' => 'added ":data" tag',
+                'announcement' => 'pinned topic and marked as announcement',
+                'delete_post' => 'from topic :data',
+                'edit_topic' => 'to :data',
+                'edit_poll' => 'for :data',
+                'move' => 'from :data',
+                'pin' => 'pinned topic',
+                'post_edited' => 'posted by :data',
+                'remove_tag' => 'removed ":data" tag',
+                'restore_post' => 'from topic :data',
+                'unpin' => 'unpinned topic',
+            ],
+
+            'no_results' => 'no logs found...',
+
+            'operations' => [
+                'delete_post' => 'Deleted post',
+                'delete_topic' => 'Deleted topic',
+                'edit_topic' => 'Edited title',
+                'edit_poll' => 'Edited poll',
+                'issue_tag' => 'Issued tag',
+                'lock' => 'Locked topic',
+                'move' => 'Moved topic',
+                'post_edited' => 'Edited post',
+                'restore_post' => 'Restored post',
+                'restore_topic' => 'Restored topic',
+                'topic_type' => 'Changed topic type',
+                'unlock' => 'Unlocked topic',
+            ],
+        ],
+
         'post_edit' => [
             'cancel' => 'Cancel',
             'post' => 'Save',

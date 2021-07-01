@@ -52,6 +52,51 @@ class Log extends Model
         $this->attributes['log_data'] = serialize($value);
     }
 
+    public function dataForDisplay()
+    {
+        if ($this->log_operation === 'LOG_TOPIC_TYPE') {
+            switch ($this->log_data['type']) {
+                case 0:
+                    $translationString = 'unpin';
+                    break;
+                case 1:
+                    $translationString = 'pin';
+                    break;
+                case 2:
+                    $translationString = 'announcement';
+                    break;
+            }
+
+            return trans("forum.topic.logs.data.{$translationString}");
+        }
+
+        $data = $this->log_data[0];
+        $translationKey = $this->translationKey();
+
+        $noTranslation = ['LOG_DELETE_TOPIC', 'LOG_LOCK', 'LOG_RESTORE_TOPIC', 'LOG_UNLOCK'];
+
+        if (in_array($this->log_operation, $noTranslation)) {
+            return $data; // topic title only
+        }
+
+        if ($this->log_operation === 'LOG_ISSUE_TAG') {
+            $state = $this->log_data['state'] ? 'add' : 'remove';
+            $data = $this->log_data['issueTag'];
+            $translationKey = "{$state}_tag";
+        }
+
+        if ($this->log_operation === 'LOG_POST_EDITED') {
+            $data = $this->log_data[1]; // username instead of topic title
+        }
+
+        return trans("forum.topic.logs.data.{$translationKey}", ['data' => $data]);
+    }
+
+    public function translationKey()
+    {
+        return strtolower(str_replace('LOG_', '', $this->log_operation));
+    }
+
     public function forum()
     {
         return $this->belongsTo(Forum\Forum::class, 'forum_id');
