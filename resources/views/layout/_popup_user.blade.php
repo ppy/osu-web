@@ -40,7 +40,7 @@
         type="button"
         data-url="{{ route('logout') }}"
         data-confirm="{{ osu_trans('users.logout_confirm') }}"
-        data-method="delete
+        data-method="delete"
         data-remote="1"
     >
         {{ osu_trans('layout.popup_user.links.logout') }}
