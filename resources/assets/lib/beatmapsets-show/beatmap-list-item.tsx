@@ -20,14 +20,17 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
 
   render() {
     const deleted = this.props.beatmap.deleted_at !== null;
-    const version = `${this.props.beatmap.version}${deleted ? ` ${osu.trans('beatmap_discussions.index.deleted_beatmap')}` : ''}`;
+    let version = this.props.beatmap.version;
+
+    if (deleted) {
+      version += ` ${osu.trans('beatmap_discussions.index.deleted_beatmap')}`;
+    }
 
     return (
       <div
         className={classWithModifiers('beatmap-list-item', {
           deleted,
           large: this.props.large,
-          [version]: true,
         })}
       >
         <div className='beatmap-list-item__col beatmap-list-item__main'>
