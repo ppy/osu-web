@@ -3,6 +3,7 @@
 
 import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
 import { dispatch } from 'app-dispatcher';
+import core from 'osu-core-singleton';
 
 export default class UserLoginObserver {
   constructor() {
@@ -15,7 +16,17 @@ export default class UserLoginObserver {
     dispatch(new UserLoginAction());
   };
 
-  userLogout = () => {
+  userLogout = (event: JQuery.Event, data?: { captcha_triggered?: boolean }) => {
+    localStorage.clear();
+
+    osu.reloadPage();
+
+    if (data?.captcha_triggered === true) {
+      core.captcha.trigger();
+    } else {
+      core.captcha.untrigger();
+    }
+
     dispatch(new UserLogoutAction());
   };
 }
