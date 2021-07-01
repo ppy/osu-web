@@ -28,13 +28,13 @@ class UsernameValidation
                 $errors->add(
                     'username',
                     '.username_available_in',
-                    ['duration' => trans_choice('common.count.days', $remaining->days + 1)]
+                    ['duration' => osu_trans_choice('common.count.days', $remaining->days + 1)]
                 );
             } elseif ($remaining->h > 0) {
                 $errors->add(
                     'username',
                     '.username_available_in',
-                    ['duration' => trans_choice('common.count.hours', $remaining->h + 1)]
+                    ['duration' => osu_trans_choice('common.count.hours', $remaining->h + 1)]
                 );
             } else {
                 $errors->add('username', '.username_available_soon');

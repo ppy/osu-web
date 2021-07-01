@@ -76,8 +76,8 @@ return [
 
         'details_date' => [
             'approved' => '於:timeago批准',
-            'loved' => '',
-            'qualified' => '',
+            'loved' => 'loved :timeago',
+            'qualified' => '已提名 :timeago',
             'ranked' => '於:timeago進榜',
             'submitted' => '於:timeago提交',
             'updated' => '上次更新於:timeago',

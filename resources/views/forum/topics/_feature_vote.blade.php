@@ -4,9 +4,9 @@
 --}}
 <div class="forum-topic-feature-vote">
     <div class="forum-topic-feature-vote__info">
-        {!! trans('forum.topics.show.feature_vote.info._', [
-            'feature_request' => '<strong>'.trans('forum.topics.show.feature_vote.info.feature_request').'</strong>',
-            'supporters' => link_to(route('support-the-game'), trans('forum.topics.show.feature_vote.info.supporters')),
+        {!! osu_trans('forum.topics.show.feature_vote.info._', [
+            'feature_request' => '<strong>'.osu_trans('forum.topics.show.feature_vote.info.feature_request').'</strong>',
+            'supporters' => link_to(route('support-the-game'), osu_trans('forum.topics.show.feature_vote.info.supporters')),
         ]) !!}
     </div>
 
@@ -26,7 +26,7 @@
     </div>
 
     <div>
-        {{ trans('forum.topics.show.feature_vote.current', [
+        {{ osu_trans('forum.topics.show.feature_vote.current', [
             'count' => i18n_number_format($topic->osu_starpriority),
         ]) }}
     </div>
@@ -38,18 +38,18 @@
                 data-url="{{ route('forum.topics.vote-feature', $topic->getKey()) }}"
                 data-method="POST"
                 data-remote=1
-                data-disable-with="{{ trans('common.buttons.saving') }}"
+                data-disable-with="{{ osu_trans('common.buttons.saving') }}"
                 @if (Auth::user()->osu_featurevotes < App\Models\Forum\FeatureVote::COST)
                     disabled
                 @endif
             >
-                {{ trans('forum.topics.show.feature_vote.do') }}
+                {{ osu_trans('forum.topics.show.feature_vote.do') }}
             </button>
         </div>
 
         <div class="forum-topic-feature-vote__remaining">
-            {!! trans('forum.topics.show.feature_vote.user.current', [
-                'votes' => '<strong>'.trans_choice('forum.topics.show.feature_vote.user.count', Auth::user()->osu_featurevotes).'</strong>',
+            {!! osu_trans('forum.topics.show.feature_vote.user.current', [
+                'votes' => '<strong>'.osu_trans_choice('forum.topics.show.feature_vote.user.count', Auth::user()->osu_featurevotes).'</strong>',
             ]) !!}
         </div>
     @endif

@@ -110,10 +110,10 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this
             ->actingAsVerified($this->mapper)
             ->post(route('beatmapsets.discussions.posts.store'), $params)
-            ->assertStatus(403);
+            ->assertSuccessful();
 
-        $this->assertSame($currentDiscussions, BeatmapDiscussion::count());
-        $this->assertSame($currentDiscussionPosts, BeatmapDiscussionPost::count());
+        $this->assertSame($currentDiscussions + 1, BeatmapDiscussion::count());
+        $this->assertSame($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
     }
 
     public function testPostStoreNewDiscussionNoteByGuestOnGuestBeatmap()
@@ -286,10 +286,10 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->postResolveDiscussion(true, $this->mapper)
-            ->assertStatus(403);
+            ->assertSuccessful();
 
-        $this->assertSame($discussionPostCount, BeatmapDiscussionPost::count());
-        $this->assertFalse($this->beatmapDiscussion->fresh()->resolved);
+        $this->assertSame($discussionPostCount + 2, BeatmapDiscussionPost::count());
+        $this->assertTrue($this->beatmapDiscussion->fresh()->resolved);
     }
 
     public function testPostStoreNewReplyResolveByGuest()

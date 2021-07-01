@@ -115,8 +115,8 @@ return [
     ],
 
     'pagination' => [
-        'previous' => 'ÖNCEKİ',
-        'next' => 'SONRAKİ',
+        'previous' => 'önceki',
+        'next' => 'sonraki',
     ],
 
     'score_count' => [

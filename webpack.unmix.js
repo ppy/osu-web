@@ -320,7 +320,7 @@ const resolve = {
     '@images': path.resolve(__dirname, 'public/images'),
     layzr: resolvePath('node_modules/layzr.js/dist/layzr.module.js'),
     ziggy: resolvePath('resources/assets/js/ziggy.js'),
-    'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist'),
+    'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist/index.es.js'),
   },
   extensions: ['*', '.js', '.coffee', '.ts', '.tsx'],
   modules: [

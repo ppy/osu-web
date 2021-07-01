@@ -3,6 +3,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+namespace Database\Seeders\ModelSeeders;
+
+use App\Models\Achievement;
+use App\Models\Genre;
+use App\Models\Language;
+use DB;
+use Exception;
 use Illuminate\Database\Seeder;
 
 class MiscSeeder extends Seeder
@@ -48,7 +55,7 @@ class MiscSeeder extends Seeder
                 ['genre_id' => 13, 'name' => 'Folk'],
                 ['genre_id' => 14, 'name' => 'Jazz'],
             ]);
-            $any_genre = \App\Models\Genre::find(99);
+            $any_genre = Genre::find(99);
             $any_genre->genre_id = 0;
             $any_genre->save();
             //  END GENRES
@@ -71,27 +78,25 @@ class MiscSeeder extends Seeder
                 ['language_id' => 13, 'name' => 'Polish', 'display_order' => 11],
                 ['language_id' => 14, 'name' => 'Other', 'display_order' => 13],
             ]);
-            $any_language = \App\Models\Language::find(99);
+            $any_language = Language::find(99);
             $any_language->language_id = 0;
             $any_language->save();
             //END LANGUAGES
 
             //ACHIEVEMENTS
             $beatmapSlugs = ['all-packs-anime-1', 'all-packs-anime-2', 'all-packs-gamer-1', 'all-packs-gamer-2', 'all-packs-rhythm-1', 'all-packs-rhythm-2'];
-            factory(App\Models\Achievement::class, 5)->create([
+            factory(Achievement::class, 5)->create([
                 'grouping' => 'Beatmap Packs',
                 'slug' => array_rand_val($beatmapSlugs),
             ]);
             $comboSlugs = ['osu-combo-500', 'osu-combo-750', 'osu-combo-1000', 'osu-combo-2000'];
-            factory(App\Models\Achievement::class, 5)->create([
+            factory(Achievement::class, 5)->create([
                 'grouping' => 'Combo',
                 'slug' => array_rand_val($comboSlugs),
             ]);
             //END ACHIEVEMENTS
-        } catch (\Illuminate\Database\QueryException $e) {
-            echo $e->getMessage()."\r\n";
         } catch (Exception $ex) {
-            echo $ex->getMessage()."\r\n";
+            echo $ex->getMessage().PHP_EOL;
         }
     }
 }

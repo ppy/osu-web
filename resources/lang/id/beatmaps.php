@@ -250,8 +250,8 @@ return [
         ],
     ],
     'general' => [
-        'converts' => 'Sertakan beatmap yang dikonversi',
-        'follows' => 'Mapper yang dipantau',
+        'converts' => 'Sertakan beatmap-beatmap convert',
+        'follows' => 'Tampilkan hanya mapper-mapper yang dipantau',
         'recommended' => 'Tingkat kesulitan yang disarankan',
     ],
     'mode' => [
@@ -269,7 +269,7 @@ return [
         'graveyard' => 'Graveyard',
         'leaderboard' => 'Memiliki Leaderboard',
         'loved' => 'Loved',
-        'mine' => 'Map Saya',
+        'mine' => 'Map-Map Milik Saya',
         'pending' => 'Pending & WIP',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',

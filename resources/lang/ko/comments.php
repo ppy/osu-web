@@ -5,6 +5,8 @@
 
 return [
     'deleted' => '삭제됨',
+    'deleted_by' => '',
+    'deleted_by_system' => '',
     'deleted_count' => ':count_delimited개의 삭제된 댓글',
     'edited' => ':user에 의해 :timeago전에 수정됨.',
     'pinned' => '고정됨',

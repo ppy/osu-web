@@ -35,6 +35,9 @@ class BeatmapsetQueryParser
                 case 'cs':
                     $option = static::makeFloatRangeOption($op, $m['value'], 0.1 / 2);
                     break;
+                case 'od':
+                    $option = static::makeFloatRangeOption($op, $m['value'], 0.1 / 2);
+                    break;
                 case 'bpm':
                     $option = static::makeFloatRangeOption($op, $m['value'], 0.01 / 2);
                     break;

@@ -11,7 +11,6 @@ use App\Libraries\Transactions\AfterRollback;
 use App\Libraries\TransactionStateManager;
 use App\Traits\MacroableModel;
 use Exception;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
@@ -181,7 +180,7 @@ abstract class Model extends BaseModel
     // Allows save/update/delete to work with composite primary keys.
     // Note this doesn't fix 'find' method and a bunch of other laravel things
     // which rely on getKeyName and getKey (and they themselves are broken as well).
-    protected function setKeysForSaveQuery(Builder $query)
+    protected function setKeysForSaveQuery($query)
     {
         if (isset($this->primaryKeys)) {
             foreach ($this->primaryKeys as $key) {

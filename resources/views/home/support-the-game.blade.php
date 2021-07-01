@@ -15,7 +15,7 @@
                 @if (!empty($supporterStatus))
                     <!-- supporter status  -->
                     <div class="supporter-status__flex-container">
-                        <a class="supporter-eyecatch__link" href="{{ route('store.products.show', 'supporter-tag') }}" title="{{ trans('community.support.convinced.support') }}">
+                        <a class="supporter-eyecatch__link" href="{{ route('store.products.show', 'supporter-tag') }}" title="{{ osu_trans('community.support.convinced.support') }}">
                             <div class="supporter-heart{{ $supporterStatus['current'] ? ' supporter-heart--active' : '' }}"></div>
                         </a>
                         <div class="supporter-status__flex-container-inner">
@@ -24,18 +24,18 @@
                             </div>
                             @if ($supporterStatus['expiration'] !== null)
                             <div class="supporter-status__text supporter-status__text--first">
-                                {!! trans('community.support.supporter_status.'.($supporterStatus['current'] ? 'valid_until' : 'was_valid_until'), [
+                                {!! osu_trans('community.support.supporter_status.'.($supporterStatus['current'] ? 'valid_until' : 'was_valid_until'), [
                                     'date' => '<strong>'.i18n_date($supporterStatus['expiration']).'</strong>'
                                 ]) !!}
                             </div>
                             @else
                             <div class="supporter-status__text">
-                                {!! trans('community.support.supporter_status.not_yet') !!}
+                                {!! osu_trans('community.support.supporter_status.not_yet') !!}
                             </div>
                             @endif
                             @if ($supporterStatus['tags'] > 0)
                             <div class="supporter-status__text">
-                                {!! trans('community.support.supporter_status.contribution', [
+                                {!! osu_trans('community.support.supporter_status.contribution', [
                                     'dollars' => "<strong>{$supporterStatus['dollars']}</strong>",
                                     'tags' => "<strong>{$supporterStatus['tags']}</strong>"
                                 ]) !!}
@@ -43,7 +43,7 @@
                             @endif
                             @if ($supporterStatus['giftedTags'] > 0)
                             <div class="supporter-status__text">
-                                {!! trans('community.support.supporter_status.gifted', [
+                                {!! osu_trans('community.support.supporter_status.gifted', [
                                     'giftedDollars' => "<strong>{$supporterStatus['giftedDollars']}</strong>",
                                     'giftedTags' => "<strong>{$supporterStatus['giftedTags']}</strong>"
                                 ]) !!}
@@ -76,12 +76,12 @@
                 <div class="supporter-quote__signature">— Dean "peppy" Herbert, creator of osu!</div>
             </div>
             <h3 class="supporter__title">
-                {{ trans('community.support.why-support.title') }}
+                {{ osu_trans('community.support.why-support.title') }}
             </h3>
             @include('home._supporter_perk_group', ['group' => $data['support-reasons']])
             <div class="supporter__block supporter__block--bg-0">
                 <h3 class="supporter__title">
-                    {{ trans('community.support.perks.title') }}
+                    {{ osu_trans('community.support.perks.title') }}
                 </h3>
             </div>
             @foreach($data['perks'] as $index => $group)
@@ -90,7 +90,7 @@
                 </div>
             @endforeach
             <h3 class="supporter__title supporter__title--convinced">
-                {{ trans('community.support.convinced.title') }}
+                {{ osu_trans('community.support.convinced.title') }}
             </h3>
             <div class="supporter-eyecatch">
                 <div class="supporter-eyecatch__box">
@@ -98,13 +98,13 @@
                         <div class="supporter-heart supporter-heart--larger supporter-heart--active"></div>
                     </a>
                     <div class="supporter-eyecatch__text supporter-eyecatch__text--main">
-                        {{ trans('community.support.convinced.support') }}
+                        {{ osu_trans('community.support.convinced.support') }}
                     </div>
                     <div class="supporter-eyecatch__text supporter-eyecatch__text--sub-1">
-                        {{ trans('community.support.convinced.gift') }}
+                        {{ osu_trans('community.support.convinced.gift') }}
                     </div>
                     <div class="supporter-eyecatch__text supporter-eyecatch__text--sub-2">
-                        {{ trans('community.support.convinced.instructions') }}
+                        {{ osu_trans('community.support.convinced.instructions') }}
                     </div>
                 </div>
             </div>
