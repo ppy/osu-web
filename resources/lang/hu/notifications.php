@@ -6,12 +6,12 @@
 return [
     'all_read' => 'Összes értesítés elolvasva!',
     'delete' => ':type tisztítása',
-    'loading' => '',
-    'mark_read' => 'Típus törlése :type',
+    'loading' => 'Olvasatlan értesítések betöltése...',
+    'mark_read' => ':type törlése',
     'none' => 'Nincsenek értesítések',
     'see_all' => 'összes értesítés megtekintése',
     'see_channel' => 'menjen a csevegéshez',
-    'verifying' => '',
+    'verifying' => 'Az értesítések megtekintéséhez hitelesítse a munkamenetet',
 
     'filters' => [
         '_' => 'összes',
@@ -28,9 +28,9 @@ return [
             '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'Vendég nehézség',
+                'beatmap_owner_change' => 'Mostantól tulajdonosa vagy a(z) ":title" beatmap ":beatmap" nehézségének',
+                'beatmap_owner_change_compact' => 'Mostantól ":beatmap" nehézség tulajdonosa vagy',
             ],
 
             'beatmapset_discussion' => [
@@ -144,11 +144,11 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Új beatmap',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Új ":title" beatmap :username által',
+                'user_beatmapset_new_compact' => 'Új beatmap: ":title"',
+                'user_beatmapset_new_group' => 'Új beatmap-ek :username által',
             ],
         ],
 
@@ -167,7 +167,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Mostantól vendégje vagy ":title" beatmap-nek',
             ],
 
             'beatmapset_discussion' => [
@@ -226,7 +226,7 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username új beatmap-eket hozott létre',
             ],
         ],
     ],

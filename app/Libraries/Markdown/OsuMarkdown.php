@@ -50,6 +50,9 @@ class OsuMarkdown
             'block_modifiers' => ['comment'],
         ],
         'default' => [],
+        'group' => [
+            'block_modifiers' => ['group'],
+        ],
         'news' => [
             'block_modifiers' => ['news'],
             'generate_toc' => true,

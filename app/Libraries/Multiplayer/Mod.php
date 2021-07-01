@@ -40,6 +40,7 @@ class Mod
     const OSU_TRACEABLE = 'TC';
     const OSU_CLASSIC = 'CL';
     const OSU_BARRELROLL = 'BR';
+    const OSU_APPROACH_DIFFERENT = 'AD';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -153,6 +154,7 @@ class Mod
             'approach_rate' => 'float',
             'extended_limits' => 'bool',
             'scroll_speed' => 'float',
+            'hard_rock_offsets' => 'bool',
         ],
         self::DOUBLETIME => [
             'speed_change' => 'float',
@@ -201,6 +203,10 @@ class Mod
         ],
         self::RANDOM => [
             'seed' => 'int',
+        ],
+        self::OSU_APPROACH_DIFFERENT => [
+            'scale' => 'float',
+            'style' => 'int',
         ],
     ];
 
@@ -273,6 +279,7 @@ class Mod
                         self::OSU_CLASSIC,
                         self::OSU_BARRELROLL,
                         self::RANDOM,
+                        self::OSU_APPROACH_DIFFERENT,
                     ]
                 ),
 
@@ -324,7 +331,19 @@ class Mod
 
         if (!$value) {
             $value = [
-                Ruleset::OSU => self::EXCLUSIVITY_COMMON,
+                Ruleset::OSU => array_merge(
+                    self::EXCLUSIVITY_COMMON,
+                    [
+                        [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::OSU_TRACEABLE,
+                            self::OSU_SPININ,
+                            self::OSU_GROW,
+                            self::OSU_DEFLATE,
+                            self::HIDDEN,
+                        ],
+                    ]
+                ),
                 Ruleset::TAIKO => array_merge(
                     self::EXCLUSIVITY_COMMON,
                     [

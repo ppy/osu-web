@@ -949,15 +949,17 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     }
 
 
-    public function findUserGroup($group, $activeOnly)
+    public function findUserGroup($group, bool $activeOnly): ?UserGroup
     {
-        $groupId = $group->getKey();
+        $byGroupId = $this->memoize(__FUNCTION__.':byGroupId', fn () => $this->userGroups->keyBy('group_id'));
 
-        foreach ($this->userGroups as $userGroup) {
-            if ($userGroup->group_id === $groupId) {
-                return $activeOnly && $userGroup->user_pending ? null : $userGroup;
-            }
+        $userGroup = $byGroupId->get($group->getKey());
+
+        if ($userGroup === null || ($activeOnly && $userGroup->user_pending)) {
+            return null;
         }
+
+        return $userGroup;
     }
 
     /**
@@ -1822,7 +1824,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         if (LoginAttempt::isLocked($ip)) {
             DatadogLoginAttempt::log('locked_ip');
 
-            return trans('users.login.locked_ip');
+            return osu_trans('users.login.locked_ip');
         }
 
         $authError = null;
@@ -1846,7 +1848,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         if ($authError !== null) {
             LoginAttempt::logAttempt($ip, $user, 'fail', $password);
 
-            return trans('users.login.failed');
+            return osu_trans('users.login.failed');
         }
 
         LoginAttempt::logLoggedIn($ip, $user);

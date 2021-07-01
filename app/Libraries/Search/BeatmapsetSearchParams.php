@@ -13,6 +13,8 @@ class BeatmapsetSearchParams extends SearchParams
     const PLAYED_STATES = ['played', 'unplayed'];
     const STATUSES_NO_CACHE = ['favourites', 'mine'];
 
+    public ?array $accuracy = null;
+
     /** @var array|null */
     public $ar;
 

@@ -63,10 +63,10 @@ export class NewDiscussion extends React.PureComponent
       @props.mode == 'generalAll'
 
     canPostNote =
-      (@props.currentUser.id == @props.beatmapset.user_id && @props.mode == 'generalAll') ||
+      @props.currentUser.id == @props.beatmapset.user_id ||
       (@props.currentUser.id == @props.currentBeatmap.user_id && @props.mode in ['general', 'timeline']) ||
       @props.currentUser.is_bng ||
-      @props.currentUser.is_nat
+      BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
 
     buttonCssClasses = 'btn-circle'
     buttonCssClasses += ' btn-circle--activated' if @props.pinned

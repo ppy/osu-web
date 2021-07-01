@@ -33,7 +33,7 @@
                    @if ($userLink !== null) href="{{ $userLink }}" @endif
                    data-user-id="{{ $user->user_id }}"
                 >
-                    {!! trans(
+                    {!! osu_trans(
                         'forum.post.posted_by',
                         ['username' => tag(
                             'span',

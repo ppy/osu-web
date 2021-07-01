@@ -382,7 +382,7 @@ class BeatmapDiscussionPost extends Model
 
     public function url()
     {
-        return $this->beatmapDiscussion->url();
+        return route('beatmapsets.discussions.posts.show', $this->getKey());
     }
 
     protected function newReportableExtraParams(): array

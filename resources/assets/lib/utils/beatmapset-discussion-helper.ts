@@ -68,14 +68,15 @@ export function propsFromHref(href: string) {
   if (targetUrl != null && targetUrl.host === window.location.host) {
     const target = BeatmapDiscussionHelper.urlParse(targetUrl.href, null, { forceDiscussionId: true });
     if (target?.discussionId != null && target.beatmapsetId != null) {
+      const hash = [target.discussionId, target.postId].filter(Number.isFinite).join('/');
       if (current?.beatmapsetId === target.beatmapsetId) {
         // same beatmapset, format: #123
-        props.children = `#${target.discussionId}`;
+        props.children = `#${hash}`;
         props.className = 'js-beatmap-discussion--jump';
         props.target = undefined;
       } else {
         // different beatmapset, format: 1234#567
-        props.children = `${target.beatmapsetId}#${target.discussionId}`;
+        props.children = `${target.beatmapsetId}#${hash}`;
       }
     }
   }

@@ -16,28 +16,22 @@
 
 use App\Models\BeatmapDiscussion;
 
-$factory->define(BeatmapDiscussion::class, function (Faker\Generator $faker) use ($factory) {
-    $type = rand(0, 1) === 0 ? 'timeline' : 'general';
-
-    return $factory->raw(BeatmapDiscussion::class, [], $type);
-});
-
-$factory->defineAs(BeatmapDiscussion::class, 'timeline', function () {
-    return [
+$states = [
+    'timeline' => [
         'timestamp' => 0,
         'message_type' => 'problem',
-    ];
-});
-
-$factory->defineAs(BeatmapDiscussion::class, 'general', function () {
-    return [
+    ],
+    'general' => [
         'timestamp' => null,
         'message_type' => 'problem',
-    ];
-});
-
-$factory->defineAs(BeatmapDiscussion::class, 'review', function () {
-    return [
+    ],
+    'review' => [
         'message_type' => 'review',
-    ];
-});
+    ],
+];
+
+$factory->define(BeatmapDiscussion::class, fn () => array_rand_val($states));
+
+foreach ($states as $state => $attributes) {
+    $factory->state(BeatmapDiscussion::class, $state, $attributes);
+}

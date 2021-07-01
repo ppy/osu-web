@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'διαγράφηκε',
+    'deleted_by' => '',
+    'deleted_by_system' => '',
     'deleted_count' => ':count_delimited διαγραμμένο σχόλιο|:count_delimited διαγραμμένα σχόλια',
     'edited' => 'επεξεργάστηκε :timeago απο :user',
     'pinned' => '',

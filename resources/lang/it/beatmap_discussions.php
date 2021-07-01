@@ -25,7 +25,7 @@ return [
             '_' => 'Cerca',
             'deleted' => 'Includi discussioni eliminate',
             'mode' => 'Modalità Beatmap',
-            'only_unresolved' => 'Mostra solo le discussioni in sospeso',
+            'only_unresolved' => 'Mostra solo discussioni irrisolte',
             'types' => 'Tipi di messaggio',
             'username' => 'Nome Utente',
 
@@ -59,10 +59,10 @@ return [
     ],
 
     'owner_editor' => [
-        'button' => '',
+        'button' => 'Mapper della difficoltà',
         'reset_confirm' => 'Resettare il proprietario per questa difficoltà?',
-        'user' => '',
-        'version' => '',
+        'user' => 'Proprietario',
+        'version' => 'Difficoltà',
     ],
 
     'reply' => [

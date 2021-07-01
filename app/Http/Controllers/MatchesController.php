@@ -23,16 +23,11 @@ class MatchesController extends Controller
         $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
         $cursorHelper = LegacyMatch::makeDbCursorHelper($params['sort'] ?? null);
 
-        $matches = LegacyMatch
+        [$matches, $hasMore] = LegacyMatch
             ::where('private', false)
             ->cursorSort($cursorHelper, $params['cursor'] ?? null)
-            ->limit($limit + 1) // an extra to check for pagination
-            ->get();
-
-        $hasMore = count($matches) === $limit + 1;
-        if ($hasMore) {
-            $matches->pop();
-        }
+            ->limit($limit)
+            ->getWithHasMore();
 
         return [
             'cursor' => $hasMore ? $cursorHelper->next($matches) : null,

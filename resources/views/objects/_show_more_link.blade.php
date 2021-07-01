@@ -32,7 +32,7 @@
             <span class="fas fa-angle-{{ $arrow }}"></span>
         </span>
         <span class="{{ $bn }}__label-text">
-            {{ trans('common.buttons.show_more') }}
+            {{ osu_trans('common.buttons.show_more') }}
         </span>
         <span class="{{ $bn }}__label-icon">
             <span class="fas fa-angle-{{ $arrow }}"></span>

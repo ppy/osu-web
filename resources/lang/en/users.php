@@ -301,6 +301,9 @@ return [
                 'recent' => 'Latest',
                 'title' => 'Medals',
             ],
+            'multiplayer' => [
+                'title' => 'Multiplayer Games',
+            ],
             'posts' => [
                 'title' => 'Posts',
                 'title_longer' => 'Recent Posts',

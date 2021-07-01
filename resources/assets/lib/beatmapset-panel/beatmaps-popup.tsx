@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import DifficultyBadge from 'difficulty-badge';
 import BeatmapJson from 'interfaces/beatmap-json';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
@@ -9,7 +10,6 @@ import core from 'osu-core-singleton';
 import { Portal } from 'portal';
 import * as React from 'react';
 import { TransitionStatus } from 'react-transition-group';
-import { getDiffRating } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
@@ -43,17 +43,7 @@ const ItemRow = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
     <span className='beatmaps-popup-item__col beatmaps-popup-item__col--mode'>
       <span className={`fal fa-extra-mode-${beatmap.mode}`} />
     </span>
-    <span
-      className='beatmaps-popup-item__col beatmaps-popup-item__col--difficulty'
-      style={{
-        '--bg': `var(--diff-${getDiffRating(beatmap.difficulty_rating)})`,
-      } as React.CSSProperties}
-    >
-      <span className='beatmaps-popup-item__difficulty-icon'>
-        <span className='fas fa-star' />
-      </span>
-      {osu.formatNumber(beatmap.difficulty_rating, 2)}
-    </span>
+    <DifficultyBadge rating={beatmap.difficulty_rating} />
     <span className='beatmaps-popup-item__col beatmaps-popup-item__col--name u-ellipsis-overflow'>
       {beatmap.version}
     </span>

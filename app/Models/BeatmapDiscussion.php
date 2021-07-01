@@ -377,15 +377,6 @@ class BeatmapDiscussion extends Model
         ])->saveOrExplode();
     }
 
-    public function responsibleUserId(): ?int
-    {
-        if ($this->beatmap === null) {
-            return $this->beatmapset->user_id;
-        }
-
-        return $this->beatmap->user_id;
-    }
-
     public function fixBeatmapsetId()
     {
         if (!$this->isDirty('beatmap_id') || $this->beatmap === null) {
@@ -628,6 +619,14 @@ class BeatmapDiscussion extends Model
             ])->saveOrExplode();
             $this->refreshKudosu('deny_kudosu');
         });
+    }
+
+    public function managedBy(User $user): bool
+    {
+        $id = $user->getKey();
+
+        return $this->beatmapset->user_id === $id
+            || ($this->beatmap !== null && $this->beatmap->user_id === $id);
     }
 
     public function userRecentVotesCount($user, $increment = false)

@@ -20,6 +20,7 @@ const playModes: PlayModeFilter[] = ['all', 'osu', 'taiko', 'fruits', 'mania'];
 const sortModes: SortMode[] = ['last_visit', 'rank', 'username'];
 
 interface Props {
+  descriptionHtml?: string;
   playmodeFilter?: boolean;
   playmodeFilterGroupId?: number;
   title?: string;
@@ -161,6 +162,10 @@ export class UserList extends React.PureComponent<Props> {
         <div className='user-list'>
           {this.props.title != null && (
             <h1 className='user-list__title'>{this.props.title}</h1>
+          )}
+
+          {this.props.descriptionHtml != null && (
+            <div dangerouslySetInnerHTML={{ __html: this.props.descriptionHtml }} className='user-list__description' />
           )}
 
           <div className='user-list__toolbar'>

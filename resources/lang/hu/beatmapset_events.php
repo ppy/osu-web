@@ -6,7 +6,7 @@
 return [
     'event' => [
         'approve' => 'Jóváhagyva.',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => ':new_user lett az új tulajdonosa :beatmap nehézségnek.',
         'discussion_delete' => 'A moderátor kitörölte a :discussion megbeszélést.',
         'discussion_lock' => 'A beatmap megbeszélése meg lett tiltva. (:text)',
         'discussion_post_delete' => 'A moderátor posztot törölt a :discussion megbeszélésből.',
@@ -55,7 +55,7 @@ return [
 
     'type' => [
         'approve' => 'Jóváhagyás',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'Nehézség tulajdonosának változása',
         'discussion_delete' => 'Megbeszélés törlése',
         'discussion_post_delete' => 'Megbeszélés válaszának törlése',
         'discussion_post_restore' => 'Megbeszélés válaszának visszaállítása',
