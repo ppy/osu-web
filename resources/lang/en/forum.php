@@ -134,7 +134,7 @@ return [
             'columns' => [
                 'action' => 'Action',
                 'date' => 'Date',
-                'ip' => 'IP Adress',
+                'ip' => 'IP Address',
                 'user' => 'User',
             ],
 
