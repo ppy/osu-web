@@ -336,10 +336,43 @@ class Mod
                     [
                         [
                             self::OSU_APPROACH_DIFFERENT,
+                            self::OSU_DEFLATE,
+                        ],
+                        [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::OSU_GROW,
+                        ],
+                        [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::HIDDEN,
+                        ],
+                        [
+                            self::OSU_APPROACH_DIFFERENT,
+                            self::OSU_SPININ,
+                        ],
+                        [
+                            self::OSU_TRACEABLE,
+                            self::OSU_DEFLATE,
+                        ],
+                        [
+                            self::OSU_TRACEABLE,
+                            self::OSU_GROW,
+                        ],
+                        [
+                            self::OSU_TRACEABLE,
+                            self::HIDDEN,
+                        ],
+                        [
                             self::OSU_TRACEABLE,
                             self::OSU_SPININ,
-                            self::OSU_GROW,
+                        ],
+                        [
+                            self::OSU_SPININ,
                             self::OSU_DEFLATE,
+                            self::OSU_GROW,
+                        ],
+                        [
+                            self::OSU_SPININ,
                             self::HIDDEN,
                         ],
                     ]
