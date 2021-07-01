@@ -9,8 +9,8 @@ import { classWithModifiers } from 'utils/css';
 import BeatmapListItem from './beatmap-list-item';
 
 // TODO: temporary, only for this component for now
-interface CurrentDiscussion {
-  countsByBeatmaps: {
+interface CurrentDiscussions {
+  countsByBeatmap: {
     [key: number]: number;
   };
 }
@@ -18,7 +18,7 @@ interface CurrentDiscussion {
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
   currentBeatmap: BeatmapJsonExtended;
-  currentDiscussion: CurrentDiscussion;
+  currentDiscussions: CurrentDiscussions;
   beatmaps: BeatmapJsonExtended[];
 }
 
@@ -71,7 +71,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
   renderListItem(beatmap: BeatmapJsonExtended) {
     const count = beatmap.deleted_at !== null
       ? undefined
-      : this.props.currentDiscussion.countsByBeatmaps[beatmap.id];
+      : this.props.currentDiscussions.countsByBeatmap[beatmap.id];
 
     return (
       <a
