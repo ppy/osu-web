@@ -68,9 +68,9 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
           </a>
 
           <div
-            className={classWithModifiers('beatmap-list__selector', {
+            className={`${classWithModifiers('beatmap-list__selector', {
               'icon-only': iconOnly,
-            })}
+            })} u-fancy-scrollbar`}
           >
             {this.props.beatmaps.map((beatmap) => this.renderListItem(beatmap))}
           </div>
