@@ -20,6 +20,7 @@ class BeatmapsetDiscussionReview
 {
     const BLOCK_TEXT_LENGTH_LIMIT = 750;
 
+    private bool $isUpdate;
     private int $priorOpenProblemCount;
     private ?BeatmapDiscussion $problemDiscussion = null;
 
@@ -32,6 +33,8 @@ class BeatmapsetDiscussionReview
         if (empty($document)) {
             throw new InvariantException(osu_trans('beatmap_discussions.review.validation.invalid_document'));
         }
+
+        $this->isUpdate = $this->discussion !== null;
     }
 
     public static function config()
@@ -93,14 +96,13 @@ class BeatmapsetDiscussionReview
     public function process()
     {
         $this->priorOpenProblemCount = $this->beatmapset->beatmapDiscussions()->openProblems()->count();
-        $isUpdate = $this->discussion !== null;
 
         try {
             DB::beginTransaction();
 
-            [$output, $childIds] = $this->parseDocument($isUpdate);
+            [$output, $childIds] = $this->parseDocument();
 
-            if (!$isUpdate) {
+            if (!$this->isUpdate) {
                 $this->discussion = $this->createDiscussion(
                     'review',
                     json_encode($output)
@@ -132,7 +134,7 @@ class BeatmapsetDiscussionReview
 
             DB::commit();
 
-            if (!$isUpdate) {
+            if (!$this->isUpdate) {
                 (new BeatmapsetDiscussionReviewNew($this->discussion, $this->user))->dispatch();
             }
 
@@ -186,7 +188,7 @@ class BeatmapsetDiscussionReview
         }
     }
 
-    private function parseBlock($block, bool $isUpdating = false)
+    private function parseBlock($block)
     {
         if (!isset($block['type'])) {
             throw new InvariantException(osu_trans('beatmap_discussions.review.validation.invalid_block_type'));
@@ -194,13 +196,13 @@ class BeatmapsetDiscussionReview
 
         $message = get_string($block['text'] ?? null);
         // message check can be skipped for updates if block is embed and has discussion_id set.
-        if ($message === null && !($isUpdating && $block['type'] === 'embed' && isset($block['discussion_id']))) {
+        if ($message === null && !($this->isUpdate && $block['type'] === 'embed' && isset($block['discussion_id']))) {
             throw new InvariantException(osu_trans('beatmap_discussions.review.validation.missing_text'));
         }
 
         switch ($block['type']) {
             case 'embed':
-                if ($isUpdating && isset($block['discussion_id'])) {
+                if ($this->isUpdate && isset($block['discussion_id'])) {
                     $childId = $block['discussion_id'];
                 } else {
                     if (!isset($block['discussion_type'])) {
@@ -242,12 +244,12 @@ class BeatmapsetDiscussionReview
         }
     }
 
-    private function parseDocument(bool $isUpdate)
+    private function parseDocument()
     {
         $output = [];
         // create the issues for the embeds first
         foreach ($this->document as $block) {
-            $output[] = $this->parseBlock($block, $isUpdate);
+            $output[] = $this->parseBlock($block);
         }
 
         $childIds = array_values(array_filter(array_pluck($output, 'discussion_id')));
