@@ -35,7 +35,7 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
   srcDoc.forEach((block) => {
     switch (block.type) {
       // paragraph
-      case 'paragraph':
+      case 'paragraph': {
         if (!osu.present(block.text.trim())) {
           // empty block (aka newline)
           doc.push({
@@ -58,7 +58,8 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
           });
         }
         break;
-      case 'embed':
+      }
+      case 'embed': {
         // embed
         const existingEmbedBlock = block as PersistedDocumentIssueEmbed;
         const discussion = discussions[existingEmbedBlock.discussion_id];
@@ -77,6 +78,7 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
           type: 'embed',
         });
         break;
+      }
       default:
         console.error('unknown block encountered', block);
     }
