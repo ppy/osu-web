@@ -34,7 +34,11 @@ export default class Header extends React.PureComponent<Props> {
       <div className='beatmapset-info'>
         <div className='beatmapset-info__diff'>
           <div className='beatmapset-info__diff-item beatmapset-info__diff-item--details'>
-            <BeatmapIcon beatmap={this.props.currentBeatmap} modifier='beatmapset-info' />
+            <BeatmapIcon
+              beatmap={this.props.currentBeatmap}
+              modifier='beatmapset-info'
+              showTitle={false}
+            />
 
             <div
               className='beatmapset-info__star-difficulty'
