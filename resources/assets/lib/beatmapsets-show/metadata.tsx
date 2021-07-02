@@ -89,6 +89,26 @@ export default class Metadata extends React.PureComponent<Props> {
         <div >
           {this.renderDate(this.props.beatmapset.submitted_date)}
         </div>
+
+        {this.props.beatmapset.ranked > 0 ? (
+          <>
+            <div>
+              {osu.trans(`beatmapsets.show.info.${this.props.beatmapset.status}`)}
+            </div>
+            <div>
+              {this.renderDate(this.props.beatmapset.ranked_date)}
+            </div>
+          </>
+        ) : (
+          <>
+            <div>
+              {osu.trans('beatmapsets.show.info.updated')}
+            </div>
+            <div>
+              {this.renderDate(this.props.beatmapset.last_updated)}
+            </div>
+          </>
+        )}
       </div>
     );
   }

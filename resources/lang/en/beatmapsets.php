@@ -115,18 +115,23 @@ return [
         ],
 
         'info' => [
+            'approved' => 'Approved',
             'creator' => 'Creator',
             'description' => 'Description',
             'genre' => 'Genre',
             'language' => 'Language',
+            'loved' => 'Loved',
             'no_scores' => 'Data still being calculated...',
             'nsfw' => 'Explicit content',
             'points-of-failure' => 'Points of Failure',
+            'qualified' => 'Qualified',
+            'ranked' => 'Ranked',
             'source' => 'Source',
             'storyboard' => 'This beatmap contains storyboard',
             'submitted' => 'Submitted',
             'success-rate' => 'Success Rate',
             'tags' => 'Tags',
+            'updated' => 'Last updated',
             'video' => 'This beatmap contains video',
         ],
 
