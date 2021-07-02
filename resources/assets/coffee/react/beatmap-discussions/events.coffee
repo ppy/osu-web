@@ -13,15 +13,16 @@ export class Events extends React.PureComponent
 
   render: =>
     lastCreatedAtString = null
+    events = @props.events.filter (event) -> event.type != 'nomination_reset_received'
 
     div className: 'osu-page osu-page--small osu-page--generic',
       div className: 'beatmapset-events',
-        if _.isEmpty @props.events
+        if _.isEmpty events
           div
             className: 'beatmapset-events__empty'
             osu.trans('beatmap_discussions.events.empty')
         else
-          for event in @props.events by -1
+          for event in events by -1
             createdAtString = moment(event.created_at).format 'LL'
 
             [
