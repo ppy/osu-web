@@ -23,7 +23,7 @@
                     data-menu-show-delay="0"
                 >
                     <span class="u-relative">
-                        {{ trans("layout.menu.{$section}._") }}
+                        {{ osu_trans("layout.menu.{$section}._") }}
 
                         @if ($section === $currentSection && !($isSearchPage ?? false))
                             <span class="nav2__menu-link-bar u-section--bg-normal"></span>
@@ -48,7 +48,7 @@
                                 @continue
                             @endif
                             <a class="simple-menu__item u-section-{{ $section }}--before-bg-normal" href="{{ $link }}">
-                                {{ trans("layout.menu.{$section}.{$action}") }}
+                                {{ osu_trans("layout.menu.{$section}.{$action}") }}
                             </a>
                         @endforeach
                     </div>
@@ -84,7 +84,7 @@
             <a
                 href="{{ route('support-the-game') }}"
                 class="nav-button nav-button--support"
-                title="{{ trans('page_title.main.home_controller.support_the_game') }}"
+                title="{{ osu_trans('page_title.main.home_controller.support_the_game') }}"
             >
                 <span class="fas fa-heart"></span>
             </a>

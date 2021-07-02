@@ -19,7 +19,7 @@
         }
     }
 
-    $titlePrepend = count($keys) > 0 ? trans('changelog.index.page_title._'.implode('_', array_keys($keys)), $keys) : null;
+    $titlePrepend = count($keys) > 0 ? osu_trans('changelog.index.page_title._'.implode('_', array_keys($keys)), $keys) : null;
 @endphp
 @extends('master', compact('titlePrepend'))
 

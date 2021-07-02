@@ -18,7 +18,7 @@
     @if ($type === 'reply')
         <div class="bbcode-editor__header">
             <h2 class="bbcode-editor__title">
-                {{ trans('forum.post.create.title.reply') }}
+                {{ osu_trans('forum.post.create.title.reply') }}
             </h2>
         </div>
     @endif
@@ -27,7 +27,7 @@
         @if ($type === 'create')
             <input
                 class="bbcode-editor__input-title"
-                placeholder="{{ trans("forum.topic.create.placeholder.title") }}"
+                placeholder="{{ osu_trans("forum.topic.create.placeholder.title") }}"
                 name="title"
             />
         @endif
@@ -43,7 +43,7 @@
                 {{ in_array($type, ['edit', 'reply'], true) ? 'js-quick-submit' : '' }}
             "
             name="body"
-            placeholder="{{ trans('forum.topic.create.placeholder.body') }}"
+            placeholder="{{ osu_trans('forum.topic.create.placeholder.body') }}"
             data-blur-on-submit-disable="1"
             required
             {{ $type === 'create' ? 'autofocus' : '' }}
@@ -79,7 +79,7 @@
                             type="button"
                             class="js-ujs-submit-disable js-edit-post-cancel btn-osu-big btn-osu-big--forum-secondary"
                         >
-                            {{ trans('forum.topic.post_edit.cancel') }}
+                            {{ osu_trans('forum.topic.post_edit.cancel') }}
                         </button>
                     </div>
                 @endif
@@ -90,7 +90,7 @@
                             type="button"
                             class="js-forum-topic-reply--deactivate btn-osu-big btn-osu-big--forum-secondary"
                         >
-                            {{ trans('forum.topic.create.close') }}
+                            {{ osu_trans('forum.topic.create.close') }}
                         </button>
                     </div>
                 @endif
@@ -102,7 +102,7 @@
                             class="js-bbcode-preview--hide btn-osu-big btn-osu-big--forum-secondary"
                             {{ $enabled ? '' : 'disabled' }}
                         >
-                            {{ trans('forum.topic.create.preview_hide') }}
+                            {{ osu_trans('forum.topic.create.preview_hide') }}
                         </button>
                     </div>
 
@@ -112,7 +112,7 @@
                             class="js-bbcode-preview--show btn-osu-big btn-osu-big--forum-secondary"
                             {{ $enabled ? '' : 'disabled' }}
                         >
-                            {{ trans('forum.topic.create.preview') }}
+                            {{ osu_trans('forum.topic.create.preview') }}
                         </button>
                     </div>
                 @endif
@@ -121,15 +121,15 @@
                     <button
                         class="btn-osu-big btn-osu-big--forum-primary"
                         type="submit"
-                        data-disable-with="{{ trans('common.buttons.saving') }}"
+                        data-disable-with="{{ osu_trans('common.buttons.saving') }}"
                         {{ $enabled ? '' : 'disabled' }}
                     >
                         @if ($type === 'reply')
-                            {{ trans('forum.topic.post_reply') }}
+                            {{ osu_trans('forum.topic.post_reply') }}
                         @elseif ($type === 'edit')
-                            {{ trans("forum.topic.post_edit.post") }}
+                            {{ osu_trans("forum.topic.post_edit.post") }}
                         @elseif ($type === 'create')
-                            {{ trans('forum.topic.create.submit') }}
+                            {{ osu_trans('forum.topic.create.submit') }}
                         @endif
                     </button>
                 </div>

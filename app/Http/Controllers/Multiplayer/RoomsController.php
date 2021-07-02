@@ -8,6 +8,7 @@ namespace App\Http\Controllers\Multiplayer;
 use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
 use App\Models\Multiplayer\Room;
+use App\Transformers\Multiplayer\RoomTransformer;
 
 class RoomsController extends BaseController
 {
@@ -22,16 +23,15 @@ class RoomsController extends BaseController
         $params = request()->all();
         $params['user'] = auth()->user();
 
-        return Room::search(
-            $params,
-            ['host.country', 'playlist.beatmap.beatmapset', 'playlist.beatmap.baseMaxCombo'],
-            [
-                'host.country',
-                'playlist.beatmap.beatmapset',
-                'playlist.beatmap.checksum',
-                'playlist.beatmap.max_combo',
-            ]
-        );
+        $search = Room::search($params);
+        $rooms = $search['query']->with(['host.country', 'playlist.beatmap.beatmapset', 'playlist.beatmap.baseMaxCombo'])->get();
+
+        return json_collection($rooms, new RoomTransformer(), [
+            'host.country',
+            'playlist.beatmap.beatmapset',
+            'playlist.beatmap.checksum',
+            'playlist.beatmap.max_combo',
+        ]);
     }
 
     public function join($roomId, $userId)

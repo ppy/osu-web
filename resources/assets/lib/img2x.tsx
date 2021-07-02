@@ -4,6 +4,20 @@
 import * as React from 'react';
 import { make2x } from 'utils/html';
 
-export default function Img2x(props: React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>) {
-  return <img srcSet={`${props.src} 1x, ${make2x(props.src)} 2x`} {...props} />;
+interface Props extends React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> {
+  hideOnError?: boolean;
+}
+
+// hides img elements that have errored (hides native browser broken-image icons)
+function handleError(e: React.SyntheticEvent<HTMLElement>) {
+  e.currentTarget.style.display = 'none';
+}
+
+export default function Img2x(props: Props) {
+  const { hideOnError = false, ...otherProps } = props;
+  if (hideOnError) {
+    otherProps.onError = handleError;
+  }
+
+  return <img srcSet={`${otherProps.src} 1x, ${make2x(otherProps.src)} 2x`} {...otherProps} />;
 }
