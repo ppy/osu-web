@@ -99,7 +99,6 @@ export class Header extends React.PureComponent
           div
             className: "#{bn}__filter-group"
             el BeatmapList,
-              beatmapset: @props.beatmapset
               currentBeatmap: @props.currentBeatmap
               currentDiscussions: @props.currentDiscussions
               beatmaps: @props.beatmaps.get(@props.currentBeatmap.mode)
