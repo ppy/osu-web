@@ -23,7 +23,16 @@ export default class Stats extends React.PureComponent<Props> {
                 : this.props.beatmap[stat]
               }
             </div>
-            <div />
+            <div className='beatmapset-stats__bar-container'>
+              <div className='beatmapset-stats__bar'>
+                <div
+                  className='beatmapset-stats__bar-fill'
+                  style={{
+                    width: `${10 * Math.min(10, Number(this.props.beatmap[stat]))}%`,
+                  } as React.CSSProperties}
+                />
+              </div>
+            </div>
           </React.Fragment>
         ))}
       </div>

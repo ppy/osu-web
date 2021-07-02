@@ -7,5 +7,25 @@
 
   &__value {
     text-align: right;
+    margin-right: 5px;
+  }
+
+  &__bar {
+    height: 4px;
+    background: hsl(var(--hsl-b6));
+    width: 100%;
+    border-radius: 4px;
+  }
+
+  &__bar-container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__bar-fill {
+    height: 100%;
+    background: hsl(var(--hsl-h1));
+    border-radius: 4px;
+    transition: width 120ms ease-in-out;
   }
 }
