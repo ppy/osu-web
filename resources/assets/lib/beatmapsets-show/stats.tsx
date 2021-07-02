@@ -3,6 +3,7 @@
 
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as React from 'react';
+import { StringWithComponent } from 'string-with-component';
 
 interface Props {
   beatmap: BeatmapJsonExtended;
@@ -14,6 +15,32 @@ export default class Stats extends React.PureComponent<Props> {
 
     return (
       <div className='beatmapset-stats'>
+        <div className='beatmapset-stats__count'>
+          <div>
+            <StringWithComponent
+              mappings={{
+                ':count':
+                  <span key='circles' className='beatmapset-stats__count-value'>
+                    {this.props.beatmap.count_circles}
+                  </span>,
+              }}
+              pattern={osu.trans('beatmapsets.show.details.circle_count')}
+            />
+          </div>
+
+          <div>
+            <StringWithComponent
+              mappings={{
+                ':count':
+                  <span key='sliders' className='beatmapset-stats__count-value'>
+                    {this.props.beatmap.count_sliders}
+                  </span>,
+              }}
+              pattern={osu.trans('beatmapsets.show.details.slider_count')}
+            />
+          </div>
+        </div>
+
         {statsKey.map((stat) => (
           <React.Fragment key={stat}>
             <div>{osu.trans(`beatmapsets.show.stats.${stat}`)}</div>
