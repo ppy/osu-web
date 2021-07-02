@@ -32,7 +32,7 @@ export default class Header extends React.PureComponent<Props> {
   render() {
     return (
       <div className='beatmapset-info'>
-        <div className='beatmapset-info__diff'>
+        <div className='beatmapset-info__item beatmapset-info__item--diff'>
           <div className='beatmapset-info__diff-item beatmapset-info__diff-item--details'>
             <BeatmapIcon
               beatmap={this.props.currentBeatmap}
@@ -97,6 +97,12 @@ export default class Header extends React.PureComponent<Props> {
               />
             </div>
           </div>
+        </div>
+
+        <div className='beatmapset-info__item beatmapset-info__item--stats'>
+          <div />
+          <div />
+          <div />
         </div>
       </div>
     );

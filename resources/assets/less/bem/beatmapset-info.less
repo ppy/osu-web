@@ -4,13 +4,6 @@
 .beatmapset-info {
   padding: 0 50px;
 
-  &__diff {
-    margin: 10px 0;
-    display: flex;
-    align-items: center;
-    line-height: 1;
-  }
-
   &__diff-item {
     display: flex;
     align-items: center;
@@ -36,6 +29,23 @@
 
   &__diff-name {
     font-size: @font-size--title-small-3;
+  }
+
+  &__item {
+    margin-top: 10px;
+
+    &--diff {
+      display: flex;
+      align-items: center;
+      line-height: 1;
+    }
+
+    &--stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 15px;
+    }
   }
 
   &__length-bpm-value {
