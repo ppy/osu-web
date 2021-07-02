@@ -98,6 +98,7 @@ export interface BeatmapsetJson {
   preview_url: string;
   source: string;
   status: BeatmapsetStatus;
+  tags: string;
   title: string;
   title_unicode: string;
   user_id: number;

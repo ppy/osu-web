@@ -115,6 +115,7 @@ return [
         ],
 
         'info' => [
+            'creator' => 'Creator',
             'description' => 'Description',
             'genre' => 'Genre',
             'language' => 'Language',
@@ -123,6 +124,7 @@ return [
             'points-of-failure' => 'Points of Failure',
             'source' => 'Source',
             'storyboard' => 'This beatmap contains storyboard',
+            'submitted' => 'Submitted',
             'success-rate' => 'Success Rate',
             'tags' => 'Tags',
             'video' => 'This beatmap contains video',

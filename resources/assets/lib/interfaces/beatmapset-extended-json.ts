@@ -17,5 +17,6 @@ export default interface BeatmapsetExtendedJson extends BeatmapsetJson {
   availability?: AvailabilityInterface;
   nominations_summary?: NominationsSummaryInterface;
   ranked_date: string;
+  submitted_date: string;
   storyboard: boolean;
 }

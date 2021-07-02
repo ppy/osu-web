@@ -2,16 +2,17 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapIcon } from 'beatmap-icon';
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import * as _ from 'lodash';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';
 import { getDiffRating } from 'utils/beatmap-helper';
+import Metadata from './metadata';
 
 interface Props {
-  beatmapset: BeatmapsetJson;
+  beatmapset: BeatmapsetExtendedJson;
   currentBeatmap: BeatmapJsonExtended;
 }
 
@@ -100,7 +101,7 @@ export default class Header extends React.PureComponent<Props> {
         </div>
 
         <div className='beatmapset-info__item beatmapset-info__item--stats'>
-          <div />
+          <Metadata beatmapset={this.props.beatmapset} />
           <div />
           <div />
         </div>
