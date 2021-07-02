@@ -101,7 +101,7 @@ class BeatmapsetDiscussionReview
             [$output, $childIds] = $this->parseDocument($isUpdate);
 
             if (!$isUpdate) {
-                $this->discussion = $this->createBeatmapDiscussion(
+                $this->discussion = $this->createDiscussion(
                     'review',
                     json_encode($output)
                 );
@@ -143,7 +143,7 @@ class BeatmapsetDiscussionReview
         }
     }
 
-    private function createBeatmapDiscussion(string $discussionType, string $message, int $beatmapId = null, string $timestamp = null)
+    private function createDiscussion(string $discussionType, string $message, int $beatmapId = null, string $timestamp = null)
     {
         $userId = $this->user->getKey();
 
@@ -207,7 +207,7 @@ class BeatmapsetDiscussionReview
                         throw new InvariantException(osu_trans('beatmap_discussions.review.validation.invalid_discussion_type'));
                     }
 
-                    $embeddedDiscussion = $this->createBeatmapDiscussion(
+                    $embeddedDiscussion = $this->createDiscussion(
                         $block['discussion_type'],
                         $message,
                         $block['beatmap_id'] ?? null,
