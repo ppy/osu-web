@@ -5,12 +5,13 @@
 @php
     $headerLinks = [
         [
+            'active' => true,
             'title' => osu_trans('layout.header.artists.index'),
             'url' => route('artists.index'),
         ],
         [
-            'title' => $artist->name,
-            'url' => route('artists.show', $artist),
+            'title' => osu_trans('artist.tracks.index._'),
+            'url' => route('artists.tracks.index'),
         ],
     ];
 
@@ -36,7 +37,6 @@
 
     @include('layout._page_header_v4', ['params' => [
         'links' => $headerLinks,
-        'linksBreadcrumb' => true,
         'theme' => 'artist',
     ]])
     <div class="osu-page osu-page--artist">

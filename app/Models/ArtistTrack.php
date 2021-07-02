@@ -35,10 +35,6 @@ class ArtistTrack extends Model implements Indexable
         'exclusive' => 'boolean',
     ];
 
-    protected $casts = [
-        'exclusive' => 'boolean',
-    ];
-
     public function artist()
     {
         return $this->belongsTo(Artist::class);
