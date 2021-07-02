@@ -619,21 +619,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         });
     }
 
-    public function resetNominations(User $user, BeatmapDiscussion $post)
-    {
-        $this->getConnection()->transaction(function () use ($user, $post) {
-            $nominators = $this->nominationsSinceReset()->with('user')->get()->pluck('user');
-            BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET, $user, $post, ['nominator_ids' => $nominators->pluck('user_id')])->saveOrExplode();
-            foreach ($nominators as $nominator) {
-                BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET_RECEIVED, $nominator, $post, ['source_user_id' => $user->getKey()])->saveOrExplode();
-            }
-
-            $this->refreshCache();
-
-            (new BeatmapsetResetNominations($this, $user))->dispatch();
-        });
-    }
-
     public function qualify($user)
     {
         if (!$this->isPending()) {
