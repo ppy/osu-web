@@ -42,7 +42,8 @@ class BeatmapsetDiscussionReview
 
     public static function update(BeatmapDiscussion $discussion, array $document, User $user)
     {
-        $beatmapset = Beatmapset::findOrFail($discussion->beatmapset_id); // handle deleted beatmapsets
+        // fail if updating on deleted beatmapset.
+        $beatmapset = Beatmapset::findOrFail($discussion->beatmapset_id);
 
         return (new static($beatmapset, $user))->process($document, $discussion);
     }
