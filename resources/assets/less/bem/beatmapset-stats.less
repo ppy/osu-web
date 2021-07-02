@@ -2,92 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-stats {
-  color: #fff;
-  font-size: 12px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 3fr;
 
-  @media @desktop {
-    width: @beatmapset-float-box-width;
-  }
-
-  &__elapsed-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-
-    width: calc(var(--progress) * 100%);
-
-    background-color: @yellow;
-    height: 3px;
-  }
-
-  &__icon {
-    width: 15px;
-    height: 15px;
-
-    background-size: contain;
-
-    margin-right: 5px;
-  }
-
-  &__rating-chart {
-    height: 25px;
-  }
-
-  &__rating-header {
-    text-align: center;
-    padding-bottom: 5px;
-  }
-
-  &__rating-values {
-    display: flex;
-    padding-bottom: 10px;
-    justify-content: space-between;
-  }
-
-  &__row {
-    .reset-input();
-    background-color: hsla(var(--hsl-b4), 0.8);
-    margin-top: 1px;
-    padding: 7.5px 15px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-
-    &--basic {
-      padding-top: 10px;
-      padding-bottom: 10px;
-    }
-
-    &--preview {
-      .fas();
-      .link-plain();
-      .link-white();
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      --progress: 0;
-      --icon: @fa-var-play;
-      font-size: 18px; // icon size
-      padding: 10px;
-      cursor: pointer;
-      position: relative;
-
-      &::before {
-        content: var(--icon);
-      }
-
-      &:hover {
-        background-color: hsla(var(--hsl-b6), 0.75);
-      }
-
-      &[data-audio-state="playing"] {
-        --icon: @fa-var-pause;
-      }
-    }
-
-    &--rating {
-      padding-top: 10px;
-      padding-bottom: 0;
-    }
+  &__value {
+    text-align: right;
   }
 }

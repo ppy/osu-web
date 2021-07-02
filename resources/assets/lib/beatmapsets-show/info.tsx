@@ -10,6 +10,7 @@ import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';
 import { getDiffRating } from 'utils/beatmap-helper';
 import Metadata from './metadata';
+import Stats from './stats';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
@@ -102,7 +103,7 @@ export default class Header extends React.PureComponent<Props> {
 
         <div className='beatmapset-info__item beatmapset-info__item--stats'>
           <Metadata beatmapset={this.props.beatmapset} />
-          <div />
+          <Stats beatmap={this.props.currentBeatmap} />
           <div />
         </div>
       </div>
