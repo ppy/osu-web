@@ -172,7 +172,7 @@ class BeatmapsetDiscussionReview
     {
         // handle disqualifications and the resetting of nominations
         if ($this->problemDiscussion !== null) {
-            $event = $this->problemDiscussion->getBeatmapsetEventType($this->user);
+            $event = BeatmapsetEvent::getBeatmapsetEventType($this->problemDiscussion, $this->user);
             if (in_array($event, [BeatmapsetEvent::DISQUALIFY, BeatmapsetEvent::NOMINATION_RESET], true)) {
                 return $this->beatmapset->disqualifyOrResetNominations($this->user, $this->problemDiscussion);
             }

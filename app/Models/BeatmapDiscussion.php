@@ -214,39 +214,6 @@ class BeatmapDiscussion extends Model
         return $this->morphMany(KudosuHistory::class, 'kudosuable');
     }
 
-    public function getBeatmapsetEventType(User $user): ?string
-    {
-        if ($this->exists && $this->canBeResolved() && $this->isDirty('resolved')) {
-            if ($this->resolved) {
-                priv_check_user($user, 'BeatmapDiscussionResolve', $this)->ensureCan();
-
-                return BeatmapsetEvent::ISSUE_RESOLVE;
-            } else {
-                priv_check_user($user, 'BeatmapDiscussionReopen', $this)->ensureCan();
-
-                return BeatmapsetEvent::ISSUE_REOPEN;
-            }
-        }
-
-        if ($this->message_type !== 'problem') {
-            return null;
-        }
-
-        if ($this->beatmapset->isQualified()) {
-            if (priv_check_user($user, 'BeatmapsetDisqualify', $this->beatmapset)->can()) {
-                return BeatmapsetEvent::DISQUALIFY;
-            }
-        }
-
-        if ($this->beatmapset->isPending()) {
-            if ($this->beatmapset->hasNominations() && priv_check_user($user, 'BeatmapsetResetNominations', $this->beatmapset)->can()) {
-                return BeatmapsetEvent::NOMINATION_RESET;
-            }
-        }
-
-        return null;
-    }
-
     public function getMessageTypeAttribute($value)
     {
         return array_search_null(get_int($value), static::MESSAGE_TYPES);

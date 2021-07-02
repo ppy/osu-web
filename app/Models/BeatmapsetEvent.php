@@ -55,6 +55,40 @@ class BeatmapsetEvent extends Model
 
     const BEATMAP_OWNER_CHANGE = 'beatmap_owner_change';
 
+    public static function getBeatmapsetEventType(BeatmapDiscussion $discussion, User $user): ?string
+    {
+        if ($discussion->exists && $discussion->canBeResolved() && $discussion->isDirty('resolved')) {
+            if ($discussion->resolved) {
+                priv_check_user($user, 'BeatmapDiscussionResolve', $discussion)->ensureCan();
+
+                return static::ISSUE_RESOLVE;
+            } else {
+                priv_check_user($user, 'BeatmapDiscussionReopen', $discussion)->ensureCan();
+
+                return static::ISSUE_REOPEN;
+            }
+        }
+
+        if ($discussion->message_type !== 'problem') {
+            return null;
+        }
+
+        $beatmapset = $discussion->beatmapset;
+        if ($beatmapset->isQualified()) {
+            if (priv_check_user($user, 'BeatmapsetDisqualify', $beatmapset)->can()) {
+                return static::DISQUALIFY;
+            }
+        }
+
+        if ($beatmapset->isPending()) {
+            if ($beatmapset->hasNominations() && priv_check_user($user, 'BeatmapsetResetNominations', $beatmapset)->can()) {
+                return static::NOMINATION_RESET;
+            }
+        }
+
+        return null;
+    }
+
     public static function log($type, $user, $object, $extraData = [])
     {
         if ($object instanceof BeatmapDiscussionPost) {
