@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
+ * @property string $category
  * @property Channel $channel
  * @property int|null $channel_id
  * @property \Carbon\Carbon|null $created_at
