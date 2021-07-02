@@ -4,6 +4,7 @@
 import Blackout from 'blackout';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as React from 'react';
+import { generate as generateHash } from 'utils/beatmapset-page-hash';
 import { classWithModifiers } from 'utils/css';
 import BeatmapListItem from './beatmap-list-item';
 
@@ -17,7 +18,8 @@ interface CurrentDiscussions {
 interface Props {
   beatmaps: BeatmapJsonExtended[];
   currentBeatmap: BeatmapJsonExtended;
-  currentDiscussions: CurrentDiscussions;
+  currentDiscussions?: CurrentDiscussions;
+  type: 'show' | 'discussions';
 }
 
 interface State {
@@ -48,14 +50,10 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
         <div className='beatmap-list__body'>
           <a
             className='beatmap-list__item beatmap-list__item--selected beatmap-list__item--large js-beatmap-list-selector'
-            href={BeatmapDiscussionHelper.url({ beatmap: this.props.currentBeatmap })}
+            href={this.createHref(this.props.currentBeatmap)}
             onClick={this.toggleSelector}
           >
-            <BeatmapListItem
-              beatmap={this.props.currentBeatmap}
-              large
-              withButton='down'
-            />
+            {this.renderSelectedItem(this.props.currentBeatmap)}
           </a>
 
           <div className='beatmap-list__selector'>
@@ -69,7 +67,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
   renderListItem(beatmap: BeatmapJsonExtended) {
     const count = beatmap.deleted_at !== null
       ? undefined
-      : this.props.currentDiscussions.countsByBeatmap[beatmap.id];
+      : this.props.currentDiscussions?.countsByBeatmap?.[beatmap.id];
 
     return (
       <a
@@ -78,7 +76,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
           current: beatmap.id === this.props.currentBeatmap.id,
         })}
         data-id={beatmap.id}
-        href={BeatmapDiscussionHelper.url({ beatmap })}
+        href={this.createHref(beatmap)}
         onClick={this.selectBeatmap}
       >
         <BeatmapListItem
@@ -89,6 +87,25 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
       </a>
     );
   }
+
+  renderSelectedItem(beatmap: BeatmapJsonExtended) {
+    return (
+      <BeatmapListItem
+        beatmap={beatmap}
+        large={this.props.type === 'discussions'}
+        withButton='down'
+      />
+    );
+  }
+
+  private createHref = (beatmap: BeatmapJsonExtended) => {
+    switch (this.props.type) {
+      case 'show':
+        return generateHash({ beatmap });
+      case 'discussions':
+        return BeatmapDiscussionHelper.url({ beatmap });
+    }
+  };
 
   private hideSelector = () => {
     if (this.state.showingSelector) {
@@ -115,10 +132,12 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
 
     e.preventDefault();
 
-    $.publish('beatmapsetDiscussions:update', {
-      beatmapId: parseInt(e.currentTarget.dataset.id ?? '', 10),
-      mode: BeatmapDiscussionHelper.DEFAULT_MODE,
-    });
+    if (this.props.type === 'discussions') {
+      $.publish('beatmapsetDiscussions:update', {
+        beatmapId: parseInt(e.currentTarget.dataset.id ?? '', 10),
+        mode: BeatmapDiscussionHelper.DEFAULT_MODE,
+      });
+    }
   };
 
   private setSelector = (state: boolean) => {
