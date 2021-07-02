@@ -6,7 +6,6 @@ import {
 } from 'actions/chat-message-send-action';
 import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import DispatcherAction from 'actions/dispatcher-action';
-import { UserLogoutAction } from 'actions/user-login-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import ChatAPI from 'chat/chat-api';
 import { ChannelJson, ChannelType, GetUpdatesJson, MessageJson, PresenceJson } from 'chat/chat-api-responses';
@@ -129,8 +128,6 @@ export default class ChannelStore {
   handleDispatchAction(event: DispatcherAction) {
     if (event instanceof ChatMessageSendAction) {
       this.handleChatMessageSendAction(event);
-    } else if (event instanceof UserLogoutAction) {
-      this.handleUserLogoutAction(event);
     }
   }
 
@@ -317,11 +314,6 @@ export default class ChannelStore {
       // FIXME: this seems like the wrong place to tigger an error popup.
       osu.ajaxError(error);
     }
-  }
-
-  @action
-  private handleUserLogoutAction(event: UserLogoutAction) {
-    this.flushStore();
   }
 
   @action

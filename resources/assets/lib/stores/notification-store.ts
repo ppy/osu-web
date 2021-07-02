@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import DispatcherAction from 'actions/dispatcher-action';
-import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
+import { UserLoginAction } from 'actions/user-login-actions';
 import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { action, observable } from 'mobx';
@@ -40,7 +40,7 @@ export default class NotificationStore implements DispatchListener {
       this.handleNotificationEventDelete(dispatched);
     } else if (dispatched instanceof NotificationEventRead) {
       this.handleNotificationEventRead(dispatched);
-    } else if (dispatched instanceof UserLoginAction || dispatched instanceof UserLogoutAction) {
+    } else if (dispatched instanceof UserLoginAction) {
       this.flushStore();
     }
   }

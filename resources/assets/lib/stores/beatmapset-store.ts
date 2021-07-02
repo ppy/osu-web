@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import DispatcherAction from 'actions/dispatcher-action';
-import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
+import { UserLoginAction } from 'actions/user-login-actions';
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import { action, observable } from 'mobx';
 
@@ -15,8 +15,7 @@ export class BeatmapsetStore {
   }
 
   handleDispatchAction(dispatcherAction: DispatcherAction) {
-    if (dispatcherAction instanceof UserLoginAction
-      || dispatcherAction instanceof UserLogoutAction) {
+    if (dispatcherAction instanceof UserLoginAction) {
       this.flushStore();
     }
   }
