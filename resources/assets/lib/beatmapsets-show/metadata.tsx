@@ -52,6 +52,8 @@ export default class Metadata extends React.PureComponent<Props> {
           </a>
         </div>
 
+        <div className='beatmapset-metadata__spacer' />
+
         <div>
           {osu.trans('beatmapsets.show.info.language')}
         </div>
@@ -78,6 +80,8 @@ export default class Metadata extends React.PureComponent<Props> {
             </div>
           </>
         )}
+
+        <div className='beatmapset-metadata__spacer' />
 
         <div>
           {osu.trans('beatmapsets.show.info.submitted')}
