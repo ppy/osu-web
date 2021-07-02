@@ -5,6 +5,7 @@ import { Hype } from './hype'
 import { Scoreboard } from './scoreboard'
 import Header from 'beatmapsets-show/header'
 import Info from 'beatmapsets-show/info'
+import Toolbar from 'beatmapsets-show/toolbar'
 import NsfwWarning from 'beatmapsets-show/nsfw-warning'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
@@ -217,6 +218,10 @@ export class Main extends React.Component
           currentBeatmap: @state.currentBeatmap
 
         el Info,
+          beatmapset: @state.beatmapset
+          currentBeatmap: @state.currentBeatmap
+
+        el Toolbar,
           beatmapset: @state.beatmapset
           currentBeatmap: @state.currentBeatmap
 

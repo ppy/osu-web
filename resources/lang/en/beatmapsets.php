@@ -77,6 +77,12 @@ return [
                 'bottom' => 'to access more features',
                 'top' => 'Sign In',
             ],
+
+            'count' => [
+                'total_play' => 'Total Play Count',
+                'diff_play' => 'Difficulty Play Count',
+                'favourite' => 'Favourite Count'
+            ]
         ],
 
         'details_date' => [
