@@ -20,12 +20,18 @@ class BeatmapsetDiscussionReview
 {
     const BLOCK_TEXT_LENGTH_LIMIT = 750;
 
-    private array $document;
     private int $priorOpenProblemCount;
     private ?BeatmapDiscussion $problemDiscussion = null;
 
-    private function __construct(private Beatmapset $beatmapset, private User $user)
-    {
+    private function __construct(
+        private Beatmapset $beatmapset,
+        private User $user,
+        private array $document,
+        private ?BeatmapDiscussion $discussion = null
+    ) {
+        if (empty($document)) {
+            throw new InvariantException(osu_trans('beatmap_discussions.review.validation.invalid_document'));
+        }
     }
 
     public static function config()
@@ -37,7 +43,7 @@ class BeatmapsetDiscussionReview
 
     public static function create(Beatmapset $beatmapset, array $document, User $user)
     {
-        return (new static($beatmapset, $user))->process($document);
+        return (new static($beatmapset, $user, $document))->process();
     }
 
     public static function update(BeatmapDiscussion $discussion, array $document, User $user)
@@ -45,7 +51,7 @@ class BeatmapsetDiscussionReview
         // fail if updating on deleted beatmapset.
         $beatmapset = Beatmapset::findOrFail($discussion->beatmapset_id);
 
-        return (new static($beatmapset, $user))->process($document, $discussion);
+        return (new static($beatmapset, $user, $document, $discussion))->process();
     }
 
     public static function getStats(array $document)
@@ -84,17 +90,10 @@ class BeatmapsetDiscussionReview
     }
 
     // This should be private but phpcs thinks it's not used?
-    public function process(array $document, ?BeatmapDiscussion $existingDiscussion = null)
+    public function process()
     {
-        if (empty($document)) {
-            throw new InvariantException(osu_trans('beatmap_discussions.review.validation.invalid_document'));
-        }
-
-        $isUpdate = $existingDiscussion !== null;
-        $this->discussion = $existingDiscussion;
-
-        $this->document = $document;
-        $this->priorOpenProblemCount = $this->getOpenProblemCount();
+        $this->priorOpenProblemCount = $this->beatmapset->beatmapDiscussions()->openProblems()->count();
+        $isUpdate = $this->discussion !== null;
 
         try {
             DB::beginTransaction();
@@ -167,11 +166,6 @@ class BeatmapsetDiscussionReview
         $newPost->saveOrExplode();
 
         return $newDiscussion;
-    }
-
-    private function getOpenProblemCount()
-    {
-        return $this->beatmapset->beatmapDiscussions()->openProblems()->count();
     }
 
     private function handleProblemDiscussion()
