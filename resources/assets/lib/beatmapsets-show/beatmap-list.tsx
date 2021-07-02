@@ -137,11 +137,20 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
 
     e.preventDefault();
 
-    if (this.props.type === 'discussions') {
-      $.publish('beatmapsetDiscussions:update', {
-        beatmapId: parseInt(e.currentTarget.dataset.id ?? '', 10),
-        mode: BeatmapDiscussionHelper.DEFAULT_MODE,
-      });
+    const beatmapId = parseInt(e.currentTarget.dataset.id ?? '', 10);
+
+    switch (this.props.type) {
+      case 'show':
+        $.publish('beatmapset:beatmap:set', {
+          beatmap: this.props.beatmaps.find((b) => b.id === beatmapId),
+        });
+        break;
+      case 'discussions':
+        $.publish('beatmapsetDiscussions:update', {
+          beatmapId,
+          mode: BeatmapDiscussionHelper.DEFAULT_MODE,
+        });
+        break;
     }
   };
 
