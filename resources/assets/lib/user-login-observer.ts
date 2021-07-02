@@ -8,22 +8,26 @@ import { route } from 'laroute';
 export default class UserLoginObserver {
   constructor() {
     $(document)
-      .on('ajax:success', '.js-logout-link', this.userLogout)
-      .on('ajax:success', '.js-login-form', this.userLogin);
+      .on('ajax:success', '.js-logout-link', this.handleUserLogout)
+      .on('ajax:success', '.js-login-form', this.handleUserLogin);
   }
 
-  userLogin = () => {
-    dispatch(new UserLoginAction());
-  };
-
-  userLogout = (event: JQuery.TriggeredEvent<unknown, unknown, HTMLElement, unknown>) => {
+  logout(redirect = false) {
     localStorage.clear();
-    const redirect = !!(event.currentTarget.dataset.redirectHome);
 
     if (redirect) {
       location.href = route('home');
     } else {
       location.reload();
     }
+  }
+
+  private handleUserLogin = () => {
+    dispatch(new UserLoginAction());
+  };
+
+  private handleUserLogout = (event: JQuery.TriggeredEvent<unknown, unknown, HTMLElement, unknown>) => {
+    const redirect = !!(event.currentTarget.dataset.redirectHome);
+    this.logout(redirect);
   };
 }
