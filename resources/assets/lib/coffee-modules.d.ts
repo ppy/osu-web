@@ -30,11 +30,11 @@ declare module 'block-button' {
 declare module 'big-button' {
   interface Props {
     extraClasses?: string[];
-    icon: string;
+    icon?: string;
     isBusy?: boolean;
     modifiers?: string[];
     props: any;
-    text: string;
+    text: string | { bottom?: string; top?: string };
   }
 
   class BigButton extends React.PureComponent<Props> {}
