@@ -9,6 +9,7 @@ import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';
 import { getDiffRating } from 'utils/beatmap-helper';
+import Extra from './extra';
 import Metadata from './metadata';
 import Stats from './stats';
 
@@ -104,6 +105,7 @@ export default class Header extends React.PureComponent<Props> {
         <div className='beatmapset-info__item beatmapset-info__item--stats'>
           <Metadata beatmapset={this.props.beatmapset} />
           <Stats beatmap={this.props.currentBeatmap} />
+          <Extra beatmap={this.props.currentBeatmap} beatmapset={this.props.beatmapset} />
           <div />
         </div>
       </div>

@@ -1,0 +1,33 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmapset-extra {
+  @bar-height: 4px;
+
+  &__bar {
+    background-color: hsl(var(--hsl-red-3));
+    height: @bar-height;
+    border-radius: @bar-height;
+    width: 100%;
+
+    &--fill {
+      background-color: hsl(var(--hsl-lime-1));
+    }
+
+    &--right {
+      margin-left: auto;
+    }
+  }
+
+  &__item {
+    display: flex;
+
+    &--bar {
+      margin: 5px 0 20px;
+    }
+  }
+
+  &__right {
+    margin-left: auto;
+  }
+}
