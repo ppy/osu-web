@@ -106,7 +106,6 @@ export default class Header extends React.PureComponent<Props> {
           <Metadata beatmapset={this.props.beatmapset} />
           <Stats beatmap={this.props.currentBeatmap} />
           <Extra beatmap={this.props.currentBeatmap} beatmapset={this.props.beatmapset} />
-          <div />
         </div>
       </div>
     );

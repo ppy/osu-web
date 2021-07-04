@@ -55,6 +55,17 @@ export default class Extra extends React.PureComponent<Props> {
         <div className='beatmapset-extra__item beatmapset-extra__item--bar'>
           {this.renderBar((ratings.positive * 100) / (ratings.positive + ratings.negative), true)}
         </div>
+
+        {this.props.beatmapset.is_scoreable && (
+          <>
+            <div className='beatmapset-extra__item'>
+              {osu.trans('beatmapsets.show.stats.rating-spread')}
+            </div>
+            <div className='beatmapset-extra__item beatmapset-extra__item--chart'>
+              {this.renderChart(this.props.beatmapset.ratings.slice(1))}
+            </div>
+          </>
+        )}
       </div>
     );
   }
@@ -71,5 +82,17 @@ export default class Extra extends React.PureComponent<Props> {
         />
       </div>
     );
+  }
+
+  renderChart(ratings: number[]) {
+    const max = Math.max(...ratings);
+
+    return ratings.map((rating, idx) => (
+      <div
+        key={`${rating}-${idx}`}
+        className='beatmapset-extra__chart'
+        style={{ height: `${(rating / max) * 100}%` }}
+      />
+    ));
   }
 }

@@ -90,6 +90,7 @@ export interface BeatmapsetJson {
     required: number;
   };
   id: number;
+  is_scoreable: boolean;
   language: LanguageJson;
   last_updated: string;
   nominations?: BeatmapsetNominationsInterface;

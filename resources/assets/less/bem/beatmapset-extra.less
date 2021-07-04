@@ -19,11 +19,24 @@
     }
   }
 
+  &__chart {
+    background-color: hsl(var(--hsl-lime-1));
+    border-radius: 2px;
+  }
+
   &__item {
     display: flex;
 
     &--bar {
       margin: 5px 0 20px;
+    }
+
+    &--chart {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      height: 30px;
+      gap: 0 2px;
+      align-items: end;
     }
   }
 
