@@ -260,10 +260,11 @@ export class Main extends React.Component
 
   renderPageHeader: ->
     unless @state.showingNsfwWarning
-      titleAppend = el PlaymodeTabs,
+      linksAppend = el PlaymodeTabs,
         beatmaps: @state.beatmaps
         currentMode: @state.currentBeatmap.mode
         hrefFunc: @tabHrefFunc
+        iconLink: true
 
       if @props.beatmapset.discussion_enabled
         moddingLink = laroute.route 'beatmapsets.discussion', beatmapset: @props.beatmapset.id
@@ -273,16 +274,13 @@ export class Main extends React.Component
       links = [
         { title: 'Info', url: '', active: true },
         { title: 'Comments', url: '#comments' },
-        {
-          title: 'Modding',
-          url: moddingLink,
-        },
+        { title: 'Modding', url: moddingLink },
       ]
 
     el HeaderV4,
       theme: 'beatmapsets'
-      titleAppend: titleAppend
       links: links
+      linksAppend: linksAppend
 
   saveStateToContainer: =>
     @state.beatmapsArray = Array.from(@state.beatmaps)

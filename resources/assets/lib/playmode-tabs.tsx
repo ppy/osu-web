@@ -12,25 +12,41 @@ interface Props {
   counts?: Partial<Record<GameMode, number>>;
   currentMode: GameMode;
   hrefFunc?: (mode: GameMode) => string;
+  iconLink: boolean;
 }
 
 export default class PlaymodeTabs extends React.Component<Props> {
+  static defaultProps = {
+    iconLink: false,
+  };
+
   render() {
     return (
-      <div className='game-mode game-mode--beatmapsets'>
-        <ul className='game-mode__items'>
+      <div
+        className={classWithModifiers('game-mode', {
+          beatmapsets: true,
+          icon: this.props.iconLink,
+        })}
+      >
+        <ul className={classWithModifiers('game-mode__items', { icon: this.props.iconLink })}>
           {[...this.props.beatmaps].map(([mode, beatmaps]) => {
             const disabled = beatmaps.length === 0;
 
             const linkClass = classWithModifiers('game-mode-link', {
               active: mode === this.props.currentMode,
               disabled,
+              icon: this.props.iconLink,
             });
 
             const count = this.count(mode);
 
             return (
-              <li key={mode} className='game-mode__item'>
+              <li
+                key={mode}
+                className={classWithModifiers('game-mode__item', {
+                  icon: this.props.iconLink,
+                })}
+              >
                 <a
                   className={linkClass}
                   data-disabled={disabled.toString()}
@@ -38,8 +54,16 @@ export default class PlaymodeTabs extends React.Component<Props> {
                   href={this.props.hrefFunc?.(mode) ?? '#'}
                   onClick={this.switchMode}
                 >
-                  {osu.trans(`beatmaps.mode.${mode}`)}
-                  {count != null && <span className='game-mode-link__badge'>{count}</span>}
+                  {
+                    this.props.iconLink ? (
+                      <i className={`fal fa-extra-mode-${mode}`} />
+                    ) : (
+                      <>
+                        {osu.trans(`beatmaps.mode.${mode}`)}
+                        {count != null && <span className='game-mode-link__badge'>{count}</span>}
+                      </>
+                    )
+                  }
                 </a>
               </li>
             );

@@ -11,6 +11,12 @@
     width: auto;
   }
 
+  &--icon {
+    font-size: @font-size--large;
+    width: auto;
+    margin-left: auto;
+  }
+
   &__items {
     list-style: none;
     display: flex;
@@ -24,12 +30,20 @@
       justify-content: flex-end;
       column-gap: 20px;
     }
+
+    &--icon {
+      column-gap: 10px;
+    }
   }
 
   &__item {
     margin-top: 10px;
     margin-bottom: 10px;
     flex: none;
+
+    &--icon {
+      margin: 0;
+    }
   }
 
   &__set-default {

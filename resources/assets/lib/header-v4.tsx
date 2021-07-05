@@ -11,6 +11,7 @@ interface Props {
   contentPrepend?: React.ReactNode;
   isCoverUpdating?: boolean;
   links: HeaderLink[];
+  linksAppend?: React.ReactNode;
   linksBreadcrumb?: boolean;
   onLinkClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   theme?: string;
@@ -78,6 +79,8 @@ export default class HeaderV4 extends React.Component<Props> {
               <div className='header-v4__row header-v4__row--bar'>
                 {this.renderLinks()}
                 {this.renderLinksMobile()}
+
+                {this.props.linksAppend}
               </div>
 
             </div>
