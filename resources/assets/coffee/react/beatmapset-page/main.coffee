@@ -220,6 +220,7 @@ export class Main extends React.Component
         el Info,
           beatmapset: @state.beatmapset
           currentBeatmap: @state.currentBeatmap
+          hoveredBeatmap: @state.hoveredBeatmap
 
         el Toolbar,
           beatmapset: @state.beatmapset

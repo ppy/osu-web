@@ -16,6 +16,7 @@ import Stats from './stats';
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
   currentBeatmap: BeatmapJsonExtended;
+  hoveredBeatmap: BeatmapJsonExtended | null;
 }
 
 // value is in second
@@ -33,12 +34,14 @@ function formatDuration(value: number) {
 
 export default class Header extends React.PureComponent<Props> {
   render() {
+    const showedBeatmap = this.props.hoveredBeatmap ?? this.props.currentBeatmap;
+
     return (
       <div className='beatmapset-info'>
         <div className='beatmapset-info__item beatmapset-info__item--diff'>
           <div className='beatmapset-info__diff-item beatmapset-info__diff-item--details'>
             <BeatmapIcon
-              beatmap={this.props.currentBeatmap}
+              beatmap={showedBeatmap}
               modifier='beatmapset-info'
               showTitle={false}
             />
@@ -46,15 +49,15 @@ export default class Header extends React.PureComponent<Props> {
             <div
               className='beatmapset-info__star-difficulty'
               style={{
-                '--bg': `var(--diff-${getDiffRating(this.props.currentBeatmap.difficulty_rating)})`,
+                '--bg': `var(--diff-${getDiffRating(showedBeatmap.difficulty_rating)})`,
               } as React.CSSProperties}
             >
               <i className='fas fa-star' />{' '}
-              {osu.formatNumber(this.props.currentBeatmap.difficulty_rating, 2)}
+              {osu.formatNumber(showedBeatmap.difficulty_rating, 2)}
             </div>
 
             <div className='beatmapset-info__diff-name'>
-              {this.props.currentBeatmap.version}
+              {showedBeatmap.version}
             </div>
 
             <div className='beatmapset-info__diff-mapper'>

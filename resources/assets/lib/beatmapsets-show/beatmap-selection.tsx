@@ -28,7 +28,7 @@ export default class BeatmapSelection extends React.PureComponent<Props> {
           '--stripe-colour': `var(--diff-${getDiffRating(this.props.beatmap.difficulty_rating)})`,
         } as React.CSSProperties}
       >
-        <BeatmapIcon beatmap={this.props.beatmap} modifier='beatmapset' />
+        <BeatmapIcon beatmap={this.props.beatmap} modifier='beatmapset' showTitle={false} />
       </a>
     );
   }
