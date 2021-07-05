@@ -33,7 +33,7 @@ declare module 'big-button' {
     icon?: string;
     isBusy?: boolean;
     modifiers?: string[];
-    props: any;
+    props?: any;
     text: string | { bottom?: string; top?: string };
   }
 

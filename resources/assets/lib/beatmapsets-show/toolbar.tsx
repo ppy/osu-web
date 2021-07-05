@@ -91,6 +91,7 @@ export default class Toolbar extends React.PureComponent<Props> {
 
           {this.renderDownloadButtons()}
           {this.renderDiscussionButtons()}
+          {this.renderLoginButton()}
         </div>
       </div>
     );
@@ -156,6 +157,21 @@ export default class Toolbar extends React.PureComponent<Props> {
             topTextKey='direct'
           />
         </>
+      );
+    }
+  }
+
+  renderLoginButton() {
+    if (!currentUser.id) {
+      return (
+        <BigButton
+          extraClasses={['js-user-link']}
+          modifiers={['beatmapset-toolbar']}
+          text={{
+            bottom: osu.trans('beatmapsets.show.details.login_required.bottom'),
+            top: osu.trans('beatmapsets.show.details.login_required.top'),
+          }}
+        />
       );
     }
   }
