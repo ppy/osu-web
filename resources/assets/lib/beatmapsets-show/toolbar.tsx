@@ -5,12 +5,16 @@ import { BigButton } from 'big-button';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
+import core from 'osu-core-singleton';
 import OsuUrlHelper from 'osu-url-helper';
 import * as React from 'react';
+import { createClickCallback } from 'utils/html';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
   currentBeatmap: BeatmapJsonExtended;
+  favcount: number;
+  hasFavourited: boolean;
 }
 
 interface DownloadButtonProps {
@@ -46,6 +50,11 @@ const DownloadButton = ({
 
 export default class Toolbar extends React.PureComponent<Props> {
   render() {
+    const favouriteButton = {
+      action: this.props.hasFavourited ? 'unfavourite' : 'favourite',
+      icon: `${this.props.hasFavourited ? 'fas' : 'far'} fa-heart`,
+    };
+
     return (
       <div className='beatmapset-toolbar'>
         <div className='beatmapset-toolbar__count'>
@@ -69,6 +78,17 @@ export default class Toolbar extends React.PureComponent<Props> {
         </div>
 
         <div className='beatmapset-toolbar__buttons'>
+          {currentUser.id && (
+            <BigButton
+              modifiers={['beatmapset-favourite']}
+              props={{
+                onClick: this.toggleFavourite,
+                title: osu.trans(`beatmapsets.show.details.${favouriteButton.action}`),
+              }}
+              text={`${this.props.favcount}`}
+            />
+          )}
+
           {this.renderDownloadButtons()}
         </div>
       </div>
@@ -112,4 +132,12 @@ export default class Toolbar extends React.PureComponent<Props> {
       );
     }
   }
+
+  private toggleFavourite = (e: React.MouseEvent<HTMLElement>) => {
+    if (core.userLogin.showIfGuest(createClickCallback(e.target))) {
+      return;
+    }
+
+    $.publish('beatmapset:favourite:toggle');
+  };
 }

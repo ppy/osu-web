@@ -224,6 +224,8 @@ export class Main extends React.Component
         el Toolbar,
           beatmapset: @state.beatmapset
           currentBeatmap: @state.currentBeatmap
+          favcount: @state.favcount
+          hasFavourited: @state.hasFavourited
 
       div className: 'osu-layout__section osu-layout__section--extra',
         if @state.beatmapset.can_be_hyped
