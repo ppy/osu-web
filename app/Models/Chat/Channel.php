@@ -291,17 +291,17 @@ class Channel extends Model
             ->exec();
 
         if (count($sent) >= $limit) {
-            throw new API\ExcessiveChatMessagesException(trans('api.error.chat.limit_exceeded'));
+            throw new API\ExcessiveChatMessagesException(osu_trans('api.error.chat.limit_exceeded'));
         }
 
         $content = str_replace(["\r", "\n"], ' ', trim($content));
 
         if (mb_strlen($content, 'UTF-8') >= config('osu.chat.message_length_limit')) {
-            throw new API\ChatMessageTooLongException(trans('api.error.chat.too_long'));
+            throw new API\ChatMessageTooLongException(osu_trans('api.error.chat.too_long'));
         }
 
         if (!present($content)) {
-            throw new API\ChatMessageEmptyException(trans('api.error.chat.empty'));
+            throw new API\ChatMessageEmptyException(osu_trans('api.error.chat.empty'));
         }
 
         $chatFilters = app('chat-filters')->all();

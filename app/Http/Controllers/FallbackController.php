@@ -23,7 +23,7 @@ class FallbackController extends Controller
         app('route-section')->setError(404);
 
         if (is_json_request()) {
-            return error_popup(trans('errors.missing_route'), 404);
+            return error_popup(osu_trans('errors.missing_route'), 404);
         }
 
         return ext_view('layout.error', ['statusCode' => 404], 'html', 404);

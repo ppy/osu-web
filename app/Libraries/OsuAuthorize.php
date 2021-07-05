@@ -241,15 +241,13 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        $userId = $user->getKey();
-
-        if ($userId === $discussion->user_id) {
+        if ($user->getKey() === $discussion->user_id) {
             return 'ok';
         }
 
         if (
             $discussion->beatmapset->approved !== Beatmapset::STATES['qualified']
-            && $discussion->responsibleUserId() === $userId
+            && $discussion->managedBy($user)
         ) {
             return 'ok';
         }
@@ -334,9 +332,7 @@ class OsuAuthorize
         $this->ensureHasPlayed($user);
 
         if ($discussion->message_type === 'mapper_note') {
-            $userId = $user->getKey();
-
-            if ($discussion->responsibleUserId() === $userId) {
+            if ($discussion->managedBy($user)) {
                 return 'ok';
             }
 
@@ -1610,7 +1606,7 @@ class OsuAuthorize
     public function checkIsSpecialScope(?User $user): string
     {
         if ($user === null) {
-            return 'unauthorzied';
+            return 'unauthorized';
         }
 
         $token = $user->token();

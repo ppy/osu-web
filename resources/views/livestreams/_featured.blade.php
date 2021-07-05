@@ -39,7 +39,7 @@
             <button
                 type="button"
                 class="btn-circle btn-circle--activated"
-                data-confirm="{{ trans('livestreams.promote.unpin') }}"
+                data-confirm="{{ osu_trans('livestreams.promote.unpin') }}"
                 data-remote="1"
                 data-method="POST"
                 data-url="{{ route('livestreams.promote') }}"

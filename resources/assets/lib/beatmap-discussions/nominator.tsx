@@ -283,10 +283,9 @@ export class Nominator extends React.PureComponent<Props, State> {
   };
 
   private modalContentHybrid = () => {
-    let renderPlaymodes;
     const playmodes = _.keys(this.props.beatmapset.nominations?.required);
 
-    renderPlaymodes = _.map(playmodes, (mode: GameMode) => {
+    const renderPlaymodes = _.map(playmodes, (mode: GameMode) => {
       const disabled = !this.userCanNominateMode(mode);
       return (
         <label

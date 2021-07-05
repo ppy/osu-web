@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('master', [
-    'pageDescription' => trans('beatmappacks.index.description'),
+    'pageDescription' => osu_trans('beatmappacks.index.description'),
 ])
 
 @section('content')
@@ -13,7 +13,7 @@
         <ul class="page-mode">
             @foreach(['standard', 'chart', 'theme', 'artist'] as $mode)
                 <li class="page-mode__item">
-                    @include('packs._type', ['current' => $type, 'type' => $mode, 'title' => trans("beatmappacks.mode.{$mode}")])
+                    @include('packs._type', ['current' => $type, 'type' => $mode, 'title' => osu_trans("beatmappacks.mode.{$mode}")])
             @endforeach
         </ul>
 

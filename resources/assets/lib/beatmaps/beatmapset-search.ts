@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import DispatcherAction from 'actions/dispatcher-action';
-import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
+import { UserLoginAction } from 'actions/user-login-actions';
 import { dispatchListener } from 'app-dispatcher';
 import ResultSet from 'beatmaps/result-set';
 import SearchResults from 'beatmaps/search-results';
@@ -73,8 +73,7 @@ export class BeatmapsetSearch implements DispatchListener {
   }
 
   handleDispatchAction(dispatcherAction: DispatcherAction) {
-    if (dispatcherAction instanceof UserLoginAction
-      || dispatcherAction instanceof UserLogoutAction) {
+    if (dispatcherAction instanceof UserLoginAction) {
       this.clear();
     }
   }

@@ -22,7 +22,7 @@ class ModdingHistoryController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            $this->user = FindForProfilePage::find(request()->route('user'));
+            $this->user = FindForProfilePage::find($request->route('user'));
 
             $this->isModerator = priv_check('BeatmapDiscussionModerate')->can();
             $this->isKudosuModerator = priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
