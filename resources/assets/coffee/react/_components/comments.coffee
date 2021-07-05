@@ -24,7 +24,7 @@ export class Comments extends React.PureComponent
       comments = uiState.comments.topLevelCommentIds.map (id) -> store.comments.get(id)
       pinnedComments = uiState.comments.pinnedCommentIds.map (id) -> store.comments.get(id)
 
-      div className: osu.classWithModifiers('comments', @props.modifiers),
+      div id: 'comments', className: osu.classWithModifiers('comments', @props.modifiers),
         div className: 'u-has-anchor u-has-anchor--no-event',
           div(className: 'fragment-target', id: 'comments')
         h2 className: 'comments__title',
