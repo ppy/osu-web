@@ -46,7 +46,7 @@ class PaypalCreatePayment
 
     public function run()
     {
-        $client = new PayPalHttpClient(PaypalApiContext::environment());
+        $client = PaypalApiContext::client();
 
         $request = new OrdersCreateRequest();
         $request->prefer('return=representation');

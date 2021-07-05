@@ -51,7 +51,7 @@ class PaypalExecutePayment
             $order->status = 'checkout';
             $order->saveOrExplode();
 
-            $client = new PayPalHttpClient(PaypalApiContext::environment());
+            $client = PaypalApiContext::client();
             $request = new OrdersCaptureRequest($this->reference);
 
             $this->response = $client->execute($request);
