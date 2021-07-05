@@ -21,7 +21,6 @@ interface DownloadButtonProps {
   bottomTextKey?: string;
   href: string;
   icon?: string;
-  key: React.Key;
   osuDirect?: boolean;
   topTextKey?: string;
 }
@@ -29,12 +28,10 @@ interface DownloadButtonProps {
 const DownloadButton = ({
   bottomTextKey,
   href,
-  key,
   osuDirect = false,
   topTextKey = '_',
 }: DownloadButtonProps) => (
   <BigButton
-    key={key}
     extraClasses={!osuDirect ? ['js-beatmapset-download-link'] : undefined}
     modifiers={['beatmapset-toolbar']}
     props={{
