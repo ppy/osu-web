@@ -90,9 +90,36 @@ export default class Toolbar extends React.PureComponent<Props> {
           )}
 
           {this.renderDownloadButtons()}
+          {this.renderDiscussionButtons()}
         </div>
       </div>
     );
+  }
+
+  renderDiscussionButtons() {
+    if (this.props.beatmapset.discussion_enabled) {
+      return (
+        <BigButton
+          modifiers={['beatmapset-toolbar']}
+          props={{
+            href: route('beatmapsets.discussion', { beatmapset: this.props.beatmapset.id }),
+          }}
+          text={osu.trans('beatmapsets.show.discussion')}
+        />
+      );
+    }
+
+    if (this.props.beatmapset.legacy_thread_url !== null) {
+      return (
+        <BigButton
+          modifiers={['beatmapset-toolbaer']}
+          props={{
+            href: this.props.beatmapset.legacy_thread_url,
+          }}
+          text={osu.trans('beatmapsets.show.discussion')}
+        />
+      );
+    }
   }
 
   renderDownloadButtons() {

@@ -85,6 +85,7 @@ export interface BeatmapsetJson {
     bbcode?: string | null;
     description: string | null;
   };
+  discussion_enabled: boolean;
   events?: BeatmapsetEvent[];
   favourite_count: number;
   genre: GenreJson;
@@ -97,6 +98,7 @@ export interface BeatmapsetJson {
   is_scoreable: boolean;
   language: LanguageJson;
   last_updated: string;
+  legacy_thread_url: string | null;
   nominations?: BeatmapsetNominationsInterface;
   nsfw: boolean;
   play_count: number;
