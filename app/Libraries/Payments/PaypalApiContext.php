@@ -7,9 +7,21 @@ namespace App\Libraries\Payments;
 
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
+use PayPalCheckoutSdk\Core\ProductionEnvironment;
+use PayPalCheckoutSdk\Core\SandboxEnvironment;
 
 class PaypalApiContext
 {
+    public static function environment()
+    {
+        $clientId = config('payments.paypal.client_id');
+        $clientSecret = config('payments.paypal.client_secret');
+
+        return config('payments.sandbox') === true
+            ? new SandboxEnvironment($clientId, $clientSecret)
+            : new ProductionEnvironment($clientId, $clientSecret);
+    }
+
     public static function get($clientId = null, $clientSecret = null)
     {
         $clientId = $clientId ?? config('payments.paypal.client_id');

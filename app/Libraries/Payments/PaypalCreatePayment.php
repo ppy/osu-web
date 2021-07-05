@@ -5,18 +5,12 @@
 
 namespace App\Libraries\Payments;
 
+use App\Exceptions\InvariantException;
 use App\Models\Store\Order;
 use App\Traits\StoreNotifiable;
-use PayPal\Api\Amount;
-use PayPal\Api\Details;
-use PayPal\Api\Item;
-use PayPal\Api\ItemList;
-use PayPal\Api\Payer;
-use PayPal\Api\Payment;
-use PayPal\Api\RedirectUrls;
-use PayPal\Api\ShippingAddress;
-use PayPal\Api\Transaction;
-use PayPal\Exception\PayPalConnectionException;
+use PayPalCheckoutSdk\Core\PayPalHttpClient;
+use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
+use PayPalHttp\HttpResponse;
 
 /**
  * Creates a Paypal Payment for a store Order.
@@ -28,108 +22,73 @@ class PaypalCreatePayment
 {
     use StoreNotifiable;
 
-    /** @var Order */
-    private $order;
+    public HttpResponse $response;
 
-    /** @var Payment */
-    private $payment;
-
-    public function __construct(Order $order)
+    public function __construct(public Order $order)
     {
-        $this->order = $order;
-
-        $payer = (new Payer())
-            ->setPaymentMethod('paypal');
-
-        $this->payment = (new Payment())
-            ->setIntent('sale')
-            ->setPayer($payer)
-            ->setRedirectUrls($this->getRedirectUrls())
-            ->setTransactions([$this->getTransaction()]);
-
-        if (!$this->order->requiresShipping()) {
-            // current version of SDK doesn't support application_context, so need to use
-            //  an experience profile instead.
-            $this->payment->setExperienceProfileId(config('payments.paypal.profiles.no_shipping'));
+        // Sanity check.
+        if ($this->order->requiresShipping()) {
+            throw new InvariantException('Paypal is not supported for orders that require shipping.');
         }
     }
 
-    public function getApprovalLink()
+    public function getReferenceId()
     {
-        $context = PaypalApiContext::get();
-
-        try {
-            return $this->payment->create($context)->getApprovalLink();
-        } catch (PayPalConnectionException $e) {
-            \Log::error($e->getData());
-            // TODO: get more context data
-            $this->notifyError($e, $this->order);
-            throw $e;
-        }
+        return $this->response->result->id;
     }
 
-    public function getPayment()
+    public function getApprovalLink(): string
     {
-        return $this->payment;
+        $links = collect($this->response->result->links)->keyBy('rel');
+
+        return $links['approve']->href;
     }
 
-    private function getAmount()
+    public function run()
     {
-        $details = (new Details())
-            ->setShipping($this->order->shipping)
-            ->setSubtotal($this->order->getSubTotal());
+        $client = new PayPalHttpClient(PaypalApiContext::environment());
 
-        return (new Amount())
-            ->setCurrency('USD')
-            ->setTotal($this->order->getTotal())
-            ->setDetails($details);
+        $request = new OrdersCreateRequest();
+        $request->prefer('return=representation');
+        $request->body = [
+            'application_context' => [
+                'cancel_url' => route('payments.paypal.declined', ['order_id' => $this->order->getKey()]),
+                'return_url' => route('payments.paypal.approved', ['order_id' => $this->order->getKey()]),
+                'shipping_preference' => 'NO_SHIPPING',
+                'user_action' => 'PAY_NOW',
+            ],
+            'intent' => 'CAPTURE',
+            'purchase_units' => [$this->getPurchaseUnit()],
+        ];
+
+        $this->response = $client->execute($request);
     }
 
-    private function getItemList()
+    private function getPurchaseUnit()
     {
-        return (new ItemList())
-            ->setItems([
-                (new Item())
-                    ->setName($this->order->getOrderName())
-                    ->setCurrency('USD')
-                    ->setQuantity(1)
-                    ->setSku($this->order->getOrderNumber())
-                    ->setPrice($this->order->getSubTotal()),
-            ])
-            ->setShippingAddress($this->getShippingAddress());
-    }
+        $orderName = $this->order->getOrderNumber();
+        $orderNumber = $this->order->getOrderNumber();
+        $itemTotal = [
+            'currency_code' => 'USD',
+            'value' => $this->order->getSubTotal(),
+        ];
 
-    private function getRedirectUrls()
-    {
-        return (new RedirectUrls())
-            ->setReturnUrl(route('payments.paypal.approved', ['order_id' => $this->order->order_id]))
-            ->setCancelUrl(route('payments.paypal.declined', ['order_id' => $this->order->order_id]));
-    }
-
-    private function getShippingAddress()
-    {
-        if (!$this->order->requiresShipping()) {
-            return;
-        }
-
-        $address = $this->order->address;
-
-        return (new ShippingAddress())
-            ->setCity($address->city)
-            ->setCountryCode($address->country_code)
-            ->setLine1($address->street)
-            ->setPhone($address->phone)
-            ->setPostalCode($address->zip)
-            ->setRecipientName("{$address->first_name} {$address->last_name}") // what could possibly go wrong?
-            ->setState($address->state);
-    }
-
-    private function getTransaction()
-    {
-        return (new Transaction())
-            ->setAmount($this->getAmount())
-            ->setItemList($this->getItemList())
-            ->setDescription($this->order->getOrderName())
-            ->setInvoiceNumber($this->order->getOrderNumber());
+        return [
+            'amount' => [
+                'breakdown' => [
+                    'item_total' => $itemTotal,
+                ],
+                'currency_code' => 'USD',
+                'value' => $this->order->getTotal(),
+            ],
+            'description' => $orderName,
+            'invoice_id' => $orderNumber,
+            'items' => [[
+                'name' => $orderName,
+                'quantity' => 1,
+                'unit_amount' => $itemTotal,
+            ]],
+            'reference_id' => $orderNumber,
+        ];
     }
 }

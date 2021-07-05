@@ -65,11 +65,10 @@ class PaypalController extends Controller
 
         $order = Order::where('user_id', Auth::user()->user_id)->processing()->findOrFail($orderId);
         $command = new PaypalCreatePayment($order);
-        $link = $command->getApprovalLink();
-        // getId() is only available after the payment is created which getApprovalLink() calls.
-        $order->update(['reference' => $command->getPayment()->getId()]);
+        $command->run();
+        $order->update(['reference' => $command->getReferenceId()]);
 
-        return $link;
+        return $command->getApprovalLink();
     }
 
     // Payment declined by user.
