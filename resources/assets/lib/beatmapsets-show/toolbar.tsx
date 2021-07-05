@@ -80,7 +80,7 @@ export default class Toolbar extends React.PureComponent<Props> {
         <div className='beatmapset-toolbar__buttons'>
           {currentUser.id && (
             <BigButton
-              modifiers={['beatmapset-favourite']}
+              modifiers={['beatmapset-favourite', 'pink']}
               props={{
                 onClick: this.toggleFavourite,
                 title: osu.trans(`beatmapsets.show.details.${favouriteButton.action}`),
