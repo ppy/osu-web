@@ -15,24 +15,21 @@
     list-style: none;
     display: flex;
     padding: 0;
-    margin: 0 -5px; // 5px margin __item
+    margin: 0;
+    column-gap: 10px;
     justify-content: space-around;
     flex-wrap: wrap;
 
     @media @desktop {
-      margin: -10px -10px; // 10px margin __item
       justify-content: flex-end;
+      column-gap: 20px;
     }
   }
 
   &__item {
-    margin: 10px 5px; // linked to __items
+    margin-top: 10px;
+    margin-bottom: 10px;
     flex: none;
-
-    @media @desktop {
-      margin-left: 10px;
-      margin-right: $margin-left;
-    }
   }
 
   &__set-default {
