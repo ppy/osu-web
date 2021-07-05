@@ -15,13 +15,11 @@ use App\Libraries\Payments\PaypalPaymentProcessor;
 use App\Libraries\Payments\PaypalSignature;
 use App\Models\Store\Order;
 use App\Traits\CheckoutErrorSettable;
-use Auth;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request as HttpRequest;
 use Lang;
 use Log;
 use PayPalHttp\HttpException;
-use Request;
 
 class PaypalController extends Controller
 {
@@ -45,7 +43,8 @@ class PaypalController extends Controller
             'token:string',
         ], ['null_missing' => true]);
 
-        $order = Order::where('user_id', auth()->user()->getKey())
+        $order = auth()->user()
+            ->orders()
             ->processing()
             ->findOrFail($params['order_id']);
 
@@ -63,9 +62,9 @@ class PaypalController extends Controller
     // Begin process of approving a payment.
     public function create()
     {
-        $orderId = Request::input('order_id');
+        $orderId = get_params(request()->all(), null, ['order_id:int'], ['null_missing' => true])['order_id'];
 
-        $order = Order::where('user_id', Auth::user()->user_id)->processing()->findOrFail($orderId);
+        $order = auth()->user()->orders()->processing()->findOrFail($orderId);
         $command = new PaypalCreatePayment($order);
         $command->run();
         $order->update(['reference' => $command->getReferenceId()]);
@@ -76,9 +75,9 @@ class PaypalController extends Controller
     // Payment declined by user.
     public function declined()
     {
-        $orderId = Request::input('order_id');
+        $orderId = get_params(request()->all(), null, ['order_id:int'], ['null_missing' => true])['order_id'];
 
-        $order = Order::where('user_id', Auth::user()->user_id)->processing()->find($orderId);
+        $order = auth()->user()->orders()->processing()->find($orderId);
 
         if ($order === null) {
             return ujs_redirect(route('store.cart.show'));

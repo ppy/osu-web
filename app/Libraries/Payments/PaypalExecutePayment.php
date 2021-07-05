@@ -8,8 +8,6 @@ namespace App\Libraries\Payments;
 use App\Exceptions\InvariantException;
 use App\Models\Store\Order;
 use App\Traits\StoreNotifiable;
-use DB;
-use PayPalCheckoutSdk\Core\PayPalHttpClient;
 use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
 use PayPalHttp\HttpResponse;
 
@@ -39,7 +37,7 @@ class PaypalExecutePayment
 
     public function run()
     {
-        return DB::connection('mysql-store')->transaction(function () {
+        $this->order->getConnection()->transaction(function () {
             // prevent concurrent updates
             $order = $this->order->lockSelf();
             if ($order->isProcessing() === false) {
