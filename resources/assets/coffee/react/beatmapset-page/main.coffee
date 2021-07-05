@@ -265,9 +265,24 @@ export class Main extends React.Component
         currentMode: @state.currentBeatmap.mode
         hrefFunc: @tabHrefFunc
 
+      if @props.beatmapset.discussion_enabled
+        moddingLink = laroute.route 'beatmapsets.discussion', beatmapset: @props.beatmapset.id
+      else
+        moddingLink = @props.beatmapset.legacy_thread_url
+
+      links = [
+        { title: 'Info', url: '', active: true },
+        { title: 'Comments', url: '#comments' },
+        {
+          title: 'Modding',
+          url: moddingLink,
+        },
+      ]
+
     el HeaderV4,
       theme: 'beatmapsets'
       titleAppend: titleAppend
+      links: links
 
   saveStateToContainer: =>
     @state.beatmapsArray = Array.from(@state.beatmaps)
