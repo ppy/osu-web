@@ -7,7 +7,7 @@
 ">
     <li class="sticky-header-breadcrumbs__item">
         <a href="{{ route('forum.forums.index') }}" class="sticky-header-breadcrumbs__link">
-            {{ trans('forum.title') }}
+            {{ osu_trans('forum.title') }}
         </a>
     </li>
 

@@ -37,6 +37,6 @@ class PasswordReset extends Mailable implements ShouldQueue
     {
         return $this
             ->text('emails.password_reset')
-            ->subject(trans('mail.password_reset.subject'));
+            ->subject(osu_trans('mail.password_reset.subject'));
     }
 }

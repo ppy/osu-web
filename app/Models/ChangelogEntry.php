@@ -160,7 +160,7 @@ class ChangelogEntry extends Model
     public static function placeholder()
     {
         return new static([
-            'title' => trans('changelog.generic'),
+            'title' => osu_trans('changelog.generic'),
             'private' => false,
             'major' => false,
             'created_at' => Carbon::createFromTimestamp(0),

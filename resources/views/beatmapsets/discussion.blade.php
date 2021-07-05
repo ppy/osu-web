@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('master', [
-    'titlePrepend' => trans('beatmaps.discussions.show.title', [
+    'titlePrepend' => osu_trans('beatmaps.discussions.show.title', [
         'title' => $beatmapset->getDisplayTitle(auth()->user()),
         'mapper' => $beatmapset->user->username ?? '?',
     ]),

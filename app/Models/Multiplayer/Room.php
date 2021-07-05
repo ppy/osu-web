@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
+ * @property string $category
  * @property Channel $channel
  * @property int|null $channel_id
  * @property \Carbon\Carbon|null $created_at
@@ -44,7 +45,7 @@ class Room extends Model
         ],
     ];
 
-    const DEFAULT_SORT = 'ended';
+    const DEFAULT_SORT = 'created';
 
     protected $table = 'multiplayer_rooms';
     protected $dates = ['starts_at', 'ends_at'];
@@ -52,13 +53,13 @@ class Room extends Model
         'participant_count' => 0,
     ];
 
-    public static function search($params, $preloads = null, $includes = null)
+    public static function search($params)
     {
         $query = static::query();
 
         $mode = presence(get_string($params['mode'] ?? null));
         $user = $params['user'];
-        $sort = 'created';
+        $sort = $params['sort'] ?? null;
 
         $category = presence(get_string($params['category'] ?? null)) ?? 'any';
         if ($category === 'any') {
@@ -70,7 +71,7 @@ class Room extends Model
         switch ($mode) {
             case 'ended':
                 $query->ended();
-                $sort = 'ended';
+                $sort ??= 'ended';
                 break;
             case 'participated':
                 $query->hasParticipated($user);
@@ -82,16 +83,17 @@ class Room extends Model
                 $query->active();
         }
 
-        $query->cursorSort($sort, $params['cursor'] ?? null);
-
-        foreach ($preloads ?? [] as $preload) {
-            $query->with($preload);
-        }
+        $cursorHelper = static::makeDbCursorHelper($sort);
+        $query->cursorSort($cursorHelper, get_arr($params['cursor'] ?? null));
 
         $limit = clamp(get_int($params['limit'] ?? 250), 1, 250);
         $query->limit($limit);
 
-        return json_collection($query->get(), 'Multiplayer\Room', $includes ?? []);
+        return [
+            'cursorHelper' => $cursorHelper,
+            'query' => $query,
+            'search' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
+        ];
     }
 
     public function channel()

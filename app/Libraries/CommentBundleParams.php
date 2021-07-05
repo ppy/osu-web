@@ -6,6 +6,7 @@
 namespace App\Libraries;
 
 use App\Models\Comment;
+use App\Models\User;
 
 class CommentBundleParams
 {
@@ -23,7 +24,11 @@ class CommentBundleParams
     public $page;
     public $sort;
 
-    public function __construct($params, $user)
+    /**
+     * @param array $params The params from request().
+     * @param User|null $user The user viewing the comments.
+     */
+    public function __construct(array $params, ?User $user)
     {
         $this->userId = null;
         $this->parentId = null;
