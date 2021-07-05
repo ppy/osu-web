@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Tisztességtelen játék / Csalás',
+            'multiple_accounts' => '',
             'insults' => 'Engem / másokat sérteget',
             'spam' => 'Spam',
             'unwanted_content' => 'Nem megfelelő tartalom linkelése',
@@ -299,6 +300,9 @@ return [
                 'empty' => "Ez a felhasználó még nem rendelkezik egyel sem. ;_;",
                 'recent' => 'Legújabb',
                 'title' => 'Medálok',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Bejegyzések',

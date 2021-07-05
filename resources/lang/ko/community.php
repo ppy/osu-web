@@ -76,7 +76,7 @@ return [
 
             'early_access' => [
                 'title' => '얼리 엑세스',
-                'description' => 'osu!에 새 기능을 패치하기 전에, 미리 기능을 체험해 볼 수 있습니다!',
+                'description' => '새로운 기능이 패치되기 전에 미리 체험해 볼 수 있어요!<br/><br/>이는 웹사이트에 적용되는 새로운 기능도 포함됩니다!',
             ],
 
             'customisation' => [

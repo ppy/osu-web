@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => '违规 / 作弊',
+            'multiple_accounts' => '',
             'insults' => '侮辱 我/其他人',
             'spam' => '刷屏/垃圾广告',
             'unwanted_content' => '发布包含不当内容的链接',
@@ -299,6 +300,9 @@ return [
                 'empty' => "该用户还没有获得成就。;_;",
                 'recent' => '最近取得',
                 'title' => '成就',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => '回复',
