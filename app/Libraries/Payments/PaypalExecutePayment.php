@@ -5,15 +5,13 @@
 
 namespace App\Libraries\Payments;
 
+use App\Exceptions\InvariantException;
 use App\Models\Store\Order;
 use App\Traits\StoreNotifiable;
 use DB;
-use PayPal\Api\Amount;
-use PayPal\Api\Details;
-use PayPal\Api\Payment;
-use PayPal\Api\PaymentExecution;
-use PayPal\Api\Transaction;
-use PayPal\Exception\PayPalConnectionException;
+use PayPalCheckoutSdk\Core\PayPalHttpClient;
+use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
+use PayPalHttp\HttpResponse;
 
 /**
  * Executes an approved Paypal Payment for a store Order.
@@ -26,26 +24,22 @@ class PaypalExecutePayment
 {
     use StoreNotifiable;
 
-    private $execution;
-    private $order;
-    private $params;
+    public HttpResponse $response;
 
-    public function __construct(Order $order, array $params)
+    public function __construct(private Order $order, private ?string $reference)
     {
-        $this->params = $params;
+        if (!present($reference)) {
+            throw new InvariantException('Missing reference number.');
+        }
 
-        $this->order = $order;
-
-        $this->execution = (new PaymentExecution())
-            ->setPayerId($params['payerId'])
-            ->addTransaction($this->getTransaction());
+        if ($reference !== $order->reference) {
+            throw new InvariantException('Mismatched reference number.');
+        }
     }
 
     public function run()
     {
         return DB::connection('mysql-store')->transaction(function () {
-            $context = PaypalApiContext::get();
-
             // prevent concurrent updates
             $order = $this->order->lockSelf();
             if ($order->isProcessing() === false) {
@@ -57,37 +51,10 @@ class PaypalExecutePayment
             $order->status = 'checkout';
             $order->saveOrExplode();
 
-            try {
-                // Tell Paypal to complete the transaction so we can finally clear the cart.
-                $payment = Payment::get($this->params['paymentId'], $context);
+            $client = new PayPalHttpClient(PaypalApiContext::environment());
+            $request = new OrdersCaptureRequest($this->reference);
 
-                return $payment->execute($this->execution, $context);
-            } catch (PayPalConnectionException $e) {
-                \Log::error($e->getData());
-                // TODO: get more context data
-                $this->notifyError($e, $this->order);
-                throw $e;
-            }
+            $this->response = $client->execute($request);
         });
-    }
-
-    private function getAmount()
-    {
-        return (new Amount())
-            ->setCurrency('USD')
-            ->setTotal($this->order->getTotal())
-            ->setDetails($this->getDetails());
-    }
-
-    private function getDetails()
-    {
-        return (new Details())
-            ->setShipping($this->order->shipping)
-            ->setSubtotal($this->order->getSubTotal());
-    }
-
-    private function getTransaction()
-    {
-        return (new Transaction())->setAmount($this->getAmount());
     }
 }

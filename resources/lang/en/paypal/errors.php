@@ -6,5 +6,6 @@
 return [
     'instrument_declined' => 'The selected payment method was rejected by Paypal.',
     'invalid_resource_id' => 'No payment information was found.',
+    'resource_not_found' => 'No payment information was found.',
     'unknown' => "The payment was rejected, but we're not sure why.",
 ];
