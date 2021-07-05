@@ -72,7 +72,7 @@ export default class NotificationStore implements DispatchListener {
           this.eachByStack(identity, callback);
           break;
 
-        case 'notification':
+        case 'notification': {
           if (identity.id == null) return;
           const notification = this.get(identity.id);
 
@@ -80,6 +80,7 @@ export default class NotificationStore implements DispatchListener {
             callback(notification);
           }
           break;
+        }
       }
     }
   }
