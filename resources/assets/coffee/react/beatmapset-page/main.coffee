@@ -3,6 +3,7 @@
 
 import { Hype } from './hype'
 import { Scoreboard } from './scoreboard'
+import Description from 'beatmapsets-show/description'
 import Header from 'beatmapsets-show/header'
 import Info from 'beatmapsets-show/info'
 import Toolbar from 'beatmapsets-show/toolbar'
@@ -227,6 +228,9 @@ export class Main extends React.Component
           currentBeatmap: @state.currentBeatmap
           favcount: @state.favcount
           hasFavourited: @state.hasFavourited
+
+        el Description,
+          beatmapset: @state.beatmapset
 
       div className: 'osu-layout__section osu-layout__section--extra',
         if @state.beatmapset.can_be_hyped

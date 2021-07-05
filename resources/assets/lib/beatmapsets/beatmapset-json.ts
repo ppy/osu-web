@@ -81,6 +81,10 @@ export interface BeatmapsetJson {
   covers: BeatmapsetCovers;
   creator: string;
   current_user_attributes?: CurrentUserAttributes;
+  description: {
+    bbcode?: string | null;
+    description: string | null;
+  };
   events?: BeatmapsetEvent[];
   favourite_count: number;
   genre: GenreJson;
