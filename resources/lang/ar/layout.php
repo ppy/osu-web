@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => 'الاِقتراح',
+            'multiplayer' => '',
             'show' => 'معلومات',
         ],
     ],

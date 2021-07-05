@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Παράτυπος τρόπος παιχνιδιού / Κλέψιμο',
+            'multiple_accounts' => '',
             'insults' => 'Προσβάλει εμένα / άλλους',
             'spam' => 'Spamming',
             'unwanted_content' => 'Δημοσίευση links με ακατάλληλο περιεχόμενο',
@@ -299,6 +300,9 @@ return [
                 'empty' => "Αυτός ο χρήστης δεν έχει πάρει κανένα ακόμα. ;_;",
                 'recent' => 'Πρόσφατα',
                 'title' => 'Μετάλλια',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => '',
