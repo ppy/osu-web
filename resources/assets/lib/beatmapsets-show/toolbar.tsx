@@ -78,17 +78,7 @@ export default class Toolbar extends React.PureComponent<Props> {
         </div>
 
         <div className='beatmapset-toolbar__buttons'>
-          {currentUser.id && (
-            <BigButton
-              modifiers={['beatmapset-favourite', 'pink']}
-              props={{
-                onClick: this.toggleFavourite,
-                title: osu.trans(`beatmapsets.show.details.${favouriteButton.action}`),
-              }}
-              text={`${this.props.favcount}`}
-            />
-          )}
-
+          {this.renderFavouriteButton(favouriteButton)}
           {this.renderDownloadButtons()}
           {this.renderDiscussionButtons()}
           {this.renderLoginButton()}
@@ -113,7 +103,7 @@ export default class Toolbar extends React.PureComponent<Props> {
     if (this.props.beatmapset.legacy_thread_url !== null) {
       return (
         <BigButton
-          modifiers={['beatmapset-toolbaer']}
+          modifiers={['beatmapset-toolbar']}
           props={{
             href: this.props.beatmapset.legacy_thread_url,
           }}
@@ -157,6 +147,22 @@ export default class Toolbar extends React.PureComponent<Props> {
             topTextKey='direct'
           />
         </>
+      );
+    }
+  }
+
+  renderFavouriteButton({ action, icon }: { action: string; icon: string }) {
+    if (currentUser.id) {
+      return (
+        <button
+          className='btn-osu-big btn-osu-big--beatmapset-favourite btn-osu-big--pink'
+          onClick={this.toggleFavourite}
+          title={osu.trans(`beatmapsets.show.details.${action}`)}
+        >
+          <i className={icon} />
+          {' '}
+          {this.props.favcount}
+        </button>
       );
     }
   }
