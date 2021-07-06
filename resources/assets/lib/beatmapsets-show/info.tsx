@@ -2,13 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapIcon } from 'beatmap-icon';
+import DifficultyBadge from 'difficulty-badge';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import * as _ from 'lodash';
 import * as React from 'react';
 import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';
-import { getDiffRating } from 'utils/beatmap-helper';
 import Extra from './extra';
 import Metadata from './metadata';
 import Stats from './stats';
@@ -46,15 +46,7 @@ export default class Header extends React.PureComponent<Props> {
               showTitle={false}
             />
 
-            <div
-              className='beatmapset-info__star-difficulty'
-              style={{
-                '--bg': `var(--diff-${getDiffRating(showedBeatmap.difficulty_rating)})`,
-              } as React.CSSProperties}
-            >
-              <i className='fas fa-star' />{' '}
-              {osu.formatNumber(showedBeatmap.difficulty_rating, 2)}
-            </div>
+            <DifficultyBadge modifiers={['beatmapset-info']} rating={showedBeatmap.difficulty_rating} />
 
             <div className='beatmapset-info__diff-name'>
               {showedBeatmap.version}

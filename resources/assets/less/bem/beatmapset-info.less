@@ -3,6 +3,7 @@
 
 .beatmapset-info {
   padding: 0 50px;
+  font-size: @font-size--normal;
 
   &__diff-item {
     display: flex;
@@ -46,22 +47,11 @@
       align-items: start;
       gap: 30px;
       margin-bottom: 15px;
-      font-size: @font-size--normal;
       font-weight: bold;
     }
   }
 
   &__length-bpm-value {
     color: hsl(var(--hsl-c2));
-  }
-
-  &__star-difficulty {
-    background-color: var(--bg);
-    font-size: @font-size--normal;
-    color: hsl(var(--hsl-b5));
-    font-weight: 700;
-    padding: 4px 10px;
-    min-width: 64px;
-    border-radius: @border-radius--large;
   }
 }
