@@ -8,8 +8,22 @@ interface Props {
   beatmapset: BeatmapsetExtendedJson;
 }
 
-export default class Description extends React.PureComponent<Props> {
+interface State {
+  isEditing: boolean;
+}
+
+export default class Description extends React.PureComponent<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      isEditing: false,
+    };
+  }
+
   render() {
+    const canEdit = this.props.beatmapset.description.bbcode !== undefined;
+
     return (
       <div className='beatmapset-description'>
         <div className='beatmapset-description__container u-fancy-scrollbar'>
@@ -18,7 +32,25 @@ export default class Description extends React.PureComponent<Props> {
             className='beatmapset-description__content'
           />
         </div>
+
+        {canEdit && (
+          <div className='beatmapset-description__edit-button'>
+            <button
+              className='btn-circle'
+              onClick={this.toggleEditing}
+              type='button'
+            >
+              <span className='btn-circle__content'>
+                <i className='fas fa-pencil-alt' />
+              </span>
+            </button>
+          </div>
+        )}
       </div>
     );
   }
+
+  private toggleEditing = () => {
+    this.setState({ isEditing: !this.state.isEditing });
+  };
 }
