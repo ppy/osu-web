@@ -2,22 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-header {
-  &__cover {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  &__cover-container {
-    position: relative;
-    height: 53px;
-    transition: height 120ms ease-in-out;
-
-    &--expanded {
-      height: 250px;
-    }
-  }
-
   &__details {
     padding: 0 50px;
     background-color: hsl(var(--hsl-b4));
@@ -53,60 +37,5 @@
     .default-text-shadow();
     .link-white();
     .link-plain();
-  }
-
-  &__info-cover {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 53px;
-    padding: 0 50px;
-    display: flex;
-    align-items: center;
-  }
-
-  &__page-toggle {
-    .center-content();
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 50px;
-    height: 100%;
-    display: flex;
-  }
-
-  &__preview {
-    .fas();
-    .link-plain();
-    .link-white();
-    .reset-input();
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-
-    --progress: 0;
-    --icon: @fa-var-play;
-    background-color: hsla(var(--hsl-b4), 0.8);
-    font-size: 12px; // icon size
-    padding: 9px;
-    margin-left: auto;
-    cursor: pointer;
-    border-radius: @border-radius--extra;
-    width: 100px;
-
-    &::before {
-      content: var(--icon);
-    }
-
-    &:hover {
-      background-color: hsla(var(--hsl-b6), 0.75);
-    }
-
-    &[data-audio-state="playing"] {
-      --icon: @fa-var-pause;
-    }
   }
 }

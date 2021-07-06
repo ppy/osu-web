@@ -3,6 +3,7 @@
 
 import { Hype } from './hype'
 import { Scoreboard } from './scoreboard'
+import Cover from 'beatmapsets-show/cover'
 import Description from 'beatmapsets-show/description'
 import Header from 'beatmapsets-show/header'
 import Info from 'beatmapsets-show/info'
@@ -213,6 +214,9 @@ export class Main extends React.Component
   renderPage: ->
     el React.Fragment, null,
       div className: 'osu-layout__row osu-layout__row--page-compact',
+        el Cover,
+          beatmapset: @state.beatmapset
+
         el Header,
           beatmapset: @state.beatmapset
           beatmaps: @state.beatmaps
