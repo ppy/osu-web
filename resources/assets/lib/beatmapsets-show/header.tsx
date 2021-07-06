@@ -26,59 +26,57 @@ export default class Header extends React.Component<Props> {
 
     return (
       <div className='beatmapset-header'>
-        <div className='beatmapset-header__details'>
-          <div className='beatmapset-header__details-item beatmapset-header__details-item--artist-title u-ellipsis-overflow'>
-            <span className='beatmapset-header__details-text beatmapset-header__details-text--title'>
-              <a
-                className='beatmapset-header__details-text-link'
-                href={route('beatmapsets.index', { q: getTitle(this.props.beatmapset) })}
-              >
-                {getTitle(this.props.beatmapset)}
-              </a>
-            </span>
+        <div className='beatmapset-header__title-container u-ellipsis-overflow'>
+          <span className='beatmapset-header__title'>
+            <a
+              className='beatmapset-header__text-link'
+              href={route('beatmapsets.index', { q: getTitle(this.props.beatmapset) })}
+            >
+              {getTitle(this.props.beatmapset)}
+            </a>
+          </span>
 
-            <span className='beatmapset-header__details-text beatmapset-header__details-text--artist'>
-              <StringWithComponent
-                mappings={{
-                  ':artist':
-                    <a
-                      key='artist'
-                      className='beatmapset-header__details-text-link'
-                      href={route('beatmapsets.index', { q: getArtist(this.props.beatmapset) })}
-                    >
-                      {getArtist(this.props.beatmapset)}
-                    </a>,
-                }}
-                pattern={osu.trans('beatmapsets.show.details.by_artist')}
-              />
-            </span>
-          </div>
-
-
-          <div className='beatmapset-header__details-item beatmapset-header__details-item--creator u-ellipsis-overflow'>
+          <span className='beatmapset-header__artist'>
             <StringWithComponent
               mappings={{
-                ':creator':
-                  <UserLink
-                    key='creator'
-                    user={{ id: this.props.beatmapset.user_id, username: this.props.beatmapset.creator }}
-                  />,
+                ':artist':
+                  <a
+                    key='artist'
+                    className='beatmapset-header__text-link'
+                    href={route('beatmapsets.index', { q: getArtist(this.props.beatmapset) })}
+                  >
+                    {getArtist(this.props.beatmapset)}
+                  </a>,
               }}
-              pattern={osu.trans('beatmapsets.show.details.created_by')}
+              pattern={osu.trans('beatmapsets.show.details.by_artist')}
             />
-          </div>
+          </span>
+        </div>
 
-          <div className='beatmapset-header__details-item beatmapset-header__details-item--picker'>
-            <BeatmapList
-              beatmaps={beatmaps}
-              currentBeatmap={this.props.currentBeatmap}
-              type='show'
-            />
-            <BeatmapPicker
-              beatmaps={beatmaps}
-              currentBeatmap={this.props.currentBeatmap}
-            />
-          </div>
+
+        <div className='beatmapset-header__creator'>
+          <StringWithComponent
+            mappings={{
+              ':creator':
+                <UserLink
+                  key='creator'
+                  user={{ id: this.props.beatmapset.user_id, username: this.props.beatmapset.creator }}
+                />,
+            }}
+            pattern={osu.trans('beatmapsets.show.details.created_by')}
+          />
+        </div>
+
+        <div className='beatmapset-header__picker'>
+          <BeatmapList
+            beatmaps={beatmaps}
+            currentBeatmap={this.props.currentBeatmap}
+            type='show'
+          />
+          <BeatmapPicker
+            beatmaps={beatmaps}
+            currentBeatmap={this.props.currentBeatmap}
+          />
         </div>
       </div>
     );
