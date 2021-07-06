@@ -21,27 +21,27 @@ Dean Herbert (peppy)
     && trans_exists('mail.donation_thanks.support.first', app()->getLocale())
 )
 
-{!! trans('mail.donation_thanks.translation') !!}
+{!! osu_trans('mail.donation_thanks.translation') !!}
 
 ==============================
 
-{!! trans('mail.common.hello', ['user' => $donor->username]) !!}
+{!! osu_trans('mail.common.hello', ['user' => $donor->username]) !!}
 
-{!! trans('mail.donation_thanks.support._', [
-    'support' => trans('mail.donation_thanks.support.'.($continued ? 'repeat' : 'first')),
+{!! osu_trans('mail.donation_thanks.support._', [
+    'support' => osu_trans('mail.donation_thanks.support.'.($continued ? 'repeat' : 'first')),
 ]) !!}
-{!! trans('mail.donation_thanks.keep_free') !!}
-{!! trans('mail.donation_thanks.benefit.'.($isGift ? 'gift' : 'self'), [
+{!! osu_trans('mail.donation_thanks.keep_free') !!}
+{!! osu_trans('mail.donation_thanks.benefit.'.($isGift ? 'gift' : 'self'), [
     'duration' => \App\Models\SupporterTag::getDurationText($duration),
 ]) !!}
-{!! trans('mail.donation_thanks.benefit_more') !!}
+{!! osu_trans('mail.donation_thanks.benefit_more') !!}
 
-{!! trans('mail.donation_thanks.keep_running', [
-    'minutes' => trans_choice('common.count.minutes', $minutes),
+{!! osu_trans('mail.donation_thanks.keep_running', [
+    'minutes' => osu_trans_choice('common.count.minutes', $minutes),
 ]) !!}
 
-{!! trans('mail.donation_thanks.feedback') !!}
+{!! osu_trans('mail.donation_thanks.feedback') !!}
 
-{!! trans('mail.common.closing') !!}
+{!! osu_trans('mail.common.closing') !!}
 Dean Herbert (peppy)
 @endif

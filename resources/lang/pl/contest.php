@@ -27,6 +27,10 @@ return [
             'remove' => 'Cofnij głos',
             'used_up' => 'Nie masz już więcej głosów',
         ],
+
+        'progress' => [
+            '_' => 'oddane głosy: :used / :max',
+        ],
     ],
     'entry' => [
         '_' => 'zgłoszenie',

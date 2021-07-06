@@ -62,7 +62,7 @@ return [
         'message_placeholder' => [
             'general' => '在此處輸入以發佈至整體 (:version)',
             'generalAll' => '在此處輸入以發佈至整體 (所有難度)',
-            'review' => '',
+            'review' => '在此處輸入以發佈評論',
             'timeline' => '在此處輸入以發佈至時間軸 (:version)',
         ],
 
@@ -97,7 +97,7 @@ return [
         ],
 
         'review' => [
-            'new' => '',
+            'new' => '新評論',
             'embed' => [
                 'delete' => '刪除',
                 'missing' => '',
@@ -310,11 +310,11 @@ return [
         'NF' => '',
         'NM' => '',
         'PF' => '',
-        'RX' => 'Relax',
+        'RX' => '',
         'SD' => '',
         'SO' => '',
         'TD' => '',
-        'V2' => 'Score V2',
+        'V2' => '',
     ],
     'language' => [
         'any' => '所有',

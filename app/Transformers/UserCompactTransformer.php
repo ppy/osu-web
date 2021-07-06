@@ -85,7 +85,7 @@ class UserCompactTransformer extends TransformerAbstract
         'is_limited_bn' => 'IsNotOAuth',
         'is_moderator' => 'IsNotOAuth',
         'is_nat' => 'IsNotOAuth',
-        'is_restricted' => 'IsNotOAuth',
+        'is_restricted' => 'UserShowRestrictedStatus',
         'is_silenced' => 'IsNotOAuth',
     ];
 
@@ -280,7 +280,7 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->item($user, function ($user) {
             if ($user->userPage !== null) {
                 return [
-                    'html' => $user->userPage->bodyHTML(['withoutImageDimensions' => true, 'modifiers' => ['profile-page']]),
+                    'html' => $user->userPage->bodyHTML(['modifiers' => ['profile-page']]),
                     'raw' => $user->userPage->bodyRaw,
                 ];
             } else {

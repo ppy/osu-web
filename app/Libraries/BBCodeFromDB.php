@@ -23,7 +23,6 @@ class BBCodeFromDB
         $defaultOptions = [
             'withGallery' => false,
             'ignoreLineHeight' => false,
-            'withoutImageDimensions' => false,
             'extraClasses' => '',
             'modifiers' => [],
         ];
@@ -39,7 +38,7 @@ class BBCodeFromDB
 
     public function clearSpacesBetweenTags($text)
     {
-        return preg_replace("/([^-][^-]>)\s*</", '\1<', $text);
+        return preg_replace('/([^-][^-]>)\s*</', '\1<', $text);
     }
 
     public function parseAudio($text)
@@ -151,12 +150,9 @@ class BBCodeFromDB
             $proxiedSrc = proxy_media(html_entity_decode_better($i['url']));
 
             $imageTag = $galleryAttributes = '';
+            $imageSize = fast_imagesize($proxiedSrc);
 
-            if (!$this->options['withoutImageDimensions']) {
-                $imageSize = fast_imagesize($proxiedSrc);
-            }
-
-            if (!$this->options['withoutImageDimensions'] && $imageSize !== null && $imageSize[0] !== 0) {
+            if ($imageSize !== null && $imageSize[0] !== 0) {
                 $heightPercentage = $imageSize[1] / $imageSize[0] * 100;
 
                 $topClass = 'proportional-container';

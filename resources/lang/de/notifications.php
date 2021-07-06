@@ -28,7 +28,7 @@ return [
             '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => '',
+                '_' => 'Gastschwierigkeitsstufe',
                 'beatmap_owner_change' => 'Du bist jetzt Besitzer der Schwierigkeit ":beatmap" für Beatmap ":title"',
                 'beatmap_owner_change_compact' => 'Du bist jetzt Besitzer der Schwierigkeit ":beatmap"',
             ],

@@ -84,6 +84,10 @@ The flow to authorize users for your application is:
 2. Users are redirected back to your site
 3. Your application accesses the API with the user's access token
 
+<aside class="notice">
+Restricted users can grant authorization like anyone else. If your client should not support restricted users, it can check <code>is_restricted</code> from the <a href="#get-own-data">Get Own Data</a> response.
+</aside>
+
 
 ### Request authorization from a user
 
@@ -299,6 +303,9 @@ For a full list of changes, see the
 [Changelog on the site]({{ route('changelog.show', ['changelog' => 'web']) }}).
 
 ## Breaking Changes
+
+### 2021-06-14
+- Removed `description` from [UserGroup](#usergroup). It has been moved to an optional attribute with a different type on [Group](#group).
 
 ### 2021-06-09
 - `ranked_and_approved_beatmapset_count` and `unranked_beatmapset_count` attributes in [UserCompact](#usercompact) object have been deprecated and replaced with `ranked_beatmapset_count` and `pending_beatmapset_count` respectively.

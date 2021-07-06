@@ -35,7 +35,7 @@ class UserReport extends Model
     use RoutesNotifications, Validatable;
 
     const POST_TYPE_REASONS = ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'];
-    const SCORE_TYPE_REASONS = ['Cheating', 'Other'];
+    const SCORE_TYPE_REASONS = ['Cheating', 'MultipleAccounts', 'Other'];
 
     const ALLOWED_REASONS = [
         MorphMap::MAP[BeatmapDiscussionPost::class] => self::POST_TYPE_REASONS,
@@ -68,7 +68,7 @@ class UserReport extends Model
 
     public function routeNotificationForSlack(?Notification $_notification): ?string
     {
-        if ($this->reason === 'Cheating') {
+        if ($this->reason === 'Cheating' || $this->reason === 'MultipleAccounts') {
             return config('osu.user_report_notification.endpoint_cheating');
         } else {
             return config('osu.user_report_notification.endpoint_moderation');

@@ -11,7 +11,7 @@ return [
     'wrong_confirmation' => 'Bestätigung stimmt nicht überein.',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Ein Zeitpunkt ist angegeben, aber die Beatmap fehlt.',
+        'beatmap_missing' => 'Ein Zeitstempel ist angegeben, aber die Beatmapschwierigkeitsstufe fehlt.',
         'beatmapset_no_hype' => "Diese Beatmap kann nicht gehypt werden.",
         'hype_requires_null_beatmap' => 'Hypen muss in der "Generell"-Sektion (für alle Schwierigkeitsstufen) stattfinden.',
         'invalid_beatmap_id' => 'Ungültige Schwierigkeitsstufe gewählt.',
@@ -33,8 +33,8 @@ return [
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Der gewählte Zeitpunkt ist nach dem Ende der Beatmap.',
-            'negative' => "Der Zeitpunkt muss positiv sein.",
+            'exceeds_beatmapset_length' => 'Der gewählte Zeitstempel ist nach dem Ende der Beatmap.',
+            'negative' => "Der Zeitstempel muss positiv sein.",
         ],
     ],
 

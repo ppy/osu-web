@@ -142,5 +142,8 @@ return [
         'modding_history_controller' => [
             '_' => 'інформація про модера',
         ],
+        'multiplayer_controller' => [
+            '_' => '',
+        ],
     ],
 ];

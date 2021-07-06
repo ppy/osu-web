@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => 'modolás',
+            'multiplayer' => '',
             'show' => 'információ',
         ],
     ],
@@ -73,7 +74,7 @@ return [
             'dev' => 'fejlesztés',
             'forum-forums-index' => 'fórumok',
             'getLive' => 'élő',
-            'tournaments' => 'versenyek',
+            'tournaments' => 'bajnokságok',
         ],
         'help' => [
             '_' => 'segítség',

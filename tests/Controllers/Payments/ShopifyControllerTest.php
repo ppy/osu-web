@@ -14,7 +14,7 @@ class ShopifyControllerTest extends TestCase
 {
     public function testWebhookOrdersCancelled()
     {
-        $order = factory(Order::class, 'paid')->states('shopify')->create();
+        $order = factory(Order::class)->states('paid')->states('shopify')->create();
         $payment = new Payment([
             'provider' => Order::PROVIDER_SHOPIFY,
             'transaction_id' => $order->getProviderReference(),

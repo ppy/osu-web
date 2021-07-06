@@ -4,6 +4,7 @@
 --}}
 @php
     $userLocale = app()->getLocale();
+    $displayLocaleMeta = locale_meta($displayLocale);
 
     // always show current user locale as first item in menu (when showing other locale)
     if ($displayLocale !== $userLocale) {
@@ -24,12 +25,12 @@
     <span class="btn-osu-big__content">
         <span class="btn-osu-big__icon-inline btn-osu-big__icon-inline--left">
             @include('objects._flag_country', [
-                'countryCode' => locale_flag($displayLocale),
+                'countryCode' => $displayLocaleMeta->flag(),
                 'modifiers' => ['flat'],
             ])
         </span>
 
-        {{ locale_name($displayLocale) }}
+        {{ $displayLocaleMeta->name() }}
 
         @if ($showLocalesMenu)
             <span class="btn-osu-big__icon-inline btn-osu-big__icon-inline--right">
@@ -47,16 +48,19 @@
     >
         <div class="simple-menu__content">
             @foreach ($otherLocales as $locale)
+                @php
+                    $localeMeta = locale_meta($locale);
+                @endphp
                 <a class="simple-menu__item" href="{{ wiki_url($path, $locale) }}">
                     <span class="nav2-locale-item nav2-locale-item--no-padding">
                         <span class="nav2-locale-item__flag">
                             @include('objects._flag_country', [
-                                'countryCode' => locale_flag($locale),
+                                'countryCode' => $localeMeta->flag(),
                                 'modifiers' => ['flat'],
                             ])
                         </span>
 
-                        {{ locale_name($locale) }}
+                        {{ $localeMeta->name() }}
                     </span>
                 </a>
             @endforeach

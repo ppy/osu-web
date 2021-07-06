@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Παράτυπος τρόπος παιχνιδιού / Κλέψιμο',
+            'multiple_accounts' => '',
             'insults' => 'Προσβάλει εμένα / άλλους',
             'spam' => 'Spamming',
             'unwanted_content' => 'Δημοσίευση links με ακατάλληλο περιεχόμενο',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Loved Beatmaps',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Εκκρεμή Beatmaps',
+                ],
+                'ranked' => [
+                    'title' => 'Ranked & Approved Beatmaps',
                 ],
             ],
             'discussions' => [
@@ -299,6 +300,9 @@ return [
                 'empty' => "Αυτός ο χρήστης δεν έχει πάρει κανένα ακόμα. ;_;",
                 'recent' => 'Πρόσφατα',
                 'title' => 'Μετάλλια',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => '',
@@ -402,10 +406,10 @@ return [
             'total_hits' => 'Συνολικά Hits',
             'total_score' => 'Συνολική Βαθμολογία',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
             'graveyard_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'pending_beatmapset_count' => '',
+            'ranked_beatmapset_count' => '',
         ],
     ],
 

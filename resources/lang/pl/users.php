@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Oszukiwanie',
+            'multiple_accounts' => '',
             'insults' => 'Obrażanie mnie lub innych',
             'spam' => 'Spamowanie',
             'unwanted_content' => 'Zamieszczanie nieodpowiednich treści',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Ulubione beatmapy społeczności',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Rankingowe i zatwierdzone beatmapy',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Oczekujące beatmapy',
+                ],
+                'ranked' => [
+                    'title' => 'Rankingowe beatmapy',
                 ],
             ],
             'discussions' => [
@@ -299,6 +300,9 @@ return [
                 'empty' => "Ten użytkownik nie uzyskał jeszcze żadnych medali. ;_;",
                 'recent' => 'Ostatnie',
                 'title' => 'Medale',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Posty',
@@ -402,10 +406,10 @@ return [
             'total_hits' => 'Łączna liczba uderzeń',
             'total_score' => 'Łączny wynik',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Rankingowe i zatwierdzone beatmapy',
-            'loved_beatmapset_count' => 'Ulubione beatmapy społeczności',
-            'unranked_beatmapset_count' => 'Oczekujące beatmapy',
             'graveyard_beatmapset_count' => 'Porzucone beatmapy',
+            'loved_beatmapset_count' => 'Ulubione beatmapy społeczności',
+            'pending_beatmapset_count' => 'Oczekujące beatmapy',
+            'ranked_beatmapset_count' => 'Rankingowe beatmapy',
         ],
     ],
 

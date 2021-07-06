@@ -85,7 +85,7 @@ class PaypalController extends Controller
 
         (new OrderCheckout($order, Order::PROVIDER_PAYPAL))->failCheckout();
 
-        return $this->setAndRedirectCheckoutError($order, trans('store.checkout.declined'));
+        return $this->setAndRedirectCheckoutError($order, osu_trans('store.checkout.declined'));
     }
 
     // Called by Paypal.
@@ -126,6 +126,6 @@ class PaypalController extends Controller
             $key = 'paypal/errors.unknown';
         }
 
-        return trans($key);
+        return osu_trans($key);
     }
 }

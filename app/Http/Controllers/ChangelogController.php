@@ -12,10 +12,108 @@ use App\Models\BuildPropagationHistory;
 use App\Models\UpdateStream;
 use Cache;
 
+/**
+ * @group Changelog
+ */
 class ChangelogController extends Controller
 {
     private $updateStreams = null;
 
+    /**
+     * Get Changelog Listing
+     *
+     * Returns a listing of update streams, builds, and changelog entries.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field         | Type                            | Notes
+     * --------------|---------------------------------|------
+     * builds        | [Build](#build)[]               | Includes `changelog_entries` and `changelog_entries.github_user`.
+     * search.from   | string?                         | `from` input.
+     * search.limit  | number                          | Always `21`.
+     * search.max_id | number?                         | `max_id` input.
+     * search.stream | string?                         | `stream` input.
+     * search.to     | string?                         | `to` input.
+     * streams       | [UpdateStream](#updatestream)[] | Always contains all available streams. Includes `latest_build` and `user_count`.
+     *
+     * @queryParam from string Minimum build version. No-example
+     * @queryParam max_id integer Maximum build ID. No-example
+     * @queryParam stream string Stream name to return builds from. No-example
+     * @queryParam to string Maximum build version. No-example
+     * @response {
+     *   "streams": [
+     *     {
+     *       "id": 5,
+     *       "name": "stable40",
+     *       "display_name": "Stable",
+     *       "is_featured": true,
+     *       "latest_build": {
+     *         "id": 5778,
+     *         "version": "20210520.2",
+     *         "display_version": "20210520.2",
+     *         "users": 23683,
+     *         "created_at": "2021-05-20T14:28:04+00:00",
+     *         "update_stream": {
+     *           "id": 5,
+     *           "name": "stable40",
+     *           "display_name": "Stable",
+     *           "is_featured": true
+     *         }
+     *       },
+     *       "user_count": 23965
+     *     },
+     *     // ...
+     *   ],
+     *   "builds": [
+     *     {
+     *       "id": 5823,
+     *       "version": "2021.619.1",
+     *       "display_version": "2021.619.1",
+     *       "users": 0,
+     *       "created_at": "2021-06-19T08:30:45+00:00",
+     *       "update_stream": {
+     *         "id": 7,
+     *         "name": "lazer",
+     *         "display_name": "Lazer",
+     *         "is_featured": false
+     *       },
+     *       "changelog_entries": [
+     *         {
+     *           "id": 12925,
+     *           "repository": "ppy/osu",
+     *           "github_pull_request_id": 13572,
+     *           "github_url": "https://github.com/ppy/osu/pull/13572",
+     *           "url": null,
+     *           "type": "fix",
+     *           "category": "Reliability",
+     *           "title": "Fix game crashes due to attempting localisation load for unsupported locales",
+     *           "message_html": null,
+     *           "major": true,
+     *           "created_at": "2021-06-19T08:09:39+00:00",
+     *           "github_user": {
+     *             "id": 218,
+     *             "display_name": "bdach",
+     *             "github_url": "https://github.com/bdach",
+     *             "osu_username": null,
+     *             "user_id": null,
+     *             "user_url": null
+     *           }
+     *         }
+     *       ]
+     *     },
+     *     // ...
+     *   ],
+     *   "search": {
+     *     "stream": null,
+     *     "from": null,
+     *     "to": null,
+     *     "max_id": null,
+     *     "limit": 21
+     *   }
+     * }
+     */
     public function index()
     {
         $this->getUpdateStreams();
@@ -98,6 +196,21 @@ class ChangelogController extends Controller
         return [];
     }
 
+    /**
+     * Lookup Changelog Build
+     *
+     * Returns details of the specified build.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * See [Get Changelog Build](#get-changelog-build).
+     *
+     * @urlParam changelog string required Build version, update stream name, or build ID. Example: 20210520.2
+     * @queryParam key string Unset to query by build version or stream name, or `id` to query by build ID. No-example
+     * @response See "Get Changelog Build" response.
+     */
     public function show($version)
     {
         if (request('key') === 'id') {
@@ -124,18 +237,99 @@ class ChangelogController extends Controller
             $build = Build::default()->where('version', '=', $normalizedVersion)->firstOrFail();
         }
 
+        if (is_json_request()) {
+            return $this->buildJson($build);
+        }
+
         return ujs_redirect(build_url($build));
     }
 
+    /**
+     * Get Changelog Build
+     *
+     * Returns details of the specified build.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * A [Build](#build) with `changelog_entries`, `changelog_entries.github_user`, and `versions` included.
+     *
+     * @urlParam stream string required Update stream name. Example: stable40
+     * @urlParam build string required Build version. Example: 20210520.2
+     * @response {
+     *   "id": 5778,
+     *   "version": "20210520.2",
+     *   "display_version": "20210520.2",
+     *   "users": 22093,
+     *   "created_at": "2021-05-20T14:28:04+00:00",
+     *   "update_stream": {
+     *     "id": 5,
+     *     "name": "stable40",
+     *     "display_name": "Stable",
+     *     "is_featured": true
+     *   },
+     *   "changelog_entries": [
+     *     {
+     *       "id": null,
+     *       "repository": null,
+     *       "github_pull_request_id": null,
+     *       "github_url": null,
+     *       "url": "https://osu.ppy.sh/home/news/2021-05-20-spring-fanart-contest-results",
+     *       "type": "fix",
+     *       "category": "Misc",
+     *       "title": "Spring is here!",
+     *       "message_html": "<div class='changelog-md'><p class=\"changelog-md__paragraph\">New seasonal backgrounds ahoy! Amazing work by the artists.</p>\n</div>",
+     *       "major": true,
+     *       "created_at": "2021-05-20T10:56:49+00:00",
+     *       "github_user": {
+     *         "id": null,
+     *         "display_name": "peppy",
+     *         "github_url": null,
+     *         "osu_username": "peppy",
+     *         "user_id": 2,
+     *         "user_url": "https://osu.ppy.sh/users/2"
+     *       }
+     *     }
+     *   ],
+     *   "versions": {
+     *     "previous": {
+     *       "id": 5774,
+     *       "version": "20210519.3",
+     *       "display_version": "20210519.3",
+     *       "users": 10,
+     *       "created_at": "2021-05-19T11:51:48+00:00",
+     *       "update_stream": {
+     *         "id": 5,
+     *         "name": "stable40",
+     *         "display_name": "Stable",
+     *         "is_featured": true
+     *       }
+     *     }
+     *   }
+     * }
+     */
     public function build($streamName, $version)
     {
-        $this->getUpdateStreams();
 
         $stream = UpdateStream::where('name', '=', $streamName)->firstOrFail();
-        $build = $stream->builds()->default()->where('version', $version)->firstOrFail();
-        $buildJson = json_item($build, 'Build', [
-            'changelog_entries', 'changelog_entries.github_user', 'versions',
-        ]);
+        $build = $stream
+            ->builds()
+            ->default()
+            ->where('version', $version)
+            ->with([
+                'defaultChangelogs.user',
+                'defaultChangelogEntries.githubUser.user',
+                'defaultChangelogEntries.repository',
+            ])->firstOrFail();
+        $buildJson = $this->buildJson($build);
+
+        if (is_json_request()) {
+            return $buildJson;
+        }
+
+        $this->getUpdateStreams();
+
         $commentBundle = CommentBundle::forEmbed($build);
 
         $chartConfig = Cache::remember(
@@ -146,11 +340,16 @@ class ChangelogController extends Controller
             }
         );
 
-        if (is_json_request()) {
-            return $buildJson;
-        } else {
-            return ext_view('changelog.build', compact('build', 'buildJson', 'chartConfig', 'commentBundle'));
-        }
+        return ext_view('changelog.build', compact('build', 'buildJson', 'chartConfig', 'commentBundle'));
+    }
+
+    private function buildJson(Build $build): array
+    {
+        return json_item($build, 'Build', [
+            'changelog_entries',
+            'changelog_entries.github_user',
+            'versions',
+        ]);
     }
 
     private function getUpdateStreams()

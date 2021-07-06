@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Jogando sujo / Trapaceando',
+            'multiple_accounts' => '',
             'insults' => 'Me insultando / outros',
             'spam' => 'Spam',
             'unwanted_content' => 'Enviando links com conteúdo inapropriado',
@@ -206,11 +207,11 @@ return [
                 'loved' => [
                     'title' => 'Beatmaps Loved',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmaps Ranqueados & Aprovados',
-                ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Beatmaps Pendentes',
+                ],
+                'ranked' => [
+                    'title' => 'Beatmaps Ranqueados & Aprovados',
                 ],
             ],
             'discussions' => [
@@ -299,6 +300,9 @@ return [
                 'empty' => "Esse usuário não conseguiu nenhuma recentemente. ;_;",
                 'recent' => 'Recente',
                 'title' => 'Medalhas',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Publicações',
@@ -402,10 +406,10 @@ return [
             'total_hits' => 'Acertos Totais',
             'total_score' => 'Pontuação Total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Beatmaps Ranqueados e Aprovados',
-            'loved_beatmapset_count' => 'Beatmaps Loved',
-            'unranked_beatmapset_count' => 'Beatmaps Pendentes',
             'graveyard_beatmapset_count' => 'Beatmaps no Cemitério',
+            'loved_beatmapset_count' => 'Beatmaps Loved',
+            'pending_beatmapset_count' => 'Beatmaps Pendentes',
+            'ranked_beatmapset_count' => 'Beatmaps Ranqueados e Aprovados',
         ],
     ],
 
