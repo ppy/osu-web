@@ -213,6 +213,13 @@ class Order extends Model
     /**
      * Returns the reference id for the provider associated with this Order.
      *
+     * For Paypal transactions, this is "paypal-{$capturedId}" where $capturedId is the IPN txn_id
+     * or captured Id of the payment item in the payment transaction (not the payment itself).
+     *
+     * For other payment providers, this value should be "{$provider}-{$reference}".
+     *
+     * In the case of failed or user-aborted payments, this should be "{$provider}-failed".
+     *
      * @return string|null
      */
     public function getProviderReference(): ?string

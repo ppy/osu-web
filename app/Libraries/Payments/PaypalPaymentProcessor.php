@@ -7,6 +7,7 @@ namespace App\Libraries\Payments;
 
 use App\Models\Store\Order;
 use Carbon\Carbon;
+use Sentry\State\Scope;
 
 class PaypalPaymentProcessor extends PaymentProcessor
 {
@@ -129,6 +130,18 @@ class PaypalPaymentProcessor extends PaymentProcessor
         }
 
         $this->validatePendingStatus();
+
+        // just check if IPN transaction id is as expected with the Paypal v2 API.
+        if ($this->getPaymentTransactionId() !== $order->getProviderReference()) {
+            app('sentry')->getClient()->captureMessage(
+                'IPN transactionId does not match captured payment id',
+                null,
+                (new Scope())
+                    ->setExtra('order_id', $order->getKey())
+                    ->setExtra('txn_id', $this->getPaymentTransactionId())
+                    ->setExtra('captured_id', $order->getProviderReference())
+            );
+        }
 
         return $this->validationErrors()->isEmpty();
     }
