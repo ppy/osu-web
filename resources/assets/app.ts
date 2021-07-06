@@ -17,7 +17,6 @@ import 'store-username-change.coffee';
 import 'forum/post-box.coffee';
 import 'ujs-common.coffee';
 import 'bootstrap-modal.coffee';
-import 'logout.coffee';
 import 'shared.coffee';
 import 'turbolinks-overrides.coffee';
 import 'lang-overrides';

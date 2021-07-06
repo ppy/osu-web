@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => '摸圖',
+            'multiplayer' => '',
             'show' => '資訊',
         ],
     ],

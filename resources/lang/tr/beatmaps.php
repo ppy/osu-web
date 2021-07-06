@@ -180,7 +180,7 @@ return [
         'disqualification_prompt' => 'Diskalifiye sebebi nedir?',
         'disqualified_at' => ':time_ago: diskalifiye edildi (:reason).',
         'disqualified_no_reason' => 'bir sebep belirtilmedi',
-        'disqualify' => 'Diskalifiye',
+        'disqualify' => 'Diskalifiye et',
         'incorrect_state' => 'Bu eylemi gerçekleştirirken bir hata oluştu, sayfayı yenilemeyi deneyin.',
         'love' => 'Sevilenlere ekle',
         'love_confirm' => 'Bu beatmapi seviyor musun?',

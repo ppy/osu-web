@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => '不正行為/チート',
+            'multiple_accounts' => '',
             'insults' => 'あなた/他の人への侮辱',
             'spam' => 'スパム',
             'unwanted_content' => '不適切なコンテンツへのリンク',
@@ -299,6 +300,9 @@ return [
                 'empty' => "このユーザーはまだメダルを取得していません。",
                 'recent' => '最新',
                 'title' => 'メダル',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => '投稿',

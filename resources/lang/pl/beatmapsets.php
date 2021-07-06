@@ -142,7 +142,7 @@ return [
             'friend' => 'Ranking znajomych',
             'global' => 'Ranking globalny',
             'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, jakie jeszcze funkcje otrzymasz w zamian za zakup statusu donatora!',
-            'supporter-only' => 'Musisz posiadać status donatora, aby uzyskać dostęp do rankingu krajowego i znajomych!',
+            'supporter-only' => 'Musisz posiadać status donatora, aby uzyskać dostęp do rankingu krajowego i znajomych, oraz dla określonych modyfikatorów!',
             'title' => 'Tabela wyników',
 
             'headers' => [

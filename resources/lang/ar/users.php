@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'لعب مؤذي/ غش',
+            'multiple_accounts' => '',
             'insults' => 'اهانتي / اهانة الاخرين',
             'spam' => 'سبام',
             'unwanted_content' => 'ربط عن محتوى غير لائق',
@@ -299,6 +300,9 @@ return [
                 'empty' => "هذا المستخدم لم يحصل على أي شيئ حتى الآن. ;_;",
                 'recent' => 'الأخير',
                 'title' => 'الاوسمة',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'المنشورات',

@@ -29,13 +29,13 @@ return [
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':max개 중 :used개의 투표권 사용됨',
         ],
     ],
     'entry' => [
         '_' => '참가',
         'login_required' => '콘테스트에 참가하려면 로그인해주세요.',
-        'silenced_or_restricted' => '제한 또는 침묵 상태에서는 콘테스트에 참가할 수 없습니다.',
+        'silenced_or_restricted' => '침묵, 제한 상태에서는 콘테스트에 참가할 수 없습니다.',
         'preparation' => '현재 콘테스트가 준비중에 있습니다. 인내심을 갖고 조금만 더 기다려주세요!',
         'drop_here' => '참가할 작품을 이곳에 끌어넣어주세요.',
         'download' => '.osz 파일 다운로드',
