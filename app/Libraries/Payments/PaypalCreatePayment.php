@@ -8,8 +8,8 @@ namespace App\Libraries\Payments;
 use App\Exceptions\InvariantException;
 use App\Models\Store\Order;
 use App\Traits\StoreNotifiable;
+use Exception;
 use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
-use PayPalHttp\HttpResponse;
 
 /**
  * Creates a Paypal Payment for a store Order.
@@ -21,9 +21,7 @@ class PaypalCreatePayment
 {
     use StoreNotifiable;
 
-    public HttpResponse $response;
-
-    public function __construct(public Order $order)
+    public function __construct(private Order $order)
     {
         // Sanity check.
         if ($this->order->requiresShipping()) {
@@ -31,24 +29,12 @@ class PaypalCreatePayment
         }
     }
 
-    public function getReferenceId()
-    {
-        return $this->response->result->id;
-    }
-
-    public function getApprovalLink(): string
-    {
-        $links = collect($this->response->result->links)->keyBy('rel');
-
-        return $links['approve']->href;
-    }
-
     public function run()
     {
         $client = PaypalApiContext::client();
 
         $request = new OrdersCreateRequest();
-        $request->prefer('return=representation');
+        $request->prefer('return=minimal');
         $request->body = [
             'application_context' => [
                 'cancel_url' => route('payments.paypal.declined', ['order_id' => $this->order->getKey()]),
@@ -60,7 +46,20 @@ class PaypalCreatePayment
             'purchase_units' => [$this->getPurchaseUnit()],
         ];
 
-        $this->response = $client->execute($request);
+        $response = $client->execute($request);
+
+        /** @var object $result The Paypal typing is wrong. */
+        $result = $response->result;
+        $this->order->update(['reference' => $result->id]);
+
+        $links = collect($result->links)->keyBy('rel');
+        $approvalLink = $links['approve']->href;
+        if (!present($approvalLink)) {
+            // something went horribly wrong and we want to know.
+            throw new Exception('Approval link is missing.');
+        }
+
+        return $approvalLink;
     }
 
     private function getPurchaseUnit()

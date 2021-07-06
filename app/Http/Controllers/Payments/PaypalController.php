@@ -73,11 +73,8 @@ class PaypalController extends Controller
         $orderId = get_params(request()->all(), null, ['order_id:int'], ['null_missing' => true])['order_id'];
 
         $order = auth()->user()->orders()->processing()->findOrFail($orderId);
-        $command = new PaypalCreatePayment($order);
-        $command->run();
-        $order->update(['reference' => $command->getReferenceId()]);
 
-        return $command->getApprovalLink();
+        return (new PaypalCreatePayment($order))->run();
     }
 
     // Payment declined by user.
