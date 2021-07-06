@@ -48,9 +48,13 @@ class PaypalController extends Controller
             ->processing()
             ->findOrFail($params['order_id']);
 
+        $token = $params['token'];
+        if (!present($token) || $token !== $order->reference) {
+            return $this->setAndRedirectCheckoutError($order, osu_trans('paypal/errors.invalid_token'));
+        }
+
         try {
-            $command = new PaypalExecutePayment($order, $params['token']);
-            $command->run();
+            (new PaypalExecutePayment($order))->run();
         } catch (HttpException $e) {
             return $this->setAndRedirectCheckoutError($order, $this->userErrorMessage($e));
         }

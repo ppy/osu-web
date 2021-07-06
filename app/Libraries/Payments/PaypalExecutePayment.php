@@ -5,7 +5,6 @@
 
 namespace App\Libraries\Payments;
 
-use App\Exceptions\InvariantException;
 use App\Models\Store\Order;
 use App\Traits\StoreNotifiable;
 use Log;
@@ -23,15 +22,8 @@ class PaypalExecutePayment
 {
     use StoreNotifiable;
 
-    public function __construct(private Order $order, private ?string $reference)
+    public function __construct(private Order $order)
     {
-        if (!present($reference)) {
-            throw new InvariantException('Missing reference number.');
-        }
-
-        if ($reference !== $order->reference) {
-            throw new InvariantException('Mismatched reference number.');
-        }
     }
 
     public function run()
@@ -49,7 +41,7 @@ class PaypalExecutePayment
             $order->saveOrExplode();
 
             $client = PaypalApiContext::client();
-            $request = new OrdersCaptureRequest($this->reference);
+            $request = new OrdersCaptureRequest($order->reference);
 
             $response = $client->execute($request);
 
