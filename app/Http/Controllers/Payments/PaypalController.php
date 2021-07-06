@@ -40,6 +40,7 @@ class PaypalController extends Controller
         // new uses token
         $params = get_params(request()->all(), null, [
             'order_id:int',
+            'paymentId:string',
             'token:string',
         ], ['null_missing' => true]);
 
@@ -47,6 +48,10 @@ class PaypalController extends Controller
             ->orders()
             ->processing()
             ->findOrFail($params['order_id']);
+
+        if (present($params['paymentId'])) {
+            return $this->setAndRedirectCheckoutError($order, osu_trans('paypal/errors.old_format'));
+        }
 
         $token = $params['token'];
         if (!present($token) || $token !== $order->reference) {
