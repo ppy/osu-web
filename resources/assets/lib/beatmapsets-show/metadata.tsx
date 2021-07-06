@@ -3,21 +3,42 @@
 
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
+import { Modal } from 'modal';
 import * as moment from 'moment';
 import * as React from 'react';
 import TimeWithTooltip from 'time-with-tooltip';
 import { UserLink } from 'user-link';
+import MetadataEditor from './metadata-editor';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
 }
 
-export default class Metadata extends React.PureComponent<Props> {
+interface State {
+  isEditing: boolean;
+}
+
+export default class Metadata extends React.PureComponent<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      isEditing: false,
+    };
+  }
+
   render() {
     const tags = this.props.beatmapset.tags.split(' ');
+    const canEdit = this.props.beatmapset.current_user_attributes?.can_edit_metadata ?? false;
 
     return (
       <div className='beatmapset-metadata'>
+        {this.state.isEditing && (
+          <Modal onClose={this.toggleEditing} visible>
+            <MetadataEditor beatmapset={this.props.beatmapset} onClose={this.toggleEditing} />
+          </Modal>
+        )}
+
         <div>
           {osu.trans('beatmapsets.show.info.creator')}
         </div>
@@ -109,6 +130,20 @@ export default class Metadata extends React.PureComponent<Props> {
             </div>
           </>
         )}
+
+        {canEdit && (
+          <div className='beatmapset-metadata__edit-button'>
+            <button
+              className='btn-circle'
+              onClick={this.toggleEditing}
+              type='button'
+            >
+              <span className='btn-circle__content'>
+                <i className='fas fa-pencil-alt' />
+              </span>
+            </button>
+          </div>
+        )}
       </div>
     );
   }
@@ -121,4 +156,8 @@ export default class Metadata extends React.PureComponent<Props> {
       />
     );
   }
+
+  private toggleEditing = () => {
+    this.setState({ isEditing: !this.state.isEditing });
+  };
 }
