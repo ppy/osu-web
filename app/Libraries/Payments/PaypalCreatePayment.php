@@ -8,7 +8,6 @@ namespace App\Libraries\Payments;
 use App\Exceptions\InvariantException;
 use App\Models\Store\Order;
 use App\Traits\StoreNotifiable;
-use PayPalCheckoutSdk\Core\PayPalHttpClient;
 use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
 use PayPalHttp\HttpResponse;
 

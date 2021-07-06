@@ -51,7 +51,6 @@ class PaypalController extends Controller
         try {
             $command = new PaypalExecutePayment($order, $params['token']);
             $command->run();
-            Log::debug((array) $command->response);
         } catch (HttpException $e) {
             return $this->setAndRedirectCheckoutError($order, $this->userErrorMessage($e));
         }

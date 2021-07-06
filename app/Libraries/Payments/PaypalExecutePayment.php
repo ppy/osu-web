@@ -8,8 +8,9 @@ namespace App\Libraries\Payments;
 use App\Exceptions\InvariantException;
 use App\Models\Store\Order;
 use App\Traits\StoreNotifiable;
+use Log;
 use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
-use PayPalHttp\HttpResponse;
+use Throwable;
 
 /**
  * Executes an approved Paypal Payment for a store Order.
@@ -21,8 +22,6 @@ use PayPalHttp\HttpResponse;
 class PaypalExecutePayment
 {
     use StoreNotifiable;
-
-    public HttpResponse $response;
 
     public function __construct(private Order $order, private ?string $reference)
     {
@@ -52,7 +51,17 @@ class PaypalExecutePayment
             $client = PaypalApiContext::client();
             $request = new OrdersCaptureRequest($this->reference);
 
-            $this->response = $client->execute($request);
+            $response = $client->execute($request);
+
+            // This block is just extra information for now, errors here should not cause the transaction to fail.
+            try {
+                Log::debug('PaypalExecutePayment::run complete', (array) $response);
+                // This should match the incoming IPN transaction id.
+                $transactionId = $this->response->result->purchase_units[0]->payments->captures[0]->id;
+                $order->update(['transaction_id' => "paypal-{$transactionId}"]);
+            } catch (Throwable $e) {
+                app('sentry')->getClient()->captureException($e);
+            }
         });
     }
 }
