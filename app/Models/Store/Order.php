@@ -36,12 +36,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $provider
  * @property \Carbon\Carbon|null $paid_at
  * @property \Illuminate\Database\Eloquent\Collection $payments Payment
- * @property string|null $reference
+ * @property string|null $reference For paypal transactions, this is the resource Id of the paypal order; otherwise, it is the same as the transaction_id without the prefix.
  * @property \Carbon\Carbon|null $shipped_at
  * @property float|null $shipping
  * @property mixed $status
  * @property string|null $tracking_code
- * @property string|null $transaction_id
+ * @property string|null $transaction_id For paypal transactions, this value is based on the IPN or captured payment Id, not the order resource id.
  * @property \Carbon\Carbon|null $updated_at
  * @property User $user
  * @property int $user_id
