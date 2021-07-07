@@ -19,9 +19,7 @@
   }
 
   &--beatmapset-description-editor {
-    .default-gutter-v2();
-    padding-top: 15px;
-    padding-bottom: $padding-top;
+    .default-box-shadow();
     background-color: hsl(var(--hsl-b2));
     border-radius: @border-radius-large;
   }
@@ -148,6 +146,10 @@
       min-height: 0;
       overflow-y: auto;
       margin-bottom: 5px;
+    }
+
+    .@{_top}--beatmapset-description-editor & {
+      padding: 0 30px;
     }
   }
 
