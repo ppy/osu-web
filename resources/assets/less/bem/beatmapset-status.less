@@ -13,16 +13,6 @@
 
   .fade-element(@hover-transition-duration);
 
-  &--cover {
-    color: var(--colour);
-    background-color: var(--bg);
-    font-size: @font-size--title-small;
-    font-weight: 800;
-    line-height: 1;
-    padding-top: 8px;
-    padding-bottom: 8px;
-  }
-
   &--hype {
     background-color: @osu-colour-b3;
   }
@@ -44,9 +34,12 @@
   }
 
   &--show {
-    padding: 0 35px;
+    color: var(--colour);
+    background-color: var(--bg);
+    padding-top: 0;
+    padding-bottom: 0;
     font-size: inherit;
-    margin: 5px;
+    font-weight: 800;
     height: 100%;
     .center-content();
   }

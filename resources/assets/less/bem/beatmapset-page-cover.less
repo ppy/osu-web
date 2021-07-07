@@ -2,11 +2,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-page-cover {
-  @height: 53px;
+  @height: 50px;
   --cover-height: @height;
   .default-box-shadow();
 
   position: relative;
+  font-size: @font-size--title-small;
   height: var(--cover-height);
   transition: height 120ms ease-in-out;
 
@@ -20,7 +21,7 @@
     bottom: 0;
     width: 100%;
     height: @height;
-    padding: 0 @gutter-v2-desktop;
+    padding: 10px @gutter-v2-desktop;
     display: flex;
     align-items: center;
   }
@@ -37,20 +38,18 @@
     .link-white();
     .reset-input();
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    .center-content();
     position: relative;
 
     --progress: 0;
     --preview-icon: @fa-var-play;
     background-color: hsla(var(--hsl-b4), 0.8);
-    font-size: 12px; // icon size
-    padding: 9px;
+    font-size: inherit; // icon size
     margin-left: auto;
     cursor: pointer;
     border-radius: @border-radius--extra;
     width: 100px;
+    height: 100%;
 
     &::before {
       content: var(--preview-icon);

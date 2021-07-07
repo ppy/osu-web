@@ -26,7 +26,7 @@ export default class Cover extends React.Component<Props> {
 
         <div className='beatmapset-page-cover__content'>
           <div
-            className='beatmapset-status beatmapset-status--cover'
+            className='beatmapset-status beatmapset-status--show'
             style={{
               '--bg': `var(--beatmapset-${this.props.beatmapset.status}-bg-transparent)`,
               '--colour': `var(--beatmapset-${this.props.beatmapset.status}-colour)`,
