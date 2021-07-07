@@ -5,7 +5,7 @@ import * as React from 'react'
 import { button, div, form, i, label, option, select, span, textarea } from 'react-dom-factories'
 el = React.createElement
 
-export default class BbcodeEditor extends React.Component
+export class BbcodeEditor extends React.Component
   componentDidMount: =>
     @sizeSelect.value = ''
     @body.selectionEnd = 0

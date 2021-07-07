@@ -16,6 +16,24 @@ declare module 'back-to-top' {
   }
 }
 
+declare module 'bbcode-editor' {
+  type OnChange = (param: {
+    event: React.MouseEvent<HTMLElement>;
+    hasChanged: boolean;
+    type: 'cancel' | 'save';
+    value: string;
+  }) => void;
+
+  interface Props {
+    modifiers?: string[];
+    disabled: boolean;
+    onChange: OnChange;
+    rawValue: string;
+  }
+
+  class BbcodeEditor extends React.PureComponent<Props> { }
+}
+
 declare module 'block-button' {
   interface Props {
     modifiers?: string[];
