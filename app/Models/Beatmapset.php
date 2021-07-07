@@ -46,6 +46,7 @@ use Illuminate\Database\QueryException;
  * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussions BeatmapDiscussion
  * @property \Illuminate\Database\Eloquent\Collection $beatmaps Beatmap
  * @property int $beatmapset_id
+ * @property \Illuminate\Database\Eloquent\Collection $beatmapsetNominations BeatmapsetNomination
  * @property mixed|null $body_hash
  * @property float $bpm
  * @property string $commentable_identifier
@@ -601,7 +602,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         }
 
         $this->getConnection()->transaction(function () use ($event, $notificationClass, $post, $user) {
-            // call resetNominations?
             $nominators = $this->nominationsSinceReset()->with('user')->get()->pluck('user');
             BeatmapsetEvent::log($event, $user, $post, ['nominator_ids' => $nominators->pluck('user_id')])->saveOrExplode();
             foreach ($nominators as $nominator) {
@@ -877,14 +877,19 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     |
     */
 
+    public function allBeatmaps()
+    {
+        return $this->hasMany(Beatmap::class)->withTrashed();
+    }
+
     public function beatmaps()
     {
         return $this->hasMany(Beatmap::class);
     }
 
-    public function allBeatmaps()
+    public function beatmapsetNominations()
     {
-        return $this->hasMany(Beatmap::class)->withTrashed();
+        return $this->hasMany(BeatmapsetNomination::class);
     }
 
     public function events()
