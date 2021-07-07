@@ -34,6 +34,7 @@ class RoomTransformer extends TransformerAbstract
             'participant_count' => $room->participant_count,
             'channel_id' => $room->channel_id,
             'active' => Carbon::now()->between($room->starts_at, $room->ends_at),
+            'has_password' => $room->password !== null,
         ];
     }
 
