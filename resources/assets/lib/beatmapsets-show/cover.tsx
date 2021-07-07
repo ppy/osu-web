@@ -19,8 +19,10 @@ export default class Cover extends React.Component<Props> {
 
     return (
       <div className={classWithModifiers('beatmapset-page-cover', { expanded })}>
+        <div className='beatmapset-page-cover__image beatmapset-page-cover__image--default' />
         <Img2x
           className='beatmapset-page-cover__image'
+          hideOnError
           src={this.props.beatmapset.covers.cover}
         />
 
