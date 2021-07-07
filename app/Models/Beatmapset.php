@@ -739,7 +739,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                     $this->getConnection()->transaction(function () use ($user) {
                         return static::lockForUpdate()->find($this->getKey())->qualify($user);
                     });
-                    $this->refresh();
                 } else {
                     (new BeatmapsetNominate($this, $user))->dispatch();
                 }
