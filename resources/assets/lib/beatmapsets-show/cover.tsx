@@ -35,6 +35,12 @@ export default class Cover extends React.Component<Props> {
             >
               {osu.trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
             </div>
+
+            {this.props.beatmapset.nsfw && (
+              <div className='nsfw-badge nsfw-badge--show'>
+                {osu.trans('beatmapsets.nsfw_badge.label')}
+              </div>
+            )}
           </div>
 
           <div className='beatmapset-page-cover__content-item beatmapset-page-cover__content-item--right'>
