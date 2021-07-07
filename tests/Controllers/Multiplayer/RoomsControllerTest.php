@@ -7,6 +7,7 @@ namespace Tests\Controllers\Multiplayer;
 
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
+use App\Models\Chat\UserChannel;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
 use App\Models\OAuth\Token;
@@ -155,5 +156,39 @@ class RoomsControllerTest extends TestCase
 
         $this->assertSame($roomsCountInitial, Room::count());
         $this->assertSame($playlistItemsCountInitial, PlaylistItem::count());
+    }
+
+    public function testJoinWithPassword()
+    {
+        $token = factory(Token::class)->create(['scopes' => ['*']]);
+        $password = 'hunter2';
+        $room = factory(Room::class)->create(compact('password'));
+
+        $initialUserChannelCount = UserChannel::count();
+        $url = route('api.rooms.join', ['room' => $room, 'user' => $token->user]);
+
+        // no password
+        $this
+            ->actingWithToken($token)
+            ->put($url)
+            ->assertStatus(403);
+
+        $this->assertSame($initialUserChannelCount, UserChannel::count());
+
+        // wrong password
+        $this
+            ->actingWithToken($token)
+            ->put($url, ['password' => "x{$password}"])
+            ->assertStatus(403);
+
+        $this->assertSame($initialUserChannelCount, UserChannel::count());
+
+        // correct password
+        $this
+            ->actingWithToken($token)
+            ->put($url, compact('password'))
+            ->assertSuccessful();
+
+        $this->assertSame($initialUserChannelCount + 1, UserChannel::count());
     }
 }
