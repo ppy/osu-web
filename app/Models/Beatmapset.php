@@ -716,12 +716,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                 }
                 $this->events()->create($event);
 
-                if ($this->isLegacyNominationMode()) {
-                    $shouldQualify = $this->currentNominationCount() >= $this->requiredNominationCount();
-                } else {
-                    $currentNominations = $this->currentNominationCount();
-                    $requiredNominations = $this->requiredNominationCount();
+                $currentNominations = $this->currentNominationCount();
+                $requiredNominations = $this->requiredNominationCount();
 
+                if ($this->isLegacyNominationMode()) {
+                    $shouldQualify = $currentNominations >= $requiredNominations;
+                } else {
                     $modesSatisfied = 0;
                     foreach ($requiredNominations as $mode => $count) {
                         if ($currentNominations[$mode] > $count) {
