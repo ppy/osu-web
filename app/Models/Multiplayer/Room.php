@@ -196,7 +196,7 @@ class Room extends Model
         }
     }
 
-    public function startGame(User $owner, array $params)
+    public function startGame(User $owner, array $rawParams)
     {
         priv_check_user($owner, 'MultiplayerRoomCreate')->ensureCan();
 
@@ -206,36 +206,39 @@ class Room extends Model
             throw new InvariantException('number of simultaneously active rooms reached');
         }
 
-        $this->name = get_string($params['name'] ?? null);
+        $params = get_params($rawParams, null, [
+            'category',
+            'duration:int',
+            'ends_at:time',
+            'max_attempts:int',
+            'name',
+            'playlist:array',
+        ], ['null_missing' => true]);
+
+        $this->name = $params['name'];
         $this->user_id = $owner->getKey();
-        $this->max_attempts = get_int($params['max_attempts'] ?? null);
+        $this->max_attempts = $params['max_attempts'];
         $this->starts_at = now();
 
-        $category = $params['category'] ?? null;
-        if ($category === 'realtime') {
-            $this->category = $category;
+        if ($params['category'] === 'realtime') {
+            $this->category = $params['category'];
             $this->ends_at = now()->addSeconds(30);
         } else {
-            $endsAt = parse_time_to_carbon($params['ends_at'] ?? null);
-            if ($endsAt !== null) {
-                $this->ends_at = $endsAt;
-            } else {
-                $duration = get_int($params['duration'] ?? null);
-                if ($duration !== null) {
-                    $this->ends_at = $this->starts_at->copy()->addMinutes($duration);
-                }
+            if ($params['ends_at'] !== null) {
+                $this->ends_at = $params['ends_at'];
+            } elseif ($params['duration'] !== null) {
+                $this->ends_at = $this->starts_at->copy()->addMinutes($params['duration']);
             }
         }
 
         $this->assertValidStartGame();
 
-        $playlistParams = $params['playlist'] ?? [];
-        if (!is_array($playlistParams)) {
+        if (!is_array($params['playlist'])) {
             throw new InvariantException("field 'playlist' must an an array");
         }
 
         $playlistItems = [];
-        foreach ($playlistParams as $item) {
+        foreach ($params['playlist'] as $item) {
             $playlistItems[] = PlaylistItem::fromJsonParams($item);
         }
 
