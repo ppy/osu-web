@@ -25,21 +25,34 @@ export default class Cover extends React.Component<Props> {
         />
 
         <div className='beatmapset-page-cover__content'>
-          <div
-            className='beatmapset-status beatmapset-status--show'
-            style={{
-              '--bg': `var(--beatmapset-${this.props.beatmapset.status}-bg-transparent)`,
-              '--colour': `var(--beatmapset-${this.props.beatmapset.status}-colour)`,
-            } as React.CSSProperties}
-          >
-            {osu.trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
+          <div className='beatmapset-page-cover__content-item beatmapset-page-cover__content-item--left'>
+            <div
+              className='beatmapset-status beatmapset-status--show'
+              style={{
+                '--bg': `var(--beatmapset-${this.props.beatmapset.status}-bg-transparent)`,
+                '--colour': `var(--beatmapset-${this.props.beatmapset.status}-colour)`,
+              } as React.CSSProperties}
+            >
+              {osu.trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
+            </div>
           </div>
 
-          <button
-            className='beatmapset-page-cover__preview js-audio--play js-audio--player'
-            data-audio-url={this.props.beatmapset.preview_url}
-            type='button'
-          />
+          <div className='beatmapset-page-cover__content-item beatmapset-page-cover__content-item--right'>
+            {this.props.beatmapset.storyboard && (
+              <div
+                className='beatmapset-status beatmapset-status--show-icon'
+                title={osu.trans('beatmapsets.show.info.storyboard')}
+              >
+                <i className='fas fa-image' />
+              </div>
+            )}
+
+            <button
+              className='beatmapset-page-cover__preview js-audio--play js-audio--player'
+              data-audio-url={this.props.beatmapset.preview_url}
+              type='button'
+            />
+          </div>
 
           <div className='beatmapset-page-cover__toggle'>
             <button
