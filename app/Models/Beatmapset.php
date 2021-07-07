@@ -613,6 +613,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                 )->saveOrExplode();
             }
 
+            $this->beatmapsetNominations()->current()->update(['reset' => true, 'reset_at' => now(), 'reset_user_id' => $user->getKey()]);
+
             if ($event === BeatmapsetEvent::DISQUALIFY) {
                 $this->setApproved('pending', $user);
             }
@@ -715,6 +717,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                     $event['comment'] = ['modes' => $playmodes];
                 }
                 $this->events()->create($event);
+                $this->beatmapsetNominations()->create([
+                    'modes' => $this->isLegacyNominationMode() ? null : $playmodes,
+                    'user_id' => $user->getKey(),
+                ]);
 
                 $currentNominations = $this->currentNominationCount();
                 $requiredNominations = $this->requiredNominationCount();
