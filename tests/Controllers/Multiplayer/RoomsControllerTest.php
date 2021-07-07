@@ -51,6 +51,30 @@ class RoomsControllerTest extends TestCase
         $this->assertSame($playlistItemsCountInitial + 1, PlaylistItem::count());
     }
 
+    public function testStoreWithPassword()
+    {
+        $token = factory(Token::class)->create(['scopes' => ['*']]);
+        $beatmapset = factory(Beatmapset::class)->create();
+        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+
+        $response = $this
+            ->actingWithToken($token)
+            ->post(route('api.rooms.store'), [
+                'ends_at' => now()->addHour(),
+                'name' => 'test room',
+                'password' => 'hunter2',
+                'playlist' => [
+                    [
+                        'beatmap_id' => $beatmap->getKey(),
+                        'ruleset_id' => $beatmap->playmode,
+                    ],
+                ],
+            ])->assertSuccessful();
+
+        $responseJson = json_decode($response->getContent(), true);
+        $this->assertNull(Room::find($responseJson['id'])->password);
+    }
+
     public function testStoreRealtime()
     {
         $token = factory(Token::class)->create(['scopes' => ['*']]);
@@ -75,6 +99,31 @@ class RoomsControllerTest extends TestCase
 
         $this->assertSame($roomsCountInitial + 1, Room::count());
         $this->assertSame($playlistItemsCountInitial + 1, PlaylistItem::count());
+    }
+
+    public function testStoreRealtimeWithPassword()
+    {
+        $token = factory(Token::class)->create(['scopes' => ['*']]);
+        $beatmapset = factory(Beatmapset::class)->create();
+        $beatmap = factory(Beatmap::class)->create(['beatmapset_id' => $beatmapset->getKey()]);
+        $password = 'hunter2';
+
+        $response = $this
+            ->actingWithToken($token)
+            ->post(route('api.rooms.store'), [
+                'category' => 'realtime',
+                'name' => 'test room',
+                'password' => $password,
+                'playlist' => [
+                    [
+                        'beatmap_id' => $beatmap->getKey(),
+                        'ruleset_id' => $beatmap->playmode,
+                    ],
+                ],
+            ])->assertSuccessful();
+
+        $responseJson = json_decode($response->getContent(), true);
+        $this->assertSame($password, Room::find($responseJson['id'])->password);
     }
 
     public function testStoreRealtimeFailWithTwoPlaylistItems()

@@ -212,6 +212,7 @@ class Room extends Model
             'ends_at:time',
             'max_attempts:int',
             'name',
+            'password',
             'playlist:array',
         ], ['null_missing' => true]);
 
@@ -222,6 +223,8 @@ class Room extends Model
 
         if ($params['category'] === 'realtime') {
             $this->category = $params['category'];
+            // only for realtime rooms for now
+            $this->password = $params['password'];
             $this->ends_at = now()->addSeconds(30);
         } else {
             if ($params['ends_at'] !== null) {
