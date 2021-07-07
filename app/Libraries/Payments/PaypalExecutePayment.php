@@ -6,7 +6,6 @@
 namespace App\Libraries\Payments;
 
 use App\Models\Store\Order;
-use App\Traits\StoreNotifiable;
 use Log;
 use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
 use Throwable;
@@ -20,8 +19,6 @@ use Throwable;
  */
 class PaypalExecutePayment
 {
-    use StoreNotifiable;
-
     public function __construct(private Order $order)
     {
     }

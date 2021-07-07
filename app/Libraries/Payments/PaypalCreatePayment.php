@@ -7,7 +7,6 @@ namespace App\Libraries\Payments;
 
 use App\Exceptions\InvariantException;
 use App\Models\Store\Order;
-use App\Traits\StoreNotifiable;
 use Exception;
 use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
 
@@ -19,8 +18,6 @@ use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
  */
 class PaypalCreatePayment
 {
-    use StoreNotifiable;
-
     public function __construct(private Order $order)
     {
         // Sanity check.
