@@ -27,9 +27,7 @@ class LivestreamCollection
             $this->streams = cache_remember_mutexed('livestreams:arr:v2', 300, [], function () {
                 $streams = $this->downloadStreams()['data'] ?? [];
 
-                return array_map(function ($stream) {
-                    return new Twitch\Stream($stream);
-                }, $streams);
+                return array_map(fn ($stream) => new Twitch\Stream($stream), $streams);
             });
         }
 
