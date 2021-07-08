@@ -16,12 +16,15 @@
   }
 
   &__content {
+    padding-top: 10px;
+    padding-bottom: $padding-top;
+    .default-gutter-v2();
+
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
     height: @height;
-    padding: 10px @gutter-v2-desktop;
     display: flex;
     align-items: center;
   }
@@ -31,8 +34,19 @@
     display: flex;
     column-gap: 10px;
 
+    &--left {
+      @media @mobile {
+        display: none;
+      }
+    }
+
     &--right {
       margin-left: auto;
+
+      @media @mobile {
+        margin-left: 0;
+        flex-direction: row-reverse;
+      }
     }
   }
 
