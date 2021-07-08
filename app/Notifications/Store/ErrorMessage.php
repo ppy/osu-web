@@ -6,14 +6,12 @@
 namespace App\Notifications\Store;
 
 use Illuminate\Notifications\Messages\SlackMessage;
-use PayPal\Exception\PayPalConnectionException;
 
 class ErrorMessage extends Message
 {
     private $context;
     private $eventName;
     private $exceptionClass;
-    private $exceptionData;
     private $exceptionMessage;
     private $order;
 
@@ -28,11 +26,6 @@ class ErrorMessage extends Message
         $this->context = $context;
         $this->eventName = $eventName;
         $this->exceptionClass = get_class($exception);
-
-        if ($exception instanceof PayPalConnectionException) {
-            $this->exceptionData = $exception->getData();
-        }
-
         $this->exceptionMessage = $exception->getMessage();
         $this->order = $order;
     }
@@ -53,9 +46,6 @@ class ErrorMessage extends Message
             ->content($content)
             ->attachment(function ($attachment) {
                 $fields = $this->context;
-                if (isset($this->exceptionData)) {
-                    $fields = array_merge($fields, ['data' => $this->exceptionData]);
-                }
 
                 $attachment->content($this->exceptionMessage);
                 $attachment->fields($fields);
@@ -77,10 +67,6 @@ class ErrorMessage extends Message
 
         if ($this->order) {
             $array['orderId'] = $this->order->order_id;
-        }
-
-        if (isset($this->exceptionData)) {
-            $array['data'] = $this->exceptionData;
         }
 
         return $array;
