@@ -41,7 +41,17 @@ class RoomsController extends BaseController
             abort(403);
         }
 
-        Room::findOrFail($roomId)->join(auth()->user());
+        $room = Room::findOrFail($roomId);
+
+        if ($room->password !== null) {
+            $password = get_param_value(request('password'), null);
+
+            if ($password === null || !hash_equals(hash('sha256', $room->password), hash('sha256', $password))) {
+                abort(403, osu_trans('multiplayer.room.invalid_password'));
+            }
+        }
+
+        $room->join(auth()->user());
 
         return response([], 204);
     }
