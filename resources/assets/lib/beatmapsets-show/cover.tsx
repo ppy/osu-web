@@ -29,7 +29,7 @@ export default class Cover extends React.Component<Props> {
         <div className='beatmapset-page-cover__content'>
           <div className='beatmapset-page-cover__content-item beatmapset-page-cover__content-item--left'>
             <div
-              className='beatmapset-status beatmapset-status--show'
+              className='beatmapset-status beatmapset-status--cover'
               style={{
                 '--bg': `var(--beatmapset-${this.props.beatmapset.status}-bg-transparent)`,
                 '--colour': `var(--beatmapset-${this.props.beatmapset.status}-colour)`,
@@ -39,7 +39,7 @@ export default class Cover extends React.Component<Props> {
             </div>
 
             {this.props.beatmapset.nsfw && (
-              <div className='nsfw-badge nsfw-badge--show'>
+              <div className='nsfw-badge nsfw-badge--cover'>
                 {osu.trans('beatmapsets.nsfw_badge.label')}
               </div>
             )}

@@ -13,6 +13,17 @@
 
   .fade-element(@hover-transition-duration);
 
+  &--cover {
+    color: var(--colour);
+    background-color: var(--bg);
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: inherit;
+    font-weight: 800;
+    height: 100%;
+    .center-content();
+  }
+
   &--hype {
     background-color: @osu-colour-b3;
   }
@@ -31,17 +42,6 @@
     background-color: var(--bg);
     font-weight: 800;
     line-height: 14px;
-  }
-
-  &--show {
-    color: var(--colour);
-    background-color: var(--bg);
-    padding-top: 0;
-    padding-bottom: 0;
-    font-size: inherit;
-    font-weight: 800;
-    height: 100%;
-    .center-content();
   }
 
   &--show-icon {
