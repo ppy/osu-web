@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-info {
-  padding: 0 50px;
+  .default-gutter-v2();
   font-size: @font-size--normal;
 
   &__diff-item {
@@ -10,7 +10,11 @@
     align-items: center;
 
     &--details {
-      gap: 0 7px;
+      column-gap: 7px;
+
+      @media @mobile {
+        display: none;
+      }
     }
 
     &--length-bpm {
@@ -20,7 +24,14 @@
       background-color: hsl(var(--hsl-b4));
       padding: 3px 20px;
       border-radius: @border-radius--large;
-      gap: 15px;
+      column-gap: 15px;
+      justify-content: center;
+
+      @media @mobile {
+        margin-left: 0;
+        width: 100%;
+        font-size: @font-size--normal;
+      }
     }
   }
 
@@ -45,9 +56,13 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       align-items: start;
-      gap: 30px;
+      gap: 5px 30px;
       margin-bottom: 15px;
       font-weight: bold;
+
+      @media @mobile {
+        grid-template-columns: 1fr;
+      }
     }
   }
 
