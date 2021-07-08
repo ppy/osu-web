@@ -70,7 +70,7 @@ class PaypalController extends Controller
     // Begin process of approving a payment.
     public function create()
     {
-        $orderId = get_params(request()->all(), null, ['order_id:int'], ['null_missing' => true])['order_id'];
+        $orderId = get_int(request('order_id'));
 
         $order = auth()->user()->orders()->processing()->findOrFail($orderId);
 
@@ -80,7 +80,7 @@ class PaypalController extends Controller
     // Payment declined by user.
     public function declined()
     {
-        $orderId = get_params(request()->all(), null, ['order_id:int'], ['null_missing' => true])['order_id'];
+        $orderId = get_int(request('order_id'));
 
         $order = auth()->user()->orders()->processing()->find($orderId);
 
