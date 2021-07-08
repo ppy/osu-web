@@ -2,22 +2,35 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-header {
-  padding: 15px @gutter-v2-desktop 0;
+  .default-gutter-v2();
   background-color: hsl(var(--hsl-b4));
+  font-size: @font-size--normal;
+  font-weight: 600;
+  padding-top: 5px;
 
   &__artist {
-    font-size: @font-size--title-small-4;
-    margin-left: 5px;
+    @media @desktop {
+      font-size: @font-size--title-small-4;
+      display: inline;
+      margin-left: 5px;
+    }
+  }
+
+  &__chooser {
+    display: flex;
+    column-gap: 5px;
+  }
+
+  &__chooser-picker {
+    display: none;
+
+    @media @desktop {
+      display: block;
+    }
   }
 
   &__creator {
-    font-size: @font-size--normal;
     color: hsl(var(--hsl-c2));
-  }
-
-  &__picker {
-    display: flex;
-    column-gap: 5px;
   }
 
   &__text-link {
@@ -27,6 +40,28 @@
   }
 
   &__title {
-    font-size: @font-size--title;
+    font-size: @font-size--title-small-3;
+
+    @media @desktop {
+      font-size: @font-size--title;
+      display: inline;
+    }
+  }
+
+  &__status {
+    display: flex;
+
+    @media @desktop {
+      display: none;
+    }
+  }
+
+  &__title-container {
+    margin-top: 5px;
+    margin-bottom: 10px;
+
+    @media @desktop {
+      margin-bottom: 0;
+    }
   }
 }

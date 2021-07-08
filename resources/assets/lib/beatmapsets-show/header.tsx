@@ -26,17 +26,29 @@ export default class Header extends React.Component<Props> {
 
     return (
       <div className='beatmapset-header'>
+        <div className='beatmapset-header__status'>
+          <div
+            className='beatmapset-status beatmapset-status--panel'
+            style={{
+              '--bg': `var(--beatmapset-${this.props.beatmapset.status}-bg)`,
+              '--colour': `var(--beatmapset-${this.props.beatmapset.status}-colour)`,
+            } as React.CSSProperties}
+          >
+            {osu.trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
+          </div>
+        </div>
+
         <div className='beatmapset-header__title-container u-ellipsis-overflow'>
-          <span className='beatmapset-header__title'>
+          <div className='beatmapset-header__title u-ellipsis-overflow'>
             <a
               className='beatmapset-header__text-link'
               href={route('beatmapsets.index', { q: getTitle(this.props.beatmapset) })}
             >
               {getTitle(this.props.beatmapset)}
             </a>
-          </span>
+          </div>
 
-          <span className='beatmapset-header__artist'>
+          <div className='beatmapset-header__artist u-ellipsis-overflow'>
             <StringWithComponent
               mappings={{
                 ':artist':
@@ -50,7 +62,7 @@ export default class Header extends React.Component<Props> {
               }}
               pattern={osu.trans('beatmapsets.show.details.by_artist')}
             />
-          </span>
+          </div>
         </div>
 
 
@@ -67,16 +79,21 @@ export default class Header extends React.Component<Props> {
           />
         </div>
 
-        <div className='beatmapset-header__picker'>
-          <BeatmapList
-            beatmaps={beatmaps}
-            currentBeatmap={this.props.currentBeatmap}
-            type='show'
-          />
-          <BeatmapPicker
-            beatmaps={beatmaps}
-            currentBeatmap={this.props.currentBeatmap}
-          />
+        <div className='beatmapset-header__chooser'>
+          <div className='beatmapset-header__chooser-list'>
+            <BeatmapList
+              beatmaps={beatmaps}
+              currentBeatmap={this.props.currentBeatmap}
+              type='show'
+            />
+          </div>
+
+          <div className='beatmapset-header__chooser-picker'>
+            <BeatmapPicker
+              beatmaps={beatmaps}
+              currentBeatmap={this.props.currentBeatmap}
+            />
+          </div>
         </div>
       </div>
     );
