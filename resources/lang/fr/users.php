@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Anti-jeu / Tricherie',
+            'multiple_accounts' => '',
             'insults' => 'M’insulte / insulte les autres',
             'spam' => 'Spam',
             'unwanted_content' => 'Envoi de contenu inapproprié',
@@ -299,6 +300,9 @@ return [
                 'empty' => "Cet utilisateur n'en a encore jamais reçue. ;_;",
                 'recent' => 'Dernier',
                 'title' => 'Médailles',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Messages',

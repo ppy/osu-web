@@ -39,7 +39,7 @@ return [
             'verify_link' => 'верификация аккаунта',
         ],
         'artists_controller' => [
-            '_' => 'featured artists',
+            '_' => 'избранные исполнители',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'публикации в обсуждений карты',
@@ -142,6 +142,9 @@ return [
     'users' => [
         'modding_history_controller' => [
             '_' => 'информация о моддере',
+        ],
+        'multiplayer_controller' => [
+            '_' => '',
         ],
     ],
 ];
