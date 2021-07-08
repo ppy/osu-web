@@ -2,9 +2,17 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-description {
-  padding: @gutter-v2-desktop;
+  .default-gutter-v2();
+  padding-top: @gutter-v2;
+  padding-bottom: @gutter-v2;
+
   font-size: @font-size--normal;
   position: relative;
+
+  @media @desktop {
+    padding-top: @gutter-v2-desktop;
+    padding-bottom: @gutter-v2-desktop;
+  }
 
   &__container {
     .default-box-shadow();
@@ -13,7 +21,12 @@
     max-height: 320px;
     overflow-y: auto;
     background-color: hsl(var(--hsl-b4));
-    padding: 10px 40px;
+    padding: 10px;
+
+    @media @desktop {
+      padding-left: 40px;
+      padding-right: $padding-left;
+    }
   }
 
   &__edit-button {

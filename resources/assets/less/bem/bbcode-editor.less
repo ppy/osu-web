@@ -149,7 +149,10 @@
     }
 
     .@{_top}--beatmapset-description-editor & {
-      padding: 0 30px;
+      @media @desktop {
+        padding-left: 30px;
+        padding-right: $padding-left;
+      }
     }
   }
 
