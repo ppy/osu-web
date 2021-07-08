@@ -13,6 +13,7 @@ use App\Traits\Validatable;
  * @property string $name
  * @property int $id
  * @property \Carbon\Carbon $updated_at
+ * @property User $user
  * @property int $user_id
  */
 class UserNotificationOption extends Model
@@ -53,7 +54,7 @@ class UserNotificationOption extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function setDetailsAttribute($value)

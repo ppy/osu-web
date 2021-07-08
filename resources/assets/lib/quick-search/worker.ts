@@ -103,21 +103,24 @@ export default class Worker {
     }
 
     switch (SECTIONS[this.selected.section]) {
-      case 'user':
+      case 'user': {
         const userId = searchResult.user.users[this.selected.index]?.id;
         return userId ? route('users.show', { user: userId }) : undefined;
+      }
       case 'user_others':
         return route('search', { mode: 'user', query: this.query });
-      case 'beatmapset':
+      case 'beatmapset': {
         const id = searchResult.beatmapset.beatmapsets[this.selected.index]?.id;
         return id ? route('beatmapsets.show', { beatmapset: id }) : undefined;
+      }
       case 'beatmapset_others':
         return route('search', { mode: 'beatmapset', query: this.query });
-      case 'others':
+      case 'others': {
         const others = otherModes.filter((mode) => searchResult[mode].total > 0);
         const selectedMode = others[this.selected.index];
 
         return route('search', { mode: selectedMode, query: this.query });
+      }
     }
   }
 
