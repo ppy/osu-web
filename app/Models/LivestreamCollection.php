@@ -24,7 +24,7 @@ class LivestreamCollection
     public function all()
     {
         if ($this->streams === null) {
-            $this->streams = Cache::remember('livestreams:arr:v2', 300, function () {
+            $this->streams = cache_remember_mutexed('livestreams:arr:v2', 300, [], function () {
                 $streams = $this->downloadStreams()['data'] ?? [];
 
                 return array_map(function ($stream) {
