@@ -28,7 +28,7 @@ export default class Header extends React.Component<Props> {
       <div className='beatmapset-header'>
         <div className='beatmapset-header__status'>
           <div
-            className='beatmapset-status beatmapset-status--panel'
+            className='beatmapset-status beatmapset-status--header'
             style={{
               '--bg': `var(--beatmapset-${this.props.beatmapset.status}-bg)`,
               '--colour': `var(--beatmapset-${this.props.beatmapset.status}-colour)`,
