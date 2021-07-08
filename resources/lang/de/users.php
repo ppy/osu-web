@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Cheating',
+            'multiple_accounts' => '',
             'insults' => 'Beleidigt mich / andere',
             'spam' => 'Spamming',
             'unwanted_content' => 'Verlinkt unangemessene Inhalte',
@@ -299,6 +300,9 @@ return [
                 'empty' => "Dieser Nutzer hat noch keine erhalten. ;_;",
                 'recent' => 'Neueste',
                 'title' => 'Medaillen',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Beiträge',

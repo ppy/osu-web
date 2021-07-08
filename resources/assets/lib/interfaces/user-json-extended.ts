@@ -5,7 +5,6 @@ import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 
 export default interface UserJsonExtended extends UserJson {
-  comments_count: number;
   country: Country;
   cover: Cover;
   discord: string | null;

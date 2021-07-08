@@ -54,7 +54,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => '지금 작성하는 토론과 연관된 토론이 없습니다',
-        'notice' => ':timestamp (:existing_timestamps)주위에 달린 답글이 있습니다. 포스팅하기 전에 한 번 확인해보세요.',
+        'notice' => '대략 :timestamp (:existing_timestamps)에 게시한 게시글이 있어요. 게시하기 전에 한 번 확인 해보세요.',
         'unsaved' => '이 리뷰에서 :count개',
     ],
 

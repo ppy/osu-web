@@ -143,5 +143,8 @@ return [
         'modding_history_controller' => [
             '_' => 'ข้อมูลผู้ให้คำวิจารณ์',
         ],
+        'multiplayer_controller' => [
+            '_' => '',
+        ],
     ],
 ];

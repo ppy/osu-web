@@ -15,7 +15,7 @@ namespace App\Models;
  * @property bool $hidden
  * @property int $id
  * @property string $type
- * @property User $user
+ * @property User|null $user
  * @property int|null $user_id
  */
 class UserGroupEvent extends Model
@@ -86,11 +86,11 @@ class UserGroupEvent extends Model
 
     public function group()
     {
-        return $this->belongsTo(Group::class);
+        return $this->belongsTo(Group::class, 'group_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

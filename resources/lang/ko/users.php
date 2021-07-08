@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => '부정 행위 / 치트 사용',
+            'multiple_accounts' => '',
             'insults' => '자신 / 다른 사람을 모욕 함',
             'spam' => '도배',
             'unwanted_content' => '부적절한 콘텐츠에 링크 걸기',
@@ -299,6 +300,9 @@ return [
                 'empty' => "아직 아무런 메달도 받지 못했네요. ;_;",
                 'recent' => '최근 획득',
                 'title' => '메달',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => '게시글',
