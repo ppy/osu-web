@@ -99,9 +99,10 @@ export class Header extends React.PureComponent
           div
             className: "#{bn}__filter-group"
             el BeatmapList,
+              beatmaps: @props.beatmaps.get(@props.currentBeatmap.mode)
               currentBeatmap: @props.currentBeatmap
               currentDiscussions: @props.currentDiscussions
-              beatmaps: @props.beatmaps.get(@props.currentBeatmap.mode)
+              createLink: @createLink
 
           div
             className: "#{bn}__filter-group #{bn}__filter-group--stats"
@@ -169,3 +170,6 @@ export class Header extends React.PureComponent
             total
 
         div className: "#{bn}__line"
+
+  createLink: (beatmap) =>
+    BeatmapDiscussionHelper.url beatmap: beatmap
