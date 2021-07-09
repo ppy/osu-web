@@ -5,6 +5,7 @@ import Blackout from 'blackout';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { nextVal } from 'utils/seq';
 import BeatmapListItem from './beatmap-list-item';
 
 interface Props {
@@ -20,6 +21,8 @@ interface State {
 }
 
 export default class BeatmapList extends React.PureComponent<Props, State> {
+  private readonly eventId = `beatmapset-discussions-show-beatmap-list-${nextVal()}`;
+
   constructor(props: Props) {
     super(props);
 
@@ -29,13 +32,13 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
   }
 
   componentDidMount() {
-    $(document).on('click.beatmapList', this.onDocumentClick);
-    $(document).on('turbolinks:before-cache.beatmapList', this.hideSelector);
+    $(document).on(`click.${this.eventId}`, this.onDocumentClick);
+    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.hideSelector);
     this.syncBlackout();
   }
 
   componentWillUnmount() {
-    $(document).off('.beatmapList');
+    $(document).off(`.${this.eventId}`);
   }
 
   render() {
