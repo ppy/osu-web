@@ -36,6 +36,11 @@ abstract class SearchParams
         return 'search:'.static::class.':'.json_encode($this->getCacheKeyVars());
     }
 
+    /**
+     * Generate default array to be used as part of cache key.
+     *
+     * @return array the cache key vars.
+     */
     public function getCacheKeyVars(): array
     {
         $vars = get_object_vars($this);
