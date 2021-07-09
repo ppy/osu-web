@@ -23,8 +23,9 @@ abstract class Model extends BaseModel
     protected $primaryKey = 'score_id';
 
     protected $casts = [
-        'perfect' => 'boolean',
-        'replay' => 'boolean',
+        'pass' => 'bool',
+        'perfect' => 'bool',
+        'replay' => 'bool',
     ];
     protected $dates = ['date'];
 
@@ -73,28 +74,7 @@ abstract class Model extends BaseModel
             return $query;
         }
 
-        // FIXME: on mysql 8.0.22, character set (coercibility?) difference causes query error.
-        //
-        // The error itself doesn't manifest if only doing `Score\Osu::where('rank', '<>', 'F')`.
-        // It's when having more conditions like `Score\Osu::where('user_id', 1)->where('rank', '<>', 'F')`
-        // then mysql spits out error.
-        //
-        // One alternative is using CONVERT: `whereRaw('`rank` <> CONVERT(? USING latin1)', ['F'])`.
-        // The character set for CONVERT() doesn't actually matter - doing this at all allows
-        // mysql to coerce the value to the column's character set. Presumably. The writer of this
-        // comment isn't sure either why this works.
-        //
-        // Skipping variable binding altogether and using literal query also works (used here).
-        //
-        // Also note the error only happens when using prepared statement with binding value.
-        //
-        // Original error:
-        // General error: 1267 Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,COERCIBLE) for operation '<>'
-        //
-        // Maybe references:
-        // - https://dev.mysql.com/doc/relnotes/mysql/8.0/en/news-8-0-22.html#mysqld-8-0-22-optimizer
-        // - https://dev.mysql.com/doc/refman/8.0/en/type-conversion.html
-        return $query->whereRaw("`rank` <> 'F'");
+        return $query->where('pass', true);
     }
 
     public function scopeVisibleUsers($query)
