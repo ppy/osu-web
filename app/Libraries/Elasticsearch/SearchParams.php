@@ -33,10 +33,15 @@ abstract class SearchParams
      */
     public function getCacheKey(): string
     {
+        return 'search:'.static::class.':'.json_encode($this->getCacheKeyVars());
+    }
+
+    public function getCacheKeyVars(): array
+    {
         $vars = get_object_vars($this);
         ksort($vars);
 
-        return 'search:'.static::class.':'.json_encode($vars);
+        return $vars;
     }
 
     /**
