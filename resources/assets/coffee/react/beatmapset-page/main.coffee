@@ -15,6 +15,7 @@ import * as React from 'react'
 import { div } from 'react-dom-factories'
 import * as BeatmapHelper from 'utils/beatmap-helper'
 import * as BeatmapsetPageHash from 'utils/beatmapset-page-hash'
+import { nextVal } from 'utils/seq'
 
 el = React.createElement
 
@@ -22,6 +23,7 @@ export class Main extends React.Component
   constructor: (props) ->
     super props
 
+    @eventId = "beatmapsets-show-#{nextVal()}"
     @scoreboardXhr = null
     @favouriteXhr = null
 
@@ -179,13 +181,13 @@ export class Main extends React.Component
       osu.ajaxError xhr
 
   componentDidMount: ->
-    $.subscribe 'beatmapset:set.beatmapsetPage', @setBeatmapset
-    $.subscribe 'beatmapset:beatmap:set.beatmapsetPage', @setCurrentBeatmap
-    $.subscribe 'playmode:set.beatmapsetPage', @setCurrentPlaymode
-    $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
-    $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmap
-    $.subscribe 'beatmapset:favourite:toggle.beatmapsetPage', @toggleFavourite
-    $(document).on 'turbolinks:before-cache.beatmapsetPage', @saveStateToContainer
+    $.subscribe "beatmapset:set.#{@eventId}", @setBeatmapset
+    $.subscribe "beatmapset:beatmap:set.#{@eventId}", @setCurrentBeatmap
+    $.subscribe "playmode:set.#{@eventId}", @setCurrentPlaymode
+    $.subscribe "beatmapset:scoreboard:set.#{@eventId}", @setCurrentScoreboard
+    $.subscribe "beatmapset:hoveredbeatmap:set.#{@eventId}", @setHoveredBeatmap
+    $.subscribe "beatmapset:favourite:toggle.#{@eventId}", @toggleFavourite
+    $(document).on "turbolinks:before-cache.#{@eventId}", @saveStateToContainer
 
     @setHash()
 
@@ -194,7 +196,7 @@ export class Main extends React.Component
 
 
   componentWillUnmount: ->
-    $.unsubscribe '.beatmapsetPage'
+    $.unsubscribe ".#{@eventId}"
     @scoreboardXhr?.abort()
     @favouriteXhr?.abort()
 

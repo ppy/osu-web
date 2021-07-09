@@ -6,12 +6,14 @@ import { CoverUploader } from './cover-uploader'
 import * as React from 'react'
 import { div, p } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 export class CoverSelector extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @eventId = "users-show-cover-selector-#{nextVal()}"
     @dropzoneRef = React.createRef()
     @uploaderRef = React.createRef()
 
@@ -23,8 +25,8 @@ export class CoverSelector extends React.PureComponent
   componentDidMount: =>
     @_removeListeners()
     @uploaderRef.current.setup()
-    $.subscribe 'dragenterGlobal.profilePageCoverSelector', @_dropOverlayStart
-    $.subscribe 'dragendGlobal.profilePageCoverSelector', @_dropOverlayEnd
+    $.subscribe "dragenterGlobal.#{@eventId}", @_dropOverlayStart
+    $.subscribe "dragendGlobal.#{@eventId}", @_dropOverlayEnd
 
   componentWillUnmount: =>
     @uploaderRef.current.destroy()
@@ -47,7 +49,7 @@ export class CoverSelector extends React.PureComponent
 
 
   _removeListeners: ->
-    $.unsubscribe '.profilePageCoverSelector'
+    $.unsubscribe ".#{@eventId}"
 
 
   render: =>
