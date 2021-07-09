@@ -47,6 +47,7 @@ return [
 
         'users' => [
             'modding' => '',
+            'multiplayer' => '',
             'show' => 'informácie',
         ],
     ],

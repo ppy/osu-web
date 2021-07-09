@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Нечестна игра / Измама',
+            'multiple_accounts' => '',
             'insults' => 'Обижда ме / други',
             'spam' => 'Спам',
             'unwanted_content' => 'Изпраща неприлично съдържание',
@@ -299,6 +300,9 @@ return [
                 'empty' => "Този потребител все още няма никакви! Т - Т",
                 'recent' => 'Най-новите',
                 'title' => 'Медали',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Публикации',

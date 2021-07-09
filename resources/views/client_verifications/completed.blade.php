@@ -35,11 +35,12 @@
                 </a>
 
                 <button
-                    class="dialog-form__extra-link dialog-form__extra-link--small"
+                    class="js-logout-link dialog-form__extra-link dialog-form__extra-link--small"
                     data-confirm="{{ osu_trans('users.logout_confirm') }}"
                     data-method="DELETE"
+                    data-redirect-home='1'
                     data-remote="1"
-                    data-url="{{ route('logout', ['redirect_home' => 1]) }}"
+                    data-url="{{ route('logout') }}"
                 >
                     {{ osu_trans('client_verifications.completed.logout') }}
                 </button>
