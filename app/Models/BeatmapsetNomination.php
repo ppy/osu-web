@@ -25,6 +25,34 @@ class BeatmapsetNomination extends Model
         'modes' => 'array',
     ];
 
+    public static function migrate()
+    {
+        BeatmapsetEvent::whereIn('type', [BeatmapsetEvent::NOMINATE, BeatmapsetEvent::NOMINATION_RESET, BeatmapsetEvent::DISQUALIFY])
+            ->with('beatmapset')
+            ->chunkById(1000, function ($chunk) {
+                /** @var BeatmapsetEvent $event */
+                foreach ($chunk as $event) {
+                    switch ($event->type) {
+                        case BeatmapsetEvent::NOMINATE:
+                            \Log::debug('nominate', ['beatmapset_id' => $event->beatmapset_id, 'user_id' => $event->user_id]);
+                            $event->beatmapset->beatmapsetNominations()->create([
+                                'user_id' => $event->user_id,
+                            ]);
+                            break;
+                        case BeatmapsetEvent::DISQUALIFY:
+                        case BeatmapsetEvent::NOMINATION_RESET:
+                            \Log::debug('nomination reset', ['beatmapset_id' => $event->beatmapset_id, 'user_id' => $event->user_id]);
+                            static::where('beatmapset_id', $event->beatmapset->getKey())->current()->update([
+                                'reset' => true,
+                                'reset_at' => $event->created_at,
+                                'reset_user_id' => $event->user_id,
+                            ]);
+                            break;
+                    }
+                }
+            });
+    }
+
     public function beatmapset()
     {
         return $this->belongsTo(Beatmapset::class);
