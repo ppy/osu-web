@@ -60,7 +60,7 @@ interface BeatmapDiscussionHelperClass {
 interface JQueryStatic {
   publish: (eventName: string, data?: any) => void;
   subscribe: (eventName: string, handler: (...params: any[]) => void) => void;
-  unsubscribe: (eventName: string) => void;
+  unsubscribe: (eventName: string, handler?: unknown) => void;
 }
 
 type AjaxError = (xhr: JQuery.jqXHR) => void;
