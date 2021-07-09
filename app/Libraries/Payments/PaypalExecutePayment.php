@@ -46,7 +46,7 @@ class PaypalExecutePayment
             try {
                 Log::debug('PaypalExecutePayment::run complete', (array) $response);
                 // This should match the incoming IPN transaction id.
-                $transactionId = $this->response->result->purchase_units[0]->payments->captures[0]->id;
+                $transactionId = $response->result->purchase_units[0]->payments->captures[0]->id;
                 $order->update(['transaction_id' => "paypal-{$transactionId}"]);
             } catch (Throwable $e) {
                 app('sentry')->getClient()->captureException($e);
