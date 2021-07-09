@@ -3,6 +3,7 @@
 
 import * as React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
+import { nextVal } from 'utils/seq';
 import GalleryContestVoteButton from './gallery-contest-vote-button';
 import GalleryContestVoteProgress from './gallery-contest-vote-progress';
 
@@ -23,7 +24,7 @@ export default class GalleryContest {
       this.root,
     );
 
-    this.eventId = `gallery-contest-${osu.uuid()}`;
+    this.eventId = `gallery-contest-${nextVal()}`;
 
     $(document).on(`turbolinks:before-cache.${this.eventId}`, this.destroy);
     pswp.listen('destroy', this.destroy);
