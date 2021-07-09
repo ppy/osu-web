@@ -7,19 +7,11 @@ import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import BeatmapListItem from './beatmap-list-item';
 
-
-// TODO: should not be here
-interface CurrentDiscussions {
-  countsByBeatmap: {
-    [key: number]: number;
-  };
-}
-
 interface Props {
   beatmaps: BeatmapJsonExtended[];
   currentBeatmap: BeatmapJsonExtended;
-  currentDiscussions: CurrentDiscussions;
   createLink: (beatmap: BeatmapJsonExtended) => string;
+  getCount?: (beatmap: BeatmapJsonExtended) => number | undefined;
   onSelectBeatmap: (beatmapId: number) => void;
 }
 
@@ -67,8 +59,6 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
   }
 
   private beatmapListItem(beatmap: BeatmapJsonExtended) {
-    const count = beatmap.deleted_at !== null ? undefined : this.props.currentDiscussions.countsByBeatmap[beatmap.id];
-
     return (
       <a
         key={beatmap.id}
@@ -77,7 +67,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
         href={this.props.createLink(beatmap)}
         onClick={this.selectBeatmap}
       >
-        <BeatmapListItem beatmap={beatmap} count={count} />
+        <BeatmapListItem beatmap={beatmap} count={this.props.getCount?.(beatmap)} />
       </a>
     );
   }

@@ -101,8 +101,8 @@ export class Header extends React.PureComponent
             el BeatmapList,
               beatmaps: @props.beatmaps.get(@props.currentBeatmap.mode)
               currentBeatmap: @props.currentBeatmap
-              currentDiscussions: @props.currentDiscussions
               createLink: @createLink
+              getCount: @getCount
               onSelectBeatmap: @onSelectBeatmap
 
           div
@@ -174,6 +174,12 @@ export class Header extends React.PureComponent
 
   createLink: (beatmap) =>
     BeatmapDiscussionHelper.url beatmap: beatmap
+
+  getCount: (beatmap) =>
+    if beatmap.deleted_at?
+      return undefined
+
+    return @props.currentDiscussions.countsByBeatmap[beatmap.id]
 
   onSelectBeatmap: (beatmapId) =>
     $.publish 'beatmapsetDiscussions:update',
