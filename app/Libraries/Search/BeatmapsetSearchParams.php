@@ -113,7 +113,7 @@ class BeatmapsetSearchParams extends SearchParams
         unset($vars['user']);
         ksort($vars);
 
-        return 'beatmapset-search:'.json_encode($vars);
+        return 'search:'.static::class.':'.json_encode($vars);
     }
 
     /**

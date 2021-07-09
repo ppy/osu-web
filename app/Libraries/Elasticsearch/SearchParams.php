@@ -31,7 +31,13 @@ abstract class SearchParams
      *
      * @return string the cache key.
      */
-    abstract public function getCacheKey(): string;
+    public function getCacheKey(): string
+    {
+        $vars = get_object_vars($this);
+        ksort($vars);
+
+        return 'search:'.static::class.':'.json_encode($vars);
+    }
 
     /**
      * Checks if the current set of parameters is eligible for caching.
