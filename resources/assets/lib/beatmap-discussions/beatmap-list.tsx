@@ -20,6 +20,7 @@ interface Props {
   currentBeatmap: BeatmapJsonExtended;
   currentDiscussions: CurrentDiscussions;
   createLink: (beatmap: BeatmapJsonExtended) => string;
+  onSelectBeatmap: (beatmapId: number) => void;
 }
 
 interface State {
@@ -103,10 +104,8 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
     if (e.button !== 0) return;
     e.preventDefault();
 
-    $.publish('beatmapsetDiscussions:update', {
-      beatmapId: parseInt(e.currentTarget.dataset.id ?? '', 10),
-      mode: BeatmapDiscussionHelper.DEFAULT_MODE,
-    });
+    const beatmapId = parseInt(e.currentTarget.dataset.id ?? '', 10);
+    this.props.onSelectBeatmap(beatmapId);
   };
 
   private setSelector = (state: boolean) => {

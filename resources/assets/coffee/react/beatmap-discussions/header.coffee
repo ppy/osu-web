@@ -103,6 +103,7 @@ export class Header extends React.PureComponent
               currentBeatmap: @props.currentBeatmap
               currentDiscussions: @props.currentDiscussions
               createLink: @createLink
+              onSelectBeatmap: @onSelectBeatmap
 
           div
             className: "#{bn}__filter-group #{bn}__filter-group--stats"
@@ -173,3 +174,8 @@ export class Header extends React.PureComponent
 
   createLink: (beatmap) =>
     BeatmapDiscussionHelper.url beatmap: beatmap
+
+  onSelectBeatmap: (beatmapId) =>
+    $.publish 'beatmapsetDiscussions:update',
+      beatmapId: beatmapId
+      mode: BeatmapDiscussionHelper.DEFAULT_MODE
