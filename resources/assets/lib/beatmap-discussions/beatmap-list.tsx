@@ -9,8 +9,8 @@ import BeatmapListItem from './beatmap-list-item';
 
 interface Props {
   beatmaps: BeatmapJsonExtended[];
-  currentBeatmap: BeatmapJsonExtended;
   createLink: (beatmap: BeatmapJsonExtended) => string;
+  currentBeatmap: BeatmapJsonExtended;
   getCount?: (beatmap: BeatmapJsonExtended) => number | undefined;
   onSelectBeatmap: (beatmapId: number) => void;
 }
