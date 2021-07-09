@@ -16,7 +16,9 @@ class BeatmapsetNominationSyncCommand extends Command
 
     public function handle()
     {
-        BeatmapsetEvent::whereIn('type', [BeatmapsetEvent::NOMINATE, BeatmapsetEvent::NOMINATION_RESET, BeatmapsetEvent::DISQUALIFY])
+        $max = BeatmapsetEvent::max('id');
+
+        BeatmapsetEvent::where('id', '<=', $max)->whereIn('type', [BeatmapsetEvent::NOMINATE, BeatmapsetEvent::NOMINATION_RESET, BeatmapsetEvent::DISQUALIFY])
             ->with('beatmapset')
             ->chunkById(1000, function ($chunk) {
                 /** @var BeatmapsetEvent $event */
