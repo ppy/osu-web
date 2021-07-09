@@ -22,6 +22,7 @@ class CreateBeatmapsetNominations extends Migration
             $table->boolean('reset')->default(false);
             $table->timestampTz('reset_at')->nullable();
             $table->timestampsTz();
+            $table->unsignedBigInteger('event_id')->unique(); // just to prevent dupes when migrating, not sure how useful it'll actually be after.
         });
     }
 

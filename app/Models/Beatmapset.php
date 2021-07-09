@@ -709,15 +709,16 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
             $nomination = $this->nominationsSinceReset()->where('user_id', $user->user_id);
             if (!$nomination->exists()) {
-                $event = [
+                $eventParams = [
                     'type' => BeatmapsetEvent::NOMINATE,
                     'user_id' => $user->user_id,
                 ];
                 if (!$this->isLegacyNominationMode()) {
-                    $event['comment'] = ['modes' => $playmodes];
+                    $eventParams['comment'] = ['modes' => $playmodes];
                 }
-                $this->events()->create($event);
+                $event = $this->events()->create($eventParams);
                 $this->beatmapsetNominations()->create([
+                    'event_id' => $event->getKey(),
                     'modes' => $this->isLegacyNominationMode() ? null : $playmodes,
                     'user_id' => $user->getKey(),
                 ]);

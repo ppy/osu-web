@@ -8,6 +8,8 @@ namespace App\Console\Commands;
 use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetNomination;
 use Illuminate\Console\Command;
+use Illuminate\Database\QueryException;
+use Log;
 
 class BeatmapsetNominationSyncCommand extends Command
 {
@@ -25,14 +27,23 @@ class BeatmapsetNominationSyncCommand extends Command
                 foreach ($chunk as $event) {
                     switch ($event->type) {
                         case BeatmapsetEvent::NOMINATE:
-                            \Log::debug('nominate', ['beatmapset_id' => $event->beatmapset_id, 'user_id' => $event->user_id]);
-                            $event->beatmapset->beatmapsetNominations()->create([
-                                'user_id' => $event->user_id,
-                            ]);
+                            try {
+                                Log::debug('nominate', ['beatmapset_id' => $event->beatmapset_id, 'user_id' => $event->user_id]);
+                                $event->beatmapset->beatmapsetNominations()->create([
+                                    'event_id' => $event->getKey(),
+                                    'user_id' => $event->user_id,
+                                ]);
+                            } catch (QueryException $e) {
+                                if (!is_sql_unique_exception($e)) {
+                                    throw $e;
+                                }
+
+                                Log::debug('nominate already exists', ['beatmapset_id' => $event->beatmapset_id, 'user_id' => $event->user_id]);
+                            }
                             break;
                         case BeatmapsetEvent::DISQUALIFY:
                         case BeatmapsetEvent::NOMINATION_RESET:
-                            \Log::debug('nomination reset', ['beatmapset_id' => $event->beatmapset_id, 'user_id' => $event->user_id]);
+                            Log::debug('nomination reset', ['beatmapset_id' => $event->beatmapset_id, 'user_id' => $event->user_id]);
                             BeatmapsetNomination::where('beatmapset_id', $event->beatmapset->getKey())->current()->update([
                                 'reset' => true,
                                 'reset_at' => $event->created_at,
