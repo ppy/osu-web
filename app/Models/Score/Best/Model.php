@@ -328,7 +328,7 @@ abstract class Model extends BaseModel
      * Override parent scope with a noop as only passed scores go in here.
      * And the `pass` column doesn't exist.
      */
-    public function scopeIncludeFails($query, bool $include = false)
+    public function scopeIncludeFails($query, bool $include)
     {
         return $query;
     }
