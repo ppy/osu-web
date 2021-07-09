@@ -128,6 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Väärin pelaaminen / Huijaaminen',
+            'multiple_accounts' => '',
             'insults' => 'Haukkuu minua / muita',
             'spam' => 'Spämmii',
             'unwanted_content' => 'Sopimattoman sisällön jakaminen',
@@ -299,6 +300,9 @@ return [
                 'empty' => "Tämä käyttäjä ei ole saanut vielä yhtäkään. ;_;",
                 'recent' => 'Viimeisin',
                 'title' => 'Mitalit',
+            ],
+            'multiplayer' => [
+                'title' => '',
             ],
             'posts' => [
                 'title' => 'Julkaisut',

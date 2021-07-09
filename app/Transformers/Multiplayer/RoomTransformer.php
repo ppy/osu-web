@@ -34,6 +34,7 @@ class RoomTransformer extends TransformerAbstract
             'participant_count' => $room->participant_count,
             'channel_id' => $room->channel_id,
             'active' => Carbon::now()->between($room->starts_at, $room->ends_at),
+            'has_password' => $room->password !== null,
         ];
     }
 
@@ -60,15 +61,18 @@ class RoomTransformer extends TransformerAbstract
 
     public function includeRecentParticipants(Room $room)
     {
-        $users = $room
+        $highScores = $room
             ->userHighScores()
             ->with('user')
             ->orderBy('updated_at', 'DESC')
-            ->limit(50)
-            ->get()
-            ->pluck('user');
+            ->limit(50);
 
-        return $this->collection($users, new UserCompactTransformer());
+        // only return users currently inside for open realtime room
+        if ($room->category === 'realtime' && $room->ends_at === null) {
+            $highScores->where(['in_room' => true]);
+        }
+
+        return $this->collection($highScores->get()->pluck('user'), new UserCompactTransformer());
     }
 
     public function includePlaylist(Room $room)

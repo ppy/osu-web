@@ -25,5 +25,5 @@ Timeout.set(0, function() {
             compact('topic', 'state', 'userCanModerate')
         )->render()) !!});
 
-    osu.popup({!! json_encode(trans('forum.topics.'.$type.'.to_'.$stateText.'_done')) !!}, 'success');
+    osu.popup({!! json_encode(osu_trans('forum.topics.'.$type.'.to_'.$stateText.'_done')) !!}, 'success');
 });

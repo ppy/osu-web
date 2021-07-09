@@ -50,7 +50,7 @@ class UserNotificationDigest extends Mailable
                 }
 
                 $this->groups[$key] = [
-                    'text' => trans($baseKey, $details),
+                    'text' => osu_trans($baseKey, $details),
                 ];
             }
 
@@ -77,6 +77,6 @@ class UserNotificationDigest extends Mailable
 
         return $this
             ->text('emails.user_notification_digest', compact('groups', 'user'))
-            ->subject(trans('mail.user_notification_digest.subject'));
+            ->subject(osu_trans('mail.user_notification_digest.subject'));
     }
 }

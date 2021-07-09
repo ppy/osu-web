@@ -39,6 +39,6 @@ class UserVerification extends Mailable implements ShouldQueue
     {
         return $this
             ->text('emails.user_verification')
-            ->subject(trans('mail.user_verification.subject'));
+            ->subject(osu_trans('mail.user_verification.subject'));
     }
 }

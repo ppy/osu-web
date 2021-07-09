@@ -120,7 +120,7 @@ export default class ClickMenu {
     let traverseId: string | null | undefined = this.current;
     const tree = [traverseId];
 
-    while (true) {
+    for (;;) {
       traverseId = this.closestMenuId(this.menuLink(traverseId));
 
       if (traverseId == null) {

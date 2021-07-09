@@ -3,12 +3,13 @@
 
 import * as React from 'react'
 import { div } from 'react-dom-factories'
+import { nextVal } from 'utils/seq'
 
 export class RankChart extends React.Component
   constructor: (props) ->
     super props
 
-    @id = "rank-chart-#{osu.uuid}"
+    @id = "rank-chart-#{nextVal()}"
     @rankChartArea = React.createRef()
     @state = {}
 

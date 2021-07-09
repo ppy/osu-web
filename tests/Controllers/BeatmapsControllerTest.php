@@ -33,7 +33,7 @@ class BeatmapsControllerTest extends TestCase
         $this->json('GET', route('beatmaps.scores', $this->beatmap), [
             'type' => 'country',
         ])->assertStatus(422)
-        ->assertJson(['error' => trans('errors.supporter_only')]);
+        ->assertJson(['error' => osu_trans('errors.supporter_only')]);
     }
 
     /**
@@ -46,7 +46,7 @@ class BeatmapsControllerTest extends TestCase
             ->json('GET', route('beatmaps.scores', $this->beatmap), [
                 'type' => 'country',
             ])->assertStatus(422)
-            ->assertJson(['error' => trans('errors.supporter_only')]);
+            ->assertJson(['error' => osu_trans('errors.supporter_only')]);
 
         $this->user->osu_subscriber = true;
         $this->user->save();

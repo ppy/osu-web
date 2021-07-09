@@ -20,6 +20,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     php8.0-mysql \
     php8.0-redis \
     php8.0-sqlite3 \
+    php8.0-swoole \
     php8.0-tokenizer \
     php8.0-xml \
     php8.0-zip \

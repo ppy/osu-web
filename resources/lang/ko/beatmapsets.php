@@ -59,7 +59,7 @@ return [
             'logged-out' => '로그인 후 비트맵을 다운로드하세요!',
             'mapped_by' => ':mapper님의 맵',
             'unfavourite' => '즐겨찾기 해제',
-            'updated_timeago' => ':timeago에 마지막으로 수정됨',
+            'updated_timeago' => ':timeago에 마지막으로 수정',
 
             'download' => [
                 '_' => '다운로드',
@@ -75,16 +75,16 @@ return [
         ],
 
         'details_date' => [
-            'approved' => ':timeago 전 approved 됨',
-            'loved' => ':timeago 전 loved 됨',
-            'qualified' => ':timeago 전 qualified 됨',
-            'ranked' => ':timeago ranked 됨',
-            'submitted' => ':timeago 제출됨',
-            'updated' => ':timeago 마지막으로 수정됨',
+            'approved' => ':timeago에 approved 됨',
+            'loved' => ':timeago에 loved 됨',
+            'qualified' => ':timeago에 qualified 됨',
+            'ranked' => ':timeago에 ranked 됨',
+            'submitted' => ':timeago에 제출됨',
+            'updated' => ':timeago에 마지막으로 수정',
         ],
 
         'favourites' => [
-            'limit_reached' => '즐겨찾기 한 비트맵이 너무 많습니다! 계속하기 전에 즐겨찾기 수를 줄여주세요.',
+            'limit_reached' => '즐겨찾기 한 비트맵이 너무 많아요. 추가하기 전에 즐겨찾기 한 곡들의 수를 줄여주세요.',
         ],
 
         'hype' => [

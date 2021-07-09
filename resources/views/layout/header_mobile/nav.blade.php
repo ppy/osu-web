@@ -20,7 +20,7 @@
                 <i class="fas fa-chevron-down"></i>
             </span>
 
-            {{ trans("layout.menu.{$section}._") }}
+            {{ osu_trans("layout.menu.{$section}._") }}
         </a>
 
         <ul class="navbar-mobile-item__submenu js-click-menu" data-click-menu-id="nav-mobile-{{ $section }}">
@@ -33,7 +33,7 @@
                         class="navbar-mobile-item__submenu-item js-click-menu--close"
                         href="{{ $link }}"
                     >
-                        {{ trans("layout.menu.$section.$action") }}
+                        {{ osu_trans("layout.menu.$section.$action") }}
                     </a>
                 </li>
             @endforeach

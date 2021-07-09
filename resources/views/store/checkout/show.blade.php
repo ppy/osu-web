@@ -2,7 +2,7 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@extends('store/layout', ['titlePrepend' => trans('store.checkout.title_compact')])
+@extends('store/layout', ['titlePrepend' => osu_trans('store.checkout.title_compact')])
 
 @php
     // always ignore empty keys.
@@ -18,7 +18,7 @@
             @if (session()->has('checkout.error.message') || $hasErrors)
                 <ul class="store-page__alert store-page__alert--with-margin-bottom">
                     <li>
-                        {{ session('checkout.error.message') ?? trans('store.checkout.cart_problems') }}
+                        {{ session('checkout.error.message') ?? osu_trans('store.checkout.cart_problems') }}
                     </li>
                 </ul>
             @endif
@@ -26,8 +26,8 @@
             @if ($order->isProcessing())
                 <ul class="store-page__alert store-page__alert--with-margin-bottom">
                     <li>
-                        {{ trans('store.checkout.pending_checkout.line_1') }}<br>
-                        {{ trans('store.checkout.pending_checkout.line_2') }}
+                        {{ osu_trans('store.checkout.pending_checkout.line_1') }}<br>
+                        {{ osu_trans('store.checkout.pending_checkout.line_2') }}
                     </li>
                 </ul>
             @endif
@@ -81,9 +81,9 @@
                 @if ($hasErrors)
                     {{-- Remove checkout options if there are cart errors --}}
                     <div class="store-checkout-text--error">
-                        <p>{{ trans('store.checkout.cart_problems') }}</p>
+                        <p>{{ osu_trans('store.checkout.cart_problems') }}</p>
                         <p>
-                            <a href="{{ route('store.cart.show') }}">{{ trans('store.checkout.cart_problems_edit') }}</a>
+                            <a href="{{ route('store.cart.show') }}">{{ osu_trans('store.checkout.cart_problems_edit') }}</a>
                         </p>
                     </div>
                 @else

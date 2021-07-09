@@ -6,6 +6,7 @@ import { Portal } from 'portal';
 import * as React from 'react';
 import { Editor, Node, Range } from 'slate';
 import { ReactEditor } from 'slate-react';
+import { nextVal } from 'utils/seq';
 import { EditorToolbarButton } from './editor-toolbar-button';
 import { SlateContext } from './slate-context';
 
@@ -16,12 +17,12 @@ export class EditorToolbar extends React.Component {
   declare context: React.ContextType<typeof SlateContext>;
   ref = React.createRef<HTMLDivElement>();
   scrollContainer: HTMLElement | undefined;
+  private readonly eventId = `editor-toolbar-${nextVal()}`;
   private scrollTimer: number | undefined;
   private readonly throttledUpdate = _.throttle(this.updatePosition.bind(this), 100);
-  private readonly uuid: string = osu.uuid();
 
   componentDidMount() {
-    $(window).on(`scroll.${this.uuid}`, this.throttledUpdate);
+    $(window).on(`scroll.${this.eventId}`, this.throttledUpdate);
     this.updatePosition();
   }
 
@@ -31,9 +32,9 @@ export class EditorToolbar extends React.Component {
   }
 
   componentWillUnmount() {
-    $(window).off(`.${this.uuid}`);
+    $(window).off(`.${this.eventId}`);
     if (this.scrollContainer) {
-      $(this.scrollContainer).off(`.${this.uuid}`);
+      $(this.scrollContainer).off(`.${this.eventId}`);
     }
     this.throttledUpdate.cancel();
   }
@@ -67,10 +68,10 @@ export class EditorToolbar extends React.Component {
 
   setScrollContainer(container: HTMLElement) {
     if (this.scrollContainer) {
-      $(this.scrollContainer).off(`.${this.uuid}`);
+      $(this.scrollContainer).off(`.${this.eventId}`);
     }
     this.scrollContainer = container;
-    $(this.scrollContainer).on(`scroll.${this.uuid}`, this.throttledUpdate);
+    $(this.scrollContainer).on(`scroll.${this.eventId}`, this.throttledUpdate);
   }
 
   updatePosition() {

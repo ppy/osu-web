@@ -27,7 +27,7 @@ class ChangeUsernameTest extends TestCase
         $user = $this->createUser(['user_warnings' => 1]);
 
         $errors = $user->validateChangeUsername('newusername')->all();
-        $expected = [trans('model_validation.user.change_username.restricted')];
+        $expected = [osu_trans('model_validation.user.change_username.restricted')];
 
         $this->assertArrayHasKey('username', $errors);
         $this->assertArraySubset($expected, $errors['username'], true);
@@ -67,7 +67,7 @@ class ChangeUsernameTest extends TestCase
         $user = $this->createUser();
 
         $errors = $user->validateChangeUsername('iamuser')->all();
-        $expected = [trans('model_validation.user.change_username.username_is_same')];
+        $expected = [osu_trans('model_validation.user.change_username.username_is_same')];
 
         $this->assertArrayHasKey('username', $errors);
         $this->assertArraySubset($expected, $errors['username'], true);
@@ -78,7 +78,7 @@ class ChangeUsernameTest extends TestCase
         $user = $this->createUser();
 
         $errors = $user->validateChangeUsername('iAmUser')->all();
-        $expected = [trans('model_validation.user.change_username.username_is_same')];
+        $expected = [osu_trans('model_validation.user.change_username.username_is_same')];
 
         $this->assertArrayHasKey('username', $errors);
         $this->assertArraySubset($expected, $errors['username'], true);

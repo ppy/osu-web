@@ -4,6 +4,7 @@
 import { BeatmapListItem } from './beatmap-list-item'
 import * as React from 'react'
 import { a, div } from 'react-dom-factories'
+import { nextVal } from 'utils/seq'
 el = React.createElement
 
 bn = 'beatmap-list'
@@ -12,18 +13,19 @@ export class BeatmapList extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @eventId = "beatmapset-discussions-show-beatmap-list-#{nextVal()}"
     @state =
       showingSelector: false
 
 
   componentDidMount: =>
-    $(document).on 'click.beatmapList', @onDocumentClick
-    $(document).on 'turbolinks:before-cache.beatmapList', @hideSelector
+    $(document).on "click.#{@eventId}", @onDocumentClick
+    $(document).on "turbolinks:before-cache.#{@eventId}", @hideSelector
     @syncBlackout()
 
 
   componentWillUnmount: =>
-    $(document).off '.beatmapList'
+    $(document).off ".#{@eventId}"
 
 
   render: =>

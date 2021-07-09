@@ -10,7 +10,7 @@
 ]) !!}
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
-            {{ trans('accounts.edit.signature.title') }}
+            {{ osu_trans('accounts.edit.signature.title') }}
         </h2>
     </div>
 
@@ -51,14 +51,14 @@
                 <button
                     class="btn-osu-big btn-osu-big--account-edit"
                     type="submit"
-                    data-disable-with="{{ trans('common.buttons.saving') }}"
+                    data-disable-with="{{ osu_trans('common.buttons.saving') }}"
                     @if (Auth::user()->isSilenced())
                         disabled
                     @endif
                 >
                     <div class="btn-osu-big__content">
                         <div class="btn-osu-big__left">
-                            {{ trans('accounts.edit.signature.update') }}
+                            {{ osu_trans('accounts.edit.signature.update') }}
                         </div>
 
                         <div class="btn-osu-big__icon">

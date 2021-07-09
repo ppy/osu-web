@@ -2,12 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import DispatcherAction from 'actions/dispatcher-action';
-import { UserLogoutAction } from 'actions/user-login-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import { route } from 'laroute';
-import { forEach } from 'lodash';
 import { action, computed, observable, observe } from 'mobx';
 import SocketMessageEvent from 'socket-message-event';
 import SocketWorker from 'socket-worker';
@@ -61,10 +59,6 @@ export default class Worker implements DispatchListener {
   }
 
   handleDispatchAction(event: DispatcherAction) {
-    if (event instanceof UserLogoutAction) {
-      this.destroy();
-    }
-
     if (!(event instanceof SocketMessageEvent)) return;
 
     const message = event.message;
@@ -87,11 +81,6 @@ export default class Worker implements DispatchListener {
 
   private delayedRetryInitialLoadMore() {
     this.timeout.loadMore = window.setTimeout(this.loadMore, 10000);
-  }
-
-  private destroy() {
-    forEach(this.xhr, (xhr) => xhr?.abort());
-    forEach(this.timeout, (timeout) => window.clearTimeout(timeout));
   }
 
   @action

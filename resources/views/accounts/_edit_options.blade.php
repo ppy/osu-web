@@ -8,7 +8,7 @@
 <div class="account-edit">
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
-            {{ trans('accounts.options.title') }}
+            {{ osu_trans('accounts.options.title') }}
         </h2>
     </div>
 
@@ -16,7 +16,7 @@
         <div class="account-edit__input-group">
             <div class="account-edit-entry account-edit-entry--no-label">
                 <div class="account-edit-entry__checkboxes-label">
-                    {{ trans('accounts.options.beatmapset_download._') }}
+                    {{ osu_trans('accounts.options.beatmapset_download._') }}
                 </div>
                 <form
                     class="account-edit-entry__checkboxes account-edit-entry__checkboxes--vertical js-account-edit"
@@ -43,7 +43,7 @@
                             ])
 
                             <span class="account-edit-entry__checkbox-label">
-                                {{ trans("accounts.options.beatmapset_download.{$name}") }}
+                                {{ osu_trans("accounts.options.beatmapset_download.{$name}") }}
                             </span>
 
                             @if (!$statusIsRendered)
@@ -74,7 +74,7 @@
                     ])
 
                     <span class="account-edit-entry__checkbox-label">
-                        {{ trans('accounts.options.beatmapset_title_show_original') }}
+                        {{ osu_trans('accounts.options.beatmapset_title_show_original') }}
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
@@ -94,7 +94,7 @@
                     ])
 
                     <span class="account-edit-entry__checkbox-label">
-                        {{ trans('accounts.options.beatmapset_show_nsfw') }}
+                        {{ osu_trans('accounts.options.beatmapset_show_nsfw') }}
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">

@@ -29,7 +29,7 @@ class AccountController extends Controller
 
         $this->middleware(function ($request, $next) {
             if (Auth::check() && Auth::user()->isSilenced()) {
-                return abort(403, trans('authorization.silenced'));
+                return abort(403, osu_trans('authorization.silenced'));
             }
 
             return $next($request);
@@ -75,7 +75,7 @@ class AccountController extends Controller
     public function cover()
     {
         if (Request::hasFile('cover_file') && !Auth::user()->osu_subscriber) {
-            return error_popup(trans('errors.supporter_only'));
+            return error_popup(osu_trans('errors.supporter_only'));
         }
 
         try {

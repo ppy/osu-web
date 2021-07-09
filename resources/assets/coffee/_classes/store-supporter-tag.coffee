@@ -30,9 +30,8 @@ class @StoreSupporterTag
     else
       @user = JSON.parse(@reactElement.dataset.user)
 
-    $(document).on 'turbolinks:before-cache.store-supporter-tag', =>
+    $(document).one 'turbolinks:before-cache', =>
       @reactElement.dataset.user = JSON.stringify(@user)
-      $(document).off '.store-supporter-tag'
 
     @cost = @calculate(@initializeSlider().slider('value'))
     @initializeSliderPresets()
