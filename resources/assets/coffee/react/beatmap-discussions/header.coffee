@@ -176,10 +176,7 @@ export class Header extends React.PureComponent
     BeatmapDiscussionHelper.url beatmap: beatmap
 
   getCount: (beatmap) =>
-    if beatmap.deleted_at?
-      return undefined
-
-    return @props.currentDiscussions.countsByBeatmap[beatmap.id]
+    if beatmap.deleted_at? then undefined else @props.currentDiscussions.countsByBeatmap[beatmap.id]
 
   onSelectBeatmap: (beatmapId) =>
     $.publish 'beatmapsetDiscussions:update',
