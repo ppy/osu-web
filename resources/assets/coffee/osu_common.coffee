@@ -44,10 +44,10 @@
 
     colour = {}
 
-    if (difficulty? || difficulty > 8)
+    if (difficulty == null || difficulty > 8)
       colour = { red: 0, green: 0, blue: 0 }
     else
-      i = stops.findIndex((stop) -> starRating <= stop.starRating)
+      i = stops.findIndex((stop) -> difficulty <= stop.offset)
 
       if (i == -1)
         colour = { red: 0, green: 0, blue: 0 }
